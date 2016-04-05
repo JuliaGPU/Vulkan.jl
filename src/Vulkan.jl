@@ -1,4 +1,4 @@
-module VulkanAbstraction
+module Vulkan
 
 # package code goes here
 
