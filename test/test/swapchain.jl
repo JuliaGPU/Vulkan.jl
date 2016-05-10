@@ -1,11 +1,33 @@
 
-
-
-
+function acquireNextImage(presentCompleteSemaphore::api.VkSemaphore, currentBuffer, swapchain, device)
+    return fpAcquireNextImageKHR(device, swapchain.ref[], typemax(UInt64), presentCompleteSemaphore, Ptr{api.VkFence}(C_NULL), currentBuffer)
+end
+function queuePresent(queue, currentBuffer_ref, swapchain)
+    presentInfo = create(api.VkPresentInfoKHR, (
+        :waitSemaphoreCount, 0,
+        :swapchainCount, 1,
+        :pSwapchains, swapchain.ref,
+        :pImageIndices, currentBuffer_ref
+    ))
+    err = fpQueuePresentKHR(queue, presentInfo)
+    check(err)
+end
+function queuePresent(queue, currentBuffer_ref, waitsemaphore, swapchain)
+    waitsemaphore_ref = [waitsemaphore]
+    presentInfo = create(api.VkPresentInfoKHR, (
+        :swapchainCount, 1,
+        :pSwapchains, swapchain.ref,
+        :pImageIndices, currentBuffer_ref,
+        :waitSemaphoreCount, (waitsemaphore != api.VK_NULL_HANDLE) ? 1 : 0,
+        :pWaitSemaphores, waitsemaphore_ref
+    ))
+    err = fpQueuePresentKHR(queue, presentInfo)
+    check(err)
+end
 
 image_count(swapchain::SwapChain) = length(swapchain.images)
 
-function supported_depth_format(physicalDevice)
+function get_supported_depth_format(physicalDevice)
     # Since all depth formats may be optional, we need to find a suitable depth format to use
     # Start with the highest precision packed format
     depthFormats = (
@@ -154,16 +176,30 @@ function get_supports_present(physical_device, surface, queue_props)
     end
     supports_present
 end
-
+"""
+Get list of supported surface formats
+"""
+function get_surface_formats(physical_device, surface)
+    formatCount = Ref{UInt32}()
+    err = fpGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, formatCount, C_NULL)
+    check(err)
+    if formatCount[] < 1
+        error("No formats found!")
+    end
+    surface_formats = Array(api.VkSurfaceFormatKHR, formatCount[])
+    err = fpGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, formatCount, surface_formats)
+    check(err)
+    surface_formats
+end
 function SwapChain(instance, device, physical_device, window, swapchain=SwapChain())
     surface = create_surface(instance, window)
     swapchain.surface = surface
-    queue_props = queue_properties(physical_device)
+    queue_props = get_queue_properties(physical_device)
     queue_count = length(queue_props)
     # Iterate over each queue to learn whether it supports presenting:
     # Find a queue with present support
     # Will be used to present the swap chain images to the windowing system
-    supports_present = supports_present(physical_device, surface, queue_props)
+    supports_present = get_supports_present(physical_device, surface, queue_props)
     # Search for a graphics and a present queue in the array of queue
     # families, try to find one that supports both
     graphicsQueueNodeIndex = typemax(UInt32)
@@ -227,6 +263,37 @@ function SwapChain(instance, device, physical_device, window, swapchain=SwapChai
     swapchain
 end
 
+
+function get_present_modes(physical_device, surface)
+    presentModeCount = Ref{UInt32}()
+    err = fpGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, presentModeCount, C_NULL)
+    check(err)
+    if presentModeCount[] < 1
+        error("No present modes found")
+    end
+    present_modes = Array(api.VkPresentModeKHR, presentModeCount[])
+
+    err = fpGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, presentModeCount, present_modes)
+    check(err)
+    present_modes
+end
+function get_surface_capabilities(physical_device, surface)
+    surface_capabilities = Ref{api.VkSurfaceCapabilitiesKHR}()
+    err = fpGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, surface, surface_capabilities)
+    check(err)
+    surface_capabilities[]
+end
+
+function get_images(device, swapchain)
+    imageCount = Ref{UInt32}()
+    err = fpGetSwapchainImagesKHR(device, swapchain.ref[], imageCount, C_NULL)
+    check(err)
+    # Get the swap chain images
+    images = Array(api.VkImage, imageCount[])
+    err = fpGetSwapchainImagesKHR(device, swapchain.ref[], imageCount, images)
+    check(err)
+    images
+end
 
 immutable SwapChainBuffer
     image::api.VkImage
@@ -335,7 +402,7 @@ function setupSwapChain(device, command_buffer, width, height, swapchain)
 end
 
 
-function VkImageMemoryBarrier()
+function ImageMemoryBarrier()
     return create(api.VkImageMemoryBarrier, (
         # Some default values
         :srcQueueFamilyIndex, api.VK_QUEUE_FAMILY_IGNORED,
@@ -351,7 +418,7 @@ See chapter 11.4 Image Layout for details
 """
 function set_image_layout(cmdbuffer, image, aspectMask, oldImageLayout, newImageLayout)
     # Create an image barrier object
-    imageMemoryBarrier = VkImageMemoryBarrier()
+    imageMemoryBarrier = ImageMemoryBarrier()
     imageMemoryBarrier[:oldLayout] = oldImageLayout
     imageMemoryBarrier[:newLayout] = newImageLayout
     imageMemoryBarrier[:image] = image

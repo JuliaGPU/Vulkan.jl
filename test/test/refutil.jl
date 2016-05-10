@@ -4,7 +4,7 @@
 Create defaults for most field types encountered with Vulkan.
 The second argument is just for generating parent type dependant defaults.
 """
-default{T<:Enum}(::Type{T}, struct) = typemin(T)
+default{T<:vk.CEnum.Cenum}(::Type{T}, struct) = typemin(T)
 
 """
 Recursively constructs default for a composite type
@@ -16,6 +16,8 @@ end
 default{T<:Number}(::Type{T}, struct) = zero(T)
 default{T<:Ptr}(::Type{T}, struct) = T(vk.api.VK_NULL_HANDLE)
 default{N,T}(::Type{NTuple{N,T}}, struct) = ntuple(x->default(T, struct), N)
+
+
 
 
 """
@@ -167,6 +169,7 @@ function create{T}(::Type{Vector{T}}, field_value_list::Tuple...)
         @inbounds for i=1:fieldcount
             if !field_filled[i]
                 FT = fieldtype(T, i)
+                println(fnames[i]," ", FT, " ", T)
                 unsafe_store!(Ptr{FT}(ref_ptr+field_offsets[i]), default(FT, T))
             end
         end
@@ -212,6 +215,14 @@ as long as `parent` is alive.
 """
 function struct_convert(t, value, parent)
 	convert(t, value)
+end
+function struct_convert(t::Type{Ptr{Cstring}}, value::Vector{ASCIIString}, parent::WeakRef)
+preserve_ref(value, parent)
+ref = Base.unsafe_convert(Ptr{Ptr{Cchar}}, Ref{Ptr{Cchar}}(value))
+Base.unsafe_convert(t, ref)
+end
+function struct_convert(t::Type{Cstring}, value::ASCIIString, parent::WeakRef)
+    Base.unsafe_convert(t, value)
 end
 function struct_convert(t::Type{Ptr{Ptr{Cchar}}}, value::Vector{ASCIIString}, parent::WeakRef)
     preserve_ref(value, parent)

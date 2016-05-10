@@ -1,7 +1,4 @@
-
-abstract GPUArray{T, N}
-
-abstract VulkanArray{T, N}
+using FixedPointNumbers, Colors
 
 type VulkanBuffer{T} <: VulkanArray{T, 1}
     mem::api.VkDeviceMemory
@@ -10,8 +7,8 @@ type VulkanBuffer{T} <: VulkanArray{T, 1}
     size::Int
 end
 type Image{T, N} <: VulkanArray{T, N}
-    ref::VkImage
-    mem::VkDeviceMemory
+    ref::api.VkImage
+    mem::api.VkDeviceMemory
     dimension::NTuple{N, Int}
 end
 
@@ -118,7 +115,7 @@ type2prefix{T<:Integer}(::Type{T}) = "SINT"
 type2prefix{T<:Unsigned}(::Type{T}) = "UINT"
 type2prefix{T<:UFixed}(::Type{T}) = "UNORM"
 type2prefix{T<:Fixed}(::Type{T}) = "SNORM"
-type2prefix{T<:Union{Colorant, FixedArraytype}}(::Type{T}) = type2prefix(eltype(T))
+type2prefix{T<:Union{Colorant, FixedArray}}(::Type{T}) = type2prefix(eltype(T))
 
 """
 For VkFormat, we need to specify the size of every component
@@ -213,7 +210,7 @@ end
 
 
 
-function Image(device, array::Array{T,N}, usage,
+function Image{T,N}(device, array::Array{T,N}, usage,
         miplevels=1, arrayLayers=1,
         samples=VK_SAMPLE_COUNT_1_BIT,
         tiling=api.VK_IMAGE_TILING_OPTIMAL

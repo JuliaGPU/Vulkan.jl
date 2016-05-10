@@ -3,6 +3,12 @@ const validation_layer = [
 
 ]
 
+const VK_KHR_WAYLAND_SURFACE_SPEC_VERSION = 5
+const VK_KHR_XCB_SURFACE_EXTENSION_NAME = "VK_KHR_xcb_surface"
+const VK_KHR_WIN32_SURFACE_SPEC_VERSION = 5
+const VK_KHR_WIN32_SURFACE_EXTENSION_NAME = "VK_KHR_win32_surface"
+const VK_EXT_DEBUG_REPORT_SPEC_VERSION = 2
+const VK_EXT_DEBUG_REPORT_EXTENSION_NAME = "VK_EXT_debug_report"
 
 function debugg_callback(
         flags::api.VkDebugReportFlagsEXT,
@@ -45,6 +51,7 @@ const debug_callback_fun_ptr = cfunction(
     )
 )
 
+
 function setupDebugging(instance::Instance, flags)
     create_debug_callback_ptr = api.vkGetInstanceProcAddr(instance, "vkCreateDebugReportCallbackEXT")
 
@@ -70,13 +77,13 @@ end
 function Instance(appname::AbstractString, validation=true)
     enabledExtensions = [api.VK_KHR_SURFACE_EXTENSION_NAME]
     if validation
-        push!(enabledExtensions, api.VK_EXT_DEBUG_REPORT_EXTENSION_NAME)
+        push!(enabledExtensions, VK_EXT_DEBUG_REPORT_EXTENSION_NAME)
     end
     @windows ? begin
-        push!(enabledExtensions, api.VK_KHR_WIN32_SURFACE_EXTENSION_NAME)
+        push!(enabledExtensions, VK_KHR_WIN32_SURFACE_EXTENSION_NAME)
     end : begin
     # todo : linux/android
-        push!(enabledExtensions, api.VK_KHR_XCB_SURFACE_EXTENSION_NAME)
+        push!(enabledExtensions, VK_KHR_XCB_SURFACE_EXTENSION_NAME)
     end
 
     app_info = create(api.VkApplicationInfo, (

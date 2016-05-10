@@ -1,4 +1,4 @@
-using Vulkan
+using VulkanCore
 using GeometryTypes, GLAbstraction, FixedSizeArrays, GLFW
 
 const api = vk.api
@@ -57,8 +57,7 @@ setup_command_buffer = createSetupCommandBuffer(device, command_pool)
 # Triangle::prepare()
 semaphore = prepareSemaphore(device)
 
-using GLVisualize
-mesh = loadasset("cat.obj")
+mesh = GLNormalMesh(Sphere(Point3f0(0), 1f0))
 
 verts = Vertex{3, Float32}[Vertex(p, n, Vec3f0(0.99)) for (p,n) in zip(vertices(mesh), normals(mesh))]
 indexes = faces(mesh)
@@ -212,7 +211,7 @@ function draw(swapchain, semaphores, queue, commandbuffer)
     # We pass the signal semaphore from the submit info
     # to ensure that the image is not rendered until
     # all commands have been submitted
-    present(queue, current_buffer_ref, semaphores.renderComplete, swapchain)
+    queuePresent(queue, current_buffer_ref, semaphores.renderComplete, swapchain)
     current_buffer = current_buffer_ref[]
 
     err = api.vkQueueWaitIdle(queue);

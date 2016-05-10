@@ -1,4 +1,4 @@
-using Vulkan
+using VulkanCore
 
 
 """
@@ -10,7 +10,7 @@ For further documentation please refer to the documentation of `vkCreateAndroidS
 """
 function CreateAndroidSurfaceKHR(instance, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkAndroidSurfaceKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkAndroidSurfaceCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkAndroidSurfaceCreateInfoKHR, create_info_args)
     err = api.vkCreateAndroidSurfaceKHR(instance, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -25,7 +25,7 @@ For further documentation please refer to the documentation of `vkCreateBuffer`.
 """
 function CreateBuffer(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkBuffer}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkBufferCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkBufferCreateInfo, create_info_args)
     err = api.vkCreateBuffer(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -40,7 +40,7 @@ For further documentation please refer to the documentation of `vkCreateBufferVi
 """
 function CreateBufferView(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkBufferView}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkBufferViewCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkBufferViewCreateInfo, create_info_args)
     err = api.vkCreateBufferView(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -55,7 +55,7 @@ For further documentation please refer to the documentation of `vkCreateCommandP
 """
 function CreateCommandPool(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkCommandPool}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkCommandPoolCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkCommandPoolCreateInfo, create_info_args)
     err = api.vkCreateCommandPool(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -70,7 +70,7 @@ For further documentation please refer to the documentation of `vkCreateComputeP
 """
 function CreateComputePipelines(device, pipelineCache, createInfoCount, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkComputePipelines}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkComputePipelineCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkComputePipelineCreateInfo, create_info_args)
     err = api.vkCreateComputePipelines(device, pipelineCache, createInfoCount, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -85,7 +85,7 @@ For further documentation please refer to the documentation of `vkCreateDebugRep
 """
 function CreateDebugReportCallbackEXT(instance, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkDebugReportCallbackEXT}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkDebugReportCallbackCreateInfoEXT, create_info_args)
+    create_info = create(VulkanCore.api.VkDebugReportCallbackCreateInfoEXT, create_info_args)
     err = api.vkCreateDebugReportCallbackEXT(instance, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -100,7 +100,7 @@ For further documentation please refer to the documentation of `vkCreateDescript
 """
 function CreateDescriptorPool(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkDescriptorPool}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkDescriptorPoolCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkDescriptorPoolCreateInfo, create_info_args)
     err = api.vkCreateDescriptorPool(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -115,7 +115,7 @@ For further documentation please refer to the documentation of `vkCreateDescript
 """
 function CreateDescriptorSetLayout(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkDescriptorSetLayout}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkDescriptorSetLayoutCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkDescriptorSetLayoutCreateInfo, create_info_args)
     err = api.vkCreateDescriptorSetLayout(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -130,7 +130,7 @@ For further documentation please refer to the documentation of `vkCreateDevice`.
 """
 function CreateDevice(physicalDevice, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkDevice}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkDeviceCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkDeviceCreateInfo, create_info_args)
     err = api.vkCreateDevice(physicalDevice, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -145,7 +145,7 @@ For further documentation please refer to the documentation of `vkCreateDisplayM
 """
 function CreateDisplayModeKHR(physicalDevice, display, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkDisplayModeKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkDisplayModeCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkDisplayModeCreateInfoKHR, create_info_args)
     err = api.vkCreateDisplayModeKHR(physicalDevice, display, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -160,7 +160,7 @@ For further documentation please refer to the documentation of `vkCreateEvent`.
 """
 function CreateEvent(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkEvent}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkEventCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkEventCreateInfo, create_info_args)
     err = api.vkCreateEvent(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -175,7 +175,7 @@ For further documentation please refer to the documentation of `vkCreateFence`.
 """
 function CreateFence(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkFence}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkFenceCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkFenceCreateInfo, create_info_args)
     err = api.vkCreateFence(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -190,7 +190,7 @@ For further documentation please refer to the documentation of `vkCreateFramebuf
 """
 function CreateFramebuffer(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkFramebuffer}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkFramebufferCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkFramebufferCreateInfo, create_info_args)
     err = api.vkCreateFramebuffer(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -205,7 +205,7 @@ For further documentation please refer to the documentation of `vkCreateGraphics
 """
 function CreateGraphicsPipelines(device, pipelineCache, createInfoCount, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkGraphicsPipelines}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkGraphicsPipelineCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkGraphicsPipelineCreateInfo, create_info_args)
     err = api.vkCreateGraphicsPipelines(device, pipelineCache, createInfoCount, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -220,7 +220,7 @@ For further documentation please refer to the documentation of `vkCreateImage`.
 """
 function CreateImage(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkImage}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkImageCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkImageCreateInfo, create_info_args)
     err = api.vkCreateImage(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -235,7 +235,7 @@ For further documentation please refer to the documentation of `vkCreateImageVie
 """
 function CreateImageView(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkImageView}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkImageViewCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkImageViewCreateInfo, create_info_args)
     err = api.vkCreateImageView(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -250,7 +250,7 @@ For further documentation please refer to the documentation of `vkCreateInstance
 """
 function CreateInstance(pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkInstance}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkInstanceCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkInstanceCreateInfo, create_info_args)
     err = api.vkCreateInstance(create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -265,7 +265,7 @@ For further documentation please refer to the documentation of `vkCreateMirSurfa
 """
 function CreateMirSurfaceKHR(instance, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkMirSurfaceKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkMirSurfaceCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkMirSurfaceCreateInfoKHR, create_info_args)
     err = api.vkCreateMirSurfaceKHR(instance, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -280,7 +280,7 @@ For further documentation please refer to the documentation of `vkCreatePipeline
 """
 function CreatePipelineCache(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkPipelineCache}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkPipelineCacheCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkPipelineCacheCreateInfo, create_info_args)
     err = api.vkCreatePipelineCache(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -295,7 +295,7 @@ For further documentation please refer to the documentation of `vkCreatePipeline
 """
 function CreatePipelineLayout(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkPipelineLayout}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkPipelineLayoutCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkPipelineLayoutCreateInfo, create_info_args)
     err = api.vkCreatePipelineLayout(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -310,7 +310,7 @@ For further documentation please refer to the documentation of `vkCreateQueryPoo
 """
 function CreateQueryPool(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkQueryPool}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkQueryPoolCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkQueryPoolCreateInfo, create_info_args)
     err = api.vkCreateQueryPool(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -325,7 +325,7 @@ For further documentation please refer to the documentation of `vkCreateRenderPa
 """
 function CreateRenderPass(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkRenderPass}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkRenderPassCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkRenderPassCreateInfo, create_info_args)
     err = api.vkCreateRenderPass(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -340,7 +340,7 @@ For further documentation please refer to the documentation of `vkCreateSampler`
 """
 function CreateSampler(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkSampler}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkSamplerCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkSamplerCreateInfo, create_info_args)
     err = api.vkCreateSampler(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -355,7 +355,7 @@ For further documentation please refer to the documentation of `vkCreateSemaphor
 """
 function CreateSemaphore(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkSemaphore}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkSemaphoreCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkSemaphoreCreateInfo, create_info_args)
     err = api.vkCreateSemaphore(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -370,7 +370,7 @@ For further documentation please refer to the documentation of `vkCreateShaderMo
 """
 function CreateShaderModule(device, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkShaderModule}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkShaderModuleCreateInfo, create_info_args)
+    create_info = create(VulkanCore.api.VkShaderModuleCreateInfo, create_info_args)
     err = api.vkCreateShaderModule(device, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -385,7 +385,7 @@ For further documentation please refer to the documentation of `vkCreateSharedSw
 """
 function CreateSharedSwapchainsKHR(device, swapchainCount, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkSharedSwapchainsKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkSwapchainCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkSwapchainCreateInfoKHR, create_info_args)
     err = api.vkCreateSharedSwapchainsKHR(device, swapchainCount, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -400,7 +400,7 @@ For further documentation please refer to the documentation of `vkCreateWaylandS
 """
 function CreateWaylandSurfaceKHR(instance, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkWaylandSurfaceKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkWaylandSurfaceCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkWaylandSurfaceCreateInfoKHR, create_info_args)
     err = api.vkCreateWaylandSurfaceKHR(instance, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -415,7 +415,7 @@ For further documentation please refer to the documentation of `vkCreateWin32Sur
 """
 function CreateWin32SurfaceKHR(instance, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkWin32SurfaceKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkWin32SurfaceCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkWin32SurfaceCreateInfoKHR, create_info_args)
     err = api.vkCreateWin32SurfaceKHR(instance, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -430,7 +430,7 @@ For further documentation please refer to the documentation of `vkCreateXcbSurfa
 """
 function CreateXcbSurfaceKHR(instance, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkXcbSurfaceKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkXcbSurfaceCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkXcbSurfaceCreateInfoKHR, create_info_args)
     err = api.vkCreateXcbSurfaceKHR(instance, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -445,7 +445,7 @@ For further documentation please refer to the documentation of `vkCreateXlibSurf
 """
 function CreateXlibSurfaceKHR(instance, pAllocator, create_info_args::Tuple)
     instance_ptr = Ref{api.VkXlibSurfaceKHR}(api.VK_NULL_HANDLE)
-    create_info = create(Vulkan.api.VkXlibSurfaceCreateInfoKHR, create_info_args)
+    create_info = create(VulkanCore.api.VkXlibSurfaceCreateInfoKHR, create_info_args)
     err = api.vkCreateXlibSurfaceKHR(instance, create_info, pAllocator, instance_ptr)
     check(err)
     instance_ptr[]
@@ -802,4 +802,3 @@ For further documentation please refer to the documentation of `vkCmdWriteTimest
 function write_timestamp(commandbuffer::CommandBuffer, pipelinestage, querypool, query)
     api.vkCmdWriteTimestamp(commandBuffer, pipelineStage, queryPool, query)
 end
-
