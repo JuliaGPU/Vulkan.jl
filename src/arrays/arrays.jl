@@ -39,16 +39,7 @@ function DeviceMemory(device, allocation_info_ref)
 end
 
 
-function map_buffer(device, buffer::Buffer)
-    data_ref = Ref{Ptr{Void}}(C_NULL)
-    alloc_size = buffer.allocation_info.allocationSize
-	err = api.vkMapMemory(device, buffer.mem, 0, alloc_size, 0, data_ref)
-    check(err)
-    data_ref[]
-end
-function unmap_buffer(device, buffer::Buffer)
-    api.vkUnmapMemory(device, buffer.mem)
-end
+
 
 """
 Prefix for VkFormat
