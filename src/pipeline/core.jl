@@ -1,7 +1,6 @@
 
 
 function GraphicsPipeline(layout, renderpass, stages)
-
     CreateGraphicsPipelines(device, pipelineCache, 1, create_info_arr, C_NULL, (
         # The layout used for this pipeline
         :layout, layout,
@@ -21,5 +20,4 @@ function GraphicsPipeline(layout, renderpass, stages)
         :pDepthStencilState, depthStencilState,
         :pDynamicState, dynamicState,
     ))
-
 end

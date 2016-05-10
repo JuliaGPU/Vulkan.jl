@@ -1,5 +1,7 @@
 module Vulkan
 
-# package code goes here
+include("types.jl")
+include("refutil.jl")
+include("helper.jl")
 
 end # module

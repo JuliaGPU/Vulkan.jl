@@ -1,5 +1,3 @@
-
-
 """
 Gets the present modes a surface supports
 """
@@ -26,13 +24,16 @@ function surface_capabilities(physical_device, surface)
     surface_capabilities[]
 end
 
-function get_images(device, swapchain)
-    imageCount = Ref{UInt32}()
-    err = fpGetSwapchainImagesKHR(device, swapchain.ref[], imageCount, C_NULL)
+"""
+Returns the images bound to the swapchain
+"""
+function images(device, swapchain)
+    image_count = Ref{UInt32}()
+    err = fpGetSwapchainImagesKHR(device, swapchain.ref[], image_count, C_NULL)
     check(err)
     # Get the swap chain images
-    images = Array(api.VkImage, imageCount[])
-    err = fpGetSwapchainImagesKHR(device, swapchain.ref[], imageCount, images)
+    images = Array(api.VkImage, image_count[])
+    err = fpGetSwapchainImagesKHR(device, swapchain.ref[], image_count, images)
     check(err)
     images
 end

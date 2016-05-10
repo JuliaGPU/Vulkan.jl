@@ -1,29 +1,12 @@
-
-function allocate_memory(device, allocation_info_ref)
-    mem_ref = Ref{api.VkDeviceMemory}()
-    err = api.vkAllocateMemory(device, allocation_info_ref, C_NULL, mem_ref)
-    check(err)
-    mem_ref[]
-end
-
-
-function map_buffer(device, buffer::VulkanBuffer)
-    data_ref = Ref{Ptr{Void}}(C_NULL)
-    alloc_size =  buffer.allocation_info.allocationSize
-	err = api.vkMapMemory(device, buffer.mem, 0, alloc_size, 0, data_ref)
-    check(err)
-    data_ref[]
-end
-function unmap_buffer(device, buffer::VulkanBuffer)
-    api.vkUnmapMemory(device, buffer.mem)
-end
-function VulkanBuffer{T}(container::T, device, usage)
-    println(T)
+function Buffer{T}(container::T, device, usage, allocators=C_NULL)
     !is_referencable(T) && error(
         "A Vulkan buffer needs to be able to get a reference to $T, which it can't.
         Try using an array or a mutable composite Type
     ")
-    buffer = CreateBuffer(device, container, usage)
+    buffer = CreateBuffer(device, allocators, (
+        :size, sizeof(container),
+        :usage, usage
+    ))
 
     mem_requirements = get_memory_requirements(device, buffer)
     memtypeindex = get_memory_type(
@@ -37,7 +20,7 @@ function VulkanBuffer{T}(container::T, device, usage)
         :allocationSize, mem_requirements.size
     ))
     mem = allocate_memory(device, mem_alloc)
-    vkbuff = VulkanBuffer{T}(mem, buffer, mem_alloc[], sizeof(container))
+    vkbuff = Buffer{T}(mem, device, buffer, mem_alloc[], sizeof(container))
 
     data_ptr = map_buffer(device, vkbuff)
     memcpy(data_ptr, container)
@@ -46,6 +29,25 @@ function VulkanBuffer{T}(container::T, device, usage)
     err = api.vkBindBufferMemory(device, buffer, mem, 0)
     check(err)
     vkbuff
+end
+
+function DeviceMemory(device, allocation_info_ref)
+    mem_ref = Ref{api.VkDeviceMemory}()
+    err = api.vkAllocateMemory(device, allocation_info_ref, C_NULL, mem_ref)
+    check(err)
+    DeviceMemory(mem_ref[], device)
+end
+
+
+function map_buffer(device, buffer::Buffer)
+    data_ref = Ref{Ptr{Void}}(C_NULL)
+    alloc_size = buffer.allocation_info.allocationSize
+	err = api.vkMapMemory(device, buffer.mem, 0, alloc_size, 0, data_ref)
+    check(err)
+    data_ref[]
+end
+function unmap_buffer(device, buffer::Buffer)
+    api.vkUnmapMemory(device, buffer.mem)
 end
 
 """

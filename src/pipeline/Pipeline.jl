@@ -15,5 +15,6 @@ source: https://github.com/SaschaWillems/Vulkan
 """
 module Pipeline
 
+include("core.jl")
 
 end

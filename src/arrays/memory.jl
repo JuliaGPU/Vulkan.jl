@@ -4,8 +4,6 @@ https://developer.nvidia.com/vulkan-memory-management
 =#
 
 
-
-
 """
 Find the memory type index, which selects the properties of the memory to be allocated,
 as well as the heap the memory will come from.
@@ -25,7 +23,7 @@ function memory_type(device, typebits, properties)
 end
 
 
-function memory_requirements(device, buffer::VulkanBuffer)
+function memory_requirements(device, buffer::Buffer)
     mem_requirements_ref = Ref{api.VkMemoryRequirements}()
 	api.vkGetBufferMemoryRequirements(device, buffer, mem_requirements_ref)
     mem_requirements_ref[]

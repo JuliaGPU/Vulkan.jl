@@ -1,4 +1,4 @@
-function setupDescriptorPool(device)
+function DescriptorPool(device)
     # We need to tell the API the number of max. requested descriptors per type
     # This example only uses one descriptor type (uniform buffer) and only
     # requests one descriptor of this type
@@ -14,17 +14,18 @@ function setupDescriptorPool(device)
     # Create the global descriptor pool
     # All descriptors used in this example are allocated from this pool
 
-    CreateDescriptorPool(device, C_NULL, (
+    descriptor_pool = CreateDescriptorPool(device, C_NULL, (
         :poolSizeCount, 1,
         :pPoolSizes, typeCounts,
         # Set the max. number of sets that can be requested
         # Requesting descriptors beyond maxSets will result in an error
         :maxSets, 1
     ))
+    DescriptorPool(descriptor_pool, device)
 end
 
 
-function setupDescriptorSetLayout(device)
+function setup_descriptor_setlayout(device)
     # Setup layout of descriptors used in this example
     # Basically connects the different shader stages to descriptors
     # for binding uniform buffers, image samplers, etc.
@@ -63,7 +64,7 @@ function allocate_descriptor_set(device, info_args::Tuple)
     descriptorSet_ref[]
 end
 
-function setupDescriptorSet(device, descriptorPool, descriptorSetLayout, ubo)
+function setup_descriptor_set(device, descriptorPool, descriptorSetLayout, ubo)
     # Update descriptor sets determining the shader binding points
     # For every binding point used in a shader there needs to be one
     # descriptor set matching that binding point
