@@ -95,51 +95,55 @@ for every type.
 """
 @generated function type2vkformat{T}(x::Type{T})
     sym = type2vkformatsymbol(T)
+    if !isdefined(api, sym)
+        error("Type $T doesn't have a matching vulkan type.")
+    end
     :(api.$sym)
 end
 
 
 
-type VertexArray
 
+function next_vertex_binding_id end
+let binding_counter = Ref(0)
+    function next_vertex_binding_id()
+        id = binding_counter[]
+        binding_counter[] = id + 1
+        id
+    end
 end
 
-function setup_binding_description()
-    VERTEX_BUFFER_BIND_ID = 0
-    bindingDescriptions = create(Vector{api.VkVertexInputBindingDescription}, (
-        :binding, VERTEX_BUFFER_BIND_ID,
-        :stride, sizeof(Vertex{3, Float32}),
-        :inputRate, api.VK_VERTEX_INPUT_RATE_VERTEX
-    ))
-
-    # Attribute descriptions
-    # Describes memory layout and shader attribute locations
-    # Location 0 : Position
-    attributeDescriptions = create(Vector{api.VkVertexInputAttributeDescription}, (
-            :binding, VERTEX_BUFFER_BIND_ID,
-            :location, 0,
-            :format, api.VK_FORMAT_R32G32B32_SFLOAT,
-            :offset, 0,
-        ),(
-            :binding, VERTEX_BUFFER_BIND_ID,
-            :location, 1,
-            :format, api.VK_FORMAT_R32G32B32_SFLOAT,
-            :offset, sizeof(Float32) * 3,
-        ),(
-            :binding, VERTEX_BUFFER_BIND_ID,
-            :location, 2,
-            :format, api.VK_FORMAT_R32G32B32_SFLOAT,
-            :offset, sizeof(Float32) * 6,
+function input_attribute_description{T<:Number}(::Type{T}, id)
+    [api.VkVertexInputAttributeDescription(
+        id, 0, type2vkformat(T), 0,
+    )]
+end
+function input_attribute_description{T}(::Type{T}, id)
+    attribute_bindings = map(1:nfields(T)) do i
+        t = fieldtype(T, i)
+        api.VkVertexInputAttributeDescription(
+            id, i-1, type2vkformat(t), 0,
         )
-    )
-    # Location 1 : Color
-    # Assign to vertex buffer
+    end
+end
+
+function vertex_input_binding_description{T}(::Vector{T}, id, input_rate)
+    [api.VkVertexInputBindingDescription(id, sizeof(T), input_rate)]
+end
+
+function VertexArray{T}(A::AbstractArray{T})
+    id = next_vertex_binding_id()
+
+    binding_descriptions = vertex_input_binding_description(b)
+    attribute_description = input_attribute_description(T, id)
+
     vi = create(Ref{api.VkPipelineVertexInputStateCreateInfo}, (
-        :vertexBindingDescriptionCount, length(bindingDescriptions),
-        :pVertexBindingDescriptions, bindingDescriptions,
-        :vertexAttributeDescriptionCount, length(attributeDescriptions),
-        :pVertexAttributeDescriptions, attributeDescriptions,
+        :vertexBindingDescriptionCount, length(binding_descriptions),
+        :pVertexBindingDescriptions, binding_descriptions,
+        :vertexAttributeDescriptionCount, length(attribute_description),
+        :pVertexAttributeDescriptions, attribute_description,
     ))
+    VertexArray(id, A, vi)
 end
 
 

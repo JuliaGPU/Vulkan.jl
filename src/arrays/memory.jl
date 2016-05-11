@@ -29,7 +29,7 @@ function memory_requirements(device, buffer::Buffer)
     mem_requirements_ref[]
 end
 
-function memory_requirements(device, buffer::VulkanImage)
+function memory_requirements(device, buffer::Image)
     mem_requirements_ref = Ref{api.VkMemoryRequirements}()
 	api.vkGetImageMemoryRequirements(device, buffer, mem_requirements_ref)
     mem_requirements_ref[]

@@ -55,7 +55,7 @@ abstract VulkanArray{T, N} <: DenseArray{T, N}
 """
 Texture data (including dimensions & format) for use on the device.
 """
-type VulkanImage{T, N} <: VulkanArray{T, N}
+type Image{T, N} <: VulkanArray{T, N}
     ref::api.VkImage
     mem::api.VkDeviceMemory
     dimension::NTuple{N, Int}

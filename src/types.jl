@@ -67,10 +67,11 @@ type Buffer{T} <: VulkanArray{T, 1}
     allocation_info::api.VkMemoryAllocateInfo
     dimension::Tuple{Int}
 end
+
 """
 Texture data (including dimensions & format) for use on the device.
 """
-type VulkanImage{T, N} <: VulkanArray{T, N}
+type Image{T, N} <: VulkanArray{T, N}
     ref::VkImage
     device::Device
     mem::VkDeviceMemory
@@ -82,6 +83,12 @@ end
 """
 type Sampler
     ref::VkSampler
+end
+
+type VertexArray{T}
+    id::Int
+    parent::AbstractArray{T}
+    pipeline_input_state
 end
 
 
@@ -154,4 +161,11 @@ type DescriptorSetLayout <: VulkanPointerWrapper
     ref::VkDescriptorSetLayout
     device::Device
     pipeline_layout::PipelineLayout
+end
+
+
+
+type GraphicsPipeline <: VulkanPointerWrapper
+    ref::VkGraphicsPipeline
+    device::Device
 end
