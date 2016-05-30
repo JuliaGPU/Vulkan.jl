@@ -74,7 +74,7 @@ A queue onto which you submit commands that the GPU reads and executes (asynchro
 type Queue
     ref::api.VkQueue
 end
-# 
+#
 # """
 # A GPU-GPU synchronization object.
 # """

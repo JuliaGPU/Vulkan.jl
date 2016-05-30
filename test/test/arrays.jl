@@ -6,11 +6,7 @@ type VulkanBuffer{T} <: VulkanArray{T, 1}
     allocation_info::api.VkMemoryAllocateInfo
     size::Int
 end
-type Image{T, N} <: VulkanArray{T, N}
-    ref::api.VkImage
-    mem::api.VkDeviceMemory
-    dimension::NTuple{N, Int}
-end
+
 
 # we allow types as buffers, so eltype is a bit weird
 Base.eltype{T}(v::VulkanBuffer{T}) = T
