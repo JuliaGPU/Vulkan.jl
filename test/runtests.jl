@@ -1,5 +1,4 @@
-using VulkanAbstraction
-using Base.Test
+using Vulkan
+using Test
 
-# write your own tests here
-@test 1 == 1
+include("pointers.jl")
