@@ -3,3 +3,4 @@
 *.jl.mem
 /Manifest.toml
 /JuliaSysimage.so
+/vulkan.code-workspace

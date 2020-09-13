@@ -6,18 +6,15 @@ using VulkanCore.vk
 const libvulkan = VulkanCore.vk.libvulkan
 using CEnum
 
+include("ccall_twin.jl")
 include("vk_utils.jl")
-include("ref_utils.jl")
 
 include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
 
-include("devices/physical.jl")
-include("devices/logical.jl")
+include("print.jl")
 
-export REFERENCE_DICT,
-       clear_refs,
-       is_referenceable,
-       preserve,
-       preserved_ref
+export
+       unsafe_pointer,
+       unsafe_pointer_load
 
 end # module Vulkan
