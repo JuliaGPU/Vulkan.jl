@@ -4,3 +4,7 @@
 /Manifest.toml
 /JuliaSysimage.so
 /vulkan.code-workspace
+/*.qdrep
+*.spv
+smalldev.jl
+mediumdev.jl
