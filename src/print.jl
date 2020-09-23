@@ -7,8 +7,11 @@ layer_property(x) = property(isempty(x) ? "no layers" : "layers: $(join_args(x))
 
 function Base.show(io::IO, inst::Instance)
     println(io, "Instance at $(inst.handle)")
-    println(io, layer_property(inst.info.enabled_layer_names))
-    print(io, extension_property(inst.info.enabled_extension_names))
+end
+
+function Base.show(io::IO, inst_info::InstanceCreateInfo)
+    println(io, layer_property(inst_info.bag.enabled_layer_names))
+    print(io, extension_property(inst_info.bag.enabled_extension_names))
 end
 
 function Base.show(io::IO, pdp::PhysicalDeviceProperties)
@@ -17,9 +20,12 @@ end
 
 function Base.show(io::IO, dev::Device)
     println(io, "Device at ", dev.handle)
-    ext = isempty(dev.info.enabled_extension_names) ? "no extensions" : "extensions: " * join(dev.info.enabled_extension_names, ", ")
-    queues = isnothing(dev.info.queue_create_infos) ? property("no queues") : join("queue " .* string.(1:length(dev.info.queue_create_infos)) .* " ⟶ " .* string.(dev.info.queue_create_infos), property(""))
-    println(io, extension_property(dev.info.enabled_extension_names))
+end
+
+function Base.show(io::IO, dev_info::DeviceCreateInfo)
+    ext = isempty(dev_info.enabled_extension_names) ? "no extensions" : "extensions: " * join(dev_info.enabled_extension_names, ", ")
+    queues = isnothing(dev_info.queue_create_infos) ? property("no queues") : join("queue " .* string.(1:length(dev_info.queue_create_infos)) .* " ⟶ " .* string.(dev_info.queue_create_infos), property(""))
+    println(io, extension_property(dev_info.enabled_extension_names))
     print(io, property(queues))
 end
 

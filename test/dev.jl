@@ -1,74 +1,193 @@
 using Vulkan
+using StaticArrays
+import XCB
+using XCB:Connection, run_window, xcb_setup_roots_iterator, xcb_map_window, flush, getkey, KeyAction, KeyCombination, KeyContext, KeyEvent, KeyModifierState, KeyPressed, KeyReleased, CloseWindow, Button, ButtonState, @key_str
 using VulkanCore.vk
+using Parameters
 
-v = Vulkan
+using BenchmarkTools
 
-print_ptr_equal(p1, p2) = println(p1 == p2 ? "\e[32;1;1mValid pointers ✅\e[m" : "\e[31;1;1mPointers are not equal ❌ \e[34;1;1m($p1 ≠ $p2)\e[m")
+ENV["JULIA_DEBUG"] = Main
 
-"Check that pointers have the same values between two instances of the same type"
-function check_struct_ptr(s::T, original_struct::T) where {T}
-    for (name, type) ∈ zip(fieldnames(T), fieldtypes(T))
-        if type <: Ptr
-            print_ptr_equal(getproperty(s, name), getproperty(original_struct, name))
-        end
-    end
-end
 
-function check_ptr(s::T, ptrs) where {T}
-    for (name, type) ∈ zip(fieldnames(T), fieldtypes(T))
-        if type <: Ptr && name ∉ [:pNext, :sType]
-            ptr = popfirst!(ptrs)
-            print_ptr_equal(getproperty(s, name), ptr)
-        end
-    end
-end
+include("debug.jl")
+include("validation.jl")
+include("window.jl")
+include("features.jl")
+
+include("shaders.jl")
+include("pipelines.jl")
+include("setups.jl")
+include("app.jl")
+
 
 function get_physical_device_properties(pdevices)
-    pdps = v.PhysicalDeviceProperties[]
+    pdps = PhysicalDeviceProperties[]
     for pdevice ∈ pdevices
         pdps_ref = Ref{VkPhysicalDeviceProperties}()
-        v.get_physical_device_properties(pdevice.handle, pdps_ref)
+        get_physical_device_properties(pdevice, pdps_ref)
         push!(pdps, pdps_ref[])
     end
     pdps
 end
 
-check_struct_ptr(s::Ptr{T}, original_struct::T) where {T} = check_struct_ptr(unsafe_pointer_load(s), original_struct)
+function _get_physical_device_surface_capabilities_khr(physical_device, surface)
+    psurfacecapabilities = Ref{VkSurfaceCapabilitiesKHR}()
+    @check vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
+        physical_device,
+        surface,
+        psurfacecapabilities
+    )
 
-globals = Dict()
+    SurfaceCapabilitiesKHR(psurfacecapabilities[])
+end
 
-preserve_var(x) = globals[x] = x
-function clear_vars()
-    for k ∈ keys(globals)
-        delete!(globals, k)
+function acquire_next_image_khr(device, swapchain; timeout=0, semaphore=C_NULL, fence=C_NULL)
+    image_index = Ref{UInt32}(0)
+    @check vkAcquireNextImageKHR(device, swapchain, timeout, semaphore, fence, image_index)
+    image_index[] + 1
+end
+
+function create_render_pass(device, color_attachment)
+    color_attachment_ref = AttachmentReference(0, IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL)
+    subpass = SubpassDescription(PIPELINE_BIND_POINT_GRAPHICS, [], [color_attachment_ref], [])
+    # RenderPass(device, RenderPassCreateInfo([color_attachment], [subpass], AttachmentReference[]))
+    RenderPass(device, RenderPassCreateInfo([color_attachment], [subpass], [SubpassDependency(SUBPASS_EXTERNAL, 0, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT; src_access_mask=0, dst_access_mask=ACCESS_COLOR_ATTACHMENT_WRITE_BIT)]))
+end
+
+function recreate_swapchain(device)
+    wait_device_idle(device)
+
+end
+
+function finalize_swapchain(app)
+end
+
+function add_device!(app::VulkanApplicationSingleGPU)
+    pdevices = enumerate_physical_devices(app.app)
+    pdevice = first(pdevices)
+    device = Device(pdevice, DeviceCreateInfo([DeviceQueueCreateInfo(0, [1.0])], String[], @MVector(["VK_KHR_swapchain"]), enabled_features=PhysicalDeviceFeatures(values(DEFAULT_VK_PHYSICAL_DEVICE_FEATURES)...)))
+    queue = Ref{VkQueue}()
+    get_device_queue(device, 0, 0, queue)
+    queues = Queues(NamedTuple{(:present, :graphics, :compute)}(DeviceQueue.((queue[], queue[], queue[]), (0, 0, 0), (0, 0, 0)))...)
+    app.device = DeviceSetup(device, pdevice, queues)
+end
+
+function add_surface!(app::VulkanApplication, window::XCB.Window)
+    app.surface = SurfaceSetup(SurfaceKHR(app.app, XcbSurfaceCreateInfoKHR(window.conn.h, window.id)); window)
+end
+
+function add_swapchain!(app::VulkanApplication, width, height, output_format)
+    @unpack device, surface = app
+    physical_device = device.physical_device_handle
+    supported_formats = get_physical_device_surface_formats_khr(physical_device, surface)
+    supported_capabilities = _get_physical_device_surface_capabilities_khr(physical_device, surface)
+    supported_present_modes = get_physical_device_surface_present_modes_khr(physical_device, surface)
+    
+    #TODO: wrap in VulkanGen
+    pSupported = Ref{UInt32}()
+    @check get_physical_device_surface_support_khr(physical_device, device.queues.present.queue_index, surface, pSupported)
+    @assert Bool(pSupported[])
+    
+    @info "Supported formats: $supported_formats"
+    @info "Supported capabilities: $supported_capabilities"
+    @info "Supported presentation modes: $supported_present_modes"
+
+    swapchain_extent = Extent2D(width, height)
+    swapchain = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, UInt32(3), output_format, COLOR_SPACE_SRGB_NONLINEAR_KHR, swapchain_extent, UInt32(1), UInt32(IMAGE_USAGE_COLOR_ATTACHMENT_BIT), SHARING_MODE_EXCLUSIVE, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, PRESENT_MODE_IMMEDIATE_KHR, false))
+    images = get_swapchain_images_khr(device, swapchain)
+    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, output_format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
+    app.swapchain = SwapchainSetup(swapchain, swapchain_extent, images, image_views)
+end
+
+function add_render_pass!(app::VulkanApplication, output_format)
+    color_attachment = AttachmentDescription(output_format, SAMPLE_COUNT_1_BIT, ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_STORE_OP_STORE, ATTACHMENT_LOAD_OP_DONT_CARE, ATTACHMENT_STORE_OP_DONT_CARE, IMAGE_LAYOUT_UNDEFINED, IMAGE_LAYOUT_PRESENT_SRC_KHR)
+    app.render_pass = create_render_pass(app.device, color_attachment)
+end
+
+function add_framebuffers!(app::VulkanApplication)
+    framebuffer_cis = FramebufferCreateInfo.(app.render_pass, [[view] for view ∈ app.swapchain.image_views], app.swapchain.extent.vks.width, app.swapchain.extent.vks.height, 1)
+    framebuffers = Framebuffer.(app.device, framebuffer_cis)
+    app.framebuffers = framebuffers
+end
+
+function setup_viewport!(app::VulkanApplication)
+    scissor = Rect2D(Offset2D(0., 0.), app.swapchain.extent)
+    viewport = Viewport(0., 0., app.swapchain.extent.vks.width, app.swapchain.extent.vks.height, 0., 1.) 
+    app.viewport = ViewportState(viewport, scissor)
+end
+
+function setup_pipeline!(app::VulkanApplication)
+    @unpack device = app
+    vert_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_vert.spv"), SPIRV())
+    frag_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_frag.spv"), SPIRV())
+    shaders = [vert_shader_module, frag_shader_module]
+    shader_stage_cis = PipelineShaderStageCreateInfo.([SHADER_STAGE_VERTEX_BIT, SHADER_STAGE_FRAGMENT_BIT], shaders, "main")
+    
+    layout = PipelineLayout(device, PipelineLayoutCreateInfo([], []))
+    
+    vertex_input_state = PipelineVertexInputStateCreateInfo([], [])
+    input_assembly_state = PipelineInputAssemblyStateCreateInfo(PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, false)
+    rasterizer = PipelineRasterizationStateCreateInfo(false, false, POLYGON_MODE_FILL, FRONT_FACE_CLOCKWISE, false, 0., 0., 0., 1., cull_mode=CULL_MODE_BACK_BIT)
+    multisample_state = PipelineMultisampleStateCreateInfo(SAMPLE_COUNT_1_BIT, false, 1., false, false)
+    color_blend_attachment = PipelineColorBlendAttachmentState(NoBlending())
+    color_blend_state = PipelineColorBlendStateCreateInfo([color_blend_attachment], NoBlending())
+    viewport_state = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
+    stages = PipelineState(vertex_input_state, input_assembly_state, shader_stage_cis, rasterizer, multisample_state, color_blend_state, C_NULL)
+
+    # pipeline_cis = [GraphicsPipelineCreateInfo(shader_stage_cis, rasterizer, layout, render_pass, 0, 0; vertex_input_state, input_assembly_state, color_blend_state, viewport_state, multisample_state, dynamic_state=PipelineDynamicStateCreateInfo([DYNAMIC_STATE_LINE_WIDTH]))]
+    app.pipelines[:main] = PipelineSetup(shaders, stages; layout)
+end
+
+function main()
+    # @debug join(["Available instance layers:", string.(enumerate_instance_layer_properties())...], "\n    ")
+    # @debug join(["Available extensions:", string.(enumerate_instance_extension_properties())...], "\n    ")
+    # instance = Instance(InstanceCreateInfo(@MVector(["VK_LAYER_KHRONOS_validation", "VK_LAYER_NV_nomad_release_public_2020_5_0"]), @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
+    instance = Instance(InstanceCreateInfo(@MVector(["VK_LAYER_KHRONOS_validation"]), @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
+    # instance = Instance(InstanceCreateInfo([], @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
+    dbg = DebugUtilsMessengerEXT(instance; severity="debug")
+    # pdps = get_physical_device_properties(pdevices)
+    # @debug join(["Available devices:", pdps...], "\n    ")
+    # @debug join(["Available device layers:", string.(enumerate_device_layer_properties(first(pdevices)))...], "\n    ")
+    # @info join(["Available device extensions:", string.(enumerate_device_extension_properties(first(pdevices)))...], "\n    ")
+
+    app = VulkanApplicationSingleGPU(AppSetup(instance; debug_messenger=dbg))
+    add_device!(app)
+    
+    width, height = 1200, 1200
+    output_format = FORMAT_B8G8R8A8_SRGB
+    
+    window = create_window(; width, height)
+    
+    add_surface!(app, window)
+    add_swapchain!(app, width, height, output_format)
+    add_render_pass!(app, output_format)
+    add_framebuffers!(app)
+    setup_viewport!(app)
+    setup_pipeline!(app)
+    ps = app.pipelines[:main]
+    viewport_state = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
+    create_pipeline!(ps, app.device, app.render_pass, viewport_state)
+    app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))
+    command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
+    renderpass_infos = RenderPassBeginInfo.(app.render_pass, app.framebuffers, Rect2D(Offset2D(0, 0), app.swapchain.extent), Ref([ClearValue(ClearColorValue((0., 0, 0., 1)))]))
+    command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))
+    
+    begin_command_buffer.(command_buffers, CommandBufferBeginInfo())
+    cmd_begin_render_pass.(command_buffers, renderpass_infos, SUBPASS_CONTENTS_INLINE)
+    cmd_bind_pipeline.(command_buffers, PIPELINE_BIND_POINT_GRAPHICS, ps)
+    cmd_draw.(command_buffers, 3, 1, 0, 0)
+    cmd_end_render_pass.(command_buffers)
+    end_command_buffer.(command_buffers)
+    initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = 2)
+
+    try
+        run_window(window, nothing, process_event_vulkan; vulkan_app=app)
+    catch e
+        rethrow(e) # terminate the event loop from run_window
+    finally
+        finalize(app)
     end
 end
 
-function test()
-    app_info = v.ApplicationInfo(v"0", v"0", v"1.2.151", engine_name="CryEngine", application_name="JuliaGameEngine")
-    layers = v.enumerate_instance_layer_properties()
-    @info join(["Available layers:", string.(layers)...], "\n    ")
-    
-    ci = v.InstanceCreateInfo(["VK_LAYER_KHRONOS_validation"], [], application_info=app_info)
-    instance = v.create_instance(ci)
-    preserve_var(instance)
-    pdevices = v.enumerate_physical_devices(instance)
-
-    pdps = get_physical_device_properties(pdevices)
-    @info join(["Available devices:", pdps...], "\n    ")
-    @info "Vulkan application $(app_info.application_name) (engine: $(app_info.engine_name)) successfully created."
-    
-    dqci = v.DeviceQueueCreateInfo(1, [1.0])
-    dci = v.DeviceCreateInfo([dqci], String[], String[]) 
-    dev = v.create_device(dci, first(pdevices))
-    preserve_var(dev)
-    println(dev)
-    display(v.enumerate_device_layer_properties(first(pdevices)))
-    display(v.enumerate_device_extension_properties(first(pdevices), layer_name="VK_LAYER_KHRONOS_validation"))
-
-    display(REFERENCE_DICT)
-    clear_refs()
-    clear_vars()
-end
-
-test();
+main()

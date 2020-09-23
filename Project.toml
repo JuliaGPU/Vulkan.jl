@@ -6,6 +6,7 @@ version = "0.1.0"
 [deps]
 CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
 Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 

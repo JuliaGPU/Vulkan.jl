@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Generate system image",
+            "command": "julia",
+            "type": "shell",
+            "args": [
+                "$HOME/.julia/sysimages/create_env_sysimage.jl",
+                "${cwd}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        },
+        {
+            "label": "NVIDIA Nsight Systems - Profile application",
+            "command": "nsys",
+            "type": "shell",
+            "args": [
+                "profile",
+                "-o",
+                "prof",
+                "--trace=vulkan",
+                "--force-overwrite=true",
+                "julia",
+                "-JJuliaSysimage.so",
+                "--project=.",
+                "test/dev.jl"
+            ],
+            "problemMatcher": "$tsc",
+            "group": "build"
+        },
+        {
+            "type": "julia",
+            "command": "juliasysimagebuild",
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "group": "build",
+            "label": "julia: Build custom sysimage for current environment (experimental)"
+        }
+    ]
+}
