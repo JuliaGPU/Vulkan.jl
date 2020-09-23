@@ -141,6 +141,24 @@ function setup_pipeline!(app::VulkanApplication)
     app.pipelines[:main] = PipelineSetup(shaders, stages; layout)
 end
 
+function record_render_pass(app, command_buffers)
+    renderpass_infos = RenderPassBeginInfo.(app.render_pass, app.framebuffers, Rect2D(Offset2D(0, 0), app.swapchain.extent), Ref([ClearValue(ClearColorValue((0., 0, 0., 1)))]))
+    begin_command_buffer.(command_buffers, CommandBufferBeginInfo())
+    cmd_begin_render_pass.(command_buffers, renderpass_infos, SUBPASS_CONTENTS_INLINE)
+    cmd_bind_pipeline.(command_buffers, PIPELINE_BIND_POINT_GRAPHICS, app.pipelines[:main])
+    cmd_draw.(command_buffers, 3, 1, 0, 0)
+    cmd_end_render_pass.(command_buffers)
+    end_command_buffer.(command_buffers)
+end
+
+function recreate_draw_command_buffers!(app)
+    @unpack device, render_state = app
+    @unpack command_buffers = render_state
+
+    reset_command_buffer.(command_buffers)
+    record_render_pass(app, command_buffers)
+end
+
 function main()
     # @debug join(["Available instance layers:", string.(enumerate_instance_layer_properties())...], "\n    ")
     # @debug join(["Available extensions:", string.(enumerate_instance_extension_properties())...], "\n    ")
@@ -172,16 +190,22 @@ function main()
     create_pipeline!(ps, app.device, app.render_pass, viewport_state)
     app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))
     command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
-    renderpass_infos = RenderPassBeginInfo.(app.render_pass, app.framebuffers, Rect2D(Offset2D(0, 0), app.swapchain.extent), Ref([ClearValue(ClearColorValue((0., 0, 0., 1)))]))
     command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))
-    
-    begin_command_buffer.(command_buffers, CommandBufferBeginInfo())
-    cmd_begin_render_pass.(command_buffers, renderpass_infos, SUBPASS_CONTENTS_INLINE)
-    cmd_bind_pipeline.(command_buffers, PIPELINE_BIND_POINT_GRAPHICS, ps)
-    cmd_draw.(command_buffers, 3, 1, 0, 0)
-    cmd_end_render_pass.(command_buffers)
-    end_command_buffer.(command_buffers)
-    initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = 2)
+
+    record_render_pass(app, command_buffers)
+
+    initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = length(app.framebuffers) - 1)
+
+    function resize_callback(window, width, height)
+        @unpack device, render_state = app
+        @unpack arr_sem_image_available, arr_sem_render_finished, arr_fen_image_drawn, arr_fen_acquire_image = render_state
+
+        recreate_swapchain!(app, Extent2D(width, height))
+        reset_fences.(device, arr_fen_image_drawn)
+        reset_fences.(device, arr_fen_acquire_image)
+        arr_sem_image_available, arr_sem_render_finished # reset semaphores ?
+        recreate_draw_command_buffers!(app)
+    end
 
     try
         run_window(window, nothing, process_event_vulkan; resize_callback=(win, x, y) -> nothing, vulkan_app=app)

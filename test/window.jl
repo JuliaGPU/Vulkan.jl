@@ -4,8 +4,8 @@ function process_event_vulkan(connection, window, ctx, event, t; vulkan_app)
         draw!(vulkan_app)
     catch e
         if e isa VulkanError && e.return_code == VK_ERROR_OUT_OF_DATE_KHR
-            recreate_swapchain!(app)
-            @warn "Out of date swapchain was recreated"
+            # recreate_swapchain!(vulkan_app)
+            # @warn "Out of date swapchain was recreated"
         end
     end
     e_generic = unsafe_load(event)
