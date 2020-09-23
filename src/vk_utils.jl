@@ -1,9 +1,9 @@
 struct VulkanError <: Exception
     msg::AbstractString
-    errorcode
+    return_code
 end
 
-Base.showerror(io::Core.IO, e::VulkanError) = print(io, "$(e.errorcode): ", e.msg)
+Base.showerror(io::Core.IO, e::VulkanError) = print(io, "$(e.return_code): ", e.msg)
 
 """
     @check vkFunctionSomething()

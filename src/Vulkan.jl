@@ -24,6 +24,7 @@ export
        SPIRV,
        GLSL,
        HLSL,
-       function_pointer
+       function_pointer,
+       VulkanError
 
 end # module Vulkan

@@ -55,12 +55,15 @@ function create_render_pass(device, color_attachment)
     RenderPass(device, RenderPassCreateInfo([color_attachment], [subpass], [SubpassDependency(SUBPASS_EXTERNAL, 0, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT; src_access_mask=0, dst_access_mask=ACCESS_COLOR_ATTACHMENT_WRITE_BIT)]))
 end
 
-function recreate_swapchain(device)
+function recreate_swapchain!(app, new_extent)
+    @unpack device, surface, swapchain = app
+    @unpack buffering, format, colorspace, layers, usage, sharing_mode, present_mode, clipped = swapchain
+    
     wait_device_idle(device)
-
-end
-
-function finalize_swapchain(app)
+    new_swapchain_handle = SwapchainKHR(device, SwapchainCreateInfoKHR(surface, buffering, format, colorspace, new_extent, layers, usage, sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped, swapchain.handle))
+    images = get_swapchain_images_khr(device, new_swapchain_handle)
+    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, output_format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
+    app.swapchain = SwapchainSetup(swapchain, new_extent, format, colorspace, extent, layers, usage, sharing_mode, present_mode, clipped, images, image_views)
 end
 
 function add_device!(app::VulkanApplicationSingleGPU)
@@ -77,7 +80,7 @@ function add_surface!(app::VulkanApplication, window::XCB.Window)
     app.surface = SurfaceSetup(SurfaceKHR(app.app, XcbSurfaceCreateInfoKHR(window.conn.h, window.id)); window)
 end
 
-function add_swapchain!(app::VulkanApplication, width, height, output_format)
+function add_swapchain!(app::VulkanApplication, extent, format; buffering=3, colorspace=COLOR_SPACE_SRGB_NONLINEAR_KHR, layers=1, usage=IMAGE_USAGE_COLOR_ATTACHMENT_BIT, sharing_mode=SHARING_MODE_EXCLUSIVE, present_mode=PRESENT_MODE_IMMEDIATE_KHR, clipped=false)
     @unpack device, surface = app
     physical_device = device.physical_device_handle
     supported_formats = get_physical_device_surface_formats_khr(physical_device, surface)
@@ -93,11 +96,10 @@ function add_swapchain!(app::VulkanApplication, width, height, output_format)
     @info "Supported capabilities: $supported_capabilities"
     @info "Supported presentation modes: $supported_present_modes"
 
-    swapchain_extent = Extent2D(width, height)
-    swapchain = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, UInt32(3), output_format, COLOR_SPACE_SRGB_NONLINEAR_KHR, swapchain_extent, UInt32(1), UInt32(IMAGE_USAGE_COLOR_ATTACHMENT_BIT), SHARING_MODE_EXCLUSIVE, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, PRESENT_MODE_IMMEDIATE_KHR, false))
+    swapchain = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, buffering, format, colorspace, extent, layers, UInt32(usage), sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped))
     images = get_swapchain_images_khr(device, swapchain)
-    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, output_format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
-    app.swapchain = SwapchainSetup(swapchain, swapchain_extent, images, image_views)
+    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
+    app.swapchain = SwapchainSetup(swapchain, buffering, format, colorspace, extent, layers, usage, sharing_mode, present_mode, clipped, images, image_views)
 end
 
 function add_render_pass!(app::VulkanApplication, output_format)
@@ -160,7 +162,7 @@ function main()
     window = create_window(; width, height)
     
     add_surface!(app, window)
-    add_swapchain!(app, width, height, output_format)
+    add_swapchain!(app, Extent2D(width, height), output_format)
     add_render_pass!(app, output_format)
     add_framebuffers!(app)
     setup_viewport!(app)
@@ -182,7 +184,7 @@ function main()
     initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = 2)
 
     try
-        run_window(window, nothing, process_event_vulkan; vulkan_app=app)
+        run_window(window, nothing, process_event_vulkan; resize_callback=(win, x, y) -> nothing, vulkan_app=app)
     catch e
         rethrow(e) # terminate the event loop from run_window
     finally

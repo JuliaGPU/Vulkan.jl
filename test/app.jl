@@ -4,6 +4,7 @@ A Vulkan application represents any program that uses the Vulkan API. Applicatio
 """
 abstract type VulkanApplication end
 Base.broadcastable(x::VulkanApplication) = Ref(x)
+Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
 
 @with_kw mutable struct VulkanApplicationSingleGPU <: VulkanApplication
     app::AppSetup

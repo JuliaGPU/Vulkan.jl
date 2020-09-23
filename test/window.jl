@@ -1,6 +1,13 @@
 function process_event_vulkan(connection, window, ctx, event, t; vulkan_app)
     @info "Frame $(vulkan_app.render_state.frame)"
-    draw!(vulkan_app)
+    try
+        draw!(vulkan_app)
+    catch e
+        if e isa VulkanError && e.return_code == VK_ERROR_OUT_OF_DATE_KHR
+            recreate_swapchain!(app)
+            @warn "Out of date swapchain was recreated"
+        end
+    end
     e_generic = unsafe_load(event)
     println("$t s")
     if e_generic.response_type == XCB.XCB_EXPOSE
@@ -35,7 +42,7 @@ function create_window(;width=512, height=512)
     screen = unsafe_load(iter.data)
     @debug screen
     window = XCB.Window(connection, screen, |(XCB.XCB_CW_BACK_PIXEL, XCB.XCB_CW_EVENT_MASK), 
-                    [screen.black_pixel, |(XCB.XCB_EVENT_MASK_EXPOSURE, XCB.XCB_EVENT_MASK_KEY_PRESS, XCB.XCB_EVENT_MASK_KEY_RELEASE, XCB.XCB_EVENT_MASK_BUTTON_PRESS, XCB.XCB_EVENT_MASK_BUTTON_RELEASE)];
+                    [screen.black_pixel, |(XCB.XCB_EVENT_MASK_EXPOSURE, XCB.XCB_EVENT_MASK_KEY_PRESS, XCB.XCB_EVENT_MASK_KEY_RELEASE, XCB.XCB_EVENT_MASK_BUTTON_PRESS, XCB.XCB_EVENT_MASK_BUTTON_RELEASE, XCB.XCB_EVENT_MASK_STRUCTURE_NOTIFY)];
                     x=0, y=1000, border_width=50, window_title="XCB window", icon_title="XCB", width, height)
     ctx = XCB.GraphicsContext(connection, window, |(XCB.XCB_GC_FOREGROUND, XCB.XCB_GC_GRAPHICS_EXPOSURES), [0, 0, screen.black_pixel])
     xcb_map_window(connection.h, window.id)
