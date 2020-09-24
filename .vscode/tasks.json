@@ -30,7 +30,8 @@
                 "julia",
                 "-JJuliaSysimage.so",
                 "--project=.",
-                "test/dev.jl"
+                "test/dev.jl",
+                "--novalidate"
             ],
             "problemMatcher": "$tsc",
             "group": "build"
