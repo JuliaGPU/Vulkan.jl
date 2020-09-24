@@ -15,6 +15,7 @@ include("validation.jl")
 include("window.jl")
 include("features.jl")
 
+include("types.jl")
 include("shaders.jl")
 include("pipelines.jl")
 include("setups.jl")
@@ -55,17 +56,6 @@ function create_render_pass(device, color_attachment)
     RenderPass(device, RenderPassCreateInfo([color_attachment], [subpass], [SubpassDependency(SUBPASS_EXTERNAL, 0, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT; src_access_mask=0, dst_access_mask=ACCESS_COLOR_ATTACHMENT_WRITE_BIT)]))
 end
 
-function recreate_swapchain!(app, new_extent)
-    @unpack device, surface, swapchain = app
-    @unpack buffering, format, colorspace, layers, usage, sharing_mode, present_mode, clipped = swapchain
-    
-    wait_device_idle(device)
-    new_swapchain_handle = SwapchainKHR(device, SwapchainCreateInfoKHR(surface, buffering, format, colorspace, new_extent, layers, usage, sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped, swapchain.handle))
-    images = get_swapchain_images_khr(device, new_swapchain_handle)
-    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, output_format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
-    app.swapchain = SwapchainSetup(swapchain, new_extent, format, colorspace, extent, layers, usage, sharing_mode, present_mode, clipped, images, image_views)
-end
-
 function add_device!(app::VulkanApplicationSingleGPU)
     pdevices = enumerate_physical_devices(app.app)
     pdevice = first(pdevices)
@@ -102,8 +92,8 @@ function add_swapchain!(app::VulkanApplication, extent, format; buffering=3, col
     app.swapchain = SwapchainSetup(swapchain, buffering, format, colorspace, extent, layers, usage, sharing_mode, present_mode, clipped, images, image_views)
 end
 
-function add_render_pass!(app::VulkanApplication, output_format)
-    color_attachment = AttachmentDescription(output_format, SAMPLE_COUNT_1_BIT, ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_STORE_OP_STORE, ATTACHMENT_LOAD_OP_DONT_CARE, ATTACHMENT_STORE_OP_DONT_CARE, IMAGE_LAYOUT_UNDEFINED, IMAGE_LAYOUT_PRESENT_SRC_KHR)
+function add_render_pass!(app::VulkanApplication)
+    color_attachment = AttachmentDescription(app.swapchain.format, SAMPLE_COUNT_1_BIT, ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_STORE_OP_STORE, ATTACHMENT_LOAD_OP_DONT_CARE, ATTACHMENT_STORE_OP_DONT_CARE, IMAGE_LAYOUT_UNDEFINED, IMAGE_LAYOUT_PRESENT_SRC_KHR)
     app.render_pass = create_render_pass(app.device, color_attachment)
 end
 
@@ -151,37 +141,76 @@ function record_render_pass(app, command_buffers)
     end_command_buffer.(command_buffers)
 end
 
+function recreate_swapchain!(app)
+    @unpack device, surface, swapchain = app
+    @unpack buffering, format, colorspace, layers, usage, sharing_mode, present_mode, clipped = swapchain
+
+    capabilities = _get_physical_device_surface_capabilities_khr(device.physical_device_handle, surface)
+    # @info capabilities
+    
+    new_extent = Extent2D(capabilities.vks.currentExtent)
+    new_swapchain_handle = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, buffering, format, colorspace, new_extent, layers, UInt32(usage), sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped, old_swapchain=swapchain.handle))
+    finalize(swapchain)
+    images = get_swapchain_images_khr(device, new_swapchain_handle)
+    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
+    app.swapchain = SwapchainSetup(new_swapchain_handle, buffering, format, colorspace, new_extent, layers, usage, sharing_mode, present_mode, clipped, images, image_views)
+end
+
+
 function recreate_draw_command_buffers!(app)
     @unpack device, render_state = app
-    @unpack command_buffers = render_state
+    @unpack arr_command_buffers = render_state
 
-    reset_command_buffer.(command_buffers)
+    reset_command_buffer.(arr_command_buffers)
+    record_render_pass.(app, arr_command_buffers)
+end
+
+function create_application(; validate=true)
+    layers = validate ? @MVector(["VK_LAYER_KHRONOS_validation"]) : String[]
+    instance = Instance(InstanceCreateInfo(layers, @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
+    VulkanApplicationSingleGPU(AppSetup(instance; debug_messenger=(validate ? DebugUtilsMessengerEXT(instance; severity="debug") : nothing)))
+end
+
+function handle_resize!(app)
+    @unpack device, surface, render_state = app
+    @unpack arr_sem_image_available, arr_sem_render_finished, arr_fen_image_drawn, arr_fen_acquire_image, max_simultaneously_drawn_frames = render_state
+
+    device_wait_idle(device)
+
+    recreate_swapchain!(app)
+    finalize.(app.framebuffers)
+    finalize(app.render_pass)
+    add_render_pass!(app)
+    add_framebuffers!(app)
+    setup_viewport!(app)
+    finalize(render_state)
+    free_command_buffers(device, app.command_pools[:a], render_state.arr_command_buffers)
+    recreate_pipeline!(app.pipelines[:main], app)
+    # recreate_draw_command_buffers!(app)
+    command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
+    command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))
     record_render_pass(app, command_buffers)
+    initialize_render_state!(app, command_buffers; frame=render_state.frame, max_simultaneously_drawn_frames=render_state.max_simultaneously_drawn_frames)
 end
 
 function main()
     # @debug join(["Available instance layers:", string.(enumerate_instance_layer_properties())...], "\n    ")
     # @debug join(["Available extensions:", string.(enumerate_instance_extension_properties())...], "\n    ")
-    # instance = Instance(InstanceCreateInfo(@MVector(["VK_LAYER_KHRONOS_validation", "VK_LAYER_NV_nomad_release_public_2020_5_0"]), @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
-    instance = Instance(InstanceCreateInfo(@MVector(["VK_LAYER_KHRONOS_validation"]), @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
+    # instance = Instance(InstanceCreateInfo(@MVector(["VK_LAYER_NV_nomad_release_public_2020_5_0"]), @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
     # instance = Instance(InstanceCreateInfo([], @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
-    dbg = DebugUtilsMessengerEXT(instance; severity="debug")
     # pdps = get_physical_device_properties(pdevices)
     # @debug join(["Available devices:", pdps...], "\n    ")
     # @debug join(["Available device layers:", string.(enumerate_device_layer_properties(first(pdevices)))...], "\n    ")
     # @info join(["Available device extensions:", string.(enumerate_device_extension_properties(first(pdevices)))...], "\n    ")
 
-    app = VulkanApplicationSingleGPU(AppSetup(instance; debug_messenger=dbg))
+    app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
     add_device!(app)
     
-    width, height = 1200, 1200
-    output_format = FORMAT_B8G8R8A8_SRGB
-    
-    window = create_window(; width, height)
+    window = create_window(width=512, height=512)
     
     add_surface!(app, window)
-    add_swapchain!(app, Extent2D(width, height), output_format)
-    add_render_pass!(app, output_format)
+    add_swapchain!(app, Extent2D(window.width[], window.height[]), FORMAT_B8G8R8A8_SRGB)
+    add_render_pass!(app)
     add_framebuffers!(app)
     setup_viewport!(app)
     setup_pipeline!(app)
@@ -197,18 +226,12 @@ function main()
     initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = length(app.framebuffers) - 1)
 
     function resize_callback(window, width, height)
-        @unpack device, render_state = app
-        @unpack arr_sem_image_available, arr_sem_render_finished, arr_fen_image_drawn, arr_fen_acquire_image = render_state
-
-        recreate_swapchain!(app, Extent2D(width, height))
-        reset_fences.(device, arr_fen_image_drawn)
-        reset_fences.(device, arr_fen_acquire_image)
-        arr_sem_image_available, arr_sem_render_finished # reset semaphores ?
-        recreate_draw_command_buffers!(app)
+        handle_resize!(app)
     end
 
     try
-        run_window(window, nothing, process_event_vulkan; resize_callback=(win, x, y) -> nothing, vulkan_app=app)
+        # run_window(window, process_event_vulkan; resize_callback=(win, x, y) -> nothing, vulkan_app=app)
+        run_window(window, process_event_vulkan; resize_callback, vulkan_app=app)
     catch e
         rethrow(e) # terminate the event loop from run_window
     finally

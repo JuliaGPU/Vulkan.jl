@@ -1,8 +1,3 @@
-
-"""
-A Vulkan application represents any program that uses the Vulkan API. Application goals and setups may vary greatly, but they all require many structures to function. Some may do offline rendering (without presenting the result to a window), or use Vulkan Compute and render directly to a display, but both uses share similarities in that they require an Instance and one (or several) devices.
-"""
-abstract type VulkanApplication end
 Base.broadcastable(x::VulkanApplication) = Ref(x)
 Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
 
@@ -33,7 +28,7 @@ Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
         finalizer(vasg) do x
             !isnothing(x.device) && (device_wait_idle(x.device.handle); @debug("Device idle"))
             finalize.(values(x.pipelines))
-            !isempty(x.framebuffers) && finalize.(values(x.framebuffers))
+            !isempty(x.framebuffers) && finalize.(x.framebuffers)
             !isempty(x.command_pools) && finalize.(values(x.command_pools))
                 # finalize.(command_pool, pipeline, framebuffers..., pipeline_layout, render_pass, image_views..., swapchain, surface, sem_image_available..., sem_render_finished..., fen_wait_images_drawn..., device, dbg, instance)
             finalize.(getproperty.(x, (:render_pass, :render_state, :swapchain, :surface, :device, :app)))
@@ -73,13 +68,13 @@ end
 
 next_frame!(app::VulkanApplication) = next_frame!(app.render_state)
 
-function initialize_render_state!(app::VulkanApplication, command_buffers; max_simultaneously_drawn_frames = 2)
+function initialize_render_state!(app::VulkanApplication, command_buffers; max_simultaneously_drawn_frames = 2, frame=1)
     @unpack device = app
     arr_sem_image_available = [Semaphore(device, SemaphoreCreateInfo()) for _ ∈ 1:max_simultaneously_drawn_frames]
     arr_sem_render_finished = [Semaphore(device, SemaphoreCreateInfo()) for _ ∈ 1:max_simultaneously_drawn_frames]
     arr_fen_image_drawn = [Fence(device, FenceCreateInfo(flags=FENCE_CREATE_SIGNALED_BIT)) for _ ∈ 1:max_simultaneously_drawn_frames]
     arr_fen_acquire_image = Array{Union{Fence, Nothing}, 1}(nothing, length(app.swapchain.images))
-    app.render_state = RenderState(1, 1, arr_sem_image_available, arr_sem_render_finished, arr_fen_image_drawn, arr_fen_acquire_image, command_buffers, max_simultaneously_drawn_frames)
+    app.render_state = RenderState(frame, 1, arr_sem_image_available, arr_sem_render_finished, arr_fen_image_drawn, arr_fen_acquire_image, command_buffers, max_simultaneously_drawn_frames)
 end
 
 function draw!(app::VulkanApplication)

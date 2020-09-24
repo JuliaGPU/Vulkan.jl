@@ -102,14 +102,13 @@ function Vulkan.GraphicsPipelineCreateInfo(ps::PipelineSetup, render_pass, viewp
     GraphicsPipelineCreateInfo(s.shaders, s.rasterization, ps.layout, render_pass, 0, 0; vertex_input_state, input_assembly_state, color_blend_state, viewport_state, multisample_state, dynamic_state)
 end
 
-function create_pipeline!(ps::PipelineSetup, device, render_pass, viewport_state)
-    ps.handle = first(Pipeline(device, [GraphicsPipelineCreateInfo(ps, render_pass, viewport_state)]))
-end
+Vulkan.PipelineViewportStateCreateInfo(app::VulkanApplication) = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
+create_pipeline!(ps::PipelineSetup, device, render_pass, viewport_state) = setproperty!(ps, :handle, first(Pipeline(device, [GraphicsPipelineCreateInfo(ps, render_pass, viewport_state)])))
+create_pipeline!(ps::PipelineSetup, app::VulkanApplication) = create_pipeline!(ps, app.device, app.render_pass, PipelineViewportStateCreateInfo(app))
+create_pipelines!(device, render_pass, viewport_state, pss::PipelineSetup...) = setproperty!.(pss, :handle, Pipeline(GraphicsPipelineCreateInfo.(pss, render_pass, viewport_state)))
 
-function create_pipelines!(device, render_pass, viewport_state, pss::PipelineSetup...)
-    setproperty!.(pss, :handle, Pipeline(GraphicsPipelineCreateInfo.(pss, render_pass, viewport_state)))
-end
 
 function recreate_pipeline!(ps::PipelineSetup, app)
-    create_pipeline!(ps, app.render_pass.handle, app.viewport.state)
+    finalize(ps.handle)
+    create_pipeline!(ps, app)
 end
