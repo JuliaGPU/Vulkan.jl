@@ -21,32 +21,8 @@ include("pipelines.jl")
 include("setups.jl")
 include("app.jl")
 
-
-function get_physical_device_properties(pdevices)
-    pdps = PhysicalDeviceProperties[]
-    for pdevice ∈ pdevices
-        pdps_ref = Ref{VkPhysicalDeviceProperties}()
-        get_physical_device_properties(pdevice, pdps_ref)
-        push!(pdps, pdps_ref[])
-    end
-    pdps
-end
-
-function _get_physical_device_surface_capabilities_khr(physical_device, surface)
-    psurfacecapabilities = Ref{VkSurfaceCapabilitiesKHR}()
-    @check vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
-        physical_device,
-        surface,
-        psurfacecapabilities
-    )
-
-    SurfaceCapabilitiesKHR(psurfacecapabilities[])
-end
-
-function acquire_next_image_khr(device, swapchain; timeout=0, semaphore=C_NULL, fence=C_NULL)
-    image_index = Ref{UInt32}(0)
-    @check vkAcquireNextImageKHR(device, swapchain, timeout, semaphore, fence, image_index)
-    image_index[] + 1
+function Vulkan.acquire_next_image_khr(device, swapchain; timeout=0, semaphore=C_NULL, fence=C_NULL)
+    acquire_next_image_khr(device, swapchain, timeout; semaphore, fence) + 1
 end
 
 function create_render_pass(device, color_attachment)
@@ -60,9 +36,8 @@ function add_device!(app::VulkanApplicationSingleGPU)
     pdevices = enumerate_physical_devices(app.app)
     pdevice = first(pdevices)
     device = Device(pdevice, DeviceCreateInfo([DeviceQueueCreateInfo(0, [1.0])], String[], @MVector(["VK_KHR_swapchain"]), enabled_features=PhysicalDeviceFeatures(values(DEFAULT_VK_PHYSICAL_DEVICE_FEATURES)...)))
-    queue = Ref{VkQueue}()
-    get_device_queue(device, 0, 0, queue)
-    queues = Queues(NamedTuple{(:present, :graphics, :compute)}(DeviceQueue.((queue[], queue[], queue[]), (0, 0, 0), (0, 0, 0)))...)
+    queue = get_device_queue(device, 0, 0).handle
+    queues = Queues(NamedTuple{(:present, :graphics, :compute)}(DeviceQueue.((queue, queue, queue), (0, 0, 0), (0, 0, 0)))...)
     app.device = DeviceSetup(device, pdevice, queues)
 end
 
@@ -74,13 +49,10 @@ function add_swapchain!(app::VulkanApplication, extent, format; buffering=3, col
     @unpack device, surface = app
     physical_device = device.physical_device_handle
     supported_formats = get_physical_device_surface_formats_khr(physical_device, surface)
-    supported_capabilities = _get_physical_device_surface_capabilities_khr(physical_device, surface)
+    supported_capabilities = get_physical_device_surface_capabilities_khr(physical_device, surface)
     supported_present_modes = get_physical_device_surface_present_modes_khr(physical_device, surface)
     
-    #TODO: wrap in VulkanGen
-    pSupported = Ref{UInt32}()
-    @check get_physical_device_surface_support_khr(physical_device, device.queues.present.queue_index, surface, pSupported)
-    @assert Bool(pSupported[])
+    @assert Bool(get_physical_device_surface_support_khr(physical_device, device.queues.present.queue_index, surface))
     
     @info "Supported formats: $supported_formats"
     @info "Supported capabilities: $supported_capabilities"
@@ -145,10 +117,11 @@ function recreate_swapchain!(app)
     @unpack device, surface, swapchain = app
     @unpack buffering, format, colorspace, layers, usage, sharing_mode, present_mode, clipped = swapchain
 
-    capabilities = _get_physical_device_surface_capabilities_khr(device.physical_device_handle, surface)
+    capabilities = get_physical_device_surface_capabilities_khr(device.physical_device_handle, surface)
     # @info capabilities
-    
-    new_extent = Extent2D(capabilities.vks.currentExtent)
+
+    new_extent = capabilities.current_extent
+
     new_swapchain_handle = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, buffering, format, colorspace, new_extent, layers, UInt32(usage), sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped, old_swapchain=swapchain.handle))
     finalize(swapchain)
     images = get_swapchain_images_khr(device, new_swapchain_handle)
@@ -240,3 +213,26 @@ function main()
 end
 
 main()
+
+function test_enumerated_properties()
+    app = create_application()
+    instance = app.app.handle
+    add_device!(app)
+    physical_device = app.device.physical_device_handle
+    window = create_window()
+    add_surface!(app, window)
+    surface = app.surface.handle
+    println.(enumerate_device_extension_properties(physical_device))
+    println.(enumerate_instance_layer_properties())
+    println.(get_physical_device_surface_formats_khr(physical_device, surface))
+    println.(get_physical_device_surface_present_modes_khr(physical_device, surface))
+    println(get_physical_device_surface_capabilities_khr(physical_device, surface))
+    try
+        println(get_physical_device_properties(physical_device))
+    finally
+        finalize(app)
+        finalize.([window, window.conn])
+    end
+end
+
+# test_enumerated_properties()

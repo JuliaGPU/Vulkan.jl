@@ -1,18 +1,19 @@
 abstract type VulkanStruct end
 abstract type Handle <: VulkanStruct end
+abstract type ReturnedOnly <: VulkanStruct end
 abstract type Bag end
 struct BagEmpty <: Bag end
 const EmptyBag = BagEmpty()
 
-Base.cconvert(T::Type, var::VulkanStruct) = var
-Base.cconvert(T::Type{<:Ptr}, var::AbstractArray{<:VulkanStruct}) = getproperty.(var, :vks)
-Base.cconvert(T::Type{<:Ptr}, var::AbstractArray{<:Handle}) = getproperty.(var, :handle)
-Base.cconvert(T::Type{<:Ptr}, var::VulkanStruct) = Ref(var.vks)
-Base.cconvert(T::Type{<:Ptr}, var::Handle) = var
-Base.unsafe_convert(T::Type, var::VulkanStruct) = var.vks
-Base.unsafe_convert(T::Type{Ptr{Nothing}}, var::Handle) = var.handle
+Base.cconvert(T::Type, x::VulkanStruct) = x
+Base.cconvert(T::Type{<:Ptr}, x::AbstractArray{<:VulkanStruct}) = getproperty.(x, :vks)
+Base.cconvert(T::Type{<:Ptr}, x::AbstractArray{<:Handle}) = getproperty.(x, :handle)
+Base.cconvert(T::Type{<:Ptr}, x::VulkanStruct) = Ref(x.vks)
+Base.cconvert(T::Type{<:Ptr}, x::Handle) = x
+Base.unsafe_convert(T::Type, x::VulkanStruct) = x.vks
+Base.unsafe_convert(T::Type{Ptr{Nothing}}, x::Handle) = x.handle
 
-Base.broadcastable(var::VulkanStruct) = Ref(var) # indicate that VulkanStructs behave as scalars for broadcasting
+Base.broadcastable(x::VulkanStruct) = Ref(x) # indicate that VulkanStructs behave as scalars for broadcasting
 
 """
 Julian constructor for VkBufferMemoryBarrier. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
@@ -10690,41 +10691,17 @@ struct AccelerationStructureDeviceAddressInfoKHR <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceRayTracingPropertiesKHR <: VulkanStruct
-    vks::VkPhysicalDeviceRayTracingPropertiesKHR
-    bag::BagPhysicalDeviceRayTracingPropertiesKHR
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceRayTracingPropertiesKHR(
-        shader_group_handle_size,
-        max_recursion_depth,
-        max_shader_group_stride,
-        shader_group_base_alignment,
-        max_geometry_count,
-        max_instance_count,
-        max_primitive_count,
-        max_descriptor_set_acceleration_structures,
-        shader_group_handle_capture_replay_size;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceRayTracingPropertiesKHR(bag_next, _pNext)
-        vks = VkPhysicalDeviceRayTracingPropertiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            shader_group_handle_size,
-            max_recursion_depth,
-            max_shader_group_stride,
-            shader_group_base_alignment,
-            max_geometry_count,
-            max_instance_count,
-            max_primitive_count,
-            max_descriptor_set_acceleration_structures,
-            shader_group_handle_capture_replay_size,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceRayTracingPropertiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    shader_group_handle_size::UInt32
+    max_recursion_depth::UInt32
+    max_shader_group_stride::UInt32
+    shader_group_base_alignment::UInt32
+    max_geometry_count::UInt64
+    max_instance_count::UInt64
+    max_primitive_count::UInt64
+    max_descriptor_set_acceleration_structures::UInt32
+    shader_group_handle_capture_replay_size::UInt32
 end
 
 struct PhysicalDeviceRayTracingFeaturesKHR <: VulkanStruct
@@ -10871,7 +10848,7 @@ struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct
         scratch_data;
         next = C_NULL,
         flags = 0,
-        src_acceleration_structure = 0,
+        src_acceleration_structure = C_NULL,
         geometry_count = 0,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
@@ -10888,7 +10865,8 @@ struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct
             type,
             flags == 0 ? 0 : flags,
             update,
-            src_acceleration_structure == 0 ? 0 : src_acceleration_structure.handle,
+            src_acceleration_structure == C_NULL ? C_NULL :
+            src_acceleration_structure.handle,
             dst_acceleration_structure.handle,
             geometry_array_of_pointers,
             geometry_count == 0 ? 0 : geometry_count,
@@ -11019,7 +10997,7 @@ struct RayTracingPipelineCreateInfoKHR <: VulkanStruct
         next = C_NULL,
         flags = 0,
         library_interface = C_NULL,
-        base_pipeline_handle = 0,
+        base_pipeline_handle = C_NULL,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
@@ -11047,7 +11025,7 @@ struct RayTracingPipelineCreateInfoKHR <: VulkanStruct
             libraries.vks,
             _pLibraryInterface == C_NULL ? C_NULL : _pLibraryInterface,
             layout.handle,
-            base_pipeline_handle == 0 ? 0 : base_pipeline_handle.handle,
+            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -11096,7 +11074,8 @@ struct RayTracingShaderGroupCreateInfoKHR <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pShaderGroupCaptureReplayHandle = shader_group_capture_replay_handle == C_NULL ?
+        _pShaderGroupCaptureReplayHandle =
+            shader_group_capture_replay_handle == C_NULL ?
             shader_group_capture_replay_handle : Ref(shader_group_capture_replay_handle)    # VulkanGen.GenerateRefs
         bag = BagRayTracingShaderGroupCreateInfoKHR(
             bag_next,
@@ -11111,7 +11090,7 @@ struct RayTracingShaderGroupCreateInfoKHR <: VulkanStruct
             any_hit_shader,
             intersection_shader,
             _pShaderGroupCaptureReplayHandle == C_NULL ? C_NULL :
-                _pShaderGroupCaptureReplayHandle,
+            _pShaderGroupCaptureReplayHandle,
         )
         new(vks, bag)
     end
@@ -11632,22 +11611,9 @@ struct MemoryGetWin32HandleInfoKHR <: VulkanStruct
     end
 end
 
-struct MemoryWin32HandlePropertiesKHR <: VulkanStruct
-    vks::VkMemoryWin32HandlePropertiesKHR
-    bag::BagMemoryWin32HandlePropertiesKHR
-    """
-    Generic constructor.
-    """
-    function MemoryWin32HandlePropertiesKHR(memory_type_bits; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagMemoryWin32HandlePropertiesKHR(bag_next, _pNext)
-        vks = VkMemoryWin32HandlePropertiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory_type_bits,
-        )
-        new(vks, bag)
-    end
+struct MemoryWin32HandlePropertiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    memory_type_bits::UInt32
 end
 
 struct ExportMemoryWin32HandleInfoKHR <: VulkanStruct
@@ -11890,80 +11856,9 @@ struct ImportAndroidHardwareBufferInfoANDROID <: VulkanStruct
     end
 end
 
-struct AndroidHardwareBufferFormatPropertiesANDROID <: VulkanStruct
-    vks::VkAndroidHardwareBufferFormatPropertiesANDROID
-    bag::BagAndroidHardwareBufferFormatPropertiesANDROID
-    """
-    Generic constructor.
-    """
-    function AndroidHardwareBufferFormatPropertiesANDROID(
-        format,
-        external_format,
-        format_features,
-        sampler_ycbcr_conversion_components,
-        suggested_ycbcr_model,
-        suggested_ycbcr_range,
-        suggested_x_chroma_offset,
-        suggested_y_chroma_offset;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagAndroidHardwareBufferFormatPropertiesANDROID(bag_next, _pNext)
-        vks = VkAndroidHardwareBufferFormatPropertiesANDROID(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            format,
-            external_format,
-            format_features,
-            sampler_ycbcr_conversion_components.vks,
-            suggested_ycbcr_model,
-            suggested_ycbcr_range,
-            suggested_x_chroma_offset,
-            suggested_y_chroma_offset,
-        )
-        new(vks, bag)
-    end
-end
-
-struct AndroidHardwareBufferPropertiesANDROID <: VulkanStruct
-    vks::VkAndroidHardwareBufferPropertiesANDROID
-    bag::BagAndroidHardwareBufferPropertiesANDROID
-    """
-    Generic constructor.
-    """
-    function AndroidHardwareBufferPropertiesANDROID(
-        allocation_size,
-        memory_type_bits;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagAndroidHardwareBufferPropertiesANDROID(bag_next, _pNext)
-        vks = VkAndroidHardwareBufferPropertiesANDROID(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            allocation_size,
-            memory_type_bits,
-        )
-        new(vks, bag)
-    end
-end
-
-struct AndroidHardwareBufferUsageANDROID <: VulkanStruct
-    vks::VkAndroidHardwareBufferUsageANDROID
-    bag::BagAndroidHardwareBufferUsageANDROID
-    """
-    Generic constructor.
-    """
-    function AndroidHardwareBufferUsageANDROID(android_hardware_buffer_usage; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagAndroidHardwareBufferUsageANDROID(bag_next, _pNext)
-        vks = VkAndroidHardwareBufferUsageANDROID(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            android_hardware_buffer_usage,
-        )
-        new(vks, bag)
-    end
+struct AndroidHardwareBufferUsageANDROID <: ReturnedOnly
+    next::Ptr{Cvoid}
+    android_hardware_buffer_usage::UInt64
 end
 
 struct AndroidSurfaceCreateInfoKHR <: VulkanStruct
@@ -12026,31 +11921,12 @@ struct PhysicalDeviceImageRobustnessFeaturesEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceFragmentDensityMap2PropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceFragmentDensityMap2PropertiesEXT
-    bag::BagPhysicalDeviceFragmentDensityMap2PropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceFragmentDensityMap2PropertiesEXT(
-        subsampled_loads,
-        subsampled_coarse_reconstruction_early_access,
-        max_subsampled_array_layers,
-        max_descriptor_set_subsampled_samplers;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceFragmentDensityMap2PropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceFragmentDensityMap2PropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            subsampled_loads,
-            subsampled_coarse_reconstruction_early_access,
-            max_subsampled_array_layers,
-            max_descriptor_set_subsampled_samplers,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceFragmentDensityMap2PropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    subsampled_loads::Bool
+    subsampled_coarse_reconstruction_early_access::Bool
+    max_subsampled_array_layers::UInt32
+    max_descriptor_set_subsampled_samplers::UInt32
 end
 
 struct PhysicalDeviceFragmentDensityMap2FeaturesEXT <: VulkanStruct
@@ -12205,25 +12081,9 @@ struct PhysicalDeviceCustomBorderColorFeaturesEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceCustomBorderColorPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceCustomBorderColorPropertiesEXT
-    bag::BagPhysicalDeviceCustomBorderColorPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceCustomBorderColorPropertiesEXT(
-        max_custom_border_color_samplers;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceCustomBorderColorPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceCustomBorderColorPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_custom_border_color_samplers,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceCustomBorderColorPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_custom_border_color_samplers::UInt32
 end
 
 struct SamplerCustomBorderColorCreateInfoEXT <: VulkanStruct
@@ -12244,29 +12104,6 @@ struct SamplerCustomBorderColorCreateInfoEXT <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             custom_border_color.vks,
             format,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceRobustness2PropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceRobustness2PropertiesEXT
-    bag::BagPhysicalDeviceRobustness2PropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceRobustness2PropertiesEXT(
-        robust_storage_buffer_access_size_alignment,
-        robust_uniform_buffer_access_size_alignment;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceRobustness2PropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceRobustness2PropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            robust_storage_buffer_access_size_alignment,
-            robust_uniform_buffer_access_size_alignment,
         )
         new(vks, bag)
     end
@@ -12338,33 +12175,6 @@ struct RenderPassTransformBeginInfoQCOM <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceTexelBufferAlignmentPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT
-    bag::BagPhysicalDeviceTexelBufferAlignmentPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceTexelBufferAlignmentPropertiesEXT(
-        storage_texel_buffer_offset_alignment_bytes,
-        storage_texel_buffer_offset_single_texel_alignment,
-        uniform_texel_buffer_offset_alignment_bytes,
-        uniform_texel_buffer_offset_single_texel_alignment;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceTexelBufferAlignmentPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            storage_texel_buffer_offset_alignment_bytes,
-            storage_texel_buffer_offset_single_texel_alignment,
-            uniform_texel_buffer_offset_alignment_bytes,
-            uniform_texel_buffer_offset_single_texel_alignment,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT <: VulkanStruct
     vks::VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT
     bag::BagPhysicalDeviceTexelBufferAlignmentFeaturesEXT
@@ -12429,9 +12239,9 @@ struct GeneratedCommandsInfoNV <: VulkanStruct
         preprocess_offset,
         preprocess_size;
         next = C_NULL,
-        sequences_count_buffer = 0,
+        sequences_count_buffer = C_NULL,
         sequences_count_offset = 0,
-        sequences_index_buffer = 0,
+        sequences_index_buffer = C_NULL,
         sequences_index_offset = 0,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
@@ -12448,9 +12258,9 @@ struct GeneratedCommandsInfoNV <: VulkanStruct
             preprocess_buffer.handle,
             preprocess_offset,
             preprocess_size,
-            sequences_count_buffer == 0 ? 0 : sequences_count_buffer.handle,
+            sequences_count_buffer == C_NULL ? C_NULL : sequences_count_buffer.handle,
             sequences_count_offset == 0 ? 0 : sequences_count_offset,
-            sequences_index_buffer == 0 ? 0 : sequences_index_buffer.handle,
+            sequences_index_buffer == C_NULL ? C_NULL : sequences_index_buffer.handle,
             sequences_index_offset == 0 ? 0 : sequences_index_offset,
         )
         new(vks, bag)
@@ -12509,7 +12319,7 @@ struct IndirectCommandsLayoutTokenNV <: VulkanStruct
         index_types,
         index_type_values;
         next = C_NULL,
-        pushconstant_pipeline_layout = 0,
+        pushconstant_pipeline_layout = C_NULL,
         pushconstant_shader_stage_flags = C_NULL,
         indirect_state_flags = 0,
     )
@@ -12529,9 +12339,10 @@ struct IndirectCommandsLayoutTokenNV <: VulkanStruct
             offset,
             vertex_binding_unit,
             vertex_dynamic_stride,
-            pushconstant_pipeline_layout == 0 ? 0 : pushconstant_pipeline_layout.handle,
+            pushconstant_pipeline_layout == C_NULL ? C_NULL :
+            pushconstant_pipeline_layout.handle,
             pushconstant_shader_stage_flags == C_NULL ? C_NULL :
-                pushconstant_shader_stage_flags,
+            pushconstant_shader_stage_flags,
             pushconstant_offset,
             pushconstant_size,
             indirect_state_flags == 0 ? 0 : indirect_state_flags,
@@ -12654,41 +12465,17 @@ struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV <: VulkanStruct
-    vks::VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV
-    bag::BagPhysicalDeviceDeviceGeneratedCommandsPropertiesNV
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(
-        max_graphics_shader_group_count,
-        max_indirect_sequence_count,
-        max_indirect_commands_token_count,
-        max_indirect_commands_stream_count,
-        max_indirect_commands_token_offset,
-        max_indirect_commands_stream_stride,
-        min_sequences_count_buffer_offset_alignment,
-        min_sequences_index_buffer_offset_alignment,
-        min_indirect_commands_buffer_offset_alignment;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceDeviceGeneratedCommandsPropertiesNV(bag_next, _pNext)
-        vks = VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_graphics_shader_group_count,
-            max_indirect_sequence_count,
-            max_indirect_commands_token_count,
-            max_indirect_commands_stream_count,
-            max_indirect_commands_token_offset,
-            max_indirect_commands_stream_stride,
-            min_sequences_count_buffer_offset_alignment,
-            min_sequences_index_buffer_offset_alignment,
-            min_indirect_commands_buffer_offset_alignment,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_graphics_shader_group_count::UInt32
+    max_indirect_sequence_count::UInt32
+    max_indirect_commands_token_count::UInt32
+    max_indirect_commands_stream_count::UInt32
+    max_indirect_commands_token_offset::UInt32
+    max_indirect_commands_stream_stride::UInt32
+    min_sequences_count_buffer_offset_alignment::UInt32
+    min_sequences_index_buffer_offset_alignment::UInt32
+    min_indirect_commands_buffer_offset_alignment::UInt32
 end
 
 struct PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT <: VulkanStruct
@@ -12821,25 +12608,9 @@ struct PipelineRasterizationLineStateCreateInfoEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceLineRasterizationPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceLineRasterizationPropertiesEXT
-    bag::BagPhysicalDeviceLineRasterizationPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceLineRasterizationPropertiesEXT(
-        line_sub_pixel_precision_bits;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceLineRasterizationPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceLineRasterizationPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            line_sub_pixel_precision_bits,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceLineRasterizationPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    line_sub_pixel_precision_bits::UInt32
 end
 
 struct PhysicalDeviceLineRasterizationFeaturesEXT <: VulkanStruct
@@ -12934,33 +12705,6 @@ struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT <: VulkanStruct
     end
 end
 
-struct FramebufferMixedSamplesCombinationNV <: VulkanStruct
-    vks::VkFramebufferMixedSamplesCombinationNV
-    bag::BagFramebufferMixedSamplesCombinationNV
-    """
-    Generic constructor.
-    """
-    function FramebufferMixedSamplesCombinationNV(
-        coverage_reduction_mode,
-        rasterization_samples,
-        depth_stencil_samples,
-        color_samples;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagFramebufferMixedSamplesCombinationNV(bag_next, _pNext)
-        vks = VkFramebufferMixedSamplesCombinationNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            coverage_reduction_mode,
-            rasterization_samples,
-            depth_stencil_samples,
-            color_samples,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PipelineCoverageReductionStateCreateInfoNV <: VulkanStruct
     vks::VkPipelineCoverageReductionStateCreateInfoNV
     bag::BagPipelineCoverageReductionStateCreateInfoNV
@@ -13000,27 +12744,6 @@ struct PhysicalDeviceCoverageReductionModeFeaturesNV <: VulkanStruct
         vks = VkPhysicalDeviceCoverageReductionModeFeaturesNV(
             _pNext == C_NULL ? C_NULL : _pNext,
             coverage_reduction_mode,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceCooperativeMatrixPropertiesNV <: VulkanStruct
-    vks::VkPhysicalDeviceCooperativeMatrixPropertiesNV
-    bag::BagPhysicalDeviceCooperativeMatrixPropertiesNV
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceCooperativeMatrixPropertiesNV(
-        cooperative_matrix_supported_stages;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceCooperativeMatrixPropertiesNV(bag_next, _pNext)
-        vks = VkPhysicalDeviceCooperativeMatrixPropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            cooperative_matrix_supported_stages,
         )
         new(vks, bag)
     end
@@ -13107,35 +12830,6 @@ struct ValidationFeaturesEXT <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             enabled_validation_features,
             disabled_validation_features,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceToolPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceToolPropertiesEXT
-    bag::BagPhysicalDeviceToolPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceToolPropertiesEXT(
-        name,
-        version,
-        purposes,
-        description,
-        layer;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceToolPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceToolPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            name,
-            version,
-            purposes,
-            description,
-            layer,
         )
         new(vks, bag)
     end
@@ -13238,23 +12932,10 @@ struct PhysicalDeviceMemoryPriorityFeaturesEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceMemoryBudgetPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceMemoryBudgetPropertiesEXT
-    bag::BagPhysicalDeviceMemoryBudgetPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceMemoryBudgetPropertiesEXT(heap_budget, heap_usage; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceMemoryBudgetPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceMemoryBudgetPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            heap_budget,
-            heap_usage,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceMemoryBudgetPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    heap_budget::NTuple{16,VkDeviceSize}
+    heap_usage::NTuple{16,VkDeviceSize}
 end
 
 struct PhysicalDeviceCoherentMemoryFeaturesAMD <: VulkanStruct
@@ -13275,75 +12956,9 @@ struct PhysicalDeviceCoherentMemoryFeaturesAMD <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceShaderCoreProperties2AMD <: VulkanStruct
-    vks::VkPhysicalDeviceShaderCoreProperties2AMD
-    bag::BagPhysicalDeviceShaderCoreProperties2AMD
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceShaderCoreProperties2AMD(
-        shader_core_features,
-        active_compute_unit_count;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceShaderCoreProperties2AMD(bag_next, _pNext)
-        vks = VkPhysicalDeviceShaderCoreProperties2AMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            shader_core_features,
-            active_compute_unit_count,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT <: VulkanStruct
-    vks::VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT
-    bag::BagPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT
-    """
-    Generic constructor.
-    """
-    function PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(
-        required_subgroup_size;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(bag_next, _pNext)
-        vks = VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            required_subgroup_size,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceSubgroupSizeControlPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceSubgroupSizeControlPropertiesEXT
-    bag::BagPhysicalDeviceSubgroupSizeControlPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceSubgroupSizeControlPropertiesEXT(
-        min_subgroup_size,
-        max_subgroup_size,
-        max_compute_workgroup_subgroups,
-        required_subgroup_size_stages;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceSubgroupSizeControlPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceSubgroupSizeControlPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            min_subgroup_size,
-            max_subgroup_size,
-            max_compute_workgroup_subgroups,
-            required_subgroup_size_stages,
-        )
-        new(vks, bag)
-    end
+struct PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    required_subgroup_size::UInt32
 end
 
 struct PhysicalDeviceSubgroupSizeControlFeaturesEXT <: VulkanStruct
@@ -13385,31 +13000,6 @@ struct RenderPassFragmentDensityMapCreateInfoEXT <: VulkanStruct
         vks = VkRenderPassFragmentDensityMapCreateInfoEXT(
             _pNext == C_NULL ? C_NULL : _pNext,
             fragment_density_map_attachment.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceFragmentDensityMapPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceFragmentDensityMapPropertiesEXT
-    bag::BagPhysicalDeviceFragmentDensityMapPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceFragmentDensityMapPropertiesEXT(
-        min_fragment_density_texel_size,
-        max_fragment_density_texel_size,
-        fragment_density_invocations;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceFragmentDensityMapPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceFragmentDensityMapPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            min_fragment_density_texel_size.vks,
-            max_fragment_density_texel_size.vks,
-            fragment_density_invocations,
         )
         new(vks, bag)
     end
@@ -13458,49 +13048,17 @@ struct SwapchainDisplayNativeHdrCreateInfoAMD <: VulkanStruct
     end
 end
 
-struct DisplayNativeHdrSurfaceCapabilitiesAMD <: VulkanStruct
-    vks::VkDisplayNativeHdrSurfaceCapabilitiesAMD
-    bag::BagDisplayNativeHdrSurfaceCapabilitiesAMD
-    """
-    Generic constructor.
-    """
-    function DisplayNativeHdrSurfaceCapabilitiesAMD(local_dimming_support; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDisplayNativeHdrSurfaceCapabilitiesAMD(bag_next, _pNext)
-        vks = VkDisplayNativeHdrSurfaceCapabilitiesAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            local_dimming_support,
-        )
-        new(vks, bag)
-    end
+struct DisplayNativeHdrSurfaceCapabilitiesAMD <: ReturnedOnly
+    next::Ptr{Cvoid}
+    local_dimming_support::Bool
 end
 
-struct PhysicalDevicePCIBusInfoPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDevicePCIBusInfoPropertiesEXT
-    bag::BagPhysicalDevicePCIBusInfoPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDevicePCIBusInfoPropertiesEXT(
-        pci_domain,
-        pci_bus,
-        pci_device,
-        pci_function;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDevicePCIBusInfoPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDevicePCIBusInfoPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            pci_domain,
-            pci_bus,
-            pci_device,
-            pci_function,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDevicePCIBusInfoPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    pci_domain::UInt32
+    pci_bus::UInt32
+    pci_device::UInt32
+    pci_function::UInt32
 end
 
 struct PerformanceConfigurationAcquireInfoINTEL <: VulkanStruct
@@ -13642,48 +13200,6 @@ struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL <: VulkanStruct
     end
 end
 
-struct CheckpointDataNV <: VulkanStruct
-    vks::VkCheckpointDataNV
-    bag::BagCheckpointDataNV
-    """
-    Generic constructor.
-    """
-    function CheckpointDataNV(stage, checkpoint_marker; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pCheckpointMarker =
-            checkpoint_marker == C_NULL ? checkpoint_marker : Ref(checkpoint_marker)    # VulkanGen.GenerateRefs
-        bag = BagCheckpointDataNV(bag_next, _pNext, _pCheckpointMarker)
-        vks = VkCheckpointDataNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            stage,
-            _pCheckpointMarker,
-        )
-        new(vks, bag)
-    end
-end
-
-struct QueueFamilyCheckpointPropertiesNV <: VulkanStruct
-    vks::VkQueueFamilyCheckpointPropertiesNV
-    bag::BagQueueFamilyCheckpointPropertiesNV
-    """
-    Generic constructor.
-    """
-    function QueueFamilyCheckpointPropertiesNV(
-        checkpoint_execution_stage_mask;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagQueueFamilyCheckpointPropertiesNV(bag_next, _pNext)
-        vks = VkQueueFamilyCheckpointPropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            checkpoint_execution_stage_mask,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PhysicalDeviceExclusiveScissorFeaturesNV <: VulkanStruct
     vks::VkPhysicalDeviceExclusiveScissorFeaturesNV
     bag::BagPhysicalDeviceExclusiveScissorFeaturesNV
@@ -13714,7 +13230,8 @@ struct PipelineViewportExclusiveScissorStateCreateInfoNV <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pExclusiveScissors = exclusive_scissors == C_NULL ? exclusive_scissors :
+        _pExclusiveScissors =
+            exclusive_scissors == C_NULL ? exclusive_scissors :
             getproperty.(exclusive_scissors, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineViewportExclusiveScissorStateCreateInfoNV(
             bag_next,
@@ -13773,49 +13290,21 @@ struct DrawMeshTasksIndirectCommandNV <: VulkanStruct
     DrawMeshTasksIndirectCommandNV(vks::VkDrawMeshTasksIndirectCommandNV) = new(vks)
 end
 
-struct PhysicalDeviceMeshShaderPropertiesNV <: VulkanStruct
-    vks::VkPhysicalDeviceMeshShaderPropertiesNV
-    bag::BagPhysicalDeviceMeshShaderPropertiesNV
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceMeshShaderPropertiesNV(
-        max_draw_mesh_tasks_count,
-        max_task_work_group_invocations,
-        max_task_work_group_size,
-        max_task_total_memory_size,
-        max_task_output_count,
-        max_mesh_work_group_invocations,
-        max_mesh_work_group_size,
-        max_mesh_total_memory_size,
-        max_mesh_output_vertices,
-        max_mesh_output_primitives,
-        max_mesh_multiview_view_count,
-        mesh_output_per_vertex_granularity,
-        mesh_output_per_primitive_granularity;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceMeshShaderPropertiesNV(bag_next, _pNext)
-        vks = VkPhysicalDeviceMeshShaderPropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_draw_mesh_tasks_count,
-            max_task_work_group_invocations,
-            max_task_work_group_size,
-            max_task_total_memory_size,
-            max_task_output_count,
-            max_mesh_work_group_invocations,
-            max_mesh_work_group_size,
-            max_mesh_total_memory_size,
-            max_mesh_output_vertices,
-            max_mesh_output_primitives,
-            max_mesh_multiview_view_count,
-            mesh_output_per_vertex_granularity,
-            mesh_output_per_primitive_granularity,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceMeshShaderPropertiesNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_draw_mesh_tasks_count::UInt32
+    max_task_work_group_invocations::UInt32
+    max_task_work_group_size::NTuple{3,UInt32}
+    max_task_total_memory_size::UInt32
+    max_task_output_count::UInt32
+    max_mesh_work_group_invocations::UInt32
+    max_mesh_work_group_size::NTuple{3,UInt32}
+    max_mesh_total_memory_size::UInt32
+    max_mesh_output_vertices::UInt32
+    max_mesh_output_primitives::UInt32
+    max_mesh_multiview_view_count::UInt32
+    mesh_output_per_vertex_granularity::UInt32
+    mesh_output_per_primitive_granularity::UInt32
 end
 
 struct PhysicalDeviceMeshShaderFeaturesNV <: VulkanStruct
@@ -13876,7 +13365,8 @@ struct PipelineCreationFeedbackCreateInfoEXT <: VulkanStruct
         _pPipelineCreationFeedback =
             pipeline_creation_feedback == C_NULL ? pipeline_creation_feedback :
             Ref(pipeline_creation_feedback.vks)    # VulkanGen.GenerateRefs
-        _pPipelineStageCreationFeedbacks = pipeline_stage_creation_feedbacks == C_NULL ?
+        _pPipelineStageCreationFeedbacks =
+            pipeline_stage_creation_feedbacks == C_NULL ?
             pipeline_stage_creation_feedbacks :
             getproperty.(pipeline_stage_creation_feedbacks, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineCreationFeedbackCreateInfoEXT(
@@ -13892,11 +13382,6 @@ struct PipelineCreationFeedbackCreateInfoEXT <: VulkanStruct
         )
         new(vks, bag)
     end
-end
-
-struct PipelineCreationFeedbackEXT <: VulkanStruct
-    vks::VkPipelineCreationFeedbackEXT
-    PipelineCreationFeedbackEXT(vks::VkPipelineCreationFeedbackEXT) = new(vks)
 end
 
 struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT <: VulkanStruct
@@ -13957,25 +13442,9 @@ struct VertexInputBindingDivisorDescriptionEXT <: VulkanStruct
     ) = new(vks)
 end
 
-struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT
-    bag::BagPhysicalDeviceVertexAttributeDivisorPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceVertexAttributeDivisorPropertiesEXT(
-        max_vertex_attrib_divisor;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceVertexAttributeDivisorPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_vertex_attrib_divisor,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_vertex_attrib_divisor::UInt32
 end
 
 struct DeviceMemoryOverallocationCreateInfoAMD <: VulkanStruct
@@ -13996,51 +13465,22 @@ struct DeviceMemoryOverallocationCreateInfoAMD <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceShaderCorePropertiesAMD <: VulkanStruct
-    vks::VkPhysicalDeviceShaderCorePropertiesAMD
-    bag::BagPhysicalDeviceShaderCorePropertiesAMD
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceShaderCorePropertiesAMD(
-        shader_engine_count,
-        shader_arrays_per_engine_count,
-        compute_units_per_shader_array,
-        simd_per_compute_unit,
-        wavefronts_per_simd,
-        wavefront_size,
-        sgprs_per_simd,
-        min_sgpr_allocation,
-        max_sgpr_allocation,
-        sgpr_allocation_granularity,
-        vgprs_per_simd,
-        min_vgpr_allocation,
-        max_vgpr_allocation,
-        vgpr_allocation_granularity;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceShaderCorePropertiesAMD(bag_next, _pNext)
-        vks = VkPhysicalDeviceShaderCorePropertiesAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            shader_engine_count,
-            shader_arrays_per_engine_count,
-            compute_units_per_shader_array,
-            simd_per_compute_unit,
-            wavefronts_per_simd,
-            wavefront_size,
-            sgprs_per_simd,
-            min_sgpr_allocation,
-            max_sgpr_allocation,
-            sgpr_allocation_granularity,
-            vgprs_per_simd,
-            min_vgpr_allocation,
-            max_vgpr_allocation,
-            vgpr_allocation_granularity,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceShaderCorePropertiesAMD <: ReturnedOnly
+    next::Ptr{Cvoid}
+    shader_engine_count::UInt32
+    shader_arrays_per_engine_count::UInt32
+    compute_units_per_shader_array::UInt32
+    simd_per_compute_unit::UInt32
+    wavefronts_per_simd::UInt32
+    wavefront_size::UInt32
+    sgprs_per_simd::UInt32
+    min_sgpr_allocation::UInt32
+    max_sgpr_allocation::UInt32
+    sgpr_allocation_granularity::UInt32
+    vgprs_per_simd::UInt32
+    min_vgpr_allocation::UInt32
+    max_vgpr_allocation::UInt32
+    vgpr_allocation_granularity::UInt32
 end
 
 struct CalibratedTimestampInfoEXT <: VulkanStruct
@@ -14079,43 +13519,9 @@ struct PipelineCompilerControlCreateInfoAMD <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceExternalMemoryHostPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceExternalMemoryHostPropertiesEXT
-    bag::BagPhysicalDeviceExternalMemoryHostPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceExternalMemoryHostPropertiesEXT(
-        min_imported_host_pointer_alignment;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceExternalMemoryHostPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceExternalMemoryHostPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            min_imported_host_pointer_alignment,
-        )
-        new(vks, bag)
-    end
-end
-
-struct MemoryHostPointerPropertiesEXT <: VulkanStruct
-    vks::VkMemoryHostPointerPropertiesEXT
-    bag::BagMemoryHostPointerPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function MemoryHostPointerPropertiesEXT(memory_type_bits; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagMemoryHostPointerPropertiesEXT(bag_next, _pNext)
-        vks = VkMemoryHostPointerPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory_type_bits,
-        )
-        new(vks, bag)
-    end
+struct MemoryHostPointerPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    memory_type_bits::UInt32
 end
 
 struct ImportMemoryHostPointerInfoEXT <: VulkanStruct
@@ -14156,27 +13562,10 @@ struct DeviceQueueGlobalPriorityCreateInfoEXT <: VulkanStruct
     end
 end
 
-struct FilterCubicImageViewImageFormatPropertiesEXT <: VulkanStruct
-    vks::VkFilterCubicImageViewImageFormatPropertiesEXT
-    bag::BagFilterCubicImageViewImageFormatPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function FilterCubicImageViewImageFormatPropertiesEXT(
-        filter_cubic,
-        filter_cubic_minmax;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagFilterCubicImageViewImageFormatPropertiesEXT(bag_next, _pNext)
-        vks = VkFilterCubicImageViewImageFormatPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            filter_cubic,
-            filter_cubic_minmax,
-        )
-        new(vks, bag)
-    end
+struct FilterCubicImageViewImageFormatPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    filter_cubic::Bool
+    filter_cubic_minmax::Bool
 end
 
 struct PhysicalDeviceImageViewImageFormatInfoEXT <: VulkanStruct
@@ -14254,39 +13643,16 @@ struct TransformMatrixKHR <: VulkanStruct
     TransformMatrixKHR(vks::VkTransformMatrixKHR) = new(vks)
 end
 
-struct PhysicalDeviceRayTracingPropertiesNV <: VulkanStruct
-    vks::VkPhysicalDeviceRayTracingPropertiesNV
-    bag::BagPhysicalDeviceRayTracingPropertiesNV
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceRayTracingPropertiesNV(
-        shader_group_handle_size,
-        max_recursion_depth,
-        max_shader_group_stride,
-        shader_group_base_alignment,
-        max_geometry_count,
-        max_instance_count,
-        max_triangle_count,
-        max_descriptor_set_acceleration_structures;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceRayTracingPropertiesNV(bag_next, _pNext)
-        vks = VkPhysicalDeviceRayTracingPropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            shader_group_handle_size,
-            max_recursion_depth,
-            max_shader_group_stride,
-            shader_group_base_alignment,
-            max_geometry_count,
-            max_instance_count,
-            max_triangle_count,
-            max_descriptor_set_acceleration_structures,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceRayTracingPropertiesNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    shader_group_handle_size::UInt32
+    max_recursion_depth::UInt32
+    max_shader_group_stride::UInt32
+    shader_group_base_alignment::UInt32
+    max_geometry_count::UInt64
+    max_instance_count::UInt64
+    max_triangle_count::UInt64
+    max_descriptor_set_acceleration_structures::UInt32
 end
 
 struct AccelerationStructureMemoryRequirementsInfoNV <: VulkanStruct
@@ -14451,13 +13817,13 @@ struct GeometryAABBNV <: VulkanStruct
     """
     Generic constructor.
     """
-    function GeometryAABBNV(num_aab_bs, stride, offset; next = C_NULL, aabb_data = 0)
+    function GeometryAABBNV(num_aab_bs, stride, offset; next = C_NULL, aabb_data = C_NULL)
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagGeometryAABBNV(bag_next, _pNext)
         vks = VkGeometryAABBNV(
             _pNext == C_NULL ? C_NULL : _pNext,
-            aabb_data == 0 ? 0 : aabb_data.handle,
+            aabb_data == C_NULL ? C_NULL : aabb_data.handle,
             num_aab_bs,
             stride,
             offset,
@@ -14482,25 +13848,25 @@ struct GeometryTrianglesNV <: VulkanStruct
         index_type,
         transform_offset;
         next = C_NULL,
-        vertex_data = 0,
-        index_data = 0,
-        transform_data = 0,
+        vertex_data = C_NULL,
+        index_data = C_NULL,
+        transform_data = C_NULL,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagGeometryTrianglesNV(bag_next, _pNext)
         vks = VkGeometryTrianglesNV(
             _pNext == C_NULL ? C_NULL : _pNext,
-            vertex_data == 0 ? 0 : vertex_data.handle,
+            vertex_data == C_NULL ? C_NULL : vertex_data.handle,
             vertex_offset,
             vertex_count,
             vertex_stride,
             vertex_format,
-            index_data == 0 ? 0 : index_data.handle,
+            index_data == C_NULL ? C_NULL : index_data.handle,
             index_offset,
             index_count,
             index_type,
-            transform_data == 0 ? 0 : transform_data.handle,
+            transform_data == C_NULL ? C_NULL : transform_data.handle,
             transform_offset,
         )
         new(vks, bag)
@@ -14521,7 +13887,7 @@ struct RayTracingPipelineCreateInfoNV <: VulkanStruct
         base_pipeline_index;
         next = C_NULL,
         flags = 0,
-        base_pipeline_handle = 0,
+        base_pipeline_handle = C_NULL,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
@@ -14542,7 +13908,7 @@ struct RayTracingPipelineCreateInfoNV <: VulkanStruct
             _pGroups,
             max_recursion_depth,
             layout.handle,
-            base_pipeline_handle == 0 ? 0 : base_pipeline_handle.handle,
+            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -14591,7 +13957,8 @@ struct PipelineViewportCoarseSampleOrderStateCreateInfoNV <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pCustomSampleOrders = custom_sample_orders == C_NULL ? custom_sample_orders :
+        _pCustomSampleOrders =
+            custom_sample_orders == C_NULL ? custom_sample_orders :
             getproperty.(custom_sample_orders, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineViewportCoarseSampleOrderStateCreateInfoNV(
             bag_next,
@@ -14615,7 +13982,8 @@ struct CoarseSampleOrderCustomNV <: VulkanStruct
     Generic constructor.
     """
     function CoarseSampleOrderCustomNV(shading_rate, sample_count, sample_locations)
-        _pSampleLocations = sample_locations == C_NULL ? sample_locations :
+        _pSampleLocations =
+            sample_locations == C_NULL ? sample_locations :
             getproperty.(sample_locations, :vks)    # VulkanGen.ConvertArrays
         bag = BagCoarseSampleOrderCustomNV(_pSampleLocations)
         vks = VkCoarseSampleOrderCustomNV(shading_rate, sample_count, _pSampleLocations)
@@ -14626,31 +13994,6 @@ end
 struct CoarseSampleLocationNV <: VulkanStruct
     vks::VkCoarseSampleLocationNV
     CoarseSampleLocationNV(vks::VkCoarseSampleLocationNV) = new(vks)
-end
-
-struct PhysicalDeviceShadingRateImagePropertiesNV <: VulkanStruct
-    vks::VkPhysicalDeviceShadingRateImagePropertiesNV
-    bag::BagPhysicalDeviceShadingRateImagePropertiesNV
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceShadingRateImagePropertiesNV(
-        shading_rate_texel_size,
-        shading_rate_palette_size,
-        shading_rate_max_coarse_samples;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceShadingRateImagePropertiesNV(bag_next, _pNext)
-        vks = VkPhysicalDeviceShadingRateImagePropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            shading_rate_texel_size.vks,
-            shading_rate_palette_size,
-            shading_rate_max_coarse_samples,
-        )
-        new(vks, bag)
-    end
 end
 
 struct PhysicalDeviceShadingRateImageFeaturesNV <: VulkanStruct
@@ -14689,7 +14032,8 @@ struct PipelineViewportShadingRateImageStateCreateInfoNV <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pShadingRatePalettes = shading_rate_palettes == C_NULL ? shading_rate_palettes :
+        _pShadingRatePalettes =
+            shading_rate_palettes == C_NULL ? shading_rate_palettes :
             getproperty.(shading_rate_palettes, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineViewportShadingRateImageStateCreateInfoNV(
             bag_next,
@@ -14757,22 +14101,9 @@ struct ValidationCacheCreateInfoEXT <: VulkanStruct
     end
 end
 
-struct ImageDrmFormatModifierPropertiesEXT <: VulkanStruct
-    vks::VkImageDrmFormatModifierPropertiesEXT
-    bag::BagImageDrmFormatModifierPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function ImageDrmFormatModifierPropertiesEXT(drm_format_modifier; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagImageDrmFormatModifierPropertiesEXT(bag_next, _pNext)
-        vks = VkImageDrmFormatModifierPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            drm_format_modifier,
-        )
-        new(vks, bag)
-    end
+struct ImageDrmFormatModifierPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    drm_format_modifier::UInt64
 end
 
 struct ImageDrmFormatModifierExplicitCreateInfoEXT <: VulkanStruct
@@ -14854,39 +14185,6 @@ struct PhysicalDeviceImageDrmFormatModifierInfoEXT <: VulkanStruct
     end
 end
 
-struct DrmFormatModifierPropertiesListEXT <: VulkanStruct
-    vks::VkDrmFormatModifierPropertiesListEXT
-    bag::BagDrmFormatModifierPropertiesListEXT
-    """
-    Generic constructor.
-    """
-    function DrmFormatModifierPropertiesListEXT(
-        drm_format_modifier_properties;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pDrmFormatModifierProperties =
-            drm_format_modifier_properties == C_NULL ? drm_format_modifier_properties :
-            getproperty.(drm_format_modifier_properties, :vks)    # VulkanGen.ConvertArrays
-        bag = BagDrmFormatModifierPropertiesListEXT(
-            bag_next,
-            _pNext,
-            _pDrmFormatModifierProperties,
-        )
-        vks = VkDrmFormatModifierPropertiesListEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pDrmFormatModifierProperties,
-        )
-        new(vks, bag)
-    end
-end
-
-struct DrmFormatModifierPropertiesEXT <: VulkanStruct
-    vks::VkDrmFormatModifierPropertiesEXT
-    DrmFormatModifierPropertiesEXT(vks::VkDrmFormatModifierPropertiesEXT) = new(vks)
-end
-
 struct PhysicalDeviceShaderSMBuiltinsFeaturesNV <: VulkanStruct
     vks::VkPhysicalDeviceShaderSMBuiltinsFeaturesNV
     bag::BagPhysicalDeviceShaderSMBuiltinsFeaturesNV
@@ -14905,27 +14203,10 @@ struct PhysicalDeviceShaderSMBuiltinsFeaturesNV <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceShaderSMBuiltinsPropertiesNV <: VulkanStruct
-    vks::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV
-    bag::BagPhysicalDeviceShaderSMBuiltinsPropertiesNV
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceShaderSMBuiltinsPropertiesNV(
-        shader_sm_count,
-        shader_warps_per_sm;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceShaderSMBuiltinsPropertiesNV(bag_next, _pNext)
-        vks = VkPhysicalDeviceShaderSMBuiltinsPropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            shader_sm_count,
-            shader_warps_per_sm,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceShaderSMBuiltinsPropertiesNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    shader_sm_count::UInt32
+    shader_warps_per_sm::UInt32
 end
 
 struct PipelineCoverageModulationStateCreateInfoNV <: VulkanStruct
@@ -15010,35 +14291,14 @@ struct PipelineColorBlendAdvancedStateCreateInfoEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT
-    bag::BagPhysicalDeviceBlendOperationAdvancedPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceBlendOperationAdvancedPropertiesEXT(
-        advanced_blend_max_color_attachments,
-        advanced_blend_independent_blend,
-        advanced_blend_non_premultiplied_src_color,
-        advanced_blend_non_premultiplied_dst_color,
-        advanced_blend_correlated_overlap,
-        advanced_blend_all_operations;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceBlendOperationAdvancedPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            advanced_blend_max_color_attachments,
-            advanced_blend_independent_blend,
-            advanced_blend_non_premultiplied_src_color,
-            advanced_blend_non_premultiplied_dst_color,
-            advanced_blend_correlated_overlap,
-            advanced_blend_all_operations,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    advanced_blend_max_color_attachments::UInt32
+    advanced_blend_independent_blend::Bool
+    advanced_blend_non_premultiplied_src_color::Bool
+    advanced_blend_non_premultiplied_dst_color::Bool
+    advanced_blend_correlated_overlap::Bool
+    advanced_blend_all_operations::Bool
 end
 
 struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT <: VulkanStruct
@@ -15057,53 +14317,6 @@ struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT <: VulkanStruct
         vks = VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT(
             _pNext == C_NULL ? C_NULL : _pNext,
             advanced_blend_coherent_operations,
-        )
-        new(vks, bag)
-    end
-end
-
-struct MultisamplePropertiesEXT <: VulkanStruct
-    vks::VkMultisamplePropertiesEXT
-    bag::BagMultisamplePropertiesEXT
-    """
-    Generic constructor.
-    """
-    function MultisamplePropertiesEXT(max_sample_location_grid_size; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagMultisamplePropertiesEXT(bag_next, _pNext)
-        vks = VkMultisamplePropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_sample_location_grid_size.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceSampleLocationsPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceSampleLocationsPropertiesEXT
-    bag::BagPhysicalDeviceSampleLocationsPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceSampleLocationsPropertiesEXT(
-        sample_location_sample_counts,
-        max_sample_location_grid_size,
-        sample_location_coordinate_range,
-        sample_location_sub_pixel_bits,
-        variable_sample_locations;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceSampleLocationsPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceSampleLocationsPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            sample_location_sample_counts,
-            max_sample_location_grid_size.vks,
-            sample_location_coordinate_range,
-            sample_location_sub_pixel_bits,
-            variable_sample_locations,
         )
         new(vks, bag)
     end
@@ -15149,7 +14362,8 @@ struct RenderPassSampleLocationsBeginInfoEXT <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachmentInitialSampleLocations = attachment_initial_sample_locations == C_NULL ?
+        _pAttachmentInitialSampleLocations =
+            attachment_initial_sample_locations == C_NULL ?
             attachment_initial_sample_locations :
             getproperty.(attachment_initial_sample_locations, :vks)    # VulkanGen.ConvertArrays
         _pPostSubpassSampleLocations =
@@ -15194,7 +14408,8 @@ struct SampleLocationsInfoEXT <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pSampleLocations = sample_locations == C_NULL ? sample_locations :
+        _pSampleLocations =
+            sample_locations == C_NULL ? sample_locations :
             getproperty.(sample_locations, :vks)    # VulkanGen.ConvertArrays
         bag = BagSampleLocationsInfoEXT(bag_next, _pNext, _pSampleLocations)
         vks = VkSampleLocationsInfoEXT(
@@ -15252,33 +14467,13 @@ struct WriteDescriptorSetInlineUniformBlockEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceInlineUniformBlockPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceInlineUniformBlockPropertiesEXT
-    bag::BagPhysicalDeviceInlineUniformBlockPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceInlineUniformBlockPropertiesEXT(
-        max_inline_uniform_block_size,
-        max_per_stage_descriptor_inline_uniform_blocks,
-        max_per_stage_descriptor_update_after_bind_inline_uniform_blocks,
-        max_descriptor_set_inline_uniform_blocks,
-        max_descriptor_set_update_after_bind_inline_uniform_blocks;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceInlineUniformBlockPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceInlineUniformBlockPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_inline_uniform_block_size,
-            max_per_stage_descriptor_inline_uniform_blocks,
-            max_per_stage_descriptor_update_after_bind_inline_uniform_blocks,
-            max_descriptor_set_inline_uniform_blocks,
-            max_descriptor_set_update_after_bind_inline_uniform_blocks,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceInlineUniformBlockPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_inline_uniform_block_size::UInt32
+    max_per_stage_descriptor_inline_uniform_blocks::UInt32
+    max_per_stage_descriptor_update_after_bind_inline_uniform_blocks::UInt32
+    max_descriptor_set_inline_uniform_blocks::UInt32
+    max_descriptor_set_update_after_bind_inline_uniform_blocks::UInt32
 end
 
 struct PhysicalDeviceInlineUniformBlockFeaturesEXT <: VulkanStruct
@@ -15561,41 +14756,17 @@ struct PipelineRasterizationConservativeStateCreateInfoEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceConservativeRasterizationPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceConservativeRasterizationPropertiesEXT
-    bag::BagPhysicalDeviceConservativeRasterizationPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceConservativeRasterizationPropertiesEXT(
-        primitive_overestimation_size,
-        max_extra_primitive_overestimation_size,
-        extra_primitive_overestimation_size_granularity,
-        primitive_underestimation,
-        conservative_point_and_line_rasterization,
-        degenerate_triangles_rasterized,
-        degenerate_lines_rasterized,
-        fully_covered_fragment_shader_input_variable,
-        conservative_rasterization_post_depth_coverage;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceConservativeRasterizationPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceConservativeRasterizationPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            primitive_overestimation_size,
-            max_extra_primitive_overestimation_size,
-            extra_primitive_overestimation_size_granularity,
-            primitive_underestimation,
-            conservative_point_and_line_rasterization,
-            degenerate_triangles_rasterized,
-            degenerate_lines_rasterized,
-            fully_covered_fragment_shader_input_variable,
-            conservative_rasterization_post_depth_coverage,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceConservativeRasterizationPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    primitive_overestimation_size::Float32
+    max_extra_primitive_overestimation_size::Float32
+    extra_primitive_overestimation_size_granularity::Float32
+    primitive_underestimation::Bool
+    conservative_point_and_line_rasterization::Bool
+    degenerate_triangles_rasterized::Bool
+    degenerate_lines_rasterized::Bool
+    fully_covered_fragment_shader_input_variable::Bool
+    conservative_rasterization_post_depth_coverage::Bool
 end
 
 struct PipelineDiscardRectangleStateCreateInfoEXT <: VulkanStruct
@@ -15612,7 +14783,8 @@ struct PipelineDiscardRectangleStateCreateInfoEXT <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pDiscardRectangles = discard_rectangles == C_NULL ? discard_rectangles :
+        _pDiscardRectangles =
+            discard_rectangles == C_NULL ? discard_rectangles :
             getproperty.(discard_rectangles, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineDiscardRectangleStateCreateInfoEXT(
             bag_next,
@@ -15629,25 +14801,9 @@ struct PipelineDiscardRectangleStateCreateInfoEXT <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceDiscardRectanglePropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceDiscardRectanglePropertiesEXT
-    bag::BagPhysicalDeviceDiscardRectanglePropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceDiscardRectanglePropertiesEXT(
-        max_discard_rectangles;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceDiscardRectanglePropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceDiscardRectanglePropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_discard_rectangles,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceDiscardRectanglePropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_discard_rectangles::UInt32
 end
 
 struct PipelineViewportSwizzleStateCreateInfoNV <: VulkanStruct
@@ -15663,7 +14819,8 @@ struct PipelineViewportSwizzleStateCreateInfoNV <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pViewportSwizzles = viewport_swizzles == C_NULL ? viewport_swizzles :
+        _pViewportSwizzles =
+            viewport_swizzles == C_NULL ? viewport_swizzles :
             getproperty.(viewport_swizzles, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineViewportSwizzleStateCreateInfoNV(
             bag_next,
@@ -15684,25 +14841,9 @@ struct ViewportSwizzleNV <: VulkanStruct
     ViewportSwizzleNV(vks::VkViewportSwizzleNV) = new(vks)
 end
 
-struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX <: VulkanStruct
-    vks::VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX
-    bag::BagPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(
-        per_view_position_all_components;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(bag_next, _pNext)
-        vks = VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            per_view_position_all_components,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX <: ReturnedOnly
+    next::Ptr{Cvoid}
+    per_view_position_all_components::Bool
 end
 
 struct PresentTimesInfoGOOGLE <: VulkanStruct
@@ -15729,14 +14870,16 @@ struct PresentTimeGOOGLE <: VulkanStruct
     PresentTimeGOOGLE(vks::VkPresentTimeGOOGLE) = new(vks)
 end
 
-struct PastPresentationTimingGOOGLE <: VulkanStruct
-    vks::VkPastPresentationTimingGOOGLE
-    PastPresentationTimingGOOGLE(vks::VkPastPresentationTimingGOOGLE) = new(vks)
+struct PastPresentationTimingGOOGLE <: ReturnedOnly
+    present_id::UInt32
+    desired_present_time::UInt64
+    actual_present_time::UInt64
+    earliest_present_time::UInt64
+    present_margin::UInt64
 end
 
-struct RefreshCycleDurationGOOGLE <: VulkanStruct
-    vks::VkRefreshCycleDurationGOOGLE
-    RefreshCycleDurationGOOGLE(vks::VkRefreshCycleDurationGOOGLE) = new(vks)
+struct RefreshCycleDurationGOOGLE <: ReturnedOnly
+    refresh_duration::UInt64
 end
 
 struct SwapchainCounterCreateInfoEXT <: VulkanStruct
@@ -15802,47 +14945,6 @@ struct DisplayPowerInfoEXT <: VulkanStruct
     end
 end
 
-struct SurfaceCapabilities2EXT <: VulkanStruct
-    vks::VkSurfaceCapabilities2EXT
-    bag::BagSurfaceCapabilities2EXT
-    """
-    Generic constructor.
-    """
-    function SurfaceCapabilities2EXT(
-        min_image_count,
-        max_image_count,
-        current_extent,
-        min_image_extent,
-        max_image_extent,
-        max_image_array_layers,
-        current_transform;
-        next = C_NULL,
-        supported_transforms = 0,
-        supported_composite_alpha = 0,
-        supported_usage_flags = 0,
-        supported_surface_counters = 0,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagSurfaceCapabilities2EXT(bag_next, _pNext)
-        vks = VkSurfaceCapabilities2EXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            min_image_count,
-            max_image_count,
-            current_extent.vks,
-            min_image_extent.vks,
-            max_image_extent.vks,
-            max_image_array_layers,
-            supported_transforms == 0 ? 0 : supported_transforms,
-            current_transform,
-            supported_composite_alpha == 0 ? 0 : supported_composite_alpha,
-            supported_usage_flags == 0 ? 0 : supported_usage_flags,
-            supported_surface_counters == 0 ? 0 : supported_surface_counters,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PipelineViewportWScalingStateCreateInfoNV <: VulkanStruct
     vks::VkPipelineViewportWScalingStateCreateInfoNV
     bag::BagPipelineViewportWScalingStateCreateInfoNV
@@ -15856,7 +14958,8 @@ struct PipelineViewportWScalingStateCreateInfoNV <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pViewportWScalings = viewport_w_scalings == C_NULL ? viewport_w_scalings :
+        _pViewportWScalings =
+            viewport_w_scalings == C_NULL ? viewport_w_scalings :
             getproperty.(viewport_w_scalings, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineViewportWScalingStateCreateInfoNV(
             bag_next,
@@ -16049,11 +15152,6 @@ struct ExternalMemoryImageCreateInfoNV <: VulkanStruct
     end
 end
 
-struct ExternalImageFormatPropertiesNV <: VulkanStruct
-    vks::VkExternalImageFormatPropertiesNV
-    ExternalImageFormatPropertiesNV(vks::VkExternalImageFormatPropertiesNV) = new(vks)
-end
-
 struct PhysicalDeviceCornerSampledImageFeaturesNV <: VulkanStruct
     vks::VkPhysicalDeviceCornerSampledImageFeaturesNV
     bag::BagPhysicalDeviceCornerSampledImageFeaturesNV
@@ -16072,54 +15170,17 @@ struct PhysicalDeviceCornerSampledImageFeaturesNV <: VulkanStruct
     end
 end
 
-struct ShaderStatisticsInfoAMD <: VulkanStruct
-    vks::VkShaderStatisticsInfoAMD
-    ShaderStatisticsInfoAMD(vks::VkShaderStatisticsInfoAMD) = new(vks)
+struct ShaderResourceUsageAMD <: ReturnedOnly
+    num_used_vgprs::UInt32
+    num_used_sgprs::UInt32
+    lds_size_per_local_work_group::UInt32
+    lds_usage_size_in_bytes::UInt
+    scratch_mem_usage_in_bytes::UInt
 end
 
-struct ShaderResourceUsageAMD <: VulkanStruct
-    vks::VkShaderResourceUsageAMD
-    ShaderResourceUsageAMD(vks::VkShaderResourceUsageAMD) = new(vks)
-end
-
-struct TextureLODGatherFormatPropertiesAMD <: VulkanStruct
-    vks::VkTextureLODGatherFormatPropertiesAMD
-    bag::BagTextureLODGatherFormatPropertiesAMD
-    """
-    Generic constructor.
-    """
-    function TextureLODGatherFormatPropertiesAMD(
-        supports_texture_gather_lod_bias_amd;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagTextureLODGatherFormatPropertiesAMD(bag_next, _pNext)
-        vks = VkTextureLODGatherFormatPropertiesAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            supports_texture_gather_lod_bias_amd,
-        )
-        new(vks, bag)
-    end
-end
-
-struct ImageViewAddressPropertiesNVX <: VulkanStruct
-    vks::VkImageViewAddressPropertiesNVX
-    bag::BagImageViewAddressPropertiesNVX
-    """
-    Generic constructor.
-    """
-    function ImageViewAddressPropertiesNVX(device_address, size; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagImageViewAddressPropertiesNVX(bag_next, _pNext)
-        vks = VkImageViewAddressPropertiesNVX(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            device_address,
-            size,
-        )
-        new(vks, bag)
-    end
+struct TextureLODGatherFormatPropertiesAMD <: ReturnedOnly
+    next::Ptr{Cvoid}
+    supports_texture_gather_lod_bias_amd::Bool
 end
 
 struct ImageViewHandleInfoNVX <: VulkanStruct
@@ -16128,7 +15189,12 @@ struct ImageViewHandleInfoNVX <: VulkanStruct
     """
     Generic constructor.
     """
-    function ImageViewHandleInfoNVX(image_view, descriptor_type; next = C_NULL, sampler = 0)
+    function ImageViewHandleInfoNVX(
+        image_view,
+        descriptor_type;
+        next = C_NULL,
+        sampler = C_NULL,
+    )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagImageViewHandleInfoNVX(bag_next, _pNext)
@@ -16136,7 +15202,7 @@ struct ImageViewHandleInfoNVX <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             image_view.handle,
             descriptor_type,
-            sampler == 0 ? 0 : sampler.handle,
+            sampler == C_NULL ? C_NULL : sampler.handle,
         )
         new(vks, bag)
     end
@@ -16160,45 +15226,6 @@ struct PipelineRasterizationStateStreamCreateInfoEXT <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             flags == 0 ? 0 : flags,
             rasterization_stream,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceTransformFeedbackPropertiesEXT <: VulkanStruct
-    vks::VkPhysicalDeviceTransformFeedbackPropertiesEXT
-    bag::BagPhysicalDeviceTransformFeedbackPropertiesEXT
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceTransformFeedbackPropertiesEXT(
-        max_transform_feedback_streams,
-        max_transform_feedback_buffers,
-        max_transform_feedback_buffer_size,
-        max_transform_feedback_stream_data_size,
-        max_transform_feedback_buffer_data_size,
-        max_transform_feedback_buffer_data_stride,
-        transform_feedback_queries,
-        transform_feedback_streams_lines_triangles,
-        transform_feedback_rasterization_stream_select,
-        transform_feedback_draw;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceTransformFeedbackPropertiesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceTransformFeedbackPropertiesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_transform_feedback_streams,
-            max_transform_feedback_buffers,
-            max_transform_feedback_buffer_size,
-            max_transform_feedback_stream_data_size,
-            max_transform_feedback_buffer_data_size,
-            max_transform_feedback_buffer_data_stride,
-            transform_feedback_queries,
-            transform_feedback_streams_lines_triangles,
-            transform_feedback_rasterization_stream_select,
-            transform_feedback_draw,
         )
         new(vks, bag)
     end
@@ -16233,14 +15260,18 @@ struct DedicatedAllocationMemoryAllocateInfoNV <: VulkanStruct
     """
     Generic constructor.
     """
-    function DedicatedAllocationMemoryAllocateInfoNV(; next = C_NULL, image = 0, buffer = 0)
+    function DedicatedAllocationMemoryAllocateInfoNV(;
+        next = C_NULL,
+        image = C_NULL,
+        buffer = C_NULL,
+    )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagDedicatedAllocationMemoryAllocateInfoNV(bag_next, _pNext)
         vks = VkDedicatedAllocationMemoryAllocateInfoNV(
             _pNext == C_NULL ? C_NULL : _pNext,
-            image == 0 ? 0 : image.handle,
-            buffer == 0 ? 0 : buffer.handle,
+            image == C_NULL ? C_NULL : image.handle,
+            buffer == C_NULL ? C_NULL : buffer.handle,
         )
         new(vks, bag)
     end
@@ -16390,59 +15421,16 @@ struct DebugReportCallbackCreateInfoEXT <: VulkanStruct
     end
 end
 
-struct PipelineExecutableInternalRepresentationKHR <: VulkanStruct
-    vks::VkPipelineExecutableInternalRepresentationKHR
-    bag::BagPipelineExecutableInternalRepresentationKHR
-    """
-    Generic constructor.
-    """
-    function PipelineExecutableInternalRepresentationKHR(
-        name,
-        description,
-        is_text;
-        next = C_NULL,
-        data = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pData = data == C_NULL ? data : Ref(data)    # VulkanGen.GenerateRefs
-        bag = BagPipelineExecutableInternalRepresentationKHR(bag_next, _pNext, _pData)
-        vks = VkPipelineExecutableInternalRepresentationKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            name,
-            description,
-            is_text,
-            _pData == C_NULL ? C_NULL : _pData,
-        )
-        new(vks, bag)
-    end
+struct PipelineExecutableInternalRepresentationKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    name::String
+    description::String
+    is_text::Bool
+    data::Ptr{Cvoid}
 end
 
-struct PipelineExecutableStatisticKHR <: VulkanStruct
-    vks::VkPipelineExecutableStatisticKHR
-    bag::BagPipelineExecutableStatisticKHR
-    """
-    Generic constructor.
-    """
-    function PipelineExecutableStatisticKHR(name, description, format, value; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPipelineExecutableStatisticKHR(bag_next, _pNext)
-        vks = VkPipelineExecutableStatisticKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            name,
-            description,
-            format,
-            value.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PipelineExecutableStatisticValueKHR <: VulkanStruct
-    vks::VkPipelineExecutableStatisticValueKHR
-    PipelineExecutableStatisticValueKHR(vks::VkPipelineExecutableStatisticValueKHR) =
-        new(vks)
+struct PipelineExecutableStatisticValueKHR <: ReturnedOnly
+    i64::Int64
 end
 
 struct PipelineExecutableInfoKHR <: VulkanStruct
@@ -16459,33 +15447,6 @@ struct PipelineExecutableInfoKHR <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             pipeline.handle,
             executable_index,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PipelineExecutablePropertiesKHR <: VulkanStruct
-    vks::VkPipelineExecutablePropertiesKHR
-    bag::BagPipelineExecutablePropertiesKHR
-    """
-    Generic constructor.
-    """
-    function PipelineExecutablePropertiesKHR(
-        stages,
-        name,
-        description,
-        subgroup_size;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPipelineExecutablePropertiesKHR(bag_next, _pNext)
-        vks = VkPipelineExecutablePropertiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            stages,
-            name,
-            description,
-            subgroup_size,
         )
         new(vks, bag)
     end
@@ -16568,24 +15529,6 @@ struct PhysicalDeviceShaderClockFeaturesKHR <: VulkanStruct
     end
 end
 
-struct DisplayPlaneCapabilities2KHR <: VulkanStruct
-    vks::VkDisplayPlaneCapabilities2KHR
-    bag::BagDisplayPlaneCapabilities2KHR
-    """
-    Generic constructor.
-    """
-    function DisplayPlaneCapabilities2KHR(capabilities; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDisplayPlaneCapabilities2KHR(bag_next, _pNext)
-        vks = VkDisplayPlaneCapabilities2KHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            capabilities.vks,
-        )
-        new(vks, bag)
-    end
-end
-
 struct DisplayPlaneInfo2KHR <: VulkanStruct
     vks::VkDisplayPlaneInfo2KHR
     bag::BagDisplayPlaneInfo2KHR
@@ -16600,93 +15543,6 @@ struct DisplayPlaneInfo2KHR <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             mode.handle,
             plane_index,
-        )
-        new(vks, bag)
-    end
-end
-
-struct DisplayModeProperties2KHR <: VulkanStruct
-    vks::VkDisplayModeProperties2KHR
-    bag::BagDisplayModeProperties2KHR
-    """
-    Generic constructor.
-    """
-    function DisplayModeProperties2KHR(display_mode_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDisplayModeProperties2KHR(bag_next, _pNext)
-        vks = VkDisplayModeProperties2KHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            display_mode_properties.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct DisplayPlaneProperties2KHR <: VulkanStruct
-    vks::VkDisplayPlaneProperties2KHR
-    bag::BagDisplayPlaneProperties2KHR
-    """
-    Generic constructor.
-    """
-    function DisplayPlaneProperties2KHR(display_plane_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDisplayPlaneProperties2KHR(bag_next, _pNext)
-        vks = VkDisplayPlaneProperties2KHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            display_plane_properties.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct DisplayProperties2KHR <: VulkanStruct
-    vks::VkDisplayProperties2KHR
-    bag::BagDisplayProperties2KHR
-    """
-    Generic constructor.
-    """
-    function DisplayProperties2KHR(display_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDisplayProperties2KHR(bag_next, _pNext, display_properties.bag)
-        vks = VkDisplayProperties2KHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            display_properties.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct SurfaceFormat2KHR <: VulkanStruct
-    vks::VkSurfaceFormat2KHR
-    bag::BagSurfaceFormat2KHR
-    """
-    Generic constructor.
-    """
-    function SurfaceFormat2KHR(surface_format; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagSurfaceFormat2KHR(bag_next, _pNext)
-        vks = VkSurfaceFormat2KHR(_pNext == C_NULL ? C_NULL : _pNext, surface_format.vks)
-        new(vks, bag)
-    end
-end
-
-struct SurfaceCapabilities2KHR <: VulkanStruct
-    vks::VkSurfaceCapabilities2KHR
-    bag::BagSurfaceCapabilities2KHR
-    """
-    Generic constructor.
-    """
-    function SurfaceCapabilities2KHR(surface_capabilities; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagSurfaceCapabilities2KHR(bag_next, _pNext)
-        vks = VkSurfaceCapabilities2KHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            surface_capabilities.vks,
         )
         new(vks, bag)
     end
@@ -16776,73 +15632,9 @@ struct QueryPoolPerformanceCreateInfoKHR <: VulkanStruct
     end
 end
 
-struct PerformanceCounterDescriptionKHR <: VulkanStruct
-    vks::VkPerformanceCounterDescriptionKHR
-    bag::BagPerformanceCounterDescriptionKHR
-    """
-    Generic constructor.
-    """
-    function PerformanceCounterDescriptionKHR(
-        name,
-        category,
-        description;
-        next = C_NULL,
-        flags = 0,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPerformanceCounterDescriptionKHR(bag_next, _pNext)
-        vks = VkPerformanceCounterDescriptionKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            name,
-            category,
-            description,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PerformanceCounterKHR <: VulkanStruct
-    vks::VkPerformanceCounterKHR
-    bag::BagPerformanceCounterKHR
-    """
-    Generic constructor.
-    """
-    function PerformanceCounterKHR(unit, scope, storage, uuid; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPerformanceCounterKHR(bag_next, _pNext)
-        vks = VkPerformanceCounterKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            unit,
-            scope,
-            storage,
-            uuid,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDevicePerformanceQueryPropertiesKHR <: VulkanStruct
-    vks::VkPhysicalDevicePerformanceQueryPropertiesKHR
-    bag::BagPhysicalDevicePerformanceQueryPropertiesKHR
-    """
-    Generic constructor.
-    """
-    function PhysicalDevicePerformanceQueryPropertiesKHR(
-        allow_command_buffer_query_copies;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDevicePerformanceQueryPropertiesKHR(bag_next, _pNext)
-        vks = VkPhysicalDevicePerformanceQueryPropertiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            allow_command_buffer_query_copies,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDevicePerformanceQueryPropertiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    allow_command_buffer_query_copies::Bool
 end
 
 struct PhysicalDevicePerformanceQueryFeaturesKHR <: VulkanStruct
@@ -16908,28 +15700,6 @@ struct ImportFenceFdInfoKHR <: VulkanStruct
     end
 end
 
-struct SharedPresentSurfaceCapabilitiesKHR <: VulkanStruct
-    vks::VkSharedPresentSurfaceCapabilitiesKHR
-    bag::BagSharedPresentSurfaceCapabilitiesKHR
-    """
-    Generic constructor.
-    """
-    function SharedPresentSurfaceCapabilitiesKHR(;
-        next = C_NULL,
-        shared_present_supported_usage_flags = 0,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagSharedPresentSurfaceCapabilitiesKHR(bag_next, _pNext)
-        vks = VkSharedPresentSurfaceCapabilitiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            shared_present_supported_usage_flags == 0 ? 0 :
-                shared_present_supported_usage_flags,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PresentRegionsKHR <: VulkanStruct
     vks::VkPresentRegionsKHR
     bag::BagPresentRegionsKHR
@@ -16973,22 +15743,9 @@ struct RectLayerKHR <: VulkanStruct
     RectLayerKHR(vks::VkRectLayerKHR) = new(vks)
 end
 
-struct PhysicalDevicePushDescriptorPropertiesKHR <: VulkanStruct
-    vks::VkPhysicalDevicePushDescriptorPropertiesKHR
-    bag::BagPhysicalDevicePushDescriptorPropertiesKHR
-    """
-    Generic constructor.
-    """
-    function PhysicalDevicePushDescriptorPropertiesKHR(max_push_descriptors; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDevicePushDescriptorPropertiesKHR(bag_next, _pNext)
-        vks = VkPhysicalDevicePushDescriptorPropertiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_push_descriptors,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDevicePushDescriptorPropertiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_push_descriptors::UInt32
 end
 
 struct SemaphoreGetFdInfoKHR <: VulkanStruct
@@ -17050,19 +15807,9 @@ struct MemoryGetFdInfoKHR <: VulkanStruct
     end
 end
 
-struct MemoryFdPropertiesKHR <: VulkanStruct
-    vks::VkMemoryFdPropertiesKHR
-    bag::BagMemoryFdPropertiesKHR
-    """
-    Generic constructor.
-    """
-    function MemoryFdPropertiesKHR(memory_type_bits; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagMemoryFdPropertiesKHR(bag_next, _pNext)
-        vks = VkMemoryFdPropertiesKHR(_pNext == C_NULL ? C_NULL : _pNext, memory_type_bits)
-        new(vks, bag)
-    end
+struct MemoryFdPropertiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    memory_type_bits::UInt32
 end
 
 struct ImportMemoryFdInfoKHR <: VulkanStruct
@@ -17139,50 +15886,6 @@ struct DisplaySurfaceCreateInfoKHR <: VulkanStruct
     end
 end
 
-struct DisplayPropertiesKHR <: VulkanStruct
-    vks::VkDisplayPropertiesKHR
-    bag::BagDisplayPropertiesKHR
-    """
-    Generic constructor.
-    """
-    function DisplayPropertiesKHR(
-        display,
-        display_name,
-        physical_dimensions,
-        physical_resolution,
-        plane_reorder_possible,
-        persistent_content;
-        supported_transforms = 0,
-    )
-        bag = BagDisplayPropertiesKHR(display_name)
-        vks = VkDisplayPropertiesKHR(
-            display.handle,
-            display_name,
-            physical_dimensions.vks,
-            physical_resolution.vks,
-            supported_transforms == 0 ? 0 : supported_transforms,
-            plane_reorder_possible,
-            persistent_content,
-        )
-        new(vks, bag)
-    end
-end
-
-struct DisplayPlanePropertiesKHR <: VulkanStruct
-    vks::VkDisplayPlanePropertiesKHR
-    DisplayPlanePropertiesKHR(vks::VkDisplayPlanePropertiesKHR) = new(vks)
-end
-
-struct DisplayPlaneCapabilitiesKHR <: VulkanStruct
-    vks::VkDisplayPlaneCapabilitiesKHR
-    DisplayPlaneCapabilitiesKHR(vks::VkDisplayPlaneCapabilitiesKHR) = new(vks)
-end
-
-struct DisplayModePropertiesKHR <: VulkanStruct
-    vks::VkDisplayModePropertiesKHR
-    DisplayModePropertiesKHR(vks::VkDisplayModePropertiesKHR) = new(vks)
-end
-
 struct DisplayModeCreateInfoKHR <: VulkanStruct
     vks::VkDisplayModeCreateInfoKHR
     bag::BagDisplayModeCreateInfoKHR
@@ -17242,25 +15945,6 @@ struct DeviceGroupPresentInfoKHR <: VulkanStruct
     end
 end
 
-struct DeviceGroupPresentCapabilitiesKHR <: VulkanStruct
-    vks::VkDeviceGroupPresentCapabilitiesKHR
-    bag::BagDeviceGroupPresentCapabilitiesKHR
-    """
-    Generic constructor.
-    """
-    function DeviceGroupPresentCapabilitiesKHR(present_mask, modes; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDeviceGroupPresentCapabilitiesKHR(bag_next, _pNext)
-        vks = VkDeviceGroupPresentCapabilitiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            present_mask,
-            modes,
-        )
-        new(vks, bag)
-    end
-end
-
 struct AcquireNextImageInfoKHR <: VulkanStruct
     vks::VkAcquireNextImageInfoKHR
     bag::BagAcquireNextImageInfoKHR
@@ -17272,8 +15956,8 @@ struct AcquireNextImageInfoKHR <: VulkanStruct
         timeout,
         device_mask;
         next = C_NULL,
-        semaphore = 0,
-        fence = 0,
+        semaphore = C_NULL,
+        fence = C_NULL,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
@@ -17282,8 +15966,8 @@ struct AcquireNextImageInfoKHR <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             swapchain.handle,
             timeout,
-            semaphore == 0 ? 0 : semaphore.handle,
-            fence == 0 ? 0 : fence.handle,
+            semaphore == C_NULL ? C_NULL : semaphore.handle,
+            fence == C_NULL ? C_NULL : fence.handle,
             device_mask,
         )
         new(vks, bag)
@@ -17315,13 +15999,13 @@ struct ImageSwapchainCreateInfoKHR <: VulkanStruct
     """
     Generic constructor.
     """
-    function ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = 0)
+    function ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagImageSwapchainCreateInfoKHR(bag_next, _pNext)
         vks = VkImageSwapchainCreateInfoKHR(
             _pNext == C_NULL ? C_NULL : _pNext,
-            swapchain == 0 ? 0 : swapchain.handle,
+            swapchain == C_NULL ? C_NULL : swapchain.handle,
         )
         new(vks, bag)
     end
@@ -17342,7 +16026,8 @@ struct PresentInfoKHR <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pWaitSemaphores = wait_semaphores == C_NULL ? wait_semaphores :
+        _pWaitSemaphores =
+            wait_semaphores == C_NULL ? wait_semaphores :
             getproperty.(wait_semaphores, :handle)    # VulkanGen.ConvertArrays
         _pSwapchains = swapchains == C_NULL ? swapchains : getproperty.(swapchains, :handle)    # VulkanGen.ConvertArrays
         image_indices = convert(Array{UInt32}, image_indices)    # VulkanGen.ConvertArrays
@@ -17387,7 +16072,7 @@ struct SwapchainCreateInfoKHR <: VulkanStruct
         clipped;
         next = C_NULL,
         flags = 0,
-        old_swapchain = 0,
+        old_swapchain = C_NULL,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
@@ -17409,20 +16094,10 @@ struct SwapchainCreateInfoKHR <: VulkanStruct
             composite_alpha,
             present_mode,
             clipped,
-            old_swapchain == 0 ? 0 : old_swapchain.handle,
+            old_swapchain == C_NULL ? C_NULL : old_swapchain.handle,
         )
         new(vks, bag)
     end
-end
-
-struct SurfaceFormatKHR <: VulkanStruct
-    vks::VkSurfaceFormatKHR
-    SurfaceFormatKHR(vks::VkSurfaceFormatKHR) = new(vks)
-end
-
-struct SurfaceCapabilitiesKHR <: VulkanStruct
-    vks::VkSurfaceCapabilitiesKHR
-    SurfaceCapabilitiesKHR(vks::VkSurfaceCapabilitiesKHR) = new(vks)
 end
 
 struct DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct
@@ -17609,25 +16284,9 @@ struct SemaphoreTypeCreateInfo <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceTimelineSemaphoreProperties <: VulkanStruct
-    vks::VkPhysicalDeviceTimelineSemaphoreProperties
-    bag::BagPhysicalDeviceTimelineSemaphoreProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceTimelineSemaphoreProperties(
-        max_timeline_semaphore_value_difference;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceTimelineSemaphoreProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceTimelineSemaphoreProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_timeline_semaphore_value_difference,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceTimelineSemaphoreProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_timeline_semaphore_value_difference::UInt64
 end
 
 struct PhysicalDeviceTimelineSemaphoreFeatures <: VulkanStruct
@@ -17799,7 +16458,8 @@ struct FramebufferAttachmentsCreateInfo <: VulkanStruct
     function FramebufferAttachmentsCreateInfo(attachment_image_infos; next = C_NULL)
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachmentImageInfos = attachment_image_infos == C_NULL ? attachment_image_infos :
+        _pAttachmentImageInfos =
+            attachment_image_infos == C_NULL ? attachment_image_infos :
             getproperty.(attachment_image_infos, :vks)    # VulkanGen.ConvertArrays
         bag = BagFramebufferAttachmentsCreateInfo(
             bag_next,
@@ -17892,27 +16552,10 @@ struct PhysicalDeviceVulkanMemoryModelFeatures <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceSamplerFilterMinmaxProperties <: VulkanStruct
-    vks::VkPhysicalDeviceSamplerFilterMinmaxProperties
-    bag::BagPhysicalDeviceSamplerFilterMinmaxProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceSamplerFilterMinmaxProperties(
-        filter_minmax_single_component_formats,
-        filter_minmax_image_component_mapping;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceSamplerFilterMinmaxProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceSamplerFilterMinmaxProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            filter_minmax_single_component_formats,
-            filter_minmax_image_component_mapping,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceSamplerFilterMinmaxProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    filter_minmax_single_component_formats::Bool
+    filter_minmax_image_component_mapping::Bool
 end
 
 struct SamplerReductionModeCreateInfo <: VulkanStruct
@@ -17967,33 +16610,6 @@ struct PhysicalDeviceScalarBlockLayoutFeatures <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceDepthStencilResolveProperties <: VulkanStruct
-    vks::VkPhysicalDeviceDepthStencilResolveProperties
-    bag::BagPhysicalDeviceDepthStencilResolveProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceDepthStencilResolveProperties(
-        supported_depth_resolve_modes,
-        supported_stencil_resolve_modes,
-        independent_resolve_none,
-        independent_resolve;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceDepthStencilResolveProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceDepthStencilResolveProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            supported_depth_resolve_modes,
-            supported_stencil_resolve_modes,
-            independent_resolve_none,
-            independent_resolve,
-        )
-        new(vks, bag)
-    end
-end
-
 struct SubpassDescriptionDepthStencilResolve <: VulkanStruct
     vks::VkSubpassDescriptionDepthStencilResolve
     bag::BagSubpassDescriptionDepthStencilResolve
@@ -18015,7 +16631,7 @@ struct SubpassDescriptionDepthStencilResolve <: VulkanStruct
             bag_next,
             _pNext,
             depth_stencil_resolve_attachment == C_NULL ? EmptyBag :
-                depth_stencil_resolve_attachment.bag,
+            depth_stencil_resolve_attachment.bag,
             _pDepthStencilResolveAttachment,
         )
         vks = VkSubpassDescriptionDepthStencilResolve(
@@ -18023,31 +16639,15 @@ struct SubpassDescriptionDepthStencilResolve <: VulkanStruct
             depth_resolve_mode,
             stencil_resolve_mode,
             _pDepthStencilResolveAttachment == C_NULL ? C_NULL :
-                _pDepthStencilResolveAttachment,
+            _pDepthStencilResolveAttachment,
         )
         new(vks, bag)
     end
 end
 
-struct DescriptorSetVariableDescriptorCountLayoutSupport <: VulkanStruct
-    vks::VkDescriptorSetVariableDescriptorCountLayoutSupport
-    bag::BagDescriptorSetVariableDescriptorCountLayoutSupport
-    """
-    Generic constructor.
-    """
-    function DescriptorSetVariableDescriptorCountLayoutSupport(
-        max_variable_descriptor_count;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDescriptorSetVariableDescriptorCountLayoutSupport(bag_next, _pNext)
-        vks = VkDescriptorSetVariableDescriptorCountLayoutSupport(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_variable_descriptor_count,
-        )
-        new(vks, bag)
-    end
+struct DescriptorSetVariableDescriptorCountLayoutSupport <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_variable_descriptor_count::UInt32
 end
 
 struct DescriptorSetVariableDescriptorCountAllocateInfo <: VulkanStruct
@@ -18076,69 +16676,31 @@ struct DescriptorSetVariableDescriptorCountAllocateInfo <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceDescriptorIndexingProperties <: VulkanStruct
-    vks::VkPhysicalDeviceDescriptorIndexingProperties
-    bag::BagPhysicalDeviceDescriptorIndexingProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceDescriptorIndexingProperties(
-        max_update_after_bind_descriptors_in_all_pools,
-        shader_uniform_buffer_array_non_uniform_indexing_native,
-        shader_sampled_image_array_non_uniform_indexing_native,
-        shader_storage_buffer_array_non_uniform_indexing_native,
-        shader_storage_image_array_non_uniform_indexing_native,
-        shader_input_attachment_array_non_uniform_indexing_native,
-        robust_buffer_access_update_after_bind,
-        quad_divergent_implicit_lod,
-        max_per_stage_descriptor_update_after_bind_samplers,
-        max_per_stage_descriptor_update_after_bind_uniform_buffers,
-        max_per_stage_descriptor_update_after_bind_storage_buffers,
-        max_per_stage_descriptor_update_after_bind_sampled_images,
-        max_per_stage_descriptor_update_after_bind_storage_images,
-        max_per_stage_descriptor_update_after_bind_input_attachments,
-        max_per_stage_update_after_bind_resources,
-        max_descriptor_set_update_after_bind_samplers,
-        max_descriptor_set_update_after_bind_uniform_buffers,
-        max_descriptor_set_update_after_bind_uniform_buffers_dynamic,
-        max_descriptor_set_update_after_bind_storage_buffers,
-        max_descriptor_set_update_after_bind_storage_buffers_dynamic,
-        max_descriptor_set_update_after_bind_sampled_images,
-        max_descriptor_set_update_after_bind_storage_images,
-        max_descriptor_set_update_after_bind_input_attachments;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceDescriptorIndexingProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceDescriptorIndexingProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_update_after_bind_descriptors_in_all_pools,
-            shader_uniform_buffer_array_non_uniform_indexing_native,
-            shader_sampled_image_array_non_uniform_indexing_native,
-            shader_storage_buffer_array_non_uniform_indexing_native,
-            shader_storage_image_array_non_uniform_indexing_native,
-            shader_input_attachment_array_non_uniform_indexing_native,
-            robust_buffer_access_update_after_bind,
-            quad_divergent_implicit_lod,
-            max_per_stage_descriptor_update_after_bind_samplers,
-            max_per_stage_descriptor_update_after_bind_uniform_buffers,
-            max_per_stage_descriptor_update_after_bind_storage_buffers,
-            max_per_stage_descriptor_update_after_bind_sampled_images,
-            max_per_stage_descriptor_update_after_bind_storage_images,
-            max_per_stage_descriptor_update_after_bind_input_attachments,
-            max_per_stage_update_after_bind_resources,
-            max_descriptor_set_update_after_bind_samplers,
-            max_descriptor_set_update_after_bind_uniform_buffers,
-            max_descriptor_set_update_after_bind_uniform_buffers_dynamic,
-            max_descriptor_set_update_after_bind_storage_buffers,
-            max_descriptor_set_update_after_bind_storage_buffers_dynamic,
-            max_descriptor_set_update_after_bind_sampled_images,
-            max_descriptor_set_update_after_bind_storage_images,
-            max_descriptor_set_update_after_bind_input_attachments,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceDescriptorIndexingProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_update_after_bind_descriptors_in_all_pools::UInt32
+    shader_uniform_buffer_array_non_uniform_indexing_native::Bool
+    shader_sampled_image_array_non_uniform_indexing_native::Bool
+    shader_storage_buffer_array_non_uniform_indexing_native::Bool
+    shader_storage_image_array_non_uniform_indexing_native::Bool
+    shader_input_attachment_array_non_uniform_indexing_native::Bool
+    robust_buffer_access_update_after_bind::Bool
+    quad_divergent_implicit_lod::Bool
+    max_per_stage_descriptor_update_after_bind_samplers::UInt32
+    max_per_stage_descriptor_update_after_bind_uniform_buffers::UInt32
+    max_per_stage_descriptor_update_after_bind_storage_buffers::UInt32
+    max_per_stage_descriptor_update_after_bind_sampled_images::UInt32
+    max_per_stage_descriptor_update_after_bind_storage_images::UInt32
+    max_per_stage_descriptor_update_after_bind_input_attachments::UInt32
+    max_per_stage_update_after_bind_resources::UInt32
+    max_descriptor_set_update_after_bind_samplers::UInt32
+    max_descriptor_set_update_after_bind_uniform_buffers::UInt32
+    max_descriptor_set_update_after_bind_uniform_buffers_dynamic::UInt32
+    max_descriptor_set_update_after_bind_storage_buffers::UInt32
+    max_descriptor_set_update_after_bind_storage_buffers_dynamic::UInt32
+    max_descriptor_set_update_after_bind_sampled_images::UInt32
+    max_descriptor_set_update_after_bind_storage_images::UInt32
+    max_descriptor_set_update_after_bind_input_attachments::UInt32
 end
 
 struct PhysicalDeviceDescriptorIndexingFeatures <: VulkanStruct
@@ -18218,59 +16780,6 @@ struct DescriptorSetLayoutBindingFlagsCreateInfo <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceFloatControlsProperties <: VulkanStruct
-    vks::VkPhysicalDeviceFloatControlsProperties
-    bag::BagPhysicalDeviceFloatControlsProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceFloatControlsProperties(
-        denorm_behavior_independence,
-        rounding_mode_independence,
-        shader_signed_zero_inf_nan_preserve_float_16,
-        shader_signed_zero_inf_nan_preserve_float_32,
-        shader_signed_zero_inf_nan_preserve_float_64,
-        shader_denorm_preserve_float_16,
-        shader_denorm_preserve_float_32,
-        shader_denorm_preserve_float_64,
-        shader_denorm_flush_to_zero_float_16,
-        shader_denorm_flush_to_zero_float_32,
-        shader_denorm_flush_to_zero_float_64,
-        shader_rounding_mode_rte_float_16,
-        shader_rounding_mode_rte_float_32,
-        shader_rounding_mode_rte_float_64,
-        shader_rounding_mode_rtz_float_16,
-        shader_rounding_mode_rtz_float_32,
-        shader_rounding_mode_rtz_float_64;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceFloatControlsProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceFloatControlsProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            denorm_behavior_independence,
-            rounding_mode_independence,
-            shader_signed_zero_inf_nan_preserve_float_16,
-            shader_signed_zero_inf_nan_preserve_float_32,
-            shader_signed_zero_inf_nan_preserve_float_64,
-            shader_denorm_preserve_float_16,
-            shader_denorm_preserve_float_32,
-            shader_denorm_preserve_float_64,
-            shader_denorm_flush_to_zero_float_16,
-            shader_denorm_flush_to_zero_float_32,
-            shader_denorm_flush_to_zero_float_64,
-            shader_rounding_mode_rte_float_16,
-            shader_rounding_mode_rte_float_32,
-            shader_rounding_mode_rte_float_64,
-            shader_rounding_mode_rtz_float_16,
-            shader_rounding_mode_rtz_float_32,
-            shader_rounding_mode_rtz_float_64,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PhysicalDeviceShaderFloat16Int8Features <: VulkanStruct
     vks::VkPhysicalDeviceShaderFloat16Int8Features
     bag::BagPhysicalDeviceShaderFloat16Int8Features
@@ -18312,33 +16821,6 @@ struct PhysicalDeviceShaderAtomicInt64Features <: VulkanStruct
             _pNext == C_NULL ? C_NULL : _pNext,
             shader_buffer_int_64_atomics,
             shader_shared_int_64_atomics,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceDriverProperties <: VulkanStruct
-    vks::VkPhysicalDeviceDriverProperties
-    bag::BagPhysicalDeviceDriverProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceDriverProperties(
-        driver_id,
-        driver_name,
-        driver_info,
-        conformance_version;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceDriverProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceDriverProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            driver_id,
-            driver_name,
-            driver_info,
-            conformance_version.vks,
         )
         new(vks, bag)
     end
@@ -18498,11 +16980,14 @@ struct SubpassDescription2 <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pInputAttachments = input_attachments == C_NULL ? input_attachments :
+        _pInputAttachments =
+            input_attachments == C_NULL ? input_attachments :
             getproperty.(input_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pColorAttachments = color_attachments == C_NULL ? color_attachments :
+        _pColorAttachments =
+            color_attachments == C_NULL ? color_attachments :
             getproperty.(color_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pResolveAttachments = resolve_attachments == C_NULL ? resolve_attachments :
+        _pResolveAttachments =
+            resolve_attachments == C_NULL ? resolve_attachments :
             getproperty.(resolve_attachments, :vks)    # VulkanGen.ConvertArrays
         _pDepthStencilAttachment =
             depth_stencil_attachment == C_NULL ? depth_stencil_attachment :
@@ -18516,10 +17001,9 @@ struct SubpassDescription2 <: VulkanStruct
             getproperty.(color_attachments, :bag),
             _pColorAttachments,
             resolve_attachments == C_NULL ? EmptyBag :
-                getproperty.(resolve_attachments, :bag),
+            getproperty.(resolve_attachments, :bag),
             _pResolveAttachments,
-            depth_stencil_attachment == C_NULL ? EmptyBag :
-                depth_stencil_attachment.bag,
+            depth_stencil_attachment == C_NULL ? EmptyBag : depth_stencil_attachment.bag,
             _pDepthStencilAttachment,
             preserve_attachments,
         )
@@ -18606,130 +17090,6 @@ struct ImageFormatListCreateInfo <: VulkanStruct
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagImageFormatListCreateInfo(bag_next, _pNext, view_formats)
         vks = VkImageFormatListCreateInfo(_pNext == C_NULL ? C_NULL : _pNext, view_formats)
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceVulkan12Properties <: VulkanStruct
-    vks::VkPhysicalDeviceVulkan12Properties
-    bag::BagPhysicalDeviceVulkan12Properties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceVulkan12Properties(
-        driver_id,
-        driver_name,
-        driver_info,
-        conformance_version,
-        denorm_behavior_independence,
-        rounding_mode_independence,
-        shader_signed_zero_inf_nan_preserve_float_16,
-        shader_signed_zero_inf_nan_preserve_float_32,
-        shader_signed_zero_inf_nan_preserve_float_64,
-        shader_denorm_preserve_float_16,
-        shader_denorm_preserve_float_32,
-        shader_denorm_preserve_float_64,
-        shader_denorm_flush_to_zero_float_16,
-        shader_denorm_flush_to_zero_float_32,
-        shader_denorm_flush_to_zero_float_64,
-        shader_rounding_mode_rte_float_16,
-        shader_rounding_mode_rte_float_32,
-        shader_rounding_mode_rte_float_64,
-        shader_rounding_mode_rtz_float_16,
-        shader_rounding_mode_rtz_float_32,
-        shader_rounding_mode_rtz_float_64,
-        max_update_after_bind_descriptors_in_all_pools,
-        shader_uniform_buffer_array_non_uniform_indexing_native,
-        shader_sampled_image_array_non_uniform_indexing_native,
-        shader_storage_buffer_array_non_uniform_indexing_native,
-        shader_storage_image_array_non_uniform_indexing_native,
-        shader_input_attachment_array_non_uniform_indexing_native,
-        robust_buffer_access_update_after_bind,
-        quad_divergent_implicit_lod,
-        max_per_stage_descriptor_update_after_bind_samplers,
-        max_per_stage_descriptor_update_after_bind_uniform_buffers,
-        max_per_stage_descriptor_update_after_bind_storage_buffers,
-        max_per_stage_descriptor_update_after_bind_sampled_images,
-        max_per_stage_descriptor_update_after_bind_storage_images,
-        max_per_stage_descriptor_update_after_bind_input_attachments,
-        max_per_stage_update_after_bind_resources,
-        max_descriptor_set_update_after_bind_samplers,
-        max_descriptor_set_update_after_bind_uniform_buffers,
-        max_descriptor_set_update_after_bind_uniform_buffers_dynamic,
-        max_descriptor_set_update_after_bind_storage_buffers,
-        max_descriptor_set_update_after_bind_storage_buffers_dynamic,
-        max_descriptor_set_update_after_bind_sampled_images,
-        max_descriptor_set_update_after_bind_storage_images,
-        max_descriptor_set_update_after_bind_input_attachments,
-        supported_depth_resolve_modes,
-        supported_stencil_resolve_modes,
-        independent_resolve_none,
-        independent_resolve,
-        filter_minmax_single_component_formats,
-        filter_minmax_image_component_mapping,
-        max_timeline_semaphore_value_difference;
-        next = C_NULL,
-        framebuffer_integer_color_sample_counts = 0,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceVulkan12Properties(bag_next, _pNext)
-        vks = VkPhysicalDeviceVulkan12Properties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            driver_id,
-            driver_name,
-            driver_info,
-            conformance_version.vks,
-            denorm_behavior_independence,
-            rounding_mode_independence,
-            shader_signed_zero_inf_nan_preserve_float_16,
-            shader_signed_zero_inf_nan_preserve_float_32,
-            shader_signed_zero_inf_nan_preserve_float_64,
-            shader_denorm_preserve_float_16,
-            shader_denorm_preserve_float_32,
-            shader_denorm_preserve_float_64,
-            shader_denorm_flush_to_zero_float_16,
-            shader_denorm_flush_to_zero_float_32,
-            shader_denorm_flush_to_zero_float_64,
-            shader_rounding_mode_rte_float_16,
-            shader_rounding_mode_rte_float_32,
-            shader_rounding_mode_rte_float_64,
-            shader_rounding_mode_rtz_float_16,
-            shader_rounding_mode_rtz_float_32,
-            shader_rounding_mode_rtz_float_64,
-            max_update_after_bind_descriptors_in_all_pools,
-            shader_uniform_buffer_array_non_uniform_indexing_native,
-            shader_sampled_image_array_non_uniform_indexing_native,
-            shader_storage_buffer_array_non_uniform_indexing_native,
-            shader_storage_image_array_non_uniform_indexing_native,
-            shader_input_attachment_array_non_uniform_indexing_native,
-            robust_buffer_access_update_after_bind,
-            quad_divergent_implicit_lod,
-            max_per_stage_descriptor_update_after_bind_samplers,
-            max_per_stage_descriptor_update_after_bind_uniform_buffers,
-            max_per_stage_descriptor_update_after_bind_storage_buffers,
-            max_per_stage_descriptor_update_after_bind_sampled_images,
-            max_per_stage_descriptor_update_after_bind_storage_images,
-            max_per_stage_descriptor_update_after_bind_input_attachments,
-            max_per_stage_update_after_bind_resources,
-            max_descriptor_set_update_after_bind_samplers,
-            max_descriptor_set_update_after_bind_uniform_buffers,
-            max_descriptor_set_update_after_bind_uniform_buffers_dynamic,
-            max_descriptor_set_update_after_bind_storage_buffers,
-            max_descriptor_set_update_after_bind_storage_buffers_dynamic,
-            max_descriptor_set_update_after_bind_sampled_images,
-            max_descriptor_set_update_after_bind_storage_images,
-            max_descriptor_set_update_after_bind_input_attachments,
-            supported_depth_resolve_modes,
-            supported_stencil_resolve_modes,
-            independent_resolve_none,
-            independent_resolve,
-            filter_minmax_single_component_formats,
-            filter_minmax_image_component_mapping,
-            max_timeline_semaphore_value_difference,
-            framebuffer_integer_color_sample_counts == 0 ? 0 :
-                framebuffer_integer_color_sample_counts,
-        )
         new(vks, bag)
     end
 end
@@ -18852,55 +17212,6 @@ struct PhysicalDeviceVulkan12Features <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceVulkan11Properties <: VulkanStruct
-    vks::VkPhysicalDeviceVulkan11Properties
-    bag::BagPhysicalDeviceVulkan11Properties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceVulkan11Properties(
-        device_uuid,
-        driver_uuid,
-        device_luid,
-        device_node_mask,
-        device_luid_valid,
-        subgroup_size,
-        subgroup_supported_stages,
-        subgroup_supported_operations,
-        subgroup_quad_operations_in_all_stages,
-        point_clipping_behavior,
-        max_multiview_view_count,
-        max_multiview_instance_index,
-        protected_no_fault,
-        max_per_set_descriptors,
-        max_memory_allocation_size;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceVulkan11Properties(bag_next, _pNext)
-        vks = VkPhysicalDeviceVulkan11Properties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            device_uuid,
-            driver_uuid,
-            device_luid,
-            device_node_mask,
-            device_luid_valid,
-            subgroup_size,
-            subgroup_supported_stages,
-            subgroup_supported_operations,
-            subgroup_quad_operations_in_all_stages,
-            point_clipping_behavior,
-            max_multiview_view_count,
-            max_multiview_instance_index,
-            protected_no_fault,
-            max_per_set_descriptors,
-            max_memory_allocation_size,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PhysicalDeviceVulkan11Features <: VulkanStruct
     vks::VkPhysicalDeviceVulkan11Features
     bag::BagPhysicalDeviceVulkan11Features
@@ -18965,67 +17276,9 @@ struct PhysicalDeviceShaderDrawParametersFeatures <: VulkanStruct
     end
 end
 
-struct DescriptorSetLayoutSupport <: VulkanStruct
-    vks::VkDescriptorSetLayoutSupport
-    bag::BagDescriptorSetLayoutSupport
-    """
-    Generic constructor.
-    """
-    function DescriptorSetLayoutSupport(supported; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagDescriptorSetLayoutSupport(bag_next, _pNext)
-        vks = VkDescriptorSetLayoutSupport(_pNext == C_NULL ? C_NULL : _pNext, supported)
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceMaintenance3Properties <: VulkanStruct
-    vks::VkPhysicalDeviceMaintenance3Properties
-    bag::BagPhysicalDeviceMaintenance3Properties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceMaintenance3Properties(
-        max_per_set_descriptors,
-        max_memory_allocation_size;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceMaintenance3Properties(bag_next, _pNext)
-        vks = VkPhysicalDeviceMaintenance3Properties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_per_set_descriptors,
-            max_memory_allocation_size,
-        )
-        new(vks, bag)
-    end
-end
-
-struct ExternalSemaphoreProperties <: VulkanStruct
-    vks::VkExternalSemaphoreProperties
-    bag::BagExternalSemaphoreProperties
-    """
-    Generic constructor.
-    """
-    function ExternalSemaphoreProperties(
-        export_from_imported_handle_types,
-        compatible_handle_types;
-        next = C_NULL,
-        external_semaphore_features = 0,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagExternalSemaphoreProperties(bag_next, _pNext)
-        vks = VkExternalSemaphoreProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            export_from_imported_handle_types,
-            compatible_handle_types,
-            external_semaphore_features == 0 ? 0 : external_semaphore_features,
-        )
-        new(vks, bag)
-    end
+struct DescriptorSetLayoutSupport <: ReturnedOnly
+    next::Ptr{Cvoid}
+    supported::Bool
 end
 
 struct PhysicalDeviceExternalSemaphoreInfo <: VulkanStruct
@@ -19077,31 +17330,6 @@ struct ExportFenceCreateInfo <: VulkanStruct
         vks = VkExportFenceCreateInfo(
             _pNext == C_NULL ? C_NULL : _pNext,
             handle_types == 0 ? 0 : handle_types,
-        )
-        new(vks, bag)
-    end
-end
-
-struct ExternalFenceProperties <: VulkanStruct
-    vks::VkExternalFenceProperties
-    bag::BagExternalFenceProperties
-    """
-    Generic constructor.
-    """
-    function ExternalFenceProperties(
-        export_from_imported_handle_types,
-        compatible_handle_types;
-        next = C_NULL,
-        external_fence_features = 0,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagExternalFenceProperties(bag_next, _pNext)
-        vks = VkExternalFenceProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            export_from_imported_handle_types,
-            compatible_handle_types,
-            external_fence_features == 0 ? 0 : external_fence_features,
         )
         new(vks, bag)
     end
@@ -19179,51 +17407,13 @@ struct ExternalMemoryImageCreateInfo <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceIDProperties <: VulkanStruct
-    vks::VkPhysicalDeviceIDProperties
-    bag::BagPhysicalDeviceIDProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceIDProperties(
-        device_uuid,
-        driver_uuid,
-        device_luid,
-        device_node_mask,
-        device_luid_valid;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceIDProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceIDProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            device_uuid,
-            driver_uuid,
-            device_luid,
-            device_node_mask,
-            device_luid_valid,
-        )
-        new(vks, bag)
-    end
-end
-
-struct ExternalBufferProperties <: VulkanStruct
-    vks::VkExternalBufferProperties
-    bag::BagExternalBufferProperties
-    """
-    Generic constructor.
-    """
-    function ExternalBufferProperties(external_memory_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagExternalBufferProperties(bag_next, _pNext)
-        vks = VkExternalBufferProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            external_memory_properties.vks,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceIDProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    device_uuid::String
+    driver_uuid::String
+    device_luid::String
+    device_node_mask::UInt32
+    device_luid_valid::Bool
 end
 
 struct PhysicalDeviceExternalBufferInfo <: VulkanStruct
@@ -19246,24 +17436,6 @@ struct PhysicalDeviceExternalBufferInfo <: VulkanStruct
     end
 end
 
-struct ExternalImageFormatProperties <: VulkanStruct
-    vks::VkExternalImageFormatProperties
-    bag::BagExternalImageFormatProperties
-    """
-    Generic constructor.
-    """
-    function ExternalImageFormatProperties(external_memory_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagExternalImageFormatProperties(bag_next, _pNext)
-        vks = VkExternalImageFormatProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            external_memory_properties.vks,
-        )
-        new(vks, bag)
-    end
-end
-
 struct PhysicalDeviceExternalImageFormatInfo <: VulkanStruct
     vks::VkPhysicalDeviceExternalImageFormatInfo
     bag::BagPhysicalDeviceExternalImageFormatInfo
@@ -19280,11 +17452,6 @@ struct PhysicalDeviceExternalImageFormatInfo <: VulkanStruct
         )
         new(vks, bag)
     end
-end
-
-struct ExternalMemoryProperties <: VulkanStruct
-    vks::VkExternalMemoryProperties
-    ExternalMemoryProperties(vks::VkExternalMemoryProperties) = new(vks)
 end
 
 struct DescriptorUpdateTemplateCreateInfo <: VulkanStruct
@@ -19332,25 +17499,9 @@ struct DescriptorUpdateTemplateEntry <: VulkanStruct
     DescriptorUpdateTemplateEntry(vks::VkDescriptorUpdateTemplateEntry) = new(vks)
 end
 
-struct SamplerYcbcrConversionImageFormatProperties <: VulkanStruct
-    vks::VkSamplerYcbcrConversionImageFormatProperties
-    bag::BagSamplerYcbcrConversionImageFormatProperties
-    """
-    Generic constructor.
-    """
-    function SamplerYcbcrConversionImageFormatProperties(
-        combined_image_sampler_descriptor_count;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagSamplerYcbcrConversionImageFormatProperties(bag_next, _pNext)
-        vks = VkSamplerYcbcrConversionImageFormatProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            combined_image_sampler_descriptor_count,
-        )
-        new(vks, bag)
-    end
+struct SamplerYcbcrConversionImageFormatProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    combined_image_sampler_descriptor_count::UInt32
 end
 
 struct PhysicalDeviceSamplerYcbcrConversionFeatures <: VulkanStruct
@@ -19495,22 +17646,9 @@ struct DeviceQueueInfo2 <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceProtectedMemoryProperties <: VulkanStruct
-    vks::VkPhysicalDeviceProtectedMemoryProperties
-    bag::BagPhysicalDeviceProtectedMemoryProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceProtectedMemoryProperties(protected_no_fault; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceProtectedMemoryProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceProtectedMemoryProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            protected_no_fault,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceProtectedMemoryProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    protected_no_fault::Bool
 end
 
 struct PhysicalDeviceProtectedMemoryFeatures <: VulkanStruct
@@ -19554,27 +17692,10 @@ struct PhysicalDeviceVariablePointersFeatures <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceMultiviewProperties <: VulkanStruct
-    vks::VkPhysicalDeviceMultiviewProperties
-    bag::BagPhysicalDeviceMultiviewProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceMultiviewProperties(
-        max_multiview_view_count,
-        max_multiview_instance_index;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceMultiviewProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceMultiviewProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            max_multiview_view_count,
-            max_multiview_instance_index,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceMultiviewProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_multiview_view_count::UInt32
+    max_multiview_instance_index::UInt32
 end
 
 struct PhysicalDeviceMultiviewFeatures <: VulkanStruct
@@ -19678,7 +17799,8 @@ struct RenderPassInputAttachmentAspectCreateInfo <: VulkanStruct
     function RenderPassInputAttachmentAspectCreateInfo(aspect_references; next = C_NULL)
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAspectReferences = aspect_references == C_NULL ? aspect_references :
+        _pAspectReferences =
+            aspect_references == C_NULL ? aspect_references :
             getproperty.(aspect_references, :vks)    # VulkanGen.ConvertArrays
         bag = BagRenderPassInputAttachmentAspectCreateInfo(
             bag_next,
@@ -19696,24 +17818,6 @@ end
 struct InputAttachmentAspectReference <: VulkanStruct
     vks::VkInputAttachmentAspectReference
     InputAttachmentAspectReference(vks::VkInputAttachmentAspectReference) = new(vks)
-end
-
-struct PhysicalDevicePointClippingProperties <: VulkanStruct
-    vks::VkPhysicalDevicePointClippingProperties
-    bag::BagPhysicalDevicePointClippingProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDevicePointClippingProperties(point_clipping_behavior; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDevicePointClippingProperties(bag_next, _pNext)
-        vks = VkPhysicalDevicePointClippingProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            point_clipping_behavior,
-        )
-        new(vks, bag)
-    end
 end
 
 struct PhysicalDeviceSparseImageFormatInfo2 <: VulkanStruct
@@ -19740,60 +17844,6 @@ struct PhysicalDeviceSparseImageFormatInfo2 <: VulkanStruct
             samples,
             usage,
             tiling,
-        )
-        new(vks, bag)
-    end
-end
-
-struct SparseImageFormatProperties2 <: VulkanStruct
-    vks::VkSparseImageFormatProperties2
-    bag::BagSparseImageFormatProperties2
-    """
-    Generic constructor.
-    """
-    function SparseImageFormatProperties2(properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagSparseImageFormatProperties2(bag_next, _pNext)
-        vks = VkSparseImageFormatProperties2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            properties.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceMemoryProperties2 <: VulkanStruct
-    vks::VkPhysicalDeviceMemoryProperties2
-    bag::BagPhysicalDeviceMemoryProperties2
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceMemoryProperties2(memory_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceMemoryProperties2(bag_next, _pNext)
-        vks = VkPhysicalDeviceMemoryProperties2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory_properties.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct QueueFamilyProperties2 <: VulkanStruct
-    vks::VkQueueFamilyProperties2
-    bag::BagQueueFamilyProperties2
-    """
-    Generic constructor.
-    """
-    function QueueFamilyProperties2(queue_family_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagQueueFamilyProperties2(bag_next, _pNext)
-        vks = VkQueueFamilyProperties2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            queue_family_properties.vks,
         )
         new(vks, bag)
     end
@@ -19828,55 +17878,6 @@ struct PhysicalDeviceImageFormatInfo2 <: VulkanStruct
     end
 end
 
-struct ImageFormatProperties2 <: VulkanStruct
-    vks::VkImageFormatProperties2
-    bag::BagImageFormatProperties2
-    """
-    Generic constructor.
-    """
-    function ImageFormatProperties2(image_format_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagImageFormatProperties2(bag_next, _pNext)
-        vks = VkImageFormatProperties2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            image_format_properties.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct FormatProperties2 <: VulkanStruct
-    vks::VkFormatProperties2
-    bag::BagFormatProperties2
-    """
-    Generic constructor.
-    """
-    function FormatProperties2(format_properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagFormatProperties2(bag_next, _pNext)
-        vks = VkFormatProperties2(_pNext == C_NULL ? C_NULL : _pNext, format_properties.vks)
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceProperties2 <: VulkanStruct
-    vks::VkPhysicalDeviceProperties2
-    bag::BagPhysicalDeviceProperties2
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceProperties2(properties; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceProperties2(bag_next, _pNext)
-        vks =
-            VkPhysicalDeviceProperties2(_pNext == C_NULL ? C_NULL : _pNext, properties.vks)
-        new(vks, bag)
-    end
-end
-
 struct PhysicalDeviceFeatures2 <: VulkanStruct
     vks::VkPhysicalDeviceFeatures2
     bag::BagPhysicalDeviceFeatures2
@@ -19888,42 +17889,6 @@ struct PhysicalDeviceFeatures2 <: VulkanStruct
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagPhysicalDeviceFeatures2(bag_next, _pNext)
         vks = VkPhysicalDeviceFeatures2(_pNext == C_NULL ? C_NULL : _pNext, features.vks)
-        new(vks, bag)
-    end
-end
-
-struct SparseImageMemoryRequirements2 <: VulkanStruct
-    vks::VkSparseImageMemoryRequirements2
-    bag::BagSparseImageMemoryRequirements2
-    """
-    Generic constructor.
-    """
-    function SparseImageMemoryRequirements2(memory_requirements; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagSparseImageMemoryRequirements2(bag_next, _pNext)
-        vks = VkSparseImageMemoryRequirements2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory_requirements.vks,
-        )
-        new(vks, bag)
-    end
-end
-
-struct MemoryRequirements2 <: VulkanStruct
-    vks::VkMemoryRequirements2
-    bag::BagMemoryRequirements2
-    """
-    Generic constructor.
-    """
-    function MemoryRequirements2(memory_requirements; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagMemoryRequirements2(bag_next, _pNext)
-        vks = VkMemoryRequirements2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory_requirements.vks,
-        )
         new(vks, bag)
     end
 end
@@ -19989,7 +17954,8 @@ struct DeviceGroupDeviceCreateInfo <: VulkanStruct
     function DeviceGroupDeviceCreateInfo(physical_devices; next = C_NULL)
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pPhysicalDevices = physical_devices == C_NULL ? physical_devices :
+        _pPhysicalDevices =
+            physical_devices == C_NULL ? physical_devices :
             getproperty.(physical_devices, :handle)    # VulkanGen.ConvertArrays
         bag = BagDeviceGroupDeviceCreateInfo(bag_next, _pNext, _pPhysicalDevices)
         vks = VkDeviceGroupDeviceCreateInfo(
@@ -20000,29 +17966,11 @@ struct DeviceGroupDeviceCreateInfo <: VulkanStruct
     end
 end
 
-struct PhysicalDeviceGroupProperties <: VulkanStruct
-    vks::VkPhysicalDeviceGroupProperties
-    bag::BagPhysicalDeviceGroupProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceGroupProperties(
-        physical_device_count,
-        physical_devices,
-        subset_allocation;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceGroupProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceGroupProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            physical_device_count,
-            physical_devices,
-            subset_allocation,
-        )
-        new(vks, bag)
-    end
+struct PhysicalDeviceGroupProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    physical_device_count::UInt32
+    physical_devices::NTuple{32,VkPhysicalDevice}
+    subset_allocation::Bool
 end
 
 struct BindImageMemoryDeviceGroupInfo <: VulkanStruct
@@ -20162,7 +18110,8 @@ struct DeviceGroupRenderPassBeginInfo <: VulkanStruct
     function DeviceGroupRenderPassBeginInfo(device_mask, device_render_areas; next = C_NULL)
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pDeviceRenderAreas = device_render_areas == C_NULL ? device_render_areas :
+        _pDeviceRenderAreas =
+            device_render_areas == C_NULL ? device_render_areas :
             getproperty.(device_render_areas, :vks)    # VulkanGen.ConvertArrays
         bag = BagDeviceGroupRenderPassBeginInfo(bag_next, _pNext, _pDeviceRenderAreas)
         vks = VkDeviceGroupRenderPassBeginInfo(
@@ -20199,40 +18148,23 @@ struct MemoryDedicatedAllocateInfo <: VulkanStruct
     """
     Generic constructor.
     """
-    function MemoryDedicatedAllocateInfo(; next = C_NULL, image = 0, buffer = 0)
+    function MemoryDedicatedAllocateInfo(; next = C_NULL, image = C_NULL, buffer = C_NULL)
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         bag = BagMemoryDedicatedAllocateInfo(bag_next, _pNext)
         vks = VkMemoryDedicatedAllocateInfo(
             _pNext == C_NULL ? C_NULL : _pNext,
-            image == 0 ? 0 : image.handle,
-            buffer == 0 ? 0 : buffer.handle,
+            image == C_NULL ? C_NULL : image.handle,
+            buffer == C_NULL ? C_NULL : buffer.handle,
         )
         new(vks, bag)
     end
 end
 
-struct MemoryDedicatedRequirements <: VulkanStruct
-    vks::VkMemoryDedicatedRequirements
-    bag::BagMemoryDedicatedRequirements
-    """
-    Generic constructor.
-    """
-    function MemoryDedicatedRequirements(
-        prefers_dedicated_allocation,
-        requires_dedicated_allocation;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagMemoryDedicatedRequirements(bag_next, _pNext)
-        vks = VkMemoryDedicatedRequirements(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            prefers_dedicated_allocation,
-            requires_dedicated_allocation,
-        )
-        new(vks, bag)
-    end
+struct MemoryDedicatedRequirements <: ReturnedOnly
+    next::Ptr{Cvoid}
+    prefers_dedicated_allocation::Bool
+    requires_dedicated_allocation::Bool
 end
 
 struct PhysicalDevice16BitStorageFeatures <: VulkanStruct
@@ -20297,33 +18229,6 @@ struct BindBufferMemoryInfo <: VulkanStruct
             buffer.handle,
             memory.handle,
             memory_offset,
-        )
-        new(vks, bag)
-    end
-end
-
-struct PhysicalDeviceSubgroupProperties <: VulkanStruct
-    vks::VkPhysicalDeviceSubgroupProperties
-    bag::BagPhysicalDeviceSubgroupProperties
-    """
-    Generic constructor.
-    """
-    function PhysicalDeviceSubgroupProperties(
-        subgroup_size,
-        supported_stages,
-        supported_operations,
-        quad_operations_in_all_stages;
-        next = C_NULL,
-    )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        bag = BagPhysicalDeviceSubgroupProperties(bag_next, _pNext)
-        vks = VkPhysicalDeviceSubgroupProperties(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            subgroup_size,
-            supported_stages,
-            supported_operations,
-            quad_operations_in_all_stages,
         )
         new(vks, bag)
     end
@@ -20449,8 +18354,8 @@ struct CommandBufferInheritanceInfo <: VulkanStruct
         subpass,
         occlusion_query_enable;
         next = C_NULL,
-        render_pass = 0,
-        framebuffer = 0,
+        render_pass = C_NULL,
+        framebuffer = C_NULL,
         query_flags = 0,
         pipeline_statistics = C_NULL,
     )
@@ -20459,9 +18364,9 @@ struct CommandBufferInheritanceInfo <: VulkanStruct
         bag = BagCommandBufferInheritanceInfo(bag_next, _pNext)
         vks = VkCommandBufferInheritanceInfo(
             _pNext == C_NULL ? C_NULL : _pNext,
-            render_pass == 0 ? 0 : render_pass.handle,
+            render_pass == C_NULL ? C_NULL : render_pass.handle,
             subpass,
-            framebuffer == 0 ? 0 : framebuffer.handle,
+            framebuffer == C_NULL ? C_NULL : framebuffer.handle,
             occlusion_query_enable,
             query_flags == 0 ? 0 : query_flags,
             pipeline_statistics == C_NULL ? C_NULL : pipeline_statistics,
@@ -20573,11 +18478,14 @@ struct SubpassDescription <: VulkanStruct
         resolve_attachments = C_NULL,
         depth_stencil_attachment = C_NULL,
     )
-        _pInputAttachments = input_attachments == C_NULL ? input_attachments :
+        _pInputAttachments =
+            input_attachments == C_NULL ? input_attachments :
             getproperty.(input_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pColorAttachments = color_attachments == C_NULL ? color_attachments :
+        _pColorAttachments =
+            color_attachments == C_NULL ? color_attachments :
             getproperty.(color_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pResolveAttachments = resolve_attachments == C_NULL ? resolve_attachments :
+        _pResolveAttachments =
+            resolve_attachments == C_NULL ? resolve_attachments :
             getproperty.(resolve_attachments, :vks)    # VulkanGen.ConvertArrays
         _pDepthStencilAttachment =
             depth_stencil_attachment == C_NULL ? depth_stencil_attachment :
@@ -20666,7 +18574,8 @@ struct WriteDescriptorSet <: VulkanStruct
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         _pImageInfo = image_info == C_NULL ? image_info : getproperty.(image_info, :vks)    # VulkanGen.ConvertArrays
         _pBufferInfo = buffer_info == C_NULL ? buffer_info : getproperty.(buffer_info, :vks)    # VulkanGen.ConvertArrays
-        _pTexelBufferView = texel_buffer_view == C_NULL ? texel_buffer_view :
+        _pTexelBufferView =
+            texel_buffer_view == C_NULL ? texel_buffer_view :
             getproperty.(texel_buffer_view, :handle)    # VulkanGen.ConvertArrays
         bag = BagWriteDescriptorSet(
             bag_next,
@@ -20726,14 +18635,15 @@ struct DescriptorSetLayoutBinding <: VulkanStruct
         stage_flags;
         immutable_samplers = C_NULL,
     )
-        _pImmutableSamplers = immutable_samplers == C_NULL ? immutable_samplers :
+        _pImmutableSamplers =
+            immutable_samplers == C_NULL ? immutable_samplers :
             getproperty.(immutable_samplers, :handle)    # VulkanGen.ConvertArrays
         bag = BagDescriptorSetLayoutBinding(_pImmutableSamplers)
         vks = VkDescriptorSetLayoutBinding(
             binding,
             descriptor_type,
             stage_flags,
-            _pImmutableSamplers == 0 ? 0 : _pImmutableSamplers,
+            _pImmutableSamplers == C_NULL ? C_NULL : _pImmutableSamplers,
         )
         new(vks, bag)
     end
@@ -20896,7 +18806,8 @@ struct PipelineLayoutCreateInfo <: VulkanStruct
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         _pSetLayouts =
             set_layouts == C_NULL ? set_layouts : getproperty.(set_layouts, :handle)    # VulkanGen.ConvertArrays
-        _pPushConstantRanges = push_constant_ranges == C_NULL ? push_constant_ranges :
+        _pPushConstantRanges =
+            push_constant_ranges == C_NULL ? push_constant_ranges :
             getproperty.(push_constant_ranges, :vks)    # VulkanGen.ConvertArrays
         bag = BagPipelineLayoutCreateInfo(
             bag_next,
@@ -20942,24 +18853,27 @@ struct GraphicsPipelineCreateInfo <: VulkanStruct
         depth_stencil_state = C_NULL,
         color_blend_state = C_NULL,
         dynamic_state = C_NULL,
-        base_pipeline_handle = 0,
+        base_pipeline_handle = C_NULL,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
         _pStages = stages == C_NULL ? stages : getproperty.(stages, :vks)    # VulkanGen.ConvertArrays
         _pVertexInputState =
             vertex_input_state == C_NULL ? vertex_input_state : Ref(vertex_input_state.vks)    # VulkanGen.GenerateRefs
-        _pInputAssemblyState = input_assembly_state == C_NULL ? input_assembly_state :
+        _pInputAssemblyState =
+            input_assembly_state == C_NULL ? input_assembly_state :
             Ref(input_assembly_state.vks)    # VulkanGen.GenerateRefs
         _pTessellationState =
             tessellation_state == C_NULL ? tessellation_state : Ref(tessellation_state.vks)    # VulkanGen.GenerateRefs
         _pViewportState =
             viewport_state == C_NULL ? viewport_state : Ref(viewport_state.vks)    # VulkanGen.GenerateRefs
-        _pRasterizationState = rasterization_state == C_NULL ? rasterization_state :
+        _pRasterizationState =
+            rasterization_state == C_NULL ? rasterization_state :
             Ref(rasterization_state.vks)    # VulkanGen.GenerateRefs
         _pMultisampleState =
             multisample_state == C_NULL ? multisample_state : Ref(multisample_state.vks)    # VulkanGen.GenerateRefs
-        _pDepthStencilState = depth_stencil_state == C_NULL ? depth_stencil_state :
+        _pDepthStencilState =
+            depth_stencil_state == C_NULL ? depth_stencil_state :
             Ref(depth_stencil_state.vks)    # VulkanGen.GenerateRefs
         _pColorBlendState =
             color_blend_state == C_NULL ? color_blend_state : Ref(color_blend_state.vks)    # VulkanGen.GenerateRefs
@@ -21004,7 +18918,7 @@ struct GraphicsPipelineCreateInfo <: VulkanStruct
             layout.handle,
             render_pass.handle,
             subpass,
-            base_pipeline_handle == 0 ? 0 : base_pipeline_handle.handle,
+            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -21322,7 +19236,7 @@ struct ComputePipelineCreateInfo <: VulkanStruct
         base_pipeline_index;
         next = C_NULL,
         flags = 0,
-        base_pipeline_handle = 0,
+        base_pipeline_handle = C_NULL,
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
@@ -21332,7 +19246,7 @@ struct ComputePipelineCreateInfo <: VulkanStruct
             flags == 0 ? 0 : flags,
             stage.vks,
             layout.handle,
-            base_pipeline_handle == 0 ? 0 : base_pipeline_handle.handle,
+            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -21355,7 +19269,8 @@ struct PipelineShaderStageCreateInfo <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pSpecializationInfo = specialization_info == C_NULL ? specialization_info :
+        _pSpecializationInfo =
+            specialization_info == C_NULL ? specialization_info :
             Ref(specialization_info.vks)    # VulkanGen.GenerateRefs
         bag = BagPipelineShaderStageCreateInfo(
             bag_next,
@@ -21471,11 +19386,6 @@ end
 struct ComponentMapping <: VulkanStruct
     vks::VkComponentMapping
     ComponentMapping(vks::VkComponentMapping) = new(vks)
-end
-
-struct SubresourceLayout <: VulkanStruct
-    vks::VkSubresourceLayout
-    SubresourceLayout(vks::VkSubresourceLayout) = new(vks)
 end
 
 struct ImageCreateInfo <: VulkanStruct
@@ -21649,16 +19559,6 @@ struct FenceCreateInfo <: VulkanStruct
     end
 end
 
-struct SparseImageMemoryRequirements <: VulkanStruct
-    vks::VkSparseImageMemoryRequirements
-    SparseImageMemoryRequirements(vks::VkSparseImageMemoryRequirements) = new(vks)
-end
-
-struct SparseImageFormatProperties <: VulkanStruct
-    vks::VkSparseImageFormatProperties
-    SparseImageFormatProperties(vks::VkSparseImageFormatProperties) = new(vks)
-end
-
 struct BindSparseInfo <: VulkanStruct
     vks::VkBindSparseInfo
     bag::BagBindSparseInfo
@@ -21675,14 +19575,17 @@ struct BindSparseInfo <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pWaitSemaphores = wait_semaphores == C_NULL ? wait_semaphores :
+        _pWaitSemaphores =
+            wait_semaphores == C_NULL ? wait_semaphores :
             getproperty.(wait_semaphores, :handle)    # VulkanGen.ConvertArrays
         _pBufferBinds =
             buffer_binds == C_NULL ? buffer_binds : getproperty.(buffer_binds, :vks)    # VulkanGen.ConvertArrays
-        _pImageOpaqueBinds = image_opaque_binds == C_NULL ? image_opaque_binds :
+        _pImageOpaqueBinds =
+            image_opaque_binds == C_NULL ? image_opaque_binds :
             getproperty.(image_opaque_binds, :vks)    # VulkanGen.ConvertArrays
         _pImageBinds = image_binds == C_NULL ? image_binds : getproperty.(image_binds, :vks)    # VulkanGen.ConvertArrays
-        _pSignalSemaphores = signal_semaphores == C_NULL ? signal_semaphores :
+        _pSignalSemaphores =
+            signal_semaphores == C_NULL ? signal_semaphores :
             getproperty.(signal_semaphores, :handle)    # VulkanGen.ConvertArrays
         bag = BagBindSparseInfo(
             bag_next,
@@ -21765,11 +19668,6 @@ struct SparseMemoryBind <: VulkanStruct
     SparseMemoryBind(vks::VkSparseMemoryBind) = new(vks)
 end
 
-struct MemoryRequirements <: VulkanStruct
-    vks::VkMemoryRequirements
-    MemoryRequirements(vks::VkMemoryRequirements) = new(vks)
-end
-
 struct MemoryAllocateInfo <: VulkanStruct
     vks::VkMemoryAllocateInfo
     bag::BagMemoryAllocateInfo
@@ -21824,11 +19722,14 @@ struct SubmitInfo <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pWaitSemaphores = wait_semaphores == C_NULL ? wait_semaphores :
+        _pWaitSemaphores =
+            wait_semaphores == C_NULL ? wait_semaphores :
             getproperty.(wait_semaphores, :handle)    # VulkanGen.ConvertArrays
-        _pCommandBuffers = command_buffers == C_NULL ? command_buffers :
+        _pCommandBuffers =
+            command_buffers == C_NULL ? command_buffers :
             getproperty.(command_buffers, :handle)    # VulkanGen.ConvertArrays
-        _pSignalSemaphores = signal_semaphores == C_NULL ? signal_semaphores :
+        _pSignalSemaphores =
+            signal_semaphores == C_NULL ? signal_semaphores :
             getproperty.(signal_semaphores, :handle)    # VulkanGen.ConvertArrays
         bag = BagSubmitInfo(
             bag_next,
@@ -21849,14 +19750,16 @@ struct SubmitInfo <: VulkanStruct
     end
 end
 
-struct LayerProperties <: VulkanStruct
-    vks::VkLayerProperties
-    LayerProperties(vks::VkLayerProperties) = new(vks)
+struct LayerProperties <: ReturnedOnly
+    layer_name::String
+    spec_version::VersionNumber
+    implementation_version::VersionNumber
+    description::String
 end
 
-struct ExtensionProperties <: VulkanStruct
-    vks::VkExtensionProperties
-    ExtensionProperties(vks::VkExtensionProperties) = new(vks)
+struct ExtensionProperties <: ReturnedOnly
+    extension_name::String
+    spec_version::VersionNumber
 end
 
 struct DeviceCreateInfo <: VulkanStruct
@@ -21875,7 +19778,8 @@ struct DeviceCreateInfo <: VulkanStruct
     )
         _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
         bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pQueueCreateInfos = queue_create_infos == C_NULL ? queue_create_infos :
+        _pQueueCreateInfos =
+            queue_create_infos == C_NULL ? queue_create_infos :
             getproperty.(queue_create_infos, :vks)    # VulkanGen.ConvertArrays
         enabled_layer_names_ptrarray = pointer.(enabled_layer_names)    # VulkanGen.ConvertArrays
         enabled_extension_names_ptrarray = pointer.(enabled_extension_names)    # VulkanGen.ConvertArrays
@@ -21930,44 +19834,29 @@ struct DeviceQueueCreateInfo <: VulkanStruct
     end
 end
 
-struct QueueFamilyProperties <: VulkanStruct
-    vks::VkQueueFamilyProperties
-    QueueFamilyProperties(vks::VkQueueFamilyProperties) = new(vks)
+struct PhysicalDeviceSparseProperties <: ReturnedOnly
+    residency_standard_2_d_block_shape::Bool
+    residency_standard_2_d_multisample_block_shape::Bool
+    residency_standard_3_d_block_shape::Bool
+    residency_aligned_mip_size::Bool
+    residency_non_resident_strict::Bool
 end
 
-struct PhysicalDeviceProperties <: VulkanStruct
-    vks::VkPhysicalDeviceProperties
-    PhysicalDeviceProperties(vks::VkPhysicalDeviceProperties) = new(vks)
+struct PhysicalDeviceMemoryProperties <: ReturnedOnly
+    memory_type_count::UInt32
+    memory_types::NTuple{32,VkMemoryType}
+    memory_heap_count::UInt32
+    memory_heaps::NTuple{16,VkMemoryHeap}
 end
 
-struct PhysicalDeviceSparseProperties <: VulkanStruct
-    vks::VkPhysicalDeviceSparseProperties
-    PhysicalDeviceSparseProperties(vks::VkPhysicalDeviceSparseProperties) = new(vks)
-end
-
-struct PhysicalDeviceMemoryProperties <: VulkanStruct
-    vks::VkPhysicalDeviceMemoryProperties
-    PhysicalDeviceMemoryProperties(vks::VkPhysicalDeviceMemoryProperties) = new(vks)
-end
-
-struct PhysicalDeviceLimits <: VulkanStruct
-    vks::VkPhysicalDeviceLimits
-    PhysicalDeviceLimits(vks::VkPhysicalDeviceLimits) = new(vks)
+struct PhysicalDeviceMemoryProperties2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    memory_properties::PhysicalDeviceMemoryProperties
 end
 
 struct PhysicalDeviceFeatures <: VulkanStruct
     vks::VkPhysicalDeviceFeatures
     PhysicalDeviceFeatures(vks::VkPhysicalDeviceFeatures) = new(vks)
-end
-
-struct MemoryType <: VulkanStruct
-    vks::VkMemoryType
-    MemoryType(vks::VkMemoryType) = new(vks)
-end
-
-struct MemoryHeap <: VulkanStruct
-    vks::VkMemoryHeap
-    MemoryHeap(vks::VkMemoryHeap) = new(vks)
 end
 
 struct InstanceCreateInfo <: VulkanStruct
@@ -22008,16 +19897,6 @@ struct InstanceCreateInfo <: VulkanStruct
         )
         new(vks, bag)
     end
-end
-
-struct ImageFormatProperties <: VulkanStruct
-    vks::VkImageFormatProperties
-    ImageFormatProperties(vks::VkImageFormatProperties) = new(vks)
-end
-
-struct FormatProperties <: VulkanStruct
-    vks::VkFormatProperties
-    FormatProperties(vks::VkFormatProperties) = new(vks)
 end
 
 struct ApplicationInfo <: VulkanStruct
@@ -22207,6 +20086,25 @@ end
 struct Extent2D <: VulkanStruct
     vks::VkExtent2D
     Extent2D(vks::VkExtent2D) = new(vks)
+end
+
+struct PhysicalDeviceFragmentDensityMapPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    min_fragment_density_texel_size::Extent2D
+    max_fragment_density_texel_size::Extent2D
+    fragment_density_invocations::Bool
+end
+
+struct PhysicalDeviceShadingRateImagePropertiesNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    shading_rate_texel_size::Extent2D
+    shading_rate_palette_size::UInt32
+    shading_rate_max_coarse_samples::UInt32
+end
+
+struct MultisamplePropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_sample_location_grid_size::Extent2D
 end
 
 @cenum AccelerationStructureBuildTypeKHR::UInt32 begin
@@ -22627,6 +20525,14 @@ end
     PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR = 3
     PIPELINE_EXECUTABLE_STATISTIC_FORMAT_MAX_ENUM_KHR = 2147483647
 end
+struct PipelineExecutableStatisticKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    name::String
+    description::String
+    format::PipelineExecutableStatisticFormatKHR
+    value::PipelineExecutableStatisticValueKHR
+end
+
 @cenum AcquireProfilingLockFlagBitsKHR::UInt32 begin
     ACQUIRE_PROFILING_LOCK_FLAG_BITS_MAX_ENUM_KHR = 2147483647
 end
@@ -22667,6 +20573,14 @@ end
     PERFORMANCE_COUNTER_UNIT_CYCLES_KHR = 10
     PERFORMANCE_COUNTER_UNIT_MAX_ENUM_KHR = 2147483647
 end
+struct PerformanceCounterKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    unit::PerformanceCounterUnitKHR
+    scope::PerformanceCounterScopeKHR
+    storage::PerformanceCounterStorageKHR
+    uuid::String
+end
+
 @cenum DisplayPlaneAlphaFlagBitsKHR::UInt32 begin
     DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR = 1
     DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR = 2
@@ -22790,6 +20704,27 @@ end
     SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR = 2
     SHADER_FLOAT_CONTROLS_INDEPENDENCE_MAX_ENUM = 2147483647
 end
+struct PhysicalDeviceFloatControlsProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    denorm_behavior_independence::ShaderFloatControlsIndependence
+    rounding_mode_independence::ShaderFloatControlsIndependence
+    shader_signed_zero_inf_nan_preserve_float_16::Bool
+    shader_signed_zero_inf_nan_preserve_float_32::Bool
+    shader_signed_zero_inf_nan_preserve_float_64::Bool
+    shader_denorm_preserve_float_16::Bool
+    shader_denorm_preserve_float_32::Bool
+    shader_denorm_preserve_float_64::Bool
+    shader_denorm_flush_to_zero_float_16::Bool
+    shader_denorm_flush_to_zero_float_32::Bool
+    shader_denorm_flush_to_zero_float_64::Bool
+    shader_rounding_mode_rte_float_16::Bool
+    shader_rounding_mode_rte_float_32::Bool
+    shader_rounding_mode_rte_float_64::Bool
+    shader_rounding_mode_rtz_float_16::Bool
+    shader_rounding_mode_rtz_float_32::Bool
+    shader_rounding_mode_rtz_float_64::Bool
+end
+
 @cenum DriverId::UInt32 begin
     DRIVER_ID_AMD_PROPRIETARY = 1
     DRIVER_ID_AMD_OPEN_SOURCE = 2
@@ -22819,6 +20754,14 @@ end
     DRIVER_ID_BROADCOM_PROPRIETARY_KHR = 12
     DRIVER_ID_MAX_ENUM = 2147483647
 end
+struct PhysicalDeviceDriverProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    driver_id::DriverId
+    driver_name::String
+    driver_info::String
+    conformance_version::ConformanceVersion
+end
+
 @cenum ExternalSemaphoreFeatureFlagBits::UInt32 begin
     EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT = 1
     EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT = 2
@@ -22977,6 +20920,11 @@ end
     POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR = 1
     POINT_CLIPPING_BEHAVIOR_MAX_ENUM = 2147483647
 end
+struct PhysicalDevicePointClippingProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    point_clipping_behavior::PointClippingBehavior
+end
+
 @cenum StencilFaceFlagBits::UInt32 begin
     STENCIL_FACE_FRONT_BIT = 1
     STENCIL_FACE_BACK_BIT = 2
@@ -23229,6 +21177,12 @@ end
     PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = 33554432
     PIPELINE_STAGE_FLAG_BITS_MAX_ENUM = 2147483647
 end
+struct CheckpointDataNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    stage::PipelineStageFlagBits
+    checkpoint_marker::Ptr{Cvoid}
+end
+
 @cenum DeviceQueueCreateFlagBits::UInt32 begin
     DEVICE_QUEUE_CREATE_PROTECTED_BIT = 1
     DEVICE_QUEUE_CREATE_FLAG_BITS_MAX_ENUM = 2147483647
@@ -24003,6 +21957,16 @@ end
     FORMAT_G16_B16_R16_3PLANE_444_UNORM_KHR = 1000156033
     FORMAT_MAX_ENUM = 2147483647
 end
+struct SurfaceFormatKHR <: ReturnedOnly
+    format::Format
+    color_space::ColorSpaceKHR
+end
+
+struct SurfaceFormat2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    surface_format::SurfaceFormatKHR
+end
+
 @cenum InternalAllocationType::UInt32 begin
     INTERNAL_ALLOCATION_TYPE_EXECUTABLE = 0
     INTERNAL_ALLOCATION_TYPE_MAX_ENUM = 2147483647
@@ -24807,17 +22771,12 @@ const PFN_vkCmdSetPrimitiveTopologyEXT = Ptr{Cvoid}
 const PFN_vkCmdSetFrontFaceEXT = Ptr{Cvoid}
 const PFN_vkCmdSetCullModeEXT = Ptr{Cvoid}
 const PFN_vkResetQueryPoolEXT = Ptr{Cvoid}
-const PhysicalDeviceHostQueryResetFeaturesEXT = PhysicalDeviceHostQueryResetFeatures
 const PFN_vkCmdSetLineStippleEXT = Ptr{Cvoid}
 const PFN_vkCreateHeadlessSurfaceEXT = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = Ptr{Cvoid}
-const ImageStencilUsageCreateInfoEXT = ImageStencilUsageCreateInfo
 const PFN_vkGetPhysicalDeviceToolPropertiesEXT = Ptr{Cvoid}
 const PFN_vkGetBufferDeviceAddressEXT = Ptr{Cvoid}
-const BufferDeviceAddressInfoEXT = BufferDeviceAddressInfo
-const PhysicalDeviceBufferAddressFeaturesEXT = PhysicalDeviceBufferDeviceAddressFeaturesEXT
-const PhysicalDeviceScalarBlockLayoutFeaturesEXT = PhysicalDeviceScalarBlockLayoutFeatures
 const PFN_vkSetLocalDimmingAMD = Ptr{Cvoid}
 const PFN_vkGetPerformanceParameterINTEL = Ptr{Cvoid}
 const PFN_vkQueueSetPerformanceConfigurationINTEL = Ptr{Cvoid}
@@ -24828,7 +22787,6 @@ const PFN_vkCmdSetPerformanceStreamMarkerINTEL = Ptr{Cvoid}
 const PFN_vkCmdSetPerformanceMarkerINTEL = Ptr{Cvoid}
 const PFN_vkUninitializePerformanceApiINTEL = Ptr{Cvoid}
 const PFN_vkInitializePerformanceApiINTEL = Ptr{Cvoid}
-const QueryPoolCreateInfoINTEL = QueryPoolPerformanceQueryCreateInfoINTEL
 mutable struct PerformanceConfigurationINTEL <: Handle
     handle::VkPerformanceConfigurationINTEL
 end
@@ -24860,24 +22818,6 @@ const PFN_vkGetAccelerationStructureMemoryRequirementsNV = Ptr{Cvoid}
 const PFN_vkDestroyAccelerationStructureNV = Ptr{Cvoid}
 const PFN_vkDestroyAccelerationStructureKHR = Ptr{Cvoid}
 const PFN_vkCreateAccelerationStructureNV = Ptr{Cvoid}
-const AccelerationStructureInstanceNV = AccelerationStructureInstanceKHR
-const AabbPositionsNV = AabbPositionsKHR
-const TransformMatrixNV = TransformMatrixKHR
-const WriteDescriptorSetAccelerationStructureNV = WriteDescriptorSetAccelerationStructureKHR
-const BindAccelerationStructureMemoryInfoNV = BindAccelerationStructureMemoryInfoKHR
-const BuildAccelerationStructureFlagBitsNV = BuildAccelerationStructureFlagBitsKHR
-const GeometryInstanceFlagBitsNV = GeometryInstanceFlagBitsKHR
-const GeometryFlagBitsNV = GeometryFlagBitsKHR
-const AccelerationStructureMemoryRequirementsTypeNV =
-    AccelerationStructureMemoryRequirementsTypeKHR
-const CopyAccelerationStructureModeNV = CopyAccelerationStructureModeKHR
-const AccelerationStructureTypeNV = AccelerationStructureTypeKHR
-const GeometryTypeNV = GeometryTypeKHR
-const RayTracingShaderGroupTypeNV = RayTracingShaderGroupTypeKHR
-mutable struct AccelerationStructureNV <: Handle
-    handle::VkAccelerationStructureNV
-end
-
 mutable struct AccelerationStructureKHR <: Handle
     handle::VkAccelerationStructureKHR
 end
@@ -24886,16 +22826,6 @@ const AccelerationStructureKHR_T = Cvoid
 const PFN_vkCmdSetCoarseSampleOrderNV = Ptr{Cvoid}
 const PFN_vkCmdSetViewportShadingRatePaletteNV = Ptr{Cvoid}
 const PFN_vkCmdBindShadingRateImageNV = Ptr{Cvoid}
-const DescriptorSetVariableDescriptorCountLayoutSupportEXT =
-    DescriptorSetVariableDescriptorCountLayoutSupport
-const DescriptorSetVariableDescriptorCountAllocateInfoEXT =
-    DescriptorSetVariableDescriptorCountAllocateInfo
-const PhysicalDeviceDescriptorIndexingPropertiesEXT =
-    PhysicalDeviceDescriptorIndexingProperties
-const PhysicalDeviceDescriptorIndexingFeaturesEXT = PhysicalDeviceDescriptorIndexingFeatures
-const DescriptorSetLayoutBindingFlagsCreateInfoEXT =
-    DescriptorSetLayoutBindingFlagsCreateInfo
-const DescriptorBindingFlagBitsEXT = DescriptorBindingFlagBits
 const PFN_vkGetValidationCacheDataEXT = Ptr{Cvoid}
 const PFN_vkMergeValidationCachesEXT = Ptr{Cvoid}
 const PFN_vkDestroyValidationCacheEXT = Ptr{Cvoid}
@@ -24908,10 +22838,6 @@ const ValidationCacheEXT_T = Cvoid
 const PFN_vkGetImageDrmFormatModifierPropertiesEXT = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = Ptr{Cvoid}
 const PFN_vkCmdSetSampleLocationsEXT = Ptr{Cvoid}
-const PhysicalDeviceSamplerFilterMinmaxPropertiesEXT =
-    PhysicalDeviceSamplerFilterMinmaxProperties
-const SamplerReductionModeCreateInfoEXT = SamplerReductionModeCreateInfo
-const SamplerReductionModeEXT = SamplerReductionMode
 const PFN_vkSubmitDebugUtilsMessageEXT = Ptr{Cvoid}
 const PFN_vkDestroyDebugUtilsMessengerEXT = Ptr{Cvoid}
 const PFN_vkCreateDebugUtilsMessengerEXT = Ptr{Cvoid}
@@ -24974,182 +22900,53 @@ const PFN_vkGetPipelineExecutablePropertiesKHR = Ptr{Cvoid}
 const PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR = Ptr{Cvoid}
 const PFN_vkGetBufferOpaqueCaptureAddressKHR = Ptr{Cvoid}
 const PFN_vkGetBufferDeviceAddressKHR = Ptr{Cvoid}
-const DeviceMemoryOpaqueCaptureAddressInfoKHR = DeviceMemoryOpaqueCaptureAddressInfo
-const MemoryOpaqueCaptureAddressAllocateInfoKHR = MemoryOpaqueCaptureAddressAllocateInfo
-const BufferOpaqueCaptureAddressCreateInfoKHR = BufferOpaqueCaptureAddressCreateInfo
-const BufferDeviceAddressInfoKHR = BufferDeviceAddressInfo
-const PhysicalDeviceBufferDeviceAddressFeaturesKHR =
-    PhysicalDeviceBufferDeviceAddressFeatures
-const PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR =
-    PhysicalDeviceUniformBufferStandardLayoutFeatures
-const AttachmentDescriptionStencilLayoutKHR = AttachmentDescriptionStencilLayout
-const AttachmentReferenceStencilLayoutKHR = AttachmentReferenceStencilLayout
-const PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR =
-    PhysicalDeviceSeparateDepthStencilLayoutsFeatures
-const PhysicalDeviceVulkanMemoryModelFeaturesKHR = PhysicalDeviceVulkanMemoryModelFeatures
 const PFN_vkSignalSemaphoreKHR = Ptr{Cvoid}
 const PFN_vkWaitSemaphoresKHR = Ptr{Cvoid}
 const PFN_vkGetSemaphoreCounterValueKHR = Ptr{Cvoid}
-const SemaphoreSignalInfoKHR = SemaphoreSignalInfo
-const SemaphoreWaitInfoKHR = SemaphoreWaitInfo
-const TimelineSemaphoreSubmitInfoKHR = TimelineSemaphoreSubmitInfo
-const SemaphoreTypeCreateInfoKHR = SemaphoreTypeCreateInfo
-const PhysicalDeviceTimelineSemaphorePropertiesKHR =
-    PhysicalDeviceTimelineSemaphoreProperties
-const PhysicalDeviceTimelineSemaphoreFeaturesKHR = PhysicalDeviceTimelineSemaphoreFeatures
-const SemaphoreWaitFlagBitsKHR = SemaphoreWaitFlagBits
-const SemaphoreTypeKHR = SemaphoreType
-const PhysicalDeviceDepthStencilResolvePropertiesKHR =
-    PhysicalDeviceDepthStencilResolveProperties
-const SubpassDescriptionDepthStencilResolveKHR = SubpassDescriptionDepthStencilResolve
-const ResolveModeFlagBitsKHR = ResolveModeFlagBits
-const PhysicalDeviceFloatControlsPropertiesKHR = PhysicalDeviceFloatControlsProperties
-const ShaderFloatControlsIndependenceKHR = ShaderFloatControlsIndependence
-const PhysicalDeviceDriverPropertiesKHR = PhysicalDeviceDriverProperties
-const ConformanceVersionKHR = ConformanceVersion
-const DriverIdKHR = DriverId
-const PhysicalDeviceShaderAtomicInt64FeaturesKHR = PhysicalDeviceShaderAtomicInt64Features
-const PhysicalDevice8BitStorageFeaturesKHR = PhysicalDevice8BitStorageFeatures
-const PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR =
-    PhysicalDeviceShaderSubgroupExtendedTypesFeatures
 const PFN_vkCmdDrawIndexedIndirectCountKHR = Ptr{Cvoid}
 const PFN_vkCmdDrawIndirectCountKHR = Ptr{Cvoid}
 const PFN_vkGetDescriptorSetLayoutSupportKHR = Ptr{Cvoid}
-const DescriptorSetLayoutSupportKHR = DescriptorSetLayoutSupport
-const PhysicalDeviceMaintenance3PropertiesKHR = PhysicalDeviceMaintenance3Properties
 const PFN_vkBindImageMemory2KHR = Ptr{Cvoid}
 const PFN_vkBindBufferMemory2KHR = Ptr{Cvoid}
-const BindImageMemoryInfoKHR = BindImageMemoryInfo
-const BindBufferMemoryInfoKHR = BindBufferMemoryInfo
 const PFN_vkDestroySamplerYcbcrConversionKHR = Ptr{Cvoid}
 const PFN_vkCreateSamplerYcbcrConversionKHR = Ptr{Cvoid}
-const SamplerYcbcrConversionImageFormatPropertiesKHR =
-    SamplerYcbcrConversionImageFormatProperties
-const PhysicalDeviceSamplerYcbcrConversionFeaturesKHR =
-    PhysicalDeviceSamplerYcbcrConversionFeatures
-const ImagePlaneMemoryRequirementsInfoKHR = ImagePlaneMemoryRequirementsInfo
-const BindImagePlaneMemoryInfoKHR = BindImagePlaneMemoryInfo
-const SamplerYcbcrConversionInfoKHR = SamplerYcbcrConversionInfo
-const SamplerYcbcrConversionCreateInfoKHR = SamplerYcbcrConversionCreateInfo
-const ChromaLocationKHR = ChromaLocation
-const SamplerYcbcrRangeKHR = SamplerYcbcrRange
-const SamplerYcbcrModelConversionKHR = SamplerYcbcrModelConversion
-mutable struct SamplerYcbcrConversionKHR <: Handle
-    handle::VkSamplerYcbcrConversionKHR
-end
-
-const ImageFormatListCreateInfoKHR = ImageFormatListCreateInfo
 const PFN_vkGetImageSparseMemoryRequirements2KHR = Ptr{Cvoid}
 const PFN_vkGetBufferMemoryRequirements2KHR = Ptr{Cvoid}
 const PFN_vkGetImageMemoryRequirements2KHR = Ptr{Cvoid}
-const SparseImageMemoryRequirements2KHR = SparseImageMemoryRequirements2
-const MemoryRequirements2KHR = MemoryRequirements2
-const ImageSparseMemoryRequirementsInfo2KHR = ImageSparseMemoryRequirementsInfo2
-const ImageMemoryRequirementsInfo2KHR = ImageMemoryRequirementsInfo2
-const BufferMemoryRequirementsInfo2KHR = BufferMemoryRequirementsInfo2
-const MemoryDedicatedAllocateInfoKHR = MemoryDedicatedAllocateInfo
-const MemoryDedicatedRequirementsKHR = MemoryDedicatedRequirements
 const PFN_vkGetDisplayPlaneCapabilities2KHR = Ptr{Cvoid}
 const PFN_vkGetDisplayModeProperties2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceDisplayProperties2KHR = Ptr{Cvoid}
-const PhysicalDeviceVariablePointersFeaturesKHR = PhysicalDeviceVariablePointersFeatures
-const PhysicalDeviceVariablePointerFeaturesKHR = PhysicalDeviceVariablePointersFeatures
 const PFN_vkGetPhysicalDeviceSurfaceFormats2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = Ptr{Cvoid}
-const PipelineTessellationDomainOriginStateCreateInfoKHR =
-    PipelineTessellationDomainOriginStateCreateInfo
-const ImageViewUsageCreateInfoKHR = ImageViewUsageCreateInfo
-const InputAttachmentAspectReferenceKHR = InputAttachmentAspectReference
-const RenderPassInputAttachmentAspectCreateInfoKHR =
-    RenderPassInputAttachmentAspectCreateInfo
-const PhysicalDevicePointClippingPropertiesKHR = PhysicalDevicePointClippingProperties
-const TessellationDomainOriginKHR = TessellationDomainOrigin
-const PointClippingBehaviorKHR = PointClippingBehavior
 const PFN_vkReleaseProfilingLockKHR = Ptr{Cvoid}
 const PFN_vkAcquireProfilingLockKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = Ptr{Cvoid}
 const PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = Ptr{Cvoid}
 const PFN_vkGetFenceFdKHR = Ptr{Cvoid}
 const PFN_vkImportFenceFdKHR = Ptr{Cvoid}
-const ExportFenceCreateInfoKHR = ExportFenceCreateInfo
-const FenceImportFlagBitsKHR = FenceImportFlagBits
 const PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR = Ptr{Cvoid}
-const ExternalFencePropertiesKHR = ExternalFenceProperties
-const PhysicalDeviceExternalFenceInfoKHR = PhysicalDeviceExternalFenceInfo
-const ExternalFenceFeatureFlagBitsKHR = ExternalFenceFeatureFlagBits
-const ExternalFenceHandleTypeFlagBitsKHR = ExternalFenceHandleTypeFlagBits
 const PFN_vkGetSwapchainStatusKHR = Ptr{Cvoid}
 const PFN_vkCmdEndRenderPass2KHR = Ptr{Cvoid}
 const PFN_vkCmdNextSubpass2KHR = Ptr{Cvoid}
 const PFN_vkCmdBeginRenderPass2KHR = Ptr{Cvoid}
 const PFN_vkCreateRenderPass2KHR = Ptr{Cvoid}
-const SubpassEndInfoKHR = SubpassEndInfo
-const SubpassBeginInfoKHR = SubpassBeginInfo
-const SubpassDependency2KHR = SubpassDependency2
-const SubpassDescription2KHR = SubpassDescription2
-const AttachmentReference2KHR = AttachmentReference2
-const AttachmentDescription2KHR = AttachmentDescription2
-const RenderPassCreateInfo2KHR = RenderPassCreateInfo2
-const RenderPassAttachmentBeginInfoKHR = RenderPassAttachmentBeginInfo
-const FramebufferAttachmentImageInfoKHR = FramebufferAttachmentImageInfo
-const FramebufferAttachmentsCreateInfoKHR = FramebufferAttachmentsCreateInfo
-const PhysicalDeviceImagelessFramebufferFeaturesKHR =
-    PhysicalDeviceImagelessFramebufferFeatures
 const PFN_vkUpdateDescriptorSetWithTemplateKHR = Ptr{Cvoid}
 const PFN_vkDestroyDescriptorUpdateTemplateKHR = Ptr{Cvoid}
 const PFN_vkCreateDescriptorUpdateTemplateKHR = Ptr{Cvoid}
-const DescriptorUpdateTemplateCreateInfoKHR = DescriptorUpdateTemplateCreateInfo
-const DescriptorUpdateTemplateEntryKHR = DescriptorUpdateTemplateEntry
-const DescriptorUpdateTemplateTypeKHR = DescriptorUpdateTemplateType
-mutable struct DescriptorUpdateTemplateKHR <: Handle
-    handle::VkDescriptorUpdateTemplateKHR
-end
-
-const PhysicalDevice16BitStorageFeaturesKHR = PhysicalDevice16BitStorageFeatures
-const PhysicalDeviceFloat16Int8FeaturesKHR = PhysicalDeviceShaderFloat16Int8Features
-const PhysicalDeviceShaderFloat16Int8FeaturesKHR = PhysicalDeviceShaderFloat16Int8Features
 const PFN_vkCmdPushDescriptorSetWithTemplateKHR = Ptr{Cvoid}
 const PFN_vkCmdPushDescriptorSetKHR = Ptr{Cvoid}
 const PFN_vkGetSemaphoreFdKHR = Ptr{Cvoid}
 const PFN_vkImportSemaphoreFdKHR = Ptr{Cvoid}
-const ExportSemaphoreCreateInfoKHR = ExportSemaphoreCreateInfo
-const SemaphoreImportFlagBitsKHR = SemaphoreImportFlagBits
 const PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = Ptr{Cvoid}
-const ExternalSemaphorePropertiesKHR = ExternalSemaphoreProperties
-const PhysicalDeviceExternalSemaphoreInfoKHR = PhysicalDeviceExternalSemaphoreInfo
-const ExternalSemaphoreFeatureFlagBitsKHR = ExternalSemaphoreFeatureFlagBits
-const ExternalSemaphoreHandleTypeFlagBitsKHR = ExternalSemaphoreHandleTypeFlagBits
 const PFN_vkGetMemoryFdPropertiesKHR = Ptr{Cvoid}
 const PFN_vkGetMemoryFdKHR = Ptr{Cvoid}
-const ExportMemoryAllocateInfoKHR = ExportMemoryAllocateInfo
-const ExternalMemoryBufferCreateInfoKHR = ExternalMemoryBufferCreateInfo
-const ExternalMemoryImageCreateInfoKHR = ExternalMemoryImageCreateInfo
 const PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR = Ptr{Cvoid}
-const PhysicalDeviceIDPropertiesKHR = PhysicalDeviceIDProperties
-const ExternalBufferPropertiesKHR = ExternalBufferProperties
-const PhysicalDeviceExternalBufferInfoKHR = PhysicalDeviceExternalBufferInfo
-const ExternalImageFormatPropertiesKHR = ExternalImageFormatProperties
-const PhysicalDeviceExternalImageFormatInfoKHR = PhysicalDeviceExternalImageFormatInfo
-const ExternalMemoryPropertiesKHR = ExternalMemoryProperties
-const ExternalMemoryFeatureFlagBitsKHR = ExternalMemoryFeatureFlagBits
-const ExternalMemoryHandleTypeFlagBitsKHR = ExternalMemoryHandleTypeFlagBits
 const PFN_vkEnumeratePhysicalDeviceGroupsKHR = Ptr{Cvoid}
-const DeviceGroupDeviceCreateInfoKHR = DeviceGroupDeviceCreateInfo
-const PhysicalDeviceGroupPropertiesKHR = PhysicalDeviceGroupProperties
 const PFN_vkTrimCommandPoolKHR = Ptr{Cvoid}
 const PFN_vkCmdDispatchBaseKHR = Ptr{Cvoid}
 const PFN_vkCmdSetDeviceMaskKHR = Ptr{Cvoid}
 const PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR = Ptr{Cvoid}
-const BindImageMemoryDeviceGroupInfoKHR = BindImageMemoryDeviceGroupInfo
-const BindBufferMemoryDeviceGroupInfoKHR = BindBufferMemoryDeviceGroupInfo
-const DeviceGroupBindSparseInfoKHR = DeviceGroupBindSparseInfo
-const DeviceGroupSubmitInfoKHR = DeviceGroupSubmitInfo
-const DeviceGroupCommandBufferBeginInfoKHR = DeviceGroupCommandBufferBeginInfo
-const DeviceGroupRenderPassBeginInfoKHR = DeviceGroupRenderPassBeginInfo
-const MemoryAllocateFlagsInfoKHR = MemoryAllocateFlagsInfo
-const MemoryAllocateFlagBitsKHR = MemoryAllocateFlagBits
-const PeerMemoryFeatureFlagBitsKHR = PeerMemoryFeatureFlagBits
 const PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceMemoryProperties2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR = Ptr{Cvoid}
@@ -25157,18 +22954,6 @@ const PFN_vkGetPhysicalDeviceImageFormatProperties2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceFormatProperties2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceProperties2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceFeatures2KHR = Ptr{Cvoid}
-const PhysicalDeviceSparseImageFormatInfo2KHR = PhysicalDeviceSparseImageFormatInfo2
-const SparseImageFormatProperties2KHR = SparseImageFormatProperties2
-const PhysicalDeviceMemoryProperties2KHR = PhysicalDeviceMemoryProperties2
-const QueueFamilyProperties2KHR = QueueFamilyProperties2
-const PhysicalDeviceImageFormatInfo2KHR = PhysicalDeviceImageFormatInfo2
-const ImageFormatProperties2KHR = ImageFormatProperties2
-const FormatProperties2KHR = FormatProperties2
-const PhysicalDeviceProperties2KHR = PhysicalDeviceProperties2
-const PhysicalDeviceFeatures2KHR = PhysicalDeviceFeatures2
-const PhysicalDeviceMultiviewPropertiesKHR = PhysicalDeviceMultiviewProperties
-const PhysicalDeviceMultiviewFeaturesKHR = PhysicalDeviceMultiviewFeatures
-const RenderPassMultiviewCreateInfoKHR = RenderPassMultiviewCreateInfo
 const PFN_vkCreateSharedSwapchainsKHR = Ptr{Cvoid}
 const PFN_vkCreateDisplayPlaneSurfaceKHR = Ptr{Cvoid}
 const PFN_vkGetDisplayPlaneCapabilitiesKHR = Ptr{Cvoid}
@@ -25181,9 +22966,29 @@ mutable struct DisplayModeKHR <: Handle
     handle::VkDisplayModeKHR
 end
 
+struct DisplayModePropertiesKHR <: ReturnedOnly
+    display_mode::DisplayModeKHR
+    parameters::DisplayModeParametersKHR
+end
+
+struct DisplayModeProperties2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    display_mode_properties::DisplayModePropertiesKHR
+end
+
 const DisplayModeKHR_T = Cvoid
 mutable struct DisplayKHR <: Handle
     handle::VkDisplayKHR
+end
+
+struct DisplayPlanePropertiesKHR <: ReturnedOnly
+    current_display::DisplayKHR
+    current_stack_index::UInt32
+end
+
+struct DisplayPlaneProperties2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    display_plane_properties::DisplayPlanePropertiesKHR
 end
 
 const DisplayKHR_T = Cvoid
@@ -25252,8 +23057,6 @@ const PFN_vkGetDeviceGroupPeerMemoryFeatures = Ptr{Cvoid}
 const PFN_vkBindImageMemory2 = Ptr{Cvoid}
 const PFN_vkBindBufferMemory2 = Ptr{Cvoid}
 const PFN_vkEnumerateInstanceVersion = Ptr{Cvoid}
-const PhysicalDeviceShaderDrawParameterFeatures = PhysicalDeviceShaderDrawParametersFeatures
-const PhysicalDeviceVariablePointerFeatures = PhysicalDeviceVariablePointersFeatures
 mutable struct DescriptorUpdateTemplate <: Handle
     handle::VkDescriptorUpdateTemplate
 end
@@ -25552,15 +23355,32 @@ const IndirectStateFlagsNV = Flags
 const HeadlessSurfaceCreateFlagsEXT = Flags
 const PipelineCoverageReductionStateCreateFlagsNV = Flags
 const ToolPurposeFlagsEXT = Flags
+struct PhysicalDeviceToolPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    name::String
+    version::String
+    purposes::ToolPurposeFlagsEXT
+    description::String
+    layer::String
+end
+
 const ShaderCorePropertiesFlagsAMD = Flags
+struct PhysicalDeviceShaderCoreProperties2AMD <: ReturnedOnly
+    next::Ptr{Cvoid}
+    shader_core_features::ShaderCorePropertiesFlagsAMD
+    active_compute_unit_count::UInt32
+end
+
 const PipelineCreationFeedbackFlagsEXT = Flags
+struct PipelineCreationFeedbackEXT <: ReturnedOnly
+    flags::PipelineCreationFeedbackFlagsEXT
+    duration::UInt64
+end
+
 const PipelineCompilerControlFlagsAMD = Flags
 const BuildAccelerationStructureFlagsKHR = Flags
-const BuildAccelerationStructureFlagsNV = BuildAccelerationStructureFlagsKHR
 const GeometryInstanceFlagsKHR = Flags
-const GeometryInstanceFlagsNV = GeometryInstanceFlagsKHR
 const GeometryFlagsKHR = Flags
-const GeometryFlagsNV = GeometryFlagsKHR
 const ValidationCacheCreateFlagsEXT = Flags
 const PipelineCoverageModulationStateCreateFlagsNV = Flags
 const PipelineCoverageToColorStateCreateFlagsNV = Flags
@@ -25580,43 +23400,112 @@ const PipelineRasterizationStateStreamCreateFlagsEXT = Flags
 const DebugReportFlagsEXT = Flags
 const AcquireProfilingLockFlagsKHR = Flags
 const PerformanceCounterDescriptionFlagsKHR = Flags
+struct PerformanceCounterDescriptionKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    flags::PerformanceCounterDescriptionFlagsKHR
+    name::String
+    category::String
+    description::String
+end
+
 const DisplaySurfaceCreateFlagsKHR = Flags
 const DisplayPlaneAlphaFlagsKHR = Flags
+struct DisplayPlaneCapabilitiesKHR <: ReturnedOnly
+    supported_alpha::DisplayPlaneAlphaFlagsKHR
+    min_src_position::Offset2D
+    max_src_position::Offset2D
+    min_src_extent::Extent2D
+    max_src_extent::Extent2D
+    min_dst_position::Offset2D
+    max_dst_position::Offset2D
+    min_dst_extent::Extent2D
+    max_dst_extent::Extent2D
+end
+
+struct DisplayPlaneCapabilities2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    capabilities::DisplayPlaneCapabilitiesKHR
+end
+
 const DisplayModeCreateFlagsKHR = Flags
 const DeviceGroupPresentModeFlagsKHR = Flags
+struct DeviceGroupPresentCapabilitiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    present_mask::NTuple{32,UInt32}
+    modes::DeviceGroupPresentModeFlagsKHR
+end
+
 const SwapchainCreateFlagsKHR = Flags
 const SurfaceTransformFlagsKHR = Flags
+struct DisplayPropertiesKHR <: ReturnedOnly
+    display::DisplayKHR
+    display_name::String
+    physical_dimensions::Extent2D
+    physical_resolution::Extent2D
+    supported_transforms::SurfaceTransformFlagsKHR
+    plane_reorder_possible::Bool
+    persistent_content::Bool
+end
+
+struct DisplayProperties2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    display_properties::DisplayPropertiesKHR
+end
+
 const CompositeAlphaFlagsKHR = Flags
 const SemaphoreWaitFlags = Flags
-const SemaphoreWaitFlagsKHR = SemaphoreWaitFlags
 const DescriptorBindingFlags = Flags
-const DescriptorBindingFlagsEXT = DescriptorBindingFlags
 const ResolveModeFlags = Flags
-const ResolveModeFlagsKHR = ResolveModeFlags
+struct PhysicalDeviceDepthStencilResolveProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    supported_depth_resolve_modes::ResolveModeFlags
+    supported_stencil_resolve_modes::ResolveModeFlags
+    independent_resolve_none::Bool
+    independent_resolve::Bool
+end
+
 const ExternalSemaphoreFeatureFlags = Flags
-const ExternalSemaphoreFeatureFlagsKHR = ExternalSemaphoreFeatureFlags
 const ExternalSemaphoreHandleTypeFlags = Flags
-const ExternalSemaphoreHandleTypeFlagsKHR = ExternalSemaphoreHandleTypeFlags
+struct ExternalSemaphoreProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    export_from_imported_handle_types::ExternalSemaphoreHandleTypeFlags
+    compatible_handle_types::ExternalSemaphoreHandleTypeFlags
+    external_semaphore_features::ExternalSemaphoreFeatureFlags
+end
+
 const SemaphoreImportFlags = Flags
-const SemaphoreImportFlagsKHR = SemaphoreImportFlags
 const FenceImportFlags = Flags
-const FenceImportFlagsKHR = FenceImportFlags
 const ExternalFenceFeatureFlags = Flags
-const ExternalFenceFeatureFlagsKHR = ExternalFenceFeatureFlags
 const ExternalFenceHandleTypeFlags = Flags
-const ExternalFenceHandleTypeFlagsKHR = ExternalFenceHandleTypeFlags
+struct ExternalFenceProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    export_from_imported_handle_types::ExternalFenceHandleTypeFlags
+    compatible_handle_types::ExternalFenceHandleTypeFlags
+    external_fence_features::ExternalFenceFeatureFlags
+end
+
 const ExternalMemoryFeatureFlags = Flags
-const ExternalMemoryFeatureFlagsKHR = ExternalMemoryFeatureFlags
 const ExternalMemoryHandleTypeFlags = Flags
-const ExternalMemoryHandleTypeFlagsKHR = ExternalMemoryHandleTypeFlags
+struct ExternalMemoryProperties <: ReturnedOnly
+    external_memory_features::ExternalMemoryFeatureFlags
+    export_from_imported_handle_types::ExternalMemoryHandleTypeFlags
+    compatible_handle_types::ExternalMemoryHandleTypeFlags
+end
+
+struct ExternalBufferProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    external_memory_properties::ExternalMemoryProperties
+end
+
+struct ExternalImageFormatProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    external_memory_properties::ExternalMemoryProperties
+end
+
 const DescriptorUpdateTemplateCreateFlags = Flags
-const DescriptorUpdateTemplateCreateFlagsKHR = DescriptorUpdateTemplateCreateFlags
 const CommandPoolTrimFlags = Flags
-const CommandPoolTrimFlagsKHR = CommandPoolTrimFlags
 const MemoryAllocateFlags = Flags
-const MemoryAllocateFlagsKHR = MemoryAllocateFlags
 const PeerMemoryFeatureFlags = Flags
-const PeerMemoryFeatureFlagsKHR = PeerMemoryFeatureFlags
 const SubgroupFeatureFlags = Flags
 const StencilFaceFlags = Flags
 const CommandBufferResetFlags = Flags
@@ -25634,6 +23523,45 @@ const DescriptorPoolResetFlags = Flags
 const DescriptorPoolCreateFlags = Flags
 const SamplerCreateFlags = Flags
 const ShaderStageFlags = Flags
+struct PhysicalDeviceCooperativeMatrixPropertiesNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    cooperative_matrix_supported_stages::ShaderStageFlags
+end
+
+struct PhysicalDeviceSubgroupSizeControlPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    min_subgroup_size::UInt32
+    max_subgroup_size::UInt32
+    max_compute_workgroup_subgroups::UInt32
+    required_subgroup_size_stages::ShaderStageFlags
+end
+
+struct ShaderStatisticsInfoAMD <: ReturnedOnly
+    shader_stage_mask::ShaderStageFlags
+    resource_usage::ShaderResourceUsageAMD
+    num_physical_vgprs::UInt32
+    num_physical_sgprs::UInt32
+    num_available_vgprs::UInt32
+    num_available_sgprs::UInt32
+    compute_work_group_size::NTuple{3,UInt32}
+end
+
+struct PipelineExecutablePropertiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    stages::ShaderStageFlags
+    name::String
+    description::String
+    subgroup_size::UInt32
+end
+
+struct PhysicalDeviceSubgroupProperties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    subgroup_size::UInt32
+    supported_stages::ShaderStageFlags
+    supported_operations::SubgroupFeatureFlags
+    quad_operations_in_all_stages::Bool
+end
+
 const PipelineLayoutCreateFlags = Flags
 const PipelineDynamicStateCreateFlags = Flags
 const PipelineColorBlendStateCreateFlags = Flags
@@ -25664,20 +23592,451 @@ const SparseImageFormatFlags = Flags
 const SparseMemoryBindFlags = Flags
 const MemoryMapFlags = Flags
 const PipelineStageFlags = Flags
+struct QueueFamilyCheckpointPropertiesNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    checkpoint_execution_stage_mask::PipelineStageFlags
+end
+
 const DeviceQueueCreateFlags = Flags
 const DeviceCreateFlags = Flags
 const QueueFlags = Flags
+struct QueueFamilyProperties <: ReturnedOnly
+    queue_flags::QueueFlags
+    queue_count::UInt32
+    timestamp_valid_bits::UInt32
+    min_image_transfer_granularity::Extent3D
+end
+
+struct QueueFamilyProperties2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    queue_family_properties::QueueFamilyProperties
+end
+
 const MemoryPropertyFlags = Flags
+struct MemoryType <: ReturnedOnly
+    property_flags::MemoryPropertyFlags
+    heap_index::UInt32
+end
+
 const MemoryHeapFlags = Flags
 const InstanceCreateFlags = Flags
 const ImageUsageFlags = Flags
+struct SurfaceCapabilities2EXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    min_image_count::UInt32
+    max_image_count::UInt32
+    current_extent::Extent2D
+    min_image_extent::Extent2D
+    max_image_extent::Extent2D
+    max_image_array_layers::UInt32
+    supported_transforms::SurfaceTransformFlagsKHR
+    current_transform::SurfaceTransformFlagBitsKHR
+    supported_composite_alpha::CompositeAlphaFlagsKHR
+    supported_usage_flags::ImageUsageFlags
+    supported_surface_counters::SurfaceCounterFlagsEXT
+end
+
+struct SharedPresentSurfaceCapabilitiesKHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    shared_present_supported_usage_flags::ImageUsageFlags
+end
+
+struct SurfaceCapabilitiesKHR <: ReturnedOnly
+    min_image_count::UInt32
+    max_image_count::UInt32
+    current_extent::Extent2D
+    min_image_extent::Extent2D
+    max_image_extent::Extent2D
+    max_image_array_layers::UInt32
+    supported_transforms::SurfaceTransformFlagsKHR
+    current_transform::SurfaceTransformFlagBitsKHR
+    supported_composite_alpha::CompositeAlphaFlagsKHR
+    supported_usage_flags::ImageUsageFlags
+end
+
+struct SurfaceCapabilities2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    surface_capabilities::SurfaceCapabilitiesKHR
+end
+
 const SampleCountFlags = Flags
+struct FramebufferMixedSamplesCombinationNV <: ReturnedOnly
+    next::Ptr{Cvoid}
+    coverage_reduction_mode::CoverageReductionModeNV
+    rasterization_samples::SampleCountFlagBits
+    depth_stencil_samples::SampleCountFlags
+    color_samples::SampleCountFlags
+end
+
+struct PhysicalDeviceSampleLocationsPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    sample_location_sample_counts::SampleCountFlags
+    max_sample_location_grid_size::Extent2D
+    sample_location_coordinate_range::NTuple{2,Cfloat}
+    sample_location_sub_pixel_bits::UInt32
+    variable_sample_locations::Bool
+end
+
+struct PhysicalDeviceVulkan12Properties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    driver_id::DriverId
+    driver_name::String
+    driver_info::String
+    conformance_version::ConformanceVersion
+    denorm_behavior_independence::ShaderFloatControlsIndependence
+    rounding_mode_independence::ShaderFloatControlsIndependence
+    shader_signed_zero_inf_nan_preserve_float_16::Bool
+    shader_signed_zero_inf_nan_preserve_float_32::Bool
+    shader_signed_zero_inf_nan_preserve_float_64::Bool
+    shader_denorm_preserve_float_16::Bool
+    shader_denorm_preserve_float_32::Bool
+    shader_denorm_preserve_float_64::Bool
+    shader_denorm_flush_to_zero_float_16::Bool
+    shader_denorm_flush_to_zero_float_32::Bool
+    shader_denorm_flush_to_zero_float_64::Bool
+    shader_rounding_mode_rte_float_16::Bool
+    shader_rounding_mode_rte_float_32::Bool
+    shader_rounding_mode_rte_float_64::Bool
+    shader_rounding_mode_rtz_float_16::Bool
+    shader_rounding_mode_rtz_float_32::Bool
+    shader_rounding_mode_rtz_float_64::Bool
+    max_update_after_bind_descriptors_in_all_pools::UInt32
+    shader_uniform_buffer_array_non_uniform_indexing_native::Bool
+    shader_sampled_image_array_non_uniform_indexing_native::Bool
+    shader_storage_buffer_array_non_uniform_indexing_native::Bool
+    shader_storage_image_array_non_uniform_indexing_native::Bool
+    shader_input_attachment_array_non_uniform_indexing_native::Bool
+    robust_buffer_access_update_after_bind::Bool
+    quad_divergent_implicit_lod::Bool
+    max_per_stage_descriptor_update_after_bind_samplers::UInt32
+    max_per_stage_descriptor_update_after_bind_uniform_buffers::UInt32
+    max_per_stage_descriptor_update_after_bind_storage_buffers::UInt32
+    max_per_stage_descriptor_update_after_bind_sampled_images::UInt32
+    max_per_stage_descriptor_update_after_bind_storage_images::UInt32
+    max_per_stage_descriptor_update_after_bind_input_attachments::UInt32
+    max_per_stage_update_after_bind_resources::UInt32
+    max_descriptor_set_update_after_bind_samplers::UInt32
+    max_descriptor_set_update_after_bind_uniform_buffers::UInt32
+    max_descriptor_set_update_after_bind_uniform_buffers_dynamic::UInt32
+    max_descriptor_set_update_after_bind_storage_buffers::UInt32
+    max_descriptor_set_update_after_bind_storage_buffers_dynamic::UInt32
+    max_descriptor_set_update_after_bind_sampled_images::UInt32
+    max_descriptor_set_update_after_bind_storage_images::UInt32
+    max_descriptor_set_update_after_bind_input_attachments::UInt32
+    supported_depth_resolve_modes::ResolveModeFlags
+    supported_stencil_resolve_modes::ResolveModeFlags
+    independent_resolve_none::Bool
+    independent_resolve::Bool
+    filter_minmax_single_component_formats::Bool
+    filter_minmax_image_component_mapping::Bool
+    max_timeline_semaphore_value_difference::UInt64
+    framebuffer_integer_color_sample_counts::SampleCountFlags
+end
+
 const ImageCreateFlags = Flags
 const FormatFeatureFlags = Flags
+struct AndroidHardwareBufferFormatPropertiesANDROID <: ReturnedOnly
+    next::Ptr{Cvoid}
+    format::Format
+    external_format::UInt64
+    format_features::FormatFeatureFlags
+    sampler_ycbcr_conversion_components::ComponentMapping
+    suggested_ycbcr_model::SamplerYcbcrModelConversion
+    suggested_ycbcr_range::SamplerYcbcrRange
+    suggested_x_chroma_offset::ChromaLocation
+    suggested_y_chroma_offset::ChromaLocation
+end
+
+struct DrmFormatModifierPropertiesEXT <: ReturnedOnly
+    drm_format_modifier::UInt64
+    drm_format_modifier_plane_count::UInt32
+    drm_format_modifier_tiling_features::FormatFeatureFlags
+end
+
+struct DrmFormatModifierPropertiesListEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    drm_format_modifier_properties::Array{DrmFormatModifierPropertiesEXT}
+end
+
+struct FormatProperties <: ReturnedOnly
+    linear_tiling_features::FormatFeatureFlags
+    optimal_tiling_features::FormatFeatureFlags
+    buffer_features::FormatFeatureFlags
+end
+
+struct FormatProperties2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    format_properties::FormatProperties
+end
+
 const ImageAspectFlags = Flags
+struct SparseImageFormatProperties <: ReturnedOnly
+    aspect_mask::ImageAspectFlags
+    image_granularity::Extent3D
+    flags::SparseImageFormatFlags
+end
+
+struct SparseImageFormatProperties2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    properties::SparseImageFormatProperties
+end
+
 const AccessFlags = Flags
 const DeviceSize = UInt64
+struct AndroidHardwareBufferPropertiesANDROID <: ReturnedOnly
+    next::Ptr{Cvoid}
+    allocation_size::DeviceSize
+    memory_type_bits::UInt32
+end
+
+struct PhysicalDeviceRobustness2PropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    robust_storage_buffer_access_size_alignment::DeviceSize
+    robust_uniform_buffer_access_size_alignment::DeviceSize
+end
+
+struct PhysicalDeviceTexelBufferAlignmentPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    storage_texel_buffer_offset_alignment_bytes::DeviceSize
+    storage_texel_buffer_offset_single_texel_alignment::Bool
+    uniform_texel_buffer_offset_alignment_bytes::DeviceSize
+    uniform_texel_buffer_offset_single_texel_alignment::Bool
+end
+
+struct PhysicalDeviceExternalMemoryHostPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    min_imported_host_pointer_alignment::DeviceSize
+end
+
+struct PhysicalDeviceTransformFeedbackPropertiesEXT <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_transform_feedback_streams::UInt32
+    max_transform_feedback_buffers::UInt32
+    max_transform_feedback_buffer_size::DeviceSize
+    max_transform_feedback_stream_data_size::UInt32
+    max_transform_feedback_buffer_data_size::UInt32
+    max_transform_feedback_buffer_data_stride::UInt32
+    transform_feedback_queries::Bool
+    transform_feedback_streams_lines_triangles::Bool
+    transform_feedback_rasterization_stream_select::Bool
+    transform_feedback_draw::Bool
+end
+
+struct PhysicalDeviceVulkan11Properties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    device_uuid::String
+    driver_uuid::String
+    device_luid::String
+    device_node_mask::UInt32
+    device_luid_valid::Bool
+    subgroup_size::UInt32
+    subgroup_supported_stages::ShaderStageFlags
+    subgroup_supported_operations::SubgroupFeatureFlags
+    subgroup_quad_operations_in_all_stages::Bool
+    point_clipping_behavior::PointClippingBehavior
+    max_multiview_view_count::UInt32
+    max_multiview_instance_index::UInt32
+    protected_no_fault::Bool
+    max_per_set_descriptors::UInt32
+    max_memory_allocation_size::DeviceSize
+end
+
+struct PhysicalDeviceMaintenance3Properties <: ReturnedOnly
+    next::Ptr{Cvoid}
+    max_per_set_descriptors::UInt32
+    max_memory_allocation_size::DeviceSize
+end
+
+struct SubresourceLayout <: ReturnedOnly
+    offset::DeviceSize
+    size::DeviceSize
+    row_pitch::DeviceSize
+    array_pitch::DeviceSize
+    depth_pitch::DeviceSize
+end
+
+struct SparseImageMemoryRequirements <: ReturnedOnly
+    format_properties::SparseImageFormatProperties
+    image_mip_tail_first_lod::UInt32
+    image_mip_tail_size::DeviceSize
+    image_mip_tail_offset::DeviceSize
+    image_mip_tail_stride::DeviceSize
+end
+
+struct SparseImageMemoryRequirements2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    memory_requirements::SparseImageMemoryRequirements
+end
+
+struct MemoryRequirements <: ReturnedOnly
+    size::DeviceSize
+    alignment::DeviceSize
+    memory_type_bits::UInt32
+end
+
+struct MemoryRequirements2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    memory_requirements::MemoryRequirements
+end
+
+struct PhysicalDeviceLimits <: ReturnedOnly
+    max_image_dimension_1_d::UInt32
+    max_image_dimension_2_d::UInt32
+    max_image_dimension_3_d::UInt32
+    max_image_dimension_cube::UInt32
+    max_image_array_layers::UInt32
+    max_texel_buffer_elements::UInt32
+    max_uniform_buffer_range::UInt32
+    max_storage_buffer_range::UInt32
+    max_push_constants_size::UInt32
+    max_memory_allocation_count::UInt32
+    max_sampler_allocation_count::UInt32
+    buffer_image_granularity::DeviceSize
+    sparse_address_space_size::DeviceSize
+    max_bound_descriptor_sets::UInt32
+    max_per_stage_descriptor_samplers::UInt32
+    max_per_stage_descriptor_uniform_buffers::UInt32
+    max_per_stage_descriptor_storage_buffers::UInt32
+    max_per_stage_descriptor_sampled_images::UInt32
+    max_per_stage_descriptor_storage_images::UInt32
+    max_per_stage_descriptor_input_attachments::UInt32
+    max_per_stage_resources::UInt32
+    max_descriptor_set_samplers::UInt32
+    max_descriptor_set_uniform_buffers::UInt32
+    max_descriptor_set_uniform_buffers_dynamic::UInt32
+    max_descriptor_set_storage_buffers::UInt32
+    max_descriptor_set_storage_buffers_dynamic::UInt32
+    max_descriptor_set_sampled_images::UInt32
+    max_descriptor_set_storage_images::UInt32
+    max_descriptor_set_input_attachments::UInt32
+    max_vertex_input_attributes::UInt32
+    max_vertex_input_bindings::UInt32
+    max_vertex_input_attribute_offset::UInt32
+    max_vertex_input_binding_stride::UInt32
+    max_vertex_output_components::UInt32
+    max_tessellation_generation_level::UInt32
+    max_tessellation_patch_size::UInt32
+    max_tessellation_control_per_vertex_input_components::UInt32
+    max_tessellation_control_per_vertex_output_components::UInt32
+    max_tessellation_control_per_patch_output_components::UInt32
+    max_tessellation_control_total_output_components::UInt32
+    max_tessellation_evaluation_input_components::UInt32
+    max_tessellation_evaluation_output_components::UInt32
+    max_geometry_shader_invocations::UInt32
+    max_geometry_input_components::UInt32
+    max_geometry_output_components::UInt32
+    max_geometry_output_vertices::UInt32
+    max_geometry_total_output_components::UInt32
+    max_fragment_input_components::UInt32
+    max_fragment_output_attachments::UInt32
+    max_fragment_dual_src_attachments::UInt32
+    max_fragment_combined_output_resources::UInt32
+    max_compute_shared_memory_size::UInt32
+    max_compute_work_group_count::NTuple{3,UInt32}
+    max_compute_work_group_invocations::UInt32
+    max_compute_work_group_size::NTuple{3,UInt32}
+    sub_pixel_precision_bits::UInt32
+    sub_texel_precision_bits::UInt32
+    mipmap_precision_bits::UInt32
+    max_draw_indexed_index_value::UInt32
+    max_draw_indirect_count::UInt32
+    max_sampler_lod_bias::Float32
+    max_sampler_anisotropy::Float32
+    max_viewports::UInt32
+    max_viewport_dimensions::NTuple{2,UInt32}
+    viewport_bounds_range::NTuple{2,Cfloat}
+    viewport_sub_pixel_bits::UInt32
+    min_memory_map_alignment::UInt
+    min_texel_buffer_offset_alignment::DeviceSize
+    min_uniform_buffer_offset_alignment::DeviceSize
+    min_storage_buffer_offset_alignment::DeviceSize
+    min_texel_offset::Int32
+    max_texel_offset::UInt32
+    min_texel_gather_offset::Int32
+    max_texel_gather_offset::UInt32
+    min_interpolation_offset::Float32
+    max_interpolation_offset::Float32
+    sub_pixel_interpolation_offset_bits::UInt32
+    max_framebuffer_width::UInt32
+    max_framebuffer_height::UInt32
+    max_framebuffer_layers::UInt32
+    framebuffer_color_sample_counts::SampleCountFlags
+    framebuffer_depth_sample_counts::SampleCountFlags
+    framebuffer_stencil_sample_counts::SampleCountFlags
+    framebuffer_no_attachments_sample_counts::SampleCountFlags
+    max_color_attachments::UInt32
+    sampled_image_color_sample_counts::SampleCountFlags
+    sampled_image_integer_sample_counts::SampleCountFlags
+    sampled_image_depth_sample_counts::SampleCountFlags
+    sampled_image_stencil_sample_counts::SampleCountFlags
+    storage_image_sample_counts::SampleCountFlags
+    max_sample_mask_words::UInt32
+    timestamp_compute_and_graphics::Bool
+    timestamp_period::Float32
+    max_clip_distances::UInt32
+    max_cull_distances::UInt32
+    max_combined_clip_and_cull_distances::UInt32
+    discrete_queue_priorities::UInt32
+    point_size_range::NTuple{2,Cfloat}
+    line_width_range::NTuple{2,Cfloat}
+    point_size_granularity::Float32
+    line_width_granularity::Float32
+    strict_lines::Bool
+    standard_sample_locations::Bool
+    optimal_buffer_copy_offset_alignment::DeviceSize
+    optimal_buffer_copy_row_pitch_alignment::DeviceSize
+    non_coherent_atom_size::DeviceSize
+end
+
+struct PhysicalDeviceProperties <: ReturnedOnly
+    api_version::VersionNumber
+    driver_version::VersionNumber
+    vendor_id::UInt32
+    device_id::UInt32
+    device_type::PhysicalDeviceType
+    device_name::String
+    pipeline_cache_uuid::String
+    limits::PhysicalDeviceLimits
+    sparse_properties::PhysicalDeviceSparseProperties
+end
+
+struct PhysicalDeviceProperties2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    properties::PhysicalDeviceProperties
+end
+
+struct MemoryHeap <: ReturnedOnly
+    size::DeviceSize
+    flags::MemoryHeapFlags
+end
+
+struct ImageFormatProperties <: ReturnedOnly
+    max_extent::Extent3D
+    max_mip_levels::UInt32
+    max_array_layers::UInt32
+    sample_counts::SampleCountFlags
+    max_resource_size::DeviceSize
+end
+
+struct ExternalImageFormatPropertiesNV <: ReturnedOnly
+    image_format_properties::ImageFormatProperties
+    external_memory_features::ExternalMemoryFeatureFlagsNV
+    export_from_imported_handle_types::ExternalMemoryHandleTypeFlagsNV
+    compatible_handle_types::ExternalMemoryHandleTypeFlagsNV
+end
+
+struct ImageFormatProperties2 <: ReturnedOnly
+    next::Ptr{Cvoid}
+    image_format_properties::ImageFormatProperties
+end
+
 const DeviceAddress = UInt64
+struct ImageViewAddressPropertiesNVX <: ReturnedOnly
+    next::Ptr{Cvoid}
+    device_address::DeviceAddress
+    size::DeviceSize
+end
+
 const Bool32 = UInt32
 const KHR_RAY_TRACING_EXTENSION_NAME = "VK_KHR_ray_tracing"
 const KHR_RAY_TRACING_SPEC_VERSION = 8
@@ -25948,7 +24307,6 @@ const NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME = "VK_NV_representative_fra
 const NV_REPRESENTATIVE_FRAGMENT_TEST_SPEC_VERSION = 2
 const NV_representative_fragment_test = 1
 const SHADER_UNUSED_KHR = ~(UInt32(0))
-const SHADER_UNUSED_NV = SHADER_UNUSED_KHR
 const NV_RAY_TRACING_EXTENSION_NAME = "VK_NV_ray_tracing"
 const NV_RAY_TRACING_SPEC_VERSION = 3
 const NV_ray_tracing = 1
@@ -26326,16 +24684,11 @@ const KHR_SURFACE_EXTENSION_NAME = "VK_KHR_surface"
 const KHR_SURFACE_SPEC_VERSION = 25
 const KHR_surface = 1
 const MAX_DRIVER_INFO_SIZE = 256
-const MAX_DRIVER_INFO_SIZE_KHR = MAX_DRIVER_INFO_SIZE
 const MAX_DRIVER_NAME_SIZE = 256
-const MAX_DRIVER_NAME_SIZE_KHR = MAX_DRIVER_NAME_SIZE
 const VERSION_1_2 = 1
 const QUEUE_FAMILY_EXTERNAL = ~(UInt32(0)) - 1
-const QUEUE_FAMILY_EXTERNAL_KHR = QUEUE_FAMILY_EXTERNAL
 const LUID_SIZE = 8
-const LUID_SIZE_KHR = LUID_SIZE
 const MAX_DEVICE_GROUP_SIZE = 32
-const MAX_DEVICE_GROUP_SIZE_KHR = MAX_DEVICE_GROUP_SIZE
 const VERSION_1_1 = 1
 const MAX_DESCRIPTION_SIZE = 256
 const MAX_EXTENSION_NAME_SIZE = 256
@@ -26371,6 +24724,7 @@ function Extent2D(width, height)
     Extent2D(vks)
 end
 
+from_vk(T::Type{Extent2D}, x::VkExtent2D) = Extent2D(x.width, x.height)
 """
 Generic constructor.
 """
@@ -26379,6 +24733,7 @@ function Extent3D(width, height, depth)
     Extent3D(vks)
 end
 
+from_vk(T::Type{Extent3D}, x::VkExtent3D) = Extent3D(x.width, x.height, x.depth)
 """
 Generic constructor.
 """
@@ -26387,6 +24742,7 @@ function Offset2D(x, y)
     Offset2D(vks)
 end
 
+from_vk(T::Type{Offset2D}, x::VkOffset2D) = Offset2D(x.x, x.y)
 """
 Generic constructor.
 """
@@ -26395,6 +24751,7 @@ function Offset3D(x, y, z)
     Offset3D(vks)
 end
 
+from_vk(T::Type{Offset3D}, x::VkOffset3D) = Offset3D(x.x, x.y, x.z)
 """
 Generic constructor.
 """
@@ -26403,6 +24760,7 @@ function Rect2D(offset, extent)
     Rect2D(vks)
 end
 
+from_vk(T::Type{Rect2D}, x::VkRect2D) = Rect2D(x.offset, x.extent)
 """
 Generic constructor.
 """
@@ -26411,6 +24769,8 @@ function DispatchIndirectCommand(x, y, z)
     DispatchIndirectCommand(vks)
 end
 
+from_vk(T::Type{DispatchIndirectCommand}, x::VkDispatchIndirectCommand) =
+    DispatchIndirectCommand(x.x, x.y, x.z)
 """
 Generic constructor.
 """
@@ -26431,6 +24791,15 @@ function DrawIndexedIndirectCommand(
     DrawIndexedIndirectCommand(vks)
 end
 
+from_vk(T::Type{DrawIndexedIndirectCommand}, x::VkDrawIndexedIndirectCommand) =
+    DrawIndexedIndirectCommand(
+        x.indexCount,
+        x.instanceCount,
+        x.firstIndex,
+        x.vertexOffset,
+        x.firstInstance,
+    )
+
 """
 Generic constructor.
 """
@@ -26438,6 +24807,9 @@ function DrawIndirectCommand(vertex_count, instance_count, first_vertex, first_i
     vks = VkDrawIndirectCommand(vertex_count, instance_count, first_vertex, first_instance)
     DrawIndirectCommand(vks)
 end
+
+from_vk(T::Type{DrawIndirectCommand}, x::VkDrawIndirectCommand) =
+    DrawIndirectCommand(x.vertexCount, x.instanceCount, x.firstVertex, x.firstInstance)
 
 """
 Generic constructor.
@@ -26459,58 +24831,39 @@ function ImageSubresourceRange(
     ImageSubresourceRange(vks)
 end
 
-"""
-Generic constructor.
-"""
-function FormatProperties(;
-    linear_tiling_features = 0,
-    optimal_tiling_features = 0,
-    buffer_features = 0,
+from_vk(T::Type{ImageSubresourceRange}, x::VkImageSubresourceRange) = ImageSubresourceRange(
+    x.aspectMask,
+    x.baseMipLevel,
+    x.levelCount,
+    x.baseArrayLayer,
+    x.layerCount,
 )
-    vks = VkFormatProperties(
-        linear_tiling_features == 0 ? 0 : linear_tiling_features,
-        optimal_tiling_features == 0 ? 0 : optimal_tiling_features,
-        buffer_features == 0 ? 0 : buffer_features,
-    )
-    FormatProperties(vks)
-end
 
-"""
-Generic constructor.
-"""
-function ImageFormatProperties(
-    max_extent,
-    max_mip_levels,
-    max_array_layers,
-    max_resource_size;
-    sample_counts = 0,
+FormatProperties(vks::VkFormatProperties) = FormatProperties(
+    from_vk(FormatFeatureFlags, vks.linearTilingFeatures),
+    from_vk(FormatFeatureFlags, vks.optimalTilingFeatures),
+    from_vk(FormatFeatureFlags, vks.bufferFeatures),
 )
-    vks = VkImageFormatProperties(
-        max_extent.vks,
-        max_mip_levels,
-        max_array_layers,
-        sample_counts == 0 ? 0 : sample_counts,
-        max_resource_size,
-    )
-    ImageFormatProperties(vks)
-end
 
-"""
-Generic constructor.
-"""
-function MemoryHeap(size; flags = 0)
-    vks = VkMemoryHeap(size, flags == 0 ? 0 : flags)
-    MemoryHeap(vks)
-end
+from_vk(T::Type{FormatProperties}, x::VkFormatProperties) = FormatProperties(x)
+ImageFormatProperties(vks::VkImageFormatProperties) = ImageFormatProperties(
+    from_vk(Extent3D, vks.maxExtent),
+    from_vk(UInt32, vks.maxMipLevels),
+    from_vk(UInt32, vks.maxArrayLayers),
+    from_vk(SampleCountFlags, vks.sampleCounts),
+    from_vk(DeviceSize, vks.maxResourceSize),
+)
 
-"""
-Generic constructor.
-"""
-function MemoryType(heap_index; property_flags = C_NULL)
-    vks = VkMemoryType(property_flags == C_NULL ? C_NULL : property_flags, heap_index)
-    MemoryType(vks)
-end
-
+from_vk(T::Type{ImageFormatProperties}, x::VkImageFormatProperties) =
+    ImageFormatProperties(x)
+MemoryHeap(vks::VkMemoryHeap) =
+    MemoryHeap(from_vk(DeviceSize, vks.size), from_vk(MemoryHeapFlags, vks.flags))
+from_vk(T::Type{MemoryHeap}, x::VkMemoryHeap) = MemoryHeap(x)
+MemoryType(vks::VkMemoryType) = MemoryType(
+    from_vk(MemoryPropertyFlags, vks.propertyFlags),
+    from_vk(UInt32, vks.heapIndex),
+)
+from_vk(T::Type{MemoryType}, x::VkMemoryType) = MemoryType(x)
 """
 Generic constructor.
 """
@@ -26631,353 +24984,256 @@ function PhysicalDeviceFeatures(
     PhysicalDeviceFeatures(vks)
 end
 
-"""
-Generic constructor.
-"""
-function PhysicalDeviceLimits(
-    max_image_dimension_1_d,
-    max_image_dimension_2_d,
-    max_image_dimension_3_d,
-    max_image_dimension_cube,
-    max_image_array_layers,
-    max_texel_buffer_elements,
-    max_uniform_buffer_range,
-    max_storage_buffer_range,
-    max_push_constants_size,
-    max_memory_allocation_count,
-    max_sampler_allocation_count,
-    buffer_image_granularity,
-    sparse_address_space_size,
-    max_bound_descriptor_sets,
-    max_per_stage_descriptor_samplers,
-    max_per_stage_descriptor_uniform_buffers,
-    max_per_stage_descriptor_storage_buffers,
-    max_per_stage_descriptor_sampled_images,
-    max_per_stage_descriptor_storage_images,
-    max_per_stage_descriptor_input_attachments,
-    max_per_stage_resources,
-    max_descriptor_set_samplers,
-    max_descriptor_set_uniform_buffers,
-    max_descriptor_set_uniform_buffers_dynamic,
-    max_descriptor_set_storage_buffers,
-    max_descriptor_set_storage_buffers_dynamic,
-    max_descriptor_set_sampled_images,
-    max_descriptor_set_storage_images,
-    max_descriptor_set_input_attachments,
-    max_vertex_input_attributes,
-    max_vertex_input_bindings,
-    max_vertex_input_attribute_offset,
-    max_vertex_input_binding_stride,
-    max_vertex_output_components,
-    max_tessellation_generation_level,
-    max_tessellation_patch_size,
-    max_tessellation_control_per_vertex_input_components,
-    max_tessellation_control_per_vertex_output_components,
-    max_tessellation_control_per_patch_output_components,
-    max_tessellation_control_total_output_components,
-    max_tessellation_evaluation_input_components,
-    max_tessellation_evaluation_output_components,
-    max_geometry_shader_invocations,
-    max_geometry_input_components,
-    max_geometry_output_components,
-    max_geometry_output_vertices,
-    max_geometry_total_output_components,
-    max_fragment_input_components,
-    max_fragment_output_attachments,
-    max_fragment_dual_src_attachments,
-    max_fragment_combined_output_resources,
-    max_compute_shared_memory_size,
-    max_compute_work_group_count,
-    max_compute_work_group_invocations,
-    max_compute_work_group_size,
-    sub_pixel_precision_bits,
-    sub_texel_precision_bits,
-    mipmap_precision_bits,
-    max_draw_indexed_index_value,
-    max_draw_indirect_count,
-    max_sampler_lod_bias,
-    max_sampler_anisotropy,
-    max_viewports,
-    max_viewport_dimensions,
-    viewport_bounds_range,
-    viewport_sub_pixel_bits,
-    min_memory_map_alignment,
-    min_texel_buffer_offset_alignment,
-    min_uniform_buffer_offset_alignment,
-    min_storage_buffer_offset_alignment,
-    min_texel_offset,
-    max_texel_offset,
-    min_texel_gather_offset,
-    max_texel_gather_offset,
-    min_interpolation_offset,
-    max_interpolation_offset,
-    sub_pixel_interpolation_offset_bits,
-    max_framebuffer_width,
-    max_framebuffer_height,
-    max_framebuffer_layers,
-    max_color_attachments,
-    max_sample_mask_words,
-    timestamp_compute_and_graphics,
-    timestamp_period,
-    max_clip_distances,
-    max_cull_distances,
-    max_combined_clip_and_cull_distances,
-    discrete_queue_priorities,
-    point_size_range,
-    line_width_range,
-    point_size_granularity,
-    line_width_granularity,
-    strict_lines,
-    standard_sample_locations,
-    optimal_buffer_copy_offset_alignment,
-    optimal_buffer_copy_row_pitch_alignment,
-    non_coherent_atom_size;
-    framebuffer_color_sample_counts = 0,
-    framebuffer_depth_sample_counts = 0,
-    framebuffer_stencil_sample_counts = 0,
-    framebuffer_no_attachments_sample_counts = 0,
-    sampled_image_color_sample_counts = 0,
-    sampled_image_integer_sample_counts = 0,
-    sampled_image_depth_sample_counts = 0,
-    sampled_image_stencil_sample_counts = 0,
-    storage_image_sample_counts = 0,
-)
-    vks = VkPhysicalDeviceLimits(
-        max_image_dimension_1_d,
-        max_image_dimension_2_d,
-        max_image_dimension_3_d,
-        max_image_dimension_cube,
-        max_image_array_layers,
-        max_texel_buffer_elements,
-        max_uniform_buffer_range,
-        max_storage_buffer_range,
-        max_push_constants_size,
-        max_memory_allocation_count,
-        max_sampler_allocation_count,
-        buffer_image_granularity,
-        sparse_address_space_size,
-        max_bound_descriptor_sets,
-        max_per_stage_descriptor_samplers,
-        max_per_stage_descriptor_uniform_buffers,
-        max_per_stage_descriptor_storage_buffers,
-        max_per_stage_descriptor_sampled_images,
-        max_per_stage_descriptor_storage_images,
-        max_per_stage_descriptor_input_attachments,
-        max_per_stage_resources,
-        max_descriptor_set_samplers,
-        max_descriptor_set_uniform_buffers,
-        max_descriptor_set_uniform_buffers_dynamic,
-        max_descriptor_set_storage_buffers,
-        max_descriptor_set_storage_buffers_dynamic,
-        max_descriptor_set_sampled_images,
-        max_descriptor_set_storage_images,
-        max_descriptor_set_input_attachments,
-        max_vertex_input_attributes,
-        max_vertex_input_bindings,
-        max_vertex_input_attribute_offset,
-        max_vertex_input_binding_stride,
-        max_vertex_output_components,
-        max_tessellation_generation_level,
-        max_tessellation_patch_size,
-        max_tessellation_control_per_vertex_input_components,
-        max_tessellation_control_per_vertex_output_components,
-        max_tessellation_control_per_patch_output_components,
-        max_tessellation_control_total_output_components,
-        max_tessellation_evaluation_input_components,
-        max_tessellation_evaluation_output_components,
-        max_geometry_shader_invocations,
-        max_geometry_input_components,
-        max_geometry_output_components,
-        max_geometry_output_vertices,
-        max_geometry_total_output_components,
-        max_fragment_input_components,
-        max_fragment_output_attachments,
-        max_fragment_dual_src_attachments,
-        max_fragment_combined_output_resources,
-        max_compute_shared_memory_size,
-        max_compute_work_group_count,
-        max_compute_work_group_invocations,
-        max_compute_work_group_size,
-        sub_pixel_precision_bits,
-        sub_texel_precision_bits,
-        mipmap_precision_bits,
-        max_draw_indexed_index_value,
-        max_draw_indirect_count,
-        max_sampler_lod_bias,
-        max_sampler_anisotropy,
-        max_viewports,
-        max_viewport_dimensions,
-        viewport_bounds_range,
-        viewport_sub_pixel_bits,
-        min_memory_map_alignment,
-        min_texel_buffer_offset_alignment,
-        min_uniform_buffer_offset_alignment,
-        min_storage_buffer_offset_alignment,
-        min_texel_offset,
-        max_texel_offset,
-        min_texel_gather_offset,
-        max_texel_gather_offset,
-        min_interpolation_offset,
-        max_interpolation_offset,
-        sub_pixel_interpolation_offset_bits,
-        max_framebuffer_width,
-        max_framebuffer_height,
-        max_framebuffer_layers,
-        framebuffer_color_sample_counts == 0 ? 0 : framebuffer_color_sample_counts,
-        framebuffer_depth_sample_counts == 0 ? 0 : framebuffer_depth_sample_counts,
-        framebuffer_stencil_sample_counts == 0 ? 0 : framebuffer_stencil_sample_counts,
-        framebuffer_no_attachments_sample_counts == 0 ? 0 :
-            framebuffer_no_attachments_sample_counts,
-        max_color_attachments,
-        sampled_image_color_sample_counts == 0 ? 0 : sampled_image_color_sample_counts,
-        sampled_image_integer_sample_counts == 0 ? 0 :
-            sampled_image_integer_sample_counts,
-        sampled_image_depth_sample_counts == 0 ? 0 : sampled_image_depth_sample_counts,
-        sampled_image_stencil_sample_counts == 0 ? 0 :
-            sampled_image_stencil_sample_counts,
-        storage_image_sample_counts == 0 ? 0 : storage_image_sample_counts,
-        max_sample_mask_words,
-        timestamp_compute_and_graphics,
-        timestamp_period,
-        max_clip_distances,
-        max_cull_distances,
-        max_combined_clip_and_cull_distances,
-        discrete_queue_priorities,
-        point_size_range,
-        line_width_range,
-        point_size_granularity,
-        line_width_granularity,
-        strict_lines,
-        standard_sample_locations,
-        optimal_buffer_copy_offset_alignment,
-        optimal_buffer_copy_row_pitch_alignment,
-        non_coherent_atom_size,
+from_vk(T::Type{PhysicalDeviceFeatures}, x::VkPhysicalDeviceFeatures) =
+    PhysicalDeviceFeatures(
+        x.robustBufferAccess,
+        x.fullDrawIndexUint32,
+        x.imageCubeArray,
+        x.independentBlend,
+        x.geometryShader,
+        x.tessellationShader,
+        x.sampleRateShading,
+        x.dualSrcBlend,
+        x.logicOp,
+        x.multiDrawIndirect,
+        x.drawIndirectFirstInstance,
+        x.depthClamp,
+        x.depthBiasClamp,
+        x.fillModeNonSolid,
+        x.depthBounds,
+        x.wideLines,
+        x.largePoints,
+        x.alphaToOne,
+        x.multiViewport,
+        x.samplerAnisotropy,
+        x.textureCompressionETC2,
+        x.textureCompressionASTC_LDR,
+        x.textureCompressionBC,
+        x.occlusionQueryPrecise,
+        x.pipelineStatisticsQuery,
+        x.vertexPipelineStoresAndAtomics,
+        x.fragmentStoresAndAtomics,
+        x.shaderTessellationAndGeometryPointSize,
+        x.shaderImageGatherExtended,
+        x.shaderStorageImageExtendedFormats,
+        x.shaderStorageImageMultisample,
+        x.shaderStorageImageReadWithoutFormat,
+        x.shaderStorageImageWriteWithoutFormat,
+        x.shaderUniformBufferArrayDynamicIndexing,
+        x.shaderSampledImageArrayDynamicIndexing,
+        x.shaderStorageBufferArrayDynamicIndexing,
+        x.shaderStorageImageArrayDynamicIndexing,
+        x.shaderClipDistance,
+        x.shaderCullDistance,
+        x.shaderFloat64,
+        x.shaderInt64,
+        x.shaderInt16,
+        x.shaderResourceResidency,
+        x.shaderResourceMinLod,
+        x.sparseBinding,
+        x.sparseResidencyBuffer,
+        x.sparseResidencyImage2D,
+        x.sparseResidencyImage3D,
+        x.sparseResidency2Samples,
+        x.sparseResidency4Samples,
+        x.sparseResidency8Samples,
+        x.sparseResidency16Samples,
+        x.sparseResidencyAliased,
+        x.variableMultisampleRate,
+        x.inheritedQueries,
     )
-    PhysicalDeviceLimits(vks)
-end
 
-"""
-Generic constructor.
-"""
-function PhysicalDeviceMemoryProperties(
-    memory_type_count,
-    memory_types,
-    memory_heap_count,
-    memory_heaps,
+PhysicalDeviceLimits(vks::VkPhysicalDeviceLimits) = PhysicalDeviceLimits(
+    from_vk(UInt32, vks.maxImageDimension1D),
+    from_vk(UInt32, vks.maxImageDimension2D),
+    from_vk(UInt32, vks.maxImageDimension3D),
+    from_vk(UInt32, vks.maxImageDimensionCube),
+    from_vk(UInt32, vks.maxImageArrayLayers),
+    from_vk(UInt32, vks.maxTexelBufferElements),
+    from_vk(UInt32, vks.maxUniformBufferRange),
+    from_vk(UInt32, vks.maxStorageBufferRange),
+    from_vk(UInt32, vks.maxPushConstantsSize),
+    from_vk(UInt32, vks.maxMemoryAllocationCount),
+    from_vk(UInt32, vks.maxSamplerAllocationCount),
+    from_vk(DeviceSize, vks.bufferImageGranularity),
+    from_vk(DeviceSize, vks.sparseAddressSpaceSize),
+    from_vk(UInt32, vks.maxBoundDescriptorSets),
+    from_vk(UInt32, vks.maxPerStageDescriptorSamplers),
+    from_vk(UInt32, vks.maxPerStageDescriptorUniformBuffers),
+    from_vk(UInt32, vks.maxPerStageDescriptorStorageBuffers),
+    from_vk(UInt32, vks.maxPerStageDescriptorSampledImages),
+    from_vk(UInt32, vks.maxPerStageDescriptorStorageImages),
+    from_vk(UInt32, vks.maxPerStageDescriptorInputAttachments),
+    from_vk(UInt32, vks.maxPerStageResources),
+    from_vk(UInt32, vks.maxDescriptorSetSamplers),
+    from_vk(UInt32, vks.maxDescriptorSetUniformBuffers),
+    from_vk(UInt32, vks.maxDescriptorSetUniformBuffersDynamic),
+    from_vk(UInt32, vks.maxDescriptorSetStorageBuffers),
+    from_vk(UInt32, vks.maxDescriptorSetStorageBuffersDynamic),
+    from_vk(UInt32, vks.maxDescriptorSetSampledImages),
+    from_vk(UInt32, vks.maxDescriptorSetStorageImages),
+    from_vk(UInt32, vks.maxDescriptorSetInputAttachments),
+    from_vk(UInt32, vks.maxVertexInputAttributes),
+    from_vk(UInt32, vks.maxVertexInputBindings),
+    from_vk(UInt32, vks.maxVertexInputAttributeOffset),
+    from_vk(UInt32, vks.maxVertexInputBindingStride),
+    from_vk(UInt32, vks.maxVertexOutputComponents),
+    from_vk(UInt32, vks.maxTessellationGenerationLevel),
+    from_vk(UInt32, vks.maxTessellationPatchSize),
+    from_vk(UInt32, vks.maxTessellationControlPerVertexInputComponents),
+    from_vk(UInt32, vks.maxTessellationControlPerVertexOutputComponents),
+    from_vk(UInt32, vks.maxTessellationControlPerPatchOutputComponents),
+    from_vk(UInt32, vks.maxTessellationControlTotalOutputComponents),
+    from_vk(UInt32, vks.maxTessellationEvaluationInputComponents),
+    from_vk(UInt32, vks.maxTessellationEvaluationOutputComponents),
+    from_vk(UInt32, vks.maxGeometryShaderInvocations),
+    from_vk(UInt32, vks.maxGeometryInputComponents),
+    from_vk(UInt32, vks.maxGeometryOutputComponents),
+    from_vk(UInt32, vks.maxGeometryOutputVertices),
+    from_vk(UInt32, vks.maxGeometryTotalOutputComponents),
+    from_vk(UInt32, vks.maxFragmentInputComponents),
+    from_vk(UInt32, vks.maxFragmentOutputAttachments),
+    from_vk(UInt32, vks.maxFragmentDualSrcAttachments),
+    from_vk(UInt32, vks.maxFragmentCombinedOutputResources),
+    from_vk(UInt32, vks.maxComputeSharedMemorySize),
+    from_vk(NTuple{3,UInt32}, vks.maxComputeWorkGroupCount),
+    from_vk(UInt32, vks.maxComputeWorkGroupInvocations),
+    from_vk(NTuple{3,UInt32}, vks.maxComputeWorkGroupSize),
+    from_vk(UInt32, vks.subPixelPrecisionBits),
+    from_vk(UInt32, vks.subTexelPrecisionBits),
+    from_vk(UInt32, vks.mipmapPrecisionBits),
+    from_vk(UInt32, vks.maxDrawIndexedIndexValue),
+    from_vk(UInt32, vks.maxDrawIndirectCount),
+    from_vk(Float32, vks.maxSamplerLodBias),
+    from_vk(Float32, vks.maxSamplerAnisotropy),
+    from_vk(UInt32, vks.maxViewports),
+    from_vk(NTuple{2,UInt32}, vks.maxViewportDimensions),
+    from_vk(NTuple{2,Cfloat}, vks.viewportBoundsRange),
+    from_vk(UInt32, vks.viewportSubPixelBits),
+    from_vk(UInt, vks.minMemoryMapAlignment),
+    from_vk(DeviceSize, vks.minTexelBufferOffsetAlignment),
+    from_vk(DeviceSize, vks.minUniformBufferOffsetAlignment),
+    from_vk(DeviceSize, vks.minStorageBufferOffsetAlignment),
+    from_vk(Int32, vks.minTexelOffset),
+    from_vk(UInt32, vks.maxTexelOffset),
+    from_vk(Int32, vks.minTexelGatherOffset),
+    from_vk(UInt32, vks.maxTexelGatherOffset),
+    from_vk(Float32, vks.minInterpolationOffset),
+    from_vk(Float32, vks.maxInterpolationOffset),
+    from_vk(UInt32, vks.subPixelInterpolationOffsetBits),
+    from_vk(UInt32, vks.maxFramebufferWidth),
+    from_vk(UInt32, vks.maxFramebufferHeight),
+    from_vk(UInt32, vks.maxFramebufferLayers),
+    from_vk(SampleCountFlags, vks.framebufferColorSampleCounts),
+    from_vk(SampleCountFlags, vks.framebufferDepthSampleCounts),
+    from_vk(SampleCountFlags, vks.framebufferStencilSampleCounts),
+    from_vk(SampleCountFlags, vks.framebufferNoAttachmentsSampleCounts),
+    from_vk(UInt32, vks.maxColorAttachments),
+    from_vk(SampleCountFlags, vks.sampledImageColorSampleCounts),
+    from_vk(SampleCountFlags, vks.sampledImageIntegerSampleCounts),
+    from_vk(SampleCountFlags, vks.sampledImageDepthSampleCounts),
+    from_vk(SampleCountFlags, vks.sampledImageStencilSampleCounts),
+    from_vk(SampleCountFlags, vks.storageImageSampleCounts),
+    from_vk(UInt32, vks.maxSampleMaskWords),
+    from_vk(Bool, vks.timestampComputeAndGraphics),
+    from_vk(Float32, vks.timestampPeriod),
+    from_vk(UInt32, vks.maxClipDistances),
+    from_vk(UInt32, vks.maxCullDistances),
+    from_vk(UInt32, vks.maxCombinedClipAndCullDistances),
+    from_vk(UInt32, vks.discreteQueuePriorities),
+    from_vk(NTuple{2,Cfloat}, vks.pointSizeRange),
+    from_vk(NTuple{2,Cfloat}, vks.lineWidthRange),
+    from_vk(Float32, vks.pointSizeGranularity),
+    from_vk(Float32, vks.lineWidthGranularity),
+    from_vk(Bool, vks.strictLines),
+    from_vk(Bool, vks.standardSampleLocations),
+    from_vk(DeviceSize, vks.optimalBufferCopyOffsetAlignment),
+    from_vk(DeviceSize, vks.optimalBufferCopyRowPitchAlignment),
+    from_vk(DeviceSize, vks.nonCoherentAtomSize),
 )
-    vks = VkPhysicalDeviceMemoryProperties(
-        memory_type_count,
-        memory_types,
-        memory_heap_count,
-        memory_heaps,
-    )
-    PhysicalDeviceMemoryProperties(vks)
-end
 
-"""
-Generic constructor.
-"""
-function PhysicalDeviceSparseProperties(
-    residency_standard_2_d_block_shape,
-    residency_standard_2_d_multisample_block_shape,
-    residency_standard_3_d_block_shape,
-    residency_aligned_mip_size,
-    residency_non_resident_strict,
+from_vk(T::Type{PhysicalDeviceLimits}, x::VkPhysicalDeviceLimits) = PhysicalDeviceLimits(x)
+PhysicalDeviceMemoryProperties(vks::VkPhysicalDeviceMemoryProperties) =
+    PhysicalDeviceMemoryProperties(
+        from_vk(UInt32, vks.memoryTypeCount),
+        from_vk(NTuple{32,VkMemoryType}, vks.memoryTypes),
+        from_vk(UInt32, vks.memoryHeapCount),
+        from_vk(NTuple{16,VkMemoryHeap}, vks.memoryHeaps),
+    )
+
+from_vk(T::Type{PhysicalDeviceMemoryProperties}, x::VkPhysicalDeviceMemoryProperties) =
+    PhysicalDeviceMemoryProperties(x)
+PhysicalDeviceSparseProperties(vks::VkPhysicalDeviceSparseProperties) =
+    PhysicalDeviceSparseProperties(
+        from_vk(Bool, vks.residencyStandard2DBlockShape),
+        from_vk(Bool, vks.residencyStandard2DMultisampleBlockShape),
+        from_vk(Bool, vks.residencyStandard3DBlockShape),
+        from_vk(Bool, vks.residencyAlignedMipSize),
+        from_vk(Bool, vks.residencyNonResidentStrict),
+    )
+
+from_vk(T::Type{PhysicalDeviceSparseProperties}, x::VkPhysicalDeviceSparseProperties) =
+    PhysicalDeviceSparseProperties(x)
+PhysicalDeviceProperties(vks::VkPhysicalDeviceProperties) = PhysicalDeviceProperties(
+    from_vk(VersionNumber, vks.apiVersion),
+    from_vk(VersionNumber, vks.driverVersion),
+    from_vk(UInt32, vks.vendorID),
+    from_vk(UInt32, vks.deviceID),
+    from_vk(PhysicalDeviceType, vks.deviceType),
+    from_vk(String, vks.deviceName),
+    from_vk(String, vks.pipelineCacheUUID),
+    from_vk(PhysicalDeviceLimits, vks.limits),
+    from_vk(PhysicalDeviceSparseProperties, vks.sparseProperties),
 )
-    vks = VkPhysicalDeviceSparseProperties(
-        residency_standard_2_d_block_shape,
-        residency_standard_2_d_multisample_block_shape,
-        residency_standard_3_d_block_shape,
-        residency_aligned_mip_size,
-        residency_non_resident_strict,
-    )
-    PhysicalDeviceSparseProperties(vks)
-end
 
-"""
-Generic constructor.
-"""
-function PhysicalDeviceProperties(
-    api_version,
-    driver_version,
-    vendor_id,
-    device_id,
-    device_type,
-    device_name,
-    pipeline_cache_uuid,
-    limits,
-    sparse_properties,
+from_vk(T::Type{PhysicalDeviceProperties}, x::VkPhysicalDeviceProperties) =
+    PhysicalDeviceProperties(x)
+QueueFamilyProperties(vks::VkQueueFamilyProperties) = QueueFamilyProperties(
+    from_vk(QueueFlags, vks.queueFlags),
+    from_vk(UInt32, vks.queueCount),
+    from_vk(UInt32, vks.timestampValidBits),
+    from_vk(Extent3D, vks.minImageTransferGranularity),
 )
-    vks = VkPhysicalDeviceProperties(
-        api_version,
-        driver_version,
-        vendor_id,
-        device_id,
-        device_type,
-        device_name,
-        pipeline_cache_uuid,
-        limits.vks,
-        sparse_properties.vks,
-    )
-    PhysicalDeviceProperties(vks)
-end
 
-"""
-Generic constructor.
-"""
-function QueueFamilyProperties(
-    queue_count,
-    timestamp_valid_bits,
-    min_image_transfer_granularity;
-    queue_flags = 0,
+from_vk(T::Type{QueueFamilyProperties}, x::VkQueueFamilyProperties) =
+    QueueFamilyProperties(x)
+ExtensionProperties(vks::VkExtensionProperties) = ExtensionProperties(
+    from_vk(String, vks.extensionName),
+    from_vk(VersionNumber, vks.specVersion),
 )
-    vks = VkQueueFamilyProperties(
-        queue_flags == 0 ? 0 : queue_flags,
-        queue_count,
-        timestamp_valid_bits,
-        min_image_transfer_granularity.vks,
-    )
-    QueueFamilyProperties(vks)
-end
 
+from_vk(T::Type{ExtensionProperties}, x::VkExtensionProperties) = ExtensionProperties(x)
+LayerProperties(vks::VkLayerProperties) = LayerProperties(
+    from_vk(String, vks.layerName),
+    from_vk(VersionNumber, vks.specVersion),
+    from_vk(VersionNumber, vks.implementationVersion),
+    from_vk(String, vks.description),
+)
+
+from_vk(T::Type{LayerProperties}, x::VkLayerProperties) = LayerProperties(x)
+MemoryRequirements(vks::VkMemoryRequirements) = MemoryRequirements(
+    from_vk(DeviceSize, vks.size),
+    from_vk(DeviceSize, vks.alignment),
+    from_vk(UInt32, vks.memoryTypeBits),
+)
+
+from_vk(T::Type{MemoryRequirements}, x::VkMemoryRequirements) = MemoryRequirements(x)
 """
 Generic constructor.
 """
-function ExtensionProperties(extension_name, spec_version)
-    vks = VkExtensionProperties(extension_name, spec_version)
-    ExtensionProperties(vks)
-end
-
-"""
-Generic constructor.
-"""
-function LayerProperties(layer_name, spec_version, implementation_version, description)
-    vks = VkLayerProperties(layer_name, spec_version, implementation_version, description)
-    LayerProperties(vks)
-end
-
-"""
-Generic constructor.
-"""
-function MemoryRequirements(size, alignment, memory_type_bits)
-    vks = VkMemoryRequirements(size, alignment, memory_type_bits)
-    MemoryRequirements(vks)
-end
-
-"""
-Generic constructor.
-"""
-function SparseMemoryBind(resource_offset, size, memory_offset; memory = 0, flags = 0)
+function SparseMemoryBind(resource_offset, size, memory_offset; memory = C_NULL, flags = 0)
     vks = VkSparseMemoryBind(
         resource_offset,
         size,
-        memory == 0 ? 0 : memory.handle,
+        memory == C_NULL ? C_NULL : memory.handle,
         memory_offset,
         flags == 0 ? 0 : flags,
     )
     SparseMemoryBind(vks)
 end
 
+from_vk(T::Type{SparseMemoryBind}, x::VkSparseMemoryBind) =
+    SparseMemoryBind(x.resourceOffset, x.size, x.memory, x.memoryOffset, x.flags)
 """
 Generic constructor.
 """
@@ -26986,6 +25242,8 @@ function ImageSubresource(aspect_mask, mip_level, array_layer)
     ImageSubresource(vks)
 end
 
+from_vk(T::Type{ImageSubresource}, x::VkImageSubresource) =
+    ImageSubresource(x.aspectMask, x.mipLevel, x.arrayLayer)
 """
 Generic constructor.
 """
@@ -26994,60 +25252,58 @@ function SparseImageMemoryBind(
     offset,
     extent,
     memory_offset;
-    memory = 0,
+    memory = C_NULL,
     flags = 0,
 )
     vks = VkSparseImageMemoryBind(
         subresource.vks,
         offset.vks,
         extent.vks,
-        memory == 0 ? 0 : memory.handle,
+        memory == C_NULL ? C_NULL : memory.handle,
         memory_offset,
         flags == 0 ? 0 : flags,
     )
     SparseImageMemoryBind(vks)
 end
 
-"""
-Generic constructor.
-"""
-function SparseImageFormatProperties(image_granularity; aspect_mask = 0, flags = 0)
-    vks = VkSparseImageFormatProperties(
-        aspect_mask == 0 ? 0 : aspect_mask,
-        image_granularity.vks,
-        flags == 0 ? 0 : flags,
-    )
-    SparseImageFormatProperties(vks)
-end
-
-"""
-Generic constructor.
-"""
-function SparseImageMemoryRequirements(
-    format_properties,
-    image_mip_tail_first_lod,
-    image_mip_tail_size,
-    image_mip_tail_offset,
-    image_mip_tail_stride,
+from_vk(T::Type{SparseImageMemoryBind}, x::VkSparseImageMemoryBind) = SparseImageMemoryBind(
+    x.subresource,
+    x.offset,
+    x.extent,
+    x.memory,
+    x.memoryOffset,
+    x.flags,
 )
-    vks = VkSparseImageMemoryRequirements(
-        format_properties.vks,
-        image_mip_tail_first_lod,
-        image_mip_tail_size,
-        image_mip_tail_offset,
-        image_mip_tail_stride,
+
+SparseImageFormatProperties(vks::VkSparseImageFormatProperties) =
+    SparseImageFormatProperties(
+        from_vk(ImageAspectFlags, vks.aspectMask),
+        from_vk(Extent3D, vks.imageGranularity),
+        from_vk(SparseImageFormatFlags, vks.flags),
     )
-    SparseImageMemoryRequirements(vks)
-end
 
-"""
-Generic constructor.
-"""
-function SubresourceLayout(offset, size, row_pitch, array_pitch, depth_pitch)
-    vks = VkSubresourceLayout(offset, size, row_pitch, array_pitch, depth_pitch)
-    SubresourceLayout(vks)
-end
+from_vk(T::Type{SparseImageFormatProperties}, x::VkSparseImageFormatProperties) =
+    SparseImageFormatProperties(x)
+SparseImageMemoryRequirements(vks::VkSparseImageMemoryRequirements) =
+    SparseImageMemoryRequirements(
+        from_vk(SparseImageFormatProperties, vks.formatProperties),
+        from_vk(UInt32, vks.imageMipTailFirstLod),
+        from_vk(DeviceSize, vks.imageMipTailSize),
+        from_vk(DeviceSize, vks.imageMipTailOffset),
+        from_vk(DeviceSize, vks.imageMipTailStride),
+    )
 
+from_vk(T::Type{SparseImageMemoryRequirements}, x::VkSparseImageMemoryRequirements) =
+    SparseImageMemoryRequirements(x)
+SubresourceLayout(vks::VkSubresourceLayout) = SubresourceLayout(
+    from_vk(DeviceSize, vks.offset),
+    from_vk(DeviceSize, vks.size),
+    from_vk(DeviceSize, vks.rowPitch),
+    from_vk(DeviceSize, vks.arrayPitch),
+    from_vk(DeviceSize, vks.depthPitch),
+)
+
+from_vk(T::Type{SubresourceLayout}, x::VkSubresourceLayout) = SubresourceLayout(x)
 """
 Generic constructor.
 """
@@ -27056,6 +25312,8 @@ function ComponentMapping(r, g, b, a)
     ComponentMapping(vks)
 end
 
+from_vk(T::Type{ComponentMapping}, x::VkComponentMapping) =
+    ComponentMapping(x.r, x.g, x.b, x.a)
 """
 Generic constructor.
 """
@@ -27064,6 +25322,8 @@ function SpecializationMapEntry(constant_id, offset, size)
     SpecializationMapEntry(vks)
 end
 
+from_vk(T::Type{SpecializationMapEntry}, x::VkSpecializationMapEntry) =
+    SpecializationMapEntry(x.constantID, x.offset, x.size)
 """
 Generic constructor.
 """
@@ -27071,6 +25331,9 @@ function VertexInputBindingDescription(binding, stride, input_rate)
     vks = VkVertexInputBindingDescription(binding, stride, input_rate)
     VertexInputBindingDescription(vks)
 end
+
+from_vk(T::Type{VertexInputBindingDescription}, x::VkVertexInputBindingDescription) =
+    VertexInputBindingDescription(x.binding, x.stride, x.inputRate)
 
 """
 Generic constructor.
@@ -27080,6 +25343,9 @@ function VertexInputAttributeDescription(location, binding, format, offset)
     VertexInputAttributeDescription(vks)
 end
 
+from_vk(T::Type{VertexInputAttributeDescription}, x::VkVertexInputAttributeDescription) =
+    VertexInputAttributeDescription(x.location, x.binding, x.format, x.offset)
+
 """
 Generic constructor.
 """
@@ -27088,6 +25354,8 @@ function Viewport(x, y, width, height, min_depth, max_depth)
     Viewport(vks)
 end
 
+from_vk(T::Type{Viewport}, x::VkViewport) =
+    Viewport(x.x, x.y, x.width, x.height, x.minDepth, x.maxDepth)
 """
 Generic constructor.
 """
@@ -27111,6 +25379,16 @@ function StencilOpState(
     )
     StencilOpState(vks)
 end
+
+from_vk(T::Type{StencilOpState}, x::VkStencilOpState) = StencilOpState(
+    x.failOp,
+    x.passOp,
+    x.depthFailOp,
+    x.compareOp,
+    x.compareMask,
+    x.writeMask,
+    x.reference,
+)
 
 """
 Generic constructor.
@@ -27138,6 +25416,20 @@ function PipelineColorBlendAttachmentState(
     PipelineColorBlendAttachmentState(vks)
 end
 
+from_vk(
+    T::Type{PipelineColorBlendAttachmentState},
+    x::VkPipelineColorBlendAttachmentState,
+) = PipelineColorBlendAttachmentState(
+    x.blendEnable,
+    x.srcColorBlendFactor,
+    x.dstColorBlendFactor,
+    x.colorBlendOp,
+    x.srcAlphaBlendFactor,
+    x.dstAlphaBlendFactor,
+    x.alphaBlendOp,
+    x.colorWriteMask,
+)
+
 """
 Generic constructor.
 """
@@ -27146,14 +25438,18 @@ function PushConstantRange(stage_flags, offset, size)
     PushConstantRange(vks)
 end
 
+from_vk(T::Type{PushConstantRange}, x::VkPushConstantRange) =
+    PushConstantRange(x.stageFlags, x.offset, x.size)
 """
 Generic constructor.
 """
-function DescriptorBufferInfo(offset, range; buffer = 0)
-    vks = VkDescriptorBufferInfo(buffer == 0 ? 0 : buffer.handle, offset, range)
+function DescriptorBufferInfo(offset, range; buffer = C_NULL)
+    vks = VkDescriptorBufferInfo(buffer == C_NULL ? C_NULL : buffer.handle, offset, range)
     DescriptorBufferInfo(vks)
 end
 
+from_vk(T::Type{DescriptorBufferInfo}, x::VkDescriptorBufferInfo) =
+    DescriptorBufferInfo(x.buffer, x.offset, x.range)
 """
 Generic constructor.
 """
@@ -27162,6 +25458,8 @@ function DescriptorImageInfo(sampler, image_view, image_layout)
     DescriptorImageInfo(vks)
 end
 
+from_vk(T::Type{DescriptorImageInfo}, x::VkDescriptorImageInfo) =
+    DescriptorImageInfo(x.sampler, x.imageView, x.imageLayout)
 """
 Generic constructor.
 """
@@ -27170,6 +25468,8 @@ function DescriptorPoolSize(type, descriptor_count)
     DescriptorPoolSize(vks)
 end
 
+from_vk(T::Type{DescriptorPoolSize}, x::VkDescriptorPoolSize) =
+    DescriptorPoolSize(x.type, x.descriptorCount)
 """
 Generic constructor.
 """
@@ -27198,6 +25498,18 @@ function AttachmentDescription(
     AttachmentDescription(vks)
 end
 
+from_vk(T::Type{AttachmentDescription}, x::VkAttachmentDescription) = AttachmentDescription(
+    x.flags,
+    x.format,
+    x.samples,
+    x.loadOp,
+    x.storeOp,
+    x.stencilLoadOp,
+    x.stencilStoreOp,
+    x.initialLayout,
+    x.finalLayout,
+)
+
 """
 Generic constructor.
 """
@@ -27206,6 +25518,8 @@ function AttachmentReference(attachment, layout)
     AttachmentReference(vks)
 end
 
+from_vk(T::Type{AttachmentReference}, x::VkAttachmentReference) =
+    AttachmentReference(x.attachment, x.layout)
 """
 Generic constructor.
 """
@@ -27230,6 +25544,16 @@ function SubpassDependency(
     SubpassDependency(vks)
 end
 
+from_vk(T::Type{SubpassDependency}, x::VkSubpassDependency) = SubpassDependency(
+    x.srcSubpass,
+    x.dstSubpass,
+    x.srcStageMask,
+    x.dstStageMask,
+    x.srcAccessMask,
+    x.dstAccessMask,
+    x.dependencyFlags,
+)
+
 """
 Generic constructor.
 """
@@ -27238,6 +25562,7 @@ function BufferCopy(src_offset, dst_offset, size)
     BufferCopy(vks)
 end
 
+from_vk(T::Type{BufferCopy}, x::VkBufferCopy) = BufferCopy(x.srcOffset, x.dstOffset, x.size)
 """
 Generic constructor.
 """
@@ -27245,6 +25570,9 @@ function ImageSubresourceLayers(aspect_mask, mip_level, base_array_layer, layer_
     vks = VkImageSubresourceLayers(aspect_mask, mip_level, base_array_layer, layer_count)
     ImageSubresourceLayers(vks)
 end
+
+from_vk(T::Type{ImageSubresourceLayers}, x::VkImageSubresourceLayers) =
+    ImageSubresourceLayers(x.aspectMask, x.mipLevel, x.baseArrayLayer, x.layerCount)
 
 """
 Generic constructor.
@@ -27268,6 +25596,15 @@ function BufferImageCopy(
     BufferImageCopy(vks)
 end
 
+from_vk(T::Type{BufferImageCopy}, x::VkBufferImageCopy) = BufferImageCopy(
+    x.bufferOffset,
+    x.bufferRowLength,
+    x.bufferImageHeight,
+    x.imageSubresource,
+    x.imageOffset,
+    x.imageExtent,
+)
+
 """
 Generic constructor.
 """
@@ -27276,6 +25613,7 @@ function ClearColorValue(float32)
     ClearColorValue(vks)
 end
 
+from_vk(T::Type{ClearColorValue}, x::VkClearColorValue) = ClearColorValue(x.float32)
 """
 Generic constructor.
 """
@@ -27284,6 +25622,8 @@ function ClearDepthStencilValue(depth, stencil)
     ClearDepthStencilValue(vks)
 end
 
+from_vk(T::Type{ClearDepthStencilValue}, x::VkClearDepthStencilValue) =
+    ClearDepthStencilValue(x.depth, x.stencil)
 """
 Generic constructor.
 """
@@ -27292,6 +25632,7 @@ function ClearValue(color)
     ClearValue(vks)
 end
 
+from_vk(T::Type{ClearValue}, x::VkClearValue) = ClearValue(x.color)
 """
 Generic constructor.
 """
@@ -27300,6 +25641,8 @@ function ClearAttachment(aspect_mask, color_attachment, clear_value)
     ClearAttachment(vks)
 end
 
+from_vk(T::Type{ClearAttachment}, x::VkClearAttachment) =
+    ClearAttachment(x.aspectMask, x.colorAttachment, x.clearValue)
 """
 Generic constructor.
 """
@@ -27308,6 +25651,8 @@ function ClearRect(rect, base_array_layer, layer_count)
     ClearRect(vks)
 end
 
+from_vk(T::Type{ClearRect}, x::VkClearRect) =
+    ClearRect(x.rect, x.baseArrayLayer, x.layerCount)
 """
 Generic constructor.
 """
@@ -27316,6 +25661,8 @@ function ImageBlit(src_subresource, src_offsets, dst_subresource, dst_offsets)
     ImageBlit(vks)
 end
 
+from_vk(T::Type{ImageBlit}, x::VkImageBlit) =
+    ImageBlit(x.srcSubresource, x.srcOffsets, x.dstSubresource, x.dstOffsets)
 """
 Generic constructor.
 """
@@ -27330,6 +25677,8 @@ function ImageCopy(src_subresource, src_offset, dst_subresource, dst_offset, ext
     ImageCopy(vks)
 end
 
+from_vk(T::Type{ImageCopy}, x::VkImageCopy) =
+    ImageCopy(x.srcSubresource, x.srcOffset, x.dstSubresource, x.dstOffset, x.extent)
 """
 Generic constructor.
 """
@@ -27344,6 +25693,106 @@ function ImageResolve(src_subresource, src_offset, dst_subresource, dst_offset, 
     ImageResolve(vks)
 end
 
+from_vk(T::Type{ImageResolve}, x::VkImageResolve) =
+    ImageResolve(x.srcSubresource, x.srcOffset, x.dstSubresource, x.dstOffset, x.extent)
+PhysicalDeviceSubgroupProperties(vks::VkPhysicalDeviceSubgroupProperties) =
+    PhysicalDeviceSubgroupProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.subgroupSize),
+        from_vk(ShaderStageFlags, vks.supportedStages),
+        from_vk(SubgroupFeatureFlags, vks.supportedOperations),
+        from_vk(Bool, vks.quadOperationsInAllStages),
+    )
+
+from_vk(T::Type{PhysicalDeviceSubgroupProperties}, x::VkPhysicalDeviceSubgroupProperties) =
+    PhysicalDeviceSubgroupProperties(x)
+MemoryDedicatedRequirements(vks::VkMemoryDedicatedRequirements) =
+    MemoryDedicatedRequirements(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(Bool, vks.prefersDedicatedAllocation),
+        from_vk(Bool, vks.requiresDedicatedAllocation),
+    )
+
+from_vk(T::Type{MemoryDedicatedRequirements}, x::VkMemoryDedicatedRequirements) =
+    MemoryDedicatedRequirements(x)
+PhysicalDeviceGroupProperties(vks::VkPhysicalDeviceGroupProperties) =
+    PhysicalDeviceGroupProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.physicalDeviceCount),
+        from_vk(NTuple{32,VkPhysicalDevice}, vks.physicalDevices),
+        from_vk(Bool, vks.subsetAllocation),
+    )
+
+from_vk(T::Type{PhysicalDeviceGroupProperties}, x::VkPhysicalDeviceGroupProperties) =
+    PhysicalDeviceGroupProperties(x)
+MemoryRequirements2(vks::VkMemoryRequirements2) = MemoryRequirements2(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(MemoryRequirements, vks.memoryRequirements),
+)
+
+from_vk(T::Type{MemoryRequirements2}, x::VkMemoryRequirements2) = MemoryRequirements2(x)
+SparseImageMemoryRequirements2(vks::VkSparseImageMemoryRequirements2) =
+    SparseImageMemoryRequirements2(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(SparseImageMemoryRequirements, vks.memoryRequirements),
+    )
+
+from_vk(T::Type{SparseImageMemoryRequirements2}, x::VkSparseImageMemoryRequirements2) =
+    SparseImageMemoryRequirements2(x)
+PhysicalDeviceProperties2(vks::VkPhysicalDeviceProperties2) = PhysicalDeviceProperties2(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(PhysicalDeviceProperties, vks.properties),
+)
+
+from_vk(T::Type{PhysicalDeviceProperties2}, x::VkPhysicalDeviceProperties2) =
+    PhysicalDeviceProperties2(x)
+FormatProperties2(vks::VkFormatProperties2) = FormatProperties2(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(FormatProperties, vks.formatProperties),
+)
+
+from_vk(T::Type{FormatProperties2}, x::VkFormatProperties2) = FormatProperties2(x)
+ImageFormatProperties2(vks::VkImageFormatProperties2) = ImageFormatProperties2(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(ImageFormatProperties, vks.imageFormatProperties),
+)
+
+from_vk(T::Type{ImageFormatProperties2}, x::VkImageFormatProperties2) =
+    ImageFormatProperties2(x)
+QueueFamilyProperties2(vks::VkQueueFamilyProperties2) = QueueFamilyProperties2(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(QueueFamilyProperties, vks.queueFamilyProperties),
+)
+
+from_vk(T::Type{QueueFamilyProperties2}, x::VkQueueFamilyProperties2) =
+    QueueFamilyProperties2(x)
+PhysicalDeviceMemoryProperties2(vks::VkPhysicalDeviceMemoryProperties2) =
+    PhysicalDeviceMemoryProperties2(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(PhysicalDeviceMemoryProperties, vks.memoryProperties),
+    )
+
+from_vk(T::Type{PhysicalDeviceMemoryProperties2}, x::VkPhysicalDeviceMemoryProperties2) =
+    PhysicalDeviceMemoryProperties2(x)
+SparseImageFormatProperties2(vks::VkSparseImageFormatProperties2) =
+    SparseImageFormatProperties2(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(SparseImageFormatProperties, vks.properties),
+    )
+
+from_vk(T::Type{SparseImageFormatProperties2}, x::VkSparseImageFormatProperties2) =
+    SparseImageFormatProperties2(x)
+PhysicalDevicePointClippingProperties(vks::VkPhysicalDevicePointClippingProperties) =
+    PhysicalDevicePointClippingProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(PointClippingBehavior, vks.pointClippingBehavior),
+    )
+
+from_vk(
+    T::Type{PhysicalDevicePointClippingProperties},
+    x::VkPhysicalDevicePointClippingProperties,
+) = PhysicalDevicePointClippingProperties(x)
+
 """
 Generic constructor.
 """
@@ -27351,6 +25800,43 @@ function InputAttachmentAspectReference(subpass, input_attachment_index, aspect_
     vks = VkInputAttachmentAspectReference(subpass, input_attachment_index, aspect_mask)
     InputAttachmentAspectReference(vks)
 end
+
+from_vk(T::Type{InputAttachmentAspectReference}, x::VkInputAttachmentAspectReference) =
+    InputAttachmentAspectReference(x.subpass, x.inputAttachmentIndex, x.aspectMask)
+
+PhysicalDeviceMultiviewProperties(vks::VkPhysicalDeviceMultiviewProperties) =
+    PhysicalDeviceMultiviewProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.maxMultiviewViewCount),
+        from_vk(UInt32, vks.maxMultiviewInstanceIndex),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceMultiviewProperties},
+    x::VkPhysicalDeviceMultiviewProperties,
+) = PhysicalDeviceMultiviewProperties(x)
+PhysicalDeviceProtectedMemoryProperties(vks::VkPhysicalDeviceProtectedMemoryProperties) =
+    PhysicalDeviceProtectedMemoryProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(Bool, vks.protectedNoFault),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceProtectedMemoryProperties},
+    x::VkPhysicalDeviceProtectedMemoryProperties,
+) = PhysicalDeviceProtectedMemoryProperties(x)
+
+SamplerYcbcrConversionImageFormatProperties(
+    vks::VkSamplerYcbcrConversionImageFormatProperties,
+) = SamplerYcbcrConversionImageFormatProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.combinedImageSamplerDescriptorCount),
+)
+
+from_vk(
+    T::Type{SamplerYcbcrConversionImageFormatProperties},
+    x::VkSamplerYcbcrConversionImageFormatProperties,
+) = SamplerYcbcrConversionImageFormatProperties(x)
 
 """
 Generic constructor.
@@ -27374,22 +25860,108 @@ function DescriptorUpdateTemplateEntry(
     DescriptorUpdateTemplateEntry(vks)
 end
 
-"""
-Generic constructor.
-"""
-function ExternalMemoryProperties(
-    external_memory_features,
-    compatible_handle_types;
-    export_from_imported_handle_types = 0,
-)
-    vks = VkExternalMemoryProperties(
-        external_memory_features,
-        export_from_imported_handle_types == 0 ? 0 : export_from_imported_handle_types,
-        compatible_handle_types,
+from_vk(T::Type{DescriptorUpdateTemplateEntry}, x::VkDescriptorUpdateTemplateEntry) =
+    DescriptorUpdateTemplateEntry(
+        x.dstBinding,
+        x.dstArrayElement,
+        x.descriptorCount,
+        x.descriptorType,
+        x.offset,
+        x.stride,
     )
-    ExternalMemoryProperties(vks)
-end
 
+ExternalMemoryProperties(vks::VkExternalMemoryProperties) = ExternalMemoryProperties(
+    from_vk(ExternalMemoryFeatureFlags, vks.externalMemoryFeatures),
+    from_vk(ExternalMemoryHandleTypeFlags, vks.exportFromImportedHandleTypes),
+    from_vk(ExternalMemoryHandleTypeFlags, vks.compatibleHandleTypes),
+)
+
+from_vk(T::Type{ExternalMemoryProperties}, x::VkExternalMemoryProperties) =
+    ExternalMemoryProperties(x)
+ExternalImageFormatProperties(vks::VkExternalImageFormatProperties) =
+    ExternalImageFormatProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(ExternalMemoryProperties, vks.externalMemoryProperties),
+    )
+
+from_vk(T::Type{ExternalImageFormatProperties}, x::VkExternalImageFormatProperties) =
+    ExternalImageFormatProperties(x)
+ExternalBufferProperties(vks::VkExternalBufferProperties) = ExternalBufferProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(ExternalMemoryProperties, vks.externalMemoryProperties),
+)
+
+from_vk(T::Type{ExternalBufferProperties}, x::VkExternalBufferProperties) =
+    ExternalBufferProperties(x)
+PhysicalDeviceIDProperties(vks::VkPhysicalDeviceIDProperties) = PhysicalDeviceIDProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(String, vks.deviceUUID),
+    from_vk(String, vks.driverUUID),
+    from_vk(String, vks.deviceLUID),
+    from_vk(UInt32, vks.deviceNodeMask),
+    from_vk(Bool, vks.deviceLUIDValid),
+)
+
+from_vk(T::Type{PhysicalDeviceIDProperties}, x::VkPhysicalDeviceIDProperties) =
+    PhysicalDeviceIDProperties(x)
+ExternalFenceProperties(vks::VkExternalFenceProperties) = ExternalFenceProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(ExternalFenceHandleTypeFlags, vks.exportFromImportedHandleTypes),
+    from_vk(ExternalFenceHandleTypeFlags, vks.compatibleHandleTypes),
+    from_vk(ExternalFenceFeatureFlags, vks.externalFenceFeatures),
+)
+
+from_vk(T::Type{ExternalFenceProperties}, x::VkExternalFenceProperties) =
+    ExternalFenceProperties(x)
+ExternalSemaphoreProperties(vks::VkExternalSemaphoreProperties) =
+    ExternalSemaphoreProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(ExternalSemaphoreHandleTypeFlags, vks.exportFromImportedHandleTypes),
+        from_vk(ExternalSemaphoreHandleTypeFlags, vks.compatibleHandleTypes),
+        from_vk(ExternalSemaphoreFeatureFlags, vks.externalSemaphoreFeatures),
+    )
+
+from_vk(T::Type{ExternalSemaphoreProperties}, x::VkExternalSemaphoreProperties) =
+    ExternalSemaphoreProperties(x)
+PhysicalDeviceMaintenance3Properties(vks::VkPhysicalDeviceMaintenance3Properties) =
+    PhysicalDeviceMaintenance3Properties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.maxPerSetDescriptors),
+        from_vk(DeviceSize, vks.maxMemoryAllocationSize),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceMaintenance3Properties},
+    x::VkPhysicalDeviceMaintenance3Properties,
+) = PhysicalDeviceMaintenance3Properties(x)
+
+DescriptorSetLayoutSupport(vks::VkDescriptorSetLayoutSupport) =
+    DescriptorSetLayoutSupport(from_vk(Ptr{Cvoid}, vks.pNext), from_vk(Bool, vks.supported))
+
+from_vk(T::Type{DescriptorSetLayoutSupport}, x::VkDescriptorSetLayoutSupport) =
+    DescriptorSetLayoutSupport(x)
+PhysicalDeviceVulkan11Properties(vks::VkPhysicalDeviceVulkan11Properties) =
+    PhysicalDeviceVulkan11Properties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(String, vks.deviceUUID),
+        from_vk(String, vks.driverUUID),
+        from_vk(String, vks.deviceLUID),
+        from_vk(UInt32, vks.deviceNodeMask),
+        from_vk(Bool, vks.deviceLUIDValid),
+        from_vk(UInt32, vks.subgroupSize),
+        from_vk(ShaderStageFlags, vks.subgroupSupportedStages),
+        from_vk(SubgroupFeatureFlags, vks.subgroupSupportedOperations),
+        from_vk(Bool, vks.subgroupQuadOperationsInAllStages),
+        from_vk(PointClippingBehavior, vks.pointClippingBehavior),
+        from_vk(UInt32, vks.maxMultiviewViewCount),
+        from_vk(UInt32, vks.maxMultiviewInstanceIndex),
+        from_vk(Bool, vks.protectedNoFault),
+        from_vk(UInt32, vks.maxPerSetDescriptors),
+        from_vk(DeviceSize, vks.maxMemoryAllocationSize),
+    )
+
+from_vk(T::Type{PhysicalDeviceVulkan11Properties}, x::VkPhysicalDeviceVulkan11Properties) =
+    PhysicalDeviceVulkan11Properties(x)
 """
 Generic constructor.
 """
@@ -27398,44 +25970,220 @@ function ConformanceVersion(major, minor, subminor, patch)
     ConformanceVersion(vks)
 end
 
-"""
-Generic constructor.
-"""
-function SurfaceCapabilitiesKHR(
-    min_image_count,
-    max_image_count,
-    current_extent,
-    min_image_extent,
-    max_image_extent,
-    max_image_array_layers,
-    current_transform;
-    supported_transforms = 0,
-    supported_composite_alpha = 0,
-    supported_usage_flags = 0,
-)
-    vks = VkSurfaceCapabilitiesKHR(
-        min_image_count,
-        max_image_count,
-        current_extent.vks,
-        min_image_extent.vks,
-        max_image_extent.vks,
-        max_image_array_layers,
-        supported_transforms == 0 ? 0 : supported_transforms,
-        current_transform,
-        supported_composite_alpha == 0 ? 0 : supported_composite_alpha,
-        supported_usage_flags == 0 ? 0 : supported_usage_flags,
+from_vk(T::Type{ConformanceVersion}, x::VkConformanceVersion) =
+    ConformanceVersion(x.major, x.minor, x.subminor, x.patch)
+PhysicalDeviceVulkan12Properties(vks::VkPhysicalDeviceVulkan12Properties) =
+    PhysicalDeviceVulkan12Properties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(DriverId, vks.driverID),
+        from_vk(String, vks.driverName),
+        from_vk(String, vks.driverInfo),
+        from_vk(ConformanceVersion, vks.conformanceVersion),
+        from_vk(ShaderFloatControlsIndependence, vks.denormBehaviorIndependence),
+        from_vk(ShaderFloatControlsIndependence, vks.roundingModeIndependence),
+        from_vk(Bool, vks.shaderSignedZeroInfNanPreserveFloat16),
+        from_vk(Bool, vks.shaderSignedZeroInfNanPreserveFloat32),
+        from_vk(Bool, vks.shaderSignedZeroInfNanPreserveFloat64),
+        from_vk(Bool, vks.shaderDenormPreserveFloat16),
+        from_vk(Bool, vks.shaderDenormPreserveFloat32),
+        from_vk(Bool, vks.shaderDenormPreserveFloat64),
+        from_vk(Bool, vks.shaderDenormFlushToZeroFloat16),
+        from_vk(Bool, vks.shaderDenormFlushToZeroFloat32),
+        from_vk(Bool, vks.shaderDenormFlushToZeroFloat64),
+        from_vk(Bool, vks.shaderRoundingModeRTEFloat16),
+        from_vk(Bool, vks.shaderRoundingModeRTEFloat32),
+        from_vk(Bool, vks.shaderRoundingModeRTEFloat64),
+        from_vk(Bool, vks.shaderRoundingModeRTZFloat16),
+        from_vk(Bool, vks.shaderRoundingModeRTZFloat32),
+        from_vk(Bool, vks.shaderRoundingModeRTZFloat64),
+        from_vk(UInt32, vks.maxUpdateAfterBindDescriptorsInAllPools),
+        from_vk(Bool, vks.shaderUniformBufferArrayNonUniformIndexingNative),
+        from_vk(Bool, vks.shaderSampledImageArrayNonUniformIndexingNative),
+        from_vk(Bool, vks.shaderStorageBufferArrayNonUniformIndexingNative),
+        from_vk(Bool, vks.shaderStorageImageArrayNonUniformIndexingNative),
+        from_vk(Bool, vks.shaderInputAttachmentArrayNonUniformIndexingNative),
+        from_vk(Bool, vks.robustBufferAccessUpdateAfterBind),
+        from_vk(Bool, vks.quadDivergentImplicitLod),
+        from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindSamplers),
+        from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindUniformBuffers),
+        from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindStorageBuffers),
+        from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindSampledImages),
+        from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindStorageImages),
+        from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindInputAttachments),
+        from_vk(UInt32, vks.maxPerStageUpdateAfterBindResources),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindSamplers),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindUniformBuffers),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindStorageBuffers),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindSampledImages),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindStorageImages),
+        from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindInputAttachments),
+        from_vk(ResolveModeFlags, vks.supportedDepthResolveModes),
+        from_vk(ResolveModeFlags, vks.supportedStencilResolveModes),
+        from_vk(Bool, vks.independentResolveNone),
+        from_vk(Bool, vks.independentResolve),
+        from_vk(Bool, vks.filterMinmaxSingleComponentFormats),
+        from_vk(Bool, vks.filterMinmaxImageComponentMapping),
+        from_vk(UInt64, vks.maxTimelineSemaphoreValueDifference),
+        from_vk(SampleCountFlags, vks.framebufferIntegerColorSampleCounts),
     )
-    SurfaceCapabilitiesKHR(vks)
-end
 
-"""
-Generic constructor.
-"""
-function SurfaceFormatKHR(format, color_space)
-    vks = VkSurfaceFormatKHR(format, color_space)
-    SurfaceFormatKHR(vks)
-end
+from_vk(T::Type{PhysicalDeviceVulkan12Properties}, x::VkPhysicalDeviceVulkan12Properties) =
+    PhysicalDeviceVulkan12Properties(x)
+PhysicalDeviceDriverProperties(vks::VkPhysicalDeviceDriverProperties) =
+    PhysicalDeviceDriverProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(DriverId, vks.driverID),
+        from_vk(String, vks.driverName),
+        from_vk(String, vks.driverInfo),
+        from_vk(ConformanceVersion, vks.conformanceVersion),
+    )
 
+from_vk(T::Type{PhysicalDeviceDriverProperties}, x::VkPhysicalDeviceDriverProperties) =
+    PhysicalDeviceDriverProperties(x)
+PhysicalDeviceFloatControlsProperties(vks::VkPhysicalDeviceFloatControlsProperties) =
+    PhysicalDeviceFloatControlsProperties(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(ShaderFloatControlsIndependence, vks.denormBehaviorIndependence),
+        from_vk(ShaderFloatControlsIndependence, vks.roundingModeIndependence),
+        from_vk(Bool, vks.shaderSignedZeroInfNanPreserveFloat16),
+        from_vk(Bool, vks.shaderSignedZeroInfNanPreserveFloat32),
+        from_vk(Bool, vks.shaderSignedZeroInfNanPreserveFloat64),
+        from_vk(Bool, vks.shaderDenormPreserveFloat16),
+        from_vk(Bool, vks.shaderDenormPreserveFloat32),
+        from_vk(Bool, vks.shaderDenormPreserveFloat64),
+        from_vk(Bool, vks.shaderDenormFlushToZeroFloat16),
+        from_vk(Bool, vks.shaderDenormFlushToZeroFloat32),
+        from_vk(Bool, vks.shaderDenormFlushToZeroFloat64),
+        from_vk(Bool, vks.shaderRoundingModeRTEFloat16),
+        from_vk(Bool, vks.shaderRoundingModeRTEFloat32),
+        from_vk(Bool, vks.shaderRoundingModeRTEFloat64),
+        from_vk(Bool, vks.shaderRoundingModeRTZFloat16),
+        from_vk(Bool, vks.shaderRoundingModeRTZFloat32),
+        from_vk(Bool, vks.shaderRoundingModeRTZFloat64),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceFloatControlsProperties},
+    x::VkPhysicalDeviceFloatControlsProperties,
+) = PhysicalDeviceFloatControlsProperties(x)
+
+PhysicalDeviceDescriptorIndexingProperties(
+    vks::VkPhysicalDeviceDescriptorIndexingProperties,
+) = PhysicalDeviceDescriptorIndexingProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxUpdateAfterBindDescriptorsInAllPools),
+    from_vk(Bool, vks.shaderUniformBufferArrayNonUniformIndexingNative),
+    from_vk(Bool, vks.shaderSampledImageArrayNonUniformIndexingNative),
+    from_vk(Bool, vks.shaderStorageBufferArrayNonUniformIndexingNative),
+    from_vk(Bool, vks.shaderStorageImageArrayNonUniformIndexingNative),
+    from_vk(Bool, vks.shaderInputAttachmentArrayNonUniformIndexingNative),
+    from_vk(Bool, vks.robustBufferAccessUpdateAfterBind),
+    from_vk(Bool, vks.quadDivergentImplicitLod),
+    from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindSamplers),
+    from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindUniformBuffers),
+    from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindStorageBuffers),
+    from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindSampledImages),
+    from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindStorageImages),
+    from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindInputAttachments),
+    from_vk(UInt32, vks.maxPerStageUpdateAfterBindResources),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindSamplers),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindUniformBuffers),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindStorageBuffers),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindSampledImages),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindStorageImages),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindInputAttachments),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceDescriptorIndexingProperties},
+    x::VkPhysicalDeviceDescriptorIndexingProperties,
+) = PhysicalDeviceDescriptorIndexingProperties(x)
+
+DescriptorSetVariableDescriptorCountLayoutSupport(
+    vks::VkDescriptorSetVariableDescriptorCountLayoutSupport,
+) = DescriptorSetVariableDescriptorCountLayoutSupport(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxVariableDescriptorCount),
+)
+
+from_vk(
+    T::Type{DescriptorSetVariableDescriptorCountLayoutSupport},
+    x::VkDescriptorSetVariableDescriptorCountLayoutSupport,
+) = DescriptorSetVariableDescriptorCountLayoutSupport(x)
+
+PhysicalDeviceDepthStencilResolveProperties(
+    vks::VkPhysicalDeviceDepthStencilResolveProperties,
+) = PhysicalDeviceDepthStencilResolveProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(ResolveModeFlags, vks.supportedDepthResolveModes),
+    from_vk(ResolveModeFlags, vks.supportedStencilResolveModes),
+    from_vk(Bool, vks.independentResolveNone),
+    from_vk(Bool, vks.independentResolve),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceDepthStencilResolveProperties},
+    x::VkPhysicalDeviceDepthStencilResolveProperties,
+) = PhysicalDeviceDepthStencilResolveProperties(x)
+
+PhysicalDeviceSamplerFilterMinmaxProperties(
+    vks::VkPhysicalDeviceSamplerFilterMinmaxProperties,
+) = PhysicalDeviceSamplerFilterMinmaxProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Bool, vks.filterMinmaxSingleComponentFormats),
+    from_vk(Bool, vks.filterMinmaxImageComponentMapping),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceSamplerFilterMinmaxProperties},
+    x::VkPhysicalDeviceSamplerFilterMinmaxProperties,
+) = PhysicalDeviceSamplerFilterMinmaxProperties(x)
+
+PhysicalDeviceTimelineSemaphoreProperties(
+    vks::VkPhysicalDeviceTimelineSemaphoreProperties,
+) = PhysicalDeviceTimelineSemaphoreProperties(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt64, vks.maxTimelineSemaphoreValueDifference),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceTimelineSemaphoreProperties},
+    x::VkPhysicalDeviceTimelineSemaphoreProperties,
+) = PhysicalDeviceTimelineSemaphoreProperties(x)
+
+SurfaceCapabilitiesKHR(vks::VkSurfaceCapabilitiesKHR) = SurfaceCapabilitiesKHR(
+    from_vk(UInt32, vks.minImageCount),
+    from_vk(UInt32, vks.maxImageCount),
+    from_vk(Extent2D, vks.currentExtent),
+    from_vk(Extent2D, vks.minImageExtent),
+    from_vk(Extent2D, vks.maxImageExtent),
+    from_vk(UInt32, vks.maxImageArrayLayers),
+    from_vk(SurfaceTransformFlagsKHR, vks.supportedTransforms),
+    from_vk(SurfaceTransformFlagBitsKHR, vks.currentTransform),
+    from_vk(CompositeAlphaFlagsKHR, vks.supportedCompositeAlpha),
+    from_vk(ImageUsageFlags, vks.supportedUsageFlags),
+)
+
+from_vk(T::Type{SurfaceCapabilitiesKHR}, x::VkSurfaceCapabilitiesKHR) =
+    SurfaceCapabilitiesKHR(x)
+SurfaceFormatKHR(vks::VkSurfaceFormatKHR) =
+    SurfaceFormatKHR(from_vk(Format, vks.format), from_vk(ColorSpaceKHR, vks.colorSpace))
+from_vk(T::Type{SurfaceFormatKHR}, x::VkSurfaceFormatKHR) = SurfaceFormatKHR(x)
+DeviceGroupPresentCapabilitiesKHR(vks::VkDeviceGroupPresentCapabilitiesKHR) =
+    DeviceGroupPresentCapabilitiesKHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(NTuple{32,UInt32}, vks.presentMask),
+        from_vk(DeviceGroupPresentModeFlagsKHR, vks.modes),
+    )
+
+from_vk(
+    T::Type{DeviceGroupPresentCapabilitiesKHR},
+    x::VkDeviceGroupPresentCapabilitiesKHR,
+) = DeviceGroupPresentCapabilitiesKHR(x)
 """
 Generic constructor.
 """
@@ -27444,49 +26192,66 @@ function DisplayModeParametersKHR(visible_region, refresh_rate)
     DisplayModeParametersKHR(vks)
 end
 
-"""
-Generic constructor.
-"""
-function DisplayModePropertiesKHR(display_mode, parameters)
-    vks = VkDisplayModePropertiesKHR(display_mode.handle, parameters.vks)
-    DisplayModePropertiesKHR(vks)
-end
-
-"""
-Generic constructor.
-"""
-function DisplayPlaneCapabilitiesKHR(
-    min_src_position,
-    max_src_position,
-    min_src_extent,
-    max_src_extent,
-    min_dst_position,
-    max_dst_position,
-    min_dst_extent,
-    max_dst_extent;
-    supported_alpha = 0,
+from_vk(T::Type{DisplayModeParametersKHR}, x::VkDisplayModeParametersKHR) =
+    DisplayModeParametersKHR(x.visibleRegion, x.refreshRate)
+DisplayModePropertiesKHR(vks::VkDisplayModePropertiesKHR) = DisplayModePropertiesKHR(
+    from_vk(DisplayModeKHR, vks.displayMode),
+    from_vk(DisplayModeParametersKHR, vks.parameters),
 )
-    vks = VkDisplayPlaneCapabilitiesKHR(
-        supported_alpha == 0 ? 0 : supported_alpha,
-        min_src_position.vks,
-        max_src_position.vks,
-        min_src_extent.vks,
-        max_src_extent.vks,
-        min_dst_position.vks,
-        max_dst_position.vks,
-        min_dst_extent.vks,
-        max_dst_extent.vks,
-    )
-    DisplayPlaneCapabilitiesKHR(vks)
-end
 
-"""
-Generic constructor.
-"""
-function DisplayPlanePropertiesKHR(current_display, current_stack_index)
-    vks = VkDisplayPlanePropertiesKHR(current_display.handle, current_stack_index)
-    DisplayPlanePropertiesKHR(vks)
-end
+from_vk(T::Type{DisplayModePropertiesKHR}, x::VkDisplayModePropertiesKHR) =
+    DisplayModePropertiesKHR(x)
+DisplayPlaneCapabilitiesKHR(vks::VkDisplayPlaneCapabilitiesKHR) =
+    DisplayPlaneCapabilitiesKHR(
+        from_vk(DisplayPlaneAlphaFlagsKHR, vks.supportedAlpha),
+        from_vk(Offset2D, vks.minSrcPosition),
+        from_vk(Offset2D, vks.maxSrcPosition),
+        from_vk(Extent2D, vks.minSrcExtent),
+        from_vk(Extent2D, vks.maxSrcExtent),
+        from_vk(Offset2D, vks.minDstPosition),
+        from_vk(Offset2D, vks.maxDstPosition),
+        from_vk(Extent2D, vks.minDstExtent),
+        from_vk(Extent2D, vks.maxDstExtent),
+    )
+
+from_vk(T::Type{DisplayPlaneCapabilitiesKHR}, x::VkDisplayPlaneCapabilitiesKHR) =
+    DisplayPlaneCapabilitiesKHR(x)
+DisplayPlanePropertiesKHR(vks::VkDisplayPlanePropertiesKHR) = DisplayPlanePropertiesKHR(
+    from_vk(DisplayKHR, vks.currentDisplay),
+    from_vk(UInt32, vks.currentStackIndex),
+)
+
+from_vk(T::Type{DisplayPlanePropertiesKHR}, x::VkDisplayPlanePropertiesKHR) =
+    DisplayPlanePropertiesKHR(x)
+DisplayPropertiesKHR(vks::VkDisplayPropertiesKHR) = DisplayPropertiesKHR(
+    from_vk(DisplayKHR, vks.display),
+    from_vk(String, vks.displayName),
+    from_vk(Extent2D, vks.physicalDimensions),
+    from_vk(Extent2D, vks.physicalResolution),
+    from_vk(SurfaceTransformFlagsKHR, vks.supportedTransforms),
+    from_vk(Bool, vks.planeReorderPossible),
+    from_vk(Bool, vks.persistentContent),
+)
+
+from_vk(T::Type{DisplayPropertiesKHR}, x::VkDisplayPropertiesKHR) = DisplayPropertiesKHR(x)
+MemoryFdPropertiesKHR(vks::VkMemoryFdPropertiesKHR) = MemoryFdPropertiesKHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.memoryTypeBits),
+)
+
+from_vk(T::Type{MemoryFdPropertiesKHR}, x::VkMemoryFdPropertiesKHR) =
+    MemoryFdPropertiesKHR(x)
+PhysicalDevicePushDescriptorPropertiesKHR(
+    vks::VkPhysicalDevicePushDescriptorPropertiesKHR,
+) = PhysicalDevicePushDescriptorPropertiesKHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxPushDescriptors),
+)
+
+from_vk(
+    T::Type{PhysicalDevicePushDescriptorPropertiesKHR},
+    x::VkPhysicalDevicePushDescriptorPropertiesKHR,
+) = PhysicalDevicePushDescriptorPropertiesKHR(x)
 
 """
 Generic constructor.
@@ -27496,6 +26261,51 @@ function RectLayerKHR(offset, extent, layer)
     RectLayerKHR(vks)
 end
 
+from_vk(T::Type{RectLayerKHR}, x::VkRectLayerKHR) =
+    RectLayerKHR(x.offset, x.extent, x.layer)
+SharedPresentSurfaceCapabilitiesKHR(vks::VkSharedPresentSurfaceCapabilitiesKHR) =
+    SharedPresentSurfaceCapabilitiesKHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(ImageUsageFlags, vks.sharedPresentSupportedUsageFlags),
+    )
+
+from_vk(
+    T::Type{SharedPresentSurfaceCapabilitiesKHR},
+    x::VkSharedPresentSurfaceCapabilitiesKHR,
+) = SharedPresentSurfaceCapabilitiesKHR(x)
+PhysicalDevicePerformanceQueryPropertiesKHR(
+    vks::VkPhysicalDevicePerformanceQueryPropertiesKHR,
+) = PhysicalDevicePerformanceQueryPropertiesKHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Bool, vks.allowCommandBufferQueryCopies),
+)
+
+from_vk(
+    T::Type{PhysicalDevicePerformanceQueryPropertiesKHR},
+    x::VkPhysicalDevicePerformanceQueryPropertiesKHR,
+) = PhysicalDevicePerformanceQueryPropertiesKHR(x)
+
+PerformanceCounterKHR(vks::VkPerformanceCounterKHR) = PerformanceCounterKHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(PerformanceCounterUnitKHR, vks.unit),
+    from_vk(PerformanceCounterScopeKHR, vks.scope),
+    from_vk(PerformanceCounterStorageKHR, vks.storage),
+    from_vk(String, vks.uuid),
+)
+
+from_vk(T::Type{PerformanceCounterKHR}, x::VkPerformanceCounterKHR) =
+    PerformanceCounterKHR(x)
+PerformanceCounterDescriptionKHR(vks::VkPerformanceCounterDescriptionKHR) =
+    PerformanceCounterDescriptionKHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(PerformanceCounterDescriptionFlagsKHR, vks.flags),
+        from_vk(String, vks.name),
+        from_vk(String, vks.category),
+        from_vk(String, vks.description),
+    )
+
+from_vk(T::Type{PerformanceCounterDescriptionKHR}, x::VkPerformanceCounterDescriptionKHR) =
+    PerformanceCounterDescriptionKHR(x)
 """
 Generic constructor.
 """
@@ -27504,76 +26314,165 @@ function PerformanceCounterResultKHR(int64)
     PerformanceCounterResultKHR(vks)
 end
 
-"""
-Generic constructor.
-"""
-function PipelineExecutableStatisticValueKHR(i64)
-    vks = VkPipelineExecutableStatisticValueKHR(i64)
-    PipelineExecutableStatisticValueKHR(vks)
-end
-
-"""
-Generic constructor.
-"""
-function ShaderResourceUsageAMD(
-    num_used_vgprs,
-    num_used_sgprs,
-    lds_size_per_local_work_group,
-    lds_usage_size_in_bytes,
-    scratch_mem_usage_in_bytes,
+from_vk(T::Type{PerformanceCounterResultKHR}, x::VkPerformanceCounterResultKHR) =
+    PerformanceCounterResultKHR(x.int64)
+SurfaceCapabilities2KHR(vks::VkSurfaceCapabilities2KHR) = SurfaceCapabilities2KHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(SurfaceCapabilitiesKHR, vks.surfaceCapabilities),
 )
-    vks = VkShaderResourceUsageAMD(
-        num_used_vgprs,
-        num_used_sgprs,
-        lds_size_per_local_work_group,
-        lds_usage_size_in_bytes,
-        scratch_mem_usage_in_bytes,
-    )
-    ShaderResourceUsageAMD(vks)
-end
 
-"""
-Generic constructor.
-"""
-function ShaderStatisticsInfoAMD(
-    shader_stage_mask,
-    resource_usage,
-    num_physical_vgprs,
-    num_physical_sgprs,
-    num_available_vgprs,
-    num_available_sgprs,
-    compute_work_group_size,
+from_vk(T::Type{SurfaceCapabilities2KHR}, x::VkSurfaceCapabilities2KHR) =
+    SurfaceCapabilities2KHR(x)
+SurfaceFormat2KHR(vks::VkSurfaceFormat2KHR) = SurfaceFormat2KHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(SurfaceFormatKHR, vks.surfaceFormat),
 )
-    vks = VkShaderStatisticsInfoAMD(
-        shader_stage_mask,
-        resource_usage.vks,
-        num_physical_vgprs,
-        num_physical_sgprs,
-        num_available_vgprs,
-        num_available_sgprs,
-        compute_work_group_size,
-    )
-    ShaderStatisticsInfoAMD(vks)
-end
 
-"""
-Generic constructor.
-"""
-function ExternalImageFormatPropertiesNV(
-    image_format_properties;
-    external_memory_features = 0,
-    export_from_imported_handle_types = 0,
-    compatible_handle_types = 0,
+from_vk(T::Type{SurfaceFormat2KHR}, x::VkSurfaceFormat2KHR) = SurfaceFormat2KHR(x)
+DisplayProperties2KHR(vks::VkDisplayProperties2KHR) = DisplayProperties2KHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(DisplayPropertiesKHR, vks.displayProperties),
 )
-    vks = VkExternalImageFormatPropertiesNV(
-        image_format_properties.vks,
-        external_memory_features == 0 ? 0 : external_memory_features,
-        export_from_imported_handle_types == 0 ? 0 : export_from_imported_handle_types,
-        compatible_handle_types == 0 ? 0 : compatible_handle_types,
-    )
-    ExternalImageFormatPropertiesNV(vks)
-end
 
+from_vk(T::Type{DisplayProperties2KHR}, x::VkDisplayProperties2KHR) =
+    DisplayProperties2KHR(x)
+DisplayPlaneProperties2KHR(vks::VkDisplayPlaneProperties2KHR) = DisplayPlaneProperties2KHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(DisplayPlanePropertiesKHR, vks.displayPlaneProperties),
+)
+
+from_vk(T::Type{DisplayPlaneProperties2KHR}, x::VkDisplayPlaneProperties2KHR) =
+    DisplayPlaneProperties2KHR(x)
+DisplayModeProperties2KHR(vks::VkDisplayModeProperties2KHR) = DisplayModeProperties2KHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(DisplayModePropertiesKHR, vks.displayModeProperties),
+)
+
+from_vk(T::Type{DisplayModeProperties2KHR}, x::VkDisplayModeProperties2KHR) =
+    DisplayModeProperties2KHR(x)
+DisplayPlaneCapabilities2KHR(vks::VkDisplayPlaneCapabilities2KHR) =
+    DisplayPlaneCapabilities2KHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(DisplayPlaneCapabilitiesKHR, vks.capabilities),
+    )
+
+from_vk(T::Type{DisplayPlaneCapabilities2KHR}, x::VkDisplayPlaneCapabilities2KHR) =
+    DisplayPlaneCapabilities2KHR(x)
+PipelineExecutablePropertiesKHR(vks::VkPipelineExecutablePropertiesKHR) =
+    PipelineExecutablePropertiesKHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(ShaderStageFlags, vks.stages),
+        from_vk(String, vks.name),
+        from_vk(String, vks.description),
+        from_vk(UInt32, vks.subgroupSize),
+    )
+
+from_vk(T::Type{PipelineExecutablePropertiesKHR}, x::VkPipelineExecutablePropertiesKHR) =
+    PipelineExecutablePropertiesKHR(x)
+PipelineExecutableStatisticValueKHR(vks::VkPipelineExecutableStatisticValueKHR) =
+    PipelineExecutableStatisticValueKHR(from_vk(Int64, vks.i64))
+from_vk(
+    T::Type{PipelineExecutableStatisticValueKHR},
+    x::VkPipelineExecutableStatisticValueKHR,
+) = PipelineExecutableStatisticValueKHR(x)
+PipelineExecutableStatisticKHR(vks::VkPipelineExecutableStatisticKHR) =
+    PipelineExecutableStatisticKHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(String, vks.name),
+        from_vk(String, vks.description),
+        from_vk(PipelineExecutableStatisticFormatKHR, vks.format),
+        from_vk(PipelineExecutableStatisticValueKHR, vks.value),
+    )
+
+from_vk(T::Type{PipelineExecutableStatisticKHR}, x::VkPipelineExecutableStatisticKHR) =
+    PipelineExecutableStatisticKHR(x)
+PipelineExecutableInternalRepresentationKHR(
+    vks::VkPipelineExecutableInternalRepresentationKHR,
+) = PipelineExecutableInternalRepresentationKHR(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(String, vks.name),
+    from_vk(String, vks.description),
+    from_vk(Bool, vks.isText),
+    from_vk(Ptr{Cvoid}, vks.pData),
+)
+
+from_vk(
+    T::Type{PipelineExecutableInternalRepresentationKHR},
+    x::VkPipelineExecutableInternalRepresentationKHR,
+) = PipelineExecutableInternalRepresentationKHR(x)
+
+PhysicalDeviceTransformFeedbackPropertiesEXT(
+    vks::VkPhysicalDeviceTransformFeedbackPropertiesEXT,
+) = PhysicalDeviceTransformFeedbackPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxTransformFeedbackStreams),
+    from_vk(UInt32, vks.maxTransformFeedbackBuffers),
+    from_vk(DeviceSize, vks.maxTransformFeedbackBufferSize),
+    from_vk(UInt32, vks.maxTransformFeedbackStreamDataSize),
+    from_vk(UInt32, vks.maxTransformFeedbackBufferDataSize),
+    from_vk(UInt32, vks.maxTransformFeedbackBufferDataStride),
+    from_vk(Bool, vks.transformFeedbackQueries),
+    from_vk(Bool, vks.transformFeedbackStreamsLinesTriangles),
+    from_vk(Bool, vks.transformFeedbackRasterizationStreamSelect),
+    from_vk(Bool, vks.transformFeedbackDraw),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceTransformFeedbackPropertiesEXT},
+    x::VkPhysicalDeviceTransformFeedbackPropertiesEXT,
+) = PhysicalDeviceTransformFeedbackPropertiesEXT(x)
+
+ImageViewAddressPropertiesNVX(vks::VkImageViewAddressPropertiesNVX) =
+    ImageViewAddressPropertiesNVX(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(DeviceAddress, vks.deviceAddress),
+        from_vk(DeviceSize, vks.size),
+    )
+
+from_vk(T::Type{ImageViewAddressPropertiesNVX}, x::VkImageViewAddressPropertiesNVX) =
+    ImageViewAddressPropertiesNVX(x)
+TextureLODGatherFormatPropertiesAMD(vks::VkTextureLODGatherFormatPropertiesAMD) =
+    TextureLODGatherFormatPropertiesAMD(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(Bool, vks.supportsTextureGatherLODBiasAMD),
+    )
+
+from_vk(
+    T::Type{TextureLODGatherFormatPropertiesAMD},
+    x::VkTextureLODGatherFormatPropertiesAMD,
+) = TextureLODGatherFormatPropertiesAMD(x)
+ShaderResourceUsageAMD(vks::VkShaderResourceUsageAMD) = ShaderResourceUsageAMD(
+    from_vk(UInt32, vks.numUsedVgprs),
+    from_vk(UInt32, vks.numUsedSgprs),
+    from_vk(UInt32, vks.ldsSizePerLocalWorkGroup),
+    from_vk(UInt, vks.ldsUsageSizeInBytes),
+    from_vk(UInt, vks.scratchMemUsageInBytes),
+)
+
+from_vk(T::Type{ShaderResourceUsageAMD}, x::VkShaderResourceUsageAMD) =
+    ShaderResourceUsageAMD(x)
+ShaderStatisticsInfoAMD(vks::VkShaderStatisticsInfoAMD) = ShaderStatisticsInfoAMD(
+    from_vk(ShaderStageFlags, vks.shaderStageMask),
+    from_vk(ShaderResourceUsageAMD, vks.resourceUsage),
+    from_vk(UInt32, vks.numPhysicalVgprs),
+    from_vk(UInt32, vks.numPhysicalSgprs),
+    from_vk(UInt32, vks.numAvailableVgprs),
+    from_vk(UInt32, vks.numAvailableSgprs),
+    from_vk(NTuple{3,UInt32}, vks.computeWorkGroupSize),
+)
+
+from_vk(T::Type{ShaderStatisticsInfoAMD}, x::VkShaderStatisticsInfoAMD) =
+    ShaderStatisticsInfoAMD(x)
+ExternalImageFormatPropertiesNV(vks::VkExternalImageFormatPropertiesNV) =
+    ExternalImageFormatPropertiesNV(
+        from_vk(ImageFormatProperties, vks.imageFormatProperties),
+        from_vk(ExternalMemoryFeatureFlagsNV, vks.externalMemoryFeatures),
+        from_vk(ExternalMemoryHandleTypeFlagsNV, vks.exportFromImportedHandleTypes),
+        from_vk(ExternalMemoryHandleTypeFlagsNV, vks.compatibleHandleTypes),
+    )
+
+from_vk(T::Type{ExternalImageFormatPropertiesNV}, x::VkExternalImageFormatPropertiesNV) =
+    ExternalImageFormatPropertiesNV(x)
 """
 Generic constructor.
 """
@@ -27582,34 +26481,40 @@ function ViewportWScalingNV(xcoeff, ycoeff)
     ViewportWScalingNV(vks)
 end
 
-"""
-Generic constructor.
-"""
-function RefreshCycleDurationGOOGLE(refresh_duration)
-    vks = VkRefreshCycleDurationGOOGLE(refresh_duration)
-    RefreshCycleDurationGOOGLE(vks)
-end
-
-"""
-Generic constructor.
-"""
-function PastPresentationTimingGOOGLE(
-    present_id,
-    desired_present_time,
-    actual_present_time,
-    earliest_present_time,
-    present_margin,
+from_vk(T::Type{ViewportWScalingNV}, x::VkViewportWScalingNV) =
+    ViewportWScalingNV(x.xcoeff, x.ycoeff)
+SurfaceCapabilities2EXT(vks::VkSurfaceCapabilities2EXT) = SurfaceCapabilities2EXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.minImageCount),
+    from_vk(UInt32, vks.maxImageCount),
+    from_vk(Extent2D, vks.currentExtent),
+    from_vk(Extent2D, vks.minImageExtent),
+    from_vk(Extent2D, vks.maxImageExtent),
+    from_vk(UInt32, vks.maxImageArrayLayers),
+    from_vk(SurfaceTransformFlagsKHR, vks.supportedTransforms),
+    from_vk(SurfaceTransformFlagBitsKHR, vks.currentTransform),
+    from_vk(CompositeAlphaFlagsKHR, vks.supportedCompositeAlpha),
+    from_vk(ImageUsageFlags, vks.supportedUsageFlags),
+    from_vk(SurfaceCounterFlagsEXT, vks.supportedSurfaceCounters),
 )
-    vks = VkPastPresentationTimingGOOGLE(
-        present_id,
-        desired_present_time,
-        actual_present_time,
-        earliest_present_time,
-        present_margin,
-    )
-    PastPresentationTimingGOOGLE(vks)
-end
 
+from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) =
+    SurfaceCapabilities2EXT(x)
+RefreshCycleDurationGOOGLE(vks::VkRefreshCycleDurationGOOGLE) =
+    RefreshCycleDurationGOOGLE(from_vk(UInt64, vks.refreshDuration))
+from_vk(T::Type{RefreshCycleDurationGOOGLE}, x::VkRefreshCycleDurationGOOGLE) =
+    RefreshCycleDurationGOOGLE(x)
+PastPresentationTimingGOOGLE(vks::VkPastPresentationTimingGOOGLE) =
+    PastPresentationTimingGOOGLE(
+        from_vk(UInt32, vks.presentID),
+        from_vk(UInt64, vks.desiredPresentTime),
+        from_vk(UInt64, vks.actualPresentTime),
+        from_vk(UInt64, vks.earliestPresentTime),
+        from_vk(UInt64, vks.presentMargin),
+    )
+
+from_vk(T::Type{PastPresentationTimingGOOGLE}, x::VkPastPresentationTimingGOOGLE) =
+    PastPresentationTimingGOOGLE(x)
 """
 Generic constructor.
 """
@@ -27617,6 +26522,20 @@ function PresentTimeGOOGLE(present_id, desired_present_time)
     vks = VkPresentTimeGOOGLE(present_id, desired_present_time)
     PresentTimeGOOGLE(vks)
 end
+
+from_vk(T::Type{PresentTimeGOOGLE}, x::VkPresentTimeGOOGLE) =
+    PresentTimeGOOGLE(x.presentID, x.desiredPresentTime)
+PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(
+    vks::VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX,
+) = PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Bool, vks.perViewPositionAllComponents),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX},
+    x::VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX,
+) = PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(x)
 
 """
 Generic constructor.
@@ -27626,6 +26545,40 @@ function ViewportSwizzleNV(x, y, z, w)
     ViewportSwizzleNV(vks)
 end
 
+from_vk(T::Type{ViewportSwizzleNV}, x::VkViewportSwizzleNV) =
+    ViewportSwizzleNV(x.x, x.y, x.z, x.w)
+PhysicalDeviceDiscardRectanglePropertiesEXT(
+    vks::VkPhysicalDeviceDiscardRectanglePropertiesEXT,
+) = PhysicalDeviceDiscardRectanglePropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxDiscardRectangles),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceDiscardRectanglePropertiesEXT},
+    x::VkPhysicalDeviceDiscardRectanglePropertiesEXT,
+) = PhysicalDeviceDiscardRectanglePropertiesEXT(x)
+
+PhysicalDeviceConservativeRasterizationPropertiesEXT(
+    vks::VkPhysicalDeviceConservativeRasterizationPropertiesEXT,
+) = PhysicalDeviceConservativeRasterizationPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Float32, vks.primitiveOverestimationSize),
+    from_vk(Float32, vks.maxExtraPrimitiveOverestimationSize),
+    from_vk(Float32, vks.extraPrimitiveOverestimationSizeGranularity),
+    from_vk(Bool, vks.primitiveUnderestimation),
+    from_vk(Bool, vks.conservativePointAndLineRasterization),
+    from_vk(Bool, vks.degenerateTrianglesRasterized),
+    from_vk(Bool, vks.degenerateLinesRasterized),
+    from_vk(Bool, vks.fullyCoveredFragmentShaderInputVariable),
+    from_vk(Bool, vks.conservativeRasterizationPostDepthCoverage),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceConservativeRasterizationPropertiesEXT},
+    x::VkPhysicalDeviceConservativeRasterizationPropertiesEXT,
+) = PhysicalDeviceConservativeRasterizationPropertiesEXT(x)
+
 """
 Generic constructor.
 """
@@ -27633,6 +26586,23 @@ function XYColorEXT(x, y)
     vks = VkXYColorEXT(x, y)
     XYColorEXT(vks)
 end
+
+from_vk(T::Type{XYColorEXT}, x::VkXYColorEXT) = XYColorEXT(x.x, x.y)
+PhysicalDeviceInlineUniformBlockPropertiesEXT(
+    vks::VkPhysicalDeviceInlineUniformBlockPropertiesEXT,
+) = PhysicalDeviceInlineUniformBlockPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxInlineUniformBlockSize),
+    from_vk(UInt32, vks.maxPerStageDescriptorInlineUniformBlocks),
+    from_vk(UInt32, vks.maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks),
+    from_vk(UInt32, vks.maxDescriptorSetInlineUniformBlocks),
+    from_vk(UInt32, vks.maxDescriptorSetUpdateAfterBindInlineUniformBlocks),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceInlineUniformBlockPropertiesEXT},
+    x::VkPhysicalDeviceInlineUniformBlockPropertiesEXT,
+) = PhysicalDeviceInlineUniformBlockPropertiesEXT(x)
 
 """
 Generic constructor.
@@ -27642,6 +26612,7 @@ function SampleLocationEXT(x, y)
     SampleLocationEXT(vks)
 end
 
+from_vk(T::Type{SampleLocationEXT}, x::VkSampleLocationEXT) = SampleLocationEXT(x.x, x.y)
 """
 Generic constructor.
 """
@@ -27649,6 +26620,9 @@ function AttachmentSampleLocationsEXT(attachment_index, sample_locations_info)
     vks = VkAttachmentSampleLocationsEXT(attachment_index, sample_locations_info.vks)
     AttachmentSampleLocationsEXT(vks)
 end
+
+from_vk(T::Type{AttachmentSampleLocationsEXT}, x::VkAttachmentSampleLocationsEXT) =
+    AttachmentSampleLocationsEXT(x.attachmentIndex, x.sampleLocationsInfo)
 
 """
 Generic constructor.
@@ -27658,21 +26632,103 @@ function SubpassSampleLocationsEXT(subpass_index, sample_locations_info)
     SubpassSampleLocationsEXT(vks)
 end
 
-"""
-Generic constructor.
-"""
-function DrmFormatModifierPropertiesEXT(
-    drm_format_modifier,
-    drm_format_modifier_plane_count,
-    drm_format_modifier_tiling_features,
+from_vk(T::Type{SubpassSampleLocationsEXT}, x::VkSubpassSampleLocationsEXT) =
+    SubpassSampleLocationsEXT(x.subpassIndex, x.sampleLocationsInfo)
+PhysicalDeviceSampleLocationsPropertiesEXT(
+    vks::VkPhysicalDeviceSampleLocationsPropertiesEXT,
+) = PhysicalDeviceSampleLocationsPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(SampleCountFlags, vks.sampleLocationSampleCounts),
+    from_vk(Extent2D, vks.maxSampleLocationGridSize),
+    from_vk(NTuple{2,Cfloat}, vks.sampleLocationCoordinateRange),
+    from_vk(UInt32, vks.sampleLocationSubPixelBits),
+    from_vk(Bool, vks.variableSampleLocations),
 )
-    vks = VkDrmFormatModifierPropertiesEXT(
-        drm_format_modifier,
-        drm_format_modifier_plane_count,
-        drm_format_modifier_tiling_features,
+
+from_vk(
+    T::Type{PhysicalDeviceSampleLocationsPropertiesEXT},
+    x::VkPhysicalDeviceSampleLocationsPropertiesEXT,
+) = PhysicalDeviceSampleLocationsPropertiesEXT(x)
+
+MultisamplePropertiesEXT(vks::VkMultisamplePropertiesEXT) = MultisamplePropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Extent2D, vks.maxSampleLocationGridSize),
+)
+
+from_vk(T::Type{MultisamplePropertiesEXT}, x::VkMultisamplePropertiesEXT) =
+    MultisamplePropertiesEXT(x)
+PhysicalDeviceBlendOperationAdvancedPropertiesEXT(
+    vks::VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT,
+) = PhysicalDeviceBlendOperationAdvancedPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.advancedBlendMaxColorAttachments),
+    from_vk(Bool, vks.advancedBlendIndependentBlend),
+    from_vk(Bool, vks.advancedBlendNonPremultipliedSrcColor),
+    from_vk(Bool, vks.advancedBlendNonPremultipliedDstColor),
+    from_vk(Bool, vks.advancedBlendCorrelatedOverlap),
+    from_vk(Bool, vks.advancedBlendAllOperations),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceBlendOperationAdvancedPropertiesEXT},
+    x::VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT,
+) = PhysicalDeviceBlendOperationAdvancedPropertiesEXT(x)
+
+PhysicalDeviceShaderSMBuiltinsPropertiesNV(
+    vks::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV,
+) = PhysicalDeviceShaderSMBuiltinsPropertiesNV(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.shaderSMCount),
+    from_vk(UInt32, vks.shaderWarpsPerSM),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceShaderSMBuiltinsPropertiesNV},
+    x::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV,
+) = PhysicalDeviceShaderSMBuiltinsPropertiesNV(x)
+
+DrmFormatModifierPropertiesEXT(vks::VkDrmFormatModifierPropertiesEXT) =
+    DrmFormatModifierPropertiesEXT(
+        from_vk(UInt64, vks.drmFormatModifier),
+        from_vk(UInt32, vks.drmFormatModifierPlaneCount),
+        from_vk(FormatFeatureFlags, vks.drmFormatModifierTilingFeatures),
     )
-    DrmFormatModifierPropertiesEXT(vks)
-end
+
+from_vk(T::Type{DrmFormatModifierPropertiesEXT}, x::VkDrmFormatModifierPropertiesEXT) =
+    DrmFormatModifierPropertiesEXT(x)
+DrmFormatModifierPropertiesListEXT(vks::VkDrmFormatModifierPropertiesListEXT) =
+    DrmFormatModifierPropertiesListEXT(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(Array{DrmFormatModifierPropertiesEXT}, vks.pDrmFormatModifierProperties),
+    )
+
+from_vk(
+    T::Type{DrmFormatModifierPropertiesListEXT},
+    x::VkDrmFormatModifierPropertiesListEXT,
+) = DrmFormatModifierPropertiesListEXT(x)
+ImageDrmFormatModifierPropertiesEXT(vks::VkImageDrmFormatModifierPropertiesEXT) =
+    ImageDrmFormatModifierPropertiesEXT(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt64, vks.drmFormatModifier),
+    )
+
+from_vk(
+    T::Type{ImageDrmFormatModifierPropertiesEXT},
+    x::VkImageDrmFormatModifierPropertiesEXT,
+) = ImageDrmFormatModifierPropertiesEXT(x)
+PhysicalDeviceShadingRateImagePropertiesNV(
+    vks::VkPhysicalDeviceShadingRateImagePropertiesNV,
+) = PhysicalDeviceShadingRateImagePropertiesNV(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Extent2D, vks.shadingRateTexelSize),
+    from_vk(UInt32, vks.shadingRatePaletteSize),
+    from_vk(UInt32, vks.shadingRateMaxCoarseSamples),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceShadingRateImagePropertiesNV},
+    x::VkPhysicalDeviceShadingRateImagePropertiesNV,
+) = PhysicalDeviceShadingRateImagePropertiesNV(x)
 
 """
 Generic constructor.
@@ -27682,6 +26738,8 @@ function CoarseSampleLocationNV(pixel_x, pixel_y, sample)
     CoarseSampleLocationNV(vks)
 end
 
+from_vk(T::Type{CoarseSampleLocationNV}, x::VkCoarseSampleLocationNV) =
+    CoarseSampleLocationNV(x.pixelX, x.pixelY, x.sample)
 """
 Generic constructor.
 """
@@ -27689,6 +26747,25 @@ function GeometryDataNV(triangles, aabbs)
     vks = VkGeometryDataNV(triangles.vks, aabbs.vks)
     GeometryDataNV(vks)
 end
+
+from_vk(T::Type{GeometryDataNV}, x::VkGeometryDataNV) = GeometryDataNV(x.triangles, x.aabbs)
+PhysicalDeviceRayTracingPropertiesNV(vks::VkPhysicalDeviceRayTracingPropertiesNV) =
+    PhysicalDeviceRayTracingPropertiesNV(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.shaderGroupHandleSize),
+        from_vk(UInt32, vks.maxRecursionDepth),
+        from_vk(UInt32, vks.maxShaderGroupStride),
+        from_vk(UInt32, vks.shaderGroupBaseAlignment),
+        from_vk(UInt64, vks.maxGeometryCount),
+        from_vk(UInt64, vks.maxInstanceCount),
+        from_vk(UInt64, vks.maxTriangleCount),
+        from_vk(UInt32, vks.maxDescriptorSetAccelerationStructures),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceRayTracingPropertiesNV},
+    x::VkPhysicalDeviceRayTracingPropertiesNV,
+) = PhysicalDeviceRayTracingPropertiesNV(x)
 
 """
 Generic constructor.
@@ -27698,6 +26775,7 @@ function TransformMatrixKHR(matrix)
     TransformMatrixKHR(vks)
 end
 
+from_vk(T::Type{TransformMatrixKHR}, x::VkTransformMatrixKHR) = TransformMatrixKHR(x.matrix)
 """
 Generic constructor.
 """
@@ -27706,6 +26784,8 @@ function AabbPositionsKHR(min_x, min_y, min_z, max_x, max_y, max_z)
     AabbPositionsKHR(vks)
 end
 
+from_vk(T::Type{AabbPositionsKHR}, x::VkAabbPositionsKHR) =
+    AabbPositionsKHR(x.minX, x.minY, x.minZ, x.maxX, x.maxY, x.maxZ)
 """
 Generic constructor.
 """
@@ -27728,6 +26808,85 @@ function AccelerationStructureInstanceKHR(
     AccelerationStructureInstanceKHR(vks)
 end
 
+from_vk(T::Type{AccelerationStructureInstanceKHR}, x::VkAccelerationStructureInstanceKHR) =
+    AccelerationStructureInstanceKHR(
+        x.transform,
+        x.instanceCustomIndex,
+        x.mask,
+        x.instanceShaderBindingTableRecordOffset,
+        x.flags,
+        x.accelerationStructureReference,
+    )
+
+FilterCubicImageViewImageFormatPropertiesEXT(
+    vks::VkFilterCubicImageViewImageFormatPropertiesEXT,
+) = FilterCubicImageViewImageFormatPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Bool, vks.filterCubic),
+    from_vk(Bool, vks.filterCubicMinmax),
+)
+
+from_vk(
+    T::Type{FilterCubicImageViewImageFormatPropertiesEXT},
+    x::VkFilterCubicImageViewImageFormatPropertiesEXT,
+) = FilterCubicImageViewImageFormatPropertiesEXT(x)
+
+MemoryHostPointerPropertiesEXT(vks::VkMemoryHostPointerPropertiesEXT) =
+    MemoryHostPointerPropertiesEXT(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.memoryTypeBits),
+    )
+
+from_vk(T::Type{MemoryHostPointerPropertiesEXT}, x::VkMemoryHostPointerPropertiesEXT) =
+    MemoryHostPointerPropertiesEXT(x)
+PhysicalDeviceExternalMemoryHostPropertiesEXT(
+    vks::VkPhysicalDeviceExternalMemoryHostPropertiesEXT,
+) = PhysicalDeviceExternalMemoryHostPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(DeviceSize, vks.minImportedHostPointerAlignment),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceExternalMemoryHostPropertiesEXT},
+    x::VkPhysicalDeviceExternalMemoryHostPropertiesEXT,
+) = PhysicalDeviceExternalMemoryHostPropertiesEXT(x)
+
+PhysicalDeviceShaderCorePropertiesAMD(vks::VkPhysicalDeviceShaderCorePropertiesAMD) =
+    PhysicalDeviceShaderCorePropertiesAMD(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.shaderEngineCount),
+        from_vk(UInt32, vks.shaderArraysPerEngineCount),
+        from_vk(UInt32, vks.computeUnitsPerShaderArray),
+        from_vk(UInt32, vks.simdPerComputeUnit),
+        from_vk(UInt32, vks.wavefrontsPerSimd),
+        from_vk(UInt32, vks.wavefrontSize),
+        from_vk(UInt32, vks.sgprsPerSimd),
+        from_vk(UInt32, vks.minSgprAllocation),
+        from_vk(UInt32, vks.maxSgprAllocation),
+        from_vk(UInt32, vks.sgprAllocationGranularity),
+        from_vk(UInt32, vks.vgprsPerSimd),
+        from_vk(UInt32, vks.minVgprAllocation),
+        from_vk(UInt32, vks.maxVgprAllocation),
+        from_vk(UInt32, vks.vgprAllocationGranularity),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceShaderCorePropertiesAMD},
+    x::VkPhysicalDeviceShaderCorePropertiesAMD,
+) = PhysicalDeviceShaderCorePropertiesAMD(x)
+
+PhysicalDeviceVertexAttributeDivisorPropertiesEXT(
+    vks::VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT,
+) = PhysicalDeviceVertexAttributeDivisorPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxVertexAttribDivisor),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceVertexAttributeDivisorPropertiesEXT},
+    x::VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT,
+) = PhysicalDeviceVertexAttributeDivisorPropertiesEXT(x)
+
 """
 Generic constructor.
 """
@@ -27736,13 +26895,41 @@ function VertexInputBindingDivisorDescriptionEXT(binding, divisor)
     VertexInputBindingDivisorDescriptionEXT(vks)
 end
 
-"""
-Generic constructor.
-"""
-function PipelineCreationFeedbackEXT(flags, duration)
-    vks = VkPipelineCreationFeedbackEXT(flags, duration)
-    PipelineCreationFeedbackEXT(vks)
-end
+from_vk(
+    T::Type{VertexInputBindingDivisorDescriptionEXT},
+    x::VkVertexInputBindingDivisorDescriptionEXT,
+) = VertexInputBindingDivisorDescriptionEXT(x.binding, x.divisor)
+
+PipelineCreationFeedbackEXT(vks::VkPipelineCreationFeedbackEXT) =
+    PipelineCreationFeedbackEXT(
+        from_vk(PipelineCreationFeedbackFlagsEXT, vks.flags),
+        from_vk(UInt64, vks.duration),
+    )
+
+from_vk(T::Type{PipelineCreationFeedbackEXT}, x::VkPipelineCreationFeedbackEXT) =
+    PipelineCreationFeedbackEXT(x)
+PhysicalDeviceMeshShaderPropertiesNV(vks::VkPhysicalDeviceMeshShaderPropertiesNV) =
+    PhysicalDeviceMeshShaderPropertiesNV(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.maxDrawMeshTasksCount),
+        from_vk(UInt32, vks.maxTaskWorkGroupInvocations),
+        from_vk(NTuple{3,UInt32}, vks.maxTaskWorkGroupSize),
+        from_vk(UInt32, vks.maxTaskTotalMemorySize),
+        from_vk(UInt32, vks.maxTaskOutputCount),
+        from_vk(UInt32, vks.maxMeshWorkGroupInvocations),
+        from_vk(NTuple{3,UInt32}, vks.maxMeshWorkGroupSize),
+        from_vk(UInt32, vks.maxMeshTotalMemorySize),
+        from_vk(UInt32, vks.maxMeshOutputVertices),
+        from_vk(UInt32, vks.maxMeshOutputPrimitives),
+        from_vk(UInt32, vks.maxMeshMultiviewViewCount),
+        from_vk(UInt32, vks.meshOutputPerVertexGranularity),
+        from_vk(UInt32, vks.meshOutputPerPrimitiveGranularity),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceMeshShaderPropertiesNV},
+    x::VkPhysicalDeviceMeshShaderPropertiesNV,
+) = PhysicalDeviceMeshShaderPropertiesNV(x)
 
 """
 Generic constructor.
@@ -27752,6 +26939,25 @@ function DrawMeshTasksIndirectCommandNV(task_count, first_task)
     DrawMeshTasksIndirectCommandNV(vks)
 end
 
+from_vk(T::Type{DrawMeshTasksIndirectCommandNV}, x::VkDrawMeshTasksIndirectCommandNV) =
+    DrawMeshTasksIndirectCommandNV(x.taskCount, x.firstTask)
+QueueFamilyCheckpointPropertiesNV(vks::VkQueueFamilyCheckpointPropertiesNV) =
+    QueueFamilyCheckpointPropertiesNV(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(PipelineStageFlags, vks.checkpointExecutionStageMask),
+    )
+
+from_vk(
+    T::Type{QueueFamilyCheckpointPropertiesNV},
+    x::VkQueueFamilyCheckpointPropertiesNV,
+) = QueueFamilyCheckpointPropertiesNV(x)
+CheckpointDataNV(vks::VkCheckpointDataNV) = CheckpointDataNV(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(PipelineStageFlagBits, vks.stage),
+    from_vk(Ptr{Cvoid}, vks.pCheckpointMarker),
+)
+
+from_vk(T::Type{CheckpointDataNV}, x::VkCheckpointDataNV) = CheckpointDataNV(x)
 """
 Generic constructor.
 """
@@ -27760,6 +26966,8 @@ function PerformanceValueDataINTEL(value64)
     PerformanceValueDataINTEL(vks)
 end
 
+from_vk(T::Type{PerformanceValueDataINTEL}, x::VkPerformanceValueDataINTEL) =
+    PerformanceValueDataINTEL(x.value64)
 """
 Generic constructor.
 """
@@ -27767,6 +26975,168 @@ function PerformanceValueINTEL(type, data)
     vks = VkPerformanceValueINTEL(type, data.vks)
     PerformanceValueINTEL(vks)
 end
+
+from_vk(T::Type{PerformanceValueINTEL}, x::VkPerformanceValueINTEL) =
+    PerformanceValueINTEL(x.type, x.data)
+PhysicalDevicePCIBusInfoPropertiesEXT(vks::VkPhysicalDevicePCIBusInfoPropertiesEXT) =
+    PhysicalDevicePCIBusInfoPropertiesEXT(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.pciDomain),
+        from_vk(UInt32, vks.pciBus),
+        from_vk(UInt32, vks.pciDevice),
+        from_vk(UInt32, vks.pciFunction),
+    )
+
+from_vk(
+    T::Type{PhysicalDevicePCIBusInfoPropertiesEXT},
+    x::VkPhysicalDevicePCIBusInfoPropertiesEXT,
+) = PhysicalDevicePCIBusInfoPropertiesEXT(x)
+
+DisplayNativeHdrSurfaceCapabilitiesAMD(vks::VkDisplayNativeHdrSurfaceCapabilitiesAMD) =
+    DisplayNativeHdrSurfaceCapabilitiesAMD(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(Bool, vks.localDimmingSupport),
+    )
+
+from_vk(
+    T::Type{DisplayNativeHdrSurfaceCapabilitiesAMD},
+    x::VkDisplayNativeHdrSurfaceCapabilitiesAMD,
+) = DisplayNativeHdrSurfaceCapabilitiesAMD(x)
+
+PhysicalDeviceFragmentDensityMapPropertiesEXT(
+    vks::VkPhysicalDeviceFragmentDensityMapPropertiesEXT,
+) = PhysicalDeviceFragmentDensityMapPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Extent2D, vks.minFragmentDensityTexelSize),
+    from_vk(Extent2D, vks.maxFragmentDensityTexelSize),
+    from_vk(Bool, vks.fragmentDensityInvocations),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceFragmentDensityMapPropertiesEXT},
+    x::VkPhysicalDeviceFragmentDensityMapPropertiesEXT,
+) = PhysicalDeviceFragmentDensityMapPropertiesEXT(x)
+
+PhysicalDeviceSubgroupSizeControlPropertiesEXT(
+    vks::VkPhysicalDeviceSubgroupSizeControlPropertiesEXT,
+) = PhysicalDeviceSubgroupSizeControlPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.minSubgroupSize),
+    from_vk(UInt32, vks.maxSubgroupSize),
+    from_vk(UInt32, vks.maxComputeWorkgroupSubgroups),
+    from_vk(ShaderStageFlags, vks.requiredSubgroupSizeStages),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceSubgroupSizeControlPropertiesEXT},
+    x::VkPhysicalDeviceSubgroupSizeControlPropertiesEXT,
+) = PhysicalDeviceSubgroupSizeControlPropertiesEXT(x)
+
+PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(
+    vks::VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT,
+) = PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.requiredSubgroupSize),
+)
+
+from_vk(
+    T::Type{PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT},
+    x::VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT,
+) = PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(x)
+
+PhysicalDeviceShaderCoreProperties2AMD(vks::VkPhysicalDeviceShaderCoreProperties2AMD) =
+    PhysicalDeviceShaderCoreProperties2AMD(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(ShaderCorePropertiesFlagsAMD, vks.shaderCoreFeatures),
+        from_vk(UInt32, vks.activeComputeUnitCount),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceShaderCoreProperties2AMD},
+    x::VkPhysicalDeviceShaderCoreProperties2AMD,
+) = PhysicalDeviceShaderCoreProperties2AMD(x)
+
+PhysicalDeviceMemoryBudgetPropertiesEXT(vks::VkPhysicalDeviceMemoryBudgetPropertiesEXT) =
+    PhysicalDeviceMemoryBudgetPropertiesEXT(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(NTuple{16,VkDeviceSize}, vks.heapBudget),
+        from_vk(NTuple{16,VkDeviceSize}, vks.heapUsage),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceMemoryBudgetPropertiesEXT},
+    x::VkPhysicalDeviceMemoryBudgetPropertiesEXT,
+) = PhysicalDeviceMemoryBudgetPropertiesEXT(x)
+
+PhysicalDeviceToolPropertiesEXT(vks::VkPhysicalDeviceToolPropertiesEXT) =
+    PhysicalDeviceToolPropertiesEXT(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(String, vks.name),
+        from_vk(String, vks.version),
+        from_vk(ToolPurposeFlagsEXT, vks.purposes),
+        from_vk(String, vks.description),
+        from_vk(String, vks.layer),
+    )
+
+from_vk(T::Type{PhysicalDeviceToolPropertiesEXT}, x::VkPhysicalDeviceToolPropertiesEXT) =
+    PhysicalDeviceToolPropertiesEXT(x)
+PhysicalDeviceCooperativeMatrixPropertiesNV(
+    vks::VkPhysicalDeviceCooperativeMatrixPropertiesNV,
+) = PhysicalDeviceCooperativeMatrixPropertiesNV(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(ShaderStageFlags, vks.cooperativeMatrixSupportedStages),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceCooperativeMatrixPropertiesNV},
+    x::VkPhysicalDeviceCooperativeMatrixPropertiesNV,
+) = PhysicalDeviceCooperativeMatrixPropertiesNV(x)
+
+FramebufferMixedSamplesCombinationNV(vks::VkFramebufferMixedSamplesCombinationNV) =
+    FramebufferMixedSamplesCombinationNV(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(CoverageReductionModeNV, vks.coverageReductionMode),
+        from_vk(SampleCountFlagBits, vks.rasterizationSamples),
+        from_vk(SampleCountFlags, vks.depthStencilSamples),
+        from_vk(SampleCountFlags, vks.colorSamples),
+    )
+
+from_vk(
+    T::Type{FramebufferMixedSamplesCombinationNV},
+    x::VkFramebufferMixedSamplesCombinationNV,
+) = FramebufferMixedSamplesCombinationNV(x)
+
+PhysicalDeviceLineRasterizationPropertiesEXT(
+    vks::VkPhysicalDeviceLineRasterizationPropertiesEXT,
+) = PhysicalDeviceLineRasterizationPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.lineSubPixelPrecisionBits),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceLineRasterizationPropertiesEXT},
+    x::VkPhysicalDeviceLineRasterizationPropertiesEXT,
+) = PhysicalDeviceLineRasterizationPropertiesEXT(x)
+
+PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(
+    vks::VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV,
+) = PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxGraphicsShaderGroupCount),
+    from_vk(UInt32, vks.maxIndirectSequenceCount),
+    from_vk(UInt32, vks.maxIndirectCommandsTokenCount),
+    from_vk(UInt32, vks.maxIndirectCommandsStreamCount),
+    from_vk(UInt32, vks.maxIndirectCommandsTokenOffset),
+    from_vk(UInt32, vks.maxIndirectCommandsStreamStride),
+    from_vk(UInt32, vks.minSequencesCountBufferOffsetAlignment),
+    from_vk(UInt32, vks.minSequencesIndexBufferOffsetAlignment),
+    from_vk(UInt32, vks.minIndirectCommandsBufferOffsetAlignment),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceDeviceGeneratedCommandsPropertiesNV},
+    x::VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV,
+) = PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(x)
 
 """
 Generic constructor.
@@ -27776,6 +27146,8 @@ function BindShaderGroupIndirectCommandNV(group_index)
     BindShaderGroupIndirectCommandNV(vks)
 end
 
+from_vk(T::Type{BindShaderGroupIndirectCommandNV}, x::VkBindShaderGroupIndirectCommandNV) =
+    BindShaderGroupIndirectCommandNV(x.groupIndex)
 """
 Generic constructor.
 """
@@ -27783,6 +27155,9 @@ function BindIndexBufferIndirectCommandNV(buffer_address, size, index_type)
     vks = VkBindIndexBufferIndirectCommandNV(buffer_address, size, index_type)
     BindIndexBufferIndirectCommandNV(vks)
 end
+
+from_vk(T::Type{BindIndexBufferIndirectCommandNV}, x::VkBindIndexBufferIndirectCommandNV) =
+    BindIndexBufferIndirectCommandNV(x.bufferAddress, x.size, x.indexType)
 
 """
 Generic constructor.
@@ -27792,6 +27167,11 @@ function BindVertexBufferIndirectCommandNV(buffer_address, size, stride)
     BindVertexBufferIndirectCommandNV(vks)
 end
 
+from_vk(
+    T::Type{BindVertexBufferIndirectCommandNV},
+    x::VkBindVertexBufferIndirectCommandNV,
+) = BindVertexBufferIndirectCommandNV(x.bufferAddress, x.size, x.stride)
+
 """
 Generic constructor.
 """
@@ -27800,6 +27180,8 @@ function SetStateFlagsIndirectCommandNV(data)
     SetStateFlagsIndirectCommandNV(vks)
 end
 
+from_vk(T::Type{SetStateFlagsIndirectCommandNV}, x::VkSetStateFlagsIndirectCommandNV) =
+    SetStateFlagsIndirectCommandNV(x.data)
 """
 Generic constructor.
 """
@@ -27808,6 +27190,111 @@ function IndirectCommandsStreamNV(buffer, offset)
     IndirectCommandsStreamNV(vks)
 end
 
+from_vk(T::Type{IndirectCommandsStreamNV}, x::VkIndirectCommandsStreamNV) =
+    IndirectCommandsStreamNV(x.buffer, x.offset)
+PhysicalDeviceTexelBufferAlignmentPropertiesEXT(
+    vks::VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT,
+) = PhysicalDeviceTexelBufferAlignmentPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(DeviceSize, vks.storageTexelBufferOffsetAlignmentBytes),
+    from_vk(Bool, vks.storageTexelBufferOffsetSingleTexelAlignment),
+    from_vk(DeviceSize, vks.uniformTexelBufferOffsetAlignmentBytes),
+    from_vk(Bool, vks.uniformTexelBufferOffsetSingleTexelAlignment),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceTexelBufferAlignmentPropertiesEXT},
+    x::VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT,
+) = PhysicalDeviceTexelBufferAlignmentPropertiesEXT(x)
+
+PhysicalDeviceRobustness2PropertiesEXT(vks::VkPhysicalDeviceRobustness2PropertiesEXT) =
+    PhysicalDeviceRobustness2PropertiesEXT(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(DeviceSize, vks.robustStorageBufferAccessSizeAlignment),
+        from_vk(DeviceSize, vks.robustUniformBufferAccessSizeAlignment),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceRobustness2PropertiesEXT},
+    x::VkPhysicalDeviceRobustness2PropertiesEXT,
+) = PhysicalDeviceRobustness2PropertiesEXT(x)
+
+PhysicalDeviceCustomBorderColorPropertiesEXT(
+    vks::VkPhysicalDeviceCustomBorderColorPropertiesEXT,
+) = PhysicalDeviceCustomBorderColorPropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(UInt32, vks.maxCustomBorderColorSamplers),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceCustomBorderColorPropertiesEXT},
+    x::VkPhysicalDeviceCustomBorderColorPropertiesEXT,
+) = PhysicalDeviceCustomBorderColorPropertiesEXT(x)
+
+PhysicalDeviceFragmentDensityMap2PropertiesEXT(
+    vks::VkPhysicalDeviceFragmentDensityMap2PropertiesEXT,
+) = PhysicalDeviceFragmentDensityMap2PropertiesEXT(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Bool, vks.subsampledLoads),
+    from_vk(Bool, vks.subsampledCoarseReconstructionEarlyAccess),
+    from_vk(UInt32, vks.maxSubsampledArrayLayers),
+    from_vk(UInt32, vks.maxDescriptorSetSubsampledSamplers),
+)
+
+from_vk(
+    T::Type{PhysicalDeviceFragmentDensityMap2PropertiesEXT},
+    x::VkPhysicalDeviceFragmentDensityMap2PropertiesEXT,
+) = PhysicalDeviceFragmentDensityMap2PropertiesEXT(x)
+
+AndroidHardwareBufferUsageANDROID(vks::VkAndroidHardwareBufferUsageANDROID) =
+    AndroidHardwareBufferUsageANDROID(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt64, vks.androidHardwareBufferUsage),
+    )
+
+from_vk(
+    T::Type{AndroidHardwareBufferUsageANDROID},
+    x::VkAndroidHardwareBufferUsageANDROID,
+) = AndroidHardwareBufferUsageANDROID(x)
+AndroidHardwareBufferPropertiesANDROID(vks::VkAndroidHardwareBufferPropertiesANDROID) =
+    AndroidHardwareBufferPropertiesANDROID(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(DeviceSize, vks.allocationSize),
+        from_vk(UInt32, vks.memoryTypeBits),
+    )
+
+from_vk(
+    T::Type{AndroidHardwareBufferPropertiesANDROID},
+    x::VkAndroidHardwareBufferPropertiesANDROID,
+) = AndroidHardwareBufferPropertiesANDROID(x)
+
+AndroidHardwareBufferFormatPropertiesANDROID(
+    vks::VkAndroidHardwareBufferFormatPropertiesANDROID,
+) = AndroidHardwareBufferFormatPropertiesANDROID(
+    from_vk(Ptr{Cvoid}, vks.pNext),
+    from_vk(Format, vks.format),
+    from_vk(UInt64, vks.externalFormat),
+    from_vk(FormatFeatureFlags, vks.formatFeatures),
+    from_vk(ComponentMapping, vks.samplerYcbcrConversionComponents),
+    from_vk(SamplerYcbcrModelConversion, vks.suggestedYcbcrModel),
+    from_vk(SamplerYcbcrRange, vks.suggestedYcbcrRange),
+    from_vk(ChromaLocation, vks.suggestedXChromaOffset),
+    from_vk(ChromaLocation, vks.suggestedYChromaOffset),
+)
+
+from_vk(
+    T::Type{AndroidHardwareBufferFormatPropertiesANDROID},
+    x::VkAndroidHardwareBufferFormatPropertiesANDROID,
+) = AndroidHardwareBufferFormatPropertiesANDROID(x)
+
+MemoryWin32HandlePropertiesKHR(vks::VkMemoryWin32HandlePropertiesKHR) =
+    MemoryWin32HandlePropertiesKHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.memoryTypeBits),
+    )
+
+from_vk(T::Type{MemoryWin32HandlePropertiesKHR}, x::VkMemoryWin32HandlePropertiesKHR) =
+    MemoryWin32HandlePropertiesKHR(x)
 """
 Generic constructor.
 """
@@ -27816,6 +27303,8 @@ function DeviceOrHostAddressKHR(device_address)
     DeviceOrHostAddressKHR(vks)
 end
 
+from_vk(T::Type{DeviceOrHostAddressKHR}, x::VkDeviceOrHostAddressKHR) =
+    DeviceOrHostAddressKHR(x.deviceAddress)
 """
 Generic constructor.
 """
@@ -27824,6 +27313,8 @@ function DeviceOrHostAddressConstKHR(device_address)
     DeviceOrHostAddressConstKHR(vks)
 end
 
+from_vk(T::Type{DeviceOrHostAddressConstKHR}, x::VkDeviceOrHostAddressConstKHR) =
+    DeviceOrHostAddressConstKHR(x.deviceAddress)
 """
 Generic constructor.
 """
@@ -27842,6 +27333,16 @@ function AccelerationStructureBuildOffsetInfoKHR(
     AccelerationStructureBuildOffsetInfoKHR(vks)
 end
 
+from_vk(
+    T::Type{AccelerationStructureBuildOffsetInfoKHR},
+    x::VkAccelerationStructureBuildOffsetInfoKHR,
+) = AccelerationStructureBuildOffsetInfoKHR(
+    x.primitiveCount,
+    x.primitiveOffset,
+    x.firstVertex,
+    x.transformOffset,
+)
+
 """
 Generic constructor.
 """
@@ -27850,14 +27351,45 @@ function AccelerationStructureGeometryDataKHR(triangles)
     AccelerationStructureGeometryDataKHR(vks)
 end
 
+from_vk(
+    T::Type{AccelerationStructureGeometryDataKHR},
+    x::VkAccelerationStructureGeometryDataKHR,
+) = AccelerationStructureGeometryDataKHR(x.triangles)
+
+PhysicalDeviceRayTracingPropertiesKHR(vks::VkPhysicalDeviceRayTracingPropertiesKHR) =
+    PhysicalDeviceRayTracingPropertiesKHR(
+        from_vk(Ptr{Cvoid}, vks.pNext),
+        from_vk(UInt32, vks.shaderGroupHandleSize),
+        from_vk(UInt32, vks.maxRecursionDepth),
+        from_vk(UInt32, vks.maxShaderGroupStride),
+        from_vk(UInt32, vks.shaderGroupBaseAlignment),
+        from_vk(UInt64, vks.maxGeometryCount),
+        from_vk(UInt64, vks.maxInstanceCount),
+        from_vk(UInt64, vks.maxPrimitiveCount),
+        from_vk(UInt32, vks.maxDescriptorSetAccelerationStructures),
+        from_vk(UInt32, vks.shaderGroupHandleCaptureReplaySize),
+    )
+
+from_vk(
+    T::Type{PhysicalDeviceRayTracingPropertiesKHR},
+    x::VkPhysicalDeviceRayTracingPropertiesKHR,
+) = PhysicalDeviceRayTracingPropertiesKHR(x)
+
 """
 Generic constructor.
 """
-function StridedBufferRegionKHR(offset, stride, size; buffer = 0)
-    vks = VkStridedBufferRegionKHR(buffer == 0 ? 0 : buffer.handle, offset, stride, size)
+function StridedBufferRegionKHR(offset, stride, size; buffer = C_NULL)
+    vks = VkStridedBufferRegionKHR(
+        buffer == C_NULL ? C_NULL : buffer.handle,
+        offset,
+        stride,
+        size,
+    )
     StridedBufferRegionKHR(vks)
 end
 
+from_vk(T::Type{StridedBufferRegionKHR}, x::VkStridedBufferRegionKHR) =
+    StridedBufferRegionKHR(x.buffer, x.offset, x.stride, x.size)
 """
 Generic constructor.
 """
@@ -27866,6 +27398,8 @@ function TraceRaysIndirectCommandKHR(width, height, depth)
     TraceRaysIndirectCommandKHR(vks)
 end
 
+from_vk(T::Type{TraceRaysIndirectCommandKHR}, x::VkTraceRaysIndirectCommandKHR) =
+    TraceRaysIndirectCommandKHR(x.width, x.height, x.depth)
 function Buffer(device, create_info::BufferCreateInfo; allocator = C_NULL)
     buffer = Ref{VkBuffer}()
     @check vkCreateBuffer(device, create_info, allocator, buffer)
@@ -29123,38 +28657,6 @@ function AccelerationStructureKHR(
     )
 end
 
-function AccelerationStructureNV(
-    device,
-    create_info::AccelerationStructureCreateInfoNV;
-    allocator = C_NULL,
-)
-    acceleration_structure = Ref{VkAccelerationStructureNV}()
-    @check vkCreateAccelerationStructureNV(
-        device,
-        create_info,
-        allocator,
-        acceleration_structure,
-    )
-    vks = AccelerationStructureNV(acceleration_structure[])
-end
-
-function AccelerationStructureNV(
-    device,
-    create_info::AccelerationStructureCreateInfoNV,
-    fun_ptr_create;
-    allocator = C_NULL,
-)
-    acceleration_structure = Ref{VkAccelerationStructureNV}()
-    @check vkCreateAccelerationStructureNV(
-        device,
-        create_info,
-        allocator,
-        acceleration_structure,
-        fun_ptr_create,
-    )
-    vks = AccelerationStructureNV(acceleration_structure[])
-end
-
 function IndirectCommandsLayoutNV(
     device,
     create_info::IndirectCommandsLayoutCreateInfoNV;
@@ -29224,25 +28726,29 @@ function PrivateDataSlotEXT(
 end
 
 function enumerate_physical_devices(instance)
-    count = Ref{UInt32}(0)
-    @check vkEnumeratePhysicalDevices(instance, count, C_NULL)
-    arr = Array{VkPhysicalDevice}(undef, count[])
-    @check vkEnumeratePhysicalDevices(instance, count, arr)
-    PhysicalDevice.(arr)
+    physical_device_count = Ref{UInt32}(0)
+    @check vkEnumeratePhysicalDevices(instance, physical_device_count, C_NULL)
+    physical_devices = Array{VkPhysicalDevice}(undef, physical_device_count[])
+    @check vkEnumeratePhysicalDevices(instance, physical_device_count, physical_devices)
+    PhysicalDevice.(physical_devices)
 end
 
 """
 Generic definition
 """
-function get_physical_device_features(physical_device, features)
-    vkGetPhysicalDeviceFeatures(physical_device, features)
+function get_physical_device_features(physical_device)
+    pFeatures = Ref{VkPhysicalDeviceFeatures}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceFeatures(physical_device, pFeatures)
+    PhysicalDeviceFeatures(pFeatures[])
 end
 
 """
 Generic definition
 """
-function get_physical_device_format_properties(physical_device, format, format_properties)
-    vkGetPhysicalDeviceFormatProperties(physical_device, format, format_properties)
+function get_physical_device_format_properties(physical_device, format)
+    pFormatProperties = Ref{VkFormatProperties}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceFormatProperties(physical_device, format, pFormatProperties)
+    FormatProperties(pFormatProperties[])
 end
 
 """
@@ -29253,10 +28759,10 @@ function get_physical_device_image_format_properties(
     format,
     type,
     tiling,
-    usage,
-    image_format_properties;
+    usage;
     flags = 0,
 )
+    pImageFormatProperties = Ref{VkImageFormatProperties}()    # VulkanGen.InitializePointers
     @check vkGetPhysicalDeviceImageFormatProperties(
         physical_device,
         format,
@@ -29264,36 +28770,50 @@ function get_physical_device_image_format_properties(
         tiling,
         usage,
         flags,
-        image_format_properties,
+        pImageFormatProperties,
     )
+    ImageFormatProperties(pImageFormatProperties[])
 end
 
 """
 Generic definition
 """
-function get_physical_device_properties(physical_device, properties)
-    vkGetPhysicalDeviceProperties(physical_device, properties)
+function get_physical_device_properties(physical_device)
+    pProperties = Ref{VkPhysicalDeviceProperties}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceProperties(physical_device, pProperties)
+    PhysicalDeviceProperties(pProperties[])
 end
 
 function get_physical_device_queue_family_properties(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceQueueFamilyProperties(physical_device, count, C_NULL)
-    arr = Array{VkQueueFamilyProperties}(undef, count[])
-    @check vkGetPhysicalDeviceQueueFamilyProperties(physical_device, count, arr)
-    QueueFamilyProperties.(arr)
+    queue_family_property_count = Ref{UInt32}(0)
+    vkGetPhysicalDeviceQueueFamilyProperties(
+        physical_device,
+        queue_family_property_count,
+        C_NULL,
+    )
+    queue_family_properties =
+        Array{VkQueueFamilyProperties}(undef, queue_family_property_count[])
+    vkGetPhysicalDeviceQueueFamilyProperties(
+        physical_device,
+        queue_family_property_count,
+        queue_family_properties,
+    )
+    QueueFamilyProperties.(queue_family_properties)
 end
 
 """
 Generic definition
 """
-function get_physical_device_memory_properties(physical_device, memory_properties)
-    vkGetPhysicalDeviceMemoryProperties(physical_device, memory_properties)
+function get_physical_device_memory_properties(physical_device)
+    pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceMemoryProperties(physical_device, pMemoryProperties)
+    PhysicalDeviceMemoryProperties(pMemoryProperties[])
 end
 
 """
 Generic definition
 """
-function get_instance_proc_addr(name; instance = 0)
+function get_instance_proc_addr(name; instance = C_NULL)
     vkGetInstanceProcAddr(instance, name)
 end
 
@@ -29305,48 +28825,60 @@ function get_device_proc_addr(device, name)
 end
 
 function enumerate_instance_extension_properties(; layer_name = C_NULL)
-    count = Ref{UInt32}(0)
-    @check vkEnumerateInstanceExtensionProperties(layer_name, count, C_NULL)
-    arr = Array{VkExtensionProperties}(undef, count[])
-    @check vkEnumerateInstanceExtensionProperties(layer_name, count, arr)
-    ExtensionProperties.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkEnumerateInstanceExtensionProperties(layer_name, property_count, C_NULL)
+    properties = Array{VkExtensionProperties}(undef, property_count[])
+    @check vkEnumerateInstanceExtensionProperties(layer_name, property_count, properties)
+    ExtensionProperties.(properties)
 end
 
 function enumerate_device_extension_properties(physical_device; layer_name = C_NULL)
-    count = Ref{UInt32}(0)
-    @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, count, C_NULL)
-    arr = Array{VkExtensionProperties}(undef, count[])
-    @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, count, arr)
-    ExtensionProperties.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkEnumerateDeviceExtensionProperties(
+        physical_device,
+        layer_name,
+        property_count,
+        C_NULL,
+    )
+    properties = Array{VkExtensionProperties}(undef, property_count[])
+    @check vkEnumerateDeviceExtensionProperties(
+        physical_device,
+        layer_name,
+        property_count,
+        properties,
+    )
+    ExtensionProperties.(properties)
 end
 
 function enumerate_instance_layer_properties()
-    count = Ref{UInt32}(0)
-    @check vkEnumerateInstanceLayerProperties(count, C_NULL)
-    arr = Array{VkLayerProperties}(undef, count[])
-    @check vkEnumerateInstanceLayerProperties(count, arr)
-    LayerProperties.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkEnumerateInstanceLayerProperties(property_count, C_NULL)
+    properties = Array{VkLayerProperties}(undef, property_count[])
+    @check vkEnumerateInstanceLayerProperties(property_count, properties)
+    LayerProperties.(properties)
 end
 
 function enumerate_device_layer_properties(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkEnumerateDeviceLayerProperties(physical_device, count, C_NULL)
-    arr = Array{VkLayerProperties}(undef, count[])
-    @check vkEnumerateDeviceLayerProperties(physical_device, count, arr)
-    LayerProperties.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkEnumerateDeviceLayerProperties(physical_device, property_count, C_NULL)
+    properties = Array{VkLayerProperties}(undef, property_count[])
+    @check vkEnumerateDeviceLayerProperties(physical_device, property_count, properties)
+    LayerProperties.(properties)
 end
 
 """
 Generic definition
 """
-function get_device_queue(device, queue_family_index, queue_index, queue)
-    vkGetDeviceQueue(device, queue_family_index, queue_index, queue)
+function get_device_queue(device, queue_family_index, queue_index)
+    pQueue = Ref{VkQueue}()    # VulkanGen.InitializePointers
+    vkGetDeviceQueue(device, queue_family_index, queue_index, pQueue)
+    Queue(pQueue[])
 end
 
 """
 Generic definition
 """
-function queue_submit(queue, submits; fence = 0)
+function queue_submit(queue, submits; fence = C_NULL)
     _submitCount = pointer_length(submits)    # VulkanGen.ComputeLengthArgument
     @check vkQueueSubmit(queue, _submitCount, submits, fence)
 end
@@ -29368,22 +28900,26 @@ end
 """
 Generic definition
 """
-function allocate_memory(device, allocate_info, memory; pAllocator = C_NULL)
-    @check vkAllocateMemory(device, allocate_info, allocator, memory)
+function allocate_memory(device, allocate_info; allocator = C_NULL)
+    pMemory = Ref{VkDeviceMemory}()    # VulkanGen.InitializePointers
+    @check vkAllocateMemory(device, allocate_info, allocator, pMemory)
+    DeviceMemory(pMemory[])
 end
 
 """
 Generic definition
 """
-function free_memory(device; memory = 0, pAllocator = C_NULL)
+function free_memory(device; memory = C_NULL, allocator = C_NULL)
     vkFreeMemory(device, memory, allocator)
 end
 
 """
 Generic definition
 """
-function map_memory(device, memory, offset, size, data; flags = 0)
-    @check vkMapMemory(device, memory, offset, size, flags, data)
+function map_memory(device, memory, offset, size; flags = 0)
+    ppData = Ref{Cvoid}()    # VulkanGen.InitializePointers
+    @check vkMapMemory(device, memory, offset, size, flags, ppData)
+    ppData[]
 end
 
 """
@@ -29412,8 +28948,10 @@ end
 """
 Generic definition
 """
-function get_device_memory_commitment(device, memory, committed_memory_in_bytes)
-    vkGetDeviceMemoryCommitment(device, memory, committed_memory_in_bytes)
+function get_device_memory_commitment(device, memory)
+    pCommittedMemoryInBytes = Ref{VkDeviceSize}()    # VulkanGen.InitializePointers
+    vkGetDeviceMemoryCommitment(device, memory, pCommittedMemoryInBytes)
+    pCommittedMemoryInBytes[]
 end
 
 """
@@ -29433,23 +28971,38 @@ end
 """
 Generic definition
 """
-function get_buffer_memory_requirements(device, buffer, memory_requirements)
-    vkGetBufferMemoryRequirements(device, buffer, memory_requirements)
+function get_buffer_memory_requirements(device, buffer)
+    pMemoryRequirements = Ref{VkMemoryRequirements}()    # VulkanGen.InitializePointers
+    vkGetBufferMemoryRequirements(device, buffer, pMemoryRequirements)
+    MemoryRequirements(pMemoryRequirements[])
 end
 
 """
 Generic definition
 """
-function get_image_memory_requirements(device, image, memory_requirements)
-    vkGetImageMemoryRequirements(device, image, memory_requirements)
+function get_image_memory_requirements(device, image)
+    pMemoryRequirements = Ref{VkMemoryRequirements}()    # VulkanGen.InitializePointers
+    vkGetImageMemoryRequirements(device, image, pMemoryRequirements)
+    MemoryRequirements(pMemoryRequirements[])
 end
 
 function get_image_sparse_memory_requirements(device, image)
-    count = Ref{UInt32}(0)
-    @check vkGetImageSparseMemoryRequirements(device, image, count, C_NULL)
-    arr = Array{VkSparseImageMemoryRequirements}(undef, count[])
-    @check vkGetImageSparseMemoryRequirements(device, image, count, arr)
-    SparseImageMemoryRequirements.(arr)
+    sparse_memory_requirement_count = Ref{UInt32}(0)
+    vkGetImageSparseMemoryRequirements(
+        device,
+        image,
+        sparse_memory_requirement_count,
+        C_NULL,
+    )
+    sparse_memory_requirements =
+        Array{VkSparseImageMemoryRequirements}(undef, sparse_memory_requirement_count[])
+    vkGetImageSparseMemoryRequirements(
+        device,
+        image,
+        sparse_memory_requirement_count,
+        sparse_memory_requirements,
+    )
+    SparseImageMemoryRequirements.(sparse_memory_requirements)
 end
 
 function get_physical_device_sparse_image_format_properties(
@@ -29460,17 +29013,35 @@ function get_physical_device_sparse_image_format_properties(
     usage,
     tiling,
 )
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, count, C_NULL)
-    arr = Array{VkSparseImageFormatProperties}(undef, count[])
-    @check vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, count, arr)
-    SparseImageFormatProperties.(arr)
+    property_count = Ref{UInt32}(0)
+    vkGetPhysicalDeviceSparseImageFormatProperties(
+        physical_device,
+        format,
+        type,
+        samples,
+        usage,
+        tiling,
+        property_count,
+        C_NULL,
+    )
+    properties = Array{VkSparseImageFormatProperties}(undef, property_count[])
+    vkGetPhysicalDeviceSparseImageFormatProperties(
+        physical_device,
+        format,
+        type,
+        samples,
+        usage,
+        tiling,
+        property_count,
+        properties,
+    )
+    SparseImageFormatProperties.(properties)
 end
 
 """
 Generic definition
 """
-function queue_bind_sparse(queue, bind_info; fence = 0)
+function queue_bind_sparse(queue, bind_info; fence = C_NULL)
     _bindInfoCount = pointer_length(bind_info)    # VulkanGen.ComputeLengthArgument
     @check vkQueueBindSparse(queue, _bindInfoCount, bind_info, fence)
 end
@@ -29547,16 +29118,18 @@ end
 """
 Generic definition
 """
-function get_image_subresource_layout(device, image, subresource, layout)
-    vkGetImageSubresourceLayout(device, image, subresource, layout)
+function get_image_subresource_layout(device, image, subresource)
+    pLayout = Ref{VkSubresourceLayout}()    # VulkanGen.InitializePointers
+    vkGetImageSubresourceLayout(device, image, subresource, pLayout)
+    SubresourceLayout(pLayout[])
 end
 
 function get_pipeline_cache_data(device, pipeline_cache)
-    count = Ref{UInt32}(0)
-    @check vkGetPipelineCacheData(device, pipeline_cache, count, C_NULL)
-    arr = Array{void}(undef, count[])
-    @check vkGetPipelineCacheData(device, pipeline_cache, count, arr)
-    arr
+    data_size = Ref{UInt32}(0)
+    @check vkGetPipelineCacheData(device, pipeline_cache, C_NULL_size, C_NULL)
+    data = Array{void}(undef, data_size[])
+    @check vkGetPipelineCacheData(device, pipeline_cache, data_size, data)
+    data
 end
 
 """
@@ -29577,8 +29150,10 @@ end
 """
 Generic definition
 """
-function allocate_descriptor_sets(device, allocate_info, descriptor_sets)
-    @check vkAllocateDescriptorSets(device, allocate_info, descriptor_sets)
+function allocate_descriptor_sets(device, allocate_info)
+    pDescriptorSets = Ref{VkDescriptorSet}()    # VulkanGen.InitializePointers
+    @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
+    DescriptorSet(pDescriptorSets[])
 end
 
 """
@@ -29612,8 +29187,10 @@ end
 """
 Generic definition
 """
-function get_render_area_granularity(device, render_pass, granularity)
-    vkGetRenderAreaGranularity(device, render_pass, granularity)
+function get_render_area_granularity(device, render_pass)
+    pGranularity = Ref{VkExtent2D}()    # VulkanGen.InitializePointers
+    vkGetRenderAreaGranularity(device, render_pass, pGranularity)
+    Extent2D(pGranularity[])
 end
 
 """
@@ -29626,8 +29203,10 @@ end
 """
 Generic definition
 """
-function allocate_command_buffers(device, allocate_info, command_buffers)
-    @check vkAllocateCommandBuffers(device, allocate_info, command_buffers)
+function allocate_command_buffers(device, allocate_info)
+    pCommandBuffers = Ref{VkCommandBuffer}()    # VulkanGen.InitializePointers
+    @check vkAllocateCommandBuffers(device, allocate_info, pCommandBuffers)
+    CommandBuffer(pCommandBuffers[])
 end
 
 """
@@ -30072,7 +29651,7 @@ function cmd_pipeline_barrier(
     memory_barriers,
     buffer_memory_barriers,
     image_memory_barriers;
-    dependencyFlags = 0,
+    dependency_flags = 0,
 )
     _memoryBarrierCount = pointer_length(memory_barriers)    # VulkanGen.ComputeLengthArgument
     _bufferMemoryBarrierCount = pointer_length(buffer_memory_barriers)    # VulkanGen.ComputeLengthArgument
@@ -30184,8 +29763,10 @@ end
 """
 Generic definition
 """
-function enumerate_instance_version(api_version)
-    @check vkEnumerateInstanceVersion(api_version)
+function enumerate_instance_version()
+    pApiVersion = Ref{UInt32}()    # VulkanGen.InitializePointers
+    @check vkEnumerateInstanceVersion(pApiVersion)
+    pApiVersion[]
 end
 
 """
@@ -30212,15 +29793,16 @@ function get_device_group_peer_memory_features(
     heap_index,
     local_device_index,
     remote_device_index,
-    peer_memory_features,
 )
+    pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()    # VulkanGen.InitializePointers
     vkGetDeviceGroupPeerMemoryFeatures(
         device,
         heap_index,
         local_device_index,
         remote_device_index,
-        peer_memory_features,
+        pPeerMemoryFeatures,
     )
+    pPeerMemoryFeatures[]
 end
 
 """
@@ -30254,102 +29836,137 @@ function cmd_dispatch_base(
 end
 
 function enumerate_physical_device_groups(instance)
-    count = Ref{UInt32}(0)
-    @check vkEnumeratePhysicalDeviceGroups(instance, count, C_NULL)
-    arr = Array{VkPhysicalDeviceGroupProperties}(undef, count[])
-    @check vkEnumeratePhysicalDeviceGroups(instance, count, arr)
-    PhysicalDeviceGroupProperties.(arr)
+    physical_device_group_count = Ref{UInt32}(0)
+    @check vkEnumeratePhysicalDeviceGroups(instance, physical_device_group_count, C_NULL)
+    physical_device_group_properties =
+        Array{VkPhysicalDeviceGroupProperties}(undef, physical_device_group_count[])
+    @check vkEnumeratePhysicalDeviceGroups(
+        instance,
+        physical_device_group_count,
+        physical_device_group_properties,
+    )
+    PhysicalDeviceGroupProperties.(physical_device_group_properties)
 end
 
 """
 Generic definition
 """
-function get_image_memory_requirements_2(device, info, memory_requirements)
-    vkGetImageMemoryRequirements2(device, info, memory_requirements)
+function get_image_memory_requirements_2(device, info)
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    vkGetImageMemoryRequirements2(device, info, pMemoryRequirements)
+    MemoryRequirements2(pMemoryRequirements[])
 end
 
 """
 Generic definition
 """
-function get_buffer_memory_requirements_2(device, info, memory_requirements)
-    vkGetBufferMemoryRequirements2(device, info, memory_requirements)
+function get_buffer_memory_requirements_2(device, info)
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    vkGetBufferMemoryRequirements2(device, info, pMemoryRequirements)
+    MemoryRequirements2(pMemoryRequirements[])
 end
 
 function get_image_sparse_memory_requirements_2(device, info)
-    count = Ref{UInt32}(0)
-    @check vkGetImageSparseMemoryRequirements2(device, pointer(info), count, C_NULL)
-    arr = Array{VkSparseImageMemoryRequirements2}(undef, count[])
-    @check vkGetImageSparseMemoryRequirements2(device, pointer(info), count, arr)
-    SparseImageMemoryRequirements2.(arr)
+    sparse_memory_requirement_count = Ref{UInt32}(0)
+    vkGetImageSparseMemoryRequirements2(
+        device,
+        info,
+        sparse_memory_requirement_count,
+        C_NULL,
+    )
+    sparse_memory_requirements =
+        Array{VkSparseImageMemoryRequirements2}(undef, sparse_memory_requirement_count[])
+    vkGetImageSparseMemoryRequirements2(
+        device,
+        info,
+        sparse_memory_requirement_count,
+        sparse_memory_requirements,
+    )
+    SparseImageMemoryRequirements2.(sparse_memory_requirements)
 end
 
 """
 Generic definition
 """
-function get_physical_device_features_2(physical_device, features)
-    vkGetPhysicalDeviceFeatures2(physical_device, features)
+function get_physical_device_features_2(physical_device)
+    pFeatures = Ref{VkPhysicalDeviceFeatures2}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceFeatures2(physical_device, pFeatures)
+    PhysicalDeviceFeatures2(pFeatures[])
 end
 
 """
 Generic definition
 """
-function get_physical_device_properties_2(physical_device, properties)
-    vkGetPhysicalDeviceProperties2(physical_device, properties)
+function get_physical_device_properties_2(physical_device)
+    pProperties = Ref{VkPhysicalDeviceProperties2}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceProperties2(physical_device, pProperties)
+    PhysicalDeviceProperties2(pProperties[])
 end
 
 """
 Generic definition
 """
-function get_physical_device_format_properties_2(physical_device, format, format_properties)
-    vkGetPhysicalDeviceFormatProperties2(physical_device, format, format_properties)
+function get_physical_device_format_properties_2(physical_device, format)
+    pFormatProperties = Ref{VkFormatProperties2}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceFormatProperties2(physical_device, format, pFormatProperties)
+    FormatProperties2(pFormatProperties[])
 end
 
 """
 Generic definition
 """
-function get_physical_device_image_format_properties_2(
-    physical_device,
-    image_format_info,
-    image_format_properties,
-)
+function get_physical_device_image_format_properties_2(physical_device, image_format_info)
+    pImageFormatProperties = Ref{VkImageFormatProperties2}()    # VulkanGen.InitializePointers
     @check vkGetPhysicalDeviceImageFormatProperties2(
         physical_device,
         image_format_info,
-        image_format_properties,
+        pImageFormatProperties,
     )
+    ImageFormatProperties2(pImageFormatProperties[])
 end
 
 function get_physical_device_queue_family_properties_2(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, count, C_NULL)
-    arr = Array{VkQueueFamilyProperties2}(undef, count[])
-    @check vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, count, arr)
-    QueueFamilyProperties2.(arr)
+    queue_family_property_count = Ref{UInt32}(0)
+    vkGetPhysicalDeviceQueueFamilyProperties2(
+        physical_device,
+        queue_family_property_count,
+        C_NULL,
+    )
+    queue_family_properties =
+        Array{VkQueueFamilyProperties2}(undef, queue_family_property_count[])
+    vkGetPhysicalDeviceQueueFamilyProperties2(
+        physical_device,
+        queue_family_property_count,
+        queue_family_properties,
+    )
+    QueueFamilyProperties2.(queue_family_properties)
 end
 
 """
 Generic definition
 """
-function get_physical_device_memory_properties_2(physical_device, memory_properties)
-    vkGetPhysicalDeviceMemoryProperties2(physical_device, memory_properties)
+function get_physical_device_memory_properties_2(physical_device)
+    pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties2}()    # VulkanGen.InitializePointers
+    vkGetPhysicalDeviceMemoryProperties2(physical_device, pMemoryProperties)
+    PhysicalDeviceMemoryProperties2(pMemoryProperties[])
 end
 
 function get_physical_device_sparse_image_format_properties_2(physical_device, format_info)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceSparseImageFormatProperties2(
+    property_count = Ref{UInt32}(0)
+    vkGetPhysicalDeviceSparseImageFormatProperties2(
         physical_device,
-        pointer(format_info),
-        count,
+        format_info,
+        property_count,
         C_NULL,
     )
-    arr = Array{VkSparseImageFormatProperties2}(undef, count[])
-    @check vkGetPhysicalDeviceSparseImageFormatProperties2(
+    properties = Array{VkSparseImageFormatProperties2}(undef, property_count[])
+    vkGetPhysicalDeviceSparseImageFormatProperties2(
         physical_device,
-        pointer(format_info),
-        count,
-        arr,
+        format_info,
+        property_count,
+        properties,
     )
-    SparseImageFormatProperties2.(arr)
+    SparseImageFormatProperties2.(properties)
 end
 
 """
@@ -30362,8 +29979,10 @@ end
 """
 Generic definition
 """
-function get_device_queue_2(device, queue_info, queue)
-    vkGetDeviceQueue2(device, queue_info, queue)
+function get_device_queue_2(device, queue_info)
+    pQueue = Ref{VkQueue}()    # VulkanGen.InitializePointers
+    vkGetDeviceQueue2(device, queue_info, pQueue)
+    Queue(pQueue[])
 end
 
 """
@@ -30389,28 +30008,27 @@ Generic definition
 function get_physical_device_external_buffer_properties(
     physical_device,
     external_buffer_info,
-    external_buffer_properties,
 )
+    pExternalBufferProperties = Ref{VkExternalBufferProperties}()    # VulkanGen.InitializePointers
     vkGetPhysicalDeviceExternalBufferProperties(
         physical_device,
         external_buffer_info,
-        external_buffer_properties,
+        pExternalBufferProperties,
     )
+    ExternalBufferProperties(pExternalBufferProperties[])
 end
 
 """
 Generic definition
 """
-function get_physical_device_external_fence_properties(
-    physical_device,
-    external_fence_info,
-    external_fence_properties,
-)
+function get_physical_device_external_fence_properties(physical_device, external_fence_info)
+    pExternalFenceProperties = Ref{VkExternalFenceProperties}()    # VulkanGen.InitializePointers
     vkGetPhysicalDeviceExternalFenceProperties(
         physical_device,
         external_fence_info,
-        external_fence_properties,
+        pExternalFenceProperties,
     )
+    ExternalFenceProperties(pExternalFenceProperties[])
 end
 
 """
@@ -30419,20 +30037,23 @@ Generic definition
 function get_physical_device_external_semaphore_properties(
     physical_device,
     external_semaphore_info,
-    external_semaphore_properties,
 )
+    pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()    # VulkanGen.InitializePointers
     vkGetPhysicalDeviceExternalSemaphoreProperties(
         physical_device,
         external_semaphore_info,
-        external_semaphore_properties,
+        pExternalSemaphoreProperties,
     )
+    ExternalSemaphoreProperties(pExternalSemaphoreProperties[])
 end
 
 """
 Generic definition
 """
-function get_descriptor_set_layout_support(device, create_info, support)
-    vkGetDescriptorSetLayoutSupport(device, create_info, support)
+function get_descriptor_set_layout_support(device, create_info)
+    pSupport = Ref{VkDescriptorSetLayoutSupport}()    # VulkanGen.InitializePointers
+    vkGetDescriptorSetLayoutSupport(device, create_info, pSupport)
+    DescriptorSetLayoutSupport(pSupport[])
 end
 
 """
@@ -30512,8 +30133,10 @@ end
 """
 Generic definition
 """
-function get_semaphore_counter_value(device, semaphore, value)
-    @check vkGetSemaphoreCounterValue(device, semaphore, value)
+function get_semaphore_counter_value(device, semaphore)
+    pValue = Ref{UInt64}()    # VulkanGen.InitializePointers
+    @check vkGetSemaphoreCounterValue(device, semaphore, pValue)
+    pValue[]
 end
 
 """
@@ -30558,58 +30181,77 @@ function get_physical_device_surface_support_khr(
     physical_device,
     queue_family_index,
     surface,
-    supported,
 )
+    pSupported = Ref{VkBool32}()    # VulkanGen.InitializePointers
     @check vkGetPhysicalDeviceSurfaceSupportKHR(
         physical_device,
         queue_family_index,
         surface,
-        supported,
+        pSupported,
     )
+    pSupported[]
 end
 
 """
 Generic definition
 """
-function get_physical_device_surface_capabilities_khr(
-    physical_device,
-    surface,
-    surface_capabilities,
-)
+function get_physical_device_surface_capabilities_khr(physical_device, surface)
+    pSurfaceCapabilities = Ref{VkSurfaceCapabilitiesKHR}()    # VulkanGen.InitializePointers
     @check vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
         physical_device,
         surface,
-        surface_capabilities,
+        pSurfaceCapabilities,
     )
+    SurfaceCapabilitiesKHR(pSurfaceCapabilities[])
 end
 
 function get_physical_device_surface_formats_khr(physical_device, surface)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, count, C_NULL)
-    arr = Array{VkSurfaceFormatKHR}(undef, count[])
-    @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, count, arr)
-    SurfaceFormatKHR.(arr)
+    surface_format_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceSurfaceFormatsKHR(
+        physical_device,
+        surface,
+        surface_format_count,
+        C_NULL,
+    )
+    surface_formats = Array{VkSurfaceFormatKHR}(undef, surface_format_count[])
+    @check vkGetPhysicalDeviceSurfaceFormatsKHR(
+        physical_device,
+        surface,
+        surface_format_count,
+        surface_formats,
+    )
+    SurfaceFormatKHR.(surface_formats)
 end
 
 function get_physical_device_surface_present_modes_khr(physical_device, surface)
-    count = Ref{UInt32}(0)
+    present_mode_count = Ref{UInt32}(0)
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(
         physical_device,
         surface,
-        count,
+        present_mode_count,
         C_NULL,
     )
-    arr = Array{VkPresentModeKHR}(undef, count[])
-    @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, count, arr)
-    PresentModeKHR.(arr)
+    present_modes = Array{VkPresentModeKHR}(undef, present_mode_count[])
+    @check vkGetPhysicalDeviceSurfacePresentModesKHR(
+        physical_device,
+        surface,
+        present_mode_count,
+        present_modes,
+    )
+    PresentModeKHR.(present_modes)
 end
 
 function get_swapchain_images_khr(device, swapchain)
-    count = Ref{UInt32}(0)
-    @check vkGetSwapchainImagesKHR(device, swapchain, count, C_NULL)
-    arr = Array{VkImage}(undef, count[])
-    @check vkGetSwapchainImagesKHR(device, swapchain, count, arr)
-    Image.(arr)
+    swapchain_image_count = Ref{UInt32}(0)
+    @check vkGetSwapchainImagesKHR(device, swapchain, swapchain_image_count, C_NULL)
+    swapchain_images = Array{VkImage}(undef, swapchain_image_count[])
+    @check vkGetSwapchainImagesKHR(
+        device,
+        swapchain,
+        swapchain_image_count,
+        swapchain_images,
+    )
+    Image.(swapchain_images)
 end
 
 """
@@ -30618,12 +30260,13 @@ Generic definition
 function acquire_next_image_khr(
     device,
     swapchain,
-    timeout,
-    image_index;
-    semaphore = 0,
-    fence = 0,
+    timeout;
+    semaphore = C_NULL,
+    fence = C_NULL,
 )
-    @check vkAcquireNextImageKHR(device, swapchain, timeout, semaphore, fence, image_index)
+    pImageIndex = Ref{UInt32}()    # VulkanGen.InitializePointers
+    @check vkAcquireNextImageKHR(device, swapchain, timeout, semaphore, fence, pImageIndex)
+    pImageIndex[]
 end
 
 """
@@ -30636,276 +30279,137 @@ end
 """
 Generic definition
 """
-function get_device_group_present_capabilities_khr(
-    device,
-    device_group_present_capabilities,
-)
-    @check vkGetDeviceGroupPresentCapabilitiesKHR(device, device_group_present_capabilities)
+function get_device_group_present_capabilities_khr(device)
+    pDeviceGroupPresentCapabilities = Ref{VkDeviceGroupPresentCapabilitiesKHR}()    # VulkanGen.InitializePointers
+    @check vkGetDeviceGroupPresentCapabilitiesKHR(device, pDeviceGroupPresentCapabilities)
+    DeviceGroupPresentCapabilitiesKHR(pDeviceGroupPresentCapabilities[])
 end
 
 """
 Generic definition
 """
-function get_device_group_surface_present_modes_khr(device, surface, modes)
-    @check vkGetDeviceGroupSurfacePresentModesKHR(device, surface, modes)
+function get_device_group_surface_present_modes_khr(device, surface)
+    pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()    # VulkanGen.InitializePointers
+    @check vkGetDeviceGroupSurfacePresentModesKHR(device, surface, pModes)
+    pModes[]
 end
 
 function get_physical_device_present_rectangles_khr(physical_device, surface)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, count, C_NULL)
-    arr = Array{VkRect2D}(undef, count[])
-    @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, count, arr)
-    Rect2D.(arr)
+    rect_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDevicePresentRectanglesKHR(
+        physical_device,
+        surface,
+        rect_count,
+        C_NULL,
+    )
+    rects = Array{VkRect2D}(undef, rect_count[])
+    @check vkGetPhysicalDevicePresentRectanglesKHR(
+        physical_device,
+        surface,
+        rect_count,
+        rects,
+    )
+    Rect2D.(rects)
 end
 
 """
 Generic definition
 """
-function acquire_next_image_2_khr(device, acquire_info, image_index)
-    @check vkAcquireNextImage2KHR(device, acquire_info, image_index)
+function acquire_next_image_2_khr(device, acquire_info)
+    pImageIndex = Ref{UInt32}()    # VulkanGen.InitializePointers
+    @check vkAcquireNextImage2KHR(device, acquire_info, pImageIndex)
+    pImageIndex[]
 end
 
 function get_physical_device_display_properties_khr(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, count, C_NULL)
-    arr = Array{VkDisplayPropertiesKHR}(undef, count[])
-    @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, count, arr)
-    DisplayPropertiesKHR.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, property_count, C_NULL)
+    properties = Array{VkDisplayPropertiesKHR}(undef, property_count[])
+    @check vkGetPhysicalDeviceDisplayPropertiesKHR(
+        physical_device,
+        property_count,
+        properties,
+    )
+    DisplayPropertiesKHR.(properties)
 end
 
 function get_physical_device_display_plane_properties_khr(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, count, C_NULL)
-    arr = Array{VkDisplayPlanePropertiesKHR}(undef, count[])
-    @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, count, arr)
-    DisplayPlanePropertiesKHR.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(
+        physical_device,
+        property_count,
+        C_NULL,
+    )
+    properties = Array{VkDisplayPlanePropertiesKHR}(undef, property_count[])
+    @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(
+        physical_device,
+        property_count,
+        properties,
+    )
+    DisplayPlanePropertiesKHR.(properties)
 end
 
 function get_display_plane_supported_displays_khr(physical_device, plane_index)
-    count = Ref{UInt32}(0)
-    @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, count, C_NULL)
-    arr = Array{VkDisplayKHR}(undef, count[])
-    @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, count, arr)
-    DisplayKHR.(arr)
+    display_count = Ref{UInt32}(0)
+    @check vkGetDisplayPlaneSupportedDisplaysKHR(
+        physical_device,
+        plane_index,
+        display_count,
+        C_NULL,
+    )
+    displays = Array{VkDisplayKHR}(undef, display_count[])
+    @check vkGetDisplayPlaneSupportedDisplaysKHR(
+        physical_device,
+        plane_index,
+        display_count,
+        displays,
+    )
+    DisplayKHR.(displays)
 end
 
 function get_display_mode_properties_khr(physical_device, display)
-    count = Ref{UInt32}(0)
-    @check vkGetDisplayModePropertiesKHR(physical_device, display, count, C_NULL)
-    arr = Array{VkDisplayModePropertiesKHR}(undef, count[])
-    @check vkGetDisplayModePropertiesKHR(physical_device, display, count, arr)
-    DisplayModePropertiesKHR.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkGetDisplayModePropertiesKHR(physical_device, display, property_count, C_NULL)
+    properties = Array{VkDisplayModePropertiesKHR}(undef, property_count[])
+    @check vkGetDisplayModePropertiesKHR(
+        physical_device,
+        display,
+        property_count,
+        properties,
+    )
+    DisplayModePropertiesKHR.(properties)
 end
 
 """
 Generic definition
 """
-function get_display_plane_capabilities_khr(
-    physical_device,
-    mode,
-    plane_index,
-    capabilities,
-)
+function get_display_plane_capabilities_khr(physical_device, mode, plane_index)
+    pCapabilities = Ref{VkDisplayPlaneCapabilitiesKHR}()    # VulkanGen.InitializePointers
     @check vkGetDisplayPlaneCapabilitiesKHR(
         physical_device,
         mode,
         plane_index,
-        capabilities,
+        pCapabilities,
     )
+    DisplayPlaneCapabilitiesKHR(pCapabilities[])
 end
 
 """
 Generic definition
 """
-function get_physical_device_features_2_khr(physical_device, features)
-    vkGetPhysicalDeviceFeatures2KHR(physical_device, features)
+function get_memory_fd_khr(device, get_fd_info)
+    pFd = Ref{Cint}()    # VulkanGen.InitializePointers
+    @check vkGetMemoryFdKHR(device, get_fd_info, pFd)
+    pFd[]
 end
 
 """
 Generic definition
 """
-function get_physical_device_properties_2_khr(physical_device, properties)
-    vkGetPhysicalDeviceProperties2KHR(physical_device, properties)
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_format_properties_2_khr(
-    physical_device,
-    format,
-    format_properties,
-)
-    vkGetPhysicalDeviceFormatProperties2KHR(physical_device, format, format_properties)
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_image_format_properties_2_khr(
-    physical_device,
-    image_format_info,
-    image_format_properties,
-)
-    @check vkGetPhysicalDeviceImageFormatProperties2KHR(
-        physical_device,
-        image_format_info,
-        image_format_properties,
-    )
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_queue_family_properties_2_khr(
-    physical_device,
-    queue_family_property_count,
-    queue_family_properties,
-)
-    vkGetPhysicalDeviceQueueFamilyProperties2KHR(
-        physical_device,
-        queue_family_property_count,
-        queue_family_properties,
-    )
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_memory_properties_2_khr(physical_device, memory_properties)
-    vkGetPhysicalDeviceMemoryProperties2KHR(physical_device, memory_properties)
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_sparse_image_format_properties_2_khr(
-    physical_device,
-    format_info,
-    property_count,
-    properties,
-)
-    vkGetPhysicalDeviceSparseImageFormatProperties2KHR(
-        physical_device,
-        format_info,
-        property_count,
-        properties,
-    )
-end
-
-"""
-Generic definition
-"""
-function get_device_group_peer_memory_features_khr(
-    device,
-    heap_index,
-    local_device_index,
-    remote_device_index,
-    peer_memory_features,
-)
-    vkGetDeviceGroupPeerMemoryFeaturesKHR(
-        device,
-        heap_index,
-        local_device_index,
-        remote_device_index,
-        peer_memory_features,
-    )
-end
-
-"""
-Generic definition
-"""
-function cmd_set_device_mask_khr(command_buffer, device_mask)
-    vkCmdSetDeviceMaskKHR(command_buffer, device_mask)
-end
-
-"""
-Generic definition
-"""
-function cmd_dispatch_base_khr(
-    command_buffer,
-    base_group_x,
-    base_group_y,
-    base_group_z,
-    group_count_x,
-    group_count_y,
-    group_count_z,
-)
-    vkCmdDispatchBaseKHR(
-        command_buffer,
-        base_group_x,
-        base_group_y,
-        base_group_z,
-        group_count_x,
-        group_count_y,
-        group_count_z,
-    )
-end
-
-"""
-Generic definition
-"""
-function trim_command_pool_khr(device, command_pool, flags)
-    vkTrimCommandPoolKHR(device, command_pool, flags)
-end
-
-"""
-Generic definition
-"""
-function enumerate_physical_device_groups_khr(
-    instance,
-    physical_device_group_count,
-    physical_device_group_properties,
-)
-    @check vkEnumeratePhysicalDeviceGroupsKHR(
-        instance,
-        physical_device_group_count,
-        physical_device_group_properties,
-    )
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_external_buffer_properties_khr(
-    physical_device,
-    external_buffer_info,
-    external_buffer_properties,
-)
-    vkGetPhysicalDeviceExternalBufferPropertiesKHR(
-        physical_device,
-        external_buffer_info,
-        external_buffer_properties,
-    )
-end
-
-"""
-Generic definition
-"""
-function get_memory_fd_khr(device, get_fd_info, fd)
-    @check vkGetMemoryFdKHR(device, get_fd_info, fd)
-end
-
-"""
-Generic definition
-"""
-function get_memory_fd_properties_khr(device, handle_type, fd, memory_fd_properties)
-    @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, memory_fd_properties)
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_external_semaphore_properties_khr(
-    physical_device,
-    external_semaphore_info,
-    external_semaphore_properties,
-)
-    vkGetPhysicalDeviceExternalSemaphorePropertiesKHR(
-        physical_device,
-        external_semaphore_info,
-        external_semaphore_properties,
-    )
+function get_memory_fd_properties_khr(device, handle_type, fd)
+    pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()    # VulkanGen.InitializePointers
+    @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties)
+    MemoryFdPropertiesKHR(pMemoryFdProperties[])
 end
 
 """
@@ -30918,8 +30422,10 @@ end
 """
 Generic definition
 """
-function get_semaphore_fd_khr(device, get_fd_info, fd)
-    @check vkGetSemaphoreFdKHR(device, get_fd_info, fd)
+function get_semaphore_fd_khr(device, get_fd_info)
+    pFd = Ref{Cint}()    # VulkanGen.InitializePointers
+    @check vkGetSemaphoreFdKHR(device, get_fd_info, pFd)
+    pFd[]
 end
 
 """
@@ -30965,61 +30471,8 @@ end
 """
 Generic definition
 """
-function update_descriptor_set_with_template_khr(
-    device,
-    descriptor_set,
-    descriptor_update_template,
-    data,
-)
-    vkUpdateDescriptorSetWithTemplateKHR(
-        device,
-        descriptor_set,
-        descriptor_update_template,
-        data,
-    )
-end
-
-"""
-Generic definition
-"""
-function cmd_begin_render_pass_2_khr(command_buffer, render_pass_begin, subpass_begin_info)
-    vkCmdBeginRenderPass2KHR(command_buffer, render_pass_begin, subpass_begin_info)
-end
-
-"""
-Generic definition
-"""
-function cmd_next_subpass_2_khr(command_buffer, subpass_begin_info, subpass_end_info)
-    vkCmdNextSubpass2KHR(command_buffer, subpass_begin_info, subpass_end_info)
-end
-
-"""
-Generic definition
-"""
-function cmd_end_render_pass_2_khr(command_buffer, subpass_end_info)
-    vkCmdEndRenderPass2KHR(command_buffer, subpass_end_info)
-end
-
-"""
-Generic definition
-"""
 function get_swapchain_status_khr(device, swapchain)
     @check vkGetSwapchainStatusKHR(device, swapchain)
-end
-
-"""
-Generic definition
-"""
-function get_physical_device_external_fence_properties_khr(
-    physical_device,
-    external_fence_info,
-    external_fence_properties,
-)
-    vkGetPhysicalDeviceExternalFencePropertiesKHR(
-        physical_device,
-        external_fence_info,
-        external_fence_properties,
-    )
 end
 
 """
@@ -31032,8 +30485,10 @@ end
 """
 Generic definition
 """
-function get_fence_fd_khr(device, get_fd_info, fd)
-    @check vkGetFenceFdKHR(device, get_fd_info, fd)
+function get_fence_fd_khr(device, get_fd_info)
+    pFd = Ref{Cint}()    # VulkanGen.InitializePointers
+    @check vkGetFenceFdKHR(device, get_fd_info, pFd)
+    pFd[]
 end
 
 function enumerate_physical_device_queue_family_performance_query_counters_khr(
@@ -31041,21 +30496,23 @@ function enumerate_physical_device_queue_family_performance_query_counters_khr(
     queue_family_index;
     counter_descriptions = C_NULL,
 )
-    count = Ref{UInt32}(0)
+    counter_count = Ref{UInt32}(0)
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(
         physical_device,
-        count,
-        arr,
+        queue_family_index,
+        counter_count,
         C_NULL,
+        counter_descriptions,
     )
-    arr = Array{VkPerformanceCounterKHR}(undef, count[])
+    counters = Array{VkPerformanceCounterKHR}(undef, counter_count[])
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(
         physical_device,
-        count,
-        arr,
-        arr,
+        queue_family_index,
+        counter_count,
+        counters,
+        counter_descriptions,
     )
-    PerformanceCounterKHR.(arr)
+    PerformanceCounterKHR.(counters)
 end
 
 """
@@ -31064,13 +30521,14 @@ Generic definition
 function get_physical_device_queue_family_performance_query_passes_khr(
     physical_device,
     performance_query_create_info,
-    num_passes,
 )
+    pNumPasses = Ref{UInt32}()    # VulkanGen.InitializePointers
     vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR(
         physical_device,
         performance_query_create_info,
-        num_passes,
+        pNumPasses,
     )
+    pNumPasses[]
 end
 
 """
@@ -31090,262 +30548,143 @@ end
 """
 Generic definition
 """
-function get_physical_device_surface_capabilities_2_khr(
-    physical_device,
-    surface_info,
-    surface_capabilities,
-)
+function get_physical_device_surface_capabilities_2_khr(physical_device, surface_info)
+    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2KHR}()    # VulkanGen.InitializePointers
     @check vkGetPhysicalDeviceSurfaceCapabilities2KHR(
         physical_device,
         surface_info,
-        surface_capabilities,
+        pSurfaceCapabilities,
     )
+    SurfaceCapabilities2KHR(pSurfaceCapabilities[])
 end
 
 function get_physical_device_surface_formats_2_khr(physical_device, surface_info)
-    count = Ref{UInt32}(0)
+    surface_format_count = Ref{UInt32}(0)
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(
         physical_device,
-        pointer(surface_info),
-        count,
+        surface_info,
+        surface_format_count,
         C_NULL,
     )
-    arr = Array{VkSurfaceFormat2KHR}(undef, count[])
+    surface_formats = Array{VkSurfaceFormat2KHR}(undef, surface_format_count[])
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(
         physical_device,
-        pointer(surface_info),
-        count,
-        arr,
+        surface_info,
+        surface_format_count,
+        surface_formats,
     )
-    SurfaceFormat2KHR.(arr)
+    SurfaceFormat2KHR.(surface_formats)
 end
 
 function get_physical_device_display_properties_2_khr(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, count, C_NULL)
-    arr = Array{VkDisplayProperties2KHR}(undef, count[])
-    @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, count, arr)
-    DisplayProperties2KHR.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, property_count, C_NULL)
+    properties = Array{VkDisplayProperties2KHR}(undef, property_count[])
+    @check vkGetPhysicalDeviceDisplayProperties2KHR(
+        physical_device,
+        property_count,
+        properties,
+    )
+    DisplayProperties2KHR.(properties)
 end
 
 function get_physical_device_display_plane_properties_2_khr(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, count, C_NULL)
-    arr = Array{VkDisplayPlaneProperties2KHR}(undef, count[])
-    @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, count, arr)
-    DisplayPlaneProperties2KHR.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(
+        physical_device,
+        property_count,
+        C_NULL,
+    )
+    properties = Array{VkDisplayPlaneProperties2KHR}(undef, property_count[])
+    @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(
+        physical_device,
+        property_count,
+        properties,
+    )
+    DisplayPlaneProperties2KHR.(properties)
 end
 
 function get_display_mode_properties_2_khr(physical_device, display)
-    count = Ref{UInt32}(0)
-    @check vkGetDisplayModeProperties2KHR(physical_device, display, count, C_NULL)
-    arr = Array{VkDisplayModeProperties2KHR}(undef, count[])
-    @check vkGetDisplayModeProperties2KHR(physical_device, display, count, arr)
-    DisplayModeProperties2KHR.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkGetDisplayModeProperties2KHR(physical_device, display, property_count, C_NULL)
+    properties = Array{VkDisplayModeProperties2KHR}(undef, property_count[])
+    @check vkGetDisplayModeProperties2KHR(
+        physical_device,
+        display,
+        property_count,
+        properties,
+    )
+    DisplayModeProperties2KHR.(properties)
 end
 
 """
 Generic definition
 """
-function get_display_plane_capabilities_2_khr(
-    physical_device,
-    display_plane_info,
-    capabilities,
-)
+function get_display_plane_capabilities_2_khr(physical_device, display_plane_info)
+    pCapabilities = Ref{VkDisplayPlaneCapabilities2KHR}()    # VulkanGen.InitializePointers
     @check vkGetDisplayPlaneCapabilities2KHR(
         physical_device,
         display_plane_info,
-        capabilities,
+        pCapabilities,
     )
-end
-
-"""
-Generic definition
-"""
-function get_image_memory_requirements_2_khr(device, info, memory_requirements)
-    vkGetImageMemoryRequirements2KHR(device, info, memory_requirements)
-end
-
-"""
-Generic definition
-"""
-function get_buffer_memory_requirements_2_khr(device, info, memory_requirements)
-    vkGetBufferMemoryRequirements2KHR(device, info, memory_requirements)
-end
-
-"""
-Generic definition
-"""
-function get_image_sparse_memory_requirements_2_khr(
-    device,
-    info,
-    sparse_memory_requirement_count,
-    sparse_memory_requirements,
-)
-    vkGetImageSparseMemoryRequirements2KHR(
-        device,
-        info,
-        sparse_memory_requirement_count,
-        sparse_memory_requirements,
-    )
-end
-
-"""
-Generic definition
-"""
-function bind_buffer_memory_2_khr(device, bind_info_count, bind_infos)
-    @check vkBindBufferMemory2KHR(device, bind_info_count, bind_infos)
-end
-
-"""
-Generic definition
-"""
-function bind_image_memory_2_khr(device, bind_info_count, bind_infos)
-    @check vkBindImageMemory2KHR(device, bind_info_count, bind_infos)
-end
-
-"""
-Generic definition
-"""
-function get_descriptor_set_layout_support_khr(device, create_info, support)
-    vkGetDescriptorSetLayoutSupportKHR(device, create_info, support)
-end
-
-"""
-Generic definition
-"""
-function cmd_draw_indirect_count_khr(
-    command_buffer,
-    buffer,
-    offset,
-    count_buffer,
-    count_buffer_offset,
-    max_draw_count,
-    stride,
-)
-    vkCmdDrawIndirectCountKHR(
-        command_buffer,
-        buffer,
-        offset,
-        count_buffer,
-        count_buffer_offset,
-        max_draw_count,
-        stride,
-    )
-end
-
-"""
-Generic definition
-"""
-function cmd_draw_indexed_indirect_count_khr(
-    command_buffer,
-    buffer,
-    offset,
-    count_buffer,
-    count_buffer_offset,
-    max_draw_count,
-    stride,
-)
-    vkCmdDrawIndexedIndirectCountKHR(
-        command_buffer,
-        buffer,
-        offset,
-        count_buffer,
-        count_buffer_offset,
-        max_draw_count,
-        stride,
-    )
-end
-
-"""
-Generic definition
-"""
-function get_semaphore_counter_value_khr(device, semaphore, value)
-    @check vkGetSemaphoreCounterValueKHR(device, semaphore, value)
-end
-
-"""
-Generic definition
-"""
-function wait_semaphores_khr(device, wait_info, timeout)
-    @check vkWaitSemaphoresKHR(device, wait_info, timeout)
-end
-
-"""
-Generic definition
-"""
-function signal_semaphore_khr(device, signal_info)
-    @check vkSignalSemaphoreKHR(device, signal_info)
-end
-
-"""
-Generic definition
-"""
-function get_buffer_device_address_khr(device, info)
-    vkGetBufferDeviceAddressKHR(device, info)
-end
-
-"""
-Generic definition
-"""
-function get_buffer_opaque_capture_address_khr(device, info)
-    vkGetBufferOpaqueCaptureAddressKHR(device, info)
-end
-
-"""
-Generic definition
-"""
-function get_device_memory_opaque_capture_address_khr(device, info)
-    vkGetDeviceMemoryOpaqueCaptureAddressKHR(device, info)
+    DisplayPlaneCapabilities2KHR(pCapabilities[])
 end
 
 function get_pipeline_executable_properties_khr(device, pipeline_info)
-    count = Ref{UInt32}(0)
+    executable_count = Ref{UInt32}(0)
     @check vkGetPipelineExecutablePropertiesKHR(
         device,
-        pointer(pipeline_info),
-        count,
+        pipeline_info,
+        executable_count,
         C_NULL,
     )
-    arr = Array{VkPipelineExecutablePropertiesKHR}(undef, count[])
-    @check vkGetPipelineExecutablePropertiesKHR(device, pointer(pipeline_info), count, arr)
-    PipelineExecutablePropertiesKHR.(arr)
+    properties = Array{VkPipelineExecutablePropertiesKHR}(undef, executable_count[])
+    @check vkGetPipelineExecutablePropertiesKHR(
+        device,
+        pipeline_info,
+        executable_count,
+        properties,
+    )
+    PipelineExecutablePropertiesKHR.(properties)
 end
 
 function get_pipeline_executable_statistics_khr(device, executable_info)
-    count = Ref{UInt32}(0)
+    statistic_count = Ref{UInt32}(0)
     @check vkGetPipelineExecutableStatisticsKHR(
         device,
-        pointer(executable_info),
-        count,
+        executable_info,
+        statistic_count,
         C_NULL,
     )
-    arr = Array{VkPipelineExecutableStatisticKHR}(undef, count[])
+    statistics = Array{VkPipelineExecutableStatisticKHR}(undef, statistic_count[])
     @check vkGetPipelineExecutableStatisticsKHR(
         device,
-        pointer(executable_info),
-        count,
-        arr,
+        executable_info,
+        statistic_count,
+        statistics,
     )
-    PipelineExecutableStatisticKHR.(arr)
+    PipelineExecutableStatisticKHR.(statistics)
 end
 
 function get_pipeline_executable_internal_representations_khr(device, executable_info)
-    count = Ref{UInt32}(0)
+    internal_representation_count = Ref{UInt32}(0)
     @check vkGetPipelineExecutableInternalRepresentationsKHR(
         device,
-        pointer(executable_info),
-        count,
+        executable_info,
+        internal_representation_count,
         C_NULL,
     )
-    arr = Array{VkPipelineExecutableInternalRepresentationKHR}(undef, count[])
+    internal_representations = Array{VkPipelineExecutableInternalRepresentationKHR}(
+        undef,
+        internal_representation_count[],
+    )
     @check vkGetPipelineExecutableInternalRepresentationsKHR(
         device,
-        pointer(executable_info),
-        count,
-        arr,
+        executable_info,
+        internal_representation_count,
+        internal_representations,
     )
-    PipelineExecutableInternalRepresentationKHR.(arr)
+    PipelineExecutableInternalRepresentationKHR.(internal_representations)
 end
 
 """
@@ -31416,7 +30755,7 @@ function cmd_bind_transform_feedback_buffers_ext(
     first_binding,
     buffers,
     offsets;
-    pSizes = C_NULL,
+    sizes = C_NULL,
 )
     _bindingCount = pointer_length(buffers)    # VulkanGen.ComputeLengthArgument
     vkCmdBindTransformFeedbackBuffersEXT(
@@ -31436,7 +30775,7 @@ function cmd_begin_transform_feedback_ext(
     command_buffer,
     first_counter_buffer,
     counter_buffers;
-    pCounterBufferOffsets = C_NULL,
+    counter_buffer_offsets = C_NULL,
 )
     _counterBufferCount = pointer_length(counter_buffers)    # VulkanGen.ComputeLengthArgument
     vkCmdBeginTransformFeedbackEXT(
@@ -31455,7 +30794,7 @@ function cmd_end_transform_feedback_ext(
     command_buffer,
     first_counter_buffer,
     counter_buffers;
-    pCounterBufferOffsets = C_NULL,
+    counter_buffer_offsets = C_NULL,
 )
     _counterBufferCount = pointer_length(counter_buffers)    # VulkanGen.ComputeLengthArgument
     vkCmdEndTransformFeedbackEXT(
@@ -31514,62 +30853,25 @@ end
 """
 Generic definition
 """
-function get_image_view_address_nvx(device, image_view, properties)
-    @check vkGetImageViewAddressNVX(device, image_view, properties)
-end
-
-"""
-Generic definition
-"""
-function cmd_draw_indirect_count_amd(
-    command_buffer,
-    buffer,
-    offset,
-    count_buffer,
-    count_buffer_offset,
-    max_draw_count,
-    stride,
-)
-    vkCmdDrawIndirectCountAMD(
-        command_buffer,
-        buffer,
-        offset,
-        count_buffer,
-        count_buffer_offset,
-        max_draw_count,
-        stride,
-    )
-end
-
-"""
-Generic definition
-"""
-function cmd_draw_indexed_indirect_count_amd(
-    command_buffer,
-    buffer,
-    offset,
-    count_buffer,
-    count_buffer_offset,
-    max_draw_count,
-    stride,
-)
-    vkCmdDrawIndexedIndirectCountAMD(
-        command_buffer,
-        buffer,
-        offset,
-        count_buffer,
-        count_buffer_offset,
-        max_draw_count,
-        stride,
-    )
+function get_image_view_address_nvx(device, image_view)
+    pProperties = Ref{VkImageViewAddressPropertiesNVX}()    # VulkanGen.InitializePointers
+    @check vkGetImageViewAddressNVX(device, image_view, pProperties)
+    ImageViewAddressPropertiesNVX(pProperties[])
 end
 
 function get_shader_info_amd(device, pipeline, shader_stage, info_type)
-    count = Ref{UInt32}(0)
-    @check vkGetShaderInfoAMD(device, pipeline, count, C_NULL)
-    arr = Array{void}(undef, count[])
-    @check vkGetShaderInfoAMD(device, pipeline, count, arr)
-    arr
+    info_size = Ref{UInt32}(0)
+    @check vkGetShaderInfoAMD(
+        device,
+        pipeline,
+        shader_stage,
+        C_NULL_type,
+        C_NULL_size,
+        C_NULL,
+    )
+    info = Array{void}(undef, info_size[])
+    @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, info_size, info)
+    info
 end
 
 """
@@ -31580,11 +30882,11 @@ function get_physical_device_external_image_format_properties_nv(
     format,
     type,
     tiling,
-    usage,
-    external_image_format_properties;
+    usage;
     flags = 0,
-    externalHandleType = 0,
+    external_handle_type = 0,
 )
+    pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()    # VulkanGen.InitializePointers
     @check vkGetPhysicalDeviceExternalImageFormatPropertiesNV(
         physical_device,
         format,
@@ -31593,8 +30895,9 @@ function get_physical_device_external_image_format_properties_nv(
         usage,
         flags,
         external_handle_type,
-        external_image_format_properties,
+        pExternalImageFormatProperties,
     )
+    ExternalImageFormatPropertiesNV(pExternalImageFormatProperties[])
 end
 
 """
@@ -31634,16 +30937,14 @@ end
 """
 Generic definition
 """
-function get_physical_device_surface_capabilities_2_ext(
-    physical_device,
-    surface,
-    surface_capabilities,
-)
+function get_physical_device_surface_capabilities_2_ext(physical_device, surface)
+    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2EXT}()    # VulkanGen.InitializePointers
     @check vkGetPhysicalDeviceSurfaceCapabilities2EXT(
         physical_device,
         surface,
-        surface_capabilities,
+        pSurfaceCapabilities,
     )
+    SurfaceCapabilities2EXT(pSurfaceCapabilities[])
 end
 
 """
@@ -31656,43 +30957,56 @@ end
 """
 Generic definition
 """
-function register_device_event_ext(device, device_event_info, fence; pAllocator = C_NULL)
-    @check vkRegisterDeviceEventEXT(device, device_event_info, allocator, fence)
+function register_device_event_ext(device, device_event_info; allocator = C_NULL)
+    pFence = Ref{VkFence}()    # VulkanGen.InitializePointers
+    @check vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
+    Fence(pFence[])
 end
 
 """
 Generic definition
 """
-function register_display_event_ext(
-    device,
-    display,
-    display_event_info,
-    fence;
-    pAllocator = C_NULL,
-)
-    @check vkRegisterDisplayEventEXT(device, display, display_event_info, allocator, fence)
+function register_display_event_ext(device, display, display_event_info; allocator = C_NULL)
+    pFence = Ref{VkFence}()    # VulkanGen.InitializePointers
+    @check vkRegisterDisplayEventEXT(device, display, display_event_info, allocator, pFence)
+    Fence(pFence[])
 end
 
 """
 Generic definition
 """
-function get_swapchain_counter_ext(device, swapchain, counter, counter_value)
-    @check vkGetSwapchainCounterEXT(device, swapchain, counter, counter_value)
+function get_swapchain_counter_ext(device, swapchain, counter)
+    pCounterValue = Ref{UInt64}()    # VulkanGen.InitializePointers
+    @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue)
+    pCounterValue[]
 end
 
 """
 Generic definition
 """
-function get_refresh_cycle_duration_google(device, swapchain, display_timing_properties)
-    @check vkGetRefreshCycleDurationGOOGLE(device, swapchain, display_timing_properties)
+function get_refresh_cycle_duration_google(device, swapchain)
+    pDisplayTimingProperties = Ref{VkRefreshCycleDurationGOOGLE}()    # VulkanGen.InitializePointers
+    @check vkGetRefreshCycleDurationGOOGLE(device, swapchain, pDisplayTimingProperties)
+    RefreshCycleDurationGOOGLE(pDisplayTimingProperties[])
 end
 
 function get_past_presentation_timing_google(device, swapchain)
-    count = Ref{UInt32}(0)
-    @check vkGetPastPresentationTimingGOOGLE(device, swapchain, count, C_NULL)
-    arr = Array{VkPastPresentationTimingGOOGLE}(undef, count[])
-    @check vkGetPastPresentationTimingGOOGLE(device, swapchain, count, arr)
-    PastPresentationTimingGOOGLE.(arr)
+    presentation_timing_count = Ref{UInt32}(0)
+    @check vkGetPastPresentationTimingGOOGLE(
+        device,
+        swapchain,
+        presentation_timing_count,
+        C_NULL,
+    )
+    presentation_timings =
+        Array{VkPastPresentationTimingGOOGLE}(undef, presentation_timing_count[])
+    @check vkGetPastPresentationTimingGOOGLE(
+        device,
+        swapchain,
+        presentation_timing_count,
+        presentation_timings,
+    )
+    PastPresentationTimingGOOGLE.(presentation_timings)
 end
 
 """
@@ -31798,23 +31112,23 @@ end
 """
 Generic definition
 """
-function get_physical_device_multisample_properties_ext(
-    physical_device,
-    samples,
-    multisample_properties,
-)
+function get_physical_device_multisample_properties_ext(physical_device, samples)
+    pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()    # VulkanGen.InitializePointers
     vkGetPhysicalDeviceMultisamplePropertiesEXT(
         physical_device,
         samples,
-        multisample_properties,
+        pMultisampleProperties,
     )
+    MultisamplePropertiesEXT(pMultisampleProperties[])
 end
 
 """
 Generic definition
 """
-function get_image_drm_format_modifier_properties_ext(device, image, properties)
-    @check vkGetImageDrmFormatModifierPropertiesEXT(device, image, properties)
+function get_image_drm_format_modifier_properties_ext(device, image)
+    pProperties = Ref{VkImageDrmFormatModifierPropertiesEXT}()    # VulkanGen.InitializePointers
+    @check vkGetImageDrmFormatModifierPropertiesEXT(device, image, pProperties)
+    ImageDrmFormatModifierPropertiesEXT(pProperties[])
 end
 
 """
@@ -31826,17 +31140,17 @@ function merge_validation_caches_ext(device, dst_cache, src_caches)
 end
 
 function get_validation_cache_data_ext(device, validation_cache)
-    count = Ref{UInt32}(0)
-    @check vkGetValidationCacheDataEXT(device, validation_cache, count, C_NULL)
-    arr = Array{void}(undef, count[])
-    @check vkGetValidationCacheDataEXT(device, validation_cache, count, arr)
-    arr
+    data_size = Ref{UInt32}(0)
+    @check vkGetValidationCacheDataEXT(device, validation_cache, C_NULL_size, C_NULL)
+    data = Array{void}(undef, data_size[])
+    @check vkGetValidationCacheDataEXT(device, validation_cache, data_size, data)
+    data
 end
 
 """
 Generic definition
 """
-function cmd_bind_shading_rate_image_nv(command_buffer, image_layout; imageView = 0)
+function cmd_bind_shading_rate_image_nv(command_buffer, image_layout; image_view = C_NULL)
     vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout)
 end
 
@@ -31877,12 +31191,10 @@ end
 """
 Generic definition
 """
-function get_acceleration_structure_memory_requirements_nv(
-    device,
-    info,
-    memory_requirements,
-)
-    vkGetAccelerationStructureMemoryRequirementsNV(device, info, memory_requirements)
+function get_acceleration_structure_memory_requirements_nv(device, info)
+    pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()    # VulkanGen.InitializePointers
+    vkGetAccelerationStructureMemoryRequirementsNV(device, info, pMemoryRequirements)
+    pMemoryRequirements[]
 end
 
 """
@@ -31896,13 +31208,6 @@ end
 """
 Generic definition
 """
-function bind_acceleration_structure_memory_nv(device, bind_info_count, bind_infos)
-    @check vkBindAccelerationStructureMemoryNV(device, bind_info_count, bind_infos)
-end
-
-"""
-Generic definition
-"""
 function cmd_build_acceleration_structure_nv(
     command_buffer,
     info,
@@ -31911,8 +31216,8 @@ function cmd_build_acceleration_structure_nv(
     dst,
     scratch,
     scratch_offset;
-    instanceData = 0,
-    src = 0,
+    instance_data = C_NULL,
+    src = C_NULL,
 )
     vkCmdBuildAccelerationStructureNV(
         command_buffer,
@@ -31950,9 +31255,9 @@ function cmd_trace_rays_nv(
     width,
     height,
     depth;
-    missShaderBindingTableBuffer = 0,
-    hitShaderBindingTableBuffer = 0,
-    callableShaderBindingTableBuffer = 0,
+    miss_shader_binding_table_buffer = C_NULL,
+    hit_shader_binding_table_buffer = C_NULL,
+    callable_shader_binding_table_buffer = C_NULL,
 )
     vkCmdTraceRaysNV(
         command_buffer,
@@ -31981,51 +31286,33 @@ function get_ray_tracing_shader_group_handles_khr(
     pipeline,
     first_group,
     group_count,
-    data,
 )
     _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
+    pData = Ref{Cvoid}()    # VulkanGen.InitializePointers
     @check vkGetRayTracingShaderGroupHandlesKHR(
         device,
         pipeline,
         first_group,
         group_count,
         _dataSize,
-        data,
+        pData,
     )
+    pData[]
 end
 
 """
 Generic definition
 """
-function get_ray_tracing_shader_group_handles_nv(
-    device,
-    pipeline,
-    first_group,
-    group_count,
-    data_size,
-    data,
-)
-    @check vkGetRayTracingShaderGroupHandlesNV(
-        device,
-        pipeline,
-        first_group,
-        group_count,
-        data_size,
-        data,
-    )
-end
-
-"""
-Generic definition
-"""
-function get_acceleration_structure_handle_nv(device, acceleration_structure, data)
+function get_acceleration_structure_handle_nv(device, acceleration_structure)
     _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
+    pData = Ref{Cvoid}()    # VulkanGen.InitializePointers
     @check vkGetAccelerationStructureHandleNV(
         device,
         acceleration_structure,
         _dataSize,
-        data,
+        pData,
     )
+    pData[]
 end
 
 """
@@ -32052,27 +31339,6 @@ end
 """
 Generic definition
 """
-function cmd_write_acceleration_structures_properties_nv(
-    command_buffer,
-    acceleration_structure_count,
-    acceleration_structures,
-    query_type,
-    query_pool,
-    first_query,
-)
-    vkCmdWriteAccelerationStructuresPropertiesNV(
-        command_buffer,
-        acceleration_structure_count,
-        acceleration_structures,
-        query_type,
-        query_pool,
-        first_query,
-    )
-end
-
-"""
-Generic definition
-"""
 function compile_deferred_nv(device, pipeline, shader)
     @check vkCompileDeferredNV(device, pipeline, shader)
 end
@@ -32080,18 +31346,15 @@ end
 """
 Generic definition
 """
-function get_memory_host_pointer_properties_ext(
-    device,
-    handle_type,
-    host_pointer,
-    memory_host_pointer_properties,
-)
+function get_memory_host_pointer_properties_ext(device, handle_type, host_pointer)
+    pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()    # VulkanGen.InitializePointers
     @check vkGetMemoryHostPointerPropertiesEXT(
         device,
         handle_type,
         host_pointer,
-        memory_host_pointer_properties,
+        pMemoryHostPointerProperties,
     )
+    MemoryHostPointerPropertiesEXT(pMemoryHostPointerProperties[])
 end
 
 """
@@ -32114,25 +31377,35 @@ function cmd_write_buffer_marker_amd(
 end
 
 function get_physical_device_calibrateable_time_domains_ext(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, count, C_NULL)
-    arr = Array{VkTimeDomainEXT}(undef, count[])
-    @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, count, arr)
-    TimeDomainEXT.(arr)
+    time_domain_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(
+        physical_device,
+        time_domain_count,
+        C_NULL,
+    )
+    time_domains = Array{VkTimeDomainEXT}(undef, time_domain_count[])
+    @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(
+        physical_device,
+        time_domain_count,
+        time_domains,
+    )
+    TimeDomainEXT.(time_domains)
 end
 
 """
 Generic definition
 """
-function get_calibrated_timestamps_ext(device, timestamp_infos, timestamps, max_deviation)
+function get_calibrated_timestamps_ext(device, timestamp_infos, timestamps)
     _timestampCount = pointer_length(timestamp_infos)    # VulkanGen.ComputeLengthArgument
+    pMaxDeviation = Ref{UInt64}()    # VulkanGen.InitializePointers
     @check vkGetCalibratedTimestampsEXT(
         device,
         _timestampCount,
         timestamp_infos,
         timestamps,
-        max_deviation,
+        pMaxDeviation,
     )
+    pMaxDeviation[]
 end
 
 """
@@ -32197,11 +31470,11 @@ function cmd_set_checkpoint_nv(command_buffer, checkpoint_marker)
 end
 
 function get_queue_checkpoint_data_nv(queue)
-    count = Ref{UInt32}(0)
-    @check vkGetQueueCheckpointDataNV(queue, count, C_NULL)
-    arr = Array{VkCheckpointDataNV}(undef, count[])
-    @check vkGetQueueCheckpointDataNV(queue, count, arr)
-    CheckpointDataNV.(arr)
+    checkpoint_data_count = Ref{UInt32}(0)
+    vkGetQueueCheckpointDataNV(queue, C_NULL_count, C_NULL)
+    checkpoint_data = Array{VkCheckpointDataNV}(undef, checkpoint_data_count[])
+    vkGetQueueCheckpointDataNV(queue, checkpoint_data_count, checkpoint_data)
+    CheckpointDataNV.(checkpoint_data)
 end
 
 """
@@ -32242,8 +31515,10 @@ end
 """
 Generic definition
 """
-function acquire_performance_configuration_intel(device, acquire_info, configuration)
-    @check vkAcquirePerformanceConfigurationINTEL(device, acquire_info, configuration)
+function acquire_performance_configuration_intel(device, acquire_info)
+    pConfiguration = Ref{VkPerformanceConfigurationINTEL}()    # VulkanGen.InitializePointers
+    @check vkAcquirePerformanceConfigurationINTEL(device, acquire_info, pConfiguration)
+    PerformanceConfigurationINTEL(pConfiguration[])
 end
 
 """
@@ -32263,8 +31538,10 @@ end
 """
 Generic definition
 """
-function get_performance_parameter_intel(device, parameter, value)
-    @check vkGetPerformanceParameterINTEL(device, parameter, value)
+function get_performance_parameter_intel(device, parameter)
+    pValue = Ref{VkPerformanceValueINTEL}()    # VulkanGen.InitializePointers
+    @check vkGetPerformanceParameterINTEL(device, parameter, pValue)
+    PerformanceValueINTEL(pValue[])
 end
 
 """
@@ -32274,45 +31551,50 @@ function set_local_dimming_amd(device, swap_chain, local_dimming_enable)
     vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 end
 
-"""
-Generic definition
-"""
-function get_buffer_device_address_ext(device, info)
-    vkGetBufferDeviceAddressEXT(device, info)
-end
-
 function get_physical_device_tool_properties_ext(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, count, C_NULL)
-    arr = Array{VkPhysicalDeviceToolPropertiesEXT}(undef, count[])
-    @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, count, arr)
-    PhysicalDeviceToolPropertiesEXT.(arr)
+    tool_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, tool_count, C_NULL)
+    tool_properties = Array{VkPhysicalDeviceToolPropertiesEXT}(undef, tool_count[])
+    @check vkGetPhysicalDeviceToolPropertiesEXT(
+        physical_device,
+        tool_count,
+        tool_properties,
+    )
+    PhysicalDeviceToolPropertiesEXT.(tool_properties)
 end
 
 function get_physical_device_cooperative_matrix_properties_nv(physical_device)
-    count = Ref{UInt32}(0)
-    @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, count, C_NULL)
-    arr = Array{VkCooperativeMatrixPropertiesNV}(undef, count[])
-    @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, count, arr)
-    CooperativeMatrixPropertiesNV.(arr)
+    property_count = Ref{UInt32}(0)
+    @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(
+        physical_device,
+        property_count,
+        C_NULL,
+    )
+    properties = Array{VkCooperativeMatrixPropertiesNV}(undef, property_count[])
+    @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(
+        physical_device,
+        property_count,
+        properties,
+    )
+    CooperativeMatrixPropertiesNV.(properties)
 end
 
 function get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
     physical_device,
 )
-    count = Ref{UInt32}(0)
+    combination_count = Ref{UInt32}(0)
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(
         physical_device,
-        count,
+        combination_count,
         C_NULL,
     )
-    arr = Array{VkFramebufferMixedSamplesCombinationNV}(undef, count[])
+    combinations = Array{VkFramebufferMixedSamplesCombinationNV}(undef, combination_count[])
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(
         physical_device,
-        count,
-        arr,
+        combination_count,
+        combinations,
     )
-    FramebufferMixedSamplesCombinationNV.(arr)
+    FramebufferMixedSamplesCombinationNV.(combinations)
 end
 
 """
@@ -32325,14 +31607,7 @@ end
 """
 Generic definition
 """
-function reset_query_pool_ext(device, query_pool, first_query, query_count)
-    vkResetQueryPoolEXT(device, query_pool, first_query, query_count)
-end
-
-"""
-Generic definition
-"""
-function cmd_set_cull_mode_ext(command_buffer; cullMode = 0)
+function cmd_set_cull_mode_ext(command_buffer; cull_mode = 0)
     vkCmdSetCullModeEXT(command_buffer, cull_mode)
 end
 
@@ -32374,8 +31649,8 @@ function cmd_bind_vertex_buffers_2_ext(
     first_binding,
     buffers,
     offsets;
-    pSizes = C_NULL,
-    pStrides = C_NULL,
+    sizes = C_NULL,
+    strides = C_NULL,
 )
     _bindingCount = pointer_length(buffers)    # VulkanGen.ComputeLengthArgument
     vkCmdBindVertexBuffers2EXT(
@@ -32448,8 +31723,10 @@ end
 """
 Generic definition
 """
-function get_generated_commands_memory_requirements_nv(device, info, memory_requirements)
-    vkGetGeneratedCommandsMemoryRequirementsNV(device, info, memory_requirements)
+function get_generated_commands_memory_requirements_nv(device, info)
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements)
+    MemoryRequirements2(pMemoryRequirements[])
 end
 
 """
@@ -32501,22 +31778,28 @@ end
 """
 Generic definition
 """
-function get_private_data_ext(device, object_type, object_handle, private_data_slot, data)
-    vkGetPrivateDataEXT(device, object_type, object_handle, private_data_slot, data)
+function get_private_data_ext(device, object_type, object_handle, private_data_slot)
+    pData = Ref{UInt64}()    # VulkanGen.InitializePointers
+    vkGetPrivateDataEXT(device, object_type, object_handle, private_data_slot, pData)
+    pData[]
 end
 
 """
 Generic definition
 """
-function get_android_hardware_buffer_properties_android(device, buffer, properties)
-    @check vkGetAndroidHardwareBufferPropertiesANDROID(device, buffer, properties)
+function get_android_hardware_buffer_properties_android(device, buffer)
+    pProperties = Ref{VkAndroidHardwareBufferPropertiesANDROID}()    # VulkanGen.InitializePointers
+    @check vkGetAndroidHardwareBufferPropertiesANDROID(device, buffer, pProperties)
+    AndroidHardwareBufferPropertiesANDROID(pProperties[])
 end
 
 """
 Generic definition
 """
-function get_memory_android_hardware_buffer_android(device, info, buffer)
-    @check vkGetMemoryAndroidHardwareBufferANDROID(device, info, buffer)
+function get_memory_android_hardware_buffer_android(device, info)
+    pBuffer = Ref{AHardwareBuffer}()    # VulkanGen.InitializePointers
+    @check vkGetMemoryAndroidHardwareBufferANDROID(device, info, pBuffer)
+    pBuffer[]
 end
 
 """
@@ -32525,13 +31808,14 @@ Generic definition
 function get_physical_device_wayland_presentation_support_khr(
     physical_device,
     queue_family_index,
-    display,
 )
+    display = Ref{wl_display}()    # VulkanGen.InitializePointers
     vkGetPhysicalDeviceWaylandPresentationSupportKHR(
         physical_device,
         queue_family_index,
         display,
     )
+    display[]
 end
 
 """
@@ -32547,25 +31831,24 @@ end
 """
 Generic definition
 """
-function get_memory_win_32_handle_khr(device, get_win_32_handle_info, handle)
-    @check vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, handle)
+function get_memory_win_32_handle_khr(device, get_win_32_handle_info)
+    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    @check vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, pHandle)
+    pHandle[]
 end
 
 """
 Generic definition
 """
-function get_memory_win_32_handle_properties_khr(
-    device,
-    handle_type,
-    handle,
-    memory_win_32_handle_properties,
-)
+function get_memory_win_32_handle_properties_khr(device, handle_type, handle)
+    pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()    # VulkanGen.InitializePointers
     @check vkGetMemoryWin32HandlePropertiesKHR(
         device,
         handle_type,
         handle,
-        memory_win_32_handle_properties,
+        pMemoryWin32HandleProperties,
     )
+    MemoryWin32HandlePropertiesKHR(pMemoryWin32HandleProperties[])
 end
 
 """
@@ -32578,8 +31861,10 @@ end
 """
 Generic definition
 """
-function get_semaphore_win_32_handle_khr(device, get_win_32_handle_info, handle)
-    @check vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, handle)
+function get_semaphore_win_32_handle_khr(device, get_win_32_handle_info)
+    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    @check vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, pHandle)
+    pHandle[]
 end
 
 """
@@ -32592,33 +31877,37 @@ end
 """
 Generic definition
 """
-function get_fence_win_32_handle_khr(device, get_win_32_handle_info, handle)
-    @check vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, handle)
+function get_fence_win_32_handle_khr(device, get_win_32_handle_info)
+    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    @check vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, pHandle)
+    pHandle[]
 end
 
 """
 Generic definition
 """
-function get_memory_win_32_handle_nv(device, memory, handle_type, handle)
-    @check vkGetMemoryWin32HandleNV(device, memory, handle_type, handle)
+function get_memory_win_32_handle_nv(device, memory, handle_type)
+    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    @check vkGetMemoryWin32HandleNV(device, memory, handle_type, pHandle)
+    pHandle[]
 end
 
 function get_physical_device_surface_present_modes_2_ext(physical_device, surface_info)
-    count = Ref{UInt32}(0)
+    present_mode_count = Ref{UInt32}(0)
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(
         physical_device,
-        pointer(surface_info),
-        count,
+        surface_info,
+        present_mode_count,
         C_NULL,
     )
-    arr = Array{VkPresentModeKHR}(undef, count[])
+    present_modes = Array{VkPresentModeKHR}(undef, present_mode_count[])
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(
         physical_device,
-        pointer(surface_info),
-        count,
-        arr,
+        surface_info,
+        present_mode_count,
+        present_modes,
     )
-    PresentModeKHR.(arr)
+    PresentModeKHR.(present_modes)
 end
 
 """
@@ -32638,8 +31927,10 @@ end
 """
 Generic definition
 """
-function get_device_group_surface_present_modes_2_ext(device, surface_info, modes)
-    @check vkGetDeviceGroupSurfacePresentModes2EXT(device, surface_info, modes)
+function get_device_group_surface_present_modes_2_ext(device, surface_info)
+    pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()    # VulkanGen.InitializePointers
+    @check vkGetDeviceGroupSurfacePresentModes2EXT(device, surface_info, pModes)
+    pModes[]
 end
 
 """
@@ -32686,8 +31977,10 @@ end
 """
 Generic definition
 """
-function get_rand_r_output_display_ext(physical_device, dpy, rr_output, display)
-    @check vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, display)
+function get_rand_r_output_display_ext(physical_device, dpy, rr_output)
+    pDisplay = Ref{VkDisplayKHR}()    # VulkanGen.InitializePointers
+    @check vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, pDisplay)
+    DisplayKHR(pDisplay[])
 end
 
 """
@@ -32714,12 +32007,10 @@ end
 """
 Generic definition
 """
-function get_acceleration_structure_memory_requirements_khr(
-    device,
-    info,
-    memory_requirements,
-)
-    vkGetAccelerationStructureMemoryRequirementsKHR(device, info, memory_requirements)
+function get_acceleration_structure_memory_requirements_khr(device, info)
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    vkGetAccelerationStructureMemoryRequirementsKHR(device, info, pMemoryRequirements)
+    MemoryRequirements2(pMemoryRequirements[])
 end
 
 """
@@ -32862,17 +32153,18 @@ function get_ray_tracing_capture_replay_shader_group_handles_khr(
     pipeline,
     first_group,
     group_count,
-    data,
 )
     _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
+    pData = Ref{Cvoid}()    # VulkanGen.InitializePointers
     @check vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(
         device,
         pipeline,
         first_group,
         group_count,
         _dataSize,
-        data,
+        pData,
     )
+    pData[]
 end
 
 """
@@ -33563,15 +32855,12 @@ export VULKAN_H_,
     KHR_device_group_creation,
     KHR_DEVICE_GROUP_CREATION_SPEC_VERSION,
     KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME,
-    MAX_DEVICE_GROUP_SIZE_KHR,
     KHR_external_memory_capabilities,
     KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION,
     KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME,
-    LUID_SIZE_KHR,
     KHR_external_memory,
     KHR_EXTERNAL_MEMORY_SPEC_VERSION,
     KHR_EXTERNAL_MEMORY_EXTENSION_NAME,
-    QUEUE_FAMILY_EXTERNAL_KHR,
     KHR_external_memory_fd,
     KHR_EXTERNAL_MEMORY_FD_SPEC_VERSION,
     KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME,
@@ -33674,8 +32963,6 @@ export VULKAN_H_,
     KHR_driver_properties,
     KHR_DRIVER_PROPERTIES_SPEC_VERSION,
     KHR_DRIVER_PROPERTIES_EXTENSION_NAME,
-    MAX_DRIVER_NAME_SIZE_KHR,
-    MAX_DRIVER_INFO_SIZE_KHR,
     KHR_shader_float_controls,
     KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION,
     KHR_SHADER_FLOAT_CONTROLS_EXTENSION_NAME,
@@ -33912,7 +33199,6 @@ export VULKAN_H_,
     NV_RAY_TRACING_SPEC_VERSION,
     NV_RAY_TRACING_EXTENSION_NAME,
     SHADER_UNUSED_KHR,
-    SHADER_UNUSED_NV,
     NV_representative_fragment_test,
     NV_REPRESENTATIVE_FRAGMENT_TEST_SPEC_VERSION,
     NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME,
@@ -34454,8 +33740,6 @@ export VULKAN_H_,
     SemaphoreImportFlags,
     ExternalSemaphoreHandleTypeFlags,
     ExternalSemaphoreFeatureFlags,
-    PhysicalDeviceVariablePointerFeatures,
-    PhysicalDeviceShaderDrawParameterFeatures,
     PFN_vkEnumerateInstanceVersion,
     PFN_vkBindBufferMemory2,
     PFN_vkBindImageMemory2,
@@ -34537,18 +33821,6 @@ export VULKAN_H_,
     PFN_vkGetDisplayPlaneCapabilitiesKHR,
     PFN_vkCreateDisplayPlaneSurfaceKHR,
     PFN_vkCreateSharedSwapchainsKHR,
-    RenderPassMultiviewCreateInfoKHR,
-    PhysicalDeviceMultiviewFeaturesKHR,
-    PhysicalDeviceMultiviewPropertiesKHR,
-    PhysicalDeviceFeatures2KHR,
-    PhysicalDeviceProperties2KHR,
-    FormatProperties2KHR,
-    ImageFormatProperties2KHR,
-    PhysicalDeviceImageFormatInfo2KHR,
-    QueueFamilyProperties2KHR,
-    PhysicalDeviceMemoryProperties2KHR,
-    SparseImageFormatProperties2KHR,
-    PhysicalDeviceSparseImageFormatInfo2KHR,
     PFN_vkGetPhysicalDeviceFeatures2KHR,
     PFN_vkGetPhysicalDeviceProperties2KHR,
     PFN_vkGetPhysicalDeviceFormatProperties2KHR,
@@ -34556,92 +33828,28 @@ export VULKAN_H_,
     PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR,
     PFN_vkGetPhysicalDeviceMemoryProperties2KHR,
     PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR,
-    PeerMemoryFeatureFlagsKHR,
-    PeerMemoryFeatureFlagBitsKHR,
-    MemoryAllocateFlagsKHR,
-    MemoryAllocateFlagBitsKHR,
-    MemoryAllocateFlagsInfoKHR,
-    DeviceGroupRenderPassBeginInfoKHR,
-    DeviceGroupCommandBufferBeginInfoKHR,
-    DeviceGroupSubmitInfoKHR,
-    DeviceGroupBindSparseInfoKHR,
-    BindBufferMemoryDeviceGroupInfoKHR,
-    BindImageMemoryDeviceGroupInfoKHR,
     PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
     PFN_vkCmdSetDeviceMaskKHR,
     PFN_vkCmdDispatchBaseKHR,
-    CommandPoolTrimFlagsKHR,
     PFN_vkTrimCommandPoolKHR,
-    PhysicalDeviceGroupPropertiesKHR,
-    DeviceGroupDeviceCreateInfoKHR,
     PFN_vkEnumeratePhysicalDeviceGroupsKHR,
-    ExternalMemoryHandleTypeFlagsKHR,
-    ExternalMemoryHandleTypeFlagBitsKHR,
-    ExternalMemoryFeatureFlagsKHR,
-    ExternalMemoryFeatureFlagBitsKHR,
-    ExternalMemoryPropertiesKHR,
-    PhysicalDeviceExternalImageFormatInfoKHR,
-    ExternalImageFormatPropertiesKHR,
-    PhysicalDeviceExternalBufferInfoKHR,
-    ExternalBufferPropertiesKHR,
-    PhysicalDeviceIDPropertiesKHR,
     PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
-    ExternalMemoryImageCreateInfoKHR,
-    ExternalMemoryBufferCreateInfoKHR,
-    ExportMemoryAllocateInfoKHR,
     PFN_vkGetMemoryFdKHR,
     PFN_vkGetMemoryFdPropertiesKHR,
-    ExternalSemaphoreHandleTypeFlagsKHR,
-    ExternalSemaphoreHandleTypeFlagBitsKHR,
-    ExternalSemaphoreFeatureFlagsKHR,
-    ExternalSemaphoreFeatureFlagBitsKHR,
-    PhysicalDeviceExternalSemaphoreInfoKHR,
-    ExternalSemaphorePropertiesKHR,
     PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
-    SemaphoreImportFlagsKHR,
-    SemaphoreImportFlagBitsKHR,
-    ExportSemaphoreCreateInfoKHR,
     PFN_vkImportSemaphoreFdKHR,
     PFN_vkGetSemaphoreFdKHR,
     PFN_vkCmdPushDescriptorSetKHR,
     PFN_vkCmdPushDescriptorSetWithTemplateKHR,
-    PhysicalDeviceShaderFloat16Int8FeaturesKHR,
-    PhysicalDeviceFloat16Int8FeaturesKHR,
-    PhysicalDevice16BitStorageFeaturesKHR,
-    DescriptorUpdateTemplateKHR,
-    DescriptorUpdateTemplateTypeKHR,
-    DescriptorUpdateTemplateCreateFlagsKHR,
-    DescriptorUpdateTemplateEntryKHR,
-    DescriptorUpdateTemplateCreateInfoKHR,
     PFN_vkCreateDescriptorUpdateTemplateKHR,
     PFN_vkDestroyDescriptorUpdateTemplateKHR,
     PFN_vkUpdateDescriptorSetWithTemplateKHR,
-    PhysicalDeviceImagelessFramebufferFeaturesKHR,
-    FramebufferAttachmentsCreateInfoKHR,
-    FramebufferAttachmentImageInfoKHR,
-    RenderPassAttachmentBeginInfoKHR,
-    RenderPassCreateInfo2KHR,
-    AttachmentDescription2KHR,
-    AttachmentReference2KHR,
-    SubpassDescription2KHR,
-    SubpassDependency2KHR,
-    SubpassBeginInfoKHR,
-    SubpassEndInfoKHR,
     PFN_vkCreateRenderPass2KHR,
     PFN_vkCmdBeginRenderPass2KHR,
     PFN_vkCmdNextSubpass2KHR,
     PFN_vkCmdEndRenderPass2KHR,
     PFN_vkGetSwapchainStatusKHR,
-    ExternalFenceHandleTypeFlagsKHR,
-    ExternalFenceHandleTypeFlagBitsKHR,
-    ExternalFenceFeatureFlagsKHR,
-    ExternalFenceFeatureFlagBitsKHR,
-    PhysicalDeviceExternalFenceInfoKHR,
-    ExternalFencePropertiesKHR,
     PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
-    FenceImportFlagsKHR,
-    FenceImportFlagBitsKHR,
-    ExportFenceCreateInfoKHR,
     PFN_vkImportFenceFdKHR,
     PFN_vkGetFenceFdKHR,
     PerformanceCounterDescriptionFlagsKHR,
@@ -34650,87 +33858,25 @@ export VULKAN_H_,
     PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR,
     PFN_vkAcquireProfilingLockKHR,
     PFN_vkReleaseProfilingLockKHR,
-    PointClippingBehaviorKHR,
-    TessellationDomainOriginKHR,
-    PhysicalDevicePointClippingPropertiesKHR,
-    RenderPassInputAttachmentAspectCreateInfoKHR,
-    InputAttachmentAspectReferenceKHR,
-    ImageViewUsageCreateInfoKHR,
-    PipelineTessellationDomainOriginStateCreateInfoKHR,
     PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
     PFN_vkGetPhysicalDeviceSurfaceFormats2KHR,
-    PhysicalDeviceVariablePointerFeaturesKHR,
-    PhysicalDeviceVariablePointersFeaturesKHR,
     PFN_vkGetPhysicalDeviceDisplayProperties2KHR,
     PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR,
     PFN_vkGetDisplayModeProperties2KHR,
     PFN_vkGetDisplayPlaneCapabilities2KHR,
-    MemoryDedicatedRequirementsKHR,
-    MemoryDedicatedAllocateInfoKHR,
-    BufferMemoryRequirementsInfo2KHR,
-    ImageMemoryRequirementsInfo2KHR,
-    ImageSparseMemoryRequirementsInfo2KHR,
-    MemoryRequirements2KHR,
-    SparseImageMemoryRequirements2KHR,
     PFN_vkGetImageMemoryRequirements2KHR,
     PFN_vkGetBufferMemoryRequirements2KHR,
     PFN_vkGetImageSparseMemoryRequirements2KHR,
-    ImageFormatListCreateInfoKHR,
-    SamplerYcbcrConversionKHR,
-    SamplerYcbcrModelConversionKHR,
-    SamplerYcbcrRangeKHR,
-    ChromaLocationKHR,
-    SamplerYcbcrConversionCreateInfoKHR,
-    SamplerYcbcrConversionInfoKHR,
-    BindImagePlaneMemoryInfoKHR,
-    ImagePlaneMemoryRequirementsInfoKHR,
-    PhysicalDeviceSamplerYcbcrConversionFeaturesKHR,
-    SamplerYcbcrConversionImageFormatPropertiesKHR,
     PFN_vkCreateSamplerYcbcrConversionKHR,
     PFN_vkDestroySamplerYcbcrConversionKHR,
-    BindBufferMemoryInfoKHR,
-    BindImageMemoryInfoKHR,
     PFN_vkBindBufferMemory2KHR,
     PFN_vkBindImageMemory2KHR,
-    PhysicalDeviceMaintenance3PropertiesKHR,
-    DescriptorSetLayoutSupportKHR,
     PFN_vkGetDescriptorSetLayoutSupportKHR,
     PFN_vkCmdDrawIndirectCountKHR,
     PFN_vkCmdDrawIndexedIndirectCountKHR,
-    PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR,
-    PhysicalDevice8BitStorageFeaturesKHR,
-    PhysicalDeviceShaderAtomicInt64FeaturesKHR,
-    DriverIdKHR,
-    ConformanceVersionKHR,
-    PhysicalDeviceDriverPropertiesKHR,
-    ShaderFloatControlsIndependenceKHR,
-    PhysicalDeviceFloatControlsPropertiesKHR,
-    ResolveModeFlagBitsKHR,
-    ResolveModeFlagsKHR,
-    SubpassDescriptionDepthStencilResolveKHR,
-    PhysicalDeviceDepthStencilResolvePropertiesKHR,
-    SemaphoreTypeKHR,
-    SemaphoreWaitFlagBitsKHR,
-    SemaphoreWaitFlagsKHR,
-    PhysicalDeviceTimelineSemaphoreFeaturesKHR,
-    PhysicalDeviceTimelineSemaphorePropertiesKHR,
-    SemaphoreTypeCreateInfoKHR,
-    TimelineSemaphoreSubmitInfoKHR,
-    SemaphoreWaitInfoKHR,
-    SemaphoreSignalInfoKHR,
     PFN_vkGetSemaphoreCounterValueKHR,
     PFN_vkWaitSemaphoresKHR,
     PFN_vkSignalSemaphoreKHR,
-    PhysicalDeviceVulkanMemoryModelFeaturesKHR,
-    PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR,
-    AttachmentReferenceStencilLayoutKHR,
-    AttachmentDescriptionStencilLayoutKHR,
-    PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR,
-    PhysicalDeviceBufferDeviceAddressFeaturesKHR,
-    BufferDeviceAddressInfoKHR,
-    BufferOpaqueCaptureAddressCreateInfoKHR,
-    MemoryOpaqueCaptureAddressAllocateInfoKHR,
-    DeviceMemoryOpaqueCaptureAddressInfoKHR,
     PFN_vkGetBufferDeviceAddressKHR,
     PFN_vkGetBufferOpaqueCaptureAddressKHR,
     PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR,
@@ -34801,9 +33947,6 @@ export VULKAN_H_,
     PFN_vkCreateDebugUtilsMessengerEXT,
     PFN_vkDestroyDebugUtilsMessengerEXT,
     PFN_vkSubmitDebugUtilsMessageEXT,
-    SamplerReductionModeEXT,
-    SamplerReductionModeCreateInfoEXT,
-    PhysicalDeviceSamplerFilterMinmaxPropertiesEXT,
     PFN_vkCmdSetSampleLocationsEXT,
     PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
     PipelineCoverageToColorStateCreateFlagsNV,
@@ -34816,38 +33959,14 @@ export VULKAN_H_,
     PFN_vkDestroyValidationCacheEXT,
     PFN_vkMergeValidationCachesEXT,
     PFN_vkGetValidationCacheDataEXT,
-    DescriptorBindingFlagBitsEXT,
-    DescriptorBindingFlagsEXT,
-    DescriptorSetLayoutBindingFlagsCreateInfoEXT,
-    PhysicalDeviceDescriptorIndexingFeaturesEXT,
-    PhysicalDeviceDescriptorIndexingPropertiesEXT,
-    DescriptorSetVariableDescriptorCountAllocateInfoEXT,
-    DescriptorSetVariableDescriptorCountLayoutSupportEXT,
     PFN_vkCmdBindShadingRateImageNV,
     PFN_vkCmdSetViewportShadingRatePaletteNV,
     PFN_vkCmdSetCoarseSampleOrderNV,
     AccelerationStructureKHR_T,
     AccelerationStructureKHR,
-    AccelerationStructureNV,
-    RayTracingShaderGroupTypeNV,
-    GeometryTypeNV,
-    AccelerationStructureTypeNV,
-    CopyAccelerationStructureModeNV,
-    AccelerationStructureMemoryRequirementsTypeNV,
     GeometryFlagsKHR,
-    GeometryFlagsNV,
-    GeometryFlagBitsNV,
     GeometryInstanceFlagsKHR,
-    GeometryInstanceFlagsNV,
-    GeometryInstanceFlagBitsNV,
     BuildAccelerationStructureFlagsKHR,
-    BuildAccelerationStructureFlagsNV,
-    BuildAccelerationStructureFlagBitsNV,
-    BindAccelerationStructureMemoryInfoNV,
-    WriteDescriptorSetAccelerationStructureNV,
-    TransformMatrixNV,
-    AabbPositionsNV,
-    AccelerationStructureInstanceNV,
     PFN_vkCreateAccelerationStructureNV,
     PFN_vkDestroyAccelerationStructureKHR,
     PFN_vkDestroyAccelerationStructureNV,
@@ -34878,7 +33997,6 @@ export VULKAN_H_,
     PFN_vkGetQueueCheckpointDataNV,
     PerformanceConfigurationINTEL_T,
     PerformanceConfigurationINTEL,
-    QueryPoolCreateInfoINTEL,
     PFN_vkInitializePerformanceApiINTEL,
     PFN_vkUninitializePerformanceApiINTEL,
     PFN_vkCmdSetPerformanceMarkerINTEL,
@@ -34889,21 +34007,16 @@ export VULKAN_H_,
     PFN_vkQueueSetPerformanceConfigurationINTEL,
     PFN_vkGetPerformanceParameterINTEL,
     PFN_vkSetLocalDimmingAMD,
-    PhysicalDeviceScalarBlockLayoutFeaturesEXT,
     ShaderCorePropertiesFlagsAMD,
-    PhysicalDeviceBufferAddressFeaturesEXT,
-    BufferDeviceAddressInfoEXT,
     PFN_vkGetBufferDeviceAddressEXT,
     ToolPurposeFlagsEXT,
     PFN_vkGetPhysicalDeviceToolPropertiesEXT,
-    ImageStencilUsageCreateInfoEXT,
     PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
     PipelineCoverageReductionStateCreateFlagsNV,
     PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
     HeadlessSurfaceCreateFlagsEXT,
     PFN_vkCreateHeadlessSurfaceEXT,
     PFN_vkCmdSetLineStippleEXT,
-    PhysicalDeviceHostQueryResetFeaturesEXT,
     PFN_vkResetQueryPoolEXT,
     PFN_vkCmdSetCullModeEXT,
     PFN_vkCmdSetFrontFaceEXT,
@@ -36170,6 +35283,7 @@ export VULKAN_H_,
     BagCopyAccelerationStructureToMemoryInfoKHR,
     BagCopyMemoryToAccelerationStructureInfoKHR,
     BagCopyAccelerationStructureInfoKHR,
+    from_vk,
     enumerate_physical_devices,
     get_physical_device_features,
     get_physical_device_format_properties,
@@ -36318,32 +35432,13 @@ export VULKAN_H_,
     get_display_plane_supported_displays_khr,
     get_display_mode_properties_khr,
     get_display_plane_capabilities_khr,
-    get_physical_device_features_2_khr,
-    get_physical_device_properties_2_khr,
-    get_physical_device_format_properties_2_khr,
-    get_physical_device_image_format_properties_2_khr,
-    get_physical_device_queue_family_properties_2_khr,
-    get_physical_device_memory_properties_2_khr,
-    get_physical_device_sparse_image_format_properties_2_khr,
-    get_device_group_peer_memory_features_khr,
-    cmd_set_device_mask_khr,
-    cmd_dispatch_base_khr,
-    trim_command_pool_khr,
-    enumerate_physical_device_groups_khr,
-    get_physical_device_external_buffer_properties_khr,
     get_memory_fd_khr,
     get_memory_fd_properties_khr,
-    get_physical_device_external_semaphore_properties_khr,
     import_semaphore_fd_khr,
     get_semaphore_fd_khr,
     cmd_push_descriptor_set_khr,
     cmd_push_descriptor_set_with_template_khr,
-    update_descriptor_set_with_template_khr,
-    cmd_begin_render_pass_2_khr,
-    cmd_next_subpass_2_khr,
-    cmd_end_render_pass_2_khr,
     get_swapchain_status_khr,
-    get_physical_device_external_fence_properties_khr,
     import_fence_fd_khr,
     get_fence_fd_khr,
     enumerate_physical_device_queue_family_performance_query_counters_khr,
@@ -36356,20 +35451,6 @@ export VULKAN_H_,
     get_physical_device_display_plane_properties_2_khr,
     get_display_mode_properties_2_khr,
     get_display_plane_capabilities_2_khr,
-    get_image_memory_requirements_2_khr,
-    get_buffer_memory_requirements_2_khr,
-    get_image_sparse_memory_requirements_2_khr,
-    bind_buffer_memory_2_khr,
-    bind_image_memory_2_khr,
-    get_descriptor_set_layout_support_khr,
-    cmd_draw_indirect_count_khr,
-    cmd_draw_indexed_indirect_count_khr,
-    get_semaphore_counter_value_khr,
-    wait_semaphores_khr,
-    signal_semaphore_khr,
-    get_buffer_device_address_khr,
-    get_buffer_opaque_capture_address_khr,
-    get_device_memory_opaque_capture_address_khr,
     get_pipeline_executable_properties_khr,
     get_pipeline_executable_statistics_khr,
     get_pipeline_executable_internal_representations_khr,
@@ -36387,8 +35468,6 @@ export VULKAN_H_,
     cmd_draw_indirect_byte_count_ext,
     get_image_view_handle_nvx,
     get_image_view_address_nvx,
-    cmd_draw_indirect_count_amd,
-    cmd_draw_indexed_indirect_count_amd,
     get_shader_info_amd,
     get_physical_device_external_image_format_properties_nv,
     cmd_begin_conditional_rendering_ext,
@@ -36423,15 +35502,12 @@ export VULKAN_H_,
     cmd_set_coarse_sample_order_nv,
     get_acceleration_structure_memory_requirements_nv,
     bind_acceleration_structure_memory_khr,
-    bind_acceleration_structure_memory_nv,
     cmd_build_acceleration_structure_nv,
     cmd_copy_acceleration_structure_nv,
     cmd_trace_rays_nv,
     get_ray_tracing_shader_group_handles_khr,
-    get_ray_tracing_shader_group_handles_nv,
     get_acceleration_structure_handle_nv,
     cmd_write_acceleration_structures_properties_khr,
-    cmd_write_acceleration_structures_properties_nv,
     compile_deferred_nv,
     get_memory_host_pointer_properties_ext,
     cmd_write_buffer_marker_amd,
@@ -36453,12 +35529,10 @@ export VULKAN_H_,
     queue_set_performance_configuration_intel,
     get_performance_parameter_intel,
     set_local_dimming_amd,
-    get_buffer_device_address_ext,
     get_physical_device_tool_properties_ext,
     get_physical_device_cooperative_matrix_properties_nv,
     get_physical_device_supported_framebuffer_mixed_samples_combinations_nv,
     cmd_set_line_stipple_ext,
-    reset_query_pool_ext,
     cmd_set_cull_mode_ext,
     cmd_set_front_face_ext,
     cmd_set_primitive_topology_ext,

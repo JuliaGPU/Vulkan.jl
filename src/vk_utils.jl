@@ -3,7 +3,7 @@ struct VulkanError <: Exception
     return_code
 end
 
-Base.showerror(io::Core.IO, e::VulkanError) = print(io, "$(e.return_code): ", e.msg)
+Base.showerror(io::IO, e::VulkanError) = print(io, "$(e.return_code): ", e.msg)
 
 """
     @check vkFunctionSomething()
@@ -41,44 +41,11 @@ unsafe_pointer_load(ptr::Cstring) = unsafe_string(ptr)
 
 pointer_length(p) = p == C_NULL || isempty(p) ? 0 : length(p)
 
+to_vk(T, x) = convert(T, x)
 to_vk(T::Type{UInt32}, version::VersionNumber) = T((version.major << 22) + (version.minor << 12) + version.patch)
 to_vk(T::Type{NTuple{N,UInt8}}, s::AbstractString) where {N} = T(s * "\0" ^ (N - length(s)))
 
-
+from_vk(T, x) = convert(T, x)
 from_vk(T::Type{VersionNumber}, version::UInt32) = T(version >> 22, (version >> 12) & 0x3ff, version & 0xfff)
 from_vk(T::Type{<: AbstractArray{P}}, b::Ptr{P}; length) where P = unsafe_pointer_load(b, length)
 from_vk(T::Type{S}, str::NTuple{N,UInt8}) where {N,S <: AbstractString} = T(filter!(x -> x ≠ 0, UInt8[str...]))
-
-# """
-#     assign_fields(T, expr)
-
-# Call the constructor of S with val.\$f for all fields f of t1.
-# # Examples
-# ```
-# julia> assign_fields(S, val::T)
-# ```
-# """
-# macro assign_fields(T, expr)
-#     name, type = split(string(expr), "::")
-#     names = Symbol[fieldnames(Base.eval(Vulkan, Meta.parse(type)))...]
-#     esc(Meta.parse("$T(" * join(names, ", ") * ")"))
-# end
-
-# is_union(t) = startswith(t, "Union{")
-
-# union_nothing(t) = strip.(split(match(r"Union{(.*)}", t).captures[1], "Nothing,"))
-
-# macro add_trivial_conversion(fun_name, t1, t2)
-#     :($fun_name(T::Type{$t1}, val::$t2) = @assign_fields($t1, val::$t2))
-# end
-
-# """
-# Add a trivial conversion (simply )
-# """
-
-# macro add_vk_trivial_conversion_bidirectional(t1, t2)
-#     quote
-#         @add_vk_convert(from_vk, $t1, $t2)
-#         @add_vk_convert(to_vk, $t2, $t1)
-#     end
-# end
