@@ -4,21 +4,26 @@ import XCB
 using XCB:Connection, run_window, xcb_setup_roots_iterator, xcb_map_window, flush, getkey, KeyAction, KeyCombination, KeyContext, KeyEvent, KeyModifierState, KeyPressed, KeyReleased, CloseWindow, Button, ButtonState, @key_str
 using VulkanCore.vk
 using Parameters
-
+using TerminalLoggers
+using ProgressLogging
+using REPL
+using REPL:Terminals
+using Logging: global_logger
 using BenchmarkTools
 
-ENV["JULIA_DEBUG"] = Main
 
-
+include("logging.jl")
 include("debug.jl")
 include("validation.jl")
 include("window.jl")
 include("features.jl")
 
 include("types.jl")
+include("buffers.jl")
 include("shaders.jl")
 include("pipelines.jl")
 include("setups.jl")
+include("vertices.jl")
 include("app.jl")
 
 function Vulkan.acquire_next_image_khr(device, swapchain; timeout=0, semaphore=C_NULL, fence=C_NULL)
@@ -54,9 +59,9 @@ function add_swapchain!(app::VulkanApplication, extent, format; buffering=3, col
     
     @assert Bool(get_physical_device_surface_support_khr(physical_device, device.queues.present.queue_index, surface))
     
-    @info "Supported formats: $supported_formats"
-    @info "Supported capabilities: $supported_capabilities"
-    @info "Supported presentation modes: $supported_present_modes"
+    # @info "Supported formats: $supported_formats"
+    # @info "Supported capabilities: $supported_capabilities"
+    # @info "Supported presentation modes: $supported_present_modes"
 
     swapchain = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, buffering, format, colorspace, extent, layers, UInt32(usage), sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped))
     images = get_swapchain_images_khr(device, swapchain)
@@ -83,14 +88,18 @@ end
 
 function setup_pipeline!(app::VulkanApplication)
     @unpack device = app
-    vert_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_vert.spv"), SPIRV())
-    frag_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_frag.spv"), SPIRV())
-    shaders = [vert_shader_module, frag_shader_module]
+    # vert_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_vert.spv"), SPIRV())
+    # frag_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_frag.spv"), SPIRV())
+
+    # vert_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle.vert"), GLSL())
+    # frag_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle.frag"), GLSL())
+
+    shaders = shader_modules(device, joinpath.(@__DIR__, ["triangle.vert", "triangle.frag"]))
     shader_stage_cis = PipelineShaderStageCreateInfo.([SHADER_STAGE_VERTEX_BIT, SHADER_STAGE_FRAGMENT_BIT], shaders, "main")
     
     layout = PipelineLayout(device, PipelineLayoutCreateInfo([], []))
-    
-    vertex_input_state = PipelineVertexInputStateCreateInfo([], [])
+    # vertex_input_state = PipelineVertexInputStateCreateInfo(repeat([binding_description(Vertex, 0)], 2), attribute_descriptions(Vertex, 0))
+    vertex_input_state = PipelineVertexInputStateCreateInfo([binding_description(Vertex, 0)], attribute_descriptions(Vertex, 0))
     input_assembly_state = PipelineInputAssemblyStateCreateInfo(PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, false)
     rasterizer = PipelineRasterizationStateCreateInfo(false, false, POLYGON_MODE_FILL, FRONT_FACE_CLOCKWISE, false, 0., 0., 0., 1., cull_mode=CULL_MODE_BACK_BIT)
     multisample_state = PipelineMultisampleStateCreateInfo(SAMPLE_COUNT_1_BIT, false, 1., false, false)
@@ -104,11 +113,13 @@ function setup_pipeline!(app::VulkanApplication)
 end
 
 function record_render_pass(app, command_buffers)
-    renderpass_infos = RenderPassBeginInfo.(app.render_pass, app.framebuffers, Rect2D(Offset2D(0, 0), app.swapchain.extent), Ref([ClearValue(ClearColorValue((0., 0, 0., 1)))]))
+    renderpass_infos = RenderPassBeginInfo.(app.render_pass, app.framebuffers, Rect2D(Offset2D(0, 0), app.swapchain.extent), Ref([ClearValue(ClearColorValue((0., 0.01, 0.015, 1)))]))
     begin_command_buffer.(command_buffers, CommandBufferBeginInfo())
     cmd_begin_render_pass.(command_buffers, renderpass_infos, SUBPASS_CONTENTS_INLINE)
+    # invalidate_mapped_memory_ranges(app.device, [MappedMemoryRange(app.memories[:vertex], 0, WHOLE_SIZE)])
+    cmd_bind_vertex_buffers.(command_buffers, 0, Ref([app.buffers[:vertex].handle]), Ref(DeviceSize[0]))
     cmd_bind_pipeline.(command_buffers, PIPELINE_BIND_POINT_GRAPHICS, app.pipelines[:main])
-    cmd_draw.(command_buffers, 3, 1, 0, 0)
+    cmd_draw.(command_buffers, length(vertices), 1, 0, 0)
     cmd_end_render_pass.(command_buffers)
     end_command_buffer.(command_buffers)
 end
@@ -178,37 +189,39 @@ function main()
 
     app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
     add_device!(app)
-    
-    window = create_window(width=512, height=512)
-    
-    add_surface!(app, window)
-    add_swapchain!(app, Extent2D(window.width[], window.height[]), FORMAT_B8G8R8A8_SRGB)
-    add_render_pass!(app)
-    add_framebuffers!(app)
-    setup_viewport!(app)
-    setup_pipeline!(app)
-    ps = app.pipelines[:main]
-    viewport_state = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
-    create_pipeline!(ps, app.device, app.render_pass, viewport_state)
-    app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))
-    command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
-    command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))
-
-    record_render_pass(app, command_buffers)
-
-    initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = length(app.framebuffers) - 1)
-
-    function resize_callback(window, width, height)
-        handle_resize!(app)
-    end
-
     try
+        app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))
+        add_vertex_buffer!(app, vertices)
+        # add_vertex_buffer!(app)
+    
+        window = create_window(width=512, height=512)
+        
+        add_surface!(app, window)
+        add_swapchain!(app, Extent2D(window.width[], window.height[]), FORMAT_B8G8R8A8_SRGB)
+        add_render_pass!(app)
+        add_framebuffers!(app)
+        setup_viewport!(app)
+        setup_pipeline!(app)
+        ps = app.pipelines[:main]
+        viewport_state = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
+        create_pipeline!(ps, app.device, app.render_pass, viewport_state)
+        command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
+        command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))
+
+        record_render_pass(app, command_buffers)
+
+        initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = length(app.framebuffers) - 1)
+
+        function resize_callback(window, width, height)
+            handle_resize!(app)
+        end
+
         # run_window(window, process_event_vulkan; resize_callback=(win, x, y) -> nothing, vulkan_app=app)
         run_window(window, process_event_vulkan; resize_callback, vulkan_app=app)
     catch e
         rethrow(e) # terminate the event loop from run_window
     finally
-        finalize(app)
+        shutdown_properly!(app)
     end
 end
 
@@ -234,5 +247,24 @@ function test_enumerated_properties()
         finalize.([window, window.conn])
     end
 end
-
 # test_enumerated_properties()
+
+
+Base.show(io::IO, x::VkMemoryType) = print(io, "VkMemoryType(heap_index=$(x.heapIndex), flags=$(x.propertyFlags))")
+Base.show(io::IO, x::VkMemoryHeap) = print(io, "VkMemoryHeap(size=$(x.size) bytes, flags=$(x.flags))")
+Base.show(io::IO, x::PhysicalDeviceMemoryProperties) = print(io, "PhysicalDeviceMemoryProperties($(x.memory_types[1:x.memory_type_count]), $(x.memory_heaps[1:x.memory_heap_count]))")
+
+#TODO: add flags extraction from bitmasks
+
+function test_vertex_buffer()
+    app = create_application()
+    instance = app.app.handle
+    add_device!(app)
+    try
+        add_vertex_buffer!(app, vertices)
+    finally
+        finalize(app)
+    end
+end
+
+# test_vertex_buffer()

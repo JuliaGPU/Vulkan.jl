@@ -8,7 +8,7 @@ using CEnum
 
 include("vk_utils.jl")
 
-include(joinpath(dirname(@__DIR__), "generated", "_wrapped_api.jl"))
+include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
 
 include("misc.jl")
 include("print.jl")

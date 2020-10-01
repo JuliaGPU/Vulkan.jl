@@ -34,7 +34,35 @@
                 "--novalidate"
             ],
             "problemMatcher": "$tsc",
-            "group": "build"
+            "group": "build",
+            "options": {
+                "env": {
+                    "DISPLAY": ":1"
+                }
+            }
+        },
+        {
+            "label": "RenderDoc - Profile application",
+            "command": "renderdoccmd",
+            "type": "shell",
+            "args": [
+                "capture",
+                "-d",
+                "$HOME/julia-1.5.2/lib",
+                "-w",
+                "julia",
+                "--project=$(pwd)",
+                "--sysimage=$(pwd)/JuliaSysimage.so",
+                "$(pwd)/test/dev.jl",
+                "--novalidate"
+            ],
+            "problemMatcher": "$tsc",
+            "group": "build",
+            "options": {
+                "env": {
+                    "DISPLAY": ":1"
+                }
+            }
         },
         {
             "type": "julia",

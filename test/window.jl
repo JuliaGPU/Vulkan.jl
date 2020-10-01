@@ -1,5 +1,7 @@
 function process_event_vulkan(win, ctx, event, t; vulkan_app)
-    !isnothing(vulkan_app) && @info "Frame $(vulkan_app.render_state.frame)"
+    e_generic = unsafe_load(event)
+    prefix = "Frame " * string(vulkan_app.render_state.frame) * " "
+    replprint("", log_term; prefix)
     try
         !isnothing(vulkan_app) && draw!(vulkan_app)
     catch e
@@ -8,21 +10,22 @@ function process_event_vulkan(win, ctx, event, t; vulkan_app)
             @warn "Out of date swapchain was recreated"
         end
     end
-    e_generic = unsafe_load(event)
     if e_generic.response_type == XCB.XCB_EXPOSE
-        @info "Window exposed"
+        replprint("window exposed", log_term; prefix)
+        # @info "Window exposed"
     # elseif any(e_generic.response_type .== [XCB.XCB_KEY_PRESS, XCB.XCB_KEY_RELEASE])
     elseif e_generic.response_type == XCB.XCB_KEY_PRESS
         key_event = unsafe_load(convert(Ptr{XCB.xcb_key_press_event_t}, event))
         key = KeyCombination(win.conn, key_event)
         win.window_title[] = "Random title $(rand())"
         if key ∈ [key"q", key"ctrl+q", key"f4"]
+            println()
             throw(CloseWindow("Closing window ($key)"))
         elseif key == key"b"
             display(@benchmark(draw!($vulkan_app)))
             println()
         elseif key == key"s"
-            XCB.check_request(win.conn, XCB.xcb_configure_window_checked(win.conn, win.id, XCB.XCB_CONFIG_WINDOW_HEIGHT, [win.height + 1]))
+            win.width[] += 1
         end
     elseif e_generic.response_type == XCB.XCB_EVENT_MASK_BUTTON_PRESS
         button_event = unsafe_load(convert(Ptr{XCB.xcb_button_press_event_t}, event))
@@ -31,7 +34,7 @@ function process_event_vulkan(win, ctx, event, t; vulkan_app)
         state_dict = Dict(state)
         printed_state = keys(filter(x -> x.second, state_dict))
         printed_state = isempty(printed_state) ? "" : "with $(join(printed_state, ", ")) button$(length(printed_state) > 1 ? "s" : "") held"
-        @info "$click at $(button_event.event_x), $(button_event.event_y) $(printed_state)"
+        replprint("$click at $(button_event.event_x), $(button_event.event_y) $(printed_state)", log_term; prefix, newline=1)
     end
     !isnothing(vulkan_app) && next_frame!(vulkan_app)
 end

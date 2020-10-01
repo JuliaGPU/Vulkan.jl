@@ -1,7 +1,7 @@
 Base.broadcastable(x::VulkanApplication) = Ref(x)
 Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
 
-@with_kw mutable struct VulkanApplicationSingleGPU <: VulkanApplication
+mutable struct VulkanApplicationSingleGPU <: VulkanApplication
     app::AppSetup
     device
     surface
@@ -12,6 +12,7 @@ Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
     render_pass
     render_state
     pipelines::Dict{Symbol, PipelineSetup}
+    buffers::Dict{Symbol, BufferSetup}
     function VulkanApplicationSingleGPU(
                                         app::AppSetup;
                                         device           = nothing,
@@ -23,17 +24,24 @@ Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
                                         render_pass      = nothing,
                                         render_state     = nothing,
                                         pipelines        = Dict{Symbol, Pipeline}(),
+                                        buffers          = Dict{Symbol, BufferSetup}(),
                                         )
-        vasg = new(app, device, surface, swapchain, framebuffers, command_pools, viewport, render_pass, render_state, pipelines)
+        vasg = new(app, device, surface, swapchain, framebuffers, command_pools, viewport, render_pass, render_state, pipelines, buffers)
         finalizer(vasg) do x
-            !isnothing(x.device) && (device_wait_idle(x.device.handle); @debug("Device idle"))
+            # !isnothing(x.device) && (device_wait_idle(x.device.handle); @debug("Device idle"))
             finalize.(values(x.pipelines))
+            finalize.(values(x.buffers))
             !isempty(x.framebuffers) && finalize.(x.framebuffers)
-            !isempty(x.command_pools) && finalize.(values(x.command_pools))
+            finalize.(values(x.command_pools))
                 # finalize.(command_pool, pipeline, framebuffers..., pipeline_layout, render_pass, image_views..., swapchain, surface, sem_image_available..., sem_render_finished..., fen_wait_images_drawn..., device, dbg, instance)
             finalize.(getproperty.(x, (:render_pass, :render_state, :swapchain, :surface, :device, :app)))
         end
     end
+end
+
+function shutdown_properly!(app)
+    !isnothing(app.device) && (device_wait_idle(app.device); @debug("Device shut down"))
+    finalize(app)
 end
 
 mutable struct RenderState
@@ -93,9 +101,3 @@ function draw!(app::VulkanApplication)
     present_info = PresentInfoKHR([arr_sem_render_finished[frame_index]], [swapchain.handle], [index - 1])
     queue_present_khr(app.device.queues.present, present_info)
 end
-
-# @with_kw struct VulkanApplicationMultipleGPU <: end
-#     instance::Instance
-#     physical_devices
-#     devices
-# end

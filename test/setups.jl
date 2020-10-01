@@ -20,7 +20,7 @@ mutable struct AppSetup <: Setup
     end
 end
 
-@with_kw struct Queues
+Base.@kwdef struct Queues
     present = nothing
     graphics = nothing
     compute = nothing
@@ -111,4 +111,26 @@ create_pipelines!(device, render_pass, viewport_state, pss::PipelineSetup...) = 
 function recreate_pipeline!(ps::PipelineSetup, app)
     finalize(ps.handle)
     create_pipeline!(ps, app)
+end
+
+function find_memory_type(physical_device, type_flag, flagbits)
+    mem_props = get_physical_device_memory_properties(physical_device)
+    indices = findall(x -> (x.propertyFlags & flagbits) == flagbits, mem_props.memory_types[1:mem_props.memory_type_count]) .- 1
+    indices[findfirst(i -> type_flag & 1 << i ≠ 0, indices)]
+end
+
+mutable struct BufferSetup <: Setup
+    handle::Buffer
+    memory::DeviceMemory
+    function BufferSetup(device::DeviceSetup, size, usage, memory_properties, sharing_mode=SHARING_MODE_EXCLUSIVE, queue_families=[], flags=0, next=C_NULL)
+        buffer = Buffer(device, BufferCreateInfo(sizeof(vertices), usage, sharing_mode, queue_families; flags, next))
+        mem_reqs = get_buffer_memory_requirements(device, buffer)
+        physical_device = device.physical_device_handle
+        index = find_memory_type(physical_device, mem_reqs.memory_type_bits, memory_properties)
+        buffer_memory = allocate_memory(device, MemoryAllocateInfo(mem_reqs.size, index))
+        finalizer(x -> free_memory(device, memory=x), buffer_memory)
+        bind_buffer_memory(device, buffer, buffer_memory, 0)
+        bs = new(buffer, buffer_memory)
+        finalizer(x -> finalize.(getproperty.(x, [:handle, :memory])), bs)
+    end
 end
