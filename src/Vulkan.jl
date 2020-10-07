@@ -1,16 +1,20 @@
 module Vulkan
 
+using DataStructures
 import VulkanCore
+import glslang_jll
+glslangValidator = glslang_jll.glslangValidator(x -> x)
 
 using VulkanCore.api
 const api = VulkanCore.api
 using CEnum
 
-include("vk_utils.jl")
-
+include("wrap_utils.jl")
 include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
 
 include("misc.jl")
+include("validation.jl")
+include("shaders.jl")
 include("print.jl")
 
 export
@@ -25,6 +29,11 @@ export
        GLSL,
        HLSL,
        function_pointer,
-       VulkanError
+       VulkanError,
+       shader_modules,
+       compile,
+       DebugUtilsMessengerEXT,
+       default_debug_callback,
+       default_debug_callback_c
 
 end # module Vulkan

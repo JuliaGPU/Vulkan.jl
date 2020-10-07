@@ -30,3 +30,7 @@ function Base.show(io::IO, dev_info::DeviceCreateInfo)
 end
 
 Base.string(dqci::DeviceQueueCreateInfo) = "family index: $(dqci.queue_family_index), priorities: $(dqci.queue_priorities)"
+
+Base.show(io::IO, x::VkMemoryType) = print(io, "VkMemoryType(heap_index=$(x.heapIndex), flags=$(x.propertyFlags))")
+Base.show(io::IO, x::VkMemoryHeap) = print(io, "VkMemoryHeap(size=$(x.size) bytes, flags=$(x.flags))")
+Base.show(io::IO, x::PhysicalDeviceMemoryProperties) = print(io, "PhysicalDeviceMemoryProperties($(x.memory_types[1:x.memory_type_count]), $(x.memory_heaps[1:x.memory_heap_count]))")

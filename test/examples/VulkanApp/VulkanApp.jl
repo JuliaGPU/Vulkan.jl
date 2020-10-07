@@ -1,3 +1,5 @@
+module VulkanAppExample
+
 using Vulkan
 using StaticArrays
 import XCB
@@ -9,26 +11,23 @@ using ProgressLogging
 using REPL
 using REPL:Terminals
 using Logging: global_logger
+using DataStructures
 using BenchmarkTools
 
 
 include("logging.jl")
 include("debug.jl")
-include("validation.jl")
 include("window.jl")
 include("features.jl")
 
 include("types.jl")
-include("buffers.jl")
-include("shaders.jl")
 include("pipelines.jl")
 include("setups.jl")
 include("vertices.jl")
 include("app.jl")
 
-function Vulkan.acquire_next_image_khr(device, swapchain; timeout=0, semaphore=C_NULL, fence=C_NULL)
-    acquire_next_image_khr(device, swapchain, timeout; semaphore, fence) + 1
-end
+shader_log_f(format, file) = replprint("$(typeof(format)) shader $file", log_term, prefix="Compiling ")
+shader_log_f() = replprint("Shaders compiled", log_term, newline=1, color=:green, bold=true)
 
 function create_render_pass(device, color_attachment)
     color_attachment_ref = AttachmentReference(0, IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL)
@@ -55,7 +54,7 @@ function add_swapchain!(app::VulkanApplication, extent, format; buffering=3, col
     physical_device = device.physical_device_handle
     supported_formats = get_physical_device_surface_formats_khr(physical_device, surface)
     supported_capabilities = get_physical_device_surface_capabilities_khr(physical_device, surface)
-    supported_present_modes = get_physical_device_surface_present_modes_khr(physical_device, surface)
+    # supported_present_modes = get_physical_device_surface_present_modes_khr(physical_device, surface)
     
     @assert Bool(get_physical_device_surface_support_khr(physical_device, device.queues.present.queue_index, surface))
     
@@ -94,7 +93,7 @@ function setup_pipeline!(app::VulkanApplication)
     # vert_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle.vert"), GLSL())
     # frag_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle.frag"), GLSL())
 
-    shaders = shader_modules(device, joinpath.(@__DIR__, ["triangle.vert", "triangle.frag"]))
+    shaders = shader_modules(device, joinpath.(@__DIR__, ["triangle.vert", "triangle.frag"]), log_f=shader_log_f)
     shader_stage_cis = PipelineShaderStageCreateInfo.([SHADER_STAGE_VERTEX_BIT, SHADER_STAGE_FRAGMENT_BIT], shaders, "main")
     
     layout = PipelineLayout(device, PipelineLayoutCreateInfo([], []))
@@ -149,10 +148,12 @@ function recreate_draw_command_buffers!(app)
     record_render_pass.(app, arr_command_buffers)
 end
 
+
 function create_application(; validate=true)
     layers = validate ? @MVector(["VK_LAYER_KHRONOS_validation"]) : String[]
     instance = Instance(InstanceCreateInfo(layers, @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
-    VulkanApplicationSingleGPU(AppSetup(instance; debug_messenger=(validate ? DebugUtilsMessengerEXT(instance; severity="debug") : nothing)))
+    callback = @cfunction(default_debug_callback, UInt32, (Vulkan.DebugUtilsMessageSeverityFlagBitsEXT, Vulkan.DebugUtilsMessageTypeFlagBitsEXT, Ptr{Vulkan.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
+    VulkanApplicationSingleGPU(AppSetup(instance; debug_messenger=(validate ? DebugUtilsMessengerEXT(instance, callback; severity="debug") : nothing)))
 end
 
 function handle_resize!(app)
@@ -188,8 +189,8 @@ function main()
     # @info join(["Available device extensions:", string.(enumerate_device_extension_properties(first(pdevices)))...], "\n    ")
 
     app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
-    add_device!(app)
     try
+        add_device!(app)
         app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))
         add_vertex_buffer!(app, vertices)
         add_index_buffer!(app, indices)
@@ -226,8 +227,6 @@ function main()
     end
 end
 
-main()
-
 function test_enumerated_properties()
     app = create_application()
     instance = app.app.handle
@@ -248,24 +247,10 @@ function test_enumerated_properties()
         finalize.([window, window.conn])
     end
 end
-# test_enumerated_properties()
-
-
-Base.show(io::IO, x::VkMemoryType) = print(io, "VkMemoryType(heap_index=$(x.heapIndex), flags=$(x.propertyFlags))")
-Base.show(io::IO, x::VkMemoryHeap) = print(io, "VkMemoryHeap(size=$(x.size) bytes, flags=$(x.flags))")
-Base.show(io::IO, x::PhysicalDeviceMemoryProperties) = print(io, "PhysicalDeviceMemoryProperties($(x.memory_types[1:x.memory_type_count]), $(x.memory_heaps[1:x.memory_heap_count]))")
 
 #TODO: add flags extraction from bitmasks
 
-function test_vertex_buffer()
-    app = create_application()
-    instance = app.app.handle
-    add_device!(app)
-    try
-        add_vertex_buffer!(app, vertices)
-    finally
-        finalize(app)
-    end
-end
+export main,
+       test_enumerated_properties
 
-# test_vertex_buffer()
+end # module

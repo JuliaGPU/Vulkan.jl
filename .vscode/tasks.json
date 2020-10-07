@@ -30,7 +30,7 @@
                 "julia",
                 "-JJuliaSysimage.so",
                 "--project=.",
-                "test/dev.jl",
+                "test/runtests.jl",
                 "--novalidate"
             ],
             "problemMatcher": "$tsc",
@@ -53,7 +53,7 @@
                 "julia",
                 "--project=$(pwd)",
                 "--sysimage=$(pwd)/JuliaSysimage.so",
-                "$(pwd)/test/dev.jl",
+                "$(pwd)/test/runtests.jl",
                 "--novalidate"
             ],
             "problemMatcher": "$tsc",

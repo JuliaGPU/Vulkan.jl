@@ -1,0 +1,1 @@
+- Vulkan uses a 0-based indexing system, so be careful whenever an index is returned from or requested for a Vulkan function.

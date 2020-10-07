@@ -90,14 +90,15 @@ function draw!(app::VulkanApplication)
     @unpack frame_index, arr_command_buffers, arr_sem_render_finished, arr_sem_image_available, arr_fen_image_drawn, arr_fen_acquire_image = render_state
 
     wait_for_fences(device, [arr_fen_image_drawn[frame_index]], true, typemax(UInt64))
-    index = acquire_next_image_khr(device, swapchain, timeout=typemax(UInt64); semaphore=arr_sem_image_available[frame_index])
-    if !isnothing(arr_fen_acquire_image[index])
-        wait_for_fences(device, [arr_fen_acquire_image[index]], true, typemax(UInt64))
+    index = acquire_next_image_khr(device, swapchain, typemax(UInt64); semaphore=arr_sem_image_available[frame_index])
+    index_jl = index + 1
+    if !isnothing(arr_fen_acquire_image[index_jl])
+        wait_for_fences(device, [arr_fen_acquire_image[index_jl]], true, typemax(UInt64))
     end
-    render_state.arr_fen_acquire_image[index] = arr_fen_image_drawn[frame_index]
-    submit_info = SubmitInfo([arr_sem_image_available[frame_index]], [PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT], [arr_command_buffers[index]], [arr_sem_render_finished[frame_index]])
+    render_state.arr_fen_acquire_image[index_jl] = arr_fen_image_drawn[frame_index]
+    submit_info = SubmitInfo([arr_sem_image_available[frame_index]], [PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT], [arr_command_buffers[index_jl]], [arr_sem_render_finished[frame_index]])
     reset_fences(device, [arr_fen_image_drawn[frame_index]])
     queue_submit(app.device.queues.graphics, [submit_info], fence=arr_fen_image_drawn[frame_index])
-    present_info = PresentInfoKHR([arr_sem_render_finished[frame_index]], [swapchain.handle], [index - 1])
+    present_info = PresentInfoKHR([arr_sem_render_finished[frame_index]], [swapchain.handle], [index])
     queue_present_khr(app.device.queues.present, present_info)
 end

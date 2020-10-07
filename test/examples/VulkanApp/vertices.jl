@@ -6,10 +6,10 @@ struct Vertex <: VertexData
 end
 
 vertices = [
-    Vertex((-0.5, -0.5), (1, 1, 0)),
-    Vertex((0.5, -0.5), (0, 1, 1)),
-    Vertex((0.5, 0.5), (1, 0, 1)),
-    Vertex((-0.5, 0.5), (1, 0, 1)),
+    Vertex((-0.5, -0.5), (0, 0, 1)),
+    Vertex((0.5, -0.5), (0, 1, 0)),
+    Vertex((0.5, 0.5), (1, 1, 1)),
+    Vertex((-0.5, 0.5), (1, 0, 0)),
 ]
 
 indices = UInt32[0, 1, 2, 2, 3, 0]

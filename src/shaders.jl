@@ -1,6 +1,3 @@
-import glslang_jll
-glslangValidator = glslang_jll.glslangValidator(x -> x)
-
 abstract type ShaderFormat end
 
 abstract type BinaryFormat <: ShaderFormat end
@@ -24,7 +21,7 @@ end
 
 Base.showerror(io::IO, err::ShaderCompilationError) = print(io, "shader compilation failed:\n\n$(err.msg)")
 
-function Vulkan.ShaderModule(device, file, ::SPIRV)
+function ShaderModule(device, file, ::SPIRV)
     filesize = stat(file).size
     code = Array{UInt8}(undef, cld(filesize, 4))
     open(file) do io
@@ -33,7 +30,7 @@ function Vulkan.ShaderModule(device, file, ::SPIRV)
     # @info code
     ShaderModule(device, ShaderModuleCreateInfo(filesize, reinterpret(UInt32, code)))
 end
-Vulkan.ShaderModule(device, file, format::T) where {T <: TextFormat} = ShaderModule(device, compile(file, format), SPIRV())
+ShaderModule(device, file, format::T) where {T <: TextFormat} = ShaderModule(device, compile(file, format), SPIRV())
 
 function compile(file, T::GLSL; extra_flags=[], validate_spirv=true)
     flags = ["-V"]
@@ -53,26 +50,36 @@ compile(file, ::HLSL) = compile(file, GLSL(), extra_flags=["-D"])
 
 stage_mapping(T::Type{<: TextFormat}, ext) = ".$ext" => T(ext)
 
-glsl_stage_extensions = [
-    "frag",
-    "geom",
-    "tese",
-    "vert",
+const glsl_stage_extensions = [
+    "vert",   # vertex shader
+    "tesc",   # tessellation control shader
+    "tese",   # tessellation evaluation shader
+    "geom",   # geometry shader
+    "frag",   # fragment shader
+    "comp",   # compute shader
+    "mesh",   # mesh shader
+    "task",   # task shader
+    "rgen",   #  ray generation shader
+    "rint",   #  ray intersection shader
+    "rahit",  # ray any hit shader
+    "rchit",  # ray closest hit shader
+    "rmiss",  # ray miss shader
+    "rcall",  # ray callable shader
 ]
 
-stage_mappings = Dict(
+const stage_mappings = Dict(
     ".spv" => SPIRV(),
     stage_mapping.(GLSL, glsl_stage_extensions)...
 )
 
-function shader_modules(device, files)
+function shader_modules(device, files; log_f=nothing)
     modules = ShaderModule[]
     for (i, file) ∈ enumerate(files)
         ext = last(splitext(file))
         format = stage_mappings[ext]
-        replprint("$(typeof(format)) shader $file", log_term, prefix="Compiling ")
+        !isnothing(log_f) && log_f(format, file)
         push!(modules, ShaderModule(device, file, format))
     end
-    replprint("Shaders compiled", log_term, newline=1, color=:green, bold=true)
+    !isnothing(log_f) && log_f()
     modules
 end

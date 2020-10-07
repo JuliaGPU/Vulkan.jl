@@ -1,0 +1,1 @@
+include(joinpath("examples", "VulkanApp", "VulkanApp.jl"))

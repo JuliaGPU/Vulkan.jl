@@ -1,4 +1,3 @@
-using DataStructures
 
 const severity_hierarchy = ["debug", "info", "warn", "error"]
 
@@ -51,14 +50,19 @@ function default_debug_callback(message_severity, message_type, callback_data_pt
     UInt32(0)
 end
 
-default_debug_callback_c = @cfunction(default_debug_callback, UInt32, (DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageTypeFlagBitsEXT, Ptr{VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
+"""
+Register a user callback and return the corresponding messenger.
 
-# @ccall $default_debug_callback_c(DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT::DebugUtilsMessageSeverityFlagBitsEXT, DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT::DebugUtilsMessageTypeFlagBitsEXT, C_NULL::Ptr{DebugUtilsMessengerCallbackDataEXT}, C_NULL::Ptr{Cvoid})::UInt32
-# @ccall $default_debug_callback_c(DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT::DebugUtilsMessageSeverityFlagBitsEXT, UInt32(0)::UInt32, C_NULL::Ptr{DebugUtilsMessengerCallbackDataEXT}, C_NULL::Ptr{Cvoid})::UInt32
+A default named `default_debug_callback` can be converted to a function pointer to use as a callback.
 
-function Vulkan.DebugUtilsMessengerEXT(instance::Instance; f::Union{Base.CFunction,Ptr{Cvoid}} = default_debug_callback_c, severity = "info", types = ["general", "validation", "performance"])
+!!! warning
+    `callback` must be a function pointer of type `Ptr{Nothing}` obtained from a `callback_f` function as follows:  
+    `callback = @cfunction(callback_f, UInt32, (Vulkan.DebugUtilsMessageSeverityFlagBitsEXT, Vulkan.DebugUtilsMessageTypeFlagBitsEXT, Ptr{Vulkan.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`  
+    with `callback_f` a Julia function with the signature matching the `@cfunction` call.
+"""
+function DebugUtilsMessengerEXT(instance::Instance, callback::Ptr{Nothing}; severity = "info", types = ["general", "validation", "performance"])
     index = findfirst(severity_hierarchy .== severity)
     severity_bits = collect(values(message_severities))[index:end]
     type_bits = [message_types[key] for key in types]
-    DebugUtilsMessengerEXT(instance, DebugUtilsMessengerCreateInfoEXT(|(severity_bits...), |(type_bits...), f), function_pointer(instance, "vkCreateDebugUtilsMessengerEXT"), function_pointer(instance, "vkDestroyDebugUtilsMessengerEXT"))
+    DebugUtilsMessengerEXT(instance, DebugUtilsMessengerCreateInfoEXT(|(severity_bits...), |(type_bits...), callback), function_pointer(instance, "vkCreateDebugUtilsMessengerEXT"), function_pointer(instance, "vkDestroyDebugUtilsMessengerEXT"))
 end

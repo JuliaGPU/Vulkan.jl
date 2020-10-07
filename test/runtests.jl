@@ -1,4 +1,4 @@
-using Vulkan
-using Test
+include("examples.jl")
+using .VulkanAppExample:main
 
-@test 1 + 1 == 2
+main()
