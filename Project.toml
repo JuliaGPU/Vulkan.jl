@@ -15,7 +15,7 @@ XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
 
 [compat]
-julia = "1"
+julia = "1.5"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
