@@ -23,6 +23,7 @@ include("features.jl")
 include("types.jl")
 include("pipelines.jl")
 include("setups.jl")
+include("info.jl")
 include("vertices.jl")
 include("app.jl")
 
@@ -179,18 +180,13 @@ function handle_resize!(app)
 end
 
 function main()
-    # @debug join(["Available instance layers:", string.(enumerate_instance_layer_properties())...], "\n    ")
-    # @debug join(["Available extensions:", string.(enumerate_instance_extension_properties())...], "\n    ")
-    # instance = Instance(InstanceCreateInfo(@MVector(["VK_LAYER_NV_nomad_release_public_2020_5_0"]), @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
-    # instance = Instance(InstanceCreateInfo([], @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
-    # pdps = get_physical_device_properties(pdevices)
-    # @debug join(["Available devices:", pdps...], "\n    ")
-    # @debug join(["Available device layers:", string.(enumerate_device_layer_properties(first(pdevices)))...], "\n    ")
-    # @info join(["Available device extensions:", string.(enumerate_device_extension_properties(first(pdevices)))...], "\n    ")
-
-    app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
+    # app_info()
+    local app
     try
+        app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
+        physical_device_info(app.app)
         add_device!(app)
+        # device_info(app.device.physical_device_handle)
         app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))
         add_vertex_buffer!(app, vertices)
         add_index_buffer!(app, indices)
