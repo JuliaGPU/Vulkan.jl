@@ -1,7 +1,7 @@
 Base.broadcastable(x::VulkanApplication) = Ref(x)
 Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
 
-mutable struct VulkanApplicationSingleGPU <: VulkanApplication
+mutable struct VulkanApplicationSingleDevice <: VulkanApplication
     app::AppSetup
     device
     surface
@@ -13,7 +13,7 @@ mutable struct VulkanApplicationSingleGPU <: VulkanApplication
     render_state
     pipelines::Dict{Symbol, PipelineSetup}
     buffers::Dict{Symbol, BufferSetup}
-    function VulkanApplicationSingleGPU(
+    function VulkanApplicationSingleDevice(
                                         app::AppSetup;
                                         device           = nothing,
                                         surface          = nothing,

@@ -16,7 +16,6 @@ using BenchmarkTools
 
 
 include("logging.jl")
-include("debug.jl")
 include("window.jl")
 include("features.jl")
 
@@ -37,7 +36,7 @@ function create_render_pass(device, color_attachment)
     RenderPass(device, RenderPassCreateInfo([color_attachment], [subpass], [SubpassDependency(SUBPASS_EXTERNAL, 0, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT; src_access_mask=0, dst_access_mask=ACCESS_COLOR_ATTACHMENT_WRITE_BIT)]))
 end
 
-function add_device!(app::VulkanApplicationSingleGPU)
+function add_device!(app::VulkanApplicationSingleDevice)
     pdevices = enumerate_physical_devices(app.app)
     pdevice = first(pdevices)
     device = Device(pdevice, DeviceCreateInfo([DeviceQueueCreateInfo(0, [1.0])], String[], @MVector(["VK_KHR_swapchain"]), enabled_features=PhysicalDeviceFeatures(values(DEFAULT_VK_PHYSICAL_DEVICE_FEATURES)...)))
@@ -154,7 +153,7 @@ function create_application(; validate=true)
     layers = validate ? @MVector(["VK_LAYER_KHRONOS_validation"]) : String[]
     instance = Instance(InstanceCreateInfo(layers, @MVector(["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]); application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
     callback = @cfunction(default_debug_callback, UInt32, (Vulkan.DebugUtilsMessageSeverityFlagBitsEXT, Vulkan.DebugUtilsMessageTypeFlagBitsEXT, Ptr{Vulkan.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
-    VulkanApplicationSingleGPU(AppSetup(instance; debug_messenger=(validate ? DebugUtilsMessengerEXT(instance, callback; severity="debug") : nothing)))
+    VulkanApplicationSingleDevice(AppSetup(instance; debug_messenger=(validate ? DebugUtilsMessengerEXT(instance, callback; severity="debug") : nothing)))
 end
 
 function handle_resize!(app)
