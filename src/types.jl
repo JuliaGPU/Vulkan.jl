@@ -1,4 +1,9 @@
 """
+A Vulkan application represents any program that uses the Vulkan API. Application goals and setups may vary greatly, but they all require many structures to function. Some may do offline rendering (without presenting the result to a window), or use Vulkan Compute and render directly to a display, but both uses share similarities in that they require an Instance and one (or several) devices.
+"""
+abstract type VulkanApplication end
+
+"""
 While handles are primordial for executing Vulkan API calls, they usually involve a lot more information that is intrinsically linked with the handle itself. A setup wraps a `Handle` by gathering the information that is required for a given piece of the application to work. For a logical device, that would include the physical device and the device itself (as a `Handle`), as well as its queues, semaphores and fences. A swapchain is also bound to a `Handle`, covers a certain extent of a surface and possesses images. When performing API calls, since a `Setup` object is bound to a handle, there is no need to specify the handle manually. The `Setup` object will automatically be converted to its handle when such call is performed.
 """
 abstract type Setup end
@@ -6,8 +11,8 @@ abstract type Setup end
 # to avoid having to specify the handle every time an API call is made
 Base.cconvert(T::Type{<: Ptr}, x::Setup) = x.handle
 Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
-
 Base.broadcastable(x::Setup) = Ref(x)
+Base.broadcastable(x::VulkanApplication) = Ref(x)
 
 mutable struct AppSetup <: Setup
     handle::Instance
@@ -96,34 +101,11 @@ mutable struct PipelineSetup <: Setup
     end
 end
 
-function Vulkan.GraphicsPipelineCreateInfo(ps::PipelineSetup, render_pass, viewport_state)
-    s = ps.stages
-    @unpack vertex_input_state, input_assembly_state, color_blend_state, multisample_state, dynamic_state = s
-    GraphicsPipelineCreateInfo(s.shaders, s.rasterization, ps.layout, render_pass, 0, 0; vertex_input_state, input_assembly_state, color_blend_state, viewport_state, multisample_state, dynamic_state)
-end
-
-Vulkan.PipelineViewportStateCreateInfo(app::VulkanApplication) = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
-create_pipeline!(ps::PipelineSetup, device, render_pass, viewport_state) = setproperty!(ps, :handle, first(Pipeline(device, [GraphicsPipelineCreateInfo(ps, render_pass, viewport_state)])))
-create_pipeline!(ps::PipelineSetup, app::VulkanApplication) = create_pipeline!(ps, app.device, app.render_pass, PipelineViewportStateCreateInfo(app))
-create_pipelines!(device, render_pass, viewport_state, pss::PipelineSetup...) = setproperty!.(pss, :handle, Pipeline(GraphicsPipelineCreateInfo.(pss, render_pass, viewport_state)))
-
-
-function recreate_pipeline!(ps::PipelineSetup, app)
-    finalize(ps.handle)
-    create_pipeline!(ps, app)
-end
-
-function find_memory_type(physical_device, type_flag, flagbits)
-    mem_props = get_physical_device_memory_properties(physical_device)
-    indices = findall(x -> (x.propertyFlags & flagbits) == flagbits, mem_props.memory_types[1:mem_props.memory_type_count]) .- 1
-    indices[findfirst(i -> type_flag & 1 << i ≠ 0, indices)]
-end
-
 mutable struct BufferSetup <: Setup
     handle::Buffer
     memory::DeviceMemory
     function BufferSetup(device::DeviceSetup, size, usage, memory_properties, sharing_mode=SHARING_MODE_EXCLUSIVE, queue_families=[], flags=0, next=C_NULL)
-        buffer = Buffer(device, BufferCreateInfo(sizeof(vertices), usage, sharing_mode, queue_families; flags, next))
+        buffer = Buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_families; flags, next))
         mem_reqs = get_buffer_memory_requirements(device, buffer)
         physical_device = device.physical_device_handle
         index = find_memory_type(physical_device, mem_reqs.memory_type_bits, memory_properties)
@@ -135,21 +117,81 @@ mutable struct BufferSetup <: Setup
     end
 end
 
-function Base.copyto!(dest::BufferSetup, src, device::DeviceSetup; size=WHOLE_SIZE)
-    ptr_ref = Ref{Ptr{Cvoid}}()
-    #TODO: Make a Ref{Ptr{Cvoid}} rather than Ref{Cvoid} for ppData
-    @check vkMapMemory(device, dest.memory, 0, size, 0, ptr_ref)
-    ptr_deref = ptr_ref[]
-    GC.@preserve src unsafe_copyto!(reinterpret(Ptr{eltype(src)}, ptr_deref), pointer(src), length(src))
-    unmap_memory(device, dest.memory)
+mutable struct ViewportState
+    viewport
+    scissor
 end
 
-function Base.copyto!(dest::BufferSetup, src::BufferSetup, size, device::DeviceSetup, command_pool)
-    cmd_buffer = first(CommandBuffer(device, CommandBufferAllocateInfo(command_pool, COMMAND_BUFFER_LEVEL_PRIMARY, 1)))
-    begin_command_buffer(cmd_buffer, CommandBufferBeginInfo(flags=COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT))
-    cmd_copy_buffer(cmd_buffer, src, dest, [BufferCopy(0, 0, size)])
-    end_command_buffer(cmd_buffer)
-    queue_submit(device.queues.graphics, [SubmitInfo([], [], [cmd_buffer], [])])
-    queue_wait_idle(device.queues.graphics)
-    free_command_buffers(device, command_pool, [cmd_buffer])
+mutable struct RenderState
+    frame
+    frame_index
+    arr_sem_image_available
+    arr_sem_render_finished
+    arr_fen_image_drawn
+    arr_fen_acquire_image
+    arr_command_buffers
+    max_simultaneously_drawn_frames
+    function RenderState(args...)
+        rs = new(args...)
+        finalizer(rs) do x
+            finalize.(x.arr_sem_image_available)
+            finalize.(x.arr_sem_render_finished)
+            finalize.(x.arr_fen_acquire_image)
+            finalize.(x.arr_fen_image_drawn)
+        end
+    end
 end
+
+
+mutable struct VulkanApplicationSingleDevice <: VulkanApplication
+    app::AppSetup
+    device
+    surface
+    swapchain
+    framebuffers
+    command_pools::Dict{Symbol, CommandPool}
+    viewport
+    render_pass
+    render_state
+    pipelines::Dict{Symbol, PipelineSetup}
+    buffers::Dict{Symbol, BufferSetup}
+    function VulkanApplicationSingleDevice(
+                                        app::AppSetup;
+                                        device           = nothing,
+                                        surface          = nothing,
+                                        swapchain        = nothing,
+                                        framebuffers     = Framebuffer[],
+                                        command_pools    = Dict{Symbol, CommandPool}(),
+                                        viewport         = nothing,
+                                        render_pass      = nothing,
+                                        render_state     = nothing,
+                                        pipelines        = Dict{Symbol, Pipeline}(),
+                                        buffers          = Dict{Symbol, BufferSetup}(),
+                                        )
+        vasg = new(app, device, surface, swapchain, framebuffers, command_pools, viewport, render_pass, render_state, pipelines, buffers)
+        finalizer(vasg) do x
+            # !isnothing(x.device) && (device_wait_idle(x.device.handle); @debug("Device idle"))
+            finalize.(values(x.pipelines))
+            finalize.(values(x.buffers))
+            !isempty(x.framebuffers) && finalize.(x.framebuffers)
+            finalize.(values(x.command_pools))
+                # finalize.(command_pool, pipeline, framebuffers..., pipeline_layout, render_pass, image_views..., swapchain, surface, sem_image_available..., sem_render_finished..., fen_wait_images_drawn..., device, dbg, instance)
+            finalize.(getproperty.(x, (:render_pass, :render_state, :swapchain, :surface, :device, :app)))
+        end
+    end
+end
+
+struct PipelineState
+    vertex_input_state::PipelineVertexInputStateCreateInfo
+    input_assembly_state::PipelineInputAssemblyStateCreateInfo
+    shaders::Vector{PipelineShaderStageCreateInfo}
+    rasterization::PipelineRasterizationStateCreateInfo
+    multisample_state::PipelineMultisampleStateCreateInfo
+    color_blend_state::PipelineColorBlendStateCreateInfo
+    dynamic_state
+end
+
+abstract type BlendingMode end
+
+struct NoBlending <: BlendingMode end
+struct AlphaBlending <: BlendingMode end

@@ -22,28 +22,3 @@ function replprint(output::String, terminal;
     sleep_time ≠ 0 && sleep(sleep_time)
     nothing
 end
-
-function load(; context::Union{Module,Nothing} = nothing) :: Nothing
-    t = Terminals.TTYTerminal("", stdin, stdout, stderr)
-  
-    replprint("initializers", t, clearline = 0, prefix = "Loading ")
-    load_initializers(context = context)
-  
-    replprint("helpers", t, prefix = "Loading ")
-    load_helpers()
-  
-    replprint("lib", t, prefix = "Loading ")
-    load_libs()
-  
-    replprint("resources", t, prefix = "Loading ")
-    load_resources()
-  
-    replprint("plugins", t, prefix = "Loading ")
-    load_plugins(context = context)
-  
-    replprint("routes", t, prefix = "Loading ")
-    load_routes_definitions(context = context)
-  
-    replprint("Ready! ", t, clearline = 2, color = :green, bold = :true)
-    println()
-end

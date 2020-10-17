@@ -6,25 +6,20 @@ import XCB
 using XCB:Connection, run_window, xcb_setup_roots_iterator, xcb_map_window, flush, getkey, KeyAction, KeyCombination, KeyContext, KeyEvent, KeyModifierState, KeyPressed, KeyReleased, CloseWindow, Button, ButtonState, @key_str
 using VulkanCore.vk
 using Parameters
+using BenchmarkTools
+
+#= Logging =#
 using TerminalLoggers
 using ProgressLogging
 using REPL
 using REPL:Terminals
 using Logging: global_logger
-using DataStructures
-using BenchmarkTools
 
 
 include("logging.jl")
 include("window.jl")
 include("features.jl")
-
-include("types.jl")
-include("pipelines.jl")
-include("setups.jl")
-include("info.jl")
 include("vertices.jl")
-include("app.jl")
 
 shader_log_f(format, file) = replprint("$(typeof(format)) shader $file", log_term, prefix="Compiling ")
 shader_log_f() = replprint("Shaders compiled", log_term, newline=1, color=:green, bold=true)
@@ -39,7 +34,7 @@ end
 function add_device!(app::VulkanApplicationSingleDevice)
     pdevices = enumerate_physical_devices(app.app)
     pdevice = first(pdevices)
-    device = Device(pdevice, DeviceCreateInfo([DeviceQueueCreateInfo(0, [1.0])], String[], @MVector(["VK_KHR_swapchain"]), enabled_features=PhysicalDeviceFeatures(values(DEFAULT_VK_PHYSICAL_DEVICE_FEATURES)...)))
+    device = Device(pdevice, DeviceCreateInfo([DeviceQueueCreateInfo(0, [1.0])], String[], @MVector(["VK_KHR_swapchain"]), enabled_features=PhysicalDeviceFeatures(values(physical_device_features)...)))
     queue = get_device_queue(device, 0, 0).handle
     queues = Queues(NamedTuple{(:present, :graphics, :compute)}(DeviceQueue.((queue, queue, queue), (0, 0, 0), (0, 0, 0)))...)
     app.device = DeviceSetup(device, pdevice, queues)
@@ -183,7 +178,7 @@ function main()
     local app
     try
         app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
-        physical_device_info(app.app)
+        print_info_physical_device(app.app)
         add_device!(app)
         # device_info(app.device.physical_device_handle)
         app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))

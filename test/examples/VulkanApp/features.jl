@@ -1,4 +1,4 @@
-const DEFAULT_VK_PHYSICAL_DEVICE_FEATURES = (;
+const physical_device_features = (;
     robust_buffer_access                         = false,
     full_draw_index_uint_32                      = false,
     image_cube_array                             = false,

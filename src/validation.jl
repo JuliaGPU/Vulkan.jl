@@ -57,7 +57,7 @@ A default named `default_debug_callback` can be converted to a function pointer 
 
 !!! warning
     `callback` must be a function pointer of type `Ptr{Nothing}` obtained from a `callback_f` function as follows:  
-    `callback = @cfunction(callback_f, UInt32, (Vulkan.DebugUtilsMessageSeverityFlagBitsEXT, Vulkan.DebugUtilsMessageTypeFlagBitsEXT, Ptr{Vulkan.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`  
+    `callback = @cfunction(callback_f, UInt32, (DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageTypeFlagBitsEXT, Ptr{VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`  
     with `callback_f` a Julia function with the signature matching the `@cfunction` call.
 """
 function DebugUtilsMessengerEXT(instance::Instance, callback::Ptr{Nothing}; severity = "info", types = ["general", "validation", "performance"])
