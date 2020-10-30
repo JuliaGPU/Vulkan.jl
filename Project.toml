@@ -11,6 +11,7 @@ ProgressLogging = "33c8b6b6-d38a-422a-b730-caa89a2f386c"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 TerminalLoggers = "5d786b92-1e48-4d6f-9151-6b4477ca9bed"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
+WindowAbstractions = "e18202ca-4a7d-4de8-b056-fa6bbd7de157"
 XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
 

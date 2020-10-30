@@ -2,8 +2,8 @@ module VulkanAppExample
 
 using Vulkan
 using StaticArrays
-import XCB
-using XCB:Connection, run_window, xcb_setup_roots_iterator, xcb_map_window, flush, getkey, KeyAction, KeyCombination, KeyContext, KeyEvent, KeyModifierState, KeyPressed, KeyReleased, CloseWindow, Button, ButtonState, @key_str
+using XCB
+using WindowAbstractions
 using VulkanCore.vk
 using Parameters
 using BenchmarkTools
@@ -16,7 +16,7 @@ using REPL:Terminals
 using Logging: global_logger
 
 
-include("logging.jl")
+include(joinpath(@__DIR__, "..", "common", "logging.jl"))
 include("window.jl")
 include("features.jl")
 include("vertices.jl")
@@ -40,7 +40,7 @@ function add_device!(app::VulkanApplicationSingleDevice)
     app.device = DeviceSetup(device, pdevice, queues)
 end
 
-function add_surface!(app::VulkanApplication, window::XCB.Window)
+function add_surface!(app::VulkanApplication, window::XCBWindow)
     app.surface = SurfaceSetup(SurfaceKHR(app.app, XcbSurfaceCreateInfoKHR(window.conn.h, window.id)); window)
 end
 
@@ -187,9 +187,10 @@ function main()
         # add_vertex_buffer!(app)
     
         window = create_window(width=512, height=512)
+        window_handler = XWindowHandler(window.conn, [window])
         
         add_surface!(app, window)
-        add_swapchain!(app, Extent2D(window.width[], window.height[]), FORMAT_B8G8R8A8_SRGB)
+        add_swapchain!(app, Extent2D(extent(window)...), FORMAT_B8G8R8A8_SRGB)
         add_render_pass!(app)
         add_framebuffers!(app)
         setup_viewport!(app)
@@ -204,12 +205,47 @@ function main()
 
         initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = length(app.framebuffers) - 1)
 
-        function resize_callback(window, width, height)
-            handle_resize!(app)
+        function render()
+            try
+                draw!(app)
+                next_frame!(app)
+            catch e
+                if e isa VulkanError && e.return_code == VK_ERROR_OUT_OF_DATE_KHR
+                    handle_resize!(app)
+                    @warn "Out of date swapchain was recreated"
+                end
+            end
         end
 
-        # run_window(window, process_event_vulkan; resize_callback=(win, x, y) -> nothing, vulkan_app=app)
-        run_window(window, process_event_vulkan; resize_callback, vulkan_app=app)
+        function on_key_pressed(event)
+            key = KeyCombination(event.data.key, event.data.modifiers)
+            window = event.window
+            set_title(window, "Random title $(rand())")
+            if key ∈ [key"q", key"ctrl+q", key"f4"]
+                println()
+                throw(CloseWindow(event.window_handler, window))
+            elseif key == key"b"
+                display(@benchmark($render()))
+                println()
+            elseif key == key"s"
+                curr_extent = extent(window)
+                set_extent(window, (curr_extent[1] + 1, curr_extent[2]))
+            end
+        end
+
+        event_loop = EventLoop(;
+            window_handler,
+            callbacks=Dict(
+                :window_1 => WindowCallbacks(;
+                    on_key_pressed,
+                    on_expose = x -> replprint("window exposed", log_term; prefix="Frame " * string(app.render_state.frame) * " "),
+                    on_resize = x -> handle_resize!(app),
+                ),
+            ),
+            on_iter_first = () -> replprint("", log_term, prefix="Frame " * string(app.render_state.frame) * " "),
+            on_iter_last = render,
+        )
+        run(event_loop, Synchronous(); warn_unknown=false, poll=false)
     catch e
         rethrow(e) # terminate the event loop from run_window
     finally
