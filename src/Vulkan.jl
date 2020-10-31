@@ -15,12 +15,13 @@ include("wrap_utils.jl")
 include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
 include("aliases.jl")
 
+include("types.jl")
 include("misc.jl")
 include("print.jl")
 include("validation.jl")
 include("command_pools.jl")
 include("shaders.jl")
-include("types.jl")
+include("buffers.jl")
 include("info.jl")
 include("blending.jl")
 include("setups.jl")
@@ -88,6 +89,9 @@ export
        Target,
        RenderPassPresent,
        RenderPassType,
+       add_buffer!,
+       add_index_buffer!,
+       add_vertex_buffer!,
        add_surface!,
        add_render_pass!,
        add_framebuffers!,
