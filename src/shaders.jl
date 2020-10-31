@@ -59,8 +59,8 @@ const glsl_stage_extensions = [
     "comp",   # compute shader
     "mesh",   # mesh shader
     "task",   # task shader
-    "rgen",   #  ray generation shader
-    "rint",   #  ray intersection shader
+    "rgen",   # ray generation shader
+    "rint",   # ray intersection shader
     "rahit",  # ray any hit shader
     "rchit",  # ray closest hit shader
     "rmiss",  # ray miss shader

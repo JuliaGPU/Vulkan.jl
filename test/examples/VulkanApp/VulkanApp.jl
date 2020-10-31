@@ -24,13 +24,6 @@ include("vertices.jl")
 shader_log_f(format, file) = replprint("$(typeof(format)) shader $file", log_term, prefix="Compiling ")
 shader_log_f() = replprint("Shaders compiled", log_term, newline=1, color=:green, bold=true)
 
-function create_render_pass(device, color_attachment)
-    color_attachment_ref = AttachmentReference(0, IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL)
-    subpass = SubpassDescription(PIPELINE_BIND_POINT_GRAPHICS, [], [color_attachment_ref], [])
-    # RenderPass(device, RenderPassCreateInfo([color_attachment], [subpass], AttachmentReference[]))
-    RenderPass(device, RenderPassCreateInfo([color_attachment], [subpass], [SubpassDependency(SUBPASS_EXTERNAL, 0, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT; src_access_mask=0, dst_access_mask=ACCESS_COLOR_ATTACHMENT_WRITE_BIT)]))
-end
-
 function add_device!(app::VulkanApplicationSingleDevice)
     pdevices = enumerate_physical_devices(app.app)
     pdevice = first(pdevices)
@@ -40,70 +33,22 @@ function add_device!(app::VulkanApplicationSingleDevice)
     app.device = DeviceSetup(device, pdevice, queues)
 end
 
-function add_surface!(app::VulkanApplication, window::XCBWindow)
-    app.surface = SurfaceSetup(SurfaceKHR(app.app, XcbSurfaceCreateInfoKHR(window.conn.h, window.id)); window)
-end
-
-function add_swapchain!(app::VulkanApplication, extent, format; buffering=3, colorspace=COLOR_SPACE_SRGB_NONLINEAR_KHR, layers=1, usage=IMAGE_USAGE_COLOR_ATTACHMENT_BIT, sharing_mode=SHARING_MODE_EXCLUSIVE, present_mode=PRESENT_MODE_IMMEDIATE_KHR, clipped=false)
-    @unpack device, surface = app
-    physical_device = device.physical_device_handle
-    supported_formats = get_physical_device_surface_formats_khr(physical_device, surface)
-    supported_capabilities = get_physical_device_surface_capabilities_khr(physical_device, surface)
-    # supported_present_modes = get_physical_device_surface_present_modes_khr(physical_device, surface)
-    
-    @assert Bool(get_physical_device_surface_support_khr(physical_device, device.queues.present.queue_index, surface))
-    
-    # @info "Supported formats: $supported_formats"
-    # @info "Supported capabilities: $supported_capabilities"
-    # @info "Supported presentation modes: $supported_present_modes"
-
-    swapchain = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, buffering, format, colorspace, extent, layers, UInt32(usage), sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped))
-    images = get_swapchain_images_khr(device, swapchain)
-    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
-    app.swapchain = SwapchainSetup(swapchain, buffering, format, colorspace, extent, layers, usage, sharing_mode, present_mode, clipped, images, image_views)
-end
-
-function add_render_pass!(app::VulkanApplication)
-    color_attachment = AttachmentDescription(app.swapchain.format, SAMPLE_COUNT_1_BIT, ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_STORE_OP_STORE, ATTACHMENT_LOAD_OP_DONT_CARE, ATTACHMENT_STORE_OP_DONT_CARE, IMAGE_LAYOUT_UNDEFINED, IMAGE_LAYOUT_PRESENT_SRC_KHR)
-    app.render_pass = create_render_pass(app.device, color_attachment)
-end
-
-function add_framebuffers!(app::VulkanApplication)
-    framebuffer_cis = FramebufferCreateInfo.(app.render_pass, [[view] for view ∈ app.swapchain.image_views], app.swapchain.extent.vks.width, app.swapchain.extent.vks.height, 1)
-    framebuffers = Framebuffer.(app.device, framebuffer_cis)
-    app.framebuffers = framebuffers
-end
-
-function setup_viewport!(app::VulkanApplication)
-    scissor = Rect2D(Offset2D(0., 0.), app.swapchain.extent)
-    viewport = Viewport(0., 0., app.swapchain.extent.vks.width, app.swapchain.extent.vks.height, 0., 1.) 
-    app.viewport = ViewportState(viewport, scissor)
-end
-
-function setup_pipeline!(app::VulkanApplication)
+function setup_pipeline!(app::VulkanApplication; pipeline_symbol=:main)
     @unpack device = app
-    # vert_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_vert.spv"), SPIRV())
-    # frag_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle_frag.spv"), SPIRV())
-
-    # vert_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle.vert"), GLSL())
-    # frag_shader_module = ShaderModule(device, joinpath(@__DIR__, "triangle.frag"), GLSL())
 
     shaders = shader_modules(device, joinpath.(@__DIR__, ["triangle.vert", "triangle.frag"]), log_f=shader_log_f)
     shader_stage_cis = PipelineShaderStageCreateInfo.([SHADER_STAGE_VERTEX_BIT, SHADER_STAGE_FRAGMENT_BIT], shaders, "main")
     
     layout = PipelineLayout(device, PipelineLayoutCreateInfo([], []))
-    # vertex_input_state = PipelineVertexInputStateCreateInfo(repeat([binding_description(Vertex, 0)], 2), attribute_descriptions(Vertex, 0))
     vertex_input_state = PipelineVertexInputStateCreateInfo([binding_description(Vertex, 0)], attribute_descriptions(Vertex, 0))
     input_assembly_state = PipelineInputAssemblyStateCreateInfo(PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, false)
     rasterizer = PipelineRasterizationStateCreateInfo(false, false, POLYGON_MODE_FILL, FRONT_FACE_CLOCKWISE, false, 0., 0., 0., 1., cull_mode=CULL_MODE_BACK_BIT)
     multisample_state = PipelineMultisampleStateCreateInfo(SAMPLE_COUNT_1_BIT, false, 1., false, false)
     color_blend_attachment = PipelineColorBlendAttachmentState(NoBlending())
     color_blend_state = PipelineColorBlendStateCreateInfo([color_blend_attachment], NoBlending())
-    viewport_state = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
     stages = PipelineState(vertex_input_state, input_assembly_state, shader_stage_cis, rasterizer, multisample_state, color_blend_state, C_NULL)
-
-    # pipeline_cis = [GraphicsPipelineCreateInfo(shader_stage_cis, rasterizer, layout, render_pass, 0, 0; vertex_input_state, input_assembly_state, color_blend_state, viewport_state, multisample_state, dynamic_state=PipelineDynamicStateCreateInfo([DYNAMIC_STATE_LINE_WIDTH]))]
-    app.pipelines[:main] = PipelineSetup(shaders, stages; layout)
+    app.pipelines[pipeline_symbol] = PipelineSetup(shaders, stages; layout)
+    create_pipeline!(app.pipelines[pipeline_symbol], app)
 end
 
 function record_render_pass(app, command_buffers)
@@ -123,8 +68,6 @@ function recreate_swapchain!(app)
     @unpack buffering, format, colorspace, layers, usage, sharing_mode, present_mode, clipped = swapchain
 
     capabilities = get_physical_device_surface_capabilities_khr(device.physical_device_handle, surface)
-    # @info capabilities
-
     new_extent = capabilities.current_extent
 
     new_swapchain_handle = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, buffering, format, colorspace, new_extent, layers, UInt32(usage), sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped, old_swapchain=swapchain.handle))
@@ -160,44 +103,58 @@ function handle_resize!(app)
     recreate_swapchain!(app)
     finalize.(app.framebuffers)
     finalize(app.render_pass)
-    add_render_pass!(app)
-    add_framebuffers!(app)
-    setup_viewport!(app)
-    finalize(render_state)
     free_command_buffers(device, app.command_pools[:a], render_state.arr_command_buffers)
+    finalize(render_state)
+    prepare_rendering_to_target!(app, Target{Swapchain}())
     recreate_pipeline!(app.pipelines[:main], app)
-    # recreate_draw_command_buffers!(app)
     command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
     command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))
     record_render_pass(app, command_buffers)
     initialize_render_state!(app, command_buffers; frame=render_state.frame, max_simultaneously_drawn_frames=render_state.max_simultaneously_drawn_frames)
 end
 
+function render!(app)
+    try
+        draw!(app)
+        next_frame!(app)
+    catch e
+        if e isa VulkanError && e.return_code == VK_ERROR_OUT_OF_DATE_KHR
+            handle_resize!(app)
+            @warn "Out of date swapchain was recreated"
+        end
+    end
+end
+
+function on_key_pressed(event, app)
+    key = KeyCombination(event.data.key, event.data.modifiers)
+    window = event.window
+    set_title(window, "Random title $(rand())")
+    if key ∈ [key"q", key"ctrl+q", key"f4"]
+        println()
+        throw(CloseWindow(event.window_handler, window))
+    elseif key == key"b"
+        println()
+        display(@benchmark(render!($app)))
+    elseif key == key"s"
+        curr_extent = extent(window)
+        set_extent(window, (curr_extent[1] + 1, curr_extent[2]))
+    end
+end
+
 function main()
-    # app_info()
     local app
     try
         app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
-        print_info_physical_device(app.app)
+        print_available_devices(app.app)
         add_device!(app)
-        # device_info(app.device.physical_device_handle)
-        app.command_pools[:a] = CommandPool(app.device, CommandPoolCreateInfo(0, flags=COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT))
+        
+        window = create_window(width=512, height=512)
+        target!(app, window)
+        
+        create_command_pool!(app, :a)
         add_vertex_buffer!(app, vertices)
         add_index_buffer!(app, indices)
-        # add_vertex_buffer!(app)
-    
-        window = create_window(width=512, height=512)
-        window_handler = XWindowHandler(window.conn, [window])
-        
-        add_surface!(app, window)
-        add_swapchain!(app, Extent2D(extent(window)...), FORMAT_B8G8R8A8_SRGB)
-        add_render_pass!(app)
-        add_framebuffers!(app)
-        setup_viewport!(app)
         setup_pipeline!(app)
-        ps = app.pipelines[:main]
-        viewport_state = PipelineViewportStateCreateInfo(viewports=[app.viewport.viewport], scissors=[app.viewport.scissor])
-        create_pipeline!(ps, app.device, app.render_pass, viewport_state)
         command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
         command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))
 
@@ -205,45 +162,18 @@ function main()
 
         initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = length(app.framebuffers) - 1)
 
-        function render()
-            try
-                draw!(app)
-                next_frame!(app)
-            catch e
-                if e isa VulkanError && e.return_code == VK_ERROR_OUT_OF_DATE_KHR
-                    handle_resize!(app)
-                    @warn "Out of date swapchain was recreated"
-                end
-            end
-        end
-
-        function on_key_pressed(event)
-            key = KeyCombination(event.data.key, event.data.modifiers)
-            window = event.window
-            set_title(window, "Random title $(rand())")
-            if key ∈ [key"q", key"ctrl+q", key"f4"]
-                println()
-                throw(CloseWindow(event.window_handler, window))
-            elseif key == key"b"
-                display(@benchmark($render()))
-                println()
-            elseif key == key"s"
-                curr_extent = extent(window)
-                set_extent(window, (curr_extent[1] + 1, curr_extent[2]))
-            end
-        end
-
+        window_handler = XWindowHandler(window.conn, [window])
         event_loop = EventLoop(;
             window_handler,
             callbacks=Dict(
                 :window_1 => WindowCallbacks(;
-                    on_key_pressed,
+                    on_key_pressed = x -> on_key_pressed(x, app),
                     on_expose = x -> replprint("window exposed", log_term; prefix="Frame " * string(app.render_state.frame) * " "),
                     on_resize = x -> handle_resize!(app),
                 ),
             ),
             on_iter_first = () -> replprint("", log_term, prefix="Frame " * string(app.render_state.frame) * " "),
-            on_iter_last = render,
+            on_iter_last = () -> render!(app),
         )
         run(event_loop, Synchronous(); warn_unknown=false, poll=false)
     catch e

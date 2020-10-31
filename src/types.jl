@@ -195,3 +195,9 @@ abstract type BlendingMode end
 
 struct NoBlending <: BlendingMode end
 struct AlphaBlending <: BlendingMode end
+
+struct Target{T} end
+abstract type RenderPassType end
+struct RenderPassPresent{T} <: RenderPassType
+    target::T
+end
