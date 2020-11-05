@@ -194,7 +194,9 @@ end
 abstract type BlendingMode end
 
 struct NoBlending <: BlendingMode end
-struct AlphaBlending <: BlendingMode end
+Base.@kwdef struct AlphaBlending <: BlendingMode
+    factor = 1
+end
 
 struct Target{T} end
 abstract type RenderPassType end

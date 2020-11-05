@@ -10,7 +10,7 @@ function add_buffer!(app, data, symbol; from_pool=:a, usage=nothing)
 end
 
 add_vertex_buffer!(app, vertices; buffer_symbol=:vertex) = add_buffer!(app, vertices, buffer_symbol, usage=BUFFER_USAGE_VERTEX_BUFFER_BIT)
-add_index_buffer!(app, indices; buffer_symbol=:index) = add_buffer!(app, indices, buffer_symbol, usage=BUFFER_USAGE_INDEX_BUFFER_BIT)
+add_index_buffer!(app, indices; buffer_symbol=:index) = add_buffer!(app, convert(Array{Int32}, indices), buffer_symbol, usage=BUFFER_USAGE_INDEX_BUFFER_BIT)
 
 function Base.copyto!(dest::BufferSetup, src, device::DeviceSetup; size=WHOLE_SIZE)
     ptr_ref = Ref{Ptr{Cvoid}}()
