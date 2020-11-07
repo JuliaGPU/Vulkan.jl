@@ -6,6 +6,7 @@ using WindowAbstractions
 using VulkanCore.vk
 using Parameters
 using BenchmarkTools
+using Meshes
 
 #= Logging =#
 using TerminalLoggers
@@ -18,6 +19,7 @@ using Logging: global_logger
 include(joinpath(@__DIR__, "..", "common", "logging.jl"))
 include("window.jl")
 include("features.jl")
+include("vertex_attributes.jl")
 include("vertices.jl")
 
 shader_log_f(format, file) = replprint("$(typeof(format)) shader $file", log_term, prefix="Compiling ")
