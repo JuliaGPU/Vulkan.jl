@@ -9,6 +9,7 @@ glslangValidator = glslang_jll.glslangValidator(x -> x)
 
 using VulkanCore.api
 const api = VulkanCore.api
+const core = VulkanCore.api
 using CEnum
 
 include("wrap_utils.jl")

@@ -6,22 +6,25 @@ version = "0.1.0"
 [deps]
 CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
 DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
-Meshes = "eacbb407-ea5a-433e-ab97-5258b1ca43fa"
 Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
-ProgressLogging = "33c8b6b6-d38a-422a-b730-caa89a2f386c"
 Requires = "ae029012-a4dd-5104-9daa-d747884805df"
-StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
-TerminalLoggers = "5d786b92-1e48-4d6f-9151-6b4477ca9bed"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
-WindowAbstractions = "e18202ca-4a7d-4de8-b056-fa6bbd7de157"
-XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
 
 [compat]
 julia = "1.5"
 
 [extras]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+Meshes = "eacbb407-ea5a-433e-ab97-5258b1ca43fa"
+ProgressLogging = "33c8b6b6-d38a-422a-b730-caa89a2f386c"
+REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+TerminalLoggers = "5d786b92-1e48-4d6f-9151-6b4477ca9bed"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+WindowAbstractions = "e18202ca-4a7d-4de8-b056-fa6bbd7de157"
+XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [targets]
-test = ["Test"]
+test = ["Test", "Meshes", "ProgressLogging", "StaticArrays", "TerminalLoggers", "WindowAbstractions", "XCB", "REPL", "Logging", "BenchmarkTools"]
