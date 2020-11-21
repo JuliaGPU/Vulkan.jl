@@ -65,6 +65,19 @@
             }
         },
         {
+            "label": "Generate API wrapper",
+            "command": "${HOME}/julia/1.5.2/bin/julia",
+            "type": "shell",
+            "args": [
+                "--color=yes",
+                "--project=generator/",
+                "-e",
+                "'using Pkg; Pkg.instantiate(); include(\"generator/scripts/generate_library.jl\")'",
+            ],
+            "problemMatcher": "$tsc",
+            "group": "build",
+        },
+        {
             "type": "julia",
             "command": "juliasysimagebuild",
             "problemMatcher": [
