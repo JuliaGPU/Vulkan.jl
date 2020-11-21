@@ -13,6 +13,12 @@ glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
 
 [compat]
 julia = "1.5"
+CEnum = "0.4.1"
+DataStructures = "0.18.8"
+Parameters = "0.12.1"
+Requires = "1.1.0"
+VulkanCore = "1.2.1"
+glslang_jll = "8.13.3743"
 
 [extras]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
