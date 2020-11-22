@@ -41,9 +41,10 @@ function safe_shutdown!(app::VulkanApplicationSingleDevice)
     finalize(app)
 end
 
+include("single_device/surface.jl")
+include("single_device/swapchain.jl")
+include("single_device/command_pools.jl")
 include("single_device/buffers.jl")
+include("single_device/viewport.jl")
 include("single_device/pipeline.jl")
 include("single_device/rendering.jl")
-include("single_device/swapchain.jl")
-include("single_device/surface.jl")
-include("single_device/viewport.jl")

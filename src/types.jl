@@ -4,8 +4,8 @@ While handles are primordial for executing Vulkan API calls, they usually involv
 abstract type Setup end
 
 # to avoid having to specify the handle every time an API call is made
-Base.cconvert(T::Type{<: Ptr}, x::Setup) = x.handle
-Base.convert(T::Type{<: Handle}, x::Setup) = x.handle
+Base.cconvert(T::Type{<:Ptr}, x::Setup) = x.handle
+Base.convert(T::Type{<:Handle}, x::Setup) = x.handle
 Base.broadcastable(x::Setup) = Ref(x)
 
 mutable struct AppSetup <: Setup

@@ -1,4 +1,5 @@
 include("buffers/memory.jl")
+include("buffers/command_buffers.jl")
 
 function Base.copyto!(dest::BufferSetup, src, device::DeviceSetup; size=WHOLE_SIZE)
     ptr_ref = Ref{Ptr{Cvoid}}()

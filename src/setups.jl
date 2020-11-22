@@ -7,12 +7,6 @@ end
 create_pipeline!(ps::PipelineSetup, device, render_pass, viewport_state) = setproperty!(ps, :handle, first(Pipeline(device, [GraphicsPipelineCreateInfo(ps, render_pass, viewport_state)])))
 create_pipelines!(device, render_pass, viewport_state, pss::PipelineSetup...) = setproperty!.(pss, :handle, Pipeline(GraphicsPipelineCreateInfo.(pss, render_pass, viewport_state)))
 
-
-function recreate_pipeline!(ps::PipelineSetup, app)
-    finalize(ps.handle)
-    create_pipeline!(ps, app)
-end
-
 """
 By default, the extent is taken as the application swapchain extent, but a custom value can be provided instead.
 """
