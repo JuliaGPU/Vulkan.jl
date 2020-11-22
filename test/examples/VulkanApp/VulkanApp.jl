@@ -26,7 +26,7 @@ shader_log_f(format, file) = replprint("$(typeof(format)) shader $file", log_ter
 shader_log_f() = replprint("Shaders compiled", log_term, newline=1, color=:green, bold=true)
 
 function add_device!(app::VulkanApplicationSingleDevice)
-    pdevices = enumerate_physical_devices(app.app)
+    pdevices = enumerate_physical_devices(app.instance)
     pdevice = first(pdevices)
     device = Device(pdevice, DeviceCreateInfo([DeviceQueueCreateInfo(0, [1.0])], String[], ["VK_KHR_swapchain"], enabled_features=PhysicalDeviceFeatures(values(physical_device_features)...)))
     queue = get_device_queue(device, 0, 0).handle
@@ -92,7 +92,7 @@ function create_application(; validate=true)
     layers = validate ? ["VK_LAYER_KHRONOS_validation"] : String[]
     instance = Instance(InstanceCreateInfo(layers, ["VK_KHR_xcb_surface", "VK_KHR_surface", "VK_EXT_debug_utils"]; application_info=ApplicationInfo(v"0.1", v"0.1", v"1.2.133", application_name = "JuliaGameEngine", engine_name = "CryEngine")))
     callback = @cfunction(default_debug_callback, UInt32, (Vulkan.DebugUtilsMessageSeverityFlagBitsEXT, Vulkan.DebugUtilsMessageTypeFlagBitsEXT, Ptr{Vulkan.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
-    VulkanApplicationSingleDevice(AppSetup(instance; debug_messenger=(validate ? DebugUtilsMessengerEXT(instance, callback; severity="debug") : nothing)))
+    VulkanApplicationSingleDevice(InstanceSetup(instance; debug_messenger=(validate ? DebugUtilsMessengerEXT(instance, callback; severity="debug") : nothing)))
 end
 
 function handle_resize!(app, data)
@@ -146,7 +146,7 @@ function main()
     local app
     try
         app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
-        print_available_devices(app.app)
+        print_available_devices(app.instance)
         add_device!(app)
         
         window = create_window(width=512, height=512)
@@ -188,7 +188,7 @@ end
 
 function test_enumerated_properties()
     app = create_application()
-    instance = app.app.handle
+    instance = app.instance.handle
     add_device!(app)
     physical_device = app.device.physical_device_handle
     window = create_window()

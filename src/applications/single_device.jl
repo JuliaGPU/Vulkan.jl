@@ -1,5 +1,5 @@
 mutable struct VulkanApplicationSingleDevice <: VulkanApplication
-    app::AppSetup
+    instance::InstanceSetup
     device
     surface
     swapchain
@@ -11,7 +11,7 @@ mutable struct VulkanApplicationSingleDevice <: VulkanApplication
     pipelines::Dict{Symbol, PipelineSetup}
     buffers::Dict{Symbol, BufferSetup}
     function VulkanApplicationSingleDevice(
-                                        app::AppSetup;
+                                        instance::InstanceSetup;
                                         device           = nothing,
                                         surface          = nothing,
                                         swapchain        = nothing,
@@ -23,7 +23,7 @@ mutable struct VulkanApplicationSingleDevice <: VulkanApplication
                                         pipelines        = Dict{Symbol, Pipeline}(),
                                         buffers          = Dict{Symbol, BufferSetup}(),
                                         )
-        vasg = new(app, device, surface, swapchain, framebuffers, command_pools, viewport, render_pass, render_state, pipelines, buffers)
+        vasg = new(instance, device, surface, swapchain, framebuffers, command_pools, viewport, render_pass, render_state, pipelines, buffers)
         finalizer(vasg) do x
             # !isnothing(x.device) && (device_wait_idle(x.device.handle); @debug("Device idle"))
             finalize.(values(x.pipelines))
@@ -31,7 +31,7 @@ mutable struct VulkanApplicationSingleDevice <: VulkanApplication
             !isempty(x.framebuffers) && finalize.(x.framebuffers)
             finalize.(values(x.command_pools))
                 # finalize.(command_pool, pipeline, framebuffers..., pipeline_layout, render_pass, image_views..., swapchain, surface, sem_image_available..., sem_render_finished..., fen_wait_images_drawn..., device, dbg, instance)
-            finalize.(getproperty.(x, (:render_pass, :render_state, :swapchain, :surface, :device, :app)))
+            finalize.(getproperty.(x, (:render_pass, :render_state, :swapchain, :surface, :device, :instance)))
         end
     end
 end

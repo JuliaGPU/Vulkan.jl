@@ -61,7 +61,7 @@ export
         # Higher-level abstractions
         ### Setups
         Setup,
-        AppSetup,
+        InstanceSetup,
         DeviceSetup,
         SwapchainSetup,
         SurfaceSetup,

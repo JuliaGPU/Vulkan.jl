@@ -8,12 +8,12 @@ Base.cconvert(T::Type{<:Ptr}, x::Setup) = x.handle
 Base.convert(T::Type{<:Handle}, x::Setup) = x.handle
 Base.broadcastable(x::Setup) = Ref(x)
 
-mutable struct AppSetup <: Setup
+mutable struct InstanceSetup <: Setup
     handle::Instance
     debug_messenger
-    function AppSetup(instance::Instance; debug_messenger = nothing)
-        as = new(instance, debug_messenger)
-        finalizer(as) do x
+    function InstanceSetup(instance::Instance; debug_messenger = nothing)
+        instance_setup = new(instance, debug_messenger)
+        finalizer(instance_setup) do x
             finalize.(getproperty.(x, (:debug_messenger, :handle)))
         end
     end

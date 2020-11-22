@@ -5,13 +5,13 @@ function print_app_info()
     print_info("Available extensions:", enumerate_instance_extension_properties())
 end
 
-function print_devices(app::AppSetup)
-    pdevices = print_available_devices(app)
+function print_devices(instance::InstanceSetup)
+    pdevices = print_available_devices(instance)
     print_device_info.(pdevices)
 end
 
-function print_available_devices(app::AppSetup)
-    pdevices = enumerate_physical_devices(app)
+function print_available_devices(instance::InstanceSetup)
+    pdevices = enumerate_physical_devices(instance)
     print_info("Available devices:", get_physical_device_properties.(pdevices))
     pdevices
 end
