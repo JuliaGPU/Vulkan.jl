@@ -163,6 +163,7 @@ export
 
         ### Swapchain creation
         create_swapchain!,
+        recreate_swapchain!,
 
         ### Application state
         ViewportState,

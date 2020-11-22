@@ -64,20 +64,6 @@ function record_render_pass(app, data, command_buffers)
     end_command_buffer.(command_buffers)
 end
 
-function recreate_swapchain!(app)
-    @unpack device, surface, swapchain = app
-    @unpack buffering, format, colorspace, layers, usage, sharing_mode, present_mode, clipped = swapchain
-
-    capabilities = get_physical_device_surface_capabilities_khr(device.physical_device_handle, surface)
-    new_extent = capabilities.current_extent
-
-    new_swapchain_handle = SwapchainKHR(device, SwapchainCreateInfoKHR(surface.handle, buffering, format, colorspace, new_extent, layers, UInt32(usage), sharing_mode, Int[], SURFACE_TRANSFORM_IDENTITY_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, present_mode, clipped, old_swapchain=swapchain.handle))
-    finalize(swapchain)
-    images = get_swapchain_images_khr(device, new_swapchain_handle)
-    image_views = ImageView.(device, ImageViewCreateInfo.(images, IMAGE_VIEW_TYPE_2D, format, ComponentMapping(COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_IDENTITY), ImageSubresourceRange(IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1)))
-    app.swapchain = SwapchainSetup(new_swapchain_handle, buffering, format, colorspace, new_extent, layers, usage, sharing_mode, present_mode, clipped, images, image_views)
-end
-
 #TODO: is unsued, do something about it
 function recreate_draw_command_buffers!(app, data)
     @unpack device, render_state = app
@@ -86,7 +72,6 @@ function recreate_draw_command_buffers!(app, data)
     reset_command_buffer.(arr_command_buffers)
     record_render_pass.(app, data, arr_command_buffers)
 end
-
 
 function create_application(; validate=true)
     layers = validate ? ["VK_LAYER_KHRONOS_validation"] : String[]
