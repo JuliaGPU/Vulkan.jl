@@ -1,4 +1,4 @@
-function add_framebuffers!(app::VulkanApplication, ::Target{Swapchain})
+function add_framebuffers!(app::VulkanApplication, ::Target{SwapchainKHR})
     framebuffer_cis = FramebufferCreateInfo.(app.render_pass, [[view] for view ∈ app.swapchain.image_views], app.swapchain.extent.vks.width, app.swapchain.extent.vks.height, 1)
     framebuffers = Framebuffer.(app.device, framebuffer_cis)
     add_framebuffers!(app, framebuffers)

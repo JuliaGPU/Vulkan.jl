@@ -1,9 +1,9 @@
 using .WindowAbstractions: AbstractWindow, extent
 
-function target!(app, target::AbstractWindow; format=FORMAT_B8G8R8A8_SRGB)
+function target!(app::VulkanApplication, target::AbstractWindow; format=FORMAT_B8G8R8A8_SRGB, swapchain_kwargs...)
     add_surface!(app, SurfaceSetup(app, target))
-    create_swapchain!(app, Extent2D(extent(target)...), format)
-    prepare_rendering_to_target!(app, Target{Swapchain}())
+    create_swapchain!(app, extent=Extent2D(extent(target)...); format, swapchain_kwargs...)
+    prepare_rendering_to_target!(app, Target{SwapchainKHR}())
 end
 
 export target!

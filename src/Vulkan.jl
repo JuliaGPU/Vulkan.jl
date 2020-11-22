@@ -32,7 +32,6 @@ const core = VulkanCore.api
 include("wrap_utils.jl")
 include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
 
-include("aliases.jl")
 include("shaders.jl")
 include("buffers.jl")
 include("renderpass.jl")
@@ -69,9 +68,6 @@ export
         ### Error handling
         VulkanError,
         @check,
-
-        ### Aliases
-        Swapchain,
 
         # Higher-level abstractions
         ### Setups
