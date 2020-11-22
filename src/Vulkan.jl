@@ -96,6 +96,12 @@ export
         BlendingMode,
         NoBlending,
         AlphaBlending,
+        AlphaCompositing,
+        AlphaOpaque,
+        AlphaPreMultiplied,
+        AlphaPostMultiplied,
+        AlphaInherit,
+
 
         ### Debugging
         DebugUtilsMessengerEXT,
