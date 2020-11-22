@@ -1,4 +1,4 @@
-function shutdown_properly!(app)
+function safe_shutdown!(app::VulkanApplicationSingleDevice)
     !isnothing(app.device) && (device_wait_idle(app.device); @debug("Device shut down"))
     finalize(app)
 end

@@ -83,3 +83,18 @@ function shader_modules(device, files; log_f=nothing)
     !isnothing(log_f) && log_f()
     modules
 end
+
+struct ShaderText{F<:ShaderFormat}
+    file
+    format::TextFormat
+end
+
+@with_kw struct Shader
+    shader::ShaderModule
+    entry_point::Symbol = :main
+    stage
+end
+
+# function PipelineShaderStageCreateInfo(ShaderModule())
+
+include("shaders/stages.jl")

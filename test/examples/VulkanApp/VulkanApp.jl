@@ -182,7 +182,7 @@ function main()
     catch e
         rethrow(e) # terminate the event loop from run_window
     finally
-        shutdown_properly!(app)
+        safe_shutdown!(app)
     end
 end
 

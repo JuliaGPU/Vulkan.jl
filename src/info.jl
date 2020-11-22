@@ -1,6 +1,6 @@
 print_info(message, info) = println(join([message, string.(info)...], "\n    "))
 
-function print_info_app()
+function print_app_info()
     print_info("Available instance layers:", enumerate_instance_layer_properties())
     print_info("Available extensions:", enumerate_instance_extension_properties())
 end
