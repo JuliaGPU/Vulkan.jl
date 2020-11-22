@@ -1,3 +1,6 @@
+"""
+Shader stage in a graphics pipeline.
+"""
 abstract type ShaderStage end
 
 Base.broadcastable(x::ShaderStage) = Ref(x)

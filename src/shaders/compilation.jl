@@ -15,7 +15,12 @@ end
 
 ShaderModule(device, shader::ShaderFile{<:TextFormat}) = ShaderModule(device, compile(shader))
 
-function compile(shader::ShaderFile{GLSL}; extra_flags=[], validate_spirv=true)
+"""
+    `compile(shader)`
+
+Compile a shader file in text format to SPIR-V.
+"""
+function compile(shader::ShaderFile{GLSL}; extra_flags=[], validate_spirv=true)::ShaderFile{SPIRV}
     if !isfile(shader.file)
         throw(ArgumentError("File $(shader.file) does not exist"))
     end
@@ -34,4 +39,4 @@ function compile(shader::ShaderFile{GLSL}; extra_flags=[], validate_spirv=true)
     ShaderFile(dst, SPIRV(), shader.stage)
 end
 
-compile(shader::ShaderFile{HLSL}) = compile(convert(ShaderFile{GLSL}, shader), extra_flags=["-D"])
+compile(shader::ShaderFile{HLSL})::ShaderFile{SPIRV} = compile(convert(ShaderFile{GLSL}, shader), extra_flags=["-D"])

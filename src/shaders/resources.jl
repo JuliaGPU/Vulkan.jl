@@ -1,7 +1,28 @@
+"""
+External shader resource.
+"""
 abstract type ShaderResource end
 
 Base.broadcastable(x::ShaderResource) = Ref(x)
 
+"""
+    `ShaderFile(file, format)`
+    `ShaderFile(file, stage)`
+
+Shader resource as a file.
+If one of the format or stage is not provided but the other is, then the former
+will be retrieved from the file extension, if possible, or an error will be thrown.
+
+## Examples
+
+```julia
+julia> ShaderFile("my_shader.geom", GLSL())
+ShaderFile{GLSL}
+
+julia> ShaderFile("my_shader.glsl", GeometryStage())
+ShaderFile{GLSL}
+```
+"""
 struct ShaderFile{F<:ShaderFormat} <: ShaderResource
     file::String
     format::F
