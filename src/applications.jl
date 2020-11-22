@@ -1,14 +1,9 @@
-function safe_shutdown!(app::VulkanApplicationSingleDevice)
-    !isnothing(app.device) && (device_wait_idle(app.device); @debug("Device shut down"))
-    finalize(app)
-end
+"""
+A Vulkan application represents any program that uses the Vulkan API. Application goals and setups may vary greatly, but they all require many structures to function. Some may do offline rendering (without presenting the result to a window), or use Vulkan Compute and render directly to a display, but both uses share similarities in that they require an Instance and one (or several) devices.
+"""
+abstract type VulkanApplication end
 
-function next_frame!(rs::RenderState)
-    rs.frame += 1
-    rs.frame_index = mod(rs.frame - 1, rs.max_simultaneously_drawn_frames) + 1
-end
-
-next_frame!(app::VulkanApplication) = next_frame!(app.render_state)
+Base.broadcastable(x::VulkanApplication) = Ref(x)
 
 function initialize_render_state!(app::VulkanApplication, command_buffers; max_simultaneously_drawn_frames = 2, frame=1)
     @unpack device = app
@@ -18,6 +13,8 @@ function initialize_render_state!(app::VulkanApplication, command_buffers; max_s
     arr_fen_acquire_image = Array{Union{Fence, Nothing}, 1}(nothing, length(app.swapchain.images))
     app.render_state = RenderState(frame, 1, arr_sem_image_available, arr_sem_render_finished, arr_fen_image_drawn, arr_fen_acquire_image, command_buffers, max_simultaneously_drawn_frames)
 end
+
+next_frame!(app::VulkanApplication) = next_frame!(app.render_state)
 
 function draw!(app::VulkanApplication)
     @unpack device, swapchain, render_state = app
@@ -36,3 +33,5 @@ function draw!(app::VulkanApplication)
     present_info = PresentInfoKHR([arr_sem_render_finished[frame_index]], [swapchain.handle], [index])
     queue_present_khr(app.device.queues.present, present_info)
 end
+
+include("applications/single_device.jl")

@@ -17,9 +17,7 @@ const core = VulkanCore.api
 include("wrap_utils.jl")
 include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
 
-# aliases
 include("aliases.jl")
-
 include("types.jl")
 include("misc.jl")
 include("print.jl")
@@ -30,8 +28,8 @@ include("buffers.jl")
 include("info.jl")
 include("blending.jl")
 include("setups.jl")
-include("app.jl")
-include("targets.jl")
+include("state.jl")
+include("applications.jl")
 
 function __init__()
     @require WindowAbstractions="e18202ca-4a7d-4de8-b056-fa6bbd7de157" include("window_interface.jl")
