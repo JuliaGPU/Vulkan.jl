@@ -3,14 +3,15 @@ module Vulkan
 using DataStructures
 using Parameters
 using Requires: @require
-import VulkanCore
-import glslang_jll
-glslangValidator = glslang_jll.glslangValidator(x -> x)
-
+using CEnum
 using VulkanCore.api
+
+import glslang_jll
+import VulkanCore
+
+const glslangValidator = glslang_jll.glslangValidator(x -> x)
 const api = VulkanCore.api
 const core = VulkanCore.api
-using CEnum
 
 # generated wrapper
 include("wrap_utils.jl")
@@ -31,7 +32,6 @@ include("blending.jl")
 include("setups.jl")
 include("app.jl")
 include("targets.jl")
-include("shaders.jl")
 
 function __init__()
     @require WindowAbstractions="e18202ca-4a7d-4de8-b056-fa6bbd7de157" include("window_interface.jl")
@@ -44,7 +44,7 @@ export
         ### Supertypes
         VulkanStruct,
         Handle,
-       
+
         ### Pointer utilities
         unsafe_pointer,
         unsafe_pointer_load,
@@ -95,6 +95,8 @@ export
         default_debug_callback_c,
 
         ### Shaders
+        Shader,
+
         ##### Stages
         ShaderStage,
         VertexStage,
@@ -104,7 +106,7 @@ export
         FragmentStage,
         stage_from_file_ext,
         stage_file_ext,
-        
+
         ##### Formats
         ShaderFormat,
         TextFormat,
@@ -113,8 +115,12 @@ export
         HLSL,
         BinaryFormat,
 
+        ##### Resources
+        ShaderResource,
+        ShaderFile,
+
         ##### Compilation
-        shader_modules,
+        ShaderCompilationError,
         compile,
 
         ### Pipelines
@@ -164,7 +170,5 @@ export
         
         ### Finalization
         safe_shutdown!
-
-
 
 end # module Vulkan
