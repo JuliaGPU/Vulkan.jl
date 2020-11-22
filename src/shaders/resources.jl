@@ -6,8 +6,8 @@ abstract type ShaderResource end
 Base.broadcastable(x::ShaderResource) = Ref(x)
 
 """
-    `ShaderFile(file, format)`
-    `ShaderFile(file, stage)`
+    ShaderFile(file, format)
+    ShaderFile(file, stage)
 
 Shader resource as a file.
 If one of the format or stage is not provided but the other is, then the former

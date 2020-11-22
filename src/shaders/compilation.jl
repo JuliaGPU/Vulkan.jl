@@ -16,7 +16,7 @@ end
 ShaderModule(device, shader::ShaderFile{<:TextFormat}) = ShaderModule(device, compile(shader))
 
 """
-    `compile(shader)`
+    compile(shader)
 
 Compile a shader file in text format to SPIR-V.
 """

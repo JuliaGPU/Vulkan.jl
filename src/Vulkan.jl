@@ -1,5 +1,6 @@
 module Vulkan
 
+using DocStringExtensions
 using DataStructures
 using Parameters
 using Requires: @require
@@ -8,6 +9,20 @@ using VulkanCore.api
 
 import glslang_jll
 import VulkanCore
+
+@template (FUNCTIONS, METHODS, MACROS) =
+    """
+    $(DOCSTRING)
+    $(TYPEDSIGNATURES)
+    """
+
+@template TYPES =
+    """
+    $(DOCSTRING)
+    $(TYPEDEF)
+    $(TYPEDSIGNATURES)
+    $(TYPEDFIELDS)
+    """
 
 const glslangValidator = glslang_jll.glslangValidator(x -> x)
 const api = VulkanCore.api

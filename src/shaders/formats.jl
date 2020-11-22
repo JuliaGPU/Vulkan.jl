@@ -54,7 +54,7 @@ const format_from_file_ext_dict = Dict(
 )
 
 """
-    `stage_from_file_ext(shader_file, GLSL())`
+    stage_from_file_ext(shader_file, GLSL())
 
 Automatically detect a [`ShaderStage`](@ref) from the file extension.
 Can only be used with [`GLSL`](@ref) and [`HLSL`](@ref).
@@ -73,7 +73,7 @@ stage_from_file_ext(file, ::GLSL) = stage_from_file_ext_glsl_dict[file]
 stage_from_file_ext(file, ::HLSL) = stage_from_file_ext(file, GLSL())
 
 """
-    `format_from_file_ext(file_ext)`
+    format_from_file_ext(file_ext)
 
 Automatically detect a [`ShaderFormat`](@ref) from the file extension.
 Currently, only .spv, .glsl and .hlsl are recognized, mapping to
