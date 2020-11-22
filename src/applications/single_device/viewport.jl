@@ -1,3 +1,6 @@
+"""
+By default, the extent is taken as the application swapchain extent, but a custom value can be provided instead.
+"""
 setup_viewport!(app::VulkanApplication; offset=(0, 0), custom_extent=nothing) = setup_viewport!(app, isnothing(custom_extent) ? (app.swapchain.extent.vks.width, app.swapchain.extent.vks.height) : custom_extent; offset)
 
 """
