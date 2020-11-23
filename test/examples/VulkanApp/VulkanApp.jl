@@ -37,10 +37,9 @@ end
 function setup_pipeline!(app::VulkanApplication, vertex_data_type::T; pipeline_symbol=:main) where {T <: Type{<: VertexData}}
     @unpack device = app
 
-    shaders = Shader.(device, ShaderFile.(joinpath.(Ref(@__DIR__), ["triangle.vert", "triangle.frag"]), GLSL()))
+    shaders = Shader.(device, ShaderFile.(joinpath.(Ref(@__DIR__), ["triangle.vert", "triangle.frag"]), GLSL()), resources=[UniformBuffer()])
     shader_stage_cis = PipelineShaderStageCreateInfo.(shaders)
     
-    layout = PipelineLayout(device, PipelineLayoutCreateInfo([], []))
     vertex_input_state = PipelineVertexInputStateCreateInfo([binding_description(vertex_data_type, 0)], attribute_descriptions(vertex_data_type, 0))
     input_assembly_state = PipelineInputAssemblyStateCreateInfo(PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP, false)
     rasterizer = PipelineRasterizationStateCreateInfo(false, false, POLYGON_MODE_FILL, FRONT_FACE_CLOCKWISE, false, 0., 0., 0., 1., cull_mode=CULL_MODE_BACK_BIT)
@@ -48,8 +47,10 @@ function setup_pipeline!(app::VulkanApplication, vertex_data_type::T; pipeline_s
     color_blend_attachment = PipelineColorBlendAttachmentState(AlphaBlending)
     color_blend_state = PipelineColorBlendStateCreateInfo([color_blend_attachment], (0.0, 1.0, 1.0, 0.01))
     stages = PipelineState(vertex_input_state, input_assembly_state, shader_stage_cis, rasterizer, multisample_state, color_blend_state, C_NULL)
-    app.pipelines[pipeline_symbol] = PipelineSetup(getproperty.(shaders, :mod), stages; layout)
-    create_pipeline!(app.pipelines[pipeline_symbol], app)
+    
+    setup = PipelineSetup(device, stages, shaders)
+    create_pipeline!(setup, app)
+    app.pipelines[pipeline_symbol] = setup
 end
 
 function record_render_pass(app, data, command_buffers)

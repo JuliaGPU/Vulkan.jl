@@ -2,7 +2,4 @@ PipelineViewportStateCreateInfo(app::VulkanApplication) = PipelineViewportStateC
 
 create_pipeline!(ps::PipelineSetup, app::VulkanApplication) = create_pipeline!(ps, app.device, app.render_pass, PipelineViewportStateCreateInfo(app))
 
-function recreate_pipeline!(ps::PipelineSetup, app::VulkanApplication)
-    finalize(ps.handle)
-    create_pipeline!(ps, app)
-end
+recreate_pipeline!(ps::PipelineSetup, app::VulkanApplication) = recreate_pipeline!(ps, app.device, app.render_pass, PipelineViewportStateCreateInfo(app))

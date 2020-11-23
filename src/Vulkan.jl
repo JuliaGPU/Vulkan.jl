@@ -34,6 +34,7 @@ include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
 
 include("shaders.jl")
 include("buffers.jl")
+include("pipelines.jl")
 include("renderpass.jl")
 include("instance.jl")
 include("devices.jl")
@@ -110,6 +111,7 @@ export
 
         ### Shaders
         Shader,
+        ShaderFile,
 
         ##### Stages
         ShaderStage,
@@ -131,7 +133,7 @@ export
 
         ##### Resources
         ShaderResource,
-        ShaderFile,
+        UniformBuffer,
 
         ##### Compilation
         ShaderCompilationError,
