@@ -15,6 +15,7 @@ glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
 [compat]
 CEnum = "0.4.1"
 DataStructures = "0.18.8"
+DocStringExtensions = "0.8"
 Parameters = "0.12.1"
 Requires = "1.1.0"
 VulkanCore = "1.2.1"
