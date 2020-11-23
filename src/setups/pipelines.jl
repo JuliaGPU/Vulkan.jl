@@ -4,19 +4,23 @@ mutable struct PipelineSetup <: Setup
     layout
     cache
     stages
-    function PipelineSetup(shader_modules, stages; layout = C_NULL, cache = C_NULL)
-        ps = new(C_NULL, shader_modules, layout, cache, stages)
+    descriptor_set_layouts
+    function PipelineSetup(shader_modules, stages; layout = C_NULL, cache = C_NULL, descriptor_set_layouts = DescriptorSetLayout[])
+        ps = new(C_NULL, shader_modules, layout, cache, stages, descriptor_set_layouts)
         finalizer(ps) do x
             finalize.(x.shader_modules)
             finalize.(getproperty.(x, (:handle, :layout, :cache)))
+            finalize.(x.descriptor_set_layouts)
+            layout ≠ C_NULL && finalize(layout)
         end
     end
 end
 
-function PipelineSetup(device, stages, shaders::AbstractVector{Shader}; cache = C_NULL)
-    layout = PipelineLayout(device, shaders)
+function PipelineSetup(device, stages, shaders::AbstractVector{Shader}; cache = C_NULL, push_constants=[])
+    ds_layouts = descriptor_set_layouts(device, shaders)
+    layout = PipelineLayout(device, PipelineLayoutCreateInfo(ds_layouts, push_constants))
     modules = getproperty.(shaders, :mod)
-    PipelineSetup(modules, stages; layout, cache)
+    PipelineSetup(modules, stages; layout, cache, descriptor_set_layouts=ds_layouts)
 end
 
 function GraphicsPipelineCreateInfo(ps::PipelineSetup, render_pass, viewport_state)
