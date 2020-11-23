@@ -49,3 +49,6 @@ from_vk(T, x) = convert(T, x)
 from_vk(T::Type{VersionNumber}, version::UInt32) = T(version >> 22, (version >> 12) & 0x3ff, version & 0xfff)
 from_vk(T::Type{<: AbstractArray{P}}, b::Ptr{P}; length) where P = unsafe_pointer_load(b, length)
 from_vk(T::Type{S}, str::NTuple{N,UInt8}) where {N,S <: AbstractString} = T(filter!(x -> x ≠ 0, UInt8[str...]))
+
+bitwise_or_optional(value, option::Nothing) = value
+bitwise_or_optional(value, option) = value | option

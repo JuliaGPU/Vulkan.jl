@@ -14,7 +14,7 @@ using ProgressLogging
 using REPL
 using REPL:Terminals
 using Logging: global_logger
-
+using StaticArrays
 
 include(joinpath(@__DIR__, "..", "common", "logging.jl"))
 include("window.jl")
@@ -141,8 +141,9 @@ function main()
         create_command_pool!(app, :a)
 
         data = pos_color(q, colors)
-        add_vertex_buffer!(app, data)
-        add_index_buffer!(app, indices(data))
+        add_vertex_buffer!(app, data, device_local=true, from_pool=:a)
+        add_index_buffer!(app, indices(data), device_local=true, from_pool=:a)
+        add_uniform_buffer!(app, 20, :mvp)
         setup_pipeline!(app, eltype(data))
         command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
         command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))

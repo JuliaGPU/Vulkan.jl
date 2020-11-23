@@ -5,6 +5,7 @@ using DataStructures
 using Parameters
 using Requires: @require
 using CEnum
+using StaticArrays
 using VulkanCore.api
 
 import glslang_jll
@@ -109,6 +110,14 @@ export
         default_debug_callback,
         default_debug_callback_c,
 
+        ### Buffers
+        ##### Memory
+        MemoryProperty,
+        DeviceLocal,
+        HostCoherent,
+        HostVisible,
+        HostCached,
+
         ### Shaders
         Shader,
         ShaderFile,
@@ -164,6 +173,7 @@ export
         add_buffer!,
         add_index_buffer!,
         add_vertex_buffer!,
+        add_uniform_buffer!,
         add_framebuffers!,
 
         ### Surface creation
