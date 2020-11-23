@@ -17,7 +17,7 @@ mutable struct PipelineSetup <: Setup
 end
 
 function PipelineSetup(device, stages, shaders::AbstractVector{Shader}; cache = C_NULL, push_constants=[])
-    ds_layouts = descriptor_set_layouts(device, shaders)
+    ds_layouts = DescriptorSetLayout.(device, shaders)
     layout = PipelineLayout(device, PipelineLayoutCreateInfo(ds_layouts, push_constants))
     modules = getproperty.(shaders, :mod)
     PipelineSetup(modules, stages; layout, cache, descriptor_set_layouts=ds_layouts)

@@ -7,6 +7,7 @@ using VulkanCore.vk
 using Parameters
 using BenchmarkTools
 using Meshes
+using LinearAlgebra
 
 #= Logging =#
 using TerminalLoggers
@@ -17,6 +18,7 @@ using Logging: global_logger
 using StaticArrays
 
 include(joinpath(@__DIR__, "..", "common", "logging.jl"))
+include(joinpath(@__DIR__, "..", "common", "geometry.jl"))
 include("window.jl")
 include("features.jl")
 include("vertex_attributes.jl")
@@ -37,7 +39,7 @@ end
 function setup_pipeline!(app::VulkanApplication, vertex_data_type::T; pipeline_symbol=:main) where {T <: Type{<: VertexData}}
     @unpack device = app
 
-    shaders = Shader.(device, ShaderFile.(joinpath.(Ref(@__DIR__), ["triangle.vert", "triangle.frag"]), GLSL()), resources=[UniformBuffer()])
+    shaders = Shader.(device, ShaderFile.(joinpath.(Ref(@__DIR__), ["triangle.vert", "triangle.frag"]), GLSL()), [[UniformBuffer()]])
     shader_stage_cis = PipelineShaderStageCreateInfo.(shaders)
     
     vertex_input_state = PipelineVertexInputStateCreateInfo([binding_description(vertex_data_type, 0)], attribute_descriptions(vertex_data_type, 0))
@@ -47,7 +49,7 @@ function setup_pipeline!(app::VulkanApplication, vertex_data_type::T; pipeline_s
     color_blend_attachment = PipelineColorBlendAttachmentState(AlphaBlending)
     color_blend_state = PipelineColorBlendStateCreateInfo([color_blend_attachment], (0.0, 1.0, 1.0, 0.01))
     stages = PipelineState(vertex_input_state, input_assembly_state, shader_stage_cis, rasterizer, multisample_state, color_blend_state, C_NULL)
-    
+
     setup = PipelineSetup(device, stages, shaders)
     create_pipeline!(setup, app)
     app.pipelines[pipeline_symbol] = setup
@@ -143,7 +145,11 @@ function main()
         data = pos_color(q, colors)
         add_vertex_buffer!(app, data, device_local=true, from_pool=:a)
         add_index_buffer!(app, indices(data), device_local=true, from_pool=:a)
-        add_uniform_buffer!(app, 20, :mvp)
+        
+        m = v = p = SMatrix{4,4,Float32}(Diagonal([1, 1, 1, 1]))
+        mvp = ModelViewProjection(m, v, p)
+        add_uniform_buffer!(app, 4*4*3, :mvp, fill_with=MMatrix{12,4}(vcat(mvp.model, mvp.view, mvp.proj)))
+        
         setup_pipeline!(app, eltype(data))
         command_buffers_info = CommandBufferAllocateInfo(app.command_pools[:a], COMMAND_BUFFER_LEVEL_PRIMARY, length(app.framebuffers))
         command_buffers = CommandBuffer(app.device, command_buffers_info, length(app.framebuffers))

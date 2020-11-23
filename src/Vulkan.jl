@@ -143,7 +143,6 @@ export
         ##### Resources
         ShaderResource,
         UniformBuffer,
-        descriptor_set_layouts,
 
         ##### Compilation
         ShaderCompilationError,
