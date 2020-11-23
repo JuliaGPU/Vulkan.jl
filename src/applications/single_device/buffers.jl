@@ -6,7 +6,7 @@ end
 
 add_framebuffers!(app::VulkanApplication, framebuffers::Vector{Framebuffer}) = app.framebuffers = framebuffers
 
-function add_buffer!(app::VulkanApplication, symbol; size=nothing, from_pool=nothing, usage=nothing, device_local=true, fill_with=nothing)
+function add_buffer!(app::VulkanApplication, symbol; size=nothing, from_pool=nothing, usage=nothing, device_local=false, fill_with=nothing)
     fill = !isnothing(fill_with)
 
     if !fill
