@@ -94,3 +94,6 @@ function format_from_file_ext(file_ext)
     ext == ".hlsl" && return HLSL()
     error("Cannot retrieve shader format from filename $file; please specify it manually.")
 end
+
+Base.convert(::Type{spvc.spvc_backend}, ::GLSL) = spvc.SPVC_BACKEND_GLSL
+Base.convert(::Type{spvc.spvc_backend}, ::HLSL) = spvc.SPVC_BACKEND_HLSL

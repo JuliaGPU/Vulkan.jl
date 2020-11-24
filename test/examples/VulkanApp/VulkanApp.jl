@@ -39,7 +39,7 @@ end
 function setup_pipeline!(app::VulkanApplication, vertex_data_type::T; pipeline_symbol=:main) where {T <: Type{<: VertexData}}
     @unpack device = app
 
-    shaders = Shader.(device, ShaderFile.(joinpath.(Ref(@__DIR__), ["triangle.vert", "triangle.frag"]), GLSL()), [[UniformBuffer()]])
+    shaders = Shader.(device, ShaderFile.(joinpath.(Ref(@__DIR__), ["triangle.vert", "triangle.frag"]), GLSL()), [[ResourceBinding(UniformBuffer(), 0, 0)], ResourceBinding[]])
     shader_stage_cis = PipelineShaderStageCreateInfo.(shaders)
     
     vertex_input_state = PipelineVertexInputStateCreateInfo([binding_description(vertex_data_type, 0)], attribute_descriptions(vertex_data_type, 0))

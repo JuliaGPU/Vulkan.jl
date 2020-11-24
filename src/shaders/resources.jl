@@ -57,6 +57,18 @@ Base.convert(::Type{VkDescriptorType}, ::StorageBufferDynamic) =  DESCRIPTOR_TYP
 Base.convert(::Type{VkDescriptorType}, ::StorageTexelBuffer) =  DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER
 Base.convert(::Type{VkDescriptorType}, ::InputAttachment) =  DESCRIPTOR_TYPE_INPUT_ATTACHMENT
 
+Base.convert(::Type{spvc.spvc_resource_type}, ::SampledImage) = spvc.SPVC_RESOURCE_TYPE_SEPARATE_IMAGE
+Base.convert(::Type{spvc.spvc_resource_type}, ::ImageSampler) = spvc.SPVC_RESOURCE_TYPE_SEPARATE_SAMPLERS
+Base.convert(::Type{spvc.spvc_resource_type}, ::CombinedImageSampler) = spvc.SPVC_RESOURCE_TYPE_SEPARATE_SAMPLERS
+Base.convert(::Type{spvc.spvc_resource_type}, ::UniformBuffer) = SPVC_RESOURCE_TYPE_UNIFORM_BUFFER
+Base.convert(::Type{spvc.spvc_resource_type}, ::UniformBufferDynamic) = spvc.SPVC_RESOURCE_TYPE_UNIFORM_BUFFER
+Base.convert(::Type{spvc.spvc_resource_type}, ::UniformTexelBuffer) = spvc.SPVC_RESOURCE_TYPE_UNIFORM_BUFFER
+Base.convert(::Type{spvc.spvc_resource_type}, ::StorageImage) = spvc.SPVC_RESOURCE_TYPE_STORAGE_IMAGE
+Base.convert(::Type{spvc.spvc_resource_type}, ::StorageBuffer) = spvc.SPVC_RESOURCE_TYPE_STORAGE_BUFFER
+Base.convert(::Type{spvc.spvc_resource_type}, ::StorageBufferDynamic) = spvc.SPVC_RESOURCE_TYPE_STORAGE_BUFFER
+Base.convert(::Type{spvc.spvc_resource_type}, ::StorageTexelBuffer) = spvc.SPVC_RESOURCE_TYPE_STORAGE_BUFFER
+Base.convert(::Type{spvc.spvc_resource_type}, ::InputAttachment) = spvc.SPVC_RESOURCE_TYPE_SUBPASS_INPUT
+
 struct ResourceBinding{R<:ShaderResource}
     resource::R
     set
