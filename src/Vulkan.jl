@@ -142,7 +142,17 @@ export
 
         ##### Resources
         ShaderResource,
+        ResourceBinding,
         UniformBuffer,
+        ImageSampler,
+        CombinedImageSampler,
+        StorageBuffer,
+        StorageBufferDynamic,
+        StorageImage,
+        StorageTexelBuffer,
+        UniformBufferDynamic,
+        UniformTexelBuffer,
+        descriptor_set_layouts,
 
         ##### Compilation
         ShaderCompilationError,
