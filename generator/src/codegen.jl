@@ -1,12 +1,17 @@
-abstract type Declaration end
-
-generate(cgs::Declaration) = error("No generator available for type $(typeof(cgs))")
-
 struct Statement
     body::AbstractString
     assigned_id
 end
 
+Statement(body::AbstractString) = Statement(strip(body), nothing)
+
+Base.show(io::IO, st::Statement) = print(io, string(st))
+
+Base.string(st::Statement) = st.body
+
+abstract type Declaration end
+
+Base.show(io::IO, decl::Declaration) = print(io, string(decl))
 
 mutable struct SDefinition <: Declaration
     name::AbstractString
@@ -22,6 +27,18 @@ mutable struct SDefinition <: Declaration
     end
 end
 
+SDefinition(name::AbstractString, is_mutable::Bool, fields::OrderedDict) = SDefinition(name, is_mutable, fields, nothing, nothing)
+SDefinition(name::AbstractString, is_mutable::Bool; fields=()) = SDefinition(name, is_mutable, OrderedDict(fields))
+
+function SDefinition(str::AbstractString)
+    split_str = strip.(split(str, "\n"))
+    def = split_str[1]
+    def_parts = split(def, " ")
+    is_mutable = def_parts[1] == "mutable"
+    name = is_mutable ? def_parts[3] : def_parts[2]
+    field_decls = OrderedDict(decompose_field_decl(field) for field ∈ split_str[2:end - 1]) # skip struct... and end lines
+    SDefinition(name, is_mutable, field_decls)
+end
 
 struct FDefinition <: Declaration
     name::AbstractString
@@ -32,38 +49,8 @@ struct FDefinition <: Declaration
     return_type::AbstractString
 end
 
-struct CDefinition <: Declaration
-    name::AbstractString
-    value
-end
-
-@with_kw struct EDefinition <: Declaration
-    name::AbstractString
-    fields
-    with_begin_block::Bool = length(fields) > 8
-    type = nothing
-    enum_macro::AbstractString = "@enum"
-end
-
-OrderedDict(defs::AbstractArray{T}) where {T <: Declaration} = OrderedDict{AbstractString,T}(map(x -> x.name => x, defs))
-
-generate(cdef::CDefinition) = format_text("const $(cdef.name) = $(cdef.value)")
-function generate(edef::EDefinition)
-    bg = edef.with_begin_block
-    format_text("$(edef.enum_macro) $(typed_field(edef.name, edef.type)) $(bg ? "begin\n" : "") $(join(edef.fields, bg ? "\n" : " ")) $(bg ? "\nend" : "")")
-end
-
-Statement(body::AbstractString) = Statement(strip(body), nothing)
-SDefinition(name::AbstractString, is_mutable::Bool, fields::OrderedDict) = SDefinition(name, is_mutable, fields, nothing, nothing)
-SDefinition(name::AbstractString, is_mutable::Bool; fields=()) = SDefinition(name, is_mutable, OrderedDict(fields))
-Signature(sdef::SDefinition) = isnothing(sdef.inner_constructor) ? Signature(sdef.name, PositionalArgument.(keys(sdef.fields), values(sdef.fields)), KeywordArgument[]) : sdef.inner_constructor.signature
-
-function extract_args(str)
-    split_str = split(str, ";") # get kwargs first
-    @assert length(split_str) <= 2 "More than one kwargs separator ';' in arguments ($str)"
-    args, kwargs = first(split_str), length(split_str) == 1 ? nothing : split_str[2]
-    splitstrip(args), splitstrip(kwargs)
-end
+FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}) = FDefinition(name, signature, short, body, "", "")
+FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}, docstring::AbstractString) = FDefinition(name, signature, short, body, docstring, "")
 
 function FDefinition(str::AbstractString)
     short = !startswith(str, "function")
@@ -86,8 +73,10 @@ function FDefinition(str::AbstractString)
     FDefinition(id, sig, short, body)
 end
 
-FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}) = FDefinition(name, signature, short, body, "", "")
-FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}, docstring::AbstractString) = FDefinition(name, signature, short, body, docstring, "")
+struct CDefinition <: Declaration
+    name::AbstractString
+    value
+end
 
 function CDefinition(str::AbstractString)
     split_str = split(str, " ")
@@ -95,6 +84,14 @@ function CDefinition(str::AbstractString)
     value_multiline = splitjoin(str, [1], delim="=")
     value = replace(join(splitstrip(value_multiline; delim="\n"), "\n"), "\n" => " ") # remove any whitespace for each line
     CDefinition(id, value)
+end
+
+@with_kw_noshow struct EDefinition <: Declaration
+    name::AbstractString
+    fields
+    with_begin_block::Bool = length(fields) > 8
+    type = nothing
+    enum_macro::AbstractString = "@enum"
 end
 
 function EDefinition(str::AbstractString)
@@ -107,37 +104,60 @@ function EDefinition(str::AbstractString)
     EDefinition(id, values, with_begin_block, type, enum_macro)
 end
 
-function SDefinition(str::AbstractString)
-    split_str = strip.(split(str, "\n"))
-    def = split_str[1]
-    def_parts = split(def, " ")
-    is_mutable = def_parts[1] == "mutable"
-    name = is_mutable ? def_parts[3] : def_parts[2]
-    field_decls = OrderedDict(decompose_field_decl(field) for field ∈ split_str[2:end - 1]) # skip struct... and end lines
-    SDefinition(name, is_mutable, field_decls)
+DataStructures.OrderedDict(defs::AbstractArray{T}) where {T <: Declaration} = OrderedDict{AbstractString,T}(map(x -> x.name => x, defs))
+
+function Signature(sdef::SDefinition)
+    if isnothing(sdef.inner_constructor)
+        args = PositionalArgument.(keys(sdef.fields), values(sdef.fields))
+        Signature(sdef.name, args, KeywordArgument[])
+    else
+        sdef.inner_constructor.signature
+    end
 end
 
-function generate(statements::AbstractArray{Statement})
-    isempty(statements) && return ""
-    format_text(join(getproperty.(statements, :body), "\n"))
+"""
+Generate formatted source code from a declaration.
+"""
+function generate(decl::Declaration)
+    text = string(decl)
+    try
+        format_text(text)
+    catch e
+        @error("Invalid input for formatting: $text")
+        rethrow(e)
+    end
 end
 
-function generate(s::SDefinition)
+Base.string(cdef::CDefinition) = "const $(cdef.name) = $(cdef.value)"
+
+function Base.string(edef::EDefinition)
+    bg = edef.with_begin_block
+    "$(edef.enum_macro) $(typed_field(edef.name, edef.type)) $(bg ? "begin\n" : "") $(join(edef.fields, bg ? "\n" : " ")) $(bg ? "\nend" : "")"
+end
+
+function Base.string(s::SDefinition)
     def = (s.is_mutable ? "mutable " : "") * "struct $(s.name)" * (isnothing(s.abstract_type) ? "" : "<: $(s.abstract_type)")
     fields = join(typed_field.(keys(s.fields), values(s.fields)), "\n")
-    inner_constructor = isnothing(s.inner_constructor) ? "" : "\n" * generate(s.inner_constructor) * "\n"
-    format_text("$def $fields $inner_constructor end")
+    inner_constructor = isnothing(s.inner_constructor) ? "" : "\n$(s.inner_constructor)\n"
+    "$def $fields $inner_constructor end"
 end
 
-function generate(f::FDefinition)
-    body = generate(f.body)
+function Base.string(f::FDefinition)
+    body = join(string.(f.body), "\n")
     docstring = isempty(f.docstring) ? "" : """\"\"\"
     $(f.docstring)
-    \"\"\"\n"""
-    if f.short
-        str = docstring * generate(f.signature) * " = " * body
+    \"\"\"
+    """
+    f_decl = if isempty(f.body)
+        f.short && error("Cannot generate short function definition without body.")
+        "function $(f.signature) end"
+    elseif f.short
+        "$(f.signature) = $body"
     else
-        str = docstring * "function $(generate(f.signature)) $(body) end"
+        """function $(f.signature)
+               $(body)
+           end"""
     end
-    format_text(str)
+
+    join((docstring, f_decl))
 end
