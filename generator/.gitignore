@@ -5,3 +5,4 @@ resolution_graph.txt
 Manifest.toml
 *.code-workspace
 /.vscode
+/src/vulkan/spec/dev*.jl

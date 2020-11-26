@@ -1,18 +1,21 @@
 module VulkanGen
 
-using Transducers, DataStructures, JuliaFormatter, Parameters, EzXML, AbstractTrees, LightGraphs
+using Transducers
+using DataStructures
+using JuliaFormatter
+using Parameters
+using EzXML
+using AbstractTrees
+using LightGraphs
 using VulkanCore.vk
-using VulkanCore:vk
-using VulkanCore
-
-include("spec.jl")
+using VulkanCore: VulkanCore, vk
 
 include("utils.jl")
 include("naming_conventions.jl")
+include("vulkan.jl")
 include("signatures.jl")
 include("types.jl")
 include("codegen.jl")
-include("vulkan.jl")
 include("parse.jl")
 
 api = API("", OrderedDict.([(), (), (), ()])..., nothing) # this variable is replaced by the api provided in the function wrap
@@ -21,41 +24,45 @@ include("dependency_resolution.jl")
 include("wrap_api.jl")
 
 
-export vk,
-CamelCaseLower,
-CamelCaseUpper,
-FDefinition,
-SDefinition,
-Signature,
-SnakeCaseLower,
-SnakeCaseUpper,
-Statement,
-VulkanCore,
-argnames,
-argtypes,
-detect_convention,
-enforce_convention,
-generate,
-prefix_vk,
-remove_parts,
-remove_prefix,
-statements,
-vk_prefix,
-@sym_str,
-remove_prefix,
-wrap,
-API,
-parse_api,
-CDefinition,
-EDefinition,
-PositionalArgument,
-KeywordArgument,
-StructWrapper,
-ConstWrapper,
-FuncWrapper,
-patterns,
-vulkan_to_julia,
-nc_convert,
-Generated
+export
+        # Naming Conventions
+        ### Convention types
+        CamelCaseLower,
+        CamelCaseUpper,
+        SnakeCaseLower,
+        SnakeCaseUpper,
+
+        ### Convention utilities
+        detect_convention,
+        enforce_convention,
+        nc_convert,
+        remove_parts,
+        remove_prefix,
+
+        # Signatures
+        PositionalArgument,
+        KeywordArgument,
+        Signature,
+        argnames,
+        argtypes,
+        
+        # Code Generation
+        Declaration,
+        Statement,
+        FDefinition,
+        SDefinition,
+        CDefinition,
+        EDefinition,
+        generate,
+
+        # API parsing and wrapping
+        API,
+        parse_api,
+        wrap,
+
+        # Vulkan-specific
+        vulkan_to_julia,
+        prefix_vk,
+        vk_prefix
 
 end # module VulkanGen

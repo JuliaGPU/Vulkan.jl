@@ -5,6 +5,9 @@ const code_object_to_vk_prefix = Dict(
 )
 const vulkan_convention_rev = Dict(v => k for (k, v) in vulkan_convention)
 
+"""
+Prefix used by Vulkan as part of its naming conventions.
+"""
 vk_prefix(::Type{T}) where {T <: NamingConvention} = code_object_to_vk_prefix[vulkan_convention_rev[T]]
 
 """Prefix a function with the Vulkan convention prefix vk, Vk or VK_ depending on the code object.

@@ -1,9 +1,11 @@
 using VulkanGen
+using VulkanCore
+
 const vg = VulkanGen
 
 getfile(name) = dirname(dirname(pathof(VulkanCore))) *  "/gen/" * name
 files = getfile.(["vk_common.jl", "vk_api.jl"])
-api = API(files, sym -> @eval(vk, $(Meta.parse("$sym"))))
+api = API(files, sym -> @eval(VulkanCore, $(Meta.parse("$sym"))))
 
 ignored_symbols = Dict(
     "structs" => [

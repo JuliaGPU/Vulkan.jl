@@ -1,7 +1,3 @@
-macro sym_str(def)
-    esc(:(Symbol($(Meta.parse("\"$(escape_string(def))\"")))))
-end
-
 join_args(args) = join(args, ", ")
 splitargs(args) = filter(!isempty, strip.(split(args, ",")))
 subindex(arr::AbstractArray, indices) = [arr[i] for i ∈ indices]
