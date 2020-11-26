@@ -10,7 +10,6 @@ include("utils.jl")
 include("handles.jl")
 include("graph.jl")
 
-
 base_types_exceptions = Dict(
     "CAMetalLayer" => "void",
     "ANativeWindow" => "void",
@@ -40,7 +39,6 @@ function fetch_base_types(xroot)
     end
     res
 end
-
 
 base_types_vk = fetch_base_types(xroot)
 

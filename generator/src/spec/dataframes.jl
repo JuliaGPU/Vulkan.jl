@@ -1,11 +1,14 @@
 abstract type QueueType end
+
 struct QueueCompute <: QueueType end
 struct QueueGraphics <: QueueType end
 struct QueueTransfer <: QueueType end
 struct QueueSparseBinding <: QueueType end
 
 @enum COMMAND_TYPE CREATE=1 DESTROY ALLOCATE FREE COMMAND ENUMERATE
+
 @enum STRUCT_TYPE CREATE_INFO=1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
+
 @enum PARAM_REQUIREMENT OPTIONAL=1 REQUIRED POINTER_OPTIONAL POINTER_REQUIRED
 
 PARAM_REQUIREMENT(node::EzXML.Node) = !haskey(node, "optional") || node["optional"] == "false" ? REQUIRED : PARAM_REQUIREMENT(findfirst(node["optional"] .== ["true", "false", "true,false", "false,true"]))
@@ -23,6 +26,7 @@ function queue(x)
 end
 
 abstract type RenderPassRequirement end
+
 struct RenderPassInside <: RenderPassRequirement end
 struct RenderPassOutside <: RenderPassRequirement end
 
@@ -31,7 +35,6 @@ function queue_compatibility(node)
     queues = split(node["queues"], ",")
     queue.(queues)
 end
-
 
 render_pass_compatibility(node) = (nr = node["renderpass"]; nr == "both" ? [RenderPassInside(), RenderPassOutside()] : nr == "inside" ? [RenderPassInside()] : nr == "outside" ? [RenderPassOutside()] : error("Unknown render pass compatibility"))
 
@@ -50,7 +53,6 @@ function fetch_parameters()
     end
     df
 end
-
 
 function fetch_struct_fields()
     nodes = findall("//type[@category='union' or @category='struct']", xroot)
@@ -175,9 +177,11 @@ function fetch_destruction_info()
 end
 
 is_command(name) = startswith(name, "vk")
+
 is_struct(name) = startswith(name, "Vk")
 
 info_df(sname) = is_command(sname) ? grouped_vulkan_params : grouped_vulkan_fields
+
 info(name, sname) = dfmatch(info_df(sname)[(parent=sname,)], :name, name)
 
 function is_count_to_be_filled(name, fname)
@@ -198,19 +202,26 @@ const vulkan_creation_info = fetch_creation_info()
 const vulkan_destruction_info = fetch_destruction_info()
 
 is_handle(type) = follow_alias(type) ∈ (vulkan_handles.name..., "HANDLE")
+
 is_handle_with_create_info(type) = type ∈ vulkan_creation_info.name && !any(isempty.(getproperty.(dfmatches(vulkan_creation_info, :name, type), :create_info_structs)))
+
 is_handle_destructible(type) = type ∈ vulkan_destruction_info.name
+
 function is_handle_with_multiple_create_info(type)
     index = findall(vulkan_creation_info.name .== type)
     !isnothing(index) && length(index) > 1
 end
 
 is_category(type, cat) = type ∈ (vulkan_types |> @filter(_.category == cat) |> DataFrame).name
+
 is_enum(type) = is_category(type, "enum")
+
 is_bitmask(type) = is_category(type, "bitmask")
 
 is_command_type(fname, val::COMMAND_TYPE) = dfmatch(vulkan_functions, :name, fname).type == val
+
 is_array_variable(name, sname) = !isnothing(info(name, sname).len)
+
 is_count_variable(name, sname) = !isempty(info(name, sname).arglen)
 
 """
@@ -235,6 +246,7 @@ julia> associated_count_variable("ppEnabledLayerNames", "VkInstanceCreateInfo")
 ```
 """
 associated_count_variable(array_var_name, sname) = info(array_var_name, sname).len
+
 function enumeration_command_count_variable(fname)
     group = grouped_vulkan_params[(parent=fname,)]
     index = findfirst(x -> is_count_to_be_filled(x, fname), group.name)
@@ -254,4 +266,5 @@ function default(name, type)
     (is_handle(type) || startswith(name, "p") || startswith(type, "Ptr{")) && return "C_NULL"
     "0"
 end
+
 has_count_to_be_filled(fname) = any(is_count_to_be_filled(row.name, fname) for row ∈ eachrow(grouped_vulkan_params[(parent=fname,)]))

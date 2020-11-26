@@ -40,6 +40,7 @@ deps_g = SimpleDiGraph(adj)
 
 # add verts to fill the graph with isolated types (avoid bound errors for isolated types)
 nv(deps_g) < length(vk_structs_graph) && add_vertices!(deps_g, length(vk_structs_graph) - nv(deps_g))
+
 check_acyclic(deps_g)
 
 macro check_in_graph(type) :($(esc(type)) ∉ vk_structs_graph && error(string($(esc(type))) * " not in graph")) end
@@ -76,8 +77,6 @@ function depends_on(a, b)
     @graph_index b
     a ∈ inneighbors(deps_g, b)
 end
-
-
 
 """
     vk_dependencies(a)

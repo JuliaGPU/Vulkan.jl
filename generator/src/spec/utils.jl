@@ -48,6 +48,7 @@ function dfmatch(f, df)
 end
 
 dfmatch(df, column, value) = dfmatch(equals(column, value), df)
+
 function dfmatches(f, df)
     indices = findall(f, eachrow(df))
     isnothing(indices) && error("No match")
