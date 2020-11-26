@@ -12,6 +12,8 @@ ignored_symbols = Dict(
     ],
 )
 
+destfile = joinpath(dirname(dirname(@__DIR__)), "generated", "wrapped_api.jl")
+
 function filter_api(api)
     new_api = deepcopy(api)
     for (type, list) ∈ ignored_symbols, name ∈ list
