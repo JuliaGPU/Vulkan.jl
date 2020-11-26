@@ -1,6 +1,7 @@
 using VulkanGen
 using JuliaFormatter:format_text
 using Test
+using VulkanCore:vk
 
 const vg = VulkanGen
 

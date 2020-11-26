@@ -5,13 +5,9 @@ end
 
 Statement(body::AbstractString) = Statement(strip(body), nothing)
 
-Base.show(io::IO, st::Statement) = print(io, string(st))
-
-Base.string(st::Statement) = st.body
+Base.show(io::IO, st::Statement) = print(io, st.body)
 
 abstract type Declaration end
-
-Base.show(io::IO, decl::Declaration) = print(io, string(decl))
 
 mutable struct SDefinition <: Declaration
     name::AbstractString
@@ -128,21 +124,21 @@ function generate(decl::Declaration)
     end
 end
 
-Base.string(cdef::CDefinition) = "const $(cdef.name) = $(cdef.value)"
+Base.show(io::IO, cdef::CDefinition) = print(io, "const $(cdef.name) = $(cdef.value)")
 
-function Base.string(edef::EDefinition)
+function Base.show(io::IO, edef::EDefinition)
     bg = edef.with_begin_block
-    "$(edef.enum_macro) $(typed_field(edef.name, edef.type)) $(bg ? "begin\n" : "") $(join(edef.fields, bg ? "\n" : " ")) $(bg ? "\nend" : "")"
+    print(io, "$(edef.enum_macro) $(typed_field(edef.name, edef.type)) $(bg ? "begin\n" : "") $(join(edef.fields, bg ? "\n" : " ")) $(bg ? "\nend" : "")")
 end
 
-function Base.string(s::SDefinition)
+function Base.show(io::IO, s::SDefinition)
     def = (s.is_mutable ? "mutable " : "") * "struct $(s.name)" * (isnothing(s.abstract_type) ? "" : "<: $(s.abstract_type)")
     fields = join(typed_field.(keys(s.fields), values(s.fields)), "\n")
     inner_constructor = isnothing(s.inner_constructor) ? "" : "\n$(s.inner_constructor)\n"
-    "$def $fields $inner_constructor end"
+    print(io, "$def $fields $inner_constructor end")
 end
 
-function Base.string(f::FDefinition)
+function Base.show(io::IO, f::FDefinition)
     body = join(string.(f.body), "\n")
     docstring = isempty(f.docstring) ? "" : """\"\"\"
     $(f.docstring)
@@ -159,5 +155,5 @@ function Base.string(f::FDefinition)
            end"""
     end
 
-    join((docstring, f_decl))
+    print(io, join((docstring, f_decl)))
 end

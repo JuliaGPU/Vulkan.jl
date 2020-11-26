@@ -54,15 +54,19 @@ function Signature(f)
     Signature(first(ms))
 end
 
-typed_field(name, type) = isnothing(type) || type == "" ? name : join([name, type], "::") 
+typed_field(name, type) = isnothing(type) || type == "" ? name : join([name, type], "::")
+
 function decompose_field_decl(typed_field)
     parts = split(typed_field, "::")
     length(parts) == 1 ? parts[1] => nothing : parts[1] => parts[2]
 end
 
-Base.string(arg::KeywordArgument) = arg.name * (isnothing(arg.default) ? "" : "=" * string(arg.default))
-Base.string(arg::PositionalArgument) = typed_field(arg.name, arg.type)
-Base.join(args::AbstractArray{<: Argument}) = join_args(string.(args))
+Base.show(io::IO, arg::KeywordArgument) = print(io, arg.name * (isnothing(arg.default) ? "" : "=" * string(arg.default)))
+
+Base.show(io::IO, arg::PositionalArgument) = print(io, typed_field(arg.name, arg.type))
+
+Base.join(args::AbstractArray{<:Argument}) = join_args(string.(args))
+
 Base.show(io::IO, sig::Signature) = print(io, sig.name, "(", join(sig.args), isempty(sig.kwargs) ? "" : ("; " * join(sig.kwargs)), ")")
 
 
