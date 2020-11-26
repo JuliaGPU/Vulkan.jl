@@ -2,6 +2,9 @@ join_args(args) = join(args, ", ")
 splitargs(args) = filter(!isempty, strip.(split(args, ",")))
 subindex(arr::AbstractArray, indices) = [arr[i] for i ∈ indices]
 
+"""
+Split a string according to `delim`, filter out parts that are specified in `removed_parts` then join the remnants.
+"""
 function splitjoin(str, removed_parts; delim=" ")
     split_str = split(str, delim)
     kept_parts = filter(x -> x ∉ removed_parts, 1:length(split_str))
