@@ -40,8 +40,13 @@ export
         remove_prefix,
 
         # Signatures
+        Argument,
         PositionalArgument,
         KeywordArgument,
+        decompose_field_decl,
+        types,
+        typed_field,
+
         Signature,
         argnames,
         argtypes,
