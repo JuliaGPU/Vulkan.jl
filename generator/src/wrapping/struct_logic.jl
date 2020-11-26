@@ -46,13 +46,6 @@ function structure(sdef)
     SDefinition(new_name, is_handle(sdef.name), new_fields, abstract_type, nothing)
 end
 
-# parameters to keep in a constructor rather than in a struct
-# const parameters_dict = Dict(
-#     "pNext" => KeywordArgument("next", "C_NULL"),
-#     "flags" => KeywordArgument("flags", "0"),
-#     "pAllocator" => KeywordArgument("pAllocator", "C_NULL"),
-# )
-
 drop_field(name, type, sname) = name == "sType" || is_count_variable(name, sname)
 keeps_original_layout(sdef) = !has_bag(sdef.name) && "sType" ∉ keys(sdef.fields)
 

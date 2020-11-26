@@ -22,7 +22,6 @@ end
 Automatically create the pass! argument as an anonymous function from the corresponding pass! method with the other struct fields as kwargs.
 """
 macro preprocess_pass(expr)
-    # s_name = hasfield(expr.args[2]) 
     s_name = expr.args[2] isa Symbol ? expr.args[2] : first(expr.args[2].args)
     expr_nfields = length(expr.args[3].args)
     fields = getindex.(Ref(expr.args[3].args), 2:2:expr_nfields)

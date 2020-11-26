@@ -4,9 +4,6 @@ function wrap!(w_api, fdef::FDefinition)
     elseif startswith(fdef.name, "vkDestroy")
         return
     elseif !is_command_type(fdef.name, CREATE)
-        # name = name_transform(fdef)
-        # body = statements(patterns(fdef))
-        # new_fdef = FDefinition(name, Signature(name, args, kwargs), fdef.short, body)
         new_fdef = wrap_generic(typed_fdef(fdef))
     else
         return
@@ -105,18 +102,11 @@ function wrap_generic(fdef)
     sig = fdef.signature
     args, kwargs = arguments(sig, transform_name=true), keyword_arguments(sig, transform_name=true)
     new_fname = name_transform(fdef.name, FDefinition)
-    # body = [Statement("$(sig.name)($(join_args(argnames(new_sig))))")]
-    # kept_args = arguments(sig, transform_name=false, drop_type=false)
-    # fname = name_transform(fdef.name, FDefinition)
     body, pass_results = accumulate_passes(fdef.name, fdef.signature.args, pass_new_nametype(FDefinition), [ComputeLengthArgument(), InitializePointers()])
-    # new_sig = Signature(fname, remove_type.(args), kwargs)
     last_args_used = init_args(pass_results, body, fdef)
     triggered_vars_ip = [x.first for x ∈ pass_results if x.second[2].is_triggered]
     triggered_vars_ip_new = fieldname_transform.(triggered_vars_ip, nothing)
     new_sig = Signature(new_fname, filter(x -> x.name ∉ triggered_vars_ip_new, args), kwargs)
-    # for (i, arg) ∈ enumerate(sig.args)
-    #     tmp_argname(arg.name, arg.type) ∉ last_args_used && arg.name ∉ last_args_used && insert!(last_args_used, i, arg.name)
-    # end
     _m = fdef.return_type == "VkResult" ? "@check " : ""
     push!(body, Statement("$(checked_function_call(fdef))($(join_args(last_args_used)))"))
     @assert length(triggered_vars_ip) <= 1

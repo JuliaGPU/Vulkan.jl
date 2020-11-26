@@ -33,13 +33,6 @@ function constructor(new_sdef, sdef)
         else
             new_sdef.inner_constructor = constructor(new_sdef, sdef, GenericConstructor(), is_inner_constructor=true)
         end
-        # push!(defs, conversion(new_sdef, sdef, ConvertVkStructure()))
-        # for dep ∈ vk_dependencies(sname)
-        #     if !is_enumerated_property(dep)
-        #         push!(defs, conversion(structure(api.structs[dep]), api.structs[dep], ConvertVkStructure()))
-        #         push!(defs, constructor(new_sdef, sdef, GenericConstructor()))
-        #     end
-        # end
     end
     defs
 end
@@ -151,12 +144,6 @@ function instantiate_bag(sdef, body)
     Statement("bag = $bag($(join_args(bag_args)))", "bag")
 end
 
-# @preprocess_pass struct AutomateCreateInfo <: Pass
-#     create_info_sdef
-#     create_info_new_sdef
-#     pass!
-# end
-
 """
 Check whether an argument matches by name a pointer to the type defined in `new_sname`, and returns a default Ref of the corresponding type.
 """
@@ -164,11 +151,6 @@ Check whether an argument matches by name a pointer to the type defined in `new_
     new_sname
     pass!
 end
-
-# @preprocess_pass struct AddDefaults <: Pass
-#     opt_params
-#     pass!
-# end
 
 """
 Encode possible arguments available for each Pass.
@@ -256,7 +238,6 @@ preprocess_pass(pass_type::Type{T}; kwargs...) where {T <: Pass} = (pass_args, T
 
 
 function inline_getproperty(type)
-    # (name == "sType" || is_enum(type) || is_bitmask(type) || is_base_type(type) || is_base_type(converted_type(fieldtype_transform(name, type, sname))) || is_optional_parameter(name, sname)) && return ""
     is_handle(type) && return ".handle"
     is_vulkan_struct(type) && return ".vks"
     ""
@@ -437,7 +418,6 @@ function constructor(sdef, def::ExtendVkConstructor)
     sname_extended = "api." * sname
     vk_sig = Signature(sdef)
     args = arguments(vk_sig, remove_parameters=false)
-    # filter!(x -> x.name != "sType", args)
     body, pass_results = accumulate_passes(sname, vk_sig.args, pass_new_nametype(SDefinition), [ComputeLengthArgument(), GeneratePointers(), TranslateVkTypesBack()])
     init = init_args(pass_results, body, def, use_all_args=true, take_property=false)
     push!(body, Statement("api.$(sdef.name)($(join_args(init)))"))
@@ -511,19 +491,6 @@ function pass!(args::PassArgs, ::Type{TranslateVkTypesBack})
     new_type isa Converted && return Statement("$name = to_vk($type, $last_name)", name)
 end
 
-# function pass!(args::PassArgs, ::Type{AddDefaults}; opt_params)
-#     @unpack tmp_name, name, new_name, arg, sname = args
-#     if !isempty(opt_params)
-#         last_param = last(collect(keys(opt_params)))
-#     end
-#     if arg ∈ keys(opt_params)
-#         default = opt_params[arg]
-#         eol = name == last_param.name ? "\n" : ""
-#         return Statement("$tmp_name = isnothing($new_name) ? $default : $new_name$eol", tmp_name)
-#     end
-#     nothing
-# end
-
 function pass!(args::PassArgs, ::Type{ComputeLengthArgument})
     @unpack tmp_name, name, sname, type = args
     if is_count_variable(name, sname)
@@ -533,11 +500,6 @@ function pass!(args::PassArgs, ::Type{ComputeLengthArgument})
     end
     nothing
 end
-
-# function pass!(args::PassArgs, ::Type{ReplaceStructureType})
-#     @unpack sdef, name = args
-#     name == "sType" && return Statement("sType = $(stypes[sdef.name])\n", "sType")
-# end
 
 function pass!(args::PassArgs, ::Type{DefineSelfPointers}; new_sname)
     @unpack name, tmp_name = args
@@ -594,8 +556,7 @@ function pass!(args::PassArgs, ::Type{InitializePointers})
 end
 
 # a parameter is a keyword argument that relates to the use of a particular function, e.g. flags or allocators.
-# a keyword argument is an argument with a default value.
-# all structs have arguments, some of which are turned into keyword arguments if default values are defined
+# all structs have arguments, some of which are turned into keyword arguments if default values are defined in the specification
 
 function drop_argument(name, sname)
     is_command(sname) && is_command_type(sname, ENUMERATE) && has_count_to_be_filled(sname) && name == enumeration_command_array_variable(sname).name && return true
@@ -632,22 +593,6 @@ end
 function arguments(sig; expose_create_info_kwargs = false, drop_type=true, transform_type = false, transform_name = true, remove_parameters=true)
     sname = sig.name
     args = sig.args |> Filter(x -> !drop_argument(x.name, sname) && (!remove_parameters || !is_parameter(x.name, sname))) |> Map(x -> PositionalArgument(transform_name ? fieldname_transform(x.name, x.type) : x.name, drop_type ? nothing : transform_type ? fieldtype_transform(x.name, x.type, sname) : x.type)) |> collect
-    # for arg ∈ filtered_args
-    #     name, type = sig.args
-    #     new_name, new_type = field_transform(name, type, sname)
-    #     if startswith(new_type, "AbstractArray")
-    #         eltype = inner_type(new_type)
-    #         if eltype ∈ ["String", "AbstractString"]
-    #             new_type_ = "AbstractArray"
-    #         else
-    #             new_type_ = eltype ∈ base_types ? replace(new_type, Regex("(?<={)(?<include>.*?)$eltype") => string("<:" * widen_type(eltype))) : new_type
-    #             # println("$new_type => $eltype => $new_type_")
-    #         end
-    #     else
-    #         new_type_ = new_type ∈ base_types ? widen_type(new_type) : new_type
-    #     end
-    #     push!(args, PositionalArgument(new_name, new_type_))
-    # end
     expose_create_info_kwargs ? vcat(args, create_info_arguments(sig, args)) : args
 end
 

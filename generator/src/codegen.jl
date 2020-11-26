@@ -1,6 +1,3 @@
-"""Code generator which aims at automating idenfitied patterns.
-"""
-
 abstract type Declaration end
 
 generate(cgs::Declaration) = error("No generator available for type $(typeof(cgs))")

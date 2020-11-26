@@ -38,10 +38,5 @@ aliases(name) = (index = findfirst(alias_verts .== name); isnothing(index) ? Str
 follow_alias(aliases_g::SimpleDiGraph, index) = (indices = inneighbors(aliases_g, index); isempty(indices) ? alias_verts[index] : length(indices) > 1 ? error("More than one indices returned for $(alias_verts[index]) when following alias $(getindex.(Ref(alias_verts), indices))") : alias_verts[first(indices)])
 follow_alias(name) = (index = findfirst(alias_verts .== name); isnothing(index) ? name : follow_alias(aliases_g, index))
 
-# for el ∈ topological_sort_by_dfs(aliases_g)
-#     elname = alias_verts[el]
-#     println("$(lpad("$elname ($el)", 120)) => $(isalias(elname) ? "ALIAS" : "NOALIAS")")
-# end
-
 @assert follow_alias("VkPhysicalDeviceMemoryProperties2KHR") == "VkPhysicalDeviceMemoryProperties2"
 @assert follow_alias("VkPhysicalDeviceMemoryProperties2") == "VkPhysicalDeviceMemoryProperties2"

@@ -15,5 +15,4 @@ function prefix_vk(name)
 end
 prefix_vk(name::T) where {T <: NamingConvention} = prefix(name, vk_prefix(typeof(name)))
 
-# remove_vk_prefix(name) = replace(name, Regex("^" * prefix_vk(name)) => "")
 remove_vk_prefix(name) = replace(name, r"^(?:vk|Vk|VK_)" => "")

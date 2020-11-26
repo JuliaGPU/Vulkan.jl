@@ -15,7 +15,7 @@ function write_dependencies(io, decl_list_values, dep_list)
     end 
 end
 
-function resolve_dependencies(decl_dict)
+function resolve_dependencies(decl_dict; write_to_file=false)
     decl_list_keys = keys(decl_dict)
     decl_list_values = values(decl_dict)
     verts = unique(collect(Base.Iterators.flatten(vcat(decl_list_keys, dependencies.(decl_list_values)))))
@@ -30,9 +30,9 @@ function resolve_dependencies(decl_dict)
             push!(dep_list[decl_name], dep)
         end
     end
-    # open("resolution_graph.txt", "w") do io
-    #     write_dependencies(io, decl_list_values, dep_list)
-    # end
+    write_to_file && open("resolution_graph.txt", "w") do io
+        write_dependencies(io, decl_list_values, dep_list)
+    end
     if is_cyclic(g) || !is_directed(g)
         cycles = simplecycles_hadwick_james(g)
         problematic_decls = getindex.(Ref(decl_dict), unique(Iterators.flatten(getindex.(Ref(verts), cycles))))

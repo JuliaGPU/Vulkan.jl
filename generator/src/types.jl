@@ -86,7 +86,6 @@ type_conversions = Dict(
     "Window" => "UInt32",
     "Ptr{Display}" => "Ptr{Cvoid}",
     "void" => "Any"
-    # "Ptr{Cfloat}" => "AbstractArray{<:Number}",
 )
 
 base_types = [
