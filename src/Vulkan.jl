@@ -7,7 +7,6 @@ using Requires: @require
 using CEnum
 using StaticArrays
 using VulkanCore.api
-using SpirvCross
 
 import glslang_jll
 import VulkanCore
@@ -29,7 +28,6 @@ import VulkanCore
 const glslangValidator = glslang_jll.glslangValidator(x -> x)
 const api = VulkanCore.api
 const core = VulkanCore.api
-const spvc = SpirvCross
 
 # generated wrapper
 include("wrap_utils.jl")

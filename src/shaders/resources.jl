@@ -45,34 +45,20 @@ struct StorageBufferDynamic <: ShaderResource end
 struct StorageTexelBuffer <: ShaderResource end
 struct InputAttachment <: ShaderResource end
 
-Base.convert(::Type{VkDescriptorType}, ::SampledImage) =  DESCRIPTOR_TYPE_SAMPLED_IMAGE
-Base.convert(::Type{VkDescriptorType}, ::ImageSampler) =  DESCRIPTOR_TYPE_SAMPLER
-Base.convert(::Type{VkDescriptorType}, ::CombinedImageSampler) =  DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER
+Base.convert(::Type{VkDescriptorType}, ::SampledImage) = VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE
+Base.convert(::Type{VkDescriptorType}, ::ImageSampler) = VK_DESCRIPTOR_TYPE_SAMPLER
+Base.convert(::Type{VkDescriptorType}, ::CombinedImageSampler) = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER
 Base.convert(::Type{VkDescriptorType}, ::UniformBuffer) = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER
-Base.convert(::Type{VkDescriptorType}, ::UniformBufferDynamic) =  DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC
-Base.convert(::Type{VkDescriptorType}, ::UniformTexelBuffer) =  DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER
-Base.convert(::Type{VkDescriptorType}, ::StorageImage) =  DESCRIPTOR_TYPE_STORAGE_IMAGE
-Base.convert(::Type{VkDescriptorType}, ::StorageBuffer) =  DESCRIPTOR_TYPE_STORAGE_BUFFER
-Base.convert(::Type{VkDescriptorType}, ::StorageBufferDynamic) =  DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC
-Base.convert(::Type{VkDescriptorType}, ::StorageTexelBuffer) =  DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER
-Base.convert(::Type{VkDescriptorType}, ::InputAttachment) =  DESCRIPTOR_TYPE_INPUT_ATTACHMENT
-
-Base.convert(::Type{spvc.spvc_resource_type}, ::SampledImage) = spvc.SPVC_RESOURCE_TYPE_SEPARATE_IMAGE
-Base.convert(::Type{spvc.spvc_resource_type}, ::ImageSampler) = spvc.SPVC_RESOURCE_TYPE_SEPARATE_SAMPLERS
-Base.convert(::Type{spvc.spvc_resource_type}, ::CombinedImageSampler) = spvc.SPVC_RESOURCE_TYPE_SEPARATE_SAMPLERS
-Base.convert(::Type{spvc.spvc_resource_type}, ::UniformBuffer) = SPVC_RESOURCE_TYPE_UNIFORM_BUFFER
-Base.convert(::Type{spvc.spvc_resource_type}, ::UniformBufferDynamic) = spvc.SPVC_RESOURCE_TYPE_UNIFORM_BUFFER
-Base.convert(::Type{spvc.spvc_resource_type}, ::UniformTexelBuffer) = spvc.SPVC_RESOURCE_TYPE_UNIFORM_BUFFER
-Base.convert(::Type{spvc.spvc_resource_type}, ::StorageImage) = spvc.SPVC_RESOURCE_TYPE_STORAGE_IMAGE
-Base.convert(::Type{spvc.spvc_resource_type}, ::StorageBuffer) = spvc.SPVC_RESOURCE_TYPE_STORAGE_BUFFER
-Base.convert(::Type{spvc.spvc_resource_type}, ::StorageBufferDynamic) = spvc.SPVC_RESOURCE_TYPE_STORAGE_BUFFER
-Base.convert(::Type{spvc.spvc_resource_type}, ::StorageTexelBuffer) = spvc.SPVC_RESOURCE_TYPE_STORAGE_BUFFER
-Base.convert(::Type{spvc.spvc_resource_type}, ::InputAttachment) = spvc.SPVC_RESOURCE_TYPE_SUBPASS_INPUT
+Base.convert(::Type{VkDescriptorType}, ::UniformBufferDynamic) = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC
+Base.convert(::Type{VkDescriptorType}, ::UniformTexelBuffer) = VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER
+Base.convert(::Type{VkDescriptorType}, ::StorageImage) = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE
+Base.convert(::Type{VkDescriptorType}, ::StorageBuffer) = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER
+Base.convert(::Type{VkDescriptorType}, ::StorageBufferDynamic) = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC
+Base.convert(::Type{VkDescriptorType}, ::StorageTexelBuffer) = VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER
+Base.convert(::Type{VkDescriptorType}, ::InputAttachment) = VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT
 
 struct ResourceBinding{R<:ShaderResource}
     resource::R
-    set
-    binding
+    set::Int
+    binding::Int
 end
-
-Base.broadcastable(x::ResourceBinding) = Ref(x)

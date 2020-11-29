@@ -11,7 +11,7 @@ include("shaders/compilation.jl")
     entry_point::Symbol = :main
 end
 
-Shader(device, shader::ShaderFile, resources=ResourceBinding[]; kwargs...) = Shader(mod=ShaderModule(device, shader), stage=shader.stage; resources, kwargs...)
+Shader(device, shader::ShaderFile, resources; entry_point=:main) = Shader(mod=ShaderModule(device, shader), stage=shader.stage; resources, entry_point)
 
 has_resources(shader::Shader) = !isempty(shader.resources)
 
