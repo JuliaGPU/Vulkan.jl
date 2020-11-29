@@ -1,15 +1,4 @@
-function wrap!(w_api, fdef::FDefinition)
-    if is_command_type(fdef.name, ENUMERATE)
-        new_fdef = wrap_enumeration_command(typed_fdef(fdef))
-    elseif startswith(fdef.name, "vkDestroy")
-        return
-    elseif !is_command_type(fdef.name, CREATE)
-        new_fdef = wrap_generic(typed_fdef(fdef))
-    else
-        return
-    end
-    w_api.funcs[new_fdef.name] = new_fdef
-end
+
 
 function typed_fdef(fdef::FDefinition)
     @assert startswith(fdef.body[1].body, "ccall")

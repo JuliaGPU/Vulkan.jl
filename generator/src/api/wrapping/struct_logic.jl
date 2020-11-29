@@ -5,13 +5,6 @@ function tmp_argname(name, type)
     "_" * name
 end
 
-function wrap!(w_api, sdef::SDefinition)
-    new_sdef = structure(sdef)
-    has_bag(sdef.name) && setindex!(w_api.bags, create_bag(sdef), bagtype(sdef.name))
-    wrap_structure!(w_api, new_sdef)
-    wrap_constructor!(w_api, new_sdef, sdef)
-end
-
 function wrap_structure!(w_api, new_sdef)
     if new_sdef.name ∉ keys(w_api.structs)
         w_api.structs[new_sdef.name] = new_sdef # add to wrapped structs

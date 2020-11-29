@@ -12,19 +12,23 @@ using VulkanCore: VulkanCore, vk
 using MacroTools
 using MacroTools: rmlines
 
+src_include(x...) = include(joinpath(@__DIR__, x...))
+
 include("utils.jl")
 include("naming_conventions.jl")
-include("vulkan.jl")
+
+src_include("vulkan", "spec.jl")
+src_include("vulkan", "conventions.jl")
+
 include("signatures.jl")
 include("types.jl")
 include("codegen.jl")
-include("parse.jl")
 
-api = API("", OrderedDict.([(), (), (), ()])..., nothing) # this variable is replaced by the api provided in the function wrap
+src_include("api", "parse.jl")
+src_include("api", "wrap.jl")
+src_include("api", "write.jl")
 
 include("dependency_resolution.jl")
-include("wrap_api.jl")
-
 
 export
         # Naming Conventions
