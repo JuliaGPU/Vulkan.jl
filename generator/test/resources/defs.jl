@@ -10,11 +10,9 @@ function f(x::Int, y, z; p=5)
     println("finished")
 end
 
-g(x) = 50 * x
+g(x) = 50x
 
-@enum my_enum a b c d e f
-
-@enum my_other_enum begin
+@enum my_enum begin
     a = 3
     b = 2
     c = 200

@@ -9,6 +9,10 @@ Base.show(io::IO, st::Statement) = print(io, st.body)
 
 abstract type Declaration end
 
+(T::Type{<:Declaration})(ex::Expr) = convert(T, ex)
+
+Base.convert(T::Type{<:Declaration}, ex::Expr) = T(string(prettify(ex)))
+
 mutable struct SDefinition <: Declaration
     name::AbstractString
     is_mutable::Bool
@@ -96,8 +100,13 @@ function EDefinition(str::AbstractString)
     id, type = decompose_field_decl(id)
     split_str_n = splitstrip(str, delim="\n")
     with_begin_block = last(split(split_str_n[1], " ")) == "begin"
-    values = with_begin_block ? strip.(split(join(split_str_n[2:end - 1], "\n"), "\n")) : strip.(splitjoin(str, [1, 2], delim=" "))
-    EDefinition(id, values, with_begin_block, type, enum_macro)
+    values = if with_begin_block
+        strip.(split(join(split_str_n[2:end - 1], "\n"), "\n"))
+    else
+        strip.(splitjoin(str, [1, 2], delim=" "))
+    end
+    values isa Array ? nothing : values = [values]
+    EDefinition(id, values, true, type, enum_macro)
 end
 
 DataStructures.OrderedDict(defs::AbstractArray{T}) where {T <: Declaration} = OrderedDict{AbstractString,T}(map(x -> x.name => x, defs))

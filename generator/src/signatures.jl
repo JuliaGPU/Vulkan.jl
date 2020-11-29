@@ -21,16 +21,17 @@ Base.show(io::IO, arg::PositionalArgument) = print(io, typed_field(arg.name, arg
 struct KeywordArgument <: Argument
     name::AbstractString
     default
+    KeywordArgument(name, default) = new(name, string(default))
 end
 
 function KeywordArgument(decl::AbstractString)
     name_split = split(decl, "=")
     name = first(name_split)
-    default = length(name_split) == 2 ? last(name_split) : nothing
+    default = length(name_split) == 2 ? last(name_split) : ""
     KeywordArgument(name, default)
 end
 
-Base.show(io::IO, arg::KeywordArgument) = print(io, arg.name * (isnothing(arg.default) ? "" : "=" * string(arg.default)))
+Base.show(io::IO, arg::KeywordArgument) = print(io, arg.name * (isempty(arg.default) ? "" : "=" * string(arg.default)))
 
 Base.convert(T::Type{KeywordArgument}, arg::PositionalArgument) = T(arg.name, nothing)
 
@@ -54,7 +55,7 @@ function Signature(m::Method)
     arg_names = getindex.(args_and_types, 1)
     arg_types = map(x -> isempty(x) ? nothing : x, getindex.(args_and_types, 2))
     args = PositionalArgument.(arg_names, arg_types)
-    kwargs = KeywordArgument.(String.(Base.kwarg_decl(m)))
+    kwargs = KeywordArgument.(String.(map(x -> isnothing(x) ? "" : x, Base.kwarg_decl(m))))
     sig = Signature(String(m.name), args, kwargs)
 end
 

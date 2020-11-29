@@ -9,6 +9,8 @@ using AbstractTrees
 using LightGraphs
 using VulkanCore.vk
 using VulkanCore: VulkanCore, vk
+using MacroTools
+using MacroTools: rmlines
 
 include("utils.jl")
 include("naming_conventions.jl")
@@ -61,6 +63,7 @@ export
         generate,
 
         # API parsing and wrapping
+        parse_text,
         API,
         parse_api,
         wrap,
