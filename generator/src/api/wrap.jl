@@ -78,6 +78,5 @@ end
 wrapping_include(x...) = include(joinpath(@__DIR__, "wrapping", x...))
 
 wrapping_include("struct_logic.jl")
-wrapping_include("annotations.jl")
 wrapping_include("constructor_logic.jl")
 wrapping_include("function_logic.jl")
