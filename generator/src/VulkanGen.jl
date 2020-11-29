@@ -10,7 +10,7 @@ using LightGraphs
 using VulkanCore.vk
 using VulkanCore: VulkanCore, vk
 using MacroTools
-using MacroTools: rmlines
+using MacroTools: rmlines, postwalk
 
 src_include(x...) = include(joinpath(@__DIR__, x...))
 

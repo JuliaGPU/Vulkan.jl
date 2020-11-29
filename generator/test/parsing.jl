@@ -10,7 +10,7 @@ f2 = FDefinition("g", Signature("g", [PositionalArgument("x", nothing)], []), tr
 
 c1 = CDefinition("myconst", 50)
 
-e1 = EDefinition(name="my_enum", fields=["a = 3", "b = 2", "c=200"], with_begin_block=true)
+e1 = EDefinition(:(@enum my_enum begin; a = 3; b = 2; c = 200; end))# name="my_enum", fields=["a = 3", "b = 2", "c=200"], with_begin_block=true)
 
 @testset "Parsing" begin
     @testset "Source parsing" begin

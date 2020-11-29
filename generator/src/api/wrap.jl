@@ -37,7 +37,7 @@ function wrap!(w_api, objects)
             wrap!(w_api, obj)
         catch e
             msg = hasproperty(e, :msg) ? e.msg : "$(typeof(e))"
-            println("\e[31;1;1m$(obj.name): $msg\e[m")
+            println("\e[31;1;1m$(name(obj)): $msg\e[m")
             rethrow(e)
         end
     end
@@ -64,10 +64,14 @@ function wrap!(w_api, fdef::FDefinition)
 end
 
 function wrap!(w_api, edef::EDefinition)
-    new_edef = EDefinition(remove_vk_prefix(edef.name), remove_vk_prefix.(edef.fields), edef.with_begin_block, isnothing(edef.type) ? nothing : remove_vk_prefix(edef.type), edef.enum_macro)
-    w_api.enums[new_edef.name] = new_edef
-    w_api.funcs["convert_$(edef.name)"] = FDefinition("Base.convert(T::Type{$(new_edef.name)}, e::$(edef.name)) = T(UInt(e))")
-    w_api.funcs["convert_$(new_edef.name)"] = FDefinition("Base.convert(T::Type{$(edef.name)}, e::$(new_edef.name)) = T(UInt(e))")
+    new_edef = EDefinition(postwalk(edef.ex) do ex
+        ex isa Symbol ? Symbol(remove_vk_prefix(string(ex))) : ex
+    end)
+    old = name(edef)
+    new = name(new_edef)
+    w_api.enums[new] = new_edef
+    w_api.funcs["convert_$old"] = FDefinition("Base.convert(T::Type{$new}, e::$old) = T(UInt(e))")
+    w_api.funcs["convert_$new"] = FDefinition("Base.convert(T::Type{$old}, e::$new) = T(UInt(e))")
 end
 
 function wrap!(w_api, cdef::CDefinition)

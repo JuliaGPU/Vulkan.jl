@@ -443,7 +443,6 @@ function accumulate_passes(sname, args, new_nametype_f, passes; common_pass_kwar
             body_statements = pass_func(pass_args, typeof(el))
             if !isnothing(body_statements) && typeof(body_statements) != Bool
                 body_statements = typeof(body_statements) <: AbstractArray ? body_statements : Statement[body_statements]
-                body_statements = annotate_pass(body_statements, el)
                 append!(body, body_statements)
                 pass_args.passes[typeof(el)] = true
             end

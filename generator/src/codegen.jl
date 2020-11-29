@@ -12,6 +12,13 @@ abstract type Declaration end
 
 (T::Type{<:Declaration})(ex::Expr; prettify=true) = T(string(prettify ? MacroTools.prettify(ex) : ex))
 
+name(decl::Declaration) = decl.name
+
+function name(decl::EDefinition)
+    id = decl.ex.args[3]
+    string(id isa Expr ? id.args[1] : id)
+end
+
 mutable struct SDefinition <: Declaration
     name::AbstractString
     is_mutable::Bool
@@ -86,29 +93,13 @@ function CDefinition(str::AbstractString)
 end
 
 @with_kw_noshow struct EDefinition <: Declaration
-    name::AbstractString
-    fields
-    with_begin_block::Bool = length(fields) > 8
-    type = nothing
-    enum_macro::AbstractString = "@enum"
+    ex::Expr
+    EDefinition(ex::Expr) = new(ex)
 end
 
-function EDefinition(str::AbstractString)
-    split_str = split(str, " ")
-    enum_macro, id = split_str[1:2]
-    id, type = decompose_field_decl(id)
-    split_str_n = splitstrip(str, delim="\n")
-    with_begin_block = last(split(split_str_n[1], " ")) == "begin"
-    values = if with_begin_block
-        strip.(split(join(split_str_n[2:end - 1], "\n"), "\n"))
-    else
-        strip.(splitjoin(str, [1, 2], delim=" "))
-    end
-    values isa Array ? nothing : values = [values]
-    EDefinition(id, values, true, type, enum_macro)
-end
+EDefinition(str::AbstractString) = EDefinition(Meta.parse(str))
 
-DataStructures.OrderedDict(defs::AbstractArray{T}) where {T <: Declaration} = OrderedDict{AbstractString,T}(map(x -> x.name => x, defs))
+DataStructures.OrderedDict(defs::AbstractArray{T}) where {T <: Declaration} = OrderedDict{AbstractString,T}(map(x -> name(x) => x, defs))
 
 function Signature(sdef::SDefinition)
     if isnothing(sdef.inner_constructor)
@@ -134,10 +125,8 @@ end
 
 Base.show(io::IO, cdef::CDefinition) = print(io, "const $(cdef.name) = $(cdef.value)")
 
-function Base.show(io::IO, edef::EDefinition)
-    bg = edef.with_begin_block
-    print(io, "$(edef.enum_macro) $(typed_field(edef.name, edef.type)) $(bg ? "begin\n" : "") $(join(edef.fields, bg ? "\n" : " ")) $(bg ? "\nend" : "")")
-end
+Base.show(io::IO, edef::EDefinition) = print(io, prettify(edef.ex))
+
 
 function Base.show(io::IO, s::SDefinition)
     def = (s.is_mutable ? "mutable " : "") * "struct $(s.name)" * (isnothing(s.abstract_type) ? "" : "<: $(s.abstract_type)")

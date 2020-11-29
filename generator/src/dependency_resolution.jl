@@ -2,7 +2,7 @@ raw_dependencies(decl) = []
 raw_dependencies(decl::CDefinition) = isalias(decl.name) ? decl.value : is_literal(decl.value) || is_expr(decl.value) ? String[] : type_dependencies(decl.value)
 raw_dependencies(decl::SDefinition) = type_dependencies(decl)
 raw_dependencies(decl::FDefinition) = type_dependencies(decl)
-raw_dependencies(decl::EDefinition) = isnothing(decl.type) ? String[] : type_dependencies(decl.type)
+raw_dependencies(decl::EDefinition) = @capture(decl.ex, @m_ E_::T_ rest__) ? type_dependencies(string(T)) : String[]
 
 function dependencies(decl)
     deps = raw_dependencies(decl)
