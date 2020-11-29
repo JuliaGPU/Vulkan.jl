@@ -31,20 +31,23 @@ function parse_ptr(sym)
 end
 
 function API(file, eval_symbol)
-    defs = []
     exprs = parse_text(read(file, String))
-    for decl ∈ [SDefinition, FDefinition, CDefinition, EDefinition]
-        decl_defs = decl[]
-        map(exprs) do ex
-            ((ex.head == :struct && decl == SDefinition)
-            || (isexpr(longdef(ex), :function) && decl == FDefinition && (@capture(longdef(ex), function f_(args__) b_ end) && last(args) ≠ :fun_ptr && !isalias(string(f))))
-            || (@capture(ex, const a_ = b_) && decl == CDefinition && !isalias(string(a)))
-            || (ex.head == :macrocall && decl == EDefinition)
-            ) && push!(decl_defs, decl(ex))
+    sdefs, fdefs, cdefs, edefs = SDefinition[], FDefinition[], CDefinition[], EDefinition[]
+    foreach(exprs) do ex
+        if ex.head == :struct
+            push!(sdefs, SDefinition(ex; prettify=false))
+        elseif ex.head == :function || (ex.head == :(=) && ex.args[1].head == :call)
+            ld_ex = longdef(ex)
+            if (@capture(ld_ex, function f_(args__) b_ end) && last(args) ≠ :fun_ptr && !isalias(string(f)))
+                push!(fdefs, FDefinition(ex; prettify=false))
+            end
+        elseif @capture(ex, const a_ = b_) && !isalias(string(a))
+            push!(cdefs, CDefinition(ex; prettify=false))
+        elseif ex.head == :macrocall
+            push!(edefs, EDefinition(ex; prettify=false))
         end
-        push!(defs, decl_defs)
     end
-    api = API(file, OrderedDict.(defs)...)
+    api = API(file, OrderedDict.((sdefs, fdefs, cdefs, edefs))...)
     api.eval = eval_symbol
     convert_constptr_to_struct!(api)
     api

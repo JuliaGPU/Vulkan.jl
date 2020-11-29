@@ -7,5 +7,5 @@ end
 
 function annotate_pass(statements, pass)
     body_statements = getproperty.(statements, :body)
-    Statement.(rstrip.(body_statements, '\n') .* "    # $(typeof(pass).name)" .* map(x -> endswith(x, "\n") ? "\n" : "", body_statements), getproperty.(statements, :assigned_id))
+    Statement.(rstrip.(body_statements, '\n') .* "    # $(@__MODULE__).$(nameof(typeof(pass)))" .* map(x -> endswith(x, "\n") ? "\n" : "", body_statements), getproperty.(statements, :assigned_id))
 end

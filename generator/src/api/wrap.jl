@@ -1,9 +1,9 @@
 mutable struct WrappedAPI
     source
-    structs
-    funcs
-    consts
-    enums
+    structs::OrderedDict{String, SDefinition}
+    funcs::OrderedDict{String, FDefinition}
+    consts::OrderedDict{String, CDefinition}
+    enums::OrderedDict{String, EDefinition}
     misc
     bags
     extended_vk_constructors

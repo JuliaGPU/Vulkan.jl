@@ -9,9 +9,7 @@ Base.show(io::IO, st::Statement) = print(io, st.body)
 
 abstract type Declaration end
 
-(T::Type{<:Declaration})(ex::Expr) = convert(T, ex)
-
-Base.convert(T::Type{<:Declaration}, ex::Expr) = T(string(prettify(ex)))
+(T::Type{<:Declaration})(ex::Expr; prettify=true) = T(string(prettify ? MacroTools.prettify(ex) : ex))
 
 mutable struct SDefinition <: Declaration
     name::AbstractString
