@@ -1,11 +1,12 @@
 struct Statement
-    body::AbstractString
+    body
     assigned_id
+    Statement(body::Expr, assigned_id = nothing) = new(body, isnothing(assigned_id) ? nothing : string(assigned_id))
+    Statement(body::Symbol, assigned_id = nothing) = new(body, isnothing(assigned_id) ? nothing : string(assigned_id))
+    Statement(body::AbstractString, assigned_id = nothing) = new(Meta.parse(body), assigned_id)
 end
 
-Statement(body::AbstractString) = Statement(strip(body), nothing)
-
-Base.show(io::IO, st::Statement) = print(io, st.body)
+Base.show(io::IO, st::Statement) = print(io, prettify(st.body))
 
 abstract type Declaration end
 

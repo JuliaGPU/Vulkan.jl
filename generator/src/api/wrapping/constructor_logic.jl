@@ -189,12 +189,12 @@ Return a Vulkan name if assigned from any statement in the body, else take the J
 For example, if a statement assigns the name pAllocator from the Julian name allocator, as in 'pAllocator = allocator.vks', then return pAllocator; else, return allocator.
 """
 function last_argname(body, id, fallback)
-    id_list = getproperty.(body, :assigned_id)
+    id_list = string.(getproperty.(body, :assigned_id))
     id ∈ id_list ? id : fallback
 end
 
 function last_argname(body, ids::Tuple, fallback)
-    id_list = getproperty.(body, :assigned_id)
+    id_list = string.(getproperty.(body, :assigned_id))
     for id ∈ ids
         id ∈ id_list && return id
     end

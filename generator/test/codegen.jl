@@ -38,7 +38,7 @@ edef2 = EDefinition(name="e1", fields=["a", "b", "c", "d"], with_begin_block=tru
         @test_throws ErrorException generate(FDefinition("replace", signature, true, Statement[])) # short notation for a function without body
     end
     @testset "Statements" begin
-        @test string(s1) == "a=2"
+        @test string(s1) == "a = 2"
     end
     @testset "Constant definition" begin
         @test generate(cdef1) == format_text("const c1 = 0")

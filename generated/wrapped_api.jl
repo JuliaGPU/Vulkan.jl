@@ -47,7 +47,7 @@ function api.VkBufferMemoryBarrier(
     offset,
     size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBufferMemoryBarrier(
         VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER,
         pNext,
@@ -75,7 +75,7 @@ function api.VkImageMemoryBarrier(
     image,
     subresource_range,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageMemoryBarrier(
         VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER,
         pNext,
@@ -94,7 +94,7 @@ end
 Julian constructor for VkMemoryBarrier. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryBarrier(next, src_access_mask, dst_access_mask)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryBarrier(
         VK_STRUCTURE_TYPE_MEMORY_BARRIER,
         pNext,
@@ -114,12 +114,12 @@ function api.VkApplicationInfo(
     engine_version,
     api_version,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pApplicationName = unsafe_pointer(application_name)    # VulkanGen.GeneratePointers
-    applicationVersion = to_vk(UInt32, application_version)    # VulkanGen.TranslateVkTypesBack
-    pEngineName = unsafe_pointer(engine_name)    # VulkanGen.GeneratePointers
-    engineVersion = to_vk(UInt32, engine_version)    # VulkanGen.TranslateVkTypesBack
-    apiVersion = to_vk(UInt32, api_version)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    pApplicationName = unsafe_pointer(application_name)
+    applicationVersion = to_vk(UInt32, application_version)
+    pEngineName = unsafe_pointer(engine_name)
+    engineVersion = to_vk(UInt32, engine_version)
+    apiVersion = to_vk(UInt32, api_version)
     api.VkApplicationInfo(
         VK_STRUCTURE_TYPE_APPLICATION_INFO,
         pNext,
@@ -141,12 +141,12 @@ function api.VkInstanceCreateInfo(
     enabled_layer_names,
     enabled_extension_names,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pApplicationInfo = unsafe_pointer(application_info)    # VulkanGen.GeneratePointers
-    _enabledLayerCount = pointer_length(enabled_layer_names)    # VulkanGen.ComputeLengthArgument
-    ppEnabledLayerNames = unsafe_pointer(enabled_layer_names)    # VulkanGen.GeneratePointers
-    _enabledExtensionCount = pointer_length(enabled_extension_names)    # VulkanGen.ComputeLengthArgument
-    ppEnabledExtensionNames = unsafe_pointer(enabled_extension_names)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pApplicationInfo = unsafe_pointer(application_info)
+    _enabledLayerCount = pointer_length(enabled_layer_names)
+    ppEnabledLayerNames = unsafe_pointer(enabled_layer_names)
+    _enabledExtensionCount = pointer_length(enabled_extension_names)
+    ppEnabledExtensionNames = unsafe_pointer(enabled_extension_names)
     api.VkInstanceCreateInfo(
         VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
         pNext,
@@ -163,9 +163,9 @@ end
 Julian constructor for VkDeviceQueueCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceQueueCreateInfo(next, flags, queue_family_index, queue_priorities)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _queueCount = pointer_length(queue_priorities)    # VulkanGen.ComputeLengthArgument
-    pQueuePriorities = unsafe_pointer(queue_priorities)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _queueCount = pointer_length(queue_priorities)
+    pQueuePriorities = unsafe_pointer(queue_priorities)
     api.VkDeviceQueueCreateInfo(
         VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
         pNext,
@@ -187,14 +187,14 @@ function api.VkDeviceCreateInfo(
     enabled_extension_names,
     enabled_features,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _queueCreateInfoCount = pointer_length(queue_create_infos)    # VulkanGen.ComputeLengthArgument
-    pQueueCreateInfos = unsafe_pointer(queue_create_infos)    # VulkanGen.GeneratePointers
-    _enabledLayerCount = pointer_length(enabled_layer_names)    # VulkanGen.ComputeLengthArgument
-    ppEnabledLayerNames = unsafe_pointer(enabled_layer_names)    # VulkanGen.GeneratePointers
-    _enabledExtensionCount = pointer_length(enabled_extension_names)    # VulkanGen.ComputeLengthArgument
-    ppEnabledExtensionNames = unsafe_pointer(enabled_extension_names)    # VulkanGen.GeneratePointers
-    pEnabledFeatures = unsafe_pointer(enabled_features)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _queueCreateInfoCount = pointer_length(queue_create_infos)
+    pQueueCreateInfos = unsafe_pointer(queue_create_infos)
+    _enabledLayerCount = pointer_length(enabled_layer_names)
+    ppEnabledLayerNames = unsafe_pointer(enabled_layer_names)
+    _enabledExtensionCount = pointer_length(enabled_extension_names)
+    ppEnabledExtensionNames = unsafe_pointer(enabled_extension_names)
+    pEnabledFeatures = unsafe_pointer(enabled_features)
     api.VkDeviceCreateInfo(
         VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
         pNext,
@@ -219,14 +219,14 @@ function api.VkSubmitInfo(
     command_buffers,
     signal_semaphores,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _waitSemaphoreCount = pointer_length(wait_semaphores)    # VulkanGen.ComputeLengthArgument
-    pWaitSemaphores = unsafe_pointer(wait_semaphores)    # VulkanGen.GeneratePointers
-    pWaitDstStageMask = unsafe_pointer(wait_dst_stage_mask)    # VulkanGen.GeneratePointers
-    _commandBufferCount = pointer_length(command_buffers)    # VulkanGen.ComputeLengthArgument
-    pCommandBuffers = unsafe_pointer(command_buffers)    # VulkanGen.GeneratePointers
-    _signalSemaphoreCount = pointer_length(signal_semaphores)    # VulkanGen.ComputeLengthArgument
-    pSignalSemaphores = unsafe_pointer(signal_semaphores)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _waitSemaphoreCount = pointer_length(wait_semaphores)
+    pWaitSemaphores = unsafe_pointer(wait_semaphores)
+    pWaitDstStageMask = unsafe_pointer(wait_dst_stage_mask)
+    _commandBufferCount = pointer_length(command_buffers)
+    pCommandBuffers = unsafe_pointer(command_buffers)
+    _signalSemaphoreCount = pointer_length(signal_semaphores)
+    pSignalSemaphores = unsafe_pointer(signal_semaphores)
     api.VkSubmitInfo(
         VK_STRUCTURE_TYPE_SUBMIT_INFO,
         pNext,
@@ -244,7 +244,7 @@ end
 Julian constructor for VkMappedMemoryRange. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMappedMemoryRange(next, memory, offset, size)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMappedMemoryRange(
         VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE,
         pNext,
@@ -258,7 +258,7 @@ end
 Julian constructor for VkMemoryAllocateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryAllocateInfo(next, allocation_size, memory_type_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryAllocateInfo(
         VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
         pNext,
@@ -271,8 +271,8 @@ end
 Julian constructor for VkSparseBufferMemoryBindInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSparseBufferMemoryBindInfo(buffer, binds)
-    _bindCount = pointer_length(binds)    # VulkanGen.ComputeLengthArgument
-    pBinds = unsafe_pointer(binds)    # VulkanGen.GeneratePointers
+    _bindCount = pointer_length(binds)
+    pBinds = unsafe_pointer(binds)
     api.VkSparseBufferMemoryBindInfo(buffer, _bindCount, pBinds)
 end
 
@@ -280,8 +280,8 @@ end
 Julian constructor for VkSparseImageOpaqueMemoryBindInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSparseImageOpaqueMemoryBindInfo(image, binds)
-    _bindCount = pointer_length(binds)    # VulkanGen.ComputeLengthArgument
-    pBinds = unsafe_pointer(binds)    # VulkanGen.GeneratePointers
+    _bindCount = pointer_length(binds)
+    pBinds = unsafe_pointer(binds)
     api.VkSparseImageOpaqueMemoryBindInfo(image, _bindCount, pBinds)
 end
 
@@ -289,8 +289,8 @@ end
 Julian constructor for VkSparseImageMemoryBindInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSparseImageMemoryBindInfo(image, binds)
-    _bindCount = pointer_length(binds)    # VulkanGen.ComputeLengthArgument
-    pBinds = unsafe_pointer(binds)    # VulkanGen.GeneratePointers
+    _bindCount = pointer_length(binds)
+    pBinds = unsafe_pointer(binds)
     api.VkSparseImageMemoryBindInfo(image, _bindCount, pBinds)
 end
 
@@ -305,17 +305,17 @@ function api.VkBindSparseInfo(
     image_binds,
     signal_semaphores,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _waitSemaphoreCount = pointer_length(wait_semaphores)    # VulkanGen.ComputeLengthArgument
-    pWaitSemaphores = unsafe_pointer(wait_semaphores)    # VulkanGen.GeneratePointers
-    _bufferBindCount = pointer_length(buffer_binds)    # VulkanGen.ComputeLengthArgument
-    pBufferBinds = unsafe_pointer(buffer_binds)    # VulkanGen.GeneratePointers
-    _imageOpaqueBindCount = pointer_length(image_opaque_binds)    # VulkanGen.ComputeLengthArgument
-    pImageOpaqueBinds = unsafe_pointer(image_opaque_binds)    # VulkanGen.GeneratePointers
-    _imageBindCount = pointer_length(image_binds)    # VulkanGen.ComputeLengthArgument
-    pImageBinds = unsafe_pointer(image_binds)    # VulkanGen.GeneratePointers
-    _signalSemaphoreCount = pointer_length(signal_semaphores)    # VulkanGen.ComputeLengthArgument
-    pSignalSemaphores = unsafe_pointer(signal_semaphores)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _waitSemaphoreCount = pointer_length(wait_semaphores)
+    pWaitSemaphores = unsafe_pointer(wait_semaphores)
+    _bufferBindCount = pointer_length(buffer_binds)
+    pBufferBinds = unsafe_pointer(buffer_binds)
+    _imageOpaqueBindCount = pointer_length(image_opaque_binds)
+    pImageOpaqueBinds = unsafe_pointer(image_opaque_binds)
+    _imageBindCount = pointer_length(image_binds)
+    pImageBinds = unsafe_pointer(image_binds)
+    _signalSemaphoreCount = pointer_length(signal_semaphores)
+    pSignalSemaphores = unsafe_pointer(signal_semaphores)
     api.VkBindSparseInfo(
         VK_STRUCTURE_TYPE_BIND_SPARSE_INFO,
         pNext,
@@ -336,7 +336,7 @@ end
 Julian constructor for VkFenceCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkFenceCreateInfo(next, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkFenceCreateInfo(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO, pNext, flags)
 end
 
@@ -344,7 +344,7 @@ end
 Julian constructor for VkSemaphoreCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSemaphoreCreateInfo(next, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSemaphoreCreateInfo(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO, pNext, flags)
 end
 
@@ -352,7 +352,7 @@ end
 Julian constructor for VkEventCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkEventCreateInfo(next, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkEventCreateInfo(VK_STRUCTURE_TYPE_EVENT_CREATE_INFO, pNext, flags)
 end
 
@@ -366,7 +366,7 @@ function api.VkQueryPoolCreateInfo(
     query_count,
     pipeline_statistics,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkQueryPoolCreateInfo(
         VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO,
         pNext,
@@ -388,9 +388,9 @@ function api.VkBufferCreateInfo(
     sharing_mode,
     queue_family_indices,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _queueFamilyIndexCount = pointer_length(queue_family_indices)    # VulkanGen.ComputeLengthArgument
-    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _queueFamilyIndexCount = pointer_length(queue_family_indices)
+    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)
     api.VkBufferCreateInfo(
         VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
         pNext,
@@ -407,7 +407,7 @@ end
 Julian constructor for VkBufferViewCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBufferViewCreateInfo(next, flags, buffer, format, offset, range)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBufferViewCreateInfo(
         VK_STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO,
         pNext,
@@ -437,9 +437,9 @@ function api.VkImageCreateInfo(
     queue_family_indices,
     initial_layout,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _queueFamilyIndexCount = pointer_length(queue_family_indices)    # VulkanGen.ComputeLengthArgument
-    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _queueFamilyIndexCount = pointer_length(queue_family_indices)
+    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)
     api.VkImageCreateInfo(
         VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO,
         pNext,
@@ -471,7 +471,7 @@ function api.VkImageViewCreateInfo(
     components,
     subresource_range,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageViewCreateInfo(
         VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
         pNext,
@@ -488,8 +488,8 @@ end
 Julian constructor for VkShaderModuleCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkShaderModuleCreateInfo(next, flags, code_size, code)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pCode = unsafe_pointer(code)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pCode = unsafe_pointer(code)
     api.VkShaderModuleCreateInfo(
         VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
         pNext,
@@ -503,9 +503,9 @@ end
 Julian constructor for VkPipelineCacheCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineCacheCreateInfo(next, flags, initial_data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _initialDataSize = pointer_length(initial_data)    # VulkanGen.ComputeLengthArgument
-    pInitialData = unsafe_pointer(initial_data)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _initialDataSize = pointer_length(initial_data)
+    pInitialData = unsafe_pointer(initial_data)
     api.VkPipelineCacheCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO,
         pNext,
@@ -519,10 +519,10 @@ end
 Julian constructor for VkSpecializationInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSpecializationInfo(map_entries, data)
-    _mapEntryCount = pointer_length(map_entries)    # VulkanGen.ComputeLengthArgument
-    pMapEntries = unsafe_pointer(map_entries)    # VulkanGen.GeneratePointers
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
-    pData = unsafe_pointer(data)    # VulkanGen.GeneratePointers
+    _mapEntryCount = pointer_length(map_entries)
+    pMapEntries = unsafe_pointer(map_entries)
+    _dataSize = pointer_length(data)
+    pData = unsafe_pointer(data)
     api.VkSpecializationInfo(_mapEntryCount, pMapEntries, _dataSize, pData)
 end
 
@@ -537,9 +537,9 @@ function api.VkPipelineShaderStageCreateInfo(
     name,
     specialization_info,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pName = unsafe_pointer(name)    # VulkanGen.GeneratePointers
-    pSpecializationInfo = unsafe_pointer(specialization_info)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pName = unsafe_pointer(name)
+    pSpecializationInfo = unsafe_pointer(specialization_info)
     api.VkPipelineShaderStageCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
         pNext,
@@ -562,7 +562,7 @@ function api.VkComputePipelineCreateInfo(
     base_pipeline_handle,
     base_pipeline_index,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkComputePipelineCreateInfo(
         VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO,
         pNext,
@@ -583,11 +583,11 @@ function api.VkPipelineVertexInputStateCreateInfo(
     vertex_binding_descriptions,
     vertex_attribute_descriptions,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _vertexBindingDescriptionCount = pointer_length(vertex_binding_descriptions)    # VulkanGen.ComputeLengthArgument
-    pVertexBindingDescriptions = unsafe_pointer(vertex_binding_descriptions)    # VulkanGen.GeneratePointers
-    _vertexAttributeDescriptionCount = pointer_length(vertex_attribute_descriptions)    # VulkanGen.ComputeLengthArgument
-    pVertexAttributeDescriptions = unsafe_pointer(vertex_attribute_descriptions)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _vertexBindingDescriptionCount = pointer_length(vertex_binding_descriptions)
+    pVertexBindingDescriptions = unsafe_pointer(vertex_binding_descriptions)
+    _vertexAttributeDescriptionCount = pointer_length(vertex_attribute_descriptions)
+    pVertexAttributeDescriptions = unsafe_pointer(vertex_attribute_descriptions)
     api.VkPipelineVertexInputStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO,
         pNext,
@@ -608,7 +608,7 @@ function api.VkPipelineInputAssemblyStateCreateInfo(
     topology,
     primitive_restart_enable,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineInputAssemblyStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO,
         pNext,
@@ -622,7 +622,7 @@ end
 Julian constructor for VkPipelineTessellationStateCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineTessellationStateCreateInfo(next, flags, patch_control_points)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineTessellationStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO,
         pNext,
@@ -635,11 +635,11 @@ end
 Julian constructor for VkPipelineViewportStateCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineViewportStateCreateInfo(next, flags, viewports, scissors)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _viewportCount = pointer_length(viewports)    # VulkanGen.ComputeLengthArgument
-    pViewports = unsafe_pointer(viewports)    # VulkanGen.GeneratePointers
-    _scissorCount = pointer_length(scissors)    # VulkanGen.ComputeLengthArgument
-    pScissors = unsafe_pointer(scissors)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _viewportCount = pointer_length(viewports)
+    pViewports = unsafe_pointer(viewports)
+    _scissorCount = pointer_length(scissors)
+    pScissors = unsafe_pointer(scissors)
     api.VkPipelineViewportStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO,
         pNext,
@@ -668,7 +668,7 @@ function api.VkPipelineRasterizationStateCreateInfo(
     depth_bias_slope_factor,
     line_width,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineRasterizationStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO,
         pNext,
@@ -699,8 +699,8 @@ function api.VkPipelineMultisampleStateCreateInfo(
     alpha_to_coverage_enable,
     alpha_to_one_enable,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pSampleMask = unsafe_pointer(sample_mask)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pSampleMask = unsafe_pointer(sample_mask)
     api.VkPipelineMultisampleStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO,
         pNext,
@@ -730,7 +730,7 @@ function api.VkPipelineDepthStencilStateCreateInfo(
     min_depth_bounds,
     max_depth_bounds,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineDepthStencilStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO,
         pNext,
@@ -758,9 +758,9 @@ function api.VkPipelineColorBlendStateCreateInfo(
     attachments,
     blend_constants,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _attachmentCount = pointer_length(attachments)    # VulkanGen.ComputeLengthArgument
-    pAttachments = unsafe_pointer(attachments)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _attachmentCount = pointer_length(attachments)
+    pAttachments = unsafe_pointer(attachments)
     api.VkPipelineColorBlendStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO,
         pNext,
@@ -777,9 +777,9 @@ end
 Julian constructor for VkPipelineDynamicStateCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineDynamicStateCreateInfo(next, flags, dynamic_states)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _dynamicStateCount = pointer_length(dynamic_states)    # VulkanGen.ComputeLengthArgument
-    pDynamicStates = unsafe_pointer(dynamic_states)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _dynamicStateCount = pointer_length(dynamic_states)
+    pDynamicStates = unsafe_pointer(dynamic_states)
     api.VkPipelineDynamicStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO,
         pNext,
@@ -811,18 +811,18 @@ function api.VkGraphicsPipelineCreateInfo(
     base_pipeline_handle,
     base_pipeline_index,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _stageCount = pointer_length(stages)    # VulkanGen.ComputeLengthArgument
-    pStages = unsafe_pointer(stages)    # VulkanGen.GeneratePointers
-    pVertexInputState = unsafe_pointer(vertex_input_state)    # VulkanGen.GeneratePointers
-    pInputAssemblyState = unsafe_pointer(input_assembly_state)    # VulkanGen.GeneratePointers
-    pTessellationState = unsafe_pointer(tessellation_state)    # VulkanGen.GeneratePointers
-    pViewportState = unsafe_pointer(viewport_state)    # VulkanGen.GeneratePointers
-    pRasterizationState = unsafe_pointer(rasterization_state)    # VulkanGen.GeneratePointers
-    pMultisampleState = unsafe_pointer(multisample_state)    # VulkanGen.GeneratePointers
-    pDepthStencilState = unsafe_pointer(depth_stencil_state)    # VulkanGen.GeneratePointers
-    pColorBlendState = unsafe_pointer(color_blend_state)    # VulkanGen.GeneratePointers
-    pDynamicState = unsafe_pointer(dynamic_state)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _stageCount = pointer_length(stages)
+    pStages = unsafe_pointer(stages)
+    pVertexInputState = unsafe_pointer(vertex_input_state)
+    pInputAssemblyState = unsafe_pointer(input_assembly_state)
+    pTessellationState = unsafe_pointer(tessellation_state)
+    pViewportState = unsafe_pointer(viewport_state)
+    pRasterizationState = unsafe_pointer(rasterization_state)
+    pMultisampleState = unsafe_pointer(multisample_state)
+    pDepthStencilState = unsafe_pointer(depth_stencil_state)
+    pColorBlendState = unsafe_pointer(color_blend_state)
+    pDynamicState = unsafe_pointer(dynamic_state)
     api.VkGraphicsPipelineCreateInfo(
         VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO,
         pNext,
@@ -850,11 +850,11 @@ end
 Julian constructor for VkPipelineLayoutCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineLayoutCreateInfo(next, flags, set_layouts, push_constant_ranges)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _setLayoutCount = pointer_length(set_layouts)    # VulkanGen.ComputeLengthArgument
-    pSetLayouts = unsafe_pointer(set_layouts)    # VulkanGen.GeneratePointers
-    _pushConstantRangeCount = pointer_length(push_constant_ranges)    # VulkanGen.ComputeLengthArgument
-    pPushConstantRanges = unsafe_pointer(push_constant_ranges)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _setLayoutCount = pointer_length(set_layouts)
+    pSetLayouts = unsafe_pointer(set_layouts)
+    _pushConstantRangeCount = pointer_length(push_constant_ranges)
+    pPushConstantRanges = unsafe_pointer(push_constant_ranges)
     api.VkPipelineLayoutCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO,
         pNext,
@@ -888,7 +888,7 @@ function api.VkSamplerCreateInfo(
     border_color,
     unnormalized_coordinates,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSamplerCreateInfo(
         VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO,
         pNext,
@@ -924,7 +924,7 @@ function api.VkCopyDescriptorSet(
     dst_array_element,
     descriptor_count,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCopyDescriptorSet(
         VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET,
         pNext,
@@ -942,9 +942,9 @@ end
 Julian constructor for VkDescriptorPoolCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDescriptorPoolCreateInfo(next, flags, max_sets, pool_sizes)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _poolSizeCount = pointer_length(pool_sizes)    # VulkanGen.ComputeLengthArgument
-    pPoolSizes = unsafe_pointer(pool_sizes)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _poolSizeCount = pointer_length(pool_sizes)
+    pPoolSizes = unsafe_pointer(pool_sizes)
     api.VkDescriptorPoolCreateInfo(
         VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO,
         pNext,
@@ -959,9 +959,9 @@ end
 Julian constructor for VkDescriptorSetAllocateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDescriptorSetAllocateInfo(next, descriptor_pool, set_layouts)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _descriptorSetCount = pointer_length(set_layouts)    # VulkanGen.ComputeLengthArgument
-    pSetLayouts = unsafe_pointer(set_layouts)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _descriptorSetCount = pointer_length(set_layouts)
+    pSetLayouts = unsafe_pointer(set_layouts)
     api.VkDescriptorSetAllocateInfo(
         VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO,
         pNext,
@@ -980,8 +980,8 @@ function api.VkDescriptorSetLayoutBinding(
     stage_flags,
     immutable_samplers,
 )
-    _descriptorCount = pointer_length(immutable_samplers)    # VulkanGen.ComputeLengthArgument
-    pImmutableSamplers = unsafe_pointer(immutable_samplers)    # VulkanGen.GeneratePointers
+    _descriptorCount = pointer_length(immutable_samplers)
+    pImmutableSamplers = unsafe_pointer(immutable_samplers)
     api.VkDescriptorSetLayoutBinding(
         binding,
         descriptor_type,
@@ -995,9 +995,9 @@ end
 Julian constructor for VkDescriptorSetLayoutCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDescriptorSetLayoutCreateInfo(next, flags, bindings)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _bindingCount = pointer_length(bindings)    # VulkanGen.ComputeLengthArgument
-    pBindings = unsafe_pointer(bindings)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _bindingCount = pointer_length(bindings)
+    pBindings = unsafe_pointer(bindings)
     api.VkDescriptorSetLayoutCreateInfo(
         VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO,
         pNext,
@@ -1020,11 +1020,11 @@ function api.VkWriteDescriptorSet(
     buffer_info,
     texel_buffer_view,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _descriptorCount = pointer_length(image_info)    # VulkanGen.ComputeLengthArgument
-    pImageInfo = unsafe_pointer(image_info)    # VulkanGen.GeneratePointers
-    pBufferInfo = unsafe_pointer(buffer_info)    # VulkanGen.GeneratePointers
-    pTexelBufferView = unsafe_pointer(texel_buffer_view)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _descriptorCount = pointer_length(image_info)
+    pImageInfo = unsafe_pointer(image_info)
+    pBufferInfo = unsafe_pointer(buffer_info)
+    pTexelBufferView = unsafe_pointer(texel_buffer_view)
     api.VkWriteDescriptorSet(
         VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
         pNext,
@@ -1051,9 +1051,9 @@ function api.VkFramebufferCreateInfo(
     height,
     layers,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _attachmentCount = pointer_length(attachments)    # VulkanGen.ComputeLengthArgument
-    pAttachments = unsafe_pointer(attachments)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _attachmentCount = pointer_length(attachments)
+    pAttachments = unsafe_pointer(attachments)
     api.VkFramebufferCreateInfo(
         VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO,
         pNext,
@@ -1079,14 +1079,14 @@ function api.VkSubpassDescription(
     depth_stencil_attachment,
     preserve_attachments,
 )
-    _inputAttachmentCount = pointer_length(input_attachments)    # VulkanGen.ComputeLengthArgument
-    pInputAttachments = unsafe_pointer(input_attachments)    # VulkanGen.GeneratePointers
-    _colorAttachmentCount = pointer_length(color_attachments)    # VulkanGen.ComputeLengthArgument
-    pColorAttachments = unsafe_pointer(color_attachments)    # VulkanGen.GeneratePointers
-    pResolveAttachments = unsafe_pointer(resolve_attachments)    # VulkanGen.GeneratePointers
-    pDepthStencilAttachment = unsafe_pointer(depth_stencil_attachment)    # VulkanGen.GeneratePointers
-    _preserveAttachmentCount = pointer_length(preserve_attachments)    # VulkanGen.ComputeLengthArgument
-    pPreserveAttachments = unsafe_pointer(preserve_attachments)    # VulkanGen.GeneratePointers
+    _inputAttachmentCount = pointer_length(input_attachments)
+    pInputAttachments = unsafe_pointer(input_attachments)
+    _colorAttachmentCount = pointer_length(color_attachments)
+    pColorAttachments = unsafe_pointer(color_attachments)
+    pResolveAttachments = unsafe_pointer(resolve_attachments)
+    pDepthStencilAttachment = unsafe_pointer(depth_stencil_attachment)
+    _preserveAttachmentCount = pointer_length(preserve_attachments)
+    pPreserveAttachments = unsafe_pointer(preserve_attachments)
     api.VkSubpassDescription(
         flags,
         pipeline_bind_point,
@@ -1105,13 +1105,13 @@ end
 Julian constructor for VkRenderPassCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkRenderPassCreateInfo(next, flags, attachments, subpasses, dependencies)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _attachmentCount = pointer_length(attachments)    # VulkanGen.ComputeLengthArgument
-    pAttachments = unsafe_pointer(attachments)    # VulkanGen.GeneratePointers
-    _subpassCount = pointer_length(subpasses)    # VulkanGen.ComputeLengthArgument
-    pSubpasses = unsafe_pointer(subpasses)    # VulkanGen.GeneratePointers
-    _dependencyCount = pointer_length(dependencies)    # VulkanGen.ComputeLengthArgument
-    pDependencies = unsafe_pointer(dependencies)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _attachmentCount = pointer_length(attachments)
+    pAttachments = unsafe_pointer(attachments)
+    _subpassCount = pointer_length(subpasses)
+    pSubpasses = unsafe_pointer(subpasses)
+    _dependencyCount = pointer_length(dependencies)
+    pDependencies = unsafe_pointer(dependencies)
     api.VkRenderPassCreateInfo(
         VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO,
         pNext,
@@ -1129,7 +1129,7 @@ end
 Julian constructor for VkCommandPoolCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCommandPoolCreateInfo(next, flags, queue_family_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCommandPoolCreateInfo(
         VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
         pNext,
@@ -1142,7 +1142,7 @@ end
 Julian constructor for VkCommandBufferAllocateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCommandBufferAllocateInfo(next, command_pool, level, command_buffer_count)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCommandBufferAllocateInfo(
         VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO,
         pNext,
@@ -1164,7 +1164,7 @@ function api.VkCommandBufferInheritanceInfo(
     query_flags,
     pipeline_statistics,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCommandBufferInheritanceInfo(
         VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO,
         pNext,
@@ -1181,8 +1181,8 @@ end
 Julian constructor for VkCommandBufferBeginInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCommandBufferBeginInfo(next, flags, inheritance_info)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pInheritanceInfo = unsafe_pointer(inheritance_info)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pInheritanceInfo = unsafe_pointer(inheritance_info)
     api.VkCommandBufferBeginInfo(
         VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
         pNext,
@@ -1201,9 +1201,9 @@ function api.VkRenderPassBeginInfo(
     render_area,
     clear_values,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _clearValueCount = pointer_length(clear_values)    # VulkanGen.ComputeLengthArgument
-    pClearValues = unsafe_pointer(clear_values)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _clearValueCount = pointer_length(clear_values)
+    pClearValues = unsafe_pointer(clear_values)
     api.VkRenderPassBeginInfo(
         VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO,
         pNext,
@@ -1225,7 +1225,7 @@ function api.VkPhysicalDeviceSubgroupProperties(
     supported_operations,
     quad_operations_in_all_stages,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSubgroupProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_PROPERTIES,
         pNext,
@@ -1240,7 +1240,7 @@ end
 Julian constructor for VkBindBufferMemoryInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBindBufferMemoryInfo(next, buffer, memory, memory_offset)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBindBufferMemoryInfo(
         VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO,
         pNext,
@@ -1254,7 +1254,7 @@ end
 Julian constructor for VkBindImageMemoryInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBindImageMemoryInfo(next, image, memory, memory_offset)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBindImageMemoryInfo(
         VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO,
         pNext,
@@ -1274,7 +1274,7 @@ function api.VkPhysicalDevice16BitStorageFeatures(
     storage_push_constant_16,
     storage_input_output_16,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevice16BitStorageFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES,
         pNext,
@@ -1293,7 +1293,7 @@ function api.VkMemoryDedicatedRequirements(
     prefers_dedicated_allocation,
     requires_dedicated_allocation,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryDedicatedRequirements(
         VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS,
         pNext,
@@ -1306,7 +1306,7 @@ end
 Julian constructor for VkMemoryDedicatedAllocateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryDedicatedAllocateInfo(next, image, buffer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryDedicatedAllocateInfo(
         VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO,
         pNext,
@@ -1319,7 +1319,7 @@ end
 Julian constructor for VkMemoryAllocateFlagsInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryAllocateFlagsInfo(next, flags, device_mask)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryAllocateFlagsInfo(
         VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO,
         pNext,
@@ -1332,9 +1332,9 @@ end
 Julian constructor for VkDeviceGroupRenderPassBeginInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceGroupRenderPassBeginInfo(next, device_mask, device_render_areas)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _deviceRenderAreaCount = pointer_length(device_render_areas)    # VulkanGen.ComputeLengthArgument
-    pDeviceRenderAreas = unsafe_pointer(device_render_areas)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _deviceRenderAreaCount = pointer_length(device_render_areas)
+    pDeviceRenderAreas = unsafe_pointer(device_render_areas)
     api.VkDeviceGroupRenderPassBeginInfo(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO,
         pNext,
@@ -1348,7 +1348,7 @@ end
 Julian constructor for VkDeviceGroupCommandBufferBeginInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceGroupCommandBufferBeginInfo(next, device_mask)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceGroupCommandBufferBeginInfo(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO,
         pNext,
@@ -1365,13 +1365,13 @@ function api.VkDeviceGroupSubmitInfo(
     command_buffer_device_masks,
     signal_semaphore_device_indices,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _waitSemaphoreCount = pointer_length(wait_semaphore_device_indices)    # VulkanGen.ComputeLengthArgument
-    pWaitSemaphoreDeviceIndices = unsafe_pointer(wait_semaphore_device_indices)    # VulkanGen.GeneratePointers
-    _commandBufferCount = pointer_length(command_buffer_device_masks)    # VulkanGen.ComputeLengthArgument
-    pCommandBufferDeviceMasks = unsafe_pointer(command_buffer_device_masks)    # VulkanGen.GeneratePointers
-    _signalSemaphoreCount = pointer_length(signal_semaphore_device_indices)    # VulkanGen.ComputeLengthArgument
-    pSignalSemaphoreDeviceIndices = unsafe_pointer(signal_semaphore_device_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _waitSemaphoreCount = pointer_length(wait_semaphore_device_indices)
+    pWaitSemaphoreDeviceIndices = unsafe_pointer(wait_semaphore_device_indices)
+    _commandBufferCount = pointer_length(command_buffer_device_masks)
+    pCommandBufferDeviceMasks = unsafe_pointer(command_buffer_device_masks)
+    _signalSemaphoreCount = pointer_length(signal_semaphore_device_indices)
+    pSignalSemaphoreDeviceIndices = unsafe_pointer(signal_semaphore_device_indices)
     api.VkDeviceGroupSubmitInfo(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO,
         pNext,
@@ -1388,7 +1388,7 @@ end
 Julian constructor for VkDeviceGroupBindSparseInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceGroupBindSparseInfo(next, resource_device_index, memory_device_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceGroupBindSparseInfo(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO,
         pNext,
@@ -1401,9 +1401,9 @@ end
 Julian constructor for VkBindBufferMemoryDeviceGroupInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBindBufferMemoryDeviceGroupInfo(next, device_indices)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _deviceIndexCount = pointer_length(device_indices)    # VulkanGen.ComputeLengthArgument
-    pDeviceIndices = unsafe_pointer(device_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _deviceIndexCount = pointer_length(device_indices)
+    pDeviceIndices = unsafe_pointer(device_indices)
     api.VkBindBufferMemoryDeviceGroupInfo(
         VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO,
         pNext,
@@ -1420,11 +1420,11 @@ function api.VkBindImageMemoryDeviceGroupInfo(
     device_indices,
     split_instance_bind_regions,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _deviceIndexCount = pointer_length(device_indices)    # VulkanGen.ComputeLengthArgument
-    pDeviceIndices = unsafe_pointer(device_indices)    # VulkanGen.GeneratePointers
-    _splitInstanceBindRegionCount = pointer_length(split_instance_bind_regions)    # VulkanGen.ComputeLengthArgument
-    pSplitInstanceBindRegions = unsafe_pointer(split_instance_bind_regions)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _deviceIndexCount = pointer_length(device_indices)
+    pDeviceIndices = unsafe_pointer(device_indices)
+    _splitInstanceBindRegionCount = pointer_length(split_instance_bind_regions)
+    pSplitInstanceBindRegions = unsafe_pointer(split_instance_bind_regions)
     api.VkBindImageMemoryDeviceGroupInfo(
         VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO,
         pNext,
@@ -1444,7 +1444,7 @@ function api.VkPhysicalDeviceGroupProperties(
     physical_devices,
     subset_allocation,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceGroupProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES,
         pNext,
@@ -1458,9 +1458,9 @@ end
 Julian constructor for VkDeviceGroupDeviceCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceGroupDeviceCreateInfo(next, physical_devices)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _physicalDeviceCount = pointer_length(physical_devices)    # VulkanGen.ComputeLengthArgument
-    pPhysicalDevices = unsafe_pointer(physical_devices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _physicalDeviceCount = pointer_length(physical_devices)
+    pPhysicalDevices = unsafe_pointer(physical_devices)
     api.VkDeviceGroupDeviceCreateInfo(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO,
         pNext,
@@ -1473,7 +1473,7 @@ end
 Julian constructor for VkBufferMemoryRequirementsInfo2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBufferMemoryRequirementsInfo2(next, buffer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBufferMemoryRequirementsInfo2(
         VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2,
         pNext,
@@ -1485,7 +1485,7 @@ end
 Julian constructor for VkImageMemoryRequirementsInfo2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageMemoryRequirementsInfo2(next, image)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageMemoryRequirementsInfo2(
         VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2,
         pNext,
@@ -1497,7 +1497,7 @@ end
 Julian constructor for VkImageSparseMemoryRequirementsInfo2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageSparseMemoryRequirementsInfo2(next, image)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageSparseMemoryRequirementsInfo2(
         VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2,
         pNext,
@@ -1509,7 +1509,7 @@ end
 Julian constructor for VkMemoryRequirements2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryRequirements2(next, memory_requirements)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryRequirements2(
         VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2,
         pNext,
@@ -1521,7 +1521,7 @@ end
 Julian constructor for VkSparseImageMemoryRequirements2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSparseImageMemoryRequirements2(next, memory_requirements)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSparseImageMemoryRequirements2(
         VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2,
         pNext,
@@ -1533,7 +1533,7 @@ end
 Julian constructor for VkPhysicalDeviceFeatures2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceFeatures2(next, features)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFeatures2(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2,
         pNext,
@@ -1545,7 +1545,7 @@ end
 Julian constructor for VkPhysicalDeviceProperties2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceProperties2(next, properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceProperties2(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2,
         pNext,
@@ -1557,7 +1557,7 @@ end
 Julian constructor for VkFormatProperties2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkFormatProperties2(next, format_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkFormatProperties2(VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2, pNext, format_properties)
 end
 
@@ -1565,7 +1565,7 @@ end
 Julian constructor for VkImageFormatProperties2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageFormatProperties2(next, image_format_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageFormatProperties2(
         VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2,
         pNext,
@@ -1577,7 +1577,7 @@ end
 Julian constructor for VkPhysicalDeviceImageFormatInfo2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceImageFormatInfo2(next, format, type, tiling, usage, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceImageFormatInfo2(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2,
         pNext,
@@ -1593,7 +1593,7 @@ end
 Julian constructor for VkQueueFamilyProperties2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkQueueFamilyProperties2(next, queue_family_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkQueueFamilyProperties2(
         VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2,
         pNext,
@@ -1605,7 +1605,7 @@ end
 Julian constructor for VkPhysicalDeviceMemoryProperties2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceMemoryProperties2(next, memory_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMemoryProperties2(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2,
         pNext,
@@ -1617,7 +1617,7 @@ end
 Julian constructor for VkSparseImageFormatProperties2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSparseImageFormatProperties2(next, properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSparseImageFormatProperties2(
         VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2,
         pNext,
@@ -1636,7 +1636,7 @@ function api.VkPhysicalDeviceSparseImageFormatInfo2(
     usage,
     tiling,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSparseImageFormatInfo2(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2,
         pNext,
@@ -1652,7 +1652,7 @@ end
 Julian constructor for VkPhysicalDevicePointClippingProperties. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDevicePointClippingProperties(next, point_clipping_behavior)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePointClippingProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES,
         pNext,
@@ -1664,9 +1664,9 @@ end
 Julian constructor for VkRenderPassInputAttachmentAspectCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkRenderPassInputAttachmentAspectCreateInfo(next, aspect_references)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _aspectReferenceCount = pointer_length(aspect_references)    # VulkanGen.ComputeLengthArgument
-    pAspectReferences = unsafe_pointer(aspect_references)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _aspectReferenceCount = pointer_length(aspect_references)
+    pAspectReferences = unsafe_pointer(aspect_references)
     api.VkRenderPassInputAttachmentAspectCreateInfo(
         VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO,
         pNext,
@@ -1679,7 +1679,7 @@ end
 Julian constructor for VkImageViewUsageCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageViewUsageCreateInfo(next, usage)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageViewUsageCreateInfo(
         VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO,
         pNext,
@@ -1691,7 +1691,7 @@ end
 Julian constructor for VkPipelineTessellationDomainOriginStateCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineTessellationDomainOriginStateCreateInfo(next, domain_origin)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineTessellationDomainOriginStateCreateInfo(
         VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO,
         pNext,
@@ -1708,13 +1708,13 @@ function api.VkRenderPassMultiviewCreateInfo(
     view_offsets,
     correlation_masks,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _subpassCount = pointer_length(view_masks)    # VulkanGen.ComputeLengthArgument
-    pViewMasks = unsafe_pointer(view_masks)    # VulkanGen.GeneratePointers
-    _dependencyCount = pointer_length(view_offsets)    # VulkanGen.ComputeLengthArgument
-    pViewOffsets = unsafe_pointer(view_offsets)    # VulkanGen.GeneratePointers
-    _correlationMaskCount = pointer_length(correlation_masks)    # VulkanGen.ComputeLengthArgument
-    pCorrelationMasks = unsafe_pointer(correlation_masks)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _subpassCount = pointer_length(view_masks)
+    pViewMasks = unsafe_pointer(view_masks)
+    _dependencyCount = pointer_length(view_offsets)
+    pViewOffsets = unsafe_pointer(view_offsets)
+    _correlationMaskCount = pointer_length(correlation_masks)
+    pCorrelationMasks = unsafe_pointer(correlation_masks)
     api.VkRenderPassMultiviewCreateInfo(
         VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO,
         pNext,
@@ -1736,7 +1736,7 @@ function api.VkPhysicalDeviceMultiviewFeatures(
     multiview_geometry_shader,
     multiview_tessellation_shader,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMultiviewFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES,
         pNext,
@@ -1754,7 +1754,7 @@ function api.VkPhysicalDeviceMultiviewProperties(
     max_multiview_view_count,
     max_multiview_instance_index,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMultiviewProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES,
         pNext,
@@ -1771,7 +1771,7 @@ function api.VkPhysicalDeviceVariablePointersFeatures(
     variable_pointers_storage_buffer,
     variable_pointers,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceVariablePointersFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES,
         pNext,
@@ -1784,7 +1784,7 @@ end
 Julian constructor for VkPhysicalDeviceProtectedMemoryFeatures. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceProtectedMemoryFeatures(next, protected_memory)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceProtectedMemoryFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES,
         pNext,
@@ -1796,7 +1796,7 @@ end
 Julian constructor for VkPhysicalDeviceProtectedMemoryProperties. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceProtectedMemoryProperties(next, protected_no_fault)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceProtectedMemoryProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES,
         pNext,
@@ -1808,7 +1808,7 @@ end
 Julian constructor for VkDeviceQueueInfo2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceQueueInfo2(next, flags, queue_family_index, queue_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceQueueInfo2(
         VK_STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2,
         pNext,
@@ -1822,7 +1822,7 @@ end
 Julian constructor for VkProtectedSubmitInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkProtectedSubmitInfo(next, protected_submit)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkProtectedSubmitInfo(
         VK_STRUCTURE_TYPE_PROTECTED_SUBMIT_INFO,
         pNext,
@@ -1844,7 +1844,7 @@ function api.VkSamplerYcbcrConversionCreateInfo(
     chroma_filter,
     force_explicit_reconstruction,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSamplerYcbcrConversionCreateInfo(
         VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO,
         pNext,
@@ -1863,7 +1863,7 @@ end
 Julian constructor for VkSamplerYcbcrConversionInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSamplerYcbcrConversionInfo(next, conversion)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSamplerYcbcrConversionInfo(
         VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO,
         pNext,
@@ -1875,7 +1875,7 @@ end
 Julian constructor for VkBindImagePlaneMemoryInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBindImagePlaneMemoryInfo(next, plane_aspect)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBindImagePlaneMemoryInfo(
         VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO,
         pNext,
@@ -1887,7 +1887,7 @@ end
 Julian constructor for VkImagePlaneMemoryRequirementsInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImagePlaneMemoryRequirementsInfo(next, plane_aspect)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImagePlaneMemoryRequirementsInfo(
         VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO,
         pNext,
@@ -1899,7 +1899,7 @@ end
 Julian constructor for VkPhysicalDeviceSamplerYcbcrConversionFeatures. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceSamplerYcbcrConversionFeatures(next, sampler_ycbcr_conversion)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSamplerYcbcrConversionFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES,
         pNext,
@@ -1914,7 +1914,7 @@ function api.VkSamplerYcbcrConversionImageFormatProperties(
     next,
     combined_image_sampler_descriptor_count,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSamplerYcbcrConversionImageFormatProperties(
         VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES,
         pNext,
@@ -1935,9 +1935,9 @@ function api.VkDescriptorUpdateTemplateCreateInfo(
     pipeline_layout,
     set,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _descriptorUpdateEntryCount = pointer_length(descriptor_update_entries)    # VulkanGen.ComputeLengthArgument
-    pDescriptorUpdateEntries = unsafe_pointer(descriptor_update_entries)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _descriptorUpdateEntryCount = pointer_length(descriptor_update_entries)
+    pDescriptorUpdateEntries = unsafe_pointer(descriptor_update_entries)
     api.VkDescriptorUpdateTemplateCreateInfo(
         VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO,
         pNext,
@@ -1956,7 +1956,7 @@ end
 Julian constructor for VkPhysicalDeviceExternalImageFormatInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceExternalImageFormatInfo(next, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceExternalImageFormatInfo(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO,
         pNext,
@@ -1968,7 +1968,7 @@ end
 Julian constructor for VkExternalImageFormatProperties. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExternalImageFormatProperties(next, external_memory_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalImageFormatProperties(
         VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES,
         pNext,
@@ -1980,7 +1980,7 @@ end
 Julian constructor for VkPhysicalDeviceExternalBufferInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceExternalBufferInfo(next, flags, usage, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceExternalBufferInfo(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO,
         pNext,
@@ -1994,7 +1994,7 @@ end
 Julian constructor for VkExternalBufferProperties. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExternalBufferProperties(next, external_memory_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalBufferProperties(
         VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES,
         pNext,
@@ -2013,10 +2013,10 @@ function api.VkPhysicalDeviceIDProperties(
     device_node_mask,
     device_luid_valid,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    deviceUUID = to_vk(NTuple{16,UInt8}, device_uuid)    # VulkanGen.TranslateVkTypesBack
-    driverUUID = to_vk(NTuple{16,UInt8}, driver_uuid)    # VulkanGen.TranslateVkTypesBack
-    deviceLUID = to_vk(NTuple{8,UInt8}, device_luid)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    deviceUUID = to_vk(NTuple{16,UInt8}, device_uuid)
+    driverUUID = to_vk(NTuple{16,UInt8}, driver_uuid)
+    deviceLUID = to_vk(NTuple{8,UInt8}, device_luid)
     api.VkPhysicalDeviceIDProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES,
         pNext,
@@ -2032,7 +2032,7 @@ end
 Julian constructor for VkExternalMemoryImageCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExternalMemoryImageCreateInfo(next, handle_types)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalMemoryImageCreateInfo(
         VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO,
         pNext,
@@ -2044,7 +2044,7 @@ end
 Julian constructor for VkExternalMemoryBufferCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExternalMemoryBufferCreateInfo(next, handle_types)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalMemoryBufferCreateInfo(
         VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO,
         pNext,
@@ -2056,7 +2056,7 @@ end
 Julian constructor for VkExportMemoryAllocateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportMemoryAllocateInfo(next, handle_types)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExportMemoryAllocateInfo(
         VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO,
         pNext,
@@ -2068,7 +2068,7 @@ end
 Julian constructor for VkPhysicalDeviceExternalFenceInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceExternalFenceInfo(next, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceExternalFenceInfo(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO,
         pNext,
@@ -2085,7 +2085,7 @@ function api.VkExternalFenceProperties(
     compatible_handle_types,
     external_fence_features,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalFenceProperties(
         VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES,
         pNext,
@@ -2099,7 +2099,7 @@ end
 Julian constructor for VkExportFenceCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportFenceCreateInfo(next, handle_types)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExportFenceCreateInfo(
         VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO,
         pNext,
@@ -2111,7 +2111,7 @@ end
 Julian constructor for VkExportSemaphoreCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportSemaphoreCreateInfo(next, handle_types)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExportSemaphoreCreateInfo(
         VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO,
         pNext,
@@ -2123,7 +2123,7 @@ end
 Julian constructor for VkPhysicalDeviceExternalSemaphoreInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceExternalSemaphoreInfo(next, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceExternalSemaphoreInfo(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO,
         pNext,
@@ -2140,7 +2140,7 @@ function api.VkExternalSemaphoreProperties(
     compatible_handle_types,
     external_semaphore_features,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalSemaphoreProperties(
         VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES,
         pNext,
@@ -2158,7 +2158,7 @@ function api.VkPhysicalDeviceMaintenance3Properties(
     max_per_set_descriptors,
     max_memory_allocation_size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMaintenance3Properties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES,
         pNext,
@@ -2171,7 +2171,7 @@ end
 Julian constructor for VkDescriptorSetLayoutSupport. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDescriptorSetLayoutSupport(next, supported)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDescriptorSetLayoutSupport(
         VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT,
         pNext,
@@ -2183,7 +2183,7 @@ end
 Julian constructor for VkPhysicalDeviceShaderDrawParametersFeatures. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceShaderDrawParametersFeatures(next, shader_draw_parameters)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderDrawParametersFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES,
         pNext,
@@ -2209,7 +2209,7 @@ function api.VkPhysicalDeviceVulkan11Features(
     sampler_ycbcr_conversion,
     shader_draw_parameters,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceVulkan11Features(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES,
         pNext,
@@ -2249,10 +2249,10 @@ function api.VkPhysicalDeviceVulkan11Properties(
     max_per_set_descriptors,
     max_memory_allocation_size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    deviceUUID = to_vk(NTuple{16,UInt8}, device_uuid)    # VulkanGen.TranslateVkTypesBack
-    driverUUID = to_vk(NTuple{16,UInt8}, driver_uuid)    # VulkanGen.TranslateVkTypesBack
-    deviceLUID = to_vk(NTuple{8,UInt8}, device_luid)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    deviceUUID = to_vk(NTuple{16,UInt8}, device_uuid)
+    driverUUID = to_vk(NTuple{16,UInt8}, driver_uuid)
+    deviceLUID = to_vk(NTuple{8,UInt8}, device_luid)
     api.VkPhysicalDeviceVulkan11Properties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES,
         pNext,
@@ -2327,7 +2327,7 @@ function api.VkPhysicalDeviceVulkan12Features(
     shader_output_layer,
     subgroup_broadcast_dynamic_id,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceVulkan12Features(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES,
         pNext,
@@ -2439,9 +2439,9 @@ function api.VkPhysicalDeviceVulkan12Properties(
     max_timeline_semaphore_value_difference,
     framebuffer_integer_color_sample_counts,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    driverName = to_vk(NTuple{256,UInt8}, driver_name)    # VulkanGen.TranslateVkTypesBack
-    driverInfo = to_vk(NTuple{256,UInt8}, driver_info)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    driverName = to_vk(NTuple{256,UInt8}, driver_name)
+    driverInfo = to_vk(NTuple{256,UInt8}, driver_info)
     api.VkPhysicalDeviceVulkan12Properties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES,
         pNext,
@@ -2504,9 +2504,9 @@ end
 Julian constructor for VkImageFormatListCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageFormatListCreateInfo(next, view_formats)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _viewFormatCount = pointer_length(view_formats)    # VulkanGen.ComputeLengthArgument
-    pViewFormats = unsafe_pointer(view_formats)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _viewFormatCount = pointer_length(view_formats)
+    pViewFormats = unsafe_pointer(view_formats)
     api.VkImageFormatListCreateInfo(
         VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO,
         pNext,
@@ -2530,7 +2530,7 @@ function api.VkAttachmentDescription2(
     initial_layout,
     final_layout,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAttachmentDescription2(
         VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2,
         pNext,
@@ -2550,7 +2550,7 @@ end
 Julian constructor for VkAttachmentReference2. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAttachmentReference2(next, attachment, layout, aspect_mask)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAttachmentReference2(
         VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2,
         pNext,
@@ -2574,15 +2574,15 @@ function api.VkSubpassDescription2(
     depth_stencil_attachment,
     preserve_attachments,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _inputAttachmentCount = pointer_length(input_attachments)    # VulkanGen.ComputeLengthArgument
-    pInputAttachments = unsafe_pointer(input_attachments)    # VulkanGen.GeneratePointers
-    _colorAttachmentCount = pointer_length(color_attachments)    # VulkanGen.ComputeLengthArgument
-    pColorAttachments = unsafe_pointer(color_attachments)    # VulkanGen.GeneratePointers
-    pResolveAttachments = unsafe_pointer(resolve_attachments)    # VulkanGen.GeneratePointers
-    pDepthStencilAttachment = unsafe_pointer(depth_stencil_attachment)    # VulkanGen.GeneratePointers
-    _preserveAttachmentCount = pointer_length(preserve_attachments)    # VulkanGen.ComputeLengthArgument
-    pPreserveAttachments = unsafe_pointer(preserve_attachments)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _inputAttachmentCount = pointer_length(input_attachments)
+    pInputAttachments = unsafe_pointer(input_attachments)
+    _colorAttachmentCount = pointer_length(color_attachments)
+    pColorAttachments = unsafe_pointer(color_attachments)
+    pResolveAttachments = unsafe_pointer(resolve_attachments)
+    pDepthStencilAttachment = unsafe_pointer(depth_stencil_attachment)
+    _preserveAttachmentCount = pointer_length(preserve_attachments)
+    pPreserveAttachments = unsafe_pointer(preserve_attachments)
     api.VkSubpassDescription2(
         VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2,
         pNext,
@@ -2614,7 +2614,7 @@ function api.VkSubpassDependency2(
     dependency_flags,
     view_offset,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSubpassDependency2(
         VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2,
         pNext,
@@ -2640,15 +2640,15 @@ function api.VkRenderPassCreateInfo2(
     dependencies,
     correlated_view_masks,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _attachmentCount = pointer_length(attachments)    # VulkanGen.ComputeLengthArgument
-    pAttachments = unsafe_pointer(attachments)    # VulkanGen.GeneratePointers
-    _subpassCount = pointer_length(subpasses)    # VulkanGen.ComputeLengthArgument
-    pSubpasses = unsafe_pointer(subpasses)    # VulkanGen.GeneratePointers
-    _dependencyCount = pointer_length(dependencies)    # VulkanGen.ComputeLengthArgument
-    pDependencies = unsafe_pointer(dependencies)    # VulkanGen.GeneratePointers
-    _correlatedViewMaskCount = pointer_length(correlated_view_masks)    # VulkanGen.ComputeLengthArgument
-    pCorrelatedViewMasks = unsafe_pointer(correlated_view_masks)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _attachmentCount = pointer_length(attachments)
+    pAttachments = unsafe_pointer(attachments)
+    _subpassCount = pointer_length(subpasses)
+    pSubpasses = unsafe_pointer(subpasses)
+    _dependencyCount = pointer_length(dependencies)
+    pDependencies = unsafe_pointer(dependencies)
+    _correlatedViewMaskCount = pointer_length(correlated_view_masks)
+    pCorrelatedViewMasks = unsafe_pointer(correlated_view_masks)
     api.VkRenderPassCreateInfo2(
         VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2,
         pNext,
@@ -2668,7 +2668,7 @@ end
 Julian constructor for VkSubpassBeginInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSubpassBeginInfo(next, contents)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSubpassBeginInfo(VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO, pNext, contents)
 end
 
@@ -2676,7 +2676,7 @@ end
 Julian constructor for VkSubpassEndInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSubpassEndInfo(next)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSubpassEndInfo(VK_STRUCTURE_TYPE_SUBPASS_END_INFO, pNext)
 end
 
@@ -2689,7 +2689,7 @@ function api.VkPhysicalDevice8BitStorageFeatures(
     uniform_and_storage_buffer_8_bit_access,
     storage_push_constant_8,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevice8BitStorageFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES,
         pNext,
@@ -2709,9 +2709,9 @@ function api.VkPhysicalDeviceDriverProperties(
     driver_info,
     conformance_version,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    driverName = to_vk(NTuple{256,UInt8}, driver_name)    # VulkanGen.TranslateVkTypesBack
-    driverInfo = to_vk(NTuple{256,UInt8}, driver_info)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    driverName = to_vk(NTuple{256,UInt8}, driver_name)
+    driverInfo = to_vk(NTuple{256,UInt8}, driver_info)
     api.VkPhysicalDeviceDriverProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES,
         pNext,
@@ -2730,7 +2730,7 @@ function api.VkPhysicalDeviceShaderAtomicInt64Features(
     shader_buffer_int_64_atomics,
     shader_shared_int_64_atomics,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderAtomicInt64Features(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES,
         pNext,
@@ -2743,7 +2743,7 @@ end
 Julian constructor for VkPhysicalDeviceShaderFloat16Int8Features. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceShaderFloat16Int8Features(next, shader_float_16, shader_int_8)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderFloat16Int8Features(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES,
         pNext,
@@ -2775,7 +2775,7 @@ function api.VkPhysicalDeviceFloatControlsProperties(
     shader_rounding_mode_rtz_float_32,
     shader_rounding_mode_rtz_float_64,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFloatControlsProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES,
         pNext,
@@ -2803,9 +2803,9 @@ end
 Julian constructor for VkDescriptorSetLayoutBindingFlagsCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDescriptorSetLayoutBindingFlagsCreateInfo(next, binding_flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _bindingCount = pointer_length(binding_flags)    # VulkanGen.ComputeLengthArgument
-    pBindingFlags = unsafe_pointer(binding_flags)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _bindingCount = pointer_length(binding_flags)
+    pBindingFlags = unsafe_pointer(binding_flags)
     api.VkDescriptorSetLayoutBindingFlagsCreateInfo(
         VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO,
         pNext,
@@ -2840,7 +2840,7 @@ function api.VkPhysicalDeviceDescriptorIndexingFeatures(
     descriptor_binding_variable_descriptor_count,
     runtime_descriptor_array,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDescriptorIndexingFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES,
         pNext,
@@ -2896,7 +2896,7 @@ function api.VkPhysicalDeviceDescriptorIndexingProperties(
     max_descriptor_set_update_after_bind_storage_images,
     max_descriptor_set_update_after_bind_input_attachments,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDescriptorIndexingProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES,
         pNext,
@@ -2930,9 +2930,9 @@ end
 Julian constructor for VkDescriptorSetVariableDescriptorCountAllocateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDescriptorSetVariableDescriptorCountAllocateInfo(next, descriptor_counts)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _descriptorSetCount = pointer_length(descriptor_counts)    # VulkanGen.ComputeLengthArgument
-    pDescriptorCounts = unsafe_pointer(descriptor_counts)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _descriptorSetCount = pointer_length(descriptor_counts)
+    pDescriptorCounts = unsafe_pointer(descriptor_counts)
     api.VkDescriptorSetVariableDescriptorCountAllocateInfo(
         VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO,
         pNext,
@@ -2948,7 +2948,7 @@ function api.VkDescriptorSetVariableDescriptorCountLayoutSupport(
     next,
     max_variable_descriptor_count,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDescriptorSetVariableDescriptorCountLayoutSupport(
         VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT,
         pNext,
@@ -2965,8 +2965,8 @@ function api.VkSubpassDescriptionDepthStencilResolve(
     stencil_resolve_mode,
     depth_stencil_resolve_attachment,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pDepthStencilResolveAttachment = unsafe_pointer(depth_stencil_resolve_attachment)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pDepthStencilResolveAttachment = unsafe_pointer(depth_stencil_resolve_attachment)
     api.VkSubpassDescriptionDepthStencilResolve(
         VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE,
         pNext,
@@ -2986,7 +2986,7 @@ function api.VkPhysicalDeviceDepthStencilResolveProperties(
     independent_resolve_none,
     independent_resolve,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDepthStencilResolveProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES,
         pNext,
@@ -3001,7 +3001,7 @@ end
 Julian constructor for VkPhysicalDeviceScalarBlockLayoutFeatures. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceScalarBlockLayoutFeatures(next, scalar_block_layout)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceScalarBlockLayoutFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES,
         pNext,
@@ -3013,7 +3013,7 @@ end
 Julian constructor for VkImageStencilUsageCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageStencilUsageCreateInfo(next, stencil_usage)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageStencilUsageCreateInfo(
         VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO,
         pNext,
@@ -3025,7 +3025,7 @@ end
 Julian constructor for VkSamplerReductionModeCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSamplerReductionModeCreateInfo(next, reduction_mode)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSamplerReductionModeCreateInfo(
         VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO,
         pNext,
@@ -3041,7 +3041,7 @@ function api.VkPhysicalDeviceSamplerFilterMinmaxProperties(
     filter_minmax_single_component_formats,
     filter_minmax_image_component_mapping,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSamplerFilterMinmaxProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES,
         pNext,
@@ -3059,7 +3059,7 @@ function api.VkPhysicalDeviceVulkanMemoryModelFeatures(
     vulkan_memory_model_device_scope,
     vulkan_memory_model_availability_visibility_chains,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceVulkanMemoryModelFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES,
         pNext,
@@ -3073,7 +3073,7 @@ end
 Julian constructor for VkPhysicalDeviceImagelessFramebufferFeatures. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceImagelessFramebufferFeatures(next, imageless_framebuffer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceImagelessFramebufferFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES,
         pNext,
@@ -3093,9 +3093,9 @@ function api.VkFramebufferAttachmentImageInfo(
     layer_count,
     view_formats,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _viewFormatCount = pointer_length(view_formats)    # VulkanGen.ComputeLengthArgument
-    pViewFormats = unsafe_pointer(view_formats)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _viewFormatCount = pointer_length(view_formats)
+    pViewFormats = unsafe_pointer(view_formats)
     api.VkFramebufferAttachmentImageInfo(
         VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO,
         pNext,
@@ -3113,9 +3113,9 @@ end
 Julian constructor for VkFramebufferAttachmentsCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkFramebufferAttachmentsCreateInfo(next, attachment_image_infos)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _attachmentImageInfoCount = pointer_length(attachment_image_infos)    # VulkanGen.ComputeLengthArgument
-    pAttachmentImageInfos = unsafe_pointer(attachment_image_infos)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _attachmentImageInfoCount = pointer_length(attachment_image_infos)
+    pAttachmentImageInfos = unsafe_pointer(attachment_image_infos)
     api.VkFramebufferAttachmentsCreateInfo(
         VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO,
         pNext,
@@ -3128,9 +3128,9 @@ end
 Julian constructor for VkRenderPassAttachmentBeginInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkRenderPassAttachmentBeginInfo(next, attachments)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _attachmentCount = pointer_length(attachments)    # VulkanGen.ComputeLengthArgument
-    pAttachments = unsafe_pointer(attachments)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _attachmentCount = pointer_length(attachments)
+    pAttachments = unsafe_pointer(attachments)
     api.VkRenderPassAttachmentBeginInfo(
         VK_STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO,
         pNext,
@@ -3146,7 +3146,7 @@ function api.VkPhysicalDeviceUniformBufferStandardLayoutFeatures(
     next,
     uniform_buffer_standard_layout,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceUniformBufferStandardLayoutFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES,
         pNext,
@@ -3161,7 +3161,7 @@ function api.VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures(
     next,
     shader_subgroup_extended_types,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES,
         pNext,
@@ -3176,7 +3176,7 @@ function api.VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures(
     next,
     separate_depth_stencil_layouts,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES,
         pNext,
@@ -3188,7 +3188,7 @@ end
 Julian constructor for VkAttachmentReferenceStencilLayout. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAttachmentReferenceStencilLayout(next, stencil_layout)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAttachmentReferenceStencilLayout(
         VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT,
         pNext,
@@ -3204,7 +3204,7 @@ function api.VkAttachmentDescriptionStencilLayout(
     stencil_initial_layout,
     stencil_final_layout,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAttachmentDescriptionStencilLayout(
         VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT,
         pNext,
@@ -3217,7 +3217,7 @@ end
 Julian constructor for VkPhysicalDeviceHostQueryResetFeatures. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceHostQueryResetFeatures(next, host_query_reset)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceHostQueryResetFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES,
         pNext,
@@ -3229,7 +3229,7 @@ end
 Julian constructor for VkPhysicalDeviceTimelineSemaphoreFeatures. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceTimelineSemaphoreFeatures(next, timeline_semaphore)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceTimelineSemaphoreFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES,
         pNext,
@@ -3244,7 +3244,7 @@ function api.VkPhysicalDeviceTimelineSemaphoreProperties(
     next,
     max_timeline_semaphore_value_difference,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceTimelineSemaphoreProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES,
         pNext,
@@ -3256,7 +3256,7 @@ end
 Julian constructor for VkSemaphoreTypeCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSemaphoreTypeCreateInfo(next, semaphore_type, initial_value)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSemaphoreTypeCreateInfo(
         VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO,
         pNext,
@@ -3273,11 +3273,11 @@ function api.VkTimelineSemaphoreSubmitInfo(
     wait_semaphore_values,
     signal_semaphore_values,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _waitSemaphoreValueCount = pointer_length(wait_semaphore_values)    # VulkanGen.ComputeLengthArgument
-    pWaitSemaphoreValues = unsafe_pointer(wait_semaphore_values)    # VulkanGen.GeneratePointers
-    _signalSemaphoreValueCount = pointer_length(signal_semaphore_values)    # VulkanGen.ComputeLengthArgument
-    pSignalSemaphoreValues = unsafe_pointer(signal_semaphore_values)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _waitSemaphoreValueCount = pointer_length(wait_semaphore_values)
+    pWaitSemaphoreValues = unsafe_pointer(wait_semaphore_values)
+    _signalSemaphoreValueCount = pointer_length(signal_semaphore_values)
+    pSignalSemaphoreValues = unsafe_pointer(signal_semaphore_values)
     api.VkTimelineSemaphoreSubmitInfo(
         VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO,
         pNext,
@@ -3292,10 +3292,10 @@ end
 Julian constructor for VkSemaphoreWaitInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSemaphoreWaitInfo(next, flags, semaphores, values)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _semaphoreCount = pointer_length(semaphores)    # VulkanGen.ComputeLengthArgument
-    pSemaphores = unsafe_pointer(semaphores)    # VulkanGen.GeneratePointers
-    pValues = unsafe_pointer(values)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _semaphoreCount = pointer_length(semaphores)
+    pSemaphores = unsafe_pointer(semaphores)
+    pValues = unsafe_pointer(values)
     api.VkSemaphoreWaitInfo(
         VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO,
         pNext,
@@ -3310,7 +3310,7 @@ end
 Julian constructor for VkSemaphoreSignalInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSemaphoreSignalInfo(next, semaphore, value)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSemaphoreSignalInfo(
         VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO,
         pNext,
@@ -3328,7 +3328,7 @@ function api.VkPhysicalDeviceBufferDeviceAddressFeatures(
     buffer_device_address_capture_replay,
     buffer_device_address_multi_device,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceBufferDeviceAddressFeatures(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES,
         pNext,
@@ -3342,7 +3342,7 @@ end
 Julian constructor for VkBufferDeviceAddressInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBufferDeviceAddressInfo(next, buffer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBufferDeviceAddressInfo(
         VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO,
         pNext,
@@ -3354,7 +3354,7 @@ end
 Julian constructor for VkBufferOpaqueCaptureAddressCreateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBufferOpaqueCaptureAddressCreateInfo(next, opaque_capture_address)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBufferOpaqueCaptureAddressCreateInfo(
         VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO,
         pNext,
@@ -3366,7 +3366,7 @@ end
 Julian constructor for VkMemoryOpaqueCaptureAddressAllocateInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryOpaqueCaptureAddressAllocateInfo(next, opaque_capture_address)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryOpaqueCaptureAddressAllocateInfo(
         VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO,
         pNext,
@@ -3378,7 +3378,7 @@ end
 Julian constructor for VkDeviceMemoryOpaqueCaptureAddressInfo. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceMemoryOpaqueCaptureAddressInfo(next, memory)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceMemoryOpaqueCaptureAddressInfo(
         VK_STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO,
         pNext,
@@ -3407,9 +3407,9 @@ function api.VkSwapchainCreateInfoKHR(
     clipped,
     old_swapchain,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _queueFamilyIndexCount = pointer_length(queue_family_indices)    # VulkanGen.ComputeLengthArgument
-    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _queueFamilyIndexCount = pointer_length(queue_family_indices)
+    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)
     api.VkSwapchainCreateInfoKHR(
         VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR,
         pNext,
@@ -3436,13 +3436,13 @@ end
 Julian constructor for VkPresentInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPresentInfoKHR(next, wait_semaphores, swapchains, image_indices, results)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _waitSemaphoreCount = pointer_length(wait_semaphores)    # VulkanGen.ComputeLengthArgument
-    pWaitSemaphores = unsafe_pointer(wait_semaphores)    # VulkanGen.GeneratePointers
-    _swapchainCount = pointer_length(swapchains)    # VulkanGen.ComputeLengthArgument
-    pSwapchains = unsafe_pointer(swapchains)    # VulkanGen.GeneratePointers
-    pImageIndices = unsafe_pointer(image_indices)    # VulkanGen.GeneratePointers
-    pResults = unsafe_pointer(results)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _waitSemaphoreCount = pointer_length(wait_semaphores)
+    pWaitSemaphores = unsafe_pointer(wait_semaphores)
+    _swapchainCount = pointer_length(swapchains)
+    pSwapchains = unsafe_pointer(swapchains)
+    pImageIndices = unsafe_pointer(image_indices)
+    pResults = unsafe_pointer(results)
     api.VkPresentInfoKHR(
         VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
         pNext,
@@ -3459,7 +3459,7 @@ end
 Julian constructor for VkImageSwapchainCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageSwapchainCreateInfoKHR(next, swapchain)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageSwapchainCreateInfoKHR(
         VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR,
         pNext,
@@ -3471,7 +3471,7 @@ end
 Julian constructor for VkBindImageMemorySwapchainInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBindImageMemorySwapchainInfoKHR(next, swapchain, image_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBindImageMemorySwapchainInfoKHR(
         VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR,
         pNext,
@@ -3491,7 +3491,7 @@ function api.VkAcquireNextImageInfoKHR(
     fence,
     device_mask,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAcquireNextImageInfoKHR(
         VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR,
         pNext,
@@ -3507,7 +3507,7 @@ end
 Julian constructor for VkDeviceGroupPresentCapabilitiesKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceGroupPresentCapabilitiesKHR(next, present_mask, modes)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceGroupPresentCapabilitiesKHR(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR,
         pNext,
@@ -3520,9 +3520,9 @@ end
 Julian constructor for VkDeviceGroupPresentInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceGroupPresentInfoKHR(next, device_masks, mode)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _swapchainCount = pointer_length(device_masks)    # VulkanGen.ComputeLengthArgument
-    pDeviceMasks = unsafe_pointer(device_masks)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _swapchainCount = pointer_length(device_masks)
+    pDeviceMasks = unsafe_pointer(device_masks)
     api.VkDeviceGroupPresentInfoKHR(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR,
         pNext,
@@ -3536,7 +3536,7 @@ end
 Julian constructor for VkDeviceGroupSwapchainCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceGroupSwapchainCreateInfoKHR(next, modes)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceGroupSwapchainCreateInfoKHR(
         VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR,
         pNext,
@@ -3548,7 +3548,7 @@ end
 Julian constructor for VkDisplayModeCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayModeCreateInfoKHR(next, flags, parameters)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayModeCreateInfoKHR(
         VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR,
         pNext,
@@ -3571,7 +3571,7 @@ function api.VkDisplaySurfaceCreateInfoKHR(
     alpha_mode,
     image_extent,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplaySurfaceCreateInfoKHR(
         VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR,
         pNext,
@@ -3590,7 +3590,7 @@ end
 Julian constructor for VkDisplayPresentInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayPresentInfoKHR(next, src_rect, dst_rect, persistent)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayPresentInfoKHR(
         VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR,
         pNext,
@@ -3604,7 +3604,7 @@ end
 Julian constructor for VkImportMemoryFdInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportMemoryFdInfoKHR(next, handle_type, fd)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportMemoryFdInfoKHR(
         VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR,
         pNext,
@@ -3617,7 +3617,7 @@ end
 Julian constructor for VkMemoryFdPropertiesKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryFdPropertiesKHR(next, memory_type_bits)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryFdPropertiesKHR(
         VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR,
         pNext,
@@ -3629,7 +3629,7 @@ end
 Julian constructor for VkMemoryGetFdInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryGetFdInfoKHR(next, memory, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryGetFdInfoKHR(
         VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR,
         pNext,
@@ -3642,7 +3642,7 @@ end
 Julian constructor for VkImportSemaphoreFdInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportSemaphoreFdInfoKHR(next, semaphore, flags, handle_type, fd)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportSemaphoreFdInfoKHR(
         VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR,
         pNext,
@@ -3657,7 +3657,7 @@ end
 Julian constructor for VkSemaphoreGetFdInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSemaphoreGetFdInfoKHR(next, semaphore, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSemaphoreGetFdInfoKHR(
         VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR,
         pNext,
@@ -3670,7 +3670,7 @@ end
 Julian constructor for VkPhysicalDevicePushDescriptorPropertiesKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDevicePushDescriptorPropertiesKHR(next, max_push_descriptors)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePushDescriptorPropertiesKHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR,
         pNext,
@@ -3682,8 +3682,8 @@ end
 Julian constructor for VkPresentRegionKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPresentRegionKHR(rectangles)
-    _rectangleCount = pointer_length(rectangles)    # VulkanGen.ComputeLengthArgument
-    pRectangles = unsafe_pointer(rectangles)    # VulkanGen.GeneratePointers
+    _rectangleCount = pointer_length(rectangles)
+    pRectangles = unsafe_pointer(rectangles)
     api.VkPresentRegionKHR(_rectangleCount, pRectangles)
 end
 
@@ -3691,9 +3691,9 @@ end
 Julian constructor for VkPresentRegionsKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPresentRegionsKHR(next, regions)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _swapchainCount = pointer_length(regions)    # VulkanGen.ComputeLengthArgument
-    pRegions = unsafe_pointer(regions)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _swapchainCount = pointer_length(regions)
+    pRegions = unsafe_pointer(regions)
     api.VkPresentRegionsKHR(
         VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR,
         pNext,
@@ -3709,7 +3709,7 @@ function api.VkSharedPresentSurfaceCapabilitiesKHR(
     next,
     shared_present_supported_usage_flags,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSharedPresentSurfaceCapabilitiesKHR(
         VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR,
         pNext,
@@ -3721,7 +3721,7 @@ end
 Julian constructor for VkImportFenceFdInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportFenceFdInfoKHR(next, fence, flags, handle_type, fd)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportFenceFdInfoKHR(
         VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR,
         pNext,
@@ -3736,7 +3736,7 @@ end
 Julian constructor for VkFenceGetFdInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkFenceGetFdInfoKHR(next, fence, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkFenceGetFdInfoKHR(
         VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR,
         pNext,
@@ -3753,7 +3753,7 @@ function api.VkPhysicalDevicePerformanceQueryFeaturesKHR(
     performance_counter_query_pools,
     performance_counter_multiple_query_pools,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePerformanceQueryFeaturesKHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR,
         pNext,
@@ -3769,7 +3769,7 @@ function api.VkPhysicalDevicePerformanceQueryPropertiesKHR(
     next,
     allow_command_buffer_query_copies,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePerformanceQueryPropertiesKHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR,
         pNext,
@@ -3781,8 +3781,8 @@ end
 Julian constructor for VkPerformanceCounterKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPerformanceCounterKHR(next, unit, scope, storage, uuid)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    uuid = to_vk(NTuple{16,UInt8}, uuid)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    uuid = to_vk(NTuple{16,UInt8}, uuid)
     api.VkPerformanceCounterKHR(
         VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR,
         pNext,
@@ -3797,10 +3797,10 @@ end
 Julian constructor for VkPerformanceCounterDescriptionKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPerformanceCounterDescriptionKHR(next, flags, name, category, description)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    name = to_vk(NTuple{256,UInt8}, name)    # VulkanGen.TranslateVkTypesBack
-    category = to_vk(NTuple{256,UInt8}, category)    # VulkanGen.TranslateVkTypesBack
-    description = to_vk(NTuple{256,UInt8}, description)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    name = to_vk(NTuple{256,UInt8}, name)
+    category = to_vk(NTuple{256,UInt8}, category)
+    description = to_vk(NTuple{256,UInt8}, description)
     api.VkPerformanceCounterDescriptionKHR(
         VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR,
         pNext,
@@ -3815,9 +3815,9 @@ end
 Julian constructor for VkQueryPoolPerformanceCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkQueryPoolPerformanceCreateInfoKHR(next, queue_family_index, counter_indices)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _counterIndexCount = pointer_length(counter_indices)    # VulkanGen.ComputeLengthArgument
-    pCounterIndices = unsafe_pointer(counter_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _counterIndexCount = pointer_length(counter_indices)
+    pCounterIndices = unsafe_pointer(counter_indices)
     api.VkQueryPoolPerformanceCreateInfoKHR(
         VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR,
         pNext,
@@ -3831,7 +3831,7 @@ end
 Julian constructor for VkAcquireProfilingLockInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAcquireProfilingLockInfoKHR(next, flags, timeout)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAcquireProfilingLockInfoKHR(
         VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR,
         pNext,
@@ -3844,7 +3844,7 @@ end
 Julian constructor for VkPerformanceQuerySubmitInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPerformanceQuerySubmitInfoKHR(next, counter_pass_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPerformanceQuerySubmitInfoKHR(
         VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR,
         pNext,
@@ -3856,7 +3856,7 @@ end
 Julian constructor for VkPhysicalDeviceSurfaceInfo2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceSurfaceInfo2KHR(next, surface)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSurfaceInfo2KHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR,
         pNext,
@@ -3868,7 +3868,7 @@ end
 Julian constructor for VkSurfaceCapabilities2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSurfaceCapabilities2KHR(next, surface_capabilities)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSurfaceCapabilities2KHR(
         VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR,
         pNext,
@@ -3880,7 +3880,7 @@ end
 Julian constructor for VkSurfaceFormat2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSurfaceFormat2KHR(next, surface_format)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSurfaceFormat2KHR(VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR, pNext, surface_format)
 end
 
@@ -3888,7 +3888,7 @@ end
 Julian constructor for VkDisplayProperties2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayProperties2KHR(next, display_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayProperties2KHR(
         VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR,
         pNext,
@@ -3900,7 +3900,7 @@ end
 Julian constructor for VkDisplayPlaneProperties2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayPlaneProperties2KHR(next, display_plane_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayPlaneProperties2KHR(
         VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR,
         pNext,
@@ -3912,7 +3912,7 @@ end
 Julian constructor for VkDisplayModeProperties2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayModeProperties2KHR(next, display_mode_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayModeProperties2KHR(
         VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR,
         pNext,
@@ -3924,7 +3924,7 @@ end
 Julian constructor for VkDisplayPlaneInfo2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayPlaneInfo2KHR(next, mode, plane_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayPlaneInfo2KHR(
         VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR,
         pNext,
@@ -3937,7 +3937,7 @@ end
 Julian constructor for VkDisplayPlaneCapabilities2KHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayPlaneCapabilities2KHR(next, capabilities)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayPlaneCapabilities2KHR(
         VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR,
         pNext,
@@ -3953,7 +3953,7 @@ function api.VkPhysicalDeviceShaderClockFeaturesKHR(
     shader_subgroup_clock,
     shader_device_clock,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderClockFeaturesKHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR,
         pNext,
@@ -3966,7 +3966,7 @@ end
 Julian constructor for VkSurfaceProtectedCapabilitiesKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSurfaceProtectedCapabilitiesKHR(next, supports_protected)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSurfaceProtectedCapabilitiesKHR(
         VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR,
         pNext,
@@ -3981,7 +3981,7 @@ function api.VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR(
     next,
     pipeline_executable_info,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR,
         pNext,
@@ -3993,7 +3993,7 @@ end
 Julian constructor for VkPipelineInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineInfoKHR(next, pipeline)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineInfoKHR(VK_STRUCTURE_TYPE_PIPELINE_INFO_KHR, pNext, pipeline)
 end
 
@@ -4007,9 +4007,9 @@ function api.VkPipelineExecutablePropertiesKHR(
     description,
     subgroup_size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    name = to_vk(NTuple{256,UInt8}, name)    # VulkanGen.TranslateVkTypesBack
-    description = to_vk(NTuple{256,UInt8}, description)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    name = to_vk(NTuple{256,UInt8}, name)
+    description = to_vk(NTuple{256,UInt8}, description)
     api.VkPipelineExecutablePropertiesKHR(
         VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR,
         pNext,
@@ -4024,7 +4024,7 @@ end
 Julian constructor for VkPipelineExecutableInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineExecutableInfoKHR(next, pipeline, executable_index)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineExecutableInfoKHR(
         VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR,
         pNext,
@@ -4037,9 +4037,9 @@ end
 Julian constructor for VkPipelineExecutableStatisticKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineExecutableStatisticKHR(next, name, description, format, value)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    name = to_vk(NTuple{256,UInt8}, name)    # VulkanGen.TranslateVkTypesBack
-    description = to_vk(NTuple{256,UInt8}, description)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    name = to_vk(NTuple{256,UInt8}, name)
+    description = to_vk(NTuple{256,UInt8}, description)
     api.VkPipelineExecutableStatisticKHR(
         VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR,
         pNext,
@@ -4060,11 +4060,11 @@ function api.VkPipelineExecutableInternalRepresentationKHR(
     is_text,
     data,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    name = to_vk(NTuple{256,UInt8}, name)    # VulkanGen.TranslateVkTypesBack
-    description = to_vk(NTuple{256,UInt8}, description)    # VulkanGen.TranslateVkTypesBack
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
-    pData = unsafe_pointer(data)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    name = to_vk(NTuple{256,UInt8}, name)
+    description = to_vk(NTuple{256,UInt8}, description)
+    _dataSize = pointer_length(data)
+    pData = unsafe_pointer(data)
     api.VkPipelineExecutableInternalRepresentationKHR(
         VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR,
         pNext,
@@ -4080,8 +4080,8 @@ end
 Julian constructor for VkDebugReportCallbackCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDebugReportCallbackCreateInfoEXT(next, flags, callback, user_data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pUserData = unsafe_pointer(user_data)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pUserData = unsafe_pointer(user_data)
     api.VkDebugReportCallbackCreateInfoEXT(
         VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT,
         pNext,
@@ -4095,7 +4095,7 @@ end
 Julian constructor for VkPipelineRasterizationStateRasterizationOrderAMD. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineRasterizationStateRasterizationOrderAMD(next, rasterization_order)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineRasterizationStateRasterizationOrderAMD(
         VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD,
         pNext,
@@ -4107,8 +4107,8 @@ end
 Julian constructor for VkDebugMarkerObjectNameInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDebugMarkerObjectNameInfoEXT(next, object_type, object, object_name)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pObjectName = unsafe_pointer(object_name)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pObjectName = unsafe_pointer(object_name)
     api.VkDebugMarkerObjectNameInfoEXT(
         VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT,
         pNext,
@@ -4122,9 +4122,9 @@ end
 Julian constructor for VkDebugMarkerObjectTagInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDebugMarkerObjectTagInfoEXT(next, object_type, object, tag_name, tag)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _tagSize = pointer_length(tag)    # VulkanGen.ComputeLengthArgument
-    pTag = unsafe_pointer(tag)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _tagSize = pointer_length(tag)
+    pTag = unsafe_pointer(tag)
     api.VkDebugMarkerObjectTagInfoEXT(
         VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT,
         pNext,
@@ -4140,8 +4140,8 @@ end
 Julian constructor for VkDebugMarkerMarkerInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDebugMarkerMarkerInfoEXT(next, marker_name, color)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pMarkerName = unsafe_pointer(marker_name)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pMarkerName = unsafe_pointer(marker_name)
     api.VkDebugMarkerMarkerInfoEXT(
         VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT,
         pNext,
@@ -4154,7 +4154,7 @@ end
 Julian constructor for VkDedicatedAllocationImageCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDedicatedAllocationImageCreateInfoNV(next, dedicated_allocation)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDedicatedAllocationImageCreateInfoNV(
         VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV,
         pNext,
@@ -4166,7 +4166,7 @@ end
 Julian constructor for VkDedicatedAllocationBufferCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDedicatedAllocationBufferCreateInfoNV(next, dedicated_allocation)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDedicatedAllocationBufferCreateInfoNV(
         VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV,
         pNext,
@@ -4178,7 +4178,7 @@ end
 Julian constructor for VkDedicatedAllocationMemoryAllocateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDedicatedAllocationMemoryAllocateInfoNV(next, image, buffer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDedicatedAllocationMemoryAllocateInfoNV(
         VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV,
         pNext,
@@ -4195,7 +4195,7 @@ function api.VkPhysicalDeviceTransformFeedbackFeaturesEXT(
     transform_feedback,
     geometry_streams,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceTransformFeedbackFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT,
         pNext,
@@ -4220,7 +4220,7 @@ function api.VkPhysicalDeviceTransformFeedbackPropertiesEXT(
     transform_feedback_rasterization_stream_select,
     transform_feedback_draw,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceTransformFeedbackPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT,
         pNext,
@@ -4245,7 +4245,7 @@ function api.VkPipelineRasterizationStateStreamCreateInfoEXT(
     flags,
     rasterization_stream,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineRasterizationStateStreamCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT,
         pNext,
@@ -4258,7 +4258,7 @@ end
 Julian constructor for VkImageViewHandleInfoNVX. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageViewHandleInfoNVX(next, image_view, descriptor_type, sampler)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageViewHandleInfoNVX(
         VK_STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX,
         pNext,
@@ -4272,7 +4272,7 @@ end
 Julian constructor for VkImageViewAddressPropertiesNVX. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageViewAddressPropertiesNVX(next, device_address, size)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageViewAddressPropertiesNVX(
         VK_STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX,
         pNext,
@@ -4288,7 +4288,7 @@ function api.VkTextureLODGatherFormatPropertiesAMD(
     next,
     supports_texture_gather_lod_bias_amd,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkTextureLODGatherFormatPropertiesAMD(
         VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD,
         pNext,
@@ -4300,7 +4300,7 @@ end
 Julian constructor for VkPhysicalDeviceCornerSampledImageFeaturesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceCornerSampledImageFeaturesNV(next, corner_sampled_image)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceCornerSampledImageFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV,
         pNext,
@@ -4312,7 +4312,7 @@ end
 Julian constructor for VkExternalMemoryImageCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExternalMemoryImageCreateInfoNV(next, handle_types)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalMemoryImageCreateInfoNV(
         VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV,
         pNext,
@@ -4324,7 +4324,7 @@ end
 Julian constructor for VkExportMemoryAllocateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportMemoryAllocateInfoNV(next, handle_types)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExportMemoryAllocateInfoNV(
         VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV,
         pNext,
@@ -4336,9 +4336,9 @@ end
 Julian constructor for VkValidationFlagsEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkValidationFlagsEXT(next, disabled_validation_checks)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _disabledValidationCheckCount = pointer_length(disabled_validation_checks)    # VulkanGen.ComputeLengthArgument
-    pDisabledValidationChecks = unsafe_pointer(disabled_validation_checks)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _disabledValidationCheckCount = pointer_length(disabled_validation_checks)
+    pDisabledValidationChecks = unsafe_pointer(disabled_validation_checks)
     api.VkValidationFlagsEXT(
         VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT,
         pNext,
@@ -4354,7 +4354,7 @@ function api.VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(
     next,
     texture_compression_astc_hdr,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT,
         pNext,
@@ -4366,7 +4366,7 @@ end
 Julian constructor for VkImageViewASTCDecodeModeEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageViewASTCDecodeModeEXT(next, decode_mode)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageViewASTCDecodeModeEXT(
         VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT,
         pNext,
@@ -4378,7 +4378,7 @@ end
 Julian constructor for VkPhysicalDeviceASTCDecodeFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceASTCDecodeFeaturesEXT(next, decode_mode_shared_exponent)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceASTCDecodeFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT,
         pNext,
@@ -4390,7 +4390,7 @@ end
 Julian constructor for VkConditionalRenderingBeginInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkConditionalRenderingBeginInfoEXT(next, buffer, offset, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkConditionalRenderingBeginInfoEXT(
         VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT,
         pNext,
@@ -4408,7 +4408,7 @@ function api.VkPhysicalDeviceConditionalRenderingFeaturesEXT(
     conditional_rendering,
     inherited_conditional_rendering,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceConditionalRenderingFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT,
         pNext,
@@ -4424,7 +4424,7 @@ function api.VkCommandBufferInheritanceConditionalRenderingInfoEXT(
     next,
     conditional_rendering_enable,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCommandBufferInheritanceConditionalRenderingInfoEXT(
         VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT,
         pNext,
@@ -4440,9 +4440,9 @@ function api.VkPipelineViewportWScalingStateCreateInfoNV(
     viewport_w_scaling_enable,
     viewport_w_scalings,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _viewportCount = pointer_length(viewport_w_scalings)    # VulkanGen.ComputeLengthArgument
-    pViewportWScalings = unsafe_pointer(viewport_w_scalings)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _viewportCount = pointer_length(viewport_w_scalings)
+    pViewportWScalings = unsafe_pointer(viewport_w_scalings)
     api.VkPipelineViewportWScalingStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV,
         pNext,
@@ -4469,7 +4469,7 @@ function api.VkSurfaceCapabilities2EXT(
     supported_usage_flags,
     supported_surface_counters,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSurfaceCapabilities2EXT(
         VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT,
         pNext,
@@ -4491,7 +4491,7 @@ end
 Julian constructor for VkDisplayPowerInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayPowerInfoEXT(next, power_state)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayPowerInfoEXT(VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT, pNext, power_state)
 end
 
@@ -4499,7 +4499,7 @@ end
 Julian constructor for VkDeviceEventInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceEventInfoEXT(next, device_event)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceEventInfoEXT(VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT, pNext, device_event)
 end
 
@@ -4507,7 +4507,7 @@ end
 Julian constructor for VkDisplayEventInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayEventInfoEXT(next, display_event)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayEventInfoEXT(
         VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT,
         pNext,
@@ -4519,7 +4519,7 @@ end
 Julian constructor for VkSwapchainCounterCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSwapchainCounterCreateInfoEXT(next, surface_counters)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSwapchainCounterCreateInfoEXT(
         VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT,
         pNext,
@@ -4531,9 +4531,9 @@ end
 Julian constructor for VkPresentTimesInfoGOOGLE. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPresentTimesInfoGOOGLE(next, times)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _swapchainCount = pointer_length(times)    # VulkanGen.ComputeLengthArgument
-    pTimes = unsafe_pointer(times)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _swapchainCount = pointer_length(times)
+    pTimes = unsafe_pointer(times)
     api.VkPresentTimesInfoGOOGLE(
         VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE,
         pNext,
@@ -4549,7 +4549,7 @@ function api.VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(
     next,
     per_view_position_all_components,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX,
         pNext,
@@ -4561,9 +4561,9 @@ end
 Julian constructor for VkPipelineViewportSwizzleStateCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineViewportSwizzleStateCreateInfoNV(next, flags, viewport_swizzles)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _viewportCount = pointer_length(viewport_swizzles)    # VulkanGen.ComputeLengthArgument
-    pViewportSwizzles = unsafe_pointer(viewport_swizzles)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _viewportCount = pointer_length(viewport_swizzles)
+    pViewportSwizzles = unsafe_pointer(viewport_swizzles)
     api.VkPipelineViewportSwizzleStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV,
         pNext,
@@ -4577,7 +4577,7 @@ end
 Julian constructor for VkPhysicalDeviceDiscardRectanglePropertiesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceDiscardRectanglePropertiesEXT(next, max_discard_rectangles)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDiscardRectanglePropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT,
         pNext,
@@ -4594,9 +4594,9 @@ function api.VkPipelineDiscardRectangleStateCreateInfoEXT(
     discard_rectangle_mode,
     discard_rectangles,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _discardRectangleCount = pointer_length(discard_rectangles)    # VulkanGen.ComputeLengthArgument
-    pDiscardRectangles = unsafe_pointer(discard_rectangles)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _discardRectangleCount = pointer_length(discard_rectangles)
+    pDiscardRectangles = unsafe_pointer(discard_rectangles)
     api.VkPipelineDiscardRectangleStateCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT,
         pNext,
@@ -4622,7 +4622,7 @@ function api.VkPhysicalDeviceConservativeRasterizationPropertiesEXT(
     fully_covered_fragment_shader_input_variable,
     conservative_rasterization_post_depth_coverage,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceConservativeRasterizationPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT,
         pNext,
@@ -4647,7 +4647,7 @@ function api.VkPipelineRasterizationConservativeStateCreateInfoEXT(
     conservative_rasterization_mode,
     extra_primitive_overestimation_size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineRasterizationConservativeStateCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT,
         pNext,
@@ -4661,7 +4661,7 @@ end
 Julian constructor for VkPhysicalDeviceDepthClipEnableFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceDepthClipEnableFeaturesEXT(next, depth_clip_enable)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDepthClipEnableFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT,
         pNext,
@@ -4677,7 +4677,7 @@ function api.VkPipelineRasterizationDepthClipStateCreateInfoEXT(
     flags,
     depth_clip_enable,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineRasterizationDepthClipStateCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT,
         pNext,
@@ -4700,7 +4700,7 @@ function api.VkHdrMetadataEXT(
     max_content_light_level,
     max_frame_average_light_level,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkHdrMetadataEXT(
         VK_STRUCTURE_TYPE_HDR_METADATA_EXT,
         pNext,
@@ -4719,8 +4719,8 @@ end
 Julian constructor for VkDebugUtilsLabelEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDebugUtilsLabelEXT(next, label_name, color)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pLabelName = unsafe_pointer(label_name)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pLabelName = unsafe_pointer(label_name)
     api.VkDebugUtilsLabelEXT(
         VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT,
         pNext,
@@ -4733,8 +4733,8 @@ end
 Julian constructor for VkDebugUtilsObjectNameInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDebugUtilsObjectNameInfoEXT(next, object_type, object_handle, object_name)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pObjectName = unsafe_pointer(object_name)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pObjectName = unsafe_pointer(object_name)
     api.VkDebugUtilsObjectNameInfoEXT(
         VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT,
         pNext,
@@ -4757,15 +4757,15 @@ function api.VkDebugUtilsMessengerCallbackDataEXT(
     cmd_buf_labels,
     objects,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pMessageIdName = unsafe_pointer(message_id_name)    # VulkanGen.GeneratePointers
-    pMessage = unsafe_pointer(message)    # VulkanGen.GeneratePointers
-    _queueLabelCount = pointer_length(queue_labels)    # VulkanGen.ComputeLengthArgument
-    pQueueLabels = unsafe_pointer(queue_labels)    # VulkanGen.GeneratePointers
-    _cmdBufLabelCount = pointer_length(cmd_buf_labels)    # VulkanGen.ComputeLengthArgument
-    pCmdBufLabels = unsafe_pointer(cmd_buf_labels)    # VulkanGen.GeneratePointers
-    _objectCount = pointer_length(objects)    # VulkanGen.ComputeLengthArgument
-    pObjects = unsafe_pointer(objects)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pMessageIdName = unsafe_pointer(message_id_name)
+    pMessage = unsafe_pointer(message)
+    _queueLabelCount = pointer_length(queue_labels)
+    pQueueLabels = unsafe_pointer(queue_labels)
+    _cmdBufLabelCount = pointer_length(cmd_buf_labels)
+    pCmdBufLabels = unsafe_pointer(cmd_buf_labels)
+    _objectCount = pointer_length(objects)
+    pObjects = unsafe_pointer(objects)
     api.VkDebugUtilsMessengerCallbackDataEXT(
         VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT,
         pNext,
@@ -4793,8 +4793,8 @@ function api.VkDebugUtilsMessengerCreateInfoEXT(
     user_callback,
     user_data,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pUserData = unsafe_pointer(user_data)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pUserData = unsafe_pointer(user_data)
     api.VkDebugUtilsMessengerCreateInfoEXT(
         VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
         pNext,
@@ -4810,9 +4810,9 @@ end
 Julian constructor for VkDebugUtilsObjectTagInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDebugUtilsObjectTagInfoEXT(next, object_type, object_handle, tag_name, tag)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _tagSize = pointer_length(tag)    # VulkanGen.ComputeLengthArgument
-    pTag = unsafe_pointer(tag)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _tagSize = pointer_length(tag)
+    pTag = unsafe_pointer(tag)
     api.VkDebugUtilsObjectTagInfoEXT(
         VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT,
         pNext,
@@ -4832,7 +4832,7 @@ function api.VkPhysicalDeviceInlineUniformBlockFeaturesEXT(
     inline_uniform_block,
     descriptor_binding_inline_uniform_block_update_after_bind,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceInlineUniformBlockFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT,
         pNext,
@@ -4852,7 +4852,7 @@ function api.VkPhysicalDeviceInlineUniformBlockPropertiesEXT(
     max_descriptor_set_inline_uniform_blocks,
     max_descriptor_set_update_after_bind_inline_uniform_blocks,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceInlineUniformBlockPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT,
         pNext,
@@ -4868,9 +4868,9 @@ end
 Julian constructor for VkWriteDescriptorSetInlineUniformBlockEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkWriteDescriptorSetInlineUniformBlockEXT(next, data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
-    pData = unsafe_pointer(data)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _dataSize = pointer_length(data)
+    pData = unsafe_pointer(data)
     api.VkWriteDescriptorSetInlineUniformBlockEXT(
         VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT,
         pNext,
@@ -4886,7 +4886,7 @@ function api.VkDescriptorPoolInlineUniformBlockCreateInfoEXT(
     next,
     max_inline_uniform_block_bindings,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDescriptorPoolInlineUniformBlockCreateInfoEXT(
         VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT,
         pNext,
@@ -4903,9 +4903,9 @@ function api.VkSampleLocationsInfoEXT(
     sample_location_grid_size,
     sample_locations,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _sampleLocationsCount = pointer_length(sample_locations)    # VulkanGen.ComputeLengthArgument
-    pSampleLocations = unsafe_pointer(sample_locations)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _sampleLocationsCount = pointer_length(sample_locations)
+    pSampleLocations = unsafe_pointer(sample_locations)
     api.VkSampleLocationsInfoEXT(
         VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT,
         pNext,
@@ -4924,12 +4924,12 @@ function api.VkRenderPassSampleLocationsBeginInfoEXT(
     attachment_initial_sample_locations,
     post_subpass_sample_locations,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     _attachmentInitialSampleLocationsCount =
-        pointer_length(attachment_initial_sample_locations)    # VulkanGen.ComputeLengthArgument
-    pAttachmentInitialSampleLocations = unsafe_pointer(attachment_initial_sample_locations)    # VulkanGen.GeneratePointers
-    _postSubpassSampleLocationsCount = pointer_length(post_subpass_sample_locations)    # VulkanGen.ComputeLengthArgument
-    pPostSubpassSampleLocations = unsafe_pointer(post_subpass_sample_locations)    # VulkanGen.GeneratePointers
+        pointer_length(attachment_initial_sample_locations)
+    pAttachmentInitialSampleLocations = unsafe_pointer(attachment_initial_sample_locations)
+    _postSubpassSampleLocationsCount = pointer_length(post_subpass_sample_locations)
+    pPostSubpassSampleLocations = unsafe_pointer(post_subpass_sample_locations)
     api.VkRenderPassSampleLocationsBeginInfoEXT(
         VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT,
         pNext,
@@ -4948,7 +4948,7 @@ function api.VkPipelineSampleLocationsStateCreateInfoEXT(
     sample_locations_enable,
     sample_locations_info,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineSampleLocationsStateCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT,
         pNext,
@@ -4968,7 +4968,7 @@ function api.VkPhysicalDeviceSampleLocationsPropertiesEXT(
     sample_location_sub_pixel_bits,
     variable_sample_locations,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSampleLocationsPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT,
         pNext,
@@ -4984,7 +4984,7 @@ end
 Julian constructor for VkMultisamplePropertiesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMultisamplePropertiesEXT(next, max_sample_location_grid_size)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMultisamplePropertiesEXT(
         VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT,
         pNext,
@@ -4999,7 +4999,7 @@ function api.VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT(
     next,
     advanced_blend_coherent_operations,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT,
         pNext,
@@ -5019,7 +5019,7 @@ function api.VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT(
     advanced_blend_correlated_overlap,
     advanced_blend_all_operations,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT,
         pNext,
@@ -5041,7 +5041,7 @@ function api.VkPipelineColorBlendAdvancedStateCreateInfoEXT(
     dst_premultiplied,
     blend_overlap,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineColorBlendAdvancedStateCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT,
         pNext,
@@ -5060,7 +5060,7 @@ function api.VkPipelineCoverageToColorStateCreateInfoNV(
     coverage_to_color_enable,
     coverage_to_color_location,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineCoverageToColorStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV,
         pNext,
@@ -5080,9 +5080,9 @@ function api.VkPipelineCoverageModulationStateCreateInfoNV(
     coverage_modulation_table_enable,
     coverage_modulation_table,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _coverageModulationTableCount = pointer_length(coverage_modulation_table)    # VulkanGen.ComputeLengthArgument
-    pCoverageModulationTable = unsafe_pointer(coverage_modulation_table)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _coverageModulationTableCount = pointer_length(coverage_modulation_table)
+    pCoverageModulationTable = unsafe_pointer(coverage_modulation_table)
     api.VkPipelineCoverageModulationStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV,
         pNext,
@@ -5102,7 +5102,7 @@ function api.VkPhysicalDeviceShaderSMBuiltinsPropertiesNV(
     shader_sm_count,
     shader_warps_per_sm,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderSMBuiltinsPropertiesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV,
         pNext,
@@ -5115,7 +5115,7 @@ end
 Julian constructor for VkPhysicalDeviceShaderSMBuiltinsFeaturesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceShaderSMBuiltinsFeaturesNV(next, shader_sm_builtins)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderSMBuiltinsFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV,
         pNext,
@@ -5127,9 +5127,9 @@ end
 Julian constructor for VkDrmFormatModifierPropertiesListEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDrmFormatModifierPropertiesListEXT(next, drm_format_modifier_properties)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _drmFormatModifierCount = pointer_length(drm_format_modifier_properties)    # VulkanGen.ComputeLengthArgument
-    pDrmFormatModifierProperties = unsafe_pointer(drm_format_modifier_properties)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _drmFormatModifierCount = pointer_length(drm_format_modifier_properties)
+    pDrmFormatModifierProperties = unsafe_pointer(drm_format_modifier_properties)
     api.VkDrmFormatModifierPropertiesListEXT(
         VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT,
         pNext,
@@ -5147,9 +5147,9 @@ function api.VkPhysicalDeviceImageDrmFormatModifierInfoEXT(
     sharing_mode,
     queue_family_indices,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _queueFamilyIndexCount = pointer_length(queue_family_indices)    # VulkanGen.ComputeLengthArgument
-    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _queueFamilyIndexCount = pointer_length(queue_family_indices)
+    pQueueFamilyIndices = unsafe_pointer(queue_family_indices)
     api.VkPhysicalDeviceImageDrmFormatModifierInfoEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT,
         pNext,
@@ -5164,9 +5164,9 @@ end
 Julian constructor for VkImageDrmFormatModifierListCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageDrmFormatModifierListCreateInfoEXT(next, drm_format_modifiers)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _drmFormatModifierCount = pointer_length(drm_format_modifiers)    # VulkanGen.ComputeLengthArgument
-    pDrmFormatModifiers = unsafe_pointer(drm_format_modifiers)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _drmFormatModifierCount = pointer_length(drm_format_modifiers)
+    pDrmFormatModifiers = unsafe_pointer(drm_format_modifiers)
     api.VkImageDrmFormatModifierListCreateInfoEXT(
         VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT,
         pNext,
@@ -5183,9 +5183,9 @@ function api.VkImageDrmFormatModifierExplicitCreateInfoEXT(
     drm_format_modifier,
     plane_layouts,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _drmFormatModifierPlaneCount = pointer_length(plane_layouts)    # VulkanGen.ComputeLengthArgument
-    pPlaneLayouts = unsafe_pointer(plane_layouts)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _drmFormatModifierPlaneCount = pointer_length(plane_layouts)
+    pPlaneLayouts = unsafe_pointer(plane_layouts)
     api.VkImageDrmFormatModifierExplicitCreateInfoEXT(
         VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT,
         pNext,
@@ -5199,7 +5199,7 @@ end
 Julian constructor for VkImageDrmFormatModifierPropertiesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImageDrmFormatModifierPropertiesEXT(next, drm_format_modifier)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImageDrmFormatModifierPropertiesEXT(
         VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT,
         pNext,
@@ -5211,9 +5211,9 @@ end
 Julian constructor for VkValidationCacheCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkValidationCacheCreateInfoEXT(next, flags, initial_data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _initialDataSize = pointer_length(initial_data)    # VulkanGen.ComputeLengthArgument
-    pInitialData = unsafe_pointer(initial_data)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _initialDataSize = pointer_length(initial_data)
+    pInitialData = unsafe_pointer(initial_data)
     api.VkValidationCacheCreateInfoEXT(
         VK_STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT,
         pNext,
@@ -5227,7 +5227,7 @@ end
 Julian constructor for VkShaderModuleValidationCacheCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkShaderModuleValidationCacheCreateInfoEXT(next, validation_cache)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkShaderModuleValidationCacheCreateInfoEXT(
         VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT,
         pNext,
@@ -5239,8 +5239,8 @@ end
 Julian constructor for VkShadingRatePaletteNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkShadingRatePaletteNV(shading_rate_palette_entries)
-    _shadingRatePaletteEntryCount = pointer_length(shading_rate_palette_entries)    # VulkanGen.ComputeLengthArgument
-    pShadingRatePaletteEntries = unsafe_pointer(shading_rate_palette_entries)    # VulkanGen.GeneratePointers
+    _shadingRatePaletteEntryCount = pointer_length(shading_rate_palette_entries)
+    pShadingRatePaletteEntries = unsafe_pointer(shading_rate_palette_entries)
     api.VkShadingRatePaletteNV(_shadingRatePaletteEntryCount, pShadingRatePaletteEntries)
 end
 
@@ -5252,9 +5252,9 @@ function api.VkPipelineViewportShadingRateImageStateCreateInfoNV(
     shading_rate_image_enable,
     shading_rate_palettes,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _viewportCount = pointer_length(shading_rate_palettes)    # VulkanGen.ComputeLengthArgument
-    pShadingRatePalettes = unsafe_pointer(shading_rate_palettes)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _viewportCount = pointer_length(shading_rate_palettes)
+    pShadingRatePalettes = unsafe_pointer(shading_rate_palettes)
     api.VkPipelineViewportShadingRateImageStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV,
         pNext,
@@ -5272,7 +5272,7 @@ function api.VkPhysicalDeviceShadingRateImageFeaturesNV(
     shading_rate_image,
     shading_rate_coarse_sample_order,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShadingRateImageFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV,
         pNext,
@@ -5290,7 +5290,7 @@ function api.VkPhysicalDeviceShadingRateImagePropertiesNV(
     shading_rate_palette_size,
     shading_rate_max_coarse_samples,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShadingRateImagePropertiesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV,
         pNext,
@@ -5304,8 +5304,8 @@ end
 Julian constructor for VkCoarseSampleOrderCustomNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCoarseSampleOrderCustomNV(shading_rate, sample_count, sample_locations)
-    _sampleLocationCount = pointer_length(sample_locations)    # VulkanGen.ComputeLengthArgument
-    pSampleLocations = unsafe_pointer(sample_locations)    # VulkanGen.GeneratePointers
+    _sampleLocationCount = pointer_length(sample_locations)
+    pSampleLocations = unsafe_pointer(sample_locations)
     api.VkCoarseSampleOrderCustomNV(
         shading_rate,
         sample_count,
@@ -5322,9 +5322,9 @@ function api.VkPipelineViewportCoarseSampleOrderStateCreateInfoNV(
     sample_order_type,
     custom_sample_orders,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _customSampleOrderCount = pointer_length(custom_sample_orders)    # VulkanGen.ComputeLengthArgument
-    pCustomSampleOrders = unsafe_pointer(custom_sample_orders)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _customSampleOrderCount = pointer_length(custom_sample_orders)
+    pCustomSampleOrders = unsafe_pointer(custom_sample_orders)
     api.VkPipelineViewportCoarseSampleOrderStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV,
         pNext,
@@ -5345,7 +5345,7 @@ function api.VkRayTracingShaderGroupCreateInfoNV(
     any_hit_shader,
     intersection_shader,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkRayTracingShaderGroupCreateInfoNV(
         VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV,
         pNext,
@@ -5370,11 +5370,11 @@ function api.VkRayTracingPipelineCreateInfoNV(
     base_pipeline_handle,
     base_pipeline_index,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _stageCount = pointer_length(stages)    # VulkanGen.ComputeLengthArgument
-    pStages = unsafe_pointer(stages)    # VulkanGen.GeneratePointers
-    _groupCount = pointer_length(groups)    # VulkanGen.ComputeLengthArgument
-    pGroups = unsafe_pointer(groups)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _stageCount = pointer_length(stages)
+    pStages = unsafe_pointer(stages)
+    _groupCount = pointer_length(groups)
+    pGroups = unsafe_pointer(groups)
     api.VkRayTracingPipelineCreateInfoNV(
         VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV,
         pNext,
@@ -5407,7 +5407,7 @@ function api.VkGeometryTrianglesNV(
     transform_data,
     transform_offset,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkGeometryTrianglesNV(
         VK_STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV,
         pNext,
@@ -5429,7 +5429,7 @@ end
 Julian constructor for VkGeometryAABBNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkGeometryAABBNV(next, aabb_data, num_aab_bs, stride, offset)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkGeometryAABBNV(
         VK_STRUCTURE_TYPE_GEOMETRY_AABB_NV,
         pNext,
@@ -5444,7 +5444,7 @@ end
 Julian constructor for VkGeometryNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkGeometryNV(next, geometry_type, geometry, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkGeometryNV(VK_STRUCTURE_TYPE_GEOMETRY_NV, pNext, geometry_type, geometry, flags)
 end
 
@@ -5452,9 +5452,9 @@ end
 Julian constructor for VkAccelerationStructureInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAccelerationStructureInfoNV(next, type, flags, instance_count, geometries)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _geometryCount = pointer_length(geometries)    # VulkanGen.ComputeLengthArgument
-    pGeometries = unsafe_pointer(geometries)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _geometryCount = pointer_length(geometries)
+    pGeometries = unsafe_pointer(geometries)
     api.VkAccelerationStructureInfoNV(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV,
         pNext,
@@ -5470,7 +5470,7 @@ end
 Julian constructor for VkAccelerationStructureCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAccelerationStructureCreateInfoNV(next, compacted_size, info)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureCreateInfoNV(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV,
         pNext,
@@ -5489,9 +5489,9 @@ function api.VkBindAccelerationStructureMemoryInfoKHR(
     memory_offset,
     device_indices,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _deviceIndexCount = pointer_length(device_indices)    # VulkanGen.ComputeLengthArgument
-    pDeviceIndices = unsafe_pointer(device_indices)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _deviceIndexCount = pointer_length(device_indices)
+    pDeviceIndices = unsafe_pointer(device_indices)
     api.VkBindAccelerationStructureMemoryInfoKHR(
         VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_KHR,
         pNext,
@@ -5507,9 +5507,9 @@ end
 Julian constructor for VkWriteDescriptorSetAccelerationStructureKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkWriteDescriptorSetAccelerationStructureKHR(next, acceleration_structures)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _accelerationStructureCount = pointer_length(acceleration_structures)    # VulkanGen.ComputeLengthArgument
-    pAccelerationStructures = unsafe_pointer(acceleration_structures)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _accelerationStructureCount = pointer_length(acceleration_structures)
+    pAccelerationStructures = unsafe_pointer(acceleration_structures)
     api.VkWriteDescriptorSetAccelerationStructureKHR(
         VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR,
         pNext,
@@ -5526,7 +5526,7 @@ function api.VkAccelerationStructureMemoryRequirementsInfoNV(
     type,
     acceleration_structure,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureMemoryRequirementsInfoNV(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV,
         pNext,
@@ -5549,7 +5549,7 @@ function api.VkPhysicalDeviceRayTracingPropertiesNV(
     max_triangle_count,
     max_descriptor_set_acceleration_structures,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceRayTracingPropertiesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV,
         pNext,
@@ -5571,7 +5571,7 @@ function api.VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV(
     next,
     representative_fragment_test,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV,
         pNext,
@@ -5586,7 +5586,7 @@ function api.VkPipelineRepresentativeFragmentTestStateCreateInfoNV(
     next,
     representative_fragment_test_enable,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineRepresentativeFragmentTestStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV,
         pNext,
@@ -5598,7 +5598,7 @@ end
 Julian constructor for VkPhysicalDeviceImageViewImageFormatInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceImageViewImageFormatInfoEXT(next, image_view_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceImageViewImageFormatInfoEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT,
         pNext,
@@ -5614,7 +5614,7 @@ function api.VkFilterCubicImageViewImageFormatPropertiesEXT(
     filter_cubic,
     filter_cubic_minmax,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkFilterCubicImageViewImageFormatPropertiesEXT(
         VK_STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT,
         pNext,
@@ -5627,7 +5627,7 @@ end
 Julian constructor for VkDeviceQueueGlobalPriorityCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceQueueGlobalPriorityCreateInfoEXT(next, global_priority)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceQueueGlobalPriorityCreateInfoEXT(
         VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT,
         pNext,
@@ -5639,8 +5639,8 @@ end
 Julian constructor for VkImportMemoryHostPointerInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportMemoryHostPointerInfoEXT(next, handle_type, host_pointer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pHostPointer = unsafe_pointer(host_pointer)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pHostPointer = unsafe_pointer(host_pointer)
     api.VkImportMemoryHostPointerInfoEXT(
         VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT,
         pNext,
@@ -5653,7 +5653,7 @@ end
 Julian constructor for VkMemoryHostPointerPropertiesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryHostPointerPropertiesEXT(next, memory_type_bits)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryHostPointerPropertiesEXT(
         VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT,
         pNext,
@@ -5668,7 +5668,7 @@ function api.VkPhysicalDeviceExternalMemoryHostPropertiesEXT(
     next,
     min_imported_host_pointer_alignment,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceExternalMemoryHostPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT,
         pNext,
@@ -5680,7 +5680,7 @@ end
 Julian constructor for VkPipelineCompilerControlCreateInfoAMD. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineCompilerControlCreateInfoAMD(next, compiler_control_flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineCompilerControlCreateInfoAMD(
         VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD,
         pNext,
@@ -5692,7 +5692,7 @@ end
 Julian constructor for VkCalibratedTimestampInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCalibratedTimestampInfoEXT(next, time_domain)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCalibratedTimestampInfoEXT(
         VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT,
         pNext,
@@ -5720,7 +5720,7 @@ function api.VkPhysicalDeviceShaderCorePropertiesAMD(
     max_vgpr_allocation,
     vgpr_allocation_granularity,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderCorePropertiesAMD(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD,
         pNext,
@@ -5745,7 +5745,7 @@ end
 Julian constructor for VkDeviceMemoryOverallocationCreateInfoAMD. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceMemoryOverallocationCreateInfoAMD(next, overallocation_behavior)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceMemoryOverallocationCreateInfoAMD(
         VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD,
         pNext,
@@ -5760,7 +5760,7 @@ function api.VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT(
     next,
     max_vertex_attrib_divisor,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT,
         pNext,
@@ -5772,9 +5772,9 @@ end
 Julian constructor for VkPipelineVertexInputDivisorStateCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineVertexInputDivisorStateCreateInfoEXT(next, vertex_binding_divisors)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _vertexBindingDivisorCount = pointer_length(vertex_binding_divisors)    # VulkanGen.ComputeLengthArgument
-    pVertexBindingDivisors = unsafe_pointer(vertex_binding_divisors)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _vertexBindingDivisorCount = pointer_length(vertex_binding_divisors)
+    pVertexBindingDivisors = unsafe_pointer(vertex_binding_divisors)
     api.VkPipelineVertexInputDivisorStateCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT,
         pNext,
@@ -5791,7 +5791,7 @@ function api.VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT(
     vertex_attribute_instance_rate_divisor,
     vertex_attribute_instance_rate_zero_divisor,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT,
         pNext,
@@ -5808,10 +5808,10 @@ function api.VkPipelineCreationFeedbackCreateInfoEXT(
     pipeline_creation_feedback,
     pipeline_stage_creation_feedbacks,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pPipelineCreationFeedback = unsafe_pointer(pipeline_creation_feedback)    # VulkanGen.GeneratePointers
-    _pipelineStageCreationFeedbackCount = pointer_length(pipeline_stage_creation_feedbacks)    # VulkanGen.ComputeLengthArgument
-    pPipelineStageCreationFeedbacks = unsafe_pointer(pipeline_stage_creation_feedbacks)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pPipelineCreationFeedback = unsafe_pointer(pipeline_creation_feedback)
+    _pipelineStageCreationFeedbackCount = pointer_length(pipeline_stage_creation_feedbacks)
+    pPipelineStageCreationFeedbacks = unsafe_pointer(pipeline_stage_creation_feedbacks)
     api.VkPipelineCreationFeedbackCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT,
         pNext,
@@ -5829,7 +5829,7 @@ function api.VkPhysicalDeviceComputeShaderDerivativesFeaturesNV(
     compute_derivative_group_quads,
     compute_derivative_group_linear,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceComputeShaderDerivativesFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV,
         pNext,
@@ -5842,7 +5842,7 @@ end
 Julian constructor for VkPhysicalDeviceMeshShaderFeaturesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceMeshShaderFeaturesNV(next, task_shader, mesh_shader)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMeshShaderFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV,
         pNext,
@@ -5870,7 +5870,7 @@ function api.VkPhysicalDeviceMeshShaderPropertiesNV(
     mesh_output_per_vertex_granularity,
     mesh_output_per_primitive_granularity,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMeshShaderPropertiesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV,
         pNext,
@@ -5897,7 +5897,7 @@ function api.VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV(
     next,
     fragment_shader_barycentric,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV,
         pNext,
@@ -5909,7 +5909,7 @@ end
 Julian constructor for VkPhysicalDeviceShaderImageFootprintFeaturesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceShaderImageFootprintFeaturesNV(next, image_footprint)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderImageFootprintFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV,
         pNext,
@@ -5921,9 +5921,9 @@ end
 Julian constructor for VkPipelineViewportExclusiveScissorStateCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineViewportExclusiveScissorStateCreateInfoNV(next, exclusive_scissors)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _exclusiveScissorCount = pointer_length(exclusive_scissors)    # VulkanGen.ComputeLengthArgument
-    pExclusiveScissors = unsafe_pointer(exclusive_scissors)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _exclusiveScissorCount = pointer_length(exclusive_scissors)
+    pExclusiveScissors = unsafe_pointer(exclusive_scissors)
     api.VkPipelineViewportExclusiveScissorStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV,
         pNext,
@@ -5936,7 +5936,7 @@ end
 Julian constructor for VkPhysicalDeviceExclusiveScissorFeaturesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceExclusiveScissorFeaturesNV(next, exclusive_scissor)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceExclusiveScissorFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV,
         pNext,
@@ -5948,7 +5948,7 @@ end
 Julian constructor for VkQueueFamilyCheckpointPropertiesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkQueueFamilyCheckpointPropertiesNV(next, checkpoint_execution_stage_mask)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkQueueFamilyCheckpointPropertiesNV(
         VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV,
         pNext,
@@ -5960,8 +5960,8 @@ end
 Julian constructor for VkCheckpointDataNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCheckpointDataNV(next, stage, checkpoint_marker)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pCheckpointMarker = unsafe_pointer(checkpoint_marker)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pCheckpointMarker = unsafe_pointer(checkpoint_marker)
     api.VkCheckpointDataNV(
         VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV,
         pNext,
@@ -5977,7 +5977,7 @@ function api.VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(
     next,
     shader_integer_functions_2,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL,
         pNext,
@@ -5989,8 +5989,8 @@ end
 Julian constructor for VkInitializePerformanceApiInfoINTEL. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkInitializePerformanceApiInfoINTEL(next, user_data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pUserData = unsafe_pointer(user_data)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pUserData = unsafe_pointer(user_data)
     api.VkInitializePerformanceApiInfoINTEL(
         VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL,
         pNext,
@@ -6002,7 +6002,7 @@ end
 Julian constructor for VkQueryPoolPerformanceQueryCreateInfoINTEL. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkQueryPoolPerformanceQueryCreateInfoINTEL(next, performance_counters_sampling)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkQueryPoolPerformanceQueryCreateInfoINTEL(
         VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL,
         pNext,
@@ -6014,7 +6014,7 @@ end
 Julian constructor for VkPerformanceMarkerInfoINTEL. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPerformanceMarkerInfoINTEL(next, marker)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPerformanceMarkerInfoINTEL(
         VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL,
         pNext,
@@ -6026,7 +6026,7 @@ end
 Julian constructor for VkPerformanceStreamMarkerInfoINTEL. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPerformanceStreamMarkerInfoINTEL(next, marker)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPerformanceStreamMarkerInfoINTEL(
         VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL,
         pNext,
@@ -6038,7 +6038,7 @@ end
 Julian constructor for VkPerformanceOverrideInfoINTEL. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPerformanceOverrideInfoINTEL(next, type, enable, parameter)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPerformanceOverrideInfoINTEL(
         VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL,
         pNext,
@@ -6052,7 +6052,7 @@ end
 Julian constructor for VkPerformanceConfigurationAcquireInfoINTEL. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPerformanceConfigurationAcquireInfoINTEL(next, type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPerformanceConfigurationAcquireInfoINTEL(
         VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL,
         pNext,
@@ -6070,7 +6070,7 @@ function api.VkPhysicalDevicePCIBusInfoPropertiesEXT(
     pci_device,
     pci_function,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePCIBusInfoPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
         pNext,
@@ -6085,7 +6085,7 @@ end
 Julian constructor for VkDisplayNativeHdrSurfaceCapabilitiesAMD. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDisplayNativeHdrSurfaceCapabilitiesAMD(next, local_dimming_support)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDisplayNativeHdrSurfaceCapabilitiesAMD(
         VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD,
         pNext,
@@ -6097,7 +6097,7 @@ end
 Julian constructor for VkSwapchainDisplayNativeHdrCreateInfoAMD. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSwapchainDisplayNativeHdrCreateInfoAMD(next, local_dimming_enable)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSwapchainDisplayNativeHdrCreateInfoAMD(
         VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD,
         pNext,
@@ -6114,7 +6114,7 @@ function api.VkPhysicalDeviceFragmentDensityMapFeaturesEXT(
     fragment_density_map_dynamic,
     fragment_density_map_non_subsampled_images,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFragmentDensityMapFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT,
         pNext,
@@ -6133,7 +6133,7 @@ function api.VkPhysicalDeviceFragmentDensityMapPropertiesEXT(
     max_fragment_density_texel_size,
     fragment_density_invocations,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFragmentDensityMapPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT,
         pNext,
@@ -6150,7 +6150,7 @@ function api.VkRenderPassFragmentDensityMapCreateInfoEXT(
     next,
     fragment_density_map_attachment,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkRenderPassFragmentDensityMapCreateInfoEXT(
         VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT,
         pNext,
@@ -6166,7 +6166,7 @@ function api.VkPhysicalDeviceSubgroupSizeControlFeaturesEXT(
     subgroup_size_control,
     compute_full_subgroups,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSubgroupSizeControlFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT,
         pNext,
@@ -6185,7 +6185,7 @@ function api.VkPhysicalDeviceSubgroupSizeControlPropertiesEXT(
     max_compute_workgroup_subgroups,
     required_subgroup_size_stages,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceSubgroupSizeControlPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT,
         pNext,
@@ -6203,7 +6203,7 @@ function api.VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(
     next,
     required_subgroup_size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT,
         pNext,
@@ -6219,7 +6219,7 @@ function api.VkPhysicalDeviceShaderCoreProperties2AMD(
     shader_core_features,
     active_compute_unit_count,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderCoreProperties2AMD(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD,
         pNext,
@@ -6232,7 +6232,7 @@ end
 Julian constructor for VkPhysicalDeviceCoherentMemoryFeaturesAMD. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceCoherentMemoryFeaturesAMD(next, device_coherent_memory)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceCoherentMemoryFeaturesAMD(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD,
         pNext,
@@ -6244,7 +6244,7 @@ end
 Julian constructor for VkPhysicalDeviceMemoryBudgetPropertiesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceMemoryBudgetPropertiesEXT(next, heap_budget, heap_usage)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMemoryBudgetPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT,
         pNext,
@@ -6257,7 +6257,7 @@ end
 Julian constructor for VkPhysicalDeviceMemoryPriorityFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceMemoryPriorityFeaturesEXT(next, memory_priority)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceMemoryPriorityFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT,
         pNext,
@@ -6269,7 +6269,7 @@ end
 Julian constructor for VkMemoryPriorityAllocateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryPriorityAllocateInfoEXT(next, priority)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryPriorityAllocateInfoEXT(
         VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT,
         pNext,
@@ -6284,7 +6284,7 @@ function api.VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(
     next,
     dedicated_allocation_image_aliasing,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV,
         pNext,
@@ -6301,7 +6301,7 @@ function api.VkPhysicalDeviceBufferDeviceAddressFeaturesEXT(
     buffer_device_address_capture_replay,
     buffer_device_address_multi_device,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceBufferDeviceAddressFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT,
         pNext,
@@ -6315,7 +6315,7 @@ end
 Julian constructor for VkBufferDeviceAddressCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkBufferDeviceAddressCreateInfoEXT(next, device_address)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkBufferDeviceAddressCreateInfoEXT(
         VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT,
         pNext,
@@ -6334,11 +6334,11 @@ function api.VkPhysicalDeviceToolPropertiesEXT(
     description,
     layer,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    name = to_vk(NTuple{256,UInt8}, name)    # VulkanGen.TranslateVkTypesBack
-    version = to_vk(NTuple{256,UInt8}, version)    # VulkanGen.TranslateVkTypesBack
-    description = to_vk(NTuple{256,UInt8}, description)    # VulkanGen.TranslateVkTypesBack
-    layer = to_vk(NTuple{256,UInt8}, layer)    # VulkanGen.TranslateVkTypesBack
+    pNext = unsafe_pointer(next)
+    name = to_vk(NTuple{256,UInt8}, name)
+    version = to_vk(NTuple{256,UInt8}, version)
+    description = to_vk(NTuple{256,UInt8}, description)
+    layer = to_vk(NTuple{256,UInt8}, layer)
     api.VkPhysicalDeviceToolPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT,
         pNext,
@@ -6358,11 +6358,11 @@ function api.VkValidationFeaturesEXT(
     enabled_validation_features,
     disabled_validation_features,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _enabledValidationFeatureCount = pointer_length(enabled_validation_features)    # VulkanGen.ComputeLengthArgument
-    pEnabledValidationFeatures = unsafe_pointer(enabled_validation_features)    # VulkanGen.GeneratePointers
-    _disabledValidationFeatureCount = pointer_length(disabled_validation_features)    # VulkanGen.ComputeLengthArgument
-    pDisabledValidationFeatures = unsafe_pointer(disabled_validation_features)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _enabledValidationFeatureCount = pointer_length(enabled_validation_features)
+    pEnabledValidationFeatures = unsafe_pointer(enabled_validation_features)
+    _disabledValidationFeatureCount = pointer_length(disabled_validation_features)
+    pDisabledValidationFeatures = unsafe_pointer(disabled_validation_features)
     api.VkValidationFeaturesEXT(
         VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT,
         pNext,
@@ -6387,7 +6387,7 @@ function api.VkCooperativeMatrixPropertiesNV(
     d_type,
     scope,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCooperativeMatrixPropertiesNV(
         VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV,
         pNext,
@@ -6410,7 +6410,7 @@ function api.VkPhysicalDeviceCooperativeMatrixFeaturesNV(
     cooperative_matrix,
     cooperative_matrix_robust_buffer_access,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceCooperativeMatrixFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV,
         pNext,
@@ -6426,7 +6426,7 @@ function api.VkPhysicalDeviceCooperativeMatrixPropertiesNV(
     next,
     cooperative_matrix_supported_stages,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceCooperativeMatrixPropertiesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV,
         pNext,
@@ -6438,7 +6438,7 @@ end
 Julian constructor for VkPhysicalDeviceCoverageReductionModeFeaturesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceCoverageReductionModeFeaturesNV(next, coverage_reduction_mode)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceCoverageReductionModeFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV,
         pNext,
@@ -6454,7 +6454,7 @@ function api.VkPipelineCoverageReductionStateCreateInfoNV(
     flags,
     coverage_reduction_mode,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineCoverageReductionStateCreateInfoNV(
         VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV,
         pNext,
@@ -6473,7 +6473,7 @@ function api.VkFramebufferMixedSamplesCombinationNV(
     depth_stencil_samples,
     color_samples,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkFramebufferMixedSamplesCombinationNV(
         VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV,
         pNext,
@@ -6493,7 +6493,7 @@ function api.VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT(
     fragment_shader_pixel_interlock,
     fragment_shader_shading_rate_interlock,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT,
         pNext,
@@ -6507,7 +6507,7 @@ end
 Julian constructor for VkPhysicalDeviceYcbcrImageArraysFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceYcbcrImageArraysFeaturesEXT(next, ycbcr_image_arrays)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceYcbcrImageArraysFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT,
         pNext,
@@ -6519,7 +6519,7 @@ end
 Julian constructor for VkHeadlessSurfaceCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkHeadlessSurfaceCreateInfoEXT(next, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkHeadlessSurfaceCreateInfoEXT(
         VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT,
         pNext,
@@ -6539,7 +6539,7 @@ function api.VkPhysicalDeviceLineRasterizationFeaturesEXT(
     stippled_bresenham_lines,
     stippled_smooth_lines,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceLineRasterizationFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT,
         pNext,
@@ -6559,7 +6559,7 @@ function api.VkPhysicalDeviceLineRasterizationPropertiesEXT(
     next,
     line_sub_pixel_precision_bits,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceLineRasterizationPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT,
         pNext,
@@ -6577,7 +6577,7 @@ function api.VkPipelineRasterizationLineStateCreateInfoEXT(
     line_stipple_factor,
     line_stipple_pattern,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPipelineRasterizationLineStateCreateInfoEXT(
         VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT,
         pNext,
@@ -6606,7 +6606,7 @@ function api.VkPhysicalDeviceShaderAtomicFloatFeaturesEXT(
     sparse_image_float_32_atomics,
     sparse_image_float_32_atomic_add,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderAtomicFloatFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT,
         pNext,
@@ -6629,7 +6629,7 @@ end
 Julian constructor for VkPhysicalDeviceIndexTypeUint8FeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceIndexTypeUint8FeaturesEXT(next, index_type_uint_8)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceIndexTypeUint8FeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT,
         pNext,
@@ -6641,7 +6641,7 @@ end
 Julian constructor for VkPhysicalDeviceExtendedDynamicStateFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceExtendedDynamicStateFeaturesEXT(next, extended_dynamic_state)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceExtendedDynamicStateFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT,
         pNext,
@@ -6656,7 +6656,7 @@ function api.VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(
     next,
     shader_demote_to_helper_invocation,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES_EXT,
         pNext,
@@ -6679,7 +6679,7 @@ function api.VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV(
     min_sequences_index_buffer_offset_alignment,
     min_indirect_commands_buffer_offset_alignment,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV,
         pNext,
@@ -6702,7 +6702,7 @@ function api.VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV(
     next,
     device_generated_commands,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV,
         pNext,
@@ -6719,11 +6719,11 @@ function api.VkGraphicsShaderGroupCreateInfoNV(
     vertex_input_state,
     tessellation_state,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _stageCount = pointer_length(stages)    # VulkanGen.ComputeLengthArgument
-    pStages = unsafe_pointer(stages)    # VulkanGen.GeneratePointers
-    pVertexInputState = unsafe_pointer(vertex_input_state)    # VulkanGen.GeneratePointers
-    pTessellationState = unsafe_pointer(tessellation_state)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _stageCount = pointer_length(stages)
+    pStages = unsafe_pointer(stages)
+    pVertexInputState = unsafe_pointer(vertex_input_state)
+    pTessellationState = unsafe_pointer(tessellation_state)
     api.VkGraphicsShaderGroupCreateInfoNV(
         VK_STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV,
         pNext,
@@ -6738,11 +6738,11 @@ end
 Julian constructor for VkGraphicsPipelineShaderGroupsCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkGraphicsPipelineShaderGroupsCreateInfoNV(next, groups, pipelines)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _groupCount = pointer_length(groups)    # VulkanGen.ComputeLengthArgument
-    pGroups = unsafe_pointer(groups)    # VulkanGen.GeneratePointers
-    _pipelineCount = pointer_length(pipelines)    # VulkanGen.ComputeLengthArgument
-    pPipelines = unsafe_pointer(pipelines)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _groupCount = pointer_length(groups)
+    pGroups = unsafe_pointer(groups)
+    _pipelineCount = pointer_length(pipelines)
+    pPipelines = unsafe_pointer(pipelines)
     api.VkGraphicsPipelineShaderGroupsCreateInfoNV(
         VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV,
         pNext,
@@ -6771,10 +6771,10 @@ function api.VkIndirectCommandsLayoutTokenNV(
     index_types,
     index_type_values,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _indexTypeCount = pointer_length(index_types)    # VulkanGen.ComputeLengthArgument
-    pIndexTypes = unsafe_pointer(index_types)    # VulkanGen.GeneratePointers
-    pIndexTypeValues = unsafe_pointer(index_type_values)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _indexTypeCount = pointer_length(index_types)
+    pIndexTypes = unsafe_pointer(index_types)
+    pIndexTypeValues = unsafe_pointer(index_type_values)
     api.VkIndirectCommandsLayoutTokenNV(
         VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV,
         pNext,
@@ -6804,11 +6804,11 @@ function api.VkIndirectCommandsLayoutCreateInfoNV(
     tokens,
     stream_strides,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _tokenCount = pointer_length(tokens)    # VulkanGen.ComputeLengthArgument
-    pTokens = unsafe_pointer(tokens)    # VulkanGen.GeneratePointers
-    _streamCount = pointer_length(stream_strides)    # VulkanGen.ComputeLengthArgument
-    pStreamStrides = unsafe_pointer(stream_strides)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _tokenCount = pointer_length(tokens)
+    pTokens = unsafe_pointer(tokens)
+    _streamCount = pointer_length(stream_strides)
+    pStreamStrides = unsafe_pointer(stream_strides)
     api.VkIndirectCommandsLayoutCreateInfoNV(
         VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV,
         pNext,
@@ -6839,9 +6839,9 @@ function api.VkGeneratedCommandsInfoNV(
     sequences_index_buffer,
     sequences_index_offset,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _streamCount = pointer_length(streams)    # VulkanGen.ComputeLengthArgument
-    pStreams = unsafe_pointer(streams)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _streamCount = pointer_length(streams)
+    pStreams = unsafe_pointer(streams)
     api.VkGeneratedCommandsInfoNV(
         VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV,
         pNext,
@@ -6871,7 +6871,7 @@ function api.VkGeneratedCommandsMemoryRequirementsInfoNV(
     indirect_commands_layout,
     max_sequences_count,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkGeneratedCommandsMemoryRequirementsInfoNV(
         VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV,
         pNext,
@@ -6886,7 +6886,7 @@ end
 Julian constructor for VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT(next, texel_buffer_alignment)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT,
         pNext,
@@ -6904,7 +6904,7 @@ function api.VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT(
     uniform_texel_buffer_offset_alignment_bytes,
     uniform_texel_buffer_offset_single_texel_alignment,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT,
         pNext,
@@ -6919,7 +6919,7 @@ end
 Julian constructor for VkRenderPassTransformBeginInfoQCOM. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkRenderPassTransformBeginInfoQCOM(next, transform)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkRenderPassTransformBeginInfoQCOM(
         VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM,
         pNext,
@@ -6935,7 +6935,7 @@ function api.VkCommandBufferInheritanceRenderPassTransformInfoQCOM(
     transform,
     render_area,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCommandBufferInheritanceRenderPassTransformInfoQCOM(
         VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM,
         pNext,
@@ -6953,7 +6953,7 @@ function api.VkPhysicalDeviceRobustness2FeaturesEXT(
     robust_image_access_2,
     null_descriptor,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceRobustness2FeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT,
         pNext,
@@ -6971,7 +6971,7 @@ function api.VkPhysicalDeviceRobustness2PropertiesEXT(
     robust_storage_buffer_access_size_alignment,
     robust_uniform_buffer_access_size_alignment,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceRobustness2PropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT,
         pNext,
@@ -6984,7 +6984,7 @@ end
 Julian constructor for VkSamplerCustomBorderColorCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSamplerCustomBorderColorCreateInfoEXT(next, custom_border_color, format)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSamplerCustomBorderColorCreateInfoEXT(
         VK_STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT,
         pNext,
@@ -7000,7 +7000,7 @@ function api.VkPhysicalDeviceCustomBorderColorPropertiesEXT(
     next,
     max_custom_border_color_samplers,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceCustomBorderColorPropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT,
         pNext,
@@ -7016,7 +7016,7 @@ function api.VkPhysicalDeviceCustomBorderColorFeaturesEXT(
     custom_border_colors,
     custom_border_color_without_format,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceCustomBorderColorFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT,
         pNext,
@@ -7029,7 +7029,7 @@ end
 Julian constructor for VkPhysicalDevicePrivateDataFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDevicePrivateDataFeaturesEXT(next, private_data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePrivateDataFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT,
         pNext,
@@ -7041,7 +7041,7 @@ end
 Julian constructor for VkDevicePrivateDataCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDevicePrivateDataCreateInfoEXT(next, private_data_slot_request_count)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDevicePrivateDataCreateInfoEXT(
         VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT,
         pNext,
@@ -7053,7 +7053,7 @@ end
 Julian constructor for VkPrivateDataSlotCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPrivateDataSlotCreateInfoEXT(next, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPrivateDataSlotCreateInfoEXT(
         VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT,
         pNext,
@@ -7068,7 +7068,7 @@ function api.VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT(
     next,
     pipeline_creation_cache_control,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT,
         pNext,
@@ -7080,7 +7080,7 @@ end
 Julian constructor for VkPhysicalDeviceDiagnosticsConfigFeaturesNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceDiagnosticsConfigFeaturesNV(next, diagnostics_config)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceDiagnosticsConfigFeaturesNV(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV,
         pNext,
@@ -7092,7 +7092,7 @@ end
 Julian constructor for VkDeviceDiagnosticsConfigCreateInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeviceDiagnosticsConfigCreateInfoNV(next, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeviceDiagnosticsConfigCreateInfoNV(
         VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV,
         pNext,
@@ -7107,7 +7107,7 @@ function api.VkPhysicalDeviceFragmentDensityMap2FeaturesEXT(
     next,
     fragment_density_map_deferred,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFragmentDensityMap2FeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT,
         pNext,
@@ -7125,7 +7125,7 @@ function api.VkPhysicalDeviceFragmentDensityMap2PropertiesEXT(
     max_subsampled_array_layers,
     max_descriptor_set_subsampled_samplers,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceFragmentDensityMap2PropertiesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT,
         pNext,
@@ -7140,7 +7140,7 @@ end
 Julian constructor for VkPhysicalDeviceImageRobustnessFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDeviceImageRobustnessFeaturesEXT(next, robust_image_access)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceImageRobustnessFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT,
         pNext,
@@ -7152,7 +7152,7 @@ end
 Julian constructor for VkPhysicalDevice4444FormatsFeaturesEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPhysicalDevice4444FormatsFeaturesEXT(next, format_a4r4g4b4, format_a4b4g4r4)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDevice4444FormatsFeaturesEXT(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT,
         pNext,
@@ -7165,7 +7165,7 @@ end
 Julian constructor for VkAndroidSurfaceCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAndroidSurfaceCreateInfoKHR(next, flags, window)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAndroidSurfaceCreateInfoKHR(
         VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR,
         pNext,
@@ -7178,7 +7178,7 @@ end
 Julian constructor for VkAndroidHardwareBufferUsageANDROID. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAndroidHardwareBufferUsageANDROID(next, android_hardware_buffer_usage)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAndroidHardwareBufferUsageANDROID(
         VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID,
         pNext,
@@ -7194,7 +7194,7 @@ function api.VkAndroidHardwareBufferPropertiesANDROID(
     allocation_size,
     memory_type_bits,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAndroidHardwareBufferPropertiesANDROID(
         VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID,
         pNext,
@@ -7217,7 +7217,7 @@ function api.VkAndroidHardwareBufferFormatPropertiesANDROID(
     suggested_x_chroma_offset,
     suggested_y_chroma_offset,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAndroidHardwareBufferFormatPropertiesANDROID(
         VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID,
         pNext,
@@ -7236,7 +7236,7 @@ end
 Julian constructor for VkImportAndroidHardwareBufferInfoANDROID. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportAndroidHardwareBufferInfoANDROID(next, buffer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportAndroidHardwareBufferInfoANDROID(
         VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID,
         pNext,
@@ -7248,7 +7248,7 @@ end
 Julian constructor for VkMemoryGetAndroidHardwareBufferInfoANDROID. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryGetAndroidHardwareBufferInfoANDROID(next, memory)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryGetAndroidHardwareBufferInfoANDROID(
         VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID,
         pNext,
@@ -7260,7 +7260,7 @@ end
 Julian constructor for VkExternalFormatANDROID. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExternalFormatANDROID(next, external_format)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkExternalFormatANDROID(
         VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID,
         pNext,
@@ -7272,7 +7272,7 @@ end
 Julian constructor for VkImagePipeSurfaceCreateInfoFUCHSIA. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImagePipeSurfaceCreateInfoFUCHSIA(next, flags, image_pipe_handle)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImagePipeSurfaceCreateInfoFUCHSIA(
         VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA,
         pNext,
@@ -7285,8 +7285,8 @@ end
 Julian constructor for VkIOSSurfaceCreateInfoMVK. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkIOSSurfaceCreateInfoMVK(next, flags, view)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pView = unsafe_pointer(view)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pView = unsafe_pointer(view)
     api.VkIOSSurfaceCreateInfoMVK(
         VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK,
         pNext,
@@ -7299,8 +7299,8 @@ end
 Julian constructor for VkMacOSSurfaceCreateInfoMVK. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMacOSSurfaceCreateInfoMVK(next, flags, view)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pView = unsafe_pointer(view)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pView = unsafe_pointer(view)
     api.VkMacOSSurfaceCreateInfoMVK(
         VK_STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK,
         pNext,
@@ -7313,7 +7313,7 @@ end
 Julian constructor for VkMetalSurfaceCreateInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMetalSurfaceCreateInfoEXT(next, flags, layer)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMetalSurfaceCreateInfoEXT(
         VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT,
         pNext,
@@ -7326,7 +7326,7 @@ end
 Julian constructor for VkViSurfaceCreateInfoNN. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkViSurfaceCreateInfoNN(next, flags, window)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkViSurfaceCreateInfoNN(
         VK_STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN,
         pNext,
@@ -7339,7 +7339,7 @@ end
 Julian constructor for VkWaylandSurfaceCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkWaylandSurfaceCreateInfoKHR(next, flags, display, surface)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkWaylandSurfaceCreateInfoKHR(
         VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR,
         pNext,
@@ -7353,7 +7353,7 @@ end
 Julian constructor for VkWin32SurfaceCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkWin32SurfaceCreateInfoKHR(next, flags, hinstance, hwnd)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkWin32SurfaceCreateInfoKHR(
         VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR,
         pNext,
@@ -7367,7 +7367,7 @@ end
 Julian constructor for VkImportMemoryWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportMemoryWin32HandleInfoKHR(next, handle_type, handle, name)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportMemoryWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7381,8 +7381,8 @@ end
 Julian constructor for VkExportMemoryWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportMemoryWin32HandleInfoKHR(next, attributes, dw_access, name)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pAttributes = unsafe_pointer(attributes)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pAttributes = unsafe_pointer(attributes)
     api.VkExportMemoryWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7396,7 +7396,7 @@ end
 Julian constructor for VkMemoryWin32HandlePropertiesKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryWin32HandlePropertiesKHR(next, memory_type_bits)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryWin32HandlePropertiesKHR(
         VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR,
         pNext,
@@ -7408,7 +7408,7 @@ end
 Julian constructor for VkMemoryGetWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkMemoryGetWin32HandleInfoKHR(next, memory, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkMemoryGetWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7428,14 +7428,14 @@ function api.VkWin32KeyedMutexAcquireReleaseInfoKHR(
     release_syncs,
     release_keys,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _acquireCount = pointer_length(acquire_syncs)    # VulkanGen.ComputeLengthArgument
-    pAcquireSyncs = unsafe_pointer(acquire_syncs)    # VulkanGen.GeneratePointers
-    pAcquireKeys = unsafe_pointer(acquire_keys)    # VulkanGen.GeneratePointers
-    pAcquireTimeouts = unsafe_pointer(acquire_timeouts)    # VulkanGen.GeneratePointers
-    _releaseCount = pointer_length(release_syncs)    # VulkanGen.ComputeLengthArgument
-    pReleaseSyncs = unsafe_pointer(release_syncs)    # VulkanGen.GeneratePointers
-    pReleaseKeys = unsafe_pointer(release_keys)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _acquireCount = pointer_length(acquire_syncs)
+    pAcquireSyncs = unsafe_pointer(acquire_syncs)
+    pAcquireKeys = unsafe_pointer(acquire_keys)
+    pAcquireTimeouts = unsafe_pointer(acquire_timeouts)
+    _releaseCount = pointer_length(release_syncs)
+    pReleaseSyncs = unsafe_pointer(release_syncs)
+    pReleaseKeys = unsafe_pointer(release_keys)
     api.VkWin32KeyedMutexAcquireReleaseInfoKHR(
         VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR,
         pNext,
@@ -7460,7 +7460,7 @@ function api.VkImportSemaphoreWin32HandleInfoKHR(
     handle,
     name,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportSemaphoreWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7476,8 +7476,8 @@ end
 Julian constructor for VkExportSemaphoreWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportSemaphoreWin32HandleInfoKHR(next, attributes, dw_access, name)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pAttributes = unsafe_pointer(attributes)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pAttributes = unsafe_pointer(attributes)
     api.VkExportSemaphoreWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7491,11 +7491,11 @@ end
 Julian constructor for VkD3D12FenceSubmitInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkD3D12FenceSubmitInfoKHR(next, wait_semaphore_values, signal_semaphore_values)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _waitSemaphoreValuesCount = pointer_length(wait_semaphore_values)    # VulkanGen.ComputeLengthArgument
-    pWaitSemaphoreValues = unsafe_pointer(wait_semaphore_values)    # VulkanGen.GeneratePointers
-    _signalSemaphoreValuesCount = pointer_length(signal_semaphore_values)    # VulkanGen.ComputeLengthArgument
-    pSignalSemaphoreValues = unsafe_pointer(signal_semaphore_values)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _waitSemaphoreValuesCount = pointer_length(wait_semaphore_values)
+    pWaitSemaphoreValues = unsafe_pointer(wait_semaphore_values)
+    _signalSemaphoreValuesCount = pointer_length(signal_semaphore_values)
+    pSignalSemaphoreValues = unsafe_pointer(signal_semaphore_values)
     api.VkD3D12FenceSubmitInfoKHR(
         VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR,
         pNext,
@@ -7510,7 +7510,7 @@ end
 Julian constructor for VkSemaphoreGetWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSemaphoreGetWin32HandleInfoKHR(next, semaphore, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSemaphoreGetWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7523,7 +7523,7 @@ end
 Julian constructor for VkImportFenceWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportFenceWin32HandleInfoKHR(next, fence, flags, handle_type, handle, name)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportFenceWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7539,8 +7539,8 @@ end
 Julian constructor for VkExportFenceWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportFenceWin32HandleInfoKHR(next, attributes, dw_access, name)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pAttributes = unsafe_pointer(attributes)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pAttributes = unsafe_pointer(attributes)
     api.VkExportFenceWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7554,7 +7554,7 @@ end
 Julian constructor for VkFenceGetWin32HandleInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkFenceGetWin32HandleInfoKHR(next, fence, handle_type)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkFenceGetWin32HandleInfoKHR(
         VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR,
         pNext,
@@ -7567,7 +7567,7 @@ end
 Julian constructor for VkImportMemoryWin32HandleInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkImportMemoryWin32HandleInfoNV(next, handle_type, handle)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkImportMemoryWin32HandleInfoNV(
         VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV,
         pNext,
@@ -7580,8 +7580,8 @@ end
 Julian constructor for VkExportMemoryWin32HandleInfoNV. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkExportMemoryWin32HandleInfoNV(next, attributes, dw_access)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pAttributes = unsafe_pointer(attributes)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pAttributes = unsafe_pointer(attributes)
     api.VkExportMemoryWin32HandleInfoNV(
         VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV,
         pNext,
@@ -7601,14 +7601,14 @@ function api.VkWin32KeyedMutexAcquireReleaseInfoNV(
     release_syncs,
     release_keys,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _acquireCount = pointer_length(acquire_syncs)    # VulkanGen.ComputeLengthArgument
-    pAcquireSyncs = unsafe_pointer(acquire_syncs)    # VulkanGen.GeneratePointers
-    pAcquireKeys = unsafe_pointer(acquire_keys)    # VulkanGen.GeneratePointers
-    pAcquireTimeoutMilliseconds = unsafe_pointer(acquire_timeout_milliseconds)    # VulkanGen.GeneratePointers
-    _releaseCount = pointer_length(release_syncs)    # VulkanGen.ComputeLengthArgument
-    pReleaseSyncs = unsafe_pointer(release_syncs)    # VulkanGen.GeneratePointers
-    pReleaseKeys = unsafe_pointer(release_keys)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _acquireCount = pointer_length(acquire_syncs)
+    pAcquireSyncs = unsafe_pointer(acquire_syncs)
+    pAcquireKeys = unsafe_pointer(acquire_keys)
+    pAcquireTimeoutMilliseconds = unsafe_pointer(acquire_timeout_milliseconds)
+    _releaseCount = pointer_length(release_syncs)
+    pReleaseSyncs = unsafe_pointer(release_syncs)
+    pReleaseKeys = unsafe_pointer(release_keys)
     api.VkWin32KeyedMutexAcquireReleaseInfoNV(
         VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV,
         pNext,
@@ -7626,7 +7626,7 @@ end
 Julian constructor for VkSurfaceFullScreenExclusiveInfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSurfaceFullScreenExclusiveInfoEXT(next, full_screen_exclusive)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSurfaceFullScreenExclusiveInfoEXT(
         VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT,
         pNext,
@@ -7641,7 +7641,7 @@ function api.VkSurfaceCapabilitiesFullScreenExclusiveEXT(
     next,
     full_screen_exclusive_supported,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSurfaceCapabilitiesFullScreenExclusiveEXT(
         VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT,
         pNext,
@@ -7653,7 +7653,7 @@ end
 Julian constructor for VkSurfaceFullScreenExclusiveWin32InfoEXT. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkSurfaceFullScreenExclusiveWin32InfoEXT(next, hmonitor)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkSurfaceFullScreenExclusiveWin32InfoEXT(
         VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT,
         pNext,
@@ -7665,7 +7665,7 @@ end
 Julian constructor for VkXcbSurfaceCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkXcbSurfaceCreateInfoKHR(next, flags, connection, window)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkXcbSurfaceCreateInfoKHR(
         VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR,
         pNext,
@@ -7679,7 +7679,7 @@ end
 Julian constructor for VkXlibSurfaceCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkXlibSurfaceCreateInfoKHR(next, flags, dpy, window)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkXlibSurfaceCreateInfoKHR(
         VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR,
         pNext,
@@ -7693,7 +7693,7 @@ end
 Julian constructor for VkStreamDescriptorSurfaceCreateInfoGGP. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkStreamDescriptorSurfaceCreateInfoGGP(next, flags, stream_descriptor)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkStreamDescriptorSurfaceCreateInfoGGP(
         VK_STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP,
         pNext,
@@ -7706,7 +7706,7 @@ end
 Julian constructor for VkPresentFrameTokenGGP. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPresentFrameTokenGGP(next, frame_token)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPresentFrameTokenGGP(
         VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP,
         pNext,
@@ -7718,7 +7718,7 @@ end
 Julian constructor for VkDeferredOperationInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkDeferredOperationInfoKHR(next, operation_handle)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkDeferredOperationInfoKHR(
         VK_STRUCTURE_TYPE_DEFERRED_OPERATION_INFO_KHR,
         pNext,
@@ -7730,9 +7730,9 @@ end
 Julian constructor for VkPipelineLibraryCreateInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkPipelineLibraryCreateInfoKHR(next, libraries)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _libraryCount = pointer_length(libraries)    # VulkanGen.ComputeLengthArgument
-    pLibraries = unsafe_pointer(libraries)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _libraryCount = pointer_length(libraries)
+    pLibraries = unsafe_pointer(libraries)
     api.VkPipelineLibraryCreateInfoKHR(
         VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR,
         pNext,
@@ -7753,8 +7753,8 @@ function api.VkRayTracingShaderGroupCreateInfoKHR(
     intersection_shader,
     shader_group_capture_replay_handle,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    pShaderGroupCaptureReplayHandle = unsafe_pointer(shader_group_capture_replay_handle)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    pShaderGroupCaptureReplayHandle = unsafe_pointer(shader_group_capture_replay_handle)
     api.VkRayTracingShaderGroupCreateInfoKHR(
         VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR,
         pNext,
@@ -7776,7 +7776,7 @@ function api.VkRayTracingPipelineInterfaceCreateInfoKHR(
     max_attribute_size,
     max_callable_size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkRayTracingPipelineInterfaceCreateInfoKHR(
         VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR,
         pNext,
@@ -7801,12 +7801,12 @@ function api.VkRayTracingPipelineCreateInfoKHR(
     base_pipeline_handle,
     base_pipeline_index,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _stageCount = pointer_length(stages)    # VulkanGen.ComputeLengthArgument
-    pStages = unsafe_pointer(stages)    # VulkanGen.GeneratePointers
-    _groupCount = pointer_length(groups)    # VulkanGen.ComputeLengthArgument
-    pGroups = unsafe_pointer(groups)    # VulkanGen.GeneratePointers
-    pLibraryInterface = unsafe_pointer(library_interface)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _stageCount = pointer_length(stages)
+    pStages = unsafe_pointer(stages)
+    _groupCount = pointer_length(groups)
+    pGroups = unsafe_pointer(groups)
+    pLibraryInterface = unsafe_pointer(library_interface)
     api.VkRayTracingPipelineCreateInfoKHR(
         VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR,
         pNext,
@@ -7836,7 +7836,7 @@ function api.VkAccelerationStructureGeometryTrianglesDataKHR(
     index_data,
     transform_data,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureGeometryTrianglesDataKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR,
         pNext,
@@ -7853,7 +7853,7 @@ end
 Julian constructor for VkAccelerationStructureGeometryAabbsDataKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAccelerationStructureGeometryAabbsDataKHR(next, data, stride)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureGeometryAabbsDataKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR,
         pNext,
@@ -7866,7 +7866,7 @@ end
 Julian constructor for VkAccelerationStructureGeometryInstancesDataKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAccelerationStructureGeometryInstancesDataKHR(next, array_of_pointers, data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureGeometryInstancesDataKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR,
         pNext,
@@ -7879,7 +7879,7 @@ end
 Julian constructor for VkAccelerationStructureGeometryKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAccelerationStructureGeometryKHR(next, geometry_type, geometry, flags)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureGeometryKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR,
         pNext,
@@ -7904,8 +7904,8 @@ function api.VkAccelerationStructureBuildGeometryInfoKHR(
     geometries,
     scratch_data,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    ppGeometries = unsafe_pointer(geometries)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    ppGeometries = unsafe_pointer(geometries)
     api.VkAccelerationStructureBuildGeometryInfoKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR,
         pNext,
@@ -7933,7 +7933,7 @@ function api.VkAccelerationStructureCreateGeometryTypeInfoKHR(
     vertex_format,
     allows_transforms,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureCreateGeometryTypeInfoKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_GEOMETRY_TYPE_INFO_KHR,
         pNext,
@@ -7957,9 +7957,9 @@ function api.VkAccelerationStructureCreateInfoKHR(
     geometry_infos,
     device_address,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
-    _maxGeometryCount = pointer_length(geometry_infos)    # VulkanGen.ComputeLengthArgument
-    pGeometryInfos = unsafe_pointer(geometry_infos)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
+    _maxGeometryCount = pointer_length(geometry_infos)
+    pGeometryInfos = unsafe_pointer(geometry_infos)
     api.VkAccelerationStructureCreateInfoKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR,
         pNext,
@@ -7981,7 +7981,7 @@ function api.VkAccelerationStructureMemoryRequirementsInfoKHR(
     build_type,
     acceleration_structure,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureMemoryRequirementsInfoKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_KHR,
         pNext,
@@ -8006,7 +8006,7 @@ function api.VkPhysicalDeviceRayTracingFeaturesKHR(
     ray_query,
     ray_tracing_primitive_culling,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceRayTracingFeaturesKHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_FEATURES_KHR,
         pNext,
@@ -8037,7 +8037,7 @@ function api.VkPhysicalDeviceRayTracingPropertiesKHR(
     max_descriptor_set_acceleration_structures,
     shader_group_handle_capture_replay_size,
 )
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkPhysicalDeviceRayTracingPropertiesKHR(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_KHR,
         pNext,
@@ -8057,7 +8057,7 @@ end
 Julian constructor for VkAccelerationStructureDeviceAddressInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAccelerationStructureDeviceAddressInfoKHR(next, acceleration_structure)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureDeviceAddressInfoKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR,
         pNext,
@@ -8069,7 +8069,7 @@ end
 Julian constructor for VkAccelerationStructureVersionKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkAccelerationStructureVersionKHR(next, version_data)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkAccelerationStructureVersionKHR(
         VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_KHR,
         pNext,
@@ -8081,7 +8081,7 @@ end
 Julian constructor for VkCopyAccelerationStructureToMemoryInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCopyAccelerationStructureToMemoryInfoKHR(next, src, dst, mode)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCopyAccelerationStructureToMemoryInfoKHR(
         VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR,
         pNext,
@@ -8095,7 +8095,7 @@ end
 Julian constructor for VkCopyMemoryToAccelerationStructureInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCopyMemoryToAccelerationStructureInfoKHR(next, src, dst, mode)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCopyMemoryToAccelerationStructureInfoKHR(
         VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR,
         pNext,
@@ -8109,7 +8109,7 @@ end
 Julian constructor for VkCopyAccelerationStructureInfoKHR. All struct pointers should be replaced by an equivalent Ref or `C_NULL`. The Refs need to be explicitly preserved during and after this call to keep the struct pointers valid.
 """
 function api.VkCopyAccelerationStructureInfoKHR(next, src, dst, mode)
-    pNext = unsafe_pointer(next)    # VulkanGen.GeneratePointers
+    pNext = unsafe_pointer(next)
     api.VkCopyAccelerationStructureInfoKHR(
         VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR,
         pNext,
@@ -10607,11 +10607,23 @@ struct CopyAccelerationStructureInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function CopyAccelerationStructureInfoKHR(src, dst, mode; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCopyAccelerationStructureInfoKHR(bag_next, _pNext)
         vks = VkCopyAccelerationStructureInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src.handle,
             dst.handle,
             mode,
@@ -10627,11 +10639,23 @@ struct CopyMemoryToAccelerationStructureInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function CopyMemoryToAccelerationStructureInfoKHR(src, dst, mode; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCopyMemoryToAccelerationStructureInfoKHR(bag_next, _pNext)
         vks = VkCopyMemoryToAccelerationStructureInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src.vks,
             dst.handle,
             mode,
@@ -10647,11 +10671,23 @@ struct CopyAccelerationStructureToMemoryInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function CopyAccelerationStructureToMemoryInfoKHR(src, dst, mode; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCopyAccelerationStructureToMemoryInfoKHR(bag_next, _pNext)
         vks = VkCopyAccelerationStructureToMemoryInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src.handle,
             dst.vks,
             mode,
@@ -10677,14 +10713,23 @@ struct AccelerationStructureVersionKHR <: VulkanStruct
     Generic constructor.
     """
     function AccelerationStructureVersionKHR(version_data; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        version_data = convert(Array{UInt8}, version_data)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        version_data = convert(Array{UInt8}, version_data)
         bag = BagAccelerationStructureVersionKHR(bag_next, _pNext, version_data)
-        vks = VkAccelerationStructureVersionKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            version_data,
-        )
+        vks = VkAccelerationStructureVersionKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, version_data)
         new(vks, bag)
     end
 end
@@ -10699,11 +10744,23 @@ struct AccelerationStructureDeviceAddressInfoKHR <: VulkanStruct
         acceleration_structure;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureDeviceAddressInfoKHR(bag_next, _pNext)
         vks = VkAccelerationStructureDeviceAddressInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             acceleration_structure.handle,
         )
         new(vks, bag)
@@ -10741,11 +10798,23 @@ struct PhysicalDeviceRayTracingFeaturesKHR <: VulkanStruct
         ray_tracing_primitive_culling;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceRayTracingFeaturesKHR(bag_next, _pNext)
         vks = VkPhysicalDeviceRayTracingFeaturesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             ray_tracing,
             ray_tracing_shader_group_handle_capture_replay,
             ray_tracing_shader_group_handle_capture_replay_mixed,
@@ -10772,11 +10841,23 @@ struct AccelerationStructureMemoryRequirementsInfoKHR <: VulkanStruct
         acceleration_structure;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureMemoryRequirementsInfoKHR(bag_next, _pNext)
         vks = VkAccelerationStructureMemoryRequirementsInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             type,
             build_type,
             acceleration_structure.handle,
@@ -10799,10 +10880,21 @@ struct AccelerationStructureCreateInfoKHR <: VulkanStruct
         flags = 0,
         device_address = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pGeometryInfos =
-            geometry_infos == C_NULL ? geometry_infos : getproperty.(geometry_infos, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pGeometryInfos = if geometry_infos == C_NULL
+            geometry_infos
+        else
+            getproperty.(geometry_infos, :vks)
+        end
         bag = BagAccelerationStructureCreateInfoKHR(
             bag_next,
             _pNext,
@@ -10810,12 +10902,24 @@ struct AccelerationStructureCreateInfoKHR <: VulkanStruct
             _pGeometryInfos,
         )
         vks = VkAccelerationStructureCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             compacted_size,
             type,
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pGeometryInfos,
-            device_address == 0 ? 0 : device_address,
+            if device_address == 0
+                0
+            else
+                device_address
+            end,
         )
         new(vks, bag)
     end
@@ -10836,17 +10940,41 @@ struct AccelerationStructureCreateGeometryTypeInfoKHR <: VulkanStruct
         vertex_format = 0,
         allows_transforms = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureCreateGeometryTypeInfoKHR(bag_next, _pNext)
         vks = VkAccelerationStructureCreateGeometryTypeInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             geometry_type,
             max_primitive_count,
             index_type,
-            max_vertex_count == 0 ? 0 : max_vertex_count,
-            vertex_format == 0 ? 0 : vertex_format,
-            allows_transforms == 0 ? 0 : allows_transforms,
+            if max_vertex_count == 0
+                0
+            else
+                max_vertex_count
+            end,
+            if vertex_format == 0
+                0
+            else
+                vertex_format
+            end,
+            if allows_transforms == 0
+                0
+            else
+                allows_transforms
+            end,
         )
         new(vks, bag)
     end
@@ -10870,9 +10998,21 @@ struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct
         src_acceleration_structure = C_NULL,
         geometry_count = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _ppGeometries = geometries == C_NULL ? geometries : Ref(geometries.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _ppGeometries = if geometries == C_NULL
+            geometries
+        else
+            Ref(geometries.vks)
+        end
         bag = BagAccelerationStructureBuildGeometryInfoKHR(
             bag_next,
             _pNext,
@@ -10880,15 +11020,30 @@ struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct
             _ppGeometries,
         )
         vks = VkAccelerationStructureBuildGeometryInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             type,
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             update,
-            src_acceleration_structure == C_NULL ? C_NULL :
-            src_acceleration_structure.handle,
+            if src_acceleration_structure == C_NULL
+                C_NULL
+            else
+                src_acceleration_structure.handle
+            end,
             dst_acceleration_structure.handle,
             geometry_array_of_pointers,
-            geometry_count == 0 ? 0 : geometry_count,
+            if geometry_count == 0
+                0
+            else
+                geometry_count
+            end,
             _ppGeometries,
             scratch_data.vks,
         )
@@ -10908,14 +11063,30 @@ struct AccelerationStructureGeometryKHR <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureGeometryKHR(bag_next, _pNext)
         vks = VkAccelerationStructureGeometryKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             geometry_type,
             geometry.vks,
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
         )
         new(vks, bag)
     end
@@ -10938,11 +11109,23 @@ struct AccelerationStructureGeometryInstancesDataKHR <: VulkanStruct
         data;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureGeometryInstancesDataKHR(bag_next, _pNext)
         vks = VkAccelerationStructureGeometryInstancesDataKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             array_of_pointers,
             data.vks,
         )
@@ -10957,11 +11140,23 @@ struct AccelerationStructureGeometryAabbsDataKHR <: VulkanStruct
     Generic constructor.
     """
     function AccelerationStructureGeometryAabbsDataKHR(data, stride; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureGeometryAabbsDataKHR(bag_next, _pNext)
         vks = VkAccelerationStructureGeometryAabbsDataKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             data.vks,
             stride,
         )
@@ -10984,17 +11179,37 @@ struct AccelerationStructureGeometryTrianglesDataKHR <: VulkanStruct
         index_data = 0,
         transform_data = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureGeometryTrianglesDataKHR(bag_next, _pNext)
         vks = VkAccelerationStructureGeometryTrianglesDataKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             vertex_format,
             vertex_data.vks,
             vertex_stride,
             index_type,
-            index_data == 0 ? 0 : index_data.vks,
-            transform_data == 0 ? 0 : transform_data.vks,
+            if index_data == 0
+                0
+            else
+                index_data.vks
+            end,
+            if transform_data == 0
+                0
+            else
+                transform_data.vks
+            end,
         )
         new(vks, bag)
     end
@@ -11018,12 +11233,31 @@ struct RayTracingPipelineCreateInfoKHR <: VulkanStruct
         library_interface = C_NULL,
         base_pipeline_handle = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pStages = stages == C_NULL ? stages : getproperty.(stages, :vks)    # VulkanGen.ConvertArrays
-        _pGroups = groups == C_NULL ? groups : getproperty.(groups, :vks)    # VulkanGen.ConvertArrays
-        _pLibraryInterface =
-            library_interface == C_NULL ? library_interface : Ref(library_interface.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pStages = if stages == C_NULL
+            stages
+        else
+            getproperty.(stages, :vks)
+        end
+        _pGroups = if groups == C_NULL
+            groups
+        else
+            getproperty.(groups, :vks)
+        end
+        _pLibraryInterface = if library_interface == C_NULL
+            library_interface
+        else
+            Ref(library_interface.vks)
+        end
         bag = BagRayTracingPipelineCreateInfoKHR(
             bag_next,
             _pNext,
@@ -11032,19 +11266,39 @@ struct RayTracingPipelineCreateInfoKHR <: VulkanStruct
             getproperty.(groups, :bag),
             _pGroups,
             libraries.bag,
-            library_interface == C_NULL ? EmptyBag : library_interface.bag,
+            if library_interface == C_NULL
+                EmptyBag
+            else
+                library_interface.bag
+            end,
             _pLibraryInterface,
         )
         vks = VkRayTracingPipelineCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pStages,
             _pGroups,
             max_recursion_depth,
             libraries.vks,
-            _pLibraryInterface == C_NULL ? C_NULL : _pLibraryInterface,
+            if _pLibraryInterface == C_NULL
+                C_NULL
+            else
+                _pLibraryInterface
+            end,
             layout.handle,
-            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
+            if base_pipeline_handle == C_NULL
+                C_NULL
+            else
+                base_pipeline_handle.handle
+            end,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -11063,11 +11317,23 @@ struct RayTracingPipelineInterfaceCreateInfoKHR <: VulkanStruct
         max_callable_size;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagRayTracingPipelineInterfaceCreateInfoKHR(bag_next, _pNext)
         vks = VkRayTracingPipelineInterfaceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             max_payload_size,
             max_attribute_size,
             max_callable_size,
@@ -11091,25 +11357,42 @@ struct RayTracingShaderGroupCreateInfoKHR <: VulkanStruct
         next = C_NULL,
         shader_group_capture_replay_handle = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pShaderGroupCaptureReplayHandle =
-            shader_group_capture_replay_handle == C_NULL ?
-            shader_group_capture_replay_handle : Ref(shader_group_capture_replay_handle)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pShaderGroupCaptureReplayHandle = if shader_group_capture_replay_handle == C_NULL
+            shader_group_capture_replay_handle
+        else
+            Ref(shader_group_capture_replay_handle)
+        end
         bag = BagRayTracingShaderGroupCreateInfoKHR(
             bag_next,
             _pNext,
             _pShaderGroupCaptureReplayHandle,
         )
         vks = VkRayTracingShaderGroupCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             type,
             general_shader,
             closest_hit_shader,
             any_hit_shader,
             intersection_shader,
-            _pShaderGroupCaptureReplayHandle == C_NULL ? C_NULL :
-            _pShaderGroupCaptureReplayHandle,
+            if _pShaderGroupCaptureReplayHandle == C_NULL
+                C_NULL
+            else
+                _pShaderGroupCaptureReplayHandle
+            end,
         )
         new(vks, bag)
     end
@@ -11139,12 +11422,27 @@ struct PipelineLibraryCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function PipelineLibraryCreateInfoKHR(libraries; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pLibraries = libraries == C_NULL ? libraries : getproperty.(libraries, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pLibraries = if libraries == C_NULL
+            libraries
+        else
+            getproperty.(libraries, :handle)
+        end
         bag = BagPipelineLibraryCreateInfoKHR(bag_next, _pNext, _pLibraries)
-        vks =
-            VkPipelineLibraryCreateInfoKHR(_pNext == C_NULL ? C_NULL : _pNext, _pLibraries)
+        vks = VkPipelineLibraryCreateInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, _pLibraries)
         new(vks, bag)
     end
 end
@@ -11156,13 +11454,22 @@ struct DeferredOperationInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function DeferredOperationInfoKHR(operation_handle; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeferredOperationInfoKHR(bag_next, _pNext)
-        vks = VkDeferredOperationInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            operation_handle.handle,
-        )
+        vks = VkDeferredOperationInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, operation_handle.handle)
         new(vks, bag)
     end
 end
@@ -11174,10 +11481,22 @@ struct PresentFrameTokenGGP <: VulkanStruct
     Generic constructor.
     """
     function PresentFrameTokenGGP(frame_token; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPresentFrameTokenGGP(bag_next, _pNext)
-        vks = VkPresentFrameTokenGGP(_pNext == C_NULL ? C_NULL : _pNext, frame_token)
+        vks = VkPresentFrameTokenGGP(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, frame_token)
         new(vks, bag)
     end
 end
@@ -11193,12 +11512,28 @@ struct StreamDescriptorSurfaceCreateInfoGGP <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagStreamDescriptorSurfaceCreateInfoGGP(bag_next, _pNext)
         vks = VkStreamDescriptorSurfaceCreateInfoGGP(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             stream_descriptor,
         )
         new(vks, bag)
@@ -11212,15 +11547,26 @@ struct XlibSurfaceCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function XlibSurfaceCreateInfoKHR(dpy, window; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagXlibSurfaceCreateInfoKHR(bag_next, _pNext, dpy)
-        vks = VkXlibSurfaceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            dpy,
-            window,
-        )
+        vks = VkXlibSurfaceCreateInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, dpy, window)
         new(vks, bag)
     end
 end
@@ -11232,12 +11578,28 @@ struct XcbSurfaceCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function XcbSurfaceCreateInfoKHR(connection, window; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagXcbSurfaceCreateInfoKHR(bag_next, _pNext, connection)
         vks = VkXcbSurfaceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             connection,
             window,
         )
@@ -11252,13 +11614,22 @@ struct SurfaceFullScreenExclusiveWin32InfoEXT <: VulkanStruct
     Generic constructor.
     """
     function SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSurfaceFullScreenExclusiveWin32InfoEXT(bag_next, _pNext)
-        vks = VkSurfaceFullScreenExclusiveWin32InfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            hmonitor,
-        )
+        vks = VkSurfaceFullScreenExclusiveWin32InfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, hmonitor)
         new(vks, bag)
     end
 end
@@ -11273,11 +11644,23 @@ struct SurfaceCapabilitiesFullScreenExclusiveEXT <: VulkanStruct
         full_screen_exclusive_supported;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSurfaceCapabilitiesFullScreenExclusiveEXT(bag_next, _pNext)
         vks = VkSurfaceCapabilitiesFullScreenExclusiveEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             full_screen_exclusive_supported,
         )
         new(vks, bag)
@@ -11291,13 +11674,22 @@ struct SurfaceFullScreenExclusiveInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function SurfaceFullScreenExclusiveInfoEXT(full_screen_exclusive; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSurfaceFullScreenExclusiveInfoEXT(bag_next, _pNext)
-        vks = VkSurfaceFullScreenExclusiveInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            full_screen_exclusive,
-        )
+        vks = VkSurfaceFullScreenExclusiveInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, full_screen_exclusive)
         new(vks, bag)
     end
 end
@@ -11316,15 +11708,29 @@ struct Win32KeyedMutexAcquireReleaseInfoNV <: VulkanStruct
         release_keys;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAcquireSyncs =
-            acquire_syncs == C_NULL ? acquire_syncs : getproperty.(acquire_syncs, :handle)    # VulkanGen.ConvertArrays
-        acquire_keys = convert(Array{UInt64}, acquire_keys)    # VulkanGen.ConvertArrays
-        acquire_timeout_milliseconds = convert(Array{UInt32}, acquire_timeout_milliseconds)    # VulkanGen.ConvertArrays
-        _pReleaseSyncs =
-            release_syncs == C_NULL ? release_syncs : getproperty.(release_syncs, :handle)    # VulkanGen.ConvertArrays
-        release_keys = convert(Array{UInt64}, release_keys)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAcquireSyncs = if acquire_syncs == C_NULL
+            acquire_syncs
+        else
+            getproperty.(acquire_syncs, :handle)
+        end
+        acquire_keys = convert(Array{UInt64}, acquire_keys)
+        acquire_timeout_milliseconds = convert(Array{UInt32}, acquire_timeout_milliseconds)
+        _pReleaseSyncs = if release_syncs == C_NULL
+            release_syncs
+        else
+            getproperty.(release_syncs, :handle)
+        end
+        release_keys = convert(Array{UInt64}, release_keys)
         bag = BagWin32KeyedMutexAcquireReleaseInfoNV(
             bag_next,
             _pNext,
@@ -11335,7 +11741,11 @@ struct Win32KeyedMutexAcquireReleaseInfoNV <: VulkanStruct
             release_keys,
         )
         vks = VkWin32KeyedMutexAcquireReleaseInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pAcquireSyncs,
             acquire_keys,
             acquire_timeout_milliseconds,
@@ -11357,14 +11767,38 @@ struct ExportMemoryWin32HandleInfoNV <: VulkanStruct
         attributes = C_NULL,
         dw_access = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttributes = attributes == C_NULL ? attributes : Ref(attributes)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttributes = if attributes == C_NULL
+            attributes
+        else
+            Ref(attributes)
+        end
         bag = BagExportMemoryWin32HandleInfoNV(bag_next, _pNext, _pAttributes)
         vks = VkExportMemoryWin32HandleInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pAttributes == C_NULL ? C_NULL : _pAttributes,
-            dw_access == 0 ? 0 : dw_access,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if _pAttributes == C_NULL
+                C_NULL
+            else
+                _pAttributes
+            end,
+            if dw_access == 0
+                0
+            else
+                dw_access
+            end,
         )
         new(vks, bag)
     end
@@ -11377,13 +11811,33 @@ struct ImportMemoryWin32HandleInfoNV <: VulkanStruct
     Generic constructor.
     """
     function ImportMemoryWin32HandleInfoNV(; next = C_NULL, handle_type = 0, handle = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportMemoryWin32HandleInfoNV(bag_next, _pNext)
         vks = VkImportMemoryWin32HandleInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_type == 0 ? 0 : handle_type,
-            handle == 0 ? 0 : handle,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if handle_type == 0
+                0
+            else
+                handle_type
+            end,
+            if handle == 0
+                0
+            else
+                handle
+            end,
         )
         new(vks, bag)
     end
@@ -11396,14 +11850,22 @@ struct FenceGetWin32HandleInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function FenceGetWin32HandleInfoKHR(fence, handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagFenceGetWin32HandleInfoKHR(bag_next, _pNext)
-        vks = VkFenceGetWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            fence.handle,
-            handle_type,
-        )
+        vks = VkFenceGetWin32HandleInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, fence.handle, handle_type)
         new(vks, bag)
     end
 end
@@ -11420,13 +11882,33 @@ struct ExportFenceWin32HandleInfoKHR <: VulkanStruct
         next = C_NULL,
         attributes = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttributes = attributes == C_NULL ? attributes : Ref(attributes)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttributes = if attributes == C_NULL
+            attributes
+        else
+            Ref(attributes)
+        end
         bag = BagExportFenceWin32HandleInfoKHR(bag_next, _pNext, _pAttributes)
         vks = VkExportFenceWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pAttributes == C_NULL ? C_NULL : _pAttributes,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if _pAttributes == C_NULL
+                C_NULL
+            else
+                _pAttributes
+            end,
             dw_access,
             name,
         )
@@ -11448,16 +11930,44 @@ struct ImportFenceWin32HandleInfoKHR <: VulkanStruct
         handle = 0,
         name = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportFenceWin32HandleInfoKHR(bag_next, _pNext)
         vks = VkImportFenceWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             fence.handle,
-            flags == 0 ? 0 : flags,
-            handle_type == 0 ? 0 : handle_type,
-            handle == 0 ? 0 : handle,
-            name == 0 ? 0 : name,
+            if flags == 0
+                0
+            else
+                flags
+            end,
+            if handle_type == 0
+                0
+            else
+                handle_type
+            end,
+            if handle == 0
+                0
+            else
+                handle
+            end,
+            if name == 0
+                0
+            else
+                name
+            end,
         )
         new(vks, bag)
     end
@@ -11470,11 +11980,23 @@ struct SemaphoreGetWin32HandleInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function SemaphoreGetWin32HandleInfoKHR(semaphore, handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSemaphoreGetWin32HandleInfoKHR(bag_next, _pNext)
         vks = VkSemaphoreGetWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             semaphore.handle,
             handle_type,
         )
@@ -11493,10 +12015,18 @@ struct D3D12FenceSubmitInfoKHR <: VulkanStruct
         wait_semaphore_values = C_NULL,
         signal_semaphore_values = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        wait_semaphore_values = convert(Array{UInt64}, wait_semaphore_values)    # VulkanGen.ConvertArrays
-        signal_semaphore_values = convert(Array{UInt64}, signal_semaphore_values)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        wait_semaphore_values = convert(Array{UInt64}, wait_semaphore_values)
+        signal_semaphore_values = convert(Array{UInt64}, signal_semaphore_values)
         bag = BagD3D12FenceSubmitInfoKHR(
             bag_next,
             _pNext,
@@ -11504,9 +12034,21 @@ struct D3D12FenceSubmitInfoKHR <: VulkanStruct
             signal_semaphore_values,
         )
         vks = VkD3D12FenceSubmitInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            wait_semaphore_values == C_NULL ? C_NULL : wait_semaphore_values,
-            signal_semaphore_values == C_NULL ? C_NULL : signal_semaphore_values,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if wait_semaphore_values == C_NULL
+                C_NULL
+            else
+                wait_semaphore_values
+            end,
+            if signal_semaphore_values == C_NULL
+                C_NULL
+            else
+                signal_semaphore_values
+            end,
         )
         new(vks, bag)
     end
@@ -11524,13 +12066,33 @@ struct ExportSemaphoreWin32HandleInfoKHR <: VulkanStruct
         next = C_NULL,
         attributes = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttributes = attributes == C_NULL ? attributes : Ref(attributes)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttributes = if attributes == C_NULL
+            attributes
+        else
+            Ref(attributes)
+        end
         bag = BagExportSemaphoreWin32HandleInfoKHR(bag_next, _pNext, _pAttributes)
         vks = VkExportSemaphoreWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pAttributes == C_NULL ? C_NULL : _pAttributes,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if _pAttributes == C_NULL
+                C_NULL
+            else
+                _pAttributes
+            end,
             dw_access,
             name,
         )
@@ -11552,16 +12114,44 @@ struct ImportSemaphoreWin32HandleInfoKHR <: VulkanStruct
         handle = 0,
         name = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportSemaphoreWin32HandleInfoKHR(bag_next, _pNext)
         vks = VkImportSemaphoreWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             semaphore.handle,
-            flags == 0 ? 0 : flags,
-            handle_type == 0 ? 0 : handle_type,
-            handle == 0 ? 0 : handle,
-            name == 0 ? 0 : name,
+            if flags == 0
+                0
+            else
+                flags
+            end,
+            if handle_type == 0
+                0
+            else
+                handle_type
+            end,
+            if handle == 0
+                0
+            else
+                handle
+            end,
+            if name == 0
+                0
+            else
+                name
+            end,
         )
         new(vks, bag)
     end
@@ -11581,15 +12171,29 @@ struct Win32KeyedMutexAcquireReleaseInfoKHR <: VulkanStruct
         release_keys;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAcquireSyncs =
-            acquire_syncs == C_NULL ? acquire_syncs : getproperty.(acquire_syncs, :handle)    # VulkanGen.ConvertArrays
-        acquire_keys = convert(Array{UInt64}, acquire_keys)    # VulkanGen.ConvertArrays
-        acquire_timeouts = convert(Array{UInt32}, acquire_timeouts)    # VulkanGen.ConvertArrays
-        _pReleaseSyncs =
-            release_syncs == C_NULL ? release_syncs : getproperty.(release_syncs, :handle)    # VulkanGen.ConvertArrays
-        release_keys = convert(Array{UInt64}, release_keys)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAcquireSyncs = if acquire_syncs == C_NULL
+            acquire_syncs
+        else
+            getproperty.(acquire_syncs, :handle)
+        end
+        acquire_keys = convert(Array{UInt64}, acquire_keys)
+        acquire_timeouts = convert(Array{UInt32}, acquire_timeouts)
+        _pReleaseSyncs = if release_syncs == C_NULL
+            release_syncs
+        else
+            getproperty.(release_syncs, :handle)
+        end
+        release_keys = convert(Array{UInt64}, release_keys)
         bag = BagWin32KeyedMutexAcquireReleaseInfoKHR(
             bag_next,
             _pNext,
@@ -11600,7 +12204,11 @@ struct Win32KeyedMutexAcquireReleaseInfoKHR <: VulkanStruct
             release_keys,
         )
         vks = VkWin32KeyedMutexAcquireReleaseInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pAcquireSyncs,
             acquire_keys,
             acquire_timeouts,
@@ -11618,14 +12226,22 @@ struct MemoryGetWin32HandleInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function MemoryGetWin32HandleInfoKHR(memory, handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryGetWin32HandleInfoKHR(bag_next, _pNext)
-        vks = VkMemoryGetWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory.handle,
-            handle_type,
-        )
+        vks = VkMemoryGetWin32HandleInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, memory.handle, handle_type)
         new(vks, bag)
     end
 end
@@ -11647,13 +12263,33 @@ struct ExportMemoryWin32HandleInfoKHR <: VulkanStruct
         next = C_NULL,
         attributes = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttributes = attributes == C_NULL ? attributes : Ref(attributes)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttributes = if attributes == C_NULL
+            attributes
+        else
+            Ref(attributes)
+        end
         bag = BagExportMemoryWin32HandleInfoKHR(bag_next, _pNext, _pAttributes)
         vks = VkExportMemoryWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pAttributes == C_NULL ? C_NULL : _pAttributes,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if _pAttributes == C_NULL
+                C_NULL
+            else
+                _pAttributes
+            end,
             dw_access,
             name,
         )
@@ -11673,14 +12309,38 @@ struct ImportMemoryWin32HandleInfoKHR <: VulkanStruct
         handle = 0,
         name = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportMemoryWin32HandleInfoKHR(bag_next, _pNext)
         vks = VkImportMemoryWin32HandleInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_type == 0 ? 0 : handle_type,
-            handle == 0 ? 0 : handle,
-            name == 0 ? 0 : name,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if handle_type == 0
+                0
+            else
+                handle_type
+            end,
+            if handle == 0
+                0
+            else
+                handle
+            end,
+            if name == 0
+                0
+            else
+                name
+            end,
         )
         new(vks, bag)
     end
@@ -11693,15 +12353,26 @@ struct Win32SurfaceCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function Win32SurfaceCreateInfoKHR(hinstance, hwnd; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagWin32SurfaceCreateInfoKHR(bag_next, _pNext)
-        vks = VkWin32SurfaceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            hinstance,
-            hwnd,
-        )
+        vks = VkWin32SurfaceCreateInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, hinstance, hwnd)
         new(vks, bag)
     end
 end
@@ -11713,12 +12384,28 @@ struct WaylandSurfaceCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function WaylandSurfaceCreateInfoKHR(display, surface; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagWaylandSurfaceCreateInfoKHR(bag_next, _pNext, display, surface)
         vks = VkWaylandSurfaceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             display,
             surface,
         )
@@ -11733,15 +12420,31 @@ struct ViSurfaceCreateInfoNN <: VulkanStruct
     Generic constructor.
     """
     function ViSurfaceCreateInfoNN(window; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _window = window == C_NULL ? window : Ref(window)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _window = if window == C_NULL
+            window
+        else
+            Ref(window)
+        end
         bag = BagViSurfaceCreateInfoNN(bag_next, _pNext, _window)
-        vks = VkViSurfaceCreateInfoNN(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _window,
-        )
+        vks = VkViSurfaceCreateInfoNN(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, _window)
         new(vks, bag)
     end
 end
@@ -11753,14 +12456,26 @@ struct MetalSurfaceCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function MetalSurfaceCreateInfoEXT(layer; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMetalSurfaceCreateInfoEXT(bag_next, _pNext, layer)
-        vks = VkMetalSurfaceCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            layer,
-        )
+        vks = VkMetalSurfaceCreateInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, layer)
         new(vks, bag)
     end
 end
@@ -11772,15 +12487,31 @@ struct MacOSSurfaceCreateInfoMVK <: VulkanStruct
     Generic constructor.
     """
     function MacOSSurfaceCreateInfoMVK(view; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pView = view == C_NULL ? view : Ref(view)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pView = if view == C_NULL
+            view
+        else
+            Ref(view)
+        end
         bag = BagMacOSSurfaceCreateInfoMVK(bag_next, _pNext, _pView)
-        vks = VkMacOSSurfaceCreateInfoMVK(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pView,
-        )
+        vks = VkMacOSSurfaceCreateInfoMVK(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, _pView)
         new(vks, bag)
     end
 end
@@ -11792,15 +12523,31 @@ struct IOSSurfaceCreateInfoMVK <: VulkanStruct
     Generic constructor.
     """
     function IOSSurfaceCreateInfoMVK(view; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pView = view == C_NULL ? view : Ref(view)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pView = if view == C_NULL
+            view
+        else
+            Ref(view)
+        end
         bag = BagIOSSurfaceCreateInfoMVK(bag_next, _pNext, _pView)
-        vks = VkIOSSurfaceCreateInfoMVK(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pView,
-        )
+        vks = VkIOSSurfaceCreateInfoMVK(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, _pView)
         new(vks, bag)
     end
 end
@@ -11812,12 +12559,28 @@ struct ImagePipeSurfaceCreateInfoFUCHSIA <: VulkanStruct
     Generic constructor.
     """
     function ImagePipeSurfaceCreateInfoFUCHSIA(image_pipe_handle; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImagePipeSurfaceCreateInfoFUCHSIA(bag_next, _pNext)
         vks = VkImagePipeSurfaceCreateInfoFUCHSIA(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             image_pipe_handle,
         )
         new(vks, bag)
@@ -11831,10 +12594,22 @@ struct ExternalFormatANDROID <: VulkanStruct
     Generic constructor.
     """
     function ExternalFormatANDROID(external_format; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExternalFormatANDROID(bag_next, _pNext)
-        vks = VkExternalFormatANDROID(_pNext == C_NULL ? C_NULL : _pNext, external_format)
+        vks = VkExternalFormatANDROID(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, external_format)
         new(vks, bag)
     end
 end
@@ -11846,13 +12621,22 @@ struct MemoryGetAndroidHardwareBufferInfoANDROID <: VulkanStruct
     Generic constructor.
     """
     function MemoryGetAndroidHardwareBufferInfoANDROID(memory; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryGetAndroidHardwareBufferInfoANDROID(bag_next, _pNext)
-        vks = VkMemoryGetAndroidHardwareBufferInfoANDROID(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory.handle,
-        )
+        vks = VkMemoryGetAndroidHardwareBufferInfoANDROID(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, memory.handle)
         new(vks, bag)
     end
 end
@@ -11864,13 +12648,22 @@ struct ImportAndroidHardwareBufferInfoANDROID <: VulkanStruct
     Generic constructor.
     """
     function ImportAndroidHardwareBufferInfoANDROID(buffer; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportAndroidHardwareBufferInfoANDROID(bag_next, _pNext, buffer)
-        vks = VkImportAndroidHardwareBufferInfoANDROID(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            buffer,
-        )
+        vks = VkImportAndroidHardwareBufferInfoANDROID(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, buffer)
         new(vks, bag)
     end
 end
@@ -11887,14 +12680,26 @@ struct AndroidSurfaceCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function AndroidSurfaceCreateInfoKHR(window; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAndroidSurfaceCreateInfoKHR(bag_next, _pNext, window)
-        vks = VkAndroidSurfaceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            window,
-        )
+        vks = VkAndroidSurfaceCreateInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, window)
         new(vks, bag)
     end
 end
@@ -11910,11 +12715,23 @@ struct PhysicalDevice4444FormatsFeaturesEXT <: VulkanStruct
         format_a4b4g4r4;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDevice4444FormatsFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDevice4444FormatsFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             format_a4r4g4b4,
             format_a4b4g4r4,
         )
@@ -11929,11 +12746,23 @@ struct PhysicalDeviceImageRobustnessFeaturesEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceImageRobustnessFeaturesEXT(robust_image_access; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceImageRobustnessFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceImageRobustnessFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             robust_image_access,
         )
         new(vks, bag)
@@ -11958,11 +12787,23 @@ struct PhysicalDeviceFragmentDensityMap2FeaturesEXT <: VulkanStruct
         fragment_density_map_deferred;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceFragmentDensityMap2FeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceFragmentDensityMap2FeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             fragment_density_map_deferred,
         )
         new(vks, bag)
@@ -11976,13 +12817,26 @@ struct DeviceDiagnosticsConfigCreateInfoNV <: VulkanStruct
     Generic constructor.
     """
     function DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceDiagnosticsConfigCreateInfoNV(bag_next, _pNext)
-        vks = VkDeviceDiagnosticsConfigCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-        )
+        vks = VkDeviceDiagnosticsConfigCreateInfoNV(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end)
         new(vks, bag)
     end
 end
@@ -11994,11 +12848,23 @@ struct PhysicalDeviceDiagnosticsConfigFeaturesNV <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceDiagnosticsConfigFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceDiagnosticsConfigFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             diagnostics_config,
         )
         new(vks, bag)
@@ -12015,11 +12881,23 @@ struct PhysicalDevicePipelineCreationCacheControlFeaturesEXT <: VulkanStruct
         pipeline_creation_cache_control;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDevicePipelineCreationCacheControlFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             pipeline_creation_cache_control,
         )
         new(vks, bag)
@@ -12033,10 +12911,22 @@ struct PrivateDataSlotCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function PrivateDataSlotCreateInfoEXT(flags; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPrivateDataSlotCreateInfoEXT(bag_next, _pNext)
-        vks = VkPrivateDataSlotCreateInfoEXT(_pNext == C_NULL ? C_NULL : _pNext, flags)
+        vks = VkPrivateDataSlotCreateInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, flags)
         new(vks, bag)
     end
 end
@@ -12048,11 +12938,23 @@ struct DevicePrivateDataCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DevicePrivateDataCreateInfoEXT(private_data_slot_request_count; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDevicePrivateDataCreateInfoEXT(bag_next, _pNext)
         vks = VkDevicePrivateDataCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             private_data_slot_request_count,
         )
         new(vks, bag)
@@ -12066,13 +12968,22 @@ struct PhysicalDevicePrivateDataFeaturesEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDevicePrivateDataFeaturesEXT(private_data; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDevicePrivateDataFeaturesEXT(bag_next, _pNext)
-        vks = VkPhysicalDevicePrivateDataFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            private_data,
-        )
+        vks = VkPhysicalDevicePrivateDataFeaturesEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, private_data)
         new(vks, bag)
     end
 end
@@ -12088,11 +12999,23 @@ struct PhysicalDeviceCustomBorderColorFeaturesEXT <: VulkanStruct
         custom_border_color_without_format;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceCustomBorderColorFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceCustomBorderColorFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             custom_border_colors,
             custom_border_color_without_format,
         )
@@ -12116,11 +13039,23 @@ struct SamplerCustomBorderColorCreateInfoEXT <: VulkanStruct
         format;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSamplerCustomBorderColorCreateInfoEXT(bag_next, _pNext)
         vks = VkSamplerCustomBorderColorCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             custom_border_color.vks,
             format,
         )
@@ -12140,11 +13075,23 @@ struct PhysicalDeviceRobustness2FeaturesEXT <: VulkanStruct
         null_descriptor;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceRobustness2FeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceRobustness2FeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             robust_buffer_access_2,
             robust_image_access_2,
             null_descriptor,
@@ -12164,11 +13111,23 @@ struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: VulkanStruct
         render_area;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCommandBufferInheritanceRenderPassTransformInfoQCOM(bag_next, _pNext)
         vks = VkCommandBufferInheritanceRenderPassTransformInfoQCOM(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             transform,
             render_area.vks,
         )
@@ -12183,13 +13142,22 @@ struct RenderPassTransformBeginInfoQCOM <: VulkanStruct
     Generic constructor.
     """
     function RenderPassTransformBeginInfoQCOM(transform; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagRenderPassTransformBeginInfoQCOM(bag_next, _pNext)
-        vks = VkRenderPassTransformBeginInfoQCOM(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            transform,
-        )
+        vks = VkRenderPassTransformBeginInfoQCOM(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, transform)
         new(vks, bag)
     end
 end
@@ -12204,11 +13172,23 @@ struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT <: VulkanStruct
         texel_buffer_alignment;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceTexelBufferAlignmentFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             texel_buffer_alignment,
         )
         new(vks, bag)
@@ -12228,11 +13208,23 @@ struct GeneratedCommandsMemoryRequirementsInfoNV <: VulkanStruct
         max_sequences_count;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagGeneratedCommandsMemoryRequirementsInfoNV(bag_next, _pNext)
         vks = VkGeneratedCommandsMemoryRequirementsInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             pipeline_bind_point,
             pipeline.handle,
             indirect_commands_layout.handle,
@@ -12263,12 +13255,28 @@ struct GeneratedCommandsInfoNV <: VulkanStruct
         sequences_index_buffer = C_NULL,
         sequences_index_offset = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pStreams = streams == C_NULL ? streams : getproperty.(streams, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pStreams = if streams == C_NULL
+            streams
+        else
+            getproperty.(streams, :vks)
+        end
         bag = BagGeneratedCommandsInfoNV(bag_next, _pNext, _pStreams)
         vks = VkGeneratedCommandsInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             pipeline_bind_point,
             pipeline.handle,
             indirect_commands_layout.handle,
@@ -12277,10 +13285,26 @@ struct GeneratedCommandsInfoNV <: VulkanStruct
             preprocess_buffer.handle,
             preprocess_offset,
             preprocess_size,
-            sequences_count_buffer == C_NULL ? C_NULL : sequences_count_buffer.handle,
-            sequences_count_offset == 0 ? 0 : sequences_count_offset,
-            sequences_index_buffer == C_NULL ? C_NULL : sequences_index_buffer.handle,
-            sequences_index_offset == 0 ? 0 : sequences_index_offset,
+            if sequences_count_buffer == C_NULL
+                C_NULL
+            else
+                sequences_count_buffer.handle
+            end,
+            if sequences_count_offset == 0
+                0
+            else
+                sequences_count_offset
+            end,
+            if sequences_index_buffer == C_NULL
+                C_NULL
+            else
+                sequences_index_buffer.handle
+            end,
+            if sequences_index_offset == 0
+                0
+            else
+                sequences_index_offset
+            end,
         )
         new(vks, bag)
     end
@@ -12299,10 +13323,22 @@ struct IndirectCommandsLayoutCreateInfoNV <: VulkanStruct
         stream_strides;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pTokens = tokens == C_NULL ? tokens : getproperty.(tokens, :vks)    # VulkanGen.ConvertArrays
-        stream_strides = convert(Array{UInt32}, stream_strides)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pTokens = if tokens == C_NULL
+            tokens
+        else
+            getproperty.(tokens, :vks)
+        end
+        stream_strides = convert(Array{UInt32}, stream_strides)
         bag = BagIndirectCommandsLayoutCreateInfoNV(
             bag_next,
             _pNext,
@@ -12311,7 +13347,11 @@ struct IndirectCommandsLayoutCreateInfoNV <: VulkanStruct
             stream_strides,
         )
         vks = VkIndirectCommandsLayoutCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             flags,
             pipeline_bind_point,
             _pTokens,
@@ -12342,9 +13382,17 @@ struct IndirectCommandsLayoutTokenNV <: VulkanStruct
         pushconstant_shader_stage_flags = C_NULL,
         indirect_state_flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        index_type_values = convert(Array{UInt32}, index_type_values)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        index_type_values = convert(Array{UInt32}, index_type_values)
         bag = BagIndirectCommandsLayoutTokenNV(
             bag_next,
             _pNext,
@@ -12352,19 +13400,33 @@ struct IndirectCommandsLayoutTokenNV <: VulkanStruct
             index_type_values,
         )
         vks = VkIndirectCommandsLayoutTokenNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             token_type,
             stream,
             offset,
             vertex_binding_unit,
             vertex_dynamic_stride,
-            pushconstant_pipeline_layout == C_NULL ? C_NULL :
-            pushconstant_pipeline_layout.handle,
-            pushconstant_shader_stage_flags == C_NULL ? C_NULL :
-            pushconstant_shader_stage_flags,
+            if pushconstant_pipeline_layout == C_NULL
+                C_NULL
+            else
+                pushconstant_pipeline_layout.handle
+            end,
+            if pushconstant_shader_stage_flags == C_NULL
+                C_NULL
+            else
+                pushconstant_shader_stage_flags
+            end,
             pushconstant_offset,
             pushconstant_size,
-            indirect_state_flags == 0 ? 0 : indirect_state_flags,
+            if indirect_state_flags == 0
+                0
+            else
+                indirect_state_flags
+            end,
             index_types,
             index_type_values,
         )
@@ -12404,10 +13466,26 @@ struct GraphicsPipelineShaderGroupsCreateInfoNV <: VulkanStruct
     Generic constructor.
     """
     function GraphicsPipelineShaderGroupsCreateInfoNV(groups, pipelines; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pGroups = groups == C_NULL ? groups : getproperty.(groups, :vks)    # VulkanGen.ConvertArrays
-        _pPipelines = pipelines == C_NULL ? pipelines : getproperty.(pipelines, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pGroups = if groups == C_NULL
+            groups
+        else
+            getproperty.(groups, :vks)
+        end
+        _pPipelines = if pipelines == C_NULL
+            pipelines
+        else
+            getproperty.(pipelines, :handle)
+        end
         bag = BagGraphicsPipelineShaderGroupsCreateInfoNV(
             bag_next,
             _pNext,
@@ -12416,7 +13494,11 @@ struct GraphicsPipelineShaderGroupsCreateInfoNV <: VulkanStruct
             _pPipelines,
         )
         vks = VkGraphicsPipelineShaderGroupsCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pGroups,
             _pPipelines,
         )
@@ -12436,28 +13518,66 @@ struct GraphicsShaderGroupCreateInfoNV <: VulkanStruct
         vertex_input_state = C_NULL,
         tessellation_state = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pStages = stages == C_NULL ? stages : getproperty.(stages, :vks)    # VulkanGen.ConvertArrays
-        _pVertexInputState =
-            vertex_input_state == C_NULL ? vertex_input_state : Ref(vertex_input_state.vks)    # VulkanGen.GenerateRefs
-        _pTessellationState =
-            tessellation_state == C_NULL ? tessellation_state : Ref(tessellation_state.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pStages = if stages == C_NULL
+            stages
+        else
+            getproperty.(stages, :vks)
+        end
+        _pVertexInputState = if vertex_input_state == C_NULL
+            vertex_input_state
+        else
+            Ref(vertex_input_state.vks)
+        end
+        _pTessellationState = if tessellation_state == C_NULL
+            tessellation_state
+        else
+            Ref(tessellation_state.vks)
+        end
         bag = BagGraphicsShaderGroupCreateInfoNV(
             bag_next,
             _pNext,
             getproperty.(stages, :bag),
             _pStages,
-            vertex_input_state == C_NULL ? EmptyBag : vertex_input_state.bag,
+            if vertex_input_state == C_NULL
+                EmptyBag
+            else
+                vertex_input_state.bag
+            end,
             _pVertexInputState,
-            tessellation_state == C_NULL ? EmptyBag : tessellation_state.bag,
+            if tessellation_state == C_NULL
+                EmptyBag
+            else
+                tessellation_state.bag
+            end,
             _pTessellationState,
         )
         vks = VkGraphicsShaderGroupCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pStages,
-            _pVertexInputState == C_NULL ? C_NULL : _pVertexInputState,
-            _pTessellationState == C_NULL ? C_NULL : _pTessellationState,
+            if _pVertexInputState == C_NULL
+                C_NULL
+            else
+                _pVertexInputState
+            end,
+            if _pTessellationState == C_NULL
+                C_NULL
+            else
+                _pTessellationState
+            end,
         )
         new(vks, bag)
     end
@@ -12473,11 +13593,23 @@ struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV <: VulkanStruct
         device_generated_commands;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceDeviceGeneratedCommandsFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             device_generated_commands,
         )
         new(vks, bag)
@@ -12507,11 +13639,23 @@ struct PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT <: VulkanStruct
         shader_demote_to_helper_invocation;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_demote_to_helper_invocation,
         )
         new(vks, bag)
@@ -12528,11 +13672,23 @@ struct PhysicalDeviceExtendedDynamicStateFeaturesEXT <: VulkanStruct
         extended_dynamic_state;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceExtendedDynamicStateFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceExtendedDynamicStateFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             extended_dynamic_state,
         )
         new(vks, bag)
@@ -12546,11 +13702,23 @@ struct PhysicalDeviceIndexTypeUint8FeaturesEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceIndexTypeUint8FeaturesEXT(index_type_uint_8; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceIndexTypeUint8FeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceIndexTypeUint8FeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             index_type_uint_8,
         )
         new(vks, bag)
@@ -12578,11 +13746,23 @@ struct PhysicalDeviceShaderAtomicFloatFeaturesEXT <: VulkanStruct
         sparse_image_float_32_atomic_add;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderAtomicFloatFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderAtomicFloatFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_buffer_float_32_atomics,
             shader_buffer_float_32_atomic_add,
             shader_buffer_float_64_atomics,
@@ -12613,15 +13793,35 @@ struct PipelineRasterizationLineStateCreateInfoEXT <: VulkanStruct
         line_stipple_factor = 0,
         line_stipple_pattern = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineRasterizationLineStateCreateInfoEXT(bag_next, _pNext)
         vks = VkPipelineRasterizationLineStateCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             line_rasterization_mode,
             stippled_line_enable,
-            line_stipple_factor == 0 ? 0 : line_stipple_factor,
-            line_stipple_pattern == 0 ? 0 : line_stipple_pattern,
+            if line_stipple_factor == 0
+                0
+            else
+                line_stipple_factor
+            end,
+            if line_stipple_pattern == 0
+                0
+            else
+                line_stipple_pattern
+            end,
         )
         new(vks, bag)
     end
@@ -12647,11 +13847,23 @@ struct PhysicalDeviceLineRasterizationFeaturesEXT <: VulkanStruct
         stippled_smooth_lines;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceLineRasterizationFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceLineRasterizationFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             rectangular_lines,
             bresenham_lines,
             smooth_lines,
@@ -12670,13 +13882,26 @@ struct HeadlessSurfaceCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function HeadlessSurfaceCreateInfoEXT(; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagHeadlessSurfaceCreateInfoEXT(bag_next, _pNext)
-        vks = VkHeadlessSurfaceCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-        )
+        vks = VkHeadlessSurfaceCreateInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end)
         new(vks, bag)
     end
 end
@@ -12688,11 +13913,23 @@ struct PhysicalDeviceYcbcrImageArraysFeaturesEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceYcbcrImageArraysFeaturesEXT(ycbcr_image_arrays; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceYcbcrImageArraysFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceYcbcrImageArraysFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             ycbcr_image_arrays,
         )
         new(vks, bag)
@@ -12711,11 +13948,23 @@ struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT <: VulkanStruct
         fragment_shader_shading_rate_interlock;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceFragmentShaderInterlockFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             fragment_shader_sample_interlock,
             fragment_shader_pixel_interlock,
             fragment_shader_shading_rate_interlock,
@@ -12735,12 +13984,28 @@ struct PipelineCoverageReductionStateCreateInfoNV <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineCoverageReductionStateCreateInfoNV(bag_next, _pNext)
         vks = VkPipelineCoverageReductionStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             coverage_reduction_mode,
         )
         new(vks, bag)
@@ -12757,11 +14022,23 @@ struct PhysicalDeviceCoverageReductionModeFeaturesNV <: VulkanStruct
         coverage_reduction_mode;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceCoverageReductionModeFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceCoverageReductionModeFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             coverage_reduction_mode,
         )
         new(vks, bag)
@@ -12779,11 +14056,23 @@ struct PhysicalDeviceCooperativeMatrixFeaturesNV <: VulkanStruct
         cooperative_matrix_robust_buffer_access;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceCooperativeMatrixFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceCooperativeMatrixFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             cooperative_matrix,
             cooperative_matrix_robust_buffer_access,
         )
@@ -12808,11 +14097,23 @@ struct CooperativeMatrixPropertiesNV <: VulkanStruct
         scope;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCooperativeMatrixPropertiesNV(bag_next, _pNext)
         vks = VkCooperativeMatrixPropertiesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             m_size,
             n_size,
             k_size,
@@ -12837,8 +14138,16 @@ struct ValidationFeaturesEXT <: VulkanStruct
         disabled_validation_features;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagValidationFeaturesEXT(
             bag_next,
             _pNext,
@@ -12846,7 +14155,11 @@ struct ValidationFeaturesEXT <: VulkanStruct
             disabled_validation_features,
         )
         vks = VkValidationFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             enabled_validation_features,
             disabled_validation_features,
         )
@@ -12861,13 +14174,22 @@ struct BufferDeviceAddressCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function BufferDeviceAddressCreateInfoEXT(device_address; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBufferDeviceAddressCreateInfoEXT(bag_next, _pNext)
-        vks = VkBufferDeviceAddressCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            device_address,
-        )
+        vks = VkBufferDeviceAddressCreateInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, device_address)
         new(vks, bag)
     end
 end
@@ -12884,11 +14206,23 @@ struct PhysicalDeviceBufferDeviceAddressFeaturesEXT <: VulkanStruct
         buffer_device_address_multi_device;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceBufferDeviceAddressFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceBufferDeviceAddressFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             buffer_device_address,
             buffer_device_address_capture_replay,
             buffer_device_address_multi_device,
@@ -12907,11 +14241,23 @@ struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV <: VulkanStruct
         dedicated_allocation_image_aliasing;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             dedicated_allocation_image_aliasing,
         )
         new(vks, bag)
@@ -12925,10 +14271,22 @@ struct MemoryPriorityAllocateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function MemoryPriorityAllocateInfoEXT(priority; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryPriorityAllocateInfoEXT(bag_next, _pNext)
-        vks = VkMemoryPriorityAllocateInfoEXT(_pNext == C_NULL ? C_NULL : _pNext, priority)
+        vks = VkMemoryPriorityAllocateInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, priority)
         new(vks, bag)
     end
 end
@@ -12940,13 +14298,22 @@ struct PhysicalDeviceMemoryPriorityFeaturesEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceMemoryPriorityFeaturesEXT(memory_priority; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceMemoryPriorityFeaturesEXT(bag_next, _pNext)
-        vks = VkPhysicalDeviceMemoryPriorityFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory_priority,
-        )
+        vks = VkPhysicalDeviceMemoryPriorityFeaturesEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, memory_priority)
         new(vks, bag)
     end
 end
@@ -12964,11 +14331,23 @@ struct PhysicalDeviceCoherentMemoryFeaturesAMD <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceCoherentMemoryFeaturesAMD(device_coherent_memory; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceCoherentMemoryFeaturesAMD(bag_next, _pNext)
         vks = VkPhysicalDeviceCoherentMemoryFeaturesAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             device_coherent_memory,
         )
         new(vks, bag)
@@ -12991,11 +14370,23 @@ struct PhysicalDeviceSubgroupSizeControlFeaturesEXT <: VulkanStruct
         compute_full_subgroups;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceSubgroupSizeControlFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceSubgroupSizeControlFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             subgroup_size_control,
             compute_full_subgroups,
         )
@@ -13013,11 +14404,23 @@ struct RenderPassFragmentDensityMapCreateInfoEXT <: VulkanStruct
         fragment_density_map_attachment;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagRenderPassFragmentDensityMapCreateInfoEXT(bag_next, _pNext)
         vks = VkRenderPassFragmentDensityMapCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             fragment_density_map_attachment.vks,
         )
         new(vks, bag)
@@ -13036,11 +14439,23 @@ struct PhysicalDeviceFragmentDensityMapFeaturesEXT <: VulkanStruct
         fragment_density_map_non_subsampled_images;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceFragmentDensityMapFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceFragmentDensityMapFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             fragment_density_map,
             fragment_density_map_dynamic,
             fragment_density_map_non_subsampled_images,
@@ -13056,11 +14471,23 @@ struct SwapchainDisplayNativeHdrCreateInfoAMD <: VulkanStruct
     Generic constructor.
     """
     function SwapchainDisplayNativeHdrCreateInfoAMD(local_dimming_enable; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSwapchainDisplayNativeHdrCreateInfoAMD(bag_next, _pNext)
         vks = VkSwapchainDisplayNativeHdrCreateInfoAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             local_dimming_enable,
         )
         new(vks, bag)
@@ -13087,13 +14514,22 @@ struct PerformanceConfigurationAcquireInfoINTEL <: VulkanStruct
     Generic constructor.
     """
     function PerformanceConfigurationAcquireInfoINTEL(type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPerformanceConfigurationAcquireInfoINTEL(bag_next, _pNext)
-        vks = VkPerformanceConfigurationAcquireInfoINTEL(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            type,
-        )
+        vks = VkPerformanceConfigurationAcquireInfoINTEL(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, type)
         new(vks, bag)
     end
 end
@@ -13105,15 +14541,22 @@ struct PerformanceOverrideInfoINTEL <: VulkanStruct
     Generic constructor.
     """
     function PerformanceOverrideInfoINTEL(type, enable, parameter; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPerformanceOverrideInfoINTEL(bag_next, _pNext)
-        vks = VkPerformanceOverrideInfoINTEL(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            type,
-            enable,
-            parameter,
-        )
+        vks = VkPerformanceOverrideInfoINTEL(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, type, enable, parameter)
         new(vks, bag)
     end
 end
@@ -13125,10 +14568,22 @@ struct PerformanceStreamMarkerInfoINTEL <: VulkanStruct
     Generic constructor.
     """
     function PerformanceStreamMarkerInfoINTEL(marker; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPerformanceStreamMarkerInfoINTEL(bag_next, _pNext)
-        vks = VkPerformanceStreamMarkerInfoINTEL(_pNext == C_NULL ? C_NULL : _pNext, marker)
+        vks = VkPerformanceStreamMarkerInfoINTEL(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, marker)
         new(vks, bag)
     end
 end
@@ -13140,10 +14595,22 @@ struct PerformanceMarkerInfoINTEL <: VulkanStruct
     Generic constructor.
     """
     function PerformanceMarkerInfoINTEL(marker; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPerformanceMarkerInfoINTEL(bag_next, _pNext)
-        vks = VkPerformanceMarkerInfoINTEL(_pNext == C_NULL ? C_NULL : _pNext, marker)
+        vks = VkPerformanceMarkerInfoINTEL(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, marker)
         new(vks, bag)
     end
 end
@@ -13158,11 +14625,23 @@ struct QueryPoolPerformanceQueryCreateInfoINTEL <: VulkanStruct
         performance_counters_sampling;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagQueryPoolPerformanceQueryCreateInfoINTEL(bag_next, _pNext)
         vks = VkQueryPoolPerformanceQueryCreateInfoINTEL(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             performance_counters_sampling,
         )
         new(vks, bag)
@@ -13176,14 +14655,27 @@ struct InitializePerformanceApiInfoINTEL <: VulkanStruct
     Generic constructor.
     """
     function InitializePerformanceApiInfoINTEL(user_data; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pUserData = user_data == C_NULL ? user_data : Ref(user_data)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pUserData = if user_data == C_NULL
+            user_data
+        else
+            Ref(user_data)
+        end
         bag = BagInitializePerformanceApiInfoINTEL(bag_next, _pNext, _pUserData)
-        vks = VkInitializePerformanceApiInfoINTEL(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pUserData,
-        )
+        vks = VkInitializePerformanceApiInfoINTEL(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, _pUserData)
         new(vks, bag)
     end
 end
@@ -13208,11 +14700,23 @@ struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL <: VulkanStruct
         shader_integer_functions_2;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_integer_functions_2,
         )
         new(vks, bag)
@@ -13226,11 +14730,23 @@ struct PhysicalDeviceExclusiveScissorFeaturesNV <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceExclusiveScissorFeaturesNV(exclusive_scissor; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceExclusiveScissorFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceExclusiveScissorFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             exclusive_scissor,
         )
         new(vks, bag)
@@ -13247,18 +14763,32 @@ struct PipelineViewportExclusiveScissorStateCreateInfoNV <: VulkanStruct
         exclusive_scissors;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pExclusiveScissors =
-            exclusive_scissors == C_NULL ? exclusive_scissors :
-            getproperty.(exclusive_scissors, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pExclusiveScissors = if exclusive_scissors == C_NULL
+            exclusive_scissors
+        else
+            getproperty.(exclusive_scissors, :vks)
+        end
         bag = BagPipelineViewportExclusiveScissorStateCreateInfoNV(
             bag_next,
             _pNext,
             _pExclusiveScissors,
         )
         vks = VkPipelineViewportExclusiveScissorStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pExclusiveScissors,
         )
         new(vks, bag)
@@ -13272,11 +14802,23 @@ struct PhysicalDeviceShaderImageFootprintFeaturesNV <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceShaderImageFootprintFeaturesNV(image_footprint; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderImageFootprintFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderImageFootprintFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             image_footprint,
         )
         new(vks, bag)
@@ -13293,11 +14835,23 @@ struct PhysicalDeviceFragmentShaderBarycentricFeaturesNV <: VulkanStruct
         fragment_shader_barycentric;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceFragmentShaderBarycentricFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             fragment_shader_barycentric,
         )
         new(vks, bag)
@@ -13333,11 +14887,23 @@ struct PhysicalDeviceMeshShaderFeaturesNV <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceMeshShaderFeaturesNV(task_shader, mesh_shader; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceMeshShaderFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceMeshShaderFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             task_shader,
             mesh_shader,
         )
@@ -13356,11 +14922,23 @@ struct PhysicalDeviceComputeShaderDerivativesFeaturesNV <: VulkanStruct
         compute_derivative_group_linear;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceComputeShaderDerivativesFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceComputeShaderDerivativesFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             compute_derivative_group_quads,
             compute_derivative_group_linear,
         )
@@ -13379,15 +14957,26 @@ struct PipelineCreationFeedbackCreateInfoEXT <: VulkanStruct
         pipeline_stage_creation_feedbacks;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pPipelineCreationFeedback =
-            pipeline_creation_feedback == C_NULL ? pipeline_creation_feedback :
-            Ref(pipeline_creation_feedback.vks)    # VulkanGen.GenerateRefs
-        _pPipelineStageCreationFeedbacks =
-            pipeline_stage_creation_feedbacks == C_NULL ?
-            pipeline_stage_creation_feedbacks :
-            getproperty.(pipeline_stage_creation_feedbacks, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pPipelineCreationFeedback = if pipeline_creation_feedback == C_NULL
+            pipeline_creation_feedback
+        else
+            Ref(pipeline_creation_feedback.vks)
+        end
+        _pPipelineStageCreationFeedbacks = if pipeline_stage_creation_feedbacks == C_NULL
+            pipeline_stage_creation_feedbacks
+        else
+            getproperty.(pipeline_stage_creation_feedbacks, :vks)
+        end
         bag = BagPipelineCreationFeedbackCreateInfoEXT(
             bag_next,
             _pNext,
@@ -13395,7 +14984,11 @@ struct PipelineCreationFeedbackCreateInfoEXT <: VulkanStruct
             _pPipelineStageCreationFeedbacks,
         )
         vks = VkPipelineCreationFeedbackCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pPipelineCreationFeedback,
             _pPipelineStageCreationFeedbacks,
         )
@@ -13414,11 +15007,23 @@ struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT <: VulkanStruct
         vertex_attribute_instance_rate_zero_divisor;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceVertexAttributeDivisorFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             vertex_attribute_instance_rate_divisor,
             vertex_attribute_instance_rate_zero_divisor,
         )
@@ -13436,18 +15041,32 @@ struct PipelineVertexInputDivisorStateCreateInfoEXT <: VulkanStruct
         vertex_binding_divisors;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pVertexBindingDivisors =
-            vertex_binding_divisors == C_NULL ? vertex_binding_divisors :
-            getproperty.(vertex_binding_divisors, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pVertexBindingDivisors = if vertex_binding_divisors == C_NULL
+            vertex_binding_divisors
+        else
+            getproperty.(vertex_binding_divisors, :vks)
+        end
         bag = BagPipelineVertexInputDivisorStateCreateInfoEXT(
             bag_next,
             _pNext,
             _pVertexBindingDivisors,
         )
         vks = VkPipelineVertexInputDivisorStateCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pVertexBindingDivisors,
         )
         new(vks, bag)
@@ -13473,11 +15092,23 @@ struct DeviceMemoryOverallocationCreateInfoAMD <: VulkanStruct
     Generic constructor.
     """
     function DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceMemoryOverallocationCreateInfoAMD(bag_next, _pNext)
         vks = VkDeviceMemoryOverallocationCreateInfoAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             overallocation_behavior,
         )
         new(vks, bag)
@@ -13509,10 +15140,22 @@ struct CalibratedTimestampInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function CalibratedTimestampInfoEXT(time_domain; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCalibratedTimestampInfoEXT(bag_next, _pNext)
-        vks = VkCalibratedTimestampInfoEXT(_pNext == C_NULL ? C_NULL : _pNext, time_domain)
+        vks = VkCalibratedTimestampInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, time_domain)
         new(vks, bag)
     end
 end
@@ -13527,12 +15170,28 @@ struct PipelineCompilerControlCreateInfoAMD <: VulkanStruct
         next = C_NULL,
         compiler_control_flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineCompilerControlCreateInfoAMD(bag_next, _pNext)
         vks = VkPipelineCompilerControlCreateInfoAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            compiler_control_flags == 0 ? 0 : compiler_control_flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if compiler_control_flags == 0
+                0
+            else
+                compiler_control_flags
+            end,
         )
         new(vks, bag)
     end
@@ -13550,12 +15209,28 @@ struct ImportMemoryHostPointerInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function ImportMemoryHostPointerInfoEXT(handle_type, host_pointer; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pHostPointer = host_pointer == C_NULL ? host_pointer : Ref(host_pointer)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pHostPointer = if host_pointer == C_NULL
+            host_pointer
+        else
+            Ref(host_pointer)
+        end
         bag = BagImportMemoryHostPointerInfoEXT(bag_next, _pNext, _pHostPointer)
         vks = VkImportMemoryHostPointerInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             handle_type,
             _pHostPointer,
         )
@@ -13570,13 +15245,22 @@ struct DeviceQueueGlobalPriorityCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DeviceQueueGlobalPriorityCreateInfoEXT(global_priority; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceQueueGlobalPriorityCreateInfoEXT(bag_next, _pNext)
-        vks = VkDeviceQueueGlobalPriorityCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            global_priority,
-        )
+        vks = VkDeviceQueueGlobalPriorityCreateInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, global_priority)
         new(vks, bag)
     end
 end
@@ -13594,11 +15278,23 @@ struct PhysicalDeviceImageViewImageFormatInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceImageViewImageFormatInfoEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceImageViewImageFormatInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             image_view_type,
         )
         new(vks, bag)
@@ -13615,11 +15311,23 @@ struct PipelineRepresentativeFragmentTestStateCreateInfoNV <: VulkanStruct
         representative_fragment_test_enable;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineRepresentativeFragmentTestStateCreateInfoNV(bag_next, _pNext)
         vks = VkPipelineRepresentativeFragmentTestStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             representative_fragment_test_enable,
         )
         new(vks, bag)
@@ -13636,11 +15344,23 @@ struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV <: VulkanStruct
         representative_fragment_test;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceRepresentativeFragmentTestFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             representative_fragment_test,
         )
         new(vks, bag)
@@ -13685,11 +15405,23 @@ struct AccelerationStructureMemoryRequirementsInfoNV <: VulkanStruct
         acceleration_structure;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureMemoryRequirementsInfoNV(bag_next, _pNext)
         vks = VkAccelerationStructureMemoryRequirementsInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             type,
             acceleration_structure.handle,
         )
@@ -13707,18 +15439,32 @@ struct WriteDescriptorSetAccelerationStructureKHR <: VulkanStruct
         acceleration_structures;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAccelerationStructures =
-            acceleration_structures == C_NULL ? acceleration_structures :
-            getproperty.(acceleration_structures, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAccelerationStructures = if acceleration_structures == C_NULL
+            acceleration_structures
+        else
+            getproperty.(acceleration_structures, :handle)
+        end
         bag = BagWriteDescriptorSetAccelerationStructureKHR(
             bag_next,
             _pNext,
             _pAccelerationStructures,
         )
         vks = VkWriteDescriptorSetAccelerationStructureKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pAccelerationStructures,
         )
         new(vks, bag)
@@ -13738,12 +15484,24 @@ struct BindAccelerationStructureMemoryInfoKHR <: VulkanStruct
         device_indices;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        device_indices = convert(Array{UInt32}, device_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        device_indices = convert(Array{UInt32}, device_indices)
         bag = BagBindAccelerationStructureMemoryInfoKHR(bag_next, _pNext, device_indices)
         vks = VkBindAccelerationStructureMemoryInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             acceleration_structure.handle,
             memory.handle,
             memory_offset,
@@ -13760,11 +15518,23 @@ struct AccelerationStructureCreateInfoNV <: VulkanStruct
     Generic constructor.
     """
     function AccelerationStructureCreateInfoNV(compacted_size, info; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAccelerationStructureCreateInfoNV(bag_next, _pNext, info.bag)
         vks = VkAccelerationStructureCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             compacted_size,
             info.vks,
         )
@@ -13785,9 +15555,21 @@ struct AccelerationStructureInfoNV <: VulkanStruct
         flags = 0,
         instance_count = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pGeometries = geometries == C_NULL ? geometries : getproperty.(geometries, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pGeometries = if geometries == C_NULL
+            geometries
+        else
+            getproperty.(geometries, :vks)
+        end
         bag = BagAccelerationStructureInfoNV(
             bag_next,
             _pNext,
@@ -13795,10 +15577,22 @@ struct AccelerationStructureInfoNV <: VulkanStruct
             _pGeometries,
         )
         vks = VkAccelerationStructureInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             type,
-            flags == 0 ? 0 : flags,
-            instance_count == 0 ? 0 : instance_count,
+            if flags == 0
+                0
+            else
+                flags
+            end,
+            if instance_count == 0
+                0
+            else
+                instance_count
+            end,
             _pGeometries,
         )
         new(vks, bag)
@@ -13812,15 +15606,26 @@ struct GeometryNV <: VulkanStruct
     Generic constructor.
     """
     function GeometryNV(geometry_type, geometry; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagGeometryNV(bag_next, _pNext)
-        vks = VkGeometryNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            geometry_type,
-            geometry.vks,
-            flags == 0 ? 0 : flags,
-        )
+        vks = VkGeometryNV(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, geometry_type, geometry.vks, if flags == 0
+            0
+        else
+            flags
+        end)
         new(vks, bag)
     end
 end
@@ -13837,12 +15642,28 @@ struct GeometryAABBNV <: VulkanStruct
     Generic constructor.
     """
     function GeometryAABBNV(num_aab_bs, stride, offset; next = C_NULL, aabb_data = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagGeometryAABBNV(bag_next, _pNext)
         vks = VkGeometryAABBNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            aabb_data == C_NULL ? C_NULL : aabb_data.handle,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if aabb_data == C_NULL
+                C_NULL
+            else
+                aabb_data.handle
+            end,
             num_aab_bs,
             stride,
             offset,
@@ -13871,21 +15692,45 @@ struct GeometryTrianglesNV <: VulkanStruct
         index_data = C_NULL,
         transform_data = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagGeometryTrianglesNV(bag_next, _pNext)
         vks = VkGeometryTrianglesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            vertex_data == C_NULL ? C_NULL : vertex_data.handle,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if vertex_data == C_NULL
+                C_NULL
+            else
+                vertex_data.handle
+            end,
             vertex_offset,
             vertex_count,
             vertex_stride,
             vertex_format,
-            index_data == C_NULL ? C_NULL : index_data.handle,
+            if index_data == C_NULL
+                C_NULL
+            else
+                index_data.handle
+            end,
             index_offset,
             index_count,
             index_type,
-            transform_data == C_NULL ? C_NULL : transform_data.handle,
+            if transform_data == C_NULL
+                C_NULL
+            else
+                transform_data.handle
+            end,
             transform_offset,
         )
         new(vks, bag)
@@ -13908,10 +15753,26 @@ struct RayTracingPipelineCreateInfoNV <: VulkanStruct
         flags = 0,
         base_pipeline_handle = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pStages = stages == C_NULL ? stages : getproperty.(stages, :vks)    # VulkanGen.ConvertArrays
-        _pGroups = groups == C_NULL ? groups : getproperty.(groups, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pStages = if stages == C_NULL
+            stages
+        else
+            getproperty.(stages, :vks)
+        end
+        _pGroups = if groups == C_NULL
+            groups
+        else
+            getproperty.(groups, :vks)
+        end
         bag = BagRayTracingPipelineCreateInfoNV(
             bag_next,
             _pNext,
@@ -13921,13 +15782,25 @@ struct RayTracingPipelineCreateInfoNV <: VulkanStruct
             _pGroups,
         )
         vks = VkRayTracingPipelineCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pStages,
             _pGroups,
             max_recursion_depth,
             layout.handle,
-            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
+            if base_pipeline_handle == C_NULL
+                C_NULL
+            else
+                base_pipeline_handle.handle
+            end,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -13948,11 +15821,23 @@ struct RayTracingShaderGroupCreateInfoNV <: VulkanStruct
         intersection_shader;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagRayTracingShaderGroupCreateInfoNV(bag_next, _pNext)
         vks = VkRayTracingShaderGroupCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             type,
             general_shader,
             closest_hit_shader,
@@ -13974,11 +15859,21 @@ struct PipelineViewportCoarseSampleOrderStateCreateInfoNV <: VulkanStruct
         custom_sample_orders;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pCustomSampleOrders =
-            custom_sample_orders == C_NULL ? custom_sample_orders :
-            getproperty.(custom_sample_orders, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pCustomSampleOrders = if custom_sample_orders == C_NULL
+            custom_sample_orders
+        else
+            getproperty.(custom_sample_orders, :vks)
+        end
         bag = BagPipelineViewportCoarseSampleOrderStateCreateInfoNV(
             bag_next,
             _pNext,
@@ -13986,7 +15881,11 @@ struct PipelineViewportCoarseSampleOrderStateCreateInfoNV <: VulkanStruct
             _pCustomSampleOrders,
         )
         vks = VkPipelineViewportCoarseSampleOrderStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             sample_order_type,
             _pCustomSampleOrders,
         )
@@ -14001,9 +15900,11 @@ struct CoarseSampleOrderCustomNV <: VulkanStruct
     Generic constructor.
     """
     function CoarseSampleOrderCustomNV(shading_rate, sample_count, sample_locations)
-        _pSampleLocations =
-            sample_locations == C_NULL ? sample_locations :
-            getproperty.(sample_locations, :vks)    # VulkanGen.ConvertArrays
+        _pSampleLocations = if sample_locations == C_NULL
+            sample_locations
+        else
+            getproperty.(sample_locations, :vks)
+        end
         bag = BagCoarseSampleOrderCustomNV(_pSampleLocations)
         vks = VkCoarseSampleOrderCustomNV(shading_rate, sample_count, _pSampleLocations)
         new(vks, bag)
@@ -14026,11 +15927,23 @@ struct PhysicalDeviceShadingRateImageFeaturesNV <: VulkanStruct
         shading_rate_coarse_sample_order;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShadingRateImageFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceShadingRateImageFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shading_rate_image,
             shading_rate_coarse_sample_order,
         )
@@ -14049,11 +15962,21 @@ struct PipelineViewportShadingRateImageStateCreateInfoNV <: VulkanStruct
         shading_rate_palettes;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pShadingRatePalettes =
-            shading_rate_palettes == C_NULL ? shading_rate_palettes :
-            getproperty.(shading_rate_palettes, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pShadingRatePalettes = if shading_rate_palettes == C_NULL
+            shading_rate_palettes
+        else
+            getproperty.(shading_rate_palettes, :vks)
+        end
         bag = BagPipelineViewportShadingRateImageStateCreateInfoNV(
             bag_next,
             _pNext,
@@ -14061,7 +15984,11 @@ struct PipelineViewportShadingRateImageStateCreateInfoNV <: VulkanStruct
             _pShadingRatePalettes,
         )
         vks = VkPipelineViewportShadingRateImageStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shading_rate_image_enable,
             _pShadingRatePalettes,
         )
@@ -14089,11 +16016,23 @@ struct ShaderModuleValidationCacheCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function ShaderModuleValidationCacheCreateInfoEXT(validation_cache; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagShaderModuleValidationCacheCreateInfoEXT(bag_next, _pNext)
         vks = VkShaderModuleValidationCacheCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             validation_cache.handle,
         )
         new(vks, bag)
@@ -14107,13 +16046,33 @@ struct ValidationCacheCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function ValidationCacheCreateInfoEXT(initial_data; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pInitialData = initial_data == C_NULL ? initial_data : Ref(initial_data)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pInitialData = if initial_data == C_NULL
+            initial_data
+        else
+            Ref(initial_data)
+        end
         bag = BagValidationCacheCreateInfoEXT(bag_next, _pNext, _pInitialData)
         vks = VkValidationCacheCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pInitialData,
         )
         new(vks, bag)
@@ -14136,14 +16095,29 @@ struct ImageDrmFormatModifierExplicitCreateInfoEXT <: VulkanStruct
         plane_layouts;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pPlaneLayouts =
-            plane_layouts == C_NULL ? plane_layouts : getproperty.(plane_layouts, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pPlaneLayouts = if plane_layouts == C_NULL
+            plane_layouts
+        else
+            getproperty.(plane_layouts, :vks)
+        end
         bag =
             BagImageDrmFormatModifierExplicitCreateInfoEXT(bag_next, _pNext, _pPlaneLayouts)
         vks = VkImageDrmFormatModifierExplicitCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             drm_format_modifier,
             _pPlaneLayouts,
         )
@@ -14158,16 +16132,28 @@ struct ImageDrmFormatModifierListCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        drm_format_modifiers = convert(Array{UInt64}, drm_format_modifiers)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        drm_format_modifiers = convert(Array{UInt64}, drm_format_modifiers)
         bag = BagImageDrmFormatModifierListCreateInfoEXT(
             bag_next,
             _pNext,
             drm_format_modifiers,
         )
         vks = VkImageDrmFormatModifierListCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             drm_format_modifiers,
         )
         new(vks, bag)
@@ -14186,16 +16172,28 @@ struct PhysicalDeviceImageDrmFormatModifierInfoEXT <: VulkanStruct
         queue_family_indices;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        queue_family_indices = convert(Array{UInt32}, queue_family_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        queue_family_indices = convert(Array{UInt32}, queue_family_indices)
         bag = BagPhysicalDeviceImageDrmFormatModifierInfoEXT(
             bag_next,
             _pNext,
             queue_family_indices,
         )
         vks = VkPhysicalDeviceImageDrmFormatModifierInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             drm_format_modifier,
             sharing_mode,
             queue_family_indices,
@@ -14211,11 +16209,23 @@ struct PhysicalDeviceShaderSMBuiltinsFeaturesNV <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceShaderSMBuiltinsFeaturesNV(shader_sm_builtins; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderSMBuiltinsFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderSMBuiltinsFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_sm_builtins,
         )
         new(vks, bag)
@@ -14241,20 +16251,40 @@ struct PipelineCoverageModulationStateCreateInfoNV <: VulkanStruct
         flags = 0,
         coverage_modulation_table = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        coverage_modulation_table = convert(Array{Float32}, coverage_modulation_table)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        coverage_modulation_table = convert(Array{Float32}, coverage_modulation_table)
         bag = BagPipelineCoverageModulationStateCreateInfoNV(
             bag_next,
             _pNext,
             coverage_modulation_table,
         )
         vks = VkPipelineCoverageModulationStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             coverage_modulation_mode,
             coverage_modulation_table_enable,
-            coverage_modulation_table == C_NULL ? C_NULL : coverage_modulation_table,
+            if coverage_modulation_table == C_NULL
+                C_NULL
+            else
+                coverage_modulation_table
+            end,
         )
         new(vks, bag)
     end
@@ -14272,14 +16302,34 @@ struct PipelineCoverageToColorStateCreateInfoNV <: VulkanStruct
         flags = 0,
         coverage_to_color_location = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineCoverageToColorStateCreateInfoNV(bag_next, _pNext)
         vks = VkPipelineCoverageToColorStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             coverage_to_color_enable,
-            coverage_to_color_location == 0 ? 0 : coverage_to_color_location,
+            if coverage_to_color_location == 0
+                0
+            else
+                coverage_to_color_location
+            end,
         )
         new(vks, bag)
     end
@@ -14297,11 +16347,23 @@ struct PipelineColorBlendAdvancedStateCreateInfoEXT <: VulkanStruct
         blend_overlap;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineColorBlendAdvancedStateCreateInfoEXT(bag_next, _pNext)
         vks = VkPipelineColorBlendAdvancedStateCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src_premultiplied,
             dst_premultiplied,
             blend_overlap,
@@ -14330,11 +16392,23 @@ struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT <: VulkanStruct
         advanced_blend_coherent_operations;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceBlendOperationAdvancedFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             advanced_blend_coherent_operations,
         )
         new(vks, bag)
@@ -14352,15 +16426,27 @@ struct PipelineSampleLocationsStateCreateInfoEXT <: VulkanStruct
         sample_locations_info;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineSampleLocationsStateCreateInfoEXT(
             bag_next,
             _pNext,
             sample_locations_info.bag,
         )
         vks = VkPipelineSampleLocationsStateCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             sample_locations_enable,
             sample_locations_info.vks,
         )
@@ -14379,15 +16465,27 @@ struct RenderPassSampleLocationsBeginInfoEXT <: VulkanStruct
         post_subpass_sample_locations;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         _pAttachmentInitialSampleLocations =
-            attachment_initial_sample_locations == C_NULL ?
-            attachment_initial_sample_locations :
-            getproperty.(attachment_initial_sample_locations, :vks)    # VulkanGen.ConvertArrays
-        _pPostSubpassSampleLocations =
-            post_subpass_sample_locations == C_NULL ? post_subpass_sample_locations :
-            getproperty.(post_subpass_sample_locations, :vks)    # VulkanGen.ConvertArrays
+            if attachment_initial_sample_locations == C_NULL
+                attachment_initial_sample_locations
+            else
+                getproperty.(attachment_initial_sample_locations, :vks)
+            end
+        _pPostSubpassSampleLocations = if post_subpass_sample_locations == C_NULL
+            post_subpass_sample_locations
+        else
+            getproperty.(post_subpass_sample_locations, :vks)
+        end
         bag = BagRenderPassSampleLocationsBeginInfoEXT(
             bag_next,
             _pNext,
@@ -14395,7 +16493,11 @@ struct RenderPassSampleLocationsBeginInfoEXT <: VulkanStruct
             _pPostSubpassSampleLocations,
         )
         vks = VkRenderPassSampleLocationsBeginInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pAttachmentInitialSampleLocations,
             _pPostSubpassSampleLocations,
         )
@@ -14425,15 +16527,33 @@ struct SampleLocationsInfoEXT <: VulkanStruct
         next = C_NULL,
         sample_locations_per_pixel = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pSampleLocations =
-            sample_locations == C_NULL ? sample_locations :
-            getproperty.(sample_locations, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pSampleLocations = if sample_locations == C_NULL
+            sample_locations
+        else
+            getproperty.(sample_locations, :vks)
+        end
         bag = BagSampleLocationsInfoEXT(bag_next, _pNext, _pSampleLocations)
         vks = VkSampleLocationsInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            sample_locations_per_pixel == 0 ? 0 : sample_locations_per_pixel,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if sample_locations_per_pixel == 0
+                0
+            else
+                sample_locations_per_pixel
+            end,
             sample_location_grid_size.vks,
             _pSampleLocations,
         )
@@ -14456,11 +16576,23 @@ struct DescriptorPoolInlineUniformBlockCreateInfoEXT <: VulkanStruct
         max_inline_uniform_block_bindings;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDescriptorPoolInlineUniformBlockCreateInfoEXT(bag_next, _pNext)
         vks = VkDescriptorPoolInlineUniformBlockCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             max_inline_uniform_block_bindings,
         )
         new(vks, bag)
@@ -14474,14 +16606,27 @@ struct WriteDescriptorSetInlineUniformBlockEXT <: VulkanStruct
     Generic constructor.
     """
     function WriteDescriptorSetInlineUniformBlockEXT(data; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pData = data == C_NULL ? data : Ref(data)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pData = if data == C_NULL
+            data
+        else
+            Ref(data)
+        end
         bag = BagWriteDescriptorSetInlineUniformBlockEXT(bag_next, _pNext, _pData)
-        vks = VkWriteDescriptorSetInlineUniformBlockEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pData,
-        )
+        vks = VkWriteDescriptorSetInlineUniformBlockEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, _pData)
         new(vks, bag)
     end
 end
@@ -14506,11 +16651,23 @@ struct PhysicalDeviceInlineUniformBlockFeaturesEXT <: VulkanStruct
         descriptor_binding_inline_uniform_block_update_after_bind;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceInlineUniformBlockFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceInlineUniformBlockFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             inline_uniform_block,
             descriptor_binding_inline_uniform_block_update_after_bind,
         )
@@ -14531,12 +16688,28 @@ struct DebugUtilsObjectTagInfoEXT <: VulkanStruct
         tag;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pTag = tag == C_NULL ? tag : Ref(tag)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pTag = if tag == C_NULL
+            tag
+        else
+            Ref(tag)
+        end
         bag = BagDebugUtilsObjectTagInfoEXT(bag_next, _pNext, _pTag)
         vks = VkDebugUtilsObjectTagInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             object_type,
             object_handle,
             tag_name,
@@ -14560,17 +16733,41 @@ struct DebugUtilsMessengerCreateInfoEXT <: VulkanStruct
         flags = 0,
         user_data = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pUserData = user_data == C_NULL ? user_data : Ref(user_data)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pUserData = if user_data == C_NULL
+            user_data
+        else
+            Ref(user_data)
+        end
         bag = BagDebugUtilsMessengerCreateInfoEXT(bag_next, _pNext, _pUserData)
         vks = VkDebugUtilsMessengerCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             message_severity,
             message_type,
             user_callback,
-            _pUserData == C_NULL ? C_NULL : _pUserData,
+            if _pUserData == C_NULL
+                C_NULL
+            else
+                _pUserData
+            end,
         )
         new(vks, bag)
     end
@@ -14592,13 +16789,31 @@ struct DebugUtilsMessengerCallbackDataEXT <: VulkanStruct
         message_id_name = C_NULL,
         message_id_number = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pQueueLabels =
-            queue_labels == C_NULL ? queue_labels : getproperty.(queue_labels, :vks)    # VulkanGen.ConvertArrays
-        _pCmdBufLabels =
-            cmd_buf_labels == C_NULL ? cmd_buf_labels : getproperty.(cmd_buf_labels, :vks)    # VulkanGen.ConvertArrays
-        _pObjects = objects == C_NULL ? objects : getproperty.(objects, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pQueueLabels = if queue_labels == C_NULL
+            queue_labels
+        else
+            getproperty.(queue_labels, :vks)
+        end
+        _pCmdBufLabels = if cmd_buf_labels == C_NULL
+            cmd_buf_labels
+        else
+            getproperty.(cmd_buf_labels, :vks)
+        end
+        _pObjects = if objects == C_NULL
+            objects
+        else
+            getproperty.(objects, :vks)
+        end
         bag = BagDebugUtilsMessengerCallbackDataEXT(
             bag_next,
             _pNext,
@@ -14612,10 +16827,26 @@ struct DebugUtilsMessengerCallbackDataEXT <: VulkanStruct
             _pObjects,
         )
         vks = VkDebugUtilsMessengerCallbackDataEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            message_id_name == C_NULL ? C_NULL : message_id_name,
-            message_id_number == 0 ? 0 : message_id_number,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
+            if message_id_name == C_NULL
+                C_NULL
+            else
+                message_id_name
+            end,
+            if message_id_number == 0
+                0
+            else
+                message_id_number
+            end,
             message,
             _pQueueLabels,
             _pCmdBufLabels,
@@ -14637,14 +16868,30 @@ struct DebugUtilsObjectNameInfoEXT <: VulkanStruct
         next = C_NULL,
         object_name = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDebugUtilsObjectNameInfoEXT(bag_next, _pNext, object_name)
         vks = VkDebugUtilsObjectNameInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             object_type,
             object_handle,
-            object_name == C_NULL ? C_NULL : object_name,
+            if object_name == C_NULL
+                C_NULL
+            else
+                object_name
+            end,
         )
         new(vks, bag)
     end
@@ -14657,14 +16904,26 @@ struct DebugUtilsLabelEXT <: VulkanStruct
     Generic constructor.
     """
     function DebugUtilsLabelEXT(label_name; next = C_NULL, color = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDebugUtilsLabelEXT(bag_next, _pNext, label_name)
-        vks = VkDebugUtilsLabelEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            label_name,
-            color == 0 ? 0 : color,
-        )
+        vks = VkDebugUtilsLabelEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, label_name, if color == 0
+            0
+        else
+            color
+        end)
         new(vks, bag)
     end
 end
@@ -14686,11 +16945,23 @@ struct HdrMetadataEXT <: VulkanStruct
         max_frame_average_light_level;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagHdrMetadataEXT(bag_next, _pNext)
         vks = VkHdrMetadataEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             display_primary_red.vks,
             display_primary_green.vks,
             display_primary_blue.vks,
@@ -14720,12 +16991,28 @@ struct PipelineRasterizationDepthClipStateCreateInfoEXT <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineRasterizationDepthClipStateCreateInfoEXT(bag_next, _pNext)
         vks = VkPipelineRasterizationDepthClipStateCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             depth_clip_enable,
         )
         new(vks, bag)
@@ -14739,11 +17026,23 @@ struct PhysicalDeviceDepthClipEnableFeaturesEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceDepthClipEnableFeaturesEXT(depth_clip_enable; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceDepthClipEnableFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceDepthClipEnableFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             depth_clip_enable,
         )
         new(vks, bag)
@@ -14762,12 +17061,28 @@ struct PipelineRasterizationConservativeStateCreateInfoEXT <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineRasterizationConservativeStateCreateInfoEXT(bag_next, _pNext)
         vks = VkPipelineRasterizationConservativeStateCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             conservative_rasterization_mode,
             extra_primitive_overestimation_size,
         )
@@ -14800,19 +17115,37 @@ struct PipelineDiscardRectangleStateCreateInfoEXT <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pDiscardRectangles =
-            discard_rectangles == C_NULL ? discard_rectangles :
-            getproperty.(discard_rectangles, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pDiscardRectangles = if discard_rectangles == C_NULL
+            discard_rectangles
+        else
+            getproperty.(discard_rectangles, :vks)
+        end
         bag = BagPipelineDiscardRectangleStateCreateInfoEXT(
             bag_next,
             _pNext,
             _pDiscardRectangles,
         )
         vks = VkPipelineDiscardRectangleStateCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             discard_rectangle_mode,
             _pDiscardRectangles,
         )
@@ -14836,19 +17169,37 @@ struct PipelineViewportSwizzleStateCreateInfoNV <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pViewportSwizzles =
-            viewport_swizzles == C_NULL ? viewport_swizzles :
-            getproperty.(viewport_swizzles, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pViewportSwizzles = if viewport_swizzles == C_NULL
+            viewport_swizzles
+        else
+            getproperty.(viewport_swizzles, :vks)
+        end
         bag = BagPipelineViewportSwizzleStateCreateInfoNV(
             bag_next,
             _pNext,
             _pViewportSwizzles,
         )
         vks = VkPipelineViewportSwizzleStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pViewportSwizzles,
         )
         new(vks, bag)
@@ -14872,14 +17223,31 @@ struct PresentTimesInfoGOOGLE <: VulkanStruct
     Generic constructor.
     """
     function PresentTimesInfoGOOGLE(; next = C_NULL, times = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pTimes = times == C_NULL ? times : getproperty.(times, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pTimes = if times == C_NULL
+            times
+        else
+            getproperty.(times, :vks)
+        end
         bag = BagPresentTimesInfoGOOGLE(bag_next, _pNext, _pTimes)
-        vks = VkPresentTimesInfoGOOGLE(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pTimes == C_NULL ? C_NULL : _pTimes,
-        )
+        vks = VkPresentTimesInfoGOOGLE(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if _pTimes == C_NULL
+            C_NULL
+        else
+            _pTimes
+        end)
         new(vks, bag)
     end
 end
@@ -14908,13 +17276,26 @@ struct SwapchainCounterCreateInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSwapchainCounterCreateInfoEXT(bag_next, _pNext)
-        vks = VkSwapchainCounterCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            surface_counters == 0 ? 0 : surface_counters,
-        )
+        vks = VkSwapchainCounterCreateInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if surface_counters == 0
+            0
+        else
+            surface_counters
+        end)
         new(vks, bag)
     end
 end
@@ -14926,10 +17307,22 @@ struct DisplayEventInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DisplayEventInfoEXT(display_event; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDisplayEventInfoEXT(bag_next, _pNext)
-        vks = VkDisplayEventInfoEXT(_pNext == C_NULL ? C_NULL : _pNext, display_event)
+        vks = VkDisplayEventInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, display_event)
         new(vks, bag)
     end
 end
@@ -14941,10 +17334,22 @@ struct DeviceEventInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DeviceEventInfoEXT(device_event; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceEventInfoEXT(bag_next, _pNext)
-        vks = VkDeviceEventInfoEXT(_pNext == C_NULL ? C_NULL : _pNext, device_event)
+        vks = VkDeviceEventInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, device_event)
         new(vks, bag)
     end
 end
@@ -14956,10 +17361,22 @@ struct DisplayPowerInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DisplayPowerInfoEXT(power_state; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDisplayPowerInfoEXT(bag_next, _pNext)
-        vks = VkDisplayPowerInfoEXT(_pNext == C_NULL ? C_NULL : _pNext, power_state)
+        vks = VkDisplayPowerInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, power_state)
         new(vks, bag)
     end
 end
@@ -14975,20 +17392,38 @@ struct PipelineViewportWScalingStateCreateInfoNV <: VulkanStruct
         next = C_NULL,
         viewport_w_scalings = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pViewportWScalings =
-            viewport_w_scalings == C_NULL ? viewport_w_scalings :
-            getproperty.(viewport_w_scalings, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pViewportWScalings = if viewport_w_scalings == C_NULL
+            viewport_w_scalings
+        else
+            getproperty.(viewport_w_scalings, :vks)
+        end
         bag = BagPipelineViewportWScalingStateCreateInfoNV(
             bag_next,
             _pNext,
             _pViewportWScalings,
         )
         vks = VkPipelineViewportWScalingStateCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             viewport_w_scaling_enable,
-            _pViewportWScalings == C_NULL ? C_NULL : _pViewportWScalings,
+            if _pViewportWScalings == C_NULL
+                C_NULL
+            else
+                _pViewportWScalings
+            end,
         )
         new(vks, bag)
     end
@@ -15009,11 +17444,23 @@ struct CommandBufferInheritanceConditionalRenderingInfoEXT <: VulkanStruct
         conditional_rendering_enable;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCommandBufferInheritanceConditionalRenderingInfoEXT(bag_next, _pNext)
         vks = VkCommandBufferInheritanceConditionalRenderingInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             conditional_rendering_enable,
         )
         new(vks, bag)
@@ -15031,11 +17478,23 @@ struct PhysicalDeviceConditionalRenderingFeaturesEXT <: VulkanStruct
         inherited_conditional_rendering;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceConditionalRenderingFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceConditionalRenderingFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             conditional_rendering,
             inherited_conditional_rendering,
         )
@@ -15050,14 +17509,30 @@ struct ConditionalRenderingBeginInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function ConditionalRenderingBeginInfoEXT(buffer, offset; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagConditionalRenderingBeginInfoEXT(bag_next, _pNext)
         vks = VkConditionalRenderingBeginInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             buffer.handle,
             offset,
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
         )
         new(vks, bag)
     end
@@ -15070,11 +17545,23 @@ struct PhysicalDeviceASTCDecodeFeaturesEXT <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceASTCDecodeFeaturesEXT(decode_mode_shared_exponent; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceASTCDecodeFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceASTCDecodeFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             decode_mode_shared_exponent,
         )
         new(vks, bag)
@@ -15088,10 +17575,22 @@ struct ImageViewASTCDecodeModeEXT <: VulkanStruct
     Generic constructor.
     """
     function ImageViewASTCDecodeModeEXT(decode_mode; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageViewASTCDecodeModeEXT(bag_next, _pNext)
-        vks = VkImageViewASTCDecodeModeEXT(_pNext == C_NULL ? C_NULL : _pNext, decode_mode)
+        vks = VkImageViewASTCDecodeModeEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, decode_mode)
         new(vks, bag)
     end
 end
@@ -15106,11 +17605,23 @@ struct PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT <: VulkanStruct
         texture_compression_astc_hdr;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             texture_compression_astc_hdr,
         )
         new(vks, bag)
@@ -15124,13 +17635,22 @@ struct ValidationFlagsEXT <: VulkanStruct
     Generic constructor.
     """
     function ValidationFlagsEXT(disabled_validation_checks; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagValidationFlagsEXT(bag_next, _pNext, disabled_validation_checks)
-        vks = VkValidationFlagsEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            disabled_validation_checks,
-        )
+        vks = VkValidationFlagsEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, disabled_validation_checks)
         new(vks, bag)
     end
 end
@@ -15142,13 +17662,26 @@ struct ExportMemoryAllocateInfoNV <: VulkanStruct
     Generic constructor.
     """
     function ExportMemoryAllocateInfoNV(; next = C_NULL, handle_types = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExportMemoryAllocateInfoNV(bag_next, _pNext)
-        vks = VkExportMemoryAllocateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_types == 0 ? 0 : handle_types,
-        )
+        vks = VkExportMemoryAllocateInfoNV(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if handle_types == 0
+            0
+        else
+            handle_types
+        end)
         new(vks, bag)
     end
 end
@@ -15160,13 +17693,26 @@ struct ExternalMemoryImageCreateInfoNV <: VulkanStruct
     Generic constructor.
     """
     function ExternalMemoryImageCreateInfoNV(; next = C_NULL, handle_types = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExternalMemoryImageCreateInfoNV(bag_next, _pNext)
-        vks = VkExternalMemoryImageCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_types == 0 ? 0 : handle_types,
-        )
+        vks = VkExternalMemoryImageCreateInfoNV(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if handle_types == 0
+            0
+        else
+            handle_types
+        end)
         new(vks, bag)
     end
 end
@@ -15178,11 +17724,23 @@ struct PhysicalDeviceCornerSampledImageFeaturesNV <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceCornerSampledImageFeaturesNV(corner_sampled_image; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceCornerSampledImageFeaturesNV(bag_next, _pNext)
         vks = VkPhysicalDeviceCornerSampledImageFeaturesNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             corner_sampled_image,
         )
         new(vks, bag)
@@ -15214,14 +17772,30 @@ struct ImageViewHandleInfoNVX <: VulkanStruct
         next = C_NULL,
         sampler = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageViewHandleInfoNVX(bag_next, _pNext)
         vks = VkImageViewHandleInfoNVX(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             image_view.handle,
             descriptor_type,
-            sampler == C_NULL ? C_NULL : sampler.handle,
+            if sampler == C_NULL
+                C_NULL
+            else
+                sampler.handle
+            end,
         )
         new(vks, bag)
     end
@@ -15238,12 +17812,28 @@ struct PipelineRasterizationStateStreamCreateInfoEXT <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineRasterizationStateStreamCreateInfoEXT(bag_next, _pNext)
         vks = VkPipelineRasterizationStateStreamCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             rasterization_stream,
         )
         new(vks, bag)
@@ -15261,11 +17851,23 @@ struct PhysicalDeviceTransformFeedbackFeaturesEXT <: VulkanStruct
         geometry_streams;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceTransformFeedbackFeaturesEXT(bag_next, _pNext)
         vks = VkPhysicalDeviceTransformFeedbackFeaturesEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             transform_feedback,
             geometry_streams,
         )
@@ -15284,13 +17886,33 @@ struct DedicatedAllocationMemoryAllocateInfoNV <: VulkanStruct
         image = C_NULL,
         buffer = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDedicatedAllocationMemoryAllocateInfoNV(bag_next, _pNext)
         vks = VkDedicatedAllocationMemoryAllocateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            image == C_NULL ? C_NULL : image.handle,
-            buffer == C_NULL ? C_NULL : buffer.handle,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if image == C_NULL
+                C_NULL
+            else
+                image.handle
+            end,
+            if buffer == C_NULL
+                C_NULL
+            else
+                buffer.handle
+            end,
         )
         new(vks, bag)
     end
@@ -15303,11 +17925,23 @@ struct DedicatedAllocationBufferCreateInfoNV <: VulkanStruct
     Generic constructor.
     """
     function DedicatedAllocationBufferCreateInfoNV(dedicated_allocation; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDedicatedAllocationBufferCreateInfoNV(bag_next, _pNext)
         vks = VkDedicatedAllocationBufferCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             dedicated_allocation,
         )
         new(vks, bag)
@@ -15321,11 +17955,23 @@ struct DedicatedAllocationImageCreateInfoNV <: VulkanStruct
     Generic constructor.
     """
     function DedicatedAllocationImageCreateInfoNV(dedicated_allocation; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDedicatedAllocationImageCreateInfoNV(bag_next, _pNext)
         vks = VkDedicatedAllocationImageCreateInfoNV(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             dedicated_allocation,
         )
         new(vks, bag)
@@ -15339,14 +17985,26 @@ struct DebugMarkerMarkerInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DebugMarkerMarkerInfoEXT(marker_name; next = C_NULL, color = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDebugMarkerMarkerInfoEXT(bag_next, _pNext, marker_name)
-        vks = VkDebugMarkerMarkerInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            marker_name,
-            color == 0 ? 0 : color,
-        )
+        vks = VkDebugMarkerMarkerInfoEXT(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, marker_name, if color == 0
+            0
+        else
+            color
+        end)
         new(vks, bag)
     end
 end
@@ -15358,12 +18016,28 @@ struct DebugMarkerObjectTagInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DebugMarkerObjectTagInfoEXT(object_type, object, tag_name, tag; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pTag = tag == C_NULL ? tag : Ref(tag)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pTag = if tag == C_NULL
+            tag
+        else
+            Ref(tag)
+        end
         bag = BagDebugMarkerObjectTagInfoEXT(bag_next, _pNext, _pTag)
         vks = VkDebugMarkerObjectTagInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             object_type,
             object,
             tag_name,
@@ -15380,11 +18054,23 @@ struct DebugMarkerObjectNameInfoEXT <: VulkanStruct
     Generic constructor.
     """
     function DebugMarkerObjectNameInfoEXT(object_type, object, object_name; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDebugMarkerObjectNameInfoEXT(bag_next, _pNext, object_name)
         vks = VkDebugMarkerObjectNameInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             object_type,
             object,
             object_name,
@@ -15403,11 +18089,23 @@ struct PipelineRasterizationStateRasterizationOrderAMD <: VulkanStruct
         rasterization_order;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineRasterizationStateRasterizationOrderAMD(bag_next, _pNext)
         vks = VkPipelineRasterizationStateRasterizationOrderAMD(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             rasterization_order,
         )
         new(vks, bag)
@@ -15426,15 +18124,39 @@ struct DebugReportCallbackCreateInfoEXT <: VulkanStruct
         flags = 0,
         user_data = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pUserData = user_data == C_NULL ? user_data : Ref(user_data)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pUserData = if user_data == C_NULL
+            user_data
+        else
+            Ref(user_data)
+        end
         bag = BagDebugReportCallbackCreateInfoEXT(bag_next, _pNext, _pUserData)
         vks = VkDebugReportCallbackCreateInfoEXT(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             callback,
-            _pUserData == C_NULL ? C_NULL : _pUserData,
+            if _pUserData == C_NULL
+                C_NULL
+            else
+                _pUserData
+            end,
         )
         new(vks, bag)
     end
@@ -15459,11 +18181,23 @@ struct PipelineExecutableInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function PipelineExecutableInfoKHR(pipeline, executable_index; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineExecutableInfoKHR(bag_next, _pNext)
         vks = VkPipelineExecutableInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             pipeline.handle,
             executable_index,
         )
@@ -15478,10 +18212,22 @@ struct PipelineInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function PipelineInfoKHR(pipeline; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineInfoKHR(bag_next, _pNext)
-        vks = VkPipelineInfoKHR(_pNext == C_NULL ? C_NULL : _pNext, pipeline.handle)
+        vks = VkPipelineInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, pipeline.handle)
         new(vks, bag)
     end
 end
@@ -15496,11 +18242,23 @@ struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR <: VulkanStruct
         pipeline_executable_info;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDevicePipelineExecutablePropertiesFeaturesKHR(bag_next, _pNext)
         vks = VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             pipeline_executable_info,
         )
         new(vks, bag)
@@ -15514,13 +18272,22 @@ struct SurfaceProtectedCapabilitiesKHR <: VulkanStruct
     Generic constructor.
     """
     function SurfaceProtectedCapabilitiesKHR(supports_protected; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSurfaceProtectedCapabilitiesKHR(bag_next, _pNext)
-        vks = VkSurfaceProtectedCapabilitiesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            supports_protected,
-        )
+        vks = VkSurfaceProtectedCapabilitiesKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, supports_protected)
         new(vks, bag)
     end
 end
@@ -15536,11 +18303,23 @@ struct PhysicalDeviceShaderClockFeaturesKHR <: VulkanStruct
         shader_device_clock;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderClockFeaturesKHR(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderClockFeaturesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_subgroup_clock,
             shader_device_clock,
         )
@@ -15555,14 +18334,22 @@ struct DisplayPlaneInfo2KHR <: VulkanStruct
     Generic constructor.
     """
     function DisplayPlaneInfo2KHR(mode, plane_index; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDisplayPlaneInfo2KHR(bag_next, _pNext)
-        vks = VkDisplayPlaneInfo2KHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            mode.handle,
-            plane_index,
-        )
+        vks = VkDisplayPlaneInfo2KHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, mode.handle, plane_index)
         new(vks, bag)
     end
 end
@@ -15574,13 +18361,22 @@ struct PhysicalDeviceSurfaceInfo2KHR <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceSurfaceInfo2KHR(surface; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceSurfaceInfo2KHR(bag_next, _pNext)
-        vks = VkPhysicalDeviceSurfaceInfo2KHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            surface.handle,
-        )
+        vks = VkPhysicalDeviceSurfaceInfo2KHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, surface.handle)
         new(vks, bag)
     end
 end
@@ -15592,13 +18388,22 @@ struct PerformanceQuerySubmitInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function PerformanceQuerySubmitInfoKHR(counter_pass_index; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPerformanceQuerySubmitInfoKHR(bag_next, _pNext)
-        vks = VkPerformanceQuerySubmitInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            counter_pass_index,
-        )
+        vks = VkPerformanceQuerySubmitInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, counter_pass_index)
         new(vks, bag)
     end
 end
@@ -15610,14 +18415,26 @@ struct AcquireProfilingLockInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function AcquireProfilingLockInfoKHR(timeout; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAcquireProfilingLockInfoKHR(bag_next, _pNext)
-        vks = VkAcquireProfilingLockInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            timeout,
-        )
+        vks = VkAcquireProfilingLockInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, timeout)
         new(vks, bag)
     end
 end
@@ -15638,12 +18455,24 @@ struct QueryPoolPerformanceCreateInfoKHR <: VulkanStruct
         counter_indices;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        counter_indices = convert(Array{UInt32}, counter_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        counter_indices = convert(Array{UInt32}, counter_indices)
         bag = BagQueryPoolPerformanceCreateInfoKHR(bag_next, _pNext, counter_indices)
         vks = VkQueryPoolPerformanceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             queue_family_index,
             counter_indices,
         )
@@ -15667,11 +18496,23 @@ struct PhysicalDevicePerformanceQueryFeaturesKHR <: VulkanStruct
         performance_counter_multiple_query_pools;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDevicePerformanceQueryFeaturesKHR(bag_next, _pNext)
         vks = VkPhysicalDevicePerformanceQueryFeaturesKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             performance_counter_query_pools,
             performance_counter_multiple_query_pools,
         )
@@ -15686,14 +18527,22 @@ struct FenceGetFdInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function FenceGetFdInfoKHR(fence, handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagFenceGetFdInfoKHR(bag_next, _pNext)
-        vks = VkFenceGetFdInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            fence.handle,
-            handle_type,
-        )
+        vks = VkFenceGetFdInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, fence.handle, handle_type)
         new(vks, bag)
     end
 end
@@ -15705,13 +18554,29 @@ struct ImportFenceFdInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function ImportFenceFdInfoKHR(fence, handle_type, fd; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportFenceFdInfoKHR(bag_next, _pNext)
         vks = VkImportFenceFdInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             fence.handle,
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             handle_type,
             fd,
         )
@@ -15726,19 +18591,40 @@ struct PresentRegionsKHR <: VulkanStruct
     Generic constructor.
     """
     function PresentRegionsKHR(; next = C_NULL, regions = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pRegions = regions == C_NULL ? regions : getproperty.(regions, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pRegions = if regions == C_NULL
+            regions
+        else
+            getproperty.(regions, :vks)
+        end
         bag = BagPresentRegionsKHR(
             bag_next,
             _pNext,
-            regions == C_NULL ? EmptyBag : getproperty.(regions, :bag),
+            if regions == C_NULL
+                EmptyBag
+            else
+                getproperty.(regions, :bag)
+            end,
             _pRegions,
         )
-        vks = VkPresentRegionsKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pRegions == C_NULL ? C_NULL : _pRegions,
-        )
+        vks = VkPresentRegionsKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if _pRegions == C_NULL
+            C_NULL
+        else
+            _pRegions
+        end)
         new(vks, bag)
     end
 end
@@ -15750,9 +18636,17 @@ struct PresentRegionKHR <: VulkanStruct
     Generic constructor.
     """
     function PresentRegionKHR(; rectangles = C_NULL)
-        _pRectangles = rectangles == C_NULL ? rectangles : getproperty.(rectangles, :vks)    # VulkanGen.ConvertArrays
+        _pRectangles = if rectangles == C_NULL
+            rectangles
+        else
+            getproperty.(rectangles, :vks)
+        end
         bag = BagPresentRegionKHR(_pRectangles)
-        vks = VkPresentRegionKHR(_pRectangles == C_NULL ? C_NULL : _pRectangles)
+        vks = VkPresentRegionKHR(if _pRectangles == C_NULL
+            C_NULL
+        else
+            _pRectangles
+        end)
         new(vks, bag)
     end
 end
@@ -15774,14 +18668,22 @@ struct SemaphoreGetFdInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function SemaphoreGetFdInfoKHR(semaphore, handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSemaphoreGetFdInfoKHR(bag_next, _pNext)
-        vks = VkSemaphoreGetFdInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            semaphore.handle,
-            handle_type,
-        )
+        vks = VkSemaphoreGetFdInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, semaphore.handle, handle_type)
         new(vks, bag)
     end
 end
@@ -15793,13 +18695,29 @@ struct ImportSemaphoreFdInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function ImportSemaphoreFdInfoKHR(semaphore, handle_type, fd; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportSemaphoreFdInfoKHR(bag_next, _pNext)
         vks = VkImportSemaphoreFdInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             semaphore.handle,
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             handle_type,
             fd,
         )
@@ -15814,14 +18732,22 @@ struct MemoryGetFdInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function MemoryGetFdInfoKHR(memory, handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryGetFdInfoKHR(bag_next, _pNext)
-        vks = VkMemoryGetFdInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory.handle,
-            handle_type,
-        )
+        vks = VkMemoryGetFdInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, memory.handle, handle_type)
         new(vks, bag)
     end
 end
@@ -15838,14 +18764,26 @@ struct ImportMemoryFdInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function ImportMemoryFdInfoKHR(fd; next = C_NULL, handle_type = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImportMemoryFdInfoKHR(bag_next, _pNext)
-        vks = VkImportMemoryFdInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_type == 0 ? 0 : handle_type,
-            fd,
-        )
+        vks = VkImportMemoryFdInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if handle_type == 0
+            0
+        else
+            handle_type
+        end, fd)
         new(vks, bag)
     end
 end
@@ -15857,11 +18795,23 @@ struct DisplayPresentInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function DisplayPresentInfoKHR(src_rect, dst_rect, persistent; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDisplayPresentInfoKHR(bag_next, _pNext)
         vks = VkDisplayPresentInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src_rect.vks,
             dst_rect.vks,
             persistent,
@@ -15887,12 +18837,28 @@ struct DisplaySurfaceCreateInfoKHR <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDisplaySurfaceCreateInfoKHR(bag_next, _pNext)
         vks = VkDisplaySurfaceCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             display_mode.handle,
             plane_index,
             plane_stack_index,
@@ -15912,14 +18878,26 @@ struct DisplayModeCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function DisplayModeCreateInfoKHR(parameters; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDisplayModeCreateInfoKHR(bag_next, _pNext)
-        vks = VkDisplayModeCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            parameters.vks,
-        )
+        vks = VkDisplayModeCreateInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, parameters.vks)
         new(vks, bag)
     end
 end
@@ -15936,10 +18914,22 @@ struct DeviceGroupSwapchainCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function DeviceGroupSwapchainCreateInfoKHR(modes; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceGroupSwapchainCreateInfoKHR(bag_next, _pNext)
-        vks = VkDeviceGroupSwapchainCreateInfoKHR(_pNext == C_NULL ? C_NULL : _pNext, modes)
+        vks = VkDeviceGroupSwapchainCreateInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, modes)
         new(vks, bag)
     end
 end
@@ -15951,15 +18941,23 @@ struct DeviceGroupPresentInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function DeviceGroupPresentInfoKHR(device_masks, mode; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        device_masks = convert(Array{UInt32}, device_masks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        device_masks = convert(Array{UInt32}, device_masks)
         bag = BagDeviceGroupPresentInfoKHR(bag_next, _pNext, device_masks)
-        vks = VkDeviceGroupPresentInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            device_masks,
-            mode,
-        )
+        vks = VkDeviceGroupPresentInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, device_masks, mode)
         new(vks, bag)
     end
 end
@@ -15978,15 +18976,35 @@ struct AcquireNextImageInfoKHR <: VulkanStruct
         semaphore = C_NULL,
         fence = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAcquireNextImageInfoKHR(bag_next, _pNext)
         vks = VkAcquireNextImageInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             swapchain.handle,
             timeout,
-            semaphore == C_NULL ? C_NULL : semaphore.handle,
-            fence == C_NULL ? C_NULL : fence.handle,
+            if semaphore == C_NULL
+                C_NULL
+            else
+                semaphore.handle
+            end,
+            if fence == C_NULL
+                C_NULL
+            else
+                fence.handle
+            end,
             device_mask,
         )
         new(vks, bag)
@@ -16000,11 +19018,23 @@ struct BindImageMemorySwapchainInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function BindImageMemorySwapchainInfoKHR(swapchain, image_index; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBindImageMemorySwapchainInfoKHR(bag_next, _pNext)
         vks = VkBindImageMemorySwapchainInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             swapchain.handle,
             image_index,
         )
@@ -16019,13 +19049,26 @@ struct ImageSwapchainCreateInfoKHR <: VulkanStruct
     Generic constructor.
     """
     function ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageSwapchainCreateInfoKHR(bag_next, _pNext)
-        vks = VkImageSwapchainCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            swapchain == C_NULL ? C_NULL : swapchain.handle,
-        )
+        vks = VkImageSwapchainCreateInfoKHR(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if swapchain == C_NULL
+            C_NULL
+        else
+            swapchain.handle
+        end)
         new(vks, bag)
     end
 end
@@ -16043,13 +19086,27 @@ struct PresentInfoKHR <: VulkanStruct
         next = C_NULL,
         results = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pWaitSemaphores =
-            wait_semaphores == C_NULL ? wait_semaphores :
-            getproperty.(wait_semaphores, :handle)    # VulkanGen.ConvertArrays
-        _pSwapchains = swapchains == C_NULL ? swapchains : getproperty.(swapchains, :handle)    # VulkanGen.ConvertArrays
-        image_indices = convert(Array{UInt32}, image_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pWaitSemaphores = if wait_semaphores == C_NULL
+            wait_semaphores
+        else
+            getproperty.(wait_semaphores, :handle)
+        end
+        _pSwapchains = if swapchains == C_NULL
+            swapchains
+        else
+            getproperty.(swapchains, :handle)
+        end
+        image_indices = convert(Array{UInt32}, image_indices)
         bag = BagPresentInfoKHR(
             bag_next,
             _pNext,
@@ -16059,11 +19116,19 @@ struct PresentInfoKHR <: VulkanStruct
             results,
         )
         vks = VkPresentInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pWaitSemaphores,
             _pSwapchains,
             image_indices,
-            results == C_NULL ? C_NULL : results,
+            if results == C_NULL
+                C_NULL
+            else
+                results
+            end,
         )
         new(vks, bag)
     end
@@ -16093,13 +19158,29 @@ struct SwapchainCreateInfoKHR <: VulkanStruct
         flags = 0,
         old_swapchain = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        queue_family_indices = convert(Array{UInt32}, queue_family_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        queue_family_indices = convert(Array{UInt32}, queue_family_indices)
         bag = BagSwapchainCreateInfoKHR(bag_next, _pNext, queue_family_indices)
         vks = VkSwapchainCreateInfoKHR(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             surface.handle,
             min_image_count,
             image_format,
@@ -16113,7 +19194,11 @@ struct SwapchainCreateInfoKHR <: VulkanStruct
             composite_alpha,
             present_mode,
             clipped,
-            old_swapchain == C_NULL ? C_NULL : old_swapchain.handle,
+            if old_swapchain == C_NULL
+                C_NULL
+            else
+                old_swapchain.handle
+            end,
         )
         new(vks, bag)
     end
@@ -16126,13 +19211,22 @@ struct DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct
     Generic constructor.
     """
     function DeviceMemoryOpaqueCaptureAddressInfo(memory; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceMemoryOpaqueCaptureAddressInfo(bag_next, _pNext)
-        vks = VkDeviceMemoryOpaqueCaptureAddressInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory.handle,
-        )
+        vks = VkDeviceMemoryOpaqueCaptureAddressInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, memory.handle)
         new(vks, bag)
     end
 end
@@ -16144,11 +19238,23 @@ struct MemoryOpaqueCaptureAddressAllocateInfo <: VulkanStruct
     Generic constructor.
     """
     function MemoryOpaqueCaptureAddressAllocateInfo(opaque_capture_address; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryOpaqueCaptureAddressAllocateInfo(bag_next, _pNext)
         vks = VkMemoryOpaqueCaptureAddressAllocateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             opaque_capture_address,
         )
         new(vks, bag)
@@ -16162,11 +19268,23 @@ struct BufferOpaqueCaptureAddressCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function BufferOpaqueCaptureAddressCreateInfo(opaque_capture_address; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBufferOpaqueCaptureAddressCreateInfo(bag_next, _pNext)
         vks = VkBufferOpaqueCaptureAddressCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             opaque_capture_address,
         )
         new(vks, bag)
@@ -16180,10 +19298,22 @@ struct BufferDeviceAddressInfo <: VulkanStruct
     Generic constructor.
     """
     function BufferDeviceAddressInfo(buffer; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBufferDeviceAddressInfo(bag_next, _pNext)
-        vks = VkBufferDeviceAddressInfo(_pNext == C_NULL ? C_NULL : _pNext, buffer.handle)
+        vks = VkBufferDeviceAddressInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, buffer.handle)
         new(vks, bag)
     end
 end
@@ -16200,11 +19330,23 @@ struct PhysicalDeviceBufferDeviceAddressFeatures <: VulkanStruct
         buffer_device_address_multi_device;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceBufferDeviceAddressFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceBufferDeviceAddressFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             buffer_device_address,
             buffer_device_address_capture_replay,
             buffer_device_address_multi_device,
@@ -16220,14 +19362,22 @@ struct SemaphoreSignalInfo <: VulkanStruct
     Generic constructor.
     """
     function SemaphoreSignalInfo(semaphore, value; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSemaphoreSignalInfo(bag_next, _pNext)
-        vks = VkSemaphoreSignalInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            semaphore.handle,
-            value,
-        )
+        vks = VkSemaphoreSignalInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, semaphore.handle, value)
         new(vks, bag)
     end
 end
@@ -16239,17 +19389,32 @@ struct SemaphoreWaitInfo <: VulkanStruct
     Generic constructor.
     """
     function SemaphoreWaitInfo(semaphores, values; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pSemaphores = semaphores == C_NULL ? semaphores : getproperty.(semaphores, :handle)    # VulkanGen.ConvertArrays
-        values = convert(Array{UInt64}, values)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pSemaphores = if semaphores == C_NULL
+            semaphores
+        else
+            getproperty.(semaphores, :handle)
+        end
+        values = convert(Array{UInt64}, values)
         bag = BagSemaphoreWaitInfo(bag_next, _pNext, _pSemaphores, values)
-        vks = VkSemaphoreWaitInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pSemaphores,
-            values,
-        )
+        vks = VkSemaphoreWaitInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, _pSemaphores, values)
         new(vks, bag)
     end
 end
@@ -16265,10 +19430,18 @@ struct TimelineSemaphoreSubmitInfo <: VulkanStruct
         wait_semaphore_values = C_NULL,
         signal_semaphore_values = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        wait_semaphore_values = convert(Array{UInt64}, wait_semaphore_values)    # VulkanGen.ConvertArrays
-        signal_semaphore_values = convert(Array{UInt64}, signal_semaphore_values)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        wait_semaphore_values = convert(Array{UInt64}, wait_semaphore_values)
+        signal_semaphore_values = convert(Array{UInt64}, signal_semaphore_values)
         bag = BagTimelineSemaphoreSubmitInfo(
             bag_next,
             _pNext,
@@ -16276,9 +19449,21 @@ struct TimelineSemaphoreSubmitInfo <: VulkanStruct
             signal_semaphore_values,
         )
         vks = VkTimelineSemaphoreSubmitInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            wait_semaphore_values == C_NULL ? C_NULL : wait_semaphore_values,
-            signal_semaphore_values == C_NULL ? C_NULL : signal_semaphore_values,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if wait_semaphore_values == C_NULL
+                C_NULL
+            else
+                wait_semaphore_values
+            end,
+            if signal_semaphore_values == C_NULL
+                C_NULL
+            else
+                signal_semaphore_values
+            end,
         )
         new(vks, bag)
     end
@@ -16291,14 +19476,22 @@ struct SemaphoreTypeCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function SemaphoreTypeCreateInfo(semaphore_type, initial_value; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSemaphoreTypeCreateInfo(bag_next, _pNext)
-        vks = VkSemaphoreTypeCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            semaphore_type,
-            initial_value,
-        )
+        vks = VkSemaphoreTypeCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, semaphore_type, initial_value)
         new(vks, bag)
     end
 end
@@ -16315,11 +19508,23 @@ struct PhysicalDeviceTimelineSemaphoreFeatures <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceTimelineSemaphoreFeatures(timeline_semaphore; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceTimelineSemaphoreFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceTimelineSemaphoreFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             timeline_semaphore,
         )
         new(vks, bag)
@@ -16333,13 +19538,22 @@ struct PhysicalDeviceHostQueryResetFeatures <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceHostQueryResetFeatures(host_query_reset; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceHostQueryResetFeatures(bag_next, _pNext)
-        vks = VkPhysicalDeviceHostQueryResetFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            host_query_reset,
-        )
+        vks = VkPhysicalDeviceHostQueryResetFeatures(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, host_query_reset)
         new(vks, bag)
     end
 end
@@ -16355,11 +19569,23 @@ struct AttachmentDescriptionStencilLayout <: VulkanStruct
         stencil_final_layout;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAttachmentDescriptionStencilLayout(bag_next, _pNext)
         vks = VkAttachmentDescriptionStencilLayout(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             stencil_initial_layout,
             stencil_final_layout,
         )
@@ -16374,13 +19600,22 @@ struct AttachmentReferenceStencilLayout <: VulkanStruct
     Generic constructor.
     """
     function AttachmentReferenceStencilLayout(stencil_layout; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAttachmentReferenceStencilLayout(bag_next, _pNext)
-        vks = VkAttachmentReferenceStencilLayout(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            stencil_layout,
-        )
+        vks = VkAttachmentReferenceStencilLayout(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, stencil_layout)
         new(vks, bag)
     end
 end
@@ -16395,11 +19630,23 @@ struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures <: VulkanStruct
         separate_depth_stencil_layouts;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceSeparateDepthStencilLayoutsFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             separate_depth_stencil_layouts,
         )
         new(vks, bag)
@@ -16416,11 +19663,23 @@ struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures <: VulkanStruct
         shader_subgroup_extended_types;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderSubgroupExtendedTypesFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_subgroup_extended_types,
         )
         new(vks, bag)
@@ -16437,11 +19696,23 @@ struct PhysicalDeviceUniformBufferStandardLayoutFeatures <: VulkanStruct
         uniform_buffer_standard_layout;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceUniformBufferStandardLayoutFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceUniformBufferStandardLayoutFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             uniform_buffer_standard_layout,
         )
         new(vks, bag)
@@ -16455,15 +19726,27 @@ struct RenderPassAttachmentBeginInfo <: VulkanStruct
     Generic constructor.
     """
     function RenderPassAttachmentBeginInfo(attachments; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachments =
-            attachments == C_NULL ? attachments : getproperty.(attachments, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttachments = if attachments == C_NULL
+            attachments
+        else
+            getproperty.(attachments, :handle)
+        end
         bag = BagRenderPassAttachmentBeginInfo(bag_next, _pNext, _pAttachments)
-        vks = VkRenderPassAttachmentBeginInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pAttachments,
-        )
+        vks = VkRenderPassAttachmentBeginInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, _pAttachments)
         new(vks, bag)
     end
 end
@@ -16475,21 +19758,32 @@ struct FramebufferAttachmentsCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function FramebufferAttachmentsCreateInfo(attachment_image_infos; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachmentImageInfos =
-            attachment_image_infos == C_NULL ? attachment_image_infos :
-            getproperty.(attachment_image_infos, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttachmentImageInfos = if attachment_image_infos == C_NULL
+            attachment_image_infos
+        else
+            getproperty.(attachment_image_infos, :vks)
+        end
         bag = BagFramebufferAttachmentsCreateInfo(
             bag_next,
             _pNext,
             getproperty.(attachment_image_infos, :bag),
             _pAttachmentImageInfos,
         )
-        vks = VkFramebufferAttachmentsCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pAttachmentImageInfos,
-        )
+        vks = VkFramebufferAttachmentsCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, _pAttachmentImageInfos)
         new(vks, bag)
     end
 end
@@ -16509,12 +19803,28 @@ struct FramebufferAttachmentImageInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagFramebufferAttachmentImageInfo(bag_next, _pNext, view_formats)
         vks = VkFramebufferAttachmentImageInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             usage,
             width,
             height,
@@ -16535,11 +19845,23 @@ struct PhysicalDeviceImagelessFramebufferFeatures <: VulkanStruct
         imageless_framebuffer;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceImagelessFramebufferFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceImagelessFramebufferFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             imageless_framebuffer,
         )
         new(vks, bag)
@@ -16558,11 +19880,23 @@ struct PhysicalDeviceVulkanMemoryModelFeatures <: VulkanStruct
         vulkan_memory_model_availability_visibility_chains;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceVulkanMemoryModelFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceVulkanMemoryModelFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             vulkan_memory_model,
             vulkan_memory_model_device_scope,
             vulkan_memory_model_availability_visibility_chains,
@@ -16584,13 +19918,22 @@ struct SamplerReductionModeCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function SamplerReductionModeCreateInfo(reduction_mode; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSamplerReductionModeCreateInfo(bag_next, _pNext)
-        vks = VkSamplerReductionModeCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            reduction_mode,
-        )
+        vks = VkSamplerReductionModeCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, reduction_mode)
         new(vks, bag)
     end
 end
@@ -16602,11 +19945,22 @@ struct ImageStencilUsageCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ImageStencilUsageCreateInfo(stencil_usage; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageStencilUsageCreateInfo(bag_next, _pNext)
-        vks =
-            VkImageStencilUsageCreateInfo(_pNext == C_NULL ? C_NULL : _pNext, stencil_usage)
+        vks = VkImageStencilUsageCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, stencil_usage)
         new(vks, bag)
     end
 end
@@ -16618,11 +19972,23 @@ struct PhysicalDeviceScalarBlockLayoutFeatures <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceScalarBlockLayoutFeatures(scalar_block_layout; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceScalarBlockLayoutFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceScalarBlockLayoutFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             scalar_block_layout,
         )
         new(vks, bag)
@@ -16641,24 +20007,44 @@ struct SubpassDescriptionDepthStencilResolve <: VulkanStruct
         next = C_NULL,
         depth_stencil_resolve_attachment = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pDepthStencilResolveAttachment =
-            depth_stencil_resolve_attachment == C_NULL ? depth_stencil_resolve_attachment :
-            Ref(depth_stencil_resolve_attachment.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pDepthStencilResolveAttachment = if depth_stencil_resolve_attachment == C_NULL
+            depth_stencil_resolve_attachment
+        else
+            Ref(depth_stencil_resolve_attachment.vks)
+        end
         bag = BagSubpassDescriptionDepthStencilResolve(
             bag_next,
             _pNext,
-            depth_stencil_resolve_attachment == C_NULL ? EmptyBag :
-            depth_stencil_resolve_attachment.bag,
+            if depth_stencil_resolve_attachment == C_NULL
+                EmptyBag
+            else
+                depth_stencil_resolve_attachment.bag
+            end,
             _pDepthStencilResolveAttachment,
         )
         vks = VkSubpassDescriptionDepthStencilResolve(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             depth_resolve_mode,
             stencil_resolve_mode,
-            _pDepthStencilResolveAttachment == C_NULL ? C_NULL :
-            _pDepthStencilResolveAttachment,
+            if _pDepthStencilResolveAttachment == C_NULL
+                C_NULL
+            else
+                _pDepthStencilResolveAttachment
+            end,
         )
         new(vks, bag)
     end
@@ -16679,16 +20065,28 @@ struct DescriptorSetVariableDescriptorCountAllocateInfo <: VulkanStruct
         descriptor_counts;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        descriptor_counts = convert(Array{UInt32}, descriptor_counts)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        descriptor_counts = convert(Array{UInt32}, descriptor_counts)
         bag = BagDescriptorSetVariableDescriptorCountAllocateInfo(
             bag_next,
             _pNext,
             descriptor_counts,
         )
         vks = VkDescriptorSetVariableDescriptorCountAllocateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             descriptor_counts,
         )
         new(vks, bag)
@@ -16751,11 +20149,23 @@ struct PhysicalDeviceDescriptorIndexingFeatures <: VulkanStruct
         runtime_descriptor_array;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceDescriptorIndexingFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceDescriptorIndexingFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_input_attachment_array_dynamic_indexing,
             shader_uniform_texel_buffer_array_dynamic_indexing,
             shader_storage_texel_buffer_array_dynamic_indexing,
@@ -16788,13 +20198,22 @@ struct DescriptorSetLayoutBindingFlagsCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDescriptorSetLayoutBindingFlagsCreateInfo(bag_next, _pNext, binding_flags)
-        vks = VkDescriptorSetLayoutBindingFlagsCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            binding_flags,
-        )
+        vks = VkDescriptorSetLayoutBindingFlagsCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, binding_flags)
         new(vks, bag)
     end
 end
@@ -16810,11 +20229,23 @@ struct PhysicalDeviceShaderFloat16Int8Features <: VulkanStruct
         shader_int_8;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderFloat16Int8Features(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderFloat16Int8Features(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_float_16,
             shader_int_8,
         )
@@ -16833,11 +20264,23 @@ struct PhysicalDeviceShaderAtomicInt64Features <: VulkanStruct
         shader_shared_int_64_atomics;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderAtomicInt64Features(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderAtomicInt64Features(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_buffer_int_64_atomics,
             shader_shared_int_64_atomics,
         )
@@ -16857,11 +20300,23 @@ struct PhysicalDevice8BitStorageFeatures <: VulkanStruct
         storage_push_constant_8;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDevice8BitStorageFeatures(bag_next, _pNext)
         vks = VkPhysicalDevice8BitStorageFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             storage_buffer_8_bit_access,
             uniform_and_storage_buffer_8_bit_access,
             storage_push_constant_8,
@@ -16877,10 +20332,22 @@ struct SubpassEndInfo <: VulkanStruct
     Generic constructor.
     """
     function SubpassEndInfo(; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSubpassEndInfo(bag_next, _pNext)
-        vks = VkSubpassEndInfo(_pNext == C_NULL ? C_NULL : _pNext)
+        vks = VkSubpassEndInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end)
         new(vks, bag)
     end
 end
@@ -16892,10 +20359,22 @@ struct SubpassBeginInfo <: VulkanStruct
     Generic constructor.
     """
     function SubpassBeginInfo(contents; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSubpassBeginInfo(bag_next, _pNext)
-        vks = VkSubpassBeginInfo(_pNext == C_NULL ? C_NULL : _pNext, contents)
+        vks = VkSubpassBeginInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, contents)
         new(vks, bag)
     end
 end
@@ -16914,14 +20393,32 @@ struct RenderPassCreateInfo2 <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachments =
-            attachments == C_NULL ? attachments : getproperty.(attachments, :vks)    # VulkanGen.ConvertArrays
-        _pSubpasses = subpasses == C_NULL ? subpasses : getproperty.(subpasses, :vks)    # VulkanGen.ConvertArrays
-        _pDependencies =
-            dependencies == C_NULL ? dependencies : getproperty.(dependencies, :vks)    # VulkanGen.ConvertArrays
-        correlated_view_masks = convert(Array{UInt32}, correlated_view_masks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttachments = if attachments == C_NULL
+            attachments
+        else
+            getproperty.(attachments, :vks)
+        end
+        _pSubpasses = if subpasses == C_NULL
+            subpasses
+        else
+            getproperty.(subpasses, :vks)
+        end
+        _pDependencies = if dependencies == C_NULL
+            dependencies
+        else
+            getproperty.(dependencies, :vks)
+        end
+        correlated_view_masks = convert(Array{UInt32}, correlated_view_masks)
         bag = BagRenderPassCreateInfo2(
             bag_next,
             _pNext,
@@ -16934,8 +20431,16 @@ struct RenderPassCreateInfo2 <: VulkanStruct
             correlated_view_masks,
         )
         vks = VkRenderPassCreateInfo2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pAttachments,
             _pSubpasses,
             _pDependencies,
@@ -16962,19 +20467,47 @@ struct SubpassDependency2 <: VulkanStruct
         dependency_flags = 0,
         view_offset = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSubpassDependency2(bag_next, _pNext)
         vks = VkSubpassDependency2(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src_subpass,
             dst_subpass,
             src_stage_mask,
             dst_stage_mask,
-            src_access_mask == 0 ? 0 : src_access_mask,
-            dst_access_mask == 0 ? 0 : dst_access_mask,
-            dependency_flags == 0 ? 0 : dependency_flags,
-            view_offset == 0 ? 0 : view_offset,
+            if src_access_mask == 0
+                0
+            else
+                src_access_mask
+            end,
+            if dst_access_mask == 0
+                0
+            else
+                dst_access_mask
+            end,
+            if dependency_flags == 0
+                0
+            else
+                dependency_flags
+            end,
+            if view_offset == 0
+                0
+            else
+                view_offset
+            end,
         )
         new(vks, bag)
     end
@@ -16997,21 +20530,37 @@ struct SubpassDescription2 <: VulkanStruct
         resolve_attachments = C_NULL,
         depth_stencil_attachment = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pInputAttachments =
-            input_attachments == C_NULL ? input_attachments :
-            getproperty.(input_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pColorAttachments =
-            color_attachments == C_NULL ? color_attachments :
-            getproperty.(color_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pResolveAttachments =
-            resolve_attachments == C_NULL ? resolve_attachments :
-            getproperty.(resolve_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pDepthStencilAttachment =
-            depth_stencil_attachment == C_NULL ? depth_stencil_attachment :
-            Ref(depth_stencil_attachment.vks)    # VulkanGen.GenerateRefs
-        preserve_attachments = convert(Array{UInt32}, preserve_attachments)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pInputAttachments = if input_attachments == C_NULL
+            input_attachments
+        else
+            getproperty.(input_attachments, :vks)
+        end
+        _pColorAttachments = if color_attachments == C_NULL
+            color_attachments
+        else
+            getproperty.(color_attachments, :vks)
+        end
+        _pResolveAttachments = if resolve_attachments == C_NULL
+            resolve_attachments
+        else
+            getproperty.(resolve_attachments, :vks)
+        end
+        _pDepthStencilAttachment = if depth_stencil_attachment == C_NULL
+            depth_stencil_attachment
+        else
+            Ref(depth_stencil_attachment.vks)
+        end
+        preserve_attachments = convert(Array{UInt32}, preserve_attachments)
         bag = BagSubpassDescription2(
             bag_next,
             _pNext,
@@ -17019,22 +20568,45 @@ struct SubpassDescription2 <: VulkanStruct
             _pInputAttachments,
             getproperty.(color_attachments, :bag),
             _pColorAttachments,
-            resolve_attachments == C_NULL ? EmptyBag :
-            getproperty.(resolve_attachments, :bag),
+            if resolve_attachments == C_NULL
+                EmptyBag
+            else
+                getproperty.(resolve_attachments, :bag)
+            end,
             _pResolveAttachments,
-            depth_stencil_attachment == C_NULL ? EmptyBag : depth_stencil_attachment.bag,
+            if depth_stencil_attachment == C_NULL
+                EmptyBag
+            else
+                depth_stencil_attachment.bag
+            end,
             _pDepthStencilAttachment,
             preserve_attachments,
         )
         vks = VkSubpassDescription2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             pipeline_bind_point,
             view_mask,
             _pInputAttachments,
             _pColorAttachments,
-            _pResolveAttachments == C_NULL ? C_NULL : _pResolveAttachments,
-            _pDepthStencilAttachment == C_NULL ? C_NULL : _pDepthStencilAttachment,
+            if _pResolveAttachments == C_NULL
+                C_NULL
+            else
+                _pResolveAttachments
+            end,
+            if _pDepthStencilAttachment == C_NULL
+                C_NULL
+            else
+                _pDepthStencilAttachment
+            end,
             preserve_attachments,
         )
         new(vks, bag)
@@ -17048,15 +20620,22 @@ struct AttachmentReference2 <: VulkanStruct
     Generic constructor.
     """
     function AttachmentReference2(attachment, layout, aspect_mask; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAttachmentReference2(bag_next, _pNext)
-        vks = VkAttachmentReference2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            attachment,
-            layout,
-            aspect_mask,
-        )
+        vks = VkAttachmentReference2(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, attachment, layout, aspect_mask)
         new(vks, bag)
     end
 end
@@ -17079,12 +20658,28 @@ struct AttachmentDescription2 <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagAttachmentDescription2(bag_next, _pNext)
         vks = VkAttachmentDescription2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             format,
             samples,
             load_op,
@@ -17105,10 +20700,22 @@ struct ImageFormatListCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ImageFormatListCreateInfo(view_formats; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageFormatListCreateInfo(bag_next, _pNext, view_formats)
-        vks = VkImageFormatListCreateInfo(_pNext == C_NULL ? C_NULL : _pNext, view_formats)
+        vks = VkImageFormatListCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, view_formats)
         new(vks, bag)
     end
 end
@@ -17174,11 +20781,23 @@ struct PhysicalDeviceVulkan12Features <: VulkanStruct
         subgroup_broadcast_dynamic_id;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceVulkan12Features(bag_next, _pNext)
         vks = VkPhysicalDeviceVulkan12Features(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             sampler_mirror_clamp_to_edge,
             draw_indirect_count,
             storage_buffer_8_bit_access,
@@ -17252,11 +20871,23 @@ struct PhysicalDeviceVulkan11Features <: VulkanStruct
         shader_draw_parameters;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceVulkan11Features(bag_next, _pNext)
         vks = VkPhysicalDeviceVulkan11Features(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             storage_buffer_16_bit_access,
             uniform_and_storage_buffer_16_bit_access,
             storage_push_constant_16,
@@ -17284,11 +20915,23 @@ struct PhysicalDeviceShaderDrawParametersFeatures <: VulkanStruct
         shader_draw_parameters;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceShaderDrawParametersFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceShaderDrawParametersFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             shader_draw_parameters,
         )
         new(vks, bag)
@@ -17307,13 +20950,22 @@ struct PhysicalDeviceExternalSemaphoreInfo <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceExternalSemaphoreInfo(handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceExternalSemaphoreInfo(bag_next, _pNext)
-        vks = VkPhysicalDeviceExternalSemaphoreInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_type,
-        )
+        vks = VkPhysicalDeviceExternalSemaphoreInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, handle_type)
         new(vks, bag)
     end
 end
@@ -17325,13 +20977,26 @@ struct ExportSemaphoreCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExportSemaphoreCreateInfo(bag_next, _pNext)
-        vks = VkExportSemaphoreCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_types == 0 ? 0 : handle_types,
-        )
+        vks = VkExportSemaphoreCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if handle_types == 0
+            0
+        else
+            handle_types
+        end)
         new(vks, bag)
     end
 end
@@ -17343,13 +21008,26 @@ struct ExportFenceCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExportFenceCreateInfo(bag_next, _pNext)
-        vks = VkExportFenceCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_types == 0 ? 0 : handle_types,
-        )
+        vks = VkExportFenceCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if handle_types == 0
+            0
+        else
+            handle_types
+        end)
         new(vks, bag)
     end
 end
@@ -17361,13 +21039,22 @@ struct PhysicalDeviceExternalFenceInfo <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceExternalFenceInfo(handle_type; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceExternalFenceInfo(bag_next, _pNext)
-        vks = VkPhysicalDeviceExternalFenceInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_type,
-        )
+        vks = VkPhysicalDeviceExternalFenceInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, handle_type)
         new(vks, bag)
     end
 end
@@ -17379,13 +21066,26 @@ struct ExportMemoryAllocateInfo <: VulkanStruct
     Generic constructor.
     """
     function ExportMemoryAllocateInfo(; next = C_NULL, handle_types = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExportMemoryAllocateInfo(bag_next, _pNext)
-        vks = VkExportMemoryAllocateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_types == 0 ? 0 : handle_types,
-        )
+        vks = VkExportMemoryAllocateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if handle_types == 0
+            0
+        else
+            handle_types
+        end)
         new(vks, bag)
     end
 end
@@ -17397,13 +21097,26 @@ struct ExternalMemoryBufferCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ExternalMemoryBufferCreateInfo(; next = C_NULL, handle_types = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExternalMemoryBufferCreateInfo(bag_next, _pNext)
-        vks = VkExternalMemoryBufferCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_types == 0 ? 0 : handle_types,
-        )
+        vks = VkExternalMemoryBufferCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if handle_types == 0
+            0
+        else
+            handle_types
+        end)
         new(vks, bag)
     end
 end
@@ -17415,13 +21128,22 @@ struct ExternalMemoryImageCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ExternalMemoryImageCreateInfo(handle_types; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagExternalMemoryImageCreateInfo(bag_next, _pNext)
-        vks = VkExternalMemoryImageCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_types,
-        )
+        vks = VkExternalMemoryImageCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, handle_types)
         new(vks, bag)
     end
 end
@@ -17442,12 +21164,28 @@ struct PhysicalDeviceExternalBufferInfo <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceExternalBufferInfo(usage, handle_type; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceExternalBufferInfo(bag_next, _pNext)
         vks = VkPhysicalDeviceExternalBufferInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             usage,
             handle_type,
         )
@@ -17462,12 +21200,28 @@ struct PhysicalDeviceExternalImageFormatInfo <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceExternalImageFormatInfo(; next = C_NULL, handle_type = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceExternalImageFormatInfo(bag_next, _pNext)
         vks = VkPhysicalDeviceExternalImageFormatInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            handle_type == 0 ? 0 : handle_type,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if handle_type == 0
+                0
+            else
+                handle_type
+            end,
         )
         new(vks, bag)
     end
@@ -17489,19 +21243,37 @@ struct DescriptorUpdateTemplateCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pDescriptorUpdateEntries =
-            descriptor_update_entries == C_NULL ? descriptor_update_entries :
-            getproperty.(descriptor_update_entries, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pDescriptorUpdateEntries = if descriptor_update_entries == C_NULL
+            descriptor_update_entries
+        else
+            getproperty.(descriptor_update_entries, :vks)
+        end
         bag = BagDescriptorUpdateTemplateCreateInfo(
             bag_next,
             _pNext,
             _pDescriptorUpdateEntries,
         )
         vks = VkDescriptorUpdateTemplateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pDescriptorUpdateEntries,
             template_type,
             descriptor_set_layout.handle,
@@ -17533,11 +21305,23 @@ struct PhysicalDeviceSamplerYcbcrConversionFeatures <: VulkanStruct
         sampler_ycbcr_conversion;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceSamplerYcbcrConversionFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceSamplerYcbcrConversionFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             sampler_ycbcr_conversion,
         )
         new(vks, bag)
@@ -17551,13 +21335,22 @@ struct ImagePlaneMemoryRequirementsInfo <: VulkanStruct
     Generic constructor.
     """
     function ImagePlaneMemoryRequirementsInfo(plane_aspect; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImagePlaneMemoryRequirementsInfo(bag_next, _pNext)
-        vks = VkImagePlaneMemoryRequirementsInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            plane_aspect,
-        )
+        vks = VkImagePlaneMemoryRequirementsInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, plane_aspect)
         new(vks, bag)
     end
 end
@@ -17569,10 +21362,22 @@ struct BindImagePlaneMemoryInfo <: VulkanStruct
     Generic constructor.
     """
     function BindImagePlaneMemoryInfo(plane_aspect; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBindImagePlaneMemoryInfo(bag_next, _pNext)
-        vks = VkBindImagePlaneMemoryInfo(_pNext == C_NULL ? C_NULL : _pNext, plane_aspect)
+        vks = VkBindImagePlaneMemoryInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, plane_aspect)
         new(vks, bag)
     end
 end
@@ -17584,13 +21389,22 @@ struct SamplerYcbcrConversionInfo <: VulkanStruct
     Generic constructor.
     """
     function SamplerYcbcrConversionInfo(conversion; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSamplerYcbcrConversionInfo(bag_next, _pNext)
-        vks = VkSamplerYcbcrConversionInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            conversion.handle,
-        )
+        vks = VkSamplerYcbcrConversionInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, conversion.handle)
         new(vks, bag)
     end
 end
@@ -17612,11 +21426,23 @@ struct SamplerYcbcrConversionCreateInfo <: VulkanStruct
         force_explicit_reconstruction;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSamplerYcbcrConversionCreateInfo(bag_next, _pNext)
         vks = VkSamplerYcbcrConversionCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             format,
             ycbcr_model,
             ycbcr_range,
@@ -17637,10 +21463,22 @@ struct ProtectedSubmitInfo <: VulkanStruct
     Generic constructor.
     """
     function ProtectedSubmitInfo(protected_submit; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagProtectedSubmitInfo(bag_next, _pNext)
-        vks = VkProtectedSubmitInfo(_pNext == C_NULL ? C_NULL : _pNext, protected_submit)
+        vks = VkProtectedSubmitInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, protected_submit)
         new(vks, bag)
     end
 end
@@ -17652,12 +21490,28 @@ struct DeviceQueueInfo2 <: VulkanStruct
     Generic constructor.
     """
     function DeviceQueueInfo2(queue_family_index, queue_index; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceQueueInfo2(bag_next, _pNext)
         vks = VkDeviceQueueInfo2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             queue_family_index,
             queue_index,
         )
@@ -17677,13 +21531,22 @@ struct PhysicalDeviceProtectedMemoryFeatures <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceProtectedMemoryFeatures(protected_memory; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceProtectedMemoryFeatures(bag_next, _pNext)
-        vks = VkPhysicalDeviceProtectedMemoryFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            protected_memory,
-        )
+        vks = VkPhysicalDeviceProtectedMemoryFeatures(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, protected_memory)
         new(vks, bag)
     end
 end
@@ -17699,11 +21562,23 @@ struct PhysicalDeviceVariablePointersFeatures <: VulkanStruct
         variable_pointers;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceVariablePointersFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceVariablePointersFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             variable_pointers_storage_buffer,
             variable_pointers,
         )
@@ -17729,11 +21604,23 @@ struct PhysicalDeviceMultiviewFeatures <: VulkanStruct
         multiview_tessellation_shader;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceMultiviewFeatures(bag_next, _pNext)
         vks = VkPhysicalDeviceMultiviewFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             multiview,
             multiview_geometry_shader,
             multiview_tessellation_shader,
@@ -17754,11 +21641,19 @@ struct RenderPassMultiviewCreateInfo <: VulkanStruct
         correlation_masks;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        view_masks = convert(Array{UInt32}, view_masks)    # VulkanGen.ConvertArrays
-        view_offsets = convert(Array{Int32}, view_offsets)    # VulkanGen.ConvertArrays
-        correlation_masks = convert(Array{UInt32}, correlation_masks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        view_masks = convert(Array{UInt32}, view_masks)
+        view_offsets = convert(Array{Int32}, view_offsets)
+        correlation_masks = convert(Array{UInt32}, correlation_masks)
         bag = BagRenderPassMultiviewCreateInfo(
             bag_next,
             _pNext,
@@ -17767,7 +21662,11 @@ struct RenderPassMultiviewCreateInfo <: VulkanStruct
             correlation_masks,
         )
         vks = VkRenderPassMultiviewCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             view_masks,
             view_offsets,
             correlation_masks,
@@ -17783,11 +21682,23 @@ struct PipelineTessellationDomainOriginStateCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function PipelineTessellationDomainOriginStateCreateInfo(domain_origin; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineTessellationDomainOriginStateCreateInfo(bag_next, _pNext)
         vks = VkPipelineTessellationDomainOriginStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             domain_origin,
         )
         new(vks, bag)
@@ -17801,10 +21712,22 @@ struct ImageViewUsageCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ImageViewUsageCreateInfo(usage; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageViewUsageCreateInfo(bag_next, _pNext)
-        vks = VkImageViewUsageCreateInfo(_pNext == C_NULL ? C_NULL : _pNext, usage)
+        vks = VkImageViewUsageCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, usage)
         new(vks, bag)
     end
 end
@@ -17816,18 +21739,32 @@ struct RenderPassInputAttachmentAspectCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function RenderPassInputAttachmentAspectCreateInfo(aspect_references; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAspectReferences =
-            aspect_references == C_NULL ? aspect_references :
-            getproperty.(aspect_references, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAspectReferences = if aspect_references == C_NULL
+            aspect_references
+        else
+            getproperty.(aspect_references, :vks)
+        end
         bag = BagRenderPassInputAttachmentAspectCreateInfo(
             bag_next,
             _pNext,
             _pAspectReferences,
         )
         vks = VkRenderPassInputAttachmentAspectCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pAspectReferences,
         )
         new(vks, bag)
@@ -17853,11 +21790,23 @@ struct PhysicalDeviceSparseImageFormatInfo2 <: VulkanStruct
         tiling;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceSparseImageFormatInfo2(bag_next, _pNext)
         vks = VkPhysicalDeviceSparseImageFormatInfo2(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             format,
             type,
             samples,
@@ -17882,16 +21831,32 @@ struct PhysicalDeviceImageFormatInfo2 <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceImageFormatInfo2(bag_next, _pNext)
         vks = VkPhysicalDeviceImageFormatInfo2(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             format,
             type,
             tiling,
             usage,
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
         )
         new(vks, bag)
     end
@@ -17904,10 +21869,22 @@ struct PhysicalDeviceFeatures2 <: VulkanStruct
     Generic constructor.
     """
     function PhysicalDeviceFeatures2(features; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDeviceFeatures2(bag_next, _pNext)
-        vks = VkPhysicalDeviceFeatures2(_pNext == C_NULL ? C_NULL : _pNext, features.vks)
+        vks = VkPhysicalDeviceFeatures2(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, features.vks)
         new(vks, bag)
     end
 end
@@ -17919,13 +21896,22 @@ struct ImageSparseMemoryRequirementsInfo2 <: VulkanStruct
     Generic constructor.
     """
     function ImageSparseMemoryRequirementsInfo2(image; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageSparseMemoryRequirementsInfo2(bag_next, _pNext)
-        vks = VkImageSparseMemoryRequirementsInfo2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            image.handle,
-        )
+        vks = VkImageSparseMemoryRequirementsInfo2(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, image.handle)
         new(vks, bag)
     end
 end
@@ -17937,11 +21923,22 @@ struct ImageMemoryRequirementsInfo2 <: VulkanStruct
     Generic constructor.
     """
     function ImageMemoryRequirementsInfo2(image; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageMemoryRequirementsInfo2(bag_next, _pNext)
-        vks =
-            VkImageMemoryRequirementsInfo2(_pNext == C_NULL ? C_NULL : _pNext, image.handle)
+        vks = VkImageMemoryRequirementsInfo2(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, image.handle)
         new(vks, bag)
     end
 end
@@ -17953,13 +21950,22 @@ struct BufferMemoryRequirementsInfo2 <: VulkanStruct
     Generic constructor.
     """
     function BufferMemoryRequirementsInfo2(buffer; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBufferMemoryRequirementsInfo2(bag_next, _pNext)
-        vks = VkBufferMemoryRequirementsInfo2(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            buffer.handle,
-        )
+        vks = VkBufferMemoryRequirementsInfo2(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, buffer.handle)
         new(vks, bag)
     end
 end
@@ -17971,16 +21977,27 @@ struct DeviceGroupDeviceCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function DeviceGroupDeviceCreateInfo(physical_devices; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pPhysicalDevices =
-            physical_devices == C_NULL ? physical_devices :
-            getproperty.(physical_devices, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pPhysicalDevices = if physical_devices == C_NULL
+            physical_devices
+        else
+            getproperty.(physical_devices, :handle)
+        end
         bag = BagDeviceGroupDeviceCreateInfo(bag_next, _pNext, _pPhysicalDevices)
-        vks = VkDeviceGroupDeviceCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            _pPhysicalDevices,
-        )
+        vks = VkDeviceGroupDeviceCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, _pPhysicalDevices)
         new(vks, bag)
     end
 end
@@ -18003,12 +22020,22 @@ struct BindImageMemoryDeviceGroupInfo <: VulkanStruct
         split_instance_bind_regions;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        device_indices = convert(Array{UInt32}, device_indices)    # VulkanGen.ConvertArrays
-        _pSplitInstanceBindRegions =
-            split_instance_bind_regions == C_NULL ? split_instance_bind_regions :
-            getproperty.(split_instance_bind_regions, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        device_indices = convert(Array{UInt32}, device_indices)
+        _pSplitInstanceBindRegions = if split_instance_bind_regions == C_NULL
+            split_instance_bind_regions
+        else
+            getproperty.(split_instance_bind_regions, :vks)
+        end
         bag = BagBindImageMemoryDeviceGroupInfo(
             bag_next,
             _pNext,
@@ -18016,7 +22043,11 @@ struct BindImageMemoryDeviceGroupInfo <: VulkanStruct
             _pSplitInstanceBindRegions,
         )
         vks = VkBindImageMemoryDeviceGroupInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             device_indices,
             _pSplitInstanceBindRegions,
         )
@@ -18031,14 +22062,23 @@ struct BindBufferMemoryDeviceGroupInfo <: VulkanStruct
     Generic constructor.
     """
     function BindBufferMemoryDeviceGroupInfo(device_indices; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        device_indices = convert(Array{UInt32}, device_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        device_indices = convert(Array{UInt32}, device_indices)
         bag = BagBindBufferMemoryDeviceGroupInfo(bag_next, _pNext, device_indices)
-        vks = VkBindBufferMemoryDeviceGroupInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            device_indices,
-        )
+        vks = VkBindBufferMemoryDeviceGroupInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, device_indices)
         new(vks, bag)
     end
 end
@@ -18054,11 +22094,23 @@ struct DeviceGroupBindSparseInfo <: VulkanStruct
         memory_device_index;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceGroupBindSparseInfo(bag_next, _pNext)
         vks = VkDeviceGroupBindSparseInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             resource_device_index,
             memory_device_index,
         )
@@ -18078,13 +22130,21 @@ struct DeviceGroupSubmitInfo <: VulkanStruct
         signal_semaphore_device_indices;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         wait_semaphore_device_indices =
-            convert(Array{UInt32}, wait_semaphore_device_indices)    # VulkanGen.ConvertArrays
-        command_buffer_device_masks = convert(Array{UInt32}, command_buffer_device_masks)    # VulkanGen.ConvertArrays
+            convert(Array{UInt32}, wait_semaphore_device_indices)
+        command_buffer_device_masks = convert(Array{UInt32}, command_buffer_device_masks)
         signal_semaphore_device_indices =
-            convert(Array{UInt32}, signal_semaphore_device_indices)    # VulkanGen.ConvertArrays
+            convert(Array{UInt32}, signal_semaphore_device_indices)
         bag = BagDeviceGroupSubmitInfo(
             bag_next,
             _pNext,
@@ -18093,7 +22153,11 @@ struct DeviceGroupSubmitInfo <: VulkanStruct
             signal_semaphore_device_indices,
         )
         vks = VkDeviceGroupSubmitInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             wait_semaphore_device_indices,
             command_buffer_device_masks,
             signal_semaphore_device_indices,
@@ -18109,13 +22173,22 @@ struct DeviceGroupCommandBufferBeginInfo <: VulkanStruct
     Generic constructor.
     """
     function DeviceGroupCommandBufferBeginInfo(device_mask; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagDeviceGroupCommandBufferBeginInfo(bag_next, _pNext)
-        vks = VkDeviceGroupCommandBufferBeginInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            device_mask,
-        )
+        vks = VkDeviceGroupCommandBufferBeginInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, device_mask)
         new(vks, bag)
     end
 end
@@ -18127,14 +22200,28 @@ struct DeviceGroupRenderPassBeginInfo <: VulkanStruct
     Generic constructor.
     """
     function DeviceGroupRenderPassBeginInfo(device_mask, device_render_areas; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pDeviceRenderAreas =
-            device_render_areas == C_NULL ? device_render_areas :
-            getproperty.(device_render_areas, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pDeviceRenderAreas = if device_render_areas == C_NULL
+            device_render_areas
+        else
+            getproperty.(device_render_areas, :vks)
+        end
         bag = BagDeviceGroupRenderPassBeginInfo(bag_next, _pNext, _pDeviceRenderAreas)
         vks = VkDeviceGroupRenderPassBeginInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             device_mask,
             _pDeviceRenderAreas,
         )
@@ -18149,14 +22236,26 @@ struct MemoryAllocateFlagsInfo <: VulkanStruct
     Generic constructor.
     """
     function MemoryAllocateFlagsInfo(device_mask; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryAllocateFlagsInfo(bag_next, _pNext)
-        vks = VkMemoryAllocateFlagsInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            device_mask,
-        )
+        vks = VkMemoryAllocateFlagsInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, device_mask)
         new(vks, bag)
     end
 end
@@ -18168,13 +22267,33 @@ struct MemoryDedicatedAllocateInfo <: VulkanStruct
     Generic constructor.
     """
     function MemoryDedicatedAllocateInfo(; next = C_NULL, image = C_NULL, buffer = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryDedicatedAllocateInfo(bag_next, _pNext)
         vks = VkMemoryDedicatedAllocateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            image == C_NULL ? C_NULL : image.handle,
-            buffer == C_NULL ? C_NULL : buffer.handle,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if image == C_NULL
+                C_NULL
+            else
+                image.handle
+            end,
+            if buffer == C_NULL
+                C_NULL
+            else
+                buffer.handle
+            end,
         )
         new(vks, bag)
     end
@@ -18199,11 +22318,23 @@ struct PhysicalDevice16BitStorageFeatures <: VulkanStruct
         storage_input_output_16;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPhysicalDevice16BitStorageFeatures(bag_next, _pNext)
         vks = VkPhysicalDevice16BitStorageFeatures(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             storage_buffer_16_bit_access,
             uniform_and_storage_buffer_16_bit_access,
             storage_push_constant_16,
@@ -18220,11 +22351,23 @@ struct BindImageMemoryInfo <: VulkanStruct
     Generic constructor.
     """
     function BindImageMemoryInfo(image, memory, memory_offset; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBindImageMemoryInfo(bag_next, _pNext)
         vks = VkBindImageMemoryInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             image.handle,
             memory.handle,
             memory_offset,
@@ -18240,11 +22383,23 @@ struct BindBufferMemoryInfo <: VulkanStruct
     Generic constructor.
     """
     function BindBufferMemoryInfo(buffer, memory, memory_offset; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBindBufferMemoryInfo(bag_next, _pNext)
         vks = VkBindBufferMemoryInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             buffer.handle,
             memory.handle,
             memory_offset,
@@ -18266,13 +22421,28 @@ struct RenderPassBeginInfo <: VulkanStruct
         clear_values;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pClearValues =
-            clear_values == C_NULL ? clear_values : getproperty.(clear_values, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pClearValues = if clear_values == C_NULL
+            clear_values
+        else
+            getproperty.(clear_values, :vks)
+        end
         bag = BagRenderPassBeginInfo(bag_next, _pNext, _pClearValues)
         vks = VkRenderPassBeginInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             render_pass.handle,
             framebuffer.handle,
             render_area.vks,
@@ -18344,20 +22514,47 @@ struct CommandBufferBeginInfo <: VulkanStruct
     Generic constructor.
     """
     function CommandBufferBeginInfo(; next = C_NULL, flags = 0, inheritance_info = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pInheritanceInfo =
-            inheritance_info == C_NULL ? inheritance_info : Ref(inheritance_info.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pInheritanceInfo = if inheritance_info == C_NULL
+            inheritance_info
+        else
+            Ref(inheritance_info.vks)
+        end
         bag = BagCommandBufferBeginInfo(
             bag_next,
             _pNext,
-            inheritance_info == C_NULL ? EmptyBag : inheritance_info.bag,
+            if inheritance_info == C_NULL
+                EmptyBag
+            else
+                inheritance_info.bag
+            end,
             _pInheritanceInfo,
         )
         vks = VkCommandBufferBeginInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pInheritanceInfo == C_NULL ? C_NULL : _pInheritanceInfo,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
+            if _pInheritanceInfo == C_NULL
+                C_NULL
+            else
+                _pInheritanceInfo
+            end,
         )
         new(vks, bag)
     end
@@ -18378,17 +22575,45 @@ struct CommandBufferInheritanceInfo <: VulkanStruct
         query_flags = 0,
         pipeline_statistics = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCommandBufferInheritanceInfo(bag_next, _pNext)
         vks = VkCommandBufferInheritanceInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            render_pass == C_NULL ? C_NULL : render_pass.handle,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if render_pass == C_NULL
+                C_NULL
+            else
+                render_pass.handle
+            end,
             subpass,
-            framebuffer == C_NULL ? C_NULL : framebuffer.handle,
+            if framebuffer == C_NULL
+                C_NULL
+            else
+                framebuffer.handle
+            end,
             occlusion_query_enable,
-            query_flags == 0 ? 0 : query_flags,
-            pipeline_statistics == C_NULL ? C_NULL : pipeline_statistics,
+            if query_flags == 0
+                0
+            else
+                query_flags
+            end,
+            if pipeline_statistics == C_NULL
+                C_NULL
+            else
+                pipeline_statistics
+            end,
         )
         new(vks, bag)
     end
@@ -18406,11 +22631,23 @@ struct CommandBufferAllocateInfo <: VulkanStruct
         command_buffer_count;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCommandBufferAllocateInfo(bag_next, _pNext)
         vks = VkCommandBufferAllocateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             command_pool.handle,
             level,
             command_buffer_count,
@@ -18426,14 +22663,26 @@ struct CommandPoolCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function CommandPoolCreateInfo(queue_family_index; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCommandPoolCreateInfo(bag_next, _pNext)
-        vks = VkCommandPoolCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            queue_family_index,
-        )
+        vks = VkCommandPoolCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, queue_family_index)
         new(vks, bag)
     end
 end
@@ -18451,13 +22700,31 @@ struct RenderPassCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachments =
-            attachments == C_NULL ? attachments : getproperty.(attachments, :vks)    # VulkanGen.ConvertArrays
-        _pSubpasses = subpasses == C_NULL ? subpasses : getproperty.(subpasses, :vks)    # VulkanGen.ConvertArrays
-        _pDependencies =
-            dependencies == C_NULL ? dependencies : getproperty.(dependencies, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttachments = if attachments == C_NULL
+            attachments
+        else
+            getproperty.(attachments, :vks)
+        end
+        _pSubpasses = if subpasses == C_NULL
+            subpasses
+        else
+            getproperty.(subpasses, :vks)
+        end
+        _pDependencies = if dependencies == C_NULL
+            dependencies
+        else
+            getproperty.(dependencies, :vks)
+        end
         bag = BagRenderPassCreateInfo(
             bag_next,
             _pNext,
@@ -18467,8 +22734,16 @@ struct RenderPassCreateInfo <: VulkanStruct
             _pDependencies,
         )
         vks = VkRenderPassCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pAttachments,
             _pSubpasses,
             _pDependencies,
@@ -18497,19 +22772,27 @@ struct SubpassDescription <: VulkanStruct
         resolve_attachments = C_NULL,
         depth_stencil_attachment = C_NULL,
     )
-        _pInputAttachments =
-            input_attachments == C_NULL ? input_attachments :
-            getproperty.(input_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pColorAttachments =
-            color_attachments == C_NULL ? color_attachments :
-            getproperty.(color_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pResolveAttachments =
-            resolve_attachments == C_NULL ? resolve_attachments :
-            getproperty.(resolve_attachments, :vks)    # VulkanGen.ConvertArrays
-        _pDepthStencilAttachment =
-            depth_stencil_attachment == C_NULL ? depth_stencil_attachment :
-            Ref(depth_stencil_attachment.vks)    # VulkanGen.GenerateRefs
-        preserve_attachments = convert(Array{UInt32}, preserve_attachments)    # VulkanGen.ConvertArrays
+        _pInputAttachments = if input_attachments == C_NULL
+            input_attachments
+        else
+            getproperty.(input_attachments, :vks)
+        end
+        _pColorAttachments = if color_attachments == C_NULL
+            color_attachments
+        else
+            getproperty.(color_attachments, :vks)
+        end
+        _pResolveAttachments = if resolve_attachments == C_NULL
+            resolve_attachments
+        else
+            getproperty.(resolve_attachments, :vks)
+        end
+        _pDepthStencilAttachment = if depth_stencil_attachment == C_NULL
+            depth_stencil_attachment
+        else
+            Ref(depth_stencil_attachment.vks)
+        end
+        preserve_attachments = convert(Array{UInt32}, preserve_attachments)
         bag = BagSubpassDescription(
             _pInputAttachments,
             _pColorAttachments,
@@ -18518,12 +22801,24 @@ struct SubpassDescription <: VulkanStruct
             preserve_attachments,
         )
         vks = VkSubpassDescription(
-            flags == 0 ? 0 : flags,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             pipeline_bind_point,
             _pInputAttachments,
             _pColorAttachments,
-            _pResolveAttachments == C_NULL ? C_NULL : _pResolveAttachments,
-            _pDepthStencilAttachment == C_NULL ? C_NULL : _pDepthStencilAttachment,
+            if _pResolveAttachments == C_NULL
+                C_NULL
+            else
+                _pResolveAttachments
+            end,
+            if _pDepthStencilAttachment == C_NULL
+                C_NULL
+            else
+                _pDepthStencilAttachment
+            end,
             preserve_attachments,
         )
         new(vks, bag)
@@ -18545,14 +22840,33 @@ struct FramebufferCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachments =
-            attachments == C_NULL ? attachments : getproperty.(attachments, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttachments = if attachments == C_NULL
+            attachments
+        else
+            getproperty.(attachments, :handle)
+        end
         bag = BagFramebufferCreateInfo(bag_next, _pNext, _pAttachments)
         vks = VkFramebufferCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             render_pass.handle,
             _pAttachments,
             width,
@@ -18589,13 +22903,31 @@ struct WriteDescriptorSet <: VulkanStruct
         texel_buffer_view;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pImageInfo = image_info == C_NULL ? image_info : getproperty.(image_info, :vks)    # VulkanGen.ConvertArrays
-        _pBufferInfo = buffer_info == C_NULL ? buffer_info : getproperty.(buffer_info, :vks)    # VulkanGen.ConvertArrays
-        _pTexelBufferView =
-            texel_buffer_view == C_NULL ? texel_buffer_view :
-            getproperty.(texel_buffer_view, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pImageInfo = if image_info == C_NULL
+            image_info
+        else
+            getproperty.(image_info, :vks)
+        end
+        _pBufferInfo = if buffer_info == C_NULL
+            buffer_info
+        else
+            getproperty.(buffer_info, :vks)
+        end
+        _pTexelBufferView = if texel_buffer_view == C_NULL
+            texel_buffer_view
+        else
+            getproperty.(texel_buffer_view, :handle)
+        end
         bag = BagWriteDescriptorSet(
             bag_next,
             _pNext,
@@ -18604,7 +22936,11 @@ struct WriteDescriptorSet <: VulkanStruct
             _pTexelBufferView,
         )
         vks = VkWriteDescriptorSet(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             dst_set.handle,
             dst_binding,
             dst_array_element,
@@ -18624,20 +22960,36 @@ struct DescriptorSetLayoutCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function DescriptorSetLayoutCreateInfo(bindings; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pBindings = bindings == C_NULL ? bindings : getproperty.(bindings, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pBindings = if bindings == C_NULL
+            bindings
+        else
+            getproperty.(bindings, :vks)
+        end
         bag = BagDescriptorSetLayoutCreateInfo(
             bag_next,
             _pNext,
             getproperty.(bindings, :bag),
             _pBindings,
         )
-        vks = VkDescriptorSetLayoutCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pBindings,
-        )
+        vks = VkDescriptorSetLayoutCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, _pBindings)
         new(vks, bag)
     end
 end
@@ -18654,15 +23006,21 @@ struct DescriptorSetLayoutBinding <: VulkanStruct
         stage_flags;
         immutable_samplers = C_NULL,
     )
-        _pImmutableSamplers =
-            immutable_samplers == C_NULL ? immutable_samplers :
-            getproperty.(immutable_samplers, :handle)    # VulkanGen.ConvertArrays
+        _pImmutableSamplers = if immutable_samplers == C_NULL
+            immutable_samplers
+        else
+            getproperty.(immutable_samplers, :handle)
+        end
         bag = BagDescriptorSetLayoutBinding(_pImmutableSamplers)
         vks = VkDescriptorSetLayoutBinding(
             binding,
             descriptor_type,
             stage_flags,
-            _pImmutableSamplers == C_NULL ? C_NULL : _pImmutableSamplers,
+            if _pImmutableSamplers == C_NULL
+                C_NULL
+            else
+                _pImmutableSamplers
+            end,
         )
         new(vks, bag)
     end
@@ -18675,13 +23033,28 @@ struct DescriptorSetAllocateInfo <: VulkanStruct
     Generic constructor.
     """
     function DescriptorSetAllocateInfo(descriptor_pool, set_layouts; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pSetLayouts =
-            set_layouts == C_NULL ? set_layouts : getproperty.(set_layouts, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pSetLayouts = if set_layouts == C_NULL
+            set_layouts
+        else
+            getproperty.(set_layouts, :handle)
+        end
         bag = BagDescriptorSetAllocateInfo(bag_next, _pNext, _pSetLayouts)
         vks = VkDescriptorSetAllocateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             descriptor_pool.handle,
             _pSetLayouts,
         )
@@ -18696,13 +23069,33 @@ struct DescriptorPoolCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function DescriptorPoolCreateInfo(max_sets, pool_sizes; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pPoolSizes = pool_sizes == C_NULL ? pool_sizes : getproperty.(pool_sizes, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pPoolSizes = if pool_sizes == C_NULL
+            pool_sizes
+        else
+            getproperty.(pool_sizes, :vks)
+        end
         bag = BagDescriptorPoolCreateInfo(bag_next, _pNext, _pPoolSizes)
         vks = VkDescriptorPoolCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             max_sets,
             _pPoolSizes,
         )
@@ -18741,11 +23134,23 @@ struct CopyDescriptorSet <: VulkanStruct
         descriptor_count;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagCopyDescriptorSet(bag_next, _pNext)
         vks = VkCopyDescriptorSet(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src_set.handle,
             src_binding,
             src_array_element,
@@ -18783,12 +23188,28 @@ struct SamplerCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSamplerCreateInfo(bag_next, _pNext)
         vks = VkSamplerCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             mag_filter,
             min_filter,
             mipmap_mode,
@@ -18821,13 +23242,26 @@ struct PipelineLayoutCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pSetLayouts =
-            set_layouts == C_NULL ? set_layouts : getproperty.(set_layouts, :handle)    # VulkanGen.ConvertArrays
-        _pPushConstantRanges =
-            push_constant_ranges == C_NULL ? push_constant_ranges :
-            getproperty.(push_constant_ranges, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pSetLayouts = if set_layouts == C_NULL
+            set_layouts
+        else
+            getproperty.(set_layouts, :handle)
+        end
+        _pPushConstantRanges = if push_constant_ranges == C_NULL
+            push_constant_ranges
+        else
+            getproperty.(push_constant_ranges, :vks)
+        end
         bag = BagPipelineLayoutCreateInfo(
             bag_next,
             _pNext,
@@ -18835,8 +23269,16 @@ struct PipelineLayoutCreateInfo <: VulkanStruct
             _pPushConstantRanges,
         )
         vks = VkPipelineLayoutCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pSetLayouts,
             _pPushConstantRanges,
         )
@@ -18874,70 +23316,183 @@ struct GraphicsPipelineCreateInfo <: VulkanStruct
         dynamic_state = C_NULL,
         base_pipeline_handle = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pStages = stages == C_NULL ? stages : getproperty.(stages, :vks)    # VulkanGen.ConvertArrays
-        _pVertexInputState =
-            vertex_input_state == C_NULL ? vertex_input_state : Ref(vertex_input_state.vks)    # VulkanGen.GenerateRefs
-        _pInputAssemblyState =
-            input_assembly_state == C_NULL ? input_assembly_state :
-            Ref(input_assembly_state.vks)    # VulkanGen.GenerateRefs
-        _pTessellationState =
-            tessellation_state == C_NULL ? tessellation_state : Ref(tessellation_state.vks)    # VulkanGen.GenerateRefs
-        _pViewportState =
-            viewport_state == C_NULL ? viewport_state : Ref(viewport_state.vks)    # VulkanGen.GenerateRefs
-        _pRasterizationState =
-            rasterization_state == C_NULL ? rasterization_state :
-            Ref(rasterization_state.vks)    # VulkanGen.GenerateRefs
-        _pMultisampleState =
-            multisample_state == C_NULL ? multisample_state : Ref(multisample_state.vks)    # VulkanGen.GenerateRefs
-        _pDepthStencilState =
-            depth_stencil_state == C_NULL ? depth_stencil_state :
-            Ref(depth_stencil_state.vks)    # VulkanGen.GenerateRefs
-        _pColorBlendState =
-            color_blend_state == C_NULL ? color_blend_state : Ref(color_blend_state.vks)    # VulkanGen.GenerateRefs
-        _pDynamicState = dynamic_state == C_NULL ? dynamic_state : Ref(dynamic_state.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pStages = if stages == C_NULL
+            stages
+        else
+            getproperty.(stages, :vks)
+        end
+        _pVertexInputState = if vertex_input_state == C_NULL
+            vertex_input_state
+        else
+            Ref(vertex_input_state.vks)
+        end
+        _pInputAssemblyState = if input_assembly_state == C_NULL
+            input_assembly_state
+        else
+            Ref(input_assembly_state.vks)
+        end
+        _pTessellationState = if tessellation_state == C_NULL
+            tessellation_state
+        else
+            Ref(tessellation_state.vks)
+        end
+        _pViewportState = if viewport_state == C_NULL
+            viewport_state
+        else
+            Ref(viewport_state.vks)
+        end
+        _pRasterizationState = if rasterization_state == C_NULL
+            rasterization_state
+        else
+            Ref(rasterization_state.vks)
+        end
+        _pMultisampleState = if multisample_state == C_NULL
+            multisample_state
+        else
+            Ref(multisample_state.vks)
+        end
+        _pDepthStencilState = if depth_stencil_state == C_NULL
+            depth_stencil_state
+        else
+            Ref(depth_stencil_state.vks)
+        end
+        _pColorBlendState = if color_blend_state == C_NULL
+            color_blend_state
+        else
+            Ref(color_blend_state.vks)
+        end
+        _pDynamicState = if dynamic_state == C_NULL
+            dynamic_state
+        else
+            Ref(dynamic_state.vks)
+        end
         bag = BagGraphicsPipelineCreateInfo(
             bag_next,
             _pNext,
             getproperty.(stages, :bag),
             _pStages,
-            vertex_input_state == C_NULL ? EmptyBag : vertex_input_state.bag,
+            if vertex_input_state == C_NULL
+                EmptyBag
+            else
+                vertex_input_state.bag
+            end,
             _pVertexInputState,
-            input_assembly_state == C_NULL ? EmptyBag : input_assembly_state.bag,
+            if input_assembly_state == C_NULL
+                EmptyBag
+            else
+                input_assembly_state.bag
+            end,
             _pInputAssemblyState,
-            tessellation_state == C_NULL ? EmptyBag : tessellation_state.bag,
+            if tessellation_state == C_NULL
+                EmptyBag
+            else
+                tessellation_state.bag
+            end,
             _pTessellationState,
-            viewport_state == C_NULL ? EmptyBag : viewport_state.bag,
+            if viewport_state == C_NULL
+                EmptyBag
+            else
+                viewport_state.bag
+            end,
             _pViewportState,
             rasterization_state.bag,
             _pRasterizationState,
-            multisample_state == C_NULL ? EmptyBag : multisample_state.bag,
+            if multisample_state == C_NULL
+                EmptyBag
+            else
+                multisample_state.bag
+            end,
             _pMultisampleState,
-            depth_stencil_state == C_NULL ? EmptyBag : depth_stencil_state.bag,
+            if depth_stencil_state == C_NULL
+                EmptyBag
+            else
+                depth_stencil_state.bag
+            end,
             _pDepthStencilState,
-            color_blend_state == C_NULL ? EmptyBag : color_blend_state.bag,
+            if color_blend_state == C_NULL
+                EmptyBag
+            else
+                color_blend_state.bag
+            end,
             _pColorBlendState,
-            dynamic_state == C_NULL ? EmptyBag : dynamic_state.bag,
+            if dynamic_state == C_NULL
+                EmptyBag
+            else
+                dynamic_state.bag
+            end,
             _pDynamicState,
         )
         vks = VkGraphicsPipelineCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pStages,
-            _pVertexInputState == C_NULL ? C_NULL : _pVertexInputState,
-            _pInputAssemblyState == C_NULL ? C_NULL : _pInputAssemblyState,
-            _pTessellationState == C_NULL ? C_NULL : _pTessellationState,
-            _pViewportState == C_NULL ? C_NULL : _pViewportState,
+            if _pVertexInputState == C_NULL
+                C_NULL
+            else
+                _pVertexInputState
+            end,
+            if _pInputAssemblyState == C_NULL
+                C_NULL
+            else
+                _pInputAssemblyState
+            end,
+            if _pTessellationState == C_NULL
+                C_NULL
+            else
+                _pTessellationState
+            end,
+            if _pViewportState == C_NULL
+                C_NULL
+            else
+                _pViewportState
+            end,
             _pRasterizationState,
-            _pMultisampleState == C_NULL ? C_NULL : _pMultisampleState,
-            _pDepthStencilState == C_NULL ? C_NULL : _pDepthStencilState,
-            _pColorBlendState == C_NULL ? C_NULL : _pColorBlendState,
-            _pDynamicState == C_NULL ? C_NULL : _pDynamicState,
+            if _pMultisampleState == C_NULL
+                C_NULL
+            else
+                _pMultisampleState
+            end,
+            if _pDepthStencilState == C_NULL
+                C_NULL
+            else
+                _pDepthStencilState
+            end,
+            if _pColorBlendState == C_NULL
+                C_NULL
+            else
+                _pColorBlendState
+            end,
+            if _pDynamicState == C_NULL
+                C_NULL
+            else
+                _pDynamicState
+            end,
             layout.handle,
             render_pass.handle,
             subpass,
-            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
+            if base_pipeline_handle == C_NULL
+                C_NULL
+            else
+                base_pipeline_handle.handle
+            end,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -18951,12 +23506,28 @@ struct PipelineDynamicStateCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function PipelineDynamicStateCreateInfo(dynamic_states; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineDynamicStateCreateInfo(bag_next, _pNext, dynamic_states)
         vks = VkPipelineDynamicStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             dynamic_states,
         )
         new(vks, bag)
@@ -18977,14 +23548,33 @@ struct PipelineColorBlendStateCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pAttachments =
-            attachments == C_NULL ? attachments : getproperty.(attachments, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pAttachments = if attachments == C_NULL
+            attachments
+        else
+            getproperty.(attachments, :vks)
+        end
         bag = BagPipelineColorBlendStateCreateInfo(bag_next, _pNext, _pAttachments)
         vks = VkPipelineColorBlendStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             logic_op_enable,
             logic_op,
             _pAttachments,
@@ -19018,12 +23608,28 @@ struct PipelineDepthStencilStateCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineDepthStencilStateCreateInfo(bag_next, _pNext)
         vks = VkPipelineDepthStencilStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             depth_test_enable,
             depth_write_enable,
             depth_compare_op,
@@ -19059,16 +23665,36 @@ struct PipelineMultisampleStateCreateInfo <: VulkanStruct
         flags = 0,
         sample_mask = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineMultisampleStateCreateInfo(bag_next, _pNext, sample_mask)
         vks = VkPipelineMultisampleStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             rasterization_samples,
             sample_shading_enable,
             min_sample_shading,
-            sample_mask == C_NULL ? C_NULL : sample_mask,
+            if sample_mask == C_NULL
+                C_NULL
+            else
+                sample_mask
+            end,
             alpha_to_coverage_enable,
             alpha_to_one_enable,
         )
@@ -19096,16 +23722,36 @@ struct PipelineRasterizationStateCreateInfo <: VulkanStruct
         flags = 0,
         cull_mode = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineRasterizationStateCreateInfo(bag_next, _pNext)
         vks = VkPipelineRasterizationStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             depth_clamp_enable,
             rasterizer_discard_enable,
             polygon_mode,
-            cull_mode == 0 ? 0 : cull_mode,
+            if cull_mode == 0
+                0
+            else
+                cull_mode
+            end,
             front_face,
             depth_bias_enable,
             depth_bias_constant_factor,
@@ -19129,16 +23775,48 @@ struct PipelineViewportStateCreateInfo <: VulkanStruct
         viewports = C_NULL,
         scissors = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pViewports = viewports == C_NULL ? viewports : getproperty.(viewports, :vks)    # VulkanGen.ConvertArrays
-        _pScissors = scissors == C_NULL ? scissors : getproperty.(scissors, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pViewports = if viewports == C_NULL
+            viewports
+        else
+            getproperty.(viewports, :vks)
+        end
+        _pScissors = if scissors == C_NULL
+            scissors
+        else
+            getproperty.(scissors, :vks)
+        end
         bag = BagPipelineViewportStateCreateInfo(bag_next, _pNext, _pViewports, _pScissors)
         vks = VkPipelineViewportStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pViewports == C_NULL ? C_NULL : _pViewports,
-            _pScissors == C_NULL ? C_NULL : _pScissors,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
+            if _pViewports == C_NULL
+                C_NULL
+            else
+                _pViewports
+            end,
+            if _pScissors == C_NULL
+                C_NULL
+            else
+                _pScissors
+            end,
         )
         new(vks, bag)
     end
@@ -19160,12 +23838,28 @@ struct PipelineTessellationStateCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineTessellationStateCreateInfo(bag_next, _pNext)
         vks = VkPipelineTessellationStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             patch_control_points,
         )
         new(vks, bag)
@@ -19184,12 +23878,28 @@ struct PipelineInputAssemblyStateCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagPipelineInputAssemblyStateCreateInfo(bag_next, _pNext)
         vks = VkPipelineInputAssemblyStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             topology,
             primitive_restart_enable,
         )
@@ -19209,14 +23919,26 @@ struct PipelineVertexInputStateCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pVertexBindingDescriptions =
-            vertex_binding_descriptions == C_NULL ? vertex_binding_descriptions :
-            getproperty.(vertex_binding_descriptions, :vks)    # VulkanGen.ConvertArrays
-        _pVertexAttributeDescriptions =
-            vertex_attribute_descriptions == C_NULL ? vertex_attribute_descriptions :
-            getproperty.(vertex_attribute_descriptions, :vks)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pVertexBindingDescriptions = if vertex_binding_descriptions == C_NULL
+            vertex_binding_descriptions
+        else
+            getproperty.(vertex_binding_descriptions, :vks)
+        end
+        _pVertexAttributeDescriptions = if vertex_attribute_descriptions == C_NULL
+            vertex_attribute_descriptions
+        else
+            getproperty.(vertex_attribute_descriptions, :vks)
+        end
         bag = BagPipelineVertexInputStateCreateInfo(
             bag_next,
             _pNext,
@@ -19224,8 +23946,16 @@ struct PipelineVertexInputStateCreateInfo <: VulkanStruct
             _pVertexAttributeDescriptions,
         )
         vks = VkPipelineVertexInputStateCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pVertexBindingDescriptions,
             _pVertexAttributeDescriptions,
         )
@@ -19257,15 +23987,35 @@ struct ComputePipelineCreateInfo <: VulkanStruct
         flags = 0,
         base_pipeline_handle = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagComputePipelineCreateInfo(bag_next, _pNext, stage.bag)
         vks = VkComputePipelineCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             stage.vks,
             layout.handle,
-            base_pipeline_handle == C_NULL ? C_NULL : base_pipeline_handle.handle,
+            if base_pipeline_handle == C_NULL
+                C_NULL
+            else
+                base_pipeline_handle.handle
+            end,
             base_pipeline_index,
         )
         new(vks, bag)
@@ -19286,25 +24036,51 @@ struct PipelineShaderStageCreateInfo <: VulkanStruct
         flags = 0,
         specialization_info = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pSpecializationInfo =
-            specialization_info == C_NULL ? specialization_info :
-            Ref(specialization_info.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pSpecializationInfo = if specialization_info == C_NULL
+            specialization_info
+        else
+            Ref(specialization_info.vks)
+        end
         bag = BagPipelineShaderStageCreateInfo(
             bag_next,
             _pNext,
             name,
-            specialization_info == C_NULL ? EmptyBag : specialization_info.bag,
+            if specialization_info == C_NULL
+                EmptyBag
+            else
+                specialization_info.bag
+            end,
             _pSpecializationInfo,
         )
         vks = VkPipelineShaderStageCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             stage,
             _module.handle,
             name,
-            _pSpecializationInfo == C_NULL ? C_NULL : _pSpecializationInfo,
+            if _pSpecializationInfo == C_NULL
+                C_NULL
+            else
+                _pSpecializationInfo
+            end,
         )
         new(vks, bag)
     end
@@ -19317,8 +24093,16 @@ struct SpecializationInfo <: VulkanStruct
     Generic constructor.
     """
     function SpecializationInfo(map_entries, data)
-        _pMapEntries = map_entries == C_NULL ? map_entries : getproperty.(map_entries, :vks)    # VulkanGen.ConvertArrays
-        _pData = data == C_NULL ? data : Ref(data)    # VulkanGen.GenerateRefs
+        _pMapEntries = if map_entries == C_NULL
+            map_entries
+        else
+            getproperty.(map_entries, :vks)
+        end
+        _pData = if data == C_NULL
+            data
+        else
+            Ref(data)
+        end
         bag = BagSpecializationInfo(_pMapEntries, _pData)
         vks = VkSpecializationInfo(_pMapEntries, _pData)
         new(vks, bag)
@@ -19337,15 +24121,31 @@ struct PipelineCacheCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function PipelineCacheCreateInfo(initial_data; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pInitialData = initial_data == C_NULL ? initial_data : Ref(initial_data)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pInitialData = if initial_data == C_NULL
+            initial_data
+        else
+            Ref(initial_data)
+        end
         bag = BagPipelineCacheCreateInfo(bag_next, _pNext, _pInitialData)
-        vks = VkPipelineCacheCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pInitialData,
-        )
+        vks = VkPipelineCacheCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, _pInitialData)
         new(vks, bag)
     end
 end
@@ -19357,16 +24157,27 @@ struct ShaderModuleCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function ShaderModuleCreateInfo(code_size, code; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        code = convert(Array{UInt32}, code)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        code = convert(Array{UInt32}, code)
         bag = BagShaderModuleCreateInfo(bag_next, _pNext, code)
-        vks = VkShaderModuleCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            code_size,
-            code,
-        )
+        vks = VkShaderModuleCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end, code_size, code)
         new(vks, bag)
     end
 end
@@ -19386,12 +24197,28 @@ struct ImageViewCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageViewCreateInfo(bag_next, _pNext)
         vks = VkImageViewCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             image.handle,
             view_type,
             format,
@@ -19428,13 +24255,29 @@ struct ImageCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        queue_family_indices = convert(Array{UInt32}, queue_family_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        queue_family_indices = convert(Array{UInt32}, queue_family_indices)
         bag = BagImageCreateInfo(bag_next, _pNext, queue_family_indices)
         vks = VkImageCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             image_type,
             format,
             extent.vks,
@@ -19458,12 +24301,28 @@ struct BufferViewCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function BufferViewCreateInfo(buffer, format, offset, range; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBufferViewCreateInfo(bag_next, _pNext)
         vks = VkBufferViewCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             buffer.handle,
             format,
             offset,
@@ -19487,13 +24346,29 @@ struct BufferCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        queue_family_indices = convert(Array{UInt32}, queue_family_indices)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        queue_family_indices = convert(Array{UInt32}, queue_family_indices)
         bag = BagBufferCreateInfo(bag_next, _pNext, queue_family_indices)
         vks = VkBufferCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             size,
             usage,
             sharing_mode,
@@ -19516,15 +24391,35 @@ struct QueryPoolCreateInfo <: VulkanStruct
         flags = 0,
         pipeline_statistics = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagQueryPoolCreateInfo(bag_next, _pNext)
         vks = VkQueryPoolCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             query_type,
             query_count,
-            pipeline_statistics == C_NULL ? C_NULL : pipeline_statistics,
+            if pipeline_statistics == C_NULL
+                C_NULL
+            else
+                pipeline_statistics
+            end,
         )
         new(vks, bag)
     end
@@ -19537,10 +24432,26 @@ struct EventCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function EventCreateInfo(; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagEventCreateInfo(bag_next, _pNext)
-        vks = VkEventCreateInfo(_pNext == C_NULL ? C_NULL : _pNext, flags == 0 ? 0 : flags)
+        vks = VkEventCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end)
         new(vks, bag)
     end
 end
@@ -19552,13 +24463,26 @@ struct SemaphoreCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function SemaphoreCreateInfo(; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagSemaphoreCreateInfo(bag_next, _pNext)
-        vks = VkSemaphoreCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-        )
+        vks = VkSemaphoreCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end)
         new(vks, bag)
     end
 end
@@ -19570,10 +24494,26 @@ struct FenceCreateInfo <: VulkanStruct
     Generic constructor.
     """
     function FenceCreateInfo(; next = C_NULL, flags = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagFenceCreateInfo(bag_next, _pNext)
-        vks = VkFenceCreateInfo(_pNext == C_NULL ? C_NULL : _pNext, flags == 0 ? 0 : flags)
+        vks = VkFenceCreateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, if flags == 0
+            0
+        else
+            flags
+        end)
         new(vks, bag)
     end
 end
@@ -19592,20 +24532,41 @@ struct BindSparseInfo <: VulkanStruct
         signal_semaphores;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pWaitSemaphores =
-            wait_semaphores == C_NULL ? wait_semaphores :
-            getproperty.(wait_semaphores, :handle)    # VulkanGen.ConvertArrays
-        _pBufferBinds =
-            buffer_binds == C_NULL ? buffer_binds : getproperty.(buffer_binds, :vks)    # VulkanGen.ConvertArrays
-        _pImageOpaqueBinds =
-            image_opaque_binds == C_NULL ? image_opaque_binds :
-            getproperty.(image_opaque_binds, :vks)    # VulkanGen.ConvertArrays
-        _pImageBinds = image_binds == C_NULL ? image_binds : getproperty.(image_binds, :vks)    # VulkanGen.ConvertArrays
-        _pSignalSemaphores =
-            signal_semaphores == C_NULL ? signal_semaphores :
-            getproperty.(signal_semaphores, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pWaitSemaphores = if wait_semaphores == C_NULL
+            wait_semaphores
+        else
+            getproperty.(wait_semaphores, :handle)
+        end
+        _pBufferBinds = if buffer_binds == C_NULL
+            buffer_binds
+        else
+            getproperty.(buffer_binds, :vks)
+        end
+        _pImageOpaqueBinds = if image_opaque_binds == C_NULL
+            image_opaque_binds
+        else
+            getproperty.(image_opaque_binds, :vks)
+        end
+        _pImageBinds = if image_binds == C_NULL
+            image_binds
+        else
+            getproperty.(image_binds, :vks)
+        end
+        _pSignalSemaphores = if signal_semaphores == C_NULL
+            signal_semaphores
+        else
+            getproperty.(signal_semaphores, :handle)
+        end
         bag = BagBindSparseInfo(
             bag_next,
             _pNext,
@@ -19619,7 +24580,11 @@ struct BindSparseInfo <: VulkanStruct
             _pSignalSemaphores,
         )
         vks = VkBindSparseInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pWaitSemaphores,
             _pBufferBinds,
             _pImageOpaqueBinds,
@@ -19637,7 +24602,11 @@ struct SparseImageMemoryBindInfo <: VulkanStruct
     Generic constructor.
     """
     function SparseImageMemoryBindInfo(image, binds)
-        _pBinds = binds == C_NULL ? binds : getproperty.(binds, :vks)    # VulkanGen.ConvertArrays
+        _pBinds = if binds == C_NULL
+            binds
+        else
+            getproperty.(binds, :vks)
+        end
         bag = BagSparseImageMemoryBindInfo(_pBinds)
         vks = VkSparseImageMemoryBindInfo(image.handle, _pBinds)
         new(vks, bag)
@@ -19661,7 +24630,11 @@ struct SparseImageOpaqueMemoryBindInfo <: VulkanStruct
     Generic constructor.
     """
     function SparseImageOpaqueMemoryBindInfo(image, binds)
-        _pBinds = binds == C_NULL ? binds : getproperty.(binds, :vks)    # VulkanGen.ConvertArrays
+        _pBinds = if binds == C_NULL
+            binds
+        else
+            getproperty.(binds, :vks)
+        end
         bag = BagSparseImageOpaqueMemoryBindInfo(_pBinds)
         vks = VkSparseImageOpaqueMemoryBindInfo(image.handle, _pBinds)
         new(vks, bag)
@@ -19675,7 +24648,11 @@ struct SparseBufferMemoryBindInfo <: VulkanStruct
     Generic constructor.
     """
     function SparseBufferMemoryBindInfo(buffer, binds)
-        _pBinds = binds == C_NULL ? binds : getproperty.(binds, :vks)    # VulkanGen.ConvertArrays
+        _pBinds = if binds == C_NULL
+            binds
+        else
+            getproperty.(binds, :vks)
+        end
         bag = BagSparseBufferMemoryBindInfo(_pBinds)
         vks = VkSparseBufferMemoryBindInfo(buffer.handle, _pBinds)
         new(vks, bag)
@@ -19694,14 +24671,22 @@ struct MemoryAllocateInfo <: VulkanStruct
     Generic constructor.
     """
     function MemoryAllocateInfo(allocation_size, memory_type_index; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryAllocateInfo(bag_next, _pNext)
-        vks = VkMemoryAllocateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            allocation_size,
-            memory_type_index,
-        )
+        vks = VkMemoryAllocateInfo(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, allocation_size, memory_type_index)
         new(vks, bag)
     end
 end
@@ -19713,15 +24698,22 @@ struct MappedMemoryRange <: VulkanStruct
     Generic constructor.
     """
     function MappedMemoryRange(memory, offset, size; next = C_NULL)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMappedMemoryRange(bag_next, _pNext)
-        vks = VkMappedMemoryRange(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            memory.handle,
-            offset,
-            size,
-        )
+        vks = VkMappedMemoryRange(if _pNext == C_NULL
+            C_NULL
+        else
+            _pNext
+        end, memory.handle, offset, size)
         new(vks, bag)
     end
 end
@@ -19739,17 +24731,31 @@ struct SubmitInfo <: VulkanStruct
         signal_semaphores;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pWaitSemaphores =
-            wait_semaphores == C_NULL ? wait_semaphores :
-            getproperty.(wait_semaphores, :handle)    # VulkanGen.ConvertArrays
-        _pCommandBuffers =
-            command_buffers == C_NULL ? command_buffers :
-            getproperty.(command_buffers, :handle)    # VulkanGen.ConvertArrays
-        _pSignalSemaphores =
-            signal_semaphores == C_NULL ? signal_semaphores :
-            getproperty.(signal_semaphores, :handle)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pWaitSemaphores = if wait_semaphores == C_NULL
+            wait_semaphores
+        else
+            getproperty.(wait_semaphores, :handle)
+        end
+        _pCommandBuffers = if command_buffers == C_NULL
+            command_buffers
+        else
+            getproperty.(command_buffers, :handle)
+        end
+        _pSignalSemaphores = if signal_semaphores == C_NULL
+            signal_semaphores
+        else
+            getproperty.(signal_semaphores, :handle)
+        end
         bag = BagSubmitInfo(
             bag_next,
             _pNext,
@@ -19759,7 +24765,11 @@ struct SubmitInfo <: VulkanStruct
             _pSignalSemaphores,
         )
         vks = VkSubmitInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             _pWaitSemaphores,
             wait_dst_stage_mask,
             _pCommandBuffers,
@@ -19795,15 +24805,28 @@ struct DeviceCreateInfo <: VulkanStruct
         flags = 0,
         enabled_features = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pQueueCreateInfos =
-            queue_create_infos == C_NULL ? queue_create_infos :
-            getproperty.(queue_create_infos, :vks)    # VulkanGen.ConvertArrays
-        enabled_layer_names_ptrarray = pointer.(enabled_layer_names)    # VulkanGen.ConvertArrays
-        enabled_extension_names_ptrarray = pointer.(enabled_extension_names)    # VulkanGen.ConvertArrays
-        _pEnabledFeatures =
-            enabled_features == C_NULL ? enabled_features : Ref(enabled_features.vks)    # VulkanGen.GenerateRefs
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pQueueCreateInfos = if queue_create_infos == C_NULL
+            queue_create_infos
+        else
+            getproperty.(queue_create_infos, :vks)
+        end
+        enabled_layer_names_ptrarray = pointer.(enabled_layer_names)
+        enabled_extension_names_ptrarray = pointer.(enabled_extension_names)
+        _pEnabledFeatures = if enabled_features == C_NULL
+            enabled_features
+        else
+            Ref(enabled_features.vks)
+        end
         bag = BagDeviceCreateInfo(
             bag_next,
             _pNext,
@@ -19816,12 +24839,24 @@ struct DeviceCreateInfo <: VulkanStruct
             _pEnabledFeatures,
         )
         vks = VkDeviceCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             _pQueueCreateInfos,
             enabled_layer_names_ptrarray,
             enabled_extension_names_ptrarray,
-            _pEnabledFeatures == C_NULL ? C_NULL : _pEnabledFeatures,
+            if _pEnabledFeatures == C_NULL
+                C_NULL
+            else
+                _pEnabledFeatures
+            end,
         )
         new(vks, bag)
     end
@@ -19839,13 +24874,29 @@ struct DeviceQueueCreateInfo <: VulkanStruct
         next = C_NULL,
         flags = 0,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        queue_priorities = convert(Array{Float32}, queue_priorities)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        queue_priorities = convert(Array{Float32}, queue_priorities)
         bag = BagDeviceQueueCreateInfo(bag_next, _pNext, queue_priorities)
         vks = VkDeviceQueueCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
             queue_family_index,
             queue_priorities,
         )
@@ -19891,16 +24942,31 @@ struct InstanceCreateInfo <: VulkanStruct
         flags = 0,
         application_info = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
-        _pApplicationInfo =
-            application_info == C_NULL ? application_info : Ref(application_info.vks)    # VulkanGen.GenerateRefs
-        enabled_layer_names_ptrarray = pointer.(enabled_layer_names)    # VulkanGen.ConvertArrays
-        enabled_extension_names_ptrarray = pointer.(enabled_extension_names)    # VulkanGen.ConvertArrays
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
+        _pApplicationInfo = if application_info == C_NULL
+            application_info
+        else
+            Ref(application_info.vks)
+        end
+        enabled_layer_names_ptrarray = pointer.(enabled_layer_names)
+        enabled_extension_names_ptrarray = pointer.(enabled_extension_names)
         bag = BagInstanceCreateInfo(
             bag_next,
             _pNext,
-            application_info == C_NULL ? EmptyBag : application_info.bag,
+            if application_info == C_NULL
+                EmptyBag
+            else
+                application_info.bag
+            end,
             _pApplicationInfo,
             enabled_layer_names_ptrarray,
             enabled_layer_names,
@@ -19908,9 +24974,21 @@ struct InstanceCreateInfo <: VulkanStruct
             enabled_extension_names,
         )
         vks = VkInstanceCreateInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            flags == 0 ? 0 : flags,
-            _pApplicationInfo == C_NULL ? C_NULL : _pApplicationInfo,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if flags == 0
+                0
+            else
+                flags
+            end,
+            if _pApplicationInfo == C_NULL
+                C_NULL
+            else
+                _pApplicationInfo
+            end,
             enabled_layer_names_ptrarray,
             enabled_extension_names_ptrarray,
         )
@@ -19932,14 +25010,34 @@ struct ApplicationInfo <: VulkanStruct
         application_name = C_NULL,
         engine_name = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagApplicationInfo(bag_next, _pNext, application_name, engine_name)
         vks = VkApplicationInfo(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            application_name == C_NULL ? C_NULL : application_name,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if application_name == C_NULL
+                C_NULL
+            else
+                application_name
+            end,
             application_version,
-            engine_name == C_NULL ? C_NULL : engine_name,
+            if engine_name == C_NULL
+                C_NULL
+            else
+                engine_name
+            end,
             engine_version,
             api_version,
         )
@@ -19961,15 +25059,31 @@ struct AllocationCallbacks <: VulkanStruct
         internal_allocation = C_NULL,
         internal_free = C_NULL,
     )
-        _pUserData = user_data == C_NULL ? user_data : Ref(user_data)    # VulkanGen.GenerateRefs
+        _pUserData = if user_data == C_NULL
+            user_data
+        else
+            Ref(user_data)
+        end
         bag = BagAllocationCallbacks(_pUserData)
         vks = VkAllocationCallbacks(
-            _pUserData == C_NULL ? C_NULL : _pUserData,
+            if _pUserData == C_NULL
+                C_NULL
+            else
+                _pUserData
+            end,
             allocation,
             reallocation,
             free,
-            internal_allocation == C_NULL ? C_NULL : internal_allocation,
-            internal_free == C_NULL ? C_NULL : internal_free,
+            if internal_allocation == C_NULL
+                C_NULL
+            else
+                internal_allocation
+            end,
+            if internal_free == C_NULL
+                C_NULL
+            else
+                internal_free
+            end,
         )
         new(vks, bag)
     end
@@ -19982,13 +25096,33 @@ struct MemoryBarrier <: VulkanStruct
     Generic constructor.
     """
     function MemoryBarrier(; next = C_NULL, src_access_mask = 0, dst_access_mask = 0)
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagMemoryBarrier(bag_next, _pNext)
         vks = VkMemoryBarrier(
-            _pNext == C_NULL ? C_NULL : _pNext,
-            src_access_mask == 0 ? 0 : src_access_mask,
-            dst_access_mask == 0 ? 0 : dst_access_mask,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
+            if src_access_mask == 0
+                0
+            else
+                src_access_mask
+            end,
+            if dst_access_mask == 0
+                0
+            else
+                dst_access_mask
+            end,
         )
         new(vks, bag)
     end
@@ -20011,11 +25145,23 @@ struct ImageMemoryBarrier <: VulkanStruct
         subresource_range;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagImageMemoryBarrier(bag_next, _pNext)
         vks = VkImageMemoryBarrier(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src_access_mask,
             dst_access_mask,
             old_layout,
@@ -20065,11 +25211,23 @@ struct BufferMemoryBarrier <: VulkanStruct
         size;
         next = C_NULL,
     )
-        _pNext = next == C_NULL ? next : Ref(next)    # VulkanGen.GenerateRefs
-        bag_next = next == C_NULL ? EmptyBag : next.bag    # VulkanGen.HandlePNextDeps
+        _pNext = if next == C_NULL
+            next
+        else
+            Ref(next)
+        end
+        bag_next = if next == C_NULL
+            EmptyBag
+        else
+            next.bag
+        end
         bag = BagBufferMemoryBarrier(bag_next, _pNext)
         vks = VkBufferMemoryBarrier(
-            _pNext == C_NULL ? C_NULL : _pNext,
+            if _pNext == C_NULL
+                C_NULL
+            else
+                _pNext
+            end,
             src_access_mask,
             dst_access_mask,
             src_queue_family_index,
@@ -25244,9 +30402,17 @@ function SparseMemoryBind(resource_offset, size, memory_offset; memory = C_NULL,
     vks = VkSparseMemoryBind(
         resource_offset,
         size,
-        memory == C_NULL ? C_NULL : memory.handle,
+        if memory == C_NULL
+            C_NULL
+        else
+            memory.handle
+        end,
         memory_offset,
-        flags == 0 ? 0 : flags,
+        if flags == 0
+            0
+        else
+            flags
+        end,
     )
     SparseMemoryBind(vks)
 end
@@ -25278,9 +30444,17 @@ function SparseImageMemoryBind(
         subresource.vks,
         offset.vks,
         extent.vks,
-        memory == C_NULL ? C_NULL : memory.handle,
+        if memory == C_NULL
+            C_NULL
+        else
+            memory.handle
+        end,
         memory_offset,
-        flags == 0 ? 0 : flags,
+        if flags == 0
+            0
+        else
+            flags
+        end,
     )
     SparseImageMemoryBind(vks)
 end
@@ -25430,7 +30604,11 @@ function PipelineColorBlendAttachmentState(
         src_alpha_blend_factor,
         dst_alpha_blend_factor,
         alpha_blend_op,
-        color_write_mask == 0 ? 0 : color_write_mask,
+        if color_write_mask == 0
+            0
+        else
+            color_write_mask
+        end,
     )
     PipelineColorBlendAttachmentState(vks)
 end
@@ -25463,7 +30641,11 @@ from_vk(T::Type{PushConstantRange}, x::VkPushConstantRange) =
 Generic constructor.
 """
 function DescriptorBufferInfo(offset, range; buffer = C_NULL)
-    vks = VkDescriptorBufferInfo(buffer == C_NULL ? C_NULL : buffer.handle, offset, range)
+    vks = VkDescriptorBufferInfo(if buffer == C_NULL
+        C_NULL
+    else
+        buffer.handle
+    end, offset, range)
     DescriptorBufferInfo(vks)
 end
 
@@ -25504,7 +30686,11 @@ function AttachmentDescription(
     flags = 0,
 )
     vks = VkAttachmentDescription(
-        flags == 0 ? 0 : flags,
+        if flags == 0
+            0
+        else
+            flags
+        end,
         format,
         samples,
         load_op,
@@ -25556,9 +30742,21 @@ function SubpassDependency(
         dst_subpass,
         src_stage_mask,
         dst_stage_mask,
-        src_access_mask == 0 ? 0 : src_access_mask,
-        dst_access_mask == 0 ? 0 : dst_access_mask,
-        dependency_flags == 0 ? 0 : dependency_flags,
+        if src_access_mask == 0
+            0
+        else
+            src_access_mask
+        end,
+        if dst_access_mask == 0
+            0
+        else
+            dst_access_mask
+        end,
+        if dependency_flags == 0
+            0
+        else
+            dependency_flags
+        end,
     )
     SubpassDependency(vks)
 end
@@ -26821,7 +32019,11 @@ function AccelerationStructureInstanceKHR(
         instance_custom_index,
         mask,
         instance_shader_binding_table_record_offset,
-        flags == 0 ? 0 : flags,
+        if flags == 0
+            0
+        else
+            flags
+        end,
         acceleration_structure_reference,
     )
     AccelerationStructureInstanceKHR(vks)
@@ -27346,8 +32548,16 @@ function AccelerationStructureBuildOffsetInfoKHR(
     vks = VkAccelerationStructureBuildOffsetInfoKHR(
         primitive_count,
         primitive_offset,
-        first_vertex == 0 ? 0 : first_vertex,
-        transform_offset == 0 ? 0 : transform_offset,
+        if first_vertex == 0
+            0
+        else
+            first_vertex
+        end,
+        if transform_offset == 0
+            0
+        else
+            transform_offset
+        end,
     )
     AccelerationStructureBuildOffsetInfoKHR(vks)
 end
@@ -27398,12 +32608,11 @@ from_vk(
 Generic constructor.
 """
 function StridedBufferRegionKHR(offset, stride, size; buffer = C_NULL)
-    vks = VkStridedBufferRegionKHR(
-        buffer == C_NULL ? C_NULL : buffer.handle,
-        offset,
-        stride,
-        size,
-    )
+    vks = VkStridedBufferRegionKHR(if buffer == C_NULL
+        C_NULL
+    else
+        buffer.handle
+    end, offset, stride, size)
     StridedBufferRegionKHR(vks)
 end
 
@@ -27423,7 +32632,7 @@ function Buffer(device, create_info::BufferCreateInfo; allocator = C_NULL)
     buffer = Ref{VkBuffer}()
     @check vkCreateBuffer(device, create_info, allocator, buffer)
     vks = Buffer(buffer[])
-    finalizer(x -> vkDestroyBuffer(device, x, allocator), vks)
+    finalizer((x -> vkDestroyBuffer(device, x, allocator)), vks)
 end
 
 function Buffer(
@@ -27436,14 +32645,14 @@ function Buffer(
     buffer = Ref{VkBuffer}()
     @check vkCreateBuffer(device, create_info, allocator, buffer, fun_ptr_create)
     vks = Buffer(buffer[])
-    finalizer(x -> vkDestroyBuffer(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyBuffer(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function Image(device, create_info::ImageCreateInfo; allocator = C_NULL)
     image = Ref{VkImage}()
     @check vkCreateImage(device, create_info, allocator, image)
     vks = Image(image[])
-    finalizer(x -> vkDestroyImage(device, x, allocator), vks)
+    finalizer((x -> vkDestroyImage(device, x, allocator)), vks)
 end
 
 function Image(
@@ -27456,14 +32665,14 @@ function Image(
     image = Ref{VkImage}()
     @check vkCreateImage(device, create_info, allocator, image, fun_ptr_create)
     vks = Image(image[])
-    finalizer(x -> vkDestroyImage(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyImage(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function Instance(create_info::InstanceCreateInfo; allocator = C_NULL)
     instance = Ref{VkInstance}()
     @check vkCreateInstance(create_info, allocator, instance)
     vks = Instance(instance[])
-    finalizer(x -> vkDestroyInstance(x, allocator), vks)
+    finalizer((x -> vkDestroyInstance(x, allocator)), vks)
 end
 
 function Instance(
@@ -27475,14 +32684,14 @@ function Instance(
     instance = Ref{VkInstance}()
     @check vkCreateInstance(create_info, allocator, instance, fun_ptr_create)
     vks = Instance(instance[])
-    finalizer(x -> vkDestroyInstance(x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyInstance(x, allocator, fun_ptr_destroy)), vks)
 end
 
 function Device(physical_device, create_info::DeviceCreateInfo; allocator = C_NULL)
     device = Ref{VkDevice}()
     @check vkCreateDevice(physical_device, create_info, allocator, device)
     vks = Device(device[])
-    finalizer(x -> vkDestroyDevice(x, allocator), vks)
+    finalizer((x -> vkDestroyDevice(x, allocator)), vks)
 end
 
 function Device(
@@ -27495,14 +32704,14 @@ function Device(
     device = Ref{VkDevice}()
     @check vkCreateDevice(physical_device, create_info, allocator, device, fun_ptr_create)
     vks = Device(device[])
-    finalizer(x -> vkDestroyDevice(x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyDevice(x, allocator, fun_ptr_destroy)), vks)
 end
 
 function Semaphore(device, create_info::SemaphoreCreateInfo; allocator = C_NULL)
     semaphore = Ref{VkSemaphore}()
     @check vkCreateSemaphore(device, create_info, allocator, semaphore)
     vks = Semaphore(semaphore[])
-    finalizer(x -> vkDestroySemaphore(device, x, allocator), vks)
+    finalizer((x -> vkDestroySemaphore(device, x, allocator)), vks)
 end
 
 function Semaphore(
@@ -27515,7 +32724,7 @@ function Semaphore(
     semaphore = Ref{VkSemaphore}()
     @check vkCreateSemaphore(device, create_info, allocator, semaphore, fun_ptr_create)
     vks = Semaphore(semaphore[])
-    finalizer(x -> vkDestroySemaphore(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySemaphore(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function CommandBuffer(device, allocate_info, n)
@@ -27534,7 +32743,7 @@ function Fence(device, create_info::FenceCreateInfo; allocator = C_NULL)
     fence = Ref{VkFence}()
     @check vkCreateFence(device, create_info, allocator, fence)
     vks = Fence(fence[])
-    finalizer(x -> vkDestroyFence(device, x, allocator), vks)
+    finalizer((x -> vkDestroyFence(device, x, allocator)), vks)
 end
 
 function Fence(
@@ -27547,7 +32756,7 @@ function Fence(
     fence = Ref{VkFence}()
     @check vkCreateFence(device, create_info, allocator, fence, fun_ptr_create)
     vks = Fence(fence[])
-    finalizer(x -> vkDestroyFence(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyFence(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function DeviceMemory(device, allocate_info, n; allocator = C_NULL)
@@ -27566,7 +32775,7 @@ function Event(device, create_info::EventCreateInfo; allocator = C_NULL)
     event = Ref{VkEvent}()
     @check vkCreateEvent(device, create_info, allocator, event)
     vks = Event(event[])
-    finalizer(x -> vkDestroyEvent(device, x, allocator), vks)
+    finalizer((x -> vkDestroyEvent(device, x, allocator)), vks)
 end
 
 function Event(
@@ -27579,14 +32788,14 @@ function Event(
     event = Ref{VkEvent}()
     @check vkCreateEvent(device, create_info, allocator, event, fun_ptr_create)
     vks = Event(event[])
-    finalizer(x -> vkDestroyEvent(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyEvent(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function QueryPool(device, create_info::QueryPoolCreateInfo; allocator = C_NULL)
     query_pool = Ref{VkQueryPool}()
     @check vkCreateQueryPool(device, create_info, allocator, query_pool)
     vks = QueryPool(query_pool[])
-    finalizer(x -> vkDestroyQueryPool(device, x, allocator), vks)
+    finalizer((x -> vkDestroyQueryPool(device, x, allocator)), vks)
 end
 
 function QueryPool(
@@ -27599,14 +32808,14 @@ function QueryPool(
     query_pool = Ref{VkQueryPool}()
     @check vkCreateQueryPool(device, create_info, allocator, query_pool, fun_ptr_create)
     vks = QueryPool(query_pool[])
-    finalizer(x -> vkDestroyQueryPool(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyQueryPool(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function BufferView(device, create_info::BufferViewCreateInfo; allocator = C_NULL)
     view = Ref{VkBufferView}()
     @check vkCreateBufferView(device, create_info, allocator, view)
     vks = BufferView(view[])
-    finalizer(x -> vkDestroyBufferView(device, x, allocator), vks)
+    finalizer((x -> vkDestroyBufferView(device, x, allocator)), vks)
 end
 
 function BufferView(
@@ -27619,14 +32828,14 @@ function BufferView(
     view = Ref{VkBufferView}()
     @check vkCreateBufferView(device, create_info, allocator, view, fun_ptr_create)
     vks = BufferView(view[])
-    finalizer(x -> vkDestroyBufferView(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyBufferView(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function ImageView(device, create_info::ImageViewCreateInfo; allocator = C_NULL)
     view = Ref{VkImageView}()
     @check vkCreateImageView(device, create_info, allocator, view)
     vks = ImageView(view[])
-    finalizer(x -> vkDestroyImageView(device, x, allocator), vks)
+    finalizer((x -> vkDestroyImageView(device, x, allocator)), vks)
 end
 
 function ImageView(
@@ -27639,14 +32848,14 @@ function ImageView(
     view = Ref{VkImageView}()
     @check vkCreateImageView(device, create_info, allocator, view, fun_ptr_create)
     vks = ImageView(view[])
-    finalizer(x -> vkDestroyImageView(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyImageView(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function ShaderModule(device, create_info::ShaderModuleCreateInfo; allocator = C_NULL)
     shader_module = Ref{VkShaderModule}()
     @check vkCreateShaderModule(device, create_info, allocator, shader_module)
     vks = ShaderModule(shader_module[])
-    finalizer(x -> vkDestroyShaderModule(device, x, allocator), vks)
+    finalizer((x -> vkDestroyShaderModule(device, x, allocator)), vks)
 end
 
 function ShaderModule(
@@ -27665,14 +32874,14 @@ function ShaderModule(
         fun_ptr_create,
     )
     vks = ShaderModule(shader_module[])
-    finalizer(x -> vkDestroyShaderModule(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyShaderModule(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function PipelineCache(device, create_info::PipelineCacheCreateInfo; allocator = C_NULL)
     pipeline_cache = Ref{VkPipelineCache}()
     @check vkCreatePipelineCache(device, create_info, allocator, pipeline_cache)
     vks = PipelineCache(pipeline_cache[])
-    finalizer(x -> vkDestroyPipelineCache(device, x, allocator), vks)
+    finalizer((x -> vkDestroyPipelineCache(device, x, allocator)), vks)
 end
 
 function PipelineCache(
@@ -27691,14 +32900,14 @@ function PipelineCache(
         fun_ptr_create,
     )
     vks = PipelineCache(pipeline_cache[])
-    finalizer(x -> vkDestroyPipelineCache(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyPipelineCache(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function PipelineLayout(device, create_info::PipelineLayoutCreateInfo; allocator = C_NULL)
     pipeline_layout = Ref{VkPipelineLayout}()
     @check vkCreatePipelineLayout(device, create_info, allocator, pipeline_layout)
     vks = PipelineLayout(pipeline_layout[])
-    finalizer(x -> vkDestroyPipelineLayout(device, x, allocator), vks)
+    finalizer((x -> vkDestroyPipelineLayout(device, x, allocator)), vks)
 end
 
 function PipelineLayout(
@@ -27717,7 +32926,7 @@ function PipelineLayout(
         fun_ptr_create,
     )
     vks = PipelineLayout(pipeline_layout[])
-    finalizer(x -> vkDestroyPipelineLayout(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyPipelineLayout(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function Pipeline(
@@ -27737,7 +32946,7 @@ function Pipeline(
         pipelines,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator))), vks)
 end
 
 function Pipeline(
@@ -27760,7 +32969,7 @@ function Pipeline(
         fun_ptr_create,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy))), vks)
 end
 
 function Pipeline(
@@ -27780,7 +32989,7 @@ function Pipeline(
         pipelines,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator))), vks)
 end
 
 function Pipeline(
@@ -27803,7 +33012,7 @@ function Pipeline(
         fun_ptr_create,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy))), vks)
 end
 
 function Pipeline(
@@ -27823,7 +33032,7 @@ function Pipeline(
         pipelines,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator))), vks)
 end
 
 function Pipeline(
@@ -27846,7 +33055,7 @@ function Pipeline(
         fun_ptr_create,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy))), vks)
 end
 
 function Pipeline(
@@ -27866,7 +33075,7 @@ function Pipeline(
         pipelines,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator))), vks)
 end
 
 function Pipeline(
@@ -27889,14 +33098,14 @@ function Pipeline(
         fun_ptr_create,
     )
     vks = Pipeline.(pipelines)
-    finalizer.(Ref(x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy)), vks)
+    finalizer.(Ref((x -> vkDestroyPipeline(device, x, allocator, fun_ptr_destroy))), vks)
 end
 
 function RenderPass(device, create_info::RenderPassCreateInfo; allocator = C_NULL)
     render_pass = Ref{VkRenderPass}()
     @check vkCreateRenderPass(device, create_info, allocator, render_pass)
     vks = RenderPass(render_pass[])
-    finalizer(x -> vkDestroyRenderPass(device, x, allocator), vks)
+    finalizer((x -> vkDestroyRenderPass(device, x, allocator)), vks)
 end
 
 function RenderPass(
@@ -27909,14 +33118,14 @@ function RenderPass(
     render_pass = Ref{VkRenderPass}()
     @check vkCreateRenderPass(device, create_info, allocator, render_pass, fun_ptr_create)
     vks = RenderPass(render_pass[])
-    finalizer(x -> vkDestroyRenderPass(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyRenderPass(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function RenderPass(device, create_info::RenderPassCreateInfo2; allocator = C_NULL)
     render_pass = Ref{VkRenderPass}()
     @check vkCreateRenderPass2(device, create_info, allocator, render_pass)
     vks = RenderPass(render_pass[])
-    finalizer(x -> vkDestroyRenderPass(device, x, allocator), vks)
+    finalizer((x -> vkDestroyRenderPass(device, x, allocator)), vks)
 end
 
 function RenderPass(
@@ -27929,7 +33138,7 @@ function RenderPass(
     render_pass = Ref{VkRenderPass}()
     @check vkCreateRenderPass2(device, create_info, allocator, render_pass, fun_ptr_create)
     vks = RenderPass(render_pass[])
-    finalizer(x -> vkDestroyRenderPass(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyRenderPass(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function DescriptorSetLayout(
@@ -27940,7 +33149,7 @@ function DescriptorSetLayout(
     set_layout = Ref{VkDescriptorSetLayout}()
     @check vkCreateDescriptorSetLayout(device, create_info, allocator, set_layout)
     vks = DescriptorSetLayout(set_layout[])
-    finalizer(x -> vkDestroyDescriptorSetLayout(device, x, allocator), vks)
+    finalizer((x -> vkDestroyDescriptorSetLayout(device, x, allocator)), vks)
 end
 
 function DescriptorSetLayout(
@@ -27959,14 +33168,17 @@ function DescriptorSetLayout(
         fun_ptr_create,
     )
     vks = DescriptorSetLayout(set_layout[])
-    finalizer(x -> vkDestroyDescriptorSetLayout(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer(
+        (x -> vkDestroyDescriptorSetLayout(device, x, allocator, fun_ptr_destroy)),
+        vks,
+    )
 end
 
 function Sampler(device, create_info::SamplerCreateInfo; allocator = C_NULL)
     sampler = Ref{VkSampler}()
     @check vkCreateSampler(device, create_info, allocator, sampler)
     vks = Sampler(sampler[])
-    finalizer(x -> vkDestroySampler(device, x, allocator), vks)
+    finalizer((x -> vkDestroySampler(device, x, allocator)), vks)
 end
 
 function Sampler(
@@ -27979,7 +33191,7 @@ function Sampler(
     sampler = Ref{VkSampler}()
     @check vkCreateSampler(device, create_info, allocator, sampler, fun_ptr_create)
     vks = Sampler(sampler[])
-    finalizer(x -> vkDestroySampler(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySampler(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function DescriptorSet(device, allocate_info, n)
@@ -27998,7 +33210,7 @@ function DescriptorPool(device, create_info::DescriptorPoolCreateInfo; allocator
     descriptor_pool = Ref{VkDescriptorPool}()
     @check vkCreateDescriptorPool(device, create_info, allocator, descriptor_pool)
     vks = DescriptorPool(descriptor_pool[])
-    finalizer(x -> vkDestroyDescriptorPool(device, x, allocator), vks)
+    finalizer((x -> vkDestroyDescriptorPool(device, x, allocator)), vks)
 end
 
 function DescriptorPool(
@@ -28017,14 +33229,14 @@ function DescriptorPool(
         fun_ptr_create,
     )
     vks = DescriptorPool(descriptor_pool[])
-    finalizer(x -> vkDestroyDescriptorPool(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyDescriptorPool(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function Framebuffer(device, create_info::FramebufferCreateInfo; allocator = C_NULL)
     framebuffer = Ref{VkFramebuffer}()
     @check vkCreateFramebuffer(device, create_info, allocator, framebuffer)
     vks = Framebuffer(framebuffer[])
-    finalizer(x -> vkDestroyFramebuffer(device, x, allocator), vks)
+    finalizer((x -> vkDestroyFramebuffer(device, x, allocator)), vks)
 end
 
 function Framebuffer(
@@ -28037,14 +33249,14 @@ function Framebuffer(
     framebuffer = Ref{VkFramebuffer}()
     @check vkCreateFramebuffer(device, create_info, allocator, framebuffer, fun_ptr_create)
     vks = Framebuffer(framebuffer[])
-    finalizer(x -> vkDestroyFramebuffer(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyFramebuffer(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function CommandPool(device, create_info::CommandPoolCreateInfo; allocator = C_NULL)
     command_pool = Ref{VkCommandPool}()
     @check vkCreateCommandPool(device, create_info, allocator, command_pool)
     vks = CommandPool(command_pool[])
-    finalizer(x -> vkDestroyCommandPool(device, x, allocator), vks)
+    finalizer((x -> vkDestroyCommandPool(device, x, allocator)), vks)
 end
 
 function CommandPool(
@@ -28057,7 +33269,7 @@ function CommandPool(
     command_pool = Ref{VkCommandPool}()
     @check vkCreateCommandPool(device, create_info, allocator, command_pool, fun_ptr_create)
     vks = CommandPool(command_pool[])
-    finalizer(x -> vkDestroyCommandPool(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroyCommandPool(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SamplerYcbcrConversion(
@@ -28068,7 +33280,7 @@ function SamplerYcbcrConversion(
     ycbcr_conversion = Ref{VkSamplerYcbcrConversion}()
     @check vkCreateSamplerYcbcrConversion(device, create_info, allocator, ycbcr_conversion)
     vks = SamplerYcbcrConversion(ycbcr_conversion[])
-    finalizer(x -> vkDestroySamplerYcbcrConversion(device, x, allocator), vks)
+    finalizer((x -> vkDestroySamplerYcbcrConversion(device, x, allocator)), vks)
 end
 
 function SamplerYcbcrConversion(
@@ -28088,7 +33300,7 @@ function SamplerYcbcrConversion(
     )
     vks = SamplerYcbcrConversion(ycbcr_conversion[])
     finalizer(
-        x -> vkDestroySamplerYcbcrConversion(device, x, allocator, fun_ptr_destroy),
+        (x -> vkDestroySamplerYcbcrConversion(device, x, allocator, fun_ptr_destroy)),
         vks,
     )
 end
@@ -28106,7 +33318,7 @@ function DescriptorUpdateTemplate(
         descriptor_update_template,
     )
     vks = DescriptorUpdateTemplate(descriptor_update_template[])
-    finalizer(x -> vkDestroyDescriptorUpdateTemplate(device, x, allocator), vks)
+    finalizer((x -> vkDestroyDescriptorUpdateTemplate(device, x, allocator)), vks)
 end
 
 function DescriptorUpdateTemplate(
@@ -28126,7 +33338,7 @@ function DescriptorUpdateTemplate(
     )
     vks = DescriptorUpdateTemplate(descriptor_update_template[])
     finalizer(
-        x -> vkDestroyDescriptorUpdateTemplate(device, x, allocator, fun_ptr_destroy),
+        (x -> vkDestroyDescriptorUpdateTemplate(device, x, allocator, fun_ptr_destroy)),
         vks,
     )
 end
@@ -28135,7 +33347,7 @@ function SurfaceKHR(instance, create_info::AndroidSurfaceCreateInfoKHR; allocato
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateAndroidSurfaceKHR(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28154,14 +33366,14 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::DisplaySurfaceCreateInfoKHR; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateDisplayPlaneSurfaceKHR(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28180,14 +33392,14 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::ViSurfaceCreateInfoNN; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateViSurfaceNN(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28200,14 +33412,14 @@ function SurfaceKHR(
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateViSurfaceNN(instance, create_info, allocator, surface, fun_ptr_create)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::WaylandSurfaceCreateInfoKHR; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateWaylandSurfaceKHR(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28226,14 +33438,14 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::Win32SurfaceCreateInfoKHR; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateWin32SurfaceKHR(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28252,14 +33464,14 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::XlibSurfaceCreateInfoKHR; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateXlibSurfaceKHR(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28272,14 +33484,14 @@ function SurfaceKHR(
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateXlibSurfaceKHR(instance, create_info, allocator, surface, fun_ptr_create)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::XcbSurfaceCreateInfoKHR; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateXcbSurfaceKHR(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28292,7 +33504,7 @@ function SurfaceKHR(
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateXcbSurfaceKHR(instance, create_info, allocator, surface, fun_ptr_create)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(
@@ -28303,7 +33515,7 @@ function SurfaceKHR(
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateImagePipeSurfaceFUCHSIA(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28322,7 +33534,7 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(
@@ -28333,7 +33545,7 @@ function SurfaceKHR(
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateStreamDescriptorSurfaceGGP(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28352,14 +33564,14 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::IOSSurfaceCreateInfoMVK; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateIOSSurfaceMVK(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28372,14 +33584,14 @@ function SurfaceKHR(
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateIOSSurfaceMVK(instance, create_info, allocator, surface, fun_ptr_create)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::MacOSSurfaceCreateInfoMVK; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateMacOSSurfaceMVK(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28398,14 +33610,14 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::MetalSurfaceCreateInfoEXT; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateMetalSurfaceEXT(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28424,14 +33636,14 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SurfaceKHR(instance, create_info::HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)
     surface = Ref{VkSurfaceKHR}()
     @check vkCreateHeadlessSurfaceEXT(instance, create_info, allocator, surface)
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator)), vks)
 end
 
 function SurfaceKHR(
@@ -28450,7 +33662,7 @@ function SurfaceKHR(
         fun_ptr_create,
     )
     vks = SurfaceKHR(surface[])
-    finalizer(x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySurfaceKHR(instance, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function SwapchainKHR(
@@ -28468,7 +33680,7 @@ function SwapchainKHR(
         swapchains,
     )
     vks = SwapchainKHR.(swapchains)
-    finalizer.(Ref(x -> vkDestroySwapchainKHR(device, x, allocator)), vks)
+    finalizer.(Ref((x -> vkDestroySwapchainKHR(device, x, allocator))), vks)
 end
 
 function SwapchainKHR(
@@ -28489,14 +33701,17 @@ function SwapchainKHR(
         fun_ptr_create,
     )
     vks = SwapchainKHR.(swapchains)
-    finalizer.(Ref(x -> vkDestroySwapchainKHR(device, x, allocator, fun_ptr_destroy)), vks)
+    finalizer.(
+        Ref((x -> vkDestroySwapchainKHR(device, x, allocator, fun_ptr_destroy))),
+        vks,
+    )
 end
 
 function SwapchainKHR(device, create_info::SwapchainCreateInfoKHR; allocator = C_NULL)
     swapchain = Ref{VkSwapchainKHR}()
     @check vkCreateSwapchainKHR(device, create_info, allocator, swapchain)
     vks = SwapchainKHR(swapchain[])
-    finalizer(x -> vkDestroySwapchainKHR(device, x, allocator), vks)
+    finalizer((x -> vkDestroySwapchainKHR(device, x, allocator)), vks)
 end
 
 function SwapchainKHR(
@@ -28509,7 +33724,7 @@ function SwapchainKHR(
     swapchain = Ref{VkSwapchainKHR}()
     @check vkCreateSwapchainKHR(device, create_info, allocator, swapchain, fun_ptr_create)
     vks = SwapchainKHR(swapchain[])
-    finalizer(x -> vkDestroySwapchainKHR(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer((x -> vkDestroySwapchainKHR(device, x, allocator, fun_ptr_destroy)), vks)
 end
 
 function DisplayModeKHR(
@@ -28550,7 +33765,7 @@ function DebugReportCallbackEXT(
     callback = Ref{VkDebugReportCallbackEXT}()
     @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, callback)
     vks = DebugReportCallbackEXT(callback[])
-    finalizer(x -> vkDestroyDebugReportCallbackEXT(instance, x, allocator), vks)
+    finalizer((x -> vkDestroyDebugReportCallbackEXT(instance, x, allocator)), vks)
 end
 
 function DebugReportCallbackEXT(
@@ -28570,7 +33785,7 @@ function DebugReportCallbackEXT(
     )
     vks = DebugReportCallbackEXT(callback[])
     finalizer(
-        x -> vkDestroyDebugReportCallbackEXT(instance, x, allocator, fun_ptr_destroy),
+        (x -> vkDestroyDebugReportCallbackEXT(instance, x, allocator, fun_ptr_destroy)),
         vks,
     )
 end
@@ -28583,7 +33798,7 @@ function DebugUtilsMessengerEXT(
     messenger = Ref{VkDebugUtilsMessengerEXT}()
     @check vkCreateDebugUtilsMessengerEXT(instance, create_info, allocator, messenger)
     vks = DebugUtilsMessengerEXT(messenger[])
-    finalizer(x -> vkDestroyDebugUtilsMessengerEXT(instance, x, allocator), vks)
+    finalizer((x -> vkDestroyDebugUtilsMessengerEXT(instance, x, allocator)), vks)
 end
 
 function DebugUtilsMessengerEXT(
@@ -28603,7 +33818,7 @@ function DebugUtilsMessengerEXT(
     )
     vks = DebugUtilsMessengerEXT(messenger[])
     finalizer(
-        x -> vkDestroyDebugUtilsMessengerEXT(instance, x, allocator, fun_ptr_destroy),
+        (x -> vkDestroyDebugUtilsMessengerEXT(instance, x, allocator, fun_ptr_destroy)),
         vks,
     )
 end
@@ -28616,7 +33831,7 @@ function ValidationCacheEXT(
     validation_cache = Ref{VkValidationCacheEXT}()
     @check vkCreateValidationCacheEXT(device, create_info, allocator, validation_cache)
     vks = ValidationCacheEXT(validation_cache[])
-    finalizer(x -> vkDestroyValidationCacheEXT(device, x, allocator), vks)
+    finalizer((x -> vkDestroyValidationCacheEXT(device, x, allocator)), vks)
 end
 
 function ValidationCacheEXT(
@@ -28635,7 +33850,10 @@ function ValidationCacheEXT(
         fun_ptr_create,
     )
     vks = ValidationCacheEXT(validation_cache[])
-    finalizer(x -> vkDestroyValidationCacheEXT(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer(
+        (x -> vkDestroyValidationCacheEXT(device, x, allocator, fun_ptr_destroy)),
+        vks,
+    )
 end
 
 function AccelerationStructureKHR(
@@ -28651,7 +33869,7 @@ function AccelerationStructureKHR(
         acceleration_structure,
     )
     vks = AccelerationStructureKHR(acceleration_structure[])
-    finalizer(x -> vkDestroyAccelerationStructureKHR(device, x, allocator), vks)
+    finalizer((x -> vkDestroyAccelerationStructureKHR(device, x, allocator)), vks)
 end
 
 function AccelerationStructureKHR(
@@ -28671,7 +33889,7 @@ function AccelerationStructureKHR(
     )
     vks = AccelerationStructureKHR(acceleration_structure[])
     finalizer(
-        x -> vkDestroyAccelerationStructureKHR(device, x, allocator, fun_ptr_destroy),
+        (x -> vkDestroyAccelerationStructureKHR(device, x, allocator, fun_ptr_destroy)),
         vks,
     )
 end
@@ -28689,7 +33907,7 @@ function IndirectCommandsLayoutNV(
         indirect_commands_layout,
     )
     vks = IndirectCommandsLayoutNV(indirect_commands_layout[])
-    finalizer(x -> vkDestroyIndirectCommandsLayoutNV(device, x, allocator), vks)
+    finalizer((x -> vkDestroyIndirectCommandsLayoutNV(device, x, allocator)), vks)
 end
 
 function IndirectCommandsLayoutNV(
@@ -28709,7 +33927,7 @@ function IndirectCommandsLayoutNV(
     )
     vks = IndirectCommandsLayoutNV(indirect_commands_layout[])
     finalizer(
-        x -> vkDestroyIndirectCommandsLayoutNV(device, x, allocator, fun_ptr_destroy),
+        (x -> vkDestroyIndirectCommandsLayoutNV(device, x, allocator, fun_ptr_destroy)),
         vks,
     )
 end
@@ -28722,7 +33940,7 @@ function PrivateDataSlotEXT(
     private_data_slot = Ref{VkPrivateDataSlotEXT}()
     @check vkCreatePrivateDataSlotEXT(device, create_info, allocator, private_data_slot)
     vks = PrivateDataSlotEXT(private_data_slot[])
-    finalizer(x -> vkDestroyPrivateDataSlotEXT(device, x, allocator), vks)
+    finalizer((x -> vkDestroyPrivateDataSlotEXT(device, x, allocator)), vks)
 end
 
 function PrivateDataSlotEXT(
@@ -28741,7 +33959,10 @@ function PrivateDataSlotEXT(
         fun_ptr_create,
     )
     vks = PrivateDataSlotEXT(private_data_slot[])
-    finalizer(x -> vkDestroyPrivateDataSlotEXT(device, x, allocator, fun_ptr_destroy), vks)
+    finalizer(
+        (x -> vkDestroyPrivateDataSlotEXT(device, x, allocator, fun_ptr_destroy)),
+        vks,
+    )
 end
 
 function enumerate_physical_devices(instance)
@@ -28756,7 +33977,7 @@ end
 Generic definition
 """
 function get_physical_device_features(physical_device)
-    pFeatures = Ref{VkPhysicalDeviceFeatures}()    # VulkanGen.InitializePointers
+    pFeatures = Ref{VkPhysicalDeviceFeatures}()
     vkGetPhysicalDeviceFeatures(physical_device, pFeatures)
     PhysicalDeviceFeatures(pFeatures[])
 end
@@ -28765,7 +33986,7 @@ end
 Generic definition
 """
 function get_physical_device_format_properties(physical_device, format)
-    pFormatProperties = Ref{VkFormatProperties}()    # VulkanGen.InitializePointers
+    pFormatProperties = Ref{VkFormatProperties}()
     vkGetPhysicalDeviceFormatProperties(physical_device, format, pFormatProperties)
     FormatProperties(pFormatProperties[])
 end
@@ -28781,7 +34002,7 @@ function get_physical_device_image_format_properties(
     usage;
     flags = 0,
 )
-    pImageFormatProperties = Ref{VkImageFormatProperties}()    # VulkanGen.InitializePointers
+    pImageFormatProperties = Ref{VkImageFormatProperties}()
     @check vkGetPhysicalDeviceImageFormatProperties(
         physical_device,
         format,
@@ -28798,7 +34019,7 @@ end
 Generic definition
 """
 function get_physical_device_properties(physical_device)
-    pProperties = Ref{VkPhysicalDeviceProperties}()    # VulkanGen.InitializePointers
+    pProperties = Ref{VkPhysicalDeviceProperties}()
     vkGetPhysicalDeviceProperties(physical_device, pProperties)
     PhysicalDeviceProperties(pProperties[])
 end
@@ -28824,7 +34045,7 @@ end
 Generic definition
 """
 function get_physical_device_memory_properties(physical_device)
-    pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties}()    # VulkanGen.InitializePointers
+    pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties}()
     vkGetPhysicalDeviceMemoryProperties(physical_device, pMemoryProperties)
     PhysicalDeviceMemoryProperties(pMemoryProperties[])
 end
@@ -28889,7 +34110,7 @@ end
 Generic definition
 """
 function get_device_queue(device, queue_family_index, queue_index)
-    pQueue = Ref{VkQueue}()    # VulkanGen.InitializePointers
+    pQueue = Ref{VkQueue}()
     vkGetDeviceQueue(device, queue_family_index, queue_index, pQueue)
     Queue(pQueue[])
 end
@@ -28898,7 +34119,7 @@ end
 Generic definition
 """
 function queue_submit(queue, submits; fence = C_NULL)
-    _submitCount = pointer_length(submits)    # VulkanGen.ComputeLengthArgument
+    _submitCount = pointer_length(submits)
     @check vkQueueSubmit(queue, _submitCount, submits, fence)
 end
 
@@ -28920,7 +34141,7 @@ end
 Generic definition
 """
 function allocate_memory(device, allocate_info; allocator = C_NULL)
-    pMemory = Ref{VkDeviceMemory}()    # VulkanGen.InitializePointers
+    pMemory = Ref{VkDeviceMemory}()
     @check vkAllocateMemory(device, allocate_info, allocator, pMemory)
     DeviceMemory(pMemory[])
 end
@@ -28936,7 +34157,7 @@ end
 Generic definition
 """
 function map_memory(device, memory, offset, size; flags = 0)
-    ppData = Ref{Cvoid}()    # VulkanGen.InitializePointers
+    ppData = Ref{Cvoid}()
     @check vkMapMemory(device, memory, offset, size, flags, ppData)
     ppData[]
 end
@@ -28952,7 +34173,7 @@ end
 Generic definition
 """
 function flush_mapped_memory_ranges(device, memory_ranges)
-    _memoryRangeCount = pointer_length(memory_ranges)    # VulkanGen.ComputeLengthArgument
+    _memoryRangeCount = pointer_length(memory_ranges)
     @check vkFlushMappedMemoryRanges(device, _memoryRangeCount, memory_ranges)
 end
 
@@ -28960,7 +34181,7 @@ end
 Generic definition
 """
 function invalidate_mapped_memory_ranges(device, memory_ranges)
-    _memoryRangeCount = pointer_length(memory_ranges)    # VulkanGen.ComputeLengthArgument
+    _memoryRangeCount = pointer_length(memory_ranges)
     @check vkInvalidateMappedMemoryRanges(device, _memoryRangeCount, memory_ranges)
 end
 
@@ -28968,7 +34189,7 @@ end
 Generic definition
 """
 function get_device_memory_commitment(device, memory)
-    pCommittedMemoryInBytes = Ref{VkDeviceSize}()    # VulkanGen.InitializePointers
+    pCommittedMemoryInBytes = Ref{VkDeviceSize}()
     vkGetDeviceMemoryCommitment(device, memory, pCommittedMemoryInBytes)
     pCommittedMemoryInBytes[]
 end
@@ -28991,7 +34212,7 @@ end
 Generic definition
 """
 function get_buffer_memory_requirements(device, buffer)
-    pMemoryRequirements = Ref{VkMemoryRequirements}()    # VulkanGen.InitializePointers
+    pMemoryRequirements = Ref{VkMemoryRequirements}()
     vkGetBufferMemoryRequirements(device, buffer, pMemoryRequirements)
     MemoryRequirements(pMemoryRequirements[])
 end
@@ -29000,7 +34221,7 @@ end
 Generic definition
 """
 function get_image_memory_requirements(device, image)
-    pMemoryRequirements = Ref{VkMemoryRequirements}()    # VulkanGen.InitializePointers
+    pMemoryRequirements = Ref{VkMemoryRequirements}()
     vkGetImageMemoryRequirements(device, image, pMemoryRequirements)
     MemoryRequirements(pMemoryRequirements[])
 end
@@ -29061,7 +34282,7 @@ end
 Generic definition
 """
 function queue_bind_sparse(queue, bind_info; fence = C_NULL)
-    _bindInfoCount = pointer_length(bind_info)    # VulkanGen.ComputeLengthArgument
+    _bindInfoCount = pointer_length(bind_info)
     @check vkQueueBindSparse(queue, _bindInfoCount, bind_info, fence)
 end
 
@@ -29069,7 +34290,7 @@ end
 Generic definition
 """
 function reset_fences(device, fences)
-    _fenceCount = pointer_length(fences)    # VulkanGen.ComputeLengthArgument
+    _fenceCount = pointer_length(fences)
     @check vkResetFences(device, _fenceCount, fences)
 end
 
@@ -29084,7 +34305,7 @@ end
 Generic definition
 """
 function wait_for_fences(device, fences, wait_all, timeout)
-    _fenceCount = pointer_length(fences)    # VulkanGen.ComputeLengthArgument
+    _fenceCount = pointer_length(fences)
     @check vkWaitForFences(device, _fenceCount, fences, wait_all, timeout)
 end
 
@@ -29121,7 +34342,7 @@ function get_query_pool_results(
     stride;
     flags = 0,
 )
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
+    _dataSize = pointer_length(data)
     @check vkGetQueryPoolResults(
         device,
         query_pool,
@@ -29138,7 +34359,7 @@ end
 Generic definition
 """
 function get_image_subresource_layout(device, image, subresource)
-    pLayout = Ref{VkSubresourceLayout}()    # VulkanGen.InitializePointers
+    pLayout = Ref{VkSubresourceLayout}()
     vkGetImageSubresourceLayout(device, image, subresource, pLayout)
     SubresourceLayout(pLayout[])
 end
@@ -29155,7 +34376,7 @@ end
 Generic definition
 """
 function merge_pipeline_caches(device, dst_cache, src_caches)
-    _srcCacheCount = pointer_length(src_caches)    # VulkanGen.ComputeLengthArgument
+    _srcCacheCount = pointer_length(src_caches)
     @check vkMergePipelineCaches(device, dst_cache, _srcCacheCount, src_caches)
 end
 
@@ -29170,7 +34391,7 @@ end
 Generic definition
 """
 function allocate_descriptor_sets(device, allocate_info)
-    pDescriptorSets = Ref{VkDescriptorSet}()    # VulkanGen.InitializePointers
+    pDescriptorSets = Ref{VkDescriptorSet}()
     @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
     DescriptorSet(pDescriptorSets[])
 end
@@ -29179,7 +34400,7 @@ end
 Generic definition
 """
 function free_descriptor_sets(device, descriptor_pool, descriptor_sets)
-    _descriptorSetCount = pointer_length(descriptor_sets)    # VulkanGen.ComputeLengthArgument
+    _descriptorSetCount = pointer_length(descriptor_sets)
     @check vkFreeDescriptorSets(
         device,
         descriptor_pool,
@@ -29192,8 +34413,8 @@ end
 Generic definition
 """
 function update_descriptor_sets(device, descriptor_writes, descriptor_copies)
-    _descriptorWriteCount = pointer_length(descriptor_writes)    # VulkanGen.ComputeLengthArgument
-    _descriptorCopyCount = pointer_length(descriptor_copies)    # VulkanGen.ComputeLengthArgument
+    _descriptorWriteCount = pointer_length(descriptor_writes)
+    _descriptorCopyCount = pointer_length(descriptor_copies)
     vkUpdateDescriptorSets(
         device,
         _descriptorWriteCount,
@@ -29207,7 +34428,7 @@ end
 Generic definition
 """
 function get_render_area_granularity(device, render_pass)
-    pGranularity = Ref{VkExtent2D}()    # VulkanGen.InitializePointers
+    pGranularity = Ref{VkExtent2D}()
     vkGetRenderAreaGranularity(device, render_pass, pGranularity)
     Extent2D(pGranularity[])
 end
@@ -29223,7 +34444,7 @@ end
 Generic definition
 """
 function allocate_command_buffers(device, allocate_info)
-    pCommandBuffers = Ref{VkCommandBuffer}()    # VulkanGen.InitializePointers
+    pCommandBuffers = Ref{VkCommandBuffer}()
     @check vkAllocateCommandBuffers(device, allocate_info, pCommandBuffers)
     CommandBuffer(pCommandBuffers[])
 end
@@ -29232,7 +34453,7 @@ end
 Generic definition
 """
 function free_command_buffers(device, command_pool, command_buffers)
-    _commandBufferCount = pointer_length(command_buffers)    # VulkanGen.ComputeLengthArgument
+    _commandBufferCount = pointer_length(command_buffers)
     vkFreeCommandBuffers(device, command_pool, _commandBufferCount, command_buffers)
 end
 
@@ -29268,7 +34489,7 @@ end
 Generic definition
 """
 function cmd_set_viewport(command_buffer, first_viewport, viewports)
-    _viewportCount = pointer_length(viewports)    # VulkanGen.ComputeLengthArgument
+    _viewportCount = pointer_length(viewports)
     vkCmdSetViewport(command_buffer, first_viewport, _viewportCount, viewports)
 end
 
@@ -29276,7 +34497,7 @@ end
 Generic definition
 """
 function cmd_set_scissor(command_buffer, first_scissor, scissors)
-    _scissorCount = pointer_length(scissors)    # VulkanGen.ComputeLengthArgument
+    _scissorCount = pointer_length(scissors)
     vkCmdSetScissor(command_buffer, first_scissor, _scissorCount, scissors)
 end
 
@@ -29350,8 +34571,8 @@ function cmd_bind_descriptor_sets(
     descriptor_sets,
     dynamic_offsets,
 )
-    _descriptorSetCount = pointer_length(descriptor_sets)    # VulkanGen.ComputeLengthArgument
-    _dynamicOffsetCount = pointer_length(dynamic_offsets)    # VulkanGen.ComputeLengthArgument
+    _descriptorSetCount = pointer_length(descriptor_sets)
+    _dynamicOffsetCount = pointer_length(dynamic_offsets)
     vkCmdBindDescriptorSets(
         command_buffer,
         pipeline_bind_point,
@@ -29375,7 +34596,7 @@ end
 Generic definition
 """
 function cmd_bind_vertex_buffers(command_buffer, first_binding, buffers, offsets)
-    _bindingCount = pointer_length(buffers)    # VulkanGen.ComputeLengthArgument
+    _bindingCount = pointer_length(buffers)
     vkCmdBindVertexBuffers(command_buffer, first_binding, _bindingCount, buffers, offsets)
 end
 
@@ -29445,7 +34666,7 @@ end
 Generic definition
 """
 function cmd_copy_buffer(command_buffer, src_buffer, dst_buffer, regions)
-    _regionCount = pointer_length(regions)    # VulkanGen.ComputeLengthArgument
+    _regionCount = pointer_length(regions)
     vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, _regionCount, regions)
 end
 
@@ -29460,7 +34681,7 @@ function cmd_copy_image(
     dst_image_layout,
     regions,
 )
-    _regionCount = pointer_length(regions)    # VulkanGen.ComputeLengthArgument
+    _regionCount = pointer_length(regions)
     vkCmdCopyImage(
         command_buffer,
         src_image,
@@ -29484,7 +34705,7 @@ function cmd_blit_image(
     regions,
     filter,
 )
-    _regionCount = pointer_length(regions)    # VulkanGen.ComputeLengthArgument
+    _regionCount = pointer_length(regions)
     vkCmdBlitImage(
         command_buffer,
         src_image,
@@ -29507,7 +34728,7 @@ function cmd_copy_buffer_to_image(
     dst_image_layout,
     regions,
 )
-    _regionCount = pointer_length(regions)    # VulkanGen.ComputeLengthArgument
+    _regionCount = pointer_length(regions)
     vkCmdCopyBufferToImage(
         command_buffer,
         src_buffer,
@@ -29528,7 +34749,7 @@ function cmd_copy_image_to_buffer(
     dst_buffer,
     regions,
 )
-    _regionCount = pointer_length(regions)    # VulkanGen.ComputeLengthArgument
+    _regionCount = pointer_length(regions)
     vkCmdCopyImageToBuffer(
         command_buffer,
         src_image,
@@ -29543,7 +34764,7 @@ end
 Generic definition
 """
 function cmd_update_buffer(command_buffer, dst_buffer, dst_offset, data)
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
+    _dataSize = pointer_length(data)
     vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, _dataSize, data)
 end
 
@@ -29558,7 +34779,7 @@ end
 Generic definition
 """
 function cmd_clear_color_image(command_buffer, image, image_layout, color, ranges)
-    _rangeCount = pointer_length(ranges)    # VulkanGen.ComputeLengthArgument
+    _rangeCount = pointer_length(ranges)
     vkCmdClearColorImage(command_buffer, image, image_layout, color, _rangeCount, ranges)
 end
 
@@ -29572,7 +34793,7 @@ function cmd_clear_depth_stencil_image(
     depth_stencil,
     ranges,
 )
-    _rangeCount = pointer_length(ranges)    # VulkanGen.ComputeLengthArgument
+    _rangeCount = pointer_length(ranges)
     vkCmdClearDepthStencilImage(
         command_buffer,
         image,
@@ -29587,8 +34808,8 @@ end
 Generic definition
 """
 function cmd_clear_attachments(command_buffer, attachments, rects)
-    _attachmentCount = pointer_length(attachments)    # VulkanGen.ComputeLengthArgument
-    _rectCount = pointer_length(rects)    # VulkanGen.ComputeLengthArgument
+    _attachmentCount = pointer_length(attachments)
+    _rectCount = pointer_length(rects)
     vkCmdClearAttachments(command_buffer, _attachmentCount, attachments, _rectCount, rects)
 end
 
@@ -29603,7 +34824,7 @@ function cmd_resolve_image(
     dst_image_layout,
     regions,
 )
-    _regionCount = pointer_length(regions)    # VulkanGen.ComputeLengthArgument
+    _regionCount = pointer_length(regions)
     vkCmdResolveImage(
         command_buffer,
         src_image,
@@ -29641,10 +34862,10 @@ function cmd_wait_events(
     buffer_memory_barriers,
     image_memory_barriers,
 )
-    _eventCount = pointer_length(events)    # VulkanGen.ComputeLengthArgument
-    _memoryBarrierCount = pointer_length(memory_barriers)    # VulkanGen.ComputeLengthArgument
-    _bufferMemoryBarrierCount = pointer_length(buffer_memory_barriers)    # VulkanGen.ComputeLengthArgument
-    _imageMemoryBarrierCount = pointer_length(image_memory_barriers)    # VulkanGen.ComputeLengthArgument
+    _eventCount = pointer_length(events)
+    _memoryBarrierCount = pointer_length(memory_barriers)
+    _bufferMemoryBarrierCount = pointer_length(buffer_memory_barriers)
+    _imageMemoryBarrierCount = pointer_length(image_memory_barriers)
     vkCmdWaitEvents(
         command_buffer,
         _eventCount,
@@ -29672,9 +34893,9 @@ function cmd_pipeline_barrier(
     image_memory_barriers;
     dependency_flags = 0,
 )
-    _memoryBarrierCount = pointer_length(memory_barriers)    # VulkanGen.ComputeLengthArgument
-    _bufferMemoryBarrierCount = pointer_length(buffer_memory_barriers)    # VulkanGen.ComputeLengthArgument
-    _imageMemoryBarrierCount = pointer_length(image_memory_barriers)    # VulkanGen.ComputeLengthArgument
+    _memoryBarrierCount = pointer_length(memory_barriers)
+    _bufferMemoryBarrierCount = pointer_length(buffer_memory_barriers)
+    _imageMemoryBarrierCount = pointer_length(image_memory_barriers)
     vkCmdPipelineBarrier(
         command_buffer,
         src_stage_mask,
@@ -29746,7 +34967,7 @@ end
 Generic definition
 """
 function cmd_push_constants(command_buffer, layout, stage_flags, offset, values)
-    _size = pointer_length(values)    # VulkanGen.ComputeLengthArgument
+    _size = pointer_length(values)
     vkCmdPushConstants(command_buffer, layout, stage_flags, offset, _size, values)
 end
 
@@ -29775,7 +34996,7 @@ end
 Generic definition
 """
 function cmd_execute_commands(command_buffer, command_buffers)
-    _commandBufferCount = pointer_length(command_buffers)    # VulkanGen.ComputeLengthArgument
+    _commandBufferCount = pointer_length(command_buffers)
     vkCmdExecuteCommands(command_buffer, _commandBufferCount, command_buffers)
 end
 
@@ -29783,7 +35004,7 @@ end
 Generic definition
 """
 function enumerate_instance_version()
-    pApiVersion = Ref{UInt32}()    # VulkanGen.InitializePointers
+    pApiVersion = Ref{UInt32}()
     @check vkEnumerateInstanceVersion(pApiVersion)
     pApiVersion[]
 end
@@ -29792,7 +35013,7 @@ end
 Generic definition
 """
 function bind_buffer_memory_2(device, bind_infos)
-    _bindInfoCount = pointer_length(bind_infos)    # VulkanGen.ComputeLengthArgument
+    _bindInfoCount = pointer_length(bind_infos)
     @check vkBindBufferMemory2(device, _bindInfoCount, bind_infos)
 end
 
@@ -29800,7 +35021,7 @@ end
 Generic definition
 """
 function bind_image_memory_2(device, bind_infos)
-    _bindInfoCount = pointer_length(bind_infos)    # VulkanGen.ComputeLengthArgument
+    _bindInfoCount = pointer_length(bind_infos)
     @check vkBindImageMemory2(device, _bindInfoCount, bind_infos)
 end
 
@@ -29813,7 +35034,7 @@ function get_device_group_peer_memory_features(
     local_device_index,
     remote_device_index,
 )
-    pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()    # VulkanGen.InitializePointers
+    pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()
     vkGetDeviceGroupPeerMemoryFeatures(
         device,
         heap_index,
@@ -29871,7 +35092,7 @@ end
 Generic definition
 """
 function get_image_memory_requirements_2(device, info)
-    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetImageMemoryRequirements2(device, info, pMemoryRequirements)
     MemoryRequirements2(pMemoryRequirements[])
 end
@@ -29880,7 +35101,7 @@ end
 Generic definition
 """
 function get_buffer_memory_requirements_2(device, info)
-    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetBufferMemoryRequirements2(device, info, pMemoryRequirements)
     MemoryRequirements2(pMemoryRequirements[])
 end
@@ -29908,7 +35129,7 @@ end
 Generic definition
 """
 function get_physical_device_features_2(physical_device)
-    pFeatures = Ref{VkPhysicalDeviceFeatures2}()    # VulkanGen.InitializePointers
+    pFeatures = Ref{VkPhysicalDeviceFeatures2}()
     vkGetPhysicalDeviceFeatures2(physical_device, pFeatures)
     PhysicalDeviceFeatures2(pFeatures[])
 end
@@ -29917,7 +35138,7 @@ end
 Generic definition
 """
 function get_physical_device_properties_2(physical_device)
-    pProperties = Ref{VkPhysicalDeviceProperties2}()    # VulkanGen.InitializePointers
+    pProperties = Ref{VkPhysicalDeviceProperties2}()
     vkGetPhysicalDeviceProperties2(physical_device, pProperties)
     PhysicalDeviceProperties2(pProperties[])
 end
@@ -29926,7 +35147,7 @@ end
 Generic definition
 """
 function get_physical_device_format_properties_2(physical_device, format)
-    pFormatProperties = Ref{VkFormatProperties2}()    # VulkanGen.InitializePointers
+    pFormatProperties = Ref{VkFormatProperties2}()
     vkGetPhysicalDeviceFormatProperties2(physical_device, format, pFormatProperties)
     FormatProperties2(pFormatProperties[])
 end
@@ -29935,7 +35156,7 @@ end
 Generic definition
 """
 function get_physical_device_image_format_properties_2(physical_device, image_format_info)
-    pImageFormatProperties = Ref{VkImageFormatProperties2}()    # VulkanGen.InitializePointers
+    pImageFormatProperties = Ref{VkImageFormatProperties2}()
     @check vkGetPhysicalDeviceImageFormatProperties2(
         physical_device,
         image_format_info,
@@ -29965,7 +35186,7 @@ end
 Generic definition
 """
 function get_physical_device_memory_properties_2(physical_device)
-    pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties2}()    # VulkanGen.InitializePointers
+    pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties2}()
     vkGetPhysicalDeviceMemoryProperties2(physical_device, pMemoryProperties)
     PhysicalDeviceMemoryProperties2(pMemoryProperties[])
 end
@@ -29999,7 +35220,7 @@ end
 Generic definition
 """
 function get_device_queue_2(device, queue_info)
-    pQueue = Ref{VkQueue}()    # VulkanGen.InitializePointers
+    pQueue = Ref{VkQueue}()
     vkGetDeviceQueue2(device, queue_info, pQueue)
     Queue(pQueue[])
 end
@@ -30028,7 +35249,7 @@ function get_physical_device_external_buffer_properties(
     physical_device,
     external_buffer_info,
 )
-    pExternalBufferProperties = Ref{VkExternalBufferProperties}()    # VulkanGen.InitializePointers
+    pExternalBufferProperties = Ref{VkExternalBufferProperties}()
     vkGetPhysicalDeviceExternalBufferProperties(
         physical_device,
         external_buffer_info,
@@ -30041,7 +35262,7 @@ end
 Generic definition
 """
 function get_physical_device_external_fence_properties(physical_device, external_fence_info)
-    pExternalFenceProperties = Ref{VkExternalFenceProperties}()    # VulkanGen.InitializePointers
+    pExternalFenceProperties = Ref{VkExternalFenceProperties}()
     vkGetPhysicalDeviceExternalFenceProperties(
         physical_device,
         external_fence_info,
@@ -30057,7 +35278,7 @@ function get_physical_device_external_semaphore_properties(
     physical_device,
     external_semaphore_info,
 )
-    pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()    # VulkanGen.InitializePointers
+    pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()
     vkGetPhysicalDeviceExternalSemaphoreProperties(
         physical_device,
         external_semaphore_info,
@@ -30070,7 +35291,7 @@ end
 Generic definition
 """
 function get_descriptor_set_layout_support(device, create_info)
-    pSupport = Ref{VkDescriptorSetLayoutSupport}()    # VulkanGen.InitializePointers
+    pSupport = Ref{VkDescriptorSetLayoutSupport}()
     vkGetDescriptorSetLayoutSupport(device, create_info, pSupport)
     DescriptorSetLayoutSupport(pSupport[])
 end
@@ -30153,7 +35374,7 @@ end
 Generic definition
 """
 function get_semaphore_counter_value(device, semaphore)
-    pValue = Ref{UInt64}()    # VulkanGen.InitializePointers
+    pValue = Ref{UInt64}()
     @check vkGetSemaphoreCounterValue(device, semaphore, pValue)
     pValue[]
 end
@@ -30201,7 +35422,7 @@ function get_physical_device_surface_support_khr(
     queue_family_index,
     surface,
 )
-    pSupported = Ref{VkBool32}()    # VulkanGen.InitializePointers
+    pSupported = Ref{VkBool32}()
     @check vkGetPhysicalDeviceSurfaceSupportKHR(
         physical_device,
         queue_family_index,
@@ -30215,7 +35436,7 @@ end
 Generic definition
 """
 function get_physical_device_surface_capabilities_khr(physical_device, surface)
-    pSurfaceCapabilities = Ref{VkSurfaceCapabilitiesKHR}()    # VulkanGen.InitializePointers
+    pSurfaceCapabilities = Ref{VkSurfaceCapabilitiesKHR}()
     @check vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
         physical_device,
         surface,
@@ -30283,7 +35504,7 @@ function acquire_next_image_khr(
     semaphore = C_NULL,
     fence = C_NULL,
 )
-    pImageIndex = Ref{UInt32}()    # VulkanGen.InitializePointers
+    pImageIndex = Ref{UInt32}()
     @check vkAcquireNextImageKHR(device, swapchain, timeout, semaphore, fence, pImageIndex)
     pImageIndex[]
 end
@@ -30299,7 +35520,7 @@ end
 Generic definition
 """
 function get_device_group_present_capabilities_khr(device)
-    pDeviceGroupPresentCapabilities = Ref{VkDeviceGroupPresentCapabilitiesKHR}()    # VulkanGen.InitializePointers
+    pDeviceGroupPresentCapabilities = Ref{VkDeviceGroupPresentCapabilitiesKHR}()
     @check vkGetDeviceGroupPresentCapabilitiesKHR(device, pDeviceGroupPresentCapabilities)
     DeviceGroupPresentCapabilitiesKHR(pDeviceGroupPresentCapabilities[])
 end
@@ -30308,7 +35529,7 @@ end
 Generic definition
 """
 function get_device_group_surface_present_modes_khr(device, surface)
-    pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()    # VulkanGen.InitializePointers
+    pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModesKHR(device, surface, pModes)
     pModes[]
 end
@@ -30335,7 +35556,7 @@ end
 Generic definition
 """
 function acquire_next_image_2_khr(device, acquire_info)
-    pImageIndex = Ref{UInt32}()    # VulkanGen.InitializePointers
+    pImageIndex = Ref{UInt32}()
     @check vkAcquireNextImage2KHR(device, acquire_info, pImageIndex)
     pImageIndex[]
 end
@@ -30403,7 +35624,7 @@ end
 Generic definition
 """
 function get_display_plane_capabilities_khr(physical_device, mode, plane_index)
-    pCapabilities = Ref{VkDisplayPlaneCapabilitiesKHR}()    # VulkanGen.InitializePointers
+    pCapabilities = Ref{VkDisplayPlaneCapabilitiesKHR}()
     @check vkGetDisplayPlaneCapabilitiesKHR(
         physical_device,
         mode,
@@ -30417,7 +35638,7 @@ end
 Generic definition
 """
 function get_memory_fd_khr(device, get_fd_info)
-    pFd = Ref{Cint}()    # VulkanGen.InitializePointers
+    pFd = Ref{Cint}()
     @check vkGetMemoryFdKHR(device, get_fd_info, pFd)
     pFd[]
 end
@@ -30426,7 +35647,7 @@ end
 Generic definition
 """
 function get_memory_fd_properties_khr(device, handle_type, fd)
-    pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()    # VulkanGen.InitializePointers
+    pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
     @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties)
     MemoryFdPropertiesKHR(pMemoryFdProperties[])
 end
@@ -30442,7 +35663,7 @@ end
 Generic definition
 """
 function get_semaphore_fd_khr(device, get_fd_info)
-    pFd = Ref{Cint}()    # VulkanGen.InitializePointers
+    pFd = Ref{Cint}()
     @check vkGetSemaphoreFdKHR(device, get_fd_info, pFd)
     pFd[]
 end
@@ -30457,7 +35678,7 @@ function cmd_push_descriptor_set_khr(
     set,
     descriptor_writes,
 )
-    _descriptorWriteCount = pointer_length(descriptor_writes)    # VulkanGen.ComputeLengthArgument
+    _descriptorWriteCount = pointer_length(descriptor_writes)
     vkCmdPushDescriptorSetKHR(
         command_buffer,
         pipeline_bind_point,
@@ -30505,7 +35726,7 @@ end
 Generic definition
 """
 function get_fence_fd_khr(device, get_fd_info)
-    pFd = Ref{Cint}()    # VulkanGen.InitializePointers
+    pFd = Ref{Cint}()
     @check vkGetFenceFdKHR(device, get_fd_info, pFd)
     pFd[]
 end
@@ -30541,7 +35762,7 @@ function get_physical_device_queue_family_performance_query_passes_khr(
     physical_device,
     performance_query_create_info,
 )
-    pNumPasses = Ref{UInt32}()    # VulkanGen.InitializePointers
+    pNumPasses = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR(
         physical_device,
         performance_query_create_info,
@@ -30568,7 +35789,7 @@ end
 Generic definition
 """
 function get_physical_device_surface_capabilities_2_khr(physical_device, surface_info)
-    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2KHR}()    # VulkanGen.InitializePointers
+    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2KHR}()
     @check vkGetPhysicalDeviceSurfaceCapabilities2KHR(
         physical_device,
         surface_info,
@@ -30640,7 +35861,7 @@ end
 Generic definition
 """
 function get_display_plane_capabilities_2_khr(physical_device, display_plane_info)
-    pCapabilities = Ref{VkDisplayPlaneCapabilities2KHR}()    # VulkanGen.InitializePointers
+    pCapabilities = Ref{VkDisplayPlaneCapabilities2KHR}()
     @check vkGetDisplayPlaneCapabilities2KHR(
         physical_device,
         display_plane_info,
@@ -30776,7 +35997,7 @@ function cmd_bind_transform_feedback_buffers_ext(
     offsets;
     sizes = C_NULL,
 )
-    _bindingCount = pointer_length(buffers)    # VulkanGen.ComputeLengthArgument
+    _bindingCount = pointer_length(buffers)
     vkCmdBindTransformFeedbackBuffersEXT(
         command_buffer,
         first_binding,
@@ -30796,7 +36017,7 @@ function cmd_begin_transform_feedback_ext(
     counter_buffers;
     counter_buffer_offsets = C_NULL,
 )
-    _counterBufferCount = pointer_length(counter_buffers)    # VulkanGen.ComputeLengthArgument
+    _counterBufferCount = pointer_length(counter_buffers)
     vkCmdBeginTransformFeedbackEXT(
         command_buffer,
         first_counter_buffer,
@@ -30815,7 +36036,7 @@ function cmd_end_transform_feedback_ext(
     counter_buffers;
     counter_buffer_offsets = C_NULL,
 )
-    _counterBufferCount = pointer_length(counter_buffers)    # VulkanGen.ComputeLengthArgument
+    _counterBufferCount = pointer_length(counter_buffers)
     vkCmdEndTransformFeedbackEXT(
         command_buffer,
         first_counter_buffer,
@@ -30873,7 +36094,7 @@ end
 Generic definition
 """
 function get_image_view_address_nvx(device, image_view)
-    pProperties = Ref{VkImageViewAddressPropertiesNVX}()    # VulkanGen.InitializePointers
+    pProperties = Ref{VkImageViewAddressPropertiesNVX}()
     @check vkGetImageViewAddressNVX(device, image_view, pProperties)
     ImageViewAddressPropertiesNVX(pProperties[])
 end
@@ -30905,7 +36126,7 @@ function get_physical_device_external_image_format_properties_nv(
     flags = 0,
     external_handle_type = 0,
 )
-    pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()    # VulkanGen.InitializePointers
+    pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()
     @check vkGetPhysicalDeviceExternalImageFormatPropertiesNV(
         physical_device,
         format,
@@ -30937,7 +36158,7 @@ end
 Generic definition
 """
 function cmd_set_viewport_w_scaling_nv(command_buffer, first_viewport, viewport_w_scalings)
-    _viewportCount = pointer_length(viewport_w_scalings)    # VulkanGen.ComputeLengthArgument
+    _viewportCount = pointer_length(viewport_w_scalings)
     vkCmdSetViewportWScalingNV(
         command_buffer,
         first_viewport,
@@ -30957,7 +36178,7 @@ end
 Generic definition
 """
 function get_physical_device_surface_capabilities_2_ext(physical_device, surface)
-    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2EXT}()    # VulkanGen.InitializePointers
+    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2EXT}()
     @check vkGetPhysicalDeviceSurfaceCapabilities2EXT(
         physical_device,
         surface,
@@ -30977,7 +36198,7 @@ end
 Generic definition
 """
 function register_device_event_ext(device, device_event_info; allocator = C_NULL)
-    pFence = Ref{VkFence}()    # VulkanGen.InitializePointers
+    pFence = Ref{VkFence}()
     @check vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
     Fence(pFence[])
 end
@@ -30986,7 +36207,7 @@ end
 Generic definition
 """
 function register_display_event_ext(device, display, display_event_info; allocator = C_NULL)
-    pFence = Ref{VkFence}()    # VulkanGen.InitializePointers
+    pFence = Ref{VkFence}()
     @check vkRegisterDisplayEventEXT(device, display, display_event_info, allocator, pFence)
     Fence(pFence[])
 end
@@ -30995,7 +36216,7 @@ end
 Generic definition
 """
 function get_swapchain_counter_ext(device, swapchain, counter)
-    pCounterValue = Ref{UInt64}()    # VulkanGen.InitializePointers
+    pCounterValue = Ref{UInt64}()
     @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue)
     pCounterValue[]
 end
@@ -31004,7 +36225,7 @@ end
 Generic definition
 """
 function get_refresh_cycle_duration_google(device, swapchain)
-    pDisplayTimingProperties = Ref{VkRefreshCycleDurationGOOGLE}()    # VulkanGen.InitializePointers
+    pDisplayTimingProperties = Ref{VkRefreshCycleDurationGOOGLE}()
     @check vkGetRefreshCycleDurationGOOGLE(device, swapchain, pDisplayTimingProperties)
     RefreshCycleDurationGOOGLE(pDisplayTimingProperties[])
 end
@@ -31036,7 +36257,7 @@ function cmd_set_discard_rectangle_ext(
     first_discard_rectangle,
     discard_rectangles,
 )
-    _discardRectangleCount = pointer_length(discard_rectangles)    # VulkanGen.ComputeLengthArgument
+    _discardRectangleCount = pointer_length(discard_rectangles)
     vkCmdSetDiscardRectangleEXT(
         command_buffer,
         first_discard_rectangle,
@@ -31049,7 +36270,7 @@ end
 Generic definition
 """
 function set_hdr_metadata_ext(device, swapchains, metadata)
-    _swapchainCount = pointer_length(swapchains)    # VulkanGen.ComputeLengthArgument
+    _swapchainCount = pointer_length(swapchains)
     vkSetHdrMetadataEXT(device, _swapchainCount, swapchains, metadata)
 end
 
@@ -31132,7 +36353,7 @@ end
 Generic definition
 """
 function get_physical_device_multisample_properties_ext(physical_device, samples)
-    pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()    # VulkanGen.InitializePointers
+    pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
     vkGetPhysicalDeviceMultisamplePropertiesEXT(
         physical_device,
         samples,
@@ -31145,7 +36366,7 @@ end
 Generic definition
 """
 function get_image_drm_format_modifier_properties_ext(device, image)
-    pProperties = Ref{VkImageDrmFormatModifierPropertiesEXT}()    # VulkanGen.InitializePointers
+    pProperties = Ref{VkImageDrmFormatModifierPropertiesEXT}()
     @check vkGetImageDrmFormatModifierPropertiesEXT(device, image, pProperties)
     ImageDrmFormatModifierPropertiesEXT(pProperties[])
 end
@@ -31154,7 +36375,7 @@ end
 Generic definition
 """
 function merge_validation_caches_ext(device, dst_cache, src_caches)
-    _srcCacheCount = pointer_length(src_caches)    # VulkanGen.ComputeLengthArgument
+    _srcCacheCount = pointer_length(src_caches)
     @check vkMergeValidationCachesEXT(device, dst_cache, _srcCacheCount, src_caches)
 end
 
@@ -31181,7 +36402,7 @@ function cmd_set_viewport_shading_rate_palette_nv(
     first_viewport,
     shading_rate_palettes,
 )
-    _viewportCount = pointer_length(shading_rate_palettes)    # VulkanGen.ComputeLengthArgument
+    _viewportCount = pointer_length(shading_rate_palettes)
     vkCmdSetViewportShadingRatePaletteNV(
         command_buffer,
         first_viewport,
@@ -31198,7 +36419,7 @@ function cmd_set_coarse_sample_order_nv(
     sample_order_type,
     custom_sample_orders,
 )
-    _customSampleOrderCount = pointer_length(custom_sample_orders)    # VulkanGen.ComputeLengthArgument
+    _customSampleOrderCount = pointer_length(custom_sample_orders)
     vkCmdSetCoarseSampleOrderNV(
         command_buffer,
         sample_order_type,
@@ -31211,7 +36432,7 @@ end
 Generic definition
 """
 function get_acceleration_structure_memory_requirements_nv(device, info)
-    pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()    # VulkanGen.InitializePointers
+    pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()
     vkGetAccelerationStructureMemoryRequirementsNV(device, info, pMemoryRequirements)
     pMemoryRequirements[]
 end
@@ -31220,7 +36441,7 @@ end
 Generic definition
 """
 function bind_acceleration_structure_memory_khr(device, bind_infos)
-    _bindInfoCount = pointer_length(bind_infos)    # VulkanGen.ComputeLengthArgument
+    _bindInfoCount = pointer_length(bind_infos)
     @check vkBindAccelerationStructureMemoryKHR(device, _bindInfoCount, bind_infos)
 end
 
@@ -31306,8 +36527,8 @@ function get_ray_tracing_shader_group_handles_khr(
     first_group,
     group_count,
 )
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
-    pData = Ref{Cvoid}()    # VulkanGen.InitializePointers
+    _dataSize = pointer_length(data)
+    pData = Ref{Cvoid}()
     @check vkGetRayTracingShaderGroupHandlesKHR(
         device,
         pipeline,
@@ -31323,8 +36544,8 @@ end
 Generic definition
 """
 function get_acceleration_structure_handle_nv(device, acceleration_structure)
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
-    pData = Ref{Cvoid}()    # VulkanGen.InitializePointers
+    _dataSize = pointer_length(data)
+    pData = Ref{Cvoid}()
     @check vkGetAccelerationStructureHandleNV(
         device,
         acceleration_structure,
@@ -31344,7 +36565,7 @@ function cmd_write_acceleration_structures_properties_khr(
     query_pool,
     first_query,
 )
-    _accelerationStructureCount = pointer_length(acceleration_structures)    # VulkanGen.ComputeLengthArgument
+    _accelerationStructureCount = pointer_length(acceleration_structures)
     vkCmdWriteAccelerationStructuresPropertiesKHR(
         command_buffer,
         _accelerationStructureCount,
@@ -31366,7 +36587,7 @@ end
 Generic definition
 """
 function get_memory_host_pointer_properties_ext(device, handle_type, host_pointer)
-    pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()    # VulkanGen.InitializePointers
+    pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
     @check vkGetMemoryHostPointerPropertiesEXT(
         device,
         handle_type,
@@ -31415,8 +36636,8 @@ end
 Generic definition
 """
 function get_calibrated_timestamps_ext(device, timestamp_infos, timestamps)
-    _timestampCount = pointer_length(timestamp_infos)    # VulkanGen.ComputeLengthArgument
-    pMaxDeviation = Ref{UInt64}()    # VulkanGen.InitializePointers
+    _timestampCount = pointer_length(timestamp_infos)
+    pMaxDeviation = Ref{UInt64}()
     @check vkGetCalibratedTimestampsEXT(
         device,
         _timestampCount,
@@ -31472,7 +36693,7 @@ function cmd_set_exclusive_scissor_nv(
     first_exclusive_scissor,
     exclusive_scissors,
 )
-    _exclusiveScissorCount = pointer_length(exclusive_scissors)    # VulkanGen.ComputeLengthArgument
+    _exclusiveScissorCount = pointer_length(exclusive_scissors)
     vkCmdSetExclusiveScissorNV(
         command_buffer,
         first_exclusive_scissor,
@@ -31535,7 +36756,7 @@ end
 Generic definition
 """
 function acquire_performance_configuration_intel(device, acquire_info)
-    pConfiguration = Ref{VkPerformanceConfigurationINTEL}()    # VulkanGen.InitializePointers
+    pConfiguration = Ref{VkPerformanceConfigurationINTEL}()
     @check vkAcquirePerformanceConfigurationINTEL(device, acquire_info, pConfiguration)
     PerformanceConfigurationINTEL(pConfiguration[])
 end
@@ -31558,7 +36779,7 @@ end
 Generic definition
 """
 function get_performance_parameter_intel(device, parameter)
-    pValue = Ref{VkPerformanceValueINTEL}()    # VulkanGen.InitializePointers
+    pValue = Ref{VkPerformanceValueINTEL}()
     @check vkGetPerformanceParameterINTEL(device, parameter, pValue)
     PerformanceValueINTEL(pValue[])
 end
@@ -31648,7 +36869,7 @@ end
 Generic definition
 """
 function cmd_set_viewport_with_count_ext(command_buffer, viewports)
-    _viewportCount = pointer_length(viewports)    # VulkanGen.ComputeLengthArgument
+    _viewportCount = pointer_length(viewports)
     vkCmdSetViewportWithCountEXT(command_buffer, _viewportCount, viewports)
 end
 
@@ -31656,7 +36877,7 @@ end
 Generic definition
 """
 function cmd_set_scissor_with_count_ext(command_buffer, scissors)
-    _scissorCount = pointer_length(scissors)    # VulkanGen.ComputeLengthArgument
+    _scissorCount = pointer_length(scissors)
     vkCmdSetScissorWithCountEXT(command_buffer, _scissorCount, scissors)
 end
 
@@ -31671,7 +36892,7 @@ function cmd_bind_vertex_buffers_2_ext(
     sizes = C_NULL,
     strides = C_NULL,
 )
-    _bindingCount = pointer_length(buffers)    # VulkanGen.ComputeLengthArgument
+    _bindingCount = pointer_length(buffers)
     vkCmdBindVertexBuffers2EXT(
         command_buffer,
         first_binding,
@@ -31743,7 +36964,7 @@ end
 Generic definition
 """
 function get_generated_commands_memory_requirements_nv(device, info)
-    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements)
     MemoryRequirements2(pMemoryRequirements[])
 end
@@ -31798,7 +37019,7 @@ end
 Generic definition
 """
 function get_private_data_ext(device, object_type, object_handle, private_data_slot)
-    pData = Ref{UInt64}()    # VulkanGen.InitializePointers
+    pData = Ref{UInt64}()
     vkGetPrivateDataEXT(device, object_type, object_handle, private_data_slot, pData)
     pData[]
 end
@@ -31807,7 +37028,7 @@ end
 Generic definition
 """
 function get_android_hardware_buffer_properties_android(device, buffer)
-    pProperties = Ref{VkAndroidHardwareBufferPropertiesANDROID}()    # VulkanGen.InitializePointers
+    pProperties = Ref{VkAndroidHardwareBufferPropertiesANDROID}()
     @check vkGetAndroidHardwareBufferPropertiesANDROID(device, buffer, pProperties)
     AndroidHardwareBufferPropertiesANDROID(pProperties[])
 end
@@ -31816,7 +37037,7 @@ end
 Generic definition
 """
 function get_memory_android_hardware_buffer_android(device, info)
-    pBuffer = Ref{AHardwareBuffer}()    # VulkanGen.InitializePointers
+    pBuffer = Ref{AHardwareBuffer}()
     @check vkGetMemoryAndroidHardwareBufferANDROID(device, info, pBuffer)
     pBuffer[]
 end
@@ -31828,7 +37049,7 @@ function get_physical_device_wayland_presentation_support_khr(
     physical_device,
     queue_family_index,
 )
-    display = Ref{wl_display}()    # VulkanGen.InitializePointers
+    display = Ref{wl_display}()
     vkGetPhysicalDeviceWaylandPresentationSupportKHR(
         physical_device,
         queue_family_index,
@@ -31851,7 +37072,7 @@ end
 Generic definition
 """
 function get_memory_win_32_handle_khr(device, get_win_32_handle_info)
-    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    pHandle = Ref{Cint}()
     @check vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, pHandle)
     pHandle[]
 end
@@ -31860,7 +37081,7 @@ end
 Generic definition
 """
 function get_memory_win_32_handle_properties_khr(device, handle_type, handle)
-    pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()    # VulkanGen.InitializePointers
+    pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
     @check vkGetMemoryWin32HandlePropertiesKHR(
         device,
         handle_type,
@@ -31881,7 +37102,7 @@ end
 Generic definition
 """
 function get_semaphore_win_32_handle_khr(device, get_win_32_handle_info)
-    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    pHandle = Ref{Cint}()
     @check vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, pHandle)
     pHandle[]
 end
@@ -31897,7 +37118,7 @@ end
 Generic definition
 """
 function get_fence_win_32_handle_khr(device, get_win_32_handle_info)
-    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    pHandle = Ref{Cint}()
     @check vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, pHandle)
     pHandle[]
 end
@@ -31906,7 +37127,7 @@ end
 Generic definition
 """
 function get_memory_win_32_handle_nv(device, memory, handle_type)
-    pHandle = Ref{Cint}()    # VulkanGen.InitializePointers
+    pHandle = Ref{Cint}()
     @check vkGetMemoryWin32HandleNV(device, memory, handle_type, pHandle)
     pHandle[]
 end
@@ -31947,7 +37168,7 @@ end
 Generic definition
 """
 function get_device_group_surface_present_modes_2_ext(device, surface_info)
-    pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()    # VulkanGen.InitializePointers
+    pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModes2EXT(device, surface_info, pModes)
     pModes[]
 end
@@ -31997,7 +37218,7 @@ end
 Generic definition
 """
 function get_rand_r_output_display_ext(physical_device, dpy, rr_output)
-    pDisplay = Ref{VkDisplayKHR}()    # VulkanGen.InitializePointers
+    pDisplay = Ref{VkDisplayKHR}()
     @check vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, pDisplay)
     DisplayKHR(pDisplay[])
 end
@@ -32027,7 +37248,7 @@ end
 Generic definition
 """
 function get_acceleration_structure_memory_requirements_khr(device, info)
-    pMemoryRequirements = Ref{VkMemoryRequirements2}()    # VulkanGen.InitializePointers
+    pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetAccelerationStructureMemoryRequirementsKHR(device, info, pMemoryRequirements)
     MemoryRequirements2(pMemoryRequirements[])
 end
@@ -32036,7 +37257,7 @@ end
 Generic definition
 """
 function cmd_build_acceleration_structure_khr(command_buffer, infos, offset_infos)
-    _infoCount = pointer_length(infos)    # VulkanGen.ComputeLengthArgument
+    _infoCount = pointer_length(infos)
     vkCmdBuildAccelerationStructureKHR(command_buffer, _infoCount, infos, offset_infos)
 end
 
@@ -32063,7 +37284,7 @@ end
 Generic definition
 """
 function build_acceleration_structure_khr(device, infos, offset_infos)
-    _infoCount = pointer_length(infos)    # VulkanGen.ComputeLengthArgument
+    _infoCount = pointer_length(infos)
     @check vkBuildAccelerationStructureKHR(device, _infoCount, infos, offset_infos)
 end
 
@@ -32098,8 +37319,8 @@ function write_acceleration_structures_properties_khr(
     data,
     stride,
 )
-    _accelerationStructureCount = pointer_length(acceleration_structures)    # VulkanGen.ComputeLengthArgument
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
+    _accelerationStructureCount = pointer_length(acceleration_structures)
+    _dataSize = pointer_length(data)
     @check vkWriteAccelerationStructuresPropertiesKHR(
         device,
         _accelerationStructureCount,
@@ -32173,8 +37394,8 @@ function get_ray_tracing_capture_replay_shader_group_handles_khr(
     first_group,
     group_count,
 )
-    _dataSize = pointer_length(data)    # VulkanGen.ComputeLengthArgument
-    pData = Ref{Cvoid}()    # VulkanGen.InitializePointers
+    _dataSize = pointer_length(data)
+    pData = Ref{Cvoid}()
     @check vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(
         device,
         pipeline,

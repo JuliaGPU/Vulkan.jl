@@ -1,8 +1,9 @@
 
 
 function typed_fdef(fdef::FDefinition)
-    @assert startswith(fdef.body[1].body, "ccall")
-    called_fun, ret_type, types, names = deconstruct_ccall(fdef.body[1].body)
+    first_ex = fdef.body[1].body
+    @assert first_ex.head == :call && first_ex.args[1] == :ccall
+    called_fun, ret_type, types, names = deconstruct_ccall(first_ex)
     FDefinition(called_fun, Signature(called_fun, PositionalArgument.(names, types), KeywordArgument[]), fdef.short, fdef.body, "", ret_type)
 end
 
@@ -74,9 +75,11 @@ end
 
 deconstruct_ccall(fdef::FDefinition) = deconstruct_ccall(fdef.body[1].body)
 function deconstruct_ccall(expr)
-    matches = match(r"ccall\(\(:(.*?),.*?\), (\w+), \((.*?)\), (.*?)\)", expr)
-    called_fun, ret_type, types_unsplit, names_unsplit = matches.captures
-    called_fun, ret_type, split(types_unsplit, ", "), split(names_unsplit, ", ")
+    @capture(expr, ccall((sym_, lib_), ret_type_, arg_types_, arg_names__))
+    # matches = match(r"ccall\(\(:(.*?),.*?\), (\w+), \((.*?)\), (.*?)\)", expr)
+    # called_fun, ret_type, types_unsplit, names_unsplit = matches.captures
+    # called_fun, ret_type, split(types_unsplit, ", "), split(names_unsplit, ", ")
+    lstrip(string(sym), ':'), string(ret_type), string.(arg_types.args), string.(arg_names)
 end
 
 function skip_wrap(fdef; warn=true)
