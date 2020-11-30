@@ -1,4 +1,4 @@
-s1 = Statement("a=2", "a")
+s1 = Statement("a=2")
 
 sdef1 = SDefinition("sdef1", false)
 sdef2 = SDefinition("sdef2", true)

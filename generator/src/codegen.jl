@@ -1,10 +1,13 @@
 struct Statement
     body
-    assigned_id
-    Statement(body::Expr, assigned_id = nothing) = new(body, isnothing(assigned_id) ? nothing : string(assigned_id))
-    Statement(body::Symbol, assigned_id = nothing) = new(body, isnothing(assigned_id) ? nothing : string(assigned_id))
-    Statement(body::AbstractString, assigned_id = nothing) = new(Meta.parse(body), assigned_id)
 end
+
+assigned_id(ex) = isexpr(ex, :(=)) ? string(ex.args[1]) : nothing
+assigned_id(s::Statement) = assigned_id(s.body)
+
+Statement(body::Expr, assigned_id) = Statement(body)
+Statement(body::Symbol, assigned_id) = Statement(body)
+Statement(body::AbstractString, assigned_id = nothing) = Statement(Meta.parse(body))
 
 Base.show(io::IO, st::Statement) = print(io, prettify(st.body))
 

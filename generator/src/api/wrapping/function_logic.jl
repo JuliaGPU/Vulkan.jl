@@ -62,9 +62,9 @@ function wrap_enumeration_command(fdef)
     second_call_args = join_args(call_args)
     body = [
         body...,
-        Statement("$(count_new_name) = Ref{UInt32}(0)", count_new_name),
+        Statement("$(count_new_name) = Ref{UInt32}(0)"),
         Statement("$(checked_function_call(fdef))($first_call_args)"),
-        Statement("$(arr_new_name) = Array{$(enumerated_type)}(undef, $(count_new_name)[])", arr_new_name),
+        Statement("$(arr_new_name) = Array{$(enumerated_type)}(undef, $(count_new_name)[])"),
         Statement("$(checked_function_call(fdef))($second_call_args)"),
     ]
     enumerated_type_new = name_transform(enumerated_type, SDefinition)
@@ -105,7 +105,7 @@ function wrap_generic(fdef)
     if !isempty(triggered_vars_ip)
         var = first(triggered_vars_ip)
         type = inner_type(last(pass_results[var]).pass_args.type)
-        push!(body, Statement(is_vulkan_struct(type) ? "$(name_transform(type, SDefinition))($var[])" : "$var[]", var))
+        push!(body, Statement(is_vulkan_struct(type) ? "$(name_transform(type, SDefinition))($var[])" : "$var[]"))
     end
     FDefinition(new_fname, new_sig, false, body, "Generic definition")
 end

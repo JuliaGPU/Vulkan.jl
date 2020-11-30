@@ -148,7 +148,7 @@ function instantiate_bag(sdef, body)
         end
     end
     bag = Symbol(bagtype(sdef.name))
-    Statement(:(bag = $bag($(bag_args...))), "bag")
+    Statement(:(bag = $bag($(bag_args...))))
 end
 
 """
@@ -196,19 +196,17 @@ Return a Vulkan name if assigned from any statement in the body, else take the J
 For example, if a statement assigns the name pAllocator from the Julian name allocator, as in 'pAllocator = allocator.vks', then return pAllocator; else, return allocator.
 """
 function last_argname(body, id, fallback)
-    id_list = string.(getproperty.(body, :assigned_id))
+    id_list = string.(assigned_id.(body))
     id ∈ id_list ? id : fallback
 end
 
 function last_argname(body, ids::Tuple, fallback)
-    id_list = string.(getproperty.(body, :assigned_id))
+    id_list = string.(assigned_id.(body))
     for id ∈ ids
         id ∈ id_list && return id
     end
     fallback
 end
-
-
 
 abstract type ConstructorDefinition end
 struct GenericConstructor <: ConstructorDefinition end
@@ -308,15 +306,6 @@ end
 is_enabled(::Type{T}, args::PassArgs) where {T <: Pass} = any(T ∈ keys(args.passes))
 is_triggered(::Type{T}, args::PassArgs) where {T <: Pass} = is_enabled(T, args) && args.passes[T]
 
-function check_is_default(name, type, action)
-    if is_ptr(type)
-        predicate = "$name == C_NULL"
-    else
-        predicate = "$name == 0"
-    end
-    predicate * " ? $name : $action"
-end
-
 pass_new_nametype(::Type{SDefinition}) = (name, type, sname) -> (fieldname_transform(name, type), fieldtype_transform(name, type, sname))
 
 function type_annotate_argument(arg)
@@ -376,19 +365,19 @@ function constructor(new_sdef, sdef, ::CreateVkHandle, create_fun, create_info_s
     creates_multiple_handles = is_command_type(create_fun, ALLOCATE)
     body = has_multiple_create_info ? [
         Statement("create_info_count = length($new_create_info_id)"),
-        Statement("$identifier = Array{$(sdef.name), 1}(undef, create_info_count)", identifier),
+        Statement("$identifier = Array{$(sdef.name), 1}(undef, create_info_count)"),
     ] : creates_multiple_handles ? [
-        Statement("$identifier = Array{$(sdef.name), 1}(undef, n)", identifier),
+        Statement("$identifier = Array{$(sdef.name), 1}(undef, n)"),
     ] : [
-        Statement("$identifier = Ref{$(sdef.name)}()", identifier),
+        Statement("$identifier = Ref{$(sdef.name)}()"),
     ]
 
     broadcast_if_multiple_create_info = has_multiple_create_info || creates_multiple_handles ? "." : ""
     deref = has_multiple_create_info || creates_multiple_handles ? identifier : "$identifier[]"
     body = [
         body...,
-        Statement("@check $(create_fun_sig.name)($(join_args(map(fieldname_transform, argnames(create_fun_sig), argtypes(create_fun_sig))))$(add_fun_ptr ? ", fun_ptr_create" : ""))", nothing),
-        Statement("vks = $(is_inner_constructor ? "new" : new_sdef.name)$broadcast_if_multiple_create_info($deref)", "vks"),
+        Statement("@check $(create_fun_sig.name)($(join_args(map(fieldname_transform, argnames(create_fun_sig), argtypes(create_fun_sig))))$(add_fun_ptr ? ", fun_ptr_create" : ""))"),
+        Statement("vks = $(is_inner_constructor ? "new" : new_sdef.name)$broadcast_if_multiple_create_info($deref)"),
     ]
     if is_handle_destructible(sdef.name)
         inf = dfmatch(vulkan_destruction_info, :name, sdef.name)
@@ -399,7 +388,7 @@ function constructor(new_sdef, sdef, ::CreateVkHandle, create_fun, create_info_s
             identifiers, types = argnames(destroy_fun_fdef.signature), argtypes(destroy_fun_fdef.signature)
             add_fun_ptr ? push!(args, PositionalArgument("fun_ptr_destroy")) : nothing
             lambda_fun = "x -> $destroy_fun($(join_args(map(x -> x == fieldname_transform(destroyed_el, sdef.name) ? "x" : x, map(fieldname_transform, identifiers, types))))$(add_fun_ptr ? ", fun_ptr_destroy" : ""))"
-            push!(body, Statement("finalizer$broadcast_if_multiple_create_info($(has_multiple_create_info ? "Ref($lambda_fun)" : lambda_fun), vks)", nothing))
+            push!(body, Statement("finalizer$broadcast_if_multiple_create_info($(has_multiple_create_info ? "Ref($lambda_fun)" : lambda_fun), vks)"))
         end
     end
     new_sig = Signature(new_sdef.name, is_command_type(create_fun, ALLOCATE) ? map(x -> x.name == identifier ? PositionalArgument("n") : x, args) : filter(x -> x.name ≠ identifier, args), kwargs)
@@ -416,9 +405,9 @@ function constructor(new_sdef, sdef, ::CreateVkHandleWithCreateInfo ; create_inf
     create_info_sig = Signature(create_info_sdef)
     name = nc_convert(SnakeCaseLower, sdef.name)
     body = [
-    Statement("$name = Ref{$(sdef.name)}()", name),
-    Statement("$create_info_var = $(create_info_sig.name)($(join_args(argnames(create_info_sig))))", nothing),
-    Statement("@check $(create_fun_sig.name)($(join_args(argnames(create_fun_sig))))", nothing),
+    Statement("$name = Ref{$(sdef.name)}()"),
+    Statement("$create_info_var = $(create_info_sig.name)($(join_args(argnames(create_info_sig))))"),
+    Statement("@check $(create_fun_sig.name)($(join_args(argnames(create_fun_sig))))"),
     ]
     FDefinition(new_sig.name, new_sig, false, body, "")
 end
@@ -492,75 +481,89 @@ end
 
 function pass!(args::PassArgs, ::Type{TranslateVkTypes})
     @unpack new_type, name, last_name, tmp_name = args
-    new_type isa Converted && return Statement("$name = from_vk($(new_type.final_type), $last_name)", name)
+    new_type isa Converted && return Statement("$name = from_vk($(new_type.final_type), $last_name)")
 end
 
 function pass!(args::PassArgs, ::Type{TranslateVkTypesBack})
     @unpack new_type, name, last_name, type, tmp_name = args
-    new_type isa Converted && return Statement("$name = to_vk($type, $last_name)", name)
+    new_type isa Converted && return Statement("$name = to_vk($type, $last_name)")
 end
 
 function pass!(args::PassArgs, ::Type{ComputeLengthArgument})
     @unpack tmp_name, name, sname, type = args
+    tmp_var = Symbol(tmp_name)
     if is_count_variable(name, sname)
         array_arg = first(associated_array_variables(name, sname))
-        array_arg_new_name = fieldname_transform(array_arg, type)
-        return Statement("$tmp_name = pointer_length($array_arg_new_name)", tmp_name)
+        array_arg_new_name = Symbol(fieldname_transform(array_arg, type))
+        return Statement(:($tmp_var = pointer_length($array_arg_new_name)))
     end
     nothing
 end
 
 function pass!(args::PassArgs, ::Type{DefineSelfPointers}; new_sname)
     @unpack name, tmp_name = args
-    startswith(name, "p") && lstrip(name, 'p') == new_sname && return Statement("$tmp_name = Ref{$(sdef.name)}()", tmp_name)
+    startswith(name, "p") && lstrip(name, 'p') == new_sname && return Statement("$tmp_name = Ref{$(sdef.name)}()")
 end
 
 function pass!(args::PassArgs, ::Type{ConvertArrays})
     @unpack new_type, name, sname, type, last_name, new_name, tmp_name = args
+    new_var = Symbol(new_name)
+    tmp_var = Symbol(tmp_name)
     if !(new_type isa Converted) && is_array_type(new_type)
         if is_ptr(type) && inner_type(type) == "Cstring"
-            ptrarr = new_name * "_ptrarray"
-            return Statement("$ptrarr = pointer.($new_name)", ptrarr)
+            ptrarr = Symbol(new_name, "_ptrarray")
+            return Statement(:($ptrarr = pointer.($new_var)))
         elseif is_array_of_vk_objects(name, type, sname)
-            return Statement("$tmp_name = $(check_is_default(new_name, type, "getproperty.($new_name, $(is_handle(inner_type(type)) ? ":handle" : ":vks"))"))", tmp_name)
+            action_not_default = :(getproperty.($new_var, $(QuoteNode(is_handle(inner_type(type)) ? :handle : :vks))))
+            return Statement(:($tmp_var = $(check_is_default(new_var, type, action_not_default))))
         else
             eltype = inner_type(new_type)
             if is_base_type(eltype)
                 eltype_widen_eval = eval(Meta.parse(widen_type(eltype)))
-                isabstracttype(eltype_widen_eval) && return Statement("$new_name = convert(Array{$eltype}, $new_name)", last_name)
+                isabstracttype(eltype_widen_eval) && return Statement("$new_name = convert(Array{$eltype}, $new_name)")
             end
         end
     end
 end
 
+check_is_default(var::AbstractString, type, action) = check_is_default(Symbol(var), type, action)
+check_is_default(var::Symbol, type::AbstractString, action) = :($var == $(default(var, type)) ? $var : $action)
+
 function pass!(args::PassArgs, ::Type{HandlePNextDeps})
     @unpack name, tmp_name, new_name = args
-    if name == "pNext"
-        return Statement("bag_next = $new_name == C_NULL ? EmptyBag : $new_name.bag", "bag_next")
+    var = Symbol(name)
+    new_var = Symbol(new_name)
+    if var == :pNext
+        return Statement(:(bag_next = $new_var == C_NULL ? EmptyBag : $new_var.bag))
     end
 end
 
 function pass!(args::PassArgs, ::Type{GenerateRefs})
     @unpack tmp_name, new_name, new_type, last_name, type, sname = args
+    tmp_var = Symbol(tmp_name)
     if is_ptr(type) && !is_array_type(new_type) && !is_extension_ptr(type)
-        return Statement("$tmp_name = $(check_is_default(last_name, type, "Ref($(inline_getproperty(last_name, inner_type(type))))"))", tmp_name)
+        action_not_default = :(Ref($(inline_getproperty(last_name, inner_type(type)))))
+        return Statement(:($tmp_var = $(check_is_default(last_name, type, action_not_default))))
     end
 end
 
 function pass!(args::PassArgs, ::Type{GeneratePointers})
     @unpack type, name, tmp_name, new_name, new_type, last_name, passes = args
+    var = Symbol(name)
+    last_var = Symbol(last_name)
     if !any(is_triggered.((DefineSelfPointers, InitializePointers), args)) && startswith(name, r"p{1,2}[A-Z]") && !is_extension_ptr(type)
-        Statement("$name = unsafe_pointer($last_name)", name)
+        Statement(:($var = unsafe_pointer($last_var)))
     end
 end
 
 function pass!(args::PassArgs, ::Type{InitializePointers})
     @unpack name, type, new_name, new_type, sname = args
+    var = Symbol(name)
     matches = info_df(sname)[(parent=sname,)]
     inf = info(name, sname)
     if !inf.constant && is_ptr(type) && !is_array_type(new_type) && name == last(matches.name)
-        eltype = inner_type(type)
-        return Statement("$name = Ref{$eltype}()", name)
+        eltype = Symbol(inner_type(type))
+        return Statement(:($var = Ref{$eltype}()))
     end
 end
 
