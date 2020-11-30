@@ -1,7 +1,7 @@
 function fetch_aliases(xroot)
     alias_nodes = findall("//@alias", xroot)
     OrderedDict(
-        alias.parentelement["name"] => alias.parentelement["alias"] for alias ∈ alias_nodes
+        Symbol(alias.parentelement["name"]) => Symbol(alias.parentelement["alias"]) for alias ∈ alias_nodes
     )
 end
 
@@ -48,5 +48,5 @@ end
 
 follow_alias(name) = (index = findfirst(alias_verts .== name); isnothing(index) ? name : follow_alias(aliases_g, index))
 
-@assert follow_alias("VkPhysicalDeviceMemoryProperties2KHR") == "VkPhysicalDeviceMemoryProperties2"
-@assert follow_alias("VkPhysicalDeviceMemoryProperties2") == "VkPhysicalDeviceMemoryProperties2"
+@assert follow_alias(:VkPhysicalDeviceMemoryProperties2KHR) == :VkPhysicalDeviceMemoryProperties2
+@assert follow_alias(:VkPhysicalDeviceMemoryProperties2) == :VkPhysicalDeviceMemoryProperties2

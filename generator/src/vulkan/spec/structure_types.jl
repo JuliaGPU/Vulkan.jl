@@ -4,7 +4,7 @@ function fetch_stypes(xroot)
     for stype ∈ stype_vals 
         type = stype.parentnode["name"]
         stype_value = stype["values"]
-        res[type] = Symbol(stype_value)
+        res[Symbol(type)] = Symbol(stype_value)
     end
     res
 end

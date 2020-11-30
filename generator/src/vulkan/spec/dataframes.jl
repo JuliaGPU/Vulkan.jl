@@ -5,6 +5,8 @@ struct QueueGraphics <: QueueType end
 struct QueueTransfer <: QueueType end
 struct QueueSparseBinding <: QueueType end
 
+const ExprLike = Union{Symbol, Expr}
+
 @enum COMMAND_TYPE CREATE=1 DESTROY ALLOCATE FREE COMMAND ENUMERATE
 
 @enum STRUCT_TYPE CREATE_INFO=1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
@@ -45,7 +47,7 @@ end
 
 function fetch_parameters()
     nodes = findall("//command[not(@name)]", xroot)
-    df = DataFrame([String, String, String, Bool, Bool, PARAM_REQUIREMENT, Union{Nothing, String}, Array{String, 1}], [:parent, :name, :type, :constant, :externsync, :param_requirement, :len, :arglen])
+    df = DataFrame([Symbol, Symbol, Union{Expr, Symbol}, Bool, Bool, PARAM_REQUIREMENT, Union{Nothing, ExprLike}, Array{ExprLike, 1}], [:parent, :name, :type, :constant, :externsync, :param_requirement, :len, :arglen])
     for node ∈ nodes
         for x ∈ findall("./param", node)
             push!(df, (parent_name(x), extract_identifier(x), extract_type(x), is_constant(x), externsync(x), PARAM_REQUIREMENT(x), len(x), arglen(x)))
@@ -56,54 +58,57 @@ end
 
 function fetch_struct_fields()
     nodes = findall("//type[@category='union' or @category='struct']", xroot)
-    df = DataFrame([String, String, String, Bool, Bool, PARAM_REQUIREMENT, Union{Nothing, String}, Array{String, 1}], [:parent, :name, :type, :constant, :externsync, :param_requirement, :len, :arglen])
+    df = DataFrame([Symbol, Symbol, Union{Expr, Symbol}, Bool, Bool, PARAM_REQUIREMENT, Union{Nothing, ExprLike}, Array{ExprLike, 1}], [:parent, :name, :type, :constant, :externsync, :param_requirement, :len, :arglen])
     for node ∈ nodes
         for x ∈ findall("./member", node)
             id = extract_identifier(x)
-            push!(df, (parent_name(x), id == "module" ? "_module" : id, extract_type(x), is_constant(x), externsync(x), PARAM_REQUIREMENT(x), len(x), arglen(x, neighbor_type="member")))
+            push!(df, (parent_name(x), id == :module ? :_module : id, extract_type(x), is_constant(x), externsync(x), PARAM_REQUIREMENT(x), len(x), arglen(x, neighbor_type="member")))
         end
     end
     df
 end
 
 function len(node)
-    haskey(node, "altlen") && return node["altlen"]
-    val = getattr(node, "len")
+    if haskey(node, "altlen")
+        return Meta.parse(node["altlen"])
+    end
+    val = getattr(node, "len", symbol=false)
     isnothing(val) && return val
     val_arr = filter(x -> x ≠ "null-terminated", split(val, ","))
     @assert length(val_arr) <= 1
-    isempty(val_arr) ? nothing : first(val_arr)
+    isempty(val_arr) ? nothing : Symbol(first(val_arr))
 end
 
 function arglen(node; neighbor_type="param")
     neighbors = findall("../$neighbor_type", node)
-    name = findfirst("./name", node).content
-    arglens = String[]
+    name = Symbol(findfirst("./name", node).content)
+    arglens = Symbol[]
     for node ∈ neighbors
-        len(node) == name ? push!(arglens, findfirst("./name", node).content) : nothing
+        len(node) == name ? push!(arglens, Symbol(findfirst("./name", node).content)) : nothing
     end
     arglens
 end
 
 function fetch_types()
     nodes = findall("//type[@category and @category != 'include' and @category != 'define' and (@name or @category = 'handle' or @category='bitmask')]", xroot)
-    df = DataFrame([String, String, Union{String, Nothing}], [:name, :category, :alias])
+    df = DataFrame([Symbol, Symbol, Union{Symbol, Nothing}], [:name, :category, :alias])
     for node ∈ nodes
-        name = haskey(node, "name") ? node["name"] : findfirst("./name", node).content
-        push!(df, (name, node["category"], getattr(node, "alias")))
+        name = Symbol(haskey(node, "name") ? node["name"] : findfirst("./name", node).content)
+        push!(df, (name, Symbol(node["category"]), getattr(node, "alias")))
     end
     df
 end
 
 function fetch_structs()
     nodes = findall("//type[(@category='union' or @category='struct')]", xroot)
-    df = DataFrame([String, STRUCT_TYPE, Bool, Union{Nothing, Array{String, 1}}], [:name, :type, :returnedonly, :extends])
+    df = DataFrame([Symbol, STRUCT_TYPE, Bool, Union{Nothing, Array{Symbol, 1}}], [:name, :type, :returnedonly, :extends])
     for node ∈ nodes
-        name = getattr(node, "name")
+        name = Symbol(getattr(node, "name"))
         @assert !isnothing(name) "Found the following structure without name:\n    $node"
         returnedonly = haskey(node, "returnedonly")
-        type = returnedonly ? PROPERTY : occursin("CreateInfo", name) ? CREATE_INFO : occursin("AllocateInfo", name) ? ALLOCATE_INFO : occursin("Info", name) ? GENERIC_INFO : DATA
-        push!(df, (name, type, returnedonly, (haskey(node, "structextends") ? split(node["structextends"], ",") : nothing)))
+        name_str = string(name)
+        type = returnedonly ? PROPERTY : occursin("CreateInfo", name_str) ? CREATE_INFO : occursin("AllocateInfo", name_str) ? ALLOCATE_INFO : occursin("Info", name_str) ? GENERIC_INFO : DATA
+        push!(df, (name, type, returnedonly, (haskey(node, "structextends") ? Symbol.(split(node["structextends"], ",")) : nothing)))
     end
     df
 end
@@ -115,10 +120,10 @@ end
 
 function fetch_handles()
     nodes = findall("//type[@category='handle' and not(@alias)]", xroot)
-    df = DataFrame([String, Union{Nothing, String}, Bool], [:name, :parent, :dispatchable])
+    df = DataFrame([Symbol, Union{Nothing, Symbol}, Bool], [:name, :parent, :dispatchable])
     for node ∈ nodes
         is_dispatchable = findfirst("./type", node).content == "VK_DEFINE_HANDLE"
-        name = findfirst("./name", node).content
+        name = Symbol(findfirst("./name", node).content)
         push!(df, (name, getattr(node, "parent"), is_dispatchable))
     end
     df
@@ -126,10 +131,10 @@ end
 
 function fetch_functions()
     nodes = findall("//command[not(@name) or (@name and @alias)]", xroot)
-    df = DataFrame([String, Union{Nothing, COMMAND_TYPE}, Union{Nothing, String}, Union{Nothing, Array{RenderPassRequirement, 1}}, Union{Nothing, Array{QueueType, 1}}, Union{Nothing, String}], [:name, :type, :return_type, :render_pass_compatibility, :queue_compatibilty, :alias])
+    df = DataFrame([Symbol, Union{Nothing, COMMAND_TYPE}, Union{Nothing, ExprLike}, Union{Nothing, Array{RenderPassRequirement, 1}}, Union{Nothing, Array{QueueType, 1}}, Union{Nothing, Symbol}], [:name, :type, :return_type, :render_pass_compatibility, :queue_compatibilty, :alias])
     for node ∈ nodes
         alias = getattr(node, "alias")
-        name = !isnothing(alias) ? node["name"] : command_name(node)
+        name = Symbol(!isnothing(alias) ? node["name"] : command_name(node))
         types = extract_type.(findall("./param", node), include_pointer=false)
         names = extract_identifier.(findall("./param", node))
         is_enum = any(is_struct_returnedonly(t) for t ∈ types) || any(is_count_to_be_filled.(names, name))
@@ -138,9 +143,9 @@ function fetch_functions()
         if !isnothing(rp_reqs)
             rp_reqs = render_pass_compatibility(node)
         end
-        ctype = findfirst(startswith.(name, ["vkCreate", "vkDestroy", "vkAllocate", "vkFree", "vkCmd"]))
+        ctype = findfirst(startswith.(string(name), ["vkCreate", "vkDestroy", "vkAllocate", "vkFree", "vkCmd"]))
         ctype = is_enum ? ENUMERATE : isnothing(ctype) ? nothing : COMMAND_TYPE(ctype)
-        return_type = isnothing(alias) ? findfirst("./proto/type", node).content : nothing
+        return_type = isnothing(alias) ? Meta.parse(findfirst("./proto/type", node).content) : nothing
         push!(df, (name, ctype, return_type, rp_reqs, queues, alias))
     end
     df
@@ -148,7 +153,7 @@ end
 
 function fetch_creation_info()
     nodes = findall("//command/proto[contains(./child::name, 'vkCreate') or contains(./child::name, 'vkAllocate')]", xroot)
-    df = DataFrame([String, String, String, Array{String, 1}, Array{String, 1}], [:name, :create_function, :identifier, :create_info_structs, :create_info_identifiers])
+    df = DataFrame([Symbol, Symbol, Symbol, Array{Symbol, 1}, Array{Symbol, 1}], [:name, :create_function, :identifier, :create_info_structs, :create_info_identifiers])
     vulkan_create_info_structs = (vulkan_structs |> @filter(_.type ∈ [CREATE_INFO, ALLOCATE_INFO]) |> DataFrame).name
     for node ∈ nodes
         create_el_node = findlast("../param", node)
@@ -158,27 +163,27 @@ function fetch_creation_info()
         create_info_structs = getproperty.(findfirst.("./type", create_info_nodes), :content)
         create_info_identifiers = getproperty.(findfirst.("./name", create_info_nodes), :content)
         identifier = findfirst("./name", create_el_node).content
-        push!(df, (name, create_fun, identifier, create_info_structs, create_info_identifiers))
+        push!(df, (Symbol.((name, create_fun, identifier))..., Symbol.(create_info_structs), Symbol.(create_info_identifiers)))
     end
     df
 end
 
 function fetch_destruction_info()
     nodes = findall("//command/proto[contains(./child::name, 'vkDestroy') or contains(./child::name, 'vkFree')]", xroot)
-    df = DataFrame([String, String, String], [:name, :destroy_function, :identifier])
+    df = DataFrame([Symbol, Symbol, Symbol], [:name, :destroy_function, :identifier])
     for node ∈ nodes
         destroy_fun = findfirst("./name", node).content
         destroy_el_node = findlast("../param[@externsync]", node)
         name = findfirst("./type", destroy_el_node).content
         identifier = findfirst("./name", destroy_el_node).content
-        push!(df, (name, destroy_fun, identifier))
+        push!(df, Symbol.((name, destroy_fun, identifier)))
     end
     df
 end
 
-is_command(name) = startswith(name, "vk")
+is_command(name) = startswith(string(name), "vk")
 
-is_struct(name) = startswith(name, "Vk")
+is_struct(name) = startswith(string(name), "Vk")
 
 info_df(sname) = is_command(sname) ? grouped_vulkan_params : grouped_vulkan_fields
 
@@ -264,10 +269,8 @@ end
 
 is_optional_parameter(name, sname) = name == "pNext" || info(name, sname).param_requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
 
-default(var::Symbol, type) = default(string(var), type)
-
 function default(name, type)
-    (is_handle(type) || startswith(name, "p") || startswith(type, "Ptr{")) && return :C_NULL
+    (is_handle(type) || startswith(string(name), "p") || (type isa Expr && type.head == :curly)) && return :C_NULL
     0
 end
 

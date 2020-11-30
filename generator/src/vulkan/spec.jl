@@ -11,5 +11,5 @@ xroot = xdoc.root
 include("spec/utils.jl")
 include("spec/aliases.jl")
 include("spec/dataframes.jl")
-include("spec/graph.jl")
+# include("spec/graph.jl")
 include("spec/structure_types.jl")

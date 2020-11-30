@@ -15,12 +15,12 @@ end
 
 function extract_type(param; include_pointer=true)
     type = split(replace(param.content, "const " => ""))[1]
-    type_nostar = rstrip(type, ['*', ' '])
-    endswith(type, "*") && include_pointer ? "Ptr{$(type_nostar)}" : type_nostar
+    type_nostar = Symbol(rstrip(type, ['*', ' ']))
+    endswith(type, "*") && include_pointer ? :(Ptr{$type_nostar}) : type_nostar
 end
 
-extract_identifier(param) = findfirst("./name", param).content
-getattr(node, attr; default = nothing) = haskey(node, attr) ? node[attr] : default
+extract_identifier(param) = Symbol(findfirst("./name", param).content)
+getattr(node, attr; default = nothing, symbol=true) = haskey(node, attr) ? (symbol ? Symbol(node[attr]) : node[attr]) : default
 
 function parent_name(node)
     parel = node.parentelement
@@ -29,12 +29,12 @@ end
 
 function command_name(node)
     isnothing(findfirst("proto", node)) && return command_name(node.parentelement)
-    findfirst("proto/name", node).content
+    Symbol(findfirst("proto/name", node).content)
 end
 
 function struct_name(node)
-    (!haskey(node, "category") || node["category"] ∉ ["struct", "union"]) && return struct_name(node.parentelement)
-    node["name"]
+    (!haskey(node, "category") || node["category"] ∉ ["struct", "union"]) && return Symbol(struct_name(node.parentelement))
+    Symbol(node["name"])
 end
 
 is_constant(node) = any(split(node.content) .== "const")
