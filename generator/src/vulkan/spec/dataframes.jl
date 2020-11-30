@@ -203,6 +203,8 @@ const vulkan_destruction_info = fetch_destruction_info()
 
 is_handle(type) = follow_alias(type) ∈ (vulkan_handles.name..., "HANDLE")
 
+is_returnedonly(type) = dfmatch(vulkan_structs, :name, type).returnedonly
+
 is_handle_with_create_info(type) = type ∈ vulkan_creation_info.name && !any(isempty.(getproperty.(dfmatches(vulkan_creation_info, :name, type), :create_info_structs)))
 
 is_handle_destructible(type) = type ∈ vulkan_destruction_info.name
