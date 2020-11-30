@@ -28049,7 +28049,6 @@ const PFN_vkGetDeferredOperationResultKHR = Ptr{Cvoid}
 const PFN_vkGetDeferredOperationMaxConcurrencyKHR = Ptr{Cvoid}
 const PFN_vkDestroyDeferredOperationKHR = Ptr{Cvoid}
 const PFN_vkCreateDeferredOperationKHR = Ptr{Cvoid}
-const DeferredOperationKHR_T = Cvoid
 const PFN_vkCreateStreamDescriptorSurfaceGGP = Ptr{Cvoid}
 const PFN_vkGetRandROutputDisplayEXT = Ptr{Cvoid}
 const PFN_vkAcquireXlibDisplayEXT = Ptr{Cvoid}
@@ -28087,14 +28086,12 @@ const PFN_vkGetPrivateDataEXT = Ptr{Cvoid}
 const PFN_vkSetPrivateDataEXT = Ptr{Cvoid}
 const PFN_vkDestroyPrivateDataSlotEXT = Ptr{Cvoid}
 const PFN_vkCreatePrivateDataSlotEXT = Ptr{Cvoid}
-const PrivateDataSlotEXT_T = Cvoid
 const PFN_vkDestroyIndirectCommandsLayoutNV = Ptr{Cvoid}
 const PFN_vkCreateIndirectCommandsLayoutNV = Ptr{Cvoid}
 const PFN_vkCmdBindPipelineShaderGroupNV = Ptr{Cvoid}
 const PFN_vkCmdExecuteGeneratedCommandsNV = Ptr{Cvoid}
 const PFN_vkCmdPreprocessGeneratedCommandsNV = Ptr{Cvoid}
 const PFN_vkGetGeneratedCommandsMemoryRequirementsNV = Ptr{Cvoid}
-const IndirectCommandsLayoutNV_T = Cvoid
 const PFN_vkCmdSetStencilOpEXT = Ptr{Cvoid}
 const PFN_vkCmdSetStencilTestEnableEXT = Ptr{Cvoid}
 const PFN_vkCmdSetDepthBoundsTestEnableEXT = Ptr{Cvoid}
@@ -28124,7 +28121,6 @@ const PFN_vkCmdSetPerformanceStreamMarkerINTEL = Ptr{Cvoid}
 const PFN_vkCmdSetPerformanceMarkerINTEL = Ptr{Cvoid}
 const PFN_vkUninitializePerformanceApiINTEL = Ptr{Cvoid}
 const PFN_vkInitializePerformanceApiINTEL = Ptr{Cvoid}
-const PerformanceConfigurationINTEL_T = Cvoid
 const PFN_vkGetQueueCheckpointDataNV = Ptr{Cvoid}
 const PFN_vkCmdSetCheckpointNV = Ptr{Cvoid}
 const PFN_vkCmdSetExclusiveScissorNV = Ptr{Cvoid}
@@ -28151,7 +28147,6 @@ const PFN_vkGetAccelerationStructureMemoryRequirementsNV = Ptr{Cvoid}
 const PFN_vkDestroyAccelerationStructureNV = Ptr{Cvoid}
 const PFN_vkDestroyAccelerationStructureKHR = Ptr{Cvoid}
 const PFN_vkCreateAccelerationStructureNV = Ptr{Cvoid}
-const AccelerationStructureKHR_T = Cvoid
 const PFN_vkCmdSetCoarseSampleOrderNV = Ptr{Cvoid}
 const PFN_vkCmdSetViewportShadingRatePaletteNV = Ptr{Cvoid}
 const PFN_vkCmdBindShadingRateImageNV = Ptr{Cvoid}
@@ -28159,7 +28154,6 @@ const PFN_vkGetValidationCacheDataEXT = Ptr{Cvoid}
 const PFN_vkMergeValidationCachesEXT = Ptr{Cvoid}
 const PFN_vkDestroyValidationCacheEXT = Ptr{Cvoid}
 const PFN_vkCreateValidationCacheEXT = Ptr{Cvoid}
-const ValidationCacheEXT_T = Cvoid
 const PFN_vkGetImageDrmFormatModifierPropertiesEXT = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = Ptr{Cvoid}
 const PFN_vkCmdSetSampleLocationsEXT = Ptr{Cvoid}
@@ -28175,7 +28169,6 @@ const PFN_vkQueueBeginDebugUtilsLabelEXT = Ptr{Cvoid}
 const PFN_vkSetDebugUtilsObjectTagEXT = Ptr{Cvoid}
 const PFN_vkSetDebugUtilsObjectNameEXT = Ptr{Cvoid}
 const PFN_vkDebugUtilsMessengerCallbackEXT = Ptr{Cvoid}
-const DebugUtilsMessengerEXT_T = Cvoid
 const PFN_vkSetHdrMetadataEXT = Ptr{Cvoid}
 const PFN_vkCmdSetDiscardRectangleEXT = Ptr{Cvoid}
 const PFN_vkGetPastPresentationTimingGOOGLE = Ptr{Cvoid}
@@ -28210,7 +28203,6 @@ const PFN_vkDebugReportMessageEXT = Ptr{Cvoid}
 const PFN_vkDestroyDebugReportCallbackEXT = Ptr{Cvoid}
 const PFN_vkCreateDebugReportCallbackEXT = Ptr{Cvoid}
 const PFN_vkDebugReportCallbackEXT = Ptr{Cvoid}
-const DebugReportCallbackEXT_T = Cvoid
 const PFN_vkGetPipelineExecutableInternalRepresentationsKHR = Ptr{Cvoid}
 const PFN_vkGetPipelineExecutableStatisticsKHR = Ptr{Cvoid}
 const PFN_vkGetPipelineExecutablePropertiesKHR = Ptr{Cvoid}
@@ -28279,8 +28271,6 @@ const PFN_vkGetDisplayModePropertiesKHR = Ptr{Cvoid}
 const PFN_vkGetDisplayPlaneSupportedDisplaysKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceDisplayPropertiesKHR = Ptr{Cvoid}
-const DisplayModeKHR_T = Cvoid
-const DisplayKHR_T = Cvoid
 const PFN_vkAcquireNextImage2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDevicePresentRectanglesKHR = Ptr{Cvoid}
 const PFN_vkGetDeviceGroupSurfacePresentModesKHR = Ptr{Cvoid}
@@ -28290,13 +28280,11 @@ const PFN_vkAcquireNextImageKHR = Ptr{Cvoid}
 const PFN_vkGetSwapchainImagesKHR = Ptr{Cvoid}
 const PFN_vkDestroySwapchainKHR = Ptr{Cvoid}
 const PFN_vkCreateSwapchainKHR = Ptr{Cvoid}
-const SwapchainKHR_T = Cvoid
 const PFN_vkGetPhysicalDeviceSurfacePresentModesKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSurfaceFormatsKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSurfaceSupportKHR = Ptr{Cvoid}
 const PFN_vkDestroySurfaceKHR = Ptr{Cvoid}
-const SurfaceKHR_T = Cvoid
 const PFN_vkGetDeviceMemoryOpaqueCaptureAddress = Ptr{Cvoid}
 const PFN_vkGetBufferOpaqueCaptureAddress = Ptr{Cvoid}
 const PFN_vkGetBufferDeviceAddress = Ptr{Cvoid}
@@ -28338,8 +28326,6 @@ const PFN_vkGetDeviceGroupPeerMemoryFeatures = Ptr{Cvoid}
 const PFN_vkBindImageMemory2 = Ptr{Cvoid}
 const PFN_vkBindBufferMemory2 = Ptr{Cvoid}
 const PFN_vkEnumerateInstanceVersion = Ptr{Cvoid}
-const DescriptorUpdateTemplate_T = Cvoid
-const SamplerYcbcrConversion_T = Cvoid
 const PFN_vkCmdExecuteCommands = Ptr{Cvoid}
 const PFN_vkCmdEndRenderPass = Ptr{Cvoid}
 const PFN_vkCmdNextSubpass = Ptr{Cvoid}
@@ -28483,31 +28469,6 @@ const PFN_vkInternalFreeNotification = Ptr{Cvoid}
 const PFN_vkInternalAllocationNotification = Ptr{Cvoid}
 const PFN_vkFreeFunction = Ptr{Cvoid}
 const PFN_vkAllocationFunction = Ptr{Cvoid}
-const CommandPool_T = Cvoid
-const Framebuffer_T = Cvoid
-const DescriptorPool_T = Cvoid
-const DescriptorSet_T = Cvoid
-const Sampler_T = Cvoid
-const DescriptorSetLayout_T = Cvoid
-const RenderPass_T = Cvoid
-const Pipeline_T = Cvoid
-const PipelineLayout_T = Cvoid
-const PipelineCache_T = Cvoid
-const ShaderModule_T = Cvoid
-const ImageView_T = Cvoid
-const BufferView_T = Cvoid
-const QueryPool_T = Cvoid
-const Event_T = Cvoid
-const DeviceMemory_T = Cvoid
-const Fence_T = Cvoid
-const CommandBuffer_T = Cvoid
-const Semaphore_T = Cvoid
-const Queue_T = Cvoid
-const Device_T = Cvoid
-const PhysicalDevice_T = Cvoid
-const Instance_T = Cvoid
-const Image_T = Cvoid
-const Buffer_T = Cvoid
 const SampleMask = UInt32
 const Flags = UInt32
 const StreamDescriptorSurfaceCreateFlagsGGP = Flags
@@ -38704,31 +38665,6 @@ export VULKAN_H_,
     DeviceSize,
     Flags,
     SampleMask,
-    Buffer_T,
-    Image_T,
-    Instance_T,
-    PhysicalDevice_T,
-    Device_T,
-    Queue_T,
-    Semaphore_T,
-    CommandBuffer_T,
-    Fence_T,
-    DeviceMemory_T,
-    Event_T,
-    QueryPool_T,
-    BufferView_T,
-    ImageView_T,
-    ShaderModule_T,
-    PipelineCache_T,
-    PipelineLayout_T,
-    Pipeline_T,
-    RenderPass_T,
-    DescriptorSetLayout_T,
-    Sampler_T,
-    DescriptorSet_T,
-    DescriptorPool_T,
-    Framebuffer_T,
-    CommandPool_T,
     AccessFlags,
     ImageAspectFlags,
     FormatFeatureFlags,
@@ -38930,8 +38866,6 @@ export VULKAN_H_,
     PFN_vkCmdNextSubpass,
     PFN_vkCmdEndRenderPass,
     PFN_vkCmdExecuteCommands,
-    SamplerYcbcrConversion_T,
-    DescriptorUpdateTemplate_T,
     SubgroupFeatureFlags,
     PeerMemoryFeatureFlags,
     MemoryAllocateFlags,
@@ -38989,7 +38923,6 @@ export VULKAN_H_,
     PFN_vkGetBufferDeviceAddress,
     PFN_vkGetBufferOpaqueCaptureAddress,
     PFN_vkGetDeviceMemoryOpaqueCaptureAddress,
-    SurfaceKHR_T,
     CompositeAlphaFlagsKHR,
     SurfaceTransformFlagsKHR,
     PFN_vkDestroySurfaceKHR,
@@ -38997,7 +38930,6 @@ export VULKAN_H_,
     PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
     PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
     PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
-    SwapchainKHR_T,
     SwapchainCreateFlagsKHR,
     DeviceGroupPresentModeFlagsKHR,
     PFN_vkCreateSwapchainKHR,
@@ -39009,8 +38941,6 @@ export VULKAN_H_,
     PFN_vkGetDeviceGroupSurfacePresentModesKHR,
     PFN_vkGetPhysicalDevicePresentRectanglesKHR,
     PFN_vkAcquireNextImage2KHR,
-    DisplayKHR_T,
-    DisplayModeKHR_T,
     DisplayModeCreateFlagsKHR,
     DisplayPlaneAlphaFlagsKHR,
     DisplaySurfaceCreateFlagsKHR,
@@ -39084,7 +39014,6 @@ export VULKAN_H_,
     PFN_vkGetPipelineExecutablePropertiesKHR,
     PFN_vkGetPipelineExecutableStatisticsKHR,
     PFN_vkGetPipelineExecutableInternalRepresentationsKHR,
-    DebugReportCallbackEXT_T,
     DebugReportFlagsEXT,
     PFN_vkDebugReportCallbackEXT,
     PFN_vkCreateDebugReportCallbackEXT,
@@ -39129,7 +39058,6 @@ export VULKAN_H_,
     PipelineRasterizationConservativeStateCreateFlagsEXT,
     PipelineRasterizationDepthClipStateCreateFlagsEXT,
     PFN_vkSetHdrMetadataEXT,
-    DebugUtilsMessengerEXT_T,
     DebugUtilsMessengerCallbackDataFlagsEXT,
     DebugUtilsMessageTypeFlagsEXT,
     DebugUtilsMessageSeverityFlagsEXT,
@@ -39151,7 +39079,6 @@ export VULKAN_H_,
     PipelineCoverageToColorStateCreateFlagsNV,
     PipelineCoverageModulationStateCreateFlagsNV,
     PFN_vkGetImageDrmFormatModifierPropertiesEXT,
-    ValidationCacheEXT_T,
     ValidationCacheCreateFlagsEXT,
     PFN_vkCreateValidationCacheEXT,
     PFN_vkDestroyValidationCacheEXT,
@@ -39160,7 +39087,6 @@ export VULKAN_H_,
     PFN_vkCmdBindShadingRateImageNV,
     PFN_vkCmdSetViewportShadingRatePaletteNV,
     PFN_vkCmdSetCoarseSampleOrderNV,
-    AccelerationStructureKHR_T,
     GeometryFlagsKHR,
     GeometryInstanceFlagsKHR,
     BuildAccelerationStructureFlagsKHR,
@@ -39192,7 +39118,6 @@ export VULKAN_H_,
     PFN_vkCmdSetExclusiveScissorNV,
     PFN_vkCmdSetCheckpointNV,
     PFN_vkGetQueueCheckpointDataNV,
-    PerformanceConfigurationINTEL_T,
     PFN_vkInitializePerformanceApiINTEL,
     PFN_vkUninitializePerformanceApiINTEL,
     PFN_vkCmdSetPerformanceMarkerINTEL,
@@ -39226,7 +39151,6 @@ export VULKAN_H_,
     PFN_vkCmdSetDepthBoundsTestEnableEXT,
     PFN_vkCmdSetStencilTestEnableEXT,
     PFN_vkCmdSetStencilOpEXT,
-    IndirectCommandsLayoutNV_T,
     IndirectStateFlagsNV,
     IndirectCommandsLayoutUsageFlagsNV,
     PFN_vkGetGeneratedCommandsMemoryRequirementsNV,
@@ -39235,7 +39159,6 @@ export VULKAN_H_,
     PFN_vkCmdBindPipelineShaderGroupNV,
     PFN_vkCreateIndirectCommandsLayoutNV,
     PFN_vkDestroyIndirectCommandsLayoutNV,
-    PrivateDataSlotEXT_T,
     PrivateDataSlotCreateFlagsEXT,
     PFN_vkCreatePrivateDataSlotEXT,
     PFN_vkDestroyPrivateDataSlotEXT,
@@ -39283,7 +39206,6 @@ export VULKAN_H_,
     PFN_vkGetRandROutputDisplayEXT,
     StreamDescriptorSurfaceCreateFlagsGGP,
     PFN_vkCreateStreamDescriptorSurfaceGGP,
-    DeferredOperationKHR_T,
     PFN_vkCreateDeferredOperationKHR,
     PFN_vkDestroyDeferredOperationKHR,
     PFN_vkGetDeferredOperationMaxConcurrencyKHR,

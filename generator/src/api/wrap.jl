@@ -73,7 +73,7 @@ function wrap!(w_api, edef::EDefinition)
 end
 
 function wrap!(w_api, cdef::CDefinition)
-    if !is_handle(name(cdef))
+    if !is_handle(name(cdef)) && !endswith(name(cdef), "_T")
         new_cdef = CDefinition(remove_vk_prefix(cdef.ex))
         w_api.consts[name(new_cdef)] = new_cdef
     end
