@@ -50,7 +50,7 @@ function write_exports(io::IO, w_api::WrappedAPI)
     all_decl_symbols = Symbol.(unique(name.(all_decls)))
 
     ignored_symbols = Symbol.(vcat("Base.convert", "Base", extension_types))
-    
+
     exports = :(export $(all_decl_symbols...), $(enum_identifiers...))
 
     filter!(x -> x ∉ ignored_symbols, exports.args)
