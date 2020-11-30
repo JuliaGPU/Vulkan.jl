@@ -48,8 +48,9 @@ struct FDefinition <: Declaration
     return_type::AbstractString
 end
 
-FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}) = FDefinition(name, signature, short, body, "", "")
-FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}, docstring::AbstractString) = FDefinition(name, signature, short, body, docstring, "")
+FDefinition(name::AbstractString, signature::Signature, short::Bool, body::Statement, docstring::AbstractString, return_type::AbstractString) = FDefinition(name, signature, short, [body], docstring)
+FDefinition(name::AbstractString, signature::Signature, short::Bool, body) = FDefinition(name, signature, short, body, "", "")
+FDefinition(name::AbstractString, signature::Signature, short::Bool, body, docstring::AbstractString) = FDefinition(name, signature, short, body, docstring, "")
 FDefinition(ex::Expr; prettify=true) = FDefinition(string(prettify ? MacroTools.prettify(ex) : ex))
 
 function FDefinition(str::AbstractString)
