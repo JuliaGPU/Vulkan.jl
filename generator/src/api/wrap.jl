@@ -73,8 +73,10 @@ function wrap!(w_api, edef::EDefinition)
 end
 
 function wrap!(w_api, cdef::CDefinition)
-    new_cdef = CDefinition(remove_vk_prefix(cdef.ex))
-    w_api.consts[name(new_cdef)] = new_cdef
+    if !is_handle(name(cdef))
+        new_cdef = CDefinition(remove_vk_prefix(cdef.ex))
+        w_api.consts[name(new_cdef)] = new_cdef
+    end
 end
 
 include("wrapping/struct_logic.jl")

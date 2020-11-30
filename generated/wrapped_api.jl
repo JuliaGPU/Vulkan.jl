@@ -8119,6 +8119,7 @@ function api.VkCopyAccelerationStructureInfoKHR(next, src, dst, mode)
     )
 end
 
+
 struct BagCopyAccelerationStructureInfoKHR <: Bag
     bag_next::Any
     next_ref::Any
@@ -10598,6 +10599,162 @@ end
 struct BagBufferMemoryBarrier <: Bag
     bag_next::Any
     next_ref::Any
+end
+
+mutable struct DeferredOperationKHR <: Handle
+    handle::VkDeferredOperationKHR
+end
+
+mutable struct PrivateDataSlotEXT <: Handle
+    handle::VkPrivateDataSlotEXT
+end
+
+mutable struct IndirectCommandsLayoutNV <: Handle
+    handle::VkIndirectCommandsLayoutNV
+end
+
+mutable struct PerformanceConfigurationINTEL <: Handle
+    handle::VkPerformanceConfigurationINTEL
+end
+
+mutable struct AccelerationStructureKHR <: Handle
+    handle::VkAccelerationStructureKHR
+end
+
+mutable struct ValidationCacheEXT <: Handle
+    handle::VkValidationCacheEXT
+end
+
+mutable struct DebugUtilsMessengerEXT <: Handle
+    handle::VkDebugUtilsMessengerEXT
+end
+
+mutable struct DebugReportCallbackEXT <: Handle
+    handle::VkDebugReportCallbackEXT
+end
+
+mutable struct DisplayModeKHR <: Handle
+    handle::VkDisplayModeKHR
+end
+
+mutable struct DisplayKHR <: Handle
+    handle::VkDisplayKHR
+end
+
+mutable struct SwapchainKHR <: Handle
+    handle::VkSwapchainKHR
+end
+
+mutable struct SurfaceKHR <: Handle
+    handle::VkSurfaceKHR
+end
+
+mutable struct DescriptorUpdateTemplate <: Handle
+    handle::VkDescriptorUpdateTemplate
+end
+
+mutable struct SamplerYcbcrConversion <: Handle
+    handle::VkSamplerYcbcrConversion
+end
+
+mutable struct CommandPool <: Handle
+    handle::VkCommandPool
+end
+
+mutable struct Framebuffer <: Handle
+    handle::VkFramebuffer
+end
+
+mutable struct DescriptorPool <: Handle
+    handle::VkDescriptorPool
+end
+
+mutable struct DescriptorSet <: Handle
+    handle::VkDescriptorSet
+end
+
+mutable struct Sampler <: Handle
+    handle::VkSampler
+end
+
+mutable struct DescriptorSetLayout <: Handle
+    handle::VkDescriptorSetLayout
+end
+
+mutable struct RenderPass <: Handle
+    handle::VkRenderPass
+end
+
+mutable struct Pipeline <: Handle
+    handle::VkPipeline
+end
+
+mutable struct PipelineLayout <: Handle
+    handle::VkPipelineLayout
+end
+
+mutable struct PipelineCache <: Handle
+    handle::VkPipelineCache
+end
+
+mutable struct ShaderModule <: Handle
+    handle::VkShaderModule
+end
+
+mutable struct ImageView <: Handle
+    handle::VkImageView
+end
+
+mutable struct BufferView <: Handle
+    handle::VkBufferView
+end
+
+mutable struct QueryPool <: Handle
+    handle::VkQueryPool
+end
+
+mutable struct Event <: Handle
+    handle::VkEvent
+end
+
+mutable struct DeviceMemory <: Handle
+    handle::VkDeviceMemory
+end
+
+mutable struct Fence <: Handle
+    handle::VkFence
+end
+
+mutable struct CommandBuffer <: Handle
+    handle::VkCommandBuffer
+end
+
+mutable struct Semaphore <: Handle
+    handle::VkSemaphore
+end
+
+mutable struct Queue <: Handle
+    handle::VkQueue
+end
+
+mutable struct Device <: Handle
+    handle::VkDevice
+end
+
+mutable struct PhysicalDevice <: Handle
+    handle::VkPhysicalDevice
+end
+
+mutable struct Instance <: Handle
+    handle::VkInstance
+end
+
+mutable struct Image <: Handle
+    handle::VkImage
+end
+
+mutable struct Buffer <: Handle
+    handle::VkBuffer
 end
 
 struct CopyAccelerationStructureInfoKHR <: VulkanStruct
@@ -18871,6 +19028,16 @@ struct DisplaySurfaceCreateInfoKHR <: VulkanStruct
     end
 end
 
+struct DisplayPlanePropertiesKHR <: ReturnedOnly
+    current_display::DisplayKHR
+    current_stack_index::UInt32
+end
+
+struct DisplayPlaneProperties2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    display_plane_properties::DisplayPlanePropertiesKHR
+end
+
 struct DisplayModeCreateInfoKHR <: VulkanStruct
     vks::VkDisplayModeCreateInfoKHR
     bag::BagDisplayModeCreateInfoKHR
@@ -18905,6 +19072,16 @@ end
 struct DisplayModeParametersKHR <: VulkanStruct
     vks::VkDisplayModeParametersKHR
     DisplayModeParametersKHR(vks::VkDisplayModeParametersKHR) = new(vks)
+end
+
+struct DisplayModePropertiesKHR <: ReturnedOnly
+    display_mode::DisplayModeKHR
+    parameters::DisplayModeParametersKHR
+end
+
+struct DisplayModeProperties2KHR <: ReturnedOnly
+    next::Ptr{Cvoid}
+    display_mode_properties::DisplayModePropertiesKHR
 end
 
 struct DeviceGroupSwapchainCreateInfoKHR <: VulkanStruct
@@ -27872,10 +28049,6 @@ const PFN_vkGetDeferredOperationResultKHR = Ptr{Cvoid}
 const PFN_vkGetDeferredOperationMaxConcurrencyKHR = Ptr{Cvoid}
 const PFN_vkDestroyDeferredOperationKHR = Ptr{Cvoid}
 const PFN_vkCreateDeferredOperationKHR = Ptr{Cvoid}
-mutable struct DeferredOperationKHR <: Handle
-    handle::VkDeferredOperationKHR
-end
-
 const DeferredOperationKHR_T = Cvoid
 const PFN_vkCreateStreamDescriptorSurfaceGGP = Ptr{Cvoid}
 const PFN_vkGetRandROutputDisplayEXT = Ptr{Cvoid}
@@ -27914,10 +28087,6 @@ const PFN_vkGetPrivateDataEXT = Ptr{Cvoid}
 const PFN_vkSetPrivateDataEXT = Ptr{Cvoid}
 const PFN_vkDestroyPrivateDataSlotEXT = Ptr{Cvoid}
 const PFN_vkCreatePrivateDataSlotEXT = Ptr{Cvoid}
-mutable struct PrivateDataSlotEXT <: Handle
-    handle::VkPrivateDataSlotEXT
-end
-
 const PrivateDataSlotEXT_T = Cvoid
 const PFN_vkDestroyIndirectCommandsLayoutNV = Ptr{Cvoid}
 const PFN_vkCreateIndirectCommandsLayoutNV = Ptr{Cvoid}
@@ -27925,10 +28094,6 @@ const PFN_vkCmdBindPipelineShaderGroupNV = Ptr{Cvoid}
 const PFN_vkCmdExecuteGeneratedCommandsNV = Ptr{Cvoid}
 const PFN_vkCmdPreprocessGeneratedCommandsNV = Ptr{Cvoid}
 const PFN_vkGetGeneratedCommandsMemoryRequirementsNV = Ptr{Cvoid}
-mutable struct IndirectCommandsLayoutNV <: Handle
-    handle::VkIndirectCommandsLayoutNV
-end
-
 const IndirectCommandsLayoutNV_T = Cvoid
 const PFN_vkCmdSetStencilOpEXT = Ptr{Cvoid}
 const PFN_vkCmdSetStencilTestEnableEXT = Ptr{Cvoid}
@@ -27959,10 +28124,6 @@ const PFN_vkCmdSetPerformanceStreamMarkerINTEL = Ptr{Cvoid}
 const PFN_vkCmdSetPerformanceMarkerINTEL = Ptr{Cvoid}
 const PFN_vkUninitializePerformanceApiINTEL = Ptr{Cvoid}
 const PFN_vkInitializePerformanceApiINTEL = Ptr{Cvoid}
-mutable struct PerformanceConfigurationINTEL <: Handle
-    handle::VkPerformanceConfigurationINTEL
-end
-
 const PerformanceConfigurationINTEL_T = Cvoid
 const PFN_vkGetQueueCheckpointDataNV = Ptr{Cvoid}
 const PFN_vkCmdSetCheckpointNV = Ptr{Cvoid}
@@ -27990,10 +28151,6 @@ const PFN_vkGetAccelerationStructureMemoryRequirementsNV = Ptr{Cvoid}
 const PFN_vkDestroyAccelerationStructureNV = Ptr{Cvoid}
 const PFN_vkDestroyAccelerationStructureKHR = Ptr{Cvoid}
 const PFN_vkCreateAccelerationStructureNV = Ptr{Cvoid}
-mutable struct AccelerationStructureKHR <: Handle
-    handle::VkAccelerationStructureKHR
-end
-
 const AccelerationStructureKHR_T = Cvoid
 const PFN_vkCmdSetCoarseSampleOrderNV = Ptr{Cvoid}
 const PFN_vkCmdSetViewportShadingRatePaletteNV = Ptr{Cvoid}
@@ -28002,10 +28159,6 @@ const PFN_vkGetValidationCacheDataEXT = Ptr{Cvoid}
 const PFN_vkMergeValidationCachesEXT = Ptr{Cvoid}
 const PFN_vkDestroyValidationCacheEXT = Ptr{Cvoid}
 const PFN_vkCreateValidationCacheEXT = Ptr{Cvoid}
-mutable struct ValidationCacheEXT <: Handle
-    handle::VkValidationCacheEXT
-end
-
 const ValidationCacheEXT_T = Cvoid
 const PFN_vkGetImageDrmFormatModifierPropertiesEXT = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = Ptr{Cvoid}
@@ -28022,10 +28175,6 @@ const PFN_vkQueueBeginDebugUtilsLabelEXT = Ptr{Cvoid}
 const PFN_vkSetDebugUtilsObjectTagEXT = Ptr{Cvoid}
 const PFN_vkSetDebugUtilsObjectNameEXT = Ptr{Cvoid}
 const PFN_vkDebugUtilsMessengerCallbackEXT = Ptr{Cvoid}
-mutable struct DebugUtilsMessengerEXT <: Handle
-    handle::VkDebugUtilsMessengerEXT
-end
-
 const DebugUtilsMessengerEXT_T = Cvoid
 const PFN_vkSetHdrMetadataEXT = Ptr{Cvoid}
 const PFN_vkCmdSetDiscardRectangleEXT = Ptr{Cvoid}
@@ -28061,10 +28210,6 @@ const PFN_vkDebugReportMessageEXT = Ptr{Cvoid}
 const PFN_vkDestroyDebugReportCallbackEXT = Ptr{Cvoid}
 const PFN_vkCreateDebugReportCallbackEXT = Ptr{Cvoid}
 const PFN_vkDebugReportCallbackEXT = Ptr{Cvoid}
-mutable struct DebugReportCallbackEXT <: Handle
-    handle::VkDebugReportCallbackEXT
-end
-
 const DebugReportCallbackEXT_T = Cvoid
 const PFN_vkGetPipelineExecutableInternalRepresentationsKHR = Ptr{Cvoid}
 const PFN_vkGetPipelineExecutableStatisticsKHR = Ptr{Cvoid}
@@ -28134,35 +28279,7 @@ const PFN_vkGetDisplayModePropertiesKHR = Ptr{Cvoid}
 const PFN_vkGetDisplayPlaneSupportedDisplaysKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceDisplayPropertiesKHR = Ptr{Cvoid}
-mutable struct DisplayModeKHR <: Handle
-    handle::VkDisplayModeKHR
-end
-
-struct DisplayModePropertiesKHR <: ReturnedOnly
-    display_mode::DisplayModeKHR
-    parameters::DisplayModeParametersKHR
-end
-
-struct DisplayModeProperties2KHR <: ReturnedOnly
-    next::Ptr{Cvoid}
-    display_mode_properties::DisplayModePropertiesKHR
-end
-
 const DisplayModeKHR_T = Cvoid
-mutable struct DisplayKHR <: Handle
-    handle::VkDisplayKHR
-end
-
-struct DisplayPlanePropertiesKHR <: ReturnedOnly
-    current_display::DisplayKHR
-    current_stack_index::UInt32
-end
-
-struct DisplayPlaneProperties2KHR <: ReturnedOnly
-    next::Ptr{Cvoid}
-    display_plane_properties::DisplayPlanePropertiesKHR
-end
-
 const DisplayKHR_T = Cvoid
 const PFN_vkAcquireNextImage2KHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDevicePresentRectanglesKHR = Ptr{Cvoid}
@@ -28173,20 +28290,12 @@ const PFN_vkAcquireNextImageKHR = Ptr{Cvoid}
 const PFN_vkGetSwapchainImagesKHR = Ptr{Cvoid}
 const PFN_vkDestroySwapchainKHR = Ptr{Cvoid}
 const PFN_vkCreateSwapchainKHR = Ptr{Cvoid}
-mutable struct SwapchainKHR <: Handle
-    handle::VkSwapchainKHR
-end
-
 const SwapchainKHR_T = Cvoid
 const PFN_vkGetPhysicalDeviceSurfacePresentModesKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSurfaceFormatsKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR = Ptr{Cvoid}
 const PFN_vkGetPhysicalDeviceSurfaceSupportKHR = Ptr{Cvoid}
 const PFN_vkDestroySurfaceKHR = Ptr{Cvoid}
-mutable struct SurfaceKHR <: Handle
-    handle::VkSurfaceKHR
-end
-
 const SurfaceKHR_T = Cvoid
 const PFN_vkGetDeviceMemoryOpaqueCaptureAddress = Ptr{Cvoid}
 const PFN_vkGetBufferOpaqueCaptureAddress = Ptr{Cvoid}
@@ -28229,15 +28338,7 @@ const PFN_vkGetDeviceGroupPeerMemoryFeatures = Ptr{Cvoid}
 const PFN_vkBindImageMemory2 = Ptr{Cvoid}
 const PFN_vkBindBufferMemory2 = Ptr{Cvoid}
 const PFN_vkEnumerateInstanceVersion = Ptr{Cvoid}
-mutable struct DescriptorUpdateTemplate <: Handle
-    handle::VkDescriptorUpdateTemplate
-end
-
 const DescriptorUpdateTemplate_T = Cvoid
-mutable struct SamplerYcbcrConversion <: Handle
-    handle::VkSamplerYcbcrConversion
-end
-
 const SamplerYcbcrConversion_T = Cvoid
 const PFN_vkCmdExecuteCommands = Ptr{Cvoid}
 const PFN_vkCmdEndRenderPass = Ptr{Cvoid}
@@ -28382,130 +28483,30 @@ const PFN_vkInternalFreeNotification = Ptr{Cvoid}
 const PFN_vkInternalAllocationNotification = Ptr{Cvoid}
 const PFN_vkFreeFunction = Ptr{Cvoid}
 const PFN_vkAllocationFunction = Ptr{Cvoid}
-mutable struct CommandPool <: Handle
-    handle::VkCommandPool
-end
-
 const CommandPool_T = Cvoid
-mutable struct Framebuffer <: Handle
-    handle::VkFramebuffer
-end
-
 const Framebuffer_T = Cvoid
-mutable struct DescriptorPool <: Handle
-    handle::VkDescriptorPool
-end
-
 const DescriptorPool_T = Cvoid
-mutable struct DescriptorSet <: Handle
-    handle::VkDescriptorSet
-end
-
 const DescriptorSet_T = Cvoid
-mutable struct Sampler <: Handle
-    handle::VkSampler
-end
-
 const Sampler_T = Cvoid
-mutable struct DescriptorSetLayout <: Handle
-    handle::VkDescriptorSetLayout
-end
-
 const DescriptorSetLayout_T = Cvoid
-mutable struct RenderPass <: Handle
-    handle::VkRenderPass
-end
-
 const RenderPass_T = Cvoid
-mutable struct Pipeline <: Handle
-    handle::VkPipeline
-end
-
 const Pipeline_T = Cvoid
-mutable struct PipelineLayout <: Handle
-    handle::VkPipelineLayout
-end
-
 const PipelineLayout_T = Cvoid
-mutable struct PipelineCache <: Handle
-    handle::VkPipelineCache
-end
-
 const PipelineCache_T = Cvoid
-mutable struct ShaderModule <: Handle
-    handle::VkShaderModule
-end
-
 const ShaderModule_T = Cvoid
-mutable struct ImageView <: Handle
-    handle::VkImageView
-end
-
 const ImageView_T = Cvoid
-mutable struct BufferView <: Handle
-    handle::VkBufferView
-end
-
 const BufferView_T = Cvoid
-mutable struct QueryPool <: Handle
-    handle::VkQueryPool
-end
-
 const QueryPool_T = Cvoid
-mutable struct Event <: Handle
-    handle::VkEvent
-end
-
 const Event_T = Cvoid
-mutable struct DeviceMemory <: Handle
-    handle::VkDeviceMemory
-end
-
 const DeviceMemory_T = Cvoid
-mutable struct Fence <: Handle
-    handle::VkFence
-end
-
 const Fence_T = Cvoid
-mutable struct CommandBuffer <: Handle
-    handle::VkCommandBuffer
-end
-
 const CommandBuffer_T = Cvoid
-mutable struct Semaphore <: Handle
-    handle::VkSemaphore
-end
-
 const Semaphore_T = Cvoid
-mutable struct Queue <: Handle
-    handle::VkQueue
-end
-
 const Queue_T = Cvoid
-mutable struct Device <: Handle
-    handle::VkDevice
-end
-
 const Device_T = Cvoid
-mutable struct PhysicalDevice <: Handle
-    handle::VkPhysicalDevice
-end
-
 const PhysicalDevice_T = Cvoid
-mutable struct Instance <: Handle
-    handle::VkInstance
-end
-
 const Instance_T = Cvoid
-mutable struct Image <: Handle
-    handle::VkImage
-end
-
 const Image_T = Cvoid
-mutable struct Buffer <: Handle
-    handle::VkBuffer
-end
-
 const Buffer_T = Cvoid
 const SampleMask = UInt32
 const Flags = UInt32
@@ -29882,10 +29883,6 @@ const HEADER_VERSION = 151
 const VERSION_1_0 = 1
 const VULKAN_CORE_H_ = 1
 const VULKAN_H_ = 1
-
-
-
-
 
 
 """
@@ -38708,55 +38705,30 @@ export VULKAN_H_,
     Flags,
     SampleMask,
     Buffer_T,
-    Buffer,
     Image_T,
-    Image,
     Instance_T,
-    Instance,
     PhysicalDevice_T,
-    PhysicalDevice,
     Device_T,
-    Device,
     Queue_T,
-    Queue,
     Semaphore_T,
-    Semaphore,
     CommandBuffer_T,
-    CommandBuffer,
     Fence_T,
-    Fence,
     DeviceMemory_T,
-    DeviceMemory,
     Event_T,
-    Event,
     QueryPool_T,
-    QueryPool,
     BufferView_T,
-    BufferView,
     ImageView_T,
-    ImageView,
     ShaderModule_T,
-    ShaderModule,
     PipelineCache_T,
-    PipelineCache,
     PipelineLayout_T,
-    PipelineLayout,
     Pipeline_T,
-    Pipeline,
     RenderPass_T,
-    RenderPass,
     DescriptorSetLayout_T,
-    DescriptorSetLayout,
     Sampler_T,
-    Sampler,
     DescriptorSet_T,
-    DescriptorSet,
     DescriptorPool_T,
-    DescriptorPool,
     Framebuffer_T,
-    Framebuffer,
     CommandPool_T,
-    CommandPool,
     AccessFlags,
     ImageAspectFlags,
     FormatFeatureFlags,
@@ -38959,9 +38931,7 @@ export VULKAN_H_,
     PFN_vkCmdEndRenderPass,
     PFN_vkCmdExecuteCommands,
     SamplerYcbcrConversion_T,
-    SamplerYcbcrConversion,
     DescriptorUpdateTemplate_T,
-    DescriptorUpdateTemplate,
     SubgroupFeatureFlags,
     PeerMemoryFeatureFlags,
     MemoryAllocateFlags,
@@ -39020,7 +38990,6 @@ export VULKAN_H_,
     PFN_vkGetBufferOpaqueCaptureAddress,
     PFN_vkGetDeviceMemoryOpaqueCaptureAddress,
     SurfaceKHR_T,
-    SurfaceKHR,
     CompositeAlphaFlagsKHR,
     SurfaceTransformFlagsKHR,
     PFN_vkDestroySurfaceKHR,
@@ -39029,7 +38998,6 @@ export VULKAN_H_,
     PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
     PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
     SwapchainKHR_T,
-    SwapchainKHR,
     SwapchainCreateFlagsKHR,
     DeviceGroupPresentModeFlagsKHR,
     PFN_vkCreateSwapchainKHR,
@@ -39042,9 +39010,7 @@ export VULKAN_H_,
     PFN_vkGetPhysicalDevicePresentRectanglesKHR,
     PFN_vkAcquireNextImage2KHR,
     DisplayKHR_T,
-    DisplayKHR,
     DisplayModeKHR_T,
-    DisplayModeKHR,
     DisplayModeCreateFlagsKHR,
     DisplayPlaneAlphaFlagsKHR,
     DisplaySurfaceCreateFlagsKHR,
@@ -39119,7 +39085,6 @@ export VULKAN_H_,
     PFN_vkGetPipelineExecutableStatisticsKHR,
     PFN_vkGetPipelineExecutableInternalRepresentationsKHR,
     DebugReportCallbackEXT_T,
-    DebugReportCallbackEXT,
     DebugReportFlagsEXT,
     PFN_vkDebugReportCallbackEXT,
     PFN_vkCreateDebugReportCallbackEXT,
@@ -39165,7 +39130,6 @@ export VULKAN_H_,
     PipelineRasterizationDepthClipStateCreateFlagsEXT,
     PFN_vkSetHdrMetadataEXT,
     DebugUtilsMessengerEXT_T,
-    DebugUtilsMessengerEXT,
     DebugUtilsMessengerCallbackDataFlagsEXT,
     DebugUtilsMessageTypeFlagsEXT,
     DebugUtilsMessageSeverityFlagsEXT,
@@ -39188,7 +39152,6 @@ export VULKAN_H_,
     PipelineCoverageModulationStateCreateFlagsNV,
     PFN_vkGetImageDrmFormatModifierPropertiesEXT,
     ValidationCacheEXT_T,
-    ValidationCacheEXT,
     ValidationCacheCreateFlagsEXT,
     PFN_vkCreateValidationCacheEXT,
     PFN_vkDestroyValidationCacheEXT,
@@ -39198,7 +39161,6 @@ export VULKAN_H_,
     PFN_vkCmdSetViewportShadingRatePaletteNV,
     PFN_vkCmdSetCoarseSampleOrderNV,
     AccelerationStructureKHR_T,
-    AccelerationStructureKHR,
     GeometryFlagsKHR,
     GeometryInstanceFlagsKHR,
     BuildAccelerationStructureFlagsKHR,
@@ -39231,7 +39193,6 @@ export VULKAN_H_,
     PFN_vkCmdSetCheckpointNV,
     PFN_vkGetQueueCheckpointDataNV,
     PerformanceConfigurationINTEL_T,
-    PerformanceConfigurationINTEL,
     PFN_vkInitializePerformanceApiINTEL,
     PFN_vkUninitializePerformanceApiINTEL,
     PFN_vkCmdSetPerformanceMarkerINTEL,
@@ -39266,7 +39227,6 @@ export VULKAN_H_,
     PFN_vkCmdSetStencilTestEnableEXT,
     PFN_vkCmdSetStencilOpEXT,
     IndirectCommandsLayoutNV_T,
-    IndirectCommandsLayoutNV,
     IndirectStateFlagsNV,
     IndirectCommandsLayoutUsageFlagsNV,
     PFN_vkGetGeneratedCommandsMemoryRequirementsNV,
@@ -39276,7 +39236,6 @@ export VULKAN_H_,
     PFN_vkCreateIndirectCommandsLayoutNV,
     PFN_vkDestroyIndirectCommandsLayoutNV,
     PrivateDataSlotEXT_T,
-    PrivateDataSlotEXT,
     PrivateDataSlotCreateFlagsEXT,
     PFN_vkCreatePrivateDataSlotEXT,
     PFN_vkDestroyPrivateDataSlotEXT,
@@ -39325,7 +39284,6 @@ export VULKAN_H_,
     StreamDescriptorSurfaceCreateFlagsGGP,
     PFN_vkCreateStreamDescriptorSurfaceGGP,
     DeferredOperationKHR_T,
-    DeferredOperationKHR,
     PFN_vkCreateDeferredOperationKHR,
     PFN_vkDestroyDeferredOperationKHR,
     PFN_vkGetDeferredOperationMaxConcurrencyKHR,
@@ -40068,6 +40026,45 @@ export VULKAN_H_,
     CopyAccelerationStructureToMemoryInfoKHR,
     CopyMemoryToAccelerationStructureInfoKHR,
     CopyAccelerationStructureInfoKHR,
+    Buffer,
+    Image,
+    Instance,
+    PhysicalDevice,
+    Device,
+    Queue,
+    Semaphore,
+    CommandBuffer,
+    Fence,
+    DeviceMemory,
+    Event,
+    QueryPool,
+    BufferView,
+    ImageView,
+    ShaderModule,
+    PipelineCache,
+    PipelineLayout,
+    Pipeline,
+    RenderPass,
+    DescriptorSetLayout,
+    Sampler,
+    DescriptorSet,
+    DescriptorPool,
+    Framebuffer,
+    CommandPool,
+    SamplerYcbcrConversion,
+    DescriptorUpdateTemplate,
+    SurfaceKHR,
+    SwapchainKHR,
+    DisplayKHR,
+    DisplayModeKHR,
+    DebugReportCallbackEXT,
+    DebugUtilsMessengerEXT,
+    ValidationCacheEXT,
+    AccelerationStructureKHR,
+    PerformanceConfigurationINTEL,
+    IndirectCommandsLayoutNV,
+    PrivateDataSlotEXT,
+    DeferredOperationKHR,
     BagBufferMemoryBarrier,
     BagImageMemoryBarrier,
     BagMemoryBarrier,

@@ -1,38 +1,37 @@
-default_spacing(::SDefinition) = "\n"^2
-default_spacing(decl::FDefinition) = decl.short && length(generate(decl)) < 150 ? "\n" : "\n"^2
-default_spacing(::CDefinition) = "\n"
-default_spacing(::EDefinition) = "\n"
+spacing(::SDefinition) = "\n"^2
+spacing(decl::FDefinition) = decl.short && length(generate(decl)) < 150 ? "\n" : "\n"^2
+spacing(::CDefinition) = "\n"
+spacing(::EDefinition) = "\n"
 
-unsolved_dependencies(sdef, decls) = collect(values(decls)[findall(keys(decl) .== setdiff(type_dependencies(sdef), keys(decls)))])
-are_dependencies_solved(def, decls) = isempty(unsolved_dependencies(def, decls))
+decl_block(decl::Declaration) = generate(decl) * spacing(decl)
 
-function write_api!(io::IO, def::Declaration; spacing)
-    write(io, generate(def) * spacing(def))
+function print_block(io::IO, decls)
+    print.(Ref(io), decl_block.(decls))
+    println(io)
 end
 
 """
 Write a wrapped API to `destfile`.
 Spacing options can be controlled by providing the corresponding argument with a function that takes a Declaration type as argument.
 """
-function Base.write(w_api::WrappedAPI, destfile; spacing=default_spacing)
-    decls = OrderedDict((vcat(w_api.consts, w_api.enums, w_api.structs, w_api.bags)...)...)
-    decls_order = resolve_dependencies(decls)
-    check_dependencies(decls, decls_order)
+function Base.write(w_api::WrappedAPI, destfile)
+    decls = vcat(collect.(values.([w_api.consts, w_api.enums, w_api.structs, w_api.bags]))...)
+    decls_order = resolve_dependencies(name.(decls), decls)
+    ordered_decls = decls[decls_order]
+    check_dependencies(ordered_decls)
+
+    funcs = values(w_api.funcs)
+    extended_vk_constructors = values(w_api.extended_vk_constructors)
+
     cp("$(@__DIR__)/wrapping/prewrap.jl", destfile; force=true)
+
     open(destfile, "a+") do io
         println(io)
 
-        for fdef ∈ values(w_api.extended_vk_constructors)
-            write_api!(io, fdef; spacing)
-        end
-
-        for decl ∈ getindex.(Ref(decls), decls_order)
-            write_api!(io, decl; spacing)
-        end
-        write(io, "\n\n" * join(w_api.misc, "\n") * "\n\n")
-
-        write(io, "\n\n")
-        write_api!.(Ref(io), values(w_api.funcs); spacing)
+        print_block(io, extended_vk_constructors)
+        print_block(io, ordered_decls)
+        print_block(io, w_api.misc)
+        print_block(io, funcs)
 
         write_exports(io, w_api)
     end
@@ -42,7 +41,7 @@ function Base.write(w_api::WrappedAPI, destfile; spacing=default_spacing)
 end
 
 function write_exports(io::IO, w_api::WrappedAPI)
-    write(io, "\n\n")
+    println(io)
 
     enum_assignments = vcat(fields.(values(w_api.enums))...)
     enums_values = map(x -> x.args[1], enum_assignments)
@@ -56,5 +55,5 @@ function write_exports(io::IO, w_api::WrappedAPI)
 
     filter!(x -> x ∉ ignored_symbols, exports.args)
 
-    write(io, string(exports))
+    println(io, string(exports))
 end

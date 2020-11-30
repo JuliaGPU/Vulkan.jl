@@ -10,33 +10,19 @@ function dependencies(decl)
     deps
 end
 
-function write_dependencies(io, decl_list_values, dep_list)
-    for decl ∈ decl_list_values
-        write(io, "$(lpad(decl.name, 100)) ⟶ $(join(dep_list[decl.name], ", "))\n")
-    end 
-end
-
-function resolve_dependencies(decl_dict; write_to_file=false)
-    decl_list_keys = keys(decl_dict)
-    decl_list_values = values(decl_dict)
-    verts = unique(collect(Base.Iterators.flatten(vcat(decl_list_keys, dependencies.(decl_list_values)))))
-    g = SimpleDiGraph(length(verts))
-    dep_list = DefaultOrderedDict(() -> String[])
-    for (j, decl_name) ∈ enumerate(verts)
-        !haskey(decl_dict, decl_name) && continue
-        decl = decl_dict[decl_name]
+function resolve_dependencies(decl_names, decls)
+    g = SimpleDiGraph(length(decl_names))
+    
+    for (j, (decl_name, decl)) ∈ enumerate(zip(decl_names, decls))
         for dep ∈ dependencies(decl)
-            i = findfirst(verts .== dep)
+            i = findfirst(decl_names .== dep)
             add_edge!(g, i, j)
-            push!(dep_list[decl_name], dep)
         end
     end
-    write_to_file && open("resolution_graph.txt", "w") do io
-        write_dependencies(io, decl_list_values, dep_list)
-    end
+
     if is_cyclic(g) || !is_directed(g)
         cycles = simplecycles_hadwick_james(g)
-        problematic_decls = getindex.(Ref(decl_dict), unique(Iterators.flatten(getindex.(Ref(verts), cycles))))
+        problematic_decls = unique(vcat(decls[cycles]...))
         error("""
         Dependency graph is not a directed acyclic graph (is $(is_directed(g) ? "directed" : "undirected") and $(is_cyclic(g) ? "cyclic" : "acyclic"))
 
@@ -46,16 +32,17 @@ function resolve_dependencies(decl_dict; write_to_file=false)
         $(join(generate.(problematic_decls), "\n"^2))""" : "")
         """)
     end
-    sorted_decl_names = getindex.(Ref(verts), topological_sort_by_dfs(g))
-    sorted_decl_names
+
+    topological_sort_by_dfs(g)
 end
 
-function check_dependencies(decls, decls_order)
+function check_dependencies(decls)
     encountered_deps = []
-    for decl_name ∈ decls_order
-        decl = decls[decl_name]
+    for decl ∈ decls
         deps = dependencies(decl)
-        @assert issubset(deps, encountered_deps) "Unresolved dependencies $deps for declaration $(decls[decl_name])\nKnown dependencies are $encountered_deps"
-        push!(encountered_deps, decl_name)
+        if deps ⊈ encountered_deps
+            error("Unsolved dependencies $deps for declaration $decl")
+        end
+        push!(encountered_deps, name(decl))
     end
 end
