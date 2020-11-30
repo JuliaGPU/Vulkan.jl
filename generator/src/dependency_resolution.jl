@@ -1,12 +1,13 @@
 raw_dependencies(decl) = []
-raw_dependencies(decl::CDefinition) = isalias(decl.name) ? decl.value : is_literal(decl.value) || is_expr(decl.value) ? String[] : type_dependencies(decl.value)
+raw_dependencies(decl::CDefinition) = isalias(name(decl)) ? value(decl) : is_literal(value(decl)) || is_expr(value(decl)) ? String[] : type_dependencies(value(decl))
 raw_dependencies(decl::SDefinition) = type_dependencies(decl)
 raw_dependencies(decl::FDefinition) = type_dependencies(decl)
 raw_dependencies(decl::EDefinition) = @capture(decl.ex, @m_ E_::T_ rest__) ? type_dependencies(string(T)) : String[]
 
 function dependencies(decl)
     deps = raw_dependencies(decl)
-    deps |> Filter(!isnothing) |> Filter(!is_base_type) |> Filter(!isalias) |> Filter(!is_vulkan_type) |> collect
+    filter!.([!isnothing, !is_base_type, !isalias, !is_vulkan_type], Ref(deps))
+    deps
 end
 
 function write_dependencies(io, decl_list_values, dep_list)

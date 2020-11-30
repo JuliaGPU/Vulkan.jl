@@ -18,8 +18,8 @@ Base.show(io::IO, pf::API) = print(io, "API with $(length(pf.structs)) structs, 
 
 function convert_constptr_to_struct!(api)
     for cdef ∈ values(api.consts)
-        if is_opaque(api.eval(cdef.value)) && !startswith(cdef.name, "PFN") && !isalias(cdef.name) # ignore function pointers
-            sdef = parse_ptr(cdef.name)
+        if is_opaque(api.eval(value(cdef))) && !startswith(name(cdef), "PFN") && !isalias(name(cdef)) # ignore function pointers
+            sdef = parse_ptr(name(cdef))
             api.structs[sdef.name] = sdef
         end
     end

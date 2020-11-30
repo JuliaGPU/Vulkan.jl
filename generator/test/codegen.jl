@@ -9,11 +9,8 @@ fdef1 = FDefinition("replace", signature, false, Statement[])
 fdef2 = FDefinition("replace", signature, false, [Statement("a=5")])
 fdef3 = FDefinition("replace", signature, false, Statement.(["i=1", "i+=1", "nothing"]))
 
-cdef1 = CDefinition("c1", 0)
-cdef2 = CDefinition("c2", "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
-
-# edef1 = EDefinition(name="e1", fields=["a", "b", "c", "d"])
-# edef2 = EDefinition(name="e1", fields=["a", "b", "c", "d"], with_begin_block=true, enum_macro="@enum")
+cdef1 = CDefinition(:(const c1 = 0))
+cdef2 = CDefinition(:(const c2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
 edef1 = EDefinition(:(@enum e1 a b c d))
 edef2 = EDefinition(:(@enum e1 begin; a; b; c; d; end))

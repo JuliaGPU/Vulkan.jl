@@ -40,7 +40,11 @@ function Base.write(w_api::WrappedAPI, destfile; spacing=default_spacing)
     open(destfile, "a+") do io
         write(io, "\n\n")
         write_api!.(Ref(io), collect(values(w_api.funcs)); spacing)
-        write(io, "\n\n" * exports(unique(vcat((map(x -> name(x), filter(x -> name(x) ∉ ["Base.convert", "Base", extension_types...], vcat(map(collect ∘ values, [decls, w_api.funcs])...)))), collect(Iterators.flatten(map.(Ref(x -> strip.(first.(split.(x, "=")))), map(x -> begin @capture(x, @m_ E_ begin; B__; end); str = string.(B); str isa Array ? str : [str]; end, values(w_api.enums)))))))))
+        enum_assignments = vcat(fields.(values(w_api.enums))...)
+        enums = map(enum_assignments) do assignment
+            string(assignment.args[1])
+        end
+        write(io, "\n\n" * exports(unique(vcat((map(x -> name(x), filter(x -> name(x) ∉ ["Base.convert", "Base", extension_types...], vcat(map(collect ∘ values, [decls, w_api.funcs])...)))), enums))))
     end
 
     format(destfile)

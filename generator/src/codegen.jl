@@ -14,11 +14,6 @@ abstract type Declaration end
 
 name(decl::Declaration) = decl.name
 
-function name(decl::EDefinition)
-    id = decl.ex.args[3]
-    string(id isa Expr ? id.args[1] : id)
-end
-
 mutable struct SDefinition <: Declaration
     name::AbstractString
     is_mutable::Bool
@@ -80,24 +75,31 @@ function FDefinition(str::AbstractString)
 end
 
 struct CDefinition <: Declaration
-    name::AbstractString
-    value
+    ex::Expr
+    CDefinition(ex::Expr) = new(ex)
 end
 
-function CDefinition(str::AbstractString)
-    split_str = split(str, " ")
-    id = split_str[2]
-    value_multiline = splitjoin(str, [1], delim="=")
-    value = replace(join(splitstrip(value_multiline; delim="\n"), "\n"), "\n" => " ") # remove any whitespace for each line
-    CDefinition(id, value)
-end
+CDefinition(str::AbstractString) = CDefinition(prettify(Meta.parse(str)))
+
+name(cdef::CDefinition) = string(cdef.ex.args[1].args[1])
+value(cdef::CDefinition) = string(cdef.ex.args[1].args[2])
 
 @with_kw_noshow struct EDefinition <: Declaration
     ex::Expr
     EDefinition(ex::Expr) = new(ex)
 end
 
-EDefinition(str::AbstractString) = EDefinition(Meta.parse(str))
+EDefinition(str::AbstractString) = EDefinition(prettify(Meta.parse(str)))
+
+function name(decl::EDefinition)
+    id = decl.ex.args[3]
+    string(id isa Expr ? id.args[1] : id)
+end
+
+function fields(edef::EDefinition)
+    @assert @capture(edef.ex, (@m_ E_ begin B__ end) | (@m_ E_ B__))
+    B
+end
 
 DataStructures.OrderedDict(defs::AbstractArray{T}) where {T <: Declaration} = OrderedDict{AbstractString,T}(map(x -> name(x) => x, defs))
 
@@ -123,7 +125,7 @@ function generate(decl::Declaration)
     end
 end
 
-Base.show(io::IO, cdef::CDefinition) = print(io, "const $(cdef.name) = $(cdef.value)")
+Base.show(io::IO, cdef::CDefinition) = print(io, prettify(cdef.ex))
 
 Base.show(io::IO, edef::EDefinition) = print(io, prettify(edef.ex))
 

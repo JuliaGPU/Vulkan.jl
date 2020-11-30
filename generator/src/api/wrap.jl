@@ -64,9 +64,7 @@ function wrap!(w_api, fdef::FDefinition)
 end
 
 function wrap!(w_api, edef::EDefinition)
-    new_edef = EDefinition(postwalk(edef.ex) do ex
-        ex isa Symbol ? Symbol(remove_vk_prefix(string(ex))) : ex
-    end)
+    new_edef = EDefinition(remove_vk_prefix(edef.ex))
     old = name(edef)
     new = name(new_edef)
     w_api.enums[new] = new_edef
@@ -75,8 +73,8 @@ function wrap!(w_api, edef::EDefinition)
 end
 
 function wrap!(w_api, cdef::CDefinition)
-    new_cdef = CDefinition(remove_vk_prefix(cdef.name), is_literal(cdef.value) ? cdef.value : remove_vk_prefix(cdef.value))
-    w_api.consts[new_cdef.name] = new_cdef
+    new_cdef = CDefinition(remove_vk_prefix(cdef.ex))
+    w_api.consts[name(new_cdef)] = new_cdef
 end
 
 wrapping_include(x...) = include(joinpath(@__DIR__, "wrapping", x...))
