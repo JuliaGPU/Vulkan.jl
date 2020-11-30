@@ -1,6 +1,6 @@
 module VulkanGen
 
-using Transducers
+using Pipe
 using DataStructures
 using JuliaFormatter
 using Parameters

@@ -582,7 +582,7 @@ function create_info_arguments(sig, args::AbstractArray{T}) where {T <: Argument
 end
 
 function keyword_arguments(sig; expose_create_info_kwargs = false, transform_name=true)
-    kwargs = sig.args |> Filter(x -> is_keyword_argument(x.name, x.type, sig.name)) |> Map(x -> KeywordArgument(transform_name ? fieldname_transform(x.name, x.type) : x.name, default(x.name, x.type))) |> collect
+    kwargs = @pipe sig.args |> filter(x -> is_keyword_argument(x.name, x.type, sig.name), _) |> map(x -> KeywordArgument(transform_name ? fieldname_transform(x.name, x.type) : x.name, default(x.name, x.type)), _)
     expose_create_info_kwargs ? vcat(kwargs, create_info_arguments(sig, kwargs)) : kwargs
 end
 
@@ -593,7 +593,7 @@ end
 
 function arguments(sig; expose_create_info_kwargs = false, drop_type=true, transform_type = false, transform_name = true, remove_parameters=true)
     sname = sig.name
-    args = sig.args |> Filter(x -> !drop_argument(x.name, sname) && (!remove_parameters || !is_parameter(x.name, sname))) |> Map(x -> PositionalArgument(transform_name ? fieldname_transform(x.name, x.type) : x.name, drop_type ? nothing : transform_type ? fieldtype_transform(x.name, x.type, sname) : x.type)) |> collect
+    args = @pipe sig.args |> filter(x -> !drop_argument(x.name, sname) && (!remove_parameters || !is_parameter(x.name, sname)), _) |> map(x -> PositionalArgument(transform_name ? fieldname_transform(x.name, x.type) : x.name, drop_type ? nothing : transform_type ? fieldtype_transform(x.name, x.type, sname) : x.type), _)
     expose_create_info_kwargs ? vcat(args, create_info_arguments(sig, args)) : args
 end
 
