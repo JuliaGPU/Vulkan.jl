@@ -113,41 +113,42 @@ function bagtype(sname)
 end
 
 function steal_bag!(bag_args, name, type, new_name, new_type, last_name, sname)
-    conditional_statement = is_optional_parameter(name, sname) ? "$new_name == C_NULL ? EmptyBag : " : ""
-        
+    var = Symbol(new_name)
+    value = nothing
     if has_bag(type)
-        push!(bag_args, conditional_statement * new_name * ".bag")
+        value = :($var.bag)
     elseif is_ptr(type) && has_bag(inner_type(type))
         if is_array_variable(name, sname) || is_array_type(new_name)
-            push!(bag_args, conditional_statement * "getproperty.($new_name, :bag)")
+            value = :(getproperty.($var, $(QuoteNode(:bag))))
         else
-            push!(bag_args, conditional_statement * new_name * ".bag")
+            value = :($var.bag)
         end
     end
+    !isnothing(value) && push!(bag_args, is_optional_parameter(name, sname) ? :($var == C_NULL ? EmptyBag : $value) : value)
 end
 
 function instantiate_bag(sdef, body)
     !has_bag(sdef.name) && error("Type $(sdef.name) does not have a bag to instantiate.")
-    bag_args = String[]
+    bag_args = []
     sname = sdef.name
     if "pNext" ∈ keys(sdef.fields)
-        push!(bag_args, "bag_next")
+        push!(bag_args, :bag_next)
     end
     for (name, type) ∈ sdef.fields
         new_name, new_type = field_transform(name, type, sdef.name)
         tmp_name = tmp_argname(name, type)
         last_name = last_argname(body, tmp_name, new_name)
         if is_array_type(new_type) && inner_type(new_type) == "String"
-            push!(bag_args, new_name * "_ptrarray")
+            push!(bag_args, Symbol(new_name, "_ptrarray"))
         else
             steal_bag!(bag_args, name, type, new_name, new_type, last_name, sname)
         end
         if type == "Cstring" || is_ptr(type)
-            push!(bag_args, last_name)
+            push!(bag_args, Symbol(last_name))
         end
     end
-    bag = bagtype(sdef.name)
-    Statement("bag = $bag($(join_args(bag_args)))", "bag")
+    bag = Symbol(bagtype(sdef.name))
+    Statement(:(bag = $bag($(bag_args...))), "bag")
 end
 
 """
