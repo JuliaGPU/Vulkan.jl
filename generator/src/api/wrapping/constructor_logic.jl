@@ -1,6 +1,7 @@
-function constructor(new_sdef, sdef)
+function constructor(new_sdef::SDefinition, sdef::SDefinition)
     defs = []
     sname = sdef.name
+    new_sname_sym = Symbol(new_sdef.name)
     if is_handle_with_multiple_create_info(sname)
         ci_indices = findall(x -> x.name == sdef.name, eachrow(vulkan_creation_info))
         for index ∈ ci_indices
@@ -12,23 +13,24 @@ function constructor(new_sdef, sdef)
             !isnothing(cons) && push!(defs, cons)
         end
     elseif is_handle_with_create_info(sname)
-        # new_sdef.inner_constructor = constructor(new_sdef, sdef, CreateVkHandle())
         push!(defs, constructor(new_sdef, sdef, CreateVkHandle()))
         push!(defs, constructor(new_sdef, sdef, CreateVkHandle(), add_fun_ptr=true))
-        # push!(defs, constructor(new_sdef, sdef, CreateVkHandleWithCreateInfo()))
-    elseif !is_handle(sname) && dfmatch(vulkan_structs, :name, sname).returnedonly
+    elseif !is_handle(sname) && is_returnedonly(sname)
         vk_sig = Signature(sdef)
         args_undropped = [name for (name, type) ∈ zip(argnames(vk_sig), argtypes(vk_sig)) if !drop_field(name, type, sname)]
-        body = [Statement("$(new_sdef.name)($(join_args("from_vk(" .* argtypes(Signature(new_sdef)) .* ", vks." .* args_undropped .* ")")))")]
-        fdef = FDefinition(new_sdef.name, Signature(new_sdef.name, [PositionalArgument("vks", sname)], KeywordArgument[]), true, body)
+        from_vk_calls = [:(from_vk($(Meta.parse(type)), vks.$arg)) for (type, arg) ∈ zip(values(new_sdef.fields), Symbol.(args_undropped))]
+        from_vk_body = Statement(:($new_sname_sym($(from_vk_calls...))))
+        fdef = FDefinition(new_sdef.name, Signature(new_sdef.name, [PositionalArgument("vks", sname)], KeywordArgument[]), true, [from_vk_body])
         push!(defs, fdef) 
-        push!(defs, FDefinition("from_vk", Signature("from_vk", PositionalArgument.(["T::Type{$(new_sdef.name)}", "x::$sname"]), KeywordArgument[]), true, [Statement("$(new_sdef.name)(x)")]))
+        push!(defs, FDefinition("from_vk", Signature("from_vk", PositionalArgument.(["T::Type{$(new_sdef.name)}", "x::$sname"]), KeywordArgument[]), true, [Statement(:($new_sname_sym(x)))]))
     elseif !is_handle(sname)
         if keeps_original_layout(sdef)
             push!(defs, constructor(new_sdef, sdef, GenericConstructor(), is_inner_constructor=false, add_type_annotations=false))
-            push!(defs, FDefinition("from_vk", Signature("from_vk", PositionalArgument.(["T::Type{$(new_sdef.name)}", "x::$sname"]), KeywordArgument[]), true, [Statement("$(new_sdef.name)($(join_args("x." .* collect(keys(sdef.fields)))))")]))
+            unpacked_fields = [:(x.$a) for a ∈ Symbol.(keys(sdef.fields))]
+            statement = Statement(:($new_sname_sym($(unpacked_fields...))))
+            push!(defs, FDefinition("from_vk", Signature("from_vk", PositionalArgument.(["T::Type{$(new_sdef.name)}", "x::$sname"]), KeywordArgument[]), true, [statement]))
             if length(Signature(new_sdef).args) == 1
-                new_sdef.inner_constructor = FDefinition(new_sdef.name, Signature(new_sdef.name, [PositionalArgument("vks", sname)], KeywordArgument[]), true, [Statement("new(vks)")])
+                new_sdef.inner_constructor = FDefinition(new_sdef.name, Signature(new_sdef.name, [PositionalArgument("vks", sname)], KeywordArgument[]), true, [Statement(:(new(vks)))])
             end
         else
             new_sdef.inner_constructor = constructor(new_sdef, sdef, GenericConstructor(), is_inner_constructor=true)
