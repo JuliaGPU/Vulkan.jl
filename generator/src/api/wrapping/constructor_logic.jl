@@ -244,10 +244,11 @@ struct ConvertVkStructure <: ConversionDefinition end
 preprocess_pass(pass_type::Type{T}; kwargs...) where {T <: Pass} = (pass_args, T) -> pass!(pass_args, T; kwargs...)
 
 
-function inline_getproperty(type)
-    is_handle(type) && return ".handle"
-    is_vulkan_struct(type) && return ".vks"
-    ""
+function inline_getproperty(var, type)
+    var = Symbol(var)
+    is_handle(type) && return :($var.handle)
+    is_vulkan_struct(type) && return :($var.vks)
+    var
 end
 
 """
@@ -261,7 +262,8 @@ function init_args(pass_results, body, ::ExtendVkConstructor; use_all_args=true,
         if name == "sType" && include_stype
             push!(args, stypes[sname])
         elseif (!any(values(pass_args.passes)) || use_all_args)
-            push!(args, last_argname(body, name_hierarchy(name_depth, name, tmp_name, new_name)...) * (take_property ? inline_getproperty(type) : ""))
+            var = last_argname(body, name_hierarchy(name_depth, name, tmp_name, new_name)...)
+            push!(args, take_property ? string(inline_getproperty(var, type)) : var)
         end
     end
     args
@@ -271,24 +273,26 @@ end
 Get initialization arguments from the results of `accumulate_passes`.
 """
 function init_args(pass_results, body, ::GenericConstructor; use_all_args=true, take_property=true, include_stype=true, name_depth=2, sname=nothing)
-    args = String[]
+    args = []
     for (name, pr_list) ∈ pass_results
         pass_args = last(pr_list).pass_args
         @unpack tmp_name, new_name, type, new_type, sname = pass_args
         if name == "sType" && include_stype
-            push!(args, stypes[sname])
+            push!(args, Symbol(stypes[sname]))
         elseif is_ptr(type) && inner_type(type) == "Cstring"
-            push!(args, new_name * "_ptrarray")
+            push!(args, Symbol(new_name, "_ptrarray"))
         else (!any(values(pass_args.passes)) || use_all_args)
             last_name = last_argname(body, name_hierarchy(name_depth, name, tmp_name, new_name)...)
-            if !isnothing(sname) && is_optional_parameter(name, sname)
+            expr = take_property ? inline_getproperty(last_name, type) : last_name
+
+            final_expr = if !isnothing(sname) && is_optional_parameter(name, sname)
                 default_val = default(name, type)
-                name_with_test = "$last_name == $default_val ? $default_val : "
+                 :($(Symbol(last_name)) == $default_val ? $default_val : $expr)
             else
-                name_with_test = ""
+                expr
             end
-            first_part = name_with_test * last_name
-            push!(args, take_property ? first_part * inline_getproperty(type) : first_part)
+
+            push!(args, final_expr)
         end
     end
     args
@@ -333,7 +337,7 @@ function constructor(new_sdef, sdef, definition::GenericConstructor; add_type_an
     body, pass_results = accumulate_passes(sname, args_for_passes, pass_new_nametype(SDefinition), [ConvertArrays(), GenerateRefs(), HandlePNextDeps()])
     has_bag(sname) && push!(body, instantiate_bag(sdef, body))
     init_vk = init_args(pass_results, body, definition, use_all_args=true, include_stype=false, name_depth=2; sname)
-    push!(body, Statement("vks = $sname($(join_args(init_vk)))"))
+    push!(body, Statement(:(vks = $(Symbol(sname))($(init_vk...)))))
     init_struct = ["vks"]
     has_bag(sname) && push!(init_struct, "bag")
     push!(body, Statement("$(is_inner_constructor ? "new" : new_sdef.name)($(join_args(init_struct)))"))
@@ -539,7 +543,7 @@ end
 function pass!(args::PassArgs, ::Type{GenerateRefs})
     @unpack tmp_name, new_name, new_type, last_name, type, sname = args
     if is_ptr(type) && !is_array_type(new_type) && !is_extension_ptr(type)
-        return Statement("$tmp_name = $(check_is_default(last_name, type, "Ref($last_name$(inline_getproperty(inner_type(type))))"))", tmp_name)
+        return Statement("$tmp_name = $(check_is_default(last_name, type, "Ref($(inline_getproperty(last_name, inner_type(type))))"))", tmp_name)
     end
 end
 
@@ -582,7 +586,7 @@ function create_info_arguments(sig, args::AbstractArray{T}) where {T <: Argument
     isempty(create_info_type_indices) && return T[]
     args_f = (T == PositionalArgument ? arguments : T == KeywordArgument ? keyword_arguments : error("Unknown argument type $T"))
     new_args = collect(args_f(Signature(api.structs[type])) for type ∈ getindex.(Ref(nonptr_types), create_info_type_indices))
-    map(x -> x.name ∈ getproperty.(args, :name) ? PositionalArgument(x.name * "_create_info", T == PositionalArgument ? x.type : x.default) : x, vcat(new_args)...)
+    map(x -> x.name ∈ getproperty.(args, :name) ? PositionalArgument(x.name * "_create_info", T == PositionalArgument ? x.type : string(x.default)) : x, vcat(new_args)...)
 end
 
 function keyword_arguments(sig; expose_create_info_kwargs = false, transform_name=true)

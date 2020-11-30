@@ -30,10 +30,10 @@ end
 end
 
 @testset "Defaults" begin
-    @test vg.default("ppEnabledLayerNames", "Ptr{Cstring}") == "C_NULL"
-    @test vg.default("pApplicationInfo", "Ptr{VkApplicationInfo}") == "C_NULL"
-    @test vg.default("device", "VkDevice") == "C_NULL"
-    @test vg.default("enabledLayerCount", "UInt32") == "0"
+    @test vg.default("ppEnabledLayerNames", "Ptr{Cstring}") == :C_NULL
+    @test vg.default("pApplicationInfo", "Ptr{VkApplicationInfo}") == :C_NULL
+    @test vg.default("device", "VkDevice") == :C_NULL
+    @test vg.default("enabledLayerCount", "UInt32") == 0
 end
 
 @testset "Count variables to be filled (enumerations)" begin

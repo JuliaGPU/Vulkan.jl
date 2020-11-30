@@ -265,8 +265,8 @@ end
 is_optional_parameter(name, sname) = name == "pNext" || info(name, sname).param_requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
 
 function default(name, type)
-    (is_handle(type) || startswith(name, "p") || startswith(type, "Ptr{")) && return "C_NULL"
-    "0"
+    (is_handle(type) || startswith(name, "p") || startswith(type, "Ptr{")) && return :C_NULL
+    0
 end
 
 has_count_to_be_filled(fname) = any(is_count_to_be_filled(row.name, fname) for row ∈ eachrow(grouped_vulkan_params[(parent=fname,)]))

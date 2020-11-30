@@ -21,17 +21,16 @@ Base.show(io::IO, arg::PositionalArgument) = print(io, typed_field(arg.name, arg
 struct KeywordArgument <: Argument
     name::AbstractString
     default
-    KeywordArgument(name, default) = new(name, string(default))
 end
 
 function KeywordArgument(decl::AbstractString)
     name_split = split(decl, "=")
     name = first(name_split)
-    default = length(name_split) == 2 ? last(name_split) : ""
+    default = length(name_split) == 2 ? last(name_split) : :()
     KeywordArgument(name, default)
 end
 
-Base.show(io::IO, arg::KeywordArgument) = print(io, arg.name * (isempty(arg.default) ? "" : "=" * string(arg.default)))
+Base.show(io::IO, arg::KeywordArgument) = print(io, arg.name * (arg.default == :() ? "" : "=" * string(arg.default)))
 
 Base.convert(T::Type{KeywordArgument}, arg::PositionalArgument) = T(arg.name, nothing)
 
