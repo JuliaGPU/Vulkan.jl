@@ -12,21 +12,19 @@ using VulkanCore: VulkanCore, vk
 using MacroTools
 using MacroTools: rmlines, postwalk
 
-src_include(x...) = include(joinpath(@__DIR__, x...))
-
 include("utils.jl")
 include("naming_conventions.jl")
 
-src_include("vulkan", "spec.jl")
-src_include("vulkan", "conventions.jl")
+include("vulkan/spec.jl")
+include("vulkan/conventions.jl")
 
 include("signatures.jl")
 include("types.jl")
 include("codegen.jl")
 
-src_include("api", "parse.jl")
-src_include("api", "wrap.jl")
-src_include("api", "write.jl")
+include("api/parse.jl")
+include("api/wrap.jl")
+include("api/write.jl")
 
 include("dependency_resolution.jl")
 

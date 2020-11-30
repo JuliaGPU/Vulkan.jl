@@ -77,8 +77,6 @@ function wrap!(w_api, cdef::CDefinition)
     w_api.consts[name(new_cdef)] = new_cdef
 end
 
-wrapping_include(x...) = include(joinpath(@__DIR__, "wrapping", x...))
-
-wrapping_include("struct_logic.jl")
-wrapping_include("constructor_logic.jl")
-wrapping_include("function_logic.jl")
+include("wrapping/struct_logic.jl")
+include("wrapping/constructor_logic.jl")
+include("wrapping/function_logic.jl")
