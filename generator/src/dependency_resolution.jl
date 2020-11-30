@@ -10,16 +10,7 @@ function dependencies(decl)
     deps
 end
 
-function resolve_dependencies(decl_names, decls)
-    g = SimpleDiGraph(length(decl_names))
-    
-    for (j, (decl_name, decl)) ∈ enumerate(zip(decl_names, decls))
-        for dep ∈ dependencies(decl)
-            i = findfirst(decl_names .== dep)
-            add_edge!(g, i, j)
-        end
-    end
-
+function check_is_dag(g, decls)
     if is_cyclic(g) || !is_directed(g)
         cycles = simplecycles_hadwick_james(g)
         problematic_decls = unique(vcat(decls[cycles]...))
@@ -32,7 +23,19 @@ function resolve_dependencies(decl_names, decls)
         $(join(generate.(problematic_decls), "\n"^2))""" : "")
         """)
     end
+end
 
+function resolve_dependencies(decl_names, decls)
+    g = SimpleDiGraph(length(decl_names))
+
+    for (j, (decl_name, decl)) ∈ enumerate(zip(decl_names, decls))
+        for dep ∈ dependencies(decl)
+            i = findfirst(decl_names .== dep)
+            add_edge!(g, i, j)
+        end
+    end
+
+    check_is_dag(g, decls)
     topological_sort_by_dfs(g)
 end
 
