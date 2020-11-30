@@ -10,10 +10,7 @@ Base.show(io::IO, st::Statement) = print(io, prettify(st.body))
 
 abstract type Declaration end
 
-(T::Type{<:Declaration})(ex::Expr; prettify=true) = T(string(prettify ? MacroTools.prettify(ex) : ex))
-
 name(decl::Declaration) = decl.name
-
 mutable struct SDefinition <: Declaration
     name::AbstractString
     is_mutable::Bool
@@ -30,6 +27,7 @@ end
 
 SDefinition(name::AbstractString, is_mutable::Bool, fields::OrderedDict) = SDefinition(name, is_mutable, fields, nothing, nothing)
 SDefinition(name::AbstractString, is_mutable::Bool; fields=()) = SDefinition(name, is_mutable, OrderedDict(fields))
+SDefinition(ex::Expr; prettify=true) = SDefinition(string(prettify ? MacroTools.prettify(ex) : ex))
 
 function SDefinition(str::AbstractString)
     split_str = strip.(split(str, "\n"))
@@ -52,6 +50,7 @@ end
 
 FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}) = FDefinition(name, signature, short, body, "", "")
 FDefinition(name::AbstractString, signature::Signature, short::Bool, body::AbstractArray{Statement}, docstring::AbstractString) = FDefinition(name, signature, short, body, docstring, "")
+FDefinition(ex::Expr; prettify=true) = FDefinition(string(prettify ? MacroTools.prettify(ex) : ex))
 
 function FDefinition(str::AbstractString)
     short = !startswith(str, "function")
@@ -76,20 +75,14 @@ end
 
 struct CDefinition <: Declaration
     ex::Expr
-    CDefinition(ex::Expr) = new(ex)
 end
-
-CDefinition(str::AbstractString) = CDefinition(prettify(Meta.parse(str)))
 
 name(cdef::CDefinition) = string(cdef.ex.args[1].args[1])
 value(cdef::CDefinition) = string(cdef.ex.args[1].args[2])
 
-@with_kw_noshow struct EDefinition <: Declaration
+struct EDefinition <: Declaration
     ex::Expr
-    EDefinition(ex::Expr) = new(ex)
 end
-
-EDefinition(str::AbstractString) = EDefinition(prettify(Meta.parse(str)))
 
 function name(decl::EDefinition)
     id = decl.ex.args[3]

@@ -42,9 +42,9 @@ function API(file, eval_symbol)
                 push!(fdefs, FDefinition(ex; prettify=false))
             end
         elseif @capture(ex, const a_ = b_) && !isalias(string(a))
-            push!(cdefs, CDefinition(ex; prettify=false))
+            push!(cdefs, CDefinition(ex))
         elseif ex.head == :macrocall
-            push!(edefs, EDefinition(ex; prettify=false))
+            push!(edefs, EDefinition(ex))
         end
     end
     api = API(file, OrderedDict.((sdefs, fdefs, cdefs, edefs))...)
