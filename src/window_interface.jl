@@ -5,5 +5,3 @@ function target!(app::VulkanApplication, target::AbstractWindow; format=FORMAT_B
     create_swapchain!(app; format, swapchain_kwargs...)
     prepare_rendering_to_target!(app, Target{SwapchainKHR}())
 end
-
-export target!

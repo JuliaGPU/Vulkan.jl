@@ -200,6 +200,7 @@ export
 
         ### Rendering
         add_render_pass!,
+        target!,
         prepare_rendering_to_target!,
         next_frame!,
         initialize_render_state!,
