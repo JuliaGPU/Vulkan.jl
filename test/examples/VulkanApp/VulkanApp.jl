@@ -8,6 +8,7 @@ using Parameters
 using BenchmarkTools
 using Meshes
 using LinearAlgebra
+using StaticArrays
 
 #= Logging =#
 using TerminalLoggers
@@ -15,7 +16,6 @@ using ProgressLogging
 using REPL
 using REPL:Terminals
 using Logging: global_logger
-using StaticArrays
 
 include(joinpath(@__DIR__, "..", "common", "logging.jl"))
 include(joinpath(@__DIR__, "..", "common", "geometry.jl"))
@@ -23,6 +23,8 @@ include("window.jl")
 include("features.jl")
 include("vertex_attributes.jl")
 include("vertices.jl")
+
+ENV["DISPLAY"] = ":1"
 
 shader_log_f(format, file) = replprint("$(typeof(format)) shader $file", log_term, prefix="Compiling ")
 shader_log_f() = replprint("Shaders compiled", log_term, newline=1, color=:green, bold=true)
@@ -65,15 +67,6 @@ function record_render_pass(app, data, command_buffers)
     cmd_draw_indexed.(command_buffers, length(indices(data)), 1, 0, 0, 0)
     cmd_end_render_pass.(command_buffers)
     end_command_buffer.(command_buffers)
-end
-
-#TODO: is unsued, do something about it
-function recreate_draw_command_buffers!(app, data)
-    @unpack device, render_state = app
-    @unpack arr_command_buffers = render_state
-
-    reset_command_buffer.(arr_command_buffers)
-    record_render_pass.(app, data, arr_command_buffers)
 end
 
 function create_application(; validate=true)
@@ -136,16 +129,14 @@ function main()
         app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
         print_available_devices(app.instance)
         add_device!(app)
-        
         window = create_window(width=512, height=512)
         target!(app, window)
         
         create_command_pool!(app, :a)
-
+        
         data = pos_color(q, colors)
         add_vertex_buffer!(app, data, device_local=true, from_pool=:a)
         add_index_buffer!(app, indices(data), device_local=true, from_pool=:a)
-        
         m = v = p = SMatrix{4,4,Float32}(Diagonal([1, 1, 1, 1]))
         mvp = ModelViewProjection(m, v, p)
         add_uniform_buffer!(app, 4*4*3, :mvp, fill_with=MMatrix{12,4}(vcat(mvp.model, mvp.view, mvp.proj)))
