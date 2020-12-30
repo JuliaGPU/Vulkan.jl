@@ -1,4 +1,4 @@
 include("examples.jl")
-using .VulkanAppExample:main
+using .VulkanAppExample
 
-main()
+VulkanAppExample.main()
