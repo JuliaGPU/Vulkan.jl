@@ -26,9 +26,6 @@ include("vertices.jl")
 
 ENV["DISPLAY"] = ":1"
 
-shader_log_f(format, file) = replprint("$(typeof(format)) shader $file", log_term, prefix="Compiling ")
-shader_log_f() = replprint("Shaders compiled", log_term, newline=1, color=:green, bold=true)
-
 function add_device!(app::VulkanApplicationSingleDevice)
     pdevices = enumerate_physical_devices(app.instance)
     pdevice = first(pdevices)
