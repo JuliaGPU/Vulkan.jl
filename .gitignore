@@ -11,3 +11,4 @@ mediumdev.jl
 _*wrapped_api.jl
 /docs/build
 /docs/site
+.vscode
