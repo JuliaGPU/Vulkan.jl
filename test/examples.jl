@@ -1,1 +1,1 @@
-include(joinpath("examples", "VulkanApp", "VulkanApp.jl"))
+include("examples/VulkanApp/VulkanApp.jl")
