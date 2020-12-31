@@ -104,19 +104,19 @@ function render!(app, data)
     end
 end
 
-function on_key_pressed(event, app)
+function on_key_pressed(event, wh, data, app)
     key = KeyCombination(event.data.key, event.data.modifiers)
-    window = event.window
-    set_title(window, "Random title $(rand())")
+    win = event.win
+    set_title(win, "Random title $(rand())")
     if key ∈ [key"q", key"ctrl+q", key"f4"]
         println()
-        throw(CloseWindow(event.window_handler, window))
+        throw(CloseWindow(win))
     elseif key == key"b"
         println()
-        display(@benchmark(render!($app)))
+        display(@benchmark(render!($app, $data)))
     elseif key == key"s"
-        curr_extent = extent(window)
-        set_extent(window, (curr_extent[1] + 1, curr_extent[2]))
+        curr_extent = extent(win)
+        set_extent(win, (curr_extent[1] + 1, curr_extent[2]))
     end
 end
 
@@ -126,8 +126,8 @@ function main()
         app = create_application(validate=isempty(ARGS) || ARGS[1] ≠ "--novalidate")
         print_available_devices(app.instance)
         add_device!(app)
-        window = create_window(width=512, height=512)
-        target!(app, window)
+        win = create_window(width=512, height=512)
+        target!(app, win)
         
         create_command_pool!(app, :a)
         
@@ -146,20 +146,17 @@ function main()
 
         initialize_render_state!(app, command_buffers, max_simultaneously_drawn_frames = length(app.framebuffers) - 1)
 
-        window_handler = XWindowHandler(window.conn, [window])
-        event_loop = EventLoop(;
-            window_handler,
-            callbacks=Dict(
-                :window_1 => WindowCallbacks(;
-                    on_key_pressed = x -> on_key_pressed(x, app),
-                    on_expose = x -> replprint("window exposed", log_term; prefix="Frame " * string(app.render_state.frame) * " "),
-                    on_resize = x -> handle_resize!(app, data),
-                ),
+        wh = XWindowHandler(win.conn, [win])
+        set_callbacks!(wh, win,
+            WindowCallbacks(;
+                on_key_pressed = x -> on_key_pressed(x, wh, data,   app),
+                on_expose = x -> replprint("window exposed", log_term; prefix="Frame " * string(app.render_state.frame) * " "),
+                on_resize = x -> handle_resize!(app, data),
             ),
-            on_iter_first = () -> replprint("", log_term, prefix="Frame " * string(app.render_state.frame) * " "),
-            on_iter_last = () -> render!(app, data),
         )
-        run(event_loop, Synchronous(); warn_unknown=false, poll=false)
+        run(wh, Synchronous(); warn_unknown=false, poll=false,
+                on_iter_first = () -> replprint("", log_term, prefix=string("Frame ", app.render_state.frame, " ")),
+                on_iter_last = () -> render!(app, data))
     catch e
         rethrow(e) # terminate the event loop from run_window
     finally
@@ -172,20 +169,16 @@ function test_enumerated_properties()
     instance = app.instance.handle
     add_device!(app)
     physical_device = app.device.physical_device_handle
-    window = create_window()
-    add_surface!(app, window)
+    win = create_window()
+    add_surface!(app, win)
     surface = app.surface.handle
     println.(enumerate_device_extension_properties(physical_device))
     println.(enumerate_instance_layer_properties())
     println.(get_physical_device_surface_formats_khr(physical_device, surface))
     println.(get_physical_device_surface_present_modes_khr(physical_device, surface))
     println(get_physical_device_surface_capabilities_khr(physical_device, surface))
-    try
-        println(get_physical_device_properties(physical_device))
-    finally
-        finalize(app)
-        finalize.([window, window.conn])
-    end
+    println(get_physical_device_properties(physical_device))
+    finalize(app)
 end
 
 #TODO: add flags extraction from bitmasks
