@@ -1,4 +1,4 @@
-using .WindowAbstractions: AbstractWindow, extent
+using .WindowAbstractions: AbstractWindow
 
 function target!(app::VulkanApplication, target::AbstractWindow; format=FORMAT_B8G8R8A8_SRGB, swapchain_kwargs...)
     add_surface!(app, SurfaceSetup(app, target))
