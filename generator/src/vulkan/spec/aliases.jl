@@ -1,52 +1,55 @@
-function fetch_aliases(xroot)
-    alias_nodes = findall("//@alias", xroot)
-    OrderedDict(
-        Symbol(alias.parentelement["name"]) => Symbol(alias.parentelement["alias"]) for alias ∈ alias_nodes
-    )
-end
-
-function build_alias_graph(alias_verts, aliases_dict)
-    aliases_g = SimpleDiGraph(length(alias_verts))
-
-    for (j, (src, dst)) ∈ enumerate(aliases_dict)
-        i = findfirst(dst .== alias_verts)
-        add_edge!(aliases_g, i, j)
-    end
-    aliases_g
-end
-
-const aliases_dict = fetch_aliases(xroot)
-const aliases_dict_rev = OrderedDict(v => k for (k, v) ∈ aliases_dict)
+const alias_dict = Dict(Symbol(alias.parentelement["name"]) => Symbol(alias.parentelement["alias"]) for alias ∈ findall("//@alias", xroot))
+const alias_dict_rev = Dict(v => k for (k, v) ∈ alias_dict)
 
 """
 Whether this type is an alias for another name.
 """
-isalias(name) = name ∈ keys(aliases_dict)
+isalias(name) = name ∈ keys(alias_dict)
 
 """
 Whether an alias was built from this name.
 """
-hasalias(name) = name ∈ values(aliases_dict)
+hasalias(name) = name ∈ values(alias_dict)
 
-alias_verts = unique(vcat(keys(aliases_dict)..., values(aliases_dict)...))
+alias_verts = unique(vcat(collect(keys(alias_dict)), collect(values(alias_dict))))
 
-aliases_g = build_alias_graph(alias_verts, aliases_dict)
+function build_alias_graph(alias_verts, alias_dict)
+    g = SimpleDiGraph(length(alias_verts))
+    
+    for (j, (src, dst)) ∈ enumerate(alias_dict)
+        i = findfirst(==(dst), alias_verts)
+        add_edge!(g, i, j)
+    end
 
-aliases(aliases_g::SimpleDiGraph, index) = getindex.(Ref(alias_verts), outneighbors(aliases_g, index))
-aliases(name) = (index = findfirst(alias_verts .== name); isnothing(index) ? String[] : aliases(aliases_g, index))
+    g
+end
 
-function follow_alias(aliases_g::SimpleDiGraph, index)
-    indices = inneighbors(aliases_g, index)
+const alias_graph = build_alias_graph(alias_verts, alias_dict)
+
+aliases(alias_graph::SimpleDiGraph, index) = getindex.(Ref(alias_verts), outneighbors(alias_graph, index))
+
+function aliases(name)
+    index = findfirst(==(name), alias_verts)
+    isnothing(index) ? Symbol[] : aliases(alias_graph, index)
+end
+
+function follow_alias(alias_graph::SimpleDiGraph, index)
+    indices = inneighbors(alias_graph, index)
     if isempty(indices)
         alias_verts[index]
     elseif length(indices) > 1
         error("More than one indices returned for $(alias_verts[index]) when following alias $(getindex.(Ref(alias_verts), indices))")
     else
-        alias_verts[first(indices)]
+        i = first(indices)
+        if i == index
+            alias_verts[i]
+        else
+            follow_alias(alias_graph, i)
+        end
     end
 end
 
-follow_alias(name) = (index = findfirst(alias_verts .== name); isnothing(index) ? name : follow_alias(aliases_g, index))
-
-@assert follow_alias(:VkPhysicalDeviceMemoryProperties2KHR) == :VkPhysicalDeviceMemoryProperties2
-@assert follow_alias(:VkPhysicalDeviceMemoryProperties2) == :VkPhysicalDeviceMemoryProperties2
+function follow_alias(name)
+    index = findfirst(==(name), alias_verts)
+    isnothing(index) ? name : follow_alias(alias_graph, index)
+end

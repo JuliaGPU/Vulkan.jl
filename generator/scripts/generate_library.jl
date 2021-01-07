@@ -1,23 +1,23 @@
 using VulkanGen
 using VulkanCore
 
-getfile(name) = joinpath(dirname(dirname(pathof(VulkanCore))), "gen", name)
+vulkancore_generated_file(name) = joinpath(dirname(dirname(pathof(VulkanCore))), "gen", name)
 
 const vg = VulkanGen
-const destfile = joinpath(dirname(dirname(@__DIR__)), "generated", "wrapped_api.jl")
-const files = getfile.(["vk_common.jl", "vk_api.jl"])
+const destfile = joinpath(dirname(dirname(@__DIR__)), "generated", "vulkan_wrapper.jl")
+const files = vulkancore_generated_file.(["vk_common.jl", "vk_api.jl"])
 const ignored_symbols = Dict(
     :structs => [
-        "VkBaseOutStructure",
-        "VkBaseInStructure",
+        :VkBaseOutStructure,
+        :VkBaseInStructure,
     ],
 )
 
 function filter_api(api)
     new_api = deepcopy(api)
-    for (type, list) ∈ ignored_symbols, name ∈ list
-        api_dict = getproperty(new_api, type)
-        delete!(api_dict, name)
+    for (type, list) ∈ ignored_symbols, sym ∈ list
+        exs = getproperty(new_api, type)
+        deleteat!(exs, findfirst(x -> name(x) == sym, getproperty(new_api, type)))
     end
     new_api
 end
@@ -30,5 +30,5 @@ function generate_wrapper(api)
     write(w_api, destfile)
 end
 
-api = API(files, sym -> Base.eval(VulkanCore, Meta.parse(sym)))
+api = parse_api(files, ex -> Base.eval(VulkanCore, ex))
 generate_wrapper(api)

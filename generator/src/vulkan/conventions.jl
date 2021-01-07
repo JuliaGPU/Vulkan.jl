@@ -20,6 +20,7 @@ end
 prefix_vk(name::T) where {T <: NamingConvention} = prefix(name, vk_prefix(typeof(name)))
 
 remove_vk_prefix(name) = replace(name, r"^(?:vk|Vk|VK_)" => "")
+remove_vk_prefix(name::Symbol) = Symbol(remove_vk_prefix(string(name)))
 
 function remove_vk_prefix(ex::Expr)
     postwalk(ex) do ex

@@ -1,32 +1,28 @@
 module VulkanGen
 
-using Pipe
-using DataStructures
+using StructArrays
 using JuliaFormatter
-using Parameters
-using EzXML
-using AbstractTrees
+using UnPack
 using LightGraphs
 using VulkanCore.vk
 using VulkanCore: VulkanCore, vk
-using MacroTools
-using MacroTools: rmlines, postwalk
+using MLStyle
+using MLStyle.Modules.AST
 
-include("utils.jl")
 include("naming_conventions.jl")
+
+include("types.jl")
+include("exprs.jl")
+include("macros.jl")
 
 include("vulkan/spec.jl")
 include("vulkan/conventions.jl")
 
-include("signatures.jl")
-include("types.jl")
-include("codegen.jl")
+# include("api/parse.jl")
+# include("api/wrap.jl")
+# include("api/write.jl")
 
-include("api/parse.jl")
-include("api/wrap.jl")
-include("api/write.jl")
-
-include("dependency_resolution.jl")
+# include("dependency_resolution.jl")
 
 export
         # Naming Conventions
@@ -43,26 +39,14 @@ export
         remove_parts,
         remove_prefix,
 
-        # Signatures
-        Argument,
-        PositionalArgument,
-        KeywordArgument,
-        decompose_field_decl,
-        types,
-        typed_field,
-
-        Signature,
-        argnames,
-        argtypes,
-        
-        # Code Generation
-        Declaration,
-        Statement,
-        FDefinition,
-        SDefinition,
-        CDefinition,
-        EDefinition,
-        generate,
+        # Expr
+        name,
+        category,
+        deconstruct,
+        reconstruct,
+        rmlines,
+        striplines,
+        unblock,
 
         # API parsing and wrapping
         parse_text,

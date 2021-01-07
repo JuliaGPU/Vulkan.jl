@@ -1,6 +1,6 @@
 function fetch_stypes(xroot)
     stype_vals = findall("//member[@values]", xroot)
-    res = OrderedDict()
+    res = Dict()
     for stype ∈ stype_vals 
         type = stype.parentnode["name"]
         stype_value = stype["values"]

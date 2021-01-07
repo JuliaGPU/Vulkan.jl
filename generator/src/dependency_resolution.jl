@@ -1,11 +1,16 @@
-raw_dependencies(decl) = []
-raw_dependencies(decl::CDefinition) = isalias(name(decl)) ? value(decl) : is_literal(value(decl)) || is_expr(value(decl)) ? String[] : type_dependencies(value(decl))
-raw_dependencies(decl::SDefinition) = type_dependencies(decl)
-raw_dependencies(decl::FDefinition) = type_dependencies(decl)
-raw_dependencies(decl::EDefinition) = @capture(decl.ex, @m_ E_::T_ rest__) ? type_dependencies(string(T)) : String[]
+function raw_dependencies(ex)
+    p = deconstruct(ex)
+    deps = @match category(ex) begin
+        :struct => map(x -> x isa Symbol ? nothing : innermost_type(x.args[2]), p[:fields])
+        :function => vcat(map.(Ref(x -> x.args[2]), [p[:args], p[:kwargs]])...)
+        :const => isalias(p[:name]) ? p[:value] : p[:value] isa Symbol ? p[:value] : []
+        :enum                => p[:type]
+    end
+    deps isa Array ? deps : [deps]
+end
 
-function dependencies(decl)
-    deps = raw_dependencies(decl)
+function dependencies(ex)
+    deps = raw_dependencies(ex)
     filter!.([!isnothing, !is_base_type, !isalias, !is_vulkan_type], Ref(deps))
     deps
 end
@@ -13,7 +18,8 @@ end
 function check_is_dag(g, decls)
     if is_cyclic(g) || !is_directed(g)
         cycles = simplecycles_hadwick_james(g)
-        problematic_decls = unique(vcat(decls[cycles]...))
+        inds = unique(vcat(cycles...))
+        problematic_decls = getindex.(Ref(decls), inds)
         error("""
         Dependency graph is not a directed acyclic graph (is $(is_directed(g) ? "directed" : "undirected") and $(is_cyclic(g) ? "cyclic" : "acyclic"))
 
@@ -30,7 +36,8 @@ function resolve_dependencies(decl_names, decls)
 
     for (j, (decl_name, decl)) ∈ enumerate(zip(decl_names, decls))
         for dep ∈ dependencies(decl)
-            i = findfirst(decl_names .== dep)
+            i = findfirst(x -> x == dep, decl_names)
+            isnothing(i) && error("Could not find dependency '$dep' for $decl")
             add_edge!(g, i, j)
         end
     end

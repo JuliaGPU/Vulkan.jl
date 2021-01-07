@@ -1,84 +1,128 @@
 mutable struct WrappedAPI
-    source
-    structs::OrderedDict{String, SDefinition}
-    funcs::OrderedDict{String, FDefinition}
-    consts::OrderedDict{String, CDefinition}
-    enums::OrderedDict{String, EDefinition}
+    structs::Vector{Expr}
+    funcs::Vector{Expr}
+    consts::Vector{Expr}
+    enums::Vector{Expr}
     misc
-    bags
-    extended_vk_constructors
+    bags::Vector{Expr}
+    extended_vk_constructors::Vector{Expr}
 end
 
-vars(w_api) = OrderedDict([k => v for field ∈ getproperty.(Ref(w_api), [:structs, :funcs, :consts, :enums]) for (k, v) ∈ field])
+Base.show(io::IO, w_api::WrappedAPI) = print(io, "Wrapped API with $(length(w_api.structs)) structs, $(length(w_api.funcs)) functions, $(length(w_api.consts)) consts and $(length(w_api.enums)) enums.")
 
-Base.show(io::IO, w_api::WrappedAPI) = print(io, "Wrapped API with $(length(w_api.structs)) structs, $(length(w_api.funcs)) functions, $(length(w_api.consts)) consts and $(length(w_api.enums)) enums wrapped from $(w_api.source)")
-
-name_transform(decl::Declaration) = name_transform(decl.name, typeof(decl))
-
-function wrap(library_api::API)
-    global api = library_api
-    w_api = WrappedAPI(api.source, OrderedDict{String, SDefinition}(), OrderedDict{String, FDefinition}(), OrderedDict{String, CDefinition}(), OrderedDict{String, EDefinition}(), String[], OrderedDict{String, SDefinition}(), OrderedDict{String, FDefinition}())
-    wrap!(w_api)
+function ptr_to_handle(sym)
+    base = remove_vk_prefix(sym)
+    :(mutable struct $base <: Handle
+         handle::Ptr{Nothing}
+     end)
 end
 
-function wrap!(w_api::WrappedAPI)
-    errors = OrderedDict()
-    wrap!(w_api, values(api.structs))
-    wrap!(w_api, values(api.funcs))
-    wrap!(w_api, values(api.consts))
-    wrap!(w_api, values(api.enums))
+function details(api::API)
+    Dict(
+        vcat(map(api.structs) do ex
+            p = deconstruct(ex)
+            p[:name] => StructWrapDetails(p)
+        end,
+        map(api.consts) do ex
+            cname = name(ex)
+            if is_handle(ex)
+                cname => StructWrapDetails(deconstruct(ex))
+            else
+                cname => nothing
+            end
+        end,
+        map(api.funcs) do ex
+            fname = name(ex)
+
+        end
+            ))
+    
+end
+
+function wrap(api::API)
+    w_api = WrappedAPI(Expr[], Expr[], Expr[], Expr[], [], Expr[], Expr[])
+
+    foreach(api.consts) do c
+        p = deconstruct(c)
+    end
+
+    dict = details(api)
+    wrap!(w_api, api.structs, dict, :struct)
+    wrap!(w_api, api.funcs,   dict, :function)
+    wrap!(w_api, api.consts,  dict, :const)
+    wrap!(w_api, api.enums,   dict, :enum)
     @info("API successfully wrapped.")
     w_api
 end
 
-function wrap!(w_api, objects)
+function wrap!(w_api, objects, details, symbol)
+    symbol ∉ [:struct, :const, :enum] && return
+    wrap! = @match symbol begin
+        :struct   => wrap_struct!
+        :function => wrap_function!
+        :const    => wrap_const!
+        :enum     => wrap_enum!
+    end
     foreach(objects) do obj
         try
-            wrap!(w_api, obj)
+            symbol ∈ [:const, :enum] ? wrap!(w_api, obj) : wrap!(w_api, details, details[name(obj)])
         catch e
             msg = hasproperty(e, :msg) ? e.msg : "$(typeof(e))"
-            println("\e[31;1;1m$(name(obj)): $msg\e[m")
+            println("\e[31;1;1m$(name(obj)) (wrap $symbol): $msg\e[m")
             rethrow(e)
         end
     end
 end
 
-function wrap!(w_api, sdef::SDefinition)
-    new_sdef = structure(sdef)
-    has_bag(sdef.name) && setindex!(w_api.bags, create_bag(sdef), bagtype(sdef.name))
-    wrap_structure!(w_api, new_sdef)
-    wrap_constructor!(w_api, new_sdef, sdef)
+function wrap_struct!(w_api::WrappedAPI, details, sd)
+    !sd.is_alias && push!(w_api.structs, wrapped_structure(sd))
+    # wrap_constructor!(w_api, pn, sd)
 end
 
-function wrap!(w_api, fdef::FDefinition)
-    if is_command_type(fdef.name, ENUMERATE)
-        new_fdef = wrap_enumeration_command(typed_fdef(fdef))
-    elseif startswith(fdef.name, "vkDestroy")
-        return
-    elseif !is_command_type(fdef.name, CREATE)
-        new_fdef = wrap_generic(typed_fdef(fdef))
-    else
-        return
+MLStyle.is_enum(::COMMAND_TYPE) = true
+MLStyle.pattern_uncall(e::COMMAND_TYPE, _, _, _, _) = MLStyle.AbstractPatterns.literal(e)
+
+function wrap_function!(w_api::WrappedAPI, details, fd::Expr)
+    p = deconstruct(ex)
+    fname = p[:name]
+    @switch dfmatch(vulkan_functions, :name, fname).type begin
+        @case ENUMERATE
+            wrapped_enumeration_command(p)
+        @case DESTROY
+            return
+        @case t && if t ≠ CREATE end
+            wrap_generic!(p)
+        @case _
+            return
     end
-    w_api.funcs[new_fdef.name] = new_fdef
+
+    push!(w_api.funcs, reconstruct(p, :function))
 end
 
-function wrap!(w_api, edef::EDefinition)
-    new_edef = EDefinition(remove_vk_prefix(edef.ex))
-    old = name(edef)
-    new = name(new_edef)
-    w_api.enums[new] = new_edef
-    w_api.funcs["convert_$old"] = FDefinition("Base.convert(T::Type{$new}, e::$old) = T(UInt(e))")
-    w_api.funcs["convert_$new"] = FDefinition("Base.convert(T::Type{$old}, e::$new) = T(UInt(e))")
+function wrap_enum!(w_api::WrappedAPI, ex::Expr)
+    new_ex = remove_vk_prefix(ex)
+    push!(w_api.enums, new_ex)
+    old, new = name.((ex, new_ex))
+    push!(w_api.funcs, :(Base.convert(T::Type{$new}, e::$old) = T(UInt(e))))
+    push!(w_api.funcs, :(Base.convert(T::Type{$old}, e::$new) = T(UInt(e))))
 end
 
-function wrap!(w_api, cdef::CDefinition)
-    if !is_handle(name(cdef)) && !endswith(name(cdef), "_T")
-        new_cdef = CDefinition(remove_vk_prefix(cdef.ex))
-        w_api.consts[name(new_cdef)] = new_cdef
+function wrap_const!(w_api::WrappedAPI, ex)
+    p = deconstruct(ex)
+    cname = p[:name]
+
+    if !isalias(cname)
+        if is_handle(cname)
+            push!(w_api.structs, ptr_to_handle(cname))
+        elseif !endswith(string(cname), "_T")
+            new_ex = remove_vk_prefix(ex)
+            push!(w_api.consts, new_ex)
+        end
     end
 end
+
+is_optional_parameter(name, sname) = name == :pNext || info(name, sname).param_requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
 
 include("wrapping/struct_logic.jl")
-include("wrapping/constructor_logic.jl")
-include("wrapping/function_logic.jl")
+# include("wrapping/constructor_logic.jl")
+# include("wrapping/function_logic.jl")

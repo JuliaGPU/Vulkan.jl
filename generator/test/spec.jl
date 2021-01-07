@@ -1,4 +1,3 @@
-
-@testset "Vulkan Specification - DataFrames" begin
-    include("spec/dataframes.jl")
+@testset "Vulkan Specification" begin
+    include("spec/spec.jl")
 end

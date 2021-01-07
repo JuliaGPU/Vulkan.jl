@@ -104,52 +104,54 @@ Define a pointer that is to be passed to a Vulkan function for filling it with d
 """
 struct InitializePointers <: Pass end
 
-function has_bag(sname)
-    !is_handle(sname) && is_vulkan_struct(sname) && any(map(x -> occursin("Cstring", x) || (is_ptr(x) && !is_extension_ptr(x)), collect(values(api.structs[sname].fields))))
+function api_ex(sym, category)
+    prop = Symbol(sym, "s")
+    exs = getproperty(api, prop)
+    i = findfirst(x -> x == sym, name.(exs))
+    @assert !isnothing(i) "Could not fetch API expression for $sym with category $category"
+    exs[i]
 end
 
-function bagtype(sname)
-    return "Bag" * name_transform(sname, SDefinition)
-end
+# function steal_bag!(p, bag_args, n, t, new_name, new_type, last_name, sname)
+#     var = Symbol(new_name)
+#     value = nothing
+#     pt = ptr_type(t)
+#     if needs_bag(p)
+#         value = :($var.bag)
+#     elseif is_ptr(type) && is_vulkan_struct(pt) && needs_bag(deconstruct(api_ex(pt, :struct)))
+#         if is_array_variable(n, sname) || is_array_type(new_name)
+#             value = :(getproperty.($var, $(QuoteNode(:bag))))
+#         else
+#             value = :($var.bag)
+#         end
+#     end
+#     !isnothing(value) && push!(bag_args, is_optional_parameter(n, sname) ? :($var == C_NULL ? EmptyBag : $value) : value)
+# end
 
-function steal_bag!(bag_args, name, type, new_name, new_type, last_name, sname)
-    var = Symbol(new_name)
-    value = nothing
-    if has_bag(type)
-        value = :($var.bag)
-    elseif is_ptr(type) && has_bag(inner_type(type))
-        if is_array_variable(name, sname) || is_array_type(new_name)
-            value = :(getproperty.($var, $(QuoteNode(:bag))))
-        else
-            value = :($var.bag)
-        end
-    end
-    !isnothing(value) && push!(bag_args, is_optional_parameter(name, sname) ? :($var == C_NULL ? EmptyBag : $value) : value)
-end
-
-function instantiate_bag(sdef, body)
-    !has_bag(sdef.name) && error("Type $(sdef.name) does not have a bag to instantiate.")
-    bag_args = []
-    sname = sdef.name
-    if "pNext" ∈ keys(sdef.fields)
-        push!(bag_args, :bag_next)
-    end
-    for (name, type) ∈ sdef.fields
-        new_name, new_type = field_transform(name, type, sdef.name)
-        tmp_name = tmp_argname(name, type)
-        last_name = last_argname(body, tmp_name, new_name)
-        if is_array_type(new_type) && inner_type(new_type) == "String"
-            push!(bag_args, Symbol(new_name, "_ptrarray"))
-        else
-            steal_bag!(bag_args, name, type, new_name, new_type, last_name, sname)
-        end
-        if type == "Cstring" || is_ptr(type)
-            push!(bag_args, Symbol(last_name))
-        end
-    end
-    bag = Symbol(bagtype(sdef.name))
-    Statement(:(bag = $bag($(bag_args...))))
-end
+# function instantiate_bag(p, body)
+#     sname = p[:name]
+#     !needs_bag(p) && error("Type $sname does not have a bag to instantiate.")
+#     bag_args = []
+#     sname = sdef.name
+#     if "pNext" ∈ keys(sdef.fields)
+#         push!(bag_args, :bag_next)
+#     end
+#     for (name, type) ∈ sdef.fields
+#         new_name, new_type = field_transform(name, type, sdef.name)
+#         tmp_name = tmp_argname(name, type)
+#         last_name = last_argname(body, tmp_name, new_name)
+#         if is_array_type(new_type) && inner_type(new_type) == "String"
+#             push!(bag_args, Symbol(new_name, "_ptrarray"))
+#         else
+#             steal_bag!(bag_args, name, type, new_name, new_type, last_name, sname)
+#         end
+#         if type == "Cstring" || is_ptr(type)
+#             push!(bag_args, last_name)
+#         end
+#     end
+#     bag = Symbol(bagtype(sdef.name))
+#     Statement(:(bag = $bag($(bag_args...))))
+# end
 
 """
 Check whether an argument matches by name a pointer to the type defined in `new_sname`, and returns a default Ref of the corresponding type.
@@ -196,12 +198,12 @@ Return a Vulkan name if assigned from any statement in the body, else take the J
 For example, if a statement assigns the name pAllocator from the Julian name allocator, as in 'pAllocator = allocator.vks', then return pAllocator; else, return allocator.
 """
 function last_argname(body, id, fallback)
-    id_list = string.(assigned_id.(body))
+    id_list = assigned_id.(body)
     id ∈ id_list ? id : fallback
 end
 
 function last_argname(body, ids::Tuple, fallback)
-    id_list = string.(assigned_id.(body))
+    id_list = assigned_id.(body)
     for id ∈ ids
         id ∈ id_list && return id
     end
@@ -324,11 +326,11 @@ function constructor(new_sdef, sdef, definition::GenericConstructor; add_type_an
     sig_notype = Signature(new_sdef.name, remove_type.(default_sig.args), [])
     args_for_passes = arguments(vk_sig, transform_name=false, transform_type=false, drop_type=false, remove_parameters=false)
     body, pass_results = accumulate_passes(sname, args_for_passes, pass_new_nametype(SDefinition), [ConvertArrays(), GenerateRefs(), HandlePNextDeps()])
-    has_bag(sname) && push!(body, instantiate_bag(sdef, body))
+    needs_bag(sname) && push!(body, instantiate_bag(sdef, body))
     init_vk = init_args(pass_results, body, definition, use_all_args=true, include_stype=false, name_depth=2; sname)
     push!(body, Statement(:(vks = $(Symbol(sname))($(init_vk...)))))
     init_struct = [:vks]
-    has_bag(sname) && push!(init_struct, :bag)
+    needs_bag(sname) && push!(init_struct, :bag)
     push!(body, Statement(:($(is_inner_constructor ? :new : Symbol(new_sdef.name))($(init_struct...)))))
     FDefinition(new_sdef.name, co_sig, false, body, "Generic constructor.")
 end
@@ -461,9 +463,10 @@ function accumulate_passes(sname, args, new_nametype_f, passes; common_pass_kwar
     pass_results = DefaultOrderedDict(() -> [])
     @assert unique(typeof.(passes)) == typeof.(passes) "A Pass type cannot be provided more than once"
     for arg ∈ args
-        name, type = arg.name, arg.type
+        name, type = Symbol(arg.name), arg.type
         tmp_name = tmp_argname(name, type)
         new_name, new_type = new_nametype_f(name, type, sname)
+        new_name = Symbol(new_name)
         pass_args = PassArgs(; name, type, arg, new_name, new_type, sdef=nothing, fdef=nothing, last_name=last_argname(body, tmp_name, new_name), tmp_name, passes=Dict(typeof.(passes) .=> false), sname)
         setproperty!.(Ref(pass_args), keys(common_pass_kwargs), values(common_pass_kwargs))
         for el ∈ passes
@@ -599,18 +602,6 @@ end
 
 # a parameter is a keyword argument that relates to the use of a particular function, e.g. flags or allocators.
 # all structs have arguments, some of which are turned into keyword arguments if default values are defined in the specification
-
-function drop_argument(name, sname)
-    is_command(sname) && is_command_type(sname, ENUMERATE) && has_count_to_be_filled(sname) && name == enumeration_command_array_variable(sname).name && return true
-    name == "sType" && return true
-    is_count_variable(name, sname) && return true
-end
-
-function is_parameter(name, sname)
-    !drop_argument(name, sname) && is_optional_parameter(name, sname)
-end
-
-is_keyword_argument(name, type, sname) = is_parameter(name, sname)
 
 function create_info_arguments(sig, args::AbstractArray{T}) where {T <: Argument}
     nonptr_args = filter(x -> !is_ptr(x.type), sig.args)
