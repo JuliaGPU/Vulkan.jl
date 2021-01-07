@@ -1,11 +1,5 @@
 using EzXML
-using StructArrays
-using MLStyle
-using LightGraphs
 using Vulkan_Headers_jll:vk_xml
-
-const ExprLike = Union{Symbol, Expr}
-const Optional{T} = Union{Nothing, T}
 
 xdoc = readxml(vk_xml)
 xroot = xdoc.root

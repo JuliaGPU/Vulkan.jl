@@ -51,9 +51,10 @@ Base.convert(T::Type{SnakeCaseLower}, str::SnakeCaseUpper) = T(lowercase(str.val
 Base.convert(T::Type{SnakeCaseUpper}, str::SnakeCaseLower) = T(uppercase(str.value))
 Base.convert(T::Type{CamelCaseLower}, str::CamelCaseUpper) = T(lowercase(str.value[1]) * str.value[2:end])
 Base.convert(T::Type{CamelCaseUpper}, str::CamelCaseLower) = T(uppercasefirst(str.value))
-Base.convert(T::Type{<: CamelCase}, str::SnakeCase) = T(split(str))
-Base.convert(T::Type{<: SnakeCase}, str::CamelCase) = T(split(str))
-nc_convert(T::Type{<: NamingConvention}, str::AbstractString) = Base.convert(T, (detect_convention(str, instance=true))).value
+Base.convert(T::Type{<:CamelCase}, str::SnakeCase) = T(split(str))
+Base.convert(T::Type{<:SnakeCase}, str::CamelCase) = T(split(str))
+nc_convert(T::Type{<:NamingConvention}, str::AbstractString) = Base.convert(T, (detect_convention(str, instance=true))).value
+nc_convert(T::Type{<:NamingConvention}, sym::Symbol) = Symbol(nc_convert(T, string(sym)))
 
 is_camel_case(str) = !occursin("_", str)
 is_snake_case(str) = lowercase(str) == str || uppercase(str) == str
@@ -61,7 +62,7 @@ is_snake_case(str) = lowercase(str) == str || uppercase(str) == str
 is_camel_case(str::NamingConvention) = is_camel_case(str.value)
 is_snake_case(str::NamingConvention) = is_snake_case(str.value)
 
-function remove_parts(str::T, discarded_parts) where T <: NamingConvention
+function remove_parts(str::T, discarded_parts) where {T<:NamingConvention}
     splitted_str = split(str)
     parts_to_keep = 1:length(splitted_str) |> x -> filter(y -> y ∉ discarded_parts, x) |> collect
     kept_parts = getindex.(Ref(splitted_str), parts_to_keep)
@@ -72,8 +73,8 @@ remove_parts(str; discarded_parts=[1]) = remove_parts(detect_convention(str, ins
 
 """Add a prefix following the naming convention present in the name.
 """
-prefix(name::T, prefix) where {T <: NamingConvention} =  T([prefix, split(name)...])
-remove_prefix(name::T) where {T <: NamingConvention} = T(split(name)[2:end])
+prefix(name::T, prefix) where {T<:NamingConvention} =  T([prefix, split(name)...])
+remove_prefix(name::T) where {T<:NamingConvention} = T(split(name)[2:end])
 remove_prefix(str) = remove_prefix(detect_convention(str, instance=true)).value
 
 function detect_convention(str; instance=false)
@@ -118,15 +119,3 @@ function enforce_convention(str, code_convention_mapping, code_object; pickout_p
 end
 
 enforce_convention(str, old_convention, new_convention, code_object; pickout_parts=nothing) = enforce_convention(str, map_dicts(old_convention, new_convention), code_object; pickout_parts)
-
-function is_code_convention_respected(str, code_object, code_convention)
-    try
-        code_convention.conventions[code_object](str)
-    catch e
-        if typeof(e) != ErrorException
-            throw(e)
-        end
-        return false
-    end
-    true
-end

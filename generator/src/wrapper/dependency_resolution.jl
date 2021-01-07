@@ -6,12 +6,12 @@ function raw_dependencies(ex)
         :const => isalias(p[:name]) ? p[:value] : p[:value] isa Symbol ? p[:value] : []
         :enum                => p[:type]
     end
-    deps isa Array ? deps : [deps]
+    deps isa Vector ? deps : [deps]
 end
 
 function dependencies(ex)
     deps = raw_dependencies(ex)
-    filter!.([!isnothing, !is_base_type, !isalias, !is_vulkan_type], Ref(deps))
+    filter!.([!isnothing, !isalias, !is_vulkan_type, !in(names(Core)), !in(names(Base))], Ref(deps))
     deps
 end
 

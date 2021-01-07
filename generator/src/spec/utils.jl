@@ -48,8 +48,8 @@ do not necessarily have the same layout, e.g. VkBool32 => Bool (8 bits).
 """
 function translate_c_type(base_type::Symbol)
     @match base_type begin
-        x::Symbol && if occursin("uint", string(x)) end => Symbol(replace(string(x), "uint" => "UInt"))
-        x::Symbol && if occursin("int", string(x)) end => Symbol(replace(string(x), "int" => "Int"))
+        x::Symbol && if occursin("uint", string(x)) end => Symbol(replace(string(x)[1:end-2], "uint" => "UInt"))
+        x::Symbol && if occursin("int", string(x)) end => Symbol(replace(string(x)[1:end-2], "int" => "Int"))
         :float => :Float32
         :double => :Float64
         :void => :Cvoid

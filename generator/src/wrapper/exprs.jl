@@ -117,7 +117,7 @@ function reconstruct(d::Dict)
     ex = @match category begin
         :struct                       => begin
                                              props = vcat(get(d, :fields, []), get(d, :constructors, []))
-                                             Expr(:struct, d[:is_mutable], d[:decl], Expr(:block, props...))
+                                             Expr(:struct, get(d, :is_mutable, false), d[:decl], Expr(:block, props...))
                                          end
         :const                        => :(const $(d[:name]) = $(d[:value]))
         :enum                         => Expr(:macrocall, d[:macro], nothing, d[:decl], Expr(:block, d[:values]...))

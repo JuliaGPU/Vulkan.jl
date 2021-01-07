@@ -14,15 +14,6 @@ Represents a structure that will never be requested by API functions.
 """
 abstract type ReturnedOnly <: VulkanStruct end
 
-"""
-Storage structure, used for preserving data that is in use by pointers.
-"""
-abstract type Bag end
-
-struct BagEmpty <: Bag end
-
-const EmptyBag = BagEmpty()
-
 Base.cconvert(T::Type, x::VulkanStruct) = x
 Base.cconvert(T::Type{<: Ptr}, x::AbstractArray{<: VulkanStruct}) = getproperty.(x, :vks)
 Base.cconvert(T::Type{<: Ptr}, x::AbstractArray{<: Handle}) = getproperty.(x, :handle)

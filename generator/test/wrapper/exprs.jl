@@ -11,8 +11,8 @@ e = :(@enum myenum a b c d)
 e2 = :(@cenum myotherenum::Int begin; a=1; b=2; c=3; d=4; end)
 
 @testset "Expressions" begin
-    include("expr/utils.jl")
-    include("expr/deconstruct.jl")
-    include("expr/reconstruct.jl")
+    include("exprs/utils.jl")
+    include("exprs/deconstruct.jl")
+    include("exprs/reconstruct.jl")
 end
 
