@@ -13,10 +13,17 @@ function resolve_aliases!(collection::Dict, nodes)
     end
 end
 
-function extract_type(param; include_pointer=true)
-    type = split(replace(param.content, "const " => ""))[1]
-    type_nostar = translate_c_type(Symbol(rstrip(type, ['*', ' '])))
-    endswith(type, "*") && include_pointer ? :(Ptr{$type_nostar}) : type_nostar
+function extract_type(param)
+    type_str = split(replace(param.content, r"(?:const|typedef) " => ""))[1]
+    base_type = Symbol(rstrip(type_str, ['*', ' ']))
+    type = endswith(type_str, "**") ? :(Ptr{Ptr{$base_type}}) : endswith(type_str, "*") ? :(Ptr{$base_type}) : base_type
+    translated_type = translate_c_type(type)
+    enum_param = findfirst("./enum", param)
+    if !isnothing(enum_param)
+        :(NTuple{$(Meta.parse(enum_param.content)), $translated_type})
+    else
+        translated_type
+    end
 end
 
 extract_identifier(param) = Symbol(findfirst("./name", param).content)
@@ -46,16 +53,20 @@ Semantically translate C types to their Julia counterpart.
 Note that since it is a semantic translation, translated types
 do not necessarily have the same layout, e.g. VkBool32 => Bool (8 bits).
 """
-function translate_c_type(base_type::Symbol)
-    @match base_type begin
-        x::Symbol && if occursin("uint", string(x)) end => Symbol(replace(string(x)[1:end-2], "uint" => "UInt"))
-        x::Symbol && if occursin("int", string(x)) end => Symbol(replace(string(x)[1:end-2], "int" => "Int"))
+function translate_c_type(ctype)
+    @match ctype begin
+        :int => :Int
+        x::Symbol && if startswith(string(x), "uint") && endswith(string(x), "_t") end => Symbol(replace(string(x)[1:end-2], "uint" => "UInt"))
+        x::Symbol && if startswith(string(x), "int") && endswith(string(x), "_t") end => Symbol(replace(string(x)[1:end-2], "int" => "Int"))
+        if is_ptr(ctype) end => @match ptr_type(ctype) begin
+            :char => :Cstring
+            x => :(Ptr{$(translate_c_type(x))})
+        end
         :float => :Float32
         :double => :Float64
         :void => :Cvoid
-        :VkBool32 => :Bool
-        :char => :Char
         :size_t => :UInt
-        x::Symbol => x
+        :char => :UInt8
+        x => x
     end
 end

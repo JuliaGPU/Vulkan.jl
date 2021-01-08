@@ -1,6 +1,7 @@
 using JuliaFormatter
 
 include("wrapper/exprs.jl")
+include("wrapper/type_conversions.jl")
 include("wrapper/wrap.jl")
 
 include("wrapper/naming_conventions.jl")
@@ -36,6 +37,7 @@ export
         rmlines,
         striplines,
         unblock,
+        prettify,
 
         VulkanWrapper,
         wrap

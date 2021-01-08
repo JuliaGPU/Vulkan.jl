@@ -11,13 +11,13 @@ struct RenderPassInside <: RenderPassRequirement end
 struct RenderPassOutside <: RenderPassRequirement end
 
 const queue_map = Dict(
-    :compute => QueueCompute,
-    :graphics => QueueGraphics,
-    :transfer => QueueTransfer,
-    :sparse_binding => QueueSparseBinding,
+    :compute => QueueCompute(),
+    :graphics => QueueGraphics(),
+    :transfer => QueueTransfer(),
+    :sparse_binding => QueueSparseBinding(),
 )
 
-const renderpass_compatibiltiy_map = Dict(
+const render_pass_compatibiltiy_map = Dict(
     :both => [RenderPassInside(), RenderPassOutside()],
     :inside => [RenderPassInside()],
     :outside => [RenderPassOutside()],
@@ -33,6 +33,8 @@ PARAM_REQUIREMENT(node::EzXML.Node) = !haskey(node, "optional") || node["optiona
 
 abstract type Spec end
 
+Base.broadcastable(spec::Spec) = Ref(spec)
+
 struct SpecFuncParam <: Spec
     func::Symbol
     name::Symbol
@@ -41,7 +43,7 @@ struct SpecFuncParam <: Spec
     is_externsync::Bool
     requirement::PARAM_REQUIREMENT
     len::Optional{Symbol}
-    arglen::Optional{Vector{Symbol}}
+    arglen::Vector{Symbol}
 end
 
 struct SpecFunc <: Spec
@@ -68,7 +70,7 @@ struct SpecStruct <: Spec
     name::Symbol
     type::STRUCT_TYPE
     is_returnedonly::Bool
-    extends::Optional{Vector{Symbol}}
+    extends::Vector{Symbol}
     members::StructVector{SpecStructMember}
 end
 
@@ -139,6 +141,14 @@ struct SpecDestroyFunc <: Spec
     batch::Bool
 end
 
+"""
+Check if `x` and `y` are equal, except for vectors which are tested element-wise.
+"""
+eq(x::T, y::T) where {T<:AbstractVector} = length(x) == length(y) && all(x .== y)
+eq(x, y) = x == y
+
+Base.:(==)(x::S, y::S) where {S<:Spec} = all(name -> eq(getproperty(x, name), getproperty(y, name)), fieldnames(S))
+
 print_parent_info(io::IO, spec::Union{SpecStruct, SpecFunc}, props) = println(io, join(string.(vcat(typeof(spec), spec.name, props)), ' '))
 
 children(spec::SpecStruct) = spec.members
@@ -149,7 +159,7 @@ print_children(io::IO, spec::Union{SpecStruct, SpecFunc}) = println.(Ref(io), st
 function Base.show(io::IO, spec::SpecStruct)
     props = string.([spec.type])
     spec.is_returnedonly && push!(props, "returnedonly")
-    !isnothing(spec.extends) && push!(props, "extends $(spec.extends)")
+    !isempty(spec.extends) && push!(props, "extends $(spec.extends)")
 
     print_parent_info(io, spec, props)
     print_children(io, spec)
@@ -187,19 +197,19 @@ SpecFuncParam(node::EzXML.Node) = SpecFuncParam(parent_name(node), extract_ident
 
 function SpecFunc(node::EzXML.Node)
     name = command_name(node)
-    queues = @match getattr(node, "queue") begin
-        x::Symbol => queue_map[x]
+    queues = @match getattr(node, "queues", symbol=false) begin
+        qs::String => [queue_map[Symbol(q)] for q ∈ split(qs, ',')]
         ::Nothing => []
     end
     rp_reqs = @match getattr(node, "renderpass") begin
-        x::Symbol => renderpass_compatibiltiy_map[x]
+        x::Symbol => render_pass_compatibiltiy_map[x]
         ::Nothing => []
     end
     ctype = @match findfirst(startswith.(string(name), ["vkCreate", "vkDestroy", "vkAllocate", "vkFree", "vkCmd"])) begin
         i::Integer => FUNC_TYPE(i)
         _ => nothing
     end
-    return_type = extract_type(findfirst("./proto/type", node))
+    return_type = extract_type(findfirst("./proto", node))
     SpecFunc(name, ctype, return_type, rp_reqs, queues, StructVector(SpecFuncParam.(findall("./param", node))))
 end
 
@@ -218,8 +228,9 @@ function SpecStruct(node::EzXML.Node)
         _ && if occursin("Info", name_str) end => GENERIC_INFO
         _ => DATA
     end
-    extends = @when struct_csv::String = getattr(node, "struct", symbol=false) begin
-        Symbol.(split(struct_csv), ',')
+    extends = @match struct_csv = getattr(node, "structextends", symbol=false) begin
+        ::String => Symbol.(split(struct_csv, ','))
+        ::Nothing => []
     end
     SpecStruct(Symbol(name_str), type, returnedonly, extends, StructVector(SpecStructMember.(findall("./member", node))))
 end
@@ -236,7 +247,7 @@ function SpecHandle(node::EzXML.Node)
 end
 
 function SpecConstant(node::EzXML.Node)
-    name = Symbol(node["name"])
+    name = Symbol(haskey(node, "name") ? node["name"] : findfirst("./name", node).content)
     value = if haskey(node, "offset")
         ext_value = parse(Int, something(getattr(node, "extnumber", symbol=false), getattr(node.parentnode.parentnode, "number", symbol=false))) - 1
         offset = parse(Int, node["offset"])
@@ -249,8 +260,15 @@ function SpecConstant(node::EzXML.Node)
             "(~0U-1)" => :(typemax(UInt32) - 1)
             "(~0U-2)" => :(typemax(UInt32) - 2)
             "1000.0f" => :(1000f0)
-            str::String && if occursin("&quot;", str) end => Meta.parse(replace(str, "&quot;" => ""))
+            str::String && if contains(str, "&quot;") end => replace(str, "&quot;" => "")
             str => Meta.parse(str)
+        end
+    elseif haskey(node, "category")
+        @match cat = node["category"] begin
+            "basetype" || "bitmask" => @match type = findfirst("./type", node) begin
+                ::Nothing && if cat == "basetype" end => :Cvoid
+                ::EzXML.Node => translate_c_type(Symbol(type.content))
+            end
         end
     else
         error("Unknown constant specification for node $node")
@@ -322,7 +340,10 @@ is_computable_len(spec::Union{SpecStructMember, SpecFuncParam}) = !spec.is_const
 """
 Specification constants, usually defined in C with #define.
 """
-const spec_constants = StructVector(SpecConstant.(vcat(findall("//enums[@name = 'API Constants']/*[@value and @name]", xroot), findall("//extension/require/enum[not(@extends) and not(@alias) and @value]", xroot))))
+const spec_constants = StructVector(SpecConstant.(vcat(
+    findall("//enums[@name = 'API Constants']/*[@value and @name]", xroot),
+    findall("//extension/require/enum[not(@extends) and not(@alias) and @value]", xroot),
+    findall("/registry/types/type[@category = 'basetype' or @category = 'bitmask' and not(@alias)]", xroot))))
 
 """
 Specification enumerations, excluding bitmasks.
@@ -343,9 +364,6 @@ const spec_funcs = StructVector(SpecFunc.(findall("//command[not(@name)]", xroot
 Specification structures.
 """
 const spec_structs = StructVector(SpecStruct.(findall("//type[(@category = 'union' or @category = 'struct') and not(@alias)]", xroot)))
-
-
-const spec_types = StructVector(SpecType.(findall("//type[@category and @category != 'include' and @category != 'define' and (@name or @category = 'handle' or @category = 'bitmask') and not(@alias)]", xroot)))
 
 """
 Specification handle types.
@@ -374,7 +392,7 @@ end
 """
 All specifications except aliases.
 """
-const spec_all_noalias = [spec_funcs..., spec_structs..., spec_handles..., spec_constants..., spec_enums..., (spec_enums.enums...)..., spec_bitmasks..., (spec_bitmasks.bits...)..., spec_types...]
+const spec_all_noalias = [spec_funcs..., spec_structs..., spec_handles..., spec_constants..., spec_enums..., (spec_enums.enums...)..., spec_bitmasks..., (spec_bitmasks.bits...)...]
 
 """
 All specification aliases.
@@ -387,13 +405,11 @@ const spec_create_info_structs = filter(x -> x.type ∈ [CREATE_INFO, ALLOCATE_I
 const spec_create_funcs = StructVector(SpecCreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
 const spec_destroy_funcs = StructVector(SpecDestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
 
-# is_handle(type) = follow_alias(type) ∈ vcat(spec_handles.name..., "HANDLE")
-
 is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
 
 default(spec::SpecHandle) = :C_NULL
 default(spec::Union{SpecStructMember, SpecFuncParam}) = @match spec.requirement begin
-    &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) end => :C_NULL
+    &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) || spec.type == :Cstring end => :C_NULL
     &OPTIONAL || &REQUIRED => 0
 end
 
@@ -417,3 +433,17 @@ handle_by_name(name) = spec_by_name(spec_handles, name)
 bitmask_by_name(name) = spec_by_name(spec_bitmasks, name)
 
 enum_by_name(name) = spec_by_name(spec_enums, name)
+
+constant_by_name(name) = spec_by_name(spec_constants, name)
+
+function follow_constant(spec::SpecConstant)
+    @match val = spec.value begin
+        ::Symbol && if val ∈ spec_constants.name end => follow_constant(constant_by_name(val))
+        val => val
+    end
+end
+
+function follow_constant(name)
+    constant = constant_by_name(name)
+    isnothing(constant) ? name : follow_constant(constant)
+end

@@ -9,7 +9,7 @@ Base.show(io::IO, vw::VulkanWrapper) = print(io, "VulkanWrapper with $(length(vw
 
 function wrap(spec::SpecHandle)
     :(mutable struct $(remove_vk_prefix(spec.name)) <: Handle
-         handle::Ptr{$(spec.name)}
+         handle::$(spec.name)
      end)
 end
 
@@ -19,13 +19,13 @@ function wrap(spec::SpecStruct)
         :decl => :($(remove_vk_prefix(spec.name)) <: $(spec.is_returnedonly ? :ReturnedOnly : :VulkanStruct)),
     )
     if spec.is_returnedonly
-        p[:fields] = map(x -> :($(nc_convert(SnakeCaseLower, x.name))::$(x.type)), spec.members)
+        p[:fields] = map(x -> :($(nc_convert(SnakeCaseLower, x.name))::$(nice_julian_type(x))), spec.members)
     else
         p[:fields] = [
             :(vks::$(spec.name)),
         ]
     end
-    any(!isnothing, spec.members.len) && push!(p[:fields], :(deps::Vector{Any}))
+    (any(!isnothing, spec.members.len) || any(spec.members.type .== :Cstring)) && push!(p[:fields], :(deps::Vector{Any}))
     reconstruct(p)
 end
 

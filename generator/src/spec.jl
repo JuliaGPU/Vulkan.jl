@@ -22,9 +22,47 @@ export
         hasalias,
 
         # specs
+        ### utility
         default,
         func_by_name,
         struct_by_name,
         handle_by_name,
         bitmask_by_name,
-        enum_by_name
+        enum_by_name,
+        constant_by_name,
+        follow_constant,
+
+        ### render_passes
+        RenderPassRequirement,
+        RenderPassInside,
+        RenderPassOutside,
+        render_pass_compatibiltiy_map,
+
+        ### queues
+        QueueType,
+        QueueCompute,
+        QueueGraphics,
+        QueueTransfer,
+        QueueSparseBinding,
+
+        ### structs & funcs
+        PARAM_REQUIREMENT,
+        OPTIONAL,
+        REQUIRED,
+        POINTER_OPTIONAL,
+        POINTER_REQUIRED,
+
+        STRUCT_TYPE,
+        CREATE_INFO,
+        ALLOCATE_INFO,
+        GENERIC_INFO,
+        DATA,
+        PROPERTY,
+
+        FUNC_TYPE,
+        CREATE,
+        DESTROY,
+        ALLOCATE,
+        FREE,
+        COMMAND,
+        ENUMERATE
