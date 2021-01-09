@@ -121,13 +121,12 @@ function reconstruct(d::Dict)
                                          end
         :const                        => :(const $(d[:name]) = $(d[:value]))
         :enum                         => Expr(:macrocall, d[:macro], nothing, d[:decl], Expr(:block, d[:values]...))
-        :function && if get(d, :short, false) end => :($(d[:name])($(d[:args]...); $(d[:kwargs]...)) = $(d[:body]))
         :function                     => begin
                                             call = @match (get(d, :args, []), get(d, :kwargs, [])) begin
                                                 (args, []) => Expr(:call, d[:name], args...)
                                                 (args, kwargs) => Expr(:call, d[:name], Expr(:parameters, kwargs...), args...)
                                             end
-                                            Expr(:function, call, d[:body])
+                                            get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
                                          end
         _                             => error("Category $category cannot be constructed")
     end

@@ -38,5 +38,15 @@ function nice_julian_type(spec::Spec)
     end
 end
 
+function signature_type(type)
+    @match type begin
+        :UInt || :UInt8 || :UInt16 || :UInt32 || :UInt64 || :Int || :Int8 || :Int16 || :Int32 || :Int64 => :Integer
+        :Float16 || :Float32 || :Float64 => :AbstractFloat
+        :String => :AbstractString
+        :(Vector{$et}) => :(AbstractVector{<:$(signature_type(et))})
+        t => t
+    end
+end
+
 is_fn_ptr(type) = startswith(string(type), "PFN")
 is_version(spec::Spec) = contains(lowercase(string(spec.name)), "version") && (follow_constant(spec.type) == :UInt32 || isnothing(spec.len) && !spec.is_constant && is_ptr(spec.type) && follow_constant(ptr_type(spec.type)) == :UInt32) 
