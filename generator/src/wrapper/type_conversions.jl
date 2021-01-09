@@ -1,25 +1,42 @@
-function nice_julian_type(member::SpecStructMember)
-    @match m = member begin
-        if is_fn_ptr(m) end => :Function
-        if m.type == :UInt32 && is_version(m) end => :VersionNumber
-        if is_ntuple(m.type) && ntuple_type(m.type) == :UInt8 end => :String
-        if m.type == :Cstring end => :String
-        if m.type == :VkBool32 end => :Bool
-        if is_ptr(m.type) end => @match pt = ptr_type(m.type) begin
-            if !isnothing(m.len) end => :(Vector{$pt})
-            :Cstring => :(Vector{String})
-            if is_vulkan_type(pt) end => remove_vk_prefix(pt)
-            _ => m.type
-            if is_ptr(pt) end => @match ppt = ptr_type(pt) begin
-                :Cvoid => :(Vector{Any})
-                _ => :(Vector{$ppt})
-            end
-        end
-        if m.type ∈ spec_constants.name end => follow_constant(m.type)
-        if m.type ∈ spec_structs.name end => remove_vk_prefix(m.type)
-        m => m.type
+const extension_types = [
+    :ANativeWindow,
+    :AHardwareBuffer,
+    :CAMetalLayer,
+    :wl_surface,
+    :wl_display,
+    :Display,
+    :VisualID,
+    :xcb_connection_t,
+    :xcb_window_t,
+    :xcb_visualid_t,
+    :MirConnection,
+    :MirSurface,
+    :HINSTANCE,
+    :HANDLE,
+    :HWND,
+    :RROutput,
+]
+
+function nice_julian_type(type)
+    @match t = type begin
+        GuardBy(is_fn_ptr) => :Function
+        :(NTuple{$N, UInt8}) => :String
+        :Cstring => :String
+        :VkBool32 => :Bool
+        :(Ptr{$pt}) => nice_julian_type(pt)
+        if t ∈ spec_constants.name end => follow_constant(t)
+        GuardBy(is_vulkan_type) => remove_vk_prefix(t)
+        _ => t
     end
 end
 
-is_fn_ptr(member::SpecStructMember) = startswith(string(member.type), "PFN")
-is_version(member::SpecStructMember) = contains(lowercase(string(member.name)), "version") && follow_constant(member.type) == :UInt32
+function nice_julian_type(spec::Spec)
+    @match s = spec begin
+        GuardBy(is_version) => :VersionNumber
+        if !isnothing(s.len) end => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
+        _ => nice_julian_type(s.type)
+    end
+end
+
+is_fn_ptr(type) = startswith(string(type), "PFN")
+is_version(spec::Spec) = contains(lowercase(string(spec.name)), "version") && (follow_constant(spec.type) == :UInt32 || isnothing(spec.len) && !spec.is_constant && is_ptr(spec.type) && follow_constant(ptr_type(spec.type)) == :UInt32) 

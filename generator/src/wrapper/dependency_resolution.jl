@@ -11,7 +11,7 @@ end
 
 function dependencies(ex)
     deps = raw_dependencies(ex)
-    filter!.([!isnothing, !isalias, !is_vulkan_type, !in(names(Core)), !in(names(Base))], Ref(deps))
+    filter!.([!isalias, x -> !startswith(string(x), r"(?:Vk|VK_)"), !is_vulkan_type, !in(extension_types), !in(names(Core)), !in(names(Base)), x -> x isa Symbol], Ref(deps))
     deps
 end
 

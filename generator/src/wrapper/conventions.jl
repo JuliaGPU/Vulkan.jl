@@ -27,3 +27,12 @@ function remove_vk_prefix(ex::Expr)
         ex isa Symbol ? Symbol(remove_vk_prefix(string(ex))) : ex
     end
 end
+
+function var_from_vk(name)
+    name == :visual_id && return name
+    var_str = @match s = CamelCaseLower(string(name)) begin
+        if startswith(s.value, r"p[A-Z]") end => remove_prefix(convert(SnakeCaseLower, s)).value
+        _ => convert(SnakeCaseLower, s).value
+    end
+    Symbol(var_str)
+end

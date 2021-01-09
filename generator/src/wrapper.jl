@@ -2,10 +2,10 @@ using JuliaFormatter
 
 include("wrapper/exprs.jl")
 include("wrapper/type_conversions.jl")
-include("wrapper/wrap.jl")
-
 include("wrapper/naming_conventions.jl")
 include("wrapper/conventions.jl")
+include("wrapper/wrap.jl")
+
 include("wrapper/dependency_resolution.jl")
 include("wrapper/write.jl")
 

@@ -9,14 +9,7 @@ ntuple_type(ex) = @when :(NTuple{$N, $T}) = ex T
 
 is_ntuple(ex) = !isnothing(ntuple_type(ex))
 
-vulkan_type(name) = @switch string(name, "__")[1:2] begin
-    @case "vk"; :function
-    @case "Vk"; :struct
-    @case "VK"; :const
-    @case _; nothing
-end
-
-is_vulkan_type(name) = !isnothing(vulkan_type(name))
+is_vulkan_type(name) = name ∈ vcat(spec_structs.name, spec_handles.name)
 
 inner_type(ex) = @when :($T{$(args...)}) = ex collect(args)
 

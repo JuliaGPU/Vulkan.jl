@@ -65,4 +65,5 @@ export
         ALLOCATE,
         FREE,
         COMMAND,
-        ENUMERATE
+        QUERY,
+        OTHER

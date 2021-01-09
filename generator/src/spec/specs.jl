@@ -23,7 +23,7 @@ const render_pass_compatibiltiy_map = Dict(
     :outside => [RenderPassOutside()],
 )
 
-@enum FUNC_TYPE CREATE=1 DESTROY ALLOCATE FREE COMMAND ENUMERATE
+@enum FUNC_TYPE CREATE=1 DESTROY ALLOCATE FREE COMMAND QUERY OTHER
 
 @enum STRUCT_TYPE CREATE_INFO=1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
 
@@ -48,7 +48,7 @@ end
 
 struct SpecFunc <: Spec
     name::Symbol
-    type::Optional{FUNC_TYPE}
+    type::FUNC_TYPE
     return_type::Optional{ExprLike}
     render_pass_compatibility::Vector{RenderPassRequirement}
     queue_compatibility::Vector{QueueType}
@@ -207,7 +207,8 @@ function SpecFunc(node::EzXML.Node)
     end
     ctype = @match findfirst(startswith.(string(name), ["vkCreate", "vkDestroy", "vkAllocate", "vkFree", "vkCmd"])) begin
         i::Integer => FUNC_TYPE(i)
-        _ => nothing
+        if any(startswith.(string(name), ["vkGet", "vkEnumerate"])) end => QUERY
+        _ => OTHER
     end
     return_type = extract_type(findfirst("./proto", node))
     SpecFunc(name, ctype, return_type, rp_reqs, queues, StructVector(SpecFuncParam.(findall("./param", node))))
@@ -409,6 +410,7 @@ is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
 
 default(spec::SpecHandle) = :C_NULL
 default(spec::Union{SpecStructMember, SpecFuncParam}) = @match spec.requirement begin
+    if spec.type ∈ spec_handles.name end => default(handle_by_name(spec.type))
     &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) || spec.type == :Cstring end => :C_NULL
     &OPTIONAL || &REQUIRED => 0
 end
