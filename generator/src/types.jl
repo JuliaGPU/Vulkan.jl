@@ -25,7 +25,7 @@ function innermost_type(ex::Expr)
                 innermost_type(first(t))
             end
         else
-            nothing
+            ex
         end
     end
 end

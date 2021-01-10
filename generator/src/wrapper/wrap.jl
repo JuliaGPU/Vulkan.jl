@@ -71,6 +71,8 @@ function is_query_param(param::SpecFuncParam)
     query_param_index == findfirst(==(param), params)
 end
 
+broadcast_ex(ex) = Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...))
+
 """
 Build a return expression from an implicit return parameter.
 Implicit return parameters are pointers that are mutated by the API, rather than returned directly.
@@ -87,7 +89,7 @@ function wrap_implicit_return(return_param::SpecFuncParam)
         # array pointer
         if !isnothing(p.len) end => @match ex = wrap_return(p.name, pt, innermost_type((nice_julian_type(p)))) begin
             ::Symbol => ex
-            ::Expr => Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...)) # broadcast result
+            ::Expr => broadcast_ex(ex) # broadcast result
         end
 
         # pointer to a unique object
@@ -100,9 +102,21 @@ wrap_api_call(spec::SpecFunc, args) = wrap_return(:($(spec.name)($(args...))), s
 init_wrapper_func(spec::SpecFunc) = Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
 init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
 
-function add_func_args!(p::Dict, args, kwargs)
-    p[:args] = map(x -> :($(var_from_vk(x.name))::$(signature_type(nice_julian_type(x)))), filter(x -> !is_optional(x) && isempty(x.arglen) && !is_pointer_start(x), args))
-    p[:kwargs] = map(x -> Expr(:kw, var_from_vk(x.name), default(x)), filter(x -> is_optional(x) && isempty(x.arglen), kwargs))
+arg_decl(x::Spec) = :($(var_from_vk(x.name))::$(signature_type(nice_julian_type(x))))
+kwarg_decl(x::Spec) = Expr(:kw, var_from_vk(x.name), default(x))
+drop_arg(x::Spec) = !isempty(x.arglen) || is_pointer_start(x)
+
+function add_func_args!(p::Dict, spec, params)
+    params = filter(!drop_arg, params)
+    arg_filter = if spec.type ∈ [DESTROY, FREE]
+        destroyed_type = destroy_func(spec).handle.name
+        x -> !is_optional(x) || x.type == destroyed_type
+    else
+        !is_optional
+    end
+
+    p[:args] = map(arg_decl, filter(arg_filter, params))
+    p[:kwargs] = map(kwarg_decl, filter(!arg_filter, params))
 end
 
 function wrap(spec::SpecFunc)
@@ -134,65 +148,82 @@ function wrap(spec::SpecFunc)
             $(wrap_implicit_return(queried_params))
         end
 
-        args = filter(≠(count_ptr), children(spec))
-        kwargs = filter(!in(queried_params), children(spec))
+        args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
     elseif !isnothing(query_param_index)
         query_param = children(spec)[query_param_index]
         call_args = map(@λ(begin
                 &query_param => query_param.name
                 x => vk_call(x)
             end), children(spec))
+        init_query_param = if isnothing(query_param.len)
+            :(Ref{$(ptr_type(query_param.type))}())
+        else
+            if contains(string(query_param.len), "->")
+                vars = Symbol.(split(string(query_param.len), "->"))
+                len_expr = foldl((x, y) -> :($x.$y), vars[2:end]; init=:($(var_from_vk(first(vars))).vks))
+            else
+                len_param = spec.params[findfirst(==(query_param.len), spec.params.name)]
+                len_expr = vk_call(len_param)
+            end
+            :(Vector{$(ptr_type(query_param.type))}(undef, $len_expr))
+        end
 
         p[:body] = quote
-            $(query_param.name) = Ref{$(ptr_type(query_param.type))}()
+            $(query_param.name) = $init_query_param
             $(wrap_api_call(spec, call_args))
             $(wrap_implicit_return(query_param))
         end
 
+        if spec.type ∈ [CREATE, ALLOCATE]
+            create::SpecCreateFunc = create_func(spec)
+            destroy = spec_by_field(spec_destroy_funcs, :handle, handle_by_name(ptr_type(query_param.type)))
+            if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
+                p_destroy = deconstruct(wrap(destroy.func))
+                handle_name = var_from_vk(query_param.name)
+                p_destroy[:args][findfirst(==(remove_vk_prefix(ptr_type(query_param.type))), type.(p_destroy[:args]))] = :x
+                p_destroy_call = Dict(
+                    :name => p_destroy[:name],
+                    :args => name.(p_destroy[:args]),
+                    :kwargs => name.(p_destroy[:kwargs]),
+                )
+                p[:body].args[end] = :($handle_name = $(last(p[:body].args)))
+                p[:body] = concat_exs(p[:body], (create.batch ? broadcast_ex : identity)(:(finalizer(x -> $(reconstruct_call(p_destroy_call)), $handle_name))))
+            end
+        end
+
         args = filter(≠(query_param), children(spec))
-        kwargs = children(spec)
     else
         p[:short] = true
         p[:body] = :($(wrap_api_call(spec, map(vk_call, children(spec)))))
 
-        args = kwargs = children(spec)
+        args = children(spec)
     end
 
-    add_func_args!(p, args, kwargs)
+    add_func_args!(p, spec, args)
+
     reconstruct(p)
 end
 
-# function add_constructor(spec::SpecHandle)
-#     create_func::SpecCreateFunc = spec_by_field(spec_create_funcs, :handle, spec)
-#     func = create_func.func
-#     @unpack create_info_struct, create_info_param = create_func
-#     p = init_wrapper_func(spec)
-#     if create_func.batch
-#         []
-#     else
-#         if isnothing(create_info_struct)
-#             potential_args = children(func)
-#             p[:body] = :nothing
-#         else
-#             potential_args = vcat(collect(children(func)), collect(create_info_struct.members))
-#             p[:body] = :($(create_info_param.name) = $(remove_vk_prefix(create_info_struct.name))($(var_from_vk.(create_info_struct.members.name)...)))
-#         end
-#         potential_args = filter(x -> x.type ≠ :VkStructureType && x.type ≠ :(Ptr{$(spec.name)}) && x ≠ create_info_param, potential_args)
-#         add_func_args!(p, potential_args, potential_args)
-#         reconstruct(p)
-#     end
-# end
-
-function preserve(var, member::SpecStructMember)
-    spec = parent(member)
-    if is_ptr(member.type)
-        if !isnothing(member.len) # array pointer
-            @match pt = ptr_type(member.type) begin
-                GuardBy(in(spec_structs.name)) => :(push!($var.deps, $(var_from_vk(member.name))))
+function add_constructor(spec::SpecHandle)
+    create_func::SpecCreateFunc = spec_by_field(spec_create_funcs, :handle, spec)
+    func = create_func.func
+    @unpack create_info_struct, create_info_param = create_func
+    create_info_var = var_from_vk(create_info_param.name)
+    p = init_wrapper_func(spec)
+    if create_func.batch
+        []
+    else
+        potential_args = children(func)
+        if isnothing(create_info_struct)
+            p[:body] = :nothing
+        else
+            return_param = func.params[findfirst(x -> x.type == :(Ptr{$(spec.name)}), func.params)]
+            p[:body] = quote
+                $(var_from_vk(return_param.name)) = $(nc_convert(SnakeCaseLower, remove_vk_prefix(func.name)))($(var_from_vk.(func.params.name)...))
             end
-        else # pointer to a unique object
-            
         end
+        add_func_args!(p, spec, filter(≠(return_param), potential_args))
+        reconstruct(p)
     end
 end
 
@@ -210,11 +241,8 @@ function add_constructor(spec::SpecStruct)
         p[:body] = :($(p[:name])($(spec.name)($(map(vk_call, spec.members)...))))
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, spec.members)
-    add_func_args!(p, potential_args, potential_args)
+    add_func_args!(p, spec, potential_args)
     reconstruct(p)
-    # :(function $(remove_vk_prefix(spec.name))()
-    #     error("Not implemented")
-    # end)
 end
 
 function extend_from_vk(spec::SpecStruct)

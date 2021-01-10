@@ -4,7 +4,9 @@ test_wrap(f, value, ex) = test_ex(wrap(f(value)), ex)
 test_wrap_handle(name, ex) = test_wrap(handle_by_name, name, ex)
 test_wrap_struct(name, ex) = test_wrap(struct_by_name, name, ex)
 test_wrap_func(name, ex) = test_wrap(func_by_name, name, ex)
-test_add_constructor(name, ex) = test_ex(add_constructor(struct_by_name(name)), ex)
+test_add_constructor(f, name, ex) = test_ex(add_constructor(f(name)), ex)
+test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args...)
+test_handle_add_constructor(args...) = test_add_constructor(handle_by_name, args...)
 
 @testset "Wrapping" begin
     test_wrap_handle(:VkInstance, :(
@@ -120,9 +122,20 @@ test_add_constructor(name, ex) = test_ex(add_constructor(struct_by_name(name)), 
         function create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)
             pInstance = Ref{VkInstance}()
             @check vkCreateInstance(create_info, allocator, pInstance)
-            Instance(pInstance[])
+            instance = Instance(pInstance[])
+            finalizer(x -> destroy_instance(x; allocator), instance)
         end
     ))
+
+    test_wrap_func(:vkCreateGraphicsPipelines, :(
+        function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
+            pPipelines = Vector{VkPipeline}(undef, length(create_infos))
+            @check vkCreateGraphicsPipelines(device, pipeline_cache, length(create_infos), create_infos, allocator, pPipelines)
+            pipelines = Pipeline.(pPipelines)
+            finalizer.(x -> destroy_pipeline(device, x; allocator), pipelines)
+        end
+    ))
+
     test_wrap_func(:vkMergePipelineCaches, :(
         merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, length(src_caches), src_caches))
     ))
@@ -155,6 +168,10 @@ test_add_constructor(name, ex) = test_ex(add_constructor(struct_by_name(name)), 
         cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real) = vkCmdSetLineWidth(command_buffer, line_width)
     ))
 
+    test_wrap_func(:vkDestroyInstance, :(
+        destroy_instance(instance::Instance; allocator = C_NULL) = vkDestroyInstance(instance, allocator)
+    ))
+
     test_wrap_func(:vkMapMemory, :(
         function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)
             ppData = Ref{Ptr{Cvoid}}()
@@ -163,7 +180,16 @@ test_add_constructor(name, ex) = test_ex(add_constructor(struct_by_name(name)), 
         end
     ))
 
-    test_add_constructor(:VkInstanceCreateInfo, :(
+    test_wrap_func(:vkAllocateDescriptorSets, :(
+        function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)
+            pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
+            @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
+            DescriptorSet.(pDescriptorSets)
+        end
+        
+    ))
+
+    test_struct_add_constructor(:VkInstanceCreateInfo, :(
         function InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next=C_NULL, flags=0, application_info=C_NULL)
             next = cconvert(Ptr{Cvoid}, next)
             application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
@@ -187,8 +213,8 @@ test_add_constructor(name, ex) = test_ex(add_constructor(struct_by_name(name)), 
             InstanceCreateInfo(vks, deps)
         end
     ))
-    
-    test_add_constructor(:VkSubpassSampleLocationsEXT, :(
+
+    test_struct_add_constructor(:VkSubpassSampleLocationsEXT, :(
         function SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::SampleLocationsInfoEXT)
             SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
         end

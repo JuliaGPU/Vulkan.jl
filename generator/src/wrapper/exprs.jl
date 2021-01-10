@@ -36,12 +36,17 @@ end
 
 prettify(ex) = ex |> striplines |> unblock
 
+isblock(ex) = false
+isblock(ex::Expr) = ex.head == :block
+
+concat_exs(x, y) = Expr(:block, vcat((isblock(x) ? x.args : x), (isblock(y) ? y.args : y))...)
+
 name(sym::Symbol) = sym
 
 function name(ex::Expr)
     @match ex begin
-        Expr(:(::), a, _)                  => name(a)
-        Expr(:<:, a, _)                    => name(a)
+        Expr(:(::), a...)                  => name(first(a))
+        Expr(:<:, a...)                    => name(first(a))
         Expr(:struct, _, _name, _)         => name(_name)
         Expr(:call, f, _...)               => name(f)
         Expr(:., subject, attr, _...)      => name(subject)
@@ -49,11 +54,15 @@ function name(ex::Expr)
         Expr(:const, assn, _...)           => name(assn)
         Expr(:(=), call, body, _...)       => name(call)
         Expr(:macrocall, &enum_sym || &cenum_sym, _, decl, _...) => name(decl)
+        Expr(:kw, _name, _...) => _name
         Expr(expr_type,  _...)             => error("Can't extract name from ", expr_type, " expression:\n", "    $ex\n")
     end
 end
 
-type(ex::Expr) = @when :(<:) = ex.head ex.args[2]
+type(ex::Expr) = @match ex begin
+    :($_<:$T) || :($_::$T) || :(::$T) => T
+    _ => nothing
+end 
 
 function deconstruct(ex::Expr)
     ex = striplines(ex)
@@ -112,6 +121,13 @@ function deconstruct(ex::Expr)
     dict
 end
 
+function reconstruct_call(d::Dict)
+    @match (get(d, :args, []), get(d, :kwargs, [])) begin
+        (args, []) => Expr(:call, d[:name], args...)
+        (args, kwargs) => Expr(:call, d[:name], Expr(:parameters, kwargs...), args...)
+    end
+end
+
 function reconstruct(d::Dict)
     category = d[:category]
     ex = @match category begin
@@ -122,10 +138,7 @@ function reconstruct(d::Dict)
         :const                        => :(const $(d[:name]) = $(d[:value]))
         :enum                         => Expr(:macrocall, d[:macro], nothing, d[:decl], Expr(:block, d[:values]...))
         :function                     => begin
-                                            call = @match (get(d, :args, []), get(d, :kwargs, [])) begin
-                                                (args, []) => Expr(:call, d[:name], args...)
-                                                (args, kwargs) => Expr(:call, d[:name], Expr(:parameters, kwargs...), args...)
-                                            end
+                                            call = reconstruct_call(d)
                                             get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
                                          end
         _                             => error("Category $category cannot be constructed")

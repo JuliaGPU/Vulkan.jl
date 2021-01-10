@@ -438,6 +438,12 @@ enum_by_name(name) = spec_by_name(spec_enums, name)
 
 constant_by_name(name) = spec_by_name(spec_constants, name)
 
+create_func(func::SpecFunc) = spec_by_field(spec_create_funcs, :func, func)
+create_func(name) = spec_by_field(spec_create_funcs, :func, func_by_name(name))
+
+destroy_func(func::SpecFunc) = spec_by_field(spec_destroy_funcs, :func, func)
+destroy_func(name) = spec_by_field(spec_destroy_funcs, :func, func_by_name(name))
+
 function follow_constant(spec::SpecConstant)
     @match val = spec.value begin
         ::Symbol && if val ∈ spec_constants.name end => follow_constant(constant_by_name(val))

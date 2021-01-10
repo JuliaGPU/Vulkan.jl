@@ -30,6 +30,8 @@ export
         bitmask_by_name,
         enum_by_name,
         constant_by_name,
+        create_func_by_name,
+        destroy_func_by_name,
         follow_constant,
 
         ### render_passes
