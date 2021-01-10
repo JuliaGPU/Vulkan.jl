@@ -40,6 +40,8 @@ export
         prettify,
 
         VulkanWrapper,
-        wrap
+        wrap,
+        add_constructor,
+        extend_from_vk
 
 

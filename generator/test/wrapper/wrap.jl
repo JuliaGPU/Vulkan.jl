@@ -4,6 +4,7 @@ test_wrap(f, value, ex) = test_ex(wrap(f(value)), ex)
 test_wrap_handle(name, ex) = test_wrap(handle_by_name, name, ex)
 test_wrap_struct(name, ex) = test_wrap(struct_by_name, name, ex)
 test_wrap_func(name, ex) = test_wrap(func_by_name, name, ex)
+test_add_constructor(name, ex) = test_ex(add_constructor(struct_by_name(name)), ex)
 
 @testset "Wrapping" begin
     test_wrap_handle(:VkInstance, :(
@@ -34,6 +35,14 @@ test_wrap_func(name, ex) = test_wrap(func_by_name, name, ex)
         struct Extent2D <: VulkanStruct
             vks::VkExtent2D
         end))
+
+    test_wrap_struct(:VkExternalBufferProperties, :(
+        struct ExternalBufferProperties <: ReturnedOnly
+            s_type::VkStructureType
+            p_next::Ptr{Cvoid}
+            external_memory_properties::ExternalMemoryProperties
+        end
+    ))
 
     test_wrap_func(:vkEnumeratePhysicalDevices, :(
         function enumerate_physical_devices(instance::Instance)
@@ -115,7 +124,7 @@ test_wrap_func(name, ex) = test_wrap(func_by_name, name, ex)
         end
     ))
     test_wrap_func(:vkMergePipelineCaches, :(
-        merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractVector{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, length(src_caches), src_caches))
+        merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, length(src_caches), src_caches))
     ))
 
     test_wrap_func(:vkGetFenceFdKHR, :(
@@ -135,6 +144,53 @@ test_wrap_func(name, ex) = test_wrap(func_by_name, name, ex)
     ))
 
     test_wrap_func(:vkUpdateDescriptorSets, :(
-        update_descriptor_sets(device::Device, descriptor_writes::AbstractVector{<:WriteDescriptorSet}, descriptor_copies::AbstractVector{<:CopyDescriptorSet}) = vkUpdateDescriptorSets(device, length(descriptor_writes), descriptor_writes, length(descriptor_copies), descriptor_copies)
+        update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}) = vkUpdateDescriptorSets(device, length(descriptor_writes), descriptor_writes, length(descriptor_copies), descriptor_copies)
+    ))
+
+    test_wrap_func(:vkCmdSetViewport, :(
+        cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = vkCmdSetViewport(command_buffer, 0, length(viewports), viewports)
+    ))
+
+    test_wrap_func(:vkCmdSetLineWidth, :(
+        cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real) = vkCmdSetLineWidth(command_buffer, line_width)
+    ))
+
+    test_wrap_func(:vkMapMemory, :(
+        function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)
+            ppData = Ref{Ptr{Cvoid}}()
+            @check vkMapMemory(device, memory, offset, size, flags, ppData)
+            from_vk(AbstractArray, ppData[])
+        end
+    ))
+
+    test_add_constructor(:VkInstanceCreateInfo, :(
+        function InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next=C_NULL, flags=0, application_info=C_NULL)
+            next = cconvert(Ptr{Cvoid}, next)
+            application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
+            enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
+            enabled_extension_names = cconvert(Ptr{Cstring}, enabled_extension_names)
+            deps = [
+                next,
+                application_info,
+                enabled_layer_names,
+                enabled_extension_names
+            ]
+            vks = VkInstanceCreateInfo(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
+                                       unsafe_convert(Ptr{Cvoid}, next),
+                                       flags,
+                                       unsafe_convert(Ptr{VkApplicationInfo}, application_info),
+                                       length(enabled_layer_names),
+                                       unsafe_convert(Ptr{Cstring}, enabled_layer_names),
+                                       length(enabled_extension_names),
+                                       unsafe_convert(Ptr{Cstring}, enabled_extension_names),
+                                       )
+            InstanceCreateInfo(vks, deps)
+        end
+    ))
+    
+    test_add_constructor(:VkSubpassSampleLocationsEXT, :(
+        function SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::SampleLocationsInfoEXT)
+            SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
+        end
     ))
 end

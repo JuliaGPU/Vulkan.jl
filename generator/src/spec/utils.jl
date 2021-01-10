@@ -16,7 +16,8 @@ end
 function extract_type(param)
     type_str = split(replace(param.content, r"(?:const|typedef|struct) " => ""))[1]
     base_type = Symbol(rstrip(type_str, ['*', ' ']))
-    type = endswith(type_str, "**") ? :(Ptr{Ptr{$base_type}}) : endswith(type_str, "*") ? :(Ptr{$base_type}) : base_type
+    star_count = count("*", param.content)
+    type = star_count == 0 ? base_type : reduce((x, _) -> :(Ptr{$x}), 1:star_count; init=base_type)
     translated_type = translate_c_type(type)
     enum_param = findfirst("./enum", param)
     if !isnothing(enum_param)

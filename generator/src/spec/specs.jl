@@ -449,3 +449,9 @@ function follow_constant(name)
     constant = constant_by_name(name)
     isnothing(constant) ? name : follow_constant(constant)
 end
+
+Base.parent(spec::SpecFuncParam) = spec.func
+Base.parent(spec::SpecStructMember) = spec.parent
+
+parent_spec(spec::SpecFuncParam) = func_by_name(parent(spec))
+parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))

@@ -28,11 +28,18 @@ function remove_vk_prefix(ex::Expr)
     end
 end
 
+const convention_exceptions = Dict(
+    :textureCompressionASTC_LDR => :texture_compression_astc_ldr,
+    :textureCompressionASTC_HDR => :texture_compression_astc_hdr,
+    :formatA4R4G4B4 => :format_a4r4g4b4,
+    :formatA4B4G4R4 => :format_a4b4g4r4,
+)
+
 function var_from_vk(name)
-    name == :visual_id && return name
-    var_str = @match s = CamelCaseLower(string(name)) begin
-        if startswith(s.value, r"p[A-Z]") end => remove_prefix(convert(SnakeCaseLower, s)).value
-        _ => convert(SnakeCaseLower, s).value
+    name ∈ keys(convention_exceptions) && return convention_exceptions[name]
+    var_str = @match s = string(name) begin
+        GuardBy(startswith(r"p+[A-Z]")) => remove_prefix(convert(SnakeCaseLower, CamelCaseLower(s))).value
+        _ => nc_convert(SnakeCaseLower, s)
     end
     Symbol(var_str)
 end

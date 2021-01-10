@@ -1,20 +1,31 @@
 const extension_types = [
+    :Display,
+    :VisualID,
+    :Window,
+    :RROutput,
+    :wl_display,
+    :wl_surface,
+    :HINSTANCE,
+    :HWND,
+    :HMONITOR,
+    :HANDLE,
+    :SECURITY_ATTRIBUTES,
+    :DWORD,
+    :LPCWSTR,
+    :xcb_connection_t,
+    :xcb_visualid_t,
+    :xcb_window_t,
+    :IDirectFB,
+    :IDirectFBSurface,
+    :zx_handle_t,
+    :GgpStreamDescriptor,
+    :GgpFrameToken,
+
+    :MirConnection,
+    :MirSurface,
     :ANativeWindow,
     :AHardwareBuffer,
     :CAMetalLayer,
-    :wl_surface,
-    :wl_display,
-    :Display,
-    :VisualID,
-    :xcb_connection_t,
-    :xcb_window_t,
-    :xcb_visualid_t,
-    :MirConnection,
-    :MirSurface,
-    :HINSTANCE,
-    :HANDLE,
-    :HWND,
-    :RROutput,
 ]
 
 function nice_julian_type(type)
@@ -23,6 +34,8 @@ function nice_julian_type(type)
         :(NTuple{$N, UInt8}) => :String
         :Cstring => :String
         :VkBool32 => :Bool
+        :(Ptr{Ptr{Cvoid}}) => :AbstractArray
+        :(Ptr{Cvoid}) => :(Ptr{Cvoid})
         :(Ptr{$pt}) => nice_julian_type(pt)
         if t ∈ spec_constants.name end => follow_constant(t)
         GuardBy(is_vulkan_type) => remove_vk_prefix(t)
@@ -41,9 +54,9 @@ end
 function signature_type(type)
     @match type begin
         :UInt || :UInt8 || :UInt16 || :UInt32 || :UInt64 || :Int || :Int8 || :Int16 || :Int32 || :Int64 => :Integer
-        :Float16 || :Float32 || :Float64 => :AbstractFloat
+        :Float16 || :Float32 || :Float64 => :Real
         :String => :AbstractString
-        :(Vector{$et}) => :(AbstractVector{<:$(signature_type(et))})
+        :(Vector{$et}) => :(AbstractArray{<:$(signature_type(et))})
         t => t
     end
 end

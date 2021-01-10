@@ -15,10 +15,10 @@ Represents a structure that will never be requested by API functions.
 abstract type ReturnedOnly <: VulkanStruct end
 
 Base.cconvert(T::Type, x::VulkanStruct) = x
-Base.cconvert(T::Type{<: Ptr}, x::AbstractVector{<: VulkanStruct}) = (x, getproperty.(x, :vks))
-Base.cconvert(T::Type{<: Ptr}, x::AbstractVector{<: Handle}) = getproperty.(x, :handle)
-Base.cconvert(T::Type{<: Ptr}, x::VulkanStruct) = (x, Ref(x.vks))
-Base.cconvert(T::Type{<: Ptr}, x::Handle) = x
+Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct}) = (x, getproperty.(x, :vks))
+Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:Handle}) = getproperty.(x, :handle)
+Base.cconvert(T::Type{<:Ptr}, x::VulkanStruct) = (x, Ref(x.vks))
+Base.cconvert(T::Type{<:Ptr}, x::Handle) = x
 
 Base.unsafe_convert(T::Type, x::VulkanStruct) = x.vks
 Base.unsafe_convert(T::Type, x::Tuple{<:VulkanStruct, <:Ref}) = Base.unsafe_convert(T, last(x))

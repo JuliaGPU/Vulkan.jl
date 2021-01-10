@@ -30,13 +30,11 @@ function Base.write(vw::VulkanWrapper, destfile)
         println(io)
 
         print_block(io, ordered_decls)
-        print_block(io, vw.misc)
-        print_block(io, vw.funcs)
 
         write_exports(io, decls)
     end
 
-    format(destfile; margin=500)
+    format_file(destfile; margin=200)
     nothing
 end
 

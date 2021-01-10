@@ -18,10 +18,14 @@ function innermost_type(ex::Expr)
         innermost_type(ntuple_type(ex))
     else
         t = inner_type(ex)
-        if length(t) > 1
-            error("Expected 1 inner type for $ex, found $(length(t)) ($t)")
+        if !isnothing(t)
+            if length(t) > 1
+                error("Expected 1 inner type for $ex, found $(length(t)) ($t)")
+            else
+                innermost_type(first(t))
+            end
         else
-            innermost_type(first(t))
+            nothing
         end
     end
 end
