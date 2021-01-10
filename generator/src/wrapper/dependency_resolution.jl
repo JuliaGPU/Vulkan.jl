@@ -2,7 +2,11 @@ function raw_dependencies(ex)
     p = deconstruct(ex)
     deps = @match category(ex) begin
         :struct => map(x -> x isa Symbol ? nothing : innermost_type(x.args[2]), p[:fields])
-        :function => vcat(map.(Ref(x -> x.args[2]), [p[:args], p[:kwargs]])...)
+        :function => vcat(map.(Ref(@λ(begin
+            :($arg::$type) => type
+            :(::$type) => type
+            arg => nothing
+        end)), [p[:args], p[:kwargs]])...)
         :const => isalias(p[:name]) ? p[:value] : p[:value] isa Symbol ? p[:value] : []
         :enum                => p[:type]
     end
