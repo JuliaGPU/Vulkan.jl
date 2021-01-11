@@ -11,7 +11,12 @@ is_ntuple(ex) = !isnothing(ntuple_type(ex))
 
 is_vulkan_type(name) = name ∈ vcat(spec_structs.name, spec_handles.name)
 
-inner_type(ex) = @when :($T{$(args...)}) = ex collect(args)
+inner_type(ex) = @when :($T{$(args...)}) = ex map(args) do arg
+    @match arg begin
+        :(<:$t) => t
+        _ => arg
+    end
+end
 
 function innermost_type(ex::Expr)
     if is_ntuple(ex)
