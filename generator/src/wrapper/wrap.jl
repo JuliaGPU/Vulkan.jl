@@ -30,6 +30,25 @@ function wrap(spec::SpecStruct)
     reconstruct(p)
 end
 
+function from_vk_call(x::Spec)
+    prop = :(x.$(x.name))
+    jtype = nice_julian_type(x)
+    @match t = x.type begin
+        :Cstring => :(unsafe_string($prop))
+
+        # array pointer (do not unsafe_wrap a Ptr{Cvoid} type because we can't know the type to wrap to)
+        :(Ptr{$pt}) && if !isnothing(x.len) && pt ≠ :Cvoid end => @match jtype begin
+            :(Vector{$_}) => :(unsafe_wrap($jtype, $prop, x.$(x.len); own=true))
+        end
+
+        if is_count_variable(x) end => nothing
+        if x.type ∈ spec_handles.name end => :($(remove_vk_prefix(x.type))($prop))
+        GuardBy(is_ntuple) && if ntuple_type(x.type) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(x.type))), $prop))
+        if follow_constant(t) == jtype end => prop
+        _ => :(from_vk($jtype, $prop))
+    end
+end
+
 function vk_call(x::Spec)
     var = var_from_vk(x.name)
     jtype = nice_julian_type(x)
@@ -246,9 +265,9 @@ function add_constructor(spec::SpecStruct)
 end
 
 function extend_from_vk(spec::SpecStruct)
-    :(function from_vk(::Type{$(remove_vk_prefix(spec.name))}, vks::$(spec.name)) 
-        error("Not implemented")
-    end)
+    p = Dict(:category => :function, :name => :from_vk, :args => [:(T::Type{$(remove_vk_prefix(spec.name))}), :(x::$(spec.name))], :short => true)
+    p[:body] = :(T($(filter(!isnothing, from_vk_call.(spec.members))...)))
+    reconstruct(p)
 end
 
 function VulkanWrapper()
