@@ -46,7 +46,7 @@ end
 function nice_julian_type(spec::Spec)
     @match s = spec begin
         GuardBy(is_version) => :VersionNumber
-        if !isnothing(s.len) end => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
+        if !isnothing(s.len) && s.type ≠ :(Ptr{Cvoid}) end => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
         _ => nice_julian_type(s.type)
     end
 end
