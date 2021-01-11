@@ -55,7 +55,7 @@ function vk_call(x::Spec)
     @match x begin
         ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(stypes) end => stypes[parent(x)]
         ::SpecStructMember && if is_semantic_ptr(x.type) end => :(unsafe_convert($(x.type), $var))
-        GuardBy(is_count_variable) => :(length($(var_from_vk(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
+        GuardBy(is_count_variable) => :(pointer_length($(var_from_vk(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
         GuardBy(is_pointer_start) => 0 # always set first* variables to 0, and the user should provide a (sub)array of the desired length
         if x.type ∈ spec_handles.name end => var # handled by unsafe_convert in ccall
 

@@ -148,15 +148,15 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
 
         test_wrap_func(:vkCreateGraphicsPipelines, :(
             function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
-                pPipelines = Vector{VkPipeline}(undef, length(create_infos))
-                @check vkCreateGraphicsPipelines(device, pipeline_cache, length(create_infos), create_infos, allocator, pPipelines)
+                pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
+                @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
                 pipelines = Pipeline.(pPipelines)
                 finalizer.(x -> destroy_pipeline(device, x; allocator), pipelines)
             end
         ))
 
         test_wrap_func(:vkMergePipelineCaches, :(
-            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, length(src_caches), src_caches))
+            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
         ))
 
         test_wrap_func(:vkGetFenceFdKHR, :(
@@ -176,11 +176,11 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_wrap_func(:vkUpdateDescriptorSets, :(
-            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}) = vkUpdateDescriptorSets(device, length(descriptor_writes), descriptor_writes, length(descriptor_copies), descriptor_copies)
+            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
         ))
 
         test_wrap_func(:vkCmdSetViewport, :(
-            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = vkCmdSetViewport(command_buffer, 0, length(viewports), viewports)
+            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
         ))
 
         test_wrap_func(:vkCmdSetLineWidth, :(
@@ -236,9 +236,9 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
                                         unsafe_convert(Ptr{Cvoid}, next),
                                         flags,
                                         unsafe_convert(Ptr{VkApplicationInfo}, application_info),
-                                        length(enabled_layer_names),
+                                        pointer_length(enabled_layer_names),
                                         unsafe_convert(Ptr{Cstring}, enabled_layer_names),
-                                        length(enabled_extension_names),
+                                        pointer_length(enabled_extension_names),
                                         unsafe_convert(Ptr{Cstring}, enabled_extension_names),
                                         )
                 InstanceCreateInfo(vks, deps)
