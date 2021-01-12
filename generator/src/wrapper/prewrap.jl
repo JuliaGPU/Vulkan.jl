@@ -59,8 +59,9 @@ macro check(expr, msg)
     end
 end
 
-pointer_length(p::Ptr{Nothing}) = 0
-pointer_length(p::AbstractArray) = length(p)
+pointer_length(arr::Ptr{Nothing}) = 0
+pointer_length(arr::AbstractArray) = length(arr)
+pointer_length(arr::RefArray) = length(arr.roots)
 
 to_vk(T, x) = convert(T, x)
 to_vk(T::Type{UInt32}, version::VersionNumber) = T((version.major << 22) + (version.minor << 12) + version.patch)
