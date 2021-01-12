@@ -1,9 +1,8 @@
 spacing(ex, cat) = @match cat begin
-    :struct => "\n"^2
-    :function && if ex.head ≠ :function end => "\n"
-    :function => "\n"^2
-    :const => "\n"
-    :enum => "\n"
+    :struct => '\n'^2
+    :function => '\n'^2
+    :const => '\n'
+    :enum => '\n'
 end
 
 spacing(ex::Expr) = spacing(ex, category(ex))
