@@ -339,37 +339,44 @@ is_len(spec::SpecFuncParam) = spec.name ∈ spec_funcs[findfirst(==(spec.parent)
 is_computable_len(spec::Union{SpecStructMember, SpecFuncParam}) = !spec.is_constant && spec.requirement == POINTER_REQUIRED && is_len(spec)
 
 """
+Some specifications are disabled in the Vulkan headers (see https://github.com/KhronosGroup/Vulkan-Docs/issues/1225).
+"""
+const disabled_specs = map(x -> Symbol(x["name"]), findall("//extension[@supported = 'disabled']//*[@name]", xroot))
+
+enabled_specs(specs) = filter(x -> x.name ∉ disabled_specs, specs)
+
+"""
 Specification constants, usually defined in C with #define.
 """
-const spec_constants = StructVector(SpecConstant.(vcat(
+const spec_constants = enabled_specs(StructVector(SpecConstant.(vcat(
     findall("//enums[@name = 'API Constants']/*[@value and @name]", xroot),
     findall("//extension/require/enum[not(@extends) and not(@alias) and @value]", xroot),
-    findall("/registry/types/type[@category = 'basetype' or @category = 'bitmask' and not(@alias)]", xroot))))
+    findall("/registry/types/type[@category = 'basetype' or @category = 'bitmask' and not(@alias)]", xroot)))))
 
 """
 Specification enumerations, excluding bitmasks.
 """
-const spec_enums = StructVector(SpecEnum.(findall("//enums[@type = 'enum' and not(@alias)]", xroot)))
+const spec_enums = enabled_specs(StructVector(SpecEnum.(findall("//enums[@type = 'enum' and not(@alias)]", xroot))))
 
 """
 Specification bitmask enumerations.
 """
-const spec_bitmasks = StructVector(SpecBitmask.(findall("//enums[@type = 'bitmask' and not(@alias)]", xroot)))
+const spec_bitmasks = enabled_specs(StructVector(SpecBitmask.(findall("//enums[@type = 'bitmask' and not(@alias)]", xroot))))
 
 """
 Specification functions.
 """
-const spec_funcs = StructVector(SpecFunc.(findall("//command[not(@name)]", xroot)))
+const spec_funcs = enabled_specs(StructVector(SpecFunc.(findall("//command[not(@name)]", xroot))))
 
 """
 Specification structures.
 """
-const spec_structs = StructVector(SpecStruct.(findall("//type[(@category = 'union' or @category = 'struct') and not(@alias)]", xroot)))
+const spec_structs = enabled_specs(StructVector(SpecStruct.(findall("//type[(@category = 'union' or @category = 'struct') and not(@alias)]", xroot))))
 
 """
 Specification handle types.
 """
-const spec_handles = StructVector(SpecHandle.(findall("//type[@category = 'handle' and not(@alias)]", xroot)))
+const spec_handles = enabled_specs(StructVector(SpecHandle.(findall("//type[@category = 'handle' and not(@alias)]", xroot))))
 
 """
 All enumerations, regardless of them being bitmasks or regular enum values.
@@ -398,8 +405,7 @@ const spec_all_noalias = [spec_funcs..., spec_structs..., spec_handles..., spec_
 """
 All specification aliases.
 """
-const spec_aliases = StructVector(SpecAlias.(findall("//*[@alias and @name]", xroot)))
-
+const spec_aliases = StructVector(SpecAlias.(filter(x -> (par = x.parentnode.parentnode; par.name ≠ "extension" || getattr(par, "supported") ≠ :disabled), findall("//*[@alias and @name]", xroot))))
 const spec_func_params = collect(Iterators.flatten(spec_funcs.params))
 const spec_struct_members = collect(Iterators.flatten(spec_structs.members))
 const spec_create_info_structs = filter(x -> x.type ∈ [CREATE_INFO, ALLOCATE_INFO], spec_structs)

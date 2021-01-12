@@ -14,8 +14,8 @@ function resolve_aliases!(collection::Dict, nodes)
 end
 
 function extract_type(param)
-    type_str = split(replace(param.content, r"(?:const|typedef|struct) " => ""))[1]
-    base_type = Symbol(rstrip(type_str, ['*', ' ']))
+    base_type = Symbol(findfirst("./type", param).content)
+
     star_count = count("*", param.content)
     type = star_count == 0 ? base_type : reduce((x, _) -> :(Ptr{$x}), 1:star_count; init=base_type)
     translated_type = translate_c_type(type)
