@@ -122,7 +122,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_wrap_func(:vkGetRandROutputDisplayEXT, :(
-            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::Display, rr_output::RROutput)
+            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::VulkanCore.vk.Display, rr_output::VulkanCore.vk.RROutput)
                 pDisplay = Ref{VkDisplayKHR}()
                 @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
                 DisplayKHR(pDisplay[])
