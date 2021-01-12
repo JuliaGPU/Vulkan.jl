@@ -405,6 +405,7 @@ const spec_struct_members = collect(Iterators.flatten(spec_structs.members))
 const spec_create_info_structs = filter(x -> x.type ∈ [CREATE_INFO, ALLOCATE_INFO], spec_structs)
 const spec_create_funcs = StructVector(SpecCreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
 const spec_destroy_funcs = StructVector(SpecDestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
+const spec_handles_with_single_constructor = filter(x -> length(something(findall(==(x), filter(x -> !x.batch, spec_create_funcs).handle), 0)) == 1, spec_handles)
 
 is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
 
@@ -439,9 +440,11 @@ enum_by_name(name) = spec_by_name(spec_enums, name)
 constant_by_name(name) = spec_by_name(spec_constants, name)
 
 create_func(func::SpecFunc) = spec_by_field(spec_create_funcs, :func, func)
+create_func(handle::SpecHandle) = spec_by_field(spec_create_funcs, :handle, handle)
 create_func(name) = spec_by_field(spec_create_funcs, :func, func_by_name(name))
 
 destroy_func(func::SpecFunc) = spec_by_field(spec_destroy_funcs, :func, func)
+destroy_func(handle::SpecHandle) = spec_by_field(spec_destroy_funcs, :handle, handle)
 destroy_func(name) = spec_by_field(spec_destroy_funcs, :func, func_by_name(name))
 
 function follow_constant(spec::SpecConstant)
