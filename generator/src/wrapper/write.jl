@@ -15,27 +15,38 @@ function print_block(io::IO, exs)
     println(io)
 end
 
+is_category(cat) = x -> category(x) == cat
+
+function sort_expressions(exprs)
+    exprs_order = resolve_dependencies(name.(exprs), exprs)
+    ordered_exprs = exprs[exprs_order]
+    check_dependencies(ordered_exprs)
+
+    ordered_exprs
+end
+
 """
 Write the wrapper to `destfile`.
 """
-function Base.write(vw::VulkanWrapper, destfile)
-    decls = vcat(vw.handles, vw.structs, vw.funcs, vw.misc)
-    decls_order = resolve_dependencies(name.(decls), decls)
-    ordered_decls = decls[decls_order]
-    check_dependencies(ordered_decls)
+function Base.write(vw::VulkanWrapper, destfile; format=true)
+    exprs = vcat(vw.handles, vw.structs, vw.funcs, vw.misc)
+    ordered_exprs = sort_expressions(exprs)
+    structs = filter(is_category(:struct), ordered_exprs)
+    funcs = filter(is_category(:function), ordered_exprs)
 
     cp(joinpath(@__DIR__, "prewrap.jl"), destfile; force=true)
 
     open(destfile, "a+") do io
         println(io)
 
-        print_block(io, ordered_decls)
+        print_block(io, structs)
+        print_block(io, funcs)
+        print_block(io, setdiff(ordered_exprs, vcat(structs, funcs)))
 
-        write_exports(io, decls)
+        write_exports(io, exprs)
     end
 
-    format_file(destfile; margin=200)
-    nothing
+    format && format_file(destfile; margin=200)
 end
 
 function write_exports(io::IO, decls)
