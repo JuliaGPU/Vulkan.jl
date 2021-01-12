@@ -154,6 +154,12 @@ test_destroy_func(name, handle, index, batch) = test_spec(x -> spec_by_field(spe
                 (:mode, :VkDisplayModeKHR, false, true, REQUIRED, nothing, []),
                 (:planeIndex, :UInt32, false, false, REQUIRED, nothing, []),
             ])
+        test_struct(:VkTransformMatrixKHR,
+                    DATA,
+                    false,
+                    [],
+                    [(:matrix, :(NTuple{3, NTuple{4, Float32}}), false, false, REQUIRED, nothing, [])]
+            )
     end
 
     @testset "Functions" begin

@@ -13,6 +13,11 @@ function resolve_aliases!(collection::Dict, nodes)
     end
 end
 
+function nested_ntuple(base_type, lengths)
+    make_tuple = (x, y) -> :(NTuple{$x, $y})
+    foldr(make_tuple, lengths; init=base_type)
+end
+
 function extract_type(param)
     base_type = Symbol(findfirst("./type", param).content)
 
@@ -20,8 +25,14 @@ function extract_type(param)
     type = star_count == 0 ? base_type : reduce((x, _) -> :(Ptr{$x}), 1:star_count; init=base_type)
     translated_type = translate_c_type(type)
     enum_param = findfirst("./enum", param)
-    if !isnothing(enum_param)
-        :(NTuple{$(Meta.parse(enum_param.content)), $translated_type})
+    node_after_name = findfirst("./name", param).nextnode
+    bracket_matches = isnothing(node_after_name) ? nothing : collect(eachmatch(r"\[(\d+)\]", node_after_name.content))
+    if !isnothing(enum_param) || !isnothing(bracket_matches)
+        if !isnothing(enum_param)
+            nested_ntuple(translated_type, [Symbol(enum_param.content)])
+        elseif !isnothing(bracket_matches)
+            nested_ntuple(translated_type, parse.(Int, first.(getproperty.(bracket_matches, :captures))))
+        end
     else
         translated_type
     end
