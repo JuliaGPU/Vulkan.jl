@@ -286,7 +286,7 @@ function VulkanWrapper()
     handles = wrap.(spec_handles)
     structs = wrap.(spec_structs)
     returnedonly_structs = filter(x -> x.is_returnedonly, spec_structs)
-    funcs = vcat(wrap.(spec_funcs), add_constructor.(filter(x -> !x.is_returnedonly, spec_structs)), extend_from_vk.(returnedonly_structs), add_constructor.(spec_handles_with_single_constructor))
+    funcs = vcat(wrap.(spec_funcs), add_constructor.(filter(!in(returnedonly_structs), spec_structs)), extend_from_vk.(returnedonly_structs), add_constructor.(spec_handles_with_single_constructor))
     misc = []
     VulkanWrapper(handles, structs, funcs, misc)
 end
