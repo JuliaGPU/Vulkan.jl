@@ -37,7 +37,8 @@ function nice_julian_type(type)
         :(Ptr{Ptr{Cvoid}}) => :AbstractArray
         :(Ptr{Cvoid}) => :(Ptr{Cvoid})
         :(Ptr{$pt}) => nice_julian_type(pt)
-        if t ∈ spec_constants.name end => follow_constant(t)
+        GuardBy(in(spec_constants.name)) => follow_constant(t)
+        GuardBy(in(extension_types)) => :(VulkanCore.vk.$t)
         GuardBy(is_vulkan_type) => remove_vk_prefix(t)
         _ => t
     end

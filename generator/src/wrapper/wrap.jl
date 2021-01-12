@@ -65,6 +65,7 @@ function vk_call(x::Spec)
             if x.requirement == OPTIONAL end => :($var == $(default(x)) ? $(default(x)) : Ref($var)) # allow optional pointers to be passed as C_NULL instead of a pointer to a 0-valued integer
             _ => :(Ref($var))
         end
+        if x.type ∈ extension_types end => var
         _ => @match jtype begin
             :String || :Bool || :(Vector{$et}) || if jtype == follow_constant(x.type) end => var # conversions are already defined
             if jtype == remove_vk_prefix(x.type) && x.type ∈ spec_structs.name end => :($var.vks)
