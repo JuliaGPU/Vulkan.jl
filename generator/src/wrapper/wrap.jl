@@ -195,7 +195,7 @@ function wrap(spec::SpecFunc)
 
         if spec.type ∈ [CREATE, ALLOCATE]
             create::SpecCreateFunc = create_func(spec)
-            destroy = spec_by_field(spec_destroy_funcs, :handle, handle_by_name(ptr_type(query_param.type)))
+            destroy = destroy_func(handle_by_name(ptr_type(query_param.type)))
             if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
                 p_destroy = deconstruct(wrap(destroy.func))
                 handle_name = var_from_vk(query_param.name)
@@ -224,26 +224,37 @@ function wrap(spec::SpecFunc)
 end
 
 function add_constructor(spec::SpecHandle)
-    create_func::SpecCreateFunc = spec_by_field(spec_create_funcs, :handle, spec)
-    func = create_func.func
-    @unpack create_info_struct, create_info_param = create_func
-    create_info_var = var_from_vk(create_info_param.name)
-    p = init_wrapper_func(spec)
-    if create_func.batch
-        []
+    create = spec_create_funcs[findfirst(x -> !x.batch && x.handle == spec, spec_create_funcs)]
+    p_func = deconstruct(wrap(create.func))
+    if isnothing(create.create_info_struct)
+        # just pass the arguments as-is
+        args = p_func[:args]
+        kwargs = p_func[:kwargs]
+        body = reconstruct_call(Dict(:name => p_func[:name], :args => name.(args), :kwargs => name.(kwargs)))
     else
-        potential_args = children(func)
-        if isnothing(create_info_struct)
-            p[:body] = :nothing
-        else
-            return_param = func.params[findfirst(x -> x.type == :(Ptr{$(spec.name)}), func.params)]
-            p[:body] = quote
-                $(var_from_vk(return_param.name)) = $(nc_convert(SnakeCaseLower, remove_vk_prefix(func.name)))($(var_from_vk.(func.params.name)...))
-            end
-        end
-        add_func_args!(p, spec, filter(≠(return_param), potential_args))
-        reconstruct(p)
+        p_info = deconstruct(add_constructor(create.create_info_struct))
+        args = vcat(p_func[:args], p_info[:args])
+        kwargs = vcat(p_func[:kwargs], p_info[:kwargs])
+
+        info_expr = reconstruct_call(Dict(:name => p_info[:name], :args => name.(p_info[:args]), :kwargs => name.(p_info[:kwargs])))
+        info_index = findfirst(==(p_info[:name]), type.(p_func[:args]))
+
+        func_call_args = Vector{Any}(name.(p_func[:args]))
+        func_call_args[info_index] = info_expr
+
+        deleteat!(args, info_index)
+
+        body = reconstruct_call(Dict(:name => p_func[:name], :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
     end
+
+    reconstruct(Dict(
+        :category => :function,
+        :name => remove_vk_prefix(spec.name),
+        :args => args,
+        :kwargs => kwargs,
+        :short => true,
+        :body => body,
+    ))
 end
 
 function add_constructor(spec::SpecStruct)
@@ -273,10 +284,8 @@ end
 function VulkanWrapper()
     handles = wrap.(spec_handles)
     structs = wrap.(spec_structs)
-    handles_with_constructors = filter(in(spec_create_funcs.handle), spec_handles)
     returnedonly_structs = filter(x -> x.is_returnedonly, spec_structs)
-    # funcs = vcat(wrap.(spec_funcs), reduce(vcat, add_constructor.(handles_with_constructors)))
-    funcs = vcat(wrap.(spec_funcs), add_constructor.(filter(x -> !x.is_returnedonly, spec_structs)), extend_from_vk.(returnedonly_structs))
+    funcs = vcat(wrap.(spec_funcs), add_constructor.(filter(x -> !x.is_returnedonly, spec_structs)), extend_from_vk.(returnedonly_structs), add_constructor.(spec_handles_with_single_constructor))
     misc = []
     VulkanWrapper(handles, structs, funcs, misc)
 end

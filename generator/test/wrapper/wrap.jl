@@ -219,7 +219,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
     end
 
-    @testset "Additional struct constructors" begin
+    @testset "Additional constructors" begin
         test_struct_add_constructor(:VkInstanceCreateInfo, :(
             function InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next=C_NULL, flags=0, application_info=C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
@@ -249,6 +249,14 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
             function SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::SampleLocationsInfoEXT)
                 SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
             end
+        ))
+
+        test_handle_add_constructor(:VkInstance, :(
+            Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
+        ))
+
+        test_handle_add_constructor(:VkDeferredOperationKHR, :(
+            DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
         ))
     end
 
