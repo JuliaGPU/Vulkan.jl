@@ -5,7 +5,6 @@ version = "0.1.0"
 
 [deps]
 EzXML = "8f5d6c58-4d21-5cfd-889c-e3ad7ee6a615"
-JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
 MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
 StructArrays = "09ab397b-f2b6-538f-b94a-2f83cf4a842a"

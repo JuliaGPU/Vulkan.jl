@@ -27,7 +27,7 @@ end
 """
 Write the wrapper to `destfile`.
 """
-function Base.write(vw::VulkanWrapper, destfile; format=true)
+function Base.write(vw::VulkanWrapper, destfile)
     exprs = vcat(vw.handles, vw.structs, vw.funcs, vw.misc)
     ordered_exprs = sort_expressions(exprs)
     structs = filter(is_category(:struct), ordered_exprs)
@@ -44,8 +44,6 @@ function Base.write(vw::VulkanWrapper, destfile; format=true)
 
         write_exports(io, exprs)
     end
-
-    format && format_file(destfile; margin=200)
 end
 
 function write_exports(io::IO, decls)
