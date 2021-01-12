@@ -9,7 +9,7 @@ Base.show(io::IO, vw::VulkanWrapper) = print(io, "VulkanWrapper with $(length(vw
 
 function wrap(spec::SpecHandle)
     :(mutable struct $(remove_vk_prefix(spec.name)) <: Handle
-         handle::$(spec.name)
+         vks::$(spec.name)
      end)
 end
 

@@ -13,7 +13,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
     @testset "Handles" begin
         test_wrap_handle(:VkInstance, :(
             mutable struct Instance <: Handle
-                handle::VkInstance
+                vks::VkInstance
             end))
     end
 
