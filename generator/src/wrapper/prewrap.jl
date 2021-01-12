@@ -62,6 +62,7 @@ end
 pointer_length(arr::Ptr{Nothing}) = 0
 pointer_length(arr::AbstractArray) = length(arr)
 pointer_length(arr::RefArray) = length(arr.roots)
+pointer_length(arr::Tuple{<:Any,<:Any}) = length(first(arr))
 
 to_vk(T, x) = convert(T, x)
 to_vk(T::Type{UInt32}, version::VersionNumber) = T((version.major << 22) + (version.minor << 12) + version.patch)
