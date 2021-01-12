@@ -1,12 +1,12 @@
 test_ex(x, y) = @test prettify(x) == prettify(y)
 
-test_wrap(f, value, ex) = test_ex(wrap(f(value)), ex)
+test_wrap(f, value, ex; kwargs...) = test_ex(wrap(f(value); kwargs...), ex)
 test_wrap_handle(name, ex) = test_wrap(handle_by_name, name, ex)
 test_wrap_struct(name, ex) = test_wrap(struct_by_name, name, ex)
-test_wrap_func(name, ex) = test_wrap(func_by_name, name, ex)
-test_add_constructor(f, name, ex) = test_ex(add_constructor(f(name)), ex)
+test_wrap_func(name, ex; kwargs...) = test_wrap(func_by_name, name, ex; kwargs...)
+test_add_constructor(f, name, ex; kwargs...) = test_ex(add_constructor(f(name); kwargs...), ex)
 test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args...)
-test_handle_add_constructor(args...) = test_add_constructor(handle_by_name, args...)
+test_handle_add_constructor(args...; kwargs...) = test_add_constructor(handle_by_name, args...; kwargs...)
 test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
 
 @testset "Wrapping" begin
@@ -110,6 +110,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString; instance = C_NULL) = vkGetInstanceProcAddr(instance, name)))
+        test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::Ptr{Cvoid}; instance = C_NULL) = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
 
         test_wrap_func(:vkGetPhysicalDeviceSurfacePresentModesKHR, :(
             function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)

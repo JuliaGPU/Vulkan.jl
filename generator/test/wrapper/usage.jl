@@ -3,7 +3,7 @@ using VulkanGen
 tmp = tempname() * ".jl"
 
 @testset "Generate whole wrapper" begin
-    @test !write(VulkanWrapper(), tmp; format=false)
+    write(VulkanWrapper(), tmp)
     @test stat(tmp).size > 0
 end
 
@@ -31,8 +31,10 @@ end
 
 @testset "Basic API usage" begin
     using .Wrapper
-    @respawn inst = Instance(String[], String[]; application_info = ApplicationInfo(v"0.0.1", v"0.0.1", enumerate_instance_version(); application_name="Test", engine_name="Experimental engine"))
-    pdevices = enumerate_physical_devices(inst)
+    @respawn instance = Instance(String[], String[]; application_info = ApplicationInfo(v"0.0.1", v"0.0.1", enumerate_instance_version(); application_name="Test", engine_name="Experimental engine"))
+    func_ptr = get_instance_proc_addr("vkEnumeratePhysicalDevices"; instance)
+    pdevices = enumerate_physical_devices(instance, func_ptr)
+    @test all(get_physical_device_properties.(pdevices) .== get_physical_device_properties.(enumerate_physical_devices(instance)))
     if length(pdevices) ≠ 0
         println("$(length(pdevices)) physical device(s) found: $(get_physical_device_properties.(pdevices))")
         @respawn device = Device(first(pdevices), DeviceQueueCreateInfo[], String[], String[])

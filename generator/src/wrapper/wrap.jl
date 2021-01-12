@@ -117,7 +117,7 @@ function wrap_implicit_return(return_param::SpecFuncParam)
     end
 end
 
-wrap_api_call(spec::SpecFunc, args) = wrap_return(:($(spec.name)($(args...))), spec.return_type, nice_julian_type(spec.return_type))
+wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(:($(spec.name)($((with_func_ptr ? [args..., :fun_ptr] : args)...))), spec.return_type, nice_julian_type(spec.return_type))
 
 init_wrapper_func(spec::SpecFunc) = Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
 init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
@@ -126,7 +126,7 @@ arg_decl(x::Spec) = :($(var_from_vk(x.name))::$(signature_type(nice_julian_type(
 kwarg_decl(x::Spec) = Expr(:kw, var_from_vk(x.name), default(x))
 drop_arg(x::Spec) = !isempty(x.arglen) || is_pointer_start(x)
 
-function add_func_args!(p::Dict, spec, params)
+function add_func_args!(p::Dict, spec, params; with_func_ptr=false)
     params = filter(!drop_arg, params)
     arg_filter = if spec.type ∈ [DESTROY, FREE]
         destroyed_type = destroy_func(spec).handle.name
@@ -137,9 +137,11 @@ function add_func_args!(p::Dict, spec, params)
 
     p[:args] = map(arg_decl, filter(arg_filter, params))
     p[:kwargs] = map(kwarg_decl, filter(!arg_filter, params))
+
+    with_func_ptr && push!(p[:args], :(fun_ptr::Ptr{Cvoid}))
 end
 
-function wrap(spec::SpecFunc)
+function wrap(spec::SpecFunc; with_func_ptr=false)
     p = init_wrapper_func(spec)
 
     count_ptr_index = findfirst(x -> x.requirement == POINTER_REQUIRED && x.type == :(Ptr{UInt32}) && contains(lowercase(string(x.name)), "count"), children(spec))
@@ -162,9 +164,9 @@ function wrap(spec::SpecFunc)
 
         p[:body] = quote
             $(count_ptr.name) = Ref{UInt32}(0)
-            $(wrap_api_call(spec, first_call_args))
+            $(wrap_api_call(spec, first_call_args; with_func_ptr))
             $((:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...)
-            $(wrap_api_call(spec, second_call_args))
+            $(wrap_api_call(spec, second_call_args; with_func_ptr))
             $(wrap_implicit_return(queried_params))
         end
 
@@ -190,7 +192,7 @@ function wrap(spec::SpecFunc)
 
         p[:body] = quote
             $(query_param.name) = $init_query_param
-            $(wrap_api_call(spec, call_args))
+            $(wrap_api_call(spec, call_args; with_func_ptr))
             $(wrap_implicit_return(query_param))
         end
 
@@ -214,19 +216,19 @@ function wrap(spec::SpecFunc)
         args = filter(≠(query_param), children(spec))
     else
         p[:short] = true
-        p[:body] = :($(wrap_api_call(spec, map(vk_call, children(spec)))))
+        p[:body] = :($(wrap_api_call(spec, map(vk_call, children(spec)); with_func_ptr)))
 
         args = children(spec)
     end
 
-    add_func_args!(p, spec, args)
+    add_func_args!(p, spec, args; with_func_ptr)
 
     reconstruct(p)
 end
 
-function add_constructor(spec::SpecHandle)
+function add_constructor(spec::SpecHandle; with_func_ptr = false)
     create = spec_create_funcs[findfirst(x -> !x.batch && x.handle == spec, spec_create_funcs)]
-    p_func = deconstruct(wrap(create.func))
+    p_func = deconstruct(wrap(create.func; with_func_ptr))
     if isnothing(create.create_info_struct)
         # just pass the arguments as-is
         args = p_func[:args]
@@ -286,7 +288,14 @@ function VulkanWrapper()
     handles = wrap.(spec_handles)
     structs = wrap.(spec_structs)
     returnedonly_structs = filter(x -> x.is_returnedonly, spec_structs)
-    funcs = vcat(wrap.(spec_funcs), add_constructor.(filter(!in(returnedonly_structs), spec_structs)), extend_from_vk.(returnedonly_structs), add_constructor.(spec_handles_with_single_constructor))
+    funcs = collect(Iterators.flatten([
+        wrap.(spec_funcs),
+        add_constructor.(filter(!in(returnedonly_structs), spec_structs)),
+        extend_from_vk.(returnedonly_structs),
+        add_constructor.(spec_handles_with_single_constructor),
+        wrap.(spec_funcs; with_func_ptr=true),
+        add_constructor.(spec_handles_with_single_constructor; with_func_ptr=true),
+    ]))
     misc = []
     VulkanWrapper(handles, structs, funcs, misc)
 end
