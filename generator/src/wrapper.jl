@@ -38,6 +38,9 @@ export
         striplines,
         unblock,
         prettify,
+        concat_exs,
+        broadcast_ex,
+        is_broadcast,
 
         VulkanWrapper,
         wrap,

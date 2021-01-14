@@ -467,6 +467,8 @@ end
 
 Base.parent(spec::SpecFuncParam) = spec.func
 Base.parent(spec::SpecStructMember) = spec.parent
+Base.parent(spec::SpecHandle) = spec.parent
 
 parent_spec(spec::SpecFuncParam) = func_by_name(parent(spec))
 parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))
+parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))

@@ -39,7 +39,18 @@ prettify(ex) = ex |> striplines |> unblock
 isblock(ex) = false
 isblock(ex::Expr) = ex.head == :block
 
+broadcast_ex(ex) = Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...))
+broadcast_ex(ex, cond::Bool) = cond ? broadcast_ex(ex) : ex
+broadcast_ex(::Nothing, ::Bool) = nothing
+
+is_broadcast(ex) = @match ex begin
+    :($_.($(_...))) => true
+    _ => false
+end
+
+concat_exs(x) = x
 concat_exs(x, y) = Expr(:block, vcat((isblock(x) ? x.args : x), (isblock(y) ? y.args : y))...)
+concat_exs(x, y, z...) = foldl(concat_exs, z; init=concat_exs(x, y))
 
 name(sym::Symbol) = sym
 
@@ -77,7 +88,7 @@ function deconstruct(ex::Expr)
             for field ∈ fields.args
                 field isa LineNumberNode && continue
                 @when :function = category(field) begin
-                    push!(dict[:constructor], deconstruct(field))
+                    push!(dict[:constructors], deconstruct(field))
                 @otherwise
                     push!(dict[:fields], field)
                 end

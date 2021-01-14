@@ -10,6 +10,9 @@ Base.show(io::IO, vw::VulkanWrapper) = print(io, "VulkanWrapper with $(length(vw
 function wrap(spec::SpecHandle)
     :(mutable struct $(remove_vk_prefix(spec.name)) <: Handle
          vks::$(spec.name)
+         refcount::UInt
+         destructor
+         $(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::Integer) = new(vks, convert(UInt, refcount), undef)
      end)
 end
 
@@ -91,8 +94,6 @@ function is_query_param(param::SpecFuncParam)
     query_param_index == findfirst(==(param), params)
 end
 
-broadcast_ex(ex) = Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...))
-
 """
 Build a return expression from an implicit return parameter.
 Implicit return parameters are pointers that are mutated by the API, rather than returned directly.
@@ -104,7 +105,8 @@ They need to be converted by the wrapper to their wrapping type.
 function wrap_implicit_return(return_param::SpecFuncParam)
     p = return_param
     @assert is_ptr(p.type) "Invalid implicit return parameter API type. Expected $(p.type) <: Ptr"
-    @match pt = ptr_type(p.type) begin
+    pt = follow_alias(ptr_type(p.type))
+    ex = @match pt begin
 
         # array pointer
         if !isnothing(p.len) end => @match ex = wrap_return(p.name, pt, innermost_type((nice_julian_type(p)))) begin
@@ -115,6 +117,39 @@ function wrap_implicit_return(return_param::SpecFuncParam)
         # pointer to a unique object
         _ => wrap_return(:($(p.name)[]), pt, innermost_type((nice_julian_type(p)))) # call return_expr on the dereferenced pointer
     end
+
+    if pt ∈ spec_handles.name
+        wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex)
+    else
+        ex
+    end
+end
+
+function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex)
+    ret = @match ex begin
+        :($f($v[])) => :($f($v[], $(destructor(handle)), $parent_ex))
+        :($f.($v)) => :($f.($v, $(destructor(handle)), $parent_ex))
+    end
+    concat_exs(filter(!isnothing, [assign_parent(parent_ex), ret])...)
+end
+
+function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr)
+    @match ex begin
+        :($f($v[])) => :($f($v[], $(destructor(handle))))
+        :($f.($v)) => :($f.($v, $(destructor(handle))))
+    end
+end
+
+function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Expr)
+    args = @match parent_spec(handle) begin
+        ::Nothing => (handle, ex)
+        p::SpecHandle => @match spec.type begin
+            &CREATE || &ALLOCATE => (handle, ex, p, retrieve_parent_ex(p, create_func(spec)))
+            _ => (handle, ex, p, retrieve_parent_ex(p, spec)::Symbol)
+        end
+    end
+
+    wrap_implicit_handle_return(args...)
 end
 
 wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(:($(spec.name)($((with_func_ptr ? [args..., :fun_ptr] : args)...))), spec.return_type, nice_julian_type(spec.return_type))
@@ -145,7 +180,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
     p = init_wrapper_func(spec)
 
     count_ptr_index = findfirst(x -> x.requirement == POINTER_REQUIRED && x.type == :(Ptr{UInt32}) && contains(lowercase(string(x.name)), "count"), children(spec))
-    query_param_index = findlast(x -> !x.is_constant && is_ptr(x.type), children(spec))
+    queried_param_index = findlast(x -> !x.is_constant && is_ptr(x.type), children(spec))
     if !isnothing(count_ptr_index)
         count_ptr = children(spec)[count_ptr_index]
         queried_params = getindex(children(spec), findall(x -> x.len == count_ptr.name && !x.is_constant, children(spec)))
@@ -162,58 +197,27 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
                 x => x
             end), first_call_args)
 
-        p[:body] = quote
+        p[:body] = concat_exs(quote
             $(count_ptr.name) = Ref{UInt32}(0)
             $(wrap_api_call(spec, first_call_args; with_func_ptr))
             $((:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...)
             $(wrap_api_call(spec, second_call_args; with_func_ptr))
-            $(wrap_implicit_return(queried_params))
-        end
+        end, wrap_implicit_return(queried_params))
 
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
-    elseif !isnothing(query_param_index)
-        query_param = children(spec)[query_param_index]
+    elseif !isnothing(queried_param_index)
+        queried_param = children(spec)[queried_param_index]
         call_args = map(@λ(begin
-                &query_param => query_param.name
+                &queried_param => queried_param.name
                 x => vk_call(x)
             end), children(spec))
-        init_query_param = if isnothing(query_param.len)
-            :(Ref{$(ptr_type(query_param.type))}())
-        else
-            if contains(string(query_param.len), "->")
-                vars = Symbol.(split(string(query_param.len), "->"))
-                len_expr = foldl((x, y) -> :($x.$y), vars[2:end]; init=:($(var_from_vk(first(vars))).vks))
-            else
-                len_param = spec.params[findfirst(==(query_param.len), spec.params.name)]
-                len_expr = vk_call(len_param)
-            end
-            :(Vector{$(ptr_type(query_param.type))}(undef, $len_expr))
-        end
 
-        p[:body] = quote
-            $(query_param.name) = $init_query_param
+        p[:body] = concat_exs(quote
+            $(initialize_ptr(spec, queried_param))
             $(wrap_api_call(spec, call_args; with_func_ptr))
-            $(wrap_implicit_return(query_param))
-        end
+        end, wrap_implicit_return(queried_param))
 
-        if spec.type ∈ [CREATE, ALLOCATE]
-            create::SpecCreateFunc = create_func(spec)
-            destroy = destroy_func(handle_by_name(ptr_type(query_param.type)))
-            if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
-                p_destroy = deconstruct(wrap(destroy.func))
-                handle_name = var_from_vk(query_param.name)
-                p_destroy[:args][findfirst(==(remove_vk_prefix(ptr_type(query_param.type))), type.(p_destroy[:args]))] = :x
-                p_destroy_call = Dict(
-                    :name => p_destroy[:name],
-                    :args => name.(p_destroy[:args]),
-                    :kwargs => name.(p_destroy[:kwargs]),
-                )
-                p[:body].args[end] = :($handle_name = $(last(p[:body].args)))
-                p[:body] = concat_exs(p[:body], (create.batch ? broadcast_ex : identity)(:(finalizer(x -> $(reconstruct_call(p_destroy_call)), $handle_name))))
-            end
-        end
-
-        args = filter(≠(query_param), children(spec))
+        args = filter(≠(queried_param), children(spec))
     else
         p[:short] = true
         p[:body] = :($(wrap_api_call(spec, map(vk_call, children(spec)); with_func_ptr)))
@@ -224,6 +228,84 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
     add_func_args!(p, spec, args; with_func_ptr)
 
     reconstruct(p)
+end
+
+chain_getproperty(ex, props) = foldl((x, y) -> :($x.$y), props; init=ex)
+
+function compute_length(spec::SpecFunc, param::SpecFuncParam)
+    if contains(string(param.len), "->")
+        vars = Symbol.(split(string(param.len), "->"))
+        chain_getproperty(:($(var_from_vk(first(vars))).vks), vars[2:end])
+    else
+        len_param = spec.params[findfirst(==(param.len), spec.params.name)]
+        vk_call(len_param)
+    end
+end
+
+function initialize_ptr(spec::SpecFunc, param::SpecFuncParam)
+    rhs = if isnothing(param.len)
+        :(Ref{$(ptr_type(param.type))}())
+    else
+        :(Vector{$(ptr_type(param.type))}(undef, $(compute_length(spec, param))))
+    end
+    :($(param.name) = $rhs)
+end
+
+function retrieve_parent_ex(parent_handle::SpecHandle, func::SpecFunc)
+    parent_handle_var = findfirst(==(parent_handle.name), func.params.type)
+    @match n = func.name begin
+        if !isnothing(parent_handle_var) end => var_from_vk(func.params[parent_handle_var].name)
+        _ => nothing
+    end
+end
+
+function retrieve_parent_ex(parent_handle::SpecHandle, create::SpecCreateFunc)
+    throw_error() = error("Could not retrieve parent ($(parent_handle.name)) variable from the arguments of $create")
+    @match retrieve_parent_ex(parent_handle, create.func) begin
+        sym::Symbol => sym
+        ::Nothing && if !isnothing(create.create_info_param) end => begin
+            p = create.create_info_param
+            s = create.create_info_struct
+            m_index = findfirst(in([parent_handle.name, :(Ptr{$(parent_handle.name)})]), s.members.type)
+            if !isnothing(m_index)
+                m = s.members[m_index]
+                var_p, var_m = var_from_vk.((p.name, m.name))
+                broadcast_ex(:(getproperty($var_p, $(QuoteNode(var_m)))), !isnothing(m.len))
+            else
+                throw_error()
+            end
+        end
+        _ => throw_error()
+    end
+end
+
+function assigned_parent_symbol(parent_ex)
+    @match parent_ex begin
+        ::Symbol => parent_ex
+        ::Expr && GuardBy(is_broadcast) => :parents
+        ::Expr => :parent
+    end
+end
+
+assign_parent(parent_ex::Symbol) = nothing
+assign_parent(parent_ex::Expr) = :($(assigned_parent_symbol(parent_ex)) = $parent_ex)
+
+increment_refcount(sym) = broadcast_ex(:(increment_refcount!($sym)), sym == :parents)
+
+function destructor(handle::SpecHandle)
+    destroy = destroy_func(handle)
+    if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
+        p = deconstruct(wrap(destroy.func))
+        p_call = Dict(
+            :name => p[:name],
+            :args => Any[name.(p[:args])...],
+            :kwargs => name.(p[:kwargs]),
+        )
+        p_call[:args][findfirst(==(remove_vk_prefix(handle.name)), type.(p[:args]))] = :x
+        :(x -> $(reconstruct_call(p_call)))
+    else
+        :identity
+    end
 end
 
 function add_constructor(spec::SpecHandle; with_func_ptr = false)

@@ -14,6 +14,9 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         test_wrap_handle(:VkInstance, :(
             mutable struct Instance <: Handle
                 vks::VkInstance
+                refcount::UInt
+                destructor
+                Instance(vks::VkInstance, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
             end))
     end
 
@@ -71,7 +74,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
                 @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
                 pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
                 @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
-                PhysicalDevice.(pPhysicalDevices)
+                PhysicalDevice.(pPhysicalDevices, identity, instance)
             end
         ))
 
@@ -126,7 +129,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
             function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::VulkanCore.vk.Display, rr_output::VulkanCore.vk.RROutput)
                 pDisplay = Ref{VkDisplayKHR}()
                 @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
-                DisplayKHR(pDisplay[])
+                DisplayKHR(pDisplay[], identity, physical_device)
             end
         ))
 
@@ -134,7 +137,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
             function register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT; allocator = C_NULL)
                 pFence = Ref{VkFence}()
                 @check vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
-                Fence(pFence[])
+                Fence(pFence[], (x->destroy_fence(device, x; allocator)), device)
             end
         ))
 
@@ -142,8 +145,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
             function create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)
                 pInstance = Ref{VkInstance}()
                 @check vkCreateInstance(create_info, allocator, pInstance)
-                instance = Instance(pInstance[])
-                finalizer(x -> destroy_instance(x; allocator), instance)
+                Instance(pInstance[], x -> destroy_instance(x; allocator))
             end
         ))
 
@@ -151,8 +153,16 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
             function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
                 pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
                 @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
-                pipelines = Pipeline.(pPipelines)
-                finalizer.(x -> destroy_pipeline(device, x; allocator), pipelines)
+                Pipeline.(pPipelines, x -> destroy_pipeline(device, x; allocator), device)
+            end
+        ))
+
+        test_wrap_func(:vkAllocateDescriptorSets, :(
+            function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)
+                pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
+                @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
+                parent = getproperty(allocate_info, :descriptor_pool)
+                DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
             end
         ))
 
@@ -197,14 +207,6 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
                 ppData = Ref{Ptr{Cvoid}}()
                 @check vkMapMemory(device, memory, offset, size, flags, ppData)
                 from_vk(AbstractArray, ppData[])
-            end
-        ))
-
-        test_wrap_func(:vkAllocateDescriptorSets, :(
-            function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)
-                pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
-                @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
-                DescriptorSet.(pDescriptorSets)
             end
         ))
 

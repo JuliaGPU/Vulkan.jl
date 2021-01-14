@@ -74,3 +74,23 @@ from_vk(T, x) = convert(T, x)
 from_vk(T::Type{VersionNumber}, version::UInt32) = T(version >> 22, (version >> 12) & 0x3ff, version & 0xfff)
 from_vk(T::Type{S}, str::NTuple{N,UInt8}) where {N,S <: AbstractString} = T(filter!(x -> x ≠ 0, UInt8[str...]))
 
+Base.show(io::IO, h::Handle) = print(io, typeof(h), '(', h.vks, ')')
+
+function try_destroy(f, handle::Handle)
+    handle.refcount -= 1
+    if handle.refcount == 0
+        f(handle)
+    end
+end
+
+function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor)
+    handle = T(ptr, 1)
+    maybe_destroy = () -> try_destroy(destructor, handle)
+    handle.destructor = maybe_destroy
+    finalizer(x -> handle.destructor(), handle)
+end
+
+function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent::Handle)
+    parent.refcount += 1
+    finalizer(x -> parent.destructor(), T(ptr, destructor))
+end
