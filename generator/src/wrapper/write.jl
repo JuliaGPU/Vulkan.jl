@@ -53,7 +53,7 @@ function write_exports(io::IO, decls)
 
     decl_symbols = sort(filter(!in(ignored_symbols), unique(name.(decls))))
 
-    exports = :(export $(decl_symbols...))
+    exports = :(export $([decl_symbols; getproperty.(spec_all_semantic_enums, :name)]...))
 
     println(io, string(exports))
 end
