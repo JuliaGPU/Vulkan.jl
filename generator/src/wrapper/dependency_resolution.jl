@@ -3,8 +3,8 @@ function raw_dependencies(ex)
     deps = @match category(ex) begin
         :struct => map(x -> x isa Symbol ? nothing : innermost_type(x.args[2]), p[:fields])
         :function => vcat(map.(Ref(@λ(begin
-            :($arg::$type) => innermost_type(type)
-            :(::$type) => innermost_type(type)
+            :($arg::$type) => inner_type(type)
+            :(::$type) => inner_type(type)
             arg => nothing
         end)), [p[:args], p[:kwargs]])...)
         :const => isalias(p[:name]) ? p[:value] : p[:value] isa Symbol ? p[:value] : []
