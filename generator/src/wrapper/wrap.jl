@@ -87,7 +87,7 @@ wrap_return(ex, type, jtype) = @match t = type begin
     _ => :(from_vk($jtype, $ex)) # fall back to the from_vk function for conversion
 end
 
-wrap_implicit_return(params::AbstractVector{SpecFuncParam}) = length(params) == 1 ? wrap_implicit_return(first(params)) : Expr(:tuple, wrap_implicit_return.(params)...)
+wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr=false) = length(params) == 1 ? wrap_implicit_return(first(params)) : Expr(:tuple, wrap_implicit_return.(params)...)
 
 function is_query_param(param::SpecFuncParam)
     params = func_by_name(param.func).params
@@ -103,7 +103,7 @@ automatically checked and not returned by the wrapper.
 Such implicit return parameters are `Ref`s or `Vector`s holding either a base type or an API struct Vk*.
 They need to be converted by the wrapper to their wrapping type.
 """
-function wrap_implicit_return(return_param::SpecFuncParam)
+function wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = false)
     p = return_param
     @assert is_ptr(p.type) "Invalid implicit return parameter API type. Expected $(p.type) <: Ptr"
     pt = follow_alias(ptr_type(p.type))
@@ -120,28 +120,28 @@ function wrap_implicit_return(return_param::SpecFuncParam)
     end
 
     if pt ∈ spec_handles.name
-        wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex)
+        wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex, with_func_ptr)
     else
         ex
     end
 end
 
-function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex)
+function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex, with_func_ptr)
     ret = @match ex begin
-        :($f($v[])) => :($f($v[], $(destructor(handle)), $parent_ex))
-        :($f.($v)) => :($f.($v, $(destructor(handle)), $parent_ex))
+        :($f($v[])) => :($f($v[], $(destructor(handle; with_func_ptr)), $parent_ex))
+        :($f.($v)) => :($f.($v, $(destructor(handle; with_func_ptr)), $parent_ex))
     end
     concat_exs(filter(!isnothing, [assign_parent(parent_ex), ret])...)
 end
 
-function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr)
+function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, with_func_ptr)
     @match ex begin
-        :($f($v[])) => :($f($v[], $(destructor(handle))))
-        :($f.($v)) => :($f.($v, $(destructor(handle))))
+        :($f($v[])) => :($f($v[], $(destructor(handle; with_func_ptr))))
+        :($f.($v)) => :($f.($v, $(destructor(handle; with_func_ptr))))
     end
 end
 
-function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Expr)
+function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Expr, with_func_ptr)
     args = @match parent_spec(handle) begin
         ::Nothing => (handle, ex)
         p::SpecHandle => @match spec.type begin
@@ -150,10 +150,40 @@ function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Exp
         end
     end
 
-    wrap_implicit_handle_return(args...)
+    wrap_implicit_handle_return(args..., with_func_ptr)
 end
 
-wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(:($(spec.name)($((with_func_ptr ? [args..., :fun_ptr] : args)...))), spec.return_type, nice_julian_type(spec.return_type))
+"""
+Function pointer arguments for a handle.
+Includes one `fun_ptr_create` for the constructor (if applicable),
+and one `fun_ptr_destroy` for the destructor (if applicable).
+"""
+function func_ptr_args(spec::SpecHandle)
+    args = Expr[]
+    spec ∈ spec_create_funcs.handle && push!(args, :(fun_ptr_create::FunctionPtr))
+    destructor(spec) ≠ :identity && push!(args, :(fun_ptr_destroy::FunctionPtr))
+    args
+end
+
+"""
+Function pointer arguments for a function.
+Takes the function pointers arguments of the underlying handle if it is a Vulkan constructor,
+or a unique `fun_ptr` if that's just a normal Vulkan function.
+"""
+function func_ptr_args(spec::SpecFunc)
+    if spec.type ∈ [CREATE, ALLOCATE]
+        func_ptr_args(create_func(spec).handle)
+    else
+        [:(fun_ptr::FunctionPtr)]
+    end
+end
+
+"""
+Corresponding pointer argument for a Vulkan function.
+"""
+func_ptrs(spec::Spec) = name.(func_ptr_args(spec))
+
+wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(:($(spec.name)($((with_func_ptr ? [args; first(func_ptrs(spec))] : args)...))), spec.return_type, nice_julian_type(spec.return_type))
 
 init_wrapper_func(spec::SpecFunc) = Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
 init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
@@ -174,7 +204,7 @@ function add_func_args!(p::Dict, spec, params; with_func_ptr=false)
     p[:args] = map(arg_decl, filter(arg_filter, params))
     p[:kwargs] = map(kwarg_decl, filter(!arg_filter, params))
 
-    with_func_ptr && push!(p[:args], :(fun_ptr::Ptr{Cvoid}))
+    with_func_ptr && append!(p[:args], func_ptr_args(spec))
 end
 
 function wrap(spec::SpecFunc; with_func_ptr=false)
@@ -203,7 +233,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
             $(wrap_api_call(spec, first_call_args; with_func_ptr))
             $((:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...)
             $(wrap_api_call(spec, second_call_args; with_func_ptr))
-        end, wrap_implicit_return(queried_params))
+        end, wrap_implicit_return(queried_params; with_func_ptr))
 
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
     elseif !isnothing(queried_param_index)
@@ -216,7 +246,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         p[:body] = concat_exs(quote
             $(initialize_ptr(spec, queried_param))
             $(wrap_api_call(spec, call_args; with_func_ptr))
-        end, wrap_implicit_return(queried_param))
+        end, wrap_implicit_return(queried_param; with_func_ptr))
 
         args = filter(≠(queried_param), children(spec))
     else
@@ -291,9 +321,7 @@ end
 assign_parent(parent_ex::Symbol) = nothing
 assign_parent(parent_ex::Expr) = :($(assigned_parent_symbol(parent_ex)) = $parent_ex)
 
-increment_refcount(sym) = broadcast_ex(:(increment_refcount!($sym)), sym == :parents)
-
-function destructor(handle::SpecHandle)
+function destructor(handle::SpecHandle; with_func_ptr=false)
     destroy = destroy_func(handle)
     if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
         p = deconstruct(wrap(destroy.func))
@@ -302,6 +330,7 @@ function destructor(handle::SpecHandle)
             :args => Any[name.(p[:args])...],
             :kwargs => name.(p[:kwargs]),
         )
+        with_func_ptr && push!(p_call[:args], :fun_ptr_destroy)
         p_call[:args][findfirst(==(remove_vk_prefix(handle.name)), type.(p[:args]))] = :x
         :(x -> $(reconstruct_call(p_call)))
     else
@@ -311,24 +340,32 @@ end
 
 function add_constructor(spec::SpecHandle; with_func_ptr = false)
     create = spec_create_funcs[findfirst(x -> !x.batch && x.handle == spec, spec_create_funcs)]
-    p_func = deconstruct(wrap(create.func; with_func_ptr))
+    p_func = deconstruct(wrap(create.func))
+    constructor_args = p_func[:args]
+
     if isnothing(create.create_info_struct)
         # just pass the arguments as-is
-        args = p_func[:args]
+        args = constructor_args
         kwargs = p_func[:kwargs]
+        with_func_ptr && append!(args, func_ptr_args(spec))
         body = reconstruct_call(Dict(:name => p_func[:name], :args => name.(args), :kwargs => name.(kwargs)))
     else
         p_info = deconstruct(add_constructor(create.create_info_struct))
-        args = vcat(p_func[:args], p_info[:args])
+        args = [constructor_args; p_info[:args]]
+
         kwargs = vcat(p_func[:kwargs], p_info[:kwargs])
 
         info_expr = reconstruct_call(Dict(:name => p_info[:name], :args => name.(p_info[:args]), :kwargs => name.(p_info[:kwargs])))
         info_index = findfirst(==(p_info[:name]), type.(p_func[:args]))
+        deleteat!(args, info_index)
 
         func_call_args = Vector{Any}(name.(p_func[:args]))
         func_call_args[info_index] = info_expr
 
-        deleteat!(args, info_index)
+        if with_func_ptr
+            append!(args, func_ptr_args(spec))
+            append!(func_call_args, name.(func_ptrs(spec)))
+        end
 
         body = reconstruct_call(Dict(:name => p_func[:name], :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
     end

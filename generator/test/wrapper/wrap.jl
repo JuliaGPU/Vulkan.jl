@@ -113,7 +113,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString; instance = C_NULL) = vkGetInstanceProcAddr(instance, name)))
-        test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::Ptr{Cvoid}; instance = C_NULL) = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
+        test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL) = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
 
         test_wrap_func(:vkGetPhysicalDeviceSurfacePresentModesKHR, :(
             function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
@@ -148,6 +148,14 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
                 Instance(pInstance[], x -> destroy_instance(x; allocator))
             end
         ))
+
+        test_wrap_func(:vkCreateDebugReportCallbackEXT, :(
+            function create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
+                pCallback = Ref{VkDebugReportCallbackEXT}()
+                @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fun_ptr_create)
+                DebugReportCallbackEXT(pCallback[], (x->destroy_debug_report_callback_ext(instance, x, fun_ptr_destroy; allocator)), instance)
+            end
+        ); with_func_ptr=true)
 
         test_wrap_func(:vkCreateGraphicsPipelines, :(
             function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
@@ -254,9 +262,23 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
             end
         ))
 
+        test_struct_add_constructor(:VkDebugUtilsMessengerCreateInfoEXT, :(
+            function DebugUtilsMessengerCreateInfoEXT(message_severity::Integer, message_type::Integer, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
+                next = cconvert(Ptr{Cvoid}, next)
+                user_data = cconvert(Ptr{Cvoid}, user_data)
+                deps = [next, user_data]
+                vks = VkDebugUtilsMessengerCreateInfoEXT(VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, message_severity, message_type, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+                DebugUtilsMessengerCreateInfoEXT(vks, deps)
+            end
+        ))
+
         test_handle_add_constructor(:VkInstance, :(
             Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
         ))
+
+        test_handle_add_constructor(:VkDebugReportCallbackEXT, :(
+            DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
+        ), with_func_ptr=true)
 
         test_handle_add_constructor(:VkDeferredOperationKHR, :(
             DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
