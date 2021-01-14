@@ -30,7 +30,7 @@ const extension_types = [
 
 function nice_julian_type(type)
     @match t = type begin
-        GuardBy(is_fn_ptr) => :Function
+        GuardBy(is_fn_ptr) => :FunctionPtr
         :(NTuple{$N, UInt8}) => :String
         :Cstring => :String
         :VkBool32 => :Bool

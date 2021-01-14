@@ -15,6 +15,8 @@ Represents a structure that will never be requested by API functions.
 """
 abstract type ReturnedOnly <: VulkanStruct{false} end
 
+const FunctionPtr = Union{Ptr{Cvoid}, Base.CFunction}
+
 Base.cconvert(T::Type, x::VulkanStruct) = x
 Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = getproperty.(x, :vks)
 Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = (x, getproperty.(x, :vks))

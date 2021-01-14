@@ -1,3 +1,7 @@
+const known_dependencies = [
+    "FunctionPtr",
+]
+
 function raw_dependencies(ex)
     p = deconstruct(ex)
     deps = @match category(ex) begin
@@ -15,7 +19,7 @@ end
 
 function dependencies(ex)
     deps = raw_dependencies(ex)
-    filter!.([!isalias, x -> !startswith(string(x), r"(?:Vk|VK_)"), !is_vulkan_type, !in(extension_types), !in(names(Core)), !in(names(Base)), x -> x isa Symbol], Ref(deps))
+    filter!.([!isalias, x -> !startswith(string(x), r"(?:Vk|VK_)"), !is_vulkan_type, !in(known_dependencies), !in(extension_types), !in(names(Core)), !in(names(Base)), x -> x isa Symbol], Ref(deps))
     deps
 end
 
