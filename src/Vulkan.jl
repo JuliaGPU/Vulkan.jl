@@ -1,15 +1,16 @@
 module Vulkan
 
 using DocStringExtensions
-using DataStructures
-using Parameters
-using Requires: @require
-using CEnum
-using StaticArrays
-using VulkanCore.api
-
+# using DataStructures
+# using Parameters
+# using Requires: @require
+# using CEnum
+# using StaticArrays
+using VulkanCore
+using VulkanCore.vk
+using Base: cconvert, unsafe_convert, RefArray
+using MLStyle
 import glslang_jll
-import VulkanCore
 
 @template (FUNCTIONS, METHODS, MACROS) =
     """
@@ -23,39 +24,49 @@ import VulkanCore
     $(TYPEDEF)
     $(TYPEDSIGNATURES)
     $(TYPEDFIELDS)
+    $(SIGNATURES)
     """
 
-const glslangValidator = glslang_jll.glslangValidator(x -> x)
-const api = VulkanCore.api
-const core = VulkanCore.api
+# const glslangValidator = glslang_jll.glslangValidator(x -> x)
+# const api = VulkanCore.api
+# const core = VulkanCore.api
 
 # generated wrapper
-include("wrap_utils.jl")
-include(joinpath(dirname(@__DIR__), "generated", "wrapped_api.jl"))
+include("../generated/vulkan_wrapper.jl")
 
-include("shaders.jl")
-include("buffers.jl")
-include("pipelines.jl")
-include("renderpass.jl")
-include("instance.jl")
-include("devices.jl")
-include("setups.jl")
-include("info.jl")
+include("utils.jl")
+# include("shaders.jl")
+# include("buffers.jl")
+# include("pipelines.jl")
+# include("renderpass.jl")
+include("validation.jl")
+include("device.jl")
+# include("setups.jl")
+# include("info.jl")
 include("print.jl")
-include("blending.jl")
-include("state.jl")
-include("applications.jl")
+# include("blending.jl")
+# include("state.jl")
+# include("applications.jl")
 
-function __init__()
-    @require WindowAbstractions="e18202ca-4a7d-4de8-b056-fa6bbd7de157" include("window_interface.jl")
-    @require XCB="16167f82-ea26-5cba-b1de-ed6fd5e30a10" include("xcb_surface.jl")
+# function __init__()
+#     @require WindowAbstractions="e18202ca-4a7d-4de8-b056-fa6bbd7de157" include("window_interface.jl")
+#     @require XCB="16167f82-ea26-5cba-b1de-ed6fd5e30a10" include("xcb_surface.jl")
+# end
+
+for sym ∈ names(vk)
+    if startswith(string(sym), "VK_")
+        @eval export $sym
+    end
 end
 
 export
 
+        vk,
+
         # Low-level abstractions (core wrapper)
         ### Supertypes
         VulkanStruct,
+        ReturnedOnly,
         Handle,
 
         ### Pointer utilities
@@ -81,7 +92,11 @@ export
         PipelineSetup,
         BufferSetup,
 
-        ### Devices
+        ### Device
+
+        physical_device_features,
+        find_queue_index,
+
         ##### Queues
         Queues,
         DeviceQueue,
@@ -205,7 +220,7 @@ export
         next_frame!,
         initialize_render_state!,
         draw!,
-        
+
         ### Finalization
         safe_shutdown!
 
