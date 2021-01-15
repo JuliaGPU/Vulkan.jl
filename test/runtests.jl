@@ -9,7 +9,7 @@ function debug_callback(args...)
 end
 
 const debug_callback_c = @cfunction(debug_callback, UInt32, (VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
-const IMPL_VERSION = enumerate_instance_version()
+const API_VERSION = v"1.2"
 const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"
 const WITH_VALIDATION = Ref(false)
 const INSTANCE_LAYERS = String[

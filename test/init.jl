@@ -1,8 +1,8 @@
 @test_throws VulkanError("failed to execute vkCreateInstance(create_info, allocator, pInstance)", VK_ERROR_LAYER_NOT_PRESENT) Instance(["nonexistent_layer"], String[])
 @test_throws VulkanError("failed to execute vkCreateInstance(create_info, allocator, pInstance)", VK_ERROR_EXTENSION_NOT_PRESENT) Instance(String[], ["nonexistent_extension"])
 instance = Instance(INSTANCE_LAYERS, INSTANCE_EXTENSIONS;
-    application_info = ApplicationInfo(v"0.0.1", v"0.0.1", IMPL_VERSION; application_name="Test", engine_name="Experimental engine"))
-@info "Instance created, version $IMPL_VERSION."
+    application_info = ApplicationInfo(v"0.0.1", v"0.0.1", API_VERSION; application_name="Test", engine_name="Experimental engine"))
+@info "Instance created."
 if WITH_VALIDATION[]
     debug_messenger = DebugUtilsMessengerEXT(instance, debug_callback_c; severity="debug")
 end
