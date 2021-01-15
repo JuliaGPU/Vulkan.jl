@@ -1,12 +1,7 @@
 using VulkanGen
-using JuliaFormatter:format_text
 using Test
-using VulkanCore:vk
+using SafeTestsets
+using StructArrays
 
-const vg = VulkanGen
-
-include("naming_conventions.jl")
-include("parsing.jl")
-include("signatures.jl")
-include("codegen.jl")
 include("spec.jl")
+include("wrapper.jl")
