@@ -41,8 +41,3 @@ const ENABLED_FEATURES = physical_device_features(
 end
 
 GC.gc()
-
-# include("examples.jl")
-# using .VulkanAppExample
-
-# VulkanAppExample.main()
