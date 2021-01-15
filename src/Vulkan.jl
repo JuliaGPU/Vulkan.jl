@@ -22,6 +22,7 @@ using MLStyle
     """
 
 # generated wrapper
+include("prewrap.jl")
 include("../generated/vulkan_wrapper.jl")
 
 include("utils.jl")

@@ -14,6 +14,7 @@ end
     using VulkanCore.vk
 
     using Base: cconvert, unsafe_convert, RefArray
+    include("../../../src/prewrap.jl")
     include($tmp)
 end
 

@@ -33,11 +33,7 @@ function Base.write(vw::VulkanWrapper, destfile)
     structs = filter(is_category(:struct), ordered_exprs)
     funcs = filter(is_category(:function), ordered_exprs)
 
-    cp(joinpath(@__DIR__, "prewrap.jl"), destfile; force=true)
-
-    open(destfile, "a+") do io
-        println(io)
-
+    open(destfile, "w+") do io
         print_block(io, structs)
         print_block(io, funcs)
         print_block(io, setdiff(ordered_exprs, vcat(structs, funcs)))
