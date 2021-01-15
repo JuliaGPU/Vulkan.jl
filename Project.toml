@@ -6,11 +6,13 @@ version = "0.1.0"
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
+Preferences = "21216c6a-2e73-6563-6e65-726566657250"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
 [compat]
 DocStringExtensions = "0.8"
 MLStyle = "0.4"
+Preferences = "1.2"
 VulkanCore = "1.2"
 julia = "1.5"
 

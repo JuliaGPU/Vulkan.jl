@@ -38,23 +38,27 @@ end
 Base.showerror(io::IO, e::VulkanError) = print(io, "$(e.return_code): ", e.msg)
 
 """
-    @check vkFunctionSomething()
+    @check vkCreateInstance(args...)
 
-Checks whether the expression returned VK_SUCCESS or any non-error codes. Else, throw an error printing the corresponding code.
+If the expression does not return `VK_SUCCESS`, raise a [`VulkanError`](@ref) holding the return code.
+
+Requires the ERROR_CHECKING preference enabled.
 """
 macro check(expr)
-    quote
-        local msg = "failed to execute " * $(string(expr))
-        @check $(esc(expr)) msg
+    @static if ERROR_CHECKING
+        quote
+            local msg = "failed to execute " * $(string(expr))
+            @check $(esc(expr)) msg
+        end
+    else
+        esc(expr)
     end
 end
 
 macro check(expr, msg)
     quote
         return_code = $(esc(expr))
-        if Int(return_code) > 0
-            @debug "Non-success return code $return_code"
-        elseif Int(return_code) < 0
+        if Int(return_code) ≠ 0
             throw(VulkanError($msg, return_code))
         end
         return_code
