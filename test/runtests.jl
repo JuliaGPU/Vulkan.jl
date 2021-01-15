@@ -26,6 +26,8 @@ let available_layers = enumerate_instance_layer_properties()
         push!(INSTANCE_LAYERS, VALIDATION_LAYER)
         push!(INSTANCE_EXTENSIONS, "VK_EXT_debug_utils")
         WITH_VALIDATION[] = true
+    else
+        @warn "Validation layer not found."
     end
 end
 
