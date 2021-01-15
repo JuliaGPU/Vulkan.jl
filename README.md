@@ -1,6 +1,6 @@
 # Vulkan
 
-![tests](https://github.com/serenity4/Vulkan.jl/workflows/Run%20tests/badge.svg) [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://serenity4.github.io/Vulkan.jl/stable) [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://serenity4.github.io/Vulkan.jl/dev)
+![tests](https://github.com/serenity4/Vulkan.jl/workflows/ci/badge.svg) [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://serenity4.github.io/Vulkan.jl/stable) [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://serenity4.github.io/Vulkan.jl/dev)
 
 High-level interface to Vulkan, using [VulkanCore.jl](https://github.com/JuliaGPU/VulkanCore.jl). It uses the [Vulkan XML Specification](https://www.khronos.org/registry/vulkan/) to catch common API uses and expose wrappers around them. It leads to improved stability and ease of use, while introducing as small a overhead as possible.
 
