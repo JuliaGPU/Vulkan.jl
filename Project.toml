@@ -6,15 +6,11 @@ version = "0.1.0"
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
-Requires = "ae029012-a4dd-5104-9daa-d747884805df"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
-glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
 
 [compat]
 DocStringExtensions = "0.8"
-Requires = "1"
 VulkanCore = "1.2"
-glslang_jll = "8.13.3743"
 julia = "1.5"
 
 [extras]

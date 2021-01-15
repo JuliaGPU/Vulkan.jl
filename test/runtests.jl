@@ -51,8 +51,3 @@ end
 end
 
 GC.gc()
-
-# include("examples.jl")
-# using .VulkanAppExample
-
-# VulkanAppExample.main()
