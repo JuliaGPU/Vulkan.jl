@@ -51,6 +51,12 @@ export
         to_vk,
         from_vk,
 
+        # info
+        print_app_info,
+        print_available_devices,
+        print_device_info,
+        print_devices,
+
         # device
         physical_device_features,
         find_queue_index,
