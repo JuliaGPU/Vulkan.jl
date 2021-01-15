@@ -14,12 +14,9 @@ const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"
 const WITH_VALIDATION = Ref(false)
 const INSTANCE_LAYERS = String[
 ]
-const INSTANCE_EXTENSIONS = [
-    "VK_EXT_debug_utils",
-    "VK_KHR_surface",
+const INSTANCE_EXTENSIONS = String[
 ]
-const DEVICE_EXTENSIONS = [
-    "VK_KHR_swapchain",
+const DEVICE_EXTENSIONS = String[
 ]
 const ENABLED_FEATURES = physical_device_features(
 )
@@ -27,6 +24,7 @@ const ENABLED_FEATURES = physical_device_features(
 let available_layers = enumerate_instance_layer_properties()
     if VALIDATION_LAYER ∈ getproperty.(available_layers, :layer_name)
         push!(INSTANCE_LAYERS, VALIDATION_LAYER)
+        push!(INSTANCE_EXTENSIONS, "VK_EXT_debug_utils")
         WITH_VALIDATION[] = true
     end
 end
