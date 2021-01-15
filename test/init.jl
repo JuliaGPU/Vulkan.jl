@@ -3,7 +3,9 @@
 instance = Instance(INSTANCE_LAYERS, INSTANCE_EXTENSIONS;
     application_info = ApplicationInfo(v"0.0.1", v"0.0.1", IMPL_VERSION; application_name="Test", engine_name="Experimental engine"))
 @info "Instance created, version $IMPL_VERSION."
-debug_messenger = DebugUtilsMessengerEXT(instance, debug_callback_c; severity="debug")
+if WITH_VALIDATION[]
+    debug_messenger = DebugUtilsMessengerEXT(instance, debug_callback_c; severity="debug")
+end
 
 pdevices = enumerate_physical_devices(instance)
 

@@ -10,8 +10,9 @@ end
 
 const debug_callback_c = @cfunction(debug_callback, UInt32, (VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
 const IMPL_VERSION = enumerate_instance_version()
-const INSTANCE_LAYERS = [
-    "VK_LAYER_KHRONOS_validation",
+const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"
+const WITH_VALIDATION = Ref(false)
+const INSTANCE_LAYERS = String[
 ]
 const INSTANCE_EXTENSIONS = [
     "VK_EXT_debug_utils",
@@ -22,6 +23,13 @@ const DEVICE_EXTENSIONS = [
 ]
 const ENABLED_FEATURES = physical_device_features(
 )
+
+let available_layers = enumerate_instance_layer_properties()
+    if VALIDATION_LAYER ∈ getproperty.(available_layers, :layer_name)
+        push!(INSTANCE_LAYERS, VALIDATION_LAYER)
+        WITH_VALIDATION[] = true
+    end
+end
 
 @testset "Vulkan tests" begin
     include("init.jl")
@@ -35,7 +43,9 @@ const ENABLED_FEATURES = physical_device_features(
 
     @testset "Debugging" begin
         @testset "Validation" begin
-            @test VALIDATION_DEBUG_SIGNAL[]
+            if WITH_VALIDATION[]
+                @test VALIDATION_DEBUG_SIGNAL[]
+            end
         end
     end
 end
