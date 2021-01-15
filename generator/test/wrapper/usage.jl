@@ -38,7 +38,7 @@ macro respawn(expr)
 end
 
 @testset "Basic API usage" begin
-    instance = Instance(String[], String[]; application_info = ApplicationInfo(v"0.0.1", v"0.0.1", enumerate_instance_version(); application_name="Test", engine_name="Experimental engine"))
+    instance = Instance(String[], String[]; application_info = ApplicationInfo(v"0.0.1", v"0.0.1", v"1.2"; application_name="Test", engine_name="Experimental engine"))
     func_ptr = get_instance_proc_addr("vkEnumeratePhysicalDevices"; instance)
     pdevices = enumerate_physical_devices(instance, func_ptr)
     @test all(get_physical_device_properties.(pdevices) .== get_physical_device_properties.(enumerate_physical_devices(instance)))
@@ -51,7 +51,7 @@ end
 end
 
 @testset "Reference counting" begin
-    @respawn instance = Instance(String[], String[]; application_info = ApplicationInfo(v"0.0.1", v"0.0.1", enumerate_instance_version(); application_name="Test", engine_name="Experimental engine"))
+    @respawn instance = Instance(String[], String[]; application_info = ApplicationInfo(v"0.0.1", v"0.0.1", v"1.2"; application_name="Test", engine_name="Experimental engine"))
     func_ptr = get_instance_proc_addr("vkEnumeratePhysicalDevices"; instance)
     pdevices = enumerate_physical_devices(instance, func_ptr)
     @test all(get_physical_device_properties.(pdevices) .== get_physical_device_properties.(enumerate_physical_devices(instance)))
