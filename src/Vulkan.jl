@@ -7,10 +7,10 @@ using Base: cconvert, unsafe_convert, RefArray
 using MLStyle
 
 @static if VERSION < v"1.6.0-DEV"
+    const ERROR_CHECKING = true
+else
     using Preferences
     const ERROR_CHECKING = @load_preference("ERROR_CHECKING", true)
-else
-    const ERROR_CHECKING = true
 end
 
 @template (FUNCTIONS, METHODS, MACROS) =
