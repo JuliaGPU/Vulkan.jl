@@ -126,7 +126,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_wrap_func(:vkGetRandROutputDisplayEXT, :(
-            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::VulkanCore.vk.Display, rr_output::VulkanCore.vk.RROutput)
+            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)
                 pDisplay = Ref{VkDisplayKHR}()
                 @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
                 DisplayKHR(pDisplay[], identity, physical_device)
@@ -214,7 +214,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
             function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)
                 ppData = Ref{Ptr{Cvoid}}()
                 @check vkMapMemory(device, memory, offset, size, flags, ppData)
-                from_vk(AbstractArray, ppData[])
+                ppData[]
             end
         ))
 
@@ -231,10 +231,10 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
 
         test_wrap_func(:vkGetPipelineCacheData, :(
             function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)
-                pData = Ref{Ptr{Cvoid}}()
                 pDataSize = Ref(data_size)
+                pData = Ref{Ptr{Cvoid}}()
                 @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
-                pData[], pDataSize[]
+                pDataSize[], pData[]
             end
         ))
     end

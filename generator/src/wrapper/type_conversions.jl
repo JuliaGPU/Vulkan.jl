@@ -1,44 +1,13 @@
-const extension_types = [
-    :Display,
-    :VisualID,
-    :Window,
-    :RROutput,
-    :wl_display,
-    :wl_surface,
-    :HINSTANCE,
-    :HWND,
-    :HMONITOR,
-    :HANDLE,
-    :SECURITY_ATTRIBUTES,
-    :DWORD,
-    :LPCWSTR,
-    :xcb_connection_t,
-    :xcb_visualid_t,
-    :xcb_window_t,
-    :IDirectFB,
-    :IDirectFBSurface,
-    :zx_handle_t,
-    :GgpStreamDescriptor,
-    :GgpFrameToken,
-
-    :MirConnection,
-    :MirSurface,
-    :ANativeWindow,
-    :AHardwareBuffer,
-    :CAMetalLayer,
-]
-
 function nice_julian_type(type)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
+        GuardBy(is_opaque_pointer) => t
         :(NTuple{$N, UInt8}) => :String
         :Cstring => :String
         :VkBool32 => :Bool
-        :(Ptr{Ptr{Cvoid}}) => :AbstractArray
-        :(Ptr{Cvoid}) => :(Ptr{Cvoid})
         :(Ptr{$pt}) => nice_julian_type(pt)
         GuardBy(in(spec_constants.name)) => follow_constant(t)
-        GuardBy(in(extension_types)) => :(VulkanCore.vk.$t)
+        GuardBy(in(extension_types)) => :(vk.$t)
         GuardBy(is_vulkan_type) => remove_vk_prefix(t)
         _ => t
     end
@@ -64,4 +33,4 @@ function signature_type(type)
 end
 
 is_fn_ptr(type) = startswith(string(type), "PFN")
-is_version(spec::Spec) = contains(lowercase(string(spec.name)), "version") && (follow_constant(spec.type) == :UInt32 || !is_arr(spec) && !spec.is_constant && is_ptr(spec.type) && follow_constant(ptr_type(spec.type)) == :UInt32) 
+is_opaque_pointer(type) = type == :(Ptr{Cvoid})

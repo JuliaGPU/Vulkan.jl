@@ -3734,7 +3734,7 @@ release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR, 
 
 acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr) = @check(vkAcquireFullScreenExclusiveModeEXT(device, swapchain, fun_ptr))
 
-function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)
+function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::Integer, fun_ptr::FunctionPtr)
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModes2EXT(device, surface_info, pModes, fun_ptr)
     pModes[]
@@ -3958,10 +3958,11 @@ set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfo
 
 set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT, fun_ptr::FunctionPtr) = @check(vkSetDebugUtilsObjectNameEXT(device, name_info, fun_ptr))
 
-function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT}, timestamps::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)
+function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT}, fun_ptr::FunctionPtr)
+    pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
     pMaxDeviation = Ref{UInt64}()
-    @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, timestamps, pMaxDeviation, fun_ptr)
-    pMaxDeviation[]
+    @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, pTimestamps, pMaxDeviation, fun_ptr)
+    (pTimestamps, pMaxDeviation[])
 end
 
 function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
@@ -3975,10 +3976,10 @@ end
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
 
 function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)
-    pInfo = Ref{Ptr{Cvoid}}()
     pInfoSize = Ref(info_size)
+    pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
-    (pInfo[], pInfoSize[])
+    (pInfoSize[], pInfo[])
 end
 
 function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr)
@@ -3990,10 +3991,10 @@ end
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}, fun_ptr::FunctionPtr) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
 function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer, fun_ptr::FunctionPtr)
-    pData = Ref{Ptr{Cvoid}}()
     pDataSize = Ref(data_size)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData, fun_ptr)
-    (pData[], pDataSize[])
+    (pDataSize[], pData[])
 end
 
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyValidationCacheEXT(device, validation_cache, allocator, fun_ptr)
@@ -4158,7 +4159,7 @@ function acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImage
     pImageIndex[]
 end
 
-function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, fun_ptr::FunctionPtr)
+function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::Integer, fun_ptr::FunctionPtr)
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModesKHR(device, surface, pModes, fun_ptr)
     pModes[]
@@ -4216,17 +4217,13 @@ end
 
 display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT, fun_ptr::FunctionPtr) = @check(vkDisplayPowerControlEXT(device, display, display_power_info, fun_ptr))
 
-function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::VulkanCore.vk.Display, rr_output::VulkanCore.vk.RROutput, fun_ptr::FunctionPtr)
+function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput, fun_ptr::FunctionPtr)
     pDisplay = Ref{VkDisplayKHR}()
     @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay, fun_ptr)
     DisplayKHR(pDisplay[], identity, physical_device)
 end
 
-function acquire_xlib_display_ext(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)
-    dpy = Ref{Display}()
-    @check vkAcquireXlibDisplayEXT(physical_device, dpy, display, fun_ptr)
-    from_vk(VulkanCore.vk.Display, dpy[])
-end
+acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR, fun_ptr::FunctionPtr) = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display, fun_ptr))
 
 release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr) = @check(vkReleaseDisplayEXT(physical_device, display, fun_ptr))
 
@@ -4240,11 +4237,7 @@ end
 
 import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR, fun_ptr::FunctionPtr) = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info, fun_ptr))
 
-function get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, fun_ptr::FunctionPtr)
-    pHandle = Ref{HANDLE}()
-    @check vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, pHandle, fun_ptr)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr) = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
 function get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo, fun_ptr::FunctionPtr)
     pExternalFenceProperties = Ref{VkExternalFenceProperties}()
@@ -4262,11 +4255,7 @@ end
 
 import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR, fun_ptr::FunctionPtr) = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info, fun_ptr))
 
-function get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, fun_ptr::FunctionPtr)
-    pHandle = Ref{HANDLE}()
-    @check vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, pHandle, fun_ptr)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr) = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
 function get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo, fun_ptr::FunctionPtr)
     pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()
@@ -4286,17 +4275,13 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR, fun_
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::VulkanCore.vk.HANDLE, fun_ptr::FunctionPtr)
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE, fun_ptr::FunctionPtr)
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
     @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties, fun_ptr)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
 
-function get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, fun_ptr::FunctionPtr)
-    pHandle = Ref{HANDLE}()
-    @check vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, pHandle, fun_ptr)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr) = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
 function get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo, fun_ptr::FunctionPtr)
     pExternalBufferProperties = Ref{VkExternalBufferProperties}()
@@ -4374,11 +4359,7 @@ cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_co
 
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV, fun_ptr::FunctionPtr) = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info, fun_ptr)
 
-function get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::Integer, fun_ptr::FunctionPtr)
-    pHandle = Ref{HANDLE}()
-    @check vkGetMemoryWin32HandleNV(device, memory, handle_type, pHandle, fun_ptr)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::Integer, handle::vk.HANDLE, fun_ptr::FunctionPtr) = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
 function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::Integer, fun_ptr::FunctionPtr; flags = 0, external_handle_type = 0)
     pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()
@@ -4418,11 +4399,7 @@ function create_image_pipe_surface_fuchsia(instance::Instance, create_info::Imag
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-function get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, fun_ptr::FunctionPtr)
-    dfb = Ref{IDirectFB}()
-    from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, dfb, fun_ptr))
-    from_vk(VulkanCore.vk.IDirectFB, dfb[])
-end
+get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, to_vk(Ptr{IDirectFB}, dfb), fun_ptr))
 
 function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBSurfaceCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -4430,11 +4407,7 @@ function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBS
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-function get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, visual_id::VulkanCore.vk.xcb_visualid_t, fun_ptr::FunctionPtr)
-    connection = Ref{xcb_connection_t}()
-    from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, connection, visual_id, fun_ptr))
-    from_vk(VulkanCore.vk.xcb_connection_t, connection[])
-end
+get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id, fun_ptr))
 
 function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -4442,11 +4415,7 @@ function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreat
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-function get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, visual_id::VulkanCore.vk.VisualID, fun_ptr::FunctionPtr)
-    dpy = Ref{Display}()
-    from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, dpy, visual_id, fun_ptr))
-    from_vk(VulkanCore.vk.Display, dpy[])
-end
+get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id, fun_ptr))
 
 function create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -4462,11 +4431,7 @@ function create_win_32_surface_khr(instance::Instance, create_info::Win32Surface
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-function get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, fun_ptr::FunctionPtr)
-    display = Ref{wl_display}()
-    from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, display, fun_ptr))
-    from_vk(VulkanCore.vk.wl_display, display[])
-end
+get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display), fun_ptr))
 
 function create_wayland_surface_khr(instance::Instance, create_info::WaylandSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -4799,10 +4764,10 @@ end
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}, fun_ptr::FunctionPtr) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
 function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer, fun_ptr::FunctionPtr)
-    pData = Ref{Ptr{Cvoid}}()
     pDataSize = Ref(data_size)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData, fun_ptr)
-    (pData[], pDataSize[])
+    (pDataSize[], pData[])
 end
 
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyPipelineCache(device, pipeline_cache, allocator, fun_ptr)
@@ -4960,7 +4925,7 @@ unmap_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr) = vkUnm
 function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer, fun_ptr::FunctionPtr; flags = 0)
     ppData = Ref{Ptr{Cvoid}}()
     @check vkMapMemory(device, memory, offset, size, flags, ppData, fun_ptr)
-    from_vk(AbstractArray, ppData[])
+    ppData[]
 end
 
 free_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr; allocator = C_NULL) = vkFreeMemory(device, memory, allocator, fun_ptr)
@@ -5878,7 +5843,7 @@ function SurfaceCapabilitiesFullScreenExclusiveEXT(full_screen_exclusive_support
     SurfaceCapabilitiesFullScreenExclusiveEXT(vks, deps)
 end
 
-function SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor::VulkanCore.vk.HMONITOR; next = C_NULL)
+function SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor::vk.HMONITOR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSurfaceFullScreenExclusiveWin32InfoEXT(VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), hmonitor)
@@ -5901,7 +5866,7 @@ function PipelineCreationFeedbackCreateInfoEXT(pipeline_creation_feedback::Pipel
     PipelineCreationFeedbackCreateInfoEXT(vks, deps)
 end
 
-function PresentFrameTokenGGP(frame_token::VulkanCore.vk.GgpFrameToken; next = C_NULL)
+function PresentFrameTokenGGP(frame_token::vk.GgpFrameToken; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPresentFrameTokenGGP(VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP, unsafe_convert(Ptr{Cvoid}, next), frame_token)
@@ -7232,7 +7197,7 @@ function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::VkExternalFenceHa
     FenceGetWin32HandleInfoKHR(vks, deps)
 end
 
-function ExportFenceWin32HandleInfoKHR(dw_access::VulkanCore.vk.DWORD, name::VulkanCore.vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+function ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
     deps = [next, attributes]
@@ -7291,7 +7256,7 @@ function D3D12FenceSubmitInfoKHR(; next = C_NULL, wait_semaphore_values = C_NULL
     D3D12FenceSubmitInfoKHR(vks, deps)
 end
 
-function ExportSemaphoreWin32HandleInfoKHR(dw_access::VulkanCore.vk.DWORD, name::VulkanCore.vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+function ExportSemaphoreWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
     deps = [next, attributes]
@@ -7353,7 +7318,7 @@ function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::VkExtern
     MemoryGetWin32HandleInfoKHR(vks, deps)
 end
 
-function ExportMemoryWin32HandleInfoKHR(dw_access::VulkanCore.vk.DWORD, name::VulkanCore.vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+function ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
     deps = [next, attributes]
@@ -7691,21 +7656,21 @@ function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, i
     SwapchainCreateInfoKHR(vks, deps)
 end
 
-function StreamDescriptorSurfaceCreateInfoGGP(stream_descriptor::VulkanCore.vk.GgpStreamDescriptor; next = C_NULL, flags = 0)
+function StreamDescriptorSurfaceCreateInfoGGP(stream_descriptor::vk.GgpStreamDescriptor; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkStreamDescriptorSurfaceCreateInfoGGP(VK_STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP, unsafe_convert(Ptr{Cvoid}, next), flags, stream_descriptor)
     StreamDescriptorSurfaceCreateInfoGGP(vks, deps)
 end
 
-function ImagePipeSurfaceCreateInfoFUCHSIA(image_pipe_handle::VulkanCore.vk.zx_handle_t; next = C_NULL, flags = 0)
+function ImagePipeSurfaceCreateInfoFUCHSIA(image_pipe_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImagePipeSurfaceCreateInfoFUCHSIA(VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA, unsafe_convert(Ptr{Cvoid}, next), flags, image_pipe_handle)
     ImagePipeSurfaceCreateInfoFUCHSIA(vks, deps)
 end
 
-function DirectFBSurfaceCreateInfoEXT(dfb::VulkanCore.vk.IDirectFB, surface::VulkanCore.vk.IDirectFBSurface; next = C_NULL, flags = 0)
+function DirectFBSurfaceCreateInfoEXT(dfb::vk.IDirectFB, surface::vk.IDirectFBSurface; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     dfb = cconvert(Ptr{IDirectFB}, dfb)
     surface = cconvert(Ptr{IDirectFBSurface}, surface)
@@ -7714,7 +7679,7 @@ function DirectFBSurfaceCreateInfoEXT(dfb::VulkanCore.vk.IDirectFB, surface::Vul
     DirectFBSurfaceCreateInfoEXT(vks, deps)
 end
 
-function XcbSurfaceCreateInfoKHR(connection::VulkanCore.vk.xcb_connection_t, window::VulkanCore.vk.xcb_window_t; next = C_NULL, flags = 0)
+function XcbSurfaceCreateInfoKHR(connection::vk.xcb_connection_t, window::vk.xcb_window_t; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     connection = cconvert(Ptr{xcb_connection_t}, connection)
     deps = [next, connection]
@@ -7722,7 +7687,7 @@ function XcbSurfaceCreateInfoKHR(connection::VulkanCore.vk.xcb_connection_t, win
     XcbSurfaceCreateInfoKHR(vks, deps)
 end
 
-function XlibSurfaceCreateInfoKHR(dpy::VulkanCore.vk.Display, window::VulkanCore.vk.Window; next = C_NULL, flags = 0)
+function XlibSurfaceCreateInfoKHR(dpy::vk.Display, window::vk.Window; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     dpy = cconvert(Ptr{Display}, dpy)
     deps = [next, dpy]
@@ -7730,14 +7695,14 @@ function XlibSurfaceCreateInfoKHR(dpy::VulkanCore.vk.Display, window::VulkanCore
     XlibSurfaceCreateInfoKHR(vks, deps)
 end
 
-function Win32SurfaceCreateInfoKHR(hinstance::VulkanCore.vk.HINSTANCE, hwnd::VulkanCore.vk.HWND; next = C_NULL, flags = 0)
+function Win32SurfaceCreateInfoKHR(hinstance::vk.HINSTANCE, hwnd::vk.HWND; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkWin32SurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, hinstance, hwnd)
     Win32SurfaceCreateInfoKHR(vks, deps)
 end
 
-function WaylandSurfaceCreateInfoKHR(display::VulkanCore.vk.wl_display, surface::VulkanCore.vk.wl_surface; next = C_NULL, flags = 0)
+function WaylandSurfaceCreateInfoKHR(display::vk.wl_display, surface::vk.wl_surface; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     display = cconvert(Ptr{wl_display}, display)
     surface = cconvert(Ptr{wl_surface}, surface)
@@ -8569,7 +8534,7 @@ release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR) 
 
 acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR) = @check(vkAcquireFullScreenExclusiveModeEXT(device, swapchain))
 
-function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR)
+function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::Integer)
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModes2EXT(device, surface_info, pModes)
     pModes[]
@@ -8793,10 +8758,11 @@ set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfo
 
 set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT) = @check(vkSetDebugUtilsObjectNameEXT(device, name_info))
 
-function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT}, timestamps::AbstractArray{<:Integer})
+function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT})
+    pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
     pMaxDeviation = Ref{UInt64}()
-    @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, timestamps, pMaxDeviation)
-    pMaxDeviation[]
+    @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, pTimestamps, pMaxDeviation)
+    (pTimestamps, pMaxDeviation[])
 end
 
 function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)
@@ -8810,10 +8776,10 @@ end
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 
 function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)
-    pInfo = Ref{Ptr{Cvoid}}()
     pInfoSize = Ref(info_size)
+    pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
-    (pInfo[], pInfoSize[])
+    (pInfoSize[], pInfo[])
 end
 
 function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)
@@ -8825,10 +8791,10 @@ end
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
 
 function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)
-    pData = Ref{Ptr{Cvoid}}()
     pDataSize = Ref(data_size)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData)
-    (pData[], pDataSize[])
+    (pDataSize[], pData[])
 end
 
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL) = vkDestroyValidationCacheEXT(device, validation_cache, allocator)
@@ -8993,7 +8959,7 @@ function acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImage
     pImageIndex[]
 end
 
-function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR)
+function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::Integer)
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModesKHR(device, surface, pModes)
     pModes[]
@@ -9051,17 +9017,13 @@ end
 
 display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT) = @check(vkDisplayPowerControlEXT(device, display, display_power_info))
 
-function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::VulkanCore.vk.Display, rr_output::VulkanCore.vk.RROutput)
+function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)
     pDisplay = Ref{VkDisplayKHR}()
     @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
     DisplayKHR(pDisplay[], identity, physical_device)
 end
 
-function acquire_xlib_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)
-    dpy = Ref{Display}()
-    @check vkAcquireXlibDisplayEXT(physical_device, dpy, display)
-    from_vk(VulkanCore.vk.Display, dpy[])
-end
+acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR) = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display))
 
 release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR) = @check(vkReleaseDisplayEXT(physical_device, display))
 
@@ -9075,11 +9037,7 @@ end
 
 import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR) = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info))
 
-function get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR)
-    pHandle = Ref{HANDLE}()
-    @check vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, pHandle)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE) = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
 
 function get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo)
     pExternalFenceProperties = Ref{VkExternalFenceProperties}()
@@ -9097,11 +9055,7 @@ end
 
 import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR) = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info))
 
-function get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR)
-    pHandle = Ref{HANDLE}()
-    @check vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, pHandle)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE) = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
 
 function get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo)
     pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()
@@ -9121,17 +9075,13 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR)
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::VulkanCore.vk.HANDLE)
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE)
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
     @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
 
-function get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR)
-    pHandle = Ref{HANDLE}()
-    @check vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, pHandle)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE) = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
 
 function get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo)
     pExternalBufferProperties = Ref{VkExternalBufferProperties}()
@@ -9209,11 +9159,7 @@ cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_co
 
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV) = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info)
 
-function get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::Integer)
-    pHandle = Ref{HANDLE}()
-    @check vkGetMemoryWin32HandleNV(device, memory, handle_type, pHandle)
-    from_vk(VulkanCore.vk.HANDLE, pHandle[])
-end
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::Integer, handle::vk.HANDLE) = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle)))
 
 function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::Integer; flags = 0, external_handle_type = 0)
     pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()
@@ -9253,11 +9199,7 @@ function create_image_pipe_surface_fuchsia(instance::Instance, create_info::Imag
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-function get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer)
-    dfb = Ref{IDirectFB}()
-    from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, dfb))
-    from_vk(VulkanCore.vk.IDirectFB, dfb[])
-end
+get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB) = from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, to_vk(Ptr{IDirectFB}, dfb)))
 
 function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -9265,11 +9207,7 @@ function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBS
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-function get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, visual_id::VulkanCore.vk.xcb_visualid_t)
-    connection = Ref{xcb_connection_t}()
-    from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, connection, visual_id))
-    from_vk(VulkanCore.vk.xcb_connection_t, connection[])
-end
+get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t) = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id))
 
 function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreateInfoKHR; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -9277,11 +9215,7 @@ function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreat
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-function get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, visual_id::VulkanCore.vk.VisualID)
-    dpy = Ref{Display}()
-    from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, dpy, visual_id))
-    from_vk(VulkanCore.vk.Display, dpy[])
-end
+get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID) = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id))
 
 function create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCreateInfoKHR; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -9297,11 +9231,7 @@ function create_win_32_surface_khr(instance::Instance, create_info::Win32Surface
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-function get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer)
-    display = Ref{wl_display}()
-    from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, display))
-    from_vk(VulkanCore.vk.wl_display, display[])
-end
+get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display) = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display)))
 
 function create_wayland_surface_khr(instance::Instance, create_info::WaylandSurfaceCreateInfoKHR; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -9634,10 +9564,10 @@ end
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
 
 function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)
-    pData = Ref{Ptr{Cvoid}}()
     pDataSize = Ref(data_size)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
-    (pData[], pDataSize[])
+    (pDataSize[], pData[])
 end
 
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL) = vkDestroyPipelineCache(device, pipeline_cache, allocator)
@@ -9795,7 +9725,7 @@ unmap_memory(device::Device, memory::DeviceMemory) = vkUnmapMemory(device, memor
 function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)
     ppData = Ref{Ptr{Cvoid}}()
     @check vkMapMemory(device, memory, offset, size, flags, ppData)
-    from_vk(AbstractArray, ppData[])
+    ppData[]
 end
 
 free_memory(device::Device, memory::DeviceMemory; allocator = C_NULL) = vkFreeMemory(device, memory, allocator)

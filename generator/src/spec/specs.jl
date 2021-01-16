@@ -334,12 +334,13 @@ function arglen(node::EzXML.Node; neighbor_type="param")
     map(name, filter(x -> len(x) == arg_name, neighbors))
 end
 
-is_arr(spec::Union{SpecStructMember, SpecFuncParam}) = has_length(spec) && spec.type ≠ :(Ptr{Cvoid})
+is_arr(spec::Union{SpecStructMember, SpecFuncParam}) = has_length(spec) && innermost_type(spec.type) ≠ :Cvoid
 is_length(spec::Union{SpecStructMember, SpecFuncParam}) = !isempty(spec.arglen) && !endswith(string(spec.name), "Size")
 is_size(spec::Union{SpecStructMember, SpecFuncParam}) = !isempty(spec.arglen) && endswith(string(spec.name), "Size")
 has_length(spec::Union{SpecStructMember, SpecFuncParam}) = !isnothing(spec.len)
 has_computable_length(spec::Union{SpecStructMember, SpecFuncParam}) = !spec.is_constant && spec.requirement == POINTER_REQUIRED && is_arr(spec)
 is_data(spec::Union{SpecStructMember, SpecFuncParam}) = has_length(spec) && spec.type == :(Ptr{Cvoid})
+is_version(spec::Union{SpecStructMember, SpecFuncParam}) = contains(lowercase(string(spec.name)), "version") && (follow_constant(spec.type) == :UInt32 || is_ptr(spec.type) && !is_arr(spec) && !spec.is_constant && follow_constant(ptr_type(spec.type)) == :UInt32)
 
 """
 Iterate through function or struct specification fields from a list of fields.

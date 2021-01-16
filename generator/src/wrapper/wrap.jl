@@ -84,6 +84,7 @@ end
 wrap_return(ex, type, jtype) = @match t = type begin
     :VkResult => :(@check($ex))
     :Cstring => :(unsafe_string($ex))
+    GuardBy(is_opaque_pointer) => ex
     GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex)) # call handle constructor
     GuardBy(in(vcat(spec_enums.name, spec_bitmasks.name))) => ex # don't change enumeration variables since they won't be wrapped under a new name
     if is_fn_ptr(type) || follow_constant(type) == jtype end => ex # Vulkan and Julian types are the same (up to aliases)
@@ -192,7 +193,7 @@ init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_
 
 arg_decl(x::Spec) = :($(var_from_vk(x.name))::$(signature_type(nice_julian_type(x))))
 kwarg_decl(x::Spec) = Expr(:kw, var_from_vk(x.name), default(x))
-drop_arg(x::Spec) = is_length(x) || is_pointer_start(x)
+drop_arg(x::Spec) = is_length(x) || is_pointer_start(x) || x.type == :(Ptr{Ptr{Cvoid}})
 
 function add_func_args!(p::Dict, spec, params; with_func_ptr=false)
     params = filter(!drop_arg, params)
@@ -213,8 +214,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
     p = init_wrapper_func(spec)
 
     count_ptr_index = findfirst(x -> is_length(x) && x.requirement == POINTER_REQUIRED, children(spec))
-    queried_param_index = findlast(x -> !x.is_constant && is_ptr(x.type) && !is_length(x), children(spec))
-    size_queries = getindex(children(spec), findall(x -> is_size(x) && x.requirement == POINTER_REQUIRED, children(spec)))
+    queried_params = getindex(children(spec), findall(x -> !x.is_constant && is_ptr(x.type) && !is_length(x) && x.type ∉ extension_types && ptr_type(x.type) ∉ extension_types, children(spec)))
     if !isnothing(count_ptr_index)
         count_ptr = children(spec)[count_ptr_index]
         queried_params = getindex(children(spec), findall(x -> x.len == count_ptr.name && !x.is_constant, children(spec)))
@@ -239,19 +239,18 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         end, wrap_implicit_return(queried_params; with_func_ptr))
 
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
-    elseif !isnothing(queried_param_index)
-        queried_param = children(spec)[queried_param_index]
+    elseif !isempty(queried_params)
         call_args = map(@λ(begin
-                &queried_param => queried_param.name
+                x && GuardBy(in(queried_params)) => x.name
                 x => vk_call(x)
             end), children(spec))
 
         p[:body] = concat_exs(quote
-            $(map(initialize_ptr, [queried_param; size_queries])...)
+            $(map(initialize_ptr, queried_params)...)
             $(wrap_api_call(spec, call_args; with_func_ptr))
-        end, wrap_implicit_return([queried_param; size_queries]; with_func_ptr))
+        end, wrap_implicit_return(queried_params; with_func_ptr))
 
-        args = filter(≠(queried_param), children(spec))
+        args = filter(!in(filter(x -> x.requirement ≠ POINTER_REQUIRED, queried_params)), children(spec))
     else
         p[:short] = true
         p[:body] = :($(wrap_api_call(spec, map(vk_call, children(spec)); with_func_ptr)))

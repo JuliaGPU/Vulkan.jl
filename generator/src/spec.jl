@@ -4,6 +4,36 @@ using Vulkan_Headers_jll:vk_xml
 xdoc = readxml(vk_xml)
 xroot = xdoc.root
 
+const extension_types = [
+    :Display,
+    :VisualID,
+    :Window,
+    :RROutput,
+    :wl_display,
+    :wl_surface,
+    :HINSTANCE,
+    :HWND,
+    :HMONITOR,
+    :HANDLE,
+    :SECURITY_ATTRIBUTES,
+    :DWORD,
+    :LPCWSTR,
+    :xcb_connection_t,
+    :xcb_visualid_t,
+    :xcb_window_t,
+    :IDirectFB,
+    :IDirectFBSurface,
+    :zx_handle_t,
+    :GgpStreamDescriptor,
+    :GgpFrameToken,
+
+    :MirConnection,
+    :MirSurface,
+    :ANativeWindow,
+    :AHardwareBuffer,
+    :CAMetalLayer,
+]
+
 include("spec/utils.jl")
 include("spec/aliases.jl")
 include("spec/specs.jl")
@@ -41,6 +71,8 @@ export
         is_arr,
         is_size,
         length_chain,
+        is_fn_ptr,
+        is_version,
 
         ### render_passes
         RenderPassRequirement,
