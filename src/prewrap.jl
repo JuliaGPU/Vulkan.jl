@@ -31,6 +31,10 @@ Base.unsafe_convert(T::Type, x::Tuple{<:AbstractVector{<:VulkanStruct{true}}, <:
 
 Base.broadcastable(x::VulkanStruct) = Ref(x)
 
+"""
+Exception type indicating that an API function
+returned a non-success code.
+"""
 struct VulkanError <: Exception
     msg::AbstractString
     return_code
