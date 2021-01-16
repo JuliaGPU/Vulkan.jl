@@ -3511,7 +3511,7 @@ PrivateDataSlotEXT(device::Device, flags::Integer, fun_ptr_create::FunctionPtr, 
 
 DeferredOperationKHR(device::Device, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_deferred_operation_khr(device, fun_ptr_create, fun_ptr_destroy; allocator)
 
-ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
 
 SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_sampler_ycbcr_conversion(device, SamplerYcbcrConversionCreateInfo(format, ycbcr_model, ycbcr_range, components, x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -3519,7 +3519,7 @@ DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArra
 
 IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
-PipelineCache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+PipelineCache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
 
 Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -3626,7 +3626,7 @@ function create_acceleration_structure_khr(device::Device, create_info::Accelera
 end
 
 function get_physical_device_tool_properties_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pToolCount = Ref{UInt32}(0)
+    pToolCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, C_NULL, fun_ptr)
     pToolProperties = Vector{VkPhysicalDeviceToolPropertiesEXT}(undef, pToolCount[])
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, pToolProperties, fun_ptr)
@@ -3636,7 +3636,7 @@ end
 cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer, fun_ptr::FunctionPtr) = vkCmdSetLineStippleEXT(command_buffer, line_stipple_factor, line_stipple_pattern, fun_ptr)
 
 function get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR, fun_ptr::FunctionPtr)
-    pInternalRepresentationCount = Ref{UInt32}(0)
+    pInternalRepresentationCount = Ref{UInt32}()
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, C_NULL, fun_ptr)
     pInternalRepresentations = Vector{VkPipelineExecutableInternalRepresentationKHR}(undef, pInternalRepresentationCount[])
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, pInternalRepresentations, fun_ptr)
@@ -3644,7 +3644,7 @@ function get_pipeline_executable_internal_representations_khr(device::Device, ex
 end
 
 function get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR, fun_ptr::FunctionPtr)
-    pStatisticCount = Ref{UInt32}(0)
+    pStatisticCount = Ref{UInt32}()
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, C_NULL, fun_ptr)
     pStatistics = Vector{VkPipelineExecutableStatisticKHR}(undef, pStatisticCount[])
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, pStatistics, fun_ptr)
@@ -3652,7 +3652,7 @@ function get_pipeline_executable_statistics_khr(device::Device, executable_info:
 end
 
 function get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR, fun_ptr::FunctionPtr)
-    pExecutableCount = Ref{UInt32}(0)
+    pExecutableCount = Ref{UInt32}()
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, C_NULL, fun_ptr)
     pProperties = Vector{VkPipelineExecutablePropertiesKHR}(undef, pExecutableCount[])
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, pProperties, fun_ptr)
@@ -3688,7 +3688,7 @@ uninitialize_performance_api_intel(device::Device, fun_ptr::FunctionPtr) = vkUni
 initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL, fun_ptr::FunctionPtr) = @check(vkInitializePerformanceApiINTEL(device, initialize_info, fun_ptr))
 
 function get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pCombinationCount = Ref{UInt32}(0)
+    pCombinationCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, C_NULL, fun_ptr)
     pCombinations = Vector{VkFramebufferMixedSamplesCombinationNV}(undef, pCombinationCount[])
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, pCombinations, fun_ptr)
@@ -3722,7 +3722,7 @@ function get_physical_device_queue_family_performance_query_passes_khr(physical_
 end
 
 function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer, fun_ptr::FunctionPtr)
-    pCounterCount = Ref{UInt32}(0)
+    pCounterCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL, fun_ptr)
     pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
     pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
@@ -3741,7 +3741,7 @@ function get_device_group_surface_present_modes_2_ext(device::Device, surface_in
 end
 
 function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)
-    pPresentModeCount = Ref{UInt32}(0)
+    pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, C_NULL, fun_ptr)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, pPresentModes, fun_ptr)
@@ -3761,7 +3761,7 @@ get_device_acceleration_structure_compatibility_khr(device::Device, version::Acc
 cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr) = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset, fun_ptr)
 
 function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkCooperativeMatrixPropertiesNV}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, pProperties, fun_ptr)
@@ -3780,32 +3780,32 @@ function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractA
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, fun_ptr::FunctionPtr)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, fun_ptr::FunctionPtr)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, pData, fun_ptr)
-    pData
+    pData[]
 end
 
-function get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, fun_ptr::FunctionPtr)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, fun_ptr::FunctionPtr)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData, fun_ptr)
-    pData
+    pData[]
 end
 
-function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, fun_ptr::FunctionPtr)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, fun_ptr::FunctionPtr)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetRayTracingShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData, fun_ptr)
-    pData
+    pData[]
 end
 
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL) = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth, fun_ptr)
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr) = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
 
-function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, stride::Integer, fun_ptr::FunctionPtr)
-    pData = Vector{Cvoid}(undef, data_size)
+function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, pData, stride, fun_ptr)
-    pData
+    pData[]
 end
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL) = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
@@ -3877,7 +3877,7 @@ cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers:
 cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
 
 function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)
-    pCheckpointDataCount = Ref{UInt32}(0)
+    pCheckpointDataCount = Ref{UInt32}()
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, C_NULL, fun_ptr)
     pCheckpointData = Vector{VkCheckpointDataNV}(undef, pCheckpointDataCount[])
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, pCheckpointData, fun_ptr)
@@ -3965,7 +3965,7 @@ function get_calibrated_timestamps_ext(device::Device, timestamp_infos::Abstract
 end
 
 function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pTimeDomainCount = Ref{UInt32}(0)
+    pTimeDomainCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, C_NULL, fun_ptr)
     pTimeDomains = Vector{VkTimeDomainEXT}(undef, pTimeDomainCount[])
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, pTimeDomains, fun_ptr)
@@ -3974,10 +3974,11 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, fun_ptr::FunctionPtr)
-    pInfo = Vector{Cvoid}(undef, Ref(info_size))
-    @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, Ref(info_size), pInfo, fun_ptr)
-    pInfo
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)
+    pInfo = Ref{Ptr{Cvoid}}()
+    pInfoSize = Ref(info_size)
+    @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
+    (pInfo[], pInfoSize[])
 end
 
 function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr)
@@ -3988,10 +3989,11 @@ end
 
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}, fun_ptr::FunctionPtr) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
-function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, fun_ptr::FunctionPtr)
-    pData = Vector{Cvoid}(undef, Ref(data_size))
-    @check vkGetValidationCacheDataEXT(device, validation_cache, Ref(data_size), pData, fun_ptr)
-    pData
+function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer, fun_ptr::FunctionPtr)
+    pData = Ref{Ptr{Cvoid}}()
+    pDataSize = Ref(data_size)
+    @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData, fun_ptr)
+    (pData[], pDataSize[])
 end
 
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyValidationCacheEXT(device, validation_cache, allocator, fun_ptr)
@@ -4017,7 +4019,7 @@ function create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcb
 end
 
 function get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2, fun_ptr::FunctionPtr)
-    pSparseMemoryRequirementCount = Ref{UInt32}(0)
+    pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, C_NULL, fun_ptr)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, pSparseMemoryRequirements, fun_ptr)
@@ -4043,7 +4045,7 @@ function get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, d
 end
 
 function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayModeProperties2KHR}(undef, pPropertyCount[])
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, pProperties, fun_ptr)
@@ -4051,7 +4053,7 @@ function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, disp
 end
 
 function get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayPlaneProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, pProperties, fun_ptr)
@@ -4059,7 +4061,7 @@ function get_physical_device_display_plane_properties_2_khr(physical_device::Phy
 end
 
 function get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, pProperties, fun_ptr)
@@ -4067,7 +4069,7 @@ function get_physical_device_display_properties_2_khr(physical_device::PhysicalD
 end
 
 function get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)
-    pSurfaceFormatCount = Ref{UInt32}(0)
+    pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, C_NULL, fun_ptr)
     pSurfaceFormats = Vector{VkSurfaceFormat2KHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, pSurfaceFormats, fun_ptr)
@@ -4111,7 +4113,7 @@ function create_ios_surface_mvk(instance::Instance, create_info::IOSSurfaceCreat
 end
 
 function get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)
-    pPresentationTimingCount = Ref{UInt32}(0)
+    pPresentationTimingCount = Ref{UInt32}()
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, C_NULL, fun_ptr)
     pPresentationTimings = Vector{VkPastPresentationTimingGOOGLE}(undef, pPresentationTimingCount[])
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, pPresentationTimings, fun_ptr)
@@ -4141,7 +4143,7 @@ function create_descriptor_update_template(device::Device, create_info::Descript
 end
 
 function get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)
-    pRectCount = Ref{UInt32}(0)
+    pRectCount = Ref{UInt32}()
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, C_NULL, fun_ptr)
     pRects = Vector{VkRect2D}(undef, pRectCount[])
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, pRects, fun_ptr)
@@ -4181,7 +4183,7 @@ function get_device_group_peer_memory_features(device::Device, heap_index::Integ
 end
 
 function enumerate_physical_device_groups(instance::Instance, fun_ptr::FunctionPtr)
-    pPhysicalDeviceGroupCount = Ref{UInt32}(0)
+    pPhysicalDeviceGroupCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, C_NULL, fun_ptr)
     pPhysicalDeviceGroupProperties = Vector{VkPhysicalDeviceGroupProperties}(undef, pPhysicalDeviceGroupCount[])
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties, fun_ptr)
@@ -4307,7 +4309,7 @@ trim_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPt
 cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, fun_ptr::FunctionPtr) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes, fun_ptr)
 
 function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkSparseImageFormatProperties2}(undef, pPropertyCount[])
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, pProperties, fun_ptr)
@@ -4321,7 +4323,7 @@ function get_physical_device_memory_properties_2(physical_device::PhysicalDevice
 end
 
 function get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pQueueFamilyPropertyCount = Ref{UInt32}(0)
+    pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, C_NULL, fun_ptr)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties2}(undef, pQueueFamilyPropertyCount[])
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, pQueueFamilyProperties, fun_ptr)
@@ -4487,11 +4489,11 @@ function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout
 end
 
 function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)
-    pSwapchainImageCount = Ref{UInt32}(0)
+    pSwapchainImageCount = Ref{UInt32}()
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL, fun_ptr)
     pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages, fun_ptr)
-    Image.(pSwapchainImages, (x->destroy_image(device, x; allocator)), device)
+    Image.(pSwapchainImages, (x->destroy_image(device, x, fun_ptr_destroy; allocator)), device)
 end
 
 destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroySwapchainKHR(device, swapchain, allocator, fun_ptr)
@@ -4504,7 +4506,7 @@ function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKH
 end
 
 function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)
-    pPresentModeCount = Ref{UInt32}(0)
+    pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL, fun_ptr)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes, fun_ptr)
@@ -4512,7 +4514,7 @@ function get_physical_device_surface_present_modes_khr(physical_device::Physical
 end
 
 function get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)
-    pSurfaceFormatCount = Ref{UInt32}(0)
+    pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, C_NULL, fun_ptr)
     pSurfaceFormats = Vector{VkSurfaceFormatKHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, pSurfaceFormats, fun_ptr)
@@ -4559,7 +4561,7 @@ function create_display_mode_khr(physical_device::PhysicalDevice, display::Displ
 end
 
 function get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayModePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, pProperties, fun_ptr)
@@ -4567,7 +4569,7 @@ function get_display_mode_properties_khr(physical_device::PhysicalDevice, displa
 end
 
 function get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer, fun_ptr::FunctionPtr)
-    pDisplayCount = Ref{UInt32}(0)
+    pDisplayCount = Ref{UInt32}()
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, C_NULL, fun_ptr)
     pDisplays = Vector{VkDisplayKHR}(undef, pDisplayCount[])
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, pDisplays, fun_ptr)
@@ -4575,7 +4577,7 @@ function get_display_plane_supported_displays_khr(physical_device::PhysicalDevic
 end
 
 function get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayPlanePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, pProperties, fun_ptr)
@@ -4583,7 +4585,7 @@ function get_physical_device_display_plane_properties_khr(physical_device::Physi
 end
 
 function get_physical_device_display_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayPropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, pProperties, fun_ptr)
@@ -4604,7 +4606,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents, fun
 
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents, fun_ptr::FunctionPtr) = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents, fun_ptr)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::Integer, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), values, fun_ptr)
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::Integer, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values), fun_ptr)
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fun_ptr)
 
@@ -4638,7 +4640,7 @@ cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout:
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer, fun_ptr::FunctionPtr) = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data, fun_ptr)
 
-cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, data, fun_ptr)
+cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data), fun_ptr)
 
 cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy}, fun_ptr::FunctionPtr) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
@@ -4796,10 +4798,11 @@ end
 
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}, fun_ptr::FunctionPtr) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
-function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, fun_ptr::FunctionPtr)
-    pData = Vector{Cvoid}(undef, Ref(data_size))
-    @check vkGetPipelineCacheData(device, pipeline_cache, Ref(data_size), pData, fun_ptr)
-    pData
+function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer, fun_ptr::FunctionPtr)
+    pData = Ref{Ptr{Cvoid}}()
+    pDataSize = Ref(data_size)
+    @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData, fun_ptr)
+    (pData[], pDataSize[])
 end
 
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyPipelineCache(device, pipeline_cache, allocator, fun_ptr)
@@ -4858,10 +4861,10 @@ end
 
 reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr) = vkResetQueryPool(device, query_pool, first_query, query_count, fun_ptr)
 
-function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags, fun_ptr)
-    pData
+    pData[]
 end
 
 destroy_query_pool(device::Device, query_pool::QueryPool, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyQueryPool(device, query_pool, allocator, fun_ptr)
@@ -4911,7 +4914,7 @@ end
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}, fun_ptr::FunctionPtr; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
 
 function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::Integer, tiling::VkImageTiling, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, pProperties, fun_ptr)
@@ -4919,7 +4922,7 @@ function get_physical_device_sparse_image_format_properties(physical_device::Phy
 end
 
 function get_image_sparse_memory_requirements(device::Device, image::Image, fun_ptr::FunctionPtr)
-    pSparseMemoryRequirementCount = Ref{UInt32}(0)
+    pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements(device, image, pSparseMemoryRequirementCount, C_NULL, fun_ptr)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements}(undef, pSparseMemoryRequirementCount[])
     vkGetImageSparseMemoryRequirements(device, image, pSparseMemoryRequirementCount, pSparseMemoryRequirements, fun_ptr)
@@ -4981,7 +4984,7 @@ function get_device_queue(device::Device, queue_family_index::Integer, queue_ind
 end
 
 function enumerate_device_extension_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr; layer_name = C_NULL)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, pProperties, fun_ptr)
@@ -4989,7 +4992,7 @@ function enumerate_device_extension_properties(physical_device::PhysicalDevice, 
 end
 
 function enumerate_device_layer_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, pProperties, fun_ptr)
@@ -4997,7 +5000,7 @@ function enumerate_device_layer_properties(physical_device::PhysicalDevice, fun_
 end
 
 function enumerate_instance_extension_properties(fun_ptr::FunctionPtr; layer_name = C_NULL)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties, fun_ptr)
@@ -5005,7 +5008,7 @@ function enumerate_instance_extension_properties(fun_ptr::FunctionPtr; layer_nam
 end
 
 function enumerate_instance_layer_properties(fun_ptr::FunctionPtr)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, pProperties, fun_ptr)
@@ -5051,7 +5054,7 @@ function get_physical_device_memory_properties(physical_device::PhysicalDevice, 
 end
 
 function get_physical_device_queue_family_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
-    pQueueFamilyPropertyCount = Ref{UInt32}(0)
+    pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties(physical_device, pQueueFamilyPropertyCount, C_NULL, fun_ptr)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties}(undef, pQueueFamilyPropertyCount[])
     vkGetPhysicalDeviceQueueFamilyProperties(physical_device, pQueueFamilyPropertyCount, pQueueFamilyProperties, fun_ptr)
@@ -5069,7 +5072,7 @@ get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_
 get_device_proc_addr(device::Device, name::AbstractString, fun_ptr::FunctionPtr) = vkGetDeviceProcAddr(device, name, fun_ptr)
 
 function enumerate_physical_devices(instance::Instance, fun_ptr::FunctionPtr)
-    pPhysicalDeviceCount = Ref{UInt32}(0)
+    pPhysicalDeviceCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL, fun_ptr)
     pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices, fun_ptr)
@@ -5096,7 +5099,7 @@ PrivateDataSlotEXT(device::Device, flags::Integer; allocator = C_NULL, next = C_
 
 DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
 
-ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags); allocator)
+ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags, initial_data_size); allocator)
 
 SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL) = create_sampler_ycbcr_conversion(device, SamplerYcbcrConversionCreateInfo(format, ycbcr_model, ycbcr_range, components, x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction; next); allocator)
 
@@ -5104,7 +5107,7 @@ DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArra
 
 IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next); allocator)
 
-PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags); allocator)
+PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size); allocator)
 
 Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags); allocator)
 
@@ -6645,7 +6648,7 @@ function DebugUtilsLabelEXT(label_name::AbstractString; next = C_NULL, color = 0
     DebugUtilsLabelEXT(vks, deps)
 end
 
-function DebugUtilsObjectTagInfoEXT(object_type::VkObjectType, object_handle::Integer, tag_name::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+function DebugUtilsObjectTagInfoEXT(object_type::VkObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     tag = cconvert(Ptr{Cvoid}, tag)
     deps = [next, tag]
@@ -6696,7 +6699,7 @@ function ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCa
     ShaderModuleValidationCacheCreateInfoEXT(vks, deps)
 end
 
-function ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0)
+function ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
     next = cconvert(Ptr{Cvoid}, next)
     initial_data = cconvert(Ptr{Cvoid}, initial_data)
     deps = [next, initial_data]
@@ -6727,11 +6730,11 @@ function DescriptorPoolInlineUniformBlockCreateInfoEXT(max_inline_uniform_block_
     DescriptorPoolInlineUniformBlockCreateInfoEXT(vks, deps)
 end
 
-function WriteDescriptorSetInlineUniformBlockEXT(data::Ptr{Cvoid}; next = C_NULL)
+function WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Ptr{Cvoid}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     data = cconvert(Ptr{Cvoid}, data)
     deps = [next, data]
-    vks = VkWriteDescriptorSetInlineUniformBlockEXT(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT, unsafe_convert(Ptr{Cvoid}, next), pointer_length(data), unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkWriteDescriptorSetInlineUniformBlockEXT(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT, unsafe_convert(Ptr{Cvoid}, next), data_size, unsafe_convert(Ptr{Cvoid}, data))
     WriteDescriptorSetInlineUniformBlockEXT(vks, deps)
 end
 
@@ -7621,7 +7624,7 @@ function DebugMarkerMarkerInfoEXT(marker_name::AbstractString; next = C_NULL, co
     DebugMarkerMarkerInfoEXT(vks, deps)
 end
 
-function DebugMarkerObjectTagInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+function DebugMarkerObjectTagInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     tag = cconvert(Ptr{Cvoid}, tag)
     deps = [next, tag]
@@ -7953,7 +7956,7 @@ function PushConstantRange(stage_flags::Integer, offset::Integer, size::Integer)
     PushConstantRange(VkPushConstantRange(stage_flags, offset, size))
 end
 
-function PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0)
+function PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
     next = cconvert(Ptr{Cvoid}, next)
     initial_data = cconvert(Ptr{Cvoid}, initial_data)
     deps = [next, initial_data]
@@ -8080,7 +8083,7 @@ function PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::Sh
     PipelineShaderStageCreateInfo(vks, deps)
 end
 
-function SpecializationInfo(map_entries::AbstractArray{<:SpecializationMapEntry}, data::Ptr{Cvoid})
+function SpecializationInfo(map_entries::AbstractArray{<:SpecializationMapEntry}, data::Ptr{Cvoid}; data_size = 0)
     map_entries = cconvert(Ptr{VkSpecializationMapEntry}, map_entries)
     data = cconvert(Ptr{Cvoid}, data)
     deps = [map_entries, data]
@@ -8458,7 +8461,7 @@ function create_acceleration_structure_khr(device::Device, create_info::Accelera
 end
 
 function get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)
-    pToolCount = Ref{UInt32}(0)
+    pToolCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, C_NULL)
     pToolProperties = Vector{VkPhysicalDeviceToolPropertiesEXT}(undef, pToolCount[])
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, pToolProperties)
@@ -8468,7 +8471,7 @@ end
 cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer) = vkCmdSetLineStippleEXT(command_buffer, line_stipple_factor, line_stipple_pattern)
 
 function get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)
-    pInternalRepresentationCount = Ref{UInt32}(0)
+    pInternalRepresentationCount = Ref{UInt32}()
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, C_NULL)
     pInternalRepresentations = Vector{VkPipelineExecutableInternalRepresentationKHR}(undef, pInternalRepresentationCount[])
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, pInternalRepresentations)
@@ -8476,7 +8479,7 @@ function get_pipeline_executable_internal_representations_khr(device::Device, ex
 end
 
 function get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)
-    pStatisticCount = Ref{UInt32}(0)
+    pStatisticCount = Ref{UInt32}()
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, C_NULL)
     pStatistics = Vector{VkPipelineExecutableStatisticKHR}(undef, pStatisticCount[])
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, pStatistics)
@@ -8484,7 +8487,7 @@ function get_pipeline_executable_statistics_khr(device::Device, executable_info:
 end
 
 function get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)
-    pExecutableCount = Ref{UInt32}(0)
+    pExecutableCount = Ref{UInt32}()
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, C_NULL)
     pProperties = Vector{VkPipelineExecutablePropertiesKHR}(undef, pExecutableCount[])
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, pProperties)
@@ -8520,7 +8523,7 @@ uninitialize_performance_api_intel(device::Device) = vkUninitializePerformanceAp
 initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL) = @check(vkInitializePerformanceApiINTEL(device, initialize_info))
 
 function get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)
-    pCombinationCount = Ref{UInt32}(0)
+    pCombinationCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, C_NULL)
     pCombinations = Vector{VkFramebufferMixedSamplesCombinationNV}(undef, pCombinationCount[])
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, pCombinations)
@@ -8554,7 +8557,7 @@ function get_physical_device_queue_family_performance_query_passes_khr(physical_
 end
 
 function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)
-    pCounterCount = Ref{UInt32}(0)
+    pCounterCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
     pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
     pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
@@ -8573,7 +8576,7 @@ function get_device_group_surface_present_modes_2_ext(device::Device, surface_in
 end
 
 function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)
-    pPresentModeCount = Ref{UInt32}(0)
+    pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, C_NULL)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, pPresentModes)
@@ -8593,7 +8596,7 @@ get_device_acceleration_structure_compatibility_khr(device::Device, version::Acc
 cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer) = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset)
 
 function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkCooperativeMatrixPropertiesNV}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, pProperties)
@@ -8612,32 +8615,32 @@ function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractA
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
 end
 
-function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, pData)
-    pData
+    pData[]
 end
 
-function get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData)
-    pData
+    pData[]
 end
 
-function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetRayTracingShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData)
-    pData
+    pData[]
 end
 
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL) = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth)
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer) = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
 
-function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, stride::Integer)
-    pData = Vector{Cvoid}(undef, data_size)
+function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, stride::Integer)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, pData, stride)
-    pData
+    pData[]
 end
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL) = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
@@ -8709,7 +8712,7 @@ cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers:
 cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
 
 function get_queue_checkpoint_data_nv(queue::Queue)
-    pCheckpointDataCount = Ref{UInt32}(0)
+    pCheckpointDataCount = Ref{UInt32}()
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, C_NULL)
     pCheckpointData = Vector{VkCheckpointDataNV}(undef, pCheckpointDataCount[])
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, pCheckpointData)
@@ -8797,7 +8800,7 @@ function get_calibrated_timestamps_ext(device::Device, timestamp_infos::Abstract
 end
 
 function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)
-    pTimeDomainCount = Ref{UInt32}(0)
+    pTimeDomainCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, C_NULL)
     pTimeDomains = Vector{VkTimeDomainEXT}(undef, pTimeDomainCount[])
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, pTimeDomains)
@@ -8806,10 +8809,11 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD)
-    pInfo = Vector{Cvoid}(undef, Ref(info_size))
-    @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, Ref(info_size), pInfo)
-    pInfo
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)
+    pInfo = Ref{Ptr{Cvoid}}()
+    pInfoSize = Ref(info_size)
+    @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
+    (pInfo[], pInfoSize[])
 end
 
 function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)
@@ -8820,10 +8824,11 @@ end
 
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
 
-function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)
-    pData = Vector{Cvoid}(undef, Ref(data_size))
-    @check vkGetValidationCacheDataEXT(device, validation_cache, Ref(data_size), pData)
-    pData
+function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)
+    pData = Ref{Ptr{Cvoid}}()
+    pDataSize = Ref(data_size)
+    @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData)
+    (pData[], pDataSize[])
 end
 
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL) = vkDestroyValidationCacheEXT(device, validation_cache, allocator)
@@ -8849,7 +8854,7 @@ function create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcb
 end
 
 function get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2)
-    pSparseMemoryRequirementCount = Ref{UInt32}(0)
+    pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, C_NULL)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, pSparseMemoryRequirements)
@@ -8875,7 +8880,7 @@ function get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, d
 end
 
 function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayModeProperties2KHR}(undef, pPropertyCount[])
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, pProperties)
@@ -8883,7 +8888,7 @@ function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, disp
 end
 
 function get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayPlaneProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, pProperties)
@@ -8891,7 +8896,7 @@ function get_physical_device_display_plane_properties_2_khr(physical_device::Phy
 end
 
 function get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, pProperties)
@@ -8899,7 +8904,7 @@ function get_physical_device_display_properties_2_khr(physical_device::PhysicalD
 end
 
 function get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)
-    pSurfaceFormatCount = Ref{UInt32}(0)
+    pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, C_NULL)
     pSurfaceFormats = Vector{VkSurfaceFormat2KHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, pSurfaceFormats)
@@ -8943,7 +8948,7 @@ function create_ios_surface_mvk(instance::Instance, create_info::IOSSurfaceCreat
 end
 
 function get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)
-    pPresentationTimingCount = Ref{UInt32}(0)
+    pPresentationTimingCount = Ref{UInt32}()
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, C_NULL)
     pPresentationTimings = Vector{VkPastPresentationTimingGOOGLE}(undef, pPresentationTimingCount[])
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, pPresentationTimings)
@@ -8973,7 +8978,7 @@ function create_descriptor_update_template(device::Device, create_info::Descript
 end
 
 function get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
-    pRectCount = Ref{UInt32}(0)
+    pRectCount = Ref{UInt32}()
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, C_NULL)
     pRects = Vector{VkRect2D}(undef, pRectCount[])
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, pRects)
@@ -9013,7 +9018,7 @@ function get_device_group_peer_memory_features(device::Device, heap_index::Integ
 end
 
 function enumerate_physical_device_groups(instance::Instance)
-    pPhysicalDeviceGroupCount = Ref{UInt32}(0)
+    pPhysicalDeviceGroupCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, C_NULL)
     pPhysicalDeviceGroupProperties = Vector{VkPhysicalDeviceGroupProperties}(undef, pPhysicalDeviceGroupCount[])
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties)
@@ -9139,7 +9144,7 @@ trim_command_pool(device::Device, command_pool::CommandPool; flags = 0) = vkTrim
 cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet}) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes)
 
 function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties2}(undef, pPropertyCount[])
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, pProperties)
@@ -9153,7 +9158,7 @@ function get_physical_device_memory_properties_2(physical_device::PhysicalDevice
 end
 
 function get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)
-    pQueueFamilyPropertyCount = Ref{UInt32}(0)
+    pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, C_NULL)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties2}(undef, pQueueFamilyPropertyCount[])
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, pQueueFamilyProperties)
@@ -9319,7 +9324,7 @@ function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout
 end
 
 function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)
-    pSwapchainImageCount = Ref{UInt32}(0)
+    pSwapchainImageCount = Ref{UInt32}()
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL)
     pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
@@ -9336,7 +9341,7 @@ function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKH
 end
 
 function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
-    pPresentModeCount = Ref{UInt32}(0)
+    pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
@@ -9344,7 +9349,7 @@ function get_physical_device_surface_present_modes_khr(physical_device::Physical
 end
 
 function get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
-    pSurfaceFormatCount = Ref{UInt32}(0)
+    pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, C_NULL)
     pSurfaceFormats = Vector{VkSurfaceFormatKHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, pSurfaceFormats)
@@ -9391,7 +9396,7 @@ function create_display_mode_khr(physical_device::PhysicalDevice, display::Displ
 end
 
 function get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayModePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, pProperties)
@@ -9399,7 +9404,7 @@ function get_display_mode_properties_khr(physical_device::PhysicalDevice, displa
 end
 
 function get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)
-    pDisplayCount = Ref{UInt32}(0)
+    pDisplayCount = Ref{UInt32}()
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, C_NULL)
     pDisplays = Vector{VkDisplayKHR}(undef, pDisplayCount[])
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, pDisplays)
@@ -9407,7 +9412,7 @@ function get_display_plane_supported_displays_khr(physical_device::PhysicalDevic
 end
 
 function get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayPlanePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, pProperties)
@@ -9415,7 +9420,7 @@ function get_physical_device_display_plane_properties_khr(physical_device::Physi
 end
 
 function get_physical_device_display_properties_khr(physical_device::PhysicalDevice)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayPropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, pProperties)
@@ -9436,7 +9441,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents) = v
 
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents) = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::Integer, offset::Integer, values::Ptr{Cvoid}) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), values)
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::Integer, offset::Integer, values::Ptr{Cvoid}) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values))
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags)
 
@@ -9470,7 +9475,7 @@ cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout:
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer) = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data)
 
-cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data::Ptr{Cvoid}) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, data)
+cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data))
 
 cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy}) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
 
@@ -9628,10 +9633,11 @@ end
 
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
 
-function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)
-    pData = Vector{Cvoid}(undef, Ref(data_size))
-    @check vkGetPipelineCacheData(device, pipeline_cache, Ref(data_size), pData)
-    pData
+function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)
+    pData = Ref{Ptr{Cvoid}}()
+    pDataSize = Ref(data_size)
+    @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
+    (pData[], pDataSize[])
 end
 
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL) = vkDestroyPipelineCache(device, pipeline_cache, allocator)
@@ -9690,10 +9696,10 @@ end
 
 reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer) = vkResetQueryPool(device, query_pool, first_query, query_count)
 
-function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, stride::Integer; flags = 0)
-    pData = Vector{Cvoid}(undef, data_size)
+function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)
+    pData = Ref{Ptr{Cvoid}}()
     @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags)
-    pData
+    pData[]
 end
 
 destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL) = vkDestroyQueryPool(device, query_pool, allocator)
@@ -9743,7 +9749,7 @@ end
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
 
 function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::Integer, tiling::VkImageTiling)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, pProperties)
@@ -9751,7 +9757,7 @@ function get_physical_device_sparse_image_format_properties(physical_device::Phy
 end
 
 function get_image_sparse_memory_requirements(device::Device, image::Image)
-    pSparseMemoryRequirementCount = Ref{UInt32}(0)
+    pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements(device, image, pSparseMemoryRequirementCount, C_NULL)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements}(undef, pSparseMemoryRequirementCount[])
     vkGetImageSparseMemoryRequirements(device, image, pSparseMemoryRequirementCount, pSparseMemoryRequirements)
@@ -9813,7 +9819,7 @@ function get_device_queue(device::Device, queue_family_index::Integer, queue_ind
 end
 
 function enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, C_NULL)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, pProperties)
@@ -9821,7 +9827,7 @@ function enumerate_device_extension_properties(physical_device::PhysicalDevice; 
 end
 
 function enumerate_device_layer_properties(physical_device::PhysicalDevice)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, pProperties)
@@ -9829,7 +9835,7 @@ function enumerate_device_layer_properties(physical_device::PhysicalDevice)
 end
 
 function enumerate_instance_extension_properties(; layer_name = C_NULL)
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
@@ -9837,7 +9843,7 @@ function enumerate_instance_extension_properties(; layer_name = C_NULL)
 end
 
 function enumerate_instance_layer_properties()
-    pPropertyCount = Ref{UInt32}(0)
+    pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, C_NULL)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, pProperties)
@@ -9883,7 +9889,7 @@ function get_physical_device_memory_properties(physical_device::PhysicalDevice)
 end
 
 function get_physical_device_queue_family_properties(physical_device::PhysicalDevice)
-    pQueueFamilyPropertyCount = Ref{UInt32}(0)
+    pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties(physical_device, pQueueFamilyPropertyCount, C_NULL)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties}(undef, pQueueFamilyPropertyCount[])
     vkGetPhysicalDeviceQueueFamilyProperties(physical_device, pQueueFamilyPropertyCount, pQueueFamilyProperties)
@@ -9901,7 +9907,7 @@ get_instance_proc_addr(name::AbstractString; instance = C_NULL) = vkGetInstanceP
 get_device_proc_addr(device::Device, name::AbstractString) = vkGetDeviceProcAddr(device, name)
 
 function enumerate_physical_devices(instance::Instance)
-    pPhysicalDeviceCount = Ref{UInt32}(0)
+    pPhysicalDeviceCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
     pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
