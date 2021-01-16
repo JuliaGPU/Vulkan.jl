@@ -5,9 +5,13 @@ using VulkanCore
 using VulkanCore.vk
 using Base: cconvert, unsafe_convert, RefArray
 using MLStyle
-using Preferences
 
-const ERROR_CHECKING = @load_preference("ERROR_CHECKING", true)
+@static if VERSION < v"1.6.0-DEV"
+    using Preferences
+    const ERROR_CHECKING = @load_preference("ERROR_CHECKING", true)
+else
+    const ERROR_CHECKING = true
+end
 
 @template (FUNCTIONS, METHODS, MACROS) =
     """
