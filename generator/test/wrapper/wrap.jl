@@ -14,9 +14,9 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         test_wrap_handle(:VkInstance, :(
             mutable struct Instance <: Handle
                 vks::VkInstance
-                refcount::UInt
+                refcount::RefCounter
                 destructor
-                Instance(vks::VkInstance, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+                Instance(vks::VkInstance, refcount::RefCounter) = new(vks, refcount, undef)
             end))
     end
 

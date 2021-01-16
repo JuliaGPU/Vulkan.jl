@@ -10,9 +10,9 @@ Base.show(io::IO, vw::VulkanWrapper) = print(io, "VulkanWrapper with $(length(vw
 function wrap(spec::SpecHandle)
     :(mutable struct $(remove_vk_prefix(spec.name)) <: Handle
          vks::$(spec.name)
-         refcount::UInt
+         refcount::RefCounter
          destructor
-         $(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+         $(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef)
      end)
 end
 

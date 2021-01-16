@@ -3189,37 +3189,37 @@ end
 
 mutable struct DebugUtilsMessengerEXT <: Handle
     vks::VkDebugUtilsMessengerEXT
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DebugUtilsMessengerEXT(vks::VkDebugUtilsMessengerEXT, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DebugUtilsMessengerEXT(vks::VkDebugUtilsMessengerEXT, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DebugReportCallbackEXT <: Handle
     vks::VkDebugReportCallbackEXT
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DebugReportCallbackEXT(vks::VkDebugReportCallbackEXT, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DebugReportCallbackEXT(vks::VkDebugReportCallbackEXT, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct SwapchainKHR <: Handle
     vks::VkSwapchainKHR
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    SwapchainKHR(vks::VkSwapchainKHR, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    SwapchainKHR(vks::VkSwapchainKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct SurfaceKHR <: Handle
     vks::VkSurfaceKHR
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    SurfaceKHR(vks::VkSurfaceKHR, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    SurfaceKHR(vks::VkSurfaceKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DisplayModeKHR <: Handle
     vks::VkDisplayModeKHR
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DisplayModeKHR(vks::VkDisplayModeKHR, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DisplayModeKHR(vks::VkDisplayModeKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 struct DisplayModePropertiesKHR <: ReturnedOnly
@@ -3235,9 +3235,9 @@ end
 
 mutable struct DisplayKHR <: Handle
     vks::VkDisplayKHR
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DisplayKHR(vks::VkDisplayKHR, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DisplayKHR(vks::VkDisplayKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 struct DisplayPlanePropertiesKHR <: ReturnedOnly
@@ -3269,233 +3269,233 @@ end
 
 mutable struct PrivateDataSlotEXT <: Handle
     vks::VkPrivateDataSlotEXT
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    PrivateDataSlotEXT(vks::VkPrivateDataSlotEXT, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    PrivateDataSlotEXT(vks::VkPrivateDataSlotEXT, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DeferredOperationKHR <: Handle
     vks::VkDeferredOperationKHR
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DeferredOperationKHR(vks::VkDeferredOperationKHR, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DeferredOperationKHR(vks::VkDeferredOperationKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct PerformanceConfigurationINTEL <: Handle
     vks::VkPerformanceConfigurationINTEL
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    PerformanceConfigurationINTEL(vks::VkPerformanceConfigurationINTEL, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    PerformanceConfigurationINTEL(vks::VkPerformanceConfigurationINTEL, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct AccelerationStructureKHR <: Handle
     vks::VkAccelerationStructureKHR
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    AccelerationStructureKHR(vks::VkAccelerationStructureKHR, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    AccelerationStructureKHR(vks::VkAccelerationStructureKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct ValidationCacheEXT <: Handle
     vks::VkValidationCacheEXT
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    ValidationCacheEXT(vks::VkValidationCacheEXT, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    ValidationCacheEXT(vks::VkValidationCacheEXT, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct SamplerYcbcrConversion <: Handle
     vks::VkSamplerYcbcrConversion
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    SamplerYcbcrConversion(vks::VkSamplerYcbcrConversion, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    SamplerYcbcrConversion(vks::VkSamplerYcbcrConversion, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DescriptorUpdateTemplate <: Handle
     vks::VkDescriptorUpdateTemplate
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DescriptorUpdateTemplate(vks::VkDescriptorUpdateTemplate, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DescriptorUpdateTemplate(vks::VkDescriptorUpdateTemplate, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct IndirectCommandsLayoutNV <: Handle
     vks::VkIndirectCommandsLayoutNV
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    IndirectCommandsLayoutNV(vks::VkIndirectCommandsLayoutNV, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    IndirectCommandsLayoutNV(vks::VkIndirectCommandsLayoutNV, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct PipelineCache <: Handle
     vks::VkPipelineCache
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    PipelineCache(vks::VkPipelineCache, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    PipelineCache(vks::VkPipelineCache, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct RenderPass <: Handle
     vks::VkRenderPass
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    RenderPass(vks::VkRenderPass, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    RenderPass(vks::VkRenderPass, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Framebuffer <: Handle
     vks::VkFramebuffer
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Framebuffer(vks::VkFramebuffer, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Framebuffer(vks::VkFramebuffer, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct QueryPool <: Handle
     vks::VkQueryPool
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    QueryPool(vks::VkQueryPool, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    QueryPool(vks::VkQueryPool, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Event <: Handle
     vks::VkEvent
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Event(vks::VkEvent, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Event(vks::VkEvent, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Semaphore <: Handle
     vks::VkSemaphore
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Semaphore(vks::VkSemaphore, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Semaphore(vks::VkSemaphore, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Fence <: Handle
     vks::VkFence
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Fence(vks::VkFence, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Fence(vks::VkFence, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DescriptorPool <: Handle
     vks::VkDescriptorPool
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DescriptorPool(vks::VkDescriptorPool, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DescriptorPool(vks::VkDescriptorPool, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DescriptorSetLayout <: Handle
     vks::VkDescriptorSetLayout
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DescriptorSetLayout(vks::VkDescriptorSetLayout, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DescriptorSetLayout(vks::VkDescriptorSetLayout, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DescriptorSet <: Handle
     vks::VkDescriptorSet
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DescriptorSet(vks::VkDescriptorSet, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DescriptorSet(vks::VkDescriptorSet, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Sampler <: Handle
     vks::VkSampler
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Sampler(vks::VkSampler, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Sampler(vks::VkSampler, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct PipelineLayout <: Handle
     vks::VkPipelineLayout
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    PipelineLayout(vks::VkPipelineLayout, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    PipelineLayout(vks::VkPipelineLayout, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Pipeline <: Handle
     vks::VkPipeline
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Pipeline(vks::VkPipeline, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Pipeline(vks::VkPipeline, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct ShaderModule <: Handle
     vks::VkShaderModule
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    ShaderModule(vks::VkShaderModule, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    ShaderModule(vks::VkShaderModule, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct ImageView <: Handle
     vks::VkImageView
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    ImageView(vks::VkImageView, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    ImageView(vks::VkImageView, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Image <: Handle
     vks::VkImage
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Image(vks::VkImage, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Image(vks::VkImage, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct BufferView <: Handle
     vks::VkBufferView
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    BufferView(vks::VkBufferView, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    BufferView(vks::VkBufferView, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Buffer <: Handle
     vks::VkBuffer
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Buffer(vks::VkBuffer, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Buffer(vks::VkBuffer, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct CommandPool <: Handle
     vks::VkCommandPool
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    CommandPool(vks::VkCommandPool, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    CommandPool(vks::VkCommandPool, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct DeviceMemory <: Handle
     vks::VkDeviceMemory
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    DeviceMemory(vks::VkDeviceMemory, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    DeviceMemory(vks::VkDeviceMemory, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct CommandBuffer <: Handle
     vks::VkCommandBuffer
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    CommandBuffer(vks::VkCommandBuffer, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    CommandBuffer(vks::VkCommandBuffer, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Queue <: Handle
     vks::VkQueue
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Queue(vks::VkQueue, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Queue(vks::VkQueue, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Device <: Handle
     vks::VkDevice
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Device(vks::VkDevice, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Device(vks::VkDevice, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct PhysicalDevice <: Handle
     vks::VkPhysicalDevice
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    PhysicalDevice(vks::VkPhysicalDevice, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    PhysicalDevice(vks::VkPhysicalDevice, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 mutable struct Instance <: Handle
     vks::VkInstance
-    refcount::UInt
+    refcount::RefCounter
     destructor
-    Instance(vks::VkInstance, refcount::Integer) = new(vks, convert(UInt, refcount), undef)
+    Instance(vks::VkInstance, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
 

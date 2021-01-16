@@ -16,6 +16,7 @@ Represents a structure that will never be requested by API functions.
 abstract type ReturnedOnly <: VulkanStruct{false} end
 
 const FunctionPtr = Union{Ptr{Cvoid}, Base.CFunction}
+const RefCounter = Threads.Atomic{UInt}
 
 Base.cconvert(T::Type, x::VulkanStruct) = x
 Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = getproperty.(x, :vks)
@@ -82,21 +83,23 @@ from_vk(T::Type{S}, str::NTuple{N,UInt8}) where {N,S <: AbstractString} = T(filt
 
 Base.show(io::IO, h::Handle) = print(io, typeof(h), '(', h.vks, ')')
 
+increment_refcount!(handle::Handle) = Threads.atomic_add!(handle.refcount, UInt(1))
+decrement_refcount!(handle::Handle) = Threads.atomic_sub!(handle.refcount, UInt(1))
+
 function try_destroy(f, handle::Handle)
-    handle.refcount -= 1
+    decrement_refcount!(handle)
     if handle.refcount == 0
         f(handle)
     end
 end
 
 function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor)
-    handle = T(ptr, 1)
-    maybe_destroy = () -> try_destroy(destructor, handle)
-    handle.destructor = maybe_destroy
+    handle = T(ptr, RefCounter(UInt(1)))
+    handle.destructor = () -> try_destroy(destructor, handle)
     finalizer(x -> handle.destructor(), handle)
 end
 
 function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent::Handle)
-    parent.refcount += 1
+    increment_refcount!(parent)
     finalizer(x -> parent.destructor(), T(ptr, destructor))
 end

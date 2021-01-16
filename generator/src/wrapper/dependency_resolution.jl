@@ -1,5 +1,6 @@
 const known_dependencies = [
-    "FunctionPtr",
+    :FunctionPtr,
+    :RefCounter,
 ]
 
 function raw_dependencies(ex)
