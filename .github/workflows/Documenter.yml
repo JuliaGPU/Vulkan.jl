@@ -1,4 +1,6 @@
 name: Documenter
+env: 
+  JuliaVersion: 1.6
 on:
   push:
     branches: [master]
