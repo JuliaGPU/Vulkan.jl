@@ -195,4 +195,11 @@ test_destroy_func(name, handle, index, batch) = test_spec(x -> spec_by_field(spe
         @test follow_alias(:VkPhysicalDeviceMemoryProperties2KHR) == :VkPhysicalDeviceMemoryProperties2
         @test follow_alias(:VkPhysicalDeviceMemoryProperties2) == :VkPhysicalDeviceMemoryProperties2
     end
+
+    @testset "Miscellaneous" begin
+        @test length_chain(children(func_by_name(:vkAllocateDescriptorSets))[3], "pAllocateInfo->descriptorSetCount") == [
+            children(func_by_name(:vkAllocateDescriptorSets))[2],
+            children(struct_by_name(:VkDescriptorSetAllocateInfo))[4],
+        ]
+    end
 end

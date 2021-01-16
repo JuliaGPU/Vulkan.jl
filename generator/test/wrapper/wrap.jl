@@ -70,7 +70,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
     @testset "API functions" begin
         test_wrap_func(:vkEnumeratePhysicalDevices, :(
             function enumerate_physical_devices(instance::Instance)
-                pPhysicalDeviceCount = Ref{UInt32}(0)
+                pPhysicalDeviceCount = Ref{UInt32}()
                 @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
                 pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
                 @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
@@ -96,7 +96,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
 
         test_wrap_func(:vkEnumerateInstanceExtensionProperties, :(
             function enumerate_instance_extension_properties(; layer_name = C_NULL)
-                pPropertyCount = Ref{UInt32}(0)
+                pPropertyCount = Ref{UInt32}()
                 @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
                 pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
                 @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
@@ -117,7 +117,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
 
         test_wrap_func(:vkGetPhysicalDeviceSurfacePresentModesKHR, :(
             function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
-                pPresentModeCount = Ref{UInt32}(0)
+                pPresentModeCount = Ref{UInt32}()
                 @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
                 pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
                 @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
@@ -220,12 +220,21 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
 
         test_wrap_func(:vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR, :(
             function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)
-                pCounterCount = Ref{UInt32}(0)
+                pCounterCount = Ref{UInt32}()
                 @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
                 pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
                 pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
                 @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
                 (from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions))
+            end
+        ))
+
+        test_wrap_func(:vkGetPipelineCacheData, :(
+            function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)
+                pData = Ref{Ptr{Cvoid}}()
+                pDataSize = Ref(data_size)
+                @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
+                pData[], pDataSize[]
             end
         ))
     end

@@ -33,6 +33,14 @@ export
         create_func_by_name,
         destroy_func_by_name,
         follow_constant,
+        children,
+        parent_spec,
+        has_length,
+        has_computable_length,
+        is_length,
+        is_arr,
+        is_size,
+        length_chain,
 
         ### render_passes
         RenderPassRequirement,

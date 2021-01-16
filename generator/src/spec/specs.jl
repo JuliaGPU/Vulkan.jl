@@ -183,7 +183,7 @@ function Base.show(io::IO, spec::Union{SpecStructMember, SpecFuncParam})
     props = string.([spec.requirement])
     spec.is_constant && push!(props, "constant")
     spec.is_externsync && push!(props, "externsync")
-    !isnothing(spec.len) && push!(props, "with length $(spec.len)")
+    is_arr(spec) && push!(props, "with length $(spec.len)")
     !isempty(spec.arglen) && push!(props, "length of $(join(spec.arglen, ' '))")
 
     print(io, join(string.(vcat(typeof(spec), spec.type, spec.name, props)), ' '))
@@ -295,7 +295,7 @@ function SpecCreateFunc(spec::SpecFunc)
     else
         create_info_param = first(create_info_params)
         create_info_struct = spec_create_info_structs[findfirst(==(innermost_type(create_info_param.type)), spec_create_info_structs.name)]
-        batch = !isnothing(created_param.len)
+        batch = is_arr(created_param)
         SpecCreateFunc(spec, handle, create_info_struct, create_info_param, batch)
     end
 end
@@ -303,7 +303,7 @@ end
 function SpecDestroyFunc(spec::SpecFunc)
     destroyed_param = spec.params[findlast(spec.params.is_externsync)]
     handle = spec_handles[findfirst(==(innermost_type(destroyed_param.type)), spec_handles.name)]
-    SpecDestroyFunc(spec, handle, destroyed_param, !isnothing(destroyed_param.len))
+    SpecDestroyFunc(spec, handle, destroyed_param, is_arr(destroyed_param))
 end
 
 function queue_compatibility(node::EzXML.Node)
@@ -334,9 +334,55 @@ function arglen(node::EzXML.Node; neighbor_type="param")
     map(name, filter(x -> len(x) == arg_name, neighbors))
 end
 
-is_len(spec::SpecStructMember) = spec.name ∈ spec_structs[findfirst(==(spec.parent), spec_structs.name)].members.len
-is_len(spec::SpecFuncParam) = spec.name ∈ spec_funcs[findfirst(==(spec.parent), spec_funcs.name)].params.len
-is_computable_len(spec::Union{SpecStructMember, SpecFuncParam}) = !spec.is_constant && spec.requirement == POINTER_REQUIRED && is_len(spec)
+is_arr(spec::Union{SpecStructMember, SpecFuncParam}) = has_length(spec) && spec.type ≠ :(Ptr{Cvoid})
+is_length(spec::Union{SpecStructMember, SpecFuncParam}) = !isempty(spec.arglen) && !endswith(string(spec.name), "Size")
+is_size(spec::Union{SpecStructMember, SpecFuncParam}) = !isempty(spec.arglen) && endswith(string(spec.name), "Size")
+has_length(spec::Union{SpecStructMember, SpecFuncParam}) = !isnothing(spec.len)
+has_computable_length(spec::Union{SpecStructMember, SpecFuncParam}) = !spec.is_constant && spec.requirement == POINTER_REQUIRED && is_arr(spec)
+is_data(spec::Union{SpecStructMember, SpecFuncParam}) = has_length(spec) && spec.type == :(Ptr{Cvoid})
+
+"""
+Iterate through function or struct specification fields from a list of fields.
+`list` is a sequence of fields to get through from `root`.
+"""
+struct FieldIterator
+    root
+    list
+end
+
+function Base.iterate(f::FieldIterator)
+    spec = field(f.root, popfirst!(f.list))
+    root = struct_by_name(innermost_type(spec.type))
+    if isnothing(root)
+        isempty(f.list) || error("Failed to retrieve a struct from $spec to continue the list $(f.list)")
+        (spec, nothing)
+    else
+        (spec, FieldIterator(root, f.list))
+    end
+end
+
+Base.iterate(_, f::FieldIterator) = iterate(f)
+Base.iterate(f::FieldIterator, ::Nothing) = nothing
+Base.length(f::FieldIterator) = length(f.list)
+
+function field(spec, name)
+    index = findfirst(==(name), children(spec).name)
+    !isnothing(index) || error("Failed to retrieve field $name in $spec")
+    children(spec)[index]
+end
+
+function field_struct(spec::Union{SpecStructMember, SpecFuncParam}, name)
+    field_spec = field(parent_spec(spec), name)
+    @match t = innermost_type(field_spec) begin
+        GuardBy(in(spec_structs.name)) => struct_by_name(t)
+        _ => field
+    end
+end
+
+function length_chain(spec::Union{SpecStructMember, SpecFuncParam}, chain)
+    parts = Symbol.(split(string(chain), "->"))
+    collect(FieldIterator(parent_spec(spec), parts))
+end
 
 """
 Some specifications are disabled in the Vulkan headers (see https://github.com/KhronosGroup/Vulkan-Docs/issues/1225).
@@ -409,18 +455,6 @@ const spec_aliases = StructVector(SpecAlias.(filter(x -> (par = x.parentnode.par
 const spec_func_params = collect(Iterators.flatten(spec_funcs.params))
 const spec_struct_members = collect(Iterators.flatten(spec_structs.members))
 const spec_create_info_structs = filter(x -> x.type ∈ [CREATE_INFO, ALLOCATE_INFO], spec_structs)
-const spec_create_funcs = StructVector(SpecCreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
-const spec_destroy_funcs = StructVector(SpecDestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
-const spec_handles_with_single_constructor = filter(x -> length(something(findall(==(x), filter(x -> !x.batch, spec_create_funcs).handle), 0)) == 1, spec_handles)
-
-is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
-
-default(spec::SpecHandle) = :C_NULL
-default(spec::Union{SpecStructMember, SpecFuncParam}) = @match spec.requirement begin
-    if spec.type ∈ spec_handles.name end => default(handle_by_name(spec.type))
-    &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) || spec.type == :Cstring end => :C_NULL
-    &OPTIONAL || &REQUIRED => 0
-end
 
 function spec_by_field(specs, field, value)
     i = findfirst(==(value), getproperty(specs, field))
@@ -445,6 +479,27 @@ enum_by_name(name) = spec_by_name(spec_enums, name)
 
 constant_by_name(name) = spec_by_name(spec_constants, name)
 
+Base.parent(spec::SpecFuncParam) = spec.func
+Base.parent(spec::SpecStructMember) = spec.parent
+Base.parent(spec::SpecHandle) = spec.parent
+
+parent_spec(spec::SpecFuncParam) = func_by_name(parent(spec))
+parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))
+parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))
+
+const spec_create_funcs = StructVector(SpecCreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
+const spec_destroy_funcs = StructVector(SpecDestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
+const spec_handles_with_single_constructor = filter(x -> length(something(findall(==(x), filter(x -> !x.batch, spec_create_funcs).handle), 0)) == 1, spec_handles)
+
+is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
+
+default(spec::SpecHandle) = :C_NULL
+default(spec::Union{SpecStructMember, SpecFuncParam}) = @match spec.requirement begin
+    if spec.type ∈ spec_handles.name end => default(handle_by_name(spec.type))
+    &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) || spec.type == :Cstring end => :C_NULL
+    &OPTIONAL || &REQUIRED => 0
+end
+
 create_func(func::SpecFunc) = spec_by_field(spec_create_funcs, :func, func)
 create_func(handle::SpecHandle) = spec_by_field(spec_create_funcs, :handle, handle)
 create_func(name) = spec_by_field(spec_create_funcs, :func, func_by_name(name))
@@ -464,11 +519,3 @@ function follow_constant(name)
     constant = constant_by_name(name)
     isnothing(constant) ? name : follow_constant(constant)
 end
-
-Base.parent(spec::SpecFuncParam) = spec.func
-Base.parent(spec::SpecStructMember) = spec.parent
-Base.parent(spec::SpecHandle) = spec.parent
-
-parent_spec(spec::SpecFuncParam) = func_by_name(parent(spec))
-parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))
-parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))

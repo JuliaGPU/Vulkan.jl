@@ -47,7 +47,8 @@ end
 function nice_julian_type(spec::Spec)
     @match s = spec begin
         GuardBy(is_version) => :VersionNumber
-        if !isnothing(s.len) && s.type ≠ :(Ptr{Cvoid}) end => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
+        GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
+        GuardBy(is_data) => :(Ptr{Cvoid})
         _ => nice_julian_type(s.type)
     end
 end
@@ -63,4 +64,4 @@ function signature_type(type)
 end
 
 is_fn_ptr(type) = startswith(string(type), "PFN")
-is_version(spec::Spec) = contains(lowercase(string(spec.name)), "version") && (follow_constant(spec.type) == :UInt32 || isnothing(spec.len) && !spec.is_constant && is_ptr(spec.type) && follow_constant(ptr_type(spec.type)) == :UInt32) 
+is_version(spec::Spec) = contains(lowercase(string(spec.name)), "version") && (follow_constant(spec.type) == :UInt32 || !is_arr(spec) && !spec.is_constant && is_ptr(spec.type) && follow_constant(ptr_type(spec.type)) == :UInt32) 

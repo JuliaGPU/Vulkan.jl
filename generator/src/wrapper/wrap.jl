@@ -36,19 +36,21 @@ end
 function from_vk_call(x::Spec)
     prop = :(x.$(x.name))
     jtype = nice_julian_type(x)
-    @match t = x.type begin
-        :Cstring => :(unsafe_string($prop))
+    @match x begin
 
-        # array pointer (do not unsafe_wrap a Ptr{Cvoid} type because we can't know the type to wrap to)
-        :(Ptr{$pt}) && if !isnothing(x.len) && pt ≠ :Cvoid end => @match jtype begin
+        # array pointer
+        GuardBy(is_arr) => @match jtype begin
             :(Vector{$_}) => :(unsafe_wrap($jtype, $prop, x.$(x.len); own=true))
         end
 
-        if is_count_variable(x) end => nothing
-        if x.type ∈ spec_handles.name end => :($(remove_vk_prefix(x.type))($prop))
-        GuardBy(is_ntuple) && if ntuple_type(x.type) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(x.type))), $prop))
-        if follow_constant(t) == jtype end => prop
-        _ => :(from_vk($jtype, $prop))
+        GuardBy(is_length) => nothing
+        _ => @match t = x.type begin
+            :Cstring => :(unsafe_string($prop))
+            GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(x.type))($prop))
+            GuardBy(is_ntuple) && if ntuple_type(x.type) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(x.type))), $prop))
+            if follow_constant(t) == jtype end => prop
+            _ => :(from_vk($jtype, $prop))
+        end
     end
 end
 
@@ -59,12 +61,13 @@ function vk_call(x::Spec)
         ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(stypes) end => stypes[parent(x)]
         ::SpecStructMember && if is_semantic_ptr(x.type) end => :(unsafe_convert($(x.type), $var))
         if is_fn_ptr(x.type) end => var
-        GuardBy(is_count_variable) => :(pointer_length($(var_from_vk(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
+        GuardBy(is_size) && if x.requirement == POINTER_REQUIRED end => x.name # parameter converted to a Ref already
+        GuardBy(is_length) => :(pointer_length($(var_from_vk(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
         GuardBy(is_pointer_start) => 0 # always set first* variables to 0, and the user should provide a (sub)array of the desired length
         if x.type ∈ spec_handles.name end => var # handled by unsafe_convert in ccall
 
         # constant pointer to a unique object
-        if is_ptr(x.type) && isnothing(x.len) && (x.is_constant || (func = func_by_name(x.func); func.type == QUERY && x ≠ last(children(func)))) end => @match x begin
+        if is_ptr(x.type) && !is_arr(x) && (x.is_constant || (func = func_by_name(x.func); func.type == QUERY && x ≠ last(children(func)))) end => @match x begin
             if ptr_type(x.type) ∈ spec_structs.name end => var # handled by cconvert and unsafe_convert in ccall
             if x.requirement == OPTIONAL end => :($var == $(default(x)) ? $(default(x)) : Ref($var)) # allow optional pointers to be passed as C_NULL instead of a pointer to a 0-valued integer
             _ => :(Ref($var))
@@ -87,7 +90,7 @@ wrap_return(ex, type, jtype) = @match t = type begin
     _ => :(from_vk($jtype, $ex)) # fall back to the from_vk function for conversion
 end
 
-wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr=false) = length(params) == 1 ? wrap_implicit_return(first(params)) : Expr(:tuple, wrap_implicit_return.(params)...)
+wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr=false) = length(params) == 1 ? wrap_implicit_return(first(params); with_func_ptr) : Expr(:tuple, wrap_implicit_return.(params; with_func_ptr)...)
 
 function is_query_param(param::SpecFuncParam)
     params = func_by_name(param.func).params
@@ -107,10 +110,10 @@ function wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = false
     p = return_param
     @assert is_ptr(p.type) "Invalid implicit return parameter API type. Expected $(p.type) <: Ptr"
     pt = follow_alias(ptr_type(p.type))
-    ex = @match pt begin
+    ex = @match p begin
 
         # array pointer
-        if !isnothing(p.len) end => @match ex = wrap_return(p.name, pt, innermost_type((nice_julian_type(p)))) begin
+        GuardBy(is_arr) => @match ex = wrap_return(p.name, pt, innermost_type((nice_julian_type(p)))) begin
             ::Symbol => ex
             ::Expr => broadcast_ex(ex) # broadcast result
         end
@@ -119,10 +122,9 @@ function wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = false
         _ => wrap_return(:($(p.name)[]), pt, innermost_type((nice_julian_type(p)))) # call return_expr on the dereferenced pointer
     end
 
-    if pt ∈ spec_handles.name
-        wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex, with_func_ptr)
-    else
-        ex
+    @match p begin
+        if pt ∈ spec_handles.name end => wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex, with_func_ptr)
+        _ => ex
     end
 end
 
@@ -190,7 +192,7 @@ init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_
 
 arg_decl(x::Spec) = :($(var_from_vk(x.name))::$(signature_type(nice_julian_type(x))))
 kwarg_decl(x::Spec) = Expr(:kw, var_from_vk(x.name), default(x))
-drop_arg(x::Spec) = !isempty(x.arglen) || is_pointer_start(x)
+drop_arg(x::Spec) = is_length(x) || is_pointer_start(x)
 
 function add_func_args!(p::Dict, spec, params; with_func_ptr=false)
     params = filter(!drop_arg, params)
@@ -210,8 +212,9 @@ end
 function wrap(spec::SpecFunc; with_func_ptr=false)
     p = init_wrapper_func(spec)
 
-    count_ptr_index = findfirst(x -> x.requirement == POINTER_REQUIRED && x.type == :(Ptr{UInt32}) && contains(lowercase(string(x.name)), "count"), children(spec))
-    queried_param_index = findlast(x -> !x.is_constant && is_ptr(x.type), children(spec))
+    count_ptr_index = findfirst(x -> is_length(x) && x.requirement == POINTER_REQUIRED, children(spec))
+    queried_param_index = findlast(x -> !x.is_constant && is_ptr(x.type) && !is_length(x), children(spec))
+    size_queries = getindex(children(spec), findall(x -> is_size(x) && x.requirement == POINTER_REQUIRED, children(spec)))
     if !isnothing(count_ptr_index)
         count_ptr = children(spec)[count_ptr_index]
         queried_params = getindex(children(spec), findall(x -> x.len == count_ptr.name && !x.is_constant, children(spec)))
@@ -229,7 +232,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
             end), first_call_args)
 
         p[:body] = concat_exs(quote
-            $(count_ptr.name) = Ref{UInt32}(0)
+            $(initialize_ptr(count_ptr))
             $(wrap_api_call(spec, first_call_args; with_func_ptr))
             $((:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...)
             $(wrap_api_call(spec, second_call_args; with_func_ptr))
@@ -244,9 +247,9 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
             end), children(spec))
 
         p[:body] = concat_exs(quote
-            $(initialize_ptr(spec, queried_param))
+            $(map(initialize_ptr, [queried_param; size_queries])...)
             $(wrap_api_call(spec, call_args; with_func_ptr))
-        end, wrap_implicit_return(queried_param; with_func_ptr))
+        end, wrap_implicit_return([queried_param; size_queries]; with_func_ptr))
 
         args = filter(≠(queried_param), children(spec))
     else
@@ -263,21 +266,23 @@ end
 
 chain_getproperty(ex, props) = foldl((x, y) -> :($x.$y), props; init=ex)
 
-function compute_length(spec::SpecFunc, param::SpecFuncParam)
-    if contains(string(param.len), "->")
-        vars = Symbol.(split(string(param.len), "->"))
-        chain_getproperty(:($(var_from_vk(first(vars))).vks), vars[2:end])
-    else
-        len_param = spec.params[findfirst(==(param.len), spec.params.name)]
-        vk_call(len_param)
+function retrieve_length(spec)
+    chain = length_chain(spec, spec.len)
+    @match length(chain) begin
+        1 => vk_call(first(chain))
+        GuardBy(>(1)) => chain_getproperty(:($(var_from_vk(first(chain).name)).vks), getproperty.(chain[2:end], :name))
     end
 end
 
-function initialize_ptr(spec::SpecFunc, param::SpecFuncParam)
-    rhs = if isnothing(param.len)
-        :(Ref{$(ptr_type(param.type))}())
-    else
-        :(Vector{$(ptr_type(param.type))}(undef, $(compute_length(spec, param))))
+function initialize_ptr(param::SpecFuncParam)
+    rhs = @match param begin
+        GuardBy(is_data) => :(Ref{Ptr{Cvoid}}())
+        GuardBy(is_arr) => :(Vector{$(ptr_type(param.type))}(undef, $(retrieve_length(param))))
+        GuardBy(is_size) && if param.requirement == POINTER_REQUIRED end => :(Ref($(var_from_vk(param.name))))
+        _ => @match param.type begin
+            :(Ptr{Cvoid}) => :(Ref{Ptr{Cvoid}}())
+            _ => :(Ref{$(ptr_type(param.type))}())
+        end
     end
     :($(param.name) = $rhs)
 end
@@ -301,7 +306,7 @@ function retrieve_parent_ex(parent_handle::SpecHandle, create::SpecCreateFunc)
             if !isnothing(m_index)
                 m = s.members[m_index]
                 var_p, var_m = var_from_vk.((p.name, m.name))
-                broadcast_ex(:(getproperty($var_p, $(QuoteNode(var_m)))), !isnothing(m.len))
+                broadcast_ex(:(getproperty($var_p, $(QuoteNode(var_m)))), is_arr(m))
             else
                 throw_error()
             end
@@ -422,7 +427,6 @@ end
 
 is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
 is_optional(param::SpecFuncParam) = param.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
-is_count_variable(spec::Spec) = spec.type == :UInt32 && !isempty(spec.arglen)
 
 """
 Represent an integer that gives the start of a C pointer.
