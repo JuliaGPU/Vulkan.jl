@@ -10,7 +10,9 @@ end
 
 @static if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
     using SwiftShader_jll
-    ENV["VK_ICD_FILENAMES"] = joinpath(dirname(SwiftShader_jll.libvulkan), "vk_swiftshader_icd.json")
+    sep = Sys.iswindows() ? ';' : ':'
+    old_vk_icd_filenames = get(ENV, "VK_ICD_FILENAMES", nothing)
+    ENV["VK_ICD_FILENAMES"] = join(unique(filter(!isnothing, [old_vk_icd_filenames, joinpath(dirname(SwiftShader_jll.libvulkan), "vk_swiftshader_icd.json")])), sep)
 end
 
 const debug_callback_c = @cfunction(debug_callback, UInt32, (VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
