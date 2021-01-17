@@ -18,6 +18,7 @@ julia = "1.5"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+SwiftShader_jll = "c404ff5a-e271-5628-8eaa-423d39d64c15"
 
 [targets]
-test = ["Test"]
+test = ["Test", "SwiftShader_jll"]

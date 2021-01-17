@@ -8,6 +8,11 @@ function debug_callback(args...)
     default_debug_callback(args...)
 end
 
+@static if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
+    using SwiftShader_jll
+    ENV["VK_ICD_FILENAMES"] = joinpath(dirname(SwiftShader_jll.libvulkan), "vk_swiftshader_icd.json")
+end
+
 const debug_callback_c = @cfunction(debug_callback, UInt32, (VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
 const API_VERSION = v"1.2"
 const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"

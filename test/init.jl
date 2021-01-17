@@ -15,6 +15,7 @@ end
 
 pdevice = first(pdevices)
 @info "$(length(pdevices)) physical device(s) found."
+@info "Selected $(get_physical_device_properties(pdevice))"
 @test_throws ErrorException("No queue with the desired capabilities could be found.") find_queue_index(pdevice, typemax(UInt32))
 @test_throws ErrorException("Invalid physical device features: no_feature") physical_device_features(:no_feature)
 device = Device(pdevice, [
