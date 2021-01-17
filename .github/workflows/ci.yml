@@ -6,7 +6,6 @@ on:
   pull_request:
 env:
   JuliaVersion: 1.6.0-beta1
-  VulkanSDKVersion: 1.2.148.1
   JULIA_GITHUB_ACTIONS_CI: ON
 jobs:
   ubuntu-latest-x64:
@@ -15,10 +14,6 @@ jobs:
       VULKAN_SDK: $GITHUB_WORKSPACE/../$VulkanSDKVersion/x86_64
     steps:
     - uses: actions/checkout@v2
-    - name: Download & Extract Vulkan SDK
-      run: |
-        wget --no-cookies -O ../vulkansdk-linux-x86_64-${{env.VulkanSDKVersion}}.tar.gz https://sdk.lunarg.com/sdk/download/${{env.VulkanSDKVersion}}/linux/vulkansdk-linux-x86_64-${{env.VulkanSDKVersion}}.tar.gz?u=
-        tar -zxf ../vulkansdk-linux-x86_64-${{env.VulkanSDKVersion}}.tar.gz -C ../
     - name: Install xvfb for GLFW
       run: sudo apt-get install xvfb && Xvfb :99 &
     - uses: julia-actions/setup-julia@v1
@@ -37,16 +32,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set Environment variables
-      run: echo "VULKAN_SDK=C:\VulkanSDK\${{env.VulkanSDKVersion}}" >> $GITHUB_ENV
-    - name: Download & Install Vulkan SDK
-      run: |
-        Invoke-WebRequest -Uri https://sdk.lunarg.com/sdk/download/${{env.VulkanSDKVersion}}/windows/VulkanSDK-${{env.VulkanSDKVersion}}-Installer.exe?u= -OutFile ../vulkan-sdk-${{env.VulkanSDKVersion}}.exe
-        $installer = Start-Process -FilePath ../vulkan-sdk-${{env.VulkanSDKVersion}}.exe -Wait -PassThru -ArgumentList @("/S");
-        $installer.WaitForExit(); 
-        Invoke-WebRequest -Uri https://sdk.lunarg.com/sdk/download/latest/windows/vulkan-runtime.exe -OutFile ../vulkan-runtime.exe
-        $installer = Start-Process -FilePath ../vulkan-runtime.exe -Wait -PassThru -ArgumentList @("/S");
-        $installer.WaitForExit();
     - uses: julia-actions/setup-julia@v1
       with:
         version: ${{env.JuliaVersion}}
@@ -63,19 +48,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set Environment variables
-      run: |
-        VULKAN_SDK=$GITHUB_WORKSPACE/../vulkansdk-macos-${{env.VulkanSDKVersion}}/macOS
-        echo VULKAN_SDK=$VULKAN_SDK >> $GITHUB_ENV
-        echo JULIA_VULKAN_SDK_SEARCH_PATH=$VULKAN_SDK/lib >> $GITHUB_ENV
-        echo VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d >> $GITHUB_ENV
-        echo VK_ICD_FILENAMES=$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json >> $GITHUB_ENV
-    - name: Download & Extract Vulkan SDK
-      run: |
-        wget --no-cookies -O ../vulkansdk-macos-${{env.VulkanSDKVersion}}.dmg https://sdk.lunarg.com/sdk/download/${{env.VulkanSDKVersion}}/mac/vulkansdk-macos-${{env.VulkanSDKVersion}}.dmg?u=
-        hdiutil attach ../vulkansdk-macos-${{env.VulkanSDKVersion}}.dmg
-        cp -r /Volumes/vulkansdk-macos-${{env.VulkanSDKVersion}} ../
-        hdiutil detach /Volumes/vulkansdk-macos-${{env.VulkanSDKVersion}}
     - uses: julia-actions/setup-julia@v1
       with:
         version: ${{env.JuliaVersion}}
