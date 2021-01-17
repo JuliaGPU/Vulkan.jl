@@ -5,7 +5,7 @@ on:
   push:
   pull_request:
 env:
-  JuliaVersion: 1.6
+  JuliaVersion: 1.6.0-beta1
   VulkanSDKVersion: 1.2.148.1
   JULIA_GITHUB_ACTIONS_CI: ON
 jobs:
