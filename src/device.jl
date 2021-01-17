@@ -16,7 +16,7 @@ function find_queue_index(physical_device::PhysicalDevice, queue_capabilities)
     if isnothing(index)
         error("No queue with the desired capabilities could be found.")
     end
-    index
+    index - 1
 end
 
 includes_bits(mask, bits) = Bool(mask & bits == bits)
