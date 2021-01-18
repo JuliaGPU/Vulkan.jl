@@ -29,7 +29,7 @@ const INSTANCE_EXTENSIONS = String[
 ]
 const DEVICE_EXTENSIONS = String[
 ]
-const ENABLED_FEATURES = physical_device_features(
+const ENABLED_FEATURES = PhysicalDeviceFeatures(
 )
 
 let available_layers = enumerate_instance_layer_properties()
