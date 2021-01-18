@@ -17,7 +17,9 @@ jobs:
         julia-version: ['1.5', '1.6.0-beta1']
         julia-arch: [x64, x86]
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        allow-fail: [windows-latest, macOS-latest]
+        allow-fail:
+          - windows-latest
+          - macOS-latest
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@latest

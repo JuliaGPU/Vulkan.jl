@@ -1,4 +1,15 @@
-function physical_device_features(features::AbstractArray)
+"""
+Return a `PhysicalDeviceFeatures` object with the fields present in `features` set to true.
+
+```jldoctest
+julia> PhysicalDeviceFeatures([])
+PhysicalDeviceFeatures()
+
+julia> PhysicalDeviceFeatures([:wideLines, :sparseBinding])
+PhysicalDeviceFeatures(wideLines, sparseBinding)
+```
+"""
+function PhysicalDeviceFeatures(features::AbstractArray)
     names = fieldnames(VkPhysicalDeviceFeatures)
     diff = setdiff(collect(features), names)
     if length(diff) > 0
@@ -8,8 +19,17 @@ function physical_device_features(features::AbstractArray)
     PhysicalDeviceFeatures(args...)
 end
 
-physical_device_features(features...) = physical_device_features(collect(features))
+PhysicalDeviceFeatures(features...) = PhysicalDeviceFeatures(collect(features))
 
+"""
+Find a queue index (starting at 0) from `physical_device` which matches the provided `queue_capabilities`.
+`queue_capabilities` can be combination of `VkQueueFlagBits`.
+
+```jldoctest
+julia> find_queue_index(physical_device, VK_QUEUE_COMPUTE_BIT & VK_QUEUE_GRAPHICS_BIT)
+0
+```
+"""
 function find_queue_index(physical_device::PhysicalDevice, queue_capabilities)
     queue_family_properties = get_physical_device_queue_family_properties(physical_device)
     index = findfirst(x -> includes_bits(x.queue_flags, queue_capabilities), queue_family_properties)
