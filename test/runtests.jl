@@ -1,3 +1,14 @@
+@static if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
+    using SwiftShader_jll: libvulkan
+    ENV["JULIA_VULKAN_LIBNAME"] = basename(libvulkan)
+    libpath = dirname(libvulkan)
+
+    sep = Sys.iswindows() ? ';' : ':'
+    old_vk_icd_filenames = get(ENV, "VK_ICD_FILENAMES", [])
+    ENV["VK_ICD_FILENAMES"] = join([old_vk_icd_filenames; joinpath(libpath, "vk_swiftshader_icd.json")], sep)
+end
+
+
 using Test
 using Vulkan
 
@@ -6,13 +17,6 @@ const VALIDATION_DEBUG_SIGNAL = Ref{Bool}(false)
 function debug_callback(args...)
     VALIDATION_DEBUG_SIGNAL[] = true
     default_debug_callback(args...)
-end
-
-@static if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
-    using SwiftShader_jll
-    sep = Sys.iswindows() ? ';' : ':'
-    old_vk_icd_filenames = get(ENV, "VK_ICD_FILENAMES", nothing)
-    ENV["VK_ICD_FILENAMES"] = join(unique(filter(!isnothing, [old_vk_icd_filenames, joinpath(dirname(SwiftShader_jll.libvulkan), "vk_swiftshader_icd.json")])), sep)
 end
 
 const debug_callback_c = @cfunction(debug_callback, UInt32, (VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
