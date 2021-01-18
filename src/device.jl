@@ -19,7 +19,7 @@ function PhysicalDeviceFeatures(features::AbstractArray)
     PhysicalDeviceFeatures(args...)
 end
 
-PhysicalDeviceFeatures(features...) = PhysicalDeviceFeatures(collect(features))
+PhysicalDeviceFeatures(features::Symbol...) = PhysicalDeviceFeatures(collect(features))
 
 """
 Find a queue index (starting at 0) from `physical_device` which matches the provided `queue_capabilities`.

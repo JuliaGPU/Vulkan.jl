@@ -1,5 +1,11 @@
 using Documenter, Vulkan
 
+DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
+    using Vulkan
+    instance = Instance(String[], String[])
+    physical_device = first(enumerate_physical_devices(instance))
+end)
+
 makedocs(;
     modules=[Vulkan],
     format=Documenter.HTML(prettyurls = true),
