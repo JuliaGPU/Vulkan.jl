@@ -6,4 +6,8 @@ High-level interface to Vulkan, using [VulkanCore.jl](https://github.com/JuliaGP
 
 Please be aware that this is a work in progress and has not reached its 1.0 version yet. As such, documentation may not be complete and functionality may change without warning. Use at your own peril.
 
-If you find limitations, bugs or want to suggest potential improvements, do not hesitate to submit issues or pull requests. We take them seriously; any feedback is valuable to us.
+If you find limitations, bugs or want to suggest potential improvements, do not hesitate to submit issues or pull requests.
+
+## Notes on testing
+
+Currently, continuous integration runs only on Ubuntu 32/64 bits with Julia 1.6, for lack of a functional CI setup with Vulkan for MacOS and Windows. If you are not on Linux, we cannot guarantee that this library will work for you, although so far nothing is platform-dependent.
