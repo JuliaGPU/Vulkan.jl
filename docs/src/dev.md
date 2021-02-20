@@ -8,4 +8,4 @@ A large portion of this package relies on static code generation. To re-generate
 julia --color=yes --project=generator -e 'using Pkg; Pkg.instantiate(); include("generator/scripts/generate_wrapper.jl")'
 ```
 
-Note that the `generator` environment contains tests, which should be run first to ensure the correctness of the wrapping process.
+Note that the `generator` module contains tests, which should be run first to ensure the correctness of the wrapping process.
