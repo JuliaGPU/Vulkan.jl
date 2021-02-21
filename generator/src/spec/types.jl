@@ -99,7 +99,7 @@ struct SpecFunc <: Spec
     name::Symbol
     "[`FUNC_TYPE`](@ref) classification."
     type::FUNC_TYPE
-    "Return type (void if `Nothing`)"
+    "Return type (void if `Nothing`)."
     return_type::Optional{ExprLike}
     "Whether the function can be executed inside a render pass, outside, or both. Empty if not specified, in which case it is equivalent to both inside and outside."
     render_pass_compatibility::Vector{RenderPassRequirement}
