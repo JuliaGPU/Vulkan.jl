@@ -150,7 +150,9 @@ function reconstruct(d::Dict)
         :enum                         => Expr(:macrocall, d[:macro], nothing, d[:decl], Expr(:block, d[:values]...))
         :function                     => begin
                                             call = reconstruct_call(d)
-                                            get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
+                                            ex = get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
+                                            docstring = get(d, :docstring, "")
+                                            isempty(docstring) ? ex : :(Core.@doc $docstring $ex)
                                          end
         _                             => error("Category $category cannot be constructed")
     end
