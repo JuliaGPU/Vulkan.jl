@@ -1,29 +1,3 @@
-spacing(ex, cat) = @match cat begin
-    :struct => '\n'^2
-    :function => '\n'^2
-    :const => '\n'
-    :enum => '\n'
-end
-
-spacing(ex::Expr) = spacing(ex, category(ex))
-
-block(ex::Expr) = string(prettify(ex)) * spacing(ex)
-
-function print_block(io::IO, exs)
-    print.(Ref(io), block.(exs))
-    println(io)
-end
-
-is_category(cat) = x -> category(x) == cat
-
-function sort_expressions(exprs)
-    exprs_order = resolve_dependencies(name.(exprs), exprs)
-    ordered_exprs = exprs[exprs_order]
-    check_dependencies(ordered_exprs)
-
-    ordered_exprs
-end
-
 """
 Write the wrapper to `destfile`.
 """
@@ -40,6 +14,32 @@ function Base.write(vw::VulkanWrapper, destfile)
 
         write_exports(io, exprs)
     end
+end
+
+function sort_expressions(exprs)
+    exprs_order = resolve_dependencies(name.(exprs), exprs)
+    ordered_exprs = exprs[exprs_order]
+    check_dependencies(ordered_exprs)
+
+    ordered_exprs
+end
+
+is_category(cat) = x -> category(x) == cat
+
+function print_block(io::IO, exs)
+    print.(Ref(io), block.(exs))
+    println(io)
+end
+
+block(ex::Expr) = string(prettify(ex)) * spacing(ex)
+
+spacing(ex::Expr) = spacing(ex, category(ex))
+
+spacing(ex, cat) = @match cat begin
+    :struct => '\n'^2
+    :function => '\n'^2
+    :const => '\n'
+    :enum => '\n'
 end
 
 function write_exports(io::IO, decls)
