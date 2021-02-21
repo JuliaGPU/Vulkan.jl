@@ -50,7 +50,7 @@ Types:
 @enum STRUCT_TYPE CREATE_INFO=1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
 
 """
-Parameter requirement. Applies both to struct members and command parameters.
+Parameter requirement. Applies both to struct members and function parameters.
 
 Requirement types: 
 - `OPTIONAL`: may have its default zero (or nullptr) value, acting as a sentinel value (similar to `Nothing` in Julia).

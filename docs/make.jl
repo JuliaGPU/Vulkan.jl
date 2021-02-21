@@ -1,5 +1,12 @@
 using Documenter, Vulkan
 
+using Pkg
+
+Pkg.activate("generator")
+Pkg.instantiate()
+
+using VulkanGen
+
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan
     instance = Instance(String[], String[])
@@ -7,7 +14,7 @@ DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
 end)
 
 makedocs(;
-    modules=[Vulkan],
+    modules=[Vulkan, VulkanGen],
     format=Documenter.HTML(prettyurls = true),
     pages=[
         "Home" => "index.md",

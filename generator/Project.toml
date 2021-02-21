@@ -4,6 +4,7 @@ authors = ["Cédric Belmant"]
 version = "0.2.1"
 
 [deps]
+DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 EzXML = "8f5d6c58-4d21-5cfd-889c-e3ad7ee6a615"
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
 MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
