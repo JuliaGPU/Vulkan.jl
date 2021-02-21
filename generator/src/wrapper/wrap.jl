@@ -55,14 +55,14 @@ function from_vk_call(x::Spec)
 end
 
 function vk_call(x::Spec)
-    var = var_from_vk(x.name)
+    var = wrap_identifier(x.name)
     jtype = nice_julian_type(x)
     @match x begin
         ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(structure_types) end => structure_types[parent(x)]
         ::SpecStructMember && if is_semantic_ptr(x.type) end => :(unsafe_convert($(x.type), $var))
         if is_fn_ptr(x.type) end => var
         GuardBy(is_size) && if x.requirement == POINTER_REQUIRED end => x.name # parameter converted to a Ref already
-        GuardBy(is_length) => :(pointer_length($(var_from_vk(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
+        GuardBy(is_length) => :(pointer_length($(wrap_identifier(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
         GuardBy(is_pointer_start) => 0 # always set first* variables to 0, and the user should provide a (sub)array of the desired length
         if x.type ∈ spec_handles.name end => var # handled by unsafe_convert in ccall
 
@@ -191,8 +191,8 @@ wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(:($(spe
 init_wrapper_func(spec::SpecFunc) = Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
 init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
 
-arg_decl(x::Spec) = :($(var_from_vk(x.name))::$(signature_type(nice_julian_type(x))))
-kwarg_decl(x::Spec) = Expr(:kw, var_from_vk(x.name), default(x))
+arg_decl(x::Spec) = :($(wrap_identifier(x.name))::$(signature_type(nice_julian_type(x))))
+kwarg_decl(x::Spec) = Expr(:kw, wrap_identifier(x.name), default(x))
 drop_arg(x::Spec) = is_length(x) || is_pointer_start(x) || x.type == :(Ptr{Ptr{Cvoid}})
 
 function add_func_args!(p::Dict, spec, params; with_func_ptr=false)
@@ -269,7 +269,7 @@ function retrieve_length(spec)
     chain = length_chain(spec, spec.len)
     @match length(chain) begin
         1 => vk_call(first(chain))
-        GuardBy(>(1)) => chain_getproperty(:($(var_from_vk(first(chain).name)).vks), getproperty.(chain[2:end], :name))
+        GuardBy(>(1)) => chain_getproperty(:($(wrap_identifier(first(chain).name)).vks), getproperty.(chain[2:end], :name))
     end
 end
 
@@ -277,7 +277,7 @@ function initialize_ptr(param::SpecFuncParam)
     rhs = @match param begin
         GuardBy(is_data) => :(Ref{Ptr{Cvoid}}())
         GuardBy(is_arr) => :(Vector{$(ptr_type(param.type))}(undef, $(retrieve_length(param))))
-        GuardBy(is_size) && if param.requirement == POINTER_REQUIRED end => :(Ref($(var_from_vk(param.name))))
+        GuardBy(is_size) && if param.requirement == POINTER_REQUIRED end => :(Ref($(wrap_identifier(param.name))))
         _ => @match param.type begin
             :(Ptr{Cvoid}) => :(Ref{Ptr{Cvoid}}())
             _ => :(Ref{$(ptr_type(param.type))}())
@@ -289,7 +289,7 @@ end
 function retrieve_parent_ex(parent_handle::SpecHandle, func::SpecFunc)
     parent_handle_var = findfirst(==(parent_handle.name), func.params.type)
     @match n = func.name begin
-        if !isnothing(parent_handle_var) end => var_from_vk(func.params[parent_handle_var].name)
+        if !isnothing(parent_handle_var) end => wrap_identifier(func.params[parent_handle_var].name)
         _ => nothing
     end
 end
@@ -304,7 +304,7 @@ function retrieve_parent_ex(parent_handle::SpecHandle, create::CreateFunc)
             m_index = findfirst(in([parent_handle.name, :(Ptr{$(parent_handle.name)})]), s.members.type)
             if !isnothing(m_index)
                 m = s.members[m_index]
-                var_p, var_m = var_from_vk.((p.name, m.name))
+                var_p, var_m = wrap_identifier.((p.name, m.name))
                 broadcast_ex(:(getproperty($var_p, $(QuoteNode(var_m)))), is_arr(m))
             else
                 throw_error()
@@ -389,8 +389,8 @@ function add_constructor(spec::SpecStruct)
     p = init_wrapper_func(spec)
     if needs_deps(spec)
         p[:body] = quote
-            $((:($(var_from_vk(m.name)) = cconvert($(m.type), $(var_from_vk(m.name)))) for m ∈ cconverted_members)...)
-            deps = [$((var_from_vk(m.name) for m ∈ cconverted_members)...)]
+            $((:($(wrap_identifier(m.name)) = cconvert($(m.type), $(wrap_identifier(m.name)))) for m ∈ cconverted_members)...)
+            deps = [$((wrap_identifier(m.name) for m ∈ cconverted_members)...)]
             vks = $(spec.name)($(map(vk_call, spec.members)...))
             $(p[:name])(vks, deps)
         end

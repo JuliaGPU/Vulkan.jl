@@ -14,9 +14,12 @@ const convention_exceptions = Dict(
     :formatA4B4G4R4 => :format_a4b4g4r4,
 )
 
-function var_from_vk(name)
-    name ∈ keys(convention_exceptions) && return convention_exceptions[name]
-    var_str = @match s = string(name) begin
+"""
+Generate an identifier from a Vulkan identifier, in lower snake case and without pointer prefixes (such as in `pNext`).
+"""
+function wrap_identifier(identifier)
+    identifier ∈ keys(convention_exceptions) && return convention_exceptions[identifier]
+    var_str = @match s = string(identifier) begin
         GuardBy(startswith(r"p+[A-Z]")) => remove_prefix(convert(SnakeCaseLower, CamelCaseLower(s))).value
         _ => nc_convert(SnakeCaseLower, s)
     end
