@@ -27,7 +27,6 @@ const extension_types = [
     :zx_handle_t,
     :GgpStreamDescriptor,
     :GgpFrameToken,
-
     :MirConnection,
     :MirSurface,
     :ANativeWindow,
