@@ -1,7 +1,7 @@
 name = "VulkanGen"
 uuid = "a1e12450-decb-4c3e-a000-968e74262140"
-authors = ["Cédric BELMANT"]
-version = "0.2.0"
+authors = ["Cédric Belmant"]
+version = "0.2.1"
 
 [deps]
 EzXML = "8f5d6c58-4d21-5cfd-889c-e3ad7ee6a615"
