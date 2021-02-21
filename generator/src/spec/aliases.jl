@@ -1,5 +1,4 @@
 const alias_dict = Dict(Symbol(alias.parentelement["name"]) => Symbol(alias.parentelement["alias"]) for alias ∈ findall("//@alias", xroot))
-const alias_dict_rev = Dict(v => k for (k, v) ∈ alias_dict)
 
 """
 Whether this type is an alias for another name.

@@ -9,4 +9,4 @@ function fetch_structure_types(xroot)
     res
 end
 
-structure_types = fetch_structure_types(xroot)
+const structure_types = fetch_structure_types(xroot)

@@ -2,8 +2,8 @@ using EzXML
 using EzXML: Node
 using Vulkan_Headers_jll:vk_xml
 
-xdoc = readxml(vk_xml)
-xroot = xdoc.root
+const xdoc = readxml(vk_xml)
+const xroot = xdoc.root
 
 const extension_types = [
     :Display,

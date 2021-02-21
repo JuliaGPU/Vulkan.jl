@@ -1,5 +1,3 @@
-
-
 const queue_map = Dict(
     :compute => QueueCompute(),
     :graphics => QueueGraphics(),
