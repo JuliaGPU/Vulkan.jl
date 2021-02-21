@@ -38,6 +38,3 @@ function find_queue_index(physical_device::PhysicalDevice, queue_capabilities)
     end
     index - 1
 end
-
-includes_bits(mask, bits) = Bool(mask & bits == bits)
-includes_bits(bits) = Base.Fix2(includes_bits, bits)
