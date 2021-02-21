@@ -17,15 +17,9 @@ export
 
         ### Convention utilities
         detect_convention,
-        enforce_convention,
         nc_convert,
         remove_parts,
         remove_prefix,
-
-        ### Vulkan specific
-        vulkan_to_julia,
-        prefix_vk,
-        vk_prefix,
 
         # Expr
         name,
