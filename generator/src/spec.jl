@@ -36,6 +36,7 @@ const extension_types = [
 
 include("spec/utils.jl")
 include("spec/aliases.jl")
+include("spec/types.jl")
 include("spec/specs.jl")
 include("spec/structure_types.jl")
 

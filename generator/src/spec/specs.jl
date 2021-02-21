@@ -1,14 +1,4 @@
-abstract type QueueType end
 
-struct QueueCompute <: QueueType end
-struct QueueGraphics <: QueueType end
-struct QueueTransfer <: QueueType end
-struct QueueSparseBinding <: QueueType end
-
-abstract type RenderPassRequirement end
-
-struct RenderPassInside <: RenderPassRequirement end
-struct RenderPassOutside <: RenderPassRequirement end
 
 const queue_map = Dict(
     :compute => QueueCompute(),
@@ -22,124 +12,6 @@ const render_pass_compatibiltiy_map = Dict(
     :inside => [RenderPassInside()],
     :outside => [RenderPassOutside()],
 )
-
-@enum FUNC_TYPE CREATE=1 DESTROY ALLOCATE FREE COMMAND QUERY OTHER
-
-@enum STRUCT_TYPE CREATE_INFO=1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
-
-@enum PARAM_REQUIREMENT OPTIONAL=1 REQUIRED POINTER_OPTIONAL POINTER_REQUIRED
-
-PARAM_REQUIREMENT(node::EzXML.Node) = !haskey(node, "optional") || node["optional"] == "false" ? REQUIRED : PARAM_REQUIREMENT(findfirst(node["optional"] .== ["true", "false", "true,false", "false,true"]))
-
-abstract type Spec end
-
-Base.broadcastable(spec::Spec) = Ref(spec)
-
-struct SpecFuncParam <: Spec
-    func::Symbol
-    name::Symbol
-    type::ExprLike
-    is_constant::Bool
-    is_externsync::Bool
-    requirement::PARAM_REQUIREMENT
-    len::Optional{Symbol}
-    arglen::Vector{Symbol}
-end
-
-struct SpecFunc <: Spec
-    name::Symbol
-    type::FUNC_TYPE
-    return_type::Optional{ExprLike}
-    render_pass_compatibility::Vector{RenderPassRequirement}
-    queue_compatibility::Vector{QueueType}
-    params::StructVector{SpecFuncParam}
-end
-
-struct SpecStructMember <: Spec
-    parent::Symbol
-    name::Symbol
-    type::ExprLike
-    is_constant::Bool
-    is_externsync::Bool
-    requirement::PARAM_REQUIREMENT
-    len::Optional{ExprLike}
-    arglen::Vector{ExprLike}
-end
-
-struct SpecStruct <: Spec
-    name::Symbol
-    type::STRUCT_TYPE
-    is_returnedonly::Bool
-    extends::Vector{Symbol}
-    members::StructVector{SpecStructMember}
-end
-
-struct SpecType <: Spec
-    name::Symbol
-    category::Symbol
-end
-
-struct SpecConstant <: Spec
-    name::Symbol
-    value
-end
-
-struct SpecEnum <: Spec
-    name::Symbol
-    enums::StructVector{SpecConstant}
-end
-
-struct SpecBit <: Spec
-    name::Symbol
-    position::Int
-end
-
-struct SpecBitmask <: Spec
-    name::Symbol
-    bits::StructVector{SpecBit}
-end
-
-"""
-Specification for handle types.
-
-A handle may possess a parent. In this case, the handle can only be valid if its parent is valid.
-
-Some handles are dispatchable, which means that they are represented as opaque pointers.
-Non-dispatchable handles are 64-bit integer types, and may encode information directly into their value.
-"""
-struct SpecHandle <: Spec
-    name::Symbol
-    parent::Optional{Symbol}
-    is_dispatchable::Bool
-end
-
-"""
-Specification for aliases.
-"""
-struct SpecAlias{S<:Spec} <: Spec
-    name::Symbol
-    alias::S
-end
-
-"""
-Specification for a function `func` that creates a `handle` from a create info structure `create_info_struct`.
-
-If `batch` is true, then `func` expects a list of multiple create info structures.
-"""
-struct SpecCreateFunc <: Spec
-    func::SpecFunc
-    handle::SpecHandle
-    create_info_struct::Optional{SpecStruct}
-    create_info_param::Optional{SpecFuncParam}
-    batch::Bool
-end
-
-struct SpecDestroyFunc <: Spec
-    func::SpecFunc
-    handle::SpecHandle
-    destroyed_param::SpecFuncParam
-    batch::Bool
-end
 
 """
 Check if `x` and `y` are equal, except for vectors which are tested element-wise.
@@ -236,10 +108,6 @@ function SpecStruct(node::EzXML.Node)
     SpecStruct(Symbol(name_str), type, returnedonly, extends, StructVector(SpecStructMember.(findall("./member", node))))
 end
 
-function SpecType(node::EzXML.Node)
-    name = Symbol(haskey(node, "name") ? node["name"] : findfirst("./name", node).content)
-    SpecType(name, Symbol(node["category"]))
-end
 
 function SpecHandle(node::EzXML.Node)
     is_dispatchable = findfirst("./type", node).content == "VK_DEFINE_HANDLE"
