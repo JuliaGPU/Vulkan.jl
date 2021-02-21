@@ -52,7 +52,7 @@ Requires the `ERROR_CHECKING` preference enabled. Otherwise, it only returns the
 macro check(expr)
     @static if ERROR_CHECKING
         quote
-            local msg = string("failed to execute ", $expr)
+            local msg = string("failed to execute ", $(string(expr)))
             @check $(esc(expr)) msg
         end
     else
