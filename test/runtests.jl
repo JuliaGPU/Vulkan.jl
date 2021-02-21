@@ -8,7 +8,6 @@
     ENV["VK_ICD_FILENAMES"] = join([old_vk_icd_filenames; joinpath(libdir, "vk_swiftshader_icd.json")], sep)
 end
 
-
 using Test
 using Vulkan
 
