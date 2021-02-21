@@ -47,13 +47,13 @@ for name ∈ names(@__MODULE__, all=true)
 end
 
 export
-        # alias manipulation
+        # Alias manipulation
         follow_alias,
         isalias,
         hasalias,
 
-        # specs
-        ### utility
+        # Specifications
+        ### Utility
         default,
         func_by_name,
         struct_by_name,
@@ -75,20 +75,20 @@ export
         is_fn_ptr,
         is_version,
 
-        ### render_passes
+        ### Render passes
         RenderPassRequirement,
         RenderPassInside,
         RenderPassOutside,
         render_pass_compatibiltiy_map,
 
-        ### queues
+        ### Queues
         QueueType,
         QueueCompute,
         QueueGraphics,
         QueueTransfer,
         QueueSparseBinding,
 
-        ### structs & funcs
+        ### Structures & functions
         PARAM_REQUIREMENT,
         OPTIONAL,
         REQUIRED,

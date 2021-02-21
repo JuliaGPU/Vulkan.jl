@@ -34,6 +34,7 @@ export
         broadcast_ex,
         is_broadcast,
 
+        # Wrapping
         VulkanWrapper,
         wrap,
         add_constructor,
