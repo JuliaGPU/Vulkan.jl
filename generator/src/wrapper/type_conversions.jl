@@ -13,6 +13,9 @@ function nice_julian_type(type)
     end
 end
 
+"""
+Return a new type easier to deal with.
+"""
 function nice_julian_type(spec::Spec)
     @match s = spec begin
         GuardBy(is_version) => :VersionNumber
