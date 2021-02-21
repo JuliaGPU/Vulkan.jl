@@ -74,6 +74,7 @@ export
 
         # Pointer utilities
         function_pointer,
+        pointer_length,
 
         # Bitmask manipulation utilities
         includes_bits,
