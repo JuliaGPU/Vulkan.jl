@@ -61,13 +61,31 @@ function Base.show(io::IO, spec::Union{SpecStructMember, SpecFuncParam})
     print(io, join(string.(vcat(typeof(spec), spec.type, spec.name, props)), ' '))
 end
 
-SpecEnum(node::EzXML.Node) = SpecEnum(Symbol(node["name"]), StructVector(SpecConstant.(findall("./enum[@name and not(@alias)]", node))))
-SpecBit(node::EzXML.Node) = SpecBit(Symbol(node["name"]), parse(Int, something(getattr(node, "value", symbol=false), getattr(node, "bitpos", symbol=false))))
-SpecBitmask(node::EzXML.Node) = SpecBitmask(Symbol(node["name"]), StructVector(SpecBit.(findall("./enum[not(@alias)]", node))))
+function SpecStructMember(node::Node)
+    id = extract_identifier(node)
+    SpecStructMember(parent_name(node), id == :module ? :_module : id, extract_type(node), is_constant(node), externsync(node), PARAM_REQUIREMENT(node), len(node), arglen(node, neighbor_type="member"))
+end
 
-SpecFuncParam(node::EzXML.Node) = SpecFuncParam(parent_name(node), extract_identifier(node), extract_type(node), is_constant(node), externsync(node), PARAM_REQUIREMENT(node), len(node), arglen(node))
+function SpecStruct(node::Node)
+    name_str = node["name"]
+    returnedonly = haskey(node, "returnedonly")
+    type = @match returnedonly begin
+        true => PROPERTY
+        _ && if occursin("CreateInfo", name_str) end => CREATE_INFO
+        _ && if occursin("AllocateInfo", name_str) end => ALLOCATE_INFO
+        _ && if occursin("Info", name_str) end => GENERIC_INFO
+        _ => DATA
+    end
+    extends = @match struct_csv = getattr(node, "structextends", symbol=false) begin
+        ::String => Symbol.(split(struct_csv, ','))
+        ::Nothing => []
+    end
+    SpecStruct(Symbol(name_str), type, returnedonly, extends, StructVector(SpecStructMember.(findall("./member", node))))
+end
 
-function SpecFunc(node::EzXML.Node)
+SpecFuncParam(node::Node) = SpecFuncParam(parent_name(node), extract_identifier(node), extract_type(node), is_constant(node), externsync(node), PARAM_REQUIREMENT(node), len(node), arglen(node))
+
+function SpecFunc(node::Node)
     name = command_name(node)
     queues = @match getattr(node, "queues", symbol=false) begin
         qs::String => [queue_map[Symbol(q)] for q ∈ split(qs, ',')]
@@ -86,36 +104,20 @@ function SpecFunc(node::EzXML.Node)
     SpecFunc(name, ctype, return_type, rp_reqs, queues, StructVector(SpecFuncParam.(findall("./param", node))))
 end
 
-function SpecStructMember(node::EzXML.Node)
-    id = extract_identifier(node)
-    SpecStructMember(parent_name(node), id == :module ? :_module : id, extract_type(node), is_constant(node), externsync(node), PARAM_REQUIREMENT(node), len(node), arglen(node, neighbor_type="member"))
-end
 
-function SpecStruct(node::EzXML.Node)
-    name_str = node["name"]
-    returnedonly = haskey(node, "returnedonly")
-    type = @match returnedonly begin
-        true => PROPERTY
-        _ && if occursin("CreateInfo", name_str) end => CREATE_INFO
-        _ && if occursin("AllocateInfo", name_str) end => ALLOCATE_INFO
-        _ && if occursin("Info", name_str) end => GENERIC_INFO
-        _ => DATA
-    end
-    extends = @match struct_csv = getattr(node, "structextends", symbol=false) begin
-        ::String => Symbol.(split(struct_csv, ','))
-        ::Nothing => []
-    end
-    SpecStruct(Symbol(name_str), type, returnedonly, extends, StructVector(SpecStructMember.(findall("./member", node))))
-end
+SpecEnum(node::Node) = SpecEnum(Symbol(node["name"]), StructVector(SpecConstant.(findall("./enum[@name and not(@alias)]", node))))
 
+SpecBit(node::Node) = SpecBit(Symbol(node["name"]), parse(Int, something(getattr(node, "value", symbol=false), getattr(node, "bitpos", symbol=false))))
 
-function SpecHandle(node::EzXML.Node)
+SpecBitmask(node::Node) = SpecBitmask(Symbol(node["name"]), StructVector(SpecBit.(findall("./enum[not(@alias)]", node))))
+
+function SpecHandle(node::Node)
     is_dispatchable = findfirst("./type", node).content == "VK_DEFINE_HANDLE"
     name = Symbol(findfirst("./name", node).content)
     SpecHandle(name, getattr(node, "parent"), is_dispatchable)
 end
 
-function SpecConstant(node::EzXML.Node)
+function SpecConstant(node::Node)
     name = Symbol(haskey(node, "name") ? node["name"] : findfirst("./name", node).content)
     value = if haskey(node, "offset")
         ext_value = parse(Int, something(getattr(node, "extnumber", symbol=false), getattr(node.parentnode.parentnode, "number", symbol=false))) - 1
@@ -136,7 +138,7 @@ function SpecConstant(node::EzXML.Node)
         @match cat = node["category"] begin
             "basetype" || "bitmask" => @match type = findfirst("./type", node) begin
                 ::Nothing && if cat == "basetype" end => :Cvoid
-                ::EzXML.Node => translate_c_type(Symbol(type.content))
+                ::Node => translate_c_type(Symbol(type.content))
             end
         end
     else
@@ -145,7 +147,7 @@ function SpecConstant(node::EzXML.Node)
     SpecConstant(name, value)
 end
 
-function SpecAlias(node::EzXML.Node)
+function SpecAlias(node::Node)
     name = Symbol(node["name"])
     alias = follow_alias(name)
     spec_names = getproperty.(spec_all_noalias, :name)
@@ -153,36 +155,36 @@ function SpecAlias(node::EzXML.Node)
     SpecAlias(name, alias_spec)
 end
 
-function SpecCreateFunc(spec::SpecFunc)
+function CreateFunc(spec::SpecFunc)
     created_param = last(spec.params)
     handle = spec_handles[findfirst(==(follow_alias(innermost_type(created_param.type))), spec_handles.name)]
     create_info_params = getindex.(Ref(spec.params), findall(in(spec_create_info_structs.name), innermost_type.(spec.params.type)))
     @assert length(create_info_params) <= 1 "Found $(length(create_info_params)) create info types from the parameters of $spec:\n    $create_info_params"
     if length(create_info_params) == 0
-        SpecCreateFunc(spec, handle, nothing, nothing, false)
+        CreateFunc(spec, handle, nothing, nothing, false)
     else
         create_info_param = first(create_info_params)
         create_info_struct = spec_create_info_structs[findfirst(==(innermost_type(create_info_param.type)), spec_create_info_structs.name)]
         batch = is_arr(created_param)
-        SpecCreateFunc(spec, handle, create_info_struct, create_info_param, batch)
+        CreateFunc(spec, handle, create_info_struct, create_info_param, batch)
     end
 end
 
-function SpecDestroyFunc(spec::SpecFunc)
+function DestroyFunc(spec::SpecFunc)
     destroyed_param = spec.params[findlast(spec.params.is_externsync)]
     handle = spec_handles[findfirst(==(innermost_type(destroyed_param.type)), spec_handles.name)]
-    SpecDestroyFunc(spec, handle, destroyed_param, is_arr(destroyed_param))
+    DestroyFunc(spec, handle, destroyed_param, is_arr(destroyed_param))
 end
 
-function queue_compatibility(node::EzXML.Node)
+function queue_compatibility(node::Node)
     @when let _ = node, if haskey(node, "queues") end
         queue.(split(node["queues"], ','))
     end
 end
 
-externsync(node::EzXML.Node) = haskey(node, "externsync") && node["externsync"] ≠ "false"
+externsync(node::Node) = haskey(node, "externsync") && node["externsync"] ≠ "false"
 
-function len(node::EzXML.Node)
+function len(node::Node)
     @match node begin
         _ && if haskey(node, "altlen") end => Meta.parse(node["altlen"])
         _ => @match getattr(node, "len", symbol=false) begin
@@ -196,7 +198,7 @@ function len(node::EzXML.Node)
     end
 end
 
-function arglen(node::EzXML.Node; neighbor_type="param")
+function arglen(node::Node; neighbor_type="param")
     neighbors = findall("../$neighbor_type", node)
     arg_name = name(node)
     map(name, filter(x -> len(x) == arg_name, neighbors))
@@ -356,8 +358,8 @@ parent_spec(spec::SpecFuncParam) = func_by_name(parent(spec))
 parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))
 parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))
 
-const spec_create_funcs = StructVector(SpecCreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
-const spec_destroy_funcs = StructVector(SpecDestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
+const spec_create_funcs = StructVector(CreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
+const spec_destroy_funcs = StructVector(DestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
 const spec_handles_with_single_constructor = filter(x -> length(something(findall(==(x), filter(x -> !x.batch, spec_create_funcs).handle), 0)) == 1, spec_handles)
 
 is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle

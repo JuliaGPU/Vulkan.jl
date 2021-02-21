@@ -1,4 +1,4 @@
-function member_attr(node::EzXML.Node, attr)
+function member_attr(node::Node, attr)
     attr == "name" && haskey(node, "alias") && return node["name"] # special handling for aliases
     val = findfirst(".//$attr", node)
     isnothing(val) && error("Attribute $attr not found in node\n$node")
@@ -39,26 +39,26 @@ function extract_type(param)
 end
 
 extract_identifier(param) = Symbol(findfirst("./name", param).content)
-getattr(node::EzXML.Node, attr; default = nothing, symbol=true) = haskey(node, attr) ? (symbol ? Symbol(node[attr]) : node[attr]) : default
+getattr(node::Node, attr; default = nothing, symbol=true) = haskey(node, attr) ? (symbol ? Symbol(node[attr]) : node[attr]) : default
 
-function parent_name(node::EzXML.Node)
+function parent_name(node::Node)
     parel = node.parentelement
     parel.name == "command" ? command_name(parel) : parel.name == "type" && parel["category"] ∈ ["struct", "union"] ? struct_name(parel) : error("Unknown parent element:\n    $parel")
 end
 
-function command_name(node::EzXML.Node)
+function command_name(node::Node)
     isnothing(findfirst("proto", node)) && return command_name(node.parentelement)
     Symbol(findfirst("proto/name", node).content)
 end
 
-function struct_name(node::EzXML.Node)
+function struct_name(node::Node)
     (!haskey(node, "category") || node["category"] ∉ ["struct", "union"]) && return Symbol(struct_name(node.parentelement))
     Symbol(node["name"])
 end
 
-is_constant(node::EzXML.Node) = any(split(node.content) .== "const")
+is_constant(node::Node) = any(split(node.content) .== "const")
 
-name(node::EzXML.Node) = Symbol(findfirst("./name", node).content)
+name(node::Node) = Symbol(findfirst("./name", node).content)
 
 """
 Semantically translate C types to their Julia counterpart.

@@ -294,7 +294,7 @@ function retrieve_parent_ex(parent_handle::SpecHandle, func::SpecFunc)
     end
 end
 
-function retrieve_parent_ex(parent_handle::SpecHandle, create::SpecCreateFunc)
+function retrieve_parent_ex(parent_handle::SpecHandle, create::CreateFunc)
     throw_error() = error("Could not retrieve parent ($(parent_handle.name)) variable from the arguments of $create")
     @match retrieve_parent_ex(parent_handle, create.func) begin
         sym::Symbol => sym
