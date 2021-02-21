@@ -36,6 +36,7 @@ include("prewrap.jl")
 include("../generated/vulkan_wrapper.jl")
 
 include("utils.jl")
+include("bitmasks.jl")
 include("validation.jl")
 include("device.jl")
 include("print.jl")
@@ -58,21 +59,27 @@ export
         to_vk,
         from_vk,
 
-        # info
+        # Printing
         print_app_info,
         print_available_devices,
         print_device_info,
         print_devices,
 
-        # device
+        # Device
         physical_device_features,
         find_queue_index,
-        includes_bits,
 
-        # debugging
+        # Debugging
         default_debug_callback,
 
         # Pointer utilities
-        function_pointer
+        function_pointer,
+
+        # Bitmask manipulation utilities
+        includes_bits,
+        optional_bitwise_op,
+        optional_bitwise_or,
+        optional_bitwise_and,
+        optional_bitwise_xor
 
 end # module Vulkan
