@@ -40,19 +40,19 @@ struct VulkanError <: Exception
     return_code
 end
 
-Base.showerror(io::IO, e::VulkanError) = print(io, "$(e.return_code): ", e.msg)
+Base.showerror(io::IO, e::VulkanError) = print(io, e.return_code, ": ", e.msg)
 
 """
     @check vkCreateInstance(args...)
 
 If the expression does not return `VK_SUCCESS`, raise a [`VulkanError`](@ref) holding the return code.
 
-Requires the ERROR_CHECKING preference enabled.
+Requires the `ERROR_CHECKING` preference enabled. Otherwise, it only returns the expression.
 """
 macro check(expr)
     @static if ERROR_CHECKING
         quote
-            local msg = "failed to execute " * $(string(expr))
+            local msg = string("failed to execute ", $expr)
             @check $(esc(expr)) msg
         end
     else
@@ -70,14 +70,54 @@ macro check(expr, msg)
     end
 end
 
+"""
+    `pointer_length(val)`
+
+Return the length `val` considering it as an array.
+
+Differ from `Base.length` in that `pointer_length(C_NULL) == 0` and that a `RefArray`s return the length of their roots.
+"""
+function pointer_length end
+
 pointer_length(arr::Ptr{Nothing}) = 0
 pointer_length(arr::AbstractArray) = length(arr)
 pointer_length(arr::RefArray) = length(arr.roots)
 pointer_length(arr::Tuple{<:Any,<:Any}) = length(first(arr))
 
+"""
+Convert a type into its corresponding Vulkan type.
+
+### Examples
+```jldoctest
+julia> to_vk(UInt32, v"1")
+4194304
+
+julia> to_vk(NTuple{6, UInt8}, "hello")
+(0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x00)
+```
+"""
+function to_vk end
+
 to_vk(T, x) = convert(T, x)
 to_vk(T::Type{UInt32}, version::VersionNumber) = VK_MAKE_VERSION(version.major, version.minor, version.patch)
 to_vk(T::Type{NTuple{N,UInt8}}, s::AbstractString) where {N} = T(s * '\0' ^ (N - length(s)))
+
+"""
+Convert a Vulkan type into its corresponding Julia type.
+
+### Examples
+```jldoctest
+julia> from_vk(VersionNumber, UInt32(VK_MAKE_VERSION(1, 2, 3)))
+v"1.2.3"
+
+julia> from_vk(String, (0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x00))
+"hello"
+
+julia> from_vk(Bool, UInt32(1))
+true
+```
+"""
+function from_vk end
 
 from_vk(T::Type{<:VulkanStruct{false}}, x) = T(x)
 from_vk(T::Type{<:VulkanStruct{true}}, x) = T(x, [])
