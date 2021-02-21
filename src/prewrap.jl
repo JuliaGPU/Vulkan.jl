@@ -90,7 +90,7 @@ Convert a type into its corresponding Vulkan type.
 ### Examples
 ```jldoctest
 julia> to_vk(UInt32, v"1")
-4194304
+0x00400000
 
 julia> to_vk(NTuple{6, UInt8}, "hello")
 (0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x00)
