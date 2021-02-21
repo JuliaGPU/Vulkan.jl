@@ -1,4 +1,4 @@
-function fetch_stypes(xroot)
+function fetch_structure_types(xroot)
     stype_vals = findall("//member[@values]", xroot)
     res = Dict()
     for stype ∈ stype_vals 
@@ -9,4 +9,4 @@ function fetch_stypes(xroot)
     res
 end
 
-stypes = fetch_stypes(xroot)
+structure_types = fetch_structure_types(xroot)

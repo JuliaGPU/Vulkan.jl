@@ -58,7 +58,7 @@ function vk_call(x::Spec)
     var = var_from_vk(x.name)
     jtype = nice_julian_type(x)
     @match x begin
-        ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(stypes) end => stypes[parent(x)]
+        ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(structure_types) end => structure_types[parent(x)]
         ::SpecStructMember && if is_semantic_ptr(x.type) end => :(unsafe_convert($(x.type), $var))
         if is_fn_ptr(x.type) end => var
         GuardBy(is_size) && if x.requirement == POINTER_REQUIRED end => x.name # parameter converted to a Ref already
