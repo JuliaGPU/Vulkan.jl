@@ -24,6 +24,7 @@ struct CamelCaseUpper <: CamelCase
 end
 
 Base.split(str::SnakeCase) = split(str.value, "_")
+
 function Base.split(str::CamelCase)
     strval = str.value
     lowercase(strval) == strval && return [strval]
@@ -71,9 +72,6 @@ end
 
 remove_parts(str; discarded_parts=[1]) = remove_parts(detect_convention(str, instance=true), discarded_parts)
 
-"""Add a prefix following the naming convention present in the name.
-"""
-prefix(name::T, prefix) where {T<:NamingConvention} =  T([prefix, split(name)...])
 remove_prefix(name::T) where {T<:NamingConvention} = T(split(name)[2:end])
 remove_prefix(str) = remove_prefix(detect_convention(str, instance=true)).value
 
@@ -85,37 +83,3 @@ function detect_convention(str; instance=false)
     is_snake_case(str) && uppercase(str) == str && return instanced(SnakeCaseUpper, str)
     error("No convention detected for string $str")
 end
-
-
-const code_convention_names = [
-    :struct,
-    :function,
-    :variable,
-    :constant
-]
-
-map_dicts(d1, d2) = Dict(key => obj1 => obj2 for (key, obj1, obj2) in zip(keys(d1), values(d1), values(d2)))
-
-const julia_convention = Dict(
-    :struct => CamelCaseUpper,
-    :function => SnakeCaseLower,
-    :variable => SnakeCaseLower,
-    :constant => SnakeCaseLower
-)
-const vulkan_convention = Dict(
-    :struct => CamelCaseUpper,
-    :function => CamelCaseLower,
-    :variable => CamelCaseLower,
-    :constant => SnakeCaseUpper
-)
-
-const vulkan_to_julia = map_dicts(vulkan_convention, julia_convention)
-
-
-function enforce_convention(str, code_convention_mapping, code_object; pickout_parts=nothing)
-    old_t, new_t = code_convention_mapping[code_object]
-    new_str = convert(new_t, old_t(str))
-    (!isnothing(pickout_parts) ? remove_parts(new_str, pickout_parts) : new_str).value
-end
-
-enforce_convention(str, old_convention, new_convention, code_object; pickout_parts=nothing) = enforce_convention(str, map_dicts(old_convention, new_convention), code_object; pickout_parts)
