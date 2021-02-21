@@ -1,9 +1,14 @@
 f = :(f(x, y=3; a, b=5) = 50)
+
+doc_f = :(Core.@doc "I document function f" $f)
+
 f2 = :(function f(x); println(2); return 5; end)
 
 s = :(mutable struct HandleType
           handle::Ptr{Nothing}
       end)
+
+doc_s = :(Core.@doc "I document structure s" $s)
 
 c = :(const sym = val)
 

@@ -8,6 +8,8 @@
         @test issubset([50], p[:body].args)
     end
 
+    @test deconstruct(doc_f)[:docstring] == "I document function f"
+
     let p = deconstruct(f2)
         @test p[:category] == :function
         @test p[:name] == :f
@@ -24,6 +26,7 @@
         @test p[:constructors] == []
     end
 
+    @test deconstruct(doc_s)[:docstring] == "I document structure s"
 
     let p = deconstruct(c)
         @test p[:category] == :const

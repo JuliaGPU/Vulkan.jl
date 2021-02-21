@@ -119,6 +119,10 @@ function deconstruct(ex::Expr)
                 end
             end
 
+        @case :(Core.@doc $_ $docstring $ex)
+            dict = deconstruct(ex)
+            dict[:docstring] = docstring
+
         @case Expr(:macrocall, m, _, decl, args...)
             dict[:macro] = m
             dict[:name] = name(decl)
@@ -139,6 +143,11 @@ function reconstruct_call(d::Dict)
     end
 end
 
+function reconstruct_documented(d::Dict, ex)
+    docstring = get(d, :docstring, "")
+    isempty(docstring) ? ex : :(Core.@doc $docstring $ex)
+end
+
 function reconstruct(d::Dict)
     category = d[:category]
     ex = @match category begin
@@ -150,13 +159,11 @@ function reconstruct(d::Dict)
         :enum                         => Expr(:macrocall, d[:macro], nothing, d[:decl], Expr(:block, d[:values]...))
         :function                     => begin
                                             call = reconstruct_call(d)
-                                            ex = get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
-                                            docstring = get(d, :docstring, "")
-                                            isempty(docstring) ? ex : :(Core.@doc $docstring $ex)
+                                            get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
                                          end
         _                             => error("Category $category cannot be constructed")
     end
-    unblock(ex)
+    unblock(reconstruct_documented(d, ex))
 end
 
 function unblock(ex::Expr)
