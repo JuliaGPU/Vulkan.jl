@@ -1,0 +1,26 @@
+# Copied from VulkanCore.jl
+# Based on https://github.com/vsg-dev/VulkanSceneGraph/blob/master/.github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+  pull_request:
+
+env:
+  JULIA_GITHUB_ACTIONS_CI: ON
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        julia-version: ['1.6.0-rc1']
+        julia-arch: [x64, x86]
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: julia-actions/setup-julia@latest
+        with:
+          version: ${{ matrix.julia-version }}
+      - uses: julia-actions/julia-buildpkg@latest
+      - uses: julia-actions/julia-runtest@latest

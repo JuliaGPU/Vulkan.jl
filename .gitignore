@@ -1,3 +1,14 @@
 *.jl.cov
 *.jl.*.cov
 *.jl.mem
+Manifest.toml
+JuliaSysimage.so
+/vulkan.code-workspace
+/*.qdrep
+*.spv
+smalldev.jl
+mediumdev.jl
+_*wrapped_api.jl
+/docs/build
+/docs/site
+.vscode

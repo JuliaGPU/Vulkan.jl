@@ -1,0 +1,24 @@
+name = "VulkanGen"
+uuid = "a1e12450-decb-4c3e-a000-968e74262140"
+authors = ["Cédric Belmant"]
+version = "0.2.1"
+
+[deps]
+DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
+EzXML = "8f5d6c58-4d21-5cfd-889c-e3ad7ee6a615"
+LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
+MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
+StructArrays = "09ab397b-f2b6-538f-b94a-2f83cf4a842a"
+UnPack = "3a884ed6-31ef-47d7-9d2a-63182c4928ed"
+Vulkan_Headers_jll = "8d446b21-f3ad-5576-a034-752265b9b6f9"
+
+[compat]
+julia = "1.5"
+
+[extras]
+SafeTestsets = "1bc83da4-3b8d-516f-aca4-4fe02f6d838f"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
+
+[targets]
+test = ["Test", "VulkanCore", "SafeTestsets"]

@@ -1,0 +1,8 @@
+resolution_graph.txt
+/vk.xml
+/registry.rnc
+/JuliaSysimage.so
+Manifest.toml
+*.code-workspace
+/.vscode
+/src/vulkan/spec/dev*.jl

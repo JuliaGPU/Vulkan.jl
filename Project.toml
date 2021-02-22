@@ -1,0 +1,24 @@
+name = "Vulkan"
+uuid = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
+authors = ["Cédric Belmant", "Simon Danisch"]
+version = "0.1.0"
+
+[deps]
+DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
+MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
+Preferences = "21216c6a-2e73-6563-6e65-726566657250"
+VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
+
+[compat]
+DocStringExtensions = "0.8"
+MLStyle = "0.4"
+Preferences = "1.2"
+VulkanCore = "1.2"
+julia = "1.5"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+SwiftShader_jll = "c404ff5a-e271-5628-8eaa-423d39d64c15"
+
+[targets]
+test = ["Test", "SwiftShader_jll"]
