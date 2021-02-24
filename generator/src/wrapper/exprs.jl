@@ -30,6 +30,7 @@ function category(ex)
         Expr(:const, _...)                                           => :const
         Expr(:function, _...) || Expr(:(=), Expr(:call, _...), _...) => :function
         Expr(:macrocall, &enum_sym || &cenum_sym, _...)              => :enum
+        :(Core.@doc $_ $docstring $ex)                               => :doc
         _                                                            => nothing
     end
 end
@@ -66,6 +67,7 @@ function name(ex::Expr)
         Expr(:(=), call, body, _...)       => name(call)
         Expr(:macrocall, &enum_sym || &cenum_sym, _, decl, _...) => name(decl)
         Expr(:kw, _name, _...) => _name
+        :(Core.@doc $_ $docstring $ex)     => name(ex)
         Expr(expr_type,  _...)             => error("Can't extract name from ", expr_type, " expression:\n", "    $ex\n")
     end
 end
@@ -120,8 +122,8 @@ function deconstruct(ex::Expr)
             end
 
         @case :(Core.@doc $_ $docstring $ex)
-            dict = deconstruct(ex)
             dict[:docstring] = docstring
+            dict[:ex] = ex
 
         @case Expr(:macrocall, m, _, decl, args...)
             dict[:macro] = m
@@ -161,9 +163,10 @@ function reconstruct(d::Dict)
                                             call = reconstruct_call(d)
                                             get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
                                          end
+        :doc                          => :(Core.@doc $(d[:docstring]) $(d[:ex]))
         _                             => error("Category $category cannot be constructed")
     end
-    unblock(reconstruct_documented(d, ex))
+    unblock(ex)
 end
 
 function unblock(ex::Expr)

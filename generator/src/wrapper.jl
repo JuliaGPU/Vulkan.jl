@@ -2,6 +2,7 @@ include("wrapper/exprs.jl")
 include("wrapper/type_conversions.jl")
 include("wrapper/naming_conventions.jl")
 include("wrapper/conventions.jl")
+include("wrapper/docs.jl")
 include("wrapper/wrap.jl")
 
 include("wrapper/dependency_resolution.jl")
@@ -38,6 +39,7 @@ export
         VulkanWrapper,
         wrap,
         add_constructor,
-        extend_from_vk
+        extend_from_vk,
+        to_expr
 
 

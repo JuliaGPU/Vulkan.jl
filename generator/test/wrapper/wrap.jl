@@ -1,13 +1,13 @@
 test_ex(x, y) = @test prettify(x) == prettify(y)
 
-test_wrap(f, value, ex; kwargs...) = test_ex(wrap(f(value); kwargs...), ex)
+test_wrap(f, value, ex; kwargs...) = test_ex(to_expr(wrap(f(value); kwargs...)), ex)
 test_wrap_handle(name, ex) = test_wrap(handle_by_name, name, ex)
 test_wrap_struct(name, ex) = test_wrap(struct_by_name, name, ex)
 test_wrap_func(name, ex; kwargs...) = test_wrap(func_by_name, name, ex; kwargs...)
-test_add_constructor(f, name, ex; kwargs...) = test_ex(add_constructor(f(name); kwargs...), ex)
+test_add_constructor(f, name, ex; kwargs...) = test_ex(to_expr(add_constructor(f(name); kwargs...)), ex)
 test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args...)
 test_handle_add_constructor(args...; kwargs...) = test_add_constructor(handle_by_name, args...; kwargs...)
-test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
+test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(name))), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
 
 @testset "Wrapping" begin
     @testset "Handles" begin
@@ -158,7 +158,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ); with_func_ptr=true)
 
         test_wrap_func(:vkCreateGraphicsPipelines, :(
-            function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
+            function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)
                 pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
                 @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
                 Pipeline.(pPipelines, x -> destroy_pipeline(device, x; allocator), device)
@@ -175,7 +175,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_wrap_func(:vkMergePipelineCaches, :(
-            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
         ))
 
         test_wrap_func(:vkGetFenceFdKHR, :(
@@ -195,11 +195,11 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_wrap_func(:vkUpdateDescriptorSets, :(
-            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
+            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
         ))
 
         test_wrap_func(:vkCmdSetViewport, :(
-            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
+            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
         ))
 
         test_wrap_func(:vkCmdSetLineWidth, :(
@@ -241,7 +241,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
 
     @testset "Additional constructors" begin
         test_struct_add_constructor(:VkInstanceCreateInfo, :(
-            function InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next=C_NULL, flags=0, application_info=C_NULL)
+            function InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
                 enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
@@ -282,7 +282,7 @@ test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(
         ))
 
         test_handle_add_constructor(:VkInstance, :(
-            Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
+            Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
         ))
 
         test_handle_add_constructor(:VkDebugReportCallbackEXT, :(

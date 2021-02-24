@@ -3503,7 +3503,7 @@ DebugUtilsMessengerEXT(instance::Instance, message_severity::Integer, message_ty
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags), fun_ptr_create; allocator)
 
@@ -3515,13 +3515,13 @@ ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::Fun
 
 SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_sampler_ycbcr_conversion(device, SamplerYcbcrConversionCreateInfo(format, ycbcr_model, ycbcr_range, components, x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
-DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next), fun_ptr_create, fun_ptr_destroy; allocator)
+IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 QueryPool(device::Device, query_type::VkQueryType, query_count::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, pipeline_statistics = 0) = create_query_pool(device, QueryPoolCreateInfo(query_type, query_count; next, flags, pipeline_statistics), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -3531,31 +3531,31 @@ Semaphore(device::Device, fun_ptr_create::FunctionPtr, fun_ptr_destroy::Function
 
 Fence(device::Device, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_fence(device, FenceCreateInfo(; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, DescriptorPoolCreateInfo(max_sets, pool_sizes; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, DescriptorPoolCreateInfo(max_sets, pool_sizes; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-DescriptorSetLayout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, DescriptorSetLayoutCreateInfo(bindings; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+DescriptorSetLayout(device::Device, bindings::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, DescriptorSetLayoutCreateInfo(bindings; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 Sampler(device::Device, mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_sampler(device, SamplerCreateInfo(mag_filter, min_filter, mipmap_mode, address_mode_u, address_mode_v, address_mode_w, mip_lod_bias, anisotropy_enable, max_anisotropy, compare_enable, compare_op, min_lod, max_lod, border_color, unnormalized_coordinates; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, PipelineLayoutCreateInfo(set_layouts, push_constant_ranges; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+PipelineLayout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, PipelineLayoutCreateInfo(set_layouts, push_constant_ranges; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-ShaderModule(device::Device, code_size::Integer, code::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_shader_module(device, ShaderModuleCreateInfo(code_size, code; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+ShaderModule(device::Device, code_size::Integer, code::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_shader_module(device, ShaderModuleCreateInfo(code_size, code; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Buffer(device::Device, size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+Buffer(device::Device, size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 CommandPool(device::Device, queue_family_index::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_command_pool(device, CommandPoolCreateInfo(queue_family_index; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 DeviceMemory(device::Device, allocation_size::Integer, memory_type_index::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = allocate_memory(device, MemoryAllocateInfo(allocation_size, memory_type_index; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, DeviceCreateInfo(queue_create_infos, enabled_layer_names, enabled_extension_names; next, flags, enabled_features), fun_ptr_create, fun_ptr_destroy; allocator)
+Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, DeviceCreateInfo(queue_create_infos, enabled_layer_names, enabled_extension_names; next, flags, enabled_features), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info), fun_ptr_create, fun_ptr_destroy; allocator)
+Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
 function get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, fun_ptr::FunctionPtr)
     pData = Ref{UInt64}()
@@ -3585,11 +3585,11 @@ cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable
 
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool, fun_ptr::FunctionPtr) = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable, fun_ptr)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL) = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL) = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors, fun_ptr)
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors, fun_ptr)
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}, fun_ptr::FunctionPtr) = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports, fun_ptr)
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports, fun_ptr)
 
 cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology, fun_ptr::FunctionPtr) = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology, fun_ptr)
 
@@ -3613,11 +3613,11 @@ end
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR, fun_ptr::FunctionPtr) = vkGetAccelerationStructureDeviceAddressKHR(device, info, fun_ptr)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR}, fun_ptr::FunctionPtr) = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos, fun_ptr))
+build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr) = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos, fun_ptr))
 
 cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer, fun_ptr::FunctionPtr) = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride, fun_ptr)
 
-cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR}, fun_ptr::FunctionPtr) = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos, fun_ptr)
+cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr) = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos, fun_ptr)
 
 function create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
     pAccelerationStructure = Ref{VkAccelerationStructureKHR}()
@@ -3768,13 +3768,13 @@ function get_physical_device_cooperative_matrix_properties_nv(physical_device::P
     from_vk.(CooperativeMatrixPropertiesNV, pProperties)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesKHR(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesNV(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
@@ -3802,7 +3802,7 @@ cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buf
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr) = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
 
-function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr)
+function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr)
     pData = Ref{Ptr{Cvoid}}()
     @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, pData, stride, fun_ptr)
     pData[]
@@ -3810,7 +3810,7 @@ end
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL) = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
 copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr) = @check(vkCopyMemoryToAccelerationStructureKHR(device, info, fun_ptr))
 
@@ -3826,7 +3826,7 @@ cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAcc
 
 cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR, fun_ptr::FunctionPtr) = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode, fun_ptr)
 
-bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoKHR}, fun_ptr::FunctionPtr) = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr) = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
 function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV, fun_ptr::FunctionPtr)
     pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()
@@ -3856,13 +3856,13 @@ cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, o
 
 cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer, fun_ptr::FunctionPtr) = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task, fun_ptr)
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}, fun_ptr::FunctionPtr) = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders, fun_ptr)
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders, fun_ptr)
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}, fun_ptr::FunctionPtr) = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes, fun_ptr)
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes, fun_ptr)
 
 cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout, fun_ptr::FunctionPtr; image_view = C_NULL) = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout, fun_ptr)
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors, fun_ptr)
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors, fun_ptr)
 
 cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride, fun_ptr)
 
@@ -3870,11 +3870,11 @@ cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, 
 
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index, fun_ptr)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL) = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL) = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
 
 function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)
     pCheckpointDataCount = Ref{UInt32}()
@@ -3958,7 +3958,7 @@ set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfo
 
 set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT, fun_ptr::FunctionPtr) = @check(vkSetDebugUtilsObjectNameEXT(device, name_info, fun_ptr))
 
-function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT}, fun_ptr::FunctionPtr)
+function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray, fun_ptr::FunctionPtr)
     pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
     pMaxDeviation = Ref{UInt64}()
     @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, pTimestamps, pMaxDeviation, fun_ptr)
@@ -3988,7 +3988,7 @@ function get_descriptor_set_layout_support(device::Device, create_info::Descript
     from_vk(DescriptorSetLayoutSupport, pSupport[])
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}, fun_ptr::FunctionPtr) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray, fun_ptr::FunctionPtr) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
 function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer, fun_ptr::FunctionPtr)
     pDataSize = Ref(data_size)
@@ -4091,9 +4091,9 @@ end
 
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT, fun_ptr::FunctionPtr) = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info, fun_ptr)
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles, fun_ptr)
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles, fun_ptr)
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:ViewportWScalingNV}, fun_ptr::FunctionPtr) = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings, fun_ptr)
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings, fun_ptr)
 
 function create_metal_surface_ext(instance::Instance, create_info::MetalSurfaceCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -4129,7 +4129,7 @@ end
 
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr) = @check(vkGetSwapchainStatusKHR(device, swapchain, fun_ptr))
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:HdrMetadataEXT}, fun_ptr::FunctionPtr) = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr) = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
 
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data), fun_ptr)
 
@@ -4173,9 +4173,9 @@ end
 
 cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetDeviceMask(command_buffer, device_mask, fun_ptr)
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo}, fun_ptr::FunctionPtr) = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_image_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr) = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo}, fun_ptr::FunctionPtr) = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr) = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
 function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer, fun_ptr::FunctionPtr)
     pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()
@@ -4291,7 +4291,7 @@ end
 
 trim_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0) = vkTrimCommandPool(device, command_pool, flags, fun_ptr)
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, fun_ptr::FunctionPtr) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes, fun_ptr)
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray, fun_ptr::FunctionPtr) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes, fun_ptr)
 
 function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2, fun_ptr::FunctionPtr)
     pPropertyCount = Ref{UInt32}()
@@ -4500,7 +4500,7 @@ end
 
 destroy_surface_khr(instance::Instance, surface::SurfaceKHR, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroySurfaceKHR(instance, surface, allocator, fun_ptr)
 
-function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:SwapchainCreateInfoKHR}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
+function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
     @check vkCreateSharedSwapchainsKHR(device, pointer_length(create_infos), create_infos, allocator, pSwapchains, fun_ptr_create)
     parent = getproperty(create_infos, :surface)
@@ -4563,7 +4563,7 @@ function create_android_surface_khr(instance::Instance, create_info::AndroidSurf
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer}, fun_ptr::FunctionPtr) = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray, fun_ptr::FunctionPtr) = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
 
 cmd_end_render_pass(command_buffer::CommandBuffer, fun_ptr::FunctionPtr) = vkCmdEndRenderPass(command_buffer, fun_ptr)
 
@@ -4587,35 +4587,35 @@ cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integ
 
 cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, flags, fun_ptr)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}, fun_ptr::FunctionPtr; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}, fun_ptr::FunctionPtr) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fun_ptr::FunctionPtr) = vkCmdResetEvent(command_buffer, event, stage_mask, fun_ptr)
 
 cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetEvent(command_buffer, event, stage_mask, fun_ptr)
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageResolve}, fun_ptr::FunctionPtr) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:ClearAttachment}, rects::AbstractArray{<:ClearRect}, fun_ptr::FunctionPtr) = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects, fun_ptr)
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray, fun_ptr::FunctionPtr) = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects, fun_ptr)
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray{<:ImageSubresourceRange}, fun_ptr::FunctionPtr) = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges, fun_ptr)
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray, fun_ptr::FunctionPtr) = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges, fun_ptr)
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange}, fun_ptr::FunctionPtr) = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges, fun_ptr)
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray, fun_ptr::FunctionPtr) = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges, fun_ptr)
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer, fun_ptr::FunctionPtr) = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data, fun_ptr)
 
 cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data), fun_ptr)
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy}, fun_ptr::FunctionPtr) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:BufferImageCopy}, fun_ptr::FunctionPtr) = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageBlit}, filter::VkFilter, fun_ptr::FunctionPtr) = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter, fun_ptr)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, filter::VkFilter, fun_ptr::FunctionPtr) = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter, fun_ptr)
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageCopy}, fun_ptr::FunctionPtr) = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy}, fun_ptr::FunctionPtr) = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions, fun_ptr)
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
 cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr) = vkCmdDispatchIndirect(command_buffer, buffer, offset, fun_ptr)
 
@@ -4629,11 +4629,11 @@ cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_c
 
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer, fun_ptr::FunctionPtr) = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance, fun_ptr)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr) = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr) = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
 
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType, fun_ptr::FunctionPtr) = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type, fun_ptr)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray, fun_ptr::FunctionPtr) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
 
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::Integer, reference::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilReference(command_buffer, face_mask, reference, fun_ptr)
 
@@ -4649,9 +4649,9 @@ cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Re
 
 cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real, fun_ptr::FunctionPtr) = vkCmdSetLineWidth(command_buffer, line_width, fun_ptr)
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors, fun_ptr)
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors, fun_ptr)
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}, fun_ptr::FunctionPtr) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports, fun_ptr)
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports, fun_ptr)
 
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, fun_ptr::FunctionPtr) = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline, fun_ptr)
 
@@ -4661,7 +4661,7 @@ end_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr) = @check
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo, fun_ptr::FunctionPtr) = @check(vkBeginCommandBuffer(command_buffer, begin_info, fun_ptr))
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer}, fun_ptr::FunctionPtr) = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray, fun_ptr::FunctionPtr) = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
 
 function allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo, fun_ptr_create::FunctionPtr)
     pCommandBuffers = Vector{VkCommandBuffer}(undef, allocate_info.vks.commandBufferCount)
@@ -4702,9 +4702,9 @@ function create_framebuffer(device::Device, create_info::FramebufferCreateInfo, 
     Framebuffer(pFramebuffer[], (x->destroy_framebuffer(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}, fun_ptr::FunctionPtr) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies, fun_ptr)
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray, fun_ptr::FunctionPtr) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies, fun_ptr)
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet}, fun_ptr::FunctionPtr) = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray, fun_ptr::FunctionPtr) = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
 
 function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo, fun_ptr_create::FunctionPtr)
     pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
@@ -4749,19 +4749,19 @@ end
 
 destroy_pipeline(device::Device, pipeline::Pipeline, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyPipeline(device, pipeline, allocator, fun_ptr)
 
-function create_compute_pipelines(device::Device, create_infos::AbstractArray{<:ComputePipelineCreateInfo}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_compute_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateComputePipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_graphics_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}, fun_ptr::FunctionPtr) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray, fun_ptr::FunctionPtr) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
 function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer, fun_ptr::FunctionPtr)
     pDataSize = Ref(data_size)
@@ -4862,11 +4862,11 @@ function create_semaphore(device::Device, create_info::SemaphoreCreateInfo, fun_
     Semaphore(pSemaphore[], (x->destroy_semaphore(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr) = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr) = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
 
 get_fence_status(device::Device, fence::Fence, fun_ptr::FunctionPtr) = @check(vkGetFenceStatus(device, fence, fun_ptr))
 
-reset_fences(device::Device, fences::AbstractArray{<:Fence}, fun_ptr::FunctionPtr) = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
+reset_fences(device::Device, fences::AbstractArray, fun_ptr::FunctionPtr) = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
 
 destroy_fence(device::Device, fence::Fence, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyFence(device, fence, allocator, fun_ptr)
 
@@ -4876,7 +4876,7 @@ function create_fence(device::Device, create_info::FenceCreateInfo, fun_ptr_crea
     Fence(pFence[], (x->destroy_fence(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}, fun_ptr::FunctionPtr; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
 
 function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::Integer, tiling::VkImageTiling, fun_ptr::FunctionPtr)
     pPropertyCount = Ref{UInt32}()
@@ -4916,9 +4916,9 @@ function get_device_memory_commitment(device::Device, memory::DeviceMemory, fun_
     pCommittedMemoryInBytes[]
 end
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}, fun_ptr::FunctionPtr) = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr) = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}, fun_ptr::FunctionPtr) = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr) = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
 
 unmap_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr) = vkUnmapMemory(device, memory, fun_ptr)
 
@@ -4940,7 +4940,7 @@ device_wait_idle(device::Device, fun_ptr::FunctionPtr) = @check(vkDeviceWaitIdle
 
 queue_wait_idle(queue::Queue, fun_ptr::FunctionPtr) = @check(vkQueueWaitIdle(queue, fun_ptr))
 
-queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}, fun_ptr::FunctionPtr; fence = C_NULL) = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence, fun_ptr))
+queue_submit(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL) = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence, fun_ptr))
 
 function get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer, fun_ptr::FunctionPtr)
     pQueue = Ref{VkQueue}()
@@ -5056,7 +5056,7 @@ DebugUtilsMessengerEXT(instance::Instance, message_severity::Integer, message_ty
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data); allocator)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags); allocator)
 
@@ -5068,13 +5068,13 @@ ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL,
 
 SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL) = create_sampler_ycbcr_conversion(device, SamplerYcbcrConversionCreateInfo(format, ycbcr_model, ycbcr_range, components, x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction; next); allocator)
 
-DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags); allocator)
+DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags); allocator)
 
-IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next); allocator)
+IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next); allocator)
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size); allocator)
 
-Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags); allocator)
+Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags); allocator)
 
 QueryPool(device::Device, query_type::VkQueryType, query_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0, pipeline_statistics = 0) = create_query_pool(device, QueryPoolCreateInfo(query_type, query_count; next, flags, pipeline_statistics); allocator)
 
@@ -5084,31 +5084,31 @@ Semaphore(device::Device; allocator = C_NULL, next = C_NULL, flags = 0) = create
 
 Fence(device::Device; allocator = C_NULL, next = C_NULL, flags = 0) = create_fence(device, FenceCreateInfo(; next, flags); allocator)
 
-DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, DescriptorPoolCreateInfo(max_sets, pool_sizes; next, flags); allocator)
+DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, DescriptorPoolCreateInfo(max_sets, pool_sizes; next, flags); allocator)
 
-DescriptorSetLayout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, DescriptorSetLayoutCreateInfo(bindings; next, flags); allocator)
+DescriptorSetLayout(device::Device, bindings::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, DescriptorSetLayoutCreateInfo(bindings; next, flags); allocator)
 
 Sampler(device::Device, mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0) = create_sampler(device, SamplerCreateInfo(mag_filter, min_filter, mipmap_mode, address_mode_u, address_mode_v, address_mode_w, mip_lod_bias, anisotropy_enable, max_anisotropy, compare_enable, compare_op, min_lod, max_lod, border_color, unnormalized_coordinates; next, flags); allocator)
 
-PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, PipelineLayoutCreateInfo(set_layouts, push_constant_ranges; next, flags); allocator)
+PipelineLayout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, PipelineLayoutCreateInfo(set_layouts, push_constant_ranges; next, flags); allocator)
 
-ShaderModule(device::Device, code_size::Integer, code::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0) = create_shader_module(device, ShaderModuleCreateInfo(code_size, code; next, flags); allocator)
+ShaderModule(device::Device, code_size::Integer, code::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_shader_module(device, ShaderModuleCreateInfo(code_size, code; next, flags); allocator)
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags); allocator)
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags); allocator)
 
-Buffer(device::Device, size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags); allocator)
+Buffer(device::Device, size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags); allocator)
 
 CommandPool(device::Device, queue_family_index::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_command_pool(device, CommandPoolCreateInfo(queue_family_index; next, flags); allocator)
 
 DeviceMemory(device::Device, allocation_size::Integer, memory_type_index::Integer; allocator = C_NULL, next = C_NULL) = allocate_memory(device, MemoryAllocateInfo(allocation_size, memory_type_index; next); allocator)
 
-Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, DeviceCreateInfo(queue_create_infos, enabled_layer_names, enabled_extension_names; next, flags, enabled_features); allocator)
+Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, DeviceCreateInfo(queue_create_infos, enabled_layer_names, enabled_extension_names; next, flags, enabled_features); allocator)
 
-Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
+Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
 
 from_vk(T::Type{PhysicalDeviceRobustness2PropertiesEXT}, x::VkPhysicalDeviceRobustness2PropertiesEXT) = T(x.sType, x.pNext, x.robustStorageBufferAccessSizeAlignment, x.robustUniformBufferAccessSizeAlignment)
 
@@ -5410,7 +5410,7 @@ function PhysicalDeviceExtendedDynamicStateFeaturesEXT(extended_dynamic_state::B
     PhysicalDeviceExtendedDynamicStateFeaturesEXT(vks, deps)
 end
 
-function PipelineLibraryCreateInfoKHR(libraries::AbstractArray{<:Pipeline}; next = C_NULL)
+function PipelineLibraryCreateInfoKHR(libraries::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     libraries = cconvert(Ptr{VkPipeline}, libraries)
     deps = [next, libraries]
@@ -5453,7 +5453,7 @@ function CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::Ac
     CopyAccelerationStructureInfoKHR(vks, deps)
 end
 
-function AccelerationStructureVersionKHR(version_data::AbstractArray{<:Integer}; next = C_NULL)
+function AccelerationStructureVersionKHR(version_data::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     version_data = cconvert(Ptr{UInt8}, version_data)
     deps = [next, version_data]
@@ -5480,7 +5480,7 @@ function AabbPositionsKHR(min_x::Real, min_y::Real, min_z::Real, max_x::Real, ma
     AabbPositionsKHR(VkAabbPositionsKHR(min_x, min_y, min_z, max_x, max_y, max_z))
 end
 
-function AccelerationStructureCreateInfoKHR(compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray{<:AccelerationStructureCreateGeometryTypeInfoKHR}; next = C_NULL, flags = 0, device_address = 0)
+function AccelerationStructureCreateInfoKHR(compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray; next = C_NULL, flags = 0, device_address = 0)
     next = cconvert(Ptr{Cvoid}, next)
     geometry_infos = cconvert(Ptr{VkAccelerationStructureCreateGeometryTypeInfoKHR}, geometry_infos)
     deps = [next, geometry_infos]
@@ -5821,7 +5821,7 @@ function PerformanceCounterResultKHR(int32::Integer, int64::Integer, uint32::Int
     PerformanceCounterResultKHR(VkPerformanceCounterResultKHR(int32, int64, uint32, uint64, float32, float64))
 end
 
-function QueryPoolPerformanceCreateInfoKHR(queue_family_index::Integer, counter_indices::AbstractArray{<:Integer}; next = C_NULL)
+function QueryPoolPerformanceCreateInfoKHR(queue_family_index::Integer, counter_indices::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     counter_indices = cconvert(Ptr{UInt32}, counter_indices)
     deps = [next, counter_indices]
@@ -5857,7 +5857,7 @@ function SurfaceFullScreenExclusiveInfoEXT(full_screen_exclusive::VkFullScreenEx
     SurfaceFullScreenExclusiveInfoEXT(vks, deps)
 end
 
-function PipelineCreationFeedbackCreateInfoEXT(pipeline_creation_feedback::PipelineCreationFeedbackEXT, pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}; next = C_NULL)
+function PipelineCreationFeedbackCreateInfoEXT(pipeline_creation_feedback::PipelineCreationFeedbackEXT, pipeline_stage_creation_feedbacks::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     pipeline_creation_feedback = cconvert(Ptr{VkPipelineCreationFeedbackEXT}, pipeline_creation_feedback)
     pipeline_stage_creation_feedbacks = cconvert(Ptr{Ptr{VkPipelineCreationFeedbackEXT}}, pipeline_stage_creation_feedbacks)
@@ -5908,7 +5908,7 @@ function PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(texture_compression_
     PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(vks, deps)
 end
 
-function RenderPassAttachmentBeginInfo(attachments::AbstractArray{<:ImageView}; next = C_NULL)
+function RenderPassAttachmentBeginInfo(attachments::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkImageView}, attachments)
     deps = [next, attachments]
@@ -5916,7 +5916,7 @@ function RenderPassAttachmentBeginInfo(attachments::AbstractArray{<:ImageView}; 
     RenderPassAttachmentBeginInfo(vks, deps)
 end
 
-function FramebufferAttachmentImageInfo(usage::Integer, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray{<:VkFormat}; next = C_NULL, flags = 0)
+function FramebufferAttachmentImageInfo(usage::Integer, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     view_formats = cconvert(Ptr{VkFormat}, view_formats)
     deps = [next, view_formats]
@@ -5924,7 +5924,7 @@ function FramebufferAttachmentImageInfo(usage::Integer, width::Integer, height::
     FramebufferAttachmentImageInfo(vks, deps)
 end
 
-function FramebufferAttachmentsCreateInfo(attachment_image_infos::AbstractArray{<:FramebufferAttachmentImageInfo}; next = C_NULL)
+function FramebufferAttachmentsCreateInfo(attachment_image_infos::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     attachment_image_infos = cconvert(Ptr{VkFramebufferAttachmentImageInfo}, attachment_image_infos)
     deps = [next, attachment_image_infos]
@@ -6065,7 +6065,7 @@ function ImageStencilUsageCreateInfo(stencil_usage::Integer; next = C_NULL)
     ImageStencilUsageCreateInfo(vks, deps)
 end
 
-function ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Integer, plane_layouts::AbstractArray{<:SubresourceLayout}; next = C_NULL)
+function ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Integer, plane_layouts::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     plane_layouts = cconvert(Ptr{VkSubresourceLayout}, plane_layouts)
     deps = [next, plane_layouts]
@@ -6073,7 +6073,7 @@ function ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Intege
     ImageDrmFormatModifierExplicitCreateInfoEXT(vks, deps)
 end
 
-function ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::AbstractArray{<:Integer}; next = C_NULL)
+function ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     drm_format_modifiers = cconvert(Ptr{UInt64}, drm_format_modifiers)
     deps = [next, drm_format_modifiers]
@@ -6081,7 +6081,7 @@ function ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::AbstractA
     ImageDrmFormatModifierListCreateInfoEXT(vks, deps)
 end
 
-function PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL)
+function PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
@@ -6118,7 +6118,7 @@ function AccelerationStructureMemoryRequirementsInfoKHR(type::VkAccelerationStru
     AccelerationStructureMemoryRequirementsInfoKHR(vks, deps)
 end
 
-function WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray{<:AccelerationStructureKHR}; next = C_NULL)
+function WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     acceleration_structures = cconvert(Ptr{VkAccelerationStructureKHR}, acceleration_structures)
     deps = [next, acceleration_structures]
@@ -6126,7 +6126,7 @@ function WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::Abs
     WriteDescriptorSetAccelerationStructureKHR(vks, deps)
 end
 
-function BindAccelerationStructureMemoryInfoKHR(acceleration_structure::AccelerationStructureKHR, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray{<:Integer}; next = C_NULL)
+function BindAccelerationStructureMemoryInfoKHR(acceleration_structure::AccelerationStructureKHR, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     deps = [next, device_indices]
@@ -6141,7 +6141,7 @@ function AccelerationStructureCreateInfoNV(compacted_size::Integer, info::Accele
     AccelerationStructureCreateInfoNV(vks, deps)
 end
 
-function AccelerationStructureInfoNV(type::VkAccelerationStructureTypeNV, geometries::AbstractArray{<:GeometryNV}; next = C_NULL, flags = 0, instance_count = 0)
+function AccelerationStructureInfoNV(type::VkAccelerationStructureTypeNV, geometries::AbstractArray; next = C_NULL, flags = 0, instance_count = 0)
     next = cconvert(Ptr{Cvoid}, next)
     geometries = cconvert(Ptr{VkGeometryNV}, geometries)
     deps = [next, geometries]
@@ -6174,7 +6174,7 @@ function GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vert
     GeometryTrianglesNV(vks, deps)
 end
 
-function RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, groups::AbstractArray{<:RayTracingShaderGroupCreateInfoKHR}, max_recursion_depth::Integer, libraries::PipelineLibraryCreateInfoKHR, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_interface = C_NULL, base_pipeline_handle = C_NULL)
+function RayTracingPipelineCreateInfoKHR(stages::AbstractArray, groups::AbstractArray, max_recursion_depth::Integer, libraries::PipelineLibraryCreateInfoKHR, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_interface = C_NULL, base_pipeline_handle = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     stages = cconvert(Ptr{VkPipelineShaderStageCreateInfo}, stages)
     groups = cconvert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups)
@@ -6184,7 +6184,7 @@ function RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:PipelineShaderS
     RayTracingPipelineCreateInfoKHR(vks, deps)
 end
 
-function RayTracingPipelineCreateInfoNV(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, groups::AbstractArray{<:RayTracingShaderGroupCreateInfoNV}, max_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
+function RayTracingPipelineCreateInfoNV(stages::AbstractArray, groups::AbstractArray, max_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     stages = cconvert(Ptr{VkPipelineShaderStageCreateInfo}, stages)
     groups = cconvert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups)
@@ -6219,7 +6219,7 @@ function PhysicalDeviceMeshShaderFeaturesNV(task_shader::Bool, mesh_shader::Bool
     PhysicalDeviceMeshShaderFeaturesNV(vks, deps)
 end
 
-function PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}; next = C_NULL)
+function PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     custom_sample_orders = cconvert(Ptr{VkCoarseSampleOrderCustomNV}, custom_sample_orders)
     deps = [next, custom_sample_orders]
@@ -6227,7 +6227,7 @@ function PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::V
     PipelineViewportCoarseSampleOrderStateCreateInfoNV(vks, deps)
 end
 
-function CoarseSampleOrderCustomNV(shading_rate::VkShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray{<:CoarseSampleLocationNV})
+function CoarseSampleOrderCustomNV(shading_rate::VkShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray)
     sample_locations = cconvert(Ptr{VkCoarseSampleLocationNV}, sample_locations)
     deps = [sample_locations]
     vks = VkCoarseSampleOrderCustomNV(shading_rate, sample_count, pointer_length(sample_locations), unsafe_convert(Ptr{VkCoarseSampleLocationNV}, sample_locations))
@@ -6245,7 +6245,7 @@ function PhysicalDeviceShadingRateImageFeaturesNV(shading_rate_image::Bool, shad
     PhysicalDeviceShadingRateImageFeaturesNV(vks, deps)
 end
 
-function PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_enable::Bool, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}; next = C_NULL)
+function PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_enable::Bool, shading_rate_palettes::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     shading_rate_palettes = cconvert(Ptr{VkShadingRatePaletteNV}, shading_rate_palettes)
     deps = [next, shading_rate_palettes]
@@ -6253,7 +6253,7 @@ function PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_en
     PipelineViewportShadingRateImageStateCreateInfoNV(vks, deps)
 end
 
-function ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray{<:VkShadingRatePaletteEntryNV})
+function ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray)
     shading_rate_palette_entries = cconvert(Ptr{VkShadingRatePaletteEntryNV}, shading_rate_palette_entries)
     deps = [shading_rate_palette_entries]
     vks = VkShadingRatePaletteNV(pointer_length(shading_rate_palette_entries), unsafe_convert(Ptr{VkShadingRatePaletteEntryNV}, shading_rate_palette_entries))
@@ -6295,7 +6295,7 @@ function PhysicalDeviceCornerSampledImageFeaturesNV(corner_sampled_image::Bool; 
     PhysicalDeviceCornerSampledImageFeaturesNV(vks, deps)
 end
 
-function PipelineViewportExclusiveScissorStateCreateInfoNV(exclusive_scissors::AbstractArray{<:Rect2D}; next = C_NULL)
+function PipelineViewportExclusiveScissorStateCreateInfoNV(exclusive_scissors::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     exclusive_scissors = cconvert(Ptr{VkRect2D}, exclusive_scissors)
     deps = [next, exclusive_scissors]
@@ -6431,7 +6431,7 @@ function ImportAndroidHardwareBufferInfoANDROID(buffer::Cvoid; next = C_NULL)
     ImportAndroidHardwareBufferInfoANDROID(vks, deps)
 end
 
-function PipelineVertexInputDivisorStateCreateInfoEXT(vertex_binding_divisors::AbstractArray{<:VertexInputBindingDivisorDescriptionEXT}; next = C_NULL)
+function PipelineVertexInputDivisorStateCreateInfoEXT(vertex_binding_divisors::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     vertex_binding_divisors = cconvert(Ptr{VkVertexInputBindingDivisorDescriptionEXT}, vertex_binding_divisors)
     deps = [next, vertex_binding_divisors]
@@ -6450,7 +6450,7 @@ function SemaphoreSignalInfo(semaphore::Semaphore, value::Integer; next = C_NULL
     SemaphoreSignalInfo(vks, deps)
 end
 
-function SemaphoreWaitInfo(semaphores::AbstractArray{<:Semaphore}, values::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+function SemaphoreWaitInfo(semaphores::AbstractArray, values::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     semaphores = cconvert(Ptr{VkSemaphore}, semaphores)
     values = cconvert(Ptr{UInt64}, values)
@@ -6496,7 +6496,7 @@ function SubpassBeginInfo(contents::VkSubpassContents; next = C_NULL)
     SubpassBeginInfo(vks, deps)
 end
 
-function RenderPassCreateInfo2(attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+function RenderPassCreateInfo2(attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkAttachmentDescription2}, attachments)
     subpasses = cconvert(Ptr{VkSubpassDescription2}, subpasses)
@@ -6514,7 +6514,7 @@ function SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, src_stag
     SubpassDependency2(vks, deps)
 end
 
-function SubpassDescription2(pipeline_bind_point::VkPipelineBindPoint, view_mask::Integer, input_attachments::AbstractArray{<:AttachmentReference2}, color_attachments::AbstractArray{<:AttachmentReference2}, preserve_attachments::AbstractArray{<:Integer}; next = C_NULL, flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
+function SubpassDescription2(pipeline_bind_point::VkPipelineBindPoint, view_mask::Integer, input_attachments::AbstractArray, color_attachments::AbstractArray, preserve_attachments::AbstractArray; next = C_NULL, flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     input_attachments = cconvert(Ptr{VkAttachmentReference2}, input_attachments)
     color_attachments = cconvert(Ptr{VkAttachmentReference2}, color_attachments)
@@ -6540,7 +6540,7 @@ function AttachmentDescription2(format::VkFormat, samples::VkSampleCountFlagBits
     AttachmentDescription2(vks, deps)
 end
 
-function DescriptorSetVariableDescriptorCountAllocateInfo(descriptor_counts::AbstractArray{<:Integer}; next = C_NULL)
+function DescriptorSetVariableDescriptorCountAllocateInfo(descriptor_counts::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     descriptor_counts = cconvert(Ptr{UInt32}, descriptor_counts)
     deps = [next, descriptor_counts]
@@ -6548,7 +6548,7 @@ function DescriptorSetVariableDescriptorCountAllocateInfo(descriptor_counts::Abs
     DescriptorSetVariableDescriptorCountAllocateInfo(vks, deps)
 end
 
-function DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray{<:Integer}; next = C_NULL)
+function DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     binding_flags = cconvert(Ptr{VkDescriptorBindingFlags}, binding_flags)
     deps = [next, binding_flags]
@@ -6585,7 +6585,7 @@ function ImportMemoryHostPointerInfoEXT(handle_type::VkExternalMemoryHandleTypeF
     ImportMemoryHostPointerInfoEXT(vks, deps)
 end
 
-function DebugUtilsMessengerCallbackDataEXT(message::AbstractString, queue_labels::AbstractArray{<:DebugUtilsLabelEXT}, cmd_buf_labels::AbstractArray{<:DebugUtilsLabelEXT}, objects::AbstractArray{<:DebugUtilsObjectNameInfoEXT}; next = C_NULL, flags = 0, message_id_name = C_NULL, message_id_number = 0)
+function DebugUtilsMessengerCallbackDataEXT(message::AbstractString, queue_labels::AbstractArray, cmd_buf_labels::AbstractArray, objects::AbstractArray; next = C_NULL, flags = 0, message_id_name = C_NULL, message_id_number = 0)
     next = cconvert(Ptr{Cvoid}, next)
     message_id_name = cconvert(Cstring, message_id_name)
     message = cconvert(Cstring, message)
@@ -6672,7 +6672,7 @@ function ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, f
     ValidationCacheCreateInfoEXT(vks, deps)
 end
 
-function ImageFormatListCreateInfo(view_formats::AbstractArray{<:VkFormat}; next = C_NULL)
+function ImageFormatListCreateInfo(view_formats::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     view_formats = cconvert(Ptr{VkFormat}, view_formats)
     deps = [next, view_formats]
@@ -6738,7 +6738,7 @@ function PipelineSampleLocationsStateCreateInfoEXT(sample_locations_enable::Bool
     PipelineSampleLocationsStateCreateInfoEXT(vks, deps)
 end
 
-function RenderPassSampleLocationsBeginInfoEXT(attachment_initial_sample_locations::AbstractArray{<:AttachmentSampleLocationsEXT}, post_subpass_sample_locations::AbstractArray{<:SubpassSampleLocationsEXT}; next = C_NULL)
+function RenderPassSampleLocationsBeginInfoEXT(attachment_initial_sample_locations::AbstractArray, post_subpass_sample_locations::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     attachment_initial_sample_locations = cconvert(Ptr{VkAttachmentSampleLocationsEXT}, attachment_initial_sample_locations)
     post_subpass_sample_locations = cconvert(Ptr{VkSubpassSampleLocationsEXT}, post_subpass_sample_locations)
@@ -6755,7 +6755,7 @@ function AttachmentSampleLocationsEXT(attachment_index::Integer, sample_location
     AttachmentSampleLocationsEXT(VkAttachmentSampleLocationsEXT(attachment_index, sample_locations_info.vks))
 end
 
-function SampleLocationsInfoEXT(sample_location_grid_size::Extent2D, sample_locations::AbstractArray{<:SampleLocationEXT}; next = C_NULL, sample_locations_per_pixel = 0)
+function SampleLocationsInfoEXT(sample_location_grid_size::Extent2D, sample_locations::AbstractArray; next = C_NULL, sample_locations_per_pixel = 0)
     next = cconvert(Ptr{Cvoid}, next)
     sample_locations = cconvert(Ptr{VkSampleLocationEXT}, sample_locations)
     deps = [next, sample_locations]
@@ -6907,7 +6907,7 @@ function PhysicalDeviceSurfaceInfo2KHR(surface::SurfaceKHR; next = C_NULL)
     PhysicalDeviceSurfaceInfo2KHR(vks, deps)
 end
 
-function RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractArray{<:InputAttachmentAspectReference}; next = C_NULL)
+function RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     aspect_references = cconvert(Ptr{VkInputAttachmentAspectReference}, aspect_references)
     deps = [next, aspect_references]
@@ -6919,7 +6919,7 @@ function InputAttachmentAspectReference(subpass::Integer, input_attachment_index
     InputAttachmentAspectReference(VkInputAttachmentAspectReference(subpass, input_attachment_index, aspect_mask))
 end
 
-function PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::VkDiscardRectangleModeEXT, discard_rectangles::AbstractArray{<:Rect2D}; next = C_NULL, flags = 0)
+function PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::VkDiscardRectangleModeEXT, discard_rectangles::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     discard_rectangles = cconvert(Ptr{VkRect2D}, discard_rectangles)
     deps = [next, discard_rectangles]
@@ -6927,7 +6927,7 @@ function PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::VkDi
     PipelineDiscardRectangleStateCreateInfoEXT(vks, deps)
 end
 
-function PipelineViewportSwizzleStateCreateInfoNV(viewport_swizzles::AbstractArray{<:ViewportSwizzleNV}; next = C_NULL, flags = 0)
+function PipelineViewportSwizzleStateCreateInfoNV(viewport_swizzles::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     viewport_swizzles = cconvert(Ptr{VkViewportSwizzleNV}, viewport_swizzles)
     deps = [next, viewport_swizzles]
@@ -7005,7 +7005,7 @@ function XYColorEXT(x::Real, y::Real)
     XYColorEXT(VkXYColorEXT(x, y))
 end
 
-function DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; next = C_NULL, flags = 0)
+function DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     descriptor_update_entries = cconvert(Ptr{VkDescriptorUpdateTemplateEntry}, descriptor_update_entries)
     deps = [next, descriptor_update_entries]
@@ -7024,7 +7024,7 @@ function DeviceGroupSwapchainCreateInfoKHR(modes::Integer; next = C_NULL)
     DeviceGroupSwapchainCreateInfoKHR(vks, deps)
 end
 
-function DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray{<:PhysicalDevice}; next = C_NULL)
+function DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     physical_devices = cconvert(Ptr{VkPhysicalDevice}, physical_devices)
     deps = [next, physical_devices]
@@ -7032,7 +7032,7 @@ function DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray{<:PhysicalD
     DeviceGroupDeviceCreateInfo(vks, deps)
 end
 
-function DeviceGroupPresentInfoKHR(device_masks::AbstractArray{<:Integer}, mode::VkDeviceGroupPresentModeFlagBitsKHR; next = C_NULL)
+function DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::VkDeviceGroupPresentModeFlagBitsKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_masks = cconvert(Ptr{UInt32}, device_masks)
     deps = [next, device_masks]
@@ -7068,7 +7068,7 @@ function DeviceGroupBindSparseInfo(resource_device_index::Integer, memory_device
     DeviceGroupBindSparseInfo(vks, deps)
 end
 
-function DeviceGroupSubmitInfo(wait_semaphore_device_indices::AbstractArray{<:Integer}, command_buffer_device_masks::AbstractArray{<:Integer}, signal_semaphore_device_indices::AbstractArray{<:Integer}; next = C_NULL)
+function DeviceGroupSubmitInfo(wait_semaphore_device_indices::AbstractArray, command_buffer_device_masks::AbstractArray, signal_semaphore_device_indices::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     wait_semaphore_device_indices = cconvert(Ptr{UInt32}, wait_semaphore_device_indices)
     command_buffer_device_masks = cconvert(Ptr{UInt32}, command_buffer_device_masks)
@@ -7085,7 +7085,7 @@ function DeviceGroupCommandBufferBeginInfo(device_mask::Integer; next = C_NULL)
     DeviceGroupCommandBufferBeginInfo(vks, deps)
 end
 
-function DeviceGroupRenderPassBeginInfo(device_mask::Integer, device_render_areas::AbstractArray{<:Rect2D}; next = C_NULL)
+function DeviceGroupRenderPassBeginInfo(device_mask::Integer, device_render_areas::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_render_areas = cconvert(Ptr{VkRect2D}, device_render_areas)
     deps = [next, device_render_areas]
@@ -7093,7 +7093,7 @@ function DeviceGroupRenderPassBeginInfo(device_mask::Integer, device_render_area
     DeviceGroupRenderPassBeginInfo(vks, deps)
 end
 
-function BindImageMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}, split_instance_bind_regions::AbstractArray{<:Rect2D}; next = C_NULL)
+function BindImageMemoryDeviceGroupInfo(device_indices::AbstractArray, split_instance_bind_regions::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     split_instance_bind_regions = cconvert(Ptr{VkRect2D}, split_instance_bind_regions)
@@ -7109,7 +7109,7 @@ function BindImageMemoryInfo(image::Image, memory::DeviceMemory, memory_offset::
     BindImageMemoryInfo(vks, deps)
 end
 
-function BindBufferMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}; next = C_NULL)
+function BindBufferMemoryDeviceGroupInfo(device_indices::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     deps = [next, device_indices]
@@ -7159,7 +7159,7 @@ function DisplayPowerInfoEXT(power_state::VkDisplayPowerStateEXT; next = C_NULL)
     DisplayPowerInfoEXT(vks, deps)
 end
 
-function RenderPassMultiviewCreateInfo(view_masks::AbstractArray{<:Integer}, view_offsets::AbstractArray{<:Integer}, correlation_masks::AbstractArray{<:Integer}; next = C_NULL)
+function RenderPassMultiviewCreateInfo(view_masks::AbstractArray, view_offsets::AbstractArray, correlation_masks::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     view_masks = cconvert(Ptr{UInt32}, view_masks)
     view_offsets = cconvert(Ptr{Int32}, view_offsets)
@@ -7285,7 +7285,7 @@ function PhysicalDeviceExternalSemaphoreInfo(handle_type::VkExternalSemaphoreHan
     PhysicalDeviceExternalSemaphoreInfo(vks, deps)
 end
 
-function Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeouts::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
+function Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray, acquire_keys::AbstractArray, acquire_timeouts::AbstractArray, release_syncs::AbstractArray, release_keys::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     acquire_syncs = cconvert(Ptr{VkDeviceMemory}, acquire_syncs)
     acquire_keys = cconvert(Ptr{UInt64}, acquire_keys)
@@ -7426,7 +7426,7 @@ function GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::VkPipeli
     GeneratedCommandsMemoryRequirementsInfoNV(vks, deps)
 end
 
-function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_count_offset = 0, sequences_index_buffer = C_NULL, sequences_index_offset = 0)
+function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_count_offset = 0, sequences_index_buffer = C_NULL, sequences_index_offset = 0)
     next = cconvert(Ptr{Cvoid}, next)
     streams = cconvert(Ptr{VkIndirectCommandsStreamNV}, streams)
     deps = [next, streams]
@@ -7434,7 +7434,7 @@ function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipel
     GeneratedCommandsInfoNV(vks, deps)
 end
 
-function IndirectCommandsLayoutCreateInfoNV(flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL)
+function IndirectCommandsLayoutCreateInfoNV(flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     tokens = cconvert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens)
     stream_strides = cconvert(Ptr{UInt32}, stream_strides)
@@ -7443,7 +7443,7 @@ function IndirectCommandsLayoutCreateInfoNV(flags::Integer, pipeline_bind_point:
     IndirectCommandsLayoutCreateInfoNV(vks, deps)
 end
 
-function IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray{<:VkIndexType}, index_type_values::AbstractArray{<:Integer}; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
+function IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray, index_type_values::AbstractArray; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     index_types = cconvert(Ptr{VkIndexType}, index_types)
     index_type_values = cconvert(Ptr{UInt32}, index_type_values)
@@ -7472,7 +7472,7 @@ function BindShaderGroupIndirectCommandNV(group_index::Integer)
     BindShaderGroupIndirectCommandNV(VkBindShaderGroupIndirectCommandNV(group_index))
 end
 
-function GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:GraphicsShaderGroupCreateInfoNV}, pipelines::AbstractArray{<:Pipeline}; next = C_NULL)
+function GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray, pipelines::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     groups = cconvert(Ptr{VkGraphicsShaderGroupCreateInfoNV}, groups)
     pipelines = cconvert(Ptr{VkPipeline}, pipelines)
@@ -7481,7 +7481,7 @@ function GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:Graphi
     GraphicsPipelineShaderGroupsCreateInfoNV(vks, deps)
 end
 
-function GraphicsShaderGroupCreateInfoNV(stages::AbstractArray{<:PipelineShaderStageCreateInfo}; next = C_NULL, vertex_input_state = C_NULL, tessellation_state = C_NULL)
+function GraphicsShaderGroupCreateInfoNV(stages::AbstractArray; next = C_NULL, vertex_input_state = C_NULL, tessellation_state = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     stages = cconvert(Ptr{VkPipelineShaderStageCreateInfo}, stages)
     vertex_input_state = cconvert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state)
@@ -7519,7 +7519,7 @@ function PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(device_generated_comman
     PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(vks, deps)
 end
 
-function Win32KeyedMutexAcquireReleaseInfoNV(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeout_milliseconds::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
+function Win32KeyedMutexAcquireReleaseInfoNV(acquire_syncs::AbstractArray, acquire_keys::AbstractArray, acquire_timeout_milliseconds::AbstractArray, release_syncs::AbstractArray, release_keys::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     acquire_syncs = cconvert(Ptr{VkDeviceMemory}, acquire_syncs)
     acquire_keys = cconvert(Ptr{UInt64}, acquire_keys)
@@ -7612,7 +7612,7 @@ function PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::Vk
     PipelineRasterizationStateRasterizationOrderAMD(vks, deps)
 end
 
-function ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:VkValidationFeatureEnableEXT}, disabled_validation_features::AbstractArray{<:VkValidationFeatureDisableEXT}; next = C_NULL)
+function ValidationFeaturesEXT(enabled_validation_features::AbstractArray, disabled_validation_features::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     enabled_validation_features = cconvert(Ptr{VkValidationFeatureEnableEXT}, enabled_validation_features)
     disabled_validation_features = cconvert(Ptr{VkValidationFeatureDisableEXT}, disabled_validation_features)
@@ -7621,7 +7621,7 @@ function ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:VkVa
     ValidationFeaturesEXT(vks, deps)
 end
 
-function ValidationFlagsEXT(disabled_validation_checks::AbstractArray{<:VkValidationCheckEXT}; next = C_NULL)
+function ValidationFlagsEXT(disabled_validation_checks::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     disabled_validation_checks = cconvert(Ptr{VkValidationCheckEXT}, disabled_validation_checks)
     deps = [next, disabled_validation_checks]
@@ -7637,7 +7637,7 @@ function DebugReportCallbackCreateInfoEXT(pfn_callback::FunctionPtr; next = C_NU
     DebugReportCallbackCreateInfoEXT(vks, deps)
 end
 
-function PresentInfoKHR(wait_semaphores::AbstractArray{<:Semaphore}, swapchains::AbstractArray{<:SwapchainKHR}, image_indices::AbstractArray{<:Integer}; next = C_NULL, results = C_NULL)
+function PresentInfoKHR(wait_semaphores::AbstractArray, swapchains::AbstractArray, image_indices::AbstractArray; next = C_NULL, results = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     wait_semaphores = cconvert(Ptr{VkSemaphore}, wait_semaphores)
     swapchains = cconvert(Ptr{VkSwapchainKHR}, swapchains)
@@ -7648,7 +7648,7 @@ function PresentInfoKHR(wait_semaphores::AbstractArray{<:Semaphore}, swapchains:
     PresentInfoKHR(vks, deps)
 end
 
-function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
@@ -7752,7 +7752,7 @@ function DisplayModeParametersKHR(visible_region::Extent2D, refresh_rate::Intege
     DisplayModeParametersKHR(VkDisplayModeParametersKHR(visible_region.vks, refresh_rate))
 end
 
-function SubmitInfo(wait_semaphores::AbstractArray{<:Semaphore}, wait_dst_stage_mask::AbstractArray{<:Integer}, command_buffers::AbstractArray{<:CommandBuffer}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
+function SubmitInfo(wait_semaphores::AbstractArray, wait_dst_stage_mask::AbstractArray, command_buffers::AbstractArray, signal_semaphores::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     wait_semaphores = cconvert(Ptr{VkSemaphore}, wait_semaphores)
     wait_dst_stage_mask = cconvert(Ptr{VkPipelineStageFlags}, wait_dst_stage_mask)
@@ -7775,7 +7775,7 @@ function DrawIndirectCommand(vertex_count::Integer, instance_count::Integer, fir
     DrawIndirectCommand(VkDrawIndirectCommand(vertex_count, instance_count, first_vertex, first_instance))
 end
 
-function FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; next = C_NULL, flags = 0)
+function FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkImageView}, attachments)
     deps = [next, attachments]
@@ -7815,7 +7815,7 @@ function EventCreateInfo(; next = C_NULL, flags = 0)
     EventCreateInfo(vks, deps)
 end
 
-function RenderPassCreateInfo(attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}; next = C_NULL, flags = 0)
+function RenderPassCreateInfo(attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkAttachmentDescription}, attachments)
     subpasses = cconvert(Ptr{VkSubpassDescription}, subpasses)
@@ -7829,7 +7829,7 @@ function SubpassDependency(src_subpass::Integer, dst_subpass::Integer, src_stage
     SubpassDependency(VkSubpassDependency(src_subpass, dst_subpass, src_stage_mask, dst_stage_mask, src_access_mask, dst_access_mask, dependency_flags))
 end
 
-function SubpassDescription(pipeline_bind_point::VkPipelineBindPoint, input_attachments::AbstractArray{<:AttachmentReference}, color_attachments::AbstractArray{<:AttachmentReference}, preserve_attachments::AbstractArray{<:Integer}; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
+function SubpassDescription(pipeline_bind_point::VkPipelineBindPoint, input_attachments::AbstractArray, color_attachments::AbstractArray, preserve_attachments::AbstractArray; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
     input_attachments = cconvert(Ptr{VkAttachmentReference}, input_attachments)
     color_attachments = cconvert(Ptr{VkAttachmentReference}, color_attachments)
     resolve_attachments = cconvert(Ptr{VkAttachmentReference}, resolve_attachments)
@@ -7864,7 +7864,7 @@ function ClearColorValue(float32::NTuple{4, Float32}, int32::NTuple{4, Int32}, u
     ClearColorValue(VkClearColorValue(float32, int32, uint32))
 end
 
-function RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, render_area::Rect2D, clear_values::AbstractArray{<:ClearValue}; next = C_NULL)
+function RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, render_area::Rect2D, clear_values::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     clear_values = cconvert(Ptr{VkClearValue}, clear_values)
     deps = [next, clear_values]
@@ -7908,7 +7908,7 @@ function SamplerCreateInfo(mag_filter::VkFilter, min_filter::VkFilter, mipmap_mo
     SamplerCreateInfo(vks, deps)
 end
 
-function PipelineLayoutCreateInfo(set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}; next = C_NULL, flags = 0)
+function PipelineLayoutCreateInfo(set_layouts::AbstractArray, push_constant_ranges::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
     push_constant_ranges = cconvert(Ptr{VkPushConstantRange}, push_constant_ranges)
@@ -7929,7 +7929,7 @@ function PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags 
     PipelineCacheCreateInfo(vks, deps)
 end
 
-function GraphicsPipelineCreateInfo(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, rasterization_state::PipelineRasterizationStateCreateInfo, layout::PipelineLayout, render_pass::RenderPass, subpass::Integer, base_pipeline_index::Integer; next = C_NULL, flags = 0, vertex_input_state = C_NULL, input_assembly_state = C_NULL, tessellation_state = C_NULL, viewport_state = C_NULL, multisample_state = C_NULL, depth_stencil_state = C_NULL, color_blend_state = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
+function GraphicsPipelineCreateInfo(stages::AbstractArray, rasterization_state::PipelineRasterizationStateCreateInfo, layout::PipelineLayout, render_pass::RenderPass, subpass::Integer, base_pipeline_index::Integer; next = C_NULL, flags = 0, vertex_input_state = C_NULL, input_assembly_state = C_NULL, tessellation_state = C_NULL, viewport_state = C_NULL, multisample_state = C_NULL, depth_stencil_state = C_NULL, color_blend_state = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     stages = cconvert(Ptr{VkPipelineShaderStageCreateInfo}, stages)
     vertex_input_state = cconvert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state)
@@ -7957,7 +7957,7 @@ function StencilOpState(fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_o
     StencilOpState(VkStencilOpState(fail_op, pass_op, depth_fail_op, compare_op, compare_mask, write_mask, reference))
 end
 
-function PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray{<:VkDynamicState}; next = C_NULL, flags = 0)
+function PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     dynamic_states = cconvert(Ptr{VkDynamicState}, dynamic_states)
     deps = [next, dynamic_states]
@@ -7965,7 +7965,7 @@ function PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray{<:VkDynami
     PipelineDynamicStateCreateInfo(vks, deps)
 end
 
-function PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::VkLogicOp, attachments::AbstractArray{<:PipelineColorBlendAttachmentState}, blend_constants::NTuple{4, Float32}; next = C_NULL, flags = 0)
+function PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::VkLogicOp, attachments::AbstractArray, blend_constants::NTuple{4, Float32}; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkPipelineColorBlendAttachmentState}, attachments)
     deps = [next, attachments]
@@ -8015,7 +8015,7 @@ function PipelineInputAssemblyStateCreateInfo(topology::VkPrimitiveTopology, pri
     PipelineInputAssemblyStateCreateInfo(vks, deps)
 end
 
-function PipelineVertexInputStateCreateInfo(vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription}, vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription}; next = C_NULL, flags = 0)
+function PipelineVertexInputStateCreateInfo(vertex_binding_descriptions::AbstractArray, vertex_attribute_descriptions::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     vertex_binding_descriptions = cconvert(Ptr{VkVertexInputBindingDescription}, vertex_binding_descriptions)
     vertex_attribute_descriptions = cconvert(Ptr{VkVertexInputAttributeDescription}, vertex_attribute_descriptions)
@@ -8048,7 +8048,7 @@ function PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::Sh
     PipelineShaderStageCreateInfo(vks, deps)
 end
 
-function SpecializationInfo(map_entries::AbstractArray{<:SpecializationMapEntry}, data::Ptr{Cvoid}; data_size = 0)
+function SpecializationInfo(map_entries::AbstractArray, data::Ptr{Cvoid}; data_size = 0)
     map_entries = cconvert(Ptr{VkSpecializationMapEntry}, map_entries)
     data = cconvert(Ptr{Cvoid}, data)
     deps = [map_entries, data]
@@ -8060,7 +8060,7 @@ function SpecializationMapEntry(constant_id::Integer, offset::Integer, size::Int
     SpecializationMapEntry(VkSpecializationMapEntry(constant_id, offset, size))
 end
 
-function DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray{<:DescriptorSetLayout}; next = C_NULL)
+function DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
     deps = [next, set_layouts]
@@ -8068,7 +8068,7 @@ function DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts:
     DescriptorSetAllocateInfo(vks, deps)
 end
 
-function DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}; next = C_NULL, flags = 0)
+function DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     pool_sizes = cconvert(Ptr{VkDescriptorPoolSize}, pool_sizes)
     deps = [next, pool_sizes]
@@ -8080,7 +8080,7 @@ function DescriptorPoolSize(type::VkDescriptorType, descriptor_count::Integer)
     DescriptorPoolSize(VkDescriptorPoolSize(type, descriptor_count))
 end
 
-function DescriptorSetLayoutCreateInfo(bindings::AbstractArray{<:DescriptorSetLayoutBinding}; next = C_NULL, flags = 0)
+function DescriptorSetLayoutCreateInfo(bindings::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     bindings = cconvert(Ptr{VkDescriptorSetLayoutBinding}, bindings)
     deps = [next, bindings]
@@ -8095,7 +8095,7 @@ function DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescrip
     DescriptorSetLayoutBinding(vks, deps)
 end
 
-function ShaderModuleCreateInfo(code_size::Integer, code::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+function ShaderModuleCreateInfo(code_size::Integer, code::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     code = cconvert(Ptr{UInt32}, code)
     deps = [next, code]
@@ -8119,7 +8119,7 @@ function ImageCopy(src_subresource::ImageSubresourceLayers, src_offset::Offset3D
     ImageCopy(VkImageCopy(src_subresource.vks, src_offset.vks, dst_subresource.vks, dst_offset.vks, extent.vks))
 end
 
-function BindSparseInfo(wait_semaphores::AbstractArray{<:Semaphore}, buffer_binds::AbstractArray{<:SparseBufferMemoryBindInfo}, image_opaque_binds::AbstractArray{<:SparseImageOpaqueMemoryBindInfo}, image_binds::AbstractArray{<:SparseImageMemoryBindInfo}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
+function BindSparseInfo(wait_semaphores::AbstractArray, buffer_binds::AbstractArray, image_opaque_binds::AbstractArray, image_binds::AbstractArray, signal_semaphores::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     wait_semaphores = cconvert(Ptr{VkSemaphore}, wait_semaphores)
     buffer_binds = cconvert(Ptr{VkSparseBufferMemoryBindInfo}, buffer_binds)
@@ -8131,21 +8131,21 @@ function BindSparseInfo(wait_semaphores::AbstractArray{<:Semaphore}, buffer_bind
     BindSparseInfo(vks, deps)
 end
 
-function SparseImageMemoryBindInfo(image::Image, binds::AbstractArray{<:SparseImageMemoryBind})
+function SparseImageMemoryBindInfo(image::Image, binds::AbstractArray)
     binds = cconvert(Ptr{VkSparseImageMemoryBind}, binds)
     deps = [binds]
     vks = VkSparseImageMemoryBindInfo(image, pointer_length(binds), unsafe_convert(Ptr{VkSparseImageMemoryBind}, binds))
     SparseImageMemoryBindInfo(vks, deps)
 end
 
-function SparseImageOpaqueMemoryBindInfo(image::Image, binds::AbstractArray{<:SparseMemoryBind})
+function SparseImageOpaqueMemoryBindInfo(image::Image, binds::AbstractArray)
     binds = cconvert(Ptr{VkSparseMemoryBind}, binds)
     deps = [binds]
     vks = VkSparseImageOpaqueMemoryBindInfo(image, pointer_length(binds), unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
     SparseImageOpaqueMemoryBindInfo(vks, deps)
 end
 
-function SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray{<:SparseMemoryBind})
+function SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray)
     binds = cconvert(Ptr{VkSparseMemoryBind}, binds)
     deps = [binds]
     vks = VkSparseBufferMemoryBindInfo(buffer, pointer_length(binds), unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
@@ -8171,7 +8171,7 @@ function ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::V
     ImageViewCreateInfo(vks, deps)
 end
 
-function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
+function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
@@ -8219,7 +8219,7 @@ function BufferViewCreateInfo(buffer::Buffer, format::VkFormat, offset::Integer,
     BufferViewCreateInfo(vks, deps)
 end
 
-function BufferCreateInfo(size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+function BufferCreateInfo(size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
@@ -8234,7 +8234,7 @@ function CopyDescriptorSet(src_set::DescriptorSet, src_binding::Integer, src_arr
     CopyDescriptorSet(vks, deps)
 end
 
-function WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray{<:DescriptorImageInfo}, buffer_info::AbstractArray{<:DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL)
+function WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     image_info = cconvert(Ptr{VkDescriptorImageInfo}, image_info)
     buffer_info = cconvert(Ptr{VkDescriptorBufferInfo}, buffer_info)
@@ -8266,7 +8266,7 @@ function MemoryAllocateInfo(allocation_size::Integer, memory_type_index::Integer
     MemoryAllocateInfo(vks, deps)
 end
 
-function InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
+function InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next = C_NULL, flags = 0, application_info = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
     enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
@@ -8276,7 +8276,7 @@ function InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}
     InstanceCreateInfo(vks, deps)
 end
 
-function DeviceCreateInfo(queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, enabled_features = C_NULL)
+function DeviceCreateInfo(queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next = C_NULL, flags = 0, enabled_features = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     queue_create_infos = cconvert(Ptr{VkDeviceQueueCreateInfo}, queue_create_infos)
     enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
@@ -8287,7 +8287,7 @@ function DeviceCreateInfo(queue_create_infos::AbstractArray{<:DeviceQueueCreateI
     DeviceCreateInfo(vks, deps)
 end
 
-function DeviceQueueCreateInfo(queue_family_index::Integer, queue_priorities::AbstractArray{<:Real}; next = C_NULL, flags = 0)
+function DeviceQueueCreateInfo(queue_family_index::Integer, queue_priorities::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     queue_priorities = cconvert(Ptr{Float32}, queue_priorities)
     deps = [next, queue_priorities]
@@ -8385,11 +8385,11 @@ cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable
 
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool) = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL) = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL, strides = C_NULL) = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}) = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors)
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray) = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors)
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports)
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray) = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports)
 
 cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology) = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology)
 
@@ -8413,11 +8413,11 @@ end
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR) = vkGetAccelerationStructureDeviceAddressKHR(device, info)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR}) = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos))
+build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray) = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos))
 
 cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer) = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride)
 
-cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR}) = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos)
+cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray) = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos)
 
 function create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR; allocator = C_NULL)
     pAccelerationStructure = Ref{VkAccelerationStructureKHR}()
@@ -8568,13 +8568,13 @@ function get_physical_device_cooperative_matrix_properties_nv(physical_device::P
     from_vk.(CooperativeMatrixPropertiesNV, pProperties)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesKHR(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
 end
 
-function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesNV(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
@@ -8602,7 +8602,7 @@ cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buf
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer) = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
 
-function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, stride::Integer)
+function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, stride::Integer)
     pData = Ref{Ptr{Cvoid}}()
     @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, pData, stride)
     pData[]
@@ -8610,7 +8610,7 @@ end
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL) = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer) = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer) = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
 copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR) = @check(vkCopyMemoryToAccelerationStructureKHR(device, info))
 
@@ -8626,7 +8626,7 @@ cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAcc
 
 cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR) = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode)
 
-bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoKHR}) = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos))
+bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray) = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos))
 
 function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)
     pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()
@@ -8656,13 +8656,13 @@ cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, o
 
 cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer) = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task)
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}) = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders)
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray) = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders)
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}) = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes)
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray) = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes)
 
 cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout; image_view = C_NULL) = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout)
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:Rect2D}) = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors)
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray) = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors)
 
 cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer) = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride)
 
@@ -8670,11 +8670,11 @@ cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, 
 
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL) = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL) = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
 
 function get_queue_checkpoint_data_nv(queue::Queue)
     pCheckpointDataCount = Ref{UInt32}()
@@ -8758,7 +8758,7 @@ set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfo
 
 set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT) = @check(vkSetDebugUtilsObjectNameEXT(device, name_info))
 
-function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT})
+function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray)
     pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
     pMaxDeviation = Ref{UInt64}()
     @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, pTimestamps, pMaxDeviation)
@@ -8788,7 +8788,7 @@ function get_descriptor_set_layout_support(device::Device, create_info::Descript
     from_vk(DescriptorSetLayoutSupport, pSupport[])
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray) = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
 
 function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)
     pDataSize = Ref(data_size)
@@ -8891,9 +8891,9 @@ end
 
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT) = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info)
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:Rect2D}) = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles)
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray) = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles)
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:ViewportWScalingNV}) = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings)
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray) = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings)
 
 function create_metal_surface_ext(instance::Instance, create_info::MetalSurfaceCreateInfoEXT; allocator = C_NULL)
     pSurface = Ref{VkSurfaceKHR}()
@@ -8929,7 +8929,7 @@ end
 
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR) = @check(vkGetSwapchainStatusKHR(device, swapchain))
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:HdrMetadataEXT}) = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray) = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
 
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}) = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data))
 
@@ -8973,9 +8973,9 @@ end
 
 cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer) = vkCmdSetDeviceMask(command_buffer, device_mask)
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo}) = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos))
+bind_image_memory_2(device::Device, bind_infos::AbstractArray) = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos))
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo}) = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos))
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray) = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos))
 
 function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)
     pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()
@@ -9091,7 +9091,7 @@ end
 
 trim_command_pool(device::Device, command_pool::CommandPool; flags = 0) = vkTrimCommandPool(device, command_pool, flags)
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet}) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes)
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes)
 
 function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2)
     pPropertyCount = Ref{UInt32}()
@@ -9300,7 +9300,7 @@ end
 
 destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL) = vkDestroySurfaceKHR(instance, surface, allocator)
 
-function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:SwapchainCreateInfoKHR}; allocator = C_NULL)
+function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray; allocator = C_NULL)
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
     @check vkCreateSharedSwapchainsKHR(device, pointer_length(create_infos), create_infos, allocator, pSwapchains)
     parent = getproperty(create_infos, :surface)
@@ -9363,7 +9363,7 @@ function create_android_surface_khr(instance::Instance, create_info::AndroidSurf
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer}) = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray) = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
 
 cmd_end_render_pass(command_buffer::CommandBuffer) = vkCmdEndRenderPass(command_buffer)
 
@@ -9387,35 +9387,35 @@ cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integ
 
 cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, flags)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer) = vkCmdResetEvent(command_buffer, event, stage_mask)
 
 cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer) = vkCmdSetEvent(command_buffer, event, stage_mask)
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageResolve}) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:ClearAttachment}, rects::AbstractArray{<:ClearRect}) = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects)
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray) = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects)
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray{<:ImageSubresourceRange}) = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges)
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray) = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges)
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange}) = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges)
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray) = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges)
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer) = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data)
 
 cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data))
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy}) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:BufferImageCopy}) = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray) = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageBlit}, filter::VkFilter) = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, filter::VkFilter) = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter)
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageCopy}) = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray) = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy}) = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions)
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray) = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions)
 
 cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer) = vkCmdDispatchIndirect(command_buffer, buffer, offset)
 
@@ -9429,11 +9429,11 @@ cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_c
 
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer) = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}) = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray) = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
 
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType) = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer}) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
 
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::Integer, reference::Integer) = vkCmdSetStencilReference(command_buffer, face_mask, reference)
 
@@ -9449,9 +9449,9 @@ cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Re
 
 cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real) = vkCmdSetLineWidth(command_buffer, line_width)
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}) = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors)
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray) = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors)
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
 
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline) = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline)
 
@@ -9461,7 +9461,7 @@ end_command_buffer(command_buffer::CommandBuffer) = @check(vkEndCommandBuffer(co
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo) = @check(vkBeginCommandBuffer(command_buffer, begin_info))
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer}) = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray) = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
 
 function allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo)
     pCommandBuffers = Vector{VkCommandBuffer}(undef, allocate_info.vks.commandBufferCount)
@@ -9502,9 +9502,9 @@ function create_framebuffer(device::Device, create_info::FramebufferCreateInfo; 
     Framebuffer(pFramebuffer[], (x->destroy_framebuffer(device, x; allocator)), device)
 end
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet}) = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray) = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
 
 function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)
     pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
@@ -9549,19 +9549,19 @@ end
 
 destroy_pipeline(device::Device, pipeline::Pipeline; allocator = C_NULL) = vkDestroyPipeline(device, pipeline, allocator)
 
-function create_compute_pipelines(device::Device, create_infos::AbstractArray{<:ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_compute_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateComputePipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
 end
 
-function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
+function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
 
 function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)
     pDataSize = Ref(data_size)
@@ -9662,11 +9662,11 @@ function create_semaphore(device::Device, create_info::SemaphoreCreateInfo; allo
     Semaphore(pSemaphore[], (x->destroy_semaphore(device, x; allocator)), device)
 end
 
-wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer) = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer) = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
 
 get_fence_status(device::Device, fence::Fence) = @check(vkGetFenceStatus(device, fence))
 
-reset_fences(device::Device, fences::AbstractArray{<:Fence}) = @check(vkResetFences(device, pointer_length(fences), fences))
+reset_fences(device::Device, fences::AbstractArray) = @check(vkResetFences(device, pointer_length(fences), fences))
 
 destroy_fence(device::Device, fence::Fence; allocator = C_NULL) = vkDestroyFence(device, fence, allocator)
 
@@ -9676,7 +9676,7 @@ function create_fence(device::Device, create_info::FenceCreateInfo; allocator = 
     Fence(pFence[], (x->destroy_fence(device, x; allocator)), device)
 end
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
 
 function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::Integer, tiling::VkImageTiling)
     pPropertyCount = Ref{UInt32}()
@@ -9716,9 +9716,9 @@ function get_device_memory_commitment(device::Device, memory::DeviceMemory)
     pCommittedMemoryInBytes[]
 end
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}) = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray) = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}) = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray) = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
 
 unmap_memory(device::Device, memory::DeviceMemory) = vkUnmapMemory(device, memory)
 
@@ -9740,7 +9740,7 @@ device_wait_idle(device::Device) = @check(vkDeviceWaitIdle(device))
 
 queue_wait_idle(queue::Queue) = @check(vkQueueWaitIdle(queue))
 
-queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}; fence = C_NULL) = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence))
+queue_submit(queue::Queue, submits::AbstractArray; fence = C_NULL) = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence))
 
 function get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer)
     pQueue = Ref{VkQueue}()

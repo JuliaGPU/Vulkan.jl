@@ -2,18 +2,26 @@ struct VulkanWrapper
     handles::Vector{Expr}
     structs::Vector{Expr}
     funcs::Vector{Expr}
+    docs::Vector{Expr}
     misc::Vector{Expr}
 end
 
 Base.show(io::IO, vw::VulkanWrapper) = print(io, "VulkanWrapper with $(length(vw.handles)) handles, $(length(vw.structs)) structs, $(length(vw.funcs)) functions and $(length(vw.misc)) others.")
 
 function wrap(spec::SpecHandle)
-    :(mutable struct $(remove_vk_prefix(spec.name)) <: Handle
-         vks::$(spec.name)
-         refcount::RefCounter
-         destructor
-         $(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef)
-     end)
+    Dict(
+        :category => :struct,
+        :decl => :($(remove_vk_prefix(spec.name)) <: Handle),
+        :is_mutable => true,
+        :fields => [
+            :(vks::$(spec.name)),
+            :(refcount::RefCounter),
+            :destructor,
+        ],
+        :constructors => [
+            :($(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef)),
+        ],
+    )
 end
 
 function wrap(spec::SpecStruct)
@@ -30,7 +38,7 @@ function wrap(spec::SpecStruct)
         needs_deps(spec) && push!(p[:fields], :(deps::Vector{Any}))
     end
 
-    reconstruct(p)
+    p
 end
 
 function from_vk_call(x::Spec)
@@ -260,7 +268,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
 
     add_func_args!(p, spec, args; with_func_ptr)
 
-    reconstruct(p)
+    p
 end
 
 chain_getproperty(ex, props) = foldl((x, y) -> :($x.$y), props; init=ex)
@@ -328,7 +336,7 @@ assign_parent(parent_ex::Expr) = :($(assigned_parent_symbol(parent_ex)) = $paren
 function destructor(handle::SpecHandle; with_func_ptr=false)
     destroy = destroy_func(handle)
     if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
-        p = deconstruct(wrap(destroy.func))
+        p = wrap(destroy.func)
         p_call = Dict(
             :name => p[:name],
             :args => Any[name.(p[:args])...],
@@ -344,7 +352,7 @@ end
 
 function add_constructor(spec::SpecHandle; with_func_ptr = false)
     create = spec_create_funcs[findfirst(x -> !x.batch && x.handle == spec, spec_create_funcs)]
-    p_func = deconstruct(wrap(create.func))
+    p_func = wrap(create.func)
     constructor_args = p_func[:args]
 
     if isnothing(create.create_info_struct)
@@ -354,7 +362,7 @@ function add_constructor(spec::SpecHandle; with_func_ptr = false)
         with_func_ptr && append!(args, func_ptr_args(spec))
         body = reconstruct_call(Dict(:name => p_func[:name], :args => name.(args), :kwargs => name.(kwargs)))
     else
-        p_info = deconstruct(add_constructor(create.create_info_struct))
+        p_info = add_constructor(create.create_info_struct)
         args = [constructor_args; p_info[:args]]
 
         kwargs = vcat(p_func[:kwargs], p_info[:kwargs])
@@ -374,14 +382,16 @@ function add_constructor(spec::SpecHandle; with_func_ptr = false)
         body = reconstruct_call(Dict(:name => p_func[:name], :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
     end
 
-    reconstruct(Dict(
+    _name = remove_vk_prefix(spec.name)
+
+    Dict(
         :category => :function,
-        :name => remove_vk_prefix(spec.name),
+        :name => _name,
         :args => args,
         :kwargs => kwargs,
         :short => true,
         :body => body,
-    ))
+    )
 end
 
 function add_constructor(spec::SpecStruct)
@@ -399,29 +409,37 @@ function add_constructor(spec::SpecStruct)
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, spec.members)
     add_func_args!(p, spec, potential_args)
-    reconstruct(p)
+    p
 end
 
 function extend_from_vk(spec::SpecStruct)
     p = Dict(:category => :function, :name => :from_vk, :args => [:(T::Type{$(remove_vk_prefix(spec.name))}), :(x::$(spec.name))], :short => true)
     p[:body] = :(T($(filter(!isnothing, from_vk_call.(spec.members))...)))
+    p
+end
+
+function to_expr(p::Dict)
+    p[:category] == :function && relax_function_signature!(p)
     reconstruct(p)
 end
 
 function VulkanWrapper()
-    handles = wrap.(spec_handles)
-    structs = wrap.(spec_structs)
+    handles = to_expr.(wrap.(spec_handles))
+    structs = to_expr.(wrap.(spec_structs))
     returnedonly_structs = filter(x -> x.is_returnedonly, spec_structs)
-    funcs = collect(Iterators.flatten([
+    api_structs = filter(!in(returnedonly_structs), spec_structs)
+    funcs = to_expr.(vcat(
         wrap.(spec_funcs),
-        add_constructor.(filter(!in(returnedonly_structs), spec_structs)),
+        add_constructor.(api_structs),
         extend_from_vk.(returnedonly_structs),
         add_constructor.(spec_handles_with_single_constructor),
         wrap.(spec_funcs; with_func_ptr=true),
         add_constructor.(spec_handles_with_single_constructor; with_func_ptr=true),
-    ]))
+    ))
+
+    docs = vcat(document.(spec_funcs, wrap.(spec_funcs)), document.(api_structs, add_constructor.(api_structs)), document.(spec_handles_with_single_constructor, add_constructor.(spec_handles_with_single_constructor)))
     misc = []
-    VulkanWrapper(handles, structs, funcs, misc)
+    VulkanWrapper(handles, structs, funcs, docs, misc)
 end
 
 is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
@@ -438,4 +456,4 @@ function is_pointer_start(spec::Spec)
 end
 
 is_semantic_ptr(type) = is_ptr(type) || type == :Cstring
-needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type)
+needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type) && !spec.is_returnedonly

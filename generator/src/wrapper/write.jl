@@ -1,7 +1,7 @@
 """
 Write the wrapper to `destfile`.
 """
-function Base.write(vw::VulkanWrapper, destfile)
+function Base.write(vw::VulkanWrapper, destfile, docfile)
     exprs = vcat(vw.handles, vw.structs, vw.funcs, vw.misc)
     ordered_exprs = sort_expressions(exprs)
     structs = filter(is_category(:struct), ordered_exprs)
@@ -13,6 +13,10 @@ function Base.write(vw::VulkanWrapper, destfile)
         print_block(io, setdiff(ordered_exprs, vcat(structs, funcs)))
 
         write_exports(io, exprs)
+    end
+
+    open(docfile, "w+") do io
+        print_block(io, vw.docs)
     end
 end
 
@@ -31,15 +35,22 @@ function print_block(io::IO, exs)
     println(io)
 end
 
-block(ex::Expr) = string(prettify(ex)) * spacing(ex)
+function block(ex::Expr)
+    str = @match category(ex) begin
+        :doc => string('\"'^3, ex.args[3], '\"'^3, '\n', ex.args[4])
+        _ => string(prettify(ex))
+    end
+    str * spacing(ex)
+end
 
-spacing(ex::Expr) = spacing(ex, category(ex))
+spacing(ex::Expr) = spacing(category(ex))
 
-spacing(ex, cat) = @match cat begin
+spacing(cat::Symbol) = @match cat begin
     :struct => '\n'^2
     :function => '\n'^2
     :const => '\n'
     :enum => '\n'
+    :doc => '\n'^2
 end
 
 function write_exports(io::IO, decls)

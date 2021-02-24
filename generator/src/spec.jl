@@ -1,5 +1,4 @@
-using EzXML
-using EzXML: Node
+using EzXML: Node, readxml
 using Vulkan_Headers_jll:vk_xml
 
 const xdoc = readxml(vk_xml)

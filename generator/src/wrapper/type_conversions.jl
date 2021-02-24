@@ -35,5 +35,26 @@ function signature_type(type)
     end
 end
 
+function relax_signature_type(type)
+    @match type begin
+        :(AbstractArray{<:$_}) => :AbstractArray
+        t => t
+    end
+end
+
+function relax_function_signature!(p::Dict)
+    p[:args] = relax_function_signature(p[:args])
+    p
+end
+
+function relax_function_signature(args::AbstractVector)
+    map(args) do arg
+        @match arg begin
+            :($identifier::$type) => :($identifier::$(relax_signature_type(type)))
+            _ => arg
+        end
+    end
+end
+
 is_fn_ptr(type) = startswith(string(type), "PFN")
 is_opaque_pointer(type) = type == :(Ptr{Cvoid})
