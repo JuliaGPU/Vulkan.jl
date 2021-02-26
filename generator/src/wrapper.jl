@@ -40,6 +40,7 @@ export
         wrap,
         add_constructor,
         extend_from_vk,
-        to_expr
+        to_expr,
+        document
 
 

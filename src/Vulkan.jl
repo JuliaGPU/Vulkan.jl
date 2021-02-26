@@ -34,6 +34,7 @@ const ERROR_CHECKING = @load_preference("ERROR_CHECKING", true)
 # generated wrapper
 include("prewrap.jl")
 include("../generated/vulkan_wrapper.jl")
+include("../generated/vulkan_docs.jl")
 
 include("utils.jl")
 include("bitmasks.jl")
