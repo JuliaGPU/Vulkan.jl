@@ -2,7 +2,7 @@
 Write the wrapper to `destfile`.
 """
 function Base.write(vw::VulkanWrapper, destfile, docfile)
-    exprs = vcat(vw.handles, vw.structs, vw.funcs, vw.misc)
+    exprs = vcat(vw.handles, vw.structs, vw.funcs)
     ordered_exprs = sort_expressions(exprs)
     structs = filter(is_category(:struct), ordered_exprs)
     funcs = filter(is_category(:function), ordered_exprs)

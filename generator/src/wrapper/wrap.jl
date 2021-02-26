@@ -3,10 +3,9 @@ struct VulkanWrapper
     structs::Vector{Expr}
     funcs::Vector{Expr}
     docs::Vector{Expr}
-    misc::Vector{Expr}
 end
 
-Base.show(io::IO, vw::VulkanWrapper) = print(io, "VulkanWrapper with $(length(vw.handles)) handles, $(length(vw.structs)) structs, $(length(vw.funcs)) functions and $(length(vw.misc)) others.")
+Base.show(io::IO, vw::VulkanWrapper) = print(io, "VulkanWrapper with $(length(vw.handles)) handles, $(length(vw.structs)) structs and $(length(vw.funcs)) functions.")
 
 function wrap(spec::SpecHandle)
     Dict(
@@ -438,8 +437,7 @@ function VulkanWrapper()
     ))
 
     docs = vcat(document.(spec_funcs, wrap.(spec_funcs)), document.(api_structs, add_constructor.(api_structs)), document.(spec_handles_with_single_constructor, add_constructor.(spec_handles_with_single_constructor)))
-    misc = []
-    VulkanWrapper(handles, structs, funcs, docs, misc)
+    VulkanWrapper(handles, structs, funcs, docs)
 end
 
 is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
