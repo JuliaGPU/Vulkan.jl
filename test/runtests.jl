@@ -22,11 +22,11 @@ const debug_callback_c = @cfunction(debug_callback, UInt32, (VkDebugUtilsMessage
 const API_VERSION = v"1.2"
 const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"
 const WITH_VALIDATION = Ref(false)
-const INSTANCE_LAYERS = String[
+const INSTANCE_LAYERS = [
 ]
-const INSTANCE_EXTENSIONS = String[
+const INSTANCE_EXTENSIONS = [
 ]
-const DEVICE_EXTENSIONS = String[
+const DEVICE_EXTENSIONS = [
 ]
 const ENABLED_FEATURES = PhysicalDeviceFeatures(
 )
