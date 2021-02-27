@@ -73,9 +73,9 @@ device = Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], String[], St
 When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the create_\* function manually
 
 ```julia
-pipelines = create_graphics_pipelines(device, [GraphicsPipelineCreateInfo(...)])
-command_buffers = allocate_command_buffers(device, CommandBufferAllocateInfo(
-                                           command_pool, VK_COMMAND_BUFFER_LEVEL_PRIMARY, 3))
+pipelines = unwrap(create_graphics_pipelines(device, [GraphicsPipelineCreateInfo(...)]))
+command_buffers = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(
+                                           command_pool, VK_COMMAND_BUFFER_LEVEL_PRIMARY, 3)))
 ```
 
 ## Functions
@@ -86,7 +86,7 @@ Functions almost never directly return a value in Vulkan, and usually return eit
 
 ```julia
 pDisplay = Ref{VkDisplayKHR}()
-@check vkGetRandROutputDisplayEXT(physical_device, dpy_ref, rr_output, pDisplay)
+code = vkGetRandROutputDisplayEXT(physical_device, dpy_ref, rr_output, pDisplay) # just leave the return code
 pDisplay[]
 
 # or, showing what is actually done by the wrapper instead
@@ -96,13 +96,13 @@ DisplayKHR(pDisplay[], identity, physical_device)
 This particular setup is taken care of by the wrapper, so that you only need to do:
 
 ```julia
-display = get_rand_r_output_display_ext(physical_device, dpy_ref, rr_output)
+display = unwrap(get_rand_r_output_display_ext(physical_device, dpy_ref, rr_output))
 ```
 
 When there are multiple implicit return values (i.e. multiple pointers being written to), they are returned as a tuple:
 
 ```julia
-actual_data_size, data = get_pipeline_cache_data(device, pipeline_cache, data_size)
+actual_data_size, data = unwrap(get_pipeline_cache_data(device, pipeline_cache, data_size))
 ```
 
 ### Enumerated arrays
@@ -237,36 +237,26 @@ In Vulkan, the value of some flags carry meaning through a bitmask structure. Bi
 
 For example, consider the vanilla `VkSampleCountFlags` type (alias for `UInt32`) with bits defined via the enumerated type `VkSampleCountFlagBits`:
 
-```jldoctest; setup = :(using VulkanCore.vk)
-julia> VK_SAMPLE_COUNT_1_BIT isa VkSampleCountFlagBits
-true
-julia> VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlagBits(1)
-true
-julia> VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlags(1)
-false
-julia> VK_SAMPLE_COUNT_1_BIT | VK_SAMPLE_COUNT_2_BIT === VkSampleCountFlags(3)
-true
-julia> VK_SAMPLE_COUNT_1_BIT & VK_SAMPLE_COUNT_2_BIT === VkSampleCountFlags(0)
-true
-julia> VK_SAMPLE_COUNT_1_BIT & VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR === VkSampleCountFlags(1)
-true
+```@repl
+using VulkanCore.vk
+VK_SAMPLE_COUNT_1_BIT isa VkSampleCountFlagBits
+VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlagBits(1)
+VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlags(1)
+VK_SAMPLE_COUNT_1_BIT | VK_SAMPLE_COUNT_2_BIT === VkSampleCountFlags(3)
+VK_SAMPLE_COUNT_1_BIT & VK_SAMPLE_COUNT_2_BIT === VkSampleCountFlags(0)
+VK_SAMPLE_COUNT_1_BIT & VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR === VkSampleCountFlags(1)
 ```
 
 Those two types are combined into one `SampleCountFlag`:
 
-```jldoctest; setup = :(using Vulkan)
-julia> SampleCountFlag <: BitMask
-true
-julia> SurfaceTransformFlagKHR <: BitMask # another bitmask flag
-true
-julia> SAMPLE_COUNT_1_BIT | SAMPLE_COUNT_2_BIT === SampleCountFlag(3)
-true
-julia> SAMPLE_COUNT_1_BIT & SAMPLE_COUNT_2_BIT === SampleCountFlag(0)
-true
-julia> SAMPLE_COUNT_1_BIT & SURFACE_TRANSFORM_IDENTITY_BIT_KHR
-ERROR: Bitwise operation not allowed between incompatible bitmasks 'SampleCountFlag', 'SurfaceTransformFlagKHR'
-julia> UInt32(typemax(SampleCountFlag)) === UInt32(vk.VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENUM)
-true
+```@repl
+using Vulkan
+SampleCountFlag <: BitMask
+SurfaceTransformFlagKHR <: BitMask # another bitmask flag
+SAMPLE_COUNT_1_BIT | SAMPLE_COUNT_2_BIT === SampleCountFlag(3)
+SAMPLE_COUNT_1_BIT & SAMPLE_COUNT_2_BIT === SampleCountFlag(0)
+SAMPLE_COUNT_1_BIT & SURFACE_TRANSFORM_IDENTITY_BIT_KHR
+UInt32(typemax(SampleCountFlag)) === UInt32(vk.VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENUM)
 ```
 
 All functions that were expecting a `VkSampleCountFlags` (`UInt32`) value will have their wrapped versions expect a value of type `SampleCountFlag`. Note also that the `*FLAG_BITS_MAX_ENUM` fields are removed. This value is the same for all enums and can be accessed via `typemax(T)` where `T` is a `BitMask` (e.g. `SampleCountFlag`).
