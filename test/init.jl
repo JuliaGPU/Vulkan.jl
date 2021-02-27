@@ -24,7 +24,7 @@ const device = let pdevices = enumerate_physical_devices(instance)
 
     Device(
         pdevice,
-        [DeviceQueueCreateInfo(find_queue_index(pdevice, VK_QUEUE_GRAPHICS_BIT & VK_QUEUE_COMPUTE_BIT), [1.0])],
+        [DeviceQueueCreateInfo(find_queue_index(pdevice, QUEUE_GRAPHICS_BIT & QUEUE_COMPUTE_BIT), [1.0])],
         [], DEVICE_EXTENSIONS; enabled_features = ENABLED_FEATURES
     )
 end

@@ -42,6 +42,7 @@ xor(a::Integer, b::T) where {T <: BitMask} = xor(b, a)
 (::Type{T})(bm::BitMask) where {T <: Integer} = T(bm.val)
 
 convert(T::Type{<:Integer}, bm::BitMask) = T(bm.val)
+convert(T::Type{<:BitMask}, val::Integer) = T(val)
 
 Base.typemax(T::Type{<:BitMask}) = T(0x7fffffff)
 

@@ -1,26 +1,26 @@
 const severity_hierarchy = ["debug", "info", "warn", "error"]
 
 const message_severities = [
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT,
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT,
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT,
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
+    DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT,
+    DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT,
+    DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT,
+    DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
 ]
 
 const message_types = Dict(
-    "general" => VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT,
-    "validation" => VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT,
-    "performance" => VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT,
+    "general" => DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT,
+    "validation" => DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT,
+    "performance" => DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT,
 )
 
 const message_types_r = reverse_dict(message_types)
 
 function vk_log(message_severity, str)
     log = @match message_severity begin
-        &VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT => "\e[34;1;1m[ Debug"
-        &VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT => "\e[36;1;1m[ Info"
-        &VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT => "\e[33;1;1m[ Warning"
-        &VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT => "\e[31;1;1m[ Error"
+        &DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT => "\e[34;1;1m[ Debug"
+        &DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT => "\e[36;1;1m[ Info"
+        &DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT => "\e[33;1;1m[ Warning"
+        &DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT => "\e[31;1;1m[ Error"
         _ => error("Unknown message severity $message_severity")
     end
     ccall(:jl_safe_printf, Cvoid, (Cstring,), string(log, ": \e[m", str, '\n'))
@@ -30,6 +30,8 @@ function default_debug_callback(message_severity, message_type, callback_data_pt
     callback_data_ptr == C_NULL && return UInt32(0)
     callback_data = unsafe_load(callback_data_ptr)
     message = unsafe_string(callback_data.pMessage)
+    message_severity = DebugUtilsMessageSeverityFlagEXT(UInt32(message_severity))
+    message_type = DebugUtilsMessageTypeFlagEXT(UInt32(message_type))
     if !startswith(message, "Device Extension: VK")
         id_name = unsafe_string(callback_data.pMessageIdName)
         vk_log(message_severity, "$(uppercase(message_types_r[message_type])) ($id_name): $message")
