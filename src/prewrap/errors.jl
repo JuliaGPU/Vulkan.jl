@@ -13,17 +13,11 @@ Base.showerror(io::IO, e::VulkanError) = print(io, e.return_code, ": ", e.msg)
     @check vkCreateInstance(args...)
 
 If the expression does not return `VK_SUCCESS`, raise a [`VulkanError`](@ref) holding the return code.
-
-Requires the `ERROR_CHECKING` preference enabled. Otherwise, it only returns the expression.
 """
 macro check(expr)
-    @static if ERROR_CHECKING
-        quote
-            local msg = string("failed to execute ", $(string(expr)))
-            @check $(esc(expr)) msg
-        end
-    else
-        esc(expr)
+    quote
+        local msg = string("failed to execute ", $(string(expr)))
+        @check $(esc(expr)) msg
     end
 end
 

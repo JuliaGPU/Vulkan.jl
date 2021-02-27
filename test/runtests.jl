@@ -9,7 +9,17 @@
 end
 
 using Test
+using Documenter
 using Vulkan
 
-include("bitmasks.jl")
-include("api.jl")
+DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
+    using Vulkan
+    instance = unwrap(Instance(String[], String[]))
+    physical_device = first(unwrap(enumerate_physical_devices(instance)))
+end)
+
+@testset "Vulkan.jl" begin
+    include("bitmasks.jl")
+    include("api.jl")
+    doctest(Vulkan)
+end

@@ -9,8 +9,8 @@ using VulkanGen
 
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan
-    instance = Instance(String[], String[])
-    physical_device = first(enumerate_physical_devices(instance))
+    instance = unwrap(Instance(String[], String[]))
+    physical_device = first(unwrap(enumerate_physical_devices(instance)))
 end)
 
 makedocs(;

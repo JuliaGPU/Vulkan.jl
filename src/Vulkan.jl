@@ -9,6 +9,7 @@ using MLStyle
 
 using Reexport
 @reexport using ResultTypes
+using ResultTypes: iserror
 
 Base.broadcastable(r::Result) = Ref(r)
 
@@ -21,8 +22,6 @@ const core = VulkanCore
 else
     using Preferences: @load_preference
 end
-
-const ERROR_CHECKING = @load_preference("ERROR_CHECKING", true)
 
 @template (FUNCTIONS, METHODS, MACROS) =
     """
@@ -63,8 +62,6 @@ export
         VulkanStruct,
         ReturnedOnly,
         Handle,
-        VulkanError,
-        @check,
         to_vk,
         from_vk,
 
@@ -92,6 +89,11 @@ export
         optional_bitwise_and,
         optional_bitwise_xor,
         BitMask,
-        @bitmask_flag
+        @bitmask_flag,
+
+        # Error handling
+        VulkanError,
+        @check,
+        iserror
 
 end # module Vulkan

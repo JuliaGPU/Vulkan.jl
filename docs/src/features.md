@@ -2,41 +2,32 @@
 
 This wrapper exposes several features aimed at simplifying the use of the Vulkan API from Julia. Some features are configurable through the recent [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl) package, see [the corresponding section](@ref preferences) for a list of available options.
 
-## Automatic error checking
+## Error handling
 
-Codes returned by functions are automatically checked for, and a [`VulkanError`](@ref) is thrown whenever a non-success code is encountered. To handle non-success return codes it may be desirable to wrap the function call in a `try`/`catch` block and check the `return_code` field of the thrown exception. For example:
+[ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) is used for error handling. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `Result`, which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
 
-```julia
-try
-    Instance(InstanceCreateInfo(String[], String[]))
-catch e
-    if e isa VulkanError && e.return_code == VK_INCOMPATIBLE_DRIVER
+```@example 1
+using Vulkan
+res = create_instance(InstanceCreateInfo([], []))
+if iserror(res) # handle the error
+    err = unwrap_error(res)
+    if err == VK_INCOMPATBIBLE_DRIVER
         error("No driver compatible with the requested API version could be found.
-               Please make sure that a driver supporting Vulkan is installed, and
-               that it is up to date with the requested version.")
+                Please make sure that a driver supporting Vulkan is installed, and
+                that it is up to date with the requested version.")
     else
-        rethrow()
+        throw(err)
     end
+else # get the instance
+    unwrap(res)
 end
 ```
 
-For non-error (but non-success) codes, you will also have to wrap code in the same fashion:
+Note that calling `unwrap` directly on the result will throw any contained `VulkanError` if there is one. So, if you just want to throw an exception when encountering an error, you can just do
 
-```julia
-while true
-    try
-        return acquire_next_image_khr(device, swapchain, 1)
-    catch e
-        if e isa VulkanError && e.return_code == VK_TIMEOUT
-            @debug "Swapchain image acquisition timed out."
-        else
-            rethrow()
-        end
-    end
-end
+```@example 1
+unwrap(create_instance(InstanceCreateInfo([], [])))
 ```
-
-Although this is not recommended, you can disable this feature by setting the preference `ERROR_CHECKING` to false (see [Preferences](@ref preferences)). Note, however, that if `ERROR_CHECKING` is disabled the return code is not accessible from the wrapper at the moment.
 
 ## Handles
 
@@ -282,12 +273,14 @@ All functions that were expecting a `VkSampleCountFlags` (`UInt32`) value will h
 
 # [Preferences](@id preferences)
 
-Some of the above features have configurable options that can be set via [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl).
+Some of the above features may have configurable options that can be set via [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl).
 
 !!! warning
     Preferences require running at least Julia 1.6. For earlier versions, these options are not customizable, and will have their default values.
 
+No preferences are currently available. More will be added in the future.
+
 |    Preference    |                             Description                             | Default |
 |:----------------:|:-------------------------------------------------------------------:|:-------:|
-| `ERROR_CHECKING` | Whether API return codes should be automatically checked for errors | `true`  |
+| | | |
 
