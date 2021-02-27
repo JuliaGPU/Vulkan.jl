@@ -1,3 +1,4 @@
+include("prewrap/bitmasks.jl")
 include("prewrap/types.jl")
 include("prewrap/handles.jl")
 include("prewrap/pointers.jl")

@@ -3,7 +3,8 @@ module Vulkan
 using DocStringExtensions
 using VulkanCore
 using VulkanCore.vk
-using Base: cconvert, unsafe_convert, RefArray
+using Base: RefArray
+import Base: convert, cconvert, unsafe_convert, &, |, xor
 using MLStyle
 
 @static if VERSION < v"1.6.0-DEV"
@@ -82,6 +83,8 @@ export
         optional_bitwise_op,
         optional_bitwise_or,
         optional_bitwise_and,
-        optional_bitwise_xor
+        optional_bitwise_xor,
+        BitMask,
+        @bitmask_flags
 
 end # module Vulkan
