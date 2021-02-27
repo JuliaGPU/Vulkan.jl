@@ -48,7 +48,7 @@ end
 
     @testset "Bitmask flags" begin
         buffer = Buffer(device, 24, BUFFER_USAGE_INDIRECT_BUFFER_BIT, VK_SHARING_MODE_EXCLUSIVE, [0]; flags=BUFFER_CREATE_PROTECTED_BIT & BUFFER_CREATE_SPARSE_ALIASED_BIT)
-        buffer_2 = Buffer(device, 24, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, VkSharingMode(0), [0]; flags=0)
+        buffer_2 = Buffer(device, 24, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, VK_SHARING_MODE_EXCLUSIVE, [0]; flags=0)
         @test buffer isa Buffer
         @test buffer_2 isa Buffer
     end
