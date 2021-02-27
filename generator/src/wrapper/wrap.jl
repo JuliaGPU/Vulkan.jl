@@ -52,6 +52,7 @@ function from_vk_call(x::Spec)
         end
 
         GuardBy(is_length) => nothing
+        if x.type ∈ spec_flags.name end => prop
         _ => @match t = x.type begin
             :Cstring => :(unsafe_string($prop))
             GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(x.type))($prop))
@@ -80,6 +81,7 @@ function vk_call(x::Spec)
             if x.requirement == OPTIONAL end => :($var == $(default(x)) ? $(default(x)) : Ref($var)) # allow optional pointers to be passed as C_NULL instead of a pointer to a 0-valued integer
             _ => :(Ref($var))
         end
+        if x.type ∈ spec_flags.name end => var
         if x.type ∈ extension_types end => var
         _ => @match jtype begin
             :String || :Bool || :(Vector{$et}) || if jtype == follow_constant(x.type) end => var # conversions are already defined

@@ -273,7 +273,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_struct_add_constructor(:VkDebugUtilsMessengerCreateInfoEXT, :(
-            function DebugUtilsMessengerCreateInfoEXT(message_severity::Integer, message_type::Integer, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
+            function DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 user_data = cconvert(Ptr{Cvoid}, user_data)
                 deps = [next, user_data]
