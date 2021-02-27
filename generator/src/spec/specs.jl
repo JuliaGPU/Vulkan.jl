@@ -109,6 +109,23 @@ SpecBit(node::Node) = SpecBit(Symbol(node["name"]), parse(Int, something(getattr
 
 SpecBitmask(node::Node) = SpecBitmask(Symbol(node["name"]), StructVector(SpecBit.(findall("./enum[not(@alias)]", node))))
 
+function SpecFlag(node::Node)
+    name = Symbol(findfirst("./name", node).content)
+    typealias = Symbol(findfirst("./type", node).content)
+    bitmask = if haskey(node, "requires")
+        bitmask_name = Symbol(node["requires"])
+        if bitmask_name ∈ disabled_specs
+            nothing
+        else
+            spec_bitmasks[findfirst(==(bitmask_name), spec_bitmasks.name)]
+        end
+    else
+        nothing
+    end
+
+    SpecFlag(name, typealias, bitmask)
+end
+
 function SpecHandle(node::Node)
     is_dispatchable = findfirst("./type", node).content == "VK_DEFINE_HANDLE"
     name = Symbol(findfirst("./name", node).content)
@@ -279,6 +296,11 @@ Specification bitmask enumerations.
 const spec_bitmasks = enabled_specs(StructVector(SpecBitmask.(findall("//enums[@type = 'bitmask' and not(@alias)]", xroot))))
 
 """
+Flag types.
+"""
+const spec_flags = enabled_specs(StructVector(SpecFlag.(findall("//type[@category = 'bitmask' and not(@alias)]", xroot))))
+
+"""
 Specification functions.
 """
 const spec_funcs = enabled_specs(StructVector(SpecFunc.(findall("//command[not(@name)]", xroot))))
@@ -343,6 +365,8 @@ struct_by_name(name) = spec_by_name(spec_structs, name)
 handle_by_name(name) = spec_by_name(spec_handles, name)
 
 bitmask_by_name(name) = spec_by_name(spec_bitmasks, name)
+
+flag_by_name(name) = spec_by_name(spec_flags, name)
 
 enum_by_name(name) = spec_by_name(spec_enums, name)
 

@@ -831,7 +831,7 @@ struct PhysicalDeviceToolPropertiesEXT <: ReturnedOnly
     p_next::Ptr{Cvoid}
     name::String
     version::String
-    purposes::UInt32
+    purposes::ToolPurposeFlagEXT
     description::String
     layer::String
 end
@@ -860,8 +860,8 @@ struct PhysicalDeviceVulkan11Properties <: ReturnedOnly
     device_node_mask::UInt32
     device_luid_valid::Bool
     subgroup_size::UInt32
-    subgroup_supported_stages::UInt32
-    subgroup_supported_operations::UInt32
+    subgroup_supported_stages::ShaderStageFlag
+    subgroup_supported_operations::SubgroupFeatureFlag
     subgroup_quad_operations_in_all_stages::Bool
     point_clipping_behavior::VkPointClippingBehavior
     max_multiview_view_count::UInt32
@@ -919,7 +919,7 @@ struct PhysicalDeviceSubgroupSizeControlPropertiesEXT <: ReturnedOnly
     min_subgroup_size::UInt32
     max_subgroup_size::UInt32
     max_compute_workgroup_subgroups::UInt32
-    required_subgroup_size_stages::UInt32
+    required_subgroup_size_stages::ShaderStageFlag
 end
 
 struct PhysicalDeviceSubgroupSizeControlFeaturesEXT <: VulkanStruct{true}
@@ -980,7 +980,7 @@ end
 struct PipelineExecutablePropertiesKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    stages::UInt32
+    stages::ShaderStageFlag
     name::String
     description::String
     subgroup_size::UInt32
@@ -1087,8 +1087,8 @@ struct FramebufferMixedSamplesCombinationNV <: ReturnedOnly
     p_next::Ptr{Cvoid}
     coverage_reduction_mode::VkCoverageReductionModeNV
     rasterization_samples::VkSampleCountFlagBits
-    depth_stencil_samples::UInt32
-    color_samples::UInt32
+    depth_stencil_samples::SampleCountFlag
+    color_samples::SampleCountFlag
 end
 
 struct PipelineCoverageReductionStateCreateInfoNV <: VulkanStruct{true}
@@ -1128,7 +1128,7 @@ end
 struct PerformanceCounterDescriptionKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    flags::UInt32
+    flags::PerformanceCounterDescriptionFlagKHR
     name::String
     category::String
     description::String
@@ -1175,7 +1175,7 @@ struct PipelineCreationFeedbackCreateInfoEXT <: VulkanStruct{true}
 end
 
 struct PipelineCreationFeedbackEXT <: ReturnedOnly
-    flags::UInt32
+    flags::PipelineCreationFeedbackFlagEXT
     duration::UInt64
 end
 
@@ -1209,7 +1209,7 @@ end
 struct PhysicalDeviceCooperativeMatrixPropertiesNV <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    cooperative_matrix_supported_stages::UInt32
+    cooperative_matrix_supported_stages::ShaderStageFlag
 end
 
 struct PhysicalDeviceCooperativeMatrixFeaturesNV <: VulkanStruct{true}
@@ -1379,7 +1379,7 @@ end
 struct DrmFormatModifierPropertiesEXT <: ReturnedOnly
     drm_format_modifier::UInt64
     drm_format_modifier_plane_count::UInt32
-    drm_format_modifier_tiling_features::UInt32
+    drm_format_modifier_tiling_features::FormatFeatureFlag
 end
 
 struct DrmFormatModifierPropertiesListEXT <: ReturnedOnly
@@ -1642,8 +1642,8 @@ end
 struct PhysicalDeviceDepthStencilResolveProperties <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    supported_depth_resolve_modes::UInt32
-    supported_stencil_resolve_modes::UInt32
+    supported_depth_resolve_modes::ResolveModeFlag
+    supported_stencil_resolve_modes::ResolveModeFlag
     independent_resolve_none::Bool
     independent_resolve::Bool
 end
@@ -1658,7 +1658,7 @@ end
 struct QueueFamilyCheckpointPropertiesNV <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    checkpoint_execution_stage_mask::UInt32
+    checkpoint_execution_stage_mask::PipelineStageFlag
 end
 
 struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT <: VulkanStruct{true}
@@ -1871,7 +1871,7 @@ end
 struct PhysicalDeviceShaderCoreProperties2AMD <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    shader_core_features::UInt32
+    shader_core_features::ShaderCorePropertiesFlagAMD
     active_compute_unit_count::UInt32
 end
 
@@ -1969,7 +1969,7 @@ struct ShaderResourceUsageAMD <: ReturnedOnly
 end
 
 struct ShaderStatisticsInfoAMD <: ReturnedOnly
-    shader_stage_mask::UInt32
+    shader_stage_mask::ShaderStageFlag
     resource_usage::ShaderResourceUsageAMD
     num_physical_vgprs::UInt32
     num_physical_sgprs::UInt32
@@ -2253,8 +2253,8 @@ struct PhysicalDeviceSubgroupProperties <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     subgroup_size::UInt32
-    supported_stages::UInt32
-    supported_operations::UInt32
+    supported_stages::ShaderStageFlag
+    supported_operations::SubgroupFeatureFlag
     quad_operations_in_all_stages::Bool
 end
 
@@ -2266,7 +2266,7 @@ end
 struct SharedPresentSurfaceCapabilitiesKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    shared_present_supported_usage_flags::UInt32
+    shared_present_supported_usage_flags::ImageUsageFlag
 end
 
 struct DisplayPlaneInfo2KHR <: VulkanStruct{true}
@@ -2422,7 +2422,7 @@ struct DeviceGroupPresentCapabilitiesKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     present_mask::NTuple{VK_MAX_DEVICE_GROUP_SIZE, UInt32}
-    modes::UInt32
+    modes::DeviceGroupPresentModeFlagKHR
 end
 
 struct DeviceGroupBindSparseInfo <: VulkanStruct{true}
@@ -2548,9 +2548,9 @@ end
 struct ExternalFenceProperties <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    export_from_imported_handle_types::UInt32
-    compatible_handle_types::UInt32
-    external_fence_features::UInt32
+    export_from_imported_handle_types::ExternalFenceHandleTypeFlag
+    compatible_handle_types::ExternalFenceHandleTypeFlag
+    external_fence_features::ExternalFenceFeatureFlag
 end
 
 struct PhysicalDeviceExternalFenceInfo <: VulkanStruct{true}
@@ -2596,9 +2596,9 @@ end
 struct ExternalSemaphoreProperties <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    export_from_imported_handle_types::UInt32
-    compatible_handle_types::UInt32
-    external_semaphore_features::UInt32
+    export_from_imported_handle_types::ExternalSemaphoreHandleTypeFlag
+    compatible_handle_types::ExternalSemaphoreHandleTypeFlag
+    external_semaphore_features::ExternalSemaphoreFeatureFlag
 end
 
 struct PhysicalDeviceExternalSemaphoreInfo <: VulkanStruct{true}
@@ -2684,9 +2684,9 @@ struct PhysicalDeviceExternalImageFormatInfo <: VulkanStruct{true}
 end
 
 struct ExternalMemoryProperties <: ReturnedOnly
-    external_memory_features::UInt32
-    export_from_imported_handle_types::UInt32
-    compatible_handle_types::UInt32
+    external_memory_features::ExternalMemoryFeatureFlag
+    export_from_imported_handle_types::ExternalMemoryHandleTypeFlag
+    compatible_handle_types::ExternalMemoryHandleTypeFlag
 end
 
 struct ExternalBufferProperties <: ReturnedOnly
@@ -2771,14 +2771,14 @@ struct PhysicalDeviceVulkan12Properties <: ReturnedOnly
     max_descriptor_set_update_after_bind_sampled_images::UInt32
     max_descriptor_set_update_after_bind_storage_images::UInt32
     max_descriptor_set_update_after_bind_input_attachments::UInt32
-    supported_depth_resolve_modes::UInt32
-    supported_stencil_resolve_modes::UInt32
+    supported_depth_resolve_modes::ResolveModeFlag
+    supported_stencil_resolve_modes::ResolveModeFlag
     independent_resolve_none::Bool
     independent_resolve::Bool
     filter_minmax_single_component_formats::Bool
     filter_minmax_image_component_mapping::Bool
     max_timeline_semaphore_value_difference::UInt64
-    framebuffer_integer_color_sample_counts::UInt32
+    framebuffer_integer_color_sample_counts::SampleCountFlag
 end
 
 struct PhysicalDeviceDriverProperties <: ReturnedOnly
@@ -3168,16 +3168,16 @@ struct PhysicalDeviceLimits <: ReturnedOnly
     max_framebuffer_width::UInt32
     max_framebuffer_height::UInt32
     max_framebuffer_layers::UInt32
-    framebuffer_color_sample_counts::UInt32
-    framebuffer_depth_sample_counts::UInt32
-    framebuffer_stencil_sample_counts::UInt32
-    framebuffer_no_attachments_sample_counts::UInt32
+    framebuffer_color_sample_counts::SampleCountFlag
+    framebuffer_depth_sample_counts::SampleCountFlag
+    framebuffer_stencil_sample_counts::SampleCountFlag
+    framebuffer_no_attachments_sample_counts::SampleCountFlag
     max_color_attachments::UInt32
-    sampled_image_color_sample_counts::UInt32
-    sampled_image_integer_sample_counts::UInt32
-    sampled_image_depth_sample_counts::UInt32
-    sampled_image_stencil_sample_counts::UInt32
-    storage_image_sample_counts::UInt32
+    sampled_image_color_sample_counts::SampleCountFlag
+    sampled_image_integer_sample_counts::SampleCountFlag
+    sampled_image_depth_sample_counts::SampleCountFlag
+    sampled_image_stencil_sample_counts::SampleCountFlag
+    storage_image_sample_counts::SampleCountFlag
     max_sample_mask_words::UInt32
     timestamp_compute_and_graphics::Bool
     timestamp_period::Float32
@@ -3536,9 +3536,9 @@ struct DescriptorBufferInfo <: VulkanStruct{false}
 end
 
 struct FormatProperties <: ReturnedOnly
-    linear_tiling_features::UInt32
-    optimal_tiling_features::UInt32
-    buffer_features::UInt32
+    linear_tiling_features::FormatFeatureFlag
+    optimal_tiling_features::FormatFeatureFlag
+    buffer_features::FormatFeatureFlag
 end
 
 struct FormatProperties2 <: ReturnedOnly
@@ -3554,11 +3554,11 @@ end
 
 struct MemoryHeap <: ReturnedOnly
     size::UInt64
-    flags::UInt32
+    flags::MemoryHeapFlag
 end
 
 struct MemoryType <: ReturnedOnly
-    property_flags::UInt32
+    property_flags::MemoryPropertyFlag
     heap_index::UInt32
 end
 
@@ -3656,7 +3656,7 @@ struct AndroidHardwareBufferFormatPropertiesANDROID <: ReturnedOnly
     p_next::Ptr{Cvoid}
     format::VkFormat
     external_format::UInt64
-    format_features::UInt32
+    format_features::FormatFeatureFlag
     sampler_ycbcr_conversion_components::ComponentMapping
     suggested_ycbcr_model::VkSamplerYcbcrModelConversion
     suggested_ycbcr_range::VkSamplerYcbcrRange
@@ -3684,7 +3684,7 @@ struct ImageFormatProperties <: ReturnedOnly
     max_extent::Extent3D
     max_mip_levels::UInt32
     max_array_layers::UInt32
-    sample_counts::UInt32
+    sample_counts::SampleCountFlag
     max_resource_size::UInt64
 end
 
@@ -3696,15 +3696,15 @@ end
 
 struct ExternalImageFormatPropertiesNV <: ReturnedOnly
     image_format_properties::ImageFormatProperties
-    external_memory_features::UInt32
-    export_from_imported_handle_types::UInt32
-    compatible_handle_types::UInt32
+    external_memory_features::ExternalMemoryFeatureFlagNV
+    export_from_imported_handle_types::ExternalMemoryHandleTypeFlagNV
+    compatible_handle_types::ExternalMemoryHandleTypeFlagNV
 end
 
 struct SparseImageFormatProperties <: ReturnedOnly
-    aspect_mask::UInt32
+    aspect_mask::ImageAspectFlag
     image_granularity::Extent3D
-    flags::UInt32
+    flags::SparseImageFormatFlag
 end
 
 struct SparseImageFormatProperties2 <: ReturnedOnly
@@ -3728,7 +3728,7 @@ struct SparseImageMemoryRequirements2 <: ReturnedOnly
 end
 
 struct QueueFamilyProperties <: ReturnedOnly
-    queue_flags::UInt32
+    queue_flags::QueueFlag
     queue_count::UInt32
     timestamp_valid_bits::UInt32
     min_image_transfer_granularity::Extent3D
@@ -3769,7 +3769,7 @@ end
 struct PhysicalDeviceSampleLocationsPropertiesEXT <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    sample_location_sample_counts::UInt32
+    sample_location_sample_counts::SampleCountFlag
     max_sample_location_grid_size::Extent2D
     sample_location_coordinate_range::NTuple{2, Float32}
     sample_location_sub_pixel_bits::UInt32
@@ -3785,11 +3785,11 @@ struct SurfaceCapabilities2EXT <: ReturnedOnly
     min_image_extent::Extent2D
     max_image_extent::Extent2D
     max_image_array_layers::UInt32
-    supported_transforms::UInt32
+    supported_transforms::SurfaceTransformFlagKHR
     current_transform::VkSurfaceTransformFlagBitsKHR
-    supported_composite_alpha::UInt32
-    supported_usage_flags::UInt32
-    supported_surface_counters::UInt32
+    supported_composite_alpha::CompositeAlphaFlagKHR
+    supported_usage_flags::ImageUsageFlag
+    supported_surface_counters::SurfaceCounterFlagEXT
 end
 
 struct SurfaceCapabilitiesKHR <: ReturnedOnly
@@ -3799,10 +3799,10 @@ struct SurfaceCapabilitiesKHR <: ReturnedOnly
     min_image_extent::Extent2D
     max_image_extent::Extent2D
     max_image_array_layers::UInt32
-    supported_transforms::UInt32
+    supported_transforms::SurfaceTransformFlagKHR
     current_transform::VkSurfaceTransformFlagBitsKHR
-    supported_composite_alpha::UInt32
-    supported_usage_flags::UInt32
+    supported_composite_alpha::CompositeAlphaFlagKHR
+    supported_usage_flags::ImageUsageFlag
 end
 
 struct SurfaceCapabilities2KHR <: ReturnedOnly
@@ -3820,7 +3820,7 @@ struct Offset2D <: VulkanStruct{false}
 end
 
 struct DisplayPlaneCapabilitiesKHR <: ReturnedOnly
-    supported_alpha::UInt32
+    supported_alpha::DisplayPlaneAlphaFlagKHR
     min_src_position::Offset2D
     max_src_position::Offset2D
     min_src_extent::Extent2D
@@ -3916,7 +3916,7 @@ struct DisplayPropertiesKHR <: ReturnedOnly
     display_name::String
     physical_dimensions::Extent2D
     physical_resolution::Extent2D
-    supported_transforms::UInt32
+    supported_transforms::SurfaceTransformFlagKHR
     plane_reorder_possible::Bool
     persistent_content::Bool
 end
@@ -4159,15 +4159,15 @@ mutable struct Instance <: Handle
 end
 
 
-DebugUtilsMessengerEXT(instance::Instance, message_severity::Integer, message_type::Integer, pfn_user_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_utils_messenger_ext(instance, DebugUtilsMessengerCreateInfoEXT(message_severity, message_type, pfn_user_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
+DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_utils_messenger_ext(instance, DebugUtilsMessengerCreateInfoEXT(message_severity, message_type, pfn_user_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags), fun_ptr_create; allocator)
 
-PrivateDataSlotEXT(device::Device, flags::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next), fun_ptr_create, fun_ptr_destroy; allocator)
+PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
 DeferredOperationKHR(device::Device, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_deferred_operation_khr(device, fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4177,7 +4177,7 @@ SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerY
 
 DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next), fun_ptr_create, fun_ptr_destroy; allocator)
+IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4203,11 +4203,11 @@ ShaderModule(device::Device, code_size::Integer, code::AbstractArray, fun_ptr_cr
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Buffer(device::Device, size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 CommandPool(device::Device, queue_family_index::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_command_pool(device, CommandPoolCreateInfo(queue_family_index; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4233,7 +4233,7 @@ function create_private_data_slot_ext(device::Device, create_info::PrivateDataSl
     PrivateDataSlotEXT(pPrivateDataSlot[], (x->destroy_private_data_slot_ext(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::Integer, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, fun_ptr::FunctionPtr) = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op, fun_ptr)
+cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, fun_ptr::FunctionPtr) = vkCmdSetStencilOpEXT(command_buffer, to_vk(VkStencilFaceFlags, face_mask), fail_op, pass_op, depth_fail_op, compare_op, fun_ptr)
 
 cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool, fun_ptr::FunctionPtr) = vkCmdSetStencilTestEnableEXT(command_buffer, stencil_test_enable, fun_ptr)
 
@@ -4255,7 +4255,7 @@ cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology
 
 cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace, fun_ptr::FunctionPtr) = vkCmdSetFrontFaceEXT(command_buffer, front_face, fun_ptr)
 
-cmd_set_cull_mode_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; cull_mode = 0) = vkCmdSetCullModeEXT(command_buffer, cull_mode, fun_ptr)
+cmd_set_cull_mode_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; cull_mode = 0) = vkCmdSetCullModeEXT(command_buffer, to_vk(VkCullModeFlags, cull_mode), fun_ptr)
 
 deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr) = @check(vkDeferredOperationJoinKHR(device, operation, fun_ptr))
 
@@ -4528,7 +4528,7 @@ cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::
 
 cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr) = vkCmdEndQueryIndexedEXT(command_buffer, query_pool, query, index, fun_ptr)
 
-cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index, fun_ptr)
+cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, to_vk(VkQueryControlFlags, flags), index, fun_ptr)
 
 cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
@@ -4584,15 +4584,15 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker, fun_ptr)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker, fun_ptr)
 
-function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)
+function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
     @check vkGetMemoryHostPointerPropertiesEXT(device, handle_type, Ref(host_pointer), pMemoryHostPointerProperties, fun_ptr)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::Integer, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data, fun_ptr)
+submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, to_vk(VkDebugUtilsMessageTypeFlagsEXT, message_types), callback_data, fun_ptr)
 
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator, fun_ptr)
 
@@ -4635,7 +4635,7 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)
     pInfoSize = Ref(info_size)
     pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
@@ -4743,7 +4743,7 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag, fun_ptr::FunctionPtr)
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits, fun_ptr::FunctionPtr)
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
     vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties, fun_ptr)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
@@ -4857,7 +4857,7 @@ function get_physical_device_surface_capabilities_2_ext(physical_device::Physica
     from_vk(SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
 
-function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT, fun_ptr::FunctionPtr)
+function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT, fun_ptr::FunctionPtr)
     pCounterValue = Ref{UInt64}()
     @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue, fun_ptr)
     pCounterValue[]
@@ -4923,7 +4923,7 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer, fun_ptr::FunctionPtr)
+function get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer, fun_ptr::FunctionPtr)
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
     @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties, fun_ptr)
     from_vk(MemoryFdPropertiesKHR, pMemoryFdProperties[])
@@ -4935,7 +4935,7 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR, fun_
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE, fun_ptr::FunctionPtr)
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE, fun_ptr::FunctionPtr)
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
     @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties, fun_ptr)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
@@ -5019,11 +5019,11 @@ cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_co
 
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV, fun_ptr::FunctionPtr) = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info, fun_ptr)
 
-get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::Integer, handle::vk.HANDLE, fun_ptr::FunctionPtr) = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE, fun_ptr::FunctionPtr) = @check(vkGetMemoryWin32HandleNV(device, memory, to_vk(VkExternalMemoryHandleTypeFlagsNV, handle_type), to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
-function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::Integer, fun_ptr::FunctionPtr; flags = 0, external_handle_type = 0)
+function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag, fun_ptr::FunctionPtr; flags = 0, external_handle_type = 0)
     pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()
-    @check vkGetPhysicalDeviceExternalImageFormatPropertiesNV(physical_device, format, type, tiling, usage, flags, external_handle_type, pExternalImageFormatProperties, fun_ptr)
+    @check vkGetPhysicalDeviceExternalImageFormatPropertiesNV(physical_device, format, type, tiling, to_vk(VkImageUsageFlags, usage), to_vk(VkImageCreateFlags, flags), to_vk(VkExternalMemoryHandleTypeFlagsNV, external_handle_type), pExternalImageFormatProperties, fun_ptr)
     from_vk(ExternalImageFormatPropertiesNV, pExternalImageFormatProperties[])
 end
 
@@ -5037,7 +5037,7 @@ debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagIn
 
 debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT, fun_ptr::FunctionPtr) = @check(vkDebugMarkerSetObjectNameEXT(device, name_info, fun_ptr))
 
-debug_report_message_ext(instance::Instance, flags::Integer, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString, fun_ptr::FunctionPtr) = vkDebugReportMessageEXT(instance, flags, object_type, object, location, message_code, layer_prefix, message, fun_ptr)
+debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString, fun_ptr::FunctionPtr) = vkDebugReportMessageEXT(instance, to_vk(VkDebugReportFlagsEXT, flags), object_type, object, location, message_code, layer_prefix, message, fun_ptr)
 
 destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDebugReportCallbackEXT(instance, callback, allocator, fun_ptr)
 
@@ -5231,11 +5231,11 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents, fun
 
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents, fun_ptr::FunctionPtr) = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents, fun_ptr)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::Integer, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values), fun_ptr)
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdPushConstants(command_buffer, layout, to_vk(VkShaderStageFlags, stage_flags), offset, pointer_length(values), Ref(values), fun_ptr)
 
-cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fun_ptr)
+cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, to_vk(VkQueryResultFlags, flags), fun_ptr)
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query, fun_ptr)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query, fun_ptr)
 
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr) = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count, fun_ptr)
 
@@ -5245,15 +5245,15 @@ cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_r
 
 cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr) = vkCmdEndQuery(command_buffer, query_pool, query, fun_ptr)
 
-cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, flags, fun_ptr)
+cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, to_vk(VkQueryControlFlags, flags), fun_ptr)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, to_vk(VkPipelineStageFlags, src_stage_mask), to_vk(VkPipelineStageFlags, dst_stage_mask), to_vk(VkDependencyFlags, dependency_flags), pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, to_vk(VkPipelineStageFlags, src_stage_mask), to_vk(VkPipelineStageFlags, dst_stage_mask), pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
-cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fun_ptr::FunctionPtr) = vkCmdResetEvent(command_buffer, event, stage_mask, fun_ptr)
+cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr) = vkCmdResetEvent(command_buffer, event, to_vk(VkPipelineStageFlags, stage_mask), fun_ptr)
 
-cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetEvent(command_buffer, event, stage_mask, fun_ptr)
+cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr) = vkCmdSetEvent(command_buffer, event, to_vk(VkPipelineStageFlags, stage_mask), fun_ptr)
 
 cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
@@ -5295,11 +5295,11 @@ cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Int
 
 cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray, fun_ptr::FunctionPtr) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
 
-cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::Integer, reference::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilReference(command_buffer, face_mask, reference, fun_ptr)
+cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilReference(command_buffer, to_vk(VkStencilFaceFlags, face_mask), reference, fun_ptr)
 
-cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::Integer, write_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilWriteMask(command_buffer, face_mask, write_mask, fun_ptr)
+cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilWriteMask(command_buffer, to_vk(VkStencilFaceFlags, face_mask), write_mask, fun_ptr)
 
-cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::Integer, compare_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilCompareMask(command_buffer, face_mask, compare_mask, fun_ptr)
+cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilCompareMask(command_buffer, to_vk(VkStencilFaceFlags, face_mask), compare_mask, fun_ptr)
 
 cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real, fun_ptr::FunctionPtr) = vkCmdSetDepthBounds(command_buffer, min_depth_bounds, max_depth_bounds, fun_ptr)
 
@@ -5315,7 +5315,7 @@ cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray, fun_pt
 
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, fun_ptr::FunctionPtr) = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline, fun_ptr)
 
-reset_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; flags = 0) = @check(vkResetCommandBuffer(command_buffer, flags, fun_ptr))
+reset_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; flags = 0) = @check(vkResetCommandBuffer(command_buffer, to_vk(VkCommandBufferResetFlags, flags), fun_ptr))
 
 end_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr) = @check(vkEndCommandBuffer(command_buffer, fun_ptr))
 
@@ -5330,7 +5330,7 @@ function allocate_command_buffers(device::Device, allocate_info::CommandBufferAl
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-reset_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0) = @check(vkResetCommandPool(device, command_pool, flags, fun_ptr))
+reset_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0) = @check(vkResetCommandPool(device, command_pool, to_vk(VkCommandPoolResetFlags, flags), fun_ptr))
 
 destroy_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyCommandPool(device, command_pool, allocator, fun_ptr)
 
@@ -5488,7 +5488,7 @@ reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, qu
 
 function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)
     pData = Ref{Ptr{Cvoid}}()
-    @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags, fun_ptr)
+    @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, to_vk(VkQueryResultFlags, flags), fun_ptr)
     pData[]
 end
 
@@ -5538,11 +5538,11 @@ end
 
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::Integer, tiling::VkImageTiling, fun_ptr::FunctionPtr)
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling, fun_ptr::FunctionPtr)
     pPropertyCount = Ref{UInt32}()
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL, fun_ptr)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, to_vk(VkImageUsageFlags, usage), tiling, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, pProperties, fun_ptr)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, to_vk(VkImageUsageFlags, usage), tiling, pPropertyCount, pProperties, fun_ptr)
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 
@@ -5654,9 +5654,9 @@ function create_device(physical_device::PhysicalDevice, create_info::DeviceCreat
     Device(pDevice[], (x->destroy_device(x, fun_ptr_destroy; allocator)), physical_device)
 end
 
-function get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::Integer, fun_ptr::FunctionPtr; flags = 0)
+function get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag, fun_ptr::FunctionPtr; flags = 0)
     pImageFormatProperties = Ref{VkImageFormatProperties}()
-    @check vkGetPhysicalDeviceImageFormatProperties(physical_device, format, type, tiling, usage, flags, pImageFormatProperties, fun_ptr)
+    @check vkGetPhysicalDeviceImageFormatProperties(physical_device, format, type, tiling, to_vk(VkImageUsageFlags, usage), to_vk(VkImageCreateFlags, flags), pImageFormatProperties, fun_ptr)
     from_vk(ImageFormatProperties, pImageFormatProperties[])
 end
 
@@ -5712,15 +5712,15 @@ function create_instance(create_info::InstanceCreateInfo, fun_ptr_create::Functi
     Instance(pInstance[], (x->destroy_instance(x, fun_ptr_destroy; allocator)))
 end
 
-DebugUtilsMessengerEXT(instance::Instance, message_severity::Integer, message_type::Integer, pfn_user_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_utils_messenger_ext(instance, DebugUtilsMessengerCreateInfoEXT(message_severity, message_type, pfn_user_callback; next, flags, user_data); allocator)
+DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_utils_messenger_ext(instance, DebugUtilsMessengerCreateInfoEXT(message_severity, message_type, pfn_user_callback; next, flags, user_data); allocator)
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data); allocator)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags); allocator)
 
-PrivateDataSlotEXT(device::Device, flags::Integer; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next); allocator)
+PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next); allocator)
 
 DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
 
@@ -5730,7 +5730,7 @@ SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerY
 
 DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags); allocator)
 
-IndirectCommandsLayoutNV(device::Device, flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next); allocator)
+IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next); allocator)
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size); allocator)
 
@@ -5756,11 +5756,11 @@ ShaderModule(device::Device, code_size::Integer, code::AbstractArray; allocator 
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags); allocator)
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags); allocator)
 
-Buffer(device::Device, size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags); allocator)
+Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer(device, BufferCreateInfo(size, usage, sharing_mode, queue_family_indices; next, flags); allocator)
 
 CommandPool(device::Device, queue_family_index::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_command_pool(device, CommandPoolCreateInfo(queue_family_index; next, flags); allocator)
 
@@ -5774,17 +5774,17 @@ from_vk(T::Type{PhysicalDeviceRobustness2PropertiesEXT}, x::VkPhysicalDeviceRobu
 
 from_vk(T::Type{PhysicalDeviceCustomBorderColorPropertiesEXT}, x::VkPhysicalDeviceCustomBorderColorPropertiesEXT) = T(x.sType, x.pNext, x.maxCustomBorderColorSamplers)
 
-from_vk(T::Type{PhysicalDeviceToolPropertiesEXT}, x::VkPhysicalDeviceToolPropertiesEXT) = T(x.sType, x.pNext, from_vk(String, x.name), from_vk(String, x.version), x.purposes, from_vk(String, x.description), from_vk(String, x.layer))
+from_vk(T::Type{PhysicalDeviceToolPropertiesEXT}, x::VkPhysicalDeviceToolPropertiesEXT) = T(x.sType, x.pNext, from_vk(String, x.name), from_vk(String, x.version), from_vk(ToolPurposeFlagEXT, x.purposes), from_vk(String, x.description), from_vk(String, x.layer))
 
-from_vk(T::Type{PhysicalDeviceVulkan12Properties}, x::VkPhysicalDeviceVulkan12Properties) = T(x.sType, x.pNext, x.driverID, from_vk(String, x.driverName), from_vk(String, x.driverInfo), from_vk(ConformanceVersion, x.conformanceVersion), x.denormBehaviorIndependence, x.roundingModeIndependence, from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat16), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat32), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat64), from_vk(Bool, x.shaderDenormPreserveFloat16), from_vk(Bool, x.shaderDenormPreserveFloat32), from_vk(Bool, x.shaderDenormPreserveFloat64), from_vk(Bool, x.shaderDenormFlushToZeroFloat16), from_vk(Bool, x.shaderDenormFlushToZeroFloat32), from_vk(Bool, x.shaderDenormFlushToZeroFloat64), from_vk(Bool, x.shaderRoundingModeRTEFloat16), from_vk(Bool, x.shaderRoundingModeRTEFloat32), from_vk(Bool, x.shaderRoundingModeRTEFloat64), from_vk(Bool, x.shaderRoundingModeRTZFloat16), from_vk(Bool, x.shaderRoundingModeRTZFloat32), from_vk(Bool, x.shaderRoundingModeRTZFloat64), x.maxUpdateAfterBindDescriptorsInAllPools, from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexingNative), from_vk(Bool, x.robustBufferAccessUpdateAfterBind), from_vk(Bool, x.quadDivergentImplicitLod), x.maxPerStageDescriptorUpdateAfterBindSamplers, x.maxPerStageDescriptorUpdateAfterBindUniformBuffers, x.maxPerStageDescriptorUpdateAfterBindStorageBuffers, x.maxPerStageDescriptorUpdateAfterBindSampledImages, x.maxPerStageDescriptorUpdateAfterBindStorageImages, x.maxPerStageDescriptorUpdateAfterBindInputAttachments, x.maxPerStageUpdateAfterBindResources, x.maxDescriptorSetUpdateAfterBindSamplers, x.maxDescriptorSetUpdateAfterBindUniformBuffers, x.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic, x.maxDescriptorSetUpdateAfterBindStorageBuffers, x.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic, x.maxDescriptorSetUpdateAfterBindSampledImages, x.maxDescriptorSetUpdateAfterBindStorageImages, x.maxDescriptorSetUpdateAfterBindInputAttachments, x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve), from_vk(Bool, x.filterMinmaxSingleComponentFormats), from_vk(Bool, x.filterMinmaxImageComponentMapping), x.maxTimelineSemaphoreValueDifference, x.framebufferIntegerColorSampleCounts)
+from_vk(T::Type{PhysicalDeviceVulkan12Properties}, x::VkPhysicalDeviceVulkan12Properties) = T(x.sType, x.pNext, x.driverID, from_vk(String, x.driverName), from_vk(String, x.driverInfo), from_vk(ConformanceVersion, x.conformanceVersion), x.denormBehaviorIndependence, x.roundingModeIndependence, from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat16), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat32), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat64), from_vk(Bool, x.shaderDenormPreserveFloat16), from_vk(Bool, x.shaderDenormPreserveFloat32), from_vk(Bool, x.shaderDenormPreserveFloat64), from_vk(Bool, x.shaderDenormFlushToZeroFloat16), from_vk(Bool, x.shaderDenormFlushToZeroFloat32), from_vk(Bool, x.shaderDenormFlushToZeroFloat64), from_vk(Bool, x.shaderRoundingModeRTEFloat16), from_vk(Bool, x.shaderRoundingModeRTEFloat32), from_vk(Bool, x.shaderRoundingModeRTEFloat64), from_vk(Bool, x.shaderRoundingModeRTZFloat16), from_vk(Bool, x.shaderRoundingModeRTZFloat32), from_vk(Bool, x.shaderRoundingModeRTZFloat64), x.maxUpdateAfterBindDescriptorsInAllPools, from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexingNative), from_vk(Bool, x.robustBufferAccessUpdateAfterBind), from_vk(Bool, x.quadDivergentImplicitLod), x.maxPerStageDescriptorUpdateAfterBindSamplers, x.maxPerStageDescriptorUpdateAfterBindUniformBuffers, x.maxPerStageDescriptorUpdateAfterBindStorageBuffers, x.maxPerStageDescriptorUpdateAfterBindSampledImages, x.maxPerStageDescriptorUpdateAfterBindStorageImages, x.maxPerStageDescriptorUpdateAfterBindInputAttachments, x.maxPerStageUpdateAfterBindResources, x.maxDescriptorSetUpdateAfterBindSamplers, x.maxDescriptorSetUpdateAfterBindUniformBuffers, x.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic, x.maxDescriptorSetUpdateAfterBindStorageBuffers, x.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic, x.maxDescriptorSetUpdateAfterBindSampledImages, x.maxDescriptorSetUpdateAfterBindStorageImages, x.maxDescriptorSetUpdateAfterBindInputAttachments, from_vk(ResolveModeFlag, x.supportedDepthResolveModes), from_vk(ResolveModeFlag, x.supportedStencilResolveModes), from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve), from_vk(Bool, x.filterMinmaxSingleComponentFormats), from_vk(Bool, x.filterMinmaxImageComponentMapping), x.maxTimelineSemaphoreValueDifference, from_vk(SampleCountFlag, x.framebufferIntegerColorSampleCounts))
 
-from_vk(T::Type{PhysicalDeviceVulkan11Properties}, x::VkPhysicalDeviceVulkan11Properties) = T(x.sType, x.pNext, from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid), x.subgroupSize, x.subgroupSupportedStages, x.subgroupSupportedOperations, from_vk(Bool, x.subgroupQuadOperationsInAllStages), x.pointClippingBehavior, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex, from_vk(Bool, x.protectedNoFault), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
+from_vk(T::Type{PhysicalDeviceVulkan11Properties}, x::VkPhysicalDeviceVulkan11Properties) = T(x.sType, x.pNext, from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid), x.subgroupSize, from_vk(ShaderStageFlag, x.subgroupSupportedStages), from_vk(SubgroupFeatureFlag, x.subgroupSupportedOperations), from_vk(Bool, x.subgroupQuadOperationsInAllStages), x.pointClippingBehavior, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex, from_vk(Bool, x.protectedNoFault), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
 
 from_vk(T::Type{PhysicalDeviceLineRasterizationPropertiesEXT}, x::VkPhysicalDeviceLineRasterizationPropertiesEXT) = T(x.sType, x.pNext, x.lineSubPixelPrecisionBits)
 
 from_vk(T::Type{PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT}, x::VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT) = T(x.sType, x.pNext, x.requiredSubgroupSize)
 
-from_vk(T::Type{PhysicalDeviceSubgroupSizeControlPropertiesEXT}, x::VkPhysicalDeviceSubgroupSizeControlPropertiesEXT) = T(x.sType, x.pNext, x.minSubgroupSize, x.maxSubgroupSize, x.maxComputeWorkgroupSubgroups, x.requiredSubgroupSizeStages)
+from_vk(T::Type{PhysicalDeviceSubgroupSizeControlPropertiesEXT}, x::VkPhysicalDeviceSubgroupSizeControlPropertiesEXT) = T(x.sType, x.pNext, x.minSubgroupSize, x.maxSubgroupSize, x.maxComputeWorkgroupSubgroups, from_vk(ShaderStageFlag, x.requiredSubgroupSizeStages))
 
 from_vk(T::Type{PhysicalDeviceTexelBufferAlignmentPropertiesEXT}, x::VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT) = T(x.sType, x.pNext, x.storageTexelBufferOffsetAlignmentBytes, from_vk(Bool, x.storageTexelBufferOffsetSingleTexelAlignment), x.uniformTexelBufferOffsetAlignmentBytes, from_vk(Bool, x.uniformTexelBufferOffsetSingleTexelAlignment))
 
@@ -5794,23 +5794,23 @@ from_vk(T::Type{PipelineExecutableStatisticKHR}, x::VkPipelineExecutableStatisti
 
 from_vk(T::Type{PipelineExecutableStatisticValueKHR}, x::VkPipelineExecutableStatisticValueKHR) = T(from_vk(Bool, x.b32), x.i64, x.u64, x.f64)
 
-from_vk(T::Type{PipelineExecutablePropertiesKHR}, x::VkPipelineExecutablePropertiesKHR) = T(x.sType, x.pNext, x.stages, from_vk(String, x.name), from_vk(String, x.description), x.subgroupSize)
+from_vk(T::Type{PipelineExecutablePropertiesKHR}, x::VkPipelineExecutablePropertiesKHR) = T(x.sType, x.pNext, from_vk(ShaderStageFlag, x.stages), from_vk(String, x.name), from_vk(String, x.description), x.subgroupSize)
 
 from_vk(T::Type{PhysicalDeviceShaderSMBuiltinsPropertiesNV}, x::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV) = T(x.sType, x.pNext, x.shaderSMCount, x.shaderWarpsPerSM)
 
-from_vk(T::Type{FramebufferMixedSamplesCombinationNV}, x::VkFramebufferMixedSamplesCombinationNV) = T(x.sType, x.pNext, x.coverageReductionMode, x.rasterizationSamples, x.depthStencilSamples, x.colorSamples)
+from_vk(T::Type{FramebufferMixedSamplesCombinationNV}, x::VkFramebufferMixedSamplesCombinationNV) = T(x.sType, x.pNext, x.coverageReductionMode, x.rasterizationSamples, from_vk(SampleCountFlag, x.depthStencilSamples), from_vk(SampleCountFlag, x.colorSamples))
 
-from_vk(T::Type{PerformanceCounterDescriptionKHR}, x::VkPerformanceCounterDescriptionKHR) = T(x.sType, x.pNext, x.flags, from_vk(String, x.name), from_vk(String, x.category), from_vk(String, x.description))
+from_vk(T::Type{PerformanceCounterDescriptionKHR}, x::VkPerformanceCounterDescriptionKHR) = T(x.sType, x.pNext, from_vk(PerformanceCounterDescriptionFlagKHR, x.flags), from_vk(String, x.name), from_vk(String, x.category), from_vk(String, x.description))
 
 from_vk(T::Type{PerformanceCounterKHR}, x::VkPerformanceCounterKHR) = T(x.sType, x.pNext, x.unit, x.scope, x.storage, from_vk(String, x.uuid))
 
 from_vk(T::Type{PhysicalDevicePerformanceQueryPropertiesKHR}, x::VkPhysicalDevicePerformanceQueryPropertiesKHR) = T(x.sType, x.pNext, from_vk(Bool, x.allowCommandBufferQueryCopies))
 
-from_vk(T::Type{PipelineCreationFeedbackEXT}, x::VkPipelineCreationFeedbackEXT) = T(x.flags, x.duration)
+from_vk(T::Type{PipelineCreationFeedbackEXT}, x::VkPipelineCreationFeedbackEXT) = T(from_vk(PipelineCreationFeedbackFlagEXT, x.flags), x.duration)
 
 from_vk(T::Type{ImageViewAddressPropertiesNVX}, x::VkImageViewAddressPropertiesNVX) = T(x.sType, x.pNext, x.deviceAddress, x.size)
 
-from_vk(T::Type{PhysicalDeviceCooperativeMatrixPropertiesNV}, x::VkPhysicalDeviceCooperativeMatrixPropertiesNV) = T(x.sType, x.pNext, x.cooperativeMatrixSupportedStages)
+from_vk(T::Type{PhysicalDeviceCooperativeMatrixPropertiesNV}, x::VkPhysicalDeviceCooperativeMatrixPropertiesNV) = T(x.sType, x.pNext, from_vk(ShaderStageFlag, x.cooperativeMatrixSupportedStages))
 
 from_vk(T::Type{FilterCubicImageViewImageFormatPropertiesEXT}, x::VkFilterCubicImageViewImageFormatPropertiesEXT) = T(x.sType, x.pNext, from_vk(Bool, x.filterCubic), from_vk(Bool, x.filterCubicMinmax))
 
@@ -5822,7 +5822,7 @@ from_vk(T::Type{PhysicalDeviceFragmentDensityMapPropertiesEXT}, x::VkPhysicalDev
 
 from_vk(T::Type{ImageDrmFormatModifierPropertiesEXT}, x::VkImageDrmFormatModifierPropertiesEXT) = T(x.sType, x.pNext, x.drmFormatModifier)
 
-from_vk(T::Type{DrmFormatModifierPropertiesEXT}, x::VkDrmFormatModifierPropertiesEXT) = T(x.drmFormatModifier, x.drmFormatModifierPlaneCount, x.drmFormatModifierTilingFeatures)
+from_vk(T::Type{DrmFormatModifierPropertiesEXT}, x::VkDrmFormatModifierPropertiesEXT) = T(x.drmFormatModifier, x.drmFormatModifierPlaneCount, from_vk(FormatFeatureFlag, x.drmFormatModifierTilingFeatures))
 
 from_vk(T::Type{DrmFormatModifierPropertiesListEXT}, x::VkDrmFormatModifierPropertiesListEXT) = T(x.sType, x.pNext, unsafe_wrap(Vector{DrmFormatModifierPropertiesEXT}, x.pDrmFormatModifierProperties, x.drmFormatModifierCount; own = true))
 
@@ -5836,13 +5836,13 @@ from_vk(T::Type{PhysicalDeviceShadingRateImagePropertiesNV}, x::VkPhysicalDevice
 
 from_vk(T::Type{PhysicalDeviceTransformFeedbackPropertiesEXT}, x::VkPhysicalDeviceTransformFeedbackPropertiesEXT) = T(x.sType, x.pNext, x.maxTransformFeedbackStreams, x.maxTransformFeedbackBuffers, x.maxTransformFeedbackBufferSize, x.maxTransformFeedbackStreamDataSize, x.maxTransformFeedbackBufferDataSize, x.maxTransformFeedbackBufferDataStride, from_vk(Bool, x.transformFeedbackQueries), from_vk(Bool, x.transformFeedbackStreamsLinesTriangles), from_vk(Bool, x.transformFeedbackRasterizationStreamSelect), from_vk(Bool, x.transformFeedbackDraw))
 
-from_vk(T::Type{PhysicalDeviceDepthStencilResolveProperties}, x::VkPhysicalDeviceDepthStencilResolveProperties) = T(x.sType, x.pNext, x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve))
+from_vk(T::Type{PhysicalDeviceDepthStencilResolveProperties}, x::VkPhysicalDeviceDepthStencilResolveProperties) = T(x.sType, x.pNext, from_vk(ResolveModeFlag, x.supportedDepthResolveModes), from_vk(ResolveModeFlag, x.supportedStencilResolveModes), from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve))
 
 from_vk(T::Type{CheckpointDataNV}, x::VkCheckpointDataNV) = T(x.sType, x.pNext, x.stage, x.pCheckpointMarker)
 
-from_vk(T::Type{QueueFamilyCheckpointPropertiesNV}, x::VkQueueFamilyCheckpointPropertiesNV) = T(x.sType, x.pNext, x.checkpointExecutionStageMask)
+from_vk(T::Type{QueueFamilyCheckpointPropertiesNV}, x::VkQueueFamilyCheckpointPropertiesNV) = T(x.sType, x.pNext, from_vk(PipelineStageFlag, x.checkpointExecutionStageMask))
 
-from_vk(T::Type{AndroidHardwareBufferFormatPropertiesANDROID}, x::VkAndroidHardwareBufferFormatPropertiesANDROID) = T(x.sType, x.pNext, x.format, x.externalFormat, x.formatFeatures, from_vk(ComponentMapping, x.samplerYcbcrConversionComponents), x.suggestedYcbcrModel, x.suggestedYcbcrRange, x.suggestedXChromaOffset, x.suggestedYChromaOffset)
+from_vk(T::Type{AndroidHardwareBufferFormatPropertiesANDROID}, x::VkAndroidHardwareBufferFormatPropertiesANDROID) = T(x.sType, x.pNext, x.format, x.externalFormat, from_vk(FormatFeatureFlag, x.formatFeatures), from_vk(ComponentMapping, x.samplerYcbcrConversionComponents), x.suggestedYcbcrModel, x.suggestedYcbcrRange, x.suggestedXChromaOffset, x.suggestedYChromaOffset)
 
 from_vk(T::Type{AndroidHardwareBufferPropertiesANDROID}, x::VkAndroidHardwareBufferPropertiesANDROID) = T(x.sType, x.pNext, x.allocationSize, x.memoryTypeBits)
 
@@ -5858,7 +5858,7 @@ from_vk(T::Type{DescriptorSetVariableDescriptorCountLayoutSupport}, x::VkDescrip
 
 from_vk(T::Type{PhysicalDeviceDescriptorIndexingProperties}, x::VkPhysicalDeviceDescriptorIndexingProperties) = T(x.sType, x.pNext, x.maxUpdateAfterBindDescriptorsInAllPools, from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexingNative), from_vk(Bool, x.robustBufferAccessUpdateAfterBind), from_vk(Bool, x.quadDivergentImplicitLod), x.maxPerStageDescriptorUpdateAfterBindSamplers, x.maxPerStageDescriptorUpdateAfterBindUniformBuffers, x.maxPerStageDescriptorUpdateAfterBindStorageBuffers, x.maxPerStageDescriptorUpdateAfterBindSampledImages, x.maxPerStageDescriptorUpdateAfterBindStorageImages, x.maxPerStageDescriptorUpdateAfterBindInputAttachments, x.maxPerStageUpdateAfterBindResources, x.maxDescriptorSetUpdateAfterBindSamplers, x.maxDescriptorSetUpdateAfterBindUniformBuffers, x.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic, x.maxDescriptorSetUpdateAfterBindStorageBuffers, x.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic, x.maxDescriptorSetUpdateAfterBindSampledImages, x.maxDescriptorSetUpdateAfterBindStorageImages, x.maxDescriptorSetUpdateAfterBindInputAttachments)
 
-from_vk(T::Type{PhysicalDeviceShaderCoreProperties2AMD}, x::VkPhysicalDeviceShaderCoreProperties2AMD) = T(x.sType, x.pNext, x.shaderCoreFeatures, x.activeComputeUnitCount)
+from_vk(T::Type{PhysicalDeviceShaderCoreProperties2AMD}, x::VkPhysicalDeviceShaderCoreProperties2AMD) = T(x.sType, x.pNext, from_vk(ShaderCorePropertiesFlagAMD, x.shaderCoreFeatures), x.activeComputeUnitCount)
 
 from_vk(T::Type{PhysicalDeviceShaderCorePropertiesAMD}, x::VkPhysicalDeviceShaderCorePropertiesAMD) = T(x.sType, x.pNext, x.shaderEngineCount, x.shaderArraysPerEngineCount, x.computeUnitsPerShaderArray, x.simdPerComputeUnit, x.wavefrontsPerSimd, x.wavefrontSize, x.sgprsPerSimd, x.minSgprAllocation, x.maxSgprAllocation, x.sgprAllocationGranularity, x.vgprsPerSimd, x.minVgprAllocation, x.maxVgprAllocation, x.vgprAllocationGranularity)
 
@@ -5868,7 +5868,7 @@ from_vk(T::Type{PhysicalDeviceExternalMemoryHostPropertiesEXT}, x::VkPhysicalDev
 
 from_vk(T::Type{MemoryHostPointerPropertiesEXT}, x::VkMemoryHostPointerPropertiesEXT) = T(x.sType, x.pNext, x.memoryTypeBits)
 
-from_vk(T::Type{ShaderStatisticsInfoAMD}, x::VkShaderStatisticsInfoAMD) = T(x.shaderStageMask, from_vk(ShaderResourceUsageAMD, x.resourceUsage), x.numPhysicalVgprs, x.numPhysicalSgprs, x.numAvailableVgprs, x.numAvailableSgprs, x.computeWorkGroupSize)
+from_vk(T::Type{ShaderStatisticsInfoAMD}, x::VkShaderStatisticsInfoAMD) = T(from_vk(ShaderStageFlag, x.shaderStageMask), from_vk(ShaderResourceUsageAMD, x.resourceUsage), x.numPhysicalVgprs, x.numPhysicalSgprs, x.numAvailableVgprs, x.numAvailableSgprs, x.computeWorkGroupSize)
 
 from_vk(T::Type{ShaderResourceUsageAMD}, x::VkShaderResourceUsageAMD) = T(x.numUsedVgprs, x.numUsedSgprs, x.ldsSizePerLocalWorkGroup, x.ldsUsageSizeInBytes, x.scratchMemUsageInBytes)
 
@@ -5884,7 +5884,7 @@ from_vk(T::Type{PhysicalDeviceBlendOperationAdvancedPropertiesEXT}, x::VkPhysica
 
 from_vk(T::Type{MultisamplePropertiesEXT}, x::VkMultisamplePropertiesEXT) = T(x.sType, x.pNext, from_vk(Extent2D, x.maxSampleLocationGridSize))
 
-from_vk(T::Type{PhysicalDeviceSampleLocationsPropertiesEXT}, x::VkPhysicalDeviceSampleLocationsPropertiesEXT) = T(x.sType, x.pNext, x.sampleLocationSampleCounts, from_vk(Extent2D, x.maxSampleLocationGridSize), x.sampleLocationCoordinateRange, x.sampleLocationSubPixelBits, from_vk(Bool, x.variableSampleLocations))
+from_vk(T::Type{PhysicalDeviceSampleLocationsPropertiesEXT}, x::VkPhysicalDeviceSampleLocationsPropertiesEXT) = T(x.sType, x.pNext, from_vk(SampleCountFlag, x.sampleLocationSampleCounts), from_vk(Extent2D, x.maxSampleLocationGridSize), x.sampleLocationCoordinateRange, x.sampleLocationSubPixelBits, from_vk(Bool, x.variableSampleLocations))
 
 from_vk(T::Type{PhysicalDeviceSamplerFilterMinmaxProperties}, x::VkPhysicalDeviceSamplerFilterMinmaxProperties) = T(x.sType, x.pNext, from_vk(Bool, x.filterMinmaxSingleComponentFormats), from_vk(Bool, x.filterMinmaxImageComponentMapping))
 
@@ -5902,9 +5902,9 @@ from_vk(T::Type{SparseImageMemoryRequirements2}, x::VkSparseImageMemoryRequireme
 
 from_vk(T::Type{MemoryRequirements2}, x::VkMemoryRequirements2) = T(x.sType, x.pNext, from_vk(MemoryRequirements, x.memoryRequirements))
 
-from_vk(T::Type{PhysicalDeviceSubgroupProperties}, x::VkPhysicalDeviceSubgroupProperties) = T(x.sType, x.pNext, x.subgroupSize, x.supportedStages, x.supportedOperations, from_vk(Bool, x.quadOperationsInAllStages))
+from_vk(T::Type{PhysicalDeviceSubgroupProperties}, x::VkPhysicalDeviceSubgroupProperties) = T(x.sType, x.pNext, x.subgroupSize, from_vk(ShaderStageFlag, x.supportedStages), from_vk(SubgroupFeatureFlag, x.supportedOperations), from_vk(Bool, x.quadOperationsInAllStages))
 
-from_vk(T::Type{SharedPresentSurfaceCapabilitiesKHR}, x::VkSharedPresentSurfaceCapabilitiesKHR) = T(x.sType, x.pNext, x.sharedPresentSupportedUsageFlags)
+from_vk(T::Type{SharedPresentSurfaceCapabilitiesKHR}, x::VkSharedPresentSurfaceCapabilitiesKHR) = T(x.sType, x.pNext, from_vk(ImageUsageFlag, x.sharedPresentSupportedUsageFlags))
 
 from_vk(T::Type{DisplayPlaneCapabilities2KHR}, x::VkDisplayPlaneCapabilities2KHR) = T(x.sType, x.pNext, from_vk(DisplayPlaneCapabilitiesKHR, x.capabilities))
 
@@ -5928,17 +5928,17 @@ from_vk(T::Type{RefreshCycleDurationGOOGLE}, x::VkRefreshCycleDurationGOOGLE) = 
 
 from_vk(T::Type{DisplayNativeHdrSurfaceCapabilitiesAMD}, x::VkDisplayNativeHdrSurfaceCapabilitiesAMD) = T(x.sType, x.pNext, from_vk(Bool, x.localDimmingSupport))
 
-from_vk(T::Type{DeviceGroupPresentCapabilitiesKHR}, x::VkDeviceGroupPresentCapabilitiesKHR) = T(x.sType, x.pNext, x.presentMask, x.modes)
+from_vk(T::Type{DeviceGroupPresentCapabilitiesKHR}, x::VkDeviceGroupPresentCapabilitiesKHR) = T(x.sType, x.pNext, x.presentMask, from_vk(DeviceGroupPresentModeFlagKHR, x.modes))
 
 from_vk(T::Type{PhysicalDeviceGroupProperties}, x::VkPhysicalDeviceGroupProperties) = T(x.sType, x.pNext, x.physicalDeviceCount, x.physicalDevices, from_vk(Bool, x.subsetAllocation))
 
-from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) = T(x.sType, x.pNext, x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, x.currentTransform, x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
+from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) = T(x.sType, x.pNext, x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, from_vk(SurfaceTransformFlagKHR, x.supportedTransforms), x.currentTransform, from_vk(CompositeAlphaFlagKHR, x.supportedCompositeAlpha), from_vk(ImageUsageFlag, x.supportedUsageFlags), from_vk(SurfaceCounterFlagEXT, x.supportedSurfaceCounters))
 
 from_vk(T::Type{PhysicalDeviceMultiviewProperties}, x::VkPhysicalDeviceMultiviewProperties) = T(x.sType, x.pNext, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex)
 
-from_vk(T::Type{ExternalFenceProperties}, x::VkExternalFenceProperties) = T(x.sType, x.pNext, x.exportFromImportedHandleTypes, x.compatibleHandleTypes, x.externalFenceFeatures)
+from_vk(T::Type{ExternalFenceProperties}, x::VkExternalFenceProperties) = T(x.sType, x.pNext, from_vk(ExternalFenceHandleTypeFlag, x.exportFromImportedHandleTypes), from_vk(ExternalFenceHandleTypeFlag, x.compatibleHandleTypes), from_vk(ExternalFenceFeatureFlag, x.externalFenceFeatures))
 
-from_vk(T::Type{ExternalSemaphoreProperties}, x::VkExternalSemaphoreProperties) = T(x.sType, x.pNext, x.exportFromImportedHandleTypes, x.compatibleHandleTypes, x.externalSemaphoreFeatures)
+from_vk(T::Type{ExternalSemaphoreProperties}, x::VkExternalSemaphoreProperties) = T(x.sType, x.pNext, from_vk(ExternalSemaphoreHandleTypeFlag, x.exportFromImportedHandleTypes), from_vk(ExternalSemaphoreHandleTypeFlag, x.compatibleHandleTypes), from_vk(ExternalSemaphoreFeatureFlag, x.externalSemaphoreFeatures))
 
 from_vk(T::Type{MemoryFdPropertiesKHR}, x::VkMemoryFdPropertiesKHR) = T(x.sType, x.pNext, x.memoryTypeBits)
 
@@ -5950,7 +5950,7 @@ from_vk(T::Type{ExternalBufferProperties}, x::VkExternalBufferProperties) = T(x.
 
 from_vk(T::Type{ExternalImageFormatProperties}, x::VkExternalImageFormatProperties) = T(x.sType, x.pNext, from_vk(ExternalMemoryProperties, x.externalMemoryProperties))
 
-from_vk(T::Type{ExternalMemoryProperties}, x::VkExternalMemoryProperties) = T(x.externalMemoryFeatures, x.exportFromImportedHandleTypes, x.compatibleHandleTypes)
+from_vk(T::Type{ExternalMemoryProperties}, x::VkExternalMemoryProperties) = T(from_vk(ExternalMemoryFeatureFlag, x.externalMemoryFeatures), from_vk(ExternalMemoryHandleTypeFlag, x.exportFromImportedHandleTypes), from_vk(ExternalMemoryHandleTypeFlag, x.compatibleHandleTypes))
 
 from_vk(T::Type{PhysicalDeviceDriverProperties}, x::VkPhysicalDeviceDriverProperties) = T(x.sType, x.pNext, x.driverID, from_vk(String, x.driverName), from_vk(String, x.driverInfo), from_vk(ConformanceVersion, x.conformanceVersion))
 
@@ -5970,43 +5970,43 @@ from_vk(T::Type{PhysicalDeviceProperties2}, x::VkPhysicalDeviceProperties2) = T(
 
 from_vk(T::Type{PhysicalDeviceDeviceGeneratedCommandsPropertiesNV}, x::VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV) = T(x.sType, x.pNext, x.maxGraphicsShaderGroupCount, x.maxIndirectSequenceCount, x.maxIndirectCommandsTokenCount, x.maxIndirectCommandsStreamCount, x.maxIndirectCommandsTokenOffset, x.maxIndirectCommandsStreamStride, x.minSequencesCountBufferOffsetAlignment, x.minSequencesIndexBufferOffsetAlignment, x.minIndirectCommandsBufferOffsetAlignment)
 
-from_vk(T::Type{ExternalImageFormatPropertiesNV}, x::VkExternalImageFormatPropertiesNV) = T(from_vk(ImageFormatProperties, x.imageFormatProperties), x.externalMemoryFeatures, x.exportFromImportedHandleTypes, x.compatibleHandleTypes)
+from_vk(T::Type{ExternalImageFormatPropertiesNV}, x::VkExternalImageFormatPropertiesNV) = T(from_vk(ImageFormatProperties, x.imageFormatProperties), from_vk(ExternalMemoryFeatureFlagNV, x.externalMemoryFeatures), from_vk(ExternalMemoryHandleTypeFlagNV, x.exportFromImportedHandleTypes), from_vk(ExternalMemoryHandleTypeFlagNV, x.compatibleHandleTypes))
 
 from_vk(T::Type{SurfaceFormatKHR}, x::VkSurfaceFormatKHR) = T(x.format, x.colorSpace)
 
-from_vk(T::Type{SurfaceCapabilitiesKHR}, x::VkSurfaceCapabilitiesKHR) = T(x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, x.currentTransform, x.supportedCompositeAlpha, x.supportedUsageFlags)
+from_vk(T::Type{SurfaceCapabilitiesKHR}, x::VkSurfaceCapabilitiesKHR) = T(x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, from_vk(SurfaceTransformFlagKHR, x.supportedTransforms), x.currentTransform, from_vk(CompositeAlphaFlagKHR, x.supportedCompositeAlpha), from_vk(ImageUsageFlag, x.supportedUsageFlags))
 
-from_vk(T::Type{DisplayPlaneCapabilitiesKHR}, x::VkDisplayPlaneCapabilitiesKHR) = T(x.supportedAlpha, from_vk(Offset2D, x.minSrcPosition), from_vk(Offset2D, x.maxSrcPosition), from_vk(Extent2D, x.minSrcExtent), from_vk(Extent2D, x.maxSrcExtent), from_vk(Offset2D, x.minDstPosition), from_vk(Offset2D, x.maxDstPosition), from_vk(Extent2D, x.minDstExtent), from_vk(Extent2D, x.maxDstExtent))
+from_vk(T::Type{DisplayPlaneCapabilitiesKHR}, x::VkDisplayPlaneCapabilitiesKHR) = T(from_vk(DisplayPlaneAlphaFlagKHR, x.supportedAlpha), from_vk(Offset2D, x.minSrcPosition), from_vk(Offset2D, x.maxSrcPosition), from_vk(Extent2D, x.minSrcExtent), from_vk(Extent2D, x.maxSrcExtent), from_vk(Offset2D, x.minDstPosition), from_vk(Offset2D, x.maxDstPosition), from_vk(Extent2D, x.minDstExtent), from_vk(Extent2D, x.maxDstExtent))
 
 from_vk(T::Type{DisplayModePropertiesKHR}, x::VkDisplayModePropertiesKHR) = T(DisplayModeKHR(x.displayMode), from_vk(DisplayModeParametersKHR, x.parameters))
 
 from_vk(T::Type{DisplayPlanePropertiesKHR}, x::VkDisplayPlanePropertiesKHR) = T(DisplayKHR(x.currentDisplay), x.currentStackIndex)
 
-from_vk(T::Type{DisplayPropertiesKHR}, x::VkDisplayPropertiesKHR) = T(DisplayKHR(x.display), unsafe_string(x.displayName), from_vk(Extent2D, x.physicalDimensions), from_vk(Extent2D, x.physicalResolution), x.supportedTransforms, from_vk(Bool, x.planeReorderPossible), from_vk(Bool, x.persistentContent))
+from_vk(T::Type{DisplayPropertiesKHR}, x::VkDisplayPropertiesKHR) = T(DisplayKHR(x.display), unsafe_string(x.displayName), from_vk(Extent2D, x.physicalDimensions), from_vk(Extent2D, x.physicalResolution), from_vk(SurfaceTransformFlagKHR, x.supportedTransforms), from_vk(Bool, x.planeReorderPossible), from_vk(Bool, x.persistentContent))
 
-from_vk(T::Type{PhysicalDeviceLimits}, x::VkPhysicalDeviceLimits) = T(x.maxImageDimension1D, x.maxImageDimension2D, x.maxImageDimension3D, x.maxImageDimensionCube, x.maxImageArrayLayers, x.maxTexelBufferElements, x.maxUniformBufferRange, x.maxStorageBufferRange, x.maxPushConstantsSize, x.maxMemoryAllocationCount, x.maxSamplerAllocationCount, x.bufferImageGranularity, x.sparseAddressSpaceSize, x.maxBoundDescriptorSets, x.maxPerStageDescriptorSamplers, x.maxPerStageDescriptorUniformBuffers, x.maxPerStageDescriptorStorageBuffers, x.maxPerStageDescriptorSampledImages, x.maxPerStageDescriptorStorageImages, x.maxPerStageDescriptorInputAttachments, x.maxPerStageResources, x.maxDescriptorSetSamplers, x.maxDescriptorSetUniformBuffers, x.maxDescriptorSetUniformBuffersDynamic, x.maxDescriptorSetStorageBuffers, x.maxDescriptorSetStorageBuffersDynamic, x.maxDescriptorSetSampledImages, x.maxDescriptorSetStorageImages, x.maxDescriptorSetInputAttachments, x.maxVertexInputAttributes, x.maxVertexInputBindings, x.maxVertexInputAttributeOffset, x.maxVertexInputBindingStride, x.maxVertexOutputComponents, x.maxTessellationGenerationLevel, x.maxTessellationPatchSize, x.maxTessellationControlPerVertexInputComponents, x.maxTessellationControlPerVertexOutputComponents, x.maxTessellationControlPerPatchOutputComponents, x.maxTessellationControlTotalOutputComponents, x.maxTessellationEvaluationInputComponents, x.maxTessellationEvaluationOutputComponents, x.maxGeometryShaderInvocations, x.maxGeometryInputComponents, x.maxGeometryOutputComponents, x.maxGeometryOutputVertices, x.maxGeometryTotalOutputComponents, x.maxFragmentInputComponents, x.maxFragmentOutputAttachments, x.maxFragmentDualSrcAttachments, x.maxFragmentCombinedOutputResources, x.maxComputeSharedMemorySize, x.maxComputeWorkGroupCount, x.maxComputeWorkGroupInvocations, x.maxComputeWorkGroupSize, x.subPixelPrecisionBits, x.subTexelPrecisionBits, x.mipmapPrecisionBits, x.maxDrawIndexedIndexValue, x.maxDrawIndirectCount, x.maxSamplerLodBias, x.maxSamplerAnisotropy, x.maxViewports, x.maxViewportDimensions, x.viewportBoundsRange, x.viewportSubPixelBits, x.minMemoryMapAlignment, x.minTexelBufferOffsetAlignment, x.minUniformBufferOffsetAlignment, x.minStorageBufferOffsetAlignment, x.minTexelOffset, x.maxTexelOffset, x.minTexelGatherOffset, x.maxTexelGatherOffset, x.minInterpolationOffset, x.maxInterpolationOffset, x.subPixelInterpolationOffsetBits, x.maxFramebufferWidth, x.maxFramebufferHeight, x.maxFramebufferLayers, x.framebufferColorSampleCounts, x.framebufferDepthSampleCounts, x.framebufferStencilSampleCounts, x.framebufferNoAttachmentsSampleCounts, x.maxColorAttachments, x.sampledImageColorSampleCounts, x.sampledImageIntegerSampleCounts, x.sampledImageDepthSampleCounts, x.sampledImageStencilSampleCounts, x.storageImageSampleCounts, x.maxSampleMaskWords, from_vk(Bool, x.timestampComputeAndGraphics), x.timestampPeriod, x.maxClipDistances, x.maxCullDistances, x.maxCombinedClipAndCullDistances, x.discreteQueuePriorities, x.pointSizeRange, x.lineWidthRange, x.pointSizeGranularity, x.lineWidthGranularity, from_vk(Bool, x.strictLines), from_vk(Bool, x.standardSampleLocations), x.optimalBufferCopyOffsetAlignment, x.optimalBufferCopyRowPitchAlignment, x.nonCoherentAtomSize)
+from_vk(T::Type{PhysicalDeviceLimits}, x::VkPhysicalDeviceLimits) = T(x.maxImageDimension1D, x.maxImageDimension2D, x.maxImageDimension3D, x.maxImageDimensionCube, x.maxImageArrayLayers, x.maxTexelBufferElements, x.maxUniformBufferRange, x.maxStorageBufferRange, x.maxPushConstantsSize, x.maxMemoryAllocationCount, x.maxSamplerAllocationCount, x.bufferImageGranularity, x.sparseAddressSpaceSize, x.maxBoundDescriptorSets, x.maxPerStageDescriptorSamplers, x.maxPerStageDescriptorUniformBuffers, x.maxPerStageDescriptorStorageBuffers, x.maxPerStageDescriptorSampledImages, x.maxPerStageDescriptorStorageImages, x.maxPerStageDescriptorInputAttachments, x.maxPerStageResources, x.maxDescriptorSetSamplers, x.maxDescriptorSetUniformBuffers, x.maxDescriptorSetUniformBuffersDynamic, x.maxDescriptorSetStorageBuffers, x.maxDescriptorSetStorageBuffersDynamic, x.maxDescriptorSetSampledImages, x.maxDescriptorSetStorageImages, x.maxDescriptorSetInputAttachments, x.maxVertexInputAttributes, x.maxVertexInputBindings, x.maxVertexInputAttributeOffset, x.maxVertexInputBindingStride, x.maxVertexOutputComponents, x.maxTessellationGenerationLevel, x.maxTessellationPatchSize, x.maxTessellationControlPerVertexInputComponents, x.maxTessellationControlPerVertexOutputComponents, x.maxTessellationControlPerPatchOutputComponents, x.maxTessellationControlTotalOutputComponents, x.maxTessellationEvaluationInputComponents, x.maxTessellationEvaluationOutputComponents, x.maxGeometryShaderInvocations, x.maxGeometryInputComponents, x.maxGeometryOutputComponents, x.maxGeometryOutputVertices, x.maxGeometryTotalOutputComponents, x.maxFragmentInputComponents, x.maxFragmentOutputAttachments, x.maxFragmentDualSrcAttachments, x.maxFragmentCombinedOutputResources, x.maxComputeSharedMemorySize, x.maxComputeWorkGroupCount, x.maxComputeWorkGroupInvocations, x.maxComputeWorkGroupSize, x.subPixelPrecisionBits, x.subTexelPrecisionBits, x.mipmapPrecisionBits, x.maxDrawIndexedIndexValue, x.maxDrawIndirectCount, x.maxSamplerLodBias, x.maxSamplerAnisotropy, x.maxViewports, x.maxViewportDimensions, x.viewportBoundsRange, x.viewportSubPixelBits, x.minMemoryMapAlignment, x.minTexelBufferOffsetAlignment, x.minUniformBufferOffsetAlignment, x.minStorageBufferOffsetAlignment, x.minTexelOffset, x.maxTexelOffset, x.minTexelGatherOffset, x.maxTexelGatherOffset, x.minInterpolationOffset, x.maxInterpolationOffset, x.subPixelInterpolationOffsetBits, x.maxFramebufferWidth, x.maxFramebufferHeight, x.maxFramebufferLayers, from_vk(SampleCountFlag, x.framebufferColorSampleCounts), from_vk(SampleCountFlag, x.framebufferDepthSampleCounts), from_vk(SampleCountFlag, x.framebufferStencilSampleCounts), from_vk(SampleCountFlag, x.framebufferNoAttachmentsSampleCounts), x.maxColorAttachments, from_vk(SampleCountFlag, x.sampledImageColorSampleCounts), from_vk(SampleCountFlag, x.sampledImageIntegerSampleCounts), from_vk(SampleCountFlag, x.sampledImageDepthSampleCounts), from_vk(SampleCountFlag, x.sampledImageStencilSampleCounts), from_vk(SampleCountFlag, x.storageImageSampleCounts), x.maxSampleMaskWords, from_vk(Bool, x.timestampComputeAndGraphics), x.timestampPeriod, x.maxClipDistances, x.maxCullDistances, x.maxCombinedClipAndCullDistances, x.discreteQueuePriorities, x.pointSizeRange, x.lineWidthRange, x.pointSizeGranularity, x.lineWidthGranularity, from_vk(Bool, x.strictLines), from_vk(Bool, x.standardSampleLocations), x.optimalBufferCopyOffsetAlignment, x.optimalBufferCopyRowPitchAlignment, x.nonCoherentAtomSize)
 
 from_vk(T::Type{PhysicalDeviceSparseProperties}, x::VkPhysicalDeviceSparseProperties) = T(from_vk(Bool, x.residencyStandard2DBlockShape), from_vk(Bool, x.residencyStandard2DMultisampleBlockShape), from_vk(Bool, x.residencyStandard3DBlockShape), from_vk(Bool, x.residencyAlignedMipSize), from_vk(Bool, x.residencyNonResidentStrict))
 
 from_vk(T::Type{SubresourceLayout}, x::VkSubresourceLayout) = T(x.offset, x.size, x.rowPitch, x.arrayPitch, x.depthPitch)
 
-from_vk(T::Type{ImageFormatProperties}, x::VkImageFormatProperties) = T(from_vk(Extent3D, x.maxExtent), x.maxMipLevels, x.maxArrayLayers, x.sampleCounts, x.maxResourceSize)
+from_vk(T::Type{ImageFormatProperties}, x::VkImageFormatProperties) = T(from_vk(Extent3D, x.maxExtent), x.maxMipLevels, x.maxArrayLayers, from_vk(SampleCountFlag, x.sampleCounts), x.maxResourceSize)
 
-from_vk(T::Type{FormatProperties}, x::VkFormatProperties) = T(x.linearTilingFeatures, x.optimalTilingFeatures, x.bufferFeatures)
+from_vk(T::Type{FormatProperties}, x::VkFormatProperties) = T(from_vk(FormatFeatureFlag, x.linearTilingFeatures), from_vk(FormatFeatureFlag, x.optimalTilingFeatures), from_vk(FormatFeatureFlag, x.bufferFeatures))
 
-from_vk(T::Type{MemoryHeap}, x::VkMemoryHeap) = T(x.size, x.flags)
+from_vk(T::Type{MemoryHeap}, x::VkMemoryHeap) = T(x.size, from_vk(MemoryHeapFlag, x.flags))
 
-from_vk(T::Type{MemoryType}, x::VkMemoryType) = T(x.propertyFlags, x.heapIndex)
+from_vk(T::Type{MemoryType}, x::VkMemoryType) = T(from_vk(MemoryPropertyFlag, x.propertyFlags), x.heapIndex)
 
 from_vk(T::Type{SparseImageMemoryRequirements}, x::VkSparseImageMemoryRequirements) = T(from_vk(SparseImageFormatProperties, x.formatProperties), x.imageMipTailFirstLod, x.imageMipTailSize, x.imageMipTailOffset, x.imageMipTailStride)
 
-from_vk(T::Type{SparseImageFormatProperties}, x::VkSparseImageFormatProperties) = T(x.aspectMask, from_vk(Extent3D, x.imageGranularity), x.flags)
+from_vk(T::Type{SparseImageFormatProperties}, x::VkSparseImageFormatProperties) = T(from_vk(ImageAspectFlag, x.aspectMask), from_vk(Extent3D, x.imageGranularity), from_vk(SparseImageFormatFlag, x.flags))
 
 from_vk(T::Type{MemoryRequirements}, x::VkMemoryRequirements) = T(x.size, x.alignment, x.memoryTypeBits)
 
 from_vk(T::Type{PhysicalDeviceMemoryProperties}, x::VkPhysicalDeviceMemoryProperties) = T(x.memoryTypeCount, from_vk.(MemoryType, x.memoryTypes), x.memoryHeapCount, from_vk.(MemoryHeap, x.memoryHeaps))
 
-from_vk(T::Type{QueueFamilyProperties}, x::VkQueueFamilyProperties) = T(x.queueFlags, x.queueCount, x.timestampValidBits, from_vk(Extent3D, x.minImageTransferGranularity))
+from_vk(T::Type{QueueFamilyProperties}, x::VkQueueFamilyProperties) = T(from_vk(QueueFlag, x.queueFlags), x.queueCount, x.timestampValidBits, from_vk(Extent3D, x.minImageTransferGranularity))
 
 from_vk(T::Type{LayerProperties}, x::VkLayerProperties) = T(from_vk(String, x.layerName), from_vk(VersionNumber, x.specVersion), from_vk(VersionNumber, x.implementationVersion), from_vk(String, x.description))
 
@@ -6038,7 +6038,7 @@ end
 function DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkDeviceDiagnosticsConfigCreateInfoNV(VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkDeviceDiagnosticsConfigCreateInfoNV(VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkDeviceDiagnosticsConfigFlagsNV, flags))
     DeviceDiagnosticsConfigCreateInfoNV(vks, deps)
 end
 
@@ -6049,14 +6049,14 @@ function PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; nex
     PhysicalDeviceDiagnosticsConfigFeaturesNV(vks, deps)
 end
 
-function CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::Rect2D; next = C_NULL)
+function CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR, render_area::Rect2D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCommandBufferInheritanceRenderPassTransformInfoQCOM(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), transform, render_area.vks)
     CommandBufferInheritanceRenderPassTransformInfoQCOM(vks, deps)
 end
 
-function RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
+function RenderPassTransformBeginInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkRenderPassTransformBeginInfoQCOM(VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), transform)
@@ -6129,7 +6129,7 @@ function AccelerationStructureDeviceAddressInfoKHR(acceleration_structure::Accel
 end
 
 function AccelerationStructureInstanceKHR(transform::TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
-    AccelerationStructureInstanceKHR(VkAccelerationStructureInstanceKHR(transform.vks, instance_custom_index, mask, instance_shader_binding_table_record_offset, flags, acceleration_structure_reference))
+    AccelerationStructureInstanceKHR(VkAccelerationStructureInstanceKHR(transform.vks, instance_custom_index, mask, instance_shader_binding_table_record_offset, to_vk(VkGeometryInstanceFlagsKHR, flags), acceleration_structure_reference))
 end
 
 function TransformMatrixKHR(matrix::NTuple{3, NTuple{4, Float32}})
@@ -6144,7 +6144,7 @@ function AccelerationStructureCreateInfoKHR(compacted_size::Integer, type::VkAcc
     next = cconvert(Ptr{Cvoid}, next)
     geometry_infos = cconvert(Ptr{VkAccelerationStructureCreateGeometryTypeInfoKHR}, geometry_infos)
     deps = [next, geometry_infos]
-    vks = VkAccelerationStructureCreateInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), compacted_size, type, flags, pointer_length(geometry_infos), unsafe_convert(Ptr{VkAccelerationStructureCreateGeometryTypeInfoKHR}, geometry_infos), device_address)
+    vks = VkAccelerationStructureCreateInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), compacted_size, type, to_vk(VkBuildAccelerationStructureFlagsKHR, flags), pointer_length(geometry_infos), unsafe_convert(Ptr{VkAccelerationStructureCreateGeometryTypeInfoKHR}, geometry_infos), device_address)
     AccelerationStructureCreateInfoKHR(vks, deps)
 end
 
@@ -6163,14 +6163,14 @@ function AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructure
     next = cconvert(Ptr{Cvoid}, next)
     geometries = cconvert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries)
     deps = [next, geometries]
-    vks = VkAccelerationStructureBuildGeometryInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), type, flags, update, src_acceleration_structure, dst_acceleration_structure, geometry_array_of_pointers, geometry_count, unsafe_convert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries), scratch_data.vks)
+    vks = VkAccelerationStructureBuildGeometryInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), type, to_vk(VkBuildAccelerationStructureFlagsKHR, flags), update, src_acceleration_structure, dst_acceleration_structure, geometry_array_of_pointers, geometry_count, unsafe_convert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries), scratch_data.vks)
     AccelerationStructureBuildGeometryInfoKHR(vks, deps)
 end
 
 function AccelerationStructureGeometryKHR(geometry_type::VkGeometryTypeKHR, geometry::AccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkAccelerationStructureGeometryKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR, unsafe_convert(Ptr{Cvoid}, next), geometry_type, geometry.vks, flags)
+    vks = VkAccelerationStructureGeometryKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR, unsafe_convert(Ptr{Cvoid}, next), geometry_type, geometry.vks, to_vk(VkGeometryFlagsKHR, flags))
     AccelerationStructureGeometryKHR(vks, deps)
 end
 
@@ -6237,7 +6237,7 @@ end
 function PipelineCompilerControlCreateInfoAMD(; next = C_NULL, compiler_control_flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPipelineCompilerControlCreateInfoAMD(VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD, unsafe_convert(Ptr{Cvoid}, next), compiler_control_flags)
+    vks = VkPipelineCompilerControlCreateInfoAMD(VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPipelineCompilerControlFlagsAMD, compiler_control_flags))
     PipelineCompilerControlCreateInfoAMD(vks, deps)
 end
 
@@ -6473,7 +6473,7 @@ end
 function AcquireProfilingLockInfoKHR(timeout::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkAcquireProfilingLockInfoKHR(VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, timeout)
+    vks = VkAcquireProfilingLockInfoKHR(VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkAcquireProfilingLockFlagsKHR, flags), timeout)
     AcquireProfilingLockInfoKHR(vks, deps)
 end
 
@@ -6576,11 +6576,11 @@ function RenderPassAttachmentBeginInfo(attachments::AbstractArray; next = C_NULL
     RenderPassAttachmentBeginInfo(vks, deps)
 end
 
-function FramebufferAttachmentImageInfo(usage::Integer, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray; next = C_NULL, flags = 0)
+function FramebufferAttachmentImageInfo(usage::ImageUsageFlag, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     view_formats = cconvert(Ptr{VkFormat}, view_formats)
     deps = [next, view_formats]
-    vks = VkFramebufferAttachmentImageInfo(VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, usage, width, height, layer_count, pointer_length(view_formats), unsafe_convert(Ptr{VkFormat}, view_formats))
+    vks = VkFramebufferAttachmentImageInfo(VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkImageCreateFlags, flags), to_vk(VkImageUsageFlags, usage), width, height, layer_count, pointer_length(view_formats), unsafe_convert(Ptr{VkFormat}, view_formats))
     FramebufferAttachmentImageInfo(vks, deps)
 end
 
@@ -6718,10 +6718,10 @@ function DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::VkMemo
     DeviceMemoryOverallocationCreateInfoAMD(vks, deps)
 end
 
-function ImageStencilUsageCreateInfo(stencil_usage::Integer; next = C_NULL)
+function ImageStencilUsageCreateInfo(stencil_usage::ImageUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImageStencilUsageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), stencil_usage)
+    vks = VkImageStencilUsageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkImageUsageFlags, stencil_usage))
     ImageStencilUsageCreateInfo(vks, deps)
 end
 
@@ -6812,7 +6812,7 @@ end
 function GeometryNV(geometry_type::VkGeometryTypeKHR, geometry::GeometryDataNV; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkGeometryNV(VK_STRUCTURE_TYPE_GEOMETRY_NV, unsafe_convert(Ptr{Cvoid}, next), geometry_type, geometry.vks, flags)
+    vks = VkGeometryNV(VK_STRUCTURE_TYPE_GEOMETRY_NV, unsafe_convert(Ptr{Cvoid}, next), geometry_type, geometry.vks, to_vk(VkGeometryFlagsKHR, flags))
     GeometryNV(vks, deps)
 end
 
@@ -6840,7 +6840,7 @@ function RayTracingPipelineCreateInfoKHR(stages::AbstractArray, groups::Abstract
     groups = cconvert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups)
     library_interface = cconvert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface)
     deps = [next, stages, groups, library_interface]
-    vks = VkRayTracingPipelineCreateInfoKHR(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups), max_recursion_depth, libraries.vks, unsafe_convert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface), layout, base_pipeline_handle, base_pipeline_index)
+    vks = VkRayTracingPipelineCreateInfoKHR(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPipelineCreateFlags, flags), pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups), max_recursion_depth, libraries.vks, unsafe_convert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface), layout, base_pipeline_handle, base_pipeline_index)
     RayTracingPipelineCreateInfoKHR(vks, deps)
 end
 
@@ -6849,7 +6849,7 @@ function RayTracingPipelineCreateInfoNV(stages::AbstractArray, groups::AbstractA
     stages = cconvert(Ptr{VkPipelineShaderStageCreateInfo}, stages)
     groups = cconvert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups)
     deps = [next, stages, groups]
-    vks = VkRayTracingPipelineCreateInfoNV(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups), max_recursion_depth, layout, base_pipeline_handle, base_pipeline_index)
+    vks = VkRayTracingPipelineCreateInfoNV(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPipelineCreateFlags, flags), pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups), max_recursion_depth, layout, base_pipeline_handle, base_pipeline_index)
     RayTracingPipelineCreateInfoNV(vks, deps)
 end
 
@@ -7012,7 +7012,7 @@ function ImageViewASTCDecodeModeEXT(decode_mode::VkFormat; next = C_NULL)
     ImageViewASTCDecodeModeEXT(vks, deps)
 end
 
-function SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeFlag, stencil_resolve_mode::ResolveModeFlag; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
+function SubpassDescriptionDepthStencilResolve(depth_resolve_mode::VkResolveModeFlagBits, stencil_resolve_mode::VkResolveModeFlagBits; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     depth_stencil_resolve_attachment = cconvert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment)
     deps = [next, depth_stencil_resolve_attachment]
@@ -7115,7 +7115,7 @@ function SemaphoreWaitInfo(semaphores::AbstractArray, values::AbstractArray; nex
     semaphores = cconvert(Ptr{VkSemaphore}, semaphores)
     values = cconvert(Ptr{UInt64}, values)
     deps = [next, semaphores, values]
-    vks = VkSemaphoreWaitInfo(VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(semaphores), unsafe_convert(Ptr{VkSemaphore}, semaphores), unsafe_convert(Ptr{UInt64}, values))
+    vks = VkSemaphoreWaitInfo(VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkSemaphoreWaitFlags, flags), pointer_length(semaphores), unsafe_convert(Ptr{VkSemaphore}, semaphores), unsafe_convert(Ptr{UInt64}, values))
     SemaphoreWaitInfo(vks, deps)
 end
 
@@ -7163,14 +7163,14 @@ function RenderPassCreateInfo2(attachments::AbstractArray, subpasses::AbstractAr
     dependencies = cconvert(Ptr{VkSubpassDependency2}, dependencies)
     correlated_view_masks = cconvert(Ptr{UInt32}, correlated_view_masks)
     deps = [next, attachments, subpasses, dependencies, correlated_view_masks]
-    vks = VkRenderPassCreateInfo2(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(attachments), unsafe_convert(Ptr{VkAttachmentDescription2}, attachments), pointer_length(subpasses), unsafe_convert(Ptr{VkSubpassDescription2}, subpasses), pointer_length(dependencies), unsafe_convert(Ptr{VkSubpassDependency2}, dependencies), pointer_length(correlated_view_masks), unsafe_convert(Ptr{UInt32}, correlated_view_masks))
+    vks = VkRenderPassCreateInfo2(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkRenderPassCreateFlags, flags), pointer_length(attachments), unsafe_convert(Ptr{VkAttachmentDescription2}, attachments), pointer_length(subpasses), unsafe_convert(Ptr{VkSubpassDescription2}, subpasses), pointer_length(dependencies), unsafe_convert(Ptr{VkSubpassDependency2}, dependencies), pointer_length(correlated_view_masks), unsafe_convert(Ptr{UInt32}, correlated_view_masks))
     RenderPassCreateInfo2(vks, deps)
 end
 
-function SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::Integer, dst_stage_mask::Integer; next = C_NULL, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0, view_offset = 0)
+function SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag; next = C_NULL, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0, view_offset = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkSubpassDependency2(VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2, unsafe_convert(Ptr{Cvoid}, next), src_subpass, dst_subpass, src_stage_mask, dst_stage_mask, src_access_mask, dst_access_mask, dependency_flags, view_offset)
+    vks = VkSubpassDependency2(VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2, unsafe_convert(Ptr{Cvoid}, next), src_subpass, dst_subpass, to_vk(VkPipelineStageFlags, src_stage_mask), to_vk(VkPipelineStageFlags, dst_stage_mask), to_vk(VkAccessFlags, src_access_mask), to_vk(VkAccessFlags, dst_access_mask), to_vk(VkDependencyFlags, dependency_flags), view_offset)
     SubpassDependency2(vks, deps)
 end
 
@@ -7182,21 +7182,21 @@ function SubpassDescription2(pipeline_bind_point::VkPipelineBindPoint, view_mask
     depth_stencil_attachment = cconvert(Ptr{VkAttachmentReference2}, depth_stencil_attachment)
     preserve_attachments = cconvert(Ptr{UInt32}, preserve_attachments)
     deps = [next, input_attachments, color_attachments, resolve_attachments, depth_stencil_attachment, preserve_attachments]
-    vks = VkSubpassDescription2(VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2, unsafe_convert(Ptr{Cvoid}, next), flags, pipeline_bind_point, view_mask, pointer_length(input_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, input_attachments), pointer_length(color_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_attachment), pointer_length(preserve_attachments), unsafe_convert(Ptr{UInt32}, preserve_attachments))
+    vks = VkSubpassDescription2(VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkSubpassDescriptionFlags, flags), pipeline_bind_point, view_mask, pointer_length(input_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, input_attachments), pointer_length(color_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_attachment), pointer_length(preserve_attachments), unsafe_convert(Ptr{UInt32}, preserve_attachments))
     SubpassDescription2(vks, deps)
 end
 
-function AttachmentReference2(attachment::Integer, layout::VkImageLayout, aspect_mask::Integer; next = C_NULL)
+function AttachmentReference2(attachment::Integer, layout::VkImageLayout, aspect_mask::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkAttachmentReference2(VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2, unsafe_convert(Ptr{Cvoid}, next), attachment, layout, aspect_mask)
+    vks = VkAttachmentReference2(VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2, unsafe_convert(Ptr{Cvoid}, next), attachment, layout, to_vk(VkImageAspectFlags, aspect_mask))
     AttachmentReference2(vks, deps)
 end
 
-function AttachmentDescription2(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
+function AttachmentDescription2(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkAttachmentDescription2(VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2, unsafe_convert(Ptr{Cvoid}, next), flags, format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout)
+    vks = VkAttachmentDescription2(VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkAttachmentDescriptionFlags, flags), format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout)
     AttachmentDescription2(vks, deps)
 end
 
@@ -7237,7 +7237,7 @@ function CalibratedTimestampInfoEXT(time_domain::VkTimeDomainEXT; next = C_NULL)
     CalibratedTimestampInfoEXT(vks, deps)
 end
 
-function ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
+function ImportMemoryHostPointerInfoEXT(handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     host_pointer = cconvert(Ptr{Cvoid}, host_pointer)
     deps = [next, host_pointer]
@@ -7257,11 +7257,11 @@ function DebugUtilsMessengerCallbackDataEXT(message::AbstractString, queue_label
     DebugUtilsMessengerCallbackDataEXT(vks, deps)
 end
 
-function DebugUtilsMessengerCreateInfoEXT(message_severity::Integer, message_type::Integer, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
+function DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     user_data = cconvert(Ptr{Cvoid}, user_data)
     deps = [next, user_data]
-    vks = VkDebugUtilsMessengerCreateInfoEXT(VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, message_severity, message_type, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+    vks = VkDebugUtilsMessengerCreateInfoEXT(VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, to_vk(VkDebugUtilsMessageSeverityFlagsEXT, message_severity), to_vk(VkDebugUtilsMessageTypeFlagsEXT, message_type), pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
     DebugUtilsMessengerCreateInfoEXT(vks, deps)
 end
 
@@ -7437,7 +7437,7 @@ end
 function DeviceQueueInfo2(queue_family_index::Integer, queue_index::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkDeviceQueueInfo2(VK_STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2, unsafe_convert(Ptr{Cvoid}, next), flags, queue_family_index, queue_index)
+    vks = VkDeviceQueueInfo2(VK_STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkDeviceQueueCreateFlags, flags), queue_family_index, queue_index)
     DeviceQueueInfo2(vks, deps)
 end
 
@@ -7458,7 +7458,7 @@ end
 function ConditionalRenderingBeginInfoEXT(buffer::Buffer, offset::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkConditionalRenderingBeginInfoEXT(VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), buffer, offset, flags)
+    vks = VkConditionalRenderingBeginInfoEXT(VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), buffer, offset, to_vk(VkConditionalRenderingFlagsEXT, flags))
     ConditionalRenderingBeginInfoEXT(vks, deps)
 end
 
@@ -7469,14 +7469,14 @@ function PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::
     PhysicalDeviceSamplerYcbcrConversionFeatures(vks, deps)
 end
 
-function ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
+function ImagePlaneMemoryRequirementsInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImagePlaneMemoryRequirementsInfo(VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO, unsafe_convert(Ptr{Cvoid}, next), plane_aspect)
     ImagePlaneMemoryRequirementsInfo(vks, deps)
 end
 
-function BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
+function BindImagePlaneMemoryInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBindImagePlaneMemoryInfo(VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO, unsafe_convert(Ptr{Cvoid}, next), plane_aspect)
@@ -7504,10 +7504,10 @@ function PipelineTessellationDomainOriginStateCreateInfo(domain_origin::VkTessel
     PipelineTessellationDomainOriginStateCreateInfo(vks, deps)
 end
 
-function ImageViewUsageCreateInfo(usage::Integer; next = C_NULL)
+function ImageViewUsageCreateInfo(usage::ImageUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImageViewUsageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), usage)
+    vks = VkImageViewUsageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkImageUsageFlags, usage))
     ImageViewUsageCreateInfo(vks, deps)
 end
 
@@ -7575,8 +7575,8 @@ function RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractAr
     RenderPassInputAttachmentAspectCreateInfo(vks, deps)
 end
 
-function InputAttachmentAspectReference(subpass::Integer, input_attachment_index::Integer, aspect_mask::Integer)
-    InputAttachmentAspectReference(VkInputAttachmentAspectReference(subpass, input_attachment_index, aspect_mask))
+function InputAttachmentAspectReference(subpass::Integer, input_attachment_index::Integer, aspect_mask::ImageAspectFlag)
+    InputAttachmentAspectReference(VkInputAttachmentAspectReference(subpass, input_attachment_index, to_vk(VkImageAspectFlags, aspect_mask)))
 end
 
 function PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::VkDiscardRectangleModeEXT, discard_rectangles::AbstractArray; next = C_NULL, flags = 0)
@@ -7677,10 +7677,10 @@ function DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::
     DescriptorUpdateTemplateEntry(VkDescriptorUpdateTemplateEntry(dst_binding, dst_array_element, descriptor_count, descriptor_type, offset, stride))
 end
 
-function DeviceGroupSwapchainCreateInfoKHR(modes::Integer; next = C_NULL)
+function DeviceGroupSwapchainCreateInfoKHR(modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkDeviceGroupSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), modes)
+    vks = VkDeviceGroupSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkDeviceGroupPresentModeFlagsKHR, modes))
     DeviceGroupSwapchainCreateInfoKHR(vks, deps)
 end
 
@@ -7692,7 +7692,7 @@ function DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray; next = C_N
     DeviceGroupDeviceCreateInfo(vks, deps)
 end
 
-function DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
+function DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::VkDeviceGroupPresentModeFlagBitsKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_masks = cconvert(Ptr{UInt32}, device_masks)
     deps = [next, device_masks]
@@ -7787,14 +7787,14 @@ end
 function MemoryAllocateFlagsInfo(device_mask::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkMemoryAllocateFlagsInfo(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, device_mask)
+    vks = VkMemoryAllocateFlagsInfo(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkMemoryAllocateFlags, flags), device_mask)
     MemoryAllocateFlagsInfo(vks, deps)
 end
 
 function SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkSwapchainCounterCreateInfoEXT(VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), surface_counters)
+    vks = VkSwapchainCounterCreateInfoEXT(VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkSurfaceCounterFlagsEXT, surface_counters))
     SwapchainCounterCreateInfoEXT(vks, deps)
 end
 
@@ -7836,21 +7836,21 @@ function PhysicalDeviceMultiviewFeatures(multiview::Bool, multiview_geometry_sha
     PhysicalDeviceMultiviewFeatures(vks, deps)
 end
 
-function FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
+function FenceGetFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkFenceGetFdInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
     FenceGetFdInfoKHR(vks, deps)
 end
 
-function ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
+function ImportFenceFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportFenceFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, handle_type, fd)
+    vks = VkImportFenceFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, to_vk(VkFenceImportFlags, flags), handle_type, fd)
     ImportFenceFdInfoKHR(vks, deps)
 end
 
-function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
+function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkFenceGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
@@ -7868,39 +7868,39 @@ end
 function ImportFenceWin32HandleInfoKHR(fence::Fence; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, handle_type, handle, name)
+    vks = VkImportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, to_vk(VkFenceImportFlags, flags), handle_type, handle, name)
     ImportFenceWin32HandleInfoKHR(vks, deps)
 end
 
 function ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkExportFenceCreateInfo(VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportFenceCreateInfo(VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalFenceHandleTypeFlags, handle_types))
     ExportFenceCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
+function PhysicalDeviceExternalFenceInfo(handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDeviceExternalFenceInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_type)
     PhysicalDeviceExternalFenceInfo(vks, deps)
 end
 
-function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSemaphoreGetFdInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
     SemaphoreGetFdInfoKHR(vks, deps)
 end
 
-function ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
+function ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportSemaphoreFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, handle_type, fd)
+    vks = VkImportSemaphoreFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, to_vk(VkSemaphoreImportFlags, flags), handle_type, fd)
     ImportSemaphoreFdInfoKHR(vks, deps)
 end
 
-function SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+function SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSemaphoreGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
@@ -7927,18 +7927,18 @@ end
 function ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, handle_type, handle, name)
+    vks = VkImportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, to_vk(VkSemaphoreImportFlags, flags), handle_type, handle, name)
     ImportSemaphoreWin32HandleInfoKHR(vks, deps)
 end
 
 function ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkExportSemaphoreCreateInfo(VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportSemaphoreCreateInfo(VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalSemaphoreHandleTypeFlags, handle_types))
     ExportSemaphoreCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+function PhysicalDeviceExternalSemaphoreInfo(handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDeviceExternalSemaphoreInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_type)
@@ -7957,7 +7957,7 @@ function Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray, acqu
     Win32KeyedMutexAcquireReleaseInfoKHR(vks, deps)
 end
 
-function MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+function MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryGetFdInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
@@ -7971,7 +7971,7 @@ function ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
     ImportMemoryFdInfoKHR(vks, deps)
 end
 
-function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
@@ -7996,28 +7996,28 @@ end
 function ExportMemoryAllocateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkExportMemoryAllocateInfo(VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportMemoryAllocateInfo(VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalMemoryHandleTypeFlags, handle_types))
     ExportMemoryAllocateInfo(vks, deps)
 end
 
 function ExternalMemoryBufferCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkExternalMemoryBufferCreateInfo(VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExternalMemoryBufferCreateInfo(VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalMemoryHandleTypeFlags, handle_types))
     ExternalMemoryBufferCreateInfo(vks, deps)
 end
 
-function ExternalMemoryImageCreateInfo(handle_types::Integer; next = C_NULL)
+function ExternalMemoryImageCreateInfo(handle_types::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkExternalMemoryImageCreateInfo(VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExternalMemoryImageCreateInfo(VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalMemoryHandleTypeFlags, handle_types))
     ExternalMemoryImageCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalBufferInfo(usage::Integer, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
+function PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceExternalBufferInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, usage, handle_type)
+    vks = VkPhysicalDeviceExternalBufferInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkBufferCreateFlags, flags), to_vk(VkBufferUsageFlags, usage), handle_type)
     PhysicalDeviceExternalBufferInfo(vks, deps)
 end
 
@@ -8058,17 +8058,17 @@ function ConformanceVersion(major::Integer, minor::Integer, subminor::Integer, p
     ConformanceVersion(VkConformanceVersion(major, minor, subminor, patch))
 end
 
-function PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::Integer, tiling::VkImageTiling; next = C_NULL)
+function PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceSparseImageFormatInfo2(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2, unsafe_convert(Ptr{Cvoid}, next), format, type, samples, usage, tiling)
+    vks = VkPhysicalDeviceSparseImageFormatInfo2(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2, unsafe_convert(Ptr{Cvoid}, next), format, type, samples, to_vk(VkImageUsageFlags, usage), tiling)
     PhysicalDeviceSparseImageFormatInfo2(vks, deps)
 end
 
-function PhysicalDeviceImageFormatInfo2(format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::Integer; next = C_NULL, flags = 0)
+function PhysicalDeviceImageFormatInfo2(format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceImageFormatInfo2(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2, unsafe_convert(Ptr{Cvoid}, next), format, type, tiling, usage, flags)
+    vks = VkPhysicalDeviceImageFormatInfo2(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2, unsafe_convert(Ptr{Cvoid}, next), format, type, tiling, to_vk(VkImageUsageFlags, usage), to_vk(VkImageCreateFlags, flags))
     PhysicalDeviceImageFormatInfo2(vks, deps)
 end
 
@@ -8094,12 +8094,12 @@ function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipel
     GeneratedCommandsInfoNV(vks, deps)
 end
 
-function IndirectCommandsLayoutCreateInfoNV(flags::Integer, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; next = C_NULL)
+function IndirectCommandsLayoutCreateInfoNV(flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     tokens = cconvert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens)
     stream_strides = cconvert(Ptr{UInt32}, stream_strides)
     deps = [next, tokens, stream_strides]
-    vks = VkIndirectCommandsLayoutCreateInfoNV(VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), flags, pipeline_bind_point, pointer_length(tokens), unsafe_convert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens), pointer_length(stream_strides), unsafe_convert(Ptr{UInt32}, stream_strides))
+    vks = VkIndirectCommandsLayoutCreateInfoNV(VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkIndirectCommandsLayoutUsageFlagsNV, flags), pipeline_bind_point, pointer_length(tokens), unsafe_convert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens), pointer_length(stream_strides), unsafe_convert(Ptr{UInt32}, stream_strides))
     IndirectCommandsLayoutCreateInfoNV(vks, deps)
 end
 
@@ -8108,7 +8108,7 @@ function IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV
     index_types = cconvert(Ptr{VkIndexType}, index_types)
     index_type_values = cconvert(Ptr{UInt32}, index_type_values)
     deps = [next, index_types, index_type_values]
-    vks = VkIndirectCommandsLayoutTokenNV(VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV, unsafe_convert(Ptr{Cvoid}, next), token_type, stream, offset, vertex_binding_unit, vertex_dynamic_stride, pushconstant_pipeline_layout, pushconstant_shader_stage_flags, pushconstant_offset, pushconstant_size, indirect_state_flags, pointer_length(index_types), unsafe_convert(Ptr{VkIndexType}, index_types), unsafe_convert(Ptr{UInt32}, index_type_values))
+    vks = VkIndirectCommandsLayoutTokenNV(VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV, unsafe_convert(Ptr{Cvoid}, next), token_type, stream, offset, vertex_binding_unit, vertex_dynamic_stride, pushconstant_pipeline_layout, to_vk(VkShaderStageFlags, pushconstant_shader_stage_flags), pushconstant_offset, pushconstant_size, to_vk(VkIndirectStateFlagsNV, indirect_state_flags), pointer_length(index_types), unsafe_convert(Ptr{VkIndexType}, index_types), unsafe_convert(Ptr{UInt32}, index_type_values))
     IndirectCommandsLayoutTokenNV(vks, deps)
 end
 
@@ -8158,10 +8158,10 @@ function PhysicalDevicePrivateDataFeaturesEXT(private_data::Bool; next = C_NULL)
     PhysicalDevicePrivateDataFeaturesEXT(vks, deps)
 end
 
-function PrivateDataSlotCreateInfoEXT(flags::Integer; next = C_NULL)
+function PrivateDataSlotCreateInfoEXT(flags::PrivateDataSlotCreateFlagEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPrivateDataSlotCreateInfoEXT(VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkPrivateDataSlotCreateInfoEXT(VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPrivateDataSlotCreateFlagsEXT, flags))
     PrivateDataSlotCreateInfoEXT(vks, deps)
 end
 
@@ -8202,21 +8202,21 @@ end
 function ImportMemoryWin32HandleInfoNV(; next = C_NULL, handle_type = 0, handle = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportMemoryWin32HandleInfoNV(VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), handle_type, handle)
+    vks = VkImportMemoryWin32HandleInfoNV(VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalMemoryHandleTypeFlagsNV, handle_type), handle)
     ImportMemoryWin32HandleInfoNV(vks, deps)
 end
 
 function ExportMemoryAllocateInfoNV(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkExportMemoryAllocateInfoNV(VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportMemoryAllocateInfoNV(VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalMemoryHandleTypeFlagsNV, handle_types))
     ExportMemoryAllocateInfoNV(vks, deps)
 end
 
 function ExternalMemoryImageCreateInfoNV(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkExternalMemoryImageCreateInfoNV(VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExternalMemoryImageCreateInfoNV(VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkExternalMemoryHandleTypeFlagsNV, handle_types))
     ExternalMemoryImageCreateInfoNV(vks, deps)
 end
 
@@ -8293,7 +8293,7 @@ function DebugReportCallbackCreateInfoEXT(pfn_callback::FunctionPtr; next = C_NU
     next = cconvert(Ptr{Cvoid}, next)
     user_data = cconvert(Ptr{Cvoid}, user_data)
     deps = [next, user_data]
-    vks = VkDebugReportCallbackCreateInfoEXT(VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, pfn_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+    vks = VkDebugReportCallbackCreateInfoEXT(VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkDebugReportFlagsEXT, flags), pfn_callback, unsafe_convert(Ptr{Cvoid}, user_data))
     DebugReportCallbackCreateInfoEXT(vks, deps)
 end
 
@@ -8308,11 +8308,11 @@ function PresentInfoKHR(wait_semaphores::AbstractArray, swapchains::AbstractArra
     PresentInfoKHR(vks, deps)
 end
 
-function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
-    vks = VkSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, surface, min_image_count, image_format, image_color_space, image_extent.vks, image_array_layers, image_usage, image_sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), pre_transform, composite_alpha, present_mode, clipped, old_swapchain)
+    vks = VkSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkSwapchainCreateFlagsKHR, flags), surface, min_image_count, image_format, image_color_space, image_extent.vks, image_array_layers, to_vk(VkImageUsageFlags, image_usage), image_sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), pre_transform, composite_alpha, present_mode, clipped, old_swapchain)
     SwapchainCreateInfoKHR(vks, deps)
 end
 
@@ -8394,7 +8394,7 @@ function DisplayPresentInfoKHR(src_rect::Rect2D, dst_rect::Rect2D, persistent::B
     DisplayPresentInfoKHR(vks, deps)
 end
 
-function DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
+function DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::VkSurfaceTransformFlagBitsKHR, global_alpha::Real, alpha_mode::VkDisplayPlaneAlphaFlagBitsKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkDisplaySurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent.vks)
@@ -8439,14 +8439,14 @@ function FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArr
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkImageView}, attachments)
     deps = [next, attachments]
-    vks = VkFramebufferCreateInfo(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, render_pass, pointer_length(attachments), unsafe_convert(Ptr{VkImageView}, attachments), width, height, layers)
+    vks = VkFramebufferCreateInfo(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkFramebufferCreateFlags, flags), render_pass, pointer_length(attachments), unsafe_convert(Ptr{VkImageView}, attachments), width, height, layers)
     FramebufferCreateInfo(vks, deps)
 end
 
 function QueryPoolCreateInfo(query_type::VkQueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkQueryPoolCreateInfo(VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, query_type, query_count, pipeline_statistics)
+    vks = VkQueryPoolCreateInfo(VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, query_type, query_count, to_vk(VkQueryPipelineStatisticFlags, pipeline_statistics))
     QueryPoolCreateInfo(vks, deps)
 end
 
@@ -8464,7 +8464,7 @@ end
 function FenceCreateInfo(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkFenceCreateInfo(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkFenceCreateInfo(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkFenceCreateFlags, flags))
     FenceCreateInfo(vks, deps)
 end
 
@@ -8481,12 +8481,12 @@ function RenderPassCreateInfo(attachments::AbstractArray, subpasses::AbstractArr
     subpasses = cconvert(Ptr{VkSubpassDescription}, subpasses)
     dependencies = cconvert(Ptr{VkSubpassDependency}, dependencies)
     deps = [next, attachments, subpasses, dependencies]
-    vks = VkRenderPassCreateInfo(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(attachments), unsafe_convert(Ptr{VkAttachmentDescription}, attachments), pointer_length(subpasses), unsafe_convert(Ptr{VkSubpassDescription}, subpasses), pointer_length(dependencies), unsafe_convert(Ptr{VkSubpassDependency}, dependencies))
+    vks = VkRenderPassCreateInfo(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkRenderPassCreateFlags, flags), pointer_length(attachments), unsafe_convert(Ptr{VkAttachmentDescription}, attachments), pointer_length(subpasses), unsafe_convert(Ptr{VkSubpassDescription}, subpasses), pointer_length(dependencies), unsafe_convert(Ptr{VkSubpassDependency}, dependencies))
     RenderPassCreateInfo(vks, deps)
 end
 
-function SubpassDependency(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::Integer, dst_stage_mask::Integer; src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
-    SubpassDependency(VkSubpassDependency(src_subpass, dst_subpass, src_stage_mask, dst_stage_mask, src_access_mask, dst_access_mask, dependency_flags))
+function SubpassDependency(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag; src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
+    SubpassDependency(VkSubpassDependency(src_subpass, dst_subpass, to_vk(VkPipelineStageFlags, src_stage_mask), to_vk(VkPipelineStageFlags, dst_stage_mask), to_vk(VkAccessFlags, src_access_mask), to_vk(VkAccessFlags, dst_access_mask), to_vk(VkDependencyFlags, dependency_flags)))
 end
 
 function SubpassDescription(pipeline_bind_point::VkPipelineBindPoint, input_attachments::AbstractArray, color_attachments::AbstractArray, preserve_attachments::AbstractArray; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
@@ -8496,7 +8496,7 @@ function SubpassDescription(pipeline_bind_point::VkPipelineBindPoint, input_atta
     depth_stencil_attachment = cconvert(Ptr{VkAttachmentReference}, depth_stencil_attachment)
     preserve_attachments = cconvert(Ptr{UInt32}, preserve_attachments)
     deps = [input_attachments, color_attachments, resolve_attachments, depth_stencil_attachment, preserve_attachments]
-    vks = VkSubpassDescription(flags, pipeline_bind_point, pointer_length(input_attachments), unsafe_convert(Ptr{VkAttachmentReference}, input_attachments), pointer_length(color_attachments), unsafe_convert(Ptr{VkAttachmentReference}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference}, depth_stencil_attachment), pointer_length(preserve_attachments), unsafe_convert(Ptr{UInt32}, preserve_attachments))
+    vks = VkSubpassDescription(to_vk(VkSubpassDescriptionFlags, flags), pipeline_bind_point, pointer_length(input_attachments), unsafe_convert(Ptr{VkAttachmentReference}, input_attachments), pointer_length(color_attachments), unsafe_convert(Ptr{VkAttachmentReference}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference}, depth_stencil_attachment), pointer_length(preserve_attachments), unsafe_convert(Ptr{UInt32}, preserve_attachments))
     SubpassDescription(vks, deps)
 end
 
@@ -8504,12 +8504,12 @@ function AttachmentReference(attachment::Integer, layout::VkImageLayout)
     AttachmentReference(VkAttachmentReference(attachment, layout))
 end
 
-function AttachmentDescription(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
-    AttachmentDescription(VkAttachmentDescription(flags, format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout))
+function AttachmentDescription(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
+    AttachmentDescription(VkAttachmentDescription(to_vk(VkAttachmentDescriptionFlags, flags), format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout))
 end
 
-function ClearAttachment(aspect_mask::Integer, color_attachment::Integer, clear_value::ClearValue)
-    ClearAttachment(VkClearAttachment(aspect_mask, color_attachment, clear_value.vks))
+function ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::ClearValue)
+    ClearAttachment(VkClearAttachment(to_vk(VkImageAspectFlags, aspect_mask), color_attachment, clear_value.vks))
 end
 
 function ClearValue(color::ClearColorValue, depth_stencil::ClearDepthStencilValue)
@@ -8536,14 +8536,14 @@ function CommandBufferBeginInfo(; next = C_NULL, flags = 0, inheritance_info = C
     next = cconvert(Ptr{Cvoid}, next)
     inheritance_info = cconvert(Ptr{VkCommandBufferInheritanceInfo}, inheritance_info)
     deps = [next, inheritance_info]
-    vks = VkCommandBufferBeginInfo(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{VkCommandBufferInheritanceInfo}, inheritance_info))
+    vks = VkCommandBufferBeginInfo(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkCommandBufferUsageFlags, flags), unsafe_convert(Ptr{VkCommandBufferInheritanceInfo}, inheritance_info))
     CommandBufferBeginInfo(vks, deps)
 end
 
 function CommandBufferInheritanceInfo(subpass::Integer, occlusion_query_enable::Bool; next = C_NULL, render_pass = C_NULL, framebuffer = C_NULL, query_flags = 0, pipeline_statistics = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkCommandBufferInheritanceInfo(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO, unsafe_convert(Ptr{Cvoid}, next), render_pass, subpass, framebuffer, occlusion_query_enable, query_flags, pipeline_statistics)
+    vks = VkCommandBufferInheritanceInfo(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO, unsafe_convert(Ptr{Cvoid}, next), render_pass, subpass, framebuffer, occlusion_query_enable, to_vk(VkQueryControlFlags, query_flags), to_vk(VkQueryPipelineStatisticFlags, pipeline_statistics))
     CommandBufferInheritanceInfo(vks, deps)
 end
 
@@ -8557,14 +8557,14 @@ end
 function CommandPoolCreateInfo(queue_family_index::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkCommandPoolCreateInfo(VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, queue_family_index)
+    vks = VkCommandPoolCreateInfo(VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkCommandPoolCreateFlags, flags), queue_family_index)
     CommandPoolCreateInfo(vks, deps)
 end
 
 function SamplerCreateInfo(mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkSamplerCreateInfo(VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, mag_filter, min_filter, mipmap_mode, address_mode_u, address_mode_v, address_mode_w, mip_lod_bias, anisotropy_enable, max_anisotropy, compare_enable, compare_op, min_lod, max_lod, border_color, unnormalized_coordinates)
+    vks = VkSamplerCreateInfo(VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkSamplerCreateFlags, flags), mag_filter, min_filter, mipmap_mode, address_mode_u, address_mode_v, address_mode_w, mip_lod_bias, anisotropy_enable, max_anisotropy, compare_enable, compare_op, min_lod, max_lod, border_color, unnormalized_coordinates)
     SamplerCreateInfo(vks, deps)
 end
 
@@ -8577,15 +8577,15 @@ function PipelineLayoutCreateInfo(set_layouts::AbstractArray, push_constant_rang
     PipelineLayoutCreateInfo(vks, deps)
 end
 
-function PushConstantRange(stage_flags::Integer, offset::Integer, size::Integer)
-    PushConstantRange(VkPushConstantRange(stage_flags, offset, size))
+function PushConstantRange(stage_flags::ShaderStageFlag, offset::Integer, size::Integer)
+    PushConstantRange(VkPushConstantRange(to_vk(VkShaderStageFlags, stage_flags), offset, size))
 end
 
 function PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
     next = cconvert(Ptr{Cvoid}, next)
     initial_data = cconvert(Ptr{Cvoid}, initial_data)
     deps = [next, initial_data]
-    vks = VkPipelineCacheCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, initial_data_size, unsafe_convert(Ptr{Cvoid}, initial_data))
+    vks = VkPipelineCacheCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPipelineCacheCreateFlags, flags), initial_data_size, unsafe_convert(Ptr{Cvoid}, initial_data))
     PipelineCacheCreateInfo(vks, deps)
 end
 
@@ -8602,7 +8602,7 @@ function GraphicsPipelineCreateInfo(stages::AbstractArray, rasterization_state::
     color_blend_state = cconvert(Ptr{VkPipelineColorBlendStateCreateInfo}, color_blend_state)
     dynamic_state = cconvert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state)
     deps = [next, stages, vertex_input_state, input_assembly_state, tessellation_state, viewport_state, rasterization_state, multisample_state, depth_stencil_state, color_blend_state, dynamic_state]
-    vks = VkGraphicsPipelineCreateInfo(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), unsafe_convert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state), unsafe_convert(Ptr{VkPipelineInputAssemblyStateCreateInfo}, input_assembly_state), unsafe_convert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state), unsafe_convert(Ptr{VkPipelineViewportStateCreateInfo}, viewport_state), unsafe_convert(Ptr{VkPipelineRasterizationStateCreateInfo}, rasterization_state), unsafe_convert(Ptr{VkPipelineMultisampleStateCreateInfo}, multisample_state), unsafe_convert(Ptr{VkPipelineDepthStencilStateCreateInfo}, depth_stencil_state), unsafe_convert(Ptr{VkPipelineColorBlendStateCreateInfo}, color_blend_state), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), layout, render_pass, subpass, base_pipeline_handle, base_pipeline_index)
+    vks = VkGraphicsPipelineCreateInfo(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPipelineCreateFlags, flags), pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), unsafe_convert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state), unsafe_convert(Ptr{VkPipelineInputAssemblyStateCreateInfo}, input_assembly_state), unsafe_convert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state), unsafe_convert(Ptr{VkPipelineViewportStateCreateInfo}, viewport_state), unsafe_convert(Ptr{VkPipelineRasterizationStateCreateInfo}, rasterization_state), unsafe_convert(Ptr{VkPipelineMultisampleStateCreateInfo}, multisample_state), unsafe_convert(Ptr{VkPipelineDepthStencilStateCreateInfo}, depth_stencil_state), unsafe_convert(Ptr{VkPipelineColorBlendStateCreateInfo}, color_blend_state), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), layout, render_pass, subpass, base_pipeline_handle, base_pipeline_index)
     GraphicsPipelineCreateInfo(vks, deps)
 end
 
@@ -8634,10 +8634,10 @@ function PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::VkLo
 end
 
 function PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_factor::VkBlendFactor, dst_color_blend_factor::VkBlendFactor, color_blend_op::VkBlendOp, src_alpha_blend_factor::VkBlendFactor, dst_alpha_blend_factor::VkBlendFactor, alpha_blend_op::VkBlendOp; color_write_mask = 0)
-    PipelineColorBlendAttachmentState(VkPipelineColorBlendAttachmentState(blend_enable, src_color_blend_factor, dst_color_blend_factor, color_blend_op, src_alpha_blend_factor, dst_alpha_blend_factor, alpha_blend_op, color_write_mask))
+    PipelineColorBlendAttachmentState(VkPipelineColorBlendAttachmentState(blend_enable, src_color_blend_factor, dst_color_blend_factor, color_blend_op, src_alpha_blend_factor, dst_alpha_blend_factor, alpha_blend_op, to_vk(VkColorComponentFlags, color_write_mask)))
 end
 
-function PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountFlag, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
+function PipelineMultisampleStateCreateInfo(rasterization_samples::VkSampleCountFlagBits, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     sample_mask = cconvert(Ptr{VkSampleMask}, sample_mask)
     deps = [next, sample_mask]
@@ -8648,7 +8648,7 @@ end
 function PipelineRasterizationStateCreateInfo(depth_clamp_enable::Bool, rasterizer_discard_enable::Bool, polygon_mode::VkPolygonMode, front_face::VkFrontFace, depth_bias_enable::Bool, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, line_width::Real; next = C_NULL, flags = 0, cull_mode = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPipelineRasterizationStateCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, depth_clamp_enable, rasterizer_discard_enable, polygon_mode, cull_mode, front_face, depth_bias_enable, depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor, line_width)
+    vks = VkPipelineRasterizationStateCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, depth_clamp_enable, rasterizer_discard_enable, polygon_mode, to_vk(VkCullModeFlags, cull_mode), front_face, depth_bias_enable, depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor, line_width)
     PipelineRasterizationStateCreateInfo(vks, deps)
 end
 
@@ -8695,16 +8695,16 @@ end
 function ComputePipelineCreateInfo(stage::PipelineShaderStageCreateInfo, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkComputePipelineCreateInfo(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, stage.vks, layout, base_pipeline_handle, base_pipeline_index)
+    vks = VkComputePipelineCreateInfo(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPipelineCreateFlags, flags), stage.vks, layout, base_pipeline_handle, base_pipeline_index)
     ComputePipelineCreateInfo(vks, deps)
 end
 
-function PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+function PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     name = cconvert(Cstring, name)
     specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
     deps = [next, name, specialization_info]
-    vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, stage, _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
+    vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkPipelineShaderStageCreateFlags, flags), stage, _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
     PipelineShaderStageCreateInfo(vks, deps)
 end
 
@@ -8732,7 +8732,7 @@ function DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray; 
     next = cconvert(Ptr{Cvoid}, next)
     pool_sizes = cconvert(Ptr{VkDescriptorPoolSize}, pool_sizes)
     deps = [next, pool_sizes]
-    vks = VkDescriptorPoolCreateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, max_sets, pointer_length(pool_sizes), unsafe_convert(Ptr{VkDescriptorPoolSize}, pool_sizes))
+    vks = VkDescriptorPoolCreateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkDescriptorPoolCreateFlags, flags), max_sets, pointer_length(pool_sizes), unsafe_convert(Ptr{VkDescriptorPoolSize}, pool_sizes))
     DescriptorPoolCreateInfo(vks, deps)
 end
 
@@ -8744,14 +8744,14 @@ function DescriptorSetLayoutCreateInfo(bindings::AbstractArray; next = C_NULL, f
     next = cconvert(Ptr{Cvoid}, next)
     bindings = cconvert(Ptr{VkDescriptorSetLayoutBinding}, bindings)
     deps = [next, bindings]
-    vks = VkDescriptorSetLayoutCreateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(bindings), unsafe_convert(Ptr{VkDescriptorSetLayoutBinding}, bindings))
+    vks = VkDescriptorSetLayoutCreateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkDescriptorSetLayoutCreateFlags, flags), pointer_length(bindings), unsafe_convert(Ptr{VkDescriptorSetLayoutBinding}, bindings))
     DescriptorSetLayoutCreateInfo(vks, deps)
 end
 
-function DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::Integer; immutable_samplers = C_NULL)
+function DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; immutable_samplers = C_NULL)
     immutable_samplers = cconvert(Ptr{VkSampler}, immutable_samplers)
     deps = [immutable_samplers]
-    vks = VkDescriptorSetLayoutBinding(binding, descriptor_type, pointer_length(immutable_samplers), stage_flags, unsafe_convert(Ptr{VkSampler}, immutable_samplers))
+    vks = VkDescriptorSetLayoutBinding(binding, descriptor_type, pointer_length(immutable_samplers), to_vk(VkShaderStageFlags, stage_flags), unsafe_convert(Ptr{VkSampler}, immutable_samplers))
     DescriptorSetLayoutBinding(vks, deps)
 end
 
@@ -8759,7 +8759,7 @@ function ShaderModuleCreateInfo(code_size::Integer, code::AbstractArray; next = 
     next = cconvert(Ptr{Cvoid}, next)
     code = cconvert(Ptr{UInt32}, code)
     deps = [next, code]
-    vks = VkShaderModuleCreateInfo(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, code_size, unsafe_convert(Ptr{UInt32}, code))
+    vks = VkShaderModuleCreateInfo(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkShaderModuleCreateFlags, flags), code_size, unsafe_convert(Ptr{UInt32}, code))
     ShaderModuleCreateInfo(vks, deps)
 end
 
@@ -8813,11 +8813,11 @@ function SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray)
 end
 
 function SparseImageMemoryBind(subresource::ImageSubresource, offset::Offset3D, extent::Extent3D, memory_offset::Integer; memory = C_NULL, flags = 0)
-    SparseImageMemoryBind(VkSparseImageMemoryBind(subresource.vks, offset.vks, extent.vks, memory, memory_offset, flags))
+    SparseImageMemoryBind(VkSparseImageMemoryBind(subresource.vks, offset.vks, extent.vks, memory, memory_offset, to_vk(VkSparseMemoryBindFlags, flags)))
 end
 
 function SparseMemoryBind(resource_offset::Integer, size::Integer, memory_offset::Integer; memory = C_NULL, flags = 0)
-    SparseMemoryBind(VkSparseMemoryBind(resource_offset, size, memory, memory_offset, flags))
+    SparseMemoryBind(VkSparseMemoryBind(resource_offset, size, memory, memory_offset, to_vk(VkSparseMemoryBindFlags, flags)))
 end
 
 function BufferCopy(src_offset::Integer, dst_offset::Integer, size::Integer)
@@ -8827,49 +8827,49 @@ end
 function ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImageViewCreateInfo(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, image, view_type, format, components.vks, subresource_range.vks)
+    vks = VkImageViewCreateInfo(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkImageViewCreateFlags, flags), image, view_type, format, components.vks, subresource_range.vks)
     ImageViewCreateInfo(vks, deps)
 end
 
-function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
+function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
-    vks = VkImageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, image_type, format, extent.vks, mip_levels, array_layers, samples, tiling, usage, sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), initial_layout)
+    vks = VkImageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkImageCreateFlags, flags), image_type, format, extent.vks, mip_levels, array_layers, samples, tiling, to_vk(VkImageUsageFlags, usage), sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), initial_layout)
     ImageCreateInfo(vks, deps)
 end
 
-function ImageMemoryBarrier(src_access_mask::Integer, dst_access_mask::Integer, old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::ImageSubresourceRange; next = C_NULL)
+function ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::ImageSubresourceRange; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImageMemoryBarrier(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask, old_layout, new_layout, src_queue_family_index, dst_queue_family_index, image, subresource_range.vks)
+    vks = VkImageMemoryBarrier(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkAccessFlags, src_access_mask), to_vk(VkAccessFlags, dst_access_mask), old_layout, new_layout, src_queue_family_index, dst_queue_family_index, image, subresource_range.vks)
     ImageMemoryBarrier(vks, deps)
 end
 
-function BufferMemoryBarrier(src_access_mask::Integer, dst_access_mask::Integer, src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL)
+function BufferMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkBufferMemoryBarrier(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask, src_queue_family_index, dst_queue_family_index, buffer, offset, size)
+    vks = VkBufferMemoryBarrier(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkAccessFlags, src_access_mask), to_vk(VkAccessFlags, dst_access_mask), src_queue_family_index, dst_queue_family_index, buffer, offset, size)
     BufferMemoryBarrier(vks, deps)
 end
 
 function MemoryBarrier(; next = C_NULL, src_access_mask = 0, dst_access_mask = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkMemoryBarrier(VK_STRUCTURE_TYPE_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask)
+    vks = VkMemoryBarrier(VK_STRUCTURE_TYPE_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkAccessFlags, src_access_mask), to_vk(VkAccessFlags, dst_access_mask))
     MemoryBarrier(vks, deps)
 end
 
-function ImageSubresourceRange(aspect_mask::Integer, base_mip_level::Integer, level_count::Integer, base_array_layer::Integer, layer_count::Integer)
-    ImageSubresourceRange(VkImageSubresourceRange(aspect_mask, base_mip_level, level_count, base_array_layer, layer_count))
+function ImageSubresourceRange(aspect_mask::ImageAspectFlag, base_mip_level::Integer, level_count::Integer, base_array_layer::Integer, layer_count::Integer)
+    ImageSubresourceRange(VkImageSubresourceRange(to_vk(VkImageAspectFlags, aspect_mask), base_mip_level, level_count, base_array_layer, layer_count))
 end
 
-function ImageSubresourceLayers(aspect_mask::Integer, mip_level::Integer, base_array_layer::Integer, layer_count::Integer)
-    ImageSubresourceLayers(VkImageSubresourceLayers(aspect_mask, mip_level, base_array_layer, layer_count))
+function ImageSubresourceLayers(aspect_mask::ImageAspectFlag, mip_level::Integer, base_array_layer::Integer, layer_count::Integer)
+    ImageSubresourceLayers(VkImageSubresourceLayers(to_vk(VkImageAspectFlags, aspect_mask), mip_level, base_array_layer, layer_count))
 end
 
-function ImageSubresource(aspect_mask::Integer, mip_level::Integer, array_layer::Integer)
-    ImageSubresource(VkImageSubresource(aspect_mask, mip_level, array_layer))
+function ImageSubresource(aspect_mask::ImageAspectFlag, mip_level::Integer, array_layer::Integer)
+    ImageSubresource(VkImageSubresource(to_vk(VkImageAspectFlags, aspect_mask), mip_level, array_layer))
 end
 
 function BufferViewCreateInfo(buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; next = C_NULL, flags = 0)
@@ -8879,11 +8879,11 @@ function BufferViewCreateInfo(buffer::Buffer, format::VkFormat, offset::Integer,
     BufferViewCreateInfo(vks, deps)
 end
 
-function BufferCreateInfo(size::Integer, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; next = C_NULL, flags = 0)
+function BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
-    vks = VkBufferCreateInfo(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, size, usage, sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices))
+    vks = VkBufferCreateInfo(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkBufferCreateFlags, flags), size, to_vk(VkBufferUsageFlags, usage), sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices))
     BufferCreateInfo(vks, deps)
 end
 
@@ -8951,7 +8951,7 @@ function DeviceQueueCreateInfo(queue_family_index::Integer, queue_priorities::Ab
     next = cconvert(Ptr{Cvoid}, next)
     queue_priorities = cconvert(Ptr{Float32}, queue_priorities)
     deps = [next, queue_priorities]
-    vks = VkDeviceQueueCreateInfo(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, queue_family_index, pointer_length(queue_priorities), unsafe_convert(Ptr{Float32}, queue_priorities))
+    vks = VkDeviceQueueCreateInfo(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkDeviceQueueCreateFlags, flags), queue_family_index, pointer_length(queue_priorities), unsafe_convert(Ptr{Float32}, queue_priorities))
     DeviceQueueCreateInfo(vks, deps)
 end
 
@@ -9033,7 +9033,7 @@ function create_private_data_slot_ext(device::Device, create_info::PrivateDataSl
     PrivateDataSlotEXT(pPrivateDataSlot[], (x->destroy_private_data_slot_ext(device, x; allocator)), device)
 end
 
-cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::Integer, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp) = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op)
+cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp) = vkCmdSetStencilOpEXT(command_buffer, to_vk(VkStencilFaceFlags, face_mask), fail_op, pass_op, depth_fail_op, compare_op)
 
 cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool) = vkCmdSetStencilTestEnableEXT(command_buffer, stencil_test_enable)
 
@@ -9055,7 +9055,7 @@ cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology
 
 cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace) = vkCmdSetFrontFaceEXT(command_buffer, front_face)
 
-cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0) = vkCmdSetCullModeEXT(command_buffer, cull_mode)
+cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0) = vkCmdSetCullModeEXT(command_buffer, to_vk(VkCullModeFlags, cull_mode))
 
 deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR) = @check(vkDeferredOperationJoinKHR(device, operation))
 
@@ -9328,7 +9328,7 @@ cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::
 
 cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer) = vkCmdEndQueryIndexedEXT(command_buffer, query_pool, query, index)
 
-cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index)
+cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, to_vk(VkQueryControlFlags, flags), index)
 
 cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
@@ -9384,15 +9384,15 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker)
 
-function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})
+function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid})
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
     @check vkGetMemoryHostPointerPropertiesEXT(device, handle_type, Ref(host_pointer), pMemoryHostPointerProperties)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::Integer, callback_data::DebugUtilsMessengerCallbackDataEXT) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data)
+submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, to_vk(VkDebugUtilsMessageTypeFlagsEXT, message_types), callback_data)
 
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL) = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator)
 
@@ -9435,7 +9435,7 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD, info_size::Integer)
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)
     pInfoSize = Ref(info_size)
     pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
@@ -9543,7 +9543,7 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag)
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
     vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
@@ -9657,7 +9657,7 @@ function get_physical_device_surface_capabilities_2_ext(physical_device::Physica
     from_vk(SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
 
-function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)
+function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT)
     pCounterValue = Ref{UInt64}()
     @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue)
     pCounterValue[]
@@ -9723,7 +9723,7 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)
+function get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer)
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
     @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties)
     from_vk(MemoryFdPropertiesKHR, pMemoryFdProperties[])
@@ -9735,7 +9735,7 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR)
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE)
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
     @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
@@ -9819,11 +9819,11 @@ cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_co
 
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV) = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info)
 
-get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::Integer, handle::vk.HANDLE) = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle)))
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE) = @check(vkGetMemoryWin32HandleNV(device, memory, to_vk(VkExternalMemoryHandleTypeFlagsNV, handle_type), to_vk(Ptr{HANDLE}, handle)))
 
-function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::Integer; flags = 0, external_handle_type = 0)
+function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)
     pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()
-    @check vkGetPhysicalDeviceExternalImageFormatPropertiesNV(physical_device, format, type, tiling, usage, flags, external_handle_type, pExternalImageFormatProperties)
+    @check vkGetPhysicalDeviceExternalImageFormatPropertiesNV(physical_device, format, type, tiling, to_vk(VkImageUsageFlags, usage), to_vk(VkImageCreateFlags, flags), to_vk(VkExternalMemoryHandleTypeFlagsNV, external_handle_type), pExternalImageFormatProperties)
     from_vk(ExternalImageFormatPropertiesNV, pExternalImageFormatProperties[])
 end
 
@@ -9837,7 +9837,7 @@ debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagIn
 
 debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT) = @check(vkDebugMarkerSetObjectNameEXT(device, name_info))
 
-debug_report_message_ext(instance::Instance, flags::Integer, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString) = vkDebugReportMessageEXT(instance, flags, object_type, object, location, message_code, layer_prefix, message)
+debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString) = vkDebugReportMessageEXT(instance, to_vk(VkDebugReportFlagsEXT, flags), object_type, object, location, message_code, layer_prefix, message)
 
 destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL) = vkDestroyDebugReportCallbackEXT(instance, callback, allocator)
 
@@ -10031,11 +10031,11 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents) = v
 
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents) = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::Integer, offset::Integer, values::Ptr{Cvoid}) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values))
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}) = vkCmdPushConstants(command_buffer, layout, to_vk(VkShaderStageFlags, stage_flags), offset, pointer_length(values), Ref(values))
 
-cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags)
+cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, to_vk(VkQueryResultFlags, flags))
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query)
 
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer) = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count)
 
@@ -10045,15 +10045,15 @@ cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_r
 
 cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer) = vkCmdEndQuery(command_buffer, query_pool, query)
 
-cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, flags)
+cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, to_vk(VkQueryControlFlags, flags))
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, to_vk(VkPipelineStageFlags, src_stage_mask), to_vk(VkPipelineStageFlags, dst_stage_mask), to_vk(VkDependencyFlags, dependency_flags), pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::Integer, dst_stage_mask::Integer, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, to_vk(VkPipelineStageFlags, src_stage_mask), to_vk(VkPipelineStageFlags, dst_stage_mask), pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
-cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer) = vkCmdResetEvent(command_buffer, event, stage_mask)
+cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag) = vkCmdResetEvent(command_buffer, event, to_vk(VkPipelineStageFlags, stage_mask))
 
-cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::Integer) = vkCmdSetEvent(command_buffer, event, stage_mask)
+cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag) = vkCmdSetEvent(command_buffer, event, to_vk(VkPipelineStageFlags, stage_mask))
 
 cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
 
@@ -10095,11 +10095,11 @@ cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Int
 
 cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
 
-cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::Integer, reference::Integer) = vkCmdSetStencilReference(command_buffer, face_mask, reference)
+cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer) = vkCmdSetStencilReference(command_buffer, to_vk(VkStencilFaceFlags, face_mask), reference)
 
-cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::Integer, write_mask::Integer) = vkCmdSetStencilWriteMask(command_buffer, face_mask, write_mask)
+cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer) = vkCmdSetStencilWriteMask(command_buffer, to_vk(VkStencilFaceFlags, face_mask), write_mask)
 
-cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::Integer, compare_mask::Integer) = vkCmdSetStencilCompareMask(command_buffer, face_mask, compare_mask)
+cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer) = vkCmdSetStencilCompareMask(command_buffer, to_vk(VkStencilFaceFlags, face_mask), compare_mask)
 
 cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real) = vkCmdSetDepthBounds(command_buffer, min_depth_bounds, max_depth_bounds)
 
@@ -10115,7 +10115,7 @@ cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray) = vkCm
 
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline) = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline)
 
-reset_command_buffer(command_buffer::CommandBuffer; flags = 0) = @check(vkResetCommandBuffer(command_buffer, flags))
+reset_command_buffer(command_buffer::CommandBuffer; flags = 0) = @check(vkResetCommandBuffer(command_buffer, to_vk(VkCommandBufferResetFlags, flags)))
 
 end_command_buffer(command_buffer::CommandBuffer) = @check(vkEndCommandBuffer(command_buffer))
 
@@ -10130,7 +10130,7 @@ function allocate_command_buffers(device::Device, allocate_info::CommandBufferAl
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-reset_command_pool(device::Device, command_pool::CommandPool; flags = 0) = @check(vkResetCommandPool(device, command_pool, flags))
+reset_command_pool(device::Device, command_pool::CommandPool; flags = 0) = @check(vkResetCommandPool(device, command_pool, to_vk(VkCommandPoolResetFlags, flags)))
 
 destroy_command_pool(device::Device, command_pool::CommandPool; allocator = C_NULL) = vkDestroyCommandPool(device, command_pool, allocator)
 
@@ -10288,7 +10288,7 @@ reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, qu
 
 function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)
     pData = Ref{Ptr{Cvoid}}()
-    @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags)
+    @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, to_vk(VkQueryResultFlags, flags))
     pData[]
 end
 
@@ -10338,11 +10338,11 @@ end
 
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::Integer, tiling::VkImageTiling)
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling)
     pPropertyCount = Ref{UInt32}()
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, to_vk(VkImageUsageFlags, usage), tiling, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, pProperties)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, to_vk(VkImageUsageFlags, usage), tiling, pPropertyCount, pProperties)
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 
@@ -10454,9 +10454,9 @@ function create_device(physical_device::PhysicalDevice, create_info::DeviceCreat
     Device(pDevice[], (x->destroy_device(x; allocator)), physical_device)
 end
 
-function get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::Integer; flags = 0)
+function get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; flags = 0)
     pImageFormatProperties = Ref{VkImageFormatProperties}()
-    @check vkGetPhysicalDeviceImageFormatProperties(physical_device, format, type, tiling, usage, flags, pImageFormatProperties)
+    @check vkGetPhysicalDeviceImageFormatProperties(physical_device, format, type, tiling, to_vk(VkImageUsageFlags, usage), to_vk(VkImageCreateFlags, flags), pImageFormatProperties)
     from_vk(ImageFormatProperties, pImageFormatProperties[])
 end
 

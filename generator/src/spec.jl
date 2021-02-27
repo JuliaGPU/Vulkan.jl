@@ -58,6 +58,7 @@ export
         struct_by_name,
         handle_by_name,
         bitmask_by_name,
+        flag_by_name,
         enum_by_name,
         constant_by_name,
         create_func_by_name,

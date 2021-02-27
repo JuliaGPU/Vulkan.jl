@@ -190,6 +190,18 @@ struct SpecBitmask <: Spec
 end
 
 """
+Specification for a flag type `name` that is a type alias of `typealias`. Can be associated with a bitmask structure, in which case the `bitmask` number is set to the corresponding `SpecBitmask`.
+"""
+struct SpecFlag <: Spec
+    "Name of the flag type."
+    name::Symbol
+    "The type it aliases."
+    typealias::Symbol
+    "Bitmask, if applicable."
+    bitmask::Optional{SpecBitmask}
+end
+
+"""
 Specification for handle types.
 
 A handle may possess a parent. In this case, the handle can only be valid if its parent is valid.
