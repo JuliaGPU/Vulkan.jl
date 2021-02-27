@@ -18,7 +18,7 @@ const DEVICE_EXTENSIONS = [
 const ENABLED_FEATURES = PhysicalDeviceFeatures(
 )
 
-let available_layers = enumerate_instance_layer_properties()
+let available_layers = unwrap(enumerate_instance_layer_properties())
     if VALIDATION_LAYER ∈ getproperty.(available_layers, :layer_name)
         push!(INSTANCE_LAYERS, VALIDATION_LAYER)
         push!(INSTANCE_EXTENSIONS, "VK_EXT_debug_utils")
@@ -47,8 +47,8 @@ end
     end
 
     @testset "Bitmask flags" begin
-        buffer = Buffer(device, 24, BUFFER_USAGE_INDIRECT_BUFFER_BIT, VK_SHARING_MODE_EXCLUSIVE, [0]; flags=BUFFER_CREATE_PROTECTED_BIT & BUFFER_CREATE_SPARSE_ALIASED_BIT)
-        buffer_2 = Buffer(device, 24, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, VK_SHARING_MODE_EXCLUSIVE, [0]; flags=0)
+        buffer = unwrap(Buffer(device, 24, BUFFER_USAGE_INDIRECT_BUFFER_BIT, VK_SHARING_MODE_EXCLUSIVE, [0]; flags=BUFFER_CREATE_PROTECTED_BIT & BUFFER_CREATE_SPARSE_ALIASED_BIT))
+        buffer_2 = unwrap(Buffer(device, 24, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, VK_SHARING_MODE_EXCLUSIVE, [0]; flags=0))
         @test buffer isa Buffer
         @test buffer_2 isa Buffer
     end

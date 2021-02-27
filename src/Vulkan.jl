@@ -7,6 +7,11 @@ using Base: RefArray
 import Base: convert, cconvert, unsafe_convert, &, |, xor
 using MLStyle
 
+using Reexport
+@reexport using ResultTypes
+
+Base.broadcastable(r::Result) = Ref(r)
+
 const core = VulkanCore
 
 @static if VERSION < v"1.6.0-DEV"

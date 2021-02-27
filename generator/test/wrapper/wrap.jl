@@ -70,7 +70,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
 
     @testset "API functions" begin
         test_wrap_func(:vkEnumeratePhysicalDevices, :(
-            function enumerate_physical_devices(instance::Instance)
+            function enumerate_physical_devices(instance::Instance)::Result{Vector{PhysicalDevice},VulkanError}
                 pPhysicalDeviceCount = Ref{UInt32}()
                 @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
                 pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
@@ -88,7 +88,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkEnumerateInstanceVersion, :(
-            function enumerate_instance_version()
+            function enumerate_instance_version()::Result{VersionNumber,VulkanError}
                 pApiVersion = Ref{UInt32}()
                 @check vkEnumerateInstanceVersion(pApiVersion)
                 from_vk(VersionNumber, pApiVersion[])
@@ -96,7 +96,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkEnumerateInstanceExtensionProperties, :(
-            function enumerate_instance_extension_properties(; layer_name = C_NULL)
+            function enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties},VulkanError}
                 pPropertyCount = Ref{UInt32}()
                 @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
                 pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
@@ -117,7 +117,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL) = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
 
         test_wrap_func(:vkGetPhysicalDeviceSurfacePresentModesKHR, :(
-            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
+            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR},VulkanError}
                 pPresentModeCount = Ref{UInt32}()
                 @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
                 pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
@@ -127,7 +127,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkGetRandROutputDisplayEXT, :(
-            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)
+            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::Result{DisplayKHR,VulkanError}
                 pDisplay = Ref{VkDisplayKHR}()
                 @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
                 DisplayKHR(pDisplay[], identity, physical_device)
@@ -135,7 +135,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkRegisterDeviceEventEXT, :(
-            function register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT; allocator = C_NULL)
+            function register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT; allocator = C_NULL)::Result{Fence,VulkanError}
                 pFence = Ref{VkFence}()
                 @check vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
                 Fence(pFence[], (x->destroy_fence(device, x; allocator)), device)
@@ -143,7 +143,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkCreateInstance, :(
-            function create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)
+            function create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)::Result{Instance,VulkanError}
                 pInstance = Ref{VkInstance}()
                 @check vkCreateInstance(create_info, allocator, pInstance)
                 Instance(pInstance[], x -> destroy_instance(x; allocator))
@@ -151,7 +151,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkCreateDebugReportCallbackEXT, :(
-            function create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)
+            function create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DebugReportCallbackEXT,VulkanError}
                 pCallback = Ref{VkDebugReportCallbackEXT}()
                 @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fun_ptr_create)
                 DebugReportCallbackEXT(pCallback[], (x->destroy_debug_report_callback_ext(instance, x, fun_ptr_destroy; allocator)), instance)
@@ -159,7 +159,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ); with_func_ptr=true)
 
         test_wrap_func(:vkCreateGraphicsPipelines, :(
-            function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)
+            function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline},VulkanError}
                 pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
                 @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
                 Pipeline.(pPipelines, x -> destroy_pipeline(device, x; allocator), device)
@@ -167,7 +167,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkAllocateDescriptorSets, :(
-            function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)
+            function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet},VulkanError}
                 pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
                 @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
                 parent = getproperty(allocate_info, :descriptor_pool)
@@ -176,11 +176,11 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkMergePipelineCaches, :(
-            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray) = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::Result{Int,VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
         ))
 
         test_wrap_func(:vkGetFenceFdKHR, :(
-            function get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR)
+            function get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR)::Result{Int,VulkanError}
                 pFd = Ref{Int}()
                 @check vkGetFenceFdKHR(device, get_fd_info, pFd)
                 pFd[]
@@ -212,7 +212,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkMapMemory, :(
-            function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)
+            function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)::Result{Ptr{Cvoid},VulkanError}
                 ppData = Ref{Ptr{Cvoid}}()
                 @check vkMapMemory(device, memory, offset, size, flags, ppData)
                 ppData[]
@@ -220,7 +220,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR, :(
-            function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)
+            function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}},VulkanError}
                 pCounterCount = Ref{UInt32}()
                 @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
                 pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
@@ -231,7 +231,7 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
         ))
 
         test_wrap_func(:vkGetPipelineCacheData, :(
-            function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)
+            function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{UInt,Ptr{Cvoid}},VulkanError}
                 pDataSize = Ref(data_size)
                 pData = Ref{Ptr{Cvoid}}()
                 @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)

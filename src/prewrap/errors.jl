@@ -31,7 +31,7 @@ macro check(expr, msg)
     quote
         return_code = $(esc(expr))
         if Int(return_code) ≠ 0
-            throw(VulkanError($msg, return_code))
+            return VulkanError($msg, return_code)
         end
         return_code
     end

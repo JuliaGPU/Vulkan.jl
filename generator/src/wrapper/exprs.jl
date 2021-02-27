@@ -29,7 +29,8 @@ function category(ex)
     @match ex begin
         Expr(:struct, _...)                                                  => :struct
         Expr(:const, _...)                                                   => :const
-        Expr(:function, _...) || Expr(:(=), Expr(:call, _...), _...)         => :function
+        Expr(:function, _...) || Expr(:(=), Expr(:call, _...) ||
+            Expr(:(::), Expr(:call, _...), _...), _...)                      => :function
         Expr(:macrocall, &enum_sym || &cenum_sym || &bitmask_enum_sym, _...) => :enum
         :(Core.@doc $_ $docstring $ex)                                       => :doc
         _                                                                    => nothing
@@ -101,6 +102,10 @@ function deconstruct(ex::Expr)
             dict[:name] = sym
             dict[:value] = val
 
+        @case Expr(func_sym, :($call::$return_type), body) || Expr(func_sym, :($call::$return_type), body)
+            dict = deconstruct(Expr(func_sym, call, body))
+            dict[:return_type] = return_type
+
         @case Expr(:(=), call, body) || Expr(:function, call, body)
             sig_params = deconstruct(call)
             dict[:name] = sig_params[:name]
@@ -135,14 +140,23 @@ function deconstruct(ex::Expr)
                                 [::Expr] => rmlines(args[1].args)
                                 x        => x
                             end
+
+        @case _
+            error("Matching non-exhaustive for expr $ex\n$(dump(ex))")
     end
     dict
 end
 
 function reconstruct_call(d::Dict)
-    @match (get(d, :args, []), get(d, :kwargs, [])) begin
+    call = @match (get(d, :args, []), get(d, :kwargs, [])) begin
         (args, []) => Expr(:call, d[:name], args...)
         (args, kwargs) => Expr(:call, d[:name], Expr(:parameters, kwargs...), args...)
+    end
+    rt = get(d, :return_type, nothing)
+    if isnothing(rt)
+        call
+    else
+        :($call::$rt)
     end
 end
 

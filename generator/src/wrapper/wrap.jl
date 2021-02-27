@@ -249,6 +249,14 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         end, wrap_implicit_return(queried_params; with_func_ptr))
 
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
+
+        if spec.return_type == :VkResult
+            p[:return_type] = if length(queried_params) == 1
+                :(Result{Vector{$(remove_vk_prefix(ptr_type(first(queried_params).type)))}, VulkanError})
+            else
+                :(Result{$(Expr(:curly, :Tuple, (:(Vector{$(remove_vk_prefix(ptr_type(param.type)))}) for param ∈ queried_params)...)), VulkanError})
+            end
+        end
     elseif !isempty(queried_params)
         call_args = map(@λ(begin
                 x && GuardBy(in(queried_params)) => x.name
@@ -261,11 +269,23 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         end, wrap_implicit_return(queried_params; with_func_ptr))
 
         args = filter(!in(filter(x -> x.requirement ≠ POINTER_REQUIRED, queried_params)), children(spec))
+
+        if spec.return_type == :VkResult
+            p[:return_type] = if length(queried_params) == 1
+                :(Result{$(nice_julian_type(first(queried_params))), VulkanError})
+            else
+                :(Result{$(Expr(:curly, :Tuple, (nice_julian_type(param) for param ∈ queried_params)...)), VulkanError})
+            end
+        end
     else
         p[:short] = true
         p[:body] = :($(wrap_api_call(spec, map(vk_call, children(spec)); with_func_ptr)))
 
         args = children(spec)
+
+        if spec.return_type == :VkResult
+            p[:return_type] = :(Result{Int, VulkanError})
+        end
     end
 
     add_func_args!(p, spec, args; with_func_ptr)
