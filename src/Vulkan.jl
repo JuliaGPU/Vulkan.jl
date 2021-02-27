@@ -7,6 +7,8 @@ using Base: RefArray
 import Base: convert, cconvert, unsafe_convert, &, |, xor
 using MLStyle
 
+const core = VulkanCore
+
 @static if VERSION < v"1.6.0-DEV"
     macro load_preference(name, default)
         esc(default)
@@ -44,7 +46,7 @@ include("device.jl")
 include("print.jl")
 
 for sym ∈ names(vk)
-    if startswith(string(sym), "VK_")
+    if startswith(string(sym), "VK_") && !contains(string(sym), "FlagBits")
         @eval export $sym
     end
 end
@@ -85,6 +87,6 @@ export
         optional_bitwise_and,
         optional_bitwise_xor,
         BitMask,
-        @bitmask_flags
+        @bitmask_flag
 
 end # module Vulkan

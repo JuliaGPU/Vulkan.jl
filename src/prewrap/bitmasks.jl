@@ -6,7 +6,7 @@ function generate_bitmask_flags(type, decl)
 end
 
 """
-    @bitmask_flags BitFlags::UInt32 begin
+    @bitmask_flag BitFlags::UInt32 begin
         FLAG_A = 1
         FLAG_B = 2
         FLAG_C = 4
@@ -14,18 +14,18 @@ end
 
 Enumeration of bitmask flags that can be combined with `&`, `|` and `xor`, forbidding the combination of flags from different bitmasks.
 """
-macro bitmask_flags(typedecl, expr)
+macro bitmask_flag(typedecl, expr)
     type, eltype = @match typedecl begin
         :($a::$b) => (a, b)
-        _ => error("First argument to @bitmask_flags must be of the form 'type::eltype'")
+        _ => error("First argument to @bitmask_flag must be of the form 'type::eltype'")
     end
     decls = filter(x -> typeof(x) ≠ LineNumberNode, expr.args)
     Expr(:block, esc(:(struct $type <: BitMask; val::$eltype; end)), generate_bitmask_flags.(type, decls)...)
 end
 
-(&)(a::BitMask, b::BitMask) = error("Bitwise operation between incompatible bitmasks '$(typeof(a))', '$(typeof(b))' not allowed")
-(|)(a::BitMask, b::BitMask) = error("Bitwise operation between incompatible bitmasks '$(typeof(a))', '$(typeof(b))' not allowed")
-xor(a::BitMask, b::BitMask) = error("Bitwise operation between incompatible bitmasks '$(typeof(a))', '$(typeof(b))' not allowed")
+(&)(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
+(|)(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
+xor(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
 
 (&)(a::T, b::T) where {T <: BitMask} = T(a.val & b.val)
 (|)(a::T, b::T) where {T <: BitMask} = T(a.val | b.val)
@@ -39,4 +39,9 @@ xor(a::T, b::Integer) where {T <: BitMask} = T(xor(a.val, b))
 (|)(a::Integer, b::T) where {T <: BitMask} = b | a
 xor(a::Integer, b::T) where {T <: BitMask} = xor(b, a)
 
-convert(::Type{UInt32}, bm::BitMask) = bm.val
+(::Type{T})(bm::BitMask) where {T <: Integer} = T(bm.val)
+
+convert(T::Type{<:Integer}, bm::BitMask) = T(bm.val)
+
+Base.typemax(T::Type{<:BitMask}) = T(0x7fffffff)
+

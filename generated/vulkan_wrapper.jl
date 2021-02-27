@@ -1,3 +1,663 @@
+@bitmask_flag ToolPurposeFlagEXT::UInt32 begin
+        TOOL_PURPOSE_VALIDATION_BIT_EXT = 1
+        TOOL_PURPOSE_PROFILING_BIT_EXT = 2
+        TOOL_PURPOSE_TRACING_BIT_EXT = 4
+        TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT = 8
+        TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT = 16
+        TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT = 32
+        TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT = 64
+        TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT = 32
+        TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT = 64
+    end
+
+@bitmask_flag PipelineCompilerControlFlagAMD::UInt32 begin
+    end
+
+@bitmask_flag ShaderModuleCreateFlag::UInt32 begin
+        SHADER_MODULE_CREATE_RESERVED_0_BIT_NV = 1
+    end
+
+@bitmask_flag ShaderCorePropertiesFlagAMD::UInt32 begin
+    end
+
+@bitmask_flag AcquireProfilingLockFlagKHR::UInt32 begin
+    end
+
+@bitmask_flag PerformanceCounterDescriptionFlagKHR::UInt32 begin
+        PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR = 1
+        PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR = 2
+    end
+
+@bitmask_flag PipelineCreationFeedbackFlagEXT::UInt32 begin
+        PIPELINE_CREATION_FEEDBACK_VALID_BIT_EXT = 1
+        PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT = 2
+        PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT = 4
+    end
+
+@bitmask_flag DeviceDiagnosticsConfigFlagNV::UInt32 begin
+        DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV = 1
+        DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV = 2
+        DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 4
+    end
+
+@bitmask_flag FramebufferCreateFlag::UInt32 begin
+        FRAMEBUFFER_CREATE_IMAGELESS_BIT = 1
+    end
+
+@bitmask_flag BuildAccelerationStructureFlagKHR::UInt32 begin
+        BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR = 1
+        BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR = 2
+        BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR = 4
+        BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR = 8
+        BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR = 16
+    end
+
+@bitmask_flag GeometryFlagKHR::UInt32 begin
+        GEOMETRY_OPAQUE_BIT_KHR = 1
+        GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR = 2
+    end
+
+@bitmask_flag GeometryInstanceFlagKHR::UInt32 begin
+        GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR = 1
+        GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR = 2
+        GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR = 4
+        GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR = 8
+    end
+
+@bitmask_flag ResolveModeFlag::UInt32 begin
+        RESOLVE_MODE_NONE = 1
+        RESOLVE_MODE_SAMPLE_ZERO_BIT = 1
+        RESOLVE_MODE_AVERAGE_BIT = 2
+        RESOLVE_MODE_MIN_BIT = 4
+        RESOLVE_MODE_MAX_BIT = 8
+    end
+
+@bitmask_flag ConditionalRenderingFlagEXT::UInt32 begin
+        CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 1
+    end
+
+@bitmask_flag DescriptorBindingFlag::UInt32 begin
+        DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT = 1
+        DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT = 2
+        DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT = 4
+        DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT = 8
+    end
+
+@bitmask_flag DebugUtilsMessageTypeFlagEXT::UInt32 begin
+        DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT = 1
+        DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT = 2
+        DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 4
+    end
+
+@bitmask_flag DebugUtilsMessageSeverityFlagEXT::UInt32 begin
+        DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT = 1
+        DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT = 16
+        DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT = 256
+        DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 4096
+    end
+
+@bitmask_flag SubpassDescriptionFlag::UInt32 begin
+        SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX = 1
+        SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX = 2
+        SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM = 4
+        SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM = 8
+    end
+
+@bitmask_flag SwapchainCreateFlagKHR::UInt32 begin
+        SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = 1
+        SWAPCHAIN_CREATE_PROTECTED_BIT_KHR = 2
+        SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = 1
+        SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR = 4
+    end
+
+@bitmask_flag DeviceGroupPresentModeFlagKHR::UInt32 begin
+        DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR = 1
+        DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR = 2
+        DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR = 4
+        DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 8
+    end
+
+@bitmask_flag MemoryAllocateFlag::UInt32 begin
+        MEMORY_ALLOCATE_DEVICE_MASK_BIT = 1
+        MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT = 2
+        MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = 4
+    end
+
+@bitmask_flag PeerMemoryFeatureFlag::UInt32 begin
+        PEER_MEMORY_FEATURE_COPY_SRC_BIT = 1
+        PEER_MEMORY_FEATURE_COPY_DST_BIT = 2
+        PEER_MEMORY_FEATURE_GENERIC_SRC_BIT = 4
+        PEER_MEMORY_FEATURE_GENERIC_DST_BIT = 8
+    end
+
+@bitmask_flag SurfaceCounterFlagEXT::UInt32 begin
+        SURFACE_COUNTER_VBLANK_EXT = 1
+    end
+
+@bitmask_flag FenceImportFlag::UInt32 begin
+        FENCE_IMPORT_TEMPORARY_BIT = 1
+    end
+
+@bitmask_flag ExternalFenceFeatureFlag::UInt32 begin
+        EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT = 1
+        EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT = 2
+    end
+
+@bitmask_flag ExternalFenceHandleTypeFlag::UInt32 begin
+        EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT = 1
+        EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 2
+        EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
+        EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT = 8
+    end
+
+@bitmask_flag SemaphoreImportFlag::UInt32 begin
+        SEMAPHORE_IMPORT_TEMPORARY_BIT = 1
+    end
+
+@bitmask_flag ExternalSemaphoreFeatureFlag::UInt32 begin
+        EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT = 1
+        EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT = 2
+    end
+
+@bitmask_flag ExternalSemaphoreHandleTypeFlag::UInt32 begin
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT = 1
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 2
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT = 8
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT = 16
+    end
+
+@bitmask_flag ExternalMemoryFeatureFlag::UInt32 begin
+        EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT = 1
+        EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT = 2
+        EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT = 4
+    end
+
+@bitmask_flag ExternalMemoryHandleTypeFlag::UInt32 begin
+        EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT = 1
+        EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT = 2
+        EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
+        EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT = 8
+        EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT = 16
+        EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT = 32
+        EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT = 64
+        EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT = 512
+        EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID = 1024
+        EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT = 128
+        EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT = 256
+    end
+
+@bitmask_flag DescriptorSetLayoutCreateFlag::UInt32 begin
+        DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT = 2
+        DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR = 1
+    end
+
+@bitmask_flag PrivateDataSlotCreateFlagEXT::UInt32 begin
+    end
+
+@bitmask_flag IndirectStateFlagNV::UInt32 begin
+        INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV = 1
+    end
+
+@bitmask_flag IndirectCommandsLayoutUsageFlagNV::UInt32 begin
+        INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV = 1
+        INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV = 2
+        INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV = 4
+    end
+
+@bitmask_flag SubgroupFeatureFlag::UInt32 begin
+        SUBGROUP_FEATURE_BASIC_BIT = 1
+        SUBGROUP_FEATURE_VOTE_BIT = 2
+        SUBGROUP_FEATURE_ARITHMETIC_BIT = 4
+        SUBGROUP_FEATURE_BALLOT_BIT = 8
+        SUBGROUP_FEATURE_SHUFFLE_BIT = 16
+        SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT = 32
+        SUBGROUP_FEATURE_CLUSTERED_BIT = 64
+        SUBGROUP_FEATURE_QUAD_BIT = 128
+        SUBGROUP_FEATURE_PARTITIONED_BIT_NV = 256
+    end
+
+@bitmask_flag ExternalMemoryFeatureFlagNV::UInt32 begin
+        EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV = 1
+        EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV = 2
+        EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV = 4
+    end
+
+@bitmask_flag ExternalMemoryHandleTypeFlagNV::UInt32 begin
+        EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV = 1
+        EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV = 2
+        EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV = 4
+        EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV = 8
+    end
+
+@bitmask_flag DebugReportFlagEXT::UInt32 begin
+        DEBUG_REPORT_INFORMATION_BIT_EXT = 1
+        DEBUG_REPORT_WARNING_BIT_EXT = 2
+        DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT = 4
+        DEBUG_REPORT_ERROR_BIT_EXT = 8
+        DEBUG_REPORT_DEBUG_BIT_EXT = 16
+    end
+
+@bitmask_flag SurfaceTransformFlagKHR::UInt32 begin
+        SURFACE_TRANSFORM_IDENTITY_BIT_KHR = 1
+        SURFACE_TRANSFORM_ROTATE_90_BIT_KHR = 2
+        SURFACE_TRANSFORM_ROTATE_180_BIT_KHR = 4
+        SURFACE_TRANSFORM_ROTATE_270_BIT_KHR = 8
+        SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR = 16
+        SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR = 32
+        SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR = 64
+        SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR = 128
+        SURFACE_TRANSFORM_INHERIT_BIT_KHR = 256
+    end
+
+@bitmask_flag CompositeAlphaFlagKHR::UInt32 begin
+        COMPOSITE_ALPHA_OPAQUE_BIT_KHR = 1
+        COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR = 2
+        COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR = 4
+        COMPOSITE_ALPHA_INHERIT_BIT_KHR = 8
+    end
+
+@bitmask_flag DisplayPlaneAlphaFlagKHR::UInt32 begin
+        DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR = 1
+        DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR = 2
+        DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR = 4
+        DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 8
+    end
+
+@bitmask_flag SemaphoreWaitFlag::UInt32 begin
+        SEMAPHORE_WAIT_ANY_BIT = 1
+    end
+
+@bitmask_flag DependencyFlag::UInt32 begin
+        DEPENDENCY_BY_REGION_BIT = 1
+        DEPENDENCY_DEVICE_GROUP_BIT = 4
+        DEPENDENCY_VIEW_LOCAL_BIT = 2
+    end
+
+@bitmask_flag DescriptorPoolCreateFlag::UInt32 begin
+        DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT = 1
+        DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT = 2
+    end
+
+@bitmask_flag StencilFaceFlag::UInt32 begin
+        STENCIL_FACE_FRONT_BIT = 1
+        STENCIL_FACE_BACK_BIT = 2
+        STENCIL_FACE_FRONT_AND_BACK = 8
+    end
+
+@bitmask_flag AttachmentDescriptionFlag::UInt32 begin
+        ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT = 1
+    end
+
+@bitmask_flag SampleCountFlag::UInt32 begin
+        SAMPLE_COUNT_1_BIT = 1
+        SAMPLE_COUNT_2_BIT = 2
+        SAMPLE_COUNT_4_BIT = 4
+        SAMPLE_COUNT_8_BIT = 8
+        SAMPLE_COUNT_16_BIT = 16
+        SAMPLE_COUNT_32_BIT = 32
+        SAMPLE_COUNT_64_BIT = 64
+    end
+
+@bitmask_flag CommandBufferResetFlag::UInt32 begin
+        COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT = 1
+    end
+
+@bitmask_flag CommandPoolResetFlag::UInt32 begin
+        COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT = 1
+    end
+
+@bitmask_flag CommandPoolCreateFlag::UInt32 begin
+        COMMAND_POOL_CREATE_TRANSIENT_BIT = 1
+        COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT = 2
+        COMMAND_POOL_CREATE_PROTECTED_BIT = 4
+    end
+
+@bitmask_flag PipelineStageFlag::UInt32 begin
+        PIPELINE_STAGE_TOP_OF_PIPE_BIT = 1
+        PIPELINE_STAGE_DRAW_INDIRECT_BIT = 2
+        PIPELINE_STAGE_VERTEX_INPUT_BIT = 4
+        PIPELINE_STAGE_VERTEX_SHADER_BIT = 8
+        PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT = 16
+        PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT = 32
+        PIPELINE_STAGE_GEOMETRY_SHADER_BIT = 64
+        PIPELINE_STAGE_FRAGMENT_SHADER_BIT = 128
+        PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT = 256
+        PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT = 512
+        PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT = 1024
+        PIPELINE_STAGE_COMPUTE_SHADER_BIT = 2048
+        PIPELINE_STAGE_TRANSFER_BIT = 4096
+        PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT = 8192
+        PIPELINE_STAGE_HOST_BIT = 16384
+        PIPELINE_STAGE_ALL_GRAPHICS_BIT = 32768
+        PIPELINE_STAGE_ALL_COMMANDS_BIT = 65536
+        PIPELINE_STAGE_RESERVED_27_BIT_KHR = 134217728
+        PIPELINE_STAGE_RESERVED_26_BIT_KHR = 67108864
+        PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT = 16777216
+        PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT = 262144
+        PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR = 2097152
+        PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR = 33554432
+        PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = 4194304
+        PIPELINE_STAGE_TASK_SHADER_BIT_NV = 524288
+        PIPELINE_STAGE_MESH_SHADER_BIT_NV = 1048576
+        PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT = 8388608
+        PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV = 131072
+    end
+
+@bitmask_flag SparseMemoryBindFlag::UInt32 begin
+        SPARSE_MEMORY_BIND_METADATA_BIT = 1
+    end
+
+@bitmask_flag SparseImageFormatFlag::UInt32 begin
+        SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = 1
+        SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = 2
+        SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = 4
+    end
+
+@bitmask_flag ImageAspectFlag::UInt32 begin
+        IMAGE_ASPECT_COLOR_BIT = 1
+        IMAGE_ASPECT_DEPTH_BIT = 2
+        IMAGE_ASPECT_STENCIL_BIT = 4
+        IMAGE_ASPECT_METADATA_BIT = 8
+        IMAGE_ASPECT_PLANE_0_BIT = 16
+        IMAGE_ASPECT_PLANE_1_BIT = 32
+        IMAGE_ASPECT_PLANE_2_BIT = 64
+        IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT = 128
+        IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT = 256
+        IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT = 512
+        IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT = 1024
+    end
+
+@bitmask_flag QueryPipelineStatisticFlag::UInt32 begin
+        QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 1
+        QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 2
+        QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 4
+        QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = 8
+        QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = 16
+        QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = 32
+        QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = 64
+        QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = 128
+        QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = 256
+        QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = 512
+        QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = 1024
+    end
+
+@bitmask_flag CommandBufferUsageFlag::UInt32 begin
+        COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT = 1
+        COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT = 2
+        COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT = 4
+    end
+
+@bitmask_flag QueryResultFlag::UInt32 begin
+        QUERY_RESULT_64_BIT = 1
+        QUERY_RESULT_WAIT_BIT = 2
+        QUERY_RESULT_WITH_AVAILABILITY_BIT = 4
+        QUERY_RESULT_PARTIAL_BIT = 8
+    end
+
+@bitmask_flag QueryControlFlag::UInt32 begin
+        QUERY_CONTROL_PRECISE_BIT = 1
+    end
+
+@bitmask_flag FormatFeatureFlag::UInt32 begin
+        FORMAT_FEATURE_SAMPLED_IMAGE_BIT = 1
+        FORMAT_FEATURE_STORAGE_IMAGE_BIT = 2
+        FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT = 4
+        FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT = 8
+        FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT = 16
+        FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT = 32
+        FORMAT_FEATURE_VERTEX_BUFFER_BIT = 64
+        FORMAT_FEATURE_COLOR_ATTACHMENT_BIT = 128
+        FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT = 256
+        FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT = 512
+        FORMAT_FEATURE_BLIT_SRC_BIT = 1024
+        FORMAT_FEATURE_BLIT_DST_BIT = 2048
+        FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT = 4096
+        FORMAT_FEATURE_TRANSFER_SRC_BIT = 16384
+        FORMAT_FEATURE_TRANSFER_DST_BIT = 32768
+        FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT = 131072
+        FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT = 262144
+        FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT = 524288
+        FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT = 1048576
+        FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT = 2097152
+        FORMAT_FEATURE_DISJOINT_BIT = 4194304
+        FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT = 8388608
+        FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT = 65536
+        FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG = 8192
+        FORMAT_FEATURE_RESERVED_27_BIT_KHR = 134217728
+        FORMAT_FEATURE_RESERVED_28_BIT_KHR = 268435456
+        FORMAT_FEATURE_RESERVED_25_BIT_KHR = 33554432
+        FORMAT_FEATURE_RESERVED_26_BIT_KHR = 67108864
+        FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR = 536870912
+        FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT = 16777216
+        FORMAT_FEATURE_AMD_RESERVED_30_BIT = 1073741824
+    end
+
+@bitmask_flag SemaphoreCreateFlag::UInt32 begin
+    end
+
+@bitmask_flag FenceCreateFlag::UInt32 begin
+        FENCE_CREATE_SIGNALED_BIT = 1
+    end
+
+@bitmask_flag ColorComponentFlag::UInt32 begin
+        COLOR_COMPONENT_R_BIT = 1
+        COLOR_COMPONENT_G_BIT = 2
+        COLOR_COMPONENT_B_BIT = 4
+        COLOR_COMPONENT_A_BIT = 8
+    end
+
+@bitmask_flag PipelineShaderStageCreateFlag::UInt32 begin
+        PIPELINE_SHADER_STAGE_CREATE_RESERVED_2_BIT_NV = 4
+        PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT = 1
+        PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT = 2
+        PIPELINE_SHADER_STAGE_CREATE_RESERVED_3_BIT_KHR = 8
+    end
+
+@bitmask_flag PipelineCreateFlag::UInt32 begin
+        PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT = 1
+        PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT = 2
+        PIPELINE_CREATE_DERIVATIVE_BIT = 4
+        PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT = 8
+        PIPELINE_CREATE_DISPATCH_BASE_BIT = 16
+        PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR = 16384
+        PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR = 32768
+        PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR = 65536
+        PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR = 131072
+        PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR = 4096
+        PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR = 8192
+        PIPELINE_CREATE_DEFER_COMPILE_BIT_NV = 32
+        PIPELINE_CREATE_RESERVED_19_BIT_KHR = 524288
+        PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR = 64
+        PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR = 128
+        PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV = 262144
+        PIPELINE_CREATE_LIBRARY_BIT_KHR = 2048
+        PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT = 256
+        PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT = 512
+    end
+
+@bitmask_flag SamplerCreateFlag::UInt32 begin
+        SAMPLER_CREATE_SUBSAMPLED_BIT_EXT = 1
+        SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT = 2
+    end
+
+@bitmask_flag ImageViewCreateFlag::UInt32 begin
+        IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT = 1
+        IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT = 2
+    end
+
+@bitmask_flag ImageCreateFlag::UInt32 begin
+        IMAGE_CREATE_SPARSE_BINDING_BIT = 1
+        IMAGE_CREATE_SPARSE_RESIDENCY_BIT = 2
+        IMAGE_CREATE_SPARSE_ALIASED_BIT = 4
+        IMAGE_CREATE_MUTABLE_FORMAT_BIT = 8
+        IMAGE_CREATE_CUBE_COMPATIBLE_BIT = 16
+        IMAGE_CREATE_ALIAS_BIT = 1024
+        IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT = 64
+        IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT = 32
+        IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT = 128
+        IMAGE_CREATE_EXTENDED_USAGE_BIT = 256
+        IMAGE_CREATE_PROTECTED_BIT = 2048
+        IMAGE_CREATE_DISJOINT_BIT = 512
+        IMAGE_CREATE_CORNER_SAMPLED_BIT_NV = 8192
+        IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT = 4096
+        IMAGE_CREATE_SUBSAMPLED_BIT_EXT = 16384
+    end
+
+@bitmask_flag ImageUsageFlag::UInt32 begin
+        IMAGE_USAGE_TRANSFER_SRC_BIT = 1
+        IMAGE_USAGE_TRANSFER_DST_BIT = 2
+        IMAGE_USAGE_SAMPLED_BIT = 4
+        IMAGE_USAGE_STORAGE_BIT = 8
+        IMAGE_USAGE_COLOR_ATTACHMENT_BIT = 16
+        IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT = 32
+        IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT = 64
+        IMAGE_USAGE_INPUT_ATTACHMENT_BIT = 128
+        IMAGE_USAGE_RESERVED_13_BIT_KHR = 8192
+        IMAGE_USAGE_RESERVED_14_BIT_KHR = 16384
+        IMAGE_USAGE_RESERVED_15_BIT_KHR = 32768
+        IMAGE_USAGE_RESERVED_10_BIT_KHR = 1024
+        IMAGE_USAGE_RESERVED_11_BIT_KHR = 2048
+        IMAGE_USAGE_RESERVED_12_BIT_KHR = 4096
+        IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV = 256
+        IMAGE_USAGE_RESERVED_16_BIT_QCOM = 65536
+        IMAGE_USAGE_RESERVED_17_BIT_QCOM = 131072
+        IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT = 512
+    end
+
+@bitmask_flag ShaderStageFlag::UInt32 begin
+        SHADER_STAGE_VERTEX_BIT = 1
+        SHADER_STAGE_TESSELLATION_CONTROL_BIT = 2
+        SHADER_STAGE_TESSELLATION_EVALUATION_BIT = 4
+        SHADER_STAGE_GEOMETRY_BIT = 8
+        SHADER_STAGE_FRAGMENT_BIT = 16
+        SHADER_STAGE_COMPUTE_BIT = 32
+        SHADER_STAGE_ALL_GRAPHICS = 2147483648
+        SHADER_STAGE_ALL = 0
+        SHADER_STAGE_RAYGEN_BIT_KHR = 256
+        SHADER_STAGE_ANY_HIT_BIT_KHR = 512
+        SHADER_STAGE_CLOSEST_HIT_BIT_KHR = 1024
+        SHADER_STAGE_MISS_BIT_KHR = 2048
+        SHADER_STAGE_INTERSECTION_BIT_KHR = 4096
+        SHADER_STAGE_CALLABLE_BIT_KHR = 8192
+        SHADER_STAGE_TASK_BIT_NV = 64
+        SHADER_STAGE_MESH_BIT_NV = 128
+    end
+
+@bitmask_flag BufferCreateFlag::UInt32 begin
+        BUFFER_CREATE_SPARSE_BINDING_BIT = 1
+        BUFFER_CREATE_SPARSE_RESIDENCY_BIT = 2
+        BUFFER_CREATE_SPARSE_ALIASED_BIT = 4
+        BUFFER_CREATE_PROTECTED_BIT = 8
+        BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = 16
+    end
+
+@bitmask_flag BufferUsageFlag::UInt32 begin
+        BUFFER_USAGE_TRANSFER_SRC_BIT = 1
+        BUFFER_USAGE_TRANSFER_DST_BIT = 2
+        BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = 4
+        BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT = 8
+        BUFFER_USAGE_UNIFORM_BUFFER_BIT = 16
+        BUFFER_USAGE_STORAGE_BUFFER_BIT = 32
+        BUFFER_USAGE_INDEX_BUFFER_BIT = 64
+        BUFFER_USAGE_VERTEX_BUFFER_BIT = 128
+        BUFFER_USAGE_INDIRECT_BUFFER_BIT = 256
+        BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT = 131072
+        BUFFER_USAGE_RESERVED_15_BIT_KHR = 32768
+        BUFFER_USAGE_RESERVED_16_BIT_KHR = 65536
+        BUFFER_USAGE_RESERVED_13_BIT_KHR = 8192
+        BUFFER_USAGE_RESERVED_14_BIT_KHR = 16384
+        BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT = 2048
+        BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT = 4096
+        BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT = 512
+        BUFFER_USAGE_RAY_TRACING_BIT_KHR = 1024
+        BUFFER_USAGE_RESERVED_19_BIT_KHR = 524288
+        BUFFER_USAGE_RESERVED_20_BIT_KHR = 1048576
+        BUFFER_USAGE_RESERVED_18_BIT_QCOM = 262144
+    end
+
+@bitmask_flag AccessFlag::UInt32 begin
+        ACCESS_INDIRECT_COMMAND_READ_BIT = 1
+        ACCESS_INDEX_READ_BIT = 2
+        ACCESS_VERTEX_ATTRIBUTE_READ_BIT = 4
+        ACCESS_UNIFORM_READ_BIT = 8
+        ACCESS_INPUT_ATTACHMENT_READ_BIT = 16
+        ACCESS_SHADER_READ_BIT = 32
+        ACCESS_SHADER_WRITE_BIT = 64
+        ACCESS_COLOR_ATTACHMENT_READ_BIT = 128
+        ACCESS_COLOR_ATTACHMENT_WRITE_BIT = 256
+        ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT = 512
+        ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT = 1024
+        ACCESS_TRANSFER_READ_BIT = 2048
+        ACCESS_TRANSFER_WRITE_BIT = 4096
+        ACCESS_HOST_READ_BIT = 8192
+        ACCESS_HOST_WRITE_BIT = 16384
+        ACCESS_MEMORY_READ_BIT = 32768
+        ACCESS_MEMORY_WRITE_BIT = 65536
+        ACCESS_RESERVED_30_BIT_KHR = 1073741824
+        ACCESS_RESERVED_28_BIT_KHR = 268435456
+        ACCESS_RESERVED_29_BIT_KHR = 536870912
+        ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT = 33554432
+        ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT = 67108864
+        ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT = 134217728
+        ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT = 1048576
+        ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT = 524288
+        ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR = 2097152
+        ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR = 4194304
+        ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV = 8388608
+        ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT = 16777216
+        ACCESS_COMMAND_PREPROCESS_READ_BIT_NV = 131072
+        ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV = 262144
+    end
+
+@bitmask_flag MemoryHeapFlag::UInt32 begin
+        MEMORY_HEAP_DEVICE_LOCAL_BIT = 1
+        MEMORY_HEAP_MULTI_INSTANCE_BIT = 2
+        MEMORY_HEAP_RESERVED_2_BIT_KHR = 4
+    end
+
+@bitmask_flag MemoryPropertyFlag::UInt32 begin
+        MEMORY_PROPERTY_DEVICE_LOCAL_BIT = 1
+        MEMORY_PROPERTY_HOST_VISIBLE_BIT = 2
+        MEMORY_PROPERTY_HOST_COHERENT_BIT = 4
+        MEMORY_PROPERTY_HOST_CACHED_BIT = 8
+        MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT = 16
+        MEMORY_PROPERTY_PROTECTED_BIT = 32
+        MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD = 64
+        MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD = 128
+    end
+
+@bitmask_flag DeviceQueueCreateFlag::UInt32 begin
+        DEVICE_QUEUE_CREATE_PROTECTED_BIT = 1
+    end
+
+@bitmask_flag RenderPassCreateFlag::UInt32 begin
+        RENDER_PASS_CREATE_RESERVED_0_BIT_KHR = 1
+        RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM = 2
+    end
+
+@bitmask_flag QueueFlag::UInt32 begin
+        QUEUE_GRAPHICS_BIT = 1
+        QUEUE_COMPUTE_BIT = 2
+        QUEUE_TRANSFER_BIT = 4
+        QUEUE_SPARSE_BINDING_BIT = 8
+        QUEUE_PROTECTED_BIT = 16
+        QUEUE_RESERVED_6_BIT_KHR = 64
+        QUEUE_RESERVED_5_BIT_KHR = 32
+    end
+
+@bitmask_flag CullModeFlag::UInt32 begin
+        CULL_MODE_NONE = 1
+        CULL_MODE_FRONT_BIT = 1
+        CULL_MODE_BACK_BIT = 2
+        CULL_MODE_FRONT_AND_BACK = 8
+    end
+
+@bitmask_flag PipelineCacheCreateFlag::UInt32 begin
+        PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT = 1
+    end
+
+
 struct PhysicalDevice4444FormatsFeaturesEXT <: VulkanStruct{true}
     vks::VkPhysicalDevice4444FormatsFeaturesEXT
     deps::Vector{Any}
@@ -3503,7 +4163,7 @@ DebugUtilsMessengerEXT(instance::Instance, message_severity::Integer, message_ty
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags), fun_ptr_create; allocator)
 
@@ -3543,7 +4203,7 @@ ShaderModule(device::Device, code_size::Integer, code::AbstractArray, fun_ptr_cr
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -3924,15 +4584,15 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker, fun_ptr)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker, fun_ptr)
 
-function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)
+function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
     @check vkGetMemoryHostPointerPropertiesEXT(device, handle_type, Ref(host_pointer), pMemoryHostPointerProperties, fun_ptr)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::Integer, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data, fun_ptr)
+submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::Integer, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data, fun_ptr)
 
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator, fun_ptr)
 
@@ -3975,7 +4635,7 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)
     pInfoSize = Ref(info_size)
     pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
@@ -4083,7 +4743,7 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits, fun_ptr::FunctionPtr)
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag, fun_ptr::FunctionPtr)
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
     vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties, fun_ptr)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
@@ -4197,7 +4857,7 @@ function get_physical_device_surface_capabilities_2_ext(physical_device::Physica
     from_vk(SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
 
-function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT, fun_ptr::FunctionPtr)
+function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT, fun_ptr::FunctionPtr)
     pCounterValue = Ref{UInt64}()
     @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue, fun_ptr)
     pCounterValue[]
@@ -4263,7 +4923,7 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-function get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer, fun_ptr::FunctionPtr)
+function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer, fun_ptr::FunctionPtr)
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
     @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties, fun_ptr)
     from_vk(MemoryFdPropertiesKHR, pMemoryFdProperties[])
@@ -4275,7 +4935,7 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR, fun_
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE, fun_ptr::FunctionPtr)
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE, fun_ptr::FunctionPtr)
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
     @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties, fun_ptr)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
@@ -4575,7 +5235,7 @@ cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fun_ptr)
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query, fun_ptr)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query, fun_ptr)
 
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr) = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count, fun_ptr)
 
@@ -4878,7 +5538,7 @@ end
 
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::Integer, tiling::VkImageTiling, fun_ptr::FunctionPtr)
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::Integer, tiling::VkImageTiling, fun_ptr::FunctionPtr)
     pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
@@ -5056,7 +5716,7 @@ DebugUtilsMessengerEXT(instance::Instance, message_severity::Integer, message_ty
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data); allocator)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags); allocator)
 
@@ -5096,7 +5756,7 @@ ShaderModule(device::Device, code_size::Integer, code::AbstractArray; allocator 
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags); allocator)
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags); allocator)
 
@@ -5389,14 +6049,14 @@ function PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; nex
     PhysicalDeviceDiagnosticsConfigFeaturesNV(vks, deps)
 end
 
-function CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR, render_area::Rect2D; next = C_NULL)
+function CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::Rect2D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCommandBufferInheritanceRenderPassTransformInfoQCOM(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), transform, render_area.vks)
     CommandBufferInheritanceRenderPassTransformInfoQCOM(vks, deps)
 end
 
-function RenderPassTransformBeginInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR; next = C_NULL)
+function RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkRenderPassTransformBeginInfoQCOM(VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), transform)
@@ -6352,7 +7012,7 @@ function ImageViewASTCDecodeModeEXT(decode_mode::VkFormat; next = C_NULL)
     ImageViewASTCDecodeModeEXT(vks, deps)
 end
 
-function SubpassDescriptionDepthStencilResolve(depth_resolve_mode::VkResolveModeFlagBits, stencil_resolve_mode::VkResolveModeFlagBits; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
+function SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeFlag, stencil_resolve_mode::ResolveModeFlag; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     depth_stencil_resolve_attachment = cconvert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment)
     deps = [next, depth_stencil_resolve_attachment]
@@ -6533,7 +7193,7 @@ function AttachmentReference2(attachment::Integer, layout::VkImageLayout, aspect
     AttachmentReference2(vks, deps)
 end
 
-function AttachmentDescription2(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
+function AttachmentDescription2(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkAttachmentDescription2(VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2, unsafe_convert(Ptr{Cvoid}, next), flags, format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout)
@@ -6577,7 +7237,7 @@ function CalibratedTimestampInfoEXT(time_domain::VkTimeDomainEXT; next = C_NULL)
     CalibratedTimestampInfoEXT(vks, deps)
 end
 
-function ImportMemoryHostPointerInfoEXT(handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}; next = C_NULL)
+function ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     host_pointer = cconvert(Ptr{Cvoid}, host_pointer)
     deps = [next, host_pointer]
@@ -6809,14 +7469,14 @@ function PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::
     PhysicalDeviceSamplerYcbcrConversionFeatures(vks, deps)
 end
 
-function ImagePlaneMemoryRequirementsInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
+function ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImagePlaneMemoryRequirementsInfo(VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO, unsafe_convert(Ptr{Cvoid}, next), plane_aspect)
     ImagePlaneMemoryRequirementsInfo(vks, deps)
 end
 
-function BindImagePlaneMemoryInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
+function BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBindImagePlaneMemoryInfo(VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO, unsafe_convert(Ptr{Cvoid}, next), plane_aspect)
@@ -7032,7 +7692,7 @@ function DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray; next = C_N
     DeviceGroupDeviceCreateInfo(vks, deps)
 end
 
-function DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::VkDeviceGroupPresentModeFlagBitsKHR; next = C_NULL)
+function DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_masks = cconvert(Ptr{UInt32}, device_masks)
     deps = [next, device_masks]
@@ -7176,21 +7836,21 @@ function PhysicalDeviceMultiviewFeatures(multiview::Bool, multiview_geometry_sha
     PhysicalDeviceMultiviewFeatures(vks, deps)
 end
 
-function FenceGetFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+function FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkFenceGetFdInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
     FenceGetFdInfoKHR(vks, deps)
 end
 
-function ImportFenceFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
+function ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportFenceFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, handle_type, fd)
     ImportFenceFdInfoKHR(vks, deps)
 end
 
-function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkFenceGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
@@ -7219,28 +7879,28 @@ function ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
     ExportFenceCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalFenceInfo(handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+function PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDeviceExternalFenceInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_type)
     PhysicalDeviceExternalFenceInfo(vks, deps)
 end
 
-function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSemaphoreGetFdInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
     SemaphoreGetFdInfoKHR(vks, deps)
 end
 
-function ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
+function ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportSemaphoreFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, handle_type, fd)
     ImportSemaphoreFdInfoKHR(vks, deps)
 end
 
-function SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+function SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSemaphoreGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
@@ -7278,7 +7938,7 @@ function ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
     ExportSemaphoreCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalSemaphoreInfo(handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+function PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDeviceExternalSemaphoreInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_type)
@@ -7297,7 +7957,7 @@ function Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray, acqu
     Win32KeyedMutexAcquireReleaseInfoKHR(vks, deps)
 end
 
-function MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
+function MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryGetFdInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
@@ -7311,7 +7971,7 @@ function ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
     ImportMemoryFdInfoKHR(vks, deps)
 end
 
-function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
+function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
@@ -7354,7 +8014,7 @@ function ExternalMemoryImageCreateInfo(handle_types::Integer; next = C_NULL)
     ExternalMemoryImageCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalBufferInfo(usage::Integer, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL, flags = 0)
+function PhysicalDeviceExternalBufferInfo(usage::Integer, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDeviceExternalBufferInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, usage, handle_type)
@@ -7398,7 +8058,7 @@ function ConformanceVersion(major::Integer, minor::Integer, subminor::Integer, p
     ConformanceVersion(VkConformanceVersion(major, minor, subminor, patch))
 end
 
-function PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::Integer, tiling::VkImageTiling; next = C_NULL)
+function PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::Integer, tiling::VkImageTiling; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDeviceSparseImageFormatInfo2(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2, unsafe_convert(Ptr{Cvoid}, next), format, type, samples, usage, tiling)
@@ -7648,7 +8308,7 @@ function PresentInfoKHR(wait_semaphores::AbstractArray, swapchains::AbstractArra
     PresentInfoKHR(vks, deps)
 end
 
-function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::Integer, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
@@ -7734,7 +8394,7 @@ function DisplayPresentInfoKHR(src_rect::Rect2D, dst_rect::Rect2D, persistent::B
     DisplayPresentInfoKHR(vks, deps)
 end
 
-function DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::VkSurfaceTransformFlagBitsKHR, global_alpha::Real, alpha_mode::VkDisplayPlaneAlphaFlagBitsKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
+function DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkDisplaySurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent.vks)
@@ -7844,7 +8504,7 @@ function AttachmentReference(attachment::Integer, layout::VkImageLayout)
     AttachmentReference(VkAttachmentReference(attachment, layout))
 end
 
-function AttachmentDescription(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
+function AttachmentDescription(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
     AttachmentDescription(VkAttachmentDescription(flags, format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout))
 end
 
@@ -7977,7 +8637,7 @@ function PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_f
     PipelineColorBlendAttachmentState(VkPipelineColorBlendAttachmentState(blend_enable, src_color_blend_factor, dst_color_blend_factor, color_blend_op, src_alpha_blend_factor, dst_alpha_blend_factor, alpha_blend_op, color_write_mask))
 end
 
-function PipelineMultisampleStateCreateInfo(rasterization_samples::VkSampleCountFlagBits, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
+function PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountFlag, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     sample_mask = cconvert(Ptr{VkSampleMask}, sample_mask)
     deps = [next, sample_mask]
@@ -8039,7 +8699,7 @@ function ComputePipelineCreateInfo(stage::PipelineShaderStageCreateInfo, layout:
     ComputePipelineCreateInfo(vks, deps)
 end
 
-function PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+function PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     name = cconvert(Cstring, name)
     specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
@@ -8171,7 +8831,7 @@ function ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::V
     ImageViewCreateInfo(vks, deps)
 end
 
-function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
+function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
@@ -8724,15 +9384,15 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker)
 
-function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid})
+function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
     @check vkGetMemoryHostPointerPropertiesEXT(device, handle_type, Ref(host_pointer), pMemoryHostPointerProperties)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::Integer, callback_data::DebugUtilsMessengerCallbackDataEXT) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data)
+submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::Integer, callback_data::DebugUtilsMessengerCallbackDataEXT) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data)
 
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL) = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator)
 
@@ -8775,7 +9435,7 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD, info_size::Integer)
     pInfoSize = Ref(info_size)
     pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
@@ -8883,7 +9543,7 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag)
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
     vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
@@ -8997,7 +9657,7 @@ function get_physical_device_surface_capabilities_2_ext(physical_device::Physica
     from_vk(SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
 
-function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT)
+function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)
     pCounterValue = Ref{UInt64}()
     @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue)
     pCounterValue[]
@@ -9063,7 +9723,7 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-function get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer)
+function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
     @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties)
     from_vk(MemoryFdPropertiesKHR, pMemoryFdProperties[])
@@ -9075,7 +9735,7 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR)
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE)
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
     @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
@@ -9375,7 +10035,7 @@ cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags)
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query)
 
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer) = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count)
 
@@ -9678,7 +10338,7 @@ end
 
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL) = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::Integer, tiling::VkImageTiling)
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::Integer, tiling::VkImageTiling)
     pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
@@ -9855,4 +10515,4 @@ end
 
 
 
-export AabbPositionsKHR, AccelerationStructureBuildGeometryInfoKHR, AccelerationStructureBuildOffsetInfoKHR, AccelerationStructureCreateGeometryTypeInfoKHR, AccelerationStructureCreateInfoKHR, AccelerationStructureCreateInfoNV, AccelerationStructureDeviceAddressInfoKHR, AccelerationStructureGeometryAabbsDataKHR, AccelerationStructureGeometryDataKHR, AccelerationStructureGeometryInstancesDataKHR, AccelerationStructureGeometryKHR, AccelerationStructureGeometryTrianglesDataKHR, AccelerationStructureInfoNV, AccelerationStructureInstanceKHR, AccelerationStructureKHR, AccelerationStructureMemoryRequirementsInfoKHR, AccelerationStructureMemoryRequirementsInfoNV, AccelerationStructureVersionKHR, AcquireNextImageInfoKHR, AcquireProfilingLockInfoKHR, AllocationCallbacks, AndroidHardwareBufferFormatPropertiesANDROID, AndroidHardwareBufferPropertiesANDROID, AndroidHardwareBufferUsageANDROID, AndroidSurfaceCreateInfoKHR, ApplicationInfo, AttachmentDescription, AttachmentDescription2, AttachmentDescriptionStencilLayout, AttachmentReference, AttachmentReference2, AttachmentReferenceStencilLayout, AttachmentSampleLocationsEXT, BaseInStructure, BaseOutStructure, BindAccelerationStructureMemoryInfoKHR, BindBufferMemoryDeviceGroupInfo, BindBufferMemoryInfo, BindImageMemoryDeviceGroupInfo, BindImageMemoryInfo, BindImageMemorySwapchainInfoKHR, BindImagePlaneMemoryInfo, BindIndexBufferIndirectCommandNV, BindShaderGroupIndirectCommandNV, BindSparseInfo, BindVertexBufferIndirectCommandNV, Buffer, BufferCopy, BufferCreateInfo, BufferDeviceAddressCreateInfoEXT, BufferDeviceAddressInfo, BufferImageCopy, BufferMemoryBarrier, BufferMemoryRequirementsInfo2, BufferOpaqueCaptureAddressCreateInfo, BufferView, BufferViewCreateInfo, CalibratedTimestampInfoEXT, CheckpointDataNV, ClearAttachment, ClearColorValue, ClearDepthStencilValue, ClearRect, ClearValue, CoarseSampleLocationNV, CoarseSampleOrderCustomNV, CommandBuffer, CommandBufferAllocateInfo, CommandBufferBeginInfo, CommandBufferInheritanceConditionalRenderingInfoEXT, CommandBufferInheritanceInfo, CommandBufferInheritanceRenderPassTransformInfoQCOM, CommandPool, CommandPoolCreateInfo, ComponentMapping, ComputePipelineCreateInfo, ConditionalRenderingBeginInfoEXT, ConformanceVersion, CooperativeMatrixPropertiesNV, CopyAccelerationStructureInfoKHR, CopyAccelerationStructureToMemoryInfoKHR, CopyDescriptorSet, CopyMemoryToAccelerationStructureInfoKHR, D3D12FenceSubmitInfoKHR, DebugMarkerMarkerInfoEXT, DebugMarkerObjectNameInfoEXT, DebugMarkerObjectTagInfoEXT, DebugReportCallbackCreateInfoEXT, DebugReportCallbackEXT, DebugUtilsLabelEXT, DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerEXT, DebugUtilsObjectNameInfoEXT, DebugUtilsObjectTagInfoEXT, DedicatedAllocationBufferCreateInfoNV, DedicatedAllocationImageCreateInfoNV, DedicatedAllocationMemoryAllocateInfoNV, DeferredOperationInfoKHR, DeferredOperationKHR, DescriptorBufferInfo, DescriptorImageInfo, DescriptorPool, DescriptorPoolCreateInfo, DescriptorPoolInlineUniformBlockCreateInfoEXT, DescriptorPoolSize, DescriptorSet, DescriptorSetAllocateInfo, DescriptorSetLayout, DescriptorSetLayoutBinding, DescriptorSetLayoutBindingFlagsCreateInfo, DescriptorSetLayoutCreateInfo, DescriptorSetLayoutSupport, DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport, DescriptorUpdateTemplate, DescriptorUpdateTemplateCreateInfo, DescriptorUpdateTemplateEntry, Device, DeviceCreateInfo, DeviceDiagnosticsConfigCreateInfoNV, DeviceEventInfoEXT, DeviceGroupBindSparseInfo, DeviceGroupCommandBufferBeginInfo, DeviceGroupDeviceCreateInfo, DeviceGroupPresentCapabilitiesKHR, DeviceGroupPresentInfoKHR, DeviceGroupRenderPassBeginInfo, DeviceGroupSubmitInfo, DeviceGroupSwapchainCreateInfoKHR, DeviceMemory, DeviceMemoryOpaqueCaptureAddressInfo, DeviceMemoryOverallocationCreateInfoAMD, DeviceOrHostAddressConstKHR, DeviceOrHostAddressKHR, DevicePrivateDataCreateInfoEXT, DeviceQueueCreateInfo, DeviceQueueGlobalPriorityCreateInfoEXT, DeviceQueueInfo2, DirectFBSurfaceCreateInfoEXT, DispatchIndirectCommand, DisplayEventInfoEXT, DisplayKHR, DisplayModeCreateInfoKHR, DisplayModeKHR, DisplayModeParametersKHR, DisplayModeProperties2KHR, DisplayModePropertiesKHR, DisplayNativeHdrSurfaceCapabilitiesAMD, DisplayPlaneCapabilities2KHR, DisplayPlaneCapabilitiesKHR, DisplayPlaneInfo2KHR, DisplayPlaneProperties2KHR, DisplayPlanePropertiesKHR, DisplayPowerInfoEXT, DisplayPresentInfoKHR, DisplayProperties2KHR, DisplayPropertiesKHR, DisplaySurfaceCreateInfoKHR, DrawIndexedIndirectCommand, DrawIndirectCommand, DrawMeshTasksIndirectCommandNV, DrmFormatModifierPropertiesEXT, DrmFormatModifierPropertiesListEXT, Event, EventCreateInfo, ExportFenceCreateInfo, ExportFenceWin32HandleInfoKHR, ExportMemoryAllocateInfo, ExportMemoryAllocateInfoNV, ExportMemoryWin32HandleInfoKHR, ExportMemoryWin32HandleInfoNV, ExportSemaphoreCreateInfo, ExportSemaphoreWin32HandleInfoKHR, ExtensionProperties, Extent2D, Extent3D, ExternalBufferProperties, ExternalFenceProperties, ExternalFormatANDROID, ExternalImageFormatProperties, ExternalImageFormatPropertiesNV, ExternalMemoryBufferCreateInfo, ExternalMemoryImageCreateInfo, ExternalMemoryImageCreateInfoNV, ExternalMemoryProperties, ExternalSemaphoreProperties, Fence, FenceCreateInfo, FenceGetFdInfoKHR, FenceGetWin32HandleInfoKHR, FilterCubicImageViewImageFormatPropertiesEXT, FormatProperties, FormatProperties2, Framebuffer, FramebufferAttachmentImageInfo, FramebufferAttachmentsCreateInfo, FramebufferCreateInfo, FramebufferMixedSamplesCombinationNV, GeneratedCommandsInfoNV, GeneratedCommandsMemoryRequirementsInfoNV, GeometryAABBNV, GeometryDataNV, GeometryNV, GeometryTrianglesNV, GraphicsPipelineCreateInfo, GraphicsPipelineShaderGroupsCreateInfoNV, GraphicsShaderGroupCreateInfoNV, HdrMetadataEXT, HeadlessSurfaceCreateInfoEXT, IOSSurfaceCreateInfoMVK, Image, ImageBlit, ImageCopy, ImageCreateInfo, ImageDrmFormatModifierExplicitCreateInfoEXT, ImageDrmFormatModifierListCreateInfoEXT, ImageDrmFormatModifierPropertiesEXT, ImageFormatListCreateInfo, ImageFormatProperties, ImageFormatProperties2, ImageMemoryBarrier, ImageMemoryRequirementsInfo2, ImagePipeSurfaceCreateInfoFUCHSIA, ImagePlaneMemoryRequirementsInfo, ImageResolve, ImageSparseMemoryRequirementsInfo2, ImageStencilUsageCreateInfo, ImageSubresource, ImageSubresourceLayers, ImageSubresourceRange, ImageSwapchainCreateInfoKHR, ImageView, ImageViewASTCDecodeModeEXT, ImageViewAddressPropertiesNVX, ImageViewCreateInfo, ImageViewHandleInfoNVX, ImageViewUsageCreateInfo, ImportAndroidHardwareBufferInfoANDROID, ImportFenceFdInfoKHR, ImportFenceWin32HandleInfoKHR, ImportMemoryFdInfoKHR, ImportMemoryHostPointerInfoEXT, ImportMemoryWin32HandleInfoKHR, ImportMemoryWin32HandleInfoNV, ImportSemaphoreFdInfoKHR, ImportSemaphoreWin32HandleInfoKHR, IndirectCommandsLayoutCreateInfoNV, IndirectCommandsLayoutNV, IndirectCommandsLayoutTokenNV, IndirectCommandsStreamNV, InitializePerformanceApiInfoINTEL, InputAttachmentAspectReference, Instance, InstanceCreateInfo, LayerProperties, MacOSSurfaceCreateInfoMVK, MappedMemoryRange, MemoryAllocateFlagsInfo, MemoryAllocateInfo, MemoryBarrier, MemoryDedicatedAllocateInfo, MemoryDedicatedRequirements, MemoryFdPropertiesKHR, MemoryGetAndroidHardwareBufferInfoANDROID, MemoryGetFdInfoKHR, MemoryGetWin32HandleInfoKHR, MemoryHeap, MemoryHostPointerPropertiesEXT, MemoryOpaqueCaptureAddressAllocateInfo, MemoryPriorityAllocateInfoEXT, MemoryRequirements, MemoryRequirements2, MemoryType, MemoryWin32HandlePropertiesKHR, MetalSurfaceCreateInfoEXT, MultisamplePropertiesEXT, Offset2D, Offset3D, PastPresentationTimingGOOGLE, PerformanceConfigurationAcquireInfoINTEL, PerformanceConfigurationINTEL, PerformanceCounterDescriptionKHR, PerformanceCounterKHR, PerformanceCounterResultKHR, PerformanceMarkerInfoINTEL, PerformanceOverrideInfoINTEL, PerformanceQuerySubmitInfoKHR, PerformanceStreamMarkerInfoINTEL, PerformanceValueDataINTEL, PerformanceValueINTEL, PhysicalDevice, PhysicalDevice16BitStorageFeatures, PhysicalDevice4444FormatsFeaturesEXT, PhysicalDevice8BitStorageFeatures, PhysicalDeviceASTCDecodeFeaturesEXT, PhysicalDeviceBlendOperationAdvancedFeaturesEXT, PhysicalDeviceBlendOperationAdvancedPropertiesEXT, PhysicalDeviceBufferDeviceAddressFeatures, PhysicalDeviceBufferDeviceAddressFeaturesEXT, PhysicalDeviceCoherentMemoryFeaturesAMD, PhysicalDeviceComputeShaderDerivativesFeaturesNV, PhysicalDeviceConditionalRenderingFeaturesEXT, PhysicalDeviceConservativeRasterizationPropertiesEXT, PhysicalDeviceCooperativeMatrixFeaturesNV, PhysicalDeviceCooperativeMatrixPropertiesNV, PhysicalDeviceCornerSampledImageFeaturesNV, PhysicalDeviceCoverageReductionModeFeaturesNV, PhysicalDeviceCustomBorderColorFeaturesEXT, PhysicalDeviceCustomBorderColorPropertiesEXT, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, PhysicalDeviceDepthClipEnableFeaturesEXT, PhysicalDeviceDepthStencilResolveProperties, PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, PhysicalDeviceDiagnosticsConfigFeaturesNV, PhysicalDeviceDiscardRectanglePropertiesEXT, PhysicalDeviceDriverProperties, PhysicalDeviceExclusiveScissorFeaturesNV, PhysicalDeviceExtendedDynamicStateFeaturesEXT, PhysicalDeviceExternalBufferInfo, PhysicalDeviceExternalFenceInfo, PhysicalDeviceExternalImageFormatInfo, PhysicalDeviceExternalMemoryHostPropertiesEXT, PhysicalDeviceExternalSemaphoreInfo, PhysicalDeviceFeatures, PhysicalDeviceFeatures2, PhysicalDeviceFloatControlsProperties, PhysicalDeviceFragmentDensityMap2FeaturesEXT, PhysicalDeviceFragmentDensityMap2PropertiesEXT, PhysicalDeviceFragmentDensityMapFeaturesEXT, PhysicalDeviceFragmentDensityMapPropertiesEXT, PhysicalDeviceFragmentShaderBarycentricFeaturesNV, PhysicalDeviceFragmentShaderInterlockFeaturesEXT, PhysicalDeviceGroupProperties, PhysicalDeviceHostQueryResetFeatures, PhysicalDeviceIDProperties, PhysicalDeviceImageDrmFormatModifierInfoEXT, PhysicalDeviceImageFormatInfo2, PhysicalDeviceImageRobustnessFeaturesEXT, PhysicalDeviceImageViewImageFormatInfoEXT, PhysicalDeviceImagelessFramebufferFeatures, PhysicalDeviceIndexTypeUint8FeaturesEXT, PhysicalDeviceInlineUniformBlockFeaturesEXT, PhysicalDeviceInlineUniformBlockPropertiesEXT, PhysicalDeviceLimits, PhysicalDeviceLineRasterizationFeaturesEXT, PhysicalDeviceLineRasterizationPropertiesEXT, PhysicalDeviceMaintenance3Properties, PhysicalDeviceMemoryBudgetPropertiesEXT, PhysicalDeviceMemoryPriorityFeaturesEXT, PhysicalDeviceMemoryProperties, PhysicalDeviceMemoryProperties2, PhysicalDeviceMeshShaderFeaturesNV, PhysicalDeviceMeshShaderPropertiesNV, PhysicalDeviceMultiviewFeatures, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, PhysicalDeviceMultiviewProperties, PhysicalDevicePCIBusInfoPropertiesEXT, PhysicalDevicePerformanceQueryFeaturesKHR, PhysicalDevicePerformanceQueryPropertiesKHR, PhysicalDevicePipelineCreationCacheControlFeaturesEXT, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, PhysicalDevicePointClippingProperties, PhysicalDevicePrivateDataFeaturesEXT, PhysicalDeviceProperties, PhysicalDeviceProperties2, PhysicalDeviceProtectedMemoryFeatures, PhysicalDeviceProtectedMemoryProperties, PhysicalDevicePushDescriptorPropertiesKHR, PhysicalDeviceRayTracingFeaturesKHR, PhysicalDeviceRayTracingPropertiesKHR, PhysicalDeviceRayTracingPropertiesNV, PhysicalDeviceRepresentativeFragmentTestFeaturesNV, PhysicalDeviceRobustness2FeaturesEXT, PhysicalDeviceRobustness2PropertiesEXT, PhysicalDeviceSampleLocationsPropertiesEXT, PhysicalDeviceSamplerFilterMinmaxProperties, PhysicalDeviceSamplerYcbcrConversionFeatures, PhysicalDeviceScalarBlockLayoutFeatures, PhysicalDeviceSeparateDepthStencilLayoutsFeatures, PhysicalDeviceShaderAtomicFloatFeaturesEXT, PhysicalDeviceShaderAtomicInt64Features, PhysicalDeviceShaderClockFeaturesKHR, PhysicalDeviceShaderCoreProperties2AMD, PhysicalDeviceShaderCorePropertiesAMD, PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, PhysicalDeviceShaderDrawParametersFeatures, PhysicalDeviceShaderFloat16Int8Features, PhysicalDeviceShaderImageFootprintFeaturesNV, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, PhysicalDeviceShaderSMBuiltinsFeaturesNV, PhysicalDeviceShaderSMBuiltinsPropertiesNV, PhysicalDeviceShaderSubgroupExtendedTypesFeatures, PhysicalDeviceShadingRateImageFeaturesNV, PhysicalDeviceShadingRateImagePropertiesNV, PhysicalDeviceSparseImageFormatInfo2, PhysicalDeviceSparseProperties, PhysicalDeviceSubgroupProperties, PhysicalDeviceSubgroupSizeControlFeaturesEXT, PhysicalDeviceSubgroupSizeControlPropertiesEXT, PhysicalDeviceSurfaceInfo2KHR, PhysicalDeviceTexelBufferAlignmentFeaturesEXT, PhysicalDeviceTexelBufferAlignmentPropertiesEXT, PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, PhysicalDeviceTimelineSemaphoreFeatures, PhysicalDeviceTimelineSemaphoreProperties, PhysicalDeviceToolPropertiesEXT, PhysicalDeviceTransformFeedbackFeaturesEXT, PhysicalDeviceTransformFeedbackPropertiesEXT, PhysicalDeviceUniformBufferStandardLayoutFeatures, PhysicalDeviceVariablePointersFeatures, PhysicalDeviceVertexAttributeDivisorFeaturesEXT, PhysicalDeviceVertexAttributeDivisorPropertiesEXT, PhysicalDeviceVulkan11Features, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkan12Properties, PhysicalDeviceVulkanMemoryModelFeatures, PhysicalDeviceYcbcrImageArraysFeaturesEXT, Pipeline, PipelineCache, PipelineCacheCreateInfo, PipelineColorBlendAdvancedStateCreateInfoEXT, PipelineColorBlendAttachmentState, PipelineColorBlendStateCreateInfo, PipelineCompilerControlCreateInfoAMD, PipelineCoverageModulationStateCreateInfoNV, PipelineCoverageReductionStateCreateInfoNV, PipelineCoverageToColorStateCreateInfoNV, PipelineCreationFeedbackCreateInfoEXT, PipelineCreationFeedbackEXT, PipelineDepthStencilStateCreateInfo, PipelineDiscardRectangleStateCreateInfoEXT, PipelineDynamicStateCreateInfo, PipelineExecutableInfoKHR, PipelineExecutableInternalRepresentationKHR, PipelineExecutablePropertiesKHR, PipelineExecutableStatisticKHR, PipelineExecutableStatisticValueKHR, PipelineInfoKHR, PipelineInputAssemblyStateCreateInfo, PipelineLayout, PipelineLayoutCreateInfo, PipelineLibraryCreateInfoKHR, PipelineMultisampleStateCreateInfo, PipelineRasterizationConservativeStateCreateInfoEXT, PipelineRasterizationDepthClipStateCreateInfoEXT, PipelineRasterizationLineStateCreateInfoEXT, PipelineRasterizationStateCreateInfo, PipelineRasterizationStateRasterizationOrderAMD, PipelineRasterizationStateStreamCreateInfoEXT, PipelineRepresentativeFragmentTestStateCreateInfoNV, PipelineSampleLocationsStateCreateInfoEXT, PipelineShaderStageCreateInfo, PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, PipelineTessellationDomainOriginStateCreateInfo, PipelineTessellationStateCreateInfo, PipelineVertexInputDivisorStateCreateInfoEXT, PipelineVertexInputStateCreateInfo, PipelineViewportCoarseSampleOrderStateCreateInfoNV, PipelineViewportExclusiveScissorStateCreateInfoNV, PipelineViewportShadingRateImageStateCreateInfoNV, PipelineViewportStateCreateInfo, PipelineViewportSwizzleStateCreateInfoNV, PipelineViewportWScalingStateCreateInfoNV, PresentFrameTokenGGP, PresentInfoKHR, PresentRegionKHR, PresentRegionsKHR, PresentTimeGOOGLE, PresentTimesInfoGOOGLE, PrivateDataSlotCreateInfoEXT, PrivateDataSlotEXT, ProtectedSubmitInfo, PushConstantRange, QueryPool, QueryPoolCreateInfo, QueryPoolPerformanceCreateInfoKHR, QueryPoolPerformanceQueryCreateInfoINTEL, Queue, QueueFamilyCheckpointPropertiesNV, QueueFamilyProperties, QueueFamilyProperties2, RayTracingPipelineCreateInfoKHR, RayTracingPipelineCreateInfoNV, RayTracingPipelineInterfaceCreateInfoKHR, RayTracingShaderGroupCreateInfoKHR, RayTracingShaderGroupCreateInfoNV, Rect2D, RectLayerKHR, RefreshCycleDurationGOOGLE, RenderPass, RenderPassAttachmentBeginInfo, RenderPassBeginInfo, RenderPassCreateInfo, RenderPassCreateInfo2, RenderPassFragmentDensityMapCreateInfoEXT, RenderPassInputAttachmentAspectCreateInfo, RenderPassMultiviewCreateInfo, RenderPassSampleLocationsBeginInfoEXT, RenderPassTransformBeginInfoQCOM, SampleLocationEXT, SampleLocationsInfoEXT, Sampler, SamplerCreateInfo, SamplerCustomBorderColorCreateInfoEXT, SamplerReductionModeCreateInfo, SamplerYcbcrConversion, SamplerYcbcrConversionCreateInfo, SamplerYcbcrConversionImageFormatProperties, SamplerYcbcrConversionInfo, Semaphore, SemaphoreCreateInfo, SemaphoreGetFdInfoKHR, SemaphoreGetWin32HandleInfoKHR, SemaphoreSignalInfo, SemaphoreTypeCreateInfo, SemaphoreWaitInfo, SetStateFlagsIndirectCommandNV, ShaderModule, ShaderModuleCreateInfo, ShaderModuleValidationCacheCreateInfoEXT, ShaderResourceUsageAMD, ShaderStatisticsInfoAMD, ShadingRatePaletteNV, SharedPresentSurfaceCapabilitiesKHR, SparseBufferMemoryBindInfo, SparseImageFormatProperties, SparseImageFormatProperties2, SparseImageMemoryBind, SparseImageMemoryBindInfo, SparseImageMemoryRequirements, SparseImageMemoryRequirements2, SparseImageOpaqueMemoryBindInfo, SparseMemoryBind, SpecializationInfo, SpecializationMapEntry, StencilOpState, StreamDescriptorSurfaceCreateInfoGGP, StridedBufferRegionKHR, SubmitInfo, SubpassBeginInfo, SubpassDependency, SubpassDependency2, SubpassDescription, SubpassDescription2, SubpassDescriptionDepthStencilResolve, SubpassEndInfo, SubpassSampleLocationsEXT, SubresourceLayout, SurfaceCapabilities2EXT, SurfaceCapabilities2KHR, SurfaceCapabilitiesFullScreenExclusiveEXT, SurfaceCapabilitiesKHR, SurfaceFormat2KHR, SurfaceFormatKHR, SurfaceFullScreenExclusiveInfoEXT, SurfaceFullScreenExclusiveWin32InfoEXT, SurfaceKHR, SurfaceProtectedCapabilitiesKHR, SwapchainCounterCreateInfoEXT, SwapchainCreateInfoKHR, SwapchainDisplayNativeHdrCreateInfoAMD, SwapchainKHR, TextureLODGatherFormatPropertiesAMD, TimelineSemaphoreSubmitInfo, TraceRaysIndirectCommandKHR, TransformMatrixKHR, ValidationCacheCreateInfoEXT, ValidationCacheEXT, ValidationFeaturesEXT, ValidationFlagsEXT, VertexInputAttributeDescription, VertexInputBindingDescription, VertexInputBindingDivisorDescriptionEXT, ViSurfaceCreateInfoNN, Viewport, ViewportSwizzleNV, ViewportWScalingNV, WaylandSurfaceCreateInfoKHR, Win32KeyedMutexAcquireReleaseInfoKHR, Win32KeyedMutexAcquireReleaseInfoNV, Win32SurfaceCreateInfoKHR, WriteDescriptorSet, WriteDescriptorSetAccelerationStructureKHR, WriteDescriptorSetInlineUniformBlockEXT, XYColorEXT, XcbSurfaceCreateInfoKHR, XlibSurfaceCreateInfoKHR, acquire_full_screen_exclusive_mode_ext, acquire_next_image_2_khr, acquire_next_image_khr, acquire_performance_configuration_intel, acquire_profiling_lock_khr, acquire_xlib_display_ext, allocate_command_buffers, allocate_descriptor_sets, allocate_memory, begin_command_buffer, bind_acceleration_structure_memory_khr, bind_buffer_memory, bind_buffer_memory_2, bind_image_memory, bind_image_memory_2, build_acceleration_structure_khr, cmd_begin_conditional_rendering_ext, cmd_begin_debug_utils_label_ext, cmd_begin_query, cmd_begin_query_indexed_ext, cmd_begin_render_pass, cmd_begin_render_pass_2, cmd_begin_transform_feedback_ext, cmd_bind_descriptor_sets, cmd_bind_index_buffer, cmd_bind_pipeline, cmd_bind_pipeline_shader_group_nv, cmd_bind_shading_rate_image_nv, cmd_bind_transform_feedback_buffers_ext, cmd_bind_vertex_buffers, cmd_bind_vertex_buffers_2_ext, cmd_blit_image, cmd_build_acceleration_structure_indirect_khr, cmd_build_acceleration_structure_khr, cmd_build_acceleration_structure_nv, cmd_clear_attachments, cmd_clear_color_image, cmd_clear_depth_stencil_image, cmd_copy_acceleration_structure_khr, cmd_copy_acceleration_structure_nv, cmd_copy_acceleration_structure_to_memory_khr, cmd_copy_buffer, cmd_copy_buffer_to_image, cmd_copy_image, cmd_copy_image_to_buffer, cmd_copy_memory_to_acceleration_structure_khr, cmd_copy_query_pool_results, cmd_debug_marker_begin_ext, cmd_debug_marker_end_ext, cmd_debug_marker_insert_ext, cmd_dispatch, cmd_dispatch_base, cmd_dispatch_indirect, cmd_draw, cmd_draw_indexed, cmd_draw_indexed_indirect, cmd_draw_indexed_indirect_count, cmd_draw_indirect, cmd_draw_indirect_byte_count_ext, cmd_draw_indirect_count, cmd_draw_mesh_tasks_indirect_count_nv, cmd_draw_mesh_tasks_indirect_nv, cmd_draw_mesh_tasks_nv, cmd_end_conditional_rendering_ext, cmd_end_debug_utils_label_ext, cmd_end_query, cmd_end_query_indexed_ext, cmd_end_render_pass, cmd_end_render_pass_2, cmd_end_transform_feedback_ext, cmd_execute_commands, cmd_execute_generated_commands_nv, cmd_fill_buffer, cmd_insert_debug_utils_label_ext, cmd_next_subpass, cmd_next_subpass_2, cmd_pipeline_barrier, cmd_preprocess_generated_commands_nv, cmd_push_constants, cmd_push_descriptor_set_khr, cmd_push_descriptor_set_with_template_khr, cmd_reset_event, cmd_reset_query_pool, cmd_resolve_image, cmd_set_blend_constants, cmd_set_checkpoint_nv, cmd_set_coarse_sample_order_nv, cmd_set_cull_mode_ext, cmd_set_depth_bias, cmd_set_depth_bounds, cmd_set_depth_bounds_test_enable_ext, cmd_set_depth_compare_op_ext, cmd_set_depth_test_enable_ext, cmd_set_depth_write_enable_ext, cmd_set_device_mask, cmd_set_discard_rectangle_ext, cmd_set_event, cmd_set_exclusive_scissor_nv, cmd_set_front_face_ext, cmd_set_line_stipple_ext, cmd_set_line_width, cmd_set_performance_marker_intel, cmd_set_performance_override_intel, cmd_set_performance_stream_marker_intel, cmd_set_primitive_topology_ext, cmd_set_sample_locations_ext, cmd_set_scissor, cmd_set_scissor_with_count_ext, cmd_set_stencil_compare_mask, cmd_set_stencil_op_ext, cmd_set_stencil_reference, cmd_set_stencil_test_enable_ext, cmd_set_stencil_write_mask, cmd_set_viewport, cmd_set_viewport_shading_rate_palette_nv, cmd_set_viewport_w_scaling_nv, cmd_set_viewport_with_count_ext, cmd_trace_rays_indirect_khr, cmd_trace_rays_khr, cmd_trace_rays_nv, cmd_update_buffer, cmd_wait_events, cmd_write_acceleration_structures_properties_khr, cmd_write_buffer_marker_amd, cmd_write_timestamp, compile_deferred_nv, copy_acceleration_structure_khr, copy_acceleration_structure_to_memory_khr, copy_memory_to_acceleration_structure_khr, create_acceleration_structure_khr, create_acceleration_structure_nv, create_android_surface_khr, create_buffer, create_buffer_view, create_command_pool, create_compute_pipelines, create_debug_report_callback_ext, create_debug_utils_messenger_ext, create_deferred_operation_khr, create_descriptor_pool, create_descriptor_set_layout, create_descriptor_update_template, create_device, create_direct_fb_surface_ext, create_display_mode_khr, create_display_plane_surface_khr, create_event, create_fence, create_framebuffer, create_graphics_pipelines, create_headless_surface_ext, create_image, create_image_pipe_surface_fuchsia, create_image_view, create_indirect_commands_layout_nv, create_instance, create_ios_surface_mvk, create_mac_os_surface_mvk, create_metal_surface_ext, create_pipeline_cache, create_pipeline_layout, create_private_data_slot_ext, create_query_pool, create_ray_tracing_pipelines_khr, create_ray_tracing_pipelines_nv, create_render_pass, create_render_pass_2, create_sampler, create_sampler_ycbcr_conversion, create_semaphore, create_shader_module, create_shared_swapchains_khr, create_stream_descriptor_surface_ggp, create_swapchain_khr, create_validation_cache_ext, create_vi_surface_nn, create_wayland_surface_khr, create_win_32_surface_khr, create_xcb_surface_khr, create_xlib_surface_khr, debug_marker_set_object_name_ext, debug_marker_set_object_tag_ext, debug_report_message_ext, deferred_operation_join_khr, destroy_acceleration_structure_khr, destroy_buffer, destroy_buffer_view, destroy_command_pool, destroy_debug_report_callback_ext, destroy_debug_utils_messenger_ext, destroy_deferred_operation_khr, destroy_descriptor_pool, destroy_descriptor_set_layout, destroy_descriptor_update_template, destroy_device, destroy_event, destroy_fence, destroy_framebuffer, destroy_image, destroy_image_view, destroy_indirect_commands_layout_nv, destroy_instance, destroy_pipeline, destroy_pipeline_cache, destroy_pipeline_layout, destroy_private_data_slot_ext, destroy_query_pool, destroy_render_pass, destroy_sampler, destroy_sampler_ycbcr_conversion, destroy_semaphore, destroy_shader_module, destroy_surface_khr, destroy_swapchain_khr, destroy_validation_cache_ext, device_wait_idle, display_power_control_ext, end_command_buffer, enumerate_device_extension_properties, enumerate_device_layer_properties, enumerate_instance_extension_properties, enumerate_instance_layer_properties, enumerate_instance_version, enumerate_physical_device_groups, enumerate_physical_device_queue_family_performance_query_counters_khr, enumerate_physical_devices, flush_mapped_memory_ranges, free_command_buffers, free_descriptor_sets, free_memory, from_vk, get_acceleration_structure_device_address_khr, get_acceleration_structure_handle_nv, get_acceleration_structure_memory_requirements_khr, get_acceleration_structure_memory_requirements_nv, get_android_hardware_buffer_properties_android, get_buffer_device_address, get_buffer_memory_requirements, get_buffer_memory_requirements_2, get_buffer_opaque_capture_address, get_calibrated_timestamps_ext, get_deferred_operation_max_concurrency_khr, get_deferred_operation_result_khr, get_descriptor_set_layout_support, get_device_acceleration_structure_compatibility_khr, get_device_group_peer_memory_features, get_device_group_present_capabilities_khr, get_device_group_surface_present_modes_2_ext, get_device_group_surface_present_modes_khr, get_device_memory_commitment, get_device_memory_opaque_capture_address, get_device_proc_addr, get_device_queue, get_device_queue_2, get_display_mode_properties_2_khr, get_display_mode_properties_khr, get_display_plane_capabilities_2_khr, get_display_plane_capabilities_khr, get_display_plane_supported_displays_khr, get_event_status, get_fence_fd_khr, get_fence_status, get_fence_win_32_handle_khr, get_generated_commands_memory_requirements_nv, get_image_drm_format_modifier_properties_ext, get_image_memory_requirements, get_image_memory_requirements_2, get_image_sparse_memory_requirements, get_image_sparse_memory_requirements_2, get_image_subresource_layout, get_image_view_address_nvx, get_image_view_handle_nvx, get_instance_proc_addr, get_memory_android_hardware_buffer_android, get_memory_fd_khr, get_memory_fd_properties_khr, get_memory_host_pointer_properties_ext, get_memory_win_32_handle_khr, get_memory_win_32_handle_nv, get_memory_win_32_handle_properties_khr, get_past_presentation_timing_google, get_performance_parameter_intel, get_physical_device_calibrateable_time_domains_ext, get_physical_device_cooperative_matrix_properties_nv, get_physical_device_direct_fb_presentation_support_ext, get_physical_device_display_plane_properties_2_khr, get_physical_device_display_plane_properties_khr, get_physical_device_display_properties_2_khr, get_physical_device_display_properties_khr, get_physical_device_external_buffer_properties, get_physical_device_external_fence_properties, get_physical_device_external_image_format_properties_nv, get_physical_device_external_semaphore_properties, get_physical_device_features, get_physical_device_features_2, get_physical_device_format_properties, get_physical_device_format_properties_2, get_physical_device_image_format_properties, get_physical_device_image_format_properties_2, get_physical_device_memory_properties, get_physical_device_memory_properties_2, get_physical_device_multisample_properties_ext, get_physical_device_present_rectangles_khr, get_physical_device_properties, get_physical_device_properties_2, get_physical_device_queue_family_performance_query_passes_khr, get_physical_device_queue_family_properties, get_physical_device_queue_family_properties_2, get_physical_device_sparse_image_format_properties, get_physical_device_sparse_image_format_properties_2, get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, get_physical_device_surface_capabilities_2_ext, get_physical_device_surface_capabilities_2_khr, get_physical_device_surface_capabilities_khr, get_physical_device_surface_formats_2_khr, get_physical_device_surface_formats_khr, get_physical_device_surface_present_modes_2_ext, get_physical_device_surface_present_modes_khr, get_physical_device_surface_support_khr, get_physical_device_tool_properties_ext, get_physical_device_wayland_presentation_support_khr, get_physical_device_win_32_presentation_support_khr, get_physical_device_xcb_presentation_support_khr, get_physical_device_xlib_presentation_support_khr, get_pipeline_cache_data, get_pipeline_executable_internal_representations_khr, get_pipeline_executable_properties_khr, get_pipeline_executable_statistics_khr, get_private_data_ext, get_query_pool_results, get_queue_checkpoint_data_nv, get_rand_r_output_display_ext, get_ray_tracing_capture_replay_shader_group_handles_khr, get_ray_tracing_shader_group_handles_khr, get_refresh_cycle_duration_google, get_render_area_granularity, get_semaphore_counter_value, get_semaphore_fd_khr, get_semaphore_win_32_handle_khr, get_shader_info_amd, get_swapchain_counter_ext, get_swapchain_images_khr, get_swapchain_status_khr, get_validation_cache_data_ext, import_fence_fd_khr, import_fence_win_32_handle_khr, import_semaphore_fd_khr, import_semaphore_win_32_handle_khr, initialize_performance_api_intel, invalidate_mapped_memory_ranges, map_memory, merge_pipeline_caches, merge_validation_caches_ext, queue_begin_debug_utils_label_ext, queue_bind_sparse, queue_end_debug_utils_label_ext, queue_insert_debug_utils_label_ext, queue_present_khr, queue_set_performance_configuration_intel, queue_submit, queue_wait_idle, register_device_event_ext, register_display_event_ext, release_display_ext, release_full_screen_exclusive_mode_ext, release_performance_configuration_intel, release_profiling_lock_khr, reset_command_buffer, reset_command_pool, reset_descriptor_pool, reset_event, reset_fences, reset_query_pool, set_debug_utils_object_name_ext, set_debug_utils_object_tag_ext, set_event, set_hdr_metadata_ext, set_local_dimming_amd, set_private_data_ext, signal_semaphore, submit_debug_utils_message_ext, trim_command_pool, uninitialize_performance_api_intel, unmap_memory, update_descriptor_set_with_template, update_descriptor_sets, wait_for_fences, wait_semaphores, write_acceleration_structures_properties_khr, VkImageLayout, VkAttachmentLoadOp, VkAttachmentStoreOp, VkImageType, VkImageTiling, VkImageViewType, VkCommandBufferLevel, VkComponentSwizzle, VkDescriptorType, VkQueryType, VkBorderColor, VkPipelineBindPoint, VkPipelineCacheHeaderVersion, VkPrimitiveTopology, VkSharingMode, VkIndexType, VkFilter, VkSamplerMipmapMode, VkSamplerAddressMode, VkCompareOp, VkPolygonMode, VkFrontFace, VkBlendFactor, VkBlendOp, VkStencilOp, VkLogicOp, VkInternalAllocationType, VkSystemAllocationScope, VkPhysicalDeviceType, VkVertexInputRate, VkFormat, VkStructureType, VkSubpassContents, VkResult, VkDynamicState, VkDescriptorUpdateTemplateType, VkObjectType, VkSemaphoreType, VkPresentModeKHR, VkColorSpaceKHR, VkTimeDomainEXT, VkDebugReportObjectTypeEXT, VkRasterizationOrderAMD, VkValidationCheckEXT, VkValidationFeatureEnableEXT, VkValidationFeatureDisableEXT, VkIndirectCommandsTokenTypeNV, VkDisplayPowerStateEXT, VkDeviceEventTypeEXT, VkDisplayEventTypeEXT, VkViewportCoordinateSwizzleNV, VkDiscardRectangleModeEXT, VkPointClippingBehavior, VkSamplerReductionMode, VkTessellationDomainOrigin, VkSamplerYcbcrModelConversion, VkSamplerYcbcrRange, VkChromaLocation, VkBlendOverlapEXT, VkCoverageModulationModeNV, VkCoverageReductionModeNV, VkValidationCacheHeaderVersionEXT, VkShaderInfoTypeAMD, VkQueueGlobalPriorityEXT, VkConservativeRasterizationModeEXT, VkVendorId, VkDriverId, VkShadingRatePaletteEntryNV, VkCoarseSampleOrderTypeNV, VkCopyAccelerationStructureModeKHR, VkAccelerationStructureTypeKHR, VkGeometryTypeKHR, VkAccelerationStructureMemoryRequirementsTypeKHR, VkAccelerationStructureBuildTypeKHR, VkRayTracingShaderGroupTypeKHR, VkMemoryOverallocationBehaviorAMD, VkScopeNV, VkComponentTypeNV, VkFullScreenExclusiveEXT, VkPerformanceCounterScopeKHR, VkPerformanceCounterUnitKHR, VkPerformanceCounterStorageKHR, VkPerformanceConfigurationTypeINTEL, VkQueryPoolSamplingModeINTEL, VkPerformanceOverrideTypeINTEL, VkPerformanceParameterTypeINTEL, VkPerformanceValueTypeINTEL, VkShaderFloatControlsIndependence, VkPipelineExecutableStatisticFormatKHR, VkLineRasterizationModeEXT, VkPipelineCacheCreateFlagBits, VkCullModeFlagBits, VkQueueFlagBits, VkRenderPassCreateFlagBits, VkDeviceQueueCreateFlagBits, VkMemoryPropertyFlagBits, VkMemoryHeapFlagBits, VkAccessFlagBits, VkBufferUsageFlagBits, VkBufferCreateFlagBits, VkShaderStageFlagBits, VkImageUsageFlagBits, VkImageCreateFlagBits, VkImageViewCreateFlagBits, VkSamplerCreateFlagBits, VkPipelineCreateFlagBits, VkPipelineShaderStageCreateFlagBits, VkColorComponentFlagBits, VkFenceCreateFlagBits, VkSemaphoreCreateFlagBits, VkFormatFeatureFlagBits, VkQueryControlFlagBits, VkQueryResultFlagBits, VkCommandBufferUsageFlagBits, VkQueryPipelineStatisticFlagBits, VkImageAspectFlagBits, VkSparseImageFormatFlagBits, VkSparseMemoryBindFlagBits, VkPipelineStageFlagBits, VkCommandPoolCreateFlagBits, VkCommandPoolResetFlagBits, VkCommandBufferResetFlagBits, VkSampleCountFlagBits, VkAttachmentDescriptionFlagBits, VkStencilFaceFlagBits, VkDescriptorPoolCreateFlagBits, VkDependencyFlagBits, VkSemaphoreWaitFlagBits, VkDisplayPlaneAlphaFlagBitsKHR, VkCompositeAlphaFlagBitsKHR, VkSurfaceTransformFlagBitsKHR, VkDebugReportFlagBitsEXT, VkExternalMemoryHandleTypeFlagBitsNV, VkExternalMemoryFeatureFlagBitsNV, VkSubgroupFeatureFlagBits, VkIndirectCommandsLayoutUsageFlagBitsNV, VkIndirectStateFlagBitsNV, VkPrivateDataSlotCreateFlagBitsEXT, VkDescriptorSetLayoutCreateFlagBits, VkExternalMemoryHandleTypeFlagBits, VkExternalMemoryFeatureFlagBits, VkExternalSemaphoreHandleTypeFlagBits, VkExternalSemaphoreFeatureFlagBits, VkSemaphoreImportFlagBits, VkExternalFenceHandleTypeFlagBits, VkExternalFenceFeatureFlagBits, VkFenceImportFlagBits, VkSurfaceCounterFlagBitsEXT, VkPeerMemoryFeatureFlagBits, VkMemoryAllocateFlagBits, VkDeviceGroupPresentModeFlagBitsKHR, VkSwapchainCreateFlagBitsKHR, VkSubpassDescriptionFlagBits, VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, VkDescriptorBindingFlagBits, VkConditionalRenderingFlagBitsEXT, VkResolveModeFlagBits, VkGeometryInstanceFlagBitsKHR, VkGeometryFlagBitsKHR, VkBuildAccelerationStructureFlagBitsKHR, VkFramebufferCreateFlagBits, VkDeviceDiagnosticsConfigFlagBitsNV, VkPipelineCreationFeedbackFlagBitsEXT, VkPerformanceCounterDescriptionFlagBitsKHR, VkAcquireProfilingLockFlagBitsKHR, VkShaderCorePropertiesFlagBitsAMD, VkShaderModuleCreateFlagBits, VkPipelineCompilerControlFlagBitsAMD, VkToolPurposeFlagBitsEXT
+export ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_COLOR_ATTACHMENT_READ_BIT, ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_COLOR_ATTACHMENT_WRITE_BIT, ACCESS_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT, ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT, ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_HOST_READ_BIT, ACCESS_HOST_WRITE_BIT, ACCESS_INDEX_READ_BIT, ACCESS_INDIRECT_COMMAND_READ_BIT, ACCESS_INPUT_ATTACHMENT_READ_BIT, ACCESS_MEMORY_READ_BIT, ACCESS_MEMORY_WRITE_BIT, ACCESS_RESERVED_28_BIT_KHR, ACCESS_RESERVED_29_BIT_KHR, ACCESS_RESERVED_30_BIT_KHR, ACCESS_SHADER_READ_BIT, ACCESS_SHADER_WRITE_BIT, ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV, ACCESS_TRANSFER_READ_BIT, ACCESS_TRANSFER_WRITE_BIT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_UNIFORM_READ_BIT, ACCESS_VERTEX_ATTRIBUTE_READ_BIT, ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, AabbPositionsKHR, AccelerationStructureBuildGeometryInfoKHR, AccelerationStructureBuildOffsetInfoKHR, AccelerationStructureCreateGeometryTypeInfoKHR, AccelerationStructureCreateInfoKHR, AccelerationStructureCreateInfoNV, AccelerationStructureDeviceAddressInfoKHR, AccelerationStructureGeometryAabbsDataKHR, AccelerationStructureGeometryDataKHR, AccelerationStructureGeometryInstancesDataKHR, AccelerationStructureGeometryKHR, AccelerationStructureGeometryTrianglesDataKHR, AccelerationStructureInfoNV, AccelerationStructureInstanceKHR, AccelerationStructureKHR, AccelerationStructureMemoryRequirementsInfoKHR, AccelerationStructureMemoryRequirementsInfoNV, AccelerationStructureVersionKHR, AccessFlag, AcquireNextImageInfoKHR, AcquireProfilingLockFlagKHR, AcquireProfilingLockInfoKHR, AllocationCallbacks, AndroidHardwareBufferFormatPropertiesANDROID, AndroidHardwareBufferPropertiesANDROID, AndroidHardwareBufferUsageANDROID, AndroidSurfaceCreateInfoKHR, ApplicationInfo, AttachmentDescription, AttachmentDescription2, AttachmentDescriptionFlag, AttachmentDescriptionStencilLayout, AttachmentReference, AttachmentReference2, AttachmentReferenceStencilLayout, AttachmentSampleLocationsEXT, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, BUFFER_CREATE_PROTECTED_BIT, BUFFER_CREATE_SPARSE_ALIASED_BIT, BUFFER_CREATE_SPARSE_BINDING_BIT, BUFFER_CREATE_SPARSE_RESIDENCY_BIT, BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT, BUFFER_USAGE_INDEX_BUFFER_BIT, BUFFER_USAGE_INDIRECT_BUFFER_BIT, BUFFER_USAGE_RAY_TRACING_BIT_KHR, BUFFER_USAGE_RESERVED_13_BIT_KHR, BUFFER_USAGE_RESERVED_14_BIT_KHR, BUFFER_USAGE_RESERVED_15_BIT_KHR, BUFFER_USAGE_RESERVED_16_BIT_KHR, BUFFER_USAGE_RESERVED_18_BIT_QCOM, BUFFER_USAGE_RESERVED_19_BIT_KHR, BUFFER_USAGE_RESERVED_20_BIT_KHR, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, BUFFER_USAGE_STORAGE_BUFFER_BIT, BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, BUFFER_USAGE_TRANSFER_DST_BIT, BUFFER_USAGE_TRANSFER_SRC_BIT, BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT, BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT, BUFFER_USAGE_UNIFORM_BUFFER_BIT, BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT, BUFFER_USAGE_VERTEX_BUFFER_BIT, BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR, BaseInStructure, BaseOutStructure, BindAccelerationStructureMemoryInfoKHR, BindBufferMemoryDeviceGroupInfo, BindBufferMemoryInfo, BindImageMemoryDeviceGroupInfo, BindImageMemoryInfo, BindImageMemorySwapchainInfoKHR, BindImagePlaneMemoryInfo, BindIndexBufferIndirectCommandNV, BindShaderGroupIndirectCommandNV, BindSparseInfo, BindVertexBufferIndirectCommandNV, Buffer, BufferCopy, BufferCreateFlag, BufferCreateInfo, BufferDeviceAddressCreateInfoEXT, BufferDeviceAddressInfo, BufferImageCopy, BufferMemoryBarrier, BufferMemoryRequirementsInfo2, BufferOpaqueCaptureAddressCreateInfo, BufferUsageFlag, BufferView, BufferViewCreateInfo, BuildAccelerationStructureFlagKHR, COLOR_COMPONENT_A_BIT, COLOR_COMPONENT_B_BIT, COLOR_COMPONENT_G_BIT, COLOR_COMPONENT_R_BIT, COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT, COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT, COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT, COMMAND_POOL_CREATE_PROTECTED_BIT, COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT, COMMAND_POOL_CREATE_TRANSIENT_BIT, COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT, COMPOSITE_ALPHA_INHERIT_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR, COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR, CONDITIONAL_RENDERING_INVERTED_BIT_EXT, CULL_MODE_BACK_BIT, CULL_MODE_FRONT_AND_BACK, CULL_MODE_FRONT_BIT, CULL_MODE_NONE, CalibratedTimestampInfoEXT, CheckpointDataNV, ClearAttachment, ClearColorValue, ClearDepthStencilValue, ClearRect, ClearValue, CoarseSampleLocationNV, CoarseSampleOrderCustomNV, ColorComponentFlag, CommandBuffer, CommandBufferAllocateInfo, CommandBufferBeginInfo, CommandBufferInheritanceConditionalRenderingInfoEXT, CommandBufferInheritanceInfo, CommandBufferInheritanceRenderPassTransformInfoQCOM, CommandBufferResetFlag, CommandBufferUsageFlag, CommandPool, CommandPoolCreateFlag, CommandPoolCreateInfo, CommandPoolResetFlag, ComponentMapping, CompositeAlphaFlagKHR, ComputePipelineCreateInfo, ConditionalRenderingBeginInfoEXT, ConditionalRenderingFlagEXT, ConformanceVersion, CooperativeMatrixPropertiesNV, CopyAccelerationStructureInfoKHR, CopyAccelerationStructureToMemoryInfoKHR, CopyDescriptorSet, CopyMemoryToAccelerationStructureInfoKHR, CullModeFlag, D3D12FenceSubmitInfoKHR, DEBUG_REPORT_DEBUG_BIT_EXT, DEBUG_REPORT_ERROR_BIT_EXT, DEBUG_REPORT_INFORMATION_BIT_EXT, DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT, DEBUG_REPORT_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT, DEPENDENCY_BY_REGION_BIT, DEPENDENCY_DEVICE_GROUP_BIT, DEPENDENCY_VIEW_LOCAL_BIT, DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT, DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT, DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT, DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT, DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR, DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV, DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR, DEVICE_QUEUE_CREATE_PROTECTED_BIT, DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR, DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR, DebugMarkerMarkerInfoEXT, DebugMarkerObjectNameInfoEXT, DebugMarkerObjectTagInfoEXT, DebugReportCallbackCreateInfoEXT, DebugReportCallbackEXT, DebugReportFlagEXT, DebugUtilsLabelEXT, DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerEXT, DebugUtilsObjectNameInfoEXT, DebugUtilsObjectTagInfoEXT, DedicatedAllocationBufferCreateInfoNV, DedicatedAllocationImageCreateInfoNV, DedicatedAllocationMemoryAllocateInfoNV, DeferredOperationInfoKHR, DeferredOperationKHR, DependencyFlag, DescriptorBindingFlag, DescriptorBufferInfo, DescriptorImageInfo, DescriptorPool, DescriptorPoolCreateFlag, DescriptorPoolCreateInfo, DescriptorPoolInlineUniformBlockCreateInfoEXT, DescriptorPoolSize, DescriptorSet, DescriptorSetAllocateInfo, DescriptorSetLayout, DescriptorSetLayoutBinding, DescriptorSetLayoutBindingFlagsCreateInfo, DescriptorSetLayoutCreateFlag, DescriptorSetLayoutCreateInfo, DescriptorSetLayoutSupport, DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport, DescriptorUpdateTemplate, DescriptorUpdateTemplateCreateInfo, DescriptorUpdateTemplateEntry, Device, DeviceCreateInfo, DeviceDiagnosticsConfigCreateInfoNV, DeviceDiagnosticsConfigFlagNV, DeviceEventInfoEXT, DeviceGroupBindSparseInfo, DeviceGroupCommandBufferBeginInfo, DeviceGroupDeviceCreateInfo, DeviceGroupPresentCapabilitiesKHR, DeviceGroupPresentInfoKHR, DeviceGroupPresentModeFlagKHR, DeviceGroupRenderPassBeginInfo, DeviceGroupSubmitInfo, DeviceGroupSwapchainCreateInfoKHR, DeviceMemory, DeviceMemoryOpaqueCaptureAddressInfo, DeviceMemoryOverallocationCreateInfoAMD, DeviceOrHostAddressConstKHR, DeviceOrHostAddressKHR, DevicePrivateDataCreateInfoEXT, DeviceQueueCreateFlag, DeviceQueueCreateInfo, DeviceQueueGlobalPriorityCreateInfoEXT, DeviceQueueInfo2, DirectFBSurfaceCreateInfoEXT, DispatchIndirectCommand, DisplayEventInfoEXT, DisplayKHR, DisplayModeCreateInfoKHR, DisplayModeKHR, DisplayModeParametersKHR, DisplayModeProperties2KHR, DisplayModePropertiesKHR, DisplayNativeHdrSurfaceCapabilitiesAMD, DisplayPlaneAlphaFlagKHR, DisplayPlaneCapabilities2KHR, DisplayPlaneCapabilitiesKHR, DisplayPlaneInfo2KHR, DisplayPlaneProperties2KHR, DisplayPlanePropertiesKHR, DisplayPowerInfoEXT, DisplayPresentInfoKHR, DisplayProperties2KHR, DisplayPropertiesKHR, DisplaySurfaceCreateInfoKHR, DrawIndexedIndirectCommand, DrawIndirectCommand, DrawMeshTasksIndirectCommandNV, DrmFormatModifierPropertiesEXT, DrmFormatModifierPropertiesListEXT, EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT, EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV, EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT, EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT, Event, EventCreateInfo, ExportFenceCreateInfo, ExportFenceWin32HandleInfoKHR, ExportMemoryAllocateInfo, ExportMemoryAllocateInfoNV, ExportMemoryWin32HandleInfoKHR, ExportMemoryWin32HandleInfoNV, ExportSemaphoreCreateInfo, ExportSemaphoreWin32HandleInfoKHR, ExtensionProperties, Extent2D, Extent3D, ExternalBufferProperties, ExternalFenceFeatureFlag, ExternalFenceHandleTypeFlag, ExternalFenceProperties, ExternalFormatANDROID, ExternalImageFormatProperties, ExternalImageFormatPropertiesNV, ExternalMemoryBufferCreateInfo, ExternalMemoryFeatureFlag, ExternalMemoryFeatureFlagNV, ExternalMemoryHandleTypeFlag, ExternalMemoryHandleTypeFlagNV, ExternalMemoryImageCreateInfo, ExternalMemoryImageCreateInfoNV, ExternalMemoryProperties, ExternalSemaphoreFeatureFlag, ExternalSemaphoreHandleTypeFlag, ExternalSemaphoreProperties, FENCE_CREATE_SIGNALED_BIT, FENCE_IMPORT_TEMPORARY_BIT, FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_AMD_RESERVED_30_BIT, FORMAT_FEATURE_BLIT_DST_BIT, FORMAT_FEATURE_BLIT_SRC_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT, FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT, FORMAT_FEATURE_DISJOINT_BIT, FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT, FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_RESERVED_25_BIT_KHR, FORMAT_FEATURE_RESERVED_26_BIT_KHR, FORMAT_FEATURE_RESERVED_27_BIT_KHR, FORMAT_FEATURE_RESERVED_28_BIT_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT, FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT, FORMAT_FEATURE_STORAGE_IMAGE_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT, FORMAT_FEATURE_TRANSFER_DST_BIT, FORMAT_FEATURE_TRANSFER_SRC_BIT, FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT, FORMAT_FEATURE_VERTEX_BUFFER_BIT, FRAMEBUFFER_CREATE_IMAGELESS_BIT, Fence, FenceCreateFlag, FenceCreateInfo, FenceGetFdInfoKHR, FenceGetWin32HandleInfoKHR, FenceImportFlag, FilterCubicImageViewImageFormatPropertiesEXT, FormatFeatureFlag, FormatProperties, FormatProperties2, Framebuffer, FramebufferAttachmentImageInfo, FramebufferAttachmentsCreateInfo, FramebufferCreateFlag, FramebufferCreateInfo, FramebufferMixedSamplesCombinationNV, GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR, GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR, GEOMETRY_OPAQUE_BIT_KHR, GeneratedCommandsInfoNV, GeneratedCommandsMemoryRequirementsInfoNV, GeometryAABBNV, GeometryDataNV, GeometryFlagKHR, GeometryInstanceFlagKHR, GeometryNV, GeometryTrianglesNV, GraphicsPipelineCreateInfo, GraphicsPipelineShaderGroupsCreateInfoNV, GraphicsShaderGroupCreateInfoNV, HdrMetadataEXT, HeadlessSurfaceCreateInfoEXT, IMAGE_ASPECT_COLOR_BIT, IMAGE_ASPECT_DEPTH_BIT, IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT, IMAGE_ASPECT_METADATA_BIT, IMAGE_ASPECT_PLANE_0_BIT, IMAGE_ASPECT_PLANE_1_BIT, IMAGE_ASPECT_PLANE_2_BIT, IMAGE_ASPECT_STENCIL_BIT, IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT, IMAGE_CREATE_ALIAS_BIT, IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT, IMAGE_CREATE_CORNER_SAMPLED_BIT_NV, IMAGE_CREATE_CUBE_COMPATIBLE_BIT, IMAGE_CREATE_DISJOINT_BIT, IMAGE_CREATE_EXTENDED_USAGE_BIT, IMAGE_CREATE_MUTABLE_FORMAT_BIT, IMAGE_CREATE_PROTECTED_BIT, IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT, IMAGE_CREATE_SPARSE_ALIASED_BIT, IMAGE_CREATE_SPARSE_BINDING_BIT, IMAGE_CREATE_SPARSE_RESIDENCY_BIT, IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT, IMAGE_CREATE_SUBSAMPLED_BIT_EXT, IMAGE_USAGE_COLOR_ATTACHMENT_BIT, IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT, IMAGE_USAGE_INPUT_ATTACHMENT_BIT, IMAGE_USAGE_RESERVED_10_BIT_KHR, IMAGE_USAGE_RESERVED_11_BIT_KHR, IMAGE_USAGE_RESERVED_12_BIT_KHR, IMAGE_USAGE_RESERVED_13_BIT_KHR, IMAGE_USAGE_RESERVED_14_BIT_KHR, IMAGE_USAGE_RESERVED_15_BIT_KHR, IMAGE_USAGE_RESERVED_16_BIT_QCOM, IMAGE_USAGE_RESERVED_17_BIT_QCOM, IMAGE_USAGE_SAMPLED_BIT, IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV, IMAGE_USAGE_STORAGE_BIT, IMAGE_USAGE_TRANSFER_DST_BIT, IMAGE_USAGE_TRANSFER_SRC_BIT, IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT, INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV, INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV, IOSSurfaceCreateInfoMVK, Image, ImageAspectFlag, ImageBlit, ImageCopy, ImageCreateFlag, ImageCreateInfo, ImageDrmFormatModifierExplicitCreateInfoEXT, ImageDrmFormatModifierListCreateInfoEXT, ImageDrmFormatModifierPropertiesEXT, ImageFormatListCreateInfo, ImageFormatProperties, ImageFormatProperties2, ImageMemoryBarrier, ImageMemoryRequirementsInfo2, ImagePipeSurfaceCreateInfoFUCHSIA, ImagePlaneMemoryRequirementsInfo, ImageResolve, ImageSparseMemoryRequirementsInfo2, ImageStencilUsageCreateInfo, ImageSubresource, ImageSubresourceLayers, ImageSubresourceRange, ImageSwapchainCreateInfoKHR, ImageUsageFlag, ImageView, ImageViewASTCDecodeModeEXT, ImageViewAddressPropertiesNVX, ImageViewCreateFlag, ImageViewCreateInfo, ImageViewHandleInfoNVX, ImageViewUsageCreateInfo, ImportAndroidHardwareBufferInfoANDROID, ImportFenceFdInfoKHR, ImportFenceWin32HandleInfoKHR, ImportMemoryFdInfoKHR, ImportMemoryHostPointerInfoEXT, ImportMemoryWin32HandleInfoKHR, ImportMemoryWin32HandleInfoNV, ImportSemaphoreFdInfoKHR, ImportSemaphoreWin32HandleInfoKHR, IndirectCommandsLayoutCreateInfoNV, IndirectCommandsLayoutNV, IndirectCommandsLayoutTokenNV, IndirectCommandsLayoutUsageFlagNV, IndirectCommandsStreamNV, IndirectStateFlagNV, InitializePerformanceApiInfoINTEL, InputAttachmentAspectReference, Instance, InstanceCreateInfo, LayerProperties, MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT, MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, MEMORY_ALLOCATE_DEVICE_MASK_BIT, MEMORY_HEAP_DEVICE_LOCAL_BIT, MEMORY_HEAP_MULTI_INSTANCE_BIT, MEMORY_HEAP_RESERVED_2_BIT_KHR, MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD, MEMORY_PROPERTY_DEVICE_LOCAL_BIT, MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD, MEMORY_PROPERTY_HOST_CACHED_BIT, MEMORY_PROPERTY_HOST_COHERENT_BIT, MEMORY_PROPERTY_HOST_VISIBLE_BIT, MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT, MEMORY_PROPERTY_PROTECTED_BIT, MacOSSurfaceCreateInfoMVK, MappedMemoryRange, MemoryAllocateFlag, MemoryAllocateFlagsInfo, MemoryAllocateInfo, MemoryBarrier, MemoryDedicatedAllocateInfo, MemoryDedicatedRequirements, MemoryFdPropertiesKHR, MemoryGetAndroidHardwareBufferInfoANDROID, MemoryGetFdInfoKHR, MemoryGetWin32HandleInfoKHR, MemoryHeap, MemoryHeapFlag, MemoryHostPointerPropertiesEXT, MemoryOpaqueCaptureAddressAllocateInfo, MemoryPriorityAllocateInfoEXT, MemoryPropertyFlag, MemoryRequirements, MemoryRequirements2, MemoryType, MemoryWin32HandlePropertiesKHR, MetalSurfaceCreateInfoEXT, MultisamplePropertiesEXT, Offset2D, Offset3D, PEER_MEMORY_FEATURE_COPY_DST_BIT, PEER_MEMORY_FEATURE_COPY_SRC_BIT, PEER_MEMORY_FEATURE_GENERIC_DST_BIT, PEER_MEMORY_FEATURE_GENERIC_SRC_BIT, PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR, PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR, PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT, PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT, PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR, PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR, PIPELINE_CREATE_DEFER_COMPILE_BIT_NV, PIPELINE_CREATE_DERIVATIVE_BIT, PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT, PIPELINE_CREATE_DISPATCH_BASE_BIT, PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT, PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT, PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV, PIPELINE_CREATE_LIBRARY_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR, PIPELINE_CREATE_RESERVED_19_BIT_KHR, PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT, PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT, PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT, PIPELINE_CREATION_FEEDBACK_VALID_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_RESERVED_2_BIT_NV, PIPELINE_SHADER_STAGE_CREATE_RESERVED_3_BIT_KHR, PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_ALL_COMMANDS_BIT, PIPELINE_STAGE_ALL_GRAPHICS_BIT, PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_COMPUTE_SHADER_BIT, PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_DRAW_INDIRECT_BIT, PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_FRAGMENT_SHADER_BIT, PIPELINE_STAGE_GEOMETRY_SHADER_BIT, PIPELINE_STAGE_HOST_BIT, PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_MESH_SHADER_BIT_NV, PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_RESERVED_26_BIT_KHR, PIPELINE_STAGE_RESERVED_27_BIT_KHR, PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV, PIPELINE_STAGE_TASK_SHADER_BIT_NV, PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT, PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT, PIPELINE_STAGE_TOP_OF_PIPE_BIT, PIPELINE_STAGE_TRANSFER_BIT, PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_VERTEX_INPUT_BIT, PIPELINE_STAGE_VERTEX_SHADER_BIT, PastPresentationTimingGOOGLE, PeerMemoryFeatureFlag, PerformanceConfigurationAcquireInfoINTEL, PerformanceConfigurationINTEL, PerformanceCounterDescriptionFlagKHR, PerformanceCounterDescriptionKHR, PerformanceCounterKHR, PerformanceCounterResultKHR, PerformanceMarkerInfoINTEL, PerformanceOverrideInfoINTEL, PerformanceQuerySubmitInfoKHR, PerformanceStreamMarkerInfoINTEL, PerformanceValueDataINTEL, PerformanceValueINTEL, PhysicalDevice, PhysicalDevice16BitStorageFeatures, PhysicalDevice4444FormatsFeaturesEXT, PhysicalDevice8BitStorageFeatures, PhysicalDeviceASTCDecodeFeaturesEXT, PhysicalDeviceBlendOperationAdvancedFeaturesEXT, PhysicalDeviceBlendOperationAdvancedPropertiesEXT, PhysicalDeviceBufferDeviceAddressFeatures, PhysicalDeviceBufferDeviceAddressFeaturesEXT, PhysicalDeviceCoherentMemoryFeaturesAMD, PhysicalDeviceComputeShaderDerivativesFeaturesNV, PhysicalDeviceConditionalRenderingFeaturesEXT, PhysicalDeviceConservativeRasterizationPropertiesEXT, PhysicalDeviceCooperativeMatrixFeaturesNV, PhysicalDeviceCooperativeMatrixPropertiesNV, PhysicalDeviceCornerSampledImageFeaturesNV, PhysicalDeviceCoverageReductionModeFeaturesNV, PhysicalDeviceCustomBorderColorFeaturesEXT, PhysicalDeviceCustomBorderColorPropertiesEXT, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, PhysicalDeviceDepthClipEnableFeaturesEXT, PhysicalDeviceDepthStencilResolveProperties, PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, PhysicalDeviceDiagnosticsConfigFeaturesNV, PhysicalDeviceDiscardRectanglePropertiesEXT, PhysicalDeviceDriverProperties, PhysicalDeviceExclusiveScissorFeaturesNV, PhysicalDeviceExtendedDynamicStateFeaturesEXT, PhysicalDeviceExternalBufferInfo, PhysicalDeviceExternalFenceInfo, PhysicalDeviceExternalImageFormatInfo, PhysicalDeviceExternalMemoryHostPropertiesEXT, PhysicalDeviceExternalSemaphoreInfo, PhysicalDeviceFeatures, PhysicalDeviceFeatures2, PhysicalDeviceFloatControlsProperties, PhysicalDeviceFragmentDensityMap2FeaturesEXT, PhysicalDeviceFragmentDensityMap2PropertiesEXT, PhysicalDeviceFragmentDensityMapFeaturesEXT, PhysicalDeviceFragmentDensityMapPropertiesEXT, PhysicalDeviceFragmentShaderBarycentricFeaturesNV, PhysicalDeviceFragmentShaderInterlockFeaturesEXT, PhysicalDeviceGroupProperties, PhysicalDeviceHostQueryResetFeatures, PhysicalDeviceIDProperties, PhysicalDeviceImageDrmFormatModifierInfoEXT, PhysicalDeviceImageFormatInfo2, PhysicalDeviceImageRobustnessFeaturesEXT, PhysicalDeviceImageViewImageFormatInfoEXT, PhysicalDeviceImagelessFramebufferFeatures, PhysicalDeviceIndexTypeUint8FeaturesEXT, PhysicalDeviceInlineUniformBlockFeaturesEXT, PhysicalDeviceInlineUniformBlockPropertiesEXT, PhysicalDeviceLimits, PhysicalDeviceLineRasterizationFeaturesEXT, PhysicalDeviceLineRasterizationPropertiesEXT, PhysicalDeviceMaintenance3Properties, PhysicalDeviceMemoryBudgetPropertiesEXT, PhysicalDeviceMemoryPriorityFeaturesEXT, PhysicalDeviceMemoryProperties, PhysicalDeviceMemoryProperties2, PhysicalDeviceMeshShaderFeaturesNV, PhysicalDeviceMeshShaderPropertiesNV, PhysicalDeviceMultiviewFeatures, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, PhysicalDeviceMultiviewProperties, PhysicalDevicePCIBusInfoPropertiesEXT, PhysicalDevicePerformanceQueryFeaturesKHR, PhysicalDevicePerformanceQueryPropertiesKHR, PhysicalDevicePipelineCreationCacheControlFeaturesEXT, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, PhysicalDevicePointClippingProperties, PhysicalDevicePrivateDataFeaturesEXT, PhysicalDeviceProperties, PhysicalDeviceProperties2, PhysicalDeviceProtectedMemoryFeatures, PhysicalDeviceProtectedMemoryProperties, PhysicalDevicePushDescriptorPropertiesKHR, PhysicalDeviceRayTracingFeaturesKHR, PhysicalDeviceRayTracingPropertiesKHR, PhysicalDeviceRayTracingPropertiesNV, PhysicalDeviceRepresentativeFragmentTestFeaturesNV, PhysicalDeviceRobustness2FeaturesEXT, PhysicalDeviceRobustness2PropertiesEXT, PhysicalDeviceSampleLocationsPropertiesEXT, PhysicalDeviceSamplerFilterMinmaxProperties, PhysicalDeviceSamplerYcbcrConversionFeatures, PhysicalDeviceScalarBlockLayoutFeatures, PhysicalDeviceSeparateDepthStencilLayoutsFeatures, PhysicalDeviceShaderAtomicFloatFeaturesEXT, PhysicalDeviceShaderAtomicInt64Features, PhysicalDeviceShaderClockFeaturesKHR, PhysicalDeviceShaderCoreProperties2AMD, PhysicalDeviceShaderCorePropertiesAMD, PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, PhysicalDeviceShaderDrawParametersFeatures, PhysicalDeviceShaderFloat16Int8Features, PhysicalDeviceShaderImageFootprintFeaturesNV, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, PhysicalDeviceShaderSMBuiltinsFeaturesNV, PhysicalDeviceShaderSMBuiltinsPropertiesNV, PhysicalDeviceShaderSubgroupExtendedTypesFeatures, PhysicalDeviceShadingRateImageFeaturesNV, PhysicalDeviceShadingRateImagePropertiesNV, PhysicalDeviceSparseImageFormatInfo2, PhysicalDeviceSparseProperties, PhysicalDeviceSubgroupProperties, PhysicalDeviceSubgroupSizeControlFeaturesEXT, PhysicalDeviceSubgroupSizeControlPropertiesEXT, PhysicalDeviceSurfaceInfo2KHR, PhysicalDeviceTexelBufferAlignmentFeaturesEXT, PhysicalDeviceTexelBufferAlignmentPropertiesEXT, PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, PhysicalDeviceTimelineSemaphoreFeatures, PhysicalDeviceTimelineSemaphoreProperties, PhysicalDeviceToolPropertiesEXT, PhysicalDeviceTransformFeedbackFeaturesEXT, PhysicalDeviceTransformFeedbackPropertiesEXT, PhysicalDeviceUniformBufferStandardLayoutFeatures, PhysicalDeviceVariablePointersFeatures, PhysicalDeviceVertexAttributeDivisorFeaturesEXT, PhysicalDeviceVertexAttributeDivisorPropertiesEXT, PhysicalDeviceVulkan11Features, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkan12Properties, PhysicalDeviceVulkanMemoryModelFeatures, PhysicalDeviceYcbcrImageArraysFeaturesEXT, Pipeline, PipelineCache, PipelineCacheCreateFlag, PipelineCacheCreateInfo, PipelineColorBlendAdvancedStateCreateInfoEXT, PipelineColorBlendAttachmentState, PipelineColorBlendStateCreateInfo, PipelineCompilerControlCreateInfoAMD, PipelineCompilerControlFlagAMD, PipelineCoverageModulationStateCreateInfoNV, PipelineCoverageReductionStateCreateInfoNV, PipelineCoverageToColorStateCreateInfoNV, PipelineCreateFlag, PipelineCreationFeedbackCreateInfoEXT, PipelineCreationFeedbackEXT, PipelineCreationFeedbackFlagEXT, PipelineDepthStencilStateCreateInfo, PipelineDiscardRectangleStateCreateInfoEXT, PipelineDynamicStateCreateInfo, PipelineExecutableInfoKHR, PipelineExecutableInternalRepresentationKHR, PipelineExecutablePropertiesKHR, PipelineExecutableStatisticKHR, PipelineExecutableStatisticValueKHR, PipelineInfoKHR, PipelineInputAssemblyStateCreateInfo, PipelineLayout, PipelineLayoutCreateInfo, PipelineLibraryCreateInfoKHR, PipelineMultisampleStateCreateInfo, PipelineRasterizationConservativeStateCreateInfoEXT, PipelineRasterizationDepthClipStateCreateInfoEXT, PipelineRasterizationLineStateCreateInfoEXT, PipelineRasterizationStateCreateInfo, PipelineRasterizationStateRasterizationOrderAMD, PipelineRasterizationStateStreamCreateInfoEXT, PipelineRepresentativeFragmentTestStateCreateInfoNV, PipelineSampleLocationsStateCreateInfoEXT, PipelineShaderStageCreateFlag, PipelineShaderStageCreateInfo, PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, PipelineStageFlag, PipelineTessellationDomainOriginStateCreateInfo, PipelineTessellationStateCreateInfo, PipelineVertexInputDivisorStateCreateInfoEXT, PipelineVertexInputStateCreateInfo, PipelineViewportCoarseSampleOrderStateCreateInfoNV, PipelineViewportExclusiveScissorStateCreateInfoNV, PipelineViewportShadingRateImageStateCreateInfoNV, PipelineViewportStateCreateInfo, PipelineViewportSwizzleStateCreateInfoNV, PipelineViewportWScalingStateCreateInfoNV, PresentFrameTokenGGP, PresentInfoKHR, PresentRegionKHR, PresentRegionsKHR, PresentTimeGOOGLE, PresentTimesInfoGOOGLE, PrivateDataSlotCreateFlagEXT, PrivateDataSlotCreateInfoEXT, PrivateDataSlotEXT, ProtectedSubmitInfo, PushConstantRange, QUERY_CONTROL_PRECISE_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT, QUERY_RESULT_64_BIT, QUERY_RESULT_PARTIAL_BIT, QUERY_RESULT_WAIT_BIT, QUERY_RESULT_WITH_AVAILABILITY_BIT, QUEUE_COMPUTE_BIT, QUEUE_GRAPHICS_BIT, QUEUE_PROTECTED_BIT, QUEUE_RESERVED_5_BIT_KHR, QUEUE_RESERVED_6_BIT_KHR, QUEUE_SPARSE_BINDING_BIT, QUEUE_TRANSFER_BIT, QueryControlFlag, QueryPipelineStatisticFlag, QueryPool, QueryPoolCreateInfo, QueryPoolPerformanceCreateInfoKHR, QueryPoolPerformanceQueryCreateInfoINTEL, QueryResultFlag, Queue, QueueFamilyCheckpointPropertiesNV, QueueFamilyProperties, QueueFamilyProperties2, QueueFlag, RENDER_PASS_CREATE_RESERVED_0_BIT_KHR, RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM, RESOLVE_MODE_AVERAGE_BIT, RESOLVE_MODE_MAX_BIT, RESOLVE_MODE_MIN_BIT, RESOLVE_MODE_NONE, RESOLVE_MODE_SAMPLE_ZERO_BIT, RayTracingPipelineCreateInfoKHR, RayTracingPipelineCreateInfoNV, RayTracingPipelineInterfaceCreateInfoKHR, RayTracingShaderGroupCreateInfoKHR, RayTracingShaderGroupCreateInfoNV, Rect2D, RectLayerKHR, RefreshCycleDurationGOOGLE, RenderPass, RenderPassAttachmentBeginInfo, RenderPassBeginInfo, RenderPassCreateFlag, RenderPassCreateInfo, RenderPassCreateInfo2, RenderPassFragmentDensityMapCreateInfoEXT, RenderPassInputAttachmentAspectCreateInfo, RenderPassMultiviewCreateInfo, RenderPassSampleLocationsBeginInfoEXT, RenderPassTransformBeginInfoQCOM, ResolveModeFlag, SAMPLER_CREATE_SUBSAMPLED_BIT_EXT, SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT, SAMPLE_COUNT_16_BIT, SAMPLE_COUNT_1_BIT, SAMPLE_COUNT_2_BIT, SAMPLE_COUNT_32_BIT, SAMPLE_COUNT_4_BIT, SAMPLE_COUNT_64_BIT, SAMPLE_COUNT_8_BIT, SEMAPHORE_IMPORT_TEMPORARY_BIT, SEMAPHORE_WAIT_ANY_BIT, SHADER_MODULE_CREATE_RESERVED_0_BIT_NV, SHADER_STAGE_ALL, SHADER_STAGE_ALL_GRAPHICS, SHADER_STAGE_ANY_HIT_BIT_KHR, SHADER_STAGE_CALLABLE_BIT_KHR, SHADER_STAGE_CLOSEST_HIT_BIT_KHR, SHADER_STAGE_COMPUTE_BIT, SHADER_STAGE_FRAGMENT_BIT, SHADER_STAGE_GEOMETRY_BIT, SHADER_STAGE_INTERSECTION_BIT_KHR, SHADER_STAGE_MESH_BIT_NV, SHADER_STAGE_MISS_BIT_KHR, SHADER_STAGE_RAYGEN_BIT_KHR, SHADER_STAGE_TASK_BIT_NV, SHADER_STAGE_TESSELLATION_CONTROL_BIT, SHADER_STAGE_TESSELLATION_EVALUATION_BIT, SHADER_STAGE_VERTEX_BIT, SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT, SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT, SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, SPARSE_MEMORY_BIND_METADATA_BIT, STENCIL_FACE_BACK_BIT, STENCIL_FACE_FRONT_AND_BACK, STENCIL_FACE_FRONT_BIT, SUBGROUP_FEATURE_ARITHMETIC_BIT, SUBGROUP_FEATURE_BALLOT_BIT, SUBGROUP_FEATURE_BASIC_BIT, SUBGROUP_FEATURE_CLUSTERED_BIT, SUBGROUP_FEATURE_PARTITIONED_BIT_NV, SUBGROUP_FEATURE_QUAD_BIT, SUBGROUP_FEATURE_SHUFFLE_BIT, SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT, SUBGROUP_FEATURE_VOTE_BIT, SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM, SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX, SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX, SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM, SURFACE_COUNTER_VBLANK_EXT, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR, SURFACE_TRANSFORM_IDENTITY_BIT_KHR, SURFACE_TRANSFORM_INHERIT_BIT_KHR, SURFACE_TRANSFORM_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_ROTATE_90_BIT_KHR, SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR, SWAPCHAIN_CREATE_PROTECTED_BIT_KHR, SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR, SampleCountFlag, SampleLocationEXT, SampleLocationsInfoEXT, Sampler, SamplerCreateFlag, SamplerCreateInfo, SamplerCustomBorderColorCreateInfoEXT, SamplerReductionModeCreateInfo, SamplerYcbcrConversion, SamplerYcbcrConversionCreateInfo, SamplerYcbcrConversionImageFormatProperties, SamplerYcbcrConversionInfo, Semaphore, SemaphoreCreateFlag, SemaphoreCreateInfo, SemaphoreGetFdInfoKHR, SemaphoreGetWin32HandleInfoKHR, SemaphoreImportFlag, SemaphoreSignalInfo, SemaphoreTypeCreateInfo, SemaphoreWaitFlag, SemaphoreWaitInfo, SetStateFlagsIndirectCommandNV, ShaderCorePropertiesFlagAMD, ShaderModule, ShaderModuleCreateFlag, ShaderModuleCreateInfo, ShaderModuleValidationCacheCreateInfoEXT, ShaderResourceUsageAMD, ShaderStageFlag, ShaderStatisticsInfoAMD, ShadingRatePaletteNV, SharedPresentSurfaceCapabilitiesKHR, SparseBufferMemoryBindInfo, SparseImageFormatFlag, SparseImageFormatProperties, SparseImageFormatProperties2, SparseImageMemoryBind, SparseImageMemoryBindInfo, SparseImageMemoryRequirements, SparseImageMemoryRequirements2, SparseImageOpaqueMemoryBindInfo, SparseMemoryBind, SparseMemoryBindFlag, SpecializationInfo, SpecializationMapEntry, StencilFaceFlag, StencilOpState, StreamDescriptorSurfaceCreateInfoGGP, StridedBufferRegionKHR, SubgroupFeatureFlag, SubmitInfo, SubpassBeginInfo, SubpassDependency, SubpassDependency2, SubpassDescription, SubpassDescription2, SubpassDescriptionDepthStencilResolve, SubpassDescriptionFlag, SubpassEndInfo, SubpassSampleLocationsEXT, SubresourceLayout, SurfaceCapabilities2EXT, SurfaceCapabilities2KHR, SurfaceCapabilitiesFullScreenExclusiveEXT, SurfaceCapabilitiesKHR, SurfaceCounterFlagEXT, SurfaceFormat2KHR, SurfaceFormatKHR, SurfaceFullScreenExclusiveInfoEXT, SurfaceFullScreenExclusiveWin32InfoEXT, SurfaceKHR, SurfaceProtectedCapabilitiesKHR, SurfaceTransformFlagKHR, SwapchainCounterCreateInfoEXT, SwapchainCreateFlagKHR, SwapchainCreateInfoKHR, SwapchainDisplayNativeHdrCreateInfoAMD, SwapchainKHR, TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT, TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT, TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT, TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT, TOOL_PURPOSE_PROFILING_BIT_EXT, TOOL_PURPOSE_TRACING_BIT_EXT, TOOL_PURPOSE_VALIDATION_BIT_EXT, TextureLODGatherFormatPropertiesAMD, TimelineSemaphoreSubmitInfo, ToolPurposeFlagEXT, TraceRaysIndirectCommandKHR, TransformMatrixKHR, ValidationCacheCreateInfoEXT, ValidationCacheEXT, ValidationFeaturesEXT, ValidationFlagsEXT, VertexInputAttributeDescription, VertexInputBindingDescription, VertexInputBindingDivisorDescriptionEXT, ViSurfaceCreateInfoNN, Viewport, ViewportSwizzleNV, ViewportWScalingNV, WaylandSurfaceCreateInfoKHR, Win32KeyedMutexAcquireReleaseInfoKHR, Win32KeyedMutexAcquireReleaseInfoNV, Win32SurfaceCreateInfoKHR, WriteDescriptorSet, WriteDescriptorSetAccelerationStructureKHR, WriteDescriptorSetInlineUniformBlockEXT, XYColorEXT, XcbSurfaceCreateInfoKHR, XlibSurfaceCreateInfoKHR, acquire_full_screen_exclusive_mode_ext, acquire_next_image_2_khr, acquire_next_image_khr, acquire_performance_configuration_intel, acquire_profiling_lock_khr, acquire_xlib_display_ext, allocate_command_buffers, allocate_descriptor_sets, allocate_memory, begin_command_buffer, bind_acceleration_structure_memory_khr, bind_buffer_memory, bind_buffer_memory_2, bind_image_memory, bind_image_memory_2, build_acceleration_structure_khr, cmd_begin_conditional_rendering_ext, cmd_begin_debug_utils_label_ext, cmd_begin_query, cmd_begin_query_indexed_ext, cmd_begin_render_pass, cmd_begin_render_pass_2, cmd_begin_transform_feedback_ext, cmd_bind_descriptor_sets, cmd_bind_index_buffer, cmd_bind_pipeline, cmd_bind_pipeline_shader_group_nv, cmd_bind_shading_rate_image_nv, cmd_bind_transform_feedback_buffers_ext, cmd_bind_vertex_buffers, cmd_bind_vertex_buffers_2_ext, cmd_blit_image, cmd_build_acceleration_structure_indirect_khr, cmd_build_acceleration_structure_khr, cmd_build_acceleration_structure_nv, cmd_clear_attachments, cmd_clear_color_image, cmd_clear_depth_stencil_image, cmd_copy_acceleration_structure_khr, cmd_copy_acceleration_structure_nv, cmd_copy_acceleration_structure_to_memory_khr, cmd_copy_buffer, cmd_copy_buffer_to_image, cmd_copy_image, cmd_copy_image_to_buffer, cmd_copy_memory_to_acceleration_structure_khr, cmd_copy_query_pool_results, cmd_debug_marker_begin_ext, cmd_debug_marker_end_ext, cmd_debug_marker_insert_ext, cmd_dispatch, cmd_dispatch_base, cmd_dispatch_indirect, cmd_draw, cmd_draw_indexed, cmd_draw_indexed_indirect, cmd_draw_indexed_indirect_count, cmd_draw_indirect, cmd_draw_indirect_byte_count_ext, cmd_draw_indirect_count, cmd_draw_mesh_tasks_indirect_count_nv, cmd_draw_mesh_tasks_indirect_nv, cmd_draw_mesh_tasks_nv, cmd_end_conditional_rendering_ext, cmd_end_debug_utils_label_ext, cmd_end_query, cmd_end_query_indexed_ext, cmd_end_render_pass, cmd_end_render_pass_2, cmd_end_transform_feedback_ext, cmd_execute_commands, cmd_execute_generated_commands_nv, cmd_fill_buffer, cmd_insert_debug_utils_label_ext, cmd_next_subpass, cmd_next_subpass_2, cmd_pipeline_barrier, cmd_preprocess_generated_commands_nv, cmd_push_constants, cmd_push_descriptor_set_khr, cmd_push_descriptor_set_with_template_khr, cmd_reset_event, cmd_reset_query_pool, cmd_resolve_image, cmd_set_blend_constants, cmd_set_checkpoint_nv, cmd_set_coarse_sample_order_nv, cmd_set_cull_mode_ext, cmd_set_depth_bias, cmd_set_depth_bounds, cmd_set_depth_bounds_test_enable_ext, cmd_set_depth_compare_op_ext, cmd_set_depth_test_enable_ext, cmd_set_depth_write_enable_ext, cmd_set_device_mask, cmd_set_discard_rectangle_ext, cmd_set_event, cmd_set_exclusive_scissor_nv, cmd_set_front_face_ext, cmd_set_line_stipple_ext, cmd_set_line_width, cmd_set_performance_marker_intel, cmd_set_performance_override_intel, cmd_set_performance_stream_marker_intel, cmd_set_primitive_topology_ext, cmd_set_sample_locations_ext, cmd_set_scissor, cmd_set_scissor_with_count_ext, cmd_set_stencil_compare_mask, cmd_set_stencil_op_ext, cmd_set_stencil_reference, cmd_set_stencil_test_enable_ext, cmd_set_stencil_write_mask, cmd_set_viewport, cmd_set_viewport_shading_rate_palette_nv, cmd_set_viewport_w_scaling_nv, cmd_set_viewport_with_count_ext, cmd_trace_rays_indirect_khr, cmd_trace_rays_khr, cmd_trace_rays_nv, cmd_update_buffer, cmd_wait_events, cmd_write_acceleration_structures_properties_khr, cmd_write_buffer_marker_amd, cmd_write_timestamp, compile_deferred_nv, copy_acceleration_structure_khr, copy_acceleration_structure_to_memory_khr, copy_memory_to_acceleration_structure_khr, create_acceleration_structure_khr, create_acceleration_structure_nv, create_android_surface_khr, create_buffer, create_buffer_view, create_command_pool, create_compute_pipelines, create_debug_report_callback_ext, create_debug_utils_messenger_ext, create_deferred_operation_khr, create_descriptor_pool, create_descriptor_set_layout, create_descriptor_update_template, create_device, create_direct_fb_surface_ext, create_display_mode_khr, create_display_plane_surface_khr, create_event, create_fence, create_framebuffer, create_graphics_pipelines, create_headless_surface_ext, create_image, create_image_pipe_surface_fuchsia, create_image_view, create_indirect_commands_layout_nv, create_instance, create_ios_surface_mvk, create_mac_os_surface_mvk, create_metal_surface_ext, create_pipeline_cache, create_pipeline_layout, create_private_data_slot_ext, create_query_pool, create_ray_tracing_pipelines_khr, create_ray_tracing_pipelines_nv, create_render_pass, create_render_pass_2, create_sampler, create_sampler_ycbcr_conversion, create_semaphore, create_shader_module, create_shared_swapchains_khr, create_stream_descriptor_surface_ggp, create_swapchain_khr, create_validation_cache_ext, create_vi_surface_nn, create_wayland_surface_khr, create_win_32_surface_khr, create_xcb_surface_khr, create_xlib_surface_khr, debug_marker_set_object_name_ext, debug_marker_set_object_tag_ext, debug_report_message_ext, deferred_operation_join_khr, destroy_acceleration_structure_khr, destroy_buffer, destroy_buffer_view, destroy_command_pool, destroy_debug_report_callback_ext, destroy_debug_utils_messenger_ext, destroy_deferred_operation_khr, destroy_descriptor_pool, destroy_descriptor_set_layout, destroy_descriptor_update_template, destroy_device, destroy_event, destroy_fence, destroy_framebuffer, destroy_image, destroy_image_view, destroy_indirect_commands_layout_nv, destroy_instance, destroy_pipeline, destroy_pipeline_cache, destroy_pipeline_layout, destroy_private_data_slot_ext, destroy_query_pool, destroy_render_pass, destroy_sampler, destroy_sampler_ycbcr_conversion, destroy_semaphore, destroy_shader_module, destroy_surface_khr, destroy_swapchain_khr, destroy_validation_cache_ext, device_wait_idle, display_power_control_ext, end_command_buffer, enumerate_device_extension_properties, enumerate_device_layer_properties, enumerate_instance_extension_properties, enumerate_instance_layer_properties, enumerate_instance_version, enumerate_physical_device_groups, enumerate_physical_device_queue_family_performance_query_counters_khr, enumerate_physical_devices, flush_mapped_memory_ranges, free_command_buffers, free_descriptor_sets, free_memory, from_vk, get_acceleration_structure_device_address_khr, get_acceleration_structure_handle_nv, get_acceleration_structure_memory_requirements_khr, get_acceleration_structure_memory_requirements_nv, get_android_hardware_buffer_properties_android, get_buffer_device_address, get_buffer_memory_requirements, get_buffer_memory_requirements_2, get_buffer_opaque_capture_address, get_calibrated_timestamps_ext, get_deferred_operation_max_concurrency_khr, get_deferred_operation_result_khr, get_descriptor_set_layout_support, get_device_acceleration_structure_compatibility_khr, get_device_group_peer_memory_features, get_device_group_present_capabilities_khr, get_device_group_surface_present_modes_2_ext, get_device_group_surface_present_modes_khr, get_device_memory_commitment, get_device_memory_opaque_capture_address, get_device_proc_addr, get_device_queue, get_device_queue_2, get_display_mode_properties_2_khr, get_display_mode_properties_khr, get_display_plane_capabilities_2_khr, get_display_plane_capabilities_khr, get_display_plane_supported_displays_khr, get_event_status, get_fence_fd_khr, get_fence_status, get_fence_win_32_handle_khr, get_generated_commands_memory_requirements_nv, get_image_drm_format_modifier_properties_ext, get_image_memory_requirements, get_image_memory_requirements_2, get_image_sparse_memory_requirements, get_image_sparse_memory_requirements_2, get_image_subresource_layout, get_image_view_address_nvx, get_image_view_handle_nvx, get_instance_proc_addr, get_memory_android_hardware_buffer_android, get_memory_fd_khr, get_memory_fd_properties_khr, get_memory_host_pointer_properties_ext, get_memory_win_32_handle_khr, get_memory_win_32_handle_nv, get_memory_win_32_handle_properties_khr, get_past_presentation_timing_google, get_performance_parameter_intel, get_physical_device_calibrateable_time_domains_ext, get_physical_device_cooperative_matrix_properties_nv, get_physical_device_direct_fb_presentation_support_ext, get_physical_device_display_plane_properties_2_khr, get_physical_device_display_plane_properties_khr, get_physical_device_display_properties_2_khr, get_physical_device_display_properties_khr, get_physical_device_external_buffer_properties, get_physical_device_external_fence_properties, get_physical_device_external_image_format_properties_nv, get_physical_device_external_semaphore_properties, get_physical_device_features, get_physical_device_features_2, get_physical_device_format_properties, get_physical_device_format_properties_2, get_physical_device_image_format_properties, get_physical_device_image_format_properties_2, get_physical_device_memory_properties, get_physical_device_memory_properties_2, get_physical_device_multisample_properties_ext, get_physical_device_present_rectangles_khr, get_physical_device_properties, get_physical_device_properties_2, get_physical_device_queue_family_performance_query_passes_khr, get_physical_device_queue_family_properties, get_physical_device_queue_family_properties_2, get_physical_device_sparse_image_format_properties, get_physical_device_sparse_image_format_properties_2, get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, get_physical_device_surface_capabilities_2_ext, get_physical_device_surface_capabilities_2_khr, get_physical_device_surface_capabilities_khr, get_physical_device_surface_formats_2_khr, get_physical_device_surface_formats_khr, get_physical_device_surface_present_modes_2_ext, get_physical_device_surface_present_modes_khr, get_physical_device_surface_support_khr, get_physical_device_tool_properties_ext, get_physical_device_wayland_presentation_support_khr, get_physical_device_win_32_presentation_support_khr, get_physical_device_xcb_presentation_support_khr, get_physical_device_xlib_presentation_support_khr, get_pipeline_cache_data, get_pipeline_executable_internal_representations_khr, get_pipeline_executable_properties_khr, get_pipeline_executable_statistics_khr, get_private_data_ext, get_query_pool_results, get_queue_checkpoint_data_nv, get_rand_r_output_display_ext, get_ray_tracing_capture_replay_shader_group_handles_khr, get_ray_tracing_shader_group_handles_khr, get_refresh_cycle_duration_google, get_render_area_granularity, get_semaphore_counter_value, get_semaphore_fd_khr, get_semaphore_win_32_handle_khr, get_shader_info_amd, get_swapchain_counter_ext, get_swapchain_images_khr, get_swapchain_status_khr, get_validation_cache_data_ext, import_fence_fd_khr, import_fence_win_32_handle_khr, import_semaphore_fd_khr, import_semaphore_win_32_handle_khr, initialize_performance_api_intel, invalidate_mapped_memory_ranges, map_memory, merge_pipeline_caches, merge_validation_caches_ext, queue_begin_debug_utils_label_ext, queue_bind_sparse, queue_end_debug_utils_label_ext, queue_insert_debug_utils_label_ext, queue_present_khr, queue_set_performance_configuration_intel, queue_submit, queue_wait_idle, register_device_event_ext, register_display_event_ext, release_display_ext, release_full_screen_exclusive_mode_ext, release_performance_configuration_intel, release_profiling_lock_khr, reset_command_buffer, reset_command_pool, reset_descriptor_pool, reset_event, reset_fences, reset_query_pool, set_debug_utils_object_name_ext, set_debug_utils_object_tag_ext, set_event, set_hdr_metadata_ext, set_local_dimming_amd, set_private_data_ext, signal_semaphore, submit_debug_utils_message_ext, trim_command_pool, uninitialize_performance_api_intel, unmap_memory, update_descriptor_set_with_template, update_descriptor_sets, wait_for_fences, wait_semaphores, write_acceleration_structures_properties_khr, VkImageLayout, VkAttachmentLoadOp, VkAttachmentStoreOp, VkImageType, VkImageTiling, VkImageViewType, VkCommandBufferLevel, VkComponentSwizzle, VkDescriptorType, VkQueryType, VkBorderColor, VkPipelineBindPoint, VkPipelineCacheHeaderVersion, VkPrimitiveTopology, VkSharingMode, VkIndexType, VkFilter, VkSamplerMipmapMode, VkSamplerAddressMode, VkCompareOp, VkPolygonMode, VkFrontFace, VkBlendFactor, VkBlendOp, VkStencilOp, VkLogicOp, VkInternalAllocationType, VkSystemAllocationScope, VkPhysicalDeviceType, VkVertexInputRate, VkFormat, VkStructureType, VkSubpassContents, VkResult, VkDynamicState, VkDescriptorUpdateTemplateType, VkObjectType, VkSemaphoreType, VkPresentModeKHR, VkColorSpaceKHR, VkTimeDomainEXT, VkDebugReportObjectTypeEXT, VkRasterizationOrderAMD, VkValidationCheckEXT, VkValidationFeatureEnableEXT, VkValidationFeatureDisableEXT, VkIndirectCommandsTokenTypeNV, VkDisplayPowerStateEXT, VkDeviceEventTypeEXT, VkDisplayEventTypeEXT, VkViewportCoordinateSwizzleNV, VkDiscardRectangleModeEXT, VkPointClippingBehavior, VkSamplerReductionMode, VkTessellationDomainOrigin, VkSamplerYcbcrModelConversion, VkSamplerYcbcrRange, VkChromaLocation, VkBlendOverlapEXT, VkCoverageModulationModeNV, VkCoverageReductionModeNV, VkValidationCacheHeaderVersionEXT, VkShaderInfoTypeAMD, VkQueueGlobalPriorityEXT, VkConservativeRasterizationModeEXT, VkVendorId, VkDriverId, VkShadingRatePaletteEntryNV, VkCoarseSampleOrderTypeNV, VkCopyAccelerationStructureModeKHR, VkAccelerationStructureTypeKHR, VkGeometryTypeKHR, VkAccelerationStructureMemoryRequirementsTypeKHR, VkAccelerationStructureBuildTypeKHR, VkRayTracingShaderGroupTypeKHR, VkMemoryOverallocationBehaviorAMD, VkScopeNV, VkComponentTypeNV, VkFullScreenExclusiveEXT, VkPerformanceCounterScopeKHR, VkPerformanceCounterUnitKHR, VkPerformanceCounterStorageKHR, VkPerformanceConfigurationTypeINTEL, VkQueryPoolSamplingModeINTEL, VkPerformanceOverrideTypeINTEL, VkPerformanceParameterTypeINTEL, VkPerformanceValueTypeINTEL, VkShaderFloatControlsIndependence, VkPipelineExecutableStatisticFormatKHR, VkLineRasterizationModeEXT, VkPipelineCacheCreateFlagBits, VkCullModeFlagBits, VkQueueFlagBits, VkRenderPassCreateFlagBits, VkDeviceQueueCreateFlagBits, VkMemoryPropertyFlagBits, VkMemoryHeapFlagBits, VkAccessFlagBits, VkBufferUsageFlagBits, VkBufferCreateFlagBits, VkShaderStageFlagBits, VkImageUsageFlagBits, VkImageCreateFlagBits, VkImageViewCreateFlagBits, VkSamplerCreateFlagBits, VkPipelineCreateFlagBits, VkPipelineShaderStageCreateFlagBits, VkColorComponentFlagBits, VkFenceCreateFlagBits, VkSemaphoreCreateFlagBits, VkFormatFeatureFlagBits, VkQueryControlFlagBits, VkQueryResultFlagBits, VkCommandBufferUsageFlagBits, VkQueryPipelineStatisticFlagBits, VkImageAspectFlagBits, VkSparseImageFormatFlagBits, VkSparseMemoryBindFlagBits, VkPipelineStageFlagBits, VkCommandPoolCreateFlagBits, VkCommandPoolResetFlagBits, VkCommandBufferResetFlagBits, VkSampleCountFlagBits, VkAttachmentDescriptionFlagBits, VkStencilFaceFlagBits, VkDescriptorPoolCreateFlagBits, VkDependencyFlagBits, VkSemaphoreWaitFlagBits, VkDisplayPlaneAlphaFlagBitsKHR, VkCompositeAlphaFlagBitsKHR, VkSurfaceTransformFlagBitsKHR, VkDebugReportFlagBitsEXT, VkExternalMemoryHandleTypeFlagBitsNV, VkExternalMemoryFeatureFlagBitsNV, VkSubgroupFeatureFlagBits, VkIndirectCommandsLayoutUsageFlagBitsNV, VkIndirectStateFlagBitsNV, VkPrivateDataSlotCreateFlagBitsEXT, VkDescriptorSetLayoutCreateFlagBits, VkExternalMemoryHandleTypeFlagBits, VkExternalMemoryFeatureFlagBits, VkExternalSemaphoreHandleTypeFlagBits, VkExternalSemaphoreFeatureFlagBits, VkSemaphoreImportFlagBits, VkExternalFenceHandleTypeFlagBits, VkExternalFenceFeatureFlagBits, VkFenceImportFlagBits, VkSurfaceCounterFlagBitsEXT, VkPeerMemoryFeatureFlagBits, VkMemoryAllocateFlagBits, VkDeviceGroupPresentModeFlagBitsKHR, VkSwapchainCreateFlagBitsKHR, VkSubpassDescriptionFlagBits, VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, VkDescriptorBindingFlagBits, VkConditionalRenderingFlagBitsEXT, VkResolveModeFlagBits, VkGeometryInstanceFlagBitsKHR, VkGeometryFlagBitsKHR, VkBuildAccelerationStructureFlagBitsKHR, VkFramebufferCreateFlagBits, VkDeviceDiagnosticsConfigFlagBitsNV, VkPipelineCreationFeedbackFlagBitsEXT, VkPerformanceCounterDescriptionFlagBitsKHR, VkAcquireProfilingLockFlagBitsKHR, VkShaderCorePropertiesFlagBitsAMD, VkShaderModuleCreateFlagBits, VkPipelineCompilerControlFlagBitsAMD, VkToolPurposeFlagBitsEXT

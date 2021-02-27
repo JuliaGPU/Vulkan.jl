@@ -31,6 +31,7 @@ function signature_type(type)
         :Float16 || :Float32 || :Float64 => :Real
         :String => :AbstractString
         :(Vector{$et}) => :(AbstractArray{<:$(signature_type(et))})
+        GuardBy(in(spec_bitmasks.name)) => bitmask_flag_type(type)
         t => t
     end
 end
@@ -55,6 +56,8 @@ function relax_function_signature(args::AbstractVector)
         end
     end
 end
+
+bitmask_flag_type(type) = Symbol(replace(remove_vk_prefix(string(type)), "Bits" => ""))
 
 is_fn_ptr(type) = startswith(string(type), "PFN")
 is_opaque_pointer(type) = type == :(Ptr{Cvoid})

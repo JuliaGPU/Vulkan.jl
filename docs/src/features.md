@@ -240,6 +240,46 @@ The length of array pointers is automatically deduced from the length of the con
 
 Some API functions require to specify the start of a pointer array as an argument. They have been hardcoded to 0 (first element), since it is always possible (and very straightforward) to pass in a sub-array.
 
+## Bitmask flags
+
+In Vulkan, the value of some flags carry meaning through a bitmask structure. Bitmasks define bit values which they can be a composition of (using bitwise _and_, _or_, and _xor_ operations). However, the associated flag type is defined as a `UInt32`, which allows any value to be passed in as a flag. This opens up the door to incorrect usage that may be hard to debug. To circumvent that, every bitmask flag now has one associated type which prevents combinations with flags of other bitmask types.
+
+For example, consider the vanilla `VkSampleCountFlags` type (alias for `UInt32`) with bits defined via the enumerated type `VkSampleCountFlagBits`:
+
+```jldoctest; setup = :(using VulkanCore.vk)
+julia> VK_SAMPLE_COUNT_1_BIT isa VkSampleCountFlagBits
+true
+julia> VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlagBits(1)
+true
+julia> VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlags(1)
+false
+julia> VK_SAMPLE_COUNT_1_BIT | VK_SAMPLE_COUNT_2_BIT === VkSampleCountFlags(3)
+true
+julia> VK_SAMPLE_COUNT_1_BIT & VK_SAMPLE_COUNT_2_BIT === VkSampleCountFlags(0)
+true
+julia> VK_SAMPLE_COUNT_1_BIT & VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR === VkSampleCountFlags(1)
+true
+```
+
+Those two types are combined into one `SampleCountFlag`:
+
+```jldoctest; setup = :(using Vulkan)
+julia> SampleCountFlag <: BitMask
+true
+julia> SurfaceTransformFlagKHR <: BitMask # another bitmask flag
+true
+julia> SAMPLE_COUNT_1_BIT | SAMPLE_COUNT_2_BIT === SampleCountFlag(3)
+true
+julia> SAMPLE_COUNT_1_BIT & SAMPLE_COUNT_2_BIT === SampleCountFlag(0)
+true
+julia> SAMPLE_COUNT_1_BIT & SURFACE_TRANSFORM_IDENTITY_BIT_KHR
+ERROR: Bitwise operation not allowed between incompatible bitmasks 'SampleCountFlag', 'SurfaceTransformFlagKHR'
+julia> UInt32(typemax(SampleCountFlag)) === UInt32(vk.VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENUM)
+true
+```
+
+All functions that were expecting a `VkSampleCountFlags` (`UInt32`) value will have their wrapped versions expect a value of type `SampleCountFlag`. Note also that the `*FLAG_BITS_MAX_ENUM` fields are removed. This value is the same for all enums and can be accessed via `typemax(T)` where `T` is a `BitMask` (e.g. `SampleCountFlag`).
+
 # [Preferences](@id preferences)
 
 Some of the above features have configurable options that can be set via [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl).

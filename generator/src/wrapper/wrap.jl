@@ -2,6 +2,7 @@ struct VulkanWrapper
     handles::Vector{Expr}
     structs::Vector{Expr}
     funcs::Vector{Expr}
+    enums::Vector{Expr}
     docs::Vector{Expr}
 end
 
@@ -422,6 +423,16 @@ function to_expr(p::Dict)
     reconstruct(p)
 end
 
+function wrap(spec::SpecBitmask)
+    name = bitmask_flag_type(spec.name)
+    Dict(
+        :category => :enum,
+        :macro => Symbol("@bitmask_flag"),
+        :values => map(x -> :($(remove_vk_prefix(x.name)) = $(2^(x.position))), spec.bits),
+        :decl => :($name::UInt32),
+    )
+end
+
 function VulkanWrapper()
     handles = to_expr.(wrap.(spec_handles))
     structs = to_expr.(wrap.(spec_structs))
@@ -436,8 +447,9 @@ function VulkanWrapper()
         add_constructor.(spec_handles_with_single_constructor; with_func_ptr=true),
     ))
 
+    enums = to_expr.(wrap.(spec_bitmasks))
     docs = vcat(document.(spec_funcs, wrap.(spec_funcs)), document.(api_structs, add_constructor.(api_structs)), document.(spec_handles_with_single_constructor, add_constructor.(spec_handles_with_single_constructor)))
-    VulkanWrapper(handles, structs, funcs, docs)
+    VulkanWrapper(handles, structs, funcs, enums, docs)
 end
 
 is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]

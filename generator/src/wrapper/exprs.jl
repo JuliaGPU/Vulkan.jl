@@ -1,5 +1,6 @@
 const enum_sym = Symbol("@enum")
 const cenum_sym = Symbol("@cenum")
+const bitmask_enum_sym = Symbol("@bitmask_flag")
 
 isline(x) = false
 isline(x::LineNumberNode) = true
@@ -26,12 +27,12 @@ striplines(ex) = prewalk(rmlines, ex)
 
 function category(ex)
     @match ex begin
-        Expr(:struct, _...)                                          => :struct
-        Expr(:const, _...)                                           => :const
-        Expr(:function, _...) || Expr(:(=), Expr(:call, _...), _...) => :function
-        Expr(:macrocall, &enum_sym || &cenum_sym, _...)              => :enum
-        :(Core.@doc $_ $docstring $ex)                               => :doc
-        _                                                            => nothing
+        Expr(:struct, _...)                                                  => :struct
+        Expr(:const, _...)                                                   => :const
+        Expr(:function, _...) || Expr(:(=), Expr(:call, _...), _...)         => :function
+        Expr(:macrocall, &enum_sym || &cenum_sym || &bitmask_enum_sym, _...) => :enum
+        :(Core.@doc $_ $docstring $ex)                                       => :doc
+        _                                                                    => nothing
     end
 end
 
@@ -57,18 +58,18 @@ name(sym::Symbol) = sym
 
 function name(ex::Expr)
     @match ex begin
-        Expr(:(::), a...)                  => name(first(a))
-        Expr(:<:, a...)                    => name(first(a))
-        Expr(:struct, _, _name, _)         => name(_name)
-        Expr(:call, f, _...)               => name(f)
-        Expr(:., subject, attr, _...)      => name(subject)
-        Expr(:function, sig, _...)         => name(sig)
-        Expr(:const, assn, _...)           => name(assn)
-        Expr(:(=), call, body, _...)       => name(call)
-        Expr(:macrocall, &enum_sym || &cenum_sym, _, decl, _...) => name(decl)
-        Expr(:kw, _name, _...) => _name
-        :(Core.@doc $_ $docstring $ex)     => name(ex)
-        Expr(expr_type,  _...)             => error("Can't extract name from ", expr_type, " expression:\n", "    $ex\n")
+        Expr(:(::), a...)                                                             => name(first(a))
+        Expr(:<:, a...)                                                               => name(first(a))
+        Expr(:struct, _, _name, _)                                                    => name(_name)
+        Expr(:call, f, _...)                                                          => name(f)
+        Expr(:., subject, attr, _...)                                                 => name(subject)
+        Expr(:function, sig, _...)                                                    => name(sig)
+        Expr(:const, assn, _...)                                                      => name(assn)
+        Expr(:(=), call, body, _...)                                                  => name(call)
+        Expr(:macrocall, &enum_sym || &cenum_sym || &bitmask_enum_sym, _, decl, _...) => name(decl)
+        Expr(:kw, _name, _...)                                                        => _name
+        :(Core.@doc $_ $docstring $ex)                                                => name(ex)
+        Expr(expr_type,  _...)                                                        => error("Can't extract name from ", expr_type, " expression:\n", "    $ex\n")
     end
 end
 
@@ -153,20 +154,24 @@ end
 function reconstruct(d::Dict)
     category = d[:category]
     ex = @match category begin
-        :struct                       => begin
-                                             props = vcat(get(d, :fields, []), get(d, :constructors, []))
-                                             Expr(:struct, get(d, :is_mutable, false), d[:decl], Expr(:block, props...))
-                                         end
-        :const                        => :(const $(d[:name]) = $(d[:value]))
-        :enum                         => Expr(:macrocall, d[:macro], nothing, d[:decl], Expr(:block, d[:values]...))
-        :function                     => begin
-                                            call = reconstruct_call(d)
-                                            get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
-                                         end
-        :doc                          => :(Core.@doc $(d[:docstring]) $(d[:ex]))
-        _                             => error("Category $category cannot be constructed")
+        :struct   => begin
+                         props = vcat(get(d, :fields, []), get(d, :constructors, []))
+                         Expr(:struct, get(d, :is_mutable, false), d[:decl], Expr(:block, props...))
+                     end
+        :const    => :(const $(d[:name]) = $(d[:value]))
+        :enum     => Expr(:macrocall, d[:macro], nothing, d[:decl], Expr(:block, d[:values]...))
+        :function => begin
+                        call = reconstruct_call(d)
+                        get(d, :short, false) ? :($call = $(d[:body])) : Expr(:function, call, d[:body])
+                     end
+        :doc      => :(Core.@doc $(d[:docstring]) $(d[:ex]))
+        _         => error("Category $category cannot be constructed")
     end
-    unblock(ex)
+    if category == :enum
+        ex
+    else
+        unblock(ex)
+    end
 end
 
 function unblock(ex::Expr)
