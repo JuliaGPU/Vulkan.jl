@@ -1,3 +1,9 @@
+```@setup main
+using SwiftShader_jll
+using Vulkan
+@set_driver :SwiftShader
+```
+
 # Features
 
 This wrapper exposes several features aimed at simplifying the use of the Vulkan API from Julia. Some features are configurable through the recent [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl) package, see [the corresponding section](@ref preferences) for a list of available options.
@@ -7,7 +13,6 @@ This wrapper exposes several features aimed at simplifying the use of the Vulkan
 [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) is used for error handling. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `Result`, which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
 
 ```@example main
-using Vulkan
 res = create_instance(InstanceCreateInfo([], []))
 if iserror(res) # handle the error
     err = unwrap_error(res)
