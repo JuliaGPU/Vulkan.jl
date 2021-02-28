@@ -71,10 +71,10 @@ When multiple info structures are requested, only the main one is exposed
 
 ```julia
 # the ApplicationInfo has to be provided manually
-instance = Instance(String[], String[]; application_info = ApplicationInfo(...))
+instance = Instance([], []; application_info = ApplicationInfo(...))
 ...
 # the array of DeviceQueueCreateInfo has to be provided manually
-device = Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], String[], String[])
+device = Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
 ```
 
 When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the create_\* function manually

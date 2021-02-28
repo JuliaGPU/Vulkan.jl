@@ -16,7 +16,7 @@ end
 
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan
-    instance = unwrap(Instance(String[], String[]))
+    instance = unwrap(Instance([], []))
     physical_device = first(unwrap(enumerate_physical_devices(instance)))
 end)
 
