@@ -33,7 +33,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
     test_doc(func_by_name(:vkEnumerateInstanceExtensionProperties),
     """
 
-        enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+        enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
 
     Return codes:
     - Success:
@@ -52,7 +52,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
     test_doc(func_by_name(:vkDestroyDevice),
     """
 
-        destroy_device(device::Device; allocator = C_NULL)
+        destroy_device(device::Device; allocator = C_NULL)::Cvoid
 
     Arguments:
     - `device::Device` (externsync)

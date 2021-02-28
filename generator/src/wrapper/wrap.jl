@@ -52,9 +52,9 @@ function from_vk_call(x::Spec)
         end
 
         GuardBy(is_length) => nothing
-        if x.type ∈ spec_flags.name end => prop
         _ => @match t = x.type begin
             :Cstring => :(unsafe_string($prop))
+            GuardBy(in(spec_flags.name)) => prop
             GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(x.type))($prop))
             GuardBy(is_ntuple) && if ntuple_type(x.type) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(x.type))), $prop))
             if follow_constant(t) == jtype end => prop
@@ -97,11 +97,11 @@ wrap_return(ex, type, jtype) = @match t = type begin
     GuardBy(is_opaque_pointer) => ex
     GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex)) # call handle constructor
     GuardBy(in(vcat(spec_enums.name, spec_bitmasks.name))) => ex # don't change enumeration variables since they won't be wrapped under a new name
-    if is_fn_ptr(type) || follow_constant(type) == jtype end => ex # Vulkan and Julian types are the same (up to aliases)
+    if is_fn_ptr(type) || follow_constant(type) == jtype || innermost_type(type) ∈ spec_flags.name end => ex # Vulkan and Julian types are the same (up to aliases)
     _ => :(from_vk($jtype, $ex)) # fall back to the from_vk function for conversion
 end
 
-wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr=false) = length(params) == 1 ? wrap_implicit_return(first(params); with_func_ptr) : Expr(:tuple, wrap_implicit_return.(params; with_func_ptr)...)
+_wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr=false) = length(params) == 1 ? _wrap_implicit_return(first(params); with_func_ptr) : Expr(:tuple, _wrap_implicit_return.(params; with_func_ptr)...)
 
 function is_query_param(param::SpecFuncParam)
     params = func_by_name(param.func).params
@@ -117,7 +117,7 @@ automatically checked and not returned by the wrapper.
 Such implicit return parameters are `Ref`s or `Vector`s holding either a base type or an API struct Vk*.
 They need to be converted by the wrapper to their wrapping type.
 """
-function wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = false)
+function _wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = false)
     p = return_param
     @assert is_ptr(p.type) "Invalid implicit return parameter API type. Expected $(p.type) <: Ptr"
     pt = follow_alias(ptr_type(p.type))
@@ -136,6 +136,14 @@ function wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = false
     @match p begin
         if pt ∈ spec_handles.name end => wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex, with_func_ptr)
         _ => ex
+    end
+end
+
+function wrap_implicit_return(spec::SpecFunc, args...; kwargs...)
+    ex = _wrap_implicit_return(args...; kwargs...)
+    @match length(spec.success_codes) begin
+        0 || 1 => ex
+        _ => (:(($ex, _return_code)))
     end
 end
 
@@ -164,6 +172,18 @@ function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Exp
     end
 
     wrap_implicit_handle_return(args..., with_func_ptr)
+end
+
+function wrap_return_type(spec::SpecFunc, ret_type)
+    ret_type = @match length(spec.success_codes) begin
+        0 || 1 => ret_type
+        _ => :(Tuple{$ret_type, VkResult})
+    end
+
+    @match spec.return_type begin
+        :VkResult => :(Result{$ret_type,VulkanError})
+        _ => ret_type
+    end
 end
 
 """
@@ -246,16 +266,13 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
             $(wrap_api_call(spec, first_call_args; with_func_ptr))
             $((:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...)
             $(wrap_api_call(spec, second_call_args; with_func_ptr))
-        end, wrap_implicit_return(queried_params; with_func_ptr))
+        end, wrap_implicit_return(spec, queried_params; with_func_ptr))
 
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
 
-        if spec.return_type == :VkResult
-            p[:return_type] = if length(queried_params) == 1
-                :(Result{Vector{$(remove_vk_prefix(ptr_type(first(queried_params).type)))}, VulkanError})
-            else
-                :(Result{$(Expr(:curly, :Tuple, (:(Vector{$(remove_vk_prefix(ptr_type(param.type)))}) for param ∈ queried_params)...)), VulkanError})
-            end
+        ret_type = @match length(queried_params) begin
+            1 => :(Vector{$(remove_vk_prefix(ptr_type(first(queried_params).type)))})
+            _ => Expr(:curly, :Tuple, (:(Vector{$(remove_vk_prefix(ptr_type(param.type)))}) for param ∈ queried_params)...)
         end
     elseif !isempty(queried_params)
         call_args = map(@λ(begin
@@ -266,16 +283,13 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         p[:body] = concat_exs(quote
             $(map(initialize_ptr, queried_params)...)
             $(wrap_api_call(spec, call_args; with_func_ptr))
-        end, wrap_implicit_return(queried_params; with_func_ptr))
+        end, wrap_implicit_return(spec, queried_params; with_func_ptr))
 
         args = filter(!in(filter(x -> x.requirement ≠ POINTER_REQUIRED, queried_params)), children(spec))
 
-        if spec.return_type == :VkResult
-            p[:return_type] = if length(queried_params) == 1
-                :(Result{$(nice_julian_type(first(queried_params))), VulkanError})
-            else
-                :(Result{$(Expr(:curly, :Tuple, (nice_julian_type(param) for param ∈ queried_params)...)), VulkanError})
-            end
+        ret_type = @match length(queried_params) begin
+            1 => nice_julian_type(first(queried_params))
+            _ => Expr(:curly, :Tuple, (nice_julian_type(param) for param ∈ queried_params)...)
         end
     else
         p[:short] = true
@@ -283,13 +297,11 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
 
         args = children(spec)
 
-        if spec.return_type == :VkResult
-            p[:return_type] = :(Result{Int, VulkanError})
-        end
+        ret_type = nice_julian_type(spec.return_type)
     end
 
     add_func_args!(p, spec, args; with_func_ptr)
-
+    p[:return_type] = wrap_return_type(spec, ret_type)
     p
 end
 

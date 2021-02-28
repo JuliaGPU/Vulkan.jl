@@ -20,7 +20,7 @@ Arguments:
 create_instance
 
 """
-    destroy_instance(instance::Instance; allocator = C_NULL)
+    destroy_instance(instance::Instance; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `instance::Instance` (externsync)
@@ -30,7 +30,7 @@ Arguments:
 destroy_instance
 
 """
-    enumerate_physical_devices(instance::Instance)::Result{Vector{PhysicalDevice}, VulkanError}
+    enumerate_physical_devices(instance::Instance)::Result{Tuple{Vector{PhysicalDevice}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -48,7 +48,7 @@ Arguments:
 enumerate_physical_devices
 
 """
-    get_device_proc_addr(device::Device, name::AbstractString)
+    get_device_proc_addr(device::Device, name::AbstractString)::FunctionPtr
 
 Arguments:
 - `device::Device`
@@ -58,7 +58,7 @@ Arguments:
 get_device_proc_addr
 
 """
-    get_instance_proc_addr(name::AbstractString; instance = C_NULL)
+    get_instance_proc_addr(name::AbstractString; instance = C_NULL)::FunctionPtr
 
 Arguments:
 - `name::AbstractString`
@@ -68,7 +68,7 @@ Arguments:
 get_instance_proc_addr
 
 """
-    get_physical_device_properties(physical_device::PhysicalDevice)
+    get_physical_device_properties(physical_device::PhysicalDevice)::PhysicalDeviceProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -77,7 +77,7 @@ Arguments:
 get_physical_device_properties
 
 """
-    get_physical_device_queue_family_properties(physical_device::PhysicalDevice)
+    get_physical_device_queue_family_properties(physical_device::PhysicalDevice)::Vector{QueueFamilyProperties}
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -86,7 +86,7 @@ Arguments:
 get_physical_device_queue_family_properties
 
 """
-    get_physical_device_memory_properties(physical_device::PhysicalDevice)
+    get_physical_device_memory_properties(physical_device::PhysicalDevice)::PhysicalDeviceMemoryProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -95,7 +95,7 @@ Arguments:
 get_physical_device_memory_properties
 
 """
-    get_physical_device_features(physical_device::PhysicalDevice)
+    get_physical_device_features(physical_device::PhysicalDevice)::PhysicalDeviceFeatures
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -104,7 +104,7 @@ Arguments:
 get_physical_device_features
 
 """
-    get_physical_device_format_properties(physical_device::PhysicalDevice, format::VkFormat)
+    get_physical_device_format_properties(physical_device::PhysicalDevice, format::VkFormat)::FormatProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -159,7 +159,7 @@ Arguments:
 create_device
 
 """
-    destroy_device(device::Device; allocator = C_NULL)
+    destroy_device(device::Device; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device` (externsync)
@@ -183,7 +183,7 @@ Arguments:
 enumerate_instance_version
 
 """
-    enumerate_instance_layer_properties()::Result{Vector{LayerProperties}, VulkanError}
+    enumerate_instance_layer_properties()::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -199,7 +199,7 @@ Arguments:
 enumerate_instance_layer_properties
 
 """
-    enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+    enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -217,7 +217,7 @@ Arguments:
 enumerate_instance_extension_properties
 
 """
-    enumerate_device_layer_properties(physical_device::PhysicalDevice)::Result{Vector{LayerProperties}, VulkanError}
+    enumerate_device_layer_properties(physical_device::PhysicalDevice)::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -234,7 +234,7 @@ Arguments:
 enumerate_device_layer_properties
 
 """
-    enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+    enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -253,7 +253,7 @@ Arguments:
 enumerate_device_extension_properties
 
 """
-    get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer)
+    get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer)::Queue
 
 Arguments:
 - `device::Device`
@@ -264,7 +264,7 @@ Arguments:
 get_device_queue
 
 """
-    queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}; fence = C_NULL)::Result{Int, VulkanError}
+    queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -283,7 +283,7 @@ Arguments:
 queue_submit
 
 """
-    queue_wait_idle(queue::Queue)::Result{Int, VulkanError}
+    queue_wait_idle(queue::Queue)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -300,7 +300,7 @@ Arguments:
 queue_wait_idle
 
 """
-    device_wait_idle(device::Device)::Result{Int, VulkanError}
+    device_wait_idle(device::Device)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -337,7 +337,7 @@ Arguments:
 allocate_memory
 
 """
-    free_memory(device::Device, memory::DeviceMemory; allocator = C_NULL)
+    free_memory(device::Device, memory::DeviceMemory; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -369,7 +369,7 @@ Arguments:
 map_memory
 
 """
-    unmap_memory(device::Device, memory::DeviceMemory)
+    unmap_memory(device::Device, memory::DeviceMemory)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -379,7 +379,7 @@ Arguments:
 unmap_memory
 
 """
-    flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{Int, VulkanError}
+    flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -396,7 +396,7 @@ Arguments:
 flush_mapped_memory_ranges
 
 """
-    invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{Int, VulkanError}
+    invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -413,7 +413,7 @@ Arguments:
 invalidate_mapped_memory_ranges
 
 """
-    get_device_memory_commitment(device::Device, memory::DeviceMemory)
+    get_device_memory_commitment(device::Device, memory::DeviceMemory)::UInt64
 
 Arguments:
 - `device::Device`
@@ -423,7 +423,7 @@ Arguments:
 get_device_memory_commitment
 
 """
-    get_buffer_memory_requirements(device::Device, buffer::Buffer)
+    get_buffer_memory_requirements(device::Device, buffer::Buffer)::MemoryRequirements
 
 Arguments:
 - `device::Device`
@@ -433,7 +433,7 @@ Arguments:
 get_buffer_memory_requirements
 
 """
-    bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::Result{Int, VulkanError}
+    bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -453,7 +453,7 @@ Arguments:
 bind_buffer_memory
 
 """
-    get_image_memory_requirements(device::Device, image::Image)
+    get_image_memory_requirements(device::Device, image::Image)::MemoryRequirements
 
 Arguments:
 - `device::Device`
@@ -463,7 +463,7 @@ Arguments:
 get_image_memory_requirements
 
 """
-    bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::Result{Int, VulkanError}
+    bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -482,7 +482,7 @@ Arguments:
 bind_image_memory
 
 """
-    get_image_sparse_memory_requirements(device::Device, image::Image)
+    get_image_sparse_memory_requirements(device::Device, image::Image)::Vector{SparseImageMemoryRequirements}
 
 Arguments:
 - `device::Device`
@@ -492,7 +492,7 @@ Arguments:
 get_image_sparse_memory_requirements
 
 """
-    get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling)
+    get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling)::Vector{SparseImageFormatProperties}
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -506,7 +506,7 @@ Arguments:
 get_physical_device_sparse_image_format_properties
 
 """
-    queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}; fence = C_NULL)::Result{Int, VulkanError}
+    queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -543,7 +543,7 @@ Arguments:
 create_fence
 
 """
-    destroy_fence(device::Device, fence::Fence; allocator = C_NULL)
+    destroy_fence(device::Device, fence::Fence; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -554,7 +554,7 @@ Arguments:
 destroy_fence
 
 """
-    reset_fences(device::Device, fences::AbstractArray{<:Fence})::Result{Int, VulkanError}
+    reset_fences(device::Device, fences::AbstractArray{<:Fence})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -570,7 +570,7 @@ Arguments:
 reset_fences
 
 """
-    get_fence_status(device::Device, fence::Fence)::Result{Int, VulkanError}
+    get_fence_status(device::Device, fence::Fence)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -589,7 +589,7 @@ Arguments:
 get_fence_status
 
 """
-    wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::Result{Int, VulkanError}
+    wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -628,7 +628,7 @@ Arguments:
 create_semaphore
 
 """
-    destroy_semaphore(device::Device, semaphore::Semaphore; allocator = C_NULL)
+    destroy_semaphore(device::Device, semaphore::Semaphore; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -657,7 +657,7 @@ Arguments:
 create_event
 
 """
-    destroy_event(device::Device, event::Event; allocator = C_NULL)
+    destroy_event(device::Device, event::Event; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -668,7 +668,7 @@ Arguments:
 destroy_event
 
 """
-    get_event_status(device::Device, event::Event)::Result{Int, VulkanError}
+    get_event_status(device::Device, event::Event)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -687,7 +687,7 @@ Arguments:
 get_event_status
 
 """
-    set_event(device::Device, event::Event)::Result{Int, VulkanError}
+    set_event(device::Device, event::Event)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -704,7 +704,7 @@ Arguments:
 set_event
 
 """
-    reset_event(device::Device, event::Event)::Result{Int, VulkanError}
+    reset_event(device::Device, event::Event)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -738,7 +738,7 @@ Arguments:
 create_query_pool
 
 """
-    destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL)
+    destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -749,7 +749,7 @@ Arguments:
 destroy_query_pool
 
 """
-    get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)::Result{Ptr{Cvoid}, VulkanError}
+    get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -773,7 +773,7 @@ Arguments:
 get_query_pool_results
 
 """
-    reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer)
+    reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -804,7 +804,7 @@ Arguments:
 create_buffer
 
 """
-    destroy_buffer(device::Device, buffer::Buffer; allocator = C_NULL)
+    destroy_buffer(device::Device, buffer::Buffer; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -833,7 +833,7 @@ Arguments:
 create_buffer_view
 
 """
-    destroy_buffer_view(device::Device, buffer_view::BufferView; allocator = C_NULL)
+    destroy_buffer_view(device::Device, buffer_view::BufferView; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -862,7 +862,7 @@ Arguments:
 create_image
 
 """
-    destroy_image(device::Device, image::Image; allocator = C_NULL)
+    destroy_image(device::Device, image::Image; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -873,7 +873,7 @@ Arguments:
 destroy_image
 
 """
-    get_image_subresource_layout(device::Device, image::Image, subresource::ImageSubresource)
+    get_image_subresource_layout(device::Device, image::Image, subresource::ImageSubresource)::SubresourceLayout
 
 Arguments:
 - `device::Device`
@@ -902,7 +902,7 @@ Arguments:
 create_image_view
 
 """
-    destroy_image_view(device::Device, image_view::ImageView; allocator = C_NULL)
+    destroy_image_view(device::Device, image_view::ImageView; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -932,7 +932,7 @@ Arguments:
 create_shader_module
 
 """
-    destroy_shader_module(device::Device, shader_module::ShaderModule; allocator = C_NULL)
+    destroy_shader_module(device::Device, shader_module::ShaderModule; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -961,7 +961,7 @@ Arguments:
 create_pipeline_cache
 
 """
-    destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL)
+    destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -972,7 +972,7 @@ Arguments:
 destroy_pipeline_cache
 
 """
-    get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -991,7 +991,7 @@ Arguments:
 get_pipeline_cache_data
 
 """
-    merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::Result{Int, VulkanError}
+    merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -1009,7 +1009,7 @@ Arguments:
 merge_pipeline_caches
 
 """
-    create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+    create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -1030,7 +1030,7 @@ Arguments:
 create_graphics_pipelines
 
 """
-    create_compute_pipelines(device::Device, create_infos::AbstractArray{<:ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+    create_compute_pipelines(device::Device, create_infos::AbstractArray{<:ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -1051,7 +1051,7 @@ Arguments:
 create_compute_pipelines
 
 """
-    destroy_pipeline(device::Device, pipeline::Pipeline; allocator = C_NULL)
+    destroy_pipeline(device::Device, pipeline::Pipeline; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1080,7 +1080,7 @@ Arguments:
 create_pipeline_layout
 
 """
-    destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout; allocator = C_NULL)
+    destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1109,7 +1109,7 @@ Arguments:
 create_sampler
 
 """
-    destroy_sampler(device::Device, sampler::Sampler; allocator = C_NULL)
+    destroy_sampler(device::Device, sampler::Sampler; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1138,7 +1138,7 @@ Arguments:
 create_descriptor_set_layout
 
 """
-    destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout; allocator = C_NULL)
+    destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1168,7 +1168,7 @@ Arguments:
 create_descriptor_pool
 
 """
-    destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; allocator = C_NULL)
+    destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1179,7 +1179,7 @@ Arguments:
 destroy_descriptor_pool
 
 """
-    reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)::Result{Int, VulkanError}
+    reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -1213,7 +1213,7 @@ Arguments:
 allocate_descriptor_sets
 
 """
-    free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::Result{Int, VulkanError}
+    free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -1228,7 +1228,7 @@ Arguments:
 free_descriptor_sets
 
 """
-    update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet})
+    update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet})::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1257,7 +1257,7 @@ Arguments:
 create_framebuffer
 
 """
-    destroy_framebuffer(device::Device, framebuffer::Framebuffer; allocator = C_NULL)
+    destroy_framebuffer(device::Device, framebuffer::Framebuffer; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1286,7 +1286,7 @@ Arguments:
 create_render_pass
 
 """
-    destroy_render_pass(device::Device, render_pass::RenderPass; allocator = C_NULL)
+    destroy_render_pass(device::Device, render_pass::RenderPass; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1297,7 +1297,7 @@ Arguments:
 destroy_render_pass
 
 """
-    get_render_area_granularity(device::Device, render_pass::RenderPass)
+    get_render_area_granularity(device::Device, render_pass::RenderPass)::Extent2D
 
 Arguments:
 - `device::Device`
@@ -1325,7 +1325,7 @@ Arguments:
 create_command_pool
 
 """
-    destroy_command_pool(device::Device, command_pool::CommandPool; allocator = C_NULL)
+    destroy_command_pool(device::Device, command_pool::CommandPool; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1336,7 +1336,7 @@ Arguments:
 destroy_command_pool
 
 """
-    reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Result{Int, VulkanError}
+    reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -1370,7 +1370,7 @@ Arguments:
 allocate_command_buffers
 
 """
-    free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer})
+    free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid
 
 Arguments:
 - `device::Device`
@@ -1381,7 +1381,7 @@ Arguments:
 free_command_buffers
 
 """
-    begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo)::Result{Int, VulkanError}
+    begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -1398,7 +1398,7 @@ Arguments:
 begin_command_buffer
 
 """
-    end_command_buffer(command_buffer::CommandBuffer)::Result{Int, VulkanError}
+    end_command_buffer(command_buffer::CommandBuffer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -1414,7 +1414,7 @@ Arguments:
 end_command_buffer
 
 """
-    reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::Result{Int, VulkanError}
+    reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -1430,7 +1430,7 @@ Arguments:
 reset_command_buffer
 
 """
-    cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline)
+    cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1441,7 +1441,7 @@ Arguments:
 cmd_bind_pipeline
 
 """
-    cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport})
+    cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1451,7 +1451,7 @@ Arguments:
 cmd_set_viewport
 
 """
-    cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D})
+    cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1461,7 +1461,7 @@ Arguments:
 cmd_set_scissor
 
 """
-    cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)
+    cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1471,7 +1471,7 @@ Arguments:
 cmd_set_line_width
 
 """
-    cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real)
+    cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1483,7 +1483,7 @@ Arguments:
 cmd_set_depth_bias
 
 """
-    cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32})
+    cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1493,7 +1493,7 @@ Arguments:
 cmd_set_blend_constants
 
 """
-    cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real)
+    cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1504,7 +1504,7 @@ Arguments:
 cmd_set_depth_bounds
 
 """
-    cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer)
+    cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1515,7 +1515,7 @@ Arguments:
 cmd_set_stencil_compare_mask
 
 """
-    cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer)
+    cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1526,7 +1526,7 @@ Arguments:
 cmd_set_stencil_write_mask
 
 """
-    cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer)
+    cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1537,7 +1537,7 @@ Arguments:
 cmd_set_stencil_reference
 
 """
-    cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})
+    cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1551,7 +1551,7 @@ Arguments:
 cmd_bind_descriptor_sets
 
 """
-    cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType)
+    cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1563,7 +1563,7 @@ Arguments:
 cmd_bind_index_buffer
 
 """
-    cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer})
+    cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1574,7 +1574,7 @@ Arguments:
 cmd_bind_vertex_buffers
 
 """
-    cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)
+    cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1587,7 +1587,7 @@ Arguments:
 cmd_draw
 
 """
-    cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)
+    cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1601,7 +1601,7 @@ Arguments:
 cmd_draw_indexed
 
 """
-    cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)
+    cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1614,7 +1614,7 @@ Arguments:
 cmd_draw_indirect
 
 """
-    cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)
+    cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1627,7 +1627,7 @@ Arguments:
 cmd_draw_indexed_indirect
 
 """
-    cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)
+    cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1639,7 +1639,7 @@ Arguments:
 cmd_dispatch
 
 """
-    cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer)
+    cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1650,7 +1650,7 @@ Arguments:
 cmd_dispatch_indirect
 
 """
-    cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy})
+    cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1662,7 +1662,7 @@ Arguments:
 cmd_copy_buffer
 
 """
-    cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageCopy})
+    cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1676,7 +1676,7 @@ Arguments:
 cmd_copy_image
 
 """
-    cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageBlit}, filter::VkFilter)
+    cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageBlit}, filter::VkFilter)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1691,7 +1691,7 @@ Arguments:
 cmd_blit_image
 
 """
-    cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:BufferImageCopy})
+    cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:BufferImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1704,7 +1704,7 @@ Arguments:
 cmd_copy_buffer_to_image
 
 """
-    cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy})
+    cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1717,7 +1717,7 @@ Arguments:
 cmd_copy_image_to_buffer
 
 """
-    cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})
+    cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1730,7 +1730,7 @@ Arguments:
 cmd_update_buffer
 
 """
-    cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer)
+    cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1743,7 +1743,7 @@ Arguments:
 cmd_fill_buffer
 
 """
-    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange})
+    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1756,7 +1756,7 @@ Arguments:
 cmd_clear_color_image
 
 """
-    cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray{<:ImageSubresourceRange})
+    cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray{<:ImageSubresourceRange})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1769,7 +1769,7 @@ Arguments:
 cmd_clear_depth_stencil_image
 
 """
-    cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:ClearAttachment}, rects::AbstractArray{<:ClearRect})
+    cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:ClearAttachment}, rects::AbstractArray{<:ClearRect})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1780,7 +1780,7 @@ Arguments:
 cmd_clear_attachments
 
 """
-    cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageResolve})
+    cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageResolve})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1794,7 +1794,7 @@ Arguments:
 cmd_resolve_image
 
 """
-    cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)
+    cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1805,7 +1805,7 @@ Arguments:
 cmd_set_event
 
 """
-    cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)
+    cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1816,7 +1816,7 @@ Arguments:
 cmd_reset_event
 
 """
-    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier})
+    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1831,7 +1831,7 @@ Arguments:
 cmd_wait_events
 
 """
-    cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; dependency_flags = 0)
+    cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; dependency_flags = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1846,7 +1846,7 @@ Arguments:
 cmd_pipeline_barrier
 
 """
-    cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0)
+    cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1858,7 +1858,7 @@ Arguments:
 cmd_begin_query
 
 """
-    cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer)
+    cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1869,7 +1869,7 @@ Arguments:
 cmd_end_query
 
 """
-    cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT)
+    cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1879,7 +1879,7 @@ Arguments:
 cmd_begin_conditional_rendering_ext
 
 """
-    cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer)
+    cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1888,7 +1888,7 @@ Arguments:
 cmd_end_conditional_rendering_ext
 
 """
-    cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer)
+    cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1900,7 +1900,7 @@ Arguments:
 cmd_reset_query_pool
 
 """
-    cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer)
+    cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1912,7 +1912,7 @@ Arguments:
 cmd_write_timestamp
 
 """
-    cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)
+    cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1928,7 +1928,7 @@ Arguments:
 cmd_copy_query_pool_results
 
 """
-    cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})
+    cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1941,7 +1941,7 @@ Arguments:
 cmd_push_constants
 
 """
-    cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents)
+    cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1952,7 +1952,7 @@ Arguments:
 cmd_begin_render_pass
 
 """
-    cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents)
+    cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1962,7 +1962,7 @@ Arguments:
 cmd_next_subpass
 
 """
-    cmd_end_render_pass(command_buffer::CommandBuffer)
+    cmd_end_render_pass(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1971,7 +1971,7 @@ Arguments:
 cmd_end_render_pass
 
 """
-    cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer})
+    cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2000,7 +2000,7 @@ Arguments:
 create_android_surface_khr
 
 """
-    get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPropertiesKHR}, VulkanError}
+    get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPropertiesKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2017,7 +2017,7 @@ Arguments:
 get_physical_device_display_properties_khr
 
 """
-    get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
+    get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPlanePropertiesKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2034,7 +2034,7 @@ Arguments:
 get_physical_device_display_plane_properties_khr
 
 """
-    get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::Result{Vector{DisplayKHR}, VulkanError}
+    get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::Result{Tuple{Vector{DisplayKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2052,7 +2052,7 @@ Arguments:
 get_display_plane_supported_displays_khr
 
 """
-    get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModePropertiesKHR}, VulkanError}
+    get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Tuple{Vector{DisplayModePropertiesKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2147,7 +2147,7 @@ Arguments:
 create_shared_swapchains_khr
 
 """
-    destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL)
+    destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `instance::Instance`
@@ -2195,7 +2195,7 @@ Arguments:
 get_physical_device_surface_capabilities_khr
 
 """
-    get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{SurfaceFormatKHR}, VulkanError}
+    get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{SurfaceFormatKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2214,7 +2214,7 @@ Arguments:
 get_physical_device_surface_formats_khr
 
 """
-    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR}, VulkanError}
+    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2255,7 +2255,7 @@ Arguments:
 create_swapchain_khr
 
 """
-    destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL)
+    destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -2266,7 +2266,7 @@ Arguments:
 destroy_swapchain_khr
 
 """
-    get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Vector{Image}, VulkanError}
+    get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Tuple{Vector{Image}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2284,7 +2284,7 @@ Arguments:
 get_swapchain_images_khr
 
 """
-    acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::Result{UInt32, VulkanError}
+    acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::Result{Tuple{UInt32, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2311,7 +2311,7 @@ Arguments:
 acquire_next_image_khr
 
 """
-    queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{Int, VulkanError}
+    queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -2370,7 +2370,7 @@ Arguments:
 create_wayland_surface_khr
 
 """
-    get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display)
+    get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display)::Bool
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2399,7 +2399,7 @@ Arguments:
 create_win_32_surface_khr
 
 """
-    get_physical_device_win_32_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer)
+    get_physical_device_win_32_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Bool
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2427,7 +2427,7 @@ Arguments:
 create_xlib_surface_khr
 
 """
-    get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID)
+    get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID)::Bool
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2457,7 +2457,7 @@ Arguments:
 create_xcb_surface_khr
 
 """
-    get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t)
+    get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t)::Bool
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2487,7 +2487,7 @@ Arguments:
 create_direct_fb_surface_ext
 
 """
-    get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB)
+    get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB)::Bool
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2552,7 +2552,7 @@ Arguments:
 create_debug_report_callback_ext
 
 """
-    destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL)
+    destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `instance::Instance`
@@ -2563,7 +2563,7 @@ Arguments:
 destroy_debug_report_callback_ext
 
 """
-    debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)
+    debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)::Cvoid
 
 Arguments:
 - `instance::Instance`
@@ -2579,7 +2579,7 @@ Arguments:
 debug_report_message_ext
 
 """
-    debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT)::Result{Int, VulkanError}
+    debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -2596,7 +2596,7 @@ Arguments:
 debug_marker_set_object_name_ext
 
 """
-    debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT)::Result{Int, VulkanError}
+    debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -2613,7 +2613,7 @@ Arguments:
 debug_marker_set_object_tag_ext
 
 """
-    cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)
+    cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2623,7 +2623,7 @@ Arguments:
 cmd_debug_marker_begin_ext
 
 """
-    cmd_debug_marker_end_ext(command_buffer::CommandBuffer)
+    cmd_debug_marker_end_ext(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2632,7 +2632,7 @@ Arguments:
 cmd_debug_marker_end_ext
 
 """
-    cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)
+    cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2665,7 +2665,7 @@ Arguments:
 get_physical_device_external_image_format_properties_nv
 
 """
-    get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::Result{Int, VulkanError}
+    get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -2684,7 +2684,7 @@ Arguments:
 get_memory_win_32_handle_nv
 
 """
-    cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV)
+    cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2695,7 +2695,7 @@ Arguments:
 cmd_execute_generated_commands_nv
 
 """
-    cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::GeneratedCommandsInfoNV)
+    cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::GeneratedCommandsInfoNV)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2705,7 +2705,7 @@ Arguments:
 cmd_preprocess_generated_commands_nv
 
 """
-    cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, group_index::Integer)
+    cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, group_index::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2717,7 +2717,7 @@ Arguments:
 cmd_bind_pipeline_shader_group_nv
 
 """
-    get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)
+    get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
 
 Arguments:
 - `device::Device`
@@ -2745,7 +2745,7 @@ Arguments:
 create_indirect_commands_layout_nv
 
 """
-    destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV; allocator = C_NULL)
+    destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -2756,7 +2756,7 @@ Arguments:
 destroy_indirect_commands_layout_nv
 
 """
-    get_physical_device_features_2(physical_device::PhysicalDevice)
+    get_physical_device_features_2(physical_device::PhysicalDevice)::PhysicalDeviceFeatures2
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2765,7 +2765,7 @@ Arguments:
 get_physical_device_features_2
 
 """
-    get_physical_device_properties_2(physical_device::PhysicalDevice)
+    get_physical_device_properties_2(physical_device::PhysicalDevice)::PhysicalDeviceProperties2
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2774,7 +2774,7 @@ Arguments:
 get_physical_device_properties_2
 
 """
-    get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::VkFormat)
+    get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::VkFormat)::FormatProperties2
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2802,7 +2802,7 @@ Arguments:
 get_physical_device_image_format_properties_2
 
 """
-    get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)
+    get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)::Vector{QueueFamilyProperties2}
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2811,7 +2811,7 @@ Arguments:
 get_physical_device_queue_family_properties_2
 
 """
-    get_physical_device_memory_properties_2(physical_device::PhysicalDevice)
+    get_physical_device_memory_properties_2(physical_device::PhysicalDevice)::PhysicalDeviceMemoryProperties2
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2820,7 +2820,7 @@ Arguments:
 get_physical_device_memory_properties_2
 
 """
-    get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2)
+    get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2)::Vector{SparseImageFormatProperties2}
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2830,7 +2830,7 @@ Arguments:
 get_physical_device_sparse_image_format_properties_2
 
 """
-    cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet})
+    cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2843,7 +2843,7 @@ Arguments:
 cmd_push_descriptor_set_khr
 
 """
-    trim_command_pool(device::Device, command_pool::CommandPool; flags = 0)
+    trim_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -2854,7 +2854,7 @@ Arguments:
 trim_command_pool
 
 """
-    get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo)
+    get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo)::ExternalBufferProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2864,7 +2864,7 @@ Arguments:
 get_physical_device_external_buffer_properties
 
 """
-    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{Int, VulkanError}
+    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -2935,7 +2935,7 @@ Arguments:
 get_memory_fd_properties_khr
 
 """
-    get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo)
+    get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo)::ExternalSemaphoreProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2945,7 +2945,7 @@ Arguments:
 get_physical_device_external_semaphore_properties
 
 """
-    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{Int, VulkanError}
+    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -2963,7 +2963,7 @@ Arguments:
 get_semaphore_win_32_handle_khr
 
 """
-    import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR)::Result{Int, VulkanError}
+    import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -2997,7 +2997,7 @@ Arguments:
 get_semaphore_fd_khr
 
 """
-    import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR)::Result{Int, VulkanError}
+    import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3014,7 +3014,7 @@ Arguments:
 import_semaphore_fd_khr
 
 """
-    get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo)
+    get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo)::ExternalFenceProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3024,7 +3024,7 @@ Arguments:
 get_physical_device_external_fence_properties
 
 """
-    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{Int, VulkanError}
+    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3042,7 +3042,7 @@ Arguments:
 get_fence_win_32_handle_khr
 
 """
-    import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR)::Result{Int, VulkanError}
+    import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3076,7 +3076,7 @@ Arguments:
 get_fence_fd_khr
 
 """
-    import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR)::Result{Int, VulkanError}
+    import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3093,7 +3093,7 @@ Arguments:
 import_fence_fd_khr
 
 """
-    release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Int, VulkanError}
+    release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3107,7 +3107,7 @@ Arguments:
 release_display_ext
 
 """
-    acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::Result{Int, VulkanError}
+    acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3142,7 +3142,7 @@ Arguments:
 get_rand_r_output_display_ext
 
 """
-    display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{Int, VulkanError}
+    display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3231,7 +3231,7 @@ Arguments:
 get_physical_device_surface_capabilities_2_ext
 
 """
-    enumerate_physical_device_groups(instance::Instance)::Result{Vector{PhysicalDeviceGroupProperties}, VulkanError}
+    enumerate_physical_device_groups(instance::Instance)::Result{Tuple{Vector{PhysicalDeviceGroupProperties}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3249,7 +3249,7 @@ Arguments:
 enumerate_physical_device_groups
 
 """
-    get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)
+    get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)::PeerMemoryFeatureFlag
 
 Arguments:
 - `device::Device`
@@ -3261,7 +3261,7 @@ Arguments:
 get_device_group_peer_memory_features
 
 """
-    bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo})::Result{Int, VulkanError}
+    bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3279,7 +3279,7 @@ Arguments:
 bind_buffer_memory_2
 
 """
-    bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo})::Result{Int, VulkanError}
+    bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3296,7 +3296,7 @@ Arguments:
 bind_image_memory_2
 
 """
-    cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer)
+    cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -3322,7 +3322,7 @@ Arguments:
 get_device_group_present_capabilities_khr
 
 """
-    get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::Integer)::Result{UInt32, VulkanError}
+    get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
 - Success:
@@ -3335,13 +3335,13 @@ Return codes:
 Arguments:
 - `device::Device`
 - `surface::SurfaceKHR` (externsync)
-- `modes::Integer`
+- `modes::DeviceGroupPresentModeFlagKHR`
 
 """
 get_device_group_surface_present_modes_khr
 
 """
-    acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR)::Result{UInt32, VulkanError}
+    acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR)::Result{Tuple{UInt32, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3365,7 +3365,7 @@ Arguments:
 acquire_next_image_2_khr
 
 """
-    cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)
+    cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -3380,7 +3380,7 @@ Arguments:
 cmd_dispatch_base
 
 """
-    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{Rect2D}, VulkanError}
+    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{Rect2D}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3416,7 +3416,7 @@ Arguments:
 create_descriptor_update_template
 
 """
-    destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL)
+    destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -3427,7 +3427,7 @@ Arguments:
 destroy_descriptor_update_template
 
 """
-    update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})
+    update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})::Cvoid
 
 Arguments:
 - `device::Device`
@@ -3439,7 +3439,7 @@ Arguments:
 update_descriptor_set_with_template
 
 """
-    cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})
+    cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -3452,7 +3452,7 @@ Arguments:
 cmd_push_descriptor_set_with_template_khr
 
 """
-    set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:HdrMetadataEXT})
+    set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:HdrMetadataEXT})::Cvoid
 
 Arguments:
 - `device::Device`
@@ -3463,7 +3463,7 @@ Arguments:
 set_hdr_metadata_ext
 
 """
-    get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{Int, VulkanError}
+    get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3503,7 +3503,7 @@ Arguments:
 get_refresh_cycle_duration_google
 
 """
-    get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
+    get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::Result{Tuple{Vector{PastPresentationTimingGOOGLE}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3580,7 +3580,7 @@ Arguments:
 create_metal_surface_ext
 
 """
-    cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:ViewportWScalingNV})
+    cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:ViewportWScalingNV})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -3590,7 +3590,7 @@ Arguments:
 cmd_set_viewport_w_scaling_nv
 
 """
-    cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:Rect2D})
+    cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -3600,7 +3600,7 @@ Arguments:
 cmd_set_discard_rectangle_ext
 
 """
-    cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT)
+    cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -3610,7 +3610,7 @@ Arguments:
 cmd_set_sample_locations_ext
 
 """
-    get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)
+    get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)::MultisamplePropertiesEXT
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3638,7 +3638,7 @@ Arguments:
 get_physical_device_surface_capabilities_2_khr
 
 """
-    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{SurfaceFormat2KHR}, VulkanError}
+    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Tuple{Vector{SurfaceFormat2KHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3657,7 +3657,7 @@ Arguments:
 get_physical_device_surface_formats_2_khr
 
 """
-    get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayProperties2KHR}, VulkanError}
+    get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayProperties2KHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3674,7 +3674,7 @@ Arguments:
 get_physical_device_display_properties_2_khr
 
 """
-    get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
+    get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPlaneProperties2KHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3691,7 +3691,7 @@ Arguments:
 get_physical_device_display_plane_properties_2_khr
 
 """
-    get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModeProperties2KHR}, VulkanError}
+    get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Tuple{Vector{DisplayModeProperties2KHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3726,7 +3726,7 @@ Arguments:
 get_display_plane_capabilities_2_khr
 
 """
-    get_buffer_memory_requirements_2(device::Device, info::BufferMemoryRequirementsInfo2)
+    get_buffer_memory_requirements_2(device::Device, info::BufferMemoryRequirementsInfo2)::MemoryRequirements2
 
 Arguments:
 - `device::Device`
@@ -3736,7 +3736,7 @@ Arguments:
 get_buffer_memory_requirements_2
 
 """
-    get_image_memory_requirements_2(device::Device, info::ImageMemoryRequirementsInfo2)
+    get_image_memory_requirements_2(device::Device, info::ImageMemoryRequirementsInfo2)::MemoryRequirements2
 
 Arguments:
 - `device::Device`
@@ -3746,7 +3746,7 @@ Arguments:
 get_image_memory_requirements_2
 
 """
-    get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2)
+    get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2)::Vector{SparseImageMemoryRequirements2}
 
 Arguments:
 - `device::Device`
@@ -3774,7 +3774,7 @@ Arguments:
 create_sampler_ycbcr_conversion
 
 """
-    destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion; allocator = C_NULL)
+    destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -3785,7 +3785,7 @@ Arguments:
 destroy_sampler_ycbcr_conversion
 
 """
-    get_device_queue_2(device::Device, queue_info::DeviceQueueInfo2)
+    get_device_queue_2(device::Device, queue_info::DeviceQueueInfo2)::Queue
 
 Arguments:
 - `device::Device`
@@ -3812,7 +3812,7 @@ Arguments:
 create_validation_cache_ext
 
 """
-    destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL)
+    destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -3823,7 +3823,7 @@ Arguments:
 destroy_validation_cache_ext
 
 """
-    get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3842,7 +3842,7 @@ Arguments:
 get_validation_cache_data_ext
 
 """
-    merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::Result{Int, VulkanError}
+    merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3860,7 +3860,7 @@ Arguments:
 merge_validation_caches_ext
 
 """
-    get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)
+    get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
 
 Arguments:
 - `device::Device`
@@ -3870,7 +3870,7 @@ Arguments:
 get_descriptor_set_layout_support
 
 """
-    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3891,7 +3891,7 @@ Arguments:
 get_shader_info_amd
 
 """
-    set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)
+    set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -3902,7 +3902,7 @@ Arguments:
 set_local_dimming_amd
 
 """
-    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{TimeDomainEXT}, VulkanError}
+    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Tuple{Vector{TimeDomainEXT}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3936,7 +3936,7 @@ Arguments:
 get_calibrated_timestamps_ext
 
 """
-    set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT)::Result{Int, VulkanError}
+    set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3953,7 +3953,7 @@ Arguments:
 set_debug_utils_object_name_ext
 
 """
-    set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT)::Result{Int, VulkanError}
+    set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3970,7 +3970,7 @@ Arguments:
 set_debug_utils_object_tag_ext
 
 """
-    queue_begin_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)
+    queue_begin_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `queue::Queue`
@@ -3980,7 +3980,7 @@ Arguments:
 queue_begin_debug_utils_label_ext
 
 """
-    queue_end_debug_utils_label_ext(queue::Queue)
+    queue_end_debug_utils_label_ext(queue::Queue)::Cvoid
 
 Arguments:
 - `queue::Queue`
@@ -3989,7 +3989,7 @@ Arguments:
 queue_end_debug_utils_label_ext
 
 """
-    queue_insert_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)
+    queue_insert_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `queue::Queue`
@@ -3999,7 +3999,7 @@ Arguments:
 queue_insert_debug_utils_label_ext
 
 """
-    cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)
+    cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4009,7 +4009,7 @@ Arguments:
 cmd_begin_debug_utils_label_ext
 
 """
-    cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer)
+    cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4018,7 +4018,7 @@ Arguments:
 cmd_end_debug_utils_label_ext
 
 """
-    cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)
+    cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4045,7 +4045,7 @@ Arguments:
 create_debug_utils_messenger_ext
 
 """
-    destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL)
+    destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `instance::Instance`
@@ -4056,7 +4056,7 @@ Arguments:
 destroy_debug_utils_messenger_ext
 
 """
-    submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)
+    submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)::Cvoid
 
 Arguments:
 - `instance::Instance`
@@ -4086,7 +4086,7 @@ Arguments:
 get_memory_host_pointer_properties_ext
 
 """
-    cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)
+    cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4117,7 +4117,7 @@ Arguments:
 create_render_pass_2
 
 """
-    cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, subpass_begin_info::SubpassBeginInfo)
+    cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, subpass_begin_info::SubpassBeginInfo)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4128,7 +4128,7 @@ Arguments:
 cmd_begin_render_pass_2
 
 """
-    cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::SubpassBeginInfo, subpass_end_info::SubpassEndInfo)
+    cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::SubpassBeginInfo, subpass_end_info::SubpassEndInfo)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4139,7 +4139,7 @@ Arguments:
 cmd_next_subpass_2
 
 """
-    cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::SubpassEndInfo)
+    cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::SubpassEndInfo)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4167,7 +4167,7 @@ Arguments:
 get_semaphore_counter_value
 
 """
-    wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{Int, VulkanError}
+    wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4187,7 +4187,7 @@ Arguments:
 wait_semaphores
 
 """
-    signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo)::Result{Int, VulkanError}
+    signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4238,7 +4238,7 @@ Arguments:
 get_memory_android_hardware_buffer_android
 
 """
-    cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)
+    cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4253,7 +4253,7 @@ Arguments:
 cmd_draw_indirect_count
 
 """
-    cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)
+    cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4268,7 +4268,7 @@ Arguments:
 cmd_draw_indexed_indirect_count
 
 """
-    cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})
+    cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4278,7 +4278,7 @@ Arguments:
 cmd_set_checkpoint_nv
 
 """
-    get_queue_checkpoint_data_nv(queue::Queue)
+    get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
 
 Arguments:
 - `queue::Queue`
@@ -4287,7 +4287,7 @@ Arguments:
 get_queue_checkpoint_data_nv
 
 """
-    cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL)
+    cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4299,7 +4299,7 @@ Arguments:
 cmd_bind_transform_feedback_buffers_ext
 
 """
-    cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)
+    cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4310,7 +4310,7 @@ Arguments:
 cmd_begin_transform_feedback_ext
 
 """
-    cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)
+    cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4321,7 +4321,7 @@ Arguments:
 cmd_end_transform_feedback_ext
 
 """
-    cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)
+    cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4334,7 +4334,7 @@ Arguments:
 cmd_begin_query_indexed_ext
 
 """
-    cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer)
+    cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4346,7 +4346,7 @@ Arguments:
 cmd_end_query_indexed_ext
 
 """
-    cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer)
+    cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4361,7 +4361,7 @@ Arguments:
 cmd_draw_indirect_byte_count_ext
 
 """
-    cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:Rect2D})
+    cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4371,7 +4371,7 @@ Arguments:
 cmd_set_exclusive_scissor_nv
 
 """
-    cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout; image_view = C_NULL)
+    cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout; image_view = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4382,7 +4382,7 @@ Arguments:
 cmd_bind_shading_rate_image_nv
 
 """
-    cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV})
+    cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4392,7 +4392,7 @@ Arguments:
 cmd_set_viewport_shading_rate_palette_nv
 
 """
-    cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV})
+    cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4403,7 +4403,7 @@ Arguments:
 cmd_set_coarse_sample_order_nv
 
 """
-    cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer)
+    cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4414,7 +4414,7 @@ Arguments:
 cmd_draw_mesh_tasks_nv
 
 """
-    cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)
+    cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4427,7 +4427,7 @@ Arguments:
 cmd_draw_mesh_tasks_indirect_nv
 
 """
-    cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)
+    cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4442,7 +4442,7 @@ Arguments:
 cmd_draw_mesh_tasks_indirect_count_nv
 
 """
-    compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::Result{Int, VulkanError}
+    compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4477,7 +4477,7 @@ Arguments:
 create_acceleration_structure_nv
 
 """
-    destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL)
+    destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -4488,7 +4488,7 @@ Arguments:
 destroy_acceleration_structure_khr
 
 """
-    get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR)
+    get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR)::MemoryRequirements2
 
 Arguments:
 - `device::Device`
@@ -4498,7 +4498,7 @@ Arguments:
 get_acceleration_structure_memory_requirements_khr
 
 """
-    get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)
+    get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
 
 Arguments:
 - `device::Device`
@@ -4508,7 +4508,7 @@ Arguments:
 get_acceleration_structure_memory_requirements_nv
 
 """
-    bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoKHR})::Result{Int, VulkanError}
+    bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoKHR})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4525,7 +4525,7 @@ Arguments:
 bind_acceleration_structure_memory_khr
 
 """
-    cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR)
+    cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4537,7 +4537,7 @@ Arguments:
 cmd_copy_acceleration_structure_nv
 
 """
-    cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR)
+    cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4547,7 +4547,7 @@ Arguments:
 cmd_copy_acceleration_structure_khr
 
 """
-    copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{Int, VulkanError}
+    copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4566,7 +4566,7 @@ Arguments:
 copy_acceleration_structure_khr
 
 """
-    cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR)
+    cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4576,7 +4576,7 @@ Arguments:
 cmd_copy_acceleration_structure_to_memory_khr
 
 """
-    copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{Int, VulkanError}
+    copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4595,7 +4595,7 @@ Arguments:
 copy_acceleration_structure_to_memory_khr
 
 """
-    cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR)
+    cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4605,7 +4605,7 @@ Arguments:
 cmd_copy_memory_to_acceleration_structure_khr
 
 """
-    copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{Int, VulkanError}
+    copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4624,7 +4624,7 @@ Arguments:
 copy_memory_to_acceleration_structure_khr
 
 """
-    cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)
+    cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4637,7 +4637,7 @@ Arguments:
 cmd_write_acceleration_structures_properties_khr
 
 """
-    cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)
+    cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4674,7 +4674,7 @@ Arguments:
 write_acceleration_structures_properties_khr
 
 """
-    cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer)
+    cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4690,7 +4690,7 @@ Arguments:
 cmd_trace_rays_khr
 
 """
-    cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)
+    cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4771,7 +4771,7 @@ Arguments:
 get_acceleration_structure_handle_nv
 
 """
-    create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+    create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4792,7 +4792,7 @@ Arguments:
 create_ray_tracing_pipelines_nv
 
 """
-    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4815,7 +4815,7 @@ Arguments:
 create_ray_tracing_pipelines_khr
 
 """
-    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Vector{CooperativeMatrixPropertiesNV}, VulkanError}
+    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Tuple{Vector{CooperativeMatrixPropertiesNV}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4832,7 +4832,7 @@ Arguments:
 get_physical_device_cooperative_matrix_properties_nv
 
 """
-    cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer)
+    cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4847,7 +4847,7 @@ Arguments:
 cmd_trace_rays_indirect_khr
 
 """
-    get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR)::Result{Int, VulkanError}
+    get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4863,7 +4863,7 @@ Arguments:
 get_device_acceleration_structure_compatibility_khr
 
 """
-    get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX)
+    get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX)::UInt32
 
 Arguments:
 - `device::Device`
@@ -4890,7 +4890,7 @@ Arguments:
 get_image_view_address_nvx
 
 """
-    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{PresentModeKHR}, VulkanError}
+    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4909,7 +4909,7 @@ Arguments:
 get_physical_device_surface_present_modes_2_ext
 
 """
-    get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::Integer)::Result{UInt32, VulkanError}
+    get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
 - Success:
@@ -4922,13 +4922,13 @@ Return codes:
 Arguments:
 - `device::Device`
 - `surface_info::PhysicalDeviceSurfaceInfo2KHR`
-- `modes::Integer`
+- `modes::DeviceGroupPresentModeFlagKHR`
 
 """
 get_device_group_surface_present_modes_2_ext
 
 """
-    acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{Int, VulkanError}
+    acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4947,7 +4947,7 @@ Arguments:
 acquire_full_screen_exclusive_mode_ext
 
 """
-    release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{Int, VulkanError}
+    release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4965,7 +4965,7 @@ Arguments:
 release_full_screen_exclusive_mode_ext
 
 """
-    enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
+    enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4984,7 +4984,7 @@ Arguments:
 enumerate_physical_device_queue_family_performance_query_counters_khr
 
 """
-    get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::QueryPoolPerformanceCreateInfoKHR)
+    get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::QueryPoolPerformanceCreateInfoKHR)::UInt32
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -4994,7 +4994,7 @@ Arguments:
 get_physical_device_queue_family_performance_query_passes_khr
 
 """
-    acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR)::Result{Int, VulkanError}
+    acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5011,7 +5011,7 @@ Arguments:
 acquire_profiling_lock_khr
 
 """
-    release_profiling_lock_khr(device::Device)
+    release_profiling_lock_khr(device::Device)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -5036,7 +5036,7 @@ Arguments:
 get_image_drm_format_modifier_properties_ext
 
 """
-    get_buffer_opaque_capture_address(device::Device, info::BufferDeviceAddressInfo)
+    get_buffer_opaque_capture_address(device::Device, info::BufferDeviceAddressInfo)::UInt64
 
 Arguments:
 - `device::Device`
@@ -5046,7 +5046,7 @@ Arguments:
 get_buffer_opaque_capture_address
 
 """
-    get_buffer_device_address(device::Device, info::BufferDeviceAddressInfo)
+    get_buffer_device_address(device::Device, info::BufferDeviceAddressInfo)::UInt64
 
 Arguments:
 - `device::Device`
@@ -5074,7 +5074,7 @@ Arguments:
 create_headless_surface_ext
 
 """
-    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
+    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::Result{Tuple{Vector{FramebufferMixedSamplesCombinationNV}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5091,7 +5091,7 @@ Arguments:
 get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
 
 """
-    initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL)::Result{Int, VulkanError}
+    initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5108,7 +5108,7 @@ Arguments:
 initialize_performance_api_intel
 
 """
-    uninitialize_performance_api_intel(device::Device)
+    uninitialize_performance_api_intel(device::Device)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -5117,7 +5117,7 @@ Arguments:
 uninitialize_performance_api_intel
 
 """
-    cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL)::Result{Int, VulkanError}
+    cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5134,7 +5134,7 @@ Arguments:
 cmd_set_performance_marker_intel
 
 """
-    cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL)::Result{Int, VulkanError}
+    cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5151,7 +5151,7 @@ Arguments:
 cmd_set_performance_stream_marker_intel
 
 """
-    cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL)::Result{Int, VulkanError}
+    cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5185,7 +5185,7 @@ Arguments:
 acquire_performance_configuration_intel
 
 """
-    release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL)::Result{Int, VulkanError}
+    release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5202,7 +5202,7 @@ Arguments:
 release_performance_configuration_intel
 
 """
-    queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::Result{Int, VulkanError}
+    queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5236,7 +5236,7 @@ Arguments:
 get_performance_parameter_intel
 
 """
-    get_device_memory_opaque_capture_address(device::Device, info::DeviceMemoryOpaqueCaptureAddressInfo)
+    get_device_memory_opaque_capture_address(device::Device, info::DeviceMemoryOpaqueCaptureAddressInfo)::UInt64
 
 Arguments:
 - `device::Device`
@@ -5246,7 +5246,7 @@ Arguments:
 get_device_memory_opaque_capture_address
 
 """
-    get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)::Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
+    get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)::Result{Tuple{Vector{PipelineExecutablePropertiesKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5264,7 +5264,7 @@ Arguments:
 get_pipeline_executable_properties_khr
 
 """
-    get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
+    get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Tuple{Vector{PipelineExecutableStatisticKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5282,7 +5282,7 @@ Arguments:
 get_pipeline_executable_statistics_khr
 
 """
-    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
+    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Tuple{Vector{PipelineExecutableInternalRepresentationKHR}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5300,7 +5300,7 @@ Arguments:
 get_pipeline_executable_internal_representations_khr
 
 """
-    cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer)
+    cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5311,7 +5311,7 @@ Arguments:
 cmd_set_line_stipple_ext
 
 """
-    get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
+    get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::Result{Tuple{Vector{PhysicalDeviceToolPropertiesEXT}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5345,7 +5345,7 @@ Arguments:
 create_acceleration_structure_khr
 
 """
-    cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})
+    cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5356,7 +5356,7 @@ Arguments:
 cmd_build_acceleration_structure_khr
 
 """
-    cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer)
+    cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5369,7 +5369,7 @@ Arguments:
 cmd_build_acceleration_structure_indirect_khr
 
 """
-    build_acceleration_structure_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})::Result{Int, VulkanError}
+    build_acceleration_structure_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5389,7 +5389,7 @@ Arguments:
 build_acceleration_structure_khr
 
 """
-    get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR)
+    get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR)::UInt64
 
 Arguments:
 - `device::Device`
@@ -5415,7 +5415,7 @@ Arguments:
 create_deferred_operation_khr
 
 """
-    destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR; allocator = C_NULL)
+    destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -5426,7 +5426,7 @@ Arguments:
 destroy_deferred_operation_khr
 
 """
-    get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR)
+    get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR)::UInt32
 
 Arguments:
 - `device::Device`
@@ -5436,7 +5436,7 @@ Arguments:
 get_deferred_operation_max_concurrency_khr
 
 """
-    get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{Int, VulkanError}
+    get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5451,7 +5451,7 @@ Arguments:
 get_deferred_operation_result_khr
 
 """
-    deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{Int, VulkanError}
+    deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -5470,7 +5470,7 @@ Arguments:
 deferred_operation_join_khr
 
 """
-    cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0)
+    cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5480,7 +5480,7 @@ Arguments:
 cmd_set_cull_mode_ext
 
 """
-    cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace)
+    cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5490,7 +5490,7 @@ Arguments:
 cmd_set_front_face_ext
 
 """
-    cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology)
+    cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5500,7 +5500,7 @@ Arguments:
 cmd_set_primitive_topology_ext
 
 """
-    cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport})
+    cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5510,7 +5510,7 @@ Arguments:
 cmd_set_viewport_with_count_ext
 
 """
-    cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D})
+    cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5520,7 +5520,7 @@ Arguments:
 cmd_set_scissor_with_count_ext
 
 """
-    cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)
+    cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5533,7 +5533,7 @@ Arguments:
 cmd_bind_vertex_buffers_2_ext
 
 """
-    cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)
+    cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5543,7 +5543,7 @@ Arguments:
 cmd_set_depth_test_enable_ext
 
 """
-    cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool)
+    cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5553,7 +5553,7 @@ Arguments:
 cmd_set_depth_write_enable_ext
 
 """
-    cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::VkCompareOp)
+    cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::VkCompareOp)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5563,7 +5563,7 @@ Arguments:
 cmd_set_depth_compare_op_ext
 
 """
-    cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool)
+    cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5573,7 +5573,7 @@ Arguments:
 cmd_set_depth_bounds_test_enable_ext
 
 """
-    cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool)
+    cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5583,7 +5583,7 @@ Arguments:
 cmd_set_stencil_test_enable_ext
 
 """
-    cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp)
+    cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5614,7 +5614,7 @@ Arguments:
 create_private_data_slot_ext
 
 """
-    destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT; allocator = C_NULL)
+    destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
@@ -5625,7 +5625,7 @@ Arguments:
 destroy_private_data_slot_ext
 
 """
-    set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::Result{Int, VulkanError}
+    set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5644,7 +5644,7 @@ Arguments:
 set_private_data_ext
 
 """
-    get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)
+    get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)::UInt64
 
 Arguments:
 - `device::Device`

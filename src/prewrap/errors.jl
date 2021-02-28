@@ -4,7 +4,7 @@ returned a non-success code.
 """
 struct VulkanError <: Exception
     msg::AbstractString
-    code
+    code::VkResult
 end
 
 Base.showerror(io::IO, e::VulkanError) = print(io, e.code, ": ", e.msg)
@@ -12,21 +12,21 @@ Base.showerror(io::IO, e::VulkanError) = print(io, e.code, ": ", e.msg)
 """
     @check vkCreateInstance(args...)
 
-If the expression does not return `VK_SUCCESS`, return a [`VulkanError`](@ref) holding the return code.
+Assign the expression to a variable named `_return_code`. Then, if the value is not a success code, return a [`VulkanError`](@ref) holding the return code.
+
 """
 macro check(expr)
+    msg = string("failed to execute ", expr)
     quote
-        local msg = string("failed to execute ", $(string(expr)))
-        @check $(esc(expr)) msg
+        $(esc(:(@check $expr $msg)))
     end
 end
 
 macro check(expr, msg)
     quote
-        code = $(esc(expr))
-        if Int(code) ≠ 0
-            return VulkanError($msg, code)
+        $(esc(:(_return_code = $expr)))
+        if $(esc(:(Int32(_return_code)))) < 0
+            return $(esc(:(VulkanError($msg, _return_code))))
         end
-        code
     end
 end

@@ -17,7 +17,7 @@ end
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan
     instance = unwrap(Instance([], []))
-    physical_device = first(unwrap(enumerate_physical_devices(instance)))
+    ((physical_device, _...), code) = unwrap(enumerate_physical_devices(instance))
 end)
 
 @testset "Vulkan.jl" begin

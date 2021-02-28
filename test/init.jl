@@ -10,7 +10,7 @@ if WITH_VALIDATION[]
     debug_messenger = DebugUtilsMessengerEXT(instance, debug_callback_c; severity="debug")
 end
 
-const device = let pdevices = unwrap(enumerate_physical_devices(instance))
+const device = let (pdevices, _) = unwrap(enumerate_physical_devices(instance))
     if isempty(pdevices)
         error("No physical devices available for testing.")
     end

@@ -71,17 +71,17 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
 
     @testset "API functions" begin
         test_wrap_func(:vkEnumeratePhysicalDevices, :(
-            function enumerate_physical_devices(instance::Instance)::Result{Vector{PhysicalDevice},VulkanError}
+            function enumerate_physical_devices(instance::Instance)::Result{Tuple{Vector{PhysicalDevice},VkResult},VulkanError}
                 pPhysicalDeviceCount = Ref{UInt32}()
                 @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
                 pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
                 @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
-                PhysicalDevice.(pPhysicalDevices, identity, instance)
+                (PhysicalDevice.(pPhysicalDevices, identity, instance), _return_code)
             end
         ))
 
         test_wrap_func(:vkGetPhysicalDeviceProperties, :(
-            function get_physical_device_properties(physical_device::PhysicalDevice)
+            function get_physical_device_properties(physical_device::PhysicalDevice)::PhysicalDeviceProperties
                 pProperties = Ref{VkPhysicalDeviceProperties}()
                 vkGetPhysicalDeviceProperties(physical_device, pProperties)
                 from_vk(PhysicalDeviceProperties, pProperties[])
@@ -97,33 +97,33 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkEnumerateInstanceExtensionProperties, :(
-            function enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties},VulkanError}
+            function enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties},VkResult},VulkanError}
                 pPropertyCount = Ref{UInt32}()
                 @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
                 pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
                 @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
-                from_vk.(ExtensionProperties, pProperties)
+                (from_vk.(ExtensionProperties, pProperties), _return_code)
             end
         ))
 
         test_wrap_func(:vkGetGeneratedCommandsMemoryRequirementsNV, :(
-            function get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)
+            function get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
                 pMemoryRequirements = Ref{VkMemoryRequirements2}()
                 vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements)
                 from_vk(MemoryRequirements2, pMemoryRequirements[])
             end
         ))
 
-        test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString; instance = C_NULL) = vkGetInstanceProcAddr(instance, name)))
-        test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL) = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
+        test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name)))
+        test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
 
         test_wrap_func(:vkGetPhysicalDeviceSurfacePresentModesKHR, :(
-            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR},VulkanError}
+            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{PresentModeKHR},VkResult},VulkanError}
                 pPresentModeCount = Ref{UInt32}()
                 @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
                 pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
                 @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
-                pPresentModes
+                (pPresentModes, _return_code)
             end
         ))
 
@@ -160,10 +160,10 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ); with_func_ptr=true)
 
         test_wrap_func(:vkCreateGraphicsPipelines, :(
-            function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline},VulkanError}
+            function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
                 pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
                 @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
-                Pipeline.(pPipelines, x -> destroy_pipeline(device, x; allocator), device)
+                (Pipeline.(pPipelines, x -> destroy_pipeline(device, x; allocator), device), _return_code)
             end
         ))
 
@@ -177,7 +177,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkMergePipelineCaches, :(
-            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::Result{Int,VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+            merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::Result{VkResult,VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
         ))
 
         test_wrap_func(:vkGetFenceFdKHR, :(
@@ -189,7 +189,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkGetDeviceGroupPeerMemoryFeatures, :(
-            function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)
+            function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)::PeerMemoryFeatureFlag
                 pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()
                 vkGetDeviceGroupPeerMemoryFeatures(device, heap_index, local_device_index, remote_device_index, pPeerMemoryFeatures)
                 pPeerMemoryFeatures[]
@@ -197,19 +197,19 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkUpdateDescriptorSets, :(
-            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
+            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
         ))
 
         test_wrap_func(:vkCmdSetViewport, :(
-            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
+            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray)::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
         ))
 
         test_wrap_func(:vkCmdSetLineWidth, :(
-            cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real) = vkCmdSetLineWidth(command_buffer, line_width)
+            cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)::Cvoid = vkCmdSetLineWidth(command_buffer, line_width)
         ))
 
         test_wrap_func(:vkDestroyInstance, :(
-            destroy_instance(instance::Instance; allocator = C_NULL) = vkDestroyInstance(instance, allocator)
+            destroy_instance(instance::Instance; allocator = C_NULL)::Cvoid = vkDestroyInstance(instance, allocator)
         ))
 
         test_wrap_func(:vkMapMemory, :(
@@ -221,22 +221,22 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR, :(
-            function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}},VulkanError}
+            function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}},VkResult},VulkanError}
                 pCounterCount = Ref{UInt32}()
                 @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
                 pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
                 pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
                 @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
-                (from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions))
+                ((from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions)), _return_code)
             end
         ))
 
         test_wrap_func(:vkGetPipelineCacheData, :(
-            function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{UInt,Ptr{Cvoid}},VulkanError}
+            function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{Tuple{UInt,Ptr{Cvoid}},VkResult},VulkanError}
                 pDataSize = Ref(data_size)
                 pData = Ref{Ptr{Cvoid}}()
                 @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
-                pDataSize[], pData[]
+                ((pDataSize[], pData[]), _return_code)
             end
         ))
     end

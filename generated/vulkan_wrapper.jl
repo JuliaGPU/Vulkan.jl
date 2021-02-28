@@ -4273,15 +4273,15 @@ Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabl
 
 Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = unwrap(create_instance(enabled_layer_names, enabled_extension_names, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, application_info))
 
-function get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, fun_ptr::FunctionPtr)
+function get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, fun_ptr::FunctionPtr)::UInt64
     pData = Ref{UInt64}()
     vkGetPrivateDataEXT(device, object_type, object_handle, private_data_slot, pData, fun_ptr)
     pData[]
 end
 
-set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkSetPrivateDataEXT(device, object_type, object_handle, private_data_slot, data, fun_ptr))
+set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkSetPrivateDataEXT(device, object_type, object_handle, private_data_slot, data, fun_ptr))
 
-destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyPrivateDataSlotEXT(device, private_data_slot, allocator, fun_ptr)
+destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyPrivateDataSlotEXT(device, private_data_slot, allocator, fun_ptr)
 
 function create_private_data_slot_ext(device::Device, create_info::PrivateDataSlotCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{PrivateDataSlotEXT, VulkanError}
     pPrivateDataSlot = Ref{VkPrivateDataSlotEXT}()
@@ -4289,37 +4289,37 @@ function create_private_data_slot_ext(device::Device, create_info::PrivateDataSl
     PrivateDataSlotEXT(pPrivateDataSlot[], (x->destroy_private_data_slot_ext(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, fun_ptr::FunctionPtr) = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op, fun_ptr)
+cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op, fun_ptr)
 
-cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool, fun_ptr::FunctionPtr) = vkCmdSetStencilTestEnableEXT(command_buffer, stencil_test_enable, fun_ptr)
+cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilTestEnableEXT(command_buffer, stencil_test_enable, fun_ptr)
 
-cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool, fun_ptr::FunctionPtr) = vkCmdSetDepthBoundsTestEnableEXT(command_buffer, depth_bounds_test_enable, fun_ptr)
+cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthBoundsTestEnableEXT(command_buffer, depth_bounds_test_enable, fun_ptr)
 
-cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::VkCompareOp, fun_ptr::FunctionPtr) = vkCmdSetDepthCompareOpEXT(command_buffer, depth_compare_op, fun_ptr)
+cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::VkCompareOp, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthCompareOpEXT(command_buffer, depth_compare_op, fun_ptr)
 
-cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool, fun_ptr::FunctionPtr) = vkCmdSetDepthWriteEnableEXT(command_buffer, depth_write_enable, fun_ptr)
+cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthWriteEnableEXT(command_buffer, depth_write_enable, fun_ptr)
 
-cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool, fun_ptr::FunctionPtr) = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable, fun_ptr)
+cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable, fun_ptr)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL) = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors, fun_ptr)
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors, fun_ptr)
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports, fun_ptr)
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports, fun_ptr)
 
-cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology, fun_ptr::FunctionPtr) = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology, fun_ptr)
+cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology, fun_ptr)
 
-cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace, fun_ptr::FunctionPtr) = vkCmdSetFrontFaceEXT(command_buffer, front_face, fun_ptr)
+cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetFrontFaceEXT(command_buffer, front_face, fun_ptr)
 
-cmd_set_cull_mode_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; cull_mode = 0) = vkCmdSetCullModeEXT(command_buffer, cull_mode, fun_ptr)
+cmd_set_cull_mode_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; cull_mode = 0)::Cvoid = vkCmdSetCullModeEXT(command_buffer, cull_mode, fun_ptr)
 
-deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation, fun_ptr))
+deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation, fun_ptr))
 
-get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation, fun_ptr))
+get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation, fun_ptr))
 
-get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr) = vkGetDeferredOperationMaxConcurrencyKHR(device, operation, fun_ptr)
+get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::UInt32 = vkGetDeferredOperationMaxConcurrencyKHR(device, operation, fun_ptr)
 
-destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDeferredOperationKHR(device, operation, allocator, fun_ptr)
+destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDeferredOperationKHR(device, operation, allocator, fun_ptr)
 
 function create_deferred_operation_khr(device::Device, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DeferredOperationKHR, VulkanError}
     pDeferredOperation = Ref{VkDeferredOperationKHR}()
@@ -4327,13 +4327,13 @@ function create_deferred_operation_khr(device::Device, fun_ptr_create::FunctionP
     DeferredOperationKHR(pDeferredOperation[], (x->destroy_deferred_operation_khr(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR, fun_ptr::FunctionPtr) = vkGetAccelerationStructureDeviceAddressKHR(device, info, fun_ptr)
+get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR, fun_ptr::FunctionPtr)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info, fun_ptr)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos, fun_ptr))
+build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos, fun_ptr))
 
-cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer, fun_ptr::FunctionPtr) = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride, fun_ptr)
+cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride, fun_ptr)
 
-cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr) = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos, fun_ptr)
+cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos, fun_ptr)
 
 function create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureKHR}()
@@ -4341,41 +4341,41 @@ function create_acceleration_structure_khr(device::Device, create_info::Accelera
     AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_physical_device_tool_properties_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
+function get_physical_device_tool_properties_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PhysicalDeviceToolPropertiesEXT}, VkResult}, VulkanError}
     pToolCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, C_NULL, fun_ptr)
     pToolProperties = Vector{VkPhysicalDeviceToolPropertiesEXT}(undef, pToolCount[])
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, pToolProperties, fun_ptr)
-    from_vk.(PhysicalDeviceToolPropertiesEXT, pToolProperties)
+    (from_vk.(PhysicalDeviceToolPropertiesEXT, pToolProperties), _return_code)
 end
 
-cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer, fun_ptr::FunctionPtr) = vkCmdSetLineStippleEXT(command_buffer, line_stipple_factor, line_stipple_pattern, fun_ptr)
+cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetLineStippleEXT(command_buffer, line_stipple_factor, line_stipple_pattern, fun_ptr)
 
-function get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR, fun_ptr::FunctionPtr)::Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
+function get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PipelineExecutableInternalRepresentationKHR}, VkResult}, VulkanError}
     pInternalRepresentationCount = Ref{UInt32}()
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, C_NULL, fun_ptr)
     pInternalRepresentations = Vector{VkPipelineExecutableInternalRepresentationKHR}(undef, pInternalRepresentationCount[])
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, pInternalRepresentations, fun_ptr)
-    from_vk.(PipelineExecutableInternalRepresentationKHR, pInternalRepresentations)
+    (from_vk.(PipelineExecutableInternalRepresentationKHR, pInternalRepresentations), _return_code)
 end
 
-function get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR, fun_ptr::FunctionPtr)::Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
+function get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PipelineExecutableStatisticKHR}, VkResult}, VulkanError}
     pStatisticCount = Ref{UInt32}()
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, C_NULL, fun_ptr)
     pStatistics = Vector{VkPipelineExecutableStatisticKHR}(undef, pStatisticCount[])
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, pStatistics, fun_ptr)
-    from_vk.(PipelineExecutableStatisticKHR, pStatistics)
+    (from_vk.(PipelineExecutableStatisticKHR, pStatistics), _return_code)
 end
 
-function get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR, fun_ptr::FunctionPtr)::Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
+function get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PipelineExecutablePropertiesKHR}, VkResult}, VulkanError}
     pExecutableCount = Ref{UInt32}()
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, C_NULL, fun_ptr)
     pProperties = Vector{VkPipelineExecutablePropertiesKHR}(undef, pExecutableCount[])
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, pProperties, fun_ptr)
-    from_vk.(PipelineExecutablePropertiesKHR, pProperties)
+    (from_vk.(PipelineExecutablePropertiesKHR, pProperties), _return_code)
 end
 
-get_device_memory_opaque_capture_address(device::Device, info::DeviceMemoryOpaqueCaptureAddressInfo, fun_ptr::FunctionPtr) = vkGetDeviceMemoryOpaqueCaptureAddress(device, info, fun_ptr)
+get_device_memory_opaque_capture_address(device::Device, info::DeviceMemoryOpaqueCaptureAddressInfo, fun_ptr::FunctionPtr)::UInt64 = vkGetDeviceMemoryOpaqueCaptureAddress(device, info, fun_ptr)
 
 function get_performance_parameter_intel(device::Device, parameter::VkPerformanceParameterTypeINTEL, fun_ptr::FunctionPtr)::Result{PerformanceValueINTEL, VulkanError}
     pValue = Ref{VkPerformanceValueINTEL}()
@@ -4383,9 +4383,9 @@ function get_performance_parameter_intel(device::Device, parameter::VkPerformanc
     from_vk(PerformanceValueINTEL, pValue[])
 end
 
-queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkQueueSetPerformanceConfigurationINTEL(queue, configuration, fun_ptr))
+queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkQueueSetPerformanceConfigurationINTEL(queue, configuration, fun_ptr))
 
-release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration, fun_ptr))
+release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration, fun_ptr))
 
 function acquire_performance_configuration_intel(device::Device, acquire_info::PerformanceConfigurationAcquireInfoINTEL, fun_ptr::FunctionPtr)::Result{PerformanceConfigurationINTEL, VulkanError}
     pConfiguration = Ref{VkPerformanceConfigurationINTEL}()
@@ -4393,22 +4393,22 @@ function acquire_performance_configuration_intel(device::Device, acquire_info::P
     PerformanceConfigurationINTEL(pConfiguration[], identity, device)
 end
 
-cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkCmdSetPerformanceOverrideINTEL(command_buffer, override_info, fun_ptr))
+cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCmdSetPerformanceOverrideINTEL(command_buffer, override_info, fun_ptr))
 
-cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkCmdSetPerformanceStreamMarkerINTEL(command_buffer, marker_info, fun_ptr))
+cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCmdSetPerformanceStreamMarkerINTEL(command_buffer, marker_info, fun_ptr))
 
-cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkCmdSetPerformanceMarkerINTEL(command_buffer, marker_info, fun_ptr))
+cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCmdSetPerformanceMarkerINTEL(command_buffer, marker_info, fun_ptr))
 
-uninitialize_performance_api_intel(device::Device, fun_ptr::FunctionPtr) = vkUninitializePerformanceApiINTEL(device, fun_ptr)
+uninitialize_performance_api_intel(device::Device, fun_ptr::FunctionPtr)::Cvoid = vkUninitializePerformanceApiINTEL(device, fun_ptr)
 
-initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkInitializePerformanceApiINTEL(device, initialize_info, fun_ptr))
+initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkInitializePerformanceApiINTEL(device, initialize_info, fun_ptr))
 
-function get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
+function get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{FramebufferMixedSamplesCombinationNV}, VkResult}, VulkanError}
     pCombinationCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, C_NULL, fun_ptr)
     pCombinations = Vector{VkFramebufferMixedSamplesCombinationNV}(undef, pCombinationCount[])
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, pCombinations, fun_ptr)
-    from_vk.(FramebufferMixedSamplesCombinationNV, pCombinations)
+    (from_vk.(FramebufferMixedSamplesCombinationNV, pCombinations), _return_code)
 end
 
 function create_headless_surface_ext(instance::Instance, create_info::HeadlessSurfaceCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
@@ -4417,9 +4417,9 @@ function create_headless_surface_ext(instance::Instance, create_info::HeadlessSu
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_buffer_device_address(device::Device, info::BufferDeviceAddressInfo, fun_ptr::FunctionPtr) = vkGetBufferDeviceAddress(device, info, fun_ptr)
+get_buffer_device_address(device::Device, info::BufferDeviceAddressInfo, fun_ptr::FunctionPtr)::UInt64 = vkGetBufferDeviceAddress(device, info, fun_ptr)
 
-get_buffer_opaque_capture_address(device::Device, info::BufferDeviceAddressInfo, fun_ptr::FunctionPtr) = vkGetBufferOpaqueCaptureAddress(device, info, fun_ptr)
+get_buffer_opaque_capture_address(device::Device, info::BufferDeviceAddressInfo, fun_ptr::FunctionPtr)::UInt64 = vkGetBufferOpaqueCaptureAddress(device, info, fun_ptr)
 
 function get_image_drm_format_modifier_properties_ext(device::Device, image::Image, fun_ptr::FunctionPtr)::Result{ImageDrmFormatModifierPropertiesEXT, VulkanError}
     pProperties = Ref{VkImageDrmFormatModifierPropertiesEXT}()
@@ -4427,41 +4427,41 @@ function get_image_drm_format_modifier_properties_ext(device::Device, image::Ima
     from_vk(ImageDrmFormatModifierPropertiesEXT, pProperties[])
 end
 
-release_profiling_lock_khr(device::Device, fun_ptr::FunctionPtr) = vkReleaseProfilingLockKHR(device, fun_ptr)
+release_profiling_lock_khr(device::Device, fun_ptr::FunctionPtr)::Cvoid = vkReleaseProfilingLockKHR(device, fun_ptr)
 
-acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkAcquireProfilingLockKHR(device, info, fun_ptr))
+acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkAcquireProfilingLockKHR(device, info, fun_ptr))
 
-function get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::QueryPoolPerformanceCreateInfoKHR, fun_ptr::FunctionPtr)
+function get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::QueryPoolPerformanceCreateInfoKHR, fun_ptr::FunctionPtr)::UInt32
     pNumPasses = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR(physical_device, performance_query_create_info, pNumPasses, fun_ptr)
     pNumPasses[]
 end
 
-function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
+function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VkResult}, VulkanError}
     pCounterCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL, fun_ptr)
     pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
     pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions, fun_ptr)
-    (from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions))
+    ((from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions)), _return_code)
 end
 
-release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkReleaseFullScreenExclusiveModeEXT(device, swapchain, fun_ptr))
+release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkReleaseFullScreenExclusiveModeEXT(device, swapchain, fun_ptr))
 
-acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkAcquireFullScreenExclusiveModeEXT(device, swapchain, fun_ptr))
+acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkAcquireFullScreenExclusiveModeEXT(device, swapchain, fun_ptr))
 
-function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::Integer, fun_ptr::FunctionPtr)::Result{UInt32, VulkanError}
+function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR, fun_ptr::FunctionPtr)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModes2EXT(device, surface_info, pModes, fun_ptr)
     pModes[]
 end
 
-function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, C_NULL, fun_ptr)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, pPresentModes, fun_ptr)
-    pPresentModes
+    (pPresentModes, _return_code)
 end
 
 function get_image_view_address_nvx(device::Device, image_view::ImageView, fun_ptr::FunctionPtr)::Result{ImageViewAddressPropertiesNVX, VulkanError}
@@ -4470,30 +4470,30 @@ function get_image_view_address_nvx(device::Device, image_view::ImageView, fun_p
     from_vk(ImageViewAddressPropertiesNVX, pProperties[])
 end
 
-get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX, fun_ptr::FunctionPtr) = vkGetImageViewHandleNVX(device, info, fun_ptr)
+get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX, fun_ptr::FunctionPtr)::UInt32 = vkGetImageViewHandleNVX(device, info, fun_ptr)
 
-get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetDeviceAccelerationStructureCompatibilityKHR(device, version, fun_ptr))
+get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetDeviceAccelerationStructureCompatibilityKHR(device, version, fun_ptr))
 
-cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr) = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset, fun_ptr)
+cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset, fun_ptr)
 
-function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{CooperativeMatrixPropertiesNV}, VulkanError}
+function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{CooperativeMatrixPropertiesNV}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkCooperativeMatrixPropertiesNV}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(CooperativeMatrixPropertiesNV, pProperties)
+    (from_vk.(CooperativeMatrixPropertiesNV, pProperties), _return_code)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesKHR(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesNV(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
 function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, fun_ptr::FunctionPtr)::Result{Ptr{Cvoid}, VulkanError}
@@ -4514,9 +4514,9 @@ function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipe
     pData[]
 end
 
-cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL) = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth, fun_ptr)
+cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth, fun_ptr)
 
-cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr) = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
+cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
 
 function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr)::Result{Ptr{Cvoid}, VulkanError}
     pData = Ref{Ptr{Cvoid}}()
@@ -4524,39 +4524,39 @@ function write_acceleration_structures_properties_khr(device::Device, accelerati
     pData[]
 end
 
-cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL) = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
+cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
-copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info, fun_ptr))
+copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info, fun_ptr))
 
-cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr) = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info, fun_ptr)
+cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info, fun_ptr)
 
-copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info, fun_ptr))
+copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info, fun_ptr))
 
-cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr) = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info, fun_ptr)
+cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info, fun_ptr)
 
-copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info, fun_ptr))
+copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info, fun_ptr))
 
-cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr) = vkCmdCopyAccelerationStructureKHR(command_buffer, info, fun_ptr)
+cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureKHR(command_buffer, info, fun_ptr)
 
-cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR, fun_ptr::FunctionPtr) = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode, fun_ptr)
+cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode, fun_ptr)
 
-bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
-function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV, fun_ptr::FunctionPtr)
+function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV, fun_ptr::FunctionPtr)::VkMemoryRequirements2KHR
     pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()
     vkGetAccelerationStructureMemoryRequirementsNV(device, info, pMemoryRequirements, fun_ptr)
     from_vk(VkMemoryRequirements2KHR, pMemoryRequirements[])
 end
 
-function get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR, fun_ptr::FunctionPtr)
+function get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR, fun_ptr::FunctionPtr)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetAccelerationStructureMemoryRequirementsKHR(device, info, pMemoryRequirements, fun_ptr)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
 end
 
-destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyAccelerationStructureKHR(device, acceleration_structure, allocator, fun_ptr)
+destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyAccelerationStructureKHR(device, acceleration_structure, allocator, fun_ptr)
 
 function create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{VkAccelerationStructureNV, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureNV}()
@@ -4564,35 +4564,35 @@ function create_acceleration_structure_nv(device::Device, create_info::Accelerat
     AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkCompileDeferredNV(device, pipeline, shader, fun_ptr))
+compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCompileDeferredNV(device, pipeline, shader, fun_ptr))
 
-cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawMeshTasksIndirectCountNV(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
+cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawMeshTasksIndirectCountNV(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
 
-cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawMeshTasksIndirectNV(command_buffer, buffer, offset, draw_count, stride, fun_ptr)
+cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawMeshTasksIndirectNV(command_buffer, buffer, offset, draw_count, stride, fun_ptr)
 
-cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer, fun_ptr::FunctionPtr) = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task, fun_ptr)
+cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task, fun_ptr)
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders, fun_ptr)
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders, fun_ptr)
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes, fun_ptr)
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes, fun_ptr)
 
-cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout, fun_ptr::FunctionPtr; image_view = C_NULL) = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout, fun_ptr)
+cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout, fun_ptr::FunctionPtr; image_view = C_NULL)::Cvoid = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout, fun_ptr)
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors, fun_ptr)
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors, fun_ptr)
 
-cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride, fun_ptr)
+cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride, fun_ptr)
 
-cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr) = vkCmdEndQueryIndexedEXT(command_buffer, query_pool, query, index, fun_ptr)
+cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndQueryIndexedEXT(command_buffer, query_pool, query, index, fun_ptr)
 
-cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index, fun_ptr)
+cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index, fun_ptr)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL) = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
 
-function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)
+function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)::Vector{CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, C_NULL, fun_ptr)
     pCheckpointData = Vector{VkCheckpointDataNV}(undef, pCheckpointDataCount[])
@@ -4600,11 +4600,11 @@ function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)
     from_vk.(CheckpointDataNV, pCheckpointData)
 end
 
-cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker), fun_ptr)
+cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker), fun_ptr)
 
-cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
+cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
 
-cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
+cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
 
 function get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID, fun_ptr::FunctionPtr)::Result{Cvoid, VulkanError}
     pBuffer = Ref{Ptr{AHardwareBuffer}}()
@@ -4618,9 +4618,9 @@ function get_android_hardware_buffer_properties_android(device::Device, buffer::
     from_vk(AndroidHardwareBufferPropertiesANDROID, pProperties[])
 end
 
-signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkSignalSemaphore(device, signal_info, fun_ptr))
+signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkSignalSemaphore(device, signal_info, fun_ptr))
 
-wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout, fun_ptr))
+wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout, fun_ptr))
 
 function get_semaphore_counter_value(device::Device, semaphore::Semaphore, fun_ptr::FunctionPtr)::Result{UInt64, VulkanError}
     pValue = Ref{UInt64}()
@@ -4628,11 +4628,11 @@ function get_semaphore_counter_value(device::Device, semaphore::Semaphore, fun_p
     pValue[]
 end
 
-cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::SubpassEndInfo, fun_ptr::FunctionPtr) = vkCmdEndRenderPass2(command_buffer, subpass_end_info, fun_ptr)
+cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::SubpassEndInfo, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndRenderPass2(command_buffer, subpass_end_info, fun_ptr)
 
-cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::SubpassBeginInfo, subpass_end_info::SubpassEndInfo, fun_ptr::FunctionPtr) = vkCmdNextSubpass2(command_buffer, subpass_begin_info, subpass_end_info, fun_ptr)
+cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::SubpassBeginInfo, subpass_end_info::SubpassEndInfo, fun_ptr::FunctionPtr)::Cvoid = vkCmdNextSubpass2(command_buffer, subpass_begin_info, subpass_end_info, fun_ptr)
 
-cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, subpass_begin_info::SubpassBeginInfo, fun_ptr::FunctionPtr) = vkCmdBeginRenderPass2(command_buffer, render_pass_begin, subpass_begin_info, fun_ptr)
+cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, subpass_begin_info::SubpassBeginInfo, fun_ptr::FunctionPtr)::Cvoid = vkCmdBeginRenderPass2(command_buffer, render_pass_begin, subpass_begin_info, fun_ptr)
 
 function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{RenderPass, VulkanError}
     pRenderPass = Ref{VkRenderPass}()
@@ -4640,7 +4640,7 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker, fun_ptr)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker, fun_ptr)
 
 function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
@@ -4648,9 +4648,9 @@ function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkE
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data, fun_ptr)
+submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data, fun_ptr)
 
-destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator, fun_ptr)
+destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator, fun_ptr)
 
 function create_debug_utils_messenger_ext(instance::Instance, create_info::DebugUtilsMessengerCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DebugUtilsMessengerEXT, VulkanError}
     pMessenger = Ref{VkDebugUtilsMessengerEXT}()
@@ -4658,21 +4658,21 @@ function create_debug_utils_messenger_ext(instance::Instance, create_info::Debug
     DebugUtilsMessengerEXT(pMessenger[], (x->destroy_debug_utils_messenger_ext(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr) = vkCmdInsertDebugUtilsLabelEXT(command_buffer, label_info, fun_ptr)
+cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr)::Cvoid = vkCmdInsertDebugUtilsLabelEXT(command_buffer, label_info, fun_ptr)
 
-cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr) = vkCmdEndDebugUtilsLabelEXT(command_buffer, fun_ptr)
+cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndDebugUtilsLabelEXT(command_buffer, fun_ptr)
 
-cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr) = vkCmdBeginDebugUtilsLabelEXT(command_buffer, label_info, fun_ptr)
+cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr)::Cvoid = vkCmdBeginDebugUtilsLabelEXT(command_buffer, label_info, fun_ptr)
 
-queue_insert_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr) = vkQueueInsertDebugUtilsLabelEXT(queue, label_info, fun_ptr)
+queue_insert_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr)::Cvoid = vkQueueInsertDebugUtilsLabelEXT(queue, label_info, fun_ptr)
 
-queue_end_debug_utils_label_ext(queue::Queue, fun_ptr::FunctionPtr) = vkQueueEndDebugUtilsLabelEXT(queue, fun_ptr)
+queue_end_debug_utils_label_ext(queue::Queue, fun_ptr::FunctionPtr)::Cvoid = vkQueueEndDebugUtilsLabelEXT(queue, fun_ptr)
 
-queue_begin_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr) = vkQueueBeginDebugUtilsLabelEXT(queue, label_info, fun_ptr)
+queue_begin_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT, fun_ptr::FunctionPtr)::Cvoid = vkQueueBeginDebugUtilsLabelEXT(queue, label_info, fun_ptr)
 
-set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkSetDebugUtilsObjectTagEXT(device, tag_info, fun_ptr))
+set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkSetDebugUtilsObjectTagEXT(device, tag_info, fun_ptr))
 
-set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkSetDebugUtilsObjectNameEXT(device, name_info, fun_ptr))
+set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkSetDebugUtilsObjectNameEXT(device, name_info, fun_ptr))
 
 function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
     pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
@@ -4681,39 +4681,39 @@ function get_calibrated_timestamps_ext(device::Device, timestamp_infos::Abstract
     (pTimestamps, pMaxDeviation[])
 end
 
-function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{TimeDomainEXT}, VulkanError}
+function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{TimeDomainEXT}, VkResult}, VulkanError}
     pTimeDomainCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, C_NULL, fun_ptr)
     pTimeDomains = Vector{VkTimeDomainEXT}(undef, pTimeDomainCount[])
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, pTimeDomains, fun_ptr)
-    pTimeDomains
+    (pTimeDomains, _return_code)
 end
 
-set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
+set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
     pInfoSize = Ref(info_size)
     pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
-    (pInfoSize[], pInfo[])
+    ((pInfoSize[], pInfo[]), _return_code)
 end
 
-function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr)
+function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr)::DescriptorSetLayoutSupport
     pSupport = Ref{VkDescriptorSetLayoutSupport}()
     vkGetDescriptorSetLayoutSupport(device, create_info, pSupport, fun_ptr)
     from_vk(DescriptorSetLayoutSupport, pSupport[])
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
-function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
     pDataSize = Ref(data_size)
     pData = Ref{Ptr{Cvoid}}()
     @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData, fun_ptr)
-    (pDataSize[], pData[])
+    ((pDataSize[], pData[]), _return_code)
 end
 
-destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyValidationCacheEXT(device, validation_cache, allocator, fun_ptr)
+destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyValidationCacheEXT(device, validation_cache, allocator, fun_ptr)
 
 function create_validation_cache_ext(device::Device, create_info::ValidationCacheCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{ValidationCacheEXT, VulkanError}
     pValidationCache = Ref{VkValidationCacheEXT}()
@@ -4721,13 +4721,13 @@ function create_validation_cache_ext(device::Device, create_info::ValidationCach
     ValidationCacheEXT(pValidationCache[], (x->destroy_validation_cache_ext(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_device_queue_2(device::Device, queue_info::DeviceQueueInfo2, fun_ptr::FunctionPtr)
+function get_device_queue_2(device::Device, queue_info::DeviceQueueInfo2, fun_ptr::FunctionPtr)::Queue
     pQueue = Ref{VkQueue}()
     vkGetDeviceQueue2(device, queue_info, pQueue, fun_ptr)
     Queue(pQueue[], identity, device)
 end
 
-destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroySamplerYcbcrConversion(device, ycbcr_conversion, allocator, fun_ptr)
+destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroySamplerYcbcrConversion(device, ycbcr_conversion, allocator, fun_ptr)
 
 function create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcbcrConversionCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SamplerYcbcrConversion, VulkanError}
     pYcbcrConversion = Ref{VkSamplerYcbcrConversion}()
@@ -4735,7 +4735,7 @@ function create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcb
     SamplerYcbcrConversion(pYcbcrConversion[], (x->destroy_sampler_ycbcr_conversion(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2, fun_ptr::FunctionPtr)
+function get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2, fun_ptr::FunctionPtr)::Vector{SparseImageMemoryRequirements2}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, C_NULL, fun_ptr)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
@@ -4743,13 +4743,13 @@ function get_image_sparse_memory_requirements_2(device::Device, info::ImageSpars
     from_vk.(SparseImageMemoryRequirements2, pSparseMemoryRequirements)
 end
 
-function get_image_memory_requirements_2(device::Device, info::ImageMemoryRequirementsInfo2, fun_ptr::FunctionPtr)
+function get_image_memory_requirements_2(device::Device, info::ImageMemoryRequirementsInfo2, fun_ptr::FunctionPtr)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetImageMemoryRequirements2(device, info, pMemoryRequirements, fun_ptr)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
 end
 
-function get_buffer_memory_requirements_2(device::Device, info::BufferMemoryRequirementsInfo2, fun_ptr::FunctionPtr)
+function get_buffer_memory_requirements_2(device::Device, info::BufferMemoryRequirementsInfo2, fun_ptr::FunctionPtr)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetBufferMemoryRequirements2(device, info, pMemoryRequirements, fun_ptr)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
@@ -4761,36 +4761,36 @@ function get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, d
     from_vk(DisplayPlaneCapabilities2KHR, pCapabilities[])
 end
 
-function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{Vector{DisplayModeProperties2KHR}, VulkanError}
+function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{DisplayModeProperties2KHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayModeProperties2KHR}(undef, pPropertyCount[])
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(DisplayModeProperties2KHR, pProperties)
+    (from_vk.(DisplayModeProperties2KHR, pProperties), _return_code)
 end
 
-function get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
+function get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{DisplayPlaneProperties2KHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayPlaneProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(DisplayPlaneProperties2KHR, pProperties)
+    (from_vk.(DisplayPlaneProperties2KHR, pProperties), _return_code)
 end
 
-function get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{DisplayProperties2KHR}, VulkanError}
+function get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{DisplayProperties2KHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(DisplayProperties2KHR, pProperties)
+    (from_vk.(DisplayProperties2KHR, pProperties), _return_code)
 end
 
-function get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)::Result{Vector{SurfaceFormat2KHR}, VulkanError}
+function get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{SurfaceFormat2KHR}, VkResult}, VulkanError}
     pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, C_NULL, fun_ptr)
     pSurfaceFormats = Vector{VkSurfaceFormat2KHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, pSurfaceFormats, fun_ptr)
-    from_vk.(SurfaceFormat2KHR, pSurfaceFormats)
+    (from_vk.(SurfaceFormat2KHR, pSurfaceFormats), _return_code)
 end
 
 function get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)::Result{SurfaceCapabilities2KHR, VulkanError}
@@ -4799,17 +4799,17 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits, fun_ptr::FunctionPtr)
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits, fun_ptr::FunctionPtr)::MultisamplePropertiesEXT
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
     vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties, fun_ptr)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
 end
 
-cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT, fun_ptr::FunctionPtr) = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info, fun_ptr)
+cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info, fun_ptr)
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles, fun_ptr)
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles, fun_ptr)
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings, fun_ptr)
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings, fun_ptr)
 
 function create_metal_surface_ext(instance::Instance, create_info::MetalSurfaceCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -4829,12 +4829,12 @@ function create_ios_surface_mvk(instance::Instance, create_info::IOSSurfaceCreat
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-function get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
+function get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PastPresentationTimingGOOGLE}, VkResult}, VulkanError}
     pPresentationTimingCount = Ref{UInt32}()
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, C_NULL, fun_ptr)
     pPresentationTimings = Vector{VkPastPresentationTimingGOOGLE}(undef, pPresentationTimingCount[])
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, pPresentationTimings, fun_ptr)
-    from_vk.(PastPresentationTimingGOOGLE, pPresentationTimings)
+    (from_vk.(PastPresentationTimingGOOGLE, pPresentationTimings), _return_code)
 end
 
 function get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{RefreshCycleDurationGOOGLE, VulkanError}
@@ -4843,15 +4843,15 @@ function get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainK
     from_vk(RefreshCycleDurationGOOGLE, pDisplayTimingProperties[])
 end
 
-get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain, fun_ptr))
+get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain, fun_ptr))
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr) = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
 
-cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data), fun_ptr)
+cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data), fun_ptr)
 
-update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data), fun_ptr)
+update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data), fun_ptr)
 
-destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator, fun_ptr)
+destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator, fun_ptr)
 
 function create_descriptor_update_template(device::Device, create_info::DescriptorUpdateTemplateCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DescriptorUpdateTemplate, VulkanError}
     pDescriptorUpdateTemplate = Ref{VkDescriptorUpdateTemplate}()
@@ -4859,23 +4859,23 @@ function create_descriptor_update_template(device::Device, create_info::Descript
     DescriptorUpdateTemplate(pDescriptorUpdateTemplate[], (x->destroy_descriptor_update_template(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Vector{Rect2D}, VulkanError}
+function get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{Rect2D}, VkResult}, VulkanError}
     pRectCount = Ref{UInt32}()
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, C_NULL, fun_ptr)
     pRects = Vector{VkRect2D}(undef, pRectCount[])
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, pRects, fun_ptr)
-    from_vk.(Rect2D, pRects)
+    (from_vk.(Rect2D, pRects), _return_code)
 end
 
-cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer, fun_ptr::FunctionPtr) = vkCmdDispatchBase(command_buffer, base_group_x, base_group_y, base_group_z, group_count_x, group_count_y, group_count_z, fun_ptr)
+cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDispatchBase(command_buffer, base_group_x, base_group_y, base_group_z, group_count_x, group_count_y, group_count_z, fun_ptr)
 
-function acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR, fun_ptr::FunctionPtr)::Result{UInt32, VulkanError}
+function acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{UInt32, VkResult}, VulkanError}
     pImageIndex = Ref{UInt32}()
     @check vkAcquireNextImage2KHR(device, acquire_info, pImageIndex, fun_ptr)
-    pImageIndex[]
+    (pImageIndex[], _return_code)
 end
 
-function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::Integer, fun_ptr::FunctionPtr)::Result{UInt32, VulkanError}
+function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR, fun_ptr::FunctionPtr)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModesKHR(device, surface, pModes, fun_ptr)
     pModes[]
@@ -4887,24 +4887,24 @@ function get_device_group_present_capabilities_khr(device::Device, fun_ptr::Func
     from_vk(DeviceGroupPresentCapabilitiesKHR, pDeviceGroupPresentCapabilities[])
 end
 
-cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetDeviceMask(command_buffer, device_mask, fun_ptr)
+cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDeviceMask(command_buffer, device_mask, fun_ptr)
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_image_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
-function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer, fun_ptr::FunctionPtr)
+function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer, fun_ptr::FunctionPtr)::PeerMemoryFeatureFlag
     pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()
     vkGetDeviceGroupPeerMemoryFeatures(device, heap_index, local_device_index, remote_device_index, pPeerMemoryFeatures, fun_ptr)
     pPeerMemoryFeatures[]
 end
 
-function enumerate_physical_device_groups(instance::Instance, fun_ptr::FunctionPtr)::Result{Vector{PhysicalDeviceGroupProperties}, VulkanError}
+function enumerate_physical_device_groups(instance::Instance, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PhysicalDeviceGroupProperties}, VkResult}, VulkanError}
     pPhysicalDeviceGroupCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, C_NULL, fun_ptr)
     pPhysicalDeviceGroupProperties = Vector{VkPhysicalDeviceGroupProperties}(undef, pPhysicalDeviceGroupCount[])
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties, fun_ptr)
-    from_vk.(PhysicalDeviceGroupProperties, pPhysicalDeviceGroupProperties)
+    (from_vk.(PhysicalDeviceGroupProperties, pPhysicalDeviceGroupProperties), _return_code)
 end
 
 function get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{SurfaceCapabilities2EXT, VulkanError}
@@ -4931,7 +4931,7 @@ function register_device_event_ext(device::Device, device_event_info::DeviceEven
     Fence(pFence[], (x->destroy_fence(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkDisplayPowerControlEXT(device, display, display_power_info, fun_ptr))
+display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkDisplayPowerControlEXT(device, display, display_power_info, fun_ptr))
 
 function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput, fun_ptr::FunctionPtr)::Result{DisplayKHR, VulkanError}
     pDisplay = Ref{VkDisplayKHR}()
@@ -4939,11 +4939,11 @@ function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.
     DisplayKHR(pDisplay[], identity, physical_device)
 end
 
-acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display, fun_ptr))
+acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display, fun_ptr))
 
-release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkReleaseDisplayEXT(physical_device, display, fun_ptr))
+release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkReleaseDisplayEXT(physical_device, display, fun_ptr))
 
-import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkImportFenceFdKHR(device, import_fence_fd_info, fun_ptr))
+import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkImportFenceFdKHR(device, import_fence_fd_info, fun_ptr))
 
 function get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError}
     pFd = Ref{Int}()
@@ -4951,17 +4951,17 @@ function get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR, fun_pt
     pFd[]
 end
 
-import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info, fun_ptr))
+import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info, fun_ptr))
 
-get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
-function get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo, fun_ptr::FunctionPtr)
+function get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo, fun_ptr::FunctionPtr)::ExternalFenceProperties
     pExternalFenceProperties = Ref{VkExternalFenceProperties}()
     vkGetPhysicalDeviceExternalFenceProperties(physical_device, external_fence_info, pExternalFenceProperties, fun_ptr)
     from_vk(ExternalFenceProperties, pExternalFenceProperties[])
 end
 
-import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkImportSemaphoreFdKHR(device, import_semaphore_fd_info, fun_ptr))
+import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreFdKHR(device, import_semaphore_fd_info, fun_ptr))
 
 function get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError}
     pFd = Ref{Int}()
@@ -4969,11 +4969,11 @@ function get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR
     pFd[]
 end
 
-import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info, fun_ptr))
+import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info, fun_ptr))
 
-get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
-function get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo, fun_ptr::FunctionPtr)
+function get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo, fun_ptr::FunctionPtr)::ExternalSemaphoreProperties
     pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()
     vkGetPhysicalDeviceExternalSemaphoreProperties(physical_device, external_semaphore_info, pExternalSemaphoreProperties, fun_ptr)
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
@@ -4997,19 +4997,19 @@ function get_memory_win_32_handle_properties_khr(device::Device, handle_type::Vk
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
 
-get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
-function get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo, fun_ptr::FunctionPtr)
+function get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo, fun_ptr::FunctionPtr)::ExternalBufferProperties
     pExternalBufferProperties = Ref{VkExternalBufferProperties}()
     vkGetPhysicalDeviceExternalBufferProperties(physical_device, external_buffer_info, pExternalBufferProperties, fun_ptr)
     from_vk(ExternalBufferProperties, pExternalBufferProperties[])
 end
 
-trim_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0) = vkTrimCommandPool(device, command_pool, flags, fun_ptr)
+trim_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkTrimCommandPool(device, command_pool, flags, fun_ptr)
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray, fun_ptr::FunctionPtr) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes, fun_ptr)
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes, fun_ptr)
 
-function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2, fun_ptr::FunctionPtr)
+function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2, fun_ptr::FunctionPtr)::Vector{SparseImageFormatProperties2}
     pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkSparseImageFormatProperties2}(undef, pPropertyCount[])
@@ -5017,13 +5017,13 @@ function get_physical_device_sparse_image_format_properties_2(physical_device::P
     from_vk.(SparseImageFormatProperties2, pProperties)
 end
 
-function get_physical_device_memory_properties_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_memory_properties_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::PhysicalDeviceMemoryProperties2
     pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties2}()
     vkGetPhysicalDeviceMemoryProperties2(physical_device, pMemoryProperties, fun_ptr)
     from_vk(PhysicalDeviceMemoryProperties2, pMemoryProperties[])
 end
 
-function get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Vector{QueueFamilyProperties2}
     pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, C_NULL, fun_ptr)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties2}(undef, pQueueFamilyPropertyCount[])
@@ -5037,25 +5037,25 @@ function get_physical_device_image_format_properties_2(physical_device::Physical
     from_vk(ImageFormatProperties2, pImageFormatProperties[])
 end
 
-function get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::VkFormat, fun_ptr::FunctionPtr)
+function get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::VkFormat, fun_ptr::FunctionPtr)::FormatProperties2
     pFormatProperties = Ref{VkFormatProperties2}()
     vkGetPhysicalDeviceFormatProperties2(physical_device, format, pFormatProperties, fun_ptr)
     from_vk(FormatProperties2, pFormatProperties[])
 end
 
-function get_physical_device_properties_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_properties_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::PhysicalDeviceProperties2
     pProperties = Ref{VkPhysicalDeviceProperties2}()
     vkGetPhysicalDeviceProperties2(physical_device, pProperties, fun_ptr)
     from_vk(PhysicalDeviceProperties2, pProperties[])
 end
 
-function get_physical_device_features_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_features_2(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::PhysicalDeviceFeatures2
     pFeatures = Ref{VkPhysicalDeviceFeatures2}()
     vkGetPhysicalDeviceFeatures2(physical_device, pFeatures, fun_ptr)
     from_vk(PhysicalDeviceFeatures2, pFeatures[])
 end
 
-destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyIndirectCommandsLayoutNV(device, indirect_commands_layout, allocator, fun_ptr)
+destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyIndirectCommandsLayoutNV(device, indirect_commands_layout, allocator, fun_ptr)
 
 function create_indirect_commands_layout_nv(device::Device, create_info::IndirectCommandsLayoutCreateInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{IndirectCommandsLayoutNV, VulkanError}
     pIndirectCommandsLayout = Ref{VkIndirectCommandsLayoutNV}()
@@ -5063,19 +5063,19 @@ function create_indirect_commands_layout_nv(device::Device, create_info::Indirec
     IndirectCommandsLayoutNV(pIndirectCommandsLayout[], (x->destroy_indirect_commands_layout_nv(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV, fun_ptr::FunctionPtr)
+function get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV, fun_ptr::FunctionPtr)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements, fun_ptr)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
 end
 
-cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, group_index::Integer, fun_ptr::FunctionPtr) = vkCmdBindPipelineShaderGroupNV(command_buffer, pipeline_bind_point, pipeline, group_index, fun_ptr)
+cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, group_index::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindPipelineShaderGroupNV(command_buffer, pipeline_bind_point, pipeline, group_index, fun_ptr)
 
-cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::GeneratedCommandsInfoNV, fun_ptr::FunctionPtr) = vkCmdPreprocessGeneratedCommandsNV(command_buffer, generated_commands_info, fun_ptr)
+cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::GeneratedCommandsInfoNV, fun_ptr::FunctionPtr)::Cvoid = vkCmdPreprocessGeneratedCommandsNV(command_buffer, generated_commands_info, fun_ptr)
 
-cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV, fun_ptr::FunctionPtr) = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info, fun_ptr)
+cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV, fun_ptr::FunctionPtr)::Cvoid = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info, fun_ptr)
 
-get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle), fun_ptr))
 
 function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag, fun_ptr::FunctionPtr; flags = 0, external_handle_type = 0)::Result{ExternalImageFormatPropertiesNV, VulkanError}
     pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()
@@ -5083,19 +5083,19 @@ function get_physical_device_external_image_format_properties_nv(physical_device
     from_vk(ExternalImageFormatPropertiesNV, pExternalImageFormatProperties[])
 end
 
-cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT, fun_ptr::FunctionPtr) = vkCmdDebugMarkerInsertEXT(command_buffer, marker_info, fun_ptr)
+cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT, fun_ptr::FunctionPtr)::Cvoid = vkCmdDebugMarkerInsertEXT(command_buffer, marker_info, fun_ptr)
 
-cmd_debug_marker_end_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr) = vkCmdDebugMarkerEndEXT(command_buffer, fun_ptr)
+cmd_debug_marker_end_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDebugMarkerEndEXT(command_buffer, fun_ptr)
 
-cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT, fun_ptr::FunctionPtr) = vkCmdDebugMarkerBeginEXT(command_buffer, marker_info, fun_ptr)
+cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT, fun_ptr::FunctionPtr)::Cvoid = vkCmdDebugMarkerBeginEXT(command_buffer, marker_info, fun_ptr)
 
-debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkDebugMarkerSetObjectTagEXT(device, tag_info, fun_ptr))
+debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkDebugMarkerSetObjectTagEXT(device, tag_info, fun_ptr))
 
-debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkDebugMarkerSetObjectNameEXT(device, name_info, fun_ptr))
+debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkDebugMarkerSetObjectNameEXT(device, name_info, fun_ptr))
 
-debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString, fun_ptr::FunctionPtr) = vkDebugReportMessageEXT(instance, flags, object_type, object, location, message_code, layer_prefix, message, fun_ptr)
+debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString, fun_ptr::FunctionPtr)::Cvoid = vkDebugReportMessageEXT(instance, flags, object_type, object, location, message_code, layer_prefix, message, fun_ptr)
 
-destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDebugReportCallbackEXT(instance, callback, allocator, fun_ptr)
+destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDebugReportCallbackEXT(instance, callback, allocator, fun_ptr)
 
 function create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DebugReportCallbackEXT, VulkanError}
     pCallback = Ref{VkDebugReportCallbackEXT}()
@@ -5115,7 +5115,7 @@ function create_image_pipe_surface_fuchsia(instance::Instance, create_info::Imag
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, to_vk(Ptr{IDirectFB}, dfb), fun_ptr))
+get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, to_vk(Ptr{IDirectFB}, dfb), fun_ptr))
 
 function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBSurfaceCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -5123,7 +5123,7 @@ function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBS
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id, fun_ptr))
+get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id, fun_ptr))
 
 function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -5131,7 +5131,7 @@ function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreat
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id, fun_ptr))
+get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id, fun_ptr))
 
 function create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -5139,7 +5139,7 @@ function create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCre
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_win_32_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceWin32PresentationSupportKHR(physical_device, queue_family_index, fun_ptr))
+get_physical_device_win_32_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceWin32PresentationSupportKHR(physical_device, queue_family_index, fun_ptr))
 
 function create_win_32_surface_khr(instance::Instance, create_info::Win32SurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -5147,7 +5147,7 @@ function create_win_32_surface_khr(instance::Instance, create_info::Win32Surface
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display, fun_ptr::FunctionPtr) = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display), fun_ptr))
+get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display), fun_ptr))
 
 function create_wayland_surface_khr(instance::Instance, create_info::WaylandSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -5161,23 +5161,23 @@ function create_vi_surface_nn(instance::Instance, create_info::ViSurfaceCreateIn
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-queue_present_khr(queue::Queue, present_info::PresentInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkQueuePresentKHR(queue, present_info, fun_ptr))
+queue_present_khr(queue::Queue, present_info::PresentInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkQueuePresentKHR(queue, present_info, fun_ptr))
 
-function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer, fun_ptr::FunctionPtr; semaphore = C_NULL, fence = C_NULL)::Result{UInt32, VulkanError}
+function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer, fun_ptr::FunctionPtr; semaphore = C_NULL, fence = C_NULL)::Result{Tuple{UInt32, VkResult}, VulkanError}
     pImageIndex = Ref{UInt32}()
     @check vkAcquireNextImageKHR(device, swapchain, timeout, semaphore, fence, pImageIndex, fun_ptr)
-    pImageIndex[]
+    (pImageIndex[], _return_code)
 end
 
-function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Vector{Image}, VulkanError}
+function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{Image}, VkResult}, VulkanError}
     pSwapchainImageCount = Ref{UInt32}()
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL, fun_ptr)
     pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages, fun_ptr)
-    Image.(pSwapchainImages, (x->destroy_image(device, x, fun_ptr_destroy; allocator)), device)
+    (Image.(pSwapchainImages, (x->destroy_image(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroySwapchainKHR(device, swapchain, allocator, fun_ptr)
+destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroySwapchainKHR(device, swapchain, allocator, fun_ptr)
 
 function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
     pSwapchain = Ref{VkSwapchainKHR}()
@@ -5186,20 +5186,20 @@ function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKH
     SwapchainKHR(pSwapchain[], (x->destroy_swapchain_khr(device, x, fun_ptr_destroy; allocator)), getproperty(create_info, :surface))
 end
 
-function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL, fun_ptr)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes, fun_ptr)
-    pPresentModes
+    (pPresentModes, _return_code)
 end
 
-function get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Vector{SurfaceFormatKHR}, VulkanError}
+function get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{SurfaceFormatKHR}, VkResult}, VulkanError}
     pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, C_NULL, fun_ptr)
     pSurfaceFormats = Vector{VkSurfaceFormatKHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, pSurfaceFormats, fun_ptr)
-    from_vk.(SurfaceFormatKHR, pSurfaceFormats)
+    (from_vk.(SurfaceFormatKHR, pSurfaceFormats), _return_code)
 end
 
 function get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{SurfaceCapabilitiesKHR, VulkanError}
@@ -5214,7 +5214,7 @@ function get_physical_device_surface_support_khr(physical_device::PhysicalDevice
     from_vk(Bool, pSupported[])
 end
 
-destroy_surface_khr(instance::Instance, surface::SurfaceKHR, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroySurfaceKHR(instance, surface, allocator, fun_ptr)
+destroy_surface_khr(instance::Instance, surface::SurfaceKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroySurfaceKHR(instance, surface, allocator, fun_ptr)
 
 function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
@@ -5241,36 +5241,36 @@ function create_display_mode_khr(physical_device::PhysicalDevice, display::Displ
     DisplayModeKHR(pMode[], identity, display)
 end
 
-function get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{Vector{DisplayModePropertiesKHR}, VulkanError}
+function get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{Tuple{Vector{DisplayModePropertiesKHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayModePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(DisplayModePropertiesKHR, pProperties)
+    (from_vk.(DisplayModePropertiesKHR, pProperties), _return_code)
 end
 
-function get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer, fun_ptr::FunctionPtr)::Result{Vector{DisplayKHR}, VulkanError}
+function get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Vector{DisplayKHR}, VkResult}, VulkanError}
     pDisplayCount = Ref{UInt32}()
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, C_NULL, fun_ptr)
     pDisplays = Vector{VkDisplayKHR}(undef, pDisplayCount[])
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, pDisplays, fun_ptr)
-    DisplayKHR.(pDisplays, identity, physical_device)
+    (DisplayKHR.(pDisplays, identity, physical_device), _return_code)
 end
 
-function get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
+function get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{DisplayPlanePropertiesKHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayPlanePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(DisplayPlanePropertiesKHR, pProperties)
+    (from_vk.(DisplayPlanePropertiesKHR, pProperties), _return_code)
 end
 
-function get_physical_device_display_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{DisplayPropertiesKHR}, VulkanError}
+function get_physical_device_display_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{DisplayPropertiesKHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkDisplayPropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(DisplayPropertiesKHR, pProperties)
+    (from_vk.(DisplayPropertiesKHR, pProperties), _return_code)
 end
 
 function create_android_surface_khr(instance::Instance, create_info::AndroidSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
@@ -5279,105 +5279,105 @@ function create_android_surface_khr(instance::Instance, create_info::AndroidSurf
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray, fun_ptr::FunctionPtr) = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
 
-cmd_end_render_pass(command_buffer::CommandBuffer, fun_ptr::FunctionPtr) = vkCmdEndRenderPass(command_buffer, fun_ptr)
+cmd_end_render_pass(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndRenderPass(command_buffer, fun_ptr)
 
-cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents, fun_ptr::FunctionPtr) = vkCmdNextSubpass(command_buffer, contents, fun_ptr)
+cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents, fun_ptr::FunctionPtr)::Cvoid = vkCmdNextSubpass(command_buffer, contents, fun_ptr)
 
-cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents, fun_ptr::FunctionPtr) = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents, fun_ptr)
+cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents, fun_ptr::FunctionPtr)::Cvoid = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents, fun_ptr)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values), fun_ptr)
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values), fun_ptr)
 
-cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fun_ptr)
+cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fun_ptr)
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query, fun_ptr)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query, fun_ptr)
 
-cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr) = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count, fun_ptr)
+cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count, fun_ptr)
 
-cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr) = vkCmdEndConditionalRenderingEXT(command_buffer, fun_ptr)
+cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndConditionalRenderingEXT(command_buffer, fun_ptr)
 
-cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT, fun_ptr::FunctionPtr) = vkCmdBeginConditionalRenderingEXT(command_buffer, conditional_rendering_begin, fun_ptr)
+cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT, fun_ptr::FunctionPtr)::Cvoid = vkCmdBeginConditionalRenderingEXT(command_buffer, conditional_rendering_begin, fun_ptr)
 
-cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr) = vkCmdEndQuery(command_buffer, query_pool, query, fun_ptr)
+cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndQuery(command_buffer, query_pool, query, fun_ptr)
 
-cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, flags, fun_ptr)
+cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdBeginQuery(command_buffer, query_pool, query, flags, fun_ptr)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
-cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr) = vkCmdResetEvent(command_buffer, event, stage_mask, fun_ptr)
+cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask, fun_ptr)
 
-cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr) = vkCmdSetEvent(command_buffer, event, stage_mask, fun_ptr)
+cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetEvent(command_buffer, event, stage_mask, fun_ptr)
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray, fun_ptr::FunctionPtr) = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects, fun_ptr)
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects, fun_ptr)
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray, fun_ptr::FunctionPtr) = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges, fun_ptr)
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges, fun_ptr)
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray, fun_ptr::FunctionPtr) = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges, fun_ptr)
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges, fun_ptr)
 
-cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer, fun_ptr::FunctionPtr) = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data, fun_ptr)
+cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data, fun_ptr)
 
-cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data), fun_ptr)
+cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data), fun_ptr)
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, filter::VkFilter, fun_ptr::FunctionPtr) = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter, fun_ptr)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, filter::VkFilter, fun_ptr::FunctionPtr)::Cvoid = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter, fun_ptr)
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr) = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions, fun_ptr)
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
-cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr) = vkCmdDispatchIndirect(command_buffer, buffer, offset, fun_ptr)
+cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDispatchIndirect(command_buffer, buffer, offset, fun_ptr)
 
-cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer, fun_ptr::FunctionPtr) = vkCmdDispatch(command_buffer, group_count_x, group_count_y, group_count_z, fun_ptr)
+cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDispatch(command_buffer, group_count_x, group_count_y, group_count_z, fun_ptr)
 
-cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawIndexedIndirect(command_buffer, buffer, offset, draw_count, stride, fun_ptr)
+cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndexedIndirect(command_buffer, buffer, offset, draw_count, stride, fun_ptr)
 
-cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr) = vkCmdDrawIndirect(command_buffer, buffer, offset, draw_count, stride, fun_ptr)
+cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndirect(command_buffer, buffer, offset, draw_count, stride, fun_ptr)
 
-cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer, fun_ptr::FunctionPtr) = vkCmdDrawIndexed(command_buffer, index_count, instance_count, first_index, vertex_offset, first_instance, fun_ptr)
+cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndexed(command_buffer, index_count, instance_count, first_index, vertex_offset, first_instance, fun_ptr)
 
-cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer, fun_ptr::FunctionPtr) = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance, fun_ptr)
+cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance, fun_ptr)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr) = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
 
-cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType, fun_ptr::FunctionPtr) = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type, fun_ptr)
+cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type, fun_ptr)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray, fun_ptr::FunctionPtr) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
 
-cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilReference(command_buffer, face_mask, reference, fun_ptr)
+cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilReference(command_buffer, face_mask, reference, fun_ptr)
 
-cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilWriteMask(command_buffer, face_mask, write_mask, fun_ptr)
+cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilWriteMask(command_buffer, face_mask, write_mask, fun_ptr)
 
-cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer, fun_ptr::FunctionPtr) = vkCmdSetStencilCompareMask(command_buffer, face_mask, compare_mask, fun_ptr)
+cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilCompareMask(command_buffer, face_mask, compare_mask, fun_ptr)
 
-cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real, fun_ptr::FunctionPtr) = vkCmdSetDepthBounds(command_buffer, min_depth_bounds, max_depth_bounds, fun_ptr)
+cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthBounds(command_buffer, min_depth_bounds, max_depth_bounds, fun_ptr)
 
-cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32}, fun_ptr::FunctionPtr) = vkCmdSetBlendConstants(command_buffer, blend_constants, fun_ptr)
+cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetBlendConstants(command_buffer, blend_constants, fun_ptr)
 
-cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, fun_ptr::FunctionPtr) = vkCmdSetDepthBias(command_buffer, depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor, fun_ptr)
+cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthBias(command_buffer, depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor, fun_ptr)
 
-cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real, fun_ptr::FunctionPtr) = vkCmdSetLineWidth(command_buffer, line_width, fun_ptr)
+cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetLineWidth(command_buffer, line_width, fun_ptr)
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors, fun_ptr)
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors, fun_ptr)
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports, fun_ptr)
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports, fun_ptr)
 
-cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, fun_ptr::FunctionPtr) = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline, fun_ptr)
+cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline, fun_ptr)
 
-reset_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; flags = 0)::Result{Int, VulkanError} = @check(vkResetCommandBuffer(command_buffer, flags, fun_ptr))
+reset_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; flags = 0)::Result{VkResult, VulkanError} = @check(vkResetCommandBuffer(command_buffer, flags, fun_ptr))
 
-end_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkEndCommandBuffer(command_buffer, fun_ptr))
+end_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkEndCommandBuffer(command_buffer, fun_ptr))
 
-begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info, fun_ptr))
+begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info, fun_ptr))
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray, fun_ptr::FunctionPtr) = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
 
 function allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo, fun_ptr_create::FunctionPtr)::Result{Vector{CommandBuffer}, VulkanError}
     pCommandBuffers = Vector{VkCommandBuffer}(undef, allocate_info.vks.commandBufferCount)
@@ -5386,9 +5386,9 @@ function allocate_command_buffers(device::Device, allocate_info::CommandBufferAl
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-reset_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0)::Result{Int, VulkanError} = @check(vkResetCommandPool(device, command_pool, flags, fun_ptr))
+reset_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0)::Result{VkResult, VulkanError} = @check(vkResetCommandPool(device, command_pool, flags, fun_ptr))
 
-destroy_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyCommandPool(device, command_pool, allocator, fun_ptr)
+destroy_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyCommandPool(device, command_pool, allocator, fun_ptr)
 
 function create_command_pool(device::Device, create_info::CommandPoolCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{CommandPool, VulkanError}
     pCommandPool = Ref{VkCommandPool}()
@@ -5396,13 +5396,13 @@ function create_command_pool(device::Device, create_info::CommandPoolCreateInfo,
     CommandPool(pCommandPool[], (x->destroy_command_pool(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_render_area_granularity(device::Device, render_pass::RenderPass, fun_ptr::FunctionPtr)
+function get_render_area_granularity(device::Device, render_pass::RenderPass, fun_ptr::FunctionPtr)::Extent2D
     pGranularity = Ref{VkExtent2D}()
     vkGetRenderAreaGranularity(device, render_pass, pGranularity, fun_ptr)
     from_vk(Extent2D, pGranularity[])
 end
 
-destroy_render_pass(device::Device, render_pass::RenderPass, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyRenderPass(device, render_pass, allocator, fun_ptr)
+destroy_render_pass(device::Device, render_pass::RenderPass, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyRenderPass(device, render_pass, allocator, fun_ptr)
 
 function create_render_pass(device::Device, create_info::RenderPassCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{RenderPass, VulkanError}
     pRenderPass = Ref{VkRenderPass}()
@@ -5410,7 +5410,7 @@ function create_render_pass(device::Device, create_info::RenderPassCreateInfo, f
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_framebuffer(device::Device, framebuffer::Framebuffer, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyFramebuffer(device, framebuffer, allocator, fun_ptr)
+destroy_framebuffer(device::Device, framebuffer::Framebuffer, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyFramebuffer(device, framebuffer, allocator, fun_ptr)
 
 function create_framebuffer(device::Device, create_info::FramebufferCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Framebuffer, VulkanError}
     pFramebuffer = Ref{VkFramebuffer}()
@@ -5418,9 +5418,9 @@ function create_framebuffer(device::Device, create_info::FramebufferCreateInfo, 
     Framebuffer(pFramebuffer[], (x->destroy_framebuffer(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray, fun_ptr::FunctionPtr) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies, fun_ptr)
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies, fun_ptr)
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
 
 function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo, fun_ptr_create::FunctionPtr)::Result{Vector{DescriptorSet}, VulkanError}
     pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
@@ -5429,9 +5429,9 @@ function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAl
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
-reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool, fun_ptr::FunctionPtr; flags = 0)::Result{Int, VulkanError} = @check(vkResetDescriptorPool(device, descriptor_pool, flags, fun_ptr))
+reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool, fun_ptr::FunctionPtr; flags = 0)::Result{VkResult, VulkanError} = @check(vkResetDescriptorPool(device, descriptor_pool, flags, fun_ptr))
 
-destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDescriptorPool(device, descriptor_pool, allocator, fun_ptr)
+destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDescriptorPool(device, descriptor_pool, allocator, fun_ptr)
 
 function create_descriptor_pool(device::Device, create_info::DescriptorPoolCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DescriptorPool, VulkanError}
     pDescriptorPool = Ref{VkDescriptorPool}()
@@ -5439,7 +5439,7 @@ function create_descriptor_pool(device::Device, create_info::DescriptorPoolCreat
     DescriptorPool(pDescriptorPool[], (x->destroy_descriptor_pool(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDescriptorSetLayout(device, descriptor_set_layout, allocator, fun_ptr)
+destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDescriptorSetLayout(device, descriptor_set_layout, allocator, fun_ptr)
 
 function create_descriptor_set_layout(device::Device, create_info::DescriptorSetLayoutCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DescriptorSetLayout, VulkanError}
     pSetLayout = Ref{VkDescriptorSetLayout}()
@@ -5447,7 +5447,7 @@ function create_descriptor_set_layout(device::Device, create_info::DescriptorSet
     DescriptorSetLayout(pSetLayout[], (x->destroy_descriptor_set_layout(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_sampler(device::Device, sampler::Sampler, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroySampler(device, sampler, allocator, fun_ptr)
+destroy_sampler(device::Device, sampler::Sampler, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroySampler(device, sampler, allocator, fun_ptr)
 
 function create_sampler(device::Device, create_info::SamplerCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Sampler, VulkanError}
     pSampler = Ref{VkSampler}()
@@ -5455,7 +5455,7 @@ function create_sampler(device::Device, create_info::SamplerCreateInfo, fun_ptr_
     Sampler(pSampler[], (x->destroy_sampler(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyPipelineLayout(device, pipeline_layout, allocator, fun_ptr)
+destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyPipelineLayout(device, pipeline_layout, allocator, fun_ptr)
 
 function create_pipeline_layout(device::Device, create_info::PipelineLayoutCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{PipelineLayout, VulkanError}
     pPipelineLayout = Ref{VkPipelineLayout}()
@@ -5463,30 +5463,30 @@ function create_pipeline_layout(device::Device, create_info::PipelineLayoutCreat
     PipelineLayout(pPipelineLayout[], (x->destroy_pipeline_layout(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_pipeline(device::Device, pipeline::Pipeline, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyPipeline(device, pipeline, allocator, fun_ptr)
+destroy_pipeline(device::Device, pipeline::Pipeline, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyPipeline(device, pipeline, allocator, fun_ptr)
 
-function create_compute_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_compute_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateComputePipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-function create_graphics_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_graphics_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
-function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
     pDataSize = Ref(data_size)
     pData = Ref{Ptr{Cvoid}}()
     @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData, fun_ptr)
-    (pDataSize[], pData[])
+    ((pDataSize[], pData[]), _return_code)
 end
 
-destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyPipelineCache(device, pipeline_cache, allocator, fun_ptr)
+destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyPipelineCache(device, pipeline_cache, allocator, fun_ptr)
 
 function create_pipeline_cache(device::Device, create_info::PipelineCacheCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{PipelineCache, VulkanError}
     pPipelineCache = Ref{VkPipelineCache}()
@@ -5494,7 +5494,7 @@ function create_pipeline_cache(device::Device, create_info::PipelineCacheCreateI
     PipelineCache(pPipelineCache[], (x->destroy_pipeline_cache(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_shader_module(device::Device, shader_module::ShaderModule, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyShaderModule(device, shader_module, allocator, fun_ptr)
+destroy_shader_module(device::Device, shader_module::ShaderModule, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyShaderModule(device, shader_module, allocator, fun_ptr)
 
 function create_shader_module(device::Device, create_info::ShaderModuleCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{ShaderModule, VulkanError}
     pShaderModule = Ref{VkShaderModule}()
@@ -5502,7 +5502,7 @@ function create_shader_module(device::Device, create_info::ShaderModuleCreateInf
     ShaderModule(pShaderModule[], (x->destroy_shader_module(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_image_view(device::Device, image_view::ImageView, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyImageView(device, image_view, allocator, fun_ptr)
+destroy_image_view(device::Device, image_view::ImageView, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyImageView(device, image_view, allocator, fun_ptr)
 
 function create_image_view(device::Device, create_info::ImageViewCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{ImageView, VulkanError}
     pView = Ref{VkImageView}()
@@ -5510,13 +5510,13 @@ function create_image_view(device::Device, create_info::ImageViewCreateInfo, fun
     ImageView(pView[], (x->destroy_image_view(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-function get_image_subresource_layout(device::Device, image::Image, subresource::ImageSubresource, fun_ptr::FunctionPtr)
+function get_image_subresource_layout(device::Device, image::Image, subresource::ImageSubresource, fun_ptr::FunctionPtr)::SubresourceLayout
     pLayout = Ref{VkSubresourceLayout}()
     vkGetImageSubresourceLayout(device, image, subresource, pLayout, fun_ptr)
     from_vk(SubresourceLayout, pLayout[])
 end
 
-destroy_image(device::Device, image::Image, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyImage(device, image, allocator, fun_ptr)
+destroy_image(device::Device, image::Image, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyImage(device, image, allocator, fun_ptr)
 
 function create_image(device::Device, create_info::ImageCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Image, VulkanError}
     pImage = Ref{VkImage}()
@@ -5524,7 +5524,7 @@ function create_image(device::Device, create_info::ImageCreateInfo, fun_ptr_crea
     Image(pImage[], (x->destroy_image(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_buffer_view(device::Device, buffer_view::BufferView, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyBufferView(device, buffer_view, allocator, fun_ptr)
+destroy_buffer_view(device::Device, buffer_view::BufferView, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyBufferView(device, buffer_view, allocator, fun_ptr)
 
 function create_buffer_view(device::Device, create_info::BufferViewCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{BufferView, VulkanError}
     pView = Ref{VkBufferView}()
@@ -5532,7 +5532,7 @@ function create_buffer_view(device::Device, create_info::BufferViewCreateInfo, f
     BufferView(pView[], (x->destroy_buffer_view(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_buffer(device::Device, buffer::Buffer, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyBuffer(device, buffer, allocator, fun_ptr)
+destroy_buffer(device::Device, buffer::Buffer, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyBuffer(device, buffer, allocator, fun_ptr)
 
 function create_buffer(device::Device, create_info::BufferCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Buffer, VulkanError}
     pBuffer = Ref{VkBuffer}()
@@ -5540,15 +5540,15 @@ function create_buffer(device::Device, create_info::BufferCreateInfo, fun_ptr_cr
     Buffer(pBuffer[], (x->destroy_buffer(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr) = vkResetQueryPool(device, query_pool, first_query, query_count, fun_ptr)
+reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr)::Cvoid = vkResetQueryPool(device, query_pool, first_query, query_count, fun_ptr)
 
-function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)::Result{Ptr{Cvoid}, VulkanError}
+function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
     pData = Ref{Ptr{Cvoid}}()
     @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags, fun_ptr)
-    pData[]
+    (pData[], _return_code)
 end
 
-destroy_query_pool(device::Device, query_pool::QueryPool, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyQueryPool(device, query_pool, allocator, fun_ptr)
+destroy_query_pool(device::Device, query_pool::QueryPool, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyQueryPool(device, query_pool, allocator, fun_ptr)
 
 function create_query_pool(device::Device, create_info::QueryPoolCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{QueryPool, VulkanError}
     pQueryPool = Ref{VkQueryPool}()
@@ -5556,13 +5556,13 @@ function create_query_pool(device::Device, create_info::QueryPoolCreateInfo, fun
     QueryPool(pQueryPool[], (x->destroy_query_pool(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-reset_event(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkResetEvent(device, event, fun_ptr))
+reset_event(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkResetEvent(device, event, fun_ptr))
 
-set_event(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkSetEvent(device, event, fun_ptr))
+set_event(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkSetEvent(device, event, fun_ptr))
 
-get_event_status(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetEventStatus(device, event, fun_ptr))
+get_event_status(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetEventStatus(device, event, fun_ptr))
 
-destroy_event(device::Device, event::Event, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyEvent(device, event, allocator, fun_ptr)
+destroy_event(device::Device, event::Event, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyEvent(device, event, allocator, fun_ptr)
 
 function create_event(device::Device, create_info::EventCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Event, VulkanError}
     pEvent = Ref{VkEvent}()
@@ -5570,7 +5570,7 @@ function create_event(device::Device, create_info::EventCreateInfo, fun_ptr_crea
     Event(pEvent[], (x->destroy_event(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-destroy_semaphore(device::Device, semaphore::Semaphore, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroySemaphore(device, semaphore, allocator, fun_ptr)
+destroy_semaphore(device::Device, semaphore::Semaphore, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroySemaphore(device, semaphore, allocator, fun_ptr)
 
 function create_semaphore(device::Device, create_info::SemaphoreCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Semaphore, VulkanError}
     pSemaphore = Ref{VkSemaphore}()
@@ -5578,13 +5578,13 @@ function create_semaphore(device::Device, create_info::SemaphoreCreateInfo, fun_
     Semaphore(pSemaphore[], (x->destroy_semaphore(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
 
-get_fence_status(device::Device, fence::Fence, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkGetFenceStatus(device, fence, fun_ptr))
+get_fence_status(device::Device, fence::Fence, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetFenceStatus(device, fence, fun_ptr))
 
-reset_fences(device::Device, fences::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
+reset_fences(device::Device, fences::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
 
-destroy_fence(device::Device, fence::Fence, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyFence(device, fence, allocator, fun_ptr)
+destroy_fence(device::Device, fence::Fence, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyFence(device, fence, allocator, fun_ptr)
 
 function create_fence(device::Device, create_info::FenceCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Fence, VulkanError}
     pFence = Ref{VkFence}()
@@ -5592,9 +5592,9 @@ function create_fence(device::Device, create_info::FenceCreateInfo, fun_ptr_crea
     Fence(pFence[], (x->destroy_fence(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::Result{Int, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling, fun_ptr::FunctionPtr)
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling, fun_ptr::FunctionPtr)::Vector{SparseImageFormatProperties}
     pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
@@ -5602,7 +5602,7 @@ function get_physical_device_sparse_image_format_properties(physical_device::Phy
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 
-function get_image_sparse_memory_requirements(device::Device, image::Image, fun_ptr::FunctionPtr)
+function get_image_sparse_memory_requirements(device::Device, image::Image, fun_ptr::FunctionPtr)::Vector{SparseImageMemoryRequirements}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements(device, image, pSparseMemoryRequirementCount, C_NULL, fun_ptr)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements}(undef, pSparseMemoryRequirementCount[])
@@ -5610,33 +5610,33 @@ function get_image_sparse_memory_requirements(device::Device, image::Image, fun_
     from_vk.(SparseImageMemoryRequirements, pSparseMemoryRequirements)
 end
 
-bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkBindImageMemory(device, image, memory, memory_offset, fun_ptr))
+bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindImageMemory(device, image, memory, memory_offset, fun_ptr))
 
-function get_image_memory_requirements(device::Device, image::Image, fun_ptr::FunctionPtr)
+function get_image_memory_requirements(device::Device, image::Image, fun_ptr::FunctionPtr)::MemoryRequirements
     pMemoryRequirements = Ref{VkMemoryRequirements}()
     vkGetImageMemoryRequirements(device, image, pMemoryRequirements, fun_ptr)
     from_vk(MemoryRequirements, pMemoryRequirements[])
 end
 
-bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkBindBufferMemory(device, buffer, memory, memory_offset, fun_ptr))
+bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindBufferMemory(device, buffer, memory, memory_offset, fun_ptr))
 
-function get_buffer_memory_requirements(device::Device, buffer::Buffer, fun_ptr::FunctionPtr)
+function get_buffer_memory_requirements(device::Device, buffer::Buffer, fun_ptr::FunctionPtr)::MemoryRequirements
     pMemoryRequirements = Ref{VkMemoryRequirements}()
     vkGetBufferMemoryRequirements(device, buffer, pMemoryRequirements, fun_ptr)
     from_vk(MemoryRequirements, pMemoryRequirements[])
 end
 
-function get_device_memory_commitment(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr)
+function get_device_memory_commitment(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr)::UInt64
     pCommittedMemoryInBytes = Ref{VkDeviceSize}()
     vkGetDeviceMemoryCommitment(device, memory, pCommittedMemoryInBytes, fun_ptr)
     pCommittedMemoryInBytes[]
 end
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
 
-unmap_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr) = vkUnmapMemory(device, memory, fun_ptr)
+unmap_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr)::Cvoid = vkUnmapMemory(device, memory, fun_ptr)
 
 function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer, fun_ptr::FunctionPtr; flags = 0)::Result{Ptr{Cvoid}, VulkanError}
     ppData = Ref{Ptr{Cvoid}}()
@@ -5644,7 +5644,7 @@ function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size:
     ppData[]
 end
 
-free_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr; allocator = C_NULL) = vkFreeMemory(device, memory, allocator, fun_ptr)
+free_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkFreeMemory(device, memory, allocator, fun_ptr)
 
 function allocate_memory(device::Device, allocate_info::MemoryAllocateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DeviceMemory, VulkanError}
     pMemory = Ref{VkDeviceMemory}()
@@ -5652,48 +5652,48 @@ function allocate_memory(device::Device, allocate_info::MemoryAllocateInfo, fun_
     DeviceMemory(pMemory[], (x->free_memory(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-device_wait_idle(device::Device, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkDeviceWaitIdle(device, fun_ptr))
+device_wait_idle(device::Device, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkDeviceWaitIdle(device, fun_ptr))
 
-queue_wait_idle(queue::Queue, fun_ptr::FunctionPtr)::Result{Int, VulkanError} = @check(vkQueueWaitIdle(queue, fun_ptr))
+queue_wait_idle(queue::Queue, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkQueueWaitIdle(queue, fun_ptr))
 
-queue_submit(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::Result{Int, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence, fun_ptr))
+queue_submit(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence, fun_ptr))
 
-function get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer, fun_ptr::FunctionPtr)
+function get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer, fun_ptr::FunctionPtr)::Queue
     pQueue = Ref{VkQueue}()
     vkGetDeviceQueue(device, queue_family_index, queue_index, pQueue, fun_ptr)
     Queue(pQueue[], identity, device)
 end
 
-function enumerate_device_extension_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+function enumerate_device_extension_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(ExtensionProperties, pProperties)
+    (from_vk.(ExtensionProperties, pProperties), _return_code)
 end
 
-function enumerate_device_layer_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{LayerProperties}, VulkanError}
+function enumerate_device_layer_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(LayerProperties, pProperties)
+    (from_vk.(LayerProperties, pProperties), _return_code)
 end
 
-function enumerate_instance_extension_properties(fun_ptr::FunctionPtr; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+function enumerate_instance_extension_properties(fun_ptr::FunctionPtr; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties, fun_ptr)
-    from_vk.(ExtensionProperties, pProperties)
+    (from_vk.(ExtensionProperties, pProperties), _return_code)
 end
 
-function enumerate_instance_layer_properties(fun_ptr::FunctionPtr)::Result{Vector{LayerProperties}, VulkanError}
+function enumerate_instance_layer_properties(fun_ptr::FunctionPtr)::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, pProperties, fun_ptr)
-    from_vk.(LayerProperties, pProperties)
+    (from_vk.(LayerProperties, pProperties), _return_code)
 end
 
 function enumerate_instance_version(fun_ptr::FunctionPtr)::Result{VersionNumber, VulkanError}
@@ -5702,7 +5702,7 @@ function enumerate_instance_version(fun_ptr::FunctionPtr)::Result{VersionNumber,
     from_vk(VersionNumber, pApiVersion[])
 end
 
-destroy_device(device::Device, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyDevice(device, allocator, fun_ptr)
+destroy_device(device::Device, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDevice(device, allocator, fun_ptr)
 
 function create_device(physical_device::PhysicalDevice, create_info::DeviceCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Device, VulkanError}
     pDevice = Ref{VkDevice}()
@@ -5716,25 +5716,25 @@ function get_physical_device_image_format_properties(physical_device::PhysicalDe
     from_vk(ImageFormatProperties, pImageFormatProperties[])
 end
 
-function get_physical_device_format_properties(physical_device::PhysicalDevice, format::VkFormat, fun_ptr::FunctionPtr)
+function get_physical_device_format_properties(physical_device::PhysicalDevice, format::VkFormat, fun_ptr::FunctionPtr)::FormatProperties
     pFormatProperties = Ref{VkFormatProperties}()
     vkGetPhysicalDeviceFormatProperties(physical_device, format, pFormatProperties, fun_ptr)
     from_vk(FormatProperties, pFormatProperties[])
 end
 
-function get_physical_device_features(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_features(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::PhysicalDeviceFeatures
     pFeatures = Ref{VkPhysicalDeviceFeatures}()
     vkGetPhysicalDeviceFeatures(physical_device, pFeatures, fun_ptr)
     from_vk(PhysicalDeviceFeatures, pFeatures[])
 end
 
-function get_physical_device_memory_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_memory_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::PhysicalDeviceMemoryProperties
     pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties}()
     vkGetPhysicalDeviceMemoryProperties(physical_device, pMemoryProperties, fun_ptr)
     from_vk(PhysicalDeviceMemoryProperties, pMemoryProperties[])
 end
 
-function get_physical_device_queue_family_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_queue_family_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Vector{QueueFamilyProperties}
     pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties(physical_device, pQueueFamilyPropertyCount, C_NULL, fun_ptr)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties}(undef, pQueueFamilyPropertyCount[])
@@ -5742,25 +5742,25 @@ function get_physical_device_queue_family_properties(physical_device::PhysicalDe
     from_vk.(QueueFamilyProperties, pQueueFamilyProperties)
 end
 
-function get_physical_device_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)
+function get_physical_device_properties(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::PhysicalDeviceProperties
     pProperties = Ref{VkPhysicalDeviceProperties}()
     vkGetPhysicalDeviceProperties(physical_device, pProperties, fun_ptr)
     from_vk(PhysicalDeviceProperties, pProperties[])
 end
 
-get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL) = vkGetInstanceProcAddr(instance, name, fun_ptr)
+get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name, fun_ptr)
 
-get_device_proc_addr(device::Device, name::AbstractString, fun_ptr::FunctionPtr) = vkGetDeviceProcAddr(device, name, fun_ptr)
+get_device_proc_addr(device::Device, name::AbstractString, fun_ptr::FunctionPtr)::FunctionPtr = vkGetDeviceProcAddr(device, name, fun_ptr)
 
-function enumerate_physical_devices(instance::Instance, fun_ptr::FunctionPtr)::Result{Vector{PhysicalDevice}, VulkanError}
+function enumerate_physical_devices(instance::Instance, fun_ptr::FunctionPtr)::Result{Tuple{Vector{PhysicalDevice}, VkResult}, VulkanError}
     pPhysicalDeviceCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL, fun_ptr)
     pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices, fun_ptr)
-    PhysicalDevice.(pPhysicalDevices, identity, instance)
+    (PhysicalDevice.(pPhysicalDevices, identity, instance), _return_code)
 end
 
-destroy_instance(instance::Instance, fun_ptr::FunctionPtr; allocator = C_NULL) = vkDestroyInstance(instance, allocator, fun_ptr)
+destroy_instance(instance::Instance, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyInstance(instance, allocator, fun_ptr)
 
 function create_instance(create_info::InstanceCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Instance, VulkanError}
     pInstance = Ref{VkInstance}()
@@ -9129,15 +9129,15 @@ function BaseOutStructure(; next = C_NULL)
     BaseOutStructure(vks, deps)
 end
 
-function get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)
+function get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)::UInt64
     pData = Ref{UInt64}()
     vkGetPrivateDataEXT(device, object_type, object_handle, private_data_slot, pData)
     pData[]
 end
 
-set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::Result{Int, VulkanError} = @check(vkSetPrivateDataEXT(device, object_type, object_handle, private_data_slot, data))
+set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::Result{VkResult, VulkanError} = @check(vkSetPrivateDataEXT(device, object_type, object_handle, private_data_slot, data))
 
-destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT; allocator = C_NULL) = vkDestroyPrivateDataSlotEXT(device, private_data_slot, allocator)
+destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT; allocator = C_NULL)::Cvoid = vkDestroyPrivateDataSlotEXT(device, private_data_slot, allocator)
 
 function create_private_data_slot_ext(device::Device, create_info::PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::Result{PrivateDataSlotEXT, VulkanError}
     pPrivateDataSlot = Ref{VkPrivateDataSlotEXT}()
@@ -9145,37 +9145,37 @@ function create_private_data_slot_ext(device::Device, create_info::PrivateDataSl
     PrivateDataSlotEXT(pPrivateDataSlot[], (x->destroy_private_data_slot_ext(device, x; allocator)), device)
 end
 
-cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp) = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op)
+cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp)::Cvoid = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op)
 
-cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool) = vkCmdSetStencilTestEnableEXT(command_buffer, stencil_test_enable)
+cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool)::Cvoid = vkCmdSetStencilTestEnableEXT(command_buffer, stencil_test_enable)
 
-cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool) = vkCmdSetDepthBoundsTestEnableEXT(command_buffer, depth_bounds_test_enable)
+cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool)::Cvoid = vkCmdSetDepthBoundsTestEnableEXT(command_buffer, depth_bounds_test_enable)
 
-cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::VkCompareOp) = vkCmdSetDepthCompareOpEXT(command_buffer, depth_compare_op)
+cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::VkCompareOp)::Cvoid = vkCmdSetDepthCompareOpEXT(command_buffer, depth_compare_op)
 
-cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool) = vkCmdSetDepthWriteEnableEXT(command_buffer, depth_write_enable)
+cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool)::Cvoid = vkCmdSetDepthWriteEnableEXT(command_buffer, depth_write_enable)
 
-cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool) = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable)
+cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)::Cvoid = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL, strides = C_NULL) = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray) = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors)
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray)::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors)
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray) = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports)
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray)::Cvoid = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports)
 
-cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology) = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology)
+cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology)::Cvoid = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology)
 
-cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace) = vkCmdSetFrontFaceEXT(command_buffer, front_face)
+cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace)::Cvoid = vkCmdSetFrontFaceEXT(command_buffer, front_face)
 
-cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0) = vkCmdSetCullModeEXT(command_buffer, cull_mode)
+cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0)::Cvoid = vkCmdSetCullModeEXT(command_buffer, cull_mode)
 
-deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{Int, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation))
+deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation))
 
-get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{Int, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation))
+get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation))
 
-get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR) = vkGetDeferredOperationMaxConcurrencyKHR(device, operation)
+get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR)::UInt32 = vkGetDeferredOperationMaxConcurrencyKHR(device, operation)
 
-destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR; allocator = C_NULL) = vkDestroyDeferredOperationKHR(device, operation, allocator)
+destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR; allocator = C_NULL)::Cvoid = vkDestroyDeferredOperationKHR(device, operation, allocator)
 
 function create_deferred_operation_khr(device::Device; allocator = C_NULL)::Result{DeferredOperationKHR, VulkanError}
     pDeferredOperation = Ref{VkDeferredOperationKHR}()
@@ -9183,13 +9183,13 @@ function create_deferred_operation_khr(device::Device; allocator = C_NULL)::Resu
     DeferredOperationKHR(pDeferredOperation[], (x->destroy_deferred_operation_khr(device, x; allocator)), device)
 end
 
-get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR) = vkGetAccelerationStructureDeviceAddressKHR(device, info)
+get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray)::Result{Int, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos))
+build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos))
 
-cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer) = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride)
+cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer)::Cvoid = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride)
 
-cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray) = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos)
+cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray)::Cvoid = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos)
 
 function create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureKHR}()
@@ -9197,41 +9197,41 @@ function create_acceleration_structure_khr(device::Device, create_info::Accelera
     AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x; allocator)), device)
 end
 
-function get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
+function get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::Result{Tuple{Vector{PhysicalDeviceToolPropertiesEXT}, VkResult}, VulkanError}
     pToolCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, C_NULL)
     pToolProperties = Vector{VkPhysicalDeviceToolPropertiesEXT}(undef, pToolCount[])
     @check vkGetPhysicalDeviceToolPropertiesEXT(physical_device, pToolCount, pToolProperties)
-    from_vk.(PhysicalDeviceToolPropertiesEXT, pToolProperties)
+    (from_vk.(PhysicalDeviceToolPropertiesEXT, pToolProperties), _return_code)
 end
 
-cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer) = vkCmdSetLineStippleEXT(command_buffer, line_stipple_factor, line_stipple_pattern)
+cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer)::Cvoid = vkCmdSetLineStippleEXT(command_buffer, line_stipple_factor, line_stipple_pattern)
 
-function get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
+function get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Tuple{Vector{PipelineExecutableInternalRepresentationKHR}, VkResult}, VulkanError}
     pInternalRepresentationCount = Ref{UInt32}()
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, C_NULL)
     pInternalRepresentations = Vector{VkPipelineExecutableInternalRepresentationKHR}(undef, pInternalRepresentationCount[])
     @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, pInternalRepresentations)
-    from_vk.(PipelineExecutableInternalRepresentationKHR, pInternalRepresentations)
+    (from_vk.(PipelineExecutableInternalRepresentationKHR, pInternalRepresentations), _return_code)
 end
 
-function get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
+function get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Tuple{Vector{PipelineExecutableStatisticKHR}, VkResult}, VulkanError}
     pStatisticCount = Ref{UInt32}()
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, C_NULL)
     pStatistics = Vector{VkPipelineExecutableStatisticKHR}(undef, pStatisticCount[])
     @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, pStatistics)
-    from_vk.(PipelineExecutableStatisticKHR, pStatistics)
+    (from_vk.(PipelineExecutableStatisticKHR, pStatistics), _return_code)
 end
 
-function get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)::Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
+function get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)::Result{Tuple{Vector{PipelineExecutablePropertiesKHR}, VkResult}, VulkanError}
     pExecutableCount = Ref{UInt32}()
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, C_NULL)
     pProperties = Vector{VkPipelineExecutablePropertiesKHR}(undef, pExecutableCount[])
     @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, pProperties)
-    from_vk.(PipelineExecutablePropertiesKHR, pProperties)
+    (from_vk.(PipelineExecutablePropertiesKHR, pProperties), _return_code)
 end
 
-get_device_memory_opaque_capture_address(device::Device, info::DeviceMemoryOpaqueCaptureAddressInfo) = vkGetDeviceMemoryOpaqueCaptureAddress(device, info)
+get_device_memory_opaque_capture_address(device::Device, info::DeviceMemoryOpaqueCaptureAddressInfo)::UInt64 = vkGetDeviceMemoryOpaqueCaptureAddress(device, info)
 
 function get_performance_parameter_intel(device::Device, parameter::VkPerformanceParameterTypeINTEL)::Result{PerformanceValueINTEL, VulkanError}
     pValue = Ref{VkPerformanceValueINTEL}()
@@ -9239,9 +9239,9 @@ function get_performance_parameter_intel(device::Device, parameter::VkPerformanc
     from_vk(PerformanceValueINTEL, pValue[])
 end
 
-queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::Result{Int, VulkanError} = @check(vkQueueSetPerformanceConfigurationINTEL(queue, configuration))
+queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError} = @check(vkQueueSetPerformanceConfigurationINTEL(queue, configuration))
 
-release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL)::Result{Int, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration))
+release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration))
 
 function acquire_performance_configuration_intel(device::Device, acquire_info::PerformanceConfigurationAcquireInfoINTEL)::Result{PerformanceConfigurationINTEL, VulkanError}
     pConfiguration = Ref{VkPerformanceConfigurationINTEL}()
@@ -9249,22 +9249,22 @@ function acquire_performance_configuration_intel(device::Device, acquire_info::P
     PerformanceConfigurationINTEL(pConfiguration[], identity, device)
 end
 
-cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL)::Result{Int, VulkanError} = @check(vkCmdSetPerformanceOverrideINTEL(command_buffer, override_info))
+cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL)::Result{VkResult, VulkanError} = @check(vkCmdSetPerformanceOverrideINTEL(command_buffer, override_info))
 
-cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL)::Result{Int, VulkanError} = @check(vkCmdSetPerformanceStreamMarkerINTEL(command_buffer, marker_info))
+cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL)::Result{VkResult, VulkanError} = @check(vkCmdSetPerformanceStreamMarkerINTEL(command_buffer, marker_info))
 
-cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL)::Result{Int, VulkanError} = @check(vkCmdSetPerformanceMarkerINTEL(command_buffer, marker_info))
+cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL)::Result{VkResult, VulkanError} = @check(vkCmdSetPerformanceMarkerINTEL(command_buffer, marker_info))
 
-uninitialize_performance_api_intel(device::Device) = vkUninitializePerformanceApiINTEL(device)
+uninitialize_performance_api_intel(device::Device)::Cvoid = vkUninitializePerformanceApiINTEL(device)
 
-initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL)::Result{Int, VulkanError} = @check(vkInitializePerformanceApiINTEL(device, initialize_info))
+initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL)::Result{VkResult, VulkanError} = @check(vkInitializePerformanceApiINTEL(device, initialize_info))
 
-function get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
+function get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::Result{Tuple{Vector{FramebufferMixedSamplesCombinationNV}, VkResult}, VulkanError}
     pCombinationCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, C_NULL)
     pCombinations = Vector{VkFramebufferMixedSamplesCombinationNV}(undef, pCombinationCount[])
     @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, pCombinations)
-    from_vk.(FramebufferMixedSamplesCombinationNV, pCombinations)
+    (from_vk.(FramebufferMixedSamplesCombinationNV, pCombinations), _return_code)
 end
 
 function create_headless_surface_ext(instance::Instance, create_info::HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
@@ -9273,9 +9273,9 @@ function create_headless_surface_ext(instance::Instance, create_info::HeadlessSu
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_buffer_device_address(device::Device, info::BufferDeviceAddressInfo) = vkGetBufferDeviceAddress(device, info)
+get_buffer_device_address(device::Device, info::BufferDeviceAddressInfo)::UInt64 = vkGetBufferDeviceAddress(device, info)
 
-get_buffer_opaque_capture_address(device::Device, info::BufferDeviceAddressInfo) = vkGetBufferOpaqueCaptureAddress(device, info)
+get_buffer_opaque_capture_address(device::Device, info::BufferDeviceAddressInfo)::UInt64 = vkGetBufferOpaqueCaptureAddress(device, info)
 
 function get_image_drm_format_modifier_properties_ext(device::Device, image::Image)::Result{ImageDrmFormatModifierPropertiesEXT, VulkanError}
     pProperties = Ref{VkImageDrmFormatModifierPropertiesEXT}()
@@ -9283,41 +9283,41 @@ function get_image_drm_format_modifier_properties_ext(device::Device, image::Ima
     from_vk(ImageDrmFormatModifierPropertiesEXT, pProperties[])
 end
 
-release_profiling_lock_khr(device::Device) = vkReleaseProfilingLockKHR(device)
+release_profiling_lock_khr(device::Device)::Cvoid = vkReleaseProfilingLockKHR(device)
 
-acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR)::Result{Int, VulkanError} = @check(vkAcquireProfilingLockKHR(device, info))
+acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR)::Result{VkResult, VulkanError} = @check(vkAcquireProfilingLockKHR(device, info))
 
-function get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::QueryPoolPerformanceCreateInfoKHR)
+function get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::QueryPoolPerformanceCreateInfoKHR)::UInt32
     pNumPasses = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR(physical_device, performance_query_create_info, pNumPasses)
     pNumPasses[]
 end
 
-function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
+function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VkResult}, VulkanError}
     pCounterCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
     pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
     pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
     @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
-    (from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions))
+    ((from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions)), _return_code)
 end
 
-release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{Int, VulkanError} = @check(vkReleaseFullScreenExclusiveModeEXT(device, swapchain))
+release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError} = @check(vkReleaseFullScreenExclusiveModeEXT(device, swapchain))
 
-acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{Int, VulkanError} = @check(vkAcquireFullScreenExclusiveModeEXT(device, swapchain))
+acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError} = @check(vkAcquireFullScreenExclusiveModeEXT(device, swapchain))
 
-function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::Integer)::Result{UInt32, VulkanError}
+function get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModes2EXT(device, surface_info, pModes)
     pModes[]
 end
 
-function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, C_NULL)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, pPresentModes)
-    pPresentModes
+    (pPresentModes, _return_code)
 end
 
 function get_image_view_address_nvx(device::Device, image_view::ImageView)::Result{ImageViewAddressPropertiesNVX, VulkanError}
@@ -9326,30 +9326,30 @@ function get_image_view_address_nvx(device::Device, image_view::ImageView)::Resu
     from_vk(ImageViewAddressPropertiesNVX, pProperties[])
 end
 
-get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX) = vkGetImageViewHandleNVX(device, info)
+get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX)::UInt32 = vkGetImageViewHandleNVX(device, info)
 
-get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR)::Result{Int, VulkanError} = @check(vkGetDeviceAccelerationStructureCompatibilityKHR(device, version))
+get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR)::Result{VkResult, VulkanError} = @check(vkGetDeviceAccelerationStructureCompatibilityKHR(device, version))
 
-cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer) = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset)
+cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer)::Cvoid = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset)
 
-function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Vector{CooperativeMatrixPropertiesNV}, VulkanError}
+function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Tuple{Vector{CooperativeMatrixPropertiesNV}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkCooperativeMatrixPropertiesNV}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, pProperties)
-    from_vk.(CooperativeMatrixPropertiesNV, pProperties)
+    (from_vk.(CooperativeMatrixPropertiesNV, pProperties), _return_code)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesKHR(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
-function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesNV(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
 function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer)::Result{Ptr{Cvoid}, VulkanError}
@@ -9370,9 +9370,9 @@ function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipe
     pData[]
 end
 
-cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL) = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth)
+cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth)
 
-cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer) = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
+cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
 
 function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, stride::Integer)::Result{Ptr{Cvoid}, VulkanError}
     pData = Ref{Ptr{Cvoid}}()
@@ -9380,39 +9380,39 @@ function write_acceleration_structures_properties_khr(device::Device, accelerati
     pData[]
 end
 
-cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL) = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
+cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer) = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
-copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{Int, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info))
+copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info))
 
-cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR) = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info)
+cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR)::Cvoid = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info)
 
-copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{Int, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info))
+copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info))
 
-cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR) = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info)
+cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR)::Cvoid = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info)
 
-copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{Int, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info))
+copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info))
 
-cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR) = vkCmdCopyAccelerationStructureKHR(command_buffer, info)
+cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR)::Cvoid = vkCmdCopyAccelerationStructureKHR(command_buffer, info)
 
-cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR) = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode)
+cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode)
 
-bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray)::Result{Int, VulkanError} = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos))
+bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos))
 
-function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)
+function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
     pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()
     vkGetAccelerationStructureMemoryRequirementsNV(device, info, pMemoryRequirements)
     from_vk(VkMemoryRequirements2KHR, pMemoryRequirements[])
 end
 
-function get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR)
+function get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetAccelerationStructureMemoryRequirementsKHR(device, info, pMemoryRequirements)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
 end
 
-destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL) = vkDestroyAccelerationStructureKHR(device, acceleration_structure, allocator)
+destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL)::Cvoid = vkDestroyAccelerationStructureKHR(device, acceleration_structure, allocator)
 
 function create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{VkAccelerationStructureNV, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureNV}()
@@ -9420,35 +9420,35 @@ function create_acceleration_structure_nv(device::Device, create_info::Accelerat
     AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x; allocator)), device)
 end
 
-compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::Result{Int, VulkanError} = @check(vkCompileDeferredNV(device, pipeline, shader))
+compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::Result{VkResult, VulkanError} = @check(vkCompileDeferredNV(device, pipeline, shader))
 
-cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer) = vkCmdDrawMeshTasksIndirectCountNV(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
+cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawMeshTasksIndirectCountNV(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
 
-cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer) = vkCmdDrawMeshTasksIndirectNV(command_buffer, buffer, offset, draw_count, stride)
+cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawMeshTasksIndirectNV(command_buffer, buffer, offset, draw_count, stride)
 
-cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer) = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task)
+cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer)::Cvoid = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task)
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray) = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders)
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray)::Cvoid = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders)
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray) = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes)
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray)::Cvoid = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes)
 
-cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout; image_view = C_NULL) = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout)
+cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout; image_view = C_NULL)::Cvoid = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout)
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray) = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors)
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray)::Cvoid = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors)
 
-cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer) = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride)
+cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer)::Cvoid = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride)
 
-cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer) = vkCmdEndQueryIndexedEXT(command_buffer, query_pool, query, index)
+cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer)::Cvoid = vkCmdEndQueryIndexedEXT(command_buffer, query_pool, query, index)
 
-cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0) = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index)
+cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)::Cvoid = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL) = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL) = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL) = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
 
-function get_queue_checkpoint_data_nv(queue::Queue)
+function get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, C_NULL)
     pCheckpointData = Vector{VkCheckpointDataNV}(undef, pCheckpointDataCount[])
@@ -9456,11 +9456,11 @@ function get_queue_checkpoint_data_nv(queue::Queue)
     from_vk.(CheckpointDataNV, pCheckpointData)
 end
 
-cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}) = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker))
+cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker))
 
-cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer) = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
+cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
 
-cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer) = vkCmdDrawIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
+cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
 
 function get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID)::Result{Cvoid, VulkanError}
     pBuffer = Ref{Ptr{AHardwareBuffer}}()
@@ -9474,9 +9474,9 @@ function get_android_hardware_buffer_properties_android(device::Device, buffer::
     from_vk(AndroidHardwareBufferPropertiesANDROID, pProperties[])
 end
 
-signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo)::Result{Int, VulkanError} = @check(vkSignalSemaphore(device, signal_info))
+signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo)::Result{VkResult, VulkanError} = @check(vkSignalSemaphore(device, signal_info))
 
-wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{Int, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout))
+wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout))
 
 function get_semaphore_counter_value(device::Device, semaphore::Semaphore)::Result{UInt64, VulkanError}
     pValue = Ref{UInt64}()
@@ -9484,11 +9484,11 @@ function get_semaphore_counter_value(device::Device, semaphore::Semaphore)::Resu
     pValue[]
 end
 
-cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::SubpassEndInfo) = vkCmdEndRenderPass2(command_buffer, subpass_end_info)
+cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::SubpassEndInfo)::Cvoid = vkCmdEndRenderPass2(command_buffer, subpass_end_info)
 
-cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::SubpassBeginInfo, subpass_end_info::SubpassEndInfo) = vkCmdNextSubpass2(command_buffer, subpass_begin_info, subpass_end_info)
+cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::SubpassBeginInfo, subpass_end_info::SubpassEndInfo)::Cvoid = vkCmdNextSubpass2(command_buffer, subpass_begin_info, subpass_end_info)
 
-cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, subpass_begin_info::SubpassBeginInfo) = vkCmdBeginRenderPass2(command_buffer, render_pass_begin, subpass_begin_info)
+cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, subpass_begin_info::SubpassBeginInfo)::Cvoid = vkCmdBeginRenderPass2(command_buffer, render_pass_begin, subpass_begin_info)
 
 function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2; allocator = C_NULL)::Result{RenderPass, VulkanError}
     pRenderPass = Ref{VkRenderPass}()
@@ -9496,7 +9496,7 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer) = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker)
 
 function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid})::Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
@@ -9504,9 +9504,9 @@ function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkE
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT) = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data)
+submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data)
 
-destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL) = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator)
+destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL)::Cvoid = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator)
 
 function create_debug_utils_messenger_ext(instance::Instance, create_info::DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::Result{DebugUtilsMessengerEXT, VulkanError}
     pMessenger = Ref{VkDebugUtilsMessengerEXT}()
@@ -9514,21 +9514,21 @@ function create_debug_utils_messenger_ext(instance::Instance, create_info::Debug
     DebugUtilsMessengerEXT(pMessenger[], (x->destroy_debug_utils_messenger_ext(instance, x; allocator)), instance)
 end
 
-cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT) = vkCmdInsertDebugUtilsLabelEXT(command_buffer, label_info)
+cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)::Cvoid = vkCmdInsertDebugUtilsLabelEXT(command_buffer, label_info)
 
-cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer) = vkCmdEndDebugUtilsLabelEXT(command_buffer)
+cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer)::Cvoid = vkCmdEndDebugUtilsLabelEXT(command_buffer)
 
-cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT) = vkCmdBeginDebugUtilsLabelEXT(command_buffer, label_info)
+cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)::Cvoid = vkCmdBeginDebugUtilsLabelEXT(command_buffer, label_info)
 
-queue_insert_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT) = vkQueueInsertDebugUtilsLabelEXT(queue, label_info)
+queue_insert_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)::Cvoid = vkQueueInsertDebugUtilsLabelEXT(queue, label_info)
 
-queue_end_debug_utils_label_ext(queue::Queue) = vkQueueEndDebugUtilsLabelEXT(queue)
+queue_end_debug_utils_label_ext(queue::Queue)::Cvoid = vkQueueEndDebugUtilsLabelEXT(queue)
 
-queue_begin_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT) = vkQueueBeginDebugUtilsLabelEXT(queue, label_info)
+queue_begin_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)::Cvoid = vkQueueBeginDebugUtilsLabelEXT(queue, label_info)
 
-set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT)::Result{Int, VulkanError} = @check(vkSetDebugUtilsObjectTagEXT(device, tag_info))
+set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT)::Result{VkResult, VulkanError} = @check(vkSetDebugUtilsObjectTagEXT(device, tag_info))
 
-set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT)::Result{Int, VulkanError} = @check(vkSetDebugUtilsObjectNameEXT(device, name_info))
+set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT)::Result{VkResult, VulkanError} = @check(vkSetDebugUtilsObjectNameEXT(device, name_info))
 
 function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray)::Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
     pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
@@ -9537,39 +9537,39 @@ function get_calibrated_timestamps_ext(device::Device, timestamp_infos::Abstract
     (pTimestamps, pMaxDeviation[])
 end
 
-function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{TimeDomainEXT}, VulkanError}
+function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Tuple{Vector{TimeDomainEXT}, VkResult}, VulkanError}
     pTimeDomainCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, C_NULL)
     pTimeDomains = Vector{VkTimeDomainEXT}(undef, pTimeDomainCount[])
     @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, pTimeDomains)
-    pTimeDomains
+    (pTimeDomains, _return_code)
 end
 
-set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool) = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
+set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)::Cvoid = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
     pInfoSize = Ref(info_size)
     pInfo = Ref{Ptr{Cvoid}}()
     @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
-    (pInfoSize[], pInfo[])
+    ((pInfoSize[], pInfo[]), _return_code)
 end
 
-function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)
+function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
     pSupport = Ref{VkDescriptorSetLayoutSupport}()
     vkGetDescriptorSetLayoutSupport(device, create_info, pSupport)
     from_vk(DescriptorSetLayoutSupport, pSupport[])
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray)::Result{Int, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray)::Result{VkResult, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
 
-function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
     pDataSize = Ref(data_size)
     pData = Ref{Ptr{Cvoid}}()
     @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData)
-    (pDataSize[], pData[])
+    ((pDataSize[], pData[]), _return_code)
 end
 
-destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL) = vkDestroyValidationCacheEXT(device, validation_cache, allocator)
+destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL)::Cvoid = vkDestroyValidationCacheEXT(device, validation_cache, allocator)
 
 function create_validation_cache_ext(device::Device, create_info::ValidationCacheCreateInfoEXT; allocator = C_NULL)::Result{ValidationCacheEXT, VulkanError}
     pValidationCache = Ref{VkValidationCacheEXT}()
@@ -9577,13 +9577,13 @@ function create_validation_cache_ext(device::Device, create_info::ValidationCach
     ValidationCacheEXT(pValidationCache[], (x->destroy_validation_cache_ext(device, x; allocator)), device)
 end
 
-function get_device_queue_2(device::Device, queue_info::DeviceQueueInfo2)
+function get_device_queue_2(device::Device, queue_info::DeviceQueueInfo2)::Queue
     pQueue = Ref{VkQueue}()
     vkGetDeviceQueue2(device, queue_info, pQueue)
     Queue(pQueue[], identity, device)
 end
 
-destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion; allocator = C_NULL) = vkDestroySamplerYcbcrConversion(device, ycbcr_conversion, allocator)
+destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion; allocator = C_NULL)::Cvoid = vkDestroySamplerYcbcrConversion(device, ycbcr_conversion, allocator)
 
 function create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcbcrConversionCreateInfo; allocator = C_NULL)::Result{SamplerYcbcrConversion, VulkanError}
     pYcbcrConversion = Ref{VkSamplerYcbcrConversion}()
@@ -9591,7 +9591,7 @@ function create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcb
     SamplerYcbcrConversion(pYcbcrConversion[], (x->destroy_sampler_ycbcr_conversion(device, x; allocator)), device)
 end
 
-function get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2)
+function get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2)::Vector{SparseImageMemoryRequirements2}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, C_NULL)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
@@ -9599,13 +9599,13 @@ function get_image_sparse_memory_requirements_2(device::Device, info::ImageSpars
     from_vk.(SparseImageMemoryRequirements2, pSparseMemoryRequirements)
 end
 
-function get_image_memory_requirements_2(device::Device, info::ImageMemoryRequirementsInfo2)
+function get_image_memory_requirements_2(device::Device, info::ImageMemoryRequirementsInfo2)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetImageMemoryRequirements2(device, info, pMemoryRequirements)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
 end
 
-function get_buffer_memory_requirements_2(device::Device, info::BufferMemoryRequirementsInfo2)
+function get_buffer_memory_requirements_2(device::Device, info::BufferMemoryRequirementsInfo2)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetBufferMemoryRequirements2(device, info, pMemoryRequirements)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
@@ -9617,36 +9617,36 @@ function get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, d
     from_vk(DisplayPlaneCapabilities2KHR, pCapabilities[])
 end
 
-function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModeProperties2KHR}, VulkanError}
+function get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Tuple{Vector{DisplayModeProperties2KHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayModeProperties2KHR}(undef, pPropertyCount[])
     @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, pProperties)
-    from_vk.(DisplayModeProperties2KHR, pProperties)
+    (from_vk.(DisplayModeProperties2KHR, pProperties), _return_code)
 end
 
-function get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
+function get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPlaneProperties2KHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayPlaneProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, pProperties)
-    from_vk.(DisplayPlaneProperties2KHR, pProperties)
+    (from_vk.(DisplayPlaneProperties2KHR, pProperties), _return_code)
 end
 
-function get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayProperties2KHR}, VulkanError}
+function get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayProperties2KHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayProperties2KHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, pProperties)
-    from_vk.(DisplayProperties2KHR, pProperties)
+    (from_vk.(DisplayProperties2KHR, pProperties), _return_code)
 end
 
-function get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{SurfaceFormat2KHR}, VulkanError}
+function get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Tuple{Vector{SurfaceFormat2KHR}, VkResult}, VulkanError}
     pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, C_NULL)
     pSurfaceFormats = Vector{VkSurfaceFormat2KHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, pSurfaceFormats)
-    from_vk.(SurfaceFormat2KHR, pSurfaceFormats)
+    (from_vk.(SurfaceFormat2KHR, pSurfaceFormats), _return_code)
 end
 
 function get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{SurfaceCapabilities2KHR, VulkanError}
@@ -9655,17 +9655,17 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)::MultisamplePropertiesEXT
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
     vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
 end
 
-cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT) = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info)
+cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT)::Cvoid = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info)
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray) = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles)
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray)::Cvoid = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles)
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray) = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings)
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray)::Cvoid = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings)
 
 function create_metal_surface_ext(instance::Instance, create_info::MetalSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -9685,12 +9685,12 @@ function create_ios_surface_mvk(instance::Instance, create_info::IOSSurfaceCreat
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-function get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
+function get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::Result{Tuple{Vector{PastPresentationTimingGOOGLE}, VkResult}, VulkanError}
     pPresentationTimingCount = Ref{UInt32}()
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, C_NULL)
     pPresentationTimings = Vector{VkPastPresentationTimingGOOGLE}(undef, pPresentationTimingCount[])
     @check vkGetPastPresentationTimingGOOGLE(device, swapchain, pPresentationTimingCount, pPresentationTimings)
-    from_vk.(PastPresentationTimingGOOGLE, pPresentationTimings)
+    (from_vk.(PastPresentationTimingGOOGLE, pPresentationTimings), _return_code)
 end
 
 function get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR)::Result{RefreshCycleDurationGOOGLE, VulkanError}
@@ -9699,15 +9699,15 @@ function get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainK
     from_vk(RefreshCycleDurationGOOGLE, pDisplayTimingProperties[])
 end
 
-get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{Int, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain))
+get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain))
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray) = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
 
-cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}) = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data))
+cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data))
 
-update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}) = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data))
+update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data))
 
-destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL) = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator)
+destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL)::Cvoid = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator)
 
 function create_descriptor_update_template(device::Device, create_info::DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)::Result{DescriptorUpdateTemplate, VulkanError}
     pDescriptorUpdateTemplate = Ref{VkDescriptorUpdateTemplate}()
@@ -9715,23 +9715,23 @@ function create_descriptor_update_template(device::Device, create_info::Descript
     DescriptorUpdateTemplate(pDescriptorUpdateTemplate[], (x->destroy_descriptor_update_template(device, x; allocator)), device)
 end
 
-function get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{Rect2D}, VulkanError}
+function get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{Rect2D}, VkResult}, VulkanError}
     pRectCount = Ref{UInt32}()
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, C_NULL)
     pRects = Vector{VkRect2D}(undef, pRectCount[])
     @check vkGetPhysicalDevicePresentRectanglesKHR(physical_device, surface, pRectCount, pRects)
-    from_vk.(Rect2D, pRects)
+    (from_vk.(Rect2D, pRects), _return_code)
 end
 
-cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer) = vkCmdDispatchBase(command_buffer, base_group_x, base_group_y, base_group_z, group_count_x, group_count_y, group_count_z)
+cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)::Cvoid = vkCmdDispatchBase(command_buffer, base_group_x, base_group_y, base_group_z, group_count_x, group_count_y, group_count_z)
 
-function acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR)::Result{UInt32, VulkanError}
+function acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR)::Result{Tuple{UInt32, VkResult}, VulkanError}
     pImageIndex = Ref{UInt32}()
     @check vkAcquireNextImage2KHR(device, acquire_info, pImageIndex)
-    pImageIndex[]
+    (pImageIndex[], _return_code)
 end
 
-function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::Integer)::Result{UInt32, VulkanError}
+function get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
     pModes = Ref{VkDeviceGroupPresentModeFlagsKHR}()
     @check vkGetDeviceGroupSurfacePresentModesKHR(device, surface, pModes)
     pModes[]
@@ -9743,24 +9743,24 @@ function get_device_group_present_capabilities_khr(device::Device)::Result{Devic
     from_vk(DeviceGroupPresentCapabilitiesKHR, pDeviceGroupPresentCapabilities[])
 end
 
-cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer) = vkCmdSetDeviceMask(command_buffer, device_mask)
+cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer)::Cvoid = vkCmdSetDeviceMask(command_buffer, device_mask)
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray)::Result{Int, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos))
+bind_image_memory_2(device::Device, bind_infos::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos))
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray)::Result{Int, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos))
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos))
 
-function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)
+function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)::PeerMemoryFeatureFlag
     pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()
     vkGetDeviceGroupPeerMemoryFeatures(device, heap_index, local_device_index, remote_device_index, pPeerMemoryFeatures)
     pPeerMemoryFeatures[]
 end
 
-function enumerate_physical_device_groups(instance::Instance)::Result{Vector{PhysicalDeviceGroupProperties}, VulkanError}
+function enumerate_physical_device_groups(instance::Instance)::Result{Tuple{Vector{PhysicalDeviceGroupProperties}, VkResult}, VulkanError}
     pPhysicalDeviceGroupCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, C_NULL)
     pPhysicalDeviceGroupProperties = Vector{VkPhysicalDeviceGroupProperties}(undef, pPhysicalDeviceGroupCount[])
     @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties)
-    from_vk.(PhysicalDeviceGroupProperties, pPhysicalDeviceGroupProperties)
+    (from_vk.(PhysicalDeviceGroupProperties, pPhysicalDeviceGroupProperties), _return_code)
 end
 
 function get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{SurfaceCapabilities2EXT, VulkanError}
@@ -9787,7 +9787,7 @@ function register_device_event_ext(device::Device, device_event_info::DeviceEven
     Fence(pFence[], (x->destroy_fence(device, x; allocator)), device)
 end
 
-display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{Int, VulkanError} = @check(vkDisplayPowerControlEXT(device, display, display_power_info))
+display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{VkResult, VulkanError} = @check(vkDisplayPowerControlEXT(device, display, display_power_info))
 
 function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::Result{DisplayKHR, VulkanError}
     pDisplay = Ref{VkDisplayKHR}()
@@ -9795,11 +9795,11 @@ function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.
     DisplayKHR(pDisplay[], identity, physical_device)
 end
 
-acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::Result{Int, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display))
+acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::Result{VkResult, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display))
 
-release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Int, VulkanError} = @check(vkReleaseDisplayEXT(physical_device, display))
+release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::Result{VkResult, VulkanError} = @check(vkReleaseDisplayEXT(physical_device, display))
 
-import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR)::Result{Int, VulkanError} = @check(vkImportFenceFdKHR(device, import_fence_fd_info))
+import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR)::Result{VkResult, VulkanError} = @check(vkImportFenceFdKHR(device, import_fence_fd_info))
 
 function get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR)::Result{Int, VulkanError}
     pFd = Ref{Int}()
@@ -9807,17 +9807,17 @@ function get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR)::Resul
     pFd[]
 end
 
-import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR)::Result{Int, VulkanError} = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info))
+import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR)::Result{VkResult, VulkanError} = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info))
 
-get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{Int, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
+get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
 
-function get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo)
+function get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo)::ExternalFenceProperties
     pExternalFenceProperties = Ref{VkExternalFenceProperties}()
     vkGetPhysicalDeviceExternalFenceProperties(physical_device, external_fence_info, pExternalFenceProperties)
     from_vk(ExternalFenceProperties, pExternalFenceProperties[])
 end
 
-import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR)::Result{Int, VulkanError} = @check(vkImportSemaphoreFdKHR(device, import_semaphore_fd_info))
+import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreFdKHR(device, import_semaphore_fd_info))
 
 function get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR)::Result{Int, VulkanError}
     pFd = Ref{Int}()
@@ -9825,11 +9825,11 @@ function get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR
     pFd[]
 end
 
-import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR)::Result{Int, VulkanError} = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info))
+import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info))
 
-get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{Int, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
+get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
 
-function get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo)
+function get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo)::ExternalSemaphoreProperties
     pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()
     vkGetPhysicalDeviceExternalSemaphoreProperties(physical_device, external_semaphore_info, pExternalSemaphoreProperties)
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
@@ -9853,19 +9853,19 @@ function get_memory_win_32_handle_properties_khr(device::Device, handle_type::Vk
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
 
-get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{Int, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
+get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
 
-function get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo)
+function get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo)::ExternalBufferProperties
     pExternalBufferProperties = Ref{VkExternalBufferProperties}()
     vkGetPhysicalDeviceExternalBufferProperties(physical_device, external_buffer_info, pExternalBufferProperties)
     from_vk(ExternalBufferProperties, pExternalBufferProperties[])
 end
 
-trim_command_pool(device::Device, command_pool::CommandPool; flags = 0) = vkTrimCommandPool(device, command_pool, flags)
+trim_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Cvoid = vkTrimCommandPool(device, command_pool, flags)
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray) = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes)
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray)::Cvoid = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes)
 
-function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2)
+function get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2)::Vector{SparseImageFormatProperties2}
     pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties2}(undef, pPropertyCount[])
@@ -9873,13 +9873,13 @@ function get_physical_device_sparse_image_format_properties_2(physical_device::P
     from_vk.(SparseImageFormatProperties2, pProperties)
 end
 
-function get_physical_device_memory_properties_2(physical_device::PhysicalDevice)
+function get_physical_device_memory_properties_2(physical_device::PhysicalDevice)::PhysicalDeviceMemoryProperties2
     pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties2}()
     vkGetPhysicalDeviceMemoryProperties2(physical_device, pMemoryProperties)
     from_vk(PhysicalDeviceMemoryProperties2, pMemoryProperties[])
 end
 
-function get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)
+function get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)::Vector{QueueFamilyProperties2}
     pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, C_NULL)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties2}(undef, pQueueFamilyPropertyCount[])
@@ -9893,25 +9893,25 @@ function get_physical_device_image_format_properties_2(physical_device::Physical
     from_vk(ImageFormatProperties2, pImageFormatProperties[])
 end
 
-function get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::VkFormat)
+function get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::VkFormat)::FormatProperties2
     pFormatProperties = Ref{VkFormatProperties2}()
     vkGetPhysicalDeviceFormatProperties2(physical_device, format, pFormatProperties)
     from_vk(FormatProperties2, pFormatProperties[])
 end
 
-function get_physical_device_properties_2(physical_device::PhysicalDevice)
+function get_physical_device_properties_2(physical_device::PhysicalDevice)::PhysicalDeviceProperties2
     pProperties = Ref{VkPhysicalDeviceProperties2}()
     vkGetPhysicalDeviceProperties2(physical_device, pProperties)
     from_vk(PhysicalDeviceProperties2, pProperties[])
 end
 
-function get_physical_device_features_2(physical_device::PhysicalDevice)
+function get_physical_device_features_2(physical_device::PhysicalDevice)::PhysicalDeviceFeatures2
     pFeatures = Ref{VkPhysicalDeviceFeatures2}()
     vkGetPhysicalDeviceFeatures2(physical_device, pFeatures)
     from_vk(PhysicalDeviceFeatures2, pFeatures[])
 end
 
-destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV; allocator = C_NULL) = vkDestroyIndirectCommandsLayoutNV(device, indirect_commands_layout, allocator)
+destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV; allocator = C_NULL)::Cvoid = vkDestroyIndirectCommandsLayoutNV(device, indirect_commands_layout, allocator)
 
 function create_indirect_commands_layout_nv(device::Device, create_info::IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::Result{IndirectCommandsLayoutNV, VulkanError}
     pIndirectCommandsLayout = Ref{VkIndirectCommandsLayoutNV}()
@@ -9919,19 +9919,19 @@ function create_indirect_commands_layout_nv(device::Device, create_info::Indirec
     IndirectCommandsLayoutNV(pIndirectCommandsLayout[], (x->destroy_indirect_commands_layout_nv(device, x; allocator)), device)
 end
 
-function get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)
+function get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
     pMemoryRequirements = Ref{VkMemoryRequirements2}()
     vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements)
     from_vk(MemoryRequirements2, pMemoryRequirements[])
 end
 
-cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, group_index::Integer) = vkCmdBindPipelineShaderGroupNV(command_buffer, pipeline_bind_point, pipeline, group_index)
+cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, group_index::Integer)::Cvoid = vkCmdBindPipelineShaderGroupNV(command_buffer, pipeline_bind_point, pipeline, group_index)
 
-cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::GeneratedCommandsInfoNV) = vkCmdPreprocessGeneratedCommandsNV(command_buffer, generated_commands_info)
+cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::GeneratedCommandsInfoNV)::Cvoid = vkCmdPreprocessGeneratedCommandsNV(command_buffer, generated_commands_info)
 
-cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV) = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info)
+cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV)::Cvoid = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info)
 
-get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::Result{Int, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle)))
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::Result{VkResult, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle)))
 
 function get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)::Result{ExternalImageFormatPropertiesNV, VulkanError}
     pExternalImageFormatProperties = Ref{VkExternalImageFormatPropertiesNV}()
@@ -9939,19 +9939,19 @@ function get_physical_device_external_image_format_properties_nv(physical_device
     from_vk(ExternalImageFormatPropertiesNV, pExternalImageFormatProperties[])
 end
 
-cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT) = vkCmdDebugMarkerInsertEXT(command_buffer, marker_info)
+cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)::Cvoid = vkCmdDebugMarkerInsertEXT(command_buffer, marker_info)
 
-cmd_debug_marker_end_ext(command_buffer::CommandBuffer) = vkCmdDebugMarkerEndEXT(command_buffer)
+cmd_debug_marker_end_ext(command_buffer::CommandBuffer)::Cvoid = vkCmdDebugMarkerEndEXT(command_buffer)
 
-cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT) = vkCmdDebugMarkerBeginEXT(command_buffer, marker_info)
+cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)::Cvoid = vkCmdDebugMarkerBeginEXT(command_buffer, marker_info)
 
-debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT)::Result{Int, VulkanError} = @check(vkDebugMarkerSetObjectTagEXT(device, tag_info))
+debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT)::Result{VkResult, VulkanError} = @check(vkDebugMarkerSetObjectTagEXT(device, tag_info))
 
-debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT)::Result{Int, VulkanError} = @check(vkDebugMarkerSetObjectNameEXT(device, name_info))
+debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT)::Result{VkResult, VulkanError} = @check(vkDebugMarkerSetObjectNameEXT(device, name_info))
 
-debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString) = vkDebugReportMessageEXT(instance, flags, object_type, object, location, message_code, layer_prefix, message)
+debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)::Cvoid = vkDebugReportMessageEXT(instance, flags, object_type, object, location, message_code, layer_prefix, message)
 
-destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL) = vkDestroyDebugReportCallbackEXT(instance, callback, allocator)
+destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL)::Cvoid = vkDestroyDebugReportCallbackEXT(instance, callback, allocator)
 
 function create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::Result{DebugReportCallbackEXT, VulkanError}
     pCallback = Ref{VkDebugReportCallbackEXT}()
@@ -9971,7 +9971,7 @@ function create_image_pipe_surface_fuchsia(instance::Instance, create_info::Imag
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB) = from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, to_vk(Ptr{IDirectFB}, dfb)))
+get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB)::Bool = from_vk(Bool, vkGetPhysicalDeviceDirectFBPresentationSupportEXT(physical_device, queue_family_index, to_vk(Ptr{IDirectFB}, dfb)))
 
 function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -9979,7 +9979,7 @@ function create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBS
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t) = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id))
+get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t)::Bool = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id))
 
 function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -9987,7 +9987,7 @@ function create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreat
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID) = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id))
+get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID)::Bool = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id))
 
 function create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -9995,7 +9995,7 @@ function create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCre
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_win_32_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer) = from_vk(Bool, vkGetPhysicalDeviceWin32PresentationSupportKHR(physical_device, queue_family_index))
+get_physical_device_win_32_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Bool = from_vk(Bool, vkGetPhysicalDeviceWin32PresentationSupportKHR(physical_device, queue_family_index))
 
 function create_win_32_surface_khr(instance::Instance, create_info::Win32SurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -10003,7 +10003,7 @@ function create_win_32_surface_khr(instance::Instance, create_info::Win32Surface
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display) = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display)))
+get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display)::Bool = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display)))
 
 function create_wayland_surface_khr(instance::Instance, create_info::WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -10017,23 +10017,23 @@ function create_vi_surface_nn(instance::Instance, create_info::ViSurfaceCreateIn
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{Int, VulkanError} = @check(vkQueuePresentKHR(queue, present_info))
+queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkQueuePresentKHR(queue, present_info))
 
-function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::Result{UInt32, VulkanError}
+function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::Result{Tuple{UInt32, VkResult}, VulkanError}
     pImageIndex = Ref{UInt32}()
     @check vkAcquireNextImageKHR(device, swapchain, timeout, semaphore, fence, pImageIndex)
-    pImageIndex[]
+    (pImageIndex[], _return_code)
 end
 
-function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Vector{Image}, VulkanError}
+function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Tuple{Vector{Image}, VkResult}, VulkanError}
     pSwapchainImageCount = Ref{UInt32}()
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL)
     pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
     @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
-    Image.(pSwapchainImages, (x->destroy_image(device, x; allocator)), device)
+    (Image.(pSwapchainImages, (x->destroy_image(device, x; allocator)), device), _return_code)
 end
 
-destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL) = vkDestroySwapchainKHR(device, swapchain, allocator)
+destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL)::Cvoid = vkDestroySwapchainKHR(device, swapchain, allocator)
 
 function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
     pSwapchain = Ref{VkSwapchainKHR}()
@@ -10042,20 +10042,20 @@ function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKH
     SwapchainKHR(pSwapchain[], (x->destroy_swapchain_khr(device, x; allocator)), getproperty(create_info, :surface))
 end
 
-function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
     pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
-    pPresentModes
+    (pPresentModes, _return_code)
 end
 
-function get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{SurfaceFormatKHR}, VulkanError}
+function get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{SurfaceFormatKHR}, VkResult}, VulkanError}
     pSurfaceFormatCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, C_NULL)
     pSurfaceFormats = Vector{VkSurfaceFormatKHR}(undef, pSurfaceFormatCount[])
     @check vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, pSurfaceFormatCount, pSurfaceFormats)
-    from_vk.(SurfaceFormatKHR, pSurfaceFormats)
+    (from_vk.(SurfaceFormatKHR, pSurfaceFormats), _return_code)
 end
 
 function get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{SurfaceCapabilitiesKHR, VulkanError}
@@ -10070,7 +10070,7 @@ function get_physical_device_surface_support_khr(physical_device::PhysicalDevice
     from_vk(Bool, pSupported[])
 end
 
-destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL) = vkDestroySurfaceKHR(instance, surface, allocator)
+destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL)::Cvoid = vkDestroySurfaceKHR(instance, surface, allocator)
 
 function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
@@ -10097,36 +10097,36 @@ function create_display_mode_khr(physical_device::PhysicalDevice, display::Displ
     DisplayModeKHR(pMode[], identity, display)
 end
 
-function get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModePropertiesKHR}, VulkanError}
+function get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Tuple{Vector{DisplayModePropertiesKHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayModePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetDisplayModePropertiesKHR(physical_device, display, pPropertyCount, pProperties)
-    from_vk.(DisplayModePropertiesKHR, pProperties)
+    (from_vk.(DisplayModePropertiesKHR, pProperties), _return_code)
 end
 
-function get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::Result{Vector{DisplayKHR}, VulkanError}
+function get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::Result{Tuple{Vector{DisplayKHR}, VkResult}, VulkanError}
     pDisplayCount = Ref{UInt32}()
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, C_NULL)
     pDisplays = Vector{VkDisplayKHR}(undef, pDisplayCount[])
     @check vkGetDisplayPlaneSupportedDisplaysKHR(physical_device, plane_index, pDisplayCount, pDisplays)
-    DisplayKHR.(pDisplays, identity, physical_device)
+    (DisplayKHR.(pDisplays, identity, physical_device), _return_code)
 end
 
-function get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
+function get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPlanePropertiesKHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayPlanePropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physical_device, pPropertyCount, pProperties)
-    from_vk.(DisplayPlanePropertiesKHR, pProperties)
+    (from_vk.(DisplayPlanePropertiesKHR, pProperties), _return_code)
 end
 
-function get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPropertiesKHR}, VulkanError}
+function get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPropertiesKHR}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkDisplayPropertiesKHR}(undef, pPropertyCount[])
     @check vkGetPhysicalDeviceDisplayPropertiesKHR(physical_device, pPropertyCount, pProperties)
-    from_vk.(DisplayPropertiesKHR, pProperties)
+    (from_vk.(DisplayPropertiesKHR, pProperties), _return_code)
 end
 
 function create_android_surface_khr(instance::Instance, create_info::AndroidSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
@@ -10135,105 +10135,105 @@ function create_android_surface_khr(instance::Instance, create_info::AndroidSurf
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray) = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
 
-cmd_end_render_pass(command_buffer::CommandBuffer) = vkCmdEndRenderPass(command_buffer)
+cmd_end_render_pass(command_buffer::CommandBuffer)::Cvoid = vkCmdEndRenderPass(command_buffer)
 
-cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents) = vkCmdNextSubpass(command_buffer, contents)
+cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents)::Cvoid = vkCmdNextSubpass(command_buffer, contents)
 
-cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents) = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents)
+cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents)::Cvoid = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}) = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values))
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values))
 
-cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0) = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags)
+cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags)
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer) = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer)::Cvoid = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query)
 
-cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer) = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count)
+cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count)
 
-cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer) = vkCmdEndConditionalRenderingEXT(command_buffer)
+cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer)::Cvoid = vkCmdEndConditionalRenderingEXT(command_buffer)
 
-cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT) = vkCmdBeginConditionalRenderingEXT(command_buffer, conditional_rendering_begin)
+cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT)::Cvoid = vkCmdBeginConditionalRenderingEXT(command_buffer, conditional_rendering_begin)
 
-cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer) = vkCmdEndQuery(command_buffer, query_pool, query)
+cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer)::Cvoid = vkCmdEndQuery(command_buffer, query_pool, query)
 
-cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0) = vkCmdBeginQuery(command_buffer, query_pool, query, flags)
+cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0)::Cvoid = vkCmdBeginQuery(command_buffer, query_pool, query, flags)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0) = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray) = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
-cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag) = vkCmdResetEvent(command_buffer, event, stage_mask)
+cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask)
 
-cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag) = vkCmdSetEvent(command_buffer, event, stage_mask)
+cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid = vkCmdSetEvent(command_buffer, event, stage_mask)
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray) = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray)::Cvoid = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray) = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects)
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray)::Cvoid = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects)
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray) = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges)
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray)::Cvoid = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges)
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray) = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges)
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray)::Cvoid = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges)
 
-cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer) = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data)
+cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer)::Cvoid = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data)
 
-cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}) = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data))
+cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data))
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray) = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray)::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray) = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray)::Cvoid = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, filter::VkFilter) = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, filter::VkFilter)::Cvoid = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter)
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray) = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray)::Cvoid = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray) = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions)
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray)::Cvoid = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions)
 
-cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer) = vkCmdDispatchIndirect(command_buffer, buffer, offset)
+cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer)::Cvoid = vkCmdDispatchIndirect(command_buffer, buffer, offset)
 
-cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer) = vkCmdDispatch(command_buffer, group_count_x, group_count_y, group_count_z)
+cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)::Cvoid = vkCmdDispatch(command_buffer, group_count_x, group_count_y, group_count_z)
 
-cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer) = vkCmdDrawIndexedIndirect(command_buffer, buffer, offset, draw_count, stride)
+cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawIndexedIndirect(command_buffer, buffer, offset, draw_count, stride)
 
-cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer) = vkCmdDrawIndirect(command_buffer, buffer, offset, draw_count, stride)
+cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawIndirect(command_buffer, buffer, offset, draw_count, stride)
 
-cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer) = vkCmdDrawIndexed(command_buffer, index_count, instance_count, first_index, vertex_offset, first_instance)
+cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)::Cvoid = vkCmdDrawIndexed(command_buffer, index_count, instance_count, first_index, vertex_offset, first_instance)
 
-cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer) = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance)
+cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)::Cvoid = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray) = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray)::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
 
-cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType) = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type)
+cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType)::Cvoid = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray) = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray)::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
 
-cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer) = vkCmdSetStencilReference(command_buffer, face_mask, reference)
+cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer)::Cvoid = vkCmdSetStencilReference(command_buffer, face_mask, reference)
 
-cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer) = vkCmdSetStencilWriteMask(command_buffer, face_mask, write_mask)
+cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer)::Cvoid = vkCmdSetStencilWriteMask(command_buffer, face_mask, write_mask)
 
-cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer) = vkCmdSetStencilCompareMask(command_buffer, face_mask, compare_mask)
+cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer)::Cvoid = vkCmdSetStencilCompareMask(command_buffer, face_mask, compare_mask)
 
-cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real) = vkCmdSetDepthBounds(command_buffer, min_depth_bounds, max_depth_bounds)
+cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real)::Cvoid = vkCmdSetDepthBounds(command_buffer, min_depth_bounds, max_depth_bounds)
 
-cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32}) = vkCmdSetBlendConstants(command_buffer, blend_constants)
+cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32})::Cvoid = vkCmdSetBlendConstants(command_buffer, blend_constants)
 
-cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real) = vkCmdSetDepthBias(command_buffer, depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor)
+cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real)::Cvoid = vkCmdSetDepthBias(command_buffer, depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor)
 
-cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real) = vkCmdSetLineWidth(command_buffer, line_width)
+cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)::Cvoid = vkCmdSetLineWidth(command_buffer, line_width)
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray) = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors)
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray)::Cvoid = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors)
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray) = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray)::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
 
-cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline) = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline)
+cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline)::Cvoid = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline)
 
-reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::Result{Int, VulkanError} = @check(vkResetCommandBuffer(command_buffer, flags))
+reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::Result{VkResult, VulkanError} = @check(vkResetCommandBuffer(command_buffer, flags))
 
-end_command_buffer(command_buffer::CommandBuffer)::Result{Int, VulkanError} = @check(vkEndCommandBuffer(command_buffer))
+end_command_buffer(command_buffer::CommandBuffer)::Result{VkResult, VulkanError} = @check(vkEndCommandBuffer(command_buffer))
 
-begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo)::Result{Int, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info))
+begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo)::Result{VkResult, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info))
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray) = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
 
 function allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo)::Result{Vector{CommandBuffer}, VulkanError}
     pCommandBuffers = Vector{VkCommandBuffer}(undef, allocate_info.vks.commandBufferCount)
@@ -10242,9 +10242,9 @@ function allocate_command_buffers(device::Device, allocate_info::CommandBufferAl
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Result{Int, VulkanError} = @check(vkResetCommandPool(device, command_pool, flags))
+reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Result{VkResult, VulkanError} = @check(vkResetCommandPool(device, command_pool, flags))
 
-destroy_command_pool(device::Device, command_pool::CommandPool; allocator = C_NULL) = vkDestroyCommandPool(device, command_pool, allocator)
+destroy_command_pool(device::Device, command_pool::CommandPool; allocator = C_NULL)::Cvoid = vkDestroyCommandPool(device, command_pool, allocator)
 
 function create_command_pool(device::Device, create_info::CommandPoolCreateInfo; allocator = C_NULL)::Result{CommandPool, VulkanError}
     pCommandPool = Ref{VkCommandPool}()
@@ -10252,13 +10252,13 @@ function create_command_pool(device::Device, create_info::CommandPoolCreateInfo;
     CommandPool(pCommandPool[], (x->destroy_command_pool(device, x; allocator)), device)
 end
 
-function get_render_area_granularity(device::Device, render_pass::RenderPass)
+function get_render_area_granularity(device::Device, render_pass::RenderPass)::Extent2D
     pGranularity = Ref{VkExtent2D}()
     vkGetRenderAreaGranularity(device, render_pass, pGranularity)
     from_vk(Extent2D, pGranularity[])
 end
 
-destroy_render_pass(device::Device, render_pass::RenderPass; allocator = C_NULL) = vkDestroyRenderPass(device, render_pass, allocator)
+destroy_render_pass(device::Device, render_pass::RenderPass; allocator = C_NULL)::Cvoid = vkDestroyRenderPass(device, render_pass, allocator)
 
 function create_render_pass(device::Device, create_info::RenderPassCreateInfo; allocator = C_NULL)::Result{RenderPass, VulkanError}
     pRenderPass = Ref{VkRenderPass}()
@@ -10266,7 +10266,7 @@ function create_render_pass(device::Device, create_info::RenderPassCreateInfo; a
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x; allocator)), device)
 end
 
-destroy_framebuffer(device::Device, framebuffer::Framebuffer; allocator = C_NULL) = vkDestroyFramebuffer(device, framebuffer, allocator)
+destroy_framebuffer(device::Device, framebuffer::Framebuffer; allocator = C_NULL)::Cvoid = vkDestroyFramebuffer(device, framebuffer, allocator)
 
 function create_framebuffer(device::Device, create_info::FramebufferCreateInfo; allocator = C_NULL)::Result{Framebuffer, VulkanError}
     pFramebuffer = Ref{VkFramebuffer}()
@@ -10274,9 +10274,9 @@ function create_framebuffer(device::Device, create_info::FramebufferCreateInfo; 
     Framebuffer(pFramebuffer[], (x->destroy_framebuffer(device, x; allocator)), device)
 end
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray) = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray)::Result{Int, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray)::Result{VkResult, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
 
 function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet}, VulkanError}
     pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
@@ -10285,9 +10285,9 @@ function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAl
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
-reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)::Result{Int, VulkanError} = @check(vkResetDescriptorPool(device, descriptor_pool, flags))
+reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)::Result{VkResult, VulkanError} = @check(vkResetDescriptorPool(device, descriptor_pool, flags))
 
-destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; allocator = C_NULL) = vkDestroyDescriptorPool(device, descriptor_pool, allocator)
+destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; allocator = C_NULL)::Cvoid = vkDestroyDescriptorPool(device, descriptor_pool, allocator)
 
 function create_descriptor_pool(device::Device, create_info::DescriptorPoolCreateInfo; allocator = C_NULL)::Result{DescriptorPool, VulkanError}
     pDescriptorPool = Ref{VkDescriptorPool}()
@@ -10295,7 +10295,7 @@ function create_descriptor_pool(device::Device, create_info::DescriptorPoolCreat
     DescriptorPool(pDescriptorPool[], (x->destroy_descriptor_pool(device, x; allocator)), device)
 end
 
-destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout; allocator = C_NULL) = vkDestroyDescriptorSetLayout(device, descriptor_set_layout, allocator)
+destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout; allocator = C_NULL)::Cvoid = vkDestroyDescriptorSetLayout(device, descriptor_set_layout, allocator)
 
 function create_descriptor_set_layout(device::Device, create_info::DescriptorSetLayoutCreateInfo; allocator = C_NULL)::Result{DescriptorSetLayout, VulkanError}
     pSetLayout = Ref{VkDescriptorSetLayout}()
@@ -10303,7 +10303,7 @@ function create_descriptor_set_layout(device::Device, create_info::DescriptorSet
     DescriptorSetLayout(pSetLayout[], (x->destroy_descriptor_set_layout(device, x; allocator)), device)
 end
 
-destroy_sampler(device::Device, sampler::Sampler; allocator = C_NULL) = vkDestroySampler(device, sampler, allocator)
+destroy_sampler(device::Device, sampler::Sampler; allocator = C_NULL)::Cvoid = vkDestroySampler(device, sampler, allocator)
 
 function create_sampler(device::Device, create_info::SamplerCreateInfo; allocator = C_NULL)::Result{Sampler, VulkanError}
     pSampler = Ref{VkSampler}()
@@ -10311,7 +10311,7 @@ function create_sampler(device::Device, create_info::SamplerCreateInfo; allocato
     Sampler(pSampler[], (x->destroy_sampler(device, x; allocator)), device)
 end
 
-destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout; allocator = C_NULL) = vkDestroyPipelineLayout(device, pipeline_layout, allocator)
+destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout; allocator = C_NULL)::Cvoid = vkDestroyPipelineLayout(device, pipeline_layout, allocator)
 
 function create_pipeline_layout(device::Device, create_info::PipelineLayoutCreateInfo; allocator = C_NULL)::Result{PipelineLayout, VulkanError}
     pPipelineLayout = Ref{VkPipelineLayout}()
@@ -10319,30 +10319,30 @@ function create_pipeline_layout(device::Device, create_info::PipelineLayoutCreat
     PipelineLayout(pPipelineLayout[], (x->destroy_pipeline_layout(device, x; allocator)), device)
 end
 
-destroy_pipeline(device::Device, pipeline::Pipeline; allocator = C_NULL) = vkDestroyPipeline(device, pipeline, allocator)
+destroy_pipeline(device::Device, pipeline::Pipeline; allocator = C_NULL)::Cvoid = vkDestroyPipeline(device, pipeline, allocator)
 
-function create_compute_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_compute_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateComputePipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
-function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Vector{Pipeline}, VulkanError}
+function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
-    Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device)
+    (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::Result{Int, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::Result{VkResult, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
 
-function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
     pDataSize = Ref(data_size)
     pData = Ref{Ptr{Cvoid}}()
     @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
-    (pDataSize[], pData[])
+    ((pDataSize[], pData[]), _return_code)
 end
 
-destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL) = vkDestroyPipelineCache(device, pipeline_cache, allocator)
+destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL)::Cvoid = vkDestroyPipelineCache(device, pipeline_cache, allocator)
 
 function create_pipeline_cache(device::Device, create_info::PipelineCacheCreateInfo; allocator = C_NULL)::Result{PipelineCache, VulkanError}
     pPipelineCache = Ref{VkPipelineCache}()
@@ -10350,7 +10350,7 @@ function create_pipeline_cache(device::Device, create_info::PipelineCacheCreateI
     PipelineCache(pPipelineCache[], (x->destroy_pipeline_cache(device, x; allocator)), device)
 end
 
-destroy_shader_module(device::Device, shader_module::ShaderModule; allocator = C_NULL) = vkDestroyShaderModule(device, shader_module, allocator)
+destroy_shader_module(device::Device, shader_module::ShaderModule; allocator = C_NULL)::Cvoid = vkDestroyShaderModule(device, shader_module, allocator)
 
 function create_shader_module(device::Device, create_info::ShaderModuleCreateInfo; allocator = C_NULL)::Result{ShaderModule, VulkanError}
     pShaderModule = Ref{VkShaderModule}()
@@ -10358,7 +10358,7 @@ function create_shader_module(device::Device, create_info::ShaderModuleCreateInf
     ShaderModule(pShaderModule[], (x->destroy_shader_module(device, x; allocator)), device)
 end
 
-destroy_image_view(device::Device, image_view::ImageView; allocator = C_NULL) = vkDestroyImageView(device, image_view, allocator)
+destroy_image_view(device::Device, image_view::ImageView; allocator = C_NULL)::Cvoid = vkDestroyImageView(device, image_view, allocator)
 
 function create_image_view(device::Device, create_info::ImageViewCreateInfo; allocator = C_NULL)::Result{ImageView, VulkanError}
     pView = Ref{VkImageView}()
@@ -10366,13 +10366,13 @@ function create_image_view(device::Device, create_info::ImageViewCreateInfo; all
     ImageView(pView[], (x->destroy_image_view(device, x; allocator)), device)
 end
 
-function get_image_subresource_layout(device::Device, image::Image, subresource::ImageSubresource)
+function get_image_subresource_layout(device::Device, image::Image, subresource::ImageSubresource)::SubresourceLayout
     pLayout = Ref{VkSubresourceLayout}()
     vkGetImageSubresourceLayout(device, image, subresource, pLayout)
     from_vk(SubresourceLayout, pLayout[])
 end
 
-destroy_image(device::Device, image::Image; allocator = C_NULL) = vkDestroyImage(device, image, allocator)
+destroy_image(device::Device, image::Image; allocator = C_NULL)::Cvoid = vkDestroyImage(device, image, allocator)
 
 function create_image(device::Device, create_info::ImageCreateInfo; allocator = C_NULL)::Result{Image, VulkanError}
     pImage = Ref{VkImage}()
@@ -10380,7 +10380,7 @@ function create_image(device::Device, create_info::ImageCreateInfo; allocator = 
     Image(pImage[], (x->destroy_image(device, x; allocator)), device)
 end
 
-destroy_buffer_view(device::Device, buffer_view::BufferView; allocator = C_NULL) = vkDestroyBufferView(device, buffer_view, allocator)
+destroy_buffer_view(device::Device, buffer_view::BufferView; allocator = C_NULL)::Cvoid = vkDestroyBufferView(device, buffer_view, allocator)
 
 function create_buffer_view(device::Device, create_info::BufferViewCreateInfo; allocator = C_NULL)::Result{BufferView, VulkanError}
     pView = Ref{VkBufferView}()
@@ -10388,7 +10388,7 @@ function create_buffer_view(device::Device, create_info::BufferViewCreateInfo; a
     BufferView(pView[], (x->destroy_buffer_view(device, x; allocator)), device)
 end
 
-destroy_buffer(device::Device, buffer::Buffer; allocator = C_NULL) = vkDestroyBuffer(device, buffer, allocator)
+destroy_buffer(device::Device, buffer::Buffer; allocator = C_NULL)::Cvoid = vkDestroyBuffer(device, buffer, allocator)
 
 function create_buffer(device::Device, create_info::BufferCreateInfo; allocator = C_NULL)::Result{Buffer, VulkanError}
     pBuffer = Ref{VkBuffer}()
@@ -10396,15 +10396,15 @@ function create_buffer(device::Device, create_info::BufferCreateInfo; allocator 
     Buffer(pBuffer[], (x->destroy_buffer(device, x; allocator)), device)
 end
 
-reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer) = vkResetQueryPool(device, query_pool, first_query, query_count)
+reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid = vkResetQueryPool(device, query_pool, first_query, query_count)
 
-function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)::Result{Ptr{Cvoid}, VulkanError}
+function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
     pData = Ref{Ptr{Cvoid}}()
     @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags)
-    pData[]
+    (pData[], _return_code)
 end
 
-destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL) = vkDestroyQueryPool(device, query_pool, allocator)
+destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL)::Cvoid = vkDestroyQueryPool(device, query_pool, allocator)
 
 function create_query_pool(device::Device, create_info::QueryPoolCreateInfo; allocator = C_NULL)::Result{QueryPool, VulkanError}
     pQueryPool = Ref{VkQueryPool}()
@@ -10412,13 +10412,13 @@ function create_query_pool(device::Device, create_info::QueryPoolCreateInfo; all
     QueryPool(pQueryPool[], (x->destroy_query_pool(device, x; allocator)), device)
 end
 
-reset_event(device::Device, event::Event)::Result{Int, VulkanError} = @check(vkResetEvent(device, event))
+reset_event(device::Device, event::Event)::Result{VkResult, VulkanError} = @check(vkResetEvent(device, event))
 
-set_event(device::Device, event::Event)::Result{Int, VulkanError} = @check(vkSetEvent(device, event))
+set_event(device::Device, event::Event)::Result{VkResult, VulkanError} = @check(vkSetEvent(device, event))
 
-get_event_status(device::Device, event::Event)::Result{Int, VulkanError} = @check(vkGetEventStatus(device, event))
+get_event_status(device::Device, event::Event)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetEventStatus(device, event))
 
-destroy_event(device::Device, event::Event; allocator = C_NULL) = vkDestroyEvent(device, event, allocator)
+destroy_event(device::Device, event::Event; allocator = C_NULL)::Cvoid = vkDestroyEvent(device, event, allocator)
 
 function create_event(device::Device, create_info::EventCreateInfo; allocator = C_NULL)::Result{Event, VulkanError}
     pEvent = Ref{VkEvent}()
@@ -10426,7 +10426,7 @@ function create_event(device::Device, create_info::EventCreateInfo; allocator = 
     Event(pEvent[], (x->destroy_event(device, x; allocator)), device)
 end
 
-destroy_semaphore(device::Device, semaphore::Semaphore; allocator = C_NULL) = vkDestroySemaphore(device, semaphore, allocator)
+destroy_semaphore(device::Device, semaphore::Semaphore; allocator = C_NULL)::Cvoid = vkDestroySemaphore(device, semaphore, allocator)
 
 function create_semaphore(device::Device, create_info::SemaphoreCreateInfo; allocator = C_NULL)::Result{Semaphore, VulkanError}
     pSemaphore = Ref{VkSemaphore}()
@@ -10434,13 +10434,13 @@ function create_semaphore(device::Device, create_info::SemaphoreCreateInfo; allo
     Semaphore(pSemaphore[], (x->destroy_semaphore(device, x; allocator)), device)
 end
 
-wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)::Result{Int, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
 
-get_fence_status(device::Device, fence::Fence)::Result{Int, VulkanError} = @check(vkGetFenceStatus(device, fence))
+get_fence_status(device::Device, fence::Fence)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetFenceStatus(device, fence))
 
-reset_fences(device::Device, fences::AbstractArray)::Result{Int, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences))
+reset_fences(device::Device, fences::AbstractArray)::Result{VkResult, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences))
 
-destroy_fence(device::Device, fence::Fence; allocator = C_NULL) = vkDestroyFence(device, fence, allocator)
+destroy_fence(device::Device, fence::Fence; allocator = C_NULL)::Cvoid = vkDestroyFence(device, fence, allocator)
 
 function create_fence(device::Device, create_info::FenceCreateInfo; allocator = C_NULL)::Result{Fence, VulkanError}
     pFence = Ref{VkFence}()
@@ -10448,9 +10448,9 @@ function create_fence(device::Device, create_info::FenceCreateInfo; allocator = 
     Fence(pFence[], (x->destroy_fence(device, x; allocator)), device)
 end
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL)::Result{Int, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling)
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling)::Vector{SparseImageFormatProperties}
     pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
@@ -10458,7 +10458,7 @@ function get_physical_device_sparse_image_format_properties(physical_device::Phy
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 
-function get_image_sparse_memory_requirements(device::Device, image::Image)
+function get_image_sparse_memory_requirements(device::Device, image::Image)::Vector{SparseImageMemoryRequirements}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements(device, image, pSparseMemoryRequirementCount, C_NULL)
     pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements}(undef, pSparseMemoryRequirementCount[])
@@ -10466,33 +10466,33 @@ function get_image_sparse_memory_requirements(device::Device, image::Image)
     from_vk.(SparseImageMemoryRequirements, pSparseMemoryRequirements)
 end
 
-bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::Result{Int, VulkanError} = @check(vkBindImageMemory(device, image, memory, memory_offset))
+bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError} = @check(vkBindImageMemory(device, image, memory, memory_offset))
 
-function get_image_memory_requirements(device::Device, image::Image)
+function get_image_memory_requirements(device::Device, image::Image)::MemoryRequirements
     pMemoryRequirements = Ref{VkMemoryRequirements}()
     vkGetImageMemoryRequirements(device, image, pMemoryRequirements)
     from_vk(MemoryRequirements, pMemoryRequirements[])
 end
 
-bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::Result{Int, VulkanError} = @check(vkBindBufferMemory(device, buffer, memory, memory_offset))
+bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError} = @check(vkBindBufferMemory(device, buffer, memory, memory_offset))
 
-function get_buffer_memory_requirements(device::Device, buffer::Buffer)
+function get_buffer_memory_requirements(device::Device, buffer::Buffer)::MemoryRequirements
     pMemoryRequirements = Ref{VkMemoryRequirements}()
     vkGetBufferMemoryRequirements(device, buffer, pMemoryRequirements)
     from_vk(MemoryRequirements, pMemoryRequirements[])
 end
 
-function get_device_memory_commitment(device::Device, memory::DeviceMemory)
+function get_device_memory_commitment(device::Device, memory::DeviceMemory)::UInt64
     pCommittedMemoryInBytes = Ref{VkDeviceSize}()
     vkGetDeviceMemoryCommitment(device, memory, pCommittedMemoryInBytes)
     pCommittedMemoryInBytes[]
 end
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray)::Result{Int, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray)::Result{VkResult, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray)::Result{Int, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray)::Result{VkResult, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
 
-unmap_memory(device::Device, memory::DeviceMemory) = vkUnmapMemory(device, memory)
+unmap_memory(device::Device, memory::DeviceMemory)::Cvoid = vkUnmapMemory(device, memory)
 
 function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)::Result{Ptr{Cvoid}, VulkanError}
     ppData = Ref{Ptr{Cvoid}}()
@@ -10500,7 +10500,7 @@ function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size:
     ppData[]
 end
 
-free_memory(device::Device, memory::DeviceMemory; allocator = C_NULL) = vkFreeMemory(device, memory, allocator)
+free_memory(device::Device, memory::DeviceMemory; allocator = C_NULL)::Cvoid = vkFreeMemory(device, memory, allocator)
 
 function allocate_memory(device::Device, allocate_info::MemoryAllocateInfo; allocator = C_NULL)::Result{DeviceMemory, VulkanError}
     pMemory = Ref{VkDeviceMemory}()
@@ -10508,48 +10508,48 @@ function allocate_memory(device::Device, allocate_info::MemoryAllocateInfo; allo
     DeviceMemory(pMemory[], (x->free_memory(device, x; allocator)), device)
 end
 
-device_wait_idle(device::Device)::Result{Int, VulkanError} = @check(vkDeviceWaitIdle(device))
+device_wait_idle(device::Device)::Result{VkResult, VulkanError} = @check(vkDeviceWaitIdle(device))
 
-queue_wait_idle(queue::Queue)::Result{Int, VulkanError} = @check(vkQueueWaitIdle(queue))
+queue_wait_idle(queue::Queue)::Result{VkResult, VulkanError} = @check(vkQueueWaitIdle(queue))
 
-queue_submit(queue::Queue, submits::AbstractArray; fence = C_NULL)::Result{Int, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence))
+queue_submit(queue::Queue, submits::AbstractArray; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence))
 
-function get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer)
+function get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer)::Queue
     pQueue = Ref{VkQueue}()
     vkGetDeviceQueue(device, queue_family_index, queue_index, pQueue)
     Queue(pQueue[], identity, device)
 end
 
-function enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+function enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, C_NULL)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceExtensionProperties(physical_device, layer_name, pPropertyCount, pProperties)
-    from_vk.(ExtensionProperties, pProperties)
+    (from_vk.(ExtensionProperties, pProperties), _return_code)
 end
 
-function enumerate_device_layer_properties(physical_device::PhysicalDevice)::Result{Vector{LayerProperties}, VulkanError}
+function enumerate_device_layer_properties(physical_device::PhysicalDevice)::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, C_NULL)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateDeviceLayerProperties(physical_device, pPropertyCount, pProperties)
-    from_vk.(LayerProperties, pProperties)
+    (from_vk.(LayerProperties, pProperties), _return_code)
 end
 
-function enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+function enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
     pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
-    from_vk.(ExtensionProperties, pProperties)
+    (from_vk.(ExtensionProperties, pProperties), _return_code)
 end
 
-function enumerate_instance_layer_properties()::Result{Vector{LayerProperties}, VulkanError}
+function enumerate_instance_layer_properties()::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
     pPropertyCount = Ref{UInt32}()
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, C_NULL)
     pProperties = Vector{VkLayerProperties}(undef, pPropertyCount[])
     @check vkEnumerateInstanceLayerProperties(pPropertyCount, pProperties)
-    from_vk.(LayerProperties, pProperties)
+    (from_vk.(LayerProperties, pProperties), _return_code)
 end
 
 function enumerate_instance_version()::Result{VersionNumber, VulkanError}
@@ -10558,7 +10558,7 @@ function enumerate_instance_version()::Result{VersionNumber, VulkanError}
     from_vk(VersionNumber, pApiVersion[])
 end
 
-destroy_device(device::Device; allocator = C_NULL) = vkDestroyDevice(device, allocator)
+destroy_device(device::Device; allocator = C_NULL)::Cvoid = vkDestroyDevice(device, allocator)
 
 function create_device(physical_device::PhysicalDevice, create_info::DeviceCreateInfo; allocator = C_NULL)::Result{Device, VulkanError}
     pDevice = Ref{VkDevice}()
@@ -10572,25 +10572,25 @@ function get_physical_device_image_format_properties(physical_device::PhysicalDe
     from_vk(ImageFormatProperties, pImageFormatProperties[])
 end
 
-function get_physical_device_format_properties(physical_device::PhysicalDevice, format::VkFormat)
+function get_physical_device_format_properties(physical_device::PhysicalDevice, format::VkFormat)::FormatProperties
     pFormatProperties = Ref{VkFormatProperties}()
     vkGetPhysicalDeviceFormatProperties(physical_device, format, pFormatProperties)
     from_vk(FormatProperties, pFormatProperties[])
 end
 
-function get_physical_device_features(physical_device::PhysicalDevice)
+function get_physical_device_features(physical_device::PhysicalDevice)::PhysicalDeviceFeatures
     pFeatures = Ref{VkPhysicalDeviceFeatures}()
     vkGetPhysicalDeviceFeatures(physical_device, pFeatures)
     from_vk(PhysicalDeviceFeatures, pFeatures[])
 end
 
-function get_physical_device_memory_properties(physical_device::PhysicalDevice)
+function get_physical_device_memory_properties(physical_device::PhysicalDevice)::PhysicalDeviceMemoryProperties
     pMemoryProperties = Ref{VkPhysicalDeviceMemoryProperties}()
     vkGetPhysicalDeviceMemoryProperties(physical_device, pMemoryProperties)
     from_vk(PhysicalDeviceMemoryProperties, pMemoryProperties[])
 end
 
-function get_physical_device_queue_family_properties(physical_device::PhysicalDevice)
+function get_physical_device_queue_family_properties(physical_device::PhysicalDevice)::Vector{QueueFamilyProperties}
     pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties(physical_device, pQueueFamilyPropertyCount, C_NULL)
     pQueueFamilyProperties = Vector{VkQueueFamilyProperties}(undef, pQueueFamilyPropertyCount[])
@@ -10598,25 +10598,25 @@ function get_physical_device_queue_family_properties(physical_device::PhysicalDe
     from_vk.(QueueFamilyProperties, pQueueFamilyProperties)
 end
 
-function get_physical_device_properties(physical_device::PhysicalDevice)
+function get_physical_device_properties(physical_device::PhysicalDevice)::PhysicalDeviceProperties
     pProperties = Ref{VkPhysicalDeviceProperties}()
     vkGetPhysicalDeviceProperties(physical_device, pProperties)
     from_vk(PhysicalDeviceProperties, pProperties[])
 end
 
-get_instance_proc_addr(name::AbstractString; instance = C_NULL) = vkGetInstanceProcAddr(instance, name)
+get_instance_proc_addr(name::AbstractString; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name)
 
-get_device_proc_addr(device::Device, name::AbstractString) = vkGetDeviceProcAddr(device, name)
+get_device_proc_addr(device::Device, name::AbstractString)::FunctionPtr = vkGetDeviceProcAddr(device, name)
 
-function enumerate_physical_devices(instance::Instance)::Result{Vector{PhysicalDevice}, VulkanError}
+function enumerate_physical_devices(instance::Instance)::Result{Tuple{Vector{PhysicalDevice}, VkResult}, VulkanError}
     pPhysicalDeviceCount = Ref{UInt32}()
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
     pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
     @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
-    PhysicalDevice.(pPhysicalDevices, identity, instance)
+    (PhysicalDevice.(pPhysicalDevices, identity, instance), _return_code)
 end
 
-destroy_instance(instance::Instance; allocator = C_NULL) = vkDestroyInstance(instance, allocator)
+destroy_instance(instance::Instance; allocator = C_NULL)::Cvoid = vkDestroyInstance(instance, allocator)
 
 function create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)::Result{Instance, VulkanError}
     pInstance = Ref{VkInstance}()
