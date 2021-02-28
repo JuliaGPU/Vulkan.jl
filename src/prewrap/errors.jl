@@ -12,7 +12,7 @@ Base.showerror(io::IO, e::VulkanError) = print(io, e.code, ": ", e.msg)
 """
     @check vkCreateInstance(args...)
 
-If the expression does not return `VK_SUCCESS`, raise a [`VulkanError`](@ref) holding the return code.
+If the expression does not return `VK_SUCCESS`, return a [`VulkanError`](@ref) holding the return code.
 """
 macro check(expr)
     quote
