@@ -10,7 +10,7 @@ This wrapper exposes several features aimed at simplifying the use of the Vulkan
 
 ## Error handling
 
-[ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) is used for error handling. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `Result`, which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
+Error handling is achieved via [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to avoid the large overhead incurred by `try`/`catch` blocks. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `Result`, which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
 
 ```@example main
 res = create_instance(InstanceCreateInfo([], []))
@@ -33,6 +33,8 @@ Note that calling `unwrap` directly on the result will throw any contained `Vulk
 ```@example main
 unwrap(create_instance(InstanceCreateInfo([], [])))
 ```
+
+For more details on the `Result` type and how to handle it, please consult the [ResultTypes documentation](https://iamed2.github.io/ResultTypes.jl/stable/).
 
 ## Handles
 
