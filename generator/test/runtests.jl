@@ -3,5 +3,7 @@ using Test
 using SafeTestsets
 using StructArrays
 
-include("spec.jl")
-include("wrapper.jl")
+@testset "VulkanGen.jl" begin
+    include("spec.jl")
+    include("wrapper.jl")
+end
