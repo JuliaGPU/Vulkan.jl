@@ -1,6 +1,4 @@
 name: Documenter
-env: 
-  JuliaVersion: 1.6
 on:
   push:
     branches: [master]
@@ -13,14 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@latest
+        with:
+          version: '1.6'
       - name: Install dependencies
         run: |
           julia --project=docs/ <<CODE
           using Pkg
-          Pkg.develop(path=".")
-          Pkg.instantiate()
           Pkg.activate("docs")
           Pkg.instantiate()
+          Pkg.develop(path=".")
           CODE
       - name: Build and deploy
         env:
