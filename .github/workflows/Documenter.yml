@@ -17,7 +17,9 @@ jobs:
         run: |
           julia --project=docs/ <<CODE
           using Pkg
-          Pkg.develop(path=.)
+          Pkg.develop(path=".")
+          Pkg.instantiate()
+          Pkg.activate("docs")
           Pkg.instantiate()
           CODE
       - name: Build and deploy
