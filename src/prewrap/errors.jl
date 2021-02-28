@@ -4,10 +4,10 @@ returned a non-success code.
 """
 struct VulkanError <: Exception
     msg::AbstractString
-    return_code
+    code
 end
 
-Base.showerror(io::IO, e::VulkanError) = print(io, e.return_code, ": ", e.msg)
+Base.showerror(io::IO, e::VulkanError) = print(io, e.code, ": ", e.msg)
 
 """
     @check vkCreateInstance(args...)
@@ -23,10 +23,10 @@ end
 
 macro check(expr, msg)
     quote
-        return_code = $(esc(expr))
-        if Int(return_code) ≠ 0
-            return VulkanError($msg, return_code)
+        code = $(esc(expr))
+        if Int(code) ≠ 0
+            return VulkanError($msg, code)
         end
-        return_code
+        code
     end
 end
