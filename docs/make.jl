@@ -20,6 +20,7 @@ makedocs(;
     repo="https://github.com/serenity4/Vulkan.jl/blob/{commit}{path}#L{line}",
     sitename="Vulkan.jl",
     authors="serenity4 <cedric.bel@hotmail.fr>, SimonDanisch",
+    strict=true,
     doctest=false,
 )
 
