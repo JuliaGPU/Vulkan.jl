@@ -32,6 +32,7 @@ makedocs(;
     sitename="Vulkan.jl",
     authors="serenity4 <cedric.bel@hotmail.fr>, SimonDanisch",
     strict=true,
+    doctest=false,
 )
 
 deploydocs(
