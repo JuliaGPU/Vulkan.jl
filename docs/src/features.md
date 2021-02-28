@@ -8,100 +8,6 @@ using Vulkan
 
 This wrapper exposes several features aimed at simplifying the use of the Vulkan API from Julia. Some features are configurable through the recent [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl) package, see [the corresponding section](@ref preferences) for a list of available options.
 
-## [Error handling](@id error-handling)
-
-Error handling is achieved via [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to avoid the large overhead incurred by `try`/`catch` blocks. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `Result`, which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
-
-```@example main
-res = create_instance(InstanceCreateInfo([], []))
-if iserror(res) # handle the error
-    err = unwrap_error(res)
-    if err.code == VK_ERROR_INCOMPATIBLE_DRIVER
-        error("No driver compatible with the requested API version could be found.
-                Please make sure that a driver supporting Vulkan is installed, and
-                that it is up to date with the requested version.")
-    else
-        throw(err)
-    end
-else # get the instance
-    unwrap(res)
-end
-```
-
-Note that calling `unwrap` directly on the result will throw any contained `VulkanError` if there is one. So, if you just want to throw an exception when encountering an error, you can do
-
-```@example main
-unwrap(create_instance(InstanceCreateInfo([], [])))
-```
-
-Because it may be tedious to unwrap everything by hand and explicitly set the create info structures, [convenience constructors](@ref expose-create-info-args) are defined for handle types so that you can just do
-
-```@example main
-Instance([], [])
-```
-
-However, note that exceptions are thrown whenever the result is an error with this shorter approach.
-
-For more details on the `Result` type and how to handle it, please consult the [ResultTypes documentation](https://iamed2.github.io/ResultTypes.jl/stable/).
-
-## Handles
-
-### Automatic finalization
-
-Handles can be created with the API functions `vkCreate*` and `vkAllocate*`, and most of them must be destroyed after use with a `vkDestroy*` or `vkFree*`. More importantly, they must be destroyed with the same allocator and parent handle that created them. To facilitate this, new mutable handle types were defined to allow for the registration of a finalizer. Instead of having to manually specify the finalizer for each handle instance, the `create_*` and `allocate_*` wrappers automatically register the corresponding destructor.
-
-However, finalizers can be run in arbitrary order, and some handles require to be destroyed only after all their children (such as `VkDevice`s). To avoid crashes related to bad finalization execution order, a simple thread-safe reference counting system is used to make sure that a handle is destroyed **only after all its children are destroyed**.
-
-This introduces a small overhead, since the parent handle and allocator are stored in an anonymous function for each handle at creation. However, it should be minor compared to the execution time of the API destructors.
-
-There are exceptions to the described above. `CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations. Please note also that, except for these two handle types, you should **never** explicitly call the destructors, otherwise they will be destroyed twice, likely resulting in a crash.
-
-### [Expose \*\[Create/Allocate\]Info arguments](@id expose-create-info-args)
-
-Handles that can only be created with a single API constructor possess an additional constructor that wraps around the generated create/allocate\* functions, building the required \*\[Create/Allocate\]Info from exposed arguments. That way, you do not have to explicitly construct this intermediate structure, which reduces boilerplate code.
-
-For example
-
-```julia
-fence = unwrap(create_fence(device, FenceCreateInfo()))
-fence_signaled = unwrap(create_fence(device, FenceCreateInfo(flags=VK_FENCE_CREATE_SIGNALED_BIT);
-                       allocator=my_allocator))
-```
-
-can be replaced with
-
-```julia
-fence = unwrap(create_fence(device))
-fence_signaled = unwrap(create_fence(device; flags=VK_FENCE_CREATE_SIGNALED_BIT, allocator=my_allocator))
-```
-
-Note that we `unwrap` the result every time, assuming that the `create_fence` function did not return any error. See the [error handling](@ref error-handling) section for more information.
-
-Furthermore, handle types have a generated constructor that exposes the same arguments as the create/allocate\* functions, but automatically unwrapping the result so you don't have to call it manually. The above can then be further reduced into
-
-```julia
-fence = Fence(device)
-fence_signaled = Fence(device, flags=VK_FENCE_CREATE_SIGNALED_BIT; allocator=my_allocator)
-```
-
-When multiple info structures are requested, only the main one is exposed
-
-```julia
-# the ApplicationInfo has to be provided manually
-instance = Instance([], []; application_info = ApplicationInfo(...))
-...
-# the array of DeviceQueueCreateInfo has to be provided manually
-device = Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
-```
-
-When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the create_\* function manually
-
-```julia
-pipelines = unwrap(create_graphics_pipelines(device, [GraphicsPipelineCreateInfo(...)]))
-command_buffers = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(
-                                           command_pool, VK_COMMAND_BUFFER_LEVEL_PRIMARY, 3)))
-```
-
 ## Functions
 
 ### Implicit return values
@@ -254,6 +160,100 @@ The length of array pointers is automatically deduced from the length of the con
 #### Pointer starts
 
 Some API functions require to specify the start of a pointer array as an argument. They have been hardcoded to 0 (first element), since it is always possible (and very straightforward) to pass in a sub-array.
+
+## [Error handling](@id error-handling)
+
+Error handling is achieved via [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to avoid the large overhead incurred by `try`/`catch` blocks. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `Result`, which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
+
+```@example main
+res = create_instance(InstanceCreateInfo([], []))
+if iserror(res) # handle the error
+    err = unwrap_error(res)
+    if err.code == VK_ERROR_INCOMPATIBLE_DRIVER
+        error("No driver compatible with the requested API version could be found.
+                Please make sure that a driver supporting Vulkan is installed, and
+                that it is up to date with the requested version.")
+    else
+        throw(err)
+    end
+else # get the instance
+    unwrap(res)
+end
+```
+
+Note that calling `unwrap` directly on the result will throw any contained `VulkanError` if there is one. So, if you just want to throw an exception when encountering an error, you can do
+
+```@example main
+unwrap(create_instance(InstanceCreateInfo([], [])))
+```
+
+Because it may be tedious to unwrap everything by hand and explicitly set the create info structures, [convenience constructors](@ref expose-create-info-args) are defined for handle types so that you can just do
+
+```@example main
+Instance([], [])
+```
+
+However, note that exceptions are thrown whenever the result is an error with this shorter approach.
+
+For more details on the `Result` type and how to handle it, please consult the [ResultTypes documentation](https://iamed2.github.io/ResultTypes.jl/stable/).
+
+## Handles
+
+### Automatic finalization
+
+Handles can be created with the API functions `vkCreate*` and `vkAllocate*`, and most of them must be destroyed after use with a `vkDestroy*` or `vkFree*`. More importantly, they must be destroyed with the same allocator and parent handle that created them. To facilitate this, new mutable handle types were defined to allow for the registration of a finalizer. Instead of having to manually specify the finalizer for each handle instance, the `create_*` and `allocate_*` wrappers automatically register the corresponding destructor.
+
+However, finalizers can be run in arbitrary order, and some handles require to be destroyed only after all their children (such as `VkDevice`s). To avoid crashes related to bad finalization execution order, a simple thread-safe reference counting system is used to make sure that a handle is destroyed **only after all its children are destroyed**.
+
+This introduces a small overhead, since the parent handle and allocator are stored in an anonymous function for each handle at creation. However, it should be minor compared to the execution time of the API destructors.
+
+There are exceptions to the described above. `CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations. Please note also that, except for these two handle types, you should **never** explicitly call the destructors, otherwise they will be destroyed twice, likely resulting in a crash.
+
+### [Expose \*\[Create/Allocate\]Info arguments](@id expose-create-info-args)
+
+Handles that can only be created with a single API constructor possess an additional constructor that wraps around the generated create/allocate\* functions, building the required \*\[Create/Allocate\]Info from exposed arguments. That way, you do not have to explicitly construct this intermediate structure, which reduces boilerplate code.
+
+For example
+
+```julia
+fence = unwrap(create_fence(device, FenceCreateInfo()))
+fence_signaled = unwrap(create_fence(device, FenceCreateInfo(flags=VK_FENCE_CREATE_SIGNALED_BIT);
+                       allocator=my_allocator))
+```
+
+can be replaced with
+
+```julia
+fence = unwrap(create_fence(device))
+fence_signaled = unwrap(create_fence(device; flags=VK_FENCE_CREATE_SIGNALED_BIT, allocator=my_allocator))
+```
+
+Note that we `unwrap` the result every time, assuming that the `create_fence` function did not return any error. See the [error handling](@ref error-handling) section for more information.
+
+Furthermore, handle types have a generated constructor that exposes the same arguments as the create/allocate\* functions, but automatically unwrapping the result so you don't have to call it manually. The above can then be further reduced into
+
+```julia
+fence = Fence(device)
+fence_signaled = Fence(device, flags=VK_FENCE_CREATE_SIGNALED_BIT; allocator=my_allocator)
+```
+
+When multiple info structures are requested, only the main one is exposed
+
+```julia
+# the ApplicationInfo has to be provided manually
+instance = Instance([], []; application_info = ApplicationInfo(...))
+...
+# the array of DeviceQueueCreateInfo has to be provided manually
+device = Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
+```
+
+When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the create_\* function manually
+
+```julia
+pipelines = unwrap(create_graphics_pipelines(device, [GraphicsPipelineCreateInfo(...)]))
+command_buffers = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(
+                                           command_pool, VK_COMMAND_BUFFER_LEVEL_PRIMARY, 3)))
+```
 
 ## Bitmask flags
 
