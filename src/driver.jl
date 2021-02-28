@@ -20,6 +20,6 @@ function set_driver(mod::Module, backend::Symbol)
 end
 
 """
-Call `set_driver(backend)` passing the current module as first argument.
+Call `set_driver` passing the current module as the first argument.
 """
 macro set_driver(backend) :(set_driver($__module__, $(esc(backend)))) end
