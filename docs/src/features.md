@@ -11,7 +11,7 @@ using Vulkan
 res = create_instance(InstanceCreateInfo([], []))
 if iserror(res) # handle the error
     err = unwrap_error(res)
-    if err.code == VK_INCOMPATBIBLE_DRIVER
+    if err.code == VK_ERROR_INCOMPATIBLE_DRIVER
         error("No driver compatible with the requested API version could be found.
                 Please make sure that a driver supporting Vulkan is installed, and
                 that it is up to date with the requested version.")
