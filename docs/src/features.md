@@ -26,13 +26,16 @@ DisplayKHR(pDisplay[], identity, physical_device)
 This particular setup is taken care of by the wrapper, so that you only need to do:
 
 ```julia
-display = unwrap(get_rand_r_output_display_ext(physical_device, dpy_ref, rr_output))
+# returns a Result{DisplayKHR,VulkanError}
+display = get_rand_r_output_display_ext(physical_device, dpy_ref, rr_output)
 ```
 
+The `display` variable here is a `Result` type, so you would need to `unwrap` it to get the actual `DisplayKHR` type. To know more about `unwrap` and the `Result` type see the [error handling](@ref error-handling) section.
 When there are multiple implicit return values (i.e. multiple pointers being written to), they are returned as a tuple:
 
 ```julia
-actual_data_size, data = unwrap(get_pipeline_cache_data(device, pipeline_cache, data_size))
+# returns a Result{Tuple{UInt, Ptr{Cvoid}},VulkanError}
+actual_data_size, data = get_pipeline_cache_data(device, pipeline_cache, data_size)
 ```
 
 ### Enumerated arrays
@@ -57,6 +60,7 @@ PhysicalDevices.(pPhysicalDevices, identity, instance)
 The relevant enumeration functions are wrapped with this, so that only one call needs to be made, without worrying about creating intermediate arrays:
 
 ```julia
+# returns a Result{Vector{PhysicalDevice},VulkanError}
 physical_devices = enumerate_physical_devices(instance)
 ```
 
