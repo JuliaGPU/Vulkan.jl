@@ -19,7 +19,7 @@ jobs:
           using Pkg
           Pkg.activate("docs")
           Pkg.instantiate()
-          Pkg.develop(path=".")
+          Pkg.develop(path=pwd())
           CODE
       - name: Build and deploy
         env:
