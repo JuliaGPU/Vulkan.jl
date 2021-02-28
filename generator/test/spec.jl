@@ -8,7 +8,7 @@ test_bitmask(args...) = test_spec(bitmask_by_name, args...)
 test_enum(args...) = test_spec(enum_by_name, args...)
 test_constant(args...) = test_spec(constant_by_name, args...)
 test_struct(name, type, is_returnedonly, extends, members) = test_spec(struct_by_name, name, type, is_returnedonly, extends, StructVector(map(x -> SpecStructMember(name, x...), members)))
-test_func(name, type, return_type, render_pass_compatibility, queue_compatibility, params) = test_spec(func_by_name, name, type, return_type, render_pass_compatibility, queue_compatibility, StructVector(map(x -> SpecFuncParam(name, x...), params)))
+test_func(name, type, return_type, render_pass_compatibility, queue_compatibility, params, success_codes, error_codes) = test_spec(func_by_name, name, type, return_type, render_pass_compatibility, queue_compatibility, StructVector(map(x -> SpecFuncParam(name, x...), params)), success_codes, error_codes)
 
 test_create_func(name, handle, _struct, index, batch) = test_spec(x -> spec_by_field(spec_create_funcs, :func, x), func_by_name(name), handle, _struct, func_by_name(name).params[index], batch)
 test_destroy_func(name, handle, index, batch) = test_spec(x -> spec_by_field(spec_destroy_funcs, :func, x), func_by_name(name), handle, func_by_name(name).params[index], batch)
@@ -172,7 +172,15 @@ test_destroy_func(name, handle, index, batch) = test_spec(x -> spec_by_field(spe
                 (:pCreateInfo, :(Ptr{VkInstanceCreateInfo}), true, false, REQUIRED, nothing, []),
                 (:pAllocator, :(Ptr{VkAllocationCallbacks}), true, false, OPTIONAL, nothing, []),
                 (:pInstance, :(Ptr{VkInstance}), false, false, REQUIRED, nothing, []),
-            ])
+            ],
+            [:VK_SUCCESS],
+            [:VK_ERROR_OUT_OF_HOST_MEMORY,
+            :VK_ERROR_OUT_OF_DEVICE_MEMORY,
+            :VK_ERROR_INITIALIZATION_FAILED,
+            :VK_ERROR_LAYER_NOT_PRESENT,
+            :VK_ERROR_EXTENSION_NOT_PRESENT,
+            :VK_ERROR_INCOMPATIBLE_DRIVER],
+            )
         test_func(:vkCmdBindPipeline,
             COMMAND,
             :Cvoid,
@@ -182,7 +190,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(x -> spec_by_field(spe
                 (:commandBuffer, :VkCommandBuffer, false, true, REQUIRED, nothing, []),
                 (:pipelineBindPoint, :VkPipelineBindPoint, false, false, REQUIRED, nothing, []),
                 (:pipeline, :VkPipeline, false, false, REQUIRED, nothing, []),
-            ])
+            ], [], [])
     end
 
     @testset "Aliases" begin

@@ -5,6 +5,30 @@ function document(spec, p)
     end
 end
 
+backquoted(arg) = string('`', arg, '`')
+
+function document_return_codes(spec::SpecFunc)
+    res = ""
+    if !isempty(spec.success_codes) || !isempty(spec.error_codes)
+        res *= "Return codes:"
+    end
+    if !isempty(spec.success_codes)
+        res *= string("\n- Success:\n  - ", join(backquoted.(spec.success_codes), "\n  - "))
+    end
+    if !isempty(spec.error_codes)
+        res *= string("\n- Error:\n  - ", join(backquoted.(spec.error_codes), "\n  - "))
+    end
+
+    if !isempty(res)
+        res *= '\n'^2
+    end
+
+    res
+end
+
+document_return_codes(spec::SpecHandle) = document_return_codes(add_constructor(spec))
+document_return_codes(spec::SpecStruct) = ""
+
 function document_function(spec::SpecHandle, p)
     docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2))
 end
@@ -19,7 +43,7 @@ function document_function(spec, p)
         end
     end
 
-    docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2, join(["Arguments:"; last.(argdocs)], "\n- "), '\n'))
+    docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2, document_return_codes(spec), join(["Arguments:"; last.(argdocs)], "\n- "), '\n'))
 end
 
 function document_arguments(p)
@@ -27,10 +51,10 @@ function document_arguments(p)
     if isempty(args) && isempty(kwargs)
         []
     else
-        backquoted_args = map(x -> name(x) => string('`', x, '`'), args)
+        backquoted_args = map(x -> name(x) => backquoted(x), args)
         documented_kwargs = map(kwargs) do kwarg
             identifier, value = kwarg.args
-            identifier => string('`', identifier, '`', ": defaults to `", value, '`')
+            identifier => string(backquoted(identifier), ": defaults to ", backquoted(value))
         end
         vcat(backquoted_args, documented_kwargs)
     end

@@ -99,9 +99,9 @@ function SpecFunc(node::Node)
         _ => OTHER
     end
     return_type = extract_type(findfirst("./proto", node))
-    SpecFunc(name, ctype, return_type, rp_reqs, queues, StructVector(SpecFuncParam.(findall("./param", node))))
+    codes(type) = Symbol.(filter(!isempty, split(getattr(node, type; default="", symbol=false), ',')))
+    SpecFunc(name, ctype, return_type, rp_reqs, queues, StructVector(SpecFuncParam.(findall("./param", node))), codes("successcodes"), codes("errorcodes"))
 end
-
 
 SpecEnum(node::Node) = SpecEnum(Symbol(node["name"]), StructVector(SpecConstant.(findall("./enum[@name and not(@alias)]", node))))
 

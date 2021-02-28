@@ -107,6 +107,8 @@ struct SpecFunc <: Spec
     queue_compatibility::Vector{QueueType}
     "Function parameters."
     params::StructVector{SpecFuncParam}
+    success_codes::Vector{Symbol}
+    error_codes::Vector{Symbol}
 end
 
 """

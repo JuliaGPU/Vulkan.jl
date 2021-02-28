@@ -35,6 +35,15 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
 
         enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
 
+    Return codes:
+    - Success:
+      - `VK_SUCCESS`
+      - `VK_INCOMPLETE`
+    - Error:
+      - `VK_ERROR_OUT_OF_HOST_MEMORY`
+      - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+      - `VK_ERROR_LAYER_NOT_PRESENT`
+
     Arguments:
     - `layer_name`: defaults to `C_NULL`
 
