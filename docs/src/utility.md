@@ -19,3 +19,13 @@ Here we describe some external tools that can assist the development of Vulkan a
 ## CPU implementation
 
 [SwiftShader](https://github.com/google/swiftshader) is a CPU implementation of Vulkan primarily designed to extend the portability of Vulkan applications. It can be used wherever there is a lack of proper driver support, including public continuous integration services.
+
+A convenience macro is implemented in Vulkan, so you can quickly use SwiftShader with
+
+```julia
+using SwiftShader_jll
+using Vulkan
+@set_driver :SwiftShader
+```
+
+which will tell the Vulkan Loader to use the SwiftShader Installable Client Driver.
