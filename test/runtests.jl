@@ -1,16 +1,18 @@
-@static if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
-    using SwiftShader_jll: libvulkan
-    ENV["JULIA_VULKAN_LIBNAME"] = basename(libvulkan)
-    libdir = dirname(libvulkan)
-
-    sep = Sys.iswindows() ? ';' : ':'
-    old_vk_icd_filenames = get(ENV, "VK_ICD_FILENAMES", [])
-    ENV["VK_ICD_FILENAMES"] = join([old_vk_icd_filenames; joinpath(libdir, "vk_swiftshader_icd.json")], sep)
+# set libname for the loader (must be done before importing Vulkan)
+# this is mandatory in cases where the default libname used by VulkanCore does not point to a valid Vulkan library
+if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
+    import SwiftShader_jll
+    ENV["JULIA_VULKAN_LIBNAME"] = basename(SwiftShader_jll.libvulkan)
 end
 
 using Test
 using Documenter
 using Vulkan
+
+# use SwiftShader for testing
+if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
+    set_driver(:SwiftShader)
+end
 
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan

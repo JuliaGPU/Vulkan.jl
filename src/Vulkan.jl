@@ -44,6 +44,7 @@ include("../generated/vulkan_wrapper.jl")
 include("../generated/vulkan_docs.jl")
 
 include("utils.jl")
+include("driver.jl")
 include("bitmasks.jl")
 include("validation.jl")
 include("device.jl")
@@ -64,6 +65,9 @@ export
         Handle,
         to_vk,
         from_vk,
+
+        # Driver
+        set_driver,
 
         # Printing
         print_app_info,
