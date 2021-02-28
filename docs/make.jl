@@ -7,6 +7,7 @@ Pkg.instantiate()
 
 using VulkanGen
 
+# docstring tests setup
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan
     instance = unwrap(Instance(String[], String[]))
