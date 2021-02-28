@@ -1,6 +1,7 @@
-using Documenter, Vulkan
+using Documenter, Pkg, Vulkan
 
-using Pkg; Pkg.activate("generator")
+Pkg.develop(path="generator")
+
 using VulkanGen
 
 makedocs(;
