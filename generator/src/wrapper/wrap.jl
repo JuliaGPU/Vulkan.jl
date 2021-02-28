@@ -373,42 +373,59 @@ function destructor(handle::SpecHandle; with_func_ptr=false)
 end
 
 function add_constructor(spec::SpecHandle; with_func_ptr = false)
-    create = spec_create_funcs[findfirst(x -> !x.batch && x.handle == spec, spec_create_funcs)]
-    p_func = wrap(create.func)
-    constructor_args = p_func[:args]
+    create = create_func_no_batch(spec)
 
     if isnothing(create.create_info_struct)
         # just pass the arguments as-is
-        args = constructor_args
-        kwargs = p_func[:kwargs]
-        with_func_ptr && append!(args, func_ptr_args(spec))
-        body = reconstruct_call(Dict(:name => p_func[:name], :args => name.(args), :kwargs => name.(kwargs)))
+        p_func = wrap(create.func; with_func_ptr)
+        args, kwargs = p_func[:args], p_func[:kwargs]
+        body = reconstruct_call(p_func; is_decl=false)
     else
-        p_info = add_constructor(create.create_info_struct)
-        args = [constructor_args; p_info[:args]]
-
-        kwargs = vcat(p_func[:kwargs], p_info[:kwargs])
-
-        info_expr = reconstruct_call(Dict(:name => p_info[:name], :args => name.(p_info[:args]), :kwargs => name.(p_info[:kwargs])))
-        info_index = findfirst(==(p_info[:name]), type.(p_func[:args]))
-        deleteat!(args, info_index)
-
-        func_call_args = Vector{Any}(name.(p_func[:args]))
-        func_call_args[info_index] = info_expr
-
-        if with_func_ptr
-            append!(args, func_ptr_args(spec))
-            append!(func_call_args, name.(func_ptrs(spec)))
-        end
-
-        body = reconstruct_call(Dict(:name => p_func[:name], :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
+        p_func_extended = extend_handle_constructor(create; with_func_ptr)
+        body = :(unwrap($(reconstruct_call(p_func_extended; is_decl=false))))
+        args, kwargs = p_func_extended[:args], p_func_extended[:kwargs]
     end
-
-    _name = remove_vk_prefix(spec.name)
 
     Dict(
         :category => :function,
-        :name => _name,
+        :name => remove_vk_prefix(spec.name),
+        :args => args,
+        :kwargs => kwargs,
+        :short => true,
+        :body => body,
+    )
+end
+
+"""
+Extend functions that create (or allocate) one or several handles,
+by exposing the parameters of the associated CreateInfo structures.
+`spec` must have one or several CreateInfo arguments.
+"""
+function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
+    p_func = wrap(spec.func)
+    @assert !isnothing(spec.create_info_param) "Cannot extend handle constructor with no create info parameter."
+    p_info = add_constructor(spec.create_info_struct)
+
+    args = [p_func[:args]; p_info[:args]]
+    kwargs = [p_func[:kwargs]; p_info[:kwargs]]
+
+    info_expr = reconstruct_call(p_info; is_decl=false)
+    info_index = findfirst(==(p_info[:name]), type.(p_func[:args]))
+    deleteat!(args, info_index)
+
+    func_call_args = Vector{Any}(name.(p_func[:args]))
+    func_call_args[info_index] = info_expr
+
+    if with_func_ptr
+        append!(args, func_ptr_args(spec.func))
+        append!(func_call_args, name.(func_ptrs(spec.func)))
+    end
+
+    body = reconstruct_call(Dict(:name => p_func[:name], :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
+
+    Dict(
+        :category => :function,
+        :name => p_func[:name],
         :args => args,
         :kwargs => kwargs,
         :short => true,
@@ -465,8 +482,10 @@ function VulkanWrapper()
         add_constructor.(api_structs),
         extend_from_vk.(returnedonly_structs),
         add_constructor.(spec_handles_with_single_constructor),
+        extend_handle_constructor.(filter(x -> !isnothing(x.create_info_param), create_func_no_batch.(spec_handles_with_single_constructor))),
         wrap.(spec_funcs; with_func_ptr=true),
         add_constructor.(spec_handles_with_single_constructor; with_func_ptr=true),
+        extend_handle_constructor.(filter(x -> !isnothing(x.create_info_param), create_func_no_batch.(spec_handles_with_single_constructor)); with_func_ptr=true),
     ))
 
     enums = to_expr.(wrap.(spec_bitmasks))

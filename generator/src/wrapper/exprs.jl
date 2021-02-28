@@ -147,13 +147,21 @@ function deconstruct(ex::Expr)
     dict
 end
 
-function reconstruct_call(d::Dict)
-    call = @match (get(d, :args, []), get(d, :kwargs, [])) begin
+function reconstruct_call(d::Dict; is_decl=true)
+    args = get(d, :args, [])
+    kwargs = get(d, :kwargs, [])
+
+    if !is_decl
+        args = name.(args)
+        kwargs = name.(kwargs)
+    end
+
+    call = @match (args, kwargs) begin
         (args, []) => Expr(:call, d[:name], args...)
         (args, kwargs) => Expr(:call, d[:name], Expr(:parameters, kwargs...), args...)
     end
     rt = get(d, :return_type, nothing)
-    if isnothing(rt)
+    if isnothing(rt) || !is_decl
         call
     else
         :($call::$rt)

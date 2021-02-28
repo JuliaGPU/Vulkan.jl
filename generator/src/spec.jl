@@ -63,6 +63,7 @@ export
         constant_by_name,
         create_func_by_name,
         destroy_func_by_name,
+        create_func_no_batch,
         follow_constant,
         children,
         parent_spec,

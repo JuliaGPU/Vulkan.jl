@@ -396,6 +396,7 @@ end
 create_func(func::SpecFunc) = spec_by_field(spec_create_funcs, :func, func)
 create_func(handle::SpecHandle) = spec_by_field(spec_create_funcs, :handle, handle)
 create_func(name) = spec_by_field(spec_create_funcs, :func, func_by_name(name))
+create_func_no_batch(handle::SpecHandle) = spec_create_funcs[findfirst(x -> !x.batch && x.handle == handle, spec_create_funcs)]
 
 destroy_func(func::SpecFunc) = spec_by_field(spec_destroy_funcs, :func, func)
 destroy_func(handle::SpecHandle) = spec_by_field(spec_destroy_funcs, :handle, handle)

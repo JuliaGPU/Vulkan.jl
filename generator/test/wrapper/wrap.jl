@@ -9,6 +9,7 @@ test_add_constructor(f, name, ex; kwargs...) = test_ex(to_expr(add_constructor(f
 test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args...)
 test_handle_add_constructor(args...; kwargs...) = test_add_constructor(handle_by_name, args...; kwargs...)
 test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(name))), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
+test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_handle_constructor(create_func_no_batch(handle_by_name(name)); kwargs...)), ex)
 
 @testset "Wrapping" begin
     @testset "Handles" begin
@@ -241,30 +242,31 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
     end
 
     @testset "Additional constructors" begin
-        test_struct_add_constructor(:VkInstanceCreateInfo, :(
-            function InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
-                next = cconvert(Ptr{Cvoid}, next)
-                application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
-                enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
-                enabled_extension_names = cconvert(Ptr{Cstring}, enabled_extension_names)
-                deps = [
-                    next,
-                    application_info,
-                    enabled_layer_names,
-                    enabled_extension_names
-                ]
-                vks = VkInstanceCreateInfo(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
-                                        unsafe_convert(Ptr{Cvoid}, next),
-                                        flags,
-                                        unsafe_convert(Ptr{VkApplicationInfo}, application_info),
-                                        pointer_length(enabled_layer_names),
-                                        unsafe_convert(Ptr{Cstring}, enabled_layer_names),
-                                        pointer_length(enabled_extension_names),
-                                        unsafe_convert(Ptr{Cstring}, enabled_extension_names),
-                                        )
-                InstanceCreateInfo(vks, deps)
-            end
-        ))
+        @testset "Struct constructors" begin
+            test_struct_add_constructor(:VkInstanceCreateInfo, :(
+                function InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
+                    next = cconvert(Ptr{Cvoid}, next)
+                    application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
+                    enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
+                    enabled_extension_names = cconvert(Ptr{Cstring}, enabled_extension_names)
+                    deps = [
+                        next,
+                        application_info,
+                        enabled_layer_names,
+                        enabled_extension_names
+                    ]
+                    vks = VkInstanceCreateInfo(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
+                                            unsafe_convert(Ptr{Cvoid}, next),
+                                            flags,
+                                            unsafe_convert(Ptr{VkApplicationInfo}, application_info),
+                                            pointer_length(enabled_layer_names),
+                                            unsafe_convert(Ptr{Cstring}, enabled_layer_names),
+                                            pointer_length(enabled_extension_names),
+                                            unsafe_convert(Ptr{Cstring}, enabled_extension_names),
+                                            )
+                    InstanceCreateInfo(vks, deps)
+                end
+            ))
 
         test_struct_add_constructor(:VkSubpassSampleLocationsEXT, :(
             function SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::SampleLocationsInfoEXT)
@@ -281,18 +283,35 @@ test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(na
                 DebugUtilsMessengerCreateInfoEXT(vks, deps)
             end
         ))
+        end
 
-        test_handle_add_constructor(:VkInstance, :(
-            Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
-        ))
+        @testset "Handle constructors" begin
+            test_handle_add_constructor(:VkInstance, :(
+                Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = unwrap(create_instance(enabled_layer_names, enabled_extension_names; allocator, next, flags, application_info))
+            ))
 
-        test_handle_add_constructor(:VkDebugReportCallbackEXT, :(
-            DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
-        ), with_func_ptr=true)
+            test_handle_add_constructor(:VkDebugReportCallbackEXT, :(
+                    DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) =    unwrap(create_debug_report_callback_ext(instance, pfn_callback, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, user_data))
+                ),
+                with_func_ptr=true,
+            )
 
-        test_handle_add_constructor(:VkDeferredOperationKHR, :(
-            DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
-        ))
+            test_handle_add_constructor(:VkDeferredOperationKHR, :(
+                DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
+            ))
+        end
+
+        @testset "Extended handle constructors" begin
+            test_extend_handle_constructor(:VkInstance, :(
+                create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
+            ))
+
+            test_extend_handle_constructor(:VkDebugReportCallbackEXT, :(
+                create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
+                ),
+                with_func_ptr=true,
+            )
+        end
     end
 
     @testset "New methods for `from_vk`" begin
