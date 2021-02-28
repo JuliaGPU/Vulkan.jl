@@ -11,7 +11,7 @@ using Vulkan
 
 # use SwiftShader for testing
 if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
-    set_driver(:SwiftShader)
+    @set_driver :SwiftShader
 end
 
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote

@@ -17,9 +17,13 @@ jobs:
         run: |
           julia --project=docs/ <<CODE
           using Pkg
+          Pkg.develop(path=pwd())
+          Pkg.activate()
+          Pkg.instantiate()
+          Pkg.activate("generator")
+          Pkg.instantiate()
           Pkg.activate("docs")
           Pkg.instantiate()
-          Pkg.develop(path=pwd())
           CODE
       - name: Build and deploy
         env:

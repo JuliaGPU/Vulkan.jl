@@ -1,19 +1,7 @@
 using Documenter, Vulkan
 
-using Pkg
-
-Pkg.activate("generator")
-Pkg.instantiate()
-
+using Pkg; Pkg.activate("generator")
 using VulkanGen
-
-# docstring tests setup
-DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
-    push!(LOAD_PATH, joinpath(dirname(@__DIR__)))
-    using Vulkan
-    instance = unwrap(Instance(String[], String[]))
-    physical_device = first(unwrap(enumerate_physical_devices(instance)))
-end)
 
 makedocs(;
     modules=[Vulkan, VulkanGen],

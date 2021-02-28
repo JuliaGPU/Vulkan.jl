@@ -13,7 +13,7 @@ using ResultTypes: iserror
 
 Base.broadcastable(r::Result) = Ref(r)
 
-const core = VulkanCore
+const core = vk
 
 @static if VERSION < v"1.6.0-DEV"
     macro load_preference(name, default)
@@ -68,6 +68,7 @@ export
 
         # Driver
         set_driver,
+        @set_driver,
 
         # Printing
         print_app_info,

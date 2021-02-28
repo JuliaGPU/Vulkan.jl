@@ -6,7 +6,7 @@ This wrapper exposes several features aimed at simplifying the use of the Vulkan
 
 [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) is used for error handling. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `Result`, which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
 
-```@example 1
+```@example main
 using Vulkan
 res = create_instance(InstanceCreateInfo([], []))
 if iserror(res) # handle the error
@@ -25,7 +25,7 @@ end
 
 Note that calling `unwrap` directly on the result will throw any contained `VulkanError` if there is one. So, if you just want to throw an exception when encountering an error, you can just do
 
-```@example 1
+```@example main
 unwrap(create_instance(InstanceCreateInfo([], [])))
 ```
 
@@ -237,8 +237,8 @@ In Vulkan, the value of some flags carry meaning through a bitmask structure. Bi
 
 For example, consider the vanilla `VkSampleCountFlags` type (alias for `UInt32`) with bits defined via the enumerated type `VkSampleCountFlagBits`:
 
-```@repl
-using VulkanCore.vk
+```@repl main
+using Vulkan.core
 VK_SAMPLE_COUNT_1_BIT isa VkSampleCountFlagBits
 VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlagBits(1)
 VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlags(1)
@@ -249,8 +249,7 @@ VK_SAMPLE_COUNT_1_BIT & VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR === VkSampleCountF
 
 Those two types are combined into one `SampleCountFlag`:
 
-```@repl
-using Vulkan
+```@repl main
 SampleCountFlag <: BitMask
 SurfaceTransformFlagKHR <: BitMask # another bitmask flag
 SAMPLE_COUNT_1_BIT | SAMPLE_COUNT_2_BIT === SampleCountFlag(3)

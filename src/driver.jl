@@ -3,12 +3,12 @@ Convenience function for setting an ICD (Installable Client Driver) used by Vulk
 Only SwiftShader is currently supported. To add another ICD, you must do it by hand. You can achieve that by setting the environment variable "VK_ICD_FILENAMES" to point to your own ICD JSON file, as described in https://github.com/KhronosGroup/Vulkan-Loader/blob/master/loader/LoaderAndLayerInterface.md#icd-discovery.
 
 Available drivers:
-- SwiftShader: a CPU implementation of Vulkan. Requires `SwiftShader_jll` to be imported in `Main`.
+- SwiftShader: a CPU implementation of Vulkan. Requires `SwiftShader_jll` to be imported in `mod`.
 """
-function set_driver(backend::Symbol)
+function set_driver(mod::Module, backend::Symbol)
     @match backend begin
         :SwiftShader => begin
-                            libvulkan = Main.SwiftShader_jll.libvulkan
+                            libvulkan = mod.SwiftShader_jll.libvulkan
                             ENV["JULIA_VULKAN_LIBNAME"] = basename(libvulkan)
                             libdir = dirname(libvulkan)
                             sep = Sys.iswindows() ? ';' : ':'
@@ -18,3 +18,8 @@ function set_driver(backend::Symbol)
         _ => error("Backend $backend not available. Only 'SwiftShader' is currently supported.")
     end
 end
+
+"""
+Call `set_driver(backend)` passing the current module as first argument.
+"""
+macro set_driver(backend) :(set_driver($__module__, $(esc(backend)))) end
