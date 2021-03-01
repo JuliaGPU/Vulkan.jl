@@ -4313,9 +4313,9 @@ cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace, f
 
 cmd_set_cull_mode_ext(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; cull_mode = 0)::Cvoid = vkCmdSetCullModeEXT(command_buffer, cull_mode, fun_ptr)
 
-deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation, fun_ptr))
+deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation, fun_ptr))
 
-get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation, fun_ptr))
+get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation, fun_ptr))
 
 get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR, fun_ptr::FunctionPtr)::UInt32 = vkGetDeferredOperationMaxConcurrencyKHR(device, operation, fun_ptr)
 
@@ -4329,7 +4329,7 @@ end
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR, fun_ptr::FunctionPtr)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info, fun_ptr)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos, fun_ptr))
+build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos, fun_ptr))
 
 cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride, fun_ptr)
 
@@ -4512,47 +4512,31 @@ function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractA
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, pData, fun_ptr)
-    (pData[], _return_code)
-end
+get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data, fun_ptr))
 
-function get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData, fun_ptr)
-    (pData[], _return_code)
-end
+get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, data, fun_ptr))
 
-function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetRayTracingShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData, fun_ptr)
-    (pData[], _return_code)
-end
+get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetRayTracingShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, data, fun_ptr))
 
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth, fun_ptr)
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
 
-function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, pData, stride, fun_ptr)
-    (pData[], _return_code)
-end
+write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride, fun_ptr))
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
 
 cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
-copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info, fun_ptr))
+copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info, fun_ptr))
 
 cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info, fun_ptr)
 
-copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info, fun_ptr))
+copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info, fun_ptr))
 
 cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info, fun_ptr)
 
-copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info, fun_ptr))
+copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info, fun_ptr))
 
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureKHR(command_buffer, info, fun_ptr)
 
@@ -4636,7 +4620,7 @@ end
 
 signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkSignalSemaphore(device, signal_info, fun_ptr))
 
-wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout, fun_ptr))
+wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout, fun_ptr))
 
 function get_semaphore_counter_value(device::Device, semaphore::Semaphore, fun_ptr::FunctionPtr)::Result{UInt64, VulkanError}
     pValue = Ref{UInt64}()
@@ -4709,11 +4693,17 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
-    pInfoSize = Ref(info_size)
-    pInfo = Ref{Ptr{Cvoid}}()
-    @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
-    ((pInfoSize[], pInfo[]), _return_code)
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    pInfoSize = Ref{UInt}()
+    @repeat_while_incomplete begin
+            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, C_NULL, fun_ptr)
+            pInfo = Libc.malloc(pInfoSize[])
+            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
+            if _return_code == VK_INCOMPLETE
+                Libc.free(pInfo)
+            end
+        end
+    (pInfoSize[], pInfo)
 end
 
 function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr)::DescriptorSetLayoutSupport
@@ -4724,11 +4714,17 @@ end
 
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
-function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
-    pDataSize = Ref(data_size)
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData, fun_ptr)
-    ((pDataSize[], pData[]), _return_code)
+function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    pDataSize = Ref{UInt}()
+    @repeat_while_incomplete begin
+            @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, C_NULL, fun_ptr)
+            pData = Libc.malloc(pDataSize[])
+            @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData, fun_ptr)
+            if _return_code == VK_INCOMPLETE
+                Libc.free(pData)
+            end
+        end
+    (pDataSize[], pData)
 end
 
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyValidationCacheEXT(device, validation_cache, allocator, fun_ptr)
@@ -4871,7 +4867,7 @@ function get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainK
     from_vk(RefreshCycleDurationGOOGLE, pDisplayTimingProperties[])
 end
 
-get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain, fun_ptr))
+get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain, fun_ptr))
 
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
 
@@ -5193,7 +5189,7 @@ function create_vi_surface_nn(instance::Instance, create_info::ViSurfaceCreateIn
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-queue_present_khr(queue::Queue, present_info::PresentInfoKHR, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkQueuePresentKHR(queue, present_info, fun_ptr))
+queue_present_khr(queue::Queue, present_info::PresentInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkQueuePresentKHR(queue, present_info, fun_ptr))
 
 function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer, fun_ptr::FunctionPtr; semaphore = C_NULL, fence = C_NULL)::Result{Tuple{UInt32, VkResult}, VulkanError}
     pImageIndex = Ref{UInt32}()
@@ -5333,7 +5329,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents, fun
 
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents, fun_ptr::FunctionPtr)::Cvoid = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents, fun_ptr)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values), fun_ptr)
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), values, fun_ptr)
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fun_ptr)
 
@@ -5367,7 +5363,7 @@ cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout:
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data, fun_ptr)
 
-cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Tuple{Cvoid, VkResult} = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data), fun_ptr)
+cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, data, fun_ptr)
 
 cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
@@ -5525,11 +5521,17 @@ end
 
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
-function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer, fun_ptr::FunctionPtr)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
-    pDataSize = Ref(data_size)
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData, fun_ptr)
-    ((pDataSize[], pData[]), _return_code)
+function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    pDataSize = Ref{UInt}()
+    @repeat_while_incomplete begin
+            @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, C_NULL, fun_ptr)
+            pData = Libc.malloc(pDataSize[])
+            @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData, fun_ptr)
+            if _return_code == VK_INCOMPLETE
+                Libc.free(pData)
+            end
+        end
+    (pDataSize[], pData)
 end
 
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyPipelineCache(device, pipeline_cache, allocator, fun_ptr)
@@ -5588,11 +5590,7 @@ end
 
 reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr)::Cvoid = vkResetQueryPool(device, query_pool, first_query, query_count, fun_ptr)
 
-function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags, fun_ptr)
-    (pData[], _return_code)
-end
+get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fun_ptr::FunctionPtr; flags = 0)::Result{VkResult, VulkanError} = @check(vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags, fun_ptr))
 
 destroy_query_pool(device::Device, query_pool::QueryPool, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyQueryPool(device, query_pool, allocator, fun_ptr)
 
@@ -5606,7 +5604,7 @@ reset_event(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{VkResult
 
 set_event(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkSetEvent(device, event, fun_ptr))
 
-get_event_status(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetEventStatus(device, event, fun_ptr))
+get_event_status(device::Device, event::Event, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetEventStatus(device, event, fun_ptr))
 
 destroy_event(device::Device, event::Event, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyEvent(device, event, allocator, fun_ptr)
 
@@ -5624,9 +5622,9 @@ function create_semaphore(device::Device, create_info::SemaphoreCreateInfo, fun_
     Semaphore(pSemaphore[], (x->destroy_semaphore(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
 
-get_fence_status(device::Device, fence::Fence, fun_ptr::FunctionPtr)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetFenceStatus(device, fence, fun_ptr))
+get_fence_status(device::Device, fence::Fence, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetFenceStatus(device, fence, fun_ptr))
 
 reset_fences(device::Device, fences::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
 
@@ -9225,9 +9223,9 @@ cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace)::
 
 cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0)::Cvoid = vkCmdSetCullModeEXT(command_buffer, cull_mode)
 
-deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation))
+deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{VkResult, VulkanError} = @check(vkDeferredOperationJoinKHR(device, operation))
 
-get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation))
+get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{VkResult, VulkanError} = @check(vkGetDeferredOperationResultKHR(device, operation))
 
 get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR)::UInt32 = vkGetDeferredOperationMaxConcurrencyKHR(device, operation)
 
@@ -9241,7 +9239,7 @@ end
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos))
+build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos))
 
 cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer)::Cvoid = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride)
 
@@ -9424,47 +9422,31 @@ function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractA
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
-function get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, pData)
-    (pData[], _return_code)
-end
+get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data))
 
-function get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData)
-    (pData[], _return_code)
-end
+get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError} = @check(vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, data))
 
-function get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetRayTracingShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, pData)
-    (pData[], _return_code)
-end
+get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError} = @check(vkGetRayTracingShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, data))
 
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth)
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
 
-function write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, stride::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, pData, stride)
-    (pData[], _return_code)
-end
+write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::Result{VkResult, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride))
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
 
 cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
-copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info))
+copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{VkResult, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info))
 
 cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR)::Cvoid = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info)
 
-copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info))
+copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info))
 
 cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR)::Cvoid = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info)
 
-copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info))
+copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info))
 
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR)::Cvoid = vkCmdCopyAccelerationStructureKHR(command_buffer, info)
 
@@ -9548,7 +9530,7 @@ end
 
 signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo)::Result{VkResult, VulkanError} = @check(vkSignalSemaphore(device, signal_info))
 
-wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout))
+wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{VkResult, VulkanError} = @check(vkWaitSemaphores(device, wait_info, timeout))
 
 function get_semaphore_counter_value(device::Device, semaphore::Semaphore)::Result{UInt64, VulkanError}
     pValue = Ref{UInt64}()
@@ -9621,11 +9603,17 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)::Cvoid = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
-    pInfoSize = Ref(info_size)
-    pInfo = Ref{Ptr{Cvoid}}()
-    @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
-    ((pInfoSize[], pInfo[]), _return_code)
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    pInfoSize = Ref{UInt}()
+    @repeat_while_incomplete begin
+            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, C_NULL)
+            pInfo = Libc.malloc(pInfoSize[])
+            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
+            if _return_code == VK_INCOMPLETE
+                Libc.free(pInfo)
+            end
+        end
+    (pInfoSize[], pInfo)
 end
 
 function get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
@@ -9636,11 +9624,17 @@ end
 
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray)::Result{VkResult, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
 
-function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
-    pDataSize = Ref(data_size)
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData)
-    ((pDataSize[], pData[]), _return_code)
+function get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    pDataSize = Ref{UInt}()
+    @repeat_while_incomplete begin
+            @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, C_NULL)
+            pData = Libc.malloc(pDataSize[])
+            @check vkGetValidationCacheDataEXT(device, validation_cache, pDataSize, pData)
+            if _return_code == VK_INCOMPLETE
+                Libc.free(pData)
+            end
+        end
+    (pDataSize[], pData)
 end
 
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL)::Cvoid = vkDestroyValidationCacheEXT(device, validation_cache, allocator)
@@ -9783,7 +9777,7 @@ function get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainK
     from_vk(RefreshCycleDurationGOOGLE, pDisplayTimingProperties[])
 end
 
-get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain))
+get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain))
 
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
 
@@ -10105,7 +10099,7 @@ function create_vi_surface_nn(instance::Instance, create_info::ViSurfaceCreateIn
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkQueuePresentKHR(queue, present_info))
+queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{VkResult, VulkanError} = @check(vkQueuePresentKHR(queue, present_info))
 
 function acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::Result{Tuple{UInt32, VkResult}, VulkanError}
     pImageIndex = Ref{UInt32}()
@@ -10245,7 +10239,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents)::Cv
 
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents)::Cvoid = vkCmdBeginRenderPass(command_buffer, render_pass_begin, contents)
 
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), Ref(values))
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), values)
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags)
 
@@ -10279,7 +10273,7 @@ cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout:
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer)::Cvoid = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data)
 
-cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Tuple{Cvoid, VkResult} = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, Ref(data))
+cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, data)
 
 cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray)::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
 
@@ -10437,11 +10431,17 @@ end
 
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::Result{VkResult, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
 
-function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
-    pDataSize = Ref(data_size)
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
-    ((pDataSize[], pData[]), _return_code)
+function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    pDataSize = Ref{UInt}()
+    @repeat_while_incomplete begin
+            @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, C_NULL)
+            pData = Libc.malloc(pDataSize[])
+            @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
+            if _return_code == VK_INCOMPLETE
+                Libc.free(pData)
+            end
+        end
+    (pDataSize[], pData)
 end
 
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL)::Cvoid = vkDestroyPipelineCache(device, pipeline_cache, allocator)
@@ -10500,11 +10500,7 @@ end
 
 reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid = vkResetQueryPool(device, query_pool, first_query, query_count)
 
-function get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
-    pData = Ref{Ptr{Cvoid}}()
-    @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, pData, stride, flags)
-    (pData[], _return_code)
-end
+get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::Result{VkResult, VulkanError} = @check(vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags))
 
 destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL)::Cvoid = vkDestroyQueryPool(device, query_pool, allocator)
 
@@ -10518,7 +10514,7 @@ reset_event(device::Device, event::Event)::Result{VkResult, VulkanError} = @chec
 
 set_event(device::Device, event::Event)::Result{VkResult, VulkanError} = @check(vkSetEvent(device, event))
 
-get_event_status(device::Device, event::Event)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetEventStatus(device, event))
+get_event_status(device::Device, event::Event)::Result{VkResult, VulkanError} = @check(vkGetEventStatus(device, event))
 
 destroy_event(device::Device, event::Event; allocator = C_NULL)::Cvoid = vkDestroyEvent(device, event, allocator)
 
@@ -10536,9 +10532,9 @@ function create_semaphore(device::Device, create_info::SemaphoreCreateInfo; allo
     Semaphore(pSemaphore[], (x->destroy_semaphore(device, x; allocator)), device)
 end
 
-wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)::Result{VkResult, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
 
-get_fence_status(device::Device, fence::Fence)::Result{Tuple{VkResult, VkResult}, VulkanError} = @check(vkGetFenceStatus(device, fence))
+get_fence_status(device::Device, fence::Fence)::Result{VkResult, VulkanError} = @check(vkGetFenceStatus(device, fence))
 
 reset_fences(device::Device, fences::AbstractArray)::Result{VkResult, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences))
 

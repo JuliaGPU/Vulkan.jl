@@ -240,12 +240,26 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkGetPipelineCacheData, :(
-            function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{Tuple{UInt,Ptr{Cvoid}},VkResult},VulkanError}
-                pDataSize = Ref(data_size)
-                pData = Ref{Ptr{Cvoid}}()
-                @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
-                ((pDataSize[], pData[]), _return_code)
+            function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::Result{Tuple{UInt,Ptr{Cvoid}},VulkanError}
+                pDataSize = Ref{UInt}()
+                @repeat_while_incomplete begin
+                    @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, C_NULL)
+                    pData = Libc.malloc(pDataSize[])
+                    @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
+                    if _return_code == VK_INCOMPLETE
+                        Libc.free(pData)
+                    end
+                end
+                (pDataSize[], pData)
             end
+        ))
+
+        test_wrap_func(:vkWriteAccelerationStructuresPropertiesKHR, :(
+            write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::Result{VkResult, VulkanError} = @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride)
+        ))
+
+        test_wrap_func(:vkGetQueryPoolResults, :(
+            get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::Result{VkResult, VulkanError} = @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags)
         ))
     end
 

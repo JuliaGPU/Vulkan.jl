@@ -71,6 +71,7 @@ function vk_call(x::Spec)
         ::SpecStructMember && if is_semantic_ptr(x.type) end => :(unsafe_convert($(x.type), $var))
         if is_fn_ptr(x.type) end => var
         GuardBy(is_size) && if x.requirement == POINTER_REQUIRED end => x.name # parameter converted to a Ref already
+        GuardBy(is_opaque_data) => var
         GuardBy(is_length) => :(pointer_length($(wrap_identifier(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
         GuardBy(is_pointer_start) => 0 # always set first* variables to 0, and the user should provide a (sub)array of the desired length
         if x.type ∈ spec_handles.name end => var # handled by unsafe_convert in ccall
@@ -130,6 +131,12 @@ function _wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = fals
         end
 
         # pointer to a unique object
+        GuardBy(is_data_with_retrievable_size) => begin
+            @assert has_length(p)
+            size = len(p)
+            @assert is_size(size)
+            :($(size.name)[], $(p.name))
+        end
         _ => wrap_return(:($(p.name)[]), pt, innermost_type((nice_julian_type(p)))) # call return_expr on the dereferenced pointer
     end
 
@@ -172,7 +179,7 @@ function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Exp
 end
 
 function wrap_return_type(spec::SpecFunc, ret_type)
-    if must_return_success_code(spec)
+    if must_return_success_code(spec) && has_implicit_return_parameters(spec)
         ret_type = :(Tuple{$ret_type, VkResult})
     end
 
@@ -239,8 +246,8 @@ end
 function wrap(spec::SpecFunc; with_func_ptr=false)
     p = init_wrapper_func(spec)
 
-    count_ptr_index = findfirst(x -> is_length(x) && x.requirement == POINTER_REQUIRED, children(spec))
-    queried_params = getindex(children(spec), findall(x -> !x.is_constant && is_ptr(x.type) && !is_length(x) && x.type ∉ extension_types && ptr_type(x.type) ∉ extension_types, children(spec)))
+    count_ptr_index = findfirst(x -> (is_length(x) || is_size(x)) && x.requirement == POINTER_REQUIRED, children(spec))
+    queried_params = getindex(children(spec), findall(is_implicit_return, children(spec)))
     if !isnothing(count_ptr_index)
         count_ptr = children(spec)[count_ptr_index]
         queried_params = getindex(children(spec), findall(x -> x.len == count_ptr.name && !x.is_constant, children(spec)))
@@ -261,8 +268,9 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
             initialize_ptr(count_ptr),
             wrap_enumeration_api_call(spec,
                 wrap_api_call(spec, first_call_args; with_func_ptr),
-                initialize_array.(queried_params, count_ptr)...,
+                (is_length(count_ptr) ? initialize_array : initialize_ptr).(queried_params, count_ptr)...,
                 wrap_api_call(spec, second_call_args; with_func_ptr),
+                ; free=filter(is_data, queried_params)
             )...,
             wrap_implicit_return(spec, queried_params; with_func_ptr),
         )
@@ -270,6 +278,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
 
         ret_type = @match length(queried_params) begin
+            if any(is_data_with_retrievable_size, queried_params) end => Expr(:curly, :Tuple, nice_julian_type.([unique(len.(queried_params)); queried_params])...)
             1 => :(Vector{$(remove_vk_prefix(ptr_type(first(queried_params).type)))})
             _ => Expr(:curly, :Tuple, (:(Vector{$(remove_vk_prefix(ptr_type(param.type)))}) for param ∈ queried_params)...)
         end
@@ -315,11 +324,14 @@ function retrieve_length(spec)
     end
 end
 
+function initialize_ptr(param::SpecFuncParam, count_ptr::SpecFuncParam)
+    @assert is_data(param) && is_size(count_ptr)
+    :($(param.name) = Libc.malloc($(count_ptr.name)[]))
+end
+
 function initialize_ptr(param::SpecFuncParam)
     rhs = @match param begin
-        GuardBy(is_data) => :(Ref{Ptr{Cvoid}}())
         GuardBy(is_arr) => :(Vector{$(ptr_type(param.type))}(undef, $(retrieve_length(param))))
-        GuardBy(is_size) && if param.requirement == POINTER_REQUIRED end => :(Ref($(wrap_identifier(param.name))))
         _ => @match param.type begin
             :(Ptr{Cvoid}) => :(Ref{Ptr{Cvoid}}())
             _ => :(Ref{$(ptr_type(param.type))}())
@@ -332,9 +344,18 @@ function initialize_array(param::SpecFuncParam, count_ptr::SpecFuncParam)
     :($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[]))
 end
 
-function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...)
+function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free=[])
     if must_repeat_while_incomplete(spec)
-        [:(@repeat_while_incomplete $(Expr(:block, exs...)))]
+        if !isempty(free)
+            free_block = quote
+                if _return_code == VK_INCOMPLETE
+                    $(map(x -> :(Libc.free($(x.name))), free)...)
+                end
+            end
+            [:(@repeat_while_incomplete $(Expr(:block, exs..., free_block)))]
+        else
+            [:(@repeat_while_incomplete $(Expr(:block, exs...)))]
+        end
     else
         exs
     end
@@ -532,5 +553,9 @@ end
 
 is_semantic_ptr(type) = is_ptr(type) || type == :Cstring
 needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type) && !spec.is_returnedonly
-must_return_success_code(spec::SpecFunc) = length(spec.success_codes) > 1 && :VK_INCOMPLETE ∉ spec.success_codes || any(is_size, spec.params)
+must_return_success_code(spec::SpecFunc) = length(spec.success_codes) > 1 && :VK_INCOMPLETE ∉ spec.success_codes
 must_repeat_while_incomplete(spec::SpecFunc) = !must_return_success_code(spec) && :VK_INCOMPLETE ∈ spec.success_codes
+is_data_with_retrievable_size(spec::SpecFuncParam) = is_data(spec) && len(spec).requirement == POINTER_REQUIRED
+is_opaque_data(spec) = is_data(spec) && len(spec).requirement ≠ POINTER_REQUIRED
+is_implicit_return(spec::SpecFuncParam) = !is_opaque_data(spec) && !spec.is_constant && is_ptr(spec.type) && !is_length(spec) && spec.type ∉ extension_types && ptr_type(spec.type) ∉ extension_types
+has_implicit_return_parameters(spec::SpecFunc) = any(is_implicit_return, children(spec))

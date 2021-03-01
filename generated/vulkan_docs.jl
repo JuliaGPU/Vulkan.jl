@@ -523,7 +523,7 @@ Arguments:
 reset_fences
 
 """
-    get_fence_status(device::Device, fence::Fence)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    get_fence_status(device::Device, fence::Fence)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -542,7 +542,7 @@ Arguments:
 get_fence_status
 
 """
-    wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -617,7 +617,7 @@ Arguments:
 destroy_event
 
 """
-    get_event_status(device::Device, event::Event)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    get_event_status(device::Device, event::Event)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -692,7 +692,7 @@ Arguments:
 destroy_query_pool
 
 """
-    get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, stride::Integer; flags = 0)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
+    get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -709,6 +709,7 @@ Arguments:
 - `first_query::Integer`
 - `query_count::Integer`
 - `data_size::Integer`
+- `data::Ptr{Cvoid}`
 - `stride::Integer`
 - `flags`: defaults to `0`
 
@@ -903,12 +904,9 @@ Arguments:
 destroy_pipeline_cache
 
 """
-    get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
+    get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -916,7 +914,6 @@ Return codes:
 Arguments:
 - `device::Device`
 - `pipeline_cache::PipelineCache`
-- `data_size::Integer`
 
 """
 get_pipeline_cache_data
@@ -1616,7 +1613,7 @@ Arguments:
 cmd_copy_image_to_buffer
 
 """
-    cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Tuple{Cvoid, VkResult}
+    cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -2173,7 +2170,7 @@ Arguments:
 acquire_next_image_khr
 
 """
-    queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3239,7 +3236,7 @@ Arguments:
 set_hdr_metadata_ext
 
 """
-    get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -3568,12 +3565,9 @@ Arguments:
 destroy_validation_cache_ext
 
 """
-    get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, data_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
+    get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3581,7 +3575,6 @@ Return codes:
 Arguments:
 - `device::Device`
 - `validation_cache::ValidationCacheEXT`
-- `data_size::Integer`
 
 """
 get_validation_cache_data_ext
@@ -3613,12 +3606,9 @@ Arguments:
 get_descriptor_set_layout_support
 
 """
-    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, info_size::Integer)::Result{Tuple{Tuple{UInt, Ptr{Cvoid}}, VkResult}, VulkanError}
+    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_FEATURE_NOT_PRESENT`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -3628,7 +3618,6 @@ Arguments:
 - `pipeline::Pipeline`
 - `shader_stage::VkShaderStageFlagBits`
 - `info_type::VkShaderInfoTypeAMD`
-- `info_size::Integer`
 
 """
 get_shader_info_amd
@@ -3893,7 +3882,7 @@ Arguments:
 get_semaphore_counter_value
 
 """
-    wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4261,7 +4250,7 @@ Arguments:
 cmd_copy_acceleration_structure_khr
 
 """
-    copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4290,7 +4279,7 @@ Arguments:
 cmd_copy_acceleration_structure_to_memory_khr
 
 """
-    copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4319,7 +4308,7 @@ Arguments:
 cmd_copy_memory_to_acceleration_structure_khr
 
 """
-    copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4368,11 +4357,9 @@ Arguments:
 cmd_build_acceleration_structure_nv
 
 """
-    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, stride::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
+    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4382,6 +4369,7 @@ Arguments:
 - `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
 - `query_type::VkQueryType`
 - `data_size::Integer`
+- `data::Ptr{Cvoid}`
 - `stride::Integer`
 
 """
@@ -4427,11 +4415,9 @@ Arguments:
 cmd_trace_rays_nv
 
 """
-    get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
+    get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4442,16 +4428,15 @@ Arguments:
 - `first_group::Integer`
 - `group_count::Integer`
 - `data_size::Integer`
+- `data::Ptr{Cvoid}`
 
 """
 get_ray_tracing_shader_group_handles_khr
 
 """
-    get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
+    get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4462,16 +4447,15 @@ Arguments:
 - `first_group::Integer`
 - `group_count::Integer`
 - `data_size::Integer`
+- `data::Ptr{Cvoid}`
 
 """
 get_ray_tracing_capture_replay_shader_group_handles_khr
 
 """
-    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
+    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4480,6 +4464,7 @@ Arguments:
 - `device::Device`
 - `acceleration_structure::AccelerationStructureKHR`
 - `data_size::Integer`
+- `data::Ptr{Cvoid}`
 
 """
 get_acceleration_structure_handle_nv
@@ -5025,7 +5010,7 @@ Arguments:
 cmd_build_acceleration_structure_indirect_khr
 
 """
-    build_acceleration_structure_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})::Result{Tuple{VkResult, VkResult}, VulkanError}
+    build_acceleration_structure_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5090,7 +5075,7 @@ Arguments:
 get_deferred_operation_max_concurrency_khr
 
 """
-    get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5105,7 +5090,7 @@ Arguments:
 get_deferred_operation_result_khr
 
 """
-    deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{Tuple{VkResult, VkResult}, VulkanError}
+    deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:

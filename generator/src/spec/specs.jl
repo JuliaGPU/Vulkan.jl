@@ -380,6 +380,16 @@ parent_spec(spec::SpecFuncParam) = func_by_name(parent(spec))
 parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))
 parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))
 
+function len(spec::Union{SpecFuncParam,SpecStructMember})
+    params = children(parent_spec(spec))
+    params[findfirst(x -> x.name == spec.len, params)]
+end
+
+function arglen(spec::Union{SpecFuncParam,SpecStructMember})
+    params = children(parent_spec(spec))
+    params[findall(x -> x.name ∈ spec.arglen, params)]
+end
+
 const spec_create_funcs = StructVector(CreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
 const spec_destroy_funcs = StructVector(DestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
 const spec_handles_with_single_constructor = filter(x -> length(something(findall(==(x), filter(x -> !x.batch, spec_create_funcs).handle), 0)) == 1, spec_handles)
