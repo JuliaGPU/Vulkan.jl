@@ -33,17 +33,35 @@ function document_function(spec::SpecHandle, p)
     docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2))
 end
 
+function append_to_argdoc!(argdocs, spec, str)
+    i = findfirst(==(wrap_identifier(spec)), first.(argdocs))
+    argdocs[i] = concat_right(argdocs[i], str)
+end
+
 function document_function(spec, p)
-    externsync_params = filter(x -> x.is_externsync, children(spec))
+    params = children(spec)
+    externsync_params = filter(x -> x.is_externsync, params)
     argdocs = document_arguments(p)
     if !isempty(externsync_params)
-        for param ∈ wrap_identifier.(externsync_params.name)
-            i = findfirst(==(param), first.(argdocs))
-            argdocs[i] = concat_right(argdocs[i], " (externsync)")
+        for param ∈ externsync_params
+            append_to_argdoc!(argdocs, param, " (externsync)")
+        end
+    end
+    extra = ""
+    if spec isa SpecFunc
+        if any(is_data_with_retrievable_size, params)
+            extra = """
+            !!! warning
+                The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`)."""
+        elseif any(is_opaque_data, params)
+            opaque_params = params[findall(is_opaque_data, params)]
+            map(opaque_params) do param
+                append_to_argdoc!(argdocs, param, " (must be a valid pointer with `$(wrap_identifier(len(param)))` bytes)")
+            end
         end
     end
 
-    docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2, document_return_codes(spec), join(["Arguments:"; last.(argdocs)], "\n- "), '\n'))
+    docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2, document_return_codes(spec), join(["Arguments:"; last.(argdocs)], "\n- "), isempty(extra) ? "" : '\n'^2 * extra, '\n'))
 end
 
 function document_arguments(p)

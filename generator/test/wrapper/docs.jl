@@ -57,4 +57,45 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
 
     """
     )
+
+    test_doc(func_by_name(:vkGetPipelineCacheData),
+    """
+
+        get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+
+    Return codes:
+    - Error:
+      - `VK_ERROR_OUT_OF_HOST_MEMORY`
+      - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+
+    Arguments:
+    - `device::Device`
+    - `pipeline_cache::PipelineCache`
+
+    !!! warning
+        The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+
+    """
+    )
+
+    test_doc(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR),
+    """
+
+        write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::Result{VkResult, VulkanError}
+
+    Return codes:
+    - Error:
+      - `VK_ERROR_OUT_OF_HOST_MEMORY`
+      - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+
+    Arguments:
+    - `device::Device`
+    - `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+    - `query_type::VkQueryType`
+    - `data_size::Integer`
+    - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+    - `stride::Integer`
+
+    """
+    )
 end

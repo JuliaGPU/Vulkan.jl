@@ -25,3 +25,5 @@ function wrap_identifier(identifier)
     end
     Symbol(var_str)
 end
+
+wrap_identifier(spec::Union{SpecFuncParam,SpecStructMember}) = wrap_identifier(spec.name)

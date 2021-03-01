@@ -709,7 +709,7 @@ Arguments:
 - `first_query::Integer`
 - `query_count::Integer`
 - `data_size::Integer`
-- `data::Ptr{Cvoid}`
+- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `stride::Integer`
 - `flags`: defaults to `0`
 
@@ -914,6 +914,9 @@ Return codes:
 Arguments:
 - `device::Device`
 - `pipeline_cache::PipelineCache`
+
+!!! warning
+    The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
 """
 get_pipeline_cache_data
@@ -1620,7 +1623,7 @@ Arguments:
 - `dst_buffer::Buffer`
 - `dst_offset::Integer`
 - `data_size::Integer`
-- `data::Ptr{Cvoid}`
+- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
 """
 cmd_update_buffer
@@ -1831,7 +1834,7 @@ Arguments:
 - `layout::PipelineLayout`
 - `stage_flags::ShaderStageFlag`
 - `offset::Integer`
-- `values::Ptr{Cvoid}`
+- `values::Ptr{Cvoid}` (must be a valid pointer with `size` bytes)
 
 """
 cmd_push_constants
@@ -3576,6 +3579,9 @@ Arguments:
 - `device::Device`
 - `validation_cache::ValidationCacheEXT`
 
+!!! warning
+    The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+
 """
 get_validation_cache_data_ext
 
@@ -3618,6 +3624,9 @@ Arguments:
 - `pipeline::Pipeline`
 - `shader_stage::VkShaderStageFlagBits`
 - `info_type::VkShaderInfoTypeAMD`
+
+!!! warning
+    The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
 """
 get_shader_info_amd
@@ -4369,7 +4378,7 @@ Arguments:
 - `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
 - `query_type::VkQueryType`
 - `data_size::Integer`
-- `data::Ptr{Cvoid}`
+- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `stride::Integer`
 
 """
@@ -4428,7 +4437,7 @@ Arguments:
 - `first_group::Integer`
 - `group_count::Integer`
 - `data_size::Integer`
-- `data::Ptr{Cvoid}`
+- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
 """
 get_ray_tracing_shader_group_handles_khr
@@ -4447,7 +4456,7 @@ Arguments:
 - `first_group::Integer`
 - `group_count::Integer`
 - `data_size::Integer`
-- `data::Ptr{Cvoid}`
+- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
 """
 get_ray_tracing_capture_replay_shader_group_handles_khr
@@ -4464,7 +4473,7 @@ Arguments:
 - `device::Device`
 - `acceleration_structure::AccelerationStructureKHR`
 - `data_size::Integer`
-- `data::Ptr{Cvoid}`
+- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
 """
 get_acceleration_structure_handle_nv
