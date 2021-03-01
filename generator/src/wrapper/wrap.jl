@@ -264,7 +264,7 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         p[:body] = concat_exs(
             initialize_ptr(count_ptr),
             wrap_api_call(spec, first_call_args; with_func_ptr),
-            (:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...,
+            initialize_array.(queried_params, count_ptr)...,
             wrap_api_call(spec, second_call_args; with_func_ptr),
             wrap_implicit_return(spec, queried_params; with_func_ptr),
         )
@@ -328,6 +328,10 @@ function initialize_ptr(param::SpecFuncParam)
         end
     end
     :($(param.name) = $rhs)
+end
+
+function initialize_array(param::SpecFuncParam, count_ptr::SpecFuncParam)
+    :($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[]))
 end
 
 function retrieve_parent_ex(parent_handle::SpecHandle, func::SpecFunc)
