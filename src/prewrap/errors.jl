@@ -17,16 +17,14 @@ Assign the expression to a variable named `_return_code`. Then, if the value is 
 """
 macro check(expr)
     msg = string("failed to execute ", expr)
-    quote
-        $(esc(:(@check $expr $msg)))
-    end
+    esc(:(@check $expr $msg))
 end
 
 macro check(expr, msg)
-    quote
-        $(esc(:(_return_code = $expr)))
-        if $(esc(:(Int32(_return_code)))) < 0
-            return $(esc(:(VulkanError($msg, _return_code))))
+    esc(quote
+        _return_code = $expr
+        if Int32(_return_code) < 0
+            return VulkanError($msg, _return_code)
         end
-    end
+    end)
 end
