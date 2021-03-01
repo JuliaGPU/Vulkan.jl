@@ -261,12 +261,13 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
                 x => x
             end), first_call_args)
 
-        p[:body] = concat_exs(quote
-            $(initialize_ptr(count_ptr))
-            $(wrap_api_call(spec, first_call_args; with_func_ptr))
-            $((:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...)
-            $(wrap_api_call(spec, second_call_args; with_func_ptr))
-        end, wrap_implicit_return(spec, queried_params; with_func_ptr))
+        p[:body] = concat_exs(
+            initialize_ptr(count_ptr),
+            wrap_api_call(spec, first_call_args; with_func_ptr),
+            (:($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[])) for param ∈ queried_params)...,
+            wrap_api_call(spec, second_call_args; with_func_ptr),
+            wrap_implicit_return(spec, queried_params; with_func_ptr),
+        )
 
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
 
@@ -280,10 +281,11 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
                 x => vk_call(x)
             end), children(spec))
 
-        p[:body] = concat_exs(quote
-            $(map(initialize_ptr, queried_params)...)
-            $(wrap_api_call(spec, call_args; with_func_ptr))
-        end, wrap_implicit_return(spec, queried_params; with_func_ptr))
+        p[:body] = concat_exs(
+            map(initialize_ptr, queried_params)...,
+            wrap_api_call(spec, call_args; with_func_ptr),
+            wrap_implicit_return(spec, queried_params; with_func_ptr),
+        )
 
         args = filter(!in(filter(x -> x.requirement ≠ POINTER_REQUIRED, queried_params)), children(spec))
 
