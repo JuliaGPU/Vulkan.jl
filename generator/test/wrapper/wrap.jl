@@ -71,12 +71,14 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
 
     @testset "API functions" begin
         test_wrap_func(:vkEnumeratePhysicalDevices, :(
-            function enumerate_physical_devices(instance::Instance)::Result{Tuple{Vector{PhysicalDevice},VkResult},VulkanError}
+            function enumerate_physical_devices(instance::Instance)::Result{Vector{PhysicalDevice},VulkanError}
                 pPhysicalDeviceCount = Ref{UInt32}()
-                @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
-                pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
-                @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
-                (PhysicalDevice.(pPhysicalDevices, identity, instance), _return_code)
+                @repeat_while_incomplete begin
+                    @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
+                    pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
+                    @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
+                end
+                PhysicalDevice.(pPhysicalDevices, identity, instance)
             end
         ))
 
@@ -97,12 +99,14 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkEnumerateInstanceExtensionProperties, :(
-            function enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties},VkResult},VulkanError}
+            function enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties},VulkanError}
                 pPropertyCount = Ref{UInt32}()
-                @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
-                pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
-                @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
-                (from_vk.(ExtensionProperties, pProperties), _return_code)
+                @repeat_while_incomplete begin
+                    @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
+                    pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
+                    @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
+                end
+                from_vk.(ExtensionProperties, pProperties)
             end
         ))
 
@@ -118,12 +122,14 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
 
         test_wrap_func(:vkGetPhysicalDeviceSurfacePresentModesKHR, :(
-            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{PresentModeKHR},VkResult},VulkanError}
+            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR},VulkanError}
                 pPresentModeCount = Ref{UInt32}()
-                @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
-                pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
-                @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
-                (pPresentModes, _return_code)
+                @repeat_while_incomplete begin
+                    @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
+                    pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
+                    @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
+                end
+                pPresentModes
             end
         ))
 
@@ -221,13 +227,15 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         ))
 
         test_wrap_func(:vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR, :(
-            function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}},VkResult},VulkanError}
+            function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}},VulkanError}
                 pCounterCount = Ref{UInt32}()
-                @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
-                pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
-                pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
-                @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
-                ((from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions)), _return_code)
+                @repeat_while_incomplete begin
+                    @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
+                    pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
+                    pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
+                    @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
+                end
+                (from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions))
             end
         ))
 

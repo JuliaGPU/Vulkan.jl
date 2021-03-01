@@ -141,10 +141,7 @@ end
 
 function wrap_implicit_return(spec::SpecFunc, args...; kwargs...)
     ex = _wrap_implicit_return(args...; kwargs...)
-    @match length(spec.success_codes) begin
-        0 || 1 => ex
-        _ => (:(($ex, _return_code)))
-    end
+    must_return_success_code(spec) ? :(($ex, _return_code)) : ex
 end
 
 function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex, with_func_ptr)
@@ -175,9 +172,8 @@ function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Exp
 end
 
 function wrap_return_type(spec::SpecFunc, ret_type)
-    ret_type = @match length(spec.success_codes) begin
-        0 || 1 => ret_type
-        _ => :(Tuple{$ret_type, VkResult})
+    if must_return_success_code(spec)
+        ret_type = :(Tuple{$ret_type, VkResult})
     end
 
     @match spec.return_type begin
@@ -263,9 +259,11 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
 
         p[:body] = concat_exs(
             initialize_ptr(count_ptr),
-            wrap_api_call(spec, first_call_args; with_func_ptr),
-            initialize_array.(queried_params, count_ptr)...,
-            wrap_api_call(spec, second_call_args; with_func_ptr),
+            wrap_enumeration_api_call(spec,
+                wrap_api_call(spec, first_call_args; with_func_ptr),
+                initialize_array.(queried_params, count_ptr)...,
+                wrap_api_call(spec, second_call_args; with_func_ptr),
+            )...,
             wrap_implicit_return(spec, queried_params; with_func_ptr),
         )
 
@@ -332,6 +330,14 @@ end
 
 function initialize_array(param::SpecFuncParam, count_ptr::SpecFuncParam)
     :($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[]))
+end
+
+function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...)
+    if must_repeat_while_incomplete(spec)
+        [:(@repeat_while_incomplete $(Expr(:block, exs...)))]
+    else
+        exs
+    end
 end
 
 function retrieve_parent_ex(parent_handle::SpecHandle, func::SpecFunc)
@@ -526,3 +532,5 @@ end
 
 is_semantic_ptr(type) = is_ptr(type) || type == :Cstring
 needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type) && !spec.is_returnedonly
+must_return_success_code(spec::SpecFunc) = length(spec.success_codes) > 1 && :VK_INCOMPLETE ∉ spec.success_codes || any(is_size, spec.params)
+must_repeat_while_incomplete(spec::SpecFunc) = !must_return_success_code(spec) && :VK_INCOMPLETE ∈ spec.success_codes

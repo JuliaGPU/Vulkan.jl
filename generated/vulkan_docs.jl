@@ -2,8 +2,6 @@
     create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)::Result{Instance, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -30,12 +28,9 @@ Arguments:
 destroy_instance
 
 """
-    enumerate_physical_devices(instance::Instance)::Result{Tuple{Vector{PhysicalDevice}, VkResult}, VulkanError}
+    enumerate_physical_devices(instance::Instance)::Result{Vector{PhysicalDevice}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -117,8 +112,6 @@ get_physical_device_format_properties
     get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; flags = 0)::Result{ImageFormatProperties, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -139,8 +132,6 @@ get_physical_device_image_format_properties
     create_device(physical_device::PhysicalDevice, create_info::DeviceCreateInfo; allocator = C_NULL)::Result{Device, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -172,8 +163,6 @@ destroy_device
     enumerate_instance_version()::Result{VersionNumber, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -183,12 +172,9 @@ Arguments:
 enumerate_instance_version
 
 """
-    enumerate_instance_layer_properties()::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
+    enumerate_instance_layer_properties()::Result{Vector{LayerProperties}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -199,12 +185,9 @@ Arguments:
 enumerate_instance_layer_properties
 
 """
-    enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
+    enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -217,12 +200,9 @@ Arguments:
 enumerate_instance_extension_properties
 
 """
-    enumerate_device_layer_properties(physical_device::PhysicalDevice)::Result{Tuple{Vector{LayerProperties}, VkResult}, VulkanError}
+    enumerate_device_layer_properties(physical_device::PhysicalDevice)::Result{Vector{LayerProperties}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -234,12 +214,9 @@ Arguments:
 enumerate_device_layer_properties
 
 """
-    enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::Result{Tuple{Vector{ExtensionProperties}, VkResult}, VulkanError}
+    enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -267,8 +244,6 @@ get_device_queue
     queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -286,8 +261,6 @@ queue_submit
     queue_wait_idle(queue::Queue)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -303,8 +276,6 @@ queue_wait_idle
     device_wait_idle(device::Device)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -320,8 +291,6 @@ device_wait_idle
     allocate_memory(device::Device, allocate_info::MemoryAllocateInfo; allocator = C_NULL)::Result{DeviceMemory, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -351,8 +320,6 @@ free_memory
     map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)::Result{Ptr{Cvoid}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -382,8 +349,6 @@ unmap_memory
     flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -399,8 +364,6 @@ flush_mapped_memory_ranges
     invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -436,8 +399,6 @@ get_buffer_memory_requirements
     bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -466,8 +427,6 @@ get_image_memory_requirements
     bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -509,8 +468,6 @@ get_physical_device_sparse_image_format_properties
     queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -528,8 +485,6 @@ queue_bind_sparse
     create_fence(device::Device, create_info::FenceCreateInfo; allocator = C_NULL)::Result{Fence, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -557,8 +512,6 @@ destroy_fence
     reset_fences(device::Device, fences::AbstractArray{<:Fence})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
@@ -613,8 +566,6 @@ wait_for_fences
     create_semaphore(device::Device, create_info::SemaphoreCreateInfo; allocator = C_NULL)::Result{Semaphore, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -642,8 +593,6 @@ destroy_semaphore
     create_event(device::Device, create_info::EventCreateInfo; allocator = C_NULL)::Result{Event, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -690,8 +639,6 @@ get_event_status
     set_event(device::Device, event::Event)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -707,8 +654,6 @@ set_event
     reset_event(device::Device, event::Event)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
@@ -723,8 +668,6 @@ reset_event
     create_query_pool(device::Device, create_info::QueryPoolCreateInfo; allocator = C_NULL)::Result{QueryPool, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -788,8 +731,6 @@ reset_query_pool
     create_buffer(device::Device, create_info::BufferCreateInfo; allocator = C_NULL)::Result{Buffer, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -818,8 +759,6 @@ destroy_buffer
     create_buffer_view(device::Device, create_info::BufferViewCreateInfo; allocator = C_NULL)::Result{BufferView, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -847,8 +786,6 @@ destroy_buffer_view
     create_image(device::Device, create_info::ImageCreateInfo; allocator = C_NULL)::Result{Image, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -887,8 +824,6 @@ get_image_subresource_layout
     create_image_view(device::Device, create_info::ImageViewCreateInfo; allocator = C_NULL)::Result{ImageView, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -916,8 +851,6 @@ destroy_image_view
     create_shader_module(device::Device, create_info::ShaderModuleCreateInfo; allocator = C_NULL)::Result{ShaderModule, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -946,8 +879,6 @@ destroy_shader_module
     create_pipeline_cache(device::Device, create_info::PipelineCacheCreateInfo; allocator = C_NULL)::Result{PipelineCache, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -994,8 +925,6 @@ get_pipeline_cache_data
     merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1065,8 +994,6 @@ destroy_pipeline
     create_pipeline_layout(device::Device, create_info::PipelineLayoutCreateInfo; allocator = C_NULL)::Result{PipelineLayout, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1094,8 +1021,6 @@ destroy_pipeline_layout
     create_sampler(device::Device, create_info::SamplerCreateInfo; allocator = C_NULL)::Result{Sampler, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1123,8 +1048,6 @@ destroy_sampler
     create_descriptor_set_layout(device::Device, create_info::DescriptorSetLayoutCreateInfo; allocator = C_NULL)::Result{DescriptorSetLayout, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1152,8 +1075,6 @@ destroy_descriptor_set_layout
     create_descriptor_pool(device::Device, create_info::DescriptorPoolCreateInfo; allocator = C_NULL)::Result{DescriptorPool, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1182,8 +1103,6 @@ destroy_descriptor_pool
     reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 
 Arguments:
 - `device::Device`
@@ -1197,8 +1116,6 @@ reset_descriptor_pool
     allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1216,8 +1133,6 @@ allocate_descriptor_sets
     free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 
 Arguments:
 - `device::Device`
@@ -1242,8 +1157,6 @@ update_descriptor_sets
     create_framebuffer(device::Device, create_info::FramebufferCreateInfo; allocator = C_NULL)::Result{Framebuffer, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1271,8 +1184,6 @@ destroy_framebuffer
     create_render_pass(device::Device, create_info::RenderPassCreateInfo; allocator = C_NULL)::Result{RenderPass, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1310,8 +1221,6 @@ get_render_area_granularity
     create_command_pool(device::Device, create_info::CommandPoolCreateInfo; allocator = C_NULL)::Result{CommandPool, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1339,8 +1248,6 @@ destroy_command_pool
     reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
@@ -1356,8 +1263,6 @@ reset_command_pool
     allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo)::Result{Vector{CommandBuffer}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1384,8 +1289,6 @@ free_command_buffers
     begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1401,8 +1304,6 @@ begin_command_buffer
     end_command_buffer(command_buffer::CommandBuffer)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -1417,8 +1318,6 @@ end_command_buffer
     reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
@@ -1717,7 +1616,7 @@ Arguments:
 cmd_copy_image_to_buffer
 
 """
-    cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Cvoid
+    cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Tuple{Cvoid, VkResult}
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1984,8 +1883,6 @@ cmd_execute_commands
     create_android_surface_khr(instance::Instance, create_info::AndroidSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2000,12 +1897,9 @@ Arguments:
 create_android_surface_khr
 
 """
-    get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPropertiesKHR}, VkResult}, VulkanError}
+    get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPropertiesKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2017,12 +1911,9 @@ Arguments:
 get_physical_device_display_properties_khr
 
 """
-    get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPlanePropertiesKHR}, VkResult}, VulkanError}
+    get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2034,12 +1925,9 @@ Arguments:
 get_physical_device_display_plane_properties_khr
 
 """
-    get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::Result{Tuple{Vector{DisplayKHR}, VkResult}, VulkanError}
+    get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::Result{Vector{DisplayKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2052,12 +1940,9 @@ Arguments:
 get_display_plane_supported_displays_khr
 
 """
-    get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Tuple{Vector{DisplayModePropertiesKHR}, VkResult}, VulkanError}
+    get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModePropertiesKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2073,8 +1958,6 @@ get_display_mode_properties_khr
     create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::DisplayModeCreateInfoKHR; allocator = C_NULL)::Result{DisplayModeKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2093,8 +1976,6 @@ create_display_mode_khr
     get_display_plane_capabilities_khr(physical_device::PhysicalDevice, mode::DisplayModeKHR, plane_index::Integer)::Result{DisplayPlaneCapabilitiesKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2111,8 +1992,6 @@ get_display_plane_capabilities_khr
     create_display_plane_surface_khr(instance::Instance, create_info::DisplaySurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2129,8 +2008,6 @@ create_display_plane_surface_khr
     create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:SwapchainCreateInfoKHR}; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2161,8 +2038,6 @@ destroy_surface_khr
     get_physical_device_surface_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, surface::SurfaceKHR)::Result{Bool, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2180,8 +2055,6 @@ get_physical_device_surface_support_khr
     get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{SurfaceCapabilitiesKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2195,12 +2068,9 @@ Arguments:
 get_physical_device_surface_capabilities_khr
 
 """
-    get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{SurfaceFormatKHR}, VkResult}, VulkanError}
+    get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{SurfaceFormatKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2214,12 +2084,9 @@ Arguments:
 get_physical_device_surface_formats_khr
 
 """
-    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
+    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2236,8 +2103,6 @@ get_physical_device_surface_present_modes_khr
     create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2266,12 +2131,9 @@ Arguments:
 destroy_swapchain_khr
 
 """
-    get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Tuple{Vector{Image}, VkResult}, VulkanError}
+    get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Vector{Image}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2336,8 +2198,6 @@ queue_present_khr
     create_vi_surface_nn(instance::Instance, create_info::ViSurfaceCreateInfoNN; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2355,8 +2215,6 @@ create_vi_surface_nn
     create_wayland_surface_khr(instance::Instance, create_info::WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2384,8 +2242,6 @@ get_physical_device_wayland_presentation_support_khr
     create_win_32_surface_khr(instance::Instance, create_info::Win32SurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2412,8 +2268,6 @@ get_physical_device_win_32_presentation_support_khr
     create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2442,8 +2296,6 @@ get_physical_device_xlib_presentation_support_khr
     create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2472,8 +2324,6 @@ get_physical_device_xcb_presentation_support_khr
     create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2501,8 +2351,6 @@ get_physical_device_direct_fb_presentation_support_ext
     create_image_pipe_surface_fuchsia(instance::Instance, create_info::ImagePipeSurfaceCreateInfoFUCHSIA; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2519,8 +2367,6 @@ create_image_pipe_surface_fuchsia
     create_stream_descriptor_surface_ggp(instance::Instance, create_info::StreamDescriptorSurfaceCreateInfoGGP; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2538,8 +2384,6 @@ create_stream_descriptor_surface_ggp
     create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::Result{DebugReportCallbackEXT, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -2582,8 +2426,6 @@ debug_report_message_ext
     debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2599,8 +2441,6 @@ debug_marker_set_object_name_ext
     debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2645,8 +2485,6 @@ cmd_debug_marker_insert_ext
     get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)::Result{ExternalImageFormatPropertiesNV, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2668,8 +2506,6 @@ get_physical_device_external_image_format_properties_nv
     get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -2730,8 +2566,6 @@ get_generated_commands_memory_requirements_nv
     create_indirect_commands_layout_nv(device::Device, create_info::IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::Result{IndirectCommandsLayoutNV, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2787,8 +2621,6 @@ get_physical_device_format_properties_2
     get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::PhysicalDeviceImageFormatInfo2)::Result{ImageFormatProperties2, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -2867,8 +2699,6 @@ get_physical_device_external_buffer_properties
     get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -2885,8 +2715,6 @@ get_memory_win_32_handle_khr
     get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
@@ -2903,8 +2731,6 @@ get_memory_win_32_handle_properties_khr
     get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR)::Result{Int, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -2920,8 +2746,6 @@ get_memory_fd_khr
     get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer)::Result{MemoryFdPropertiesKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
@@ -2948,8 +2772,6 @@ get_physical_device_external_semaphore_properties
     get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -2966,8 +2788,6 @@ get_semaphore_win_32_handle_khr
     import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
@@ -2983,8 +2803,6 @@ import_semaphore_win_32_handle_khr
     get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR)::Result{Int, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -3000,8 +2818,6 @@ get_semaphore_fd_khr
     import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
@@ -3027,8 +2843,6 @@ get_physical_device_external_fence_properties
     get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -3045,8 +2859,6 @@ get_fence_win_32_handle_khr
     import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
@@ -3062,8 +2874,6 @@ import_fence_win_32_handle_khr
     get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR)::Result{Int, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -3079,8 +2889,6 @@ get_fence_fd_khr
     import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
@@ -3096,8 +2904,6 @@ import_fence_fd_khr
     release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3110,8 +2916,6 @@ release_display_ext
     acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INITIALIZATION_FAILED`
@@ -3128,8 +2932,6 @@ acquire_xlib_display_ext
     get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::Result{DisplayKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -3145,8 +2947,6 @@ get_rand_r_output_display_ext
     display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -3162,8 +2962,6 @@ display_power_control_ext
     register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -3179,8 +2977,6 @@ register_device_event_ext
     register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::DisplayEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -3197,8 +2993,6 @@ register_display_event_ext
     get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT)::Result{UInt64, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_DEVICE_LOST`
@@ -3216,8 +3010,6 @@ get_swapchain_counter_ext
     get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{SurfaceCapabilities2EXT, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3231,12 +3023,9 @@ Arguments:
 get_physical_device_surface_capabilities_2_ext
 
 """
-    enumerate_physical_device_groups(instance::Instance)::Result{Tuple{Vector{PhysicalDeviceGroupProperties}, VkResult}, VulkanError}
+    enumerate_physical_device_groups(instance::Instance)::Result{Vector{PhysicalDeviceGroupProperties}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3264,8 +3053,6 @@ get_device_group_peer_memory_features
     bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3282,8 +3069,6 @@ bind_buffer_memory_2
     bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3309,8 +3094,6 @@ cmd_set_device_mask
     get_device_group_present_capabilities_khr(device::Device)::Result{DeviceGroupPresentCapabilitiesKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3325,8 +3108,6 @@ get_device_group_present_capabilities_khr
     get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3380,12 +3161,9 @@ Arguments:
 cmd_dispatch_base
 
 """
-    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Tuple{Vector{Rect2D}, VkResult}, VulkanError}
+    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{Rect2D}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3401,8 +3179,6 @@ get_physical_device_present_rectangles_khr
     create_descriptor_update_template(device::Device, create_info::DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)::Result{DescriptorUpdateTemplate, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3488,8 +3264,6 @@ get_swapchain_status_khr
     get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR)::Result{RefreshCycleDurationGOOGLE, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_DEVICE_LOST`
@@ -3503,12 +3277,9 @@ Arguments:
 get_refresh_cycle_duration_google
 
 """
-    get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::Result{Tuple{Vector{PastPresentationTimingGOOGLE}, VkResult}, VulkanError}
+    get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_DEVICE_LOST`
@@ -3526,8 +3297,6 @@ get_past_presentation_timing_google
     create_ios_surface_mvk(instance::Instance, create_info::IOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3545,8 +3314,6 @@ create_ios_surface_mvk
     create_mac_os_surface_mvk(instance::Instance, create_info::MacOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3564,8 +3331,6 @@ create_mac_os_surface_mvk
     create_metal_surface_ext(instance::Instance, create_info::MetalSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3623,8 +3388,6 @@ get_physical_device_multisample_properties_ext
     get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{SurfaceCapabilities2KHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3638,12 +3401,9 @@ Arguments:
 get_physical_device_surface_capabilities_2_khr
 
 """
-    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Tuple{Vector{SurfaceFormat2KHR}, VkResult}, VulkanError}
+    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{SurfaceFormat2KHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3657,12 +3417,9 @@ Arguments:
 get_physical_device_surface_formats_2_khr
 
 """
-    get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayProperties2KHR}, VkResult}, VulkanError}
+    get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayProperties2KHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3674,12 +3431,9 @@ Arguments:
 get_physical_device_display_properties_2_khr
 
 """
-    get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::Result{Tuple{Vector{DisplayPlaneProperties2KHR}, VkResult}, VulkanError}
+    get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3691,12 +3445,9 @@ Arguments:
 get_physical_device_display_plane_properties_2_khr
 
 """
-    get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Tuple{Vector{DisplayModeProperties2KHR}, VkResult}, VulkanError}
+    get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModeProperties2KHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3712,8 +3463,6 @@ get_display_mode_properties_2_khr
     get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::DisplayPlaneInfo2KHR)::Result{DisplayPlaneCapabilities2KHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3759,8 +3508,6 @@ get_image_sparse_memory_requirements_2
     create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcbcrConversionCreateInfo; allocator = C_NULL)::Result{SamplerYcbcrConversion, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3798,8 +3545,6 @@ get_device_queue_2
     create_validation_cache_ext(device::Device, create_info::ValidationCacheCreateInfoEXT; allocator = C_NULL)::Result{ValidationCacheEXT, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -3845,8 +3590,6 @@ get_validation_cache_data_ext
     merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3902,12 +3645,9 @@ Arguments:
 set_local_dimming_amd
 
 """
-    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Tuple{Vector{TimeDomainEXT}, VkResult}, VulkanError}
+    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{TimeDomainEXT}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3922,8 +3662,6 @@ get_physical_device_calibrateable_time_domains_ext
     get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT})::Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3939,8 +3677,6 @@ get_calibrated_timestamps_ext
     set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -3956,8 +3692,6 @@ set_debug_utils_object_name_ext
     set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4031,8 +3765,6 @@ cmd_insert_debug_utils_label_ext
     create_debug_utils_messenger_ext(instance::Instance, create_info::DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::Result{DebugUtilsMessengerEXT, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -4071,8 +3803,6 @@ submit_debug_utils_message_ext
     get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid})::Result{MemoryHostPointerPropertiesEXT, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
@@ -4102,8 +3832,6 @@ cmd_write_buffer_marker_amd
     create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2; allocator = C_NULL)::Result{RenderPass, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4152,8 +3880,6 @@ cmd_end_render_pass_2
     get_semaphore_counter_value(device::Device, semaphore::Semaphore)::Result{UInt64, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4190,8 +3916,6 @@ wait_semaphores
     signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4207,8 +3931,6 @@ signal_semaphore
     get_android_hardware_buffer_properties_android(device::Device, buffer::Cvoid)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
@@ -4224,8 +3946,6 @@ get_android_hardware_buffer_properties_android
     get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID)::Result{Cvoid, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -4445,8 +4165,6 @@ cmd_draw_mesh_tasks_indirect_count_nv
     compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4463,8 +4181,6 @@ compile_deferred_nv
     create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{VkAccelerationStructureNV, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -4511,8 +4227,6 @@ get_acceleration_structure_memory_requirements_nv
     bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoKHR})::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4654,7 +4368,7 @@ Arguments:
 cmd_build_acceleration_structure_nv
 
 """
-    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, stride::Integer)::Result{Ptr{Cvoid}, VulkanError}
+    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, stride::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4713,7 +4427,7 @@ Arguments:
 cmd_trace_rays_nv
 
 """
-    get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Ptr{Cvoid}, VulkanError}
+    get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4733,7 +4447,7 @@ Arguments:
 get_ray_tracing_shader_group_handles_khr
 
 """
-    get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Ptr{Cvoid}, VulkanError}
+    get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4753,7 +4467,7 @@ Arguments:
 get_ray_tracing_capture_replay_shader_group_handles_khr
 
 """
-    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer)::Result{Ptr{Cvoid}, VulkanError}
+    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer)::Result{Tuple{Ptr{Cvoid}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4815,12 +4529,9 @@ Arguments:
 create_ray_tracing_pipelines_khr
 
 """
-    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Tuple{Vector{CooperativeMatrixPropertiesNV}, VkResult}, VulkanError}
+    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Vector{CooperativeMatrixPropertiesNV}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4850,8 +4561,6 @@ cmd_trace_rays_indirect_khr
     get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_INCOMPATIBLE_VERSION_KHR`
 
@@ -4876,8 +4585,6 @@ get_image_view_handle_nvx
     get_image_view_address_nvx(device::Device, image_view::ImageView)::Result{ImageViewAddressPropertiesNVX, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_UNKNOWN`
@@ -4890,12 +4597,9 @@ Arguments:
 get_image_view_address_nvx
 
 """
-    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Tuple{Vector{PresentModeKHR}, VkResult}, VulkanError}
+    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{PresentModeKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4912,8 +4616,6 @@ get_physical_device_surface_present_modes_2_ext
     get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4931,8 +4633,6 @@ get_device_group_surface_present_modes_2_ext
     acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4950,8 +4650,6 @@ acquire_full_screen_exclusive_mode_ext
     release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4965,12 +4663,9 @@ Arguments:
 release_full_screen_exclusive_mode_ext
 
 """
-    enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VkResult}, VulkanError}
+    enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -4997,8 +4692,6 @@ get_physical_device_queue_family_performance_query_passes_khr
     acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_TIMEOUT`
@@ -5023,8 +4716,6 @@ release_profiling_lock_khr
     get_image_drm_format_modifier_properties_ext(device::Device, image::Image)::Result{ImageDrmFormatModifierPropertiesEXT, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -5059,8 +4750,6 @@ get_buffer_device_address
     create_headless_surface_ext(instance::Instance, create_info::HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -5074,12 +4763,9 @@ Arguments:
 create_headless_surface_ext
 
 """
-    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::Result{Tuple{Vector{FramebufferMixedSamplesCombinationNV}, VkResult}, VulkanError}
+    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -5094,8 +4780,6 @@ get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
     initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5120,8 +4804,6 @@ uninitialize_performance_api_intel
     cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5137,8 +4819,6 @@ cmd_set_performance_marker_intel
     cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5154,8 +4834,6 @@ cmd_set_performance_stream_marker_intel
     cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5171,8 +4849,6 @@ cmd_set_performance_override_intel
     acquire_performance_configuration_intel(device::Device, acquire_info::PerformanceConfigurationAcquireInfoINTEL)::Result{PerformanceConfigurationINTEL, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5188,8 +4864,6 @@ acquire_performance_configuration_intel
     release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5205,8 +4879,6 @@ release_performance_configuration_intel
     queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5222,8 +4894,6 @@ queue_set_performance_configuration_intel
     get_performance_parameter_intel(device::Device, parameter::VkPerformanceParameterTypeINTEL)::Result{PerformanceValueINTEL, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_TOO_MANY_OBJECTS`
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
@@ -5246,12 +4916,9 @@ Arguments:
 get_device_memory_opaque_capture_address
 
 """
-    get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)::Result{Tuple{Vector{PipelineExecutablePropertiesKHR}, VkResult}, VulkanError}
+    get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)::Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -5264,12 +4931,9 @@ Arguments:
 get_pipeline_executable_properties_khr
 
 """
-    get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Tuple{Vector{PipelineExecutableStatisticKHR}, VkResult}, VulkanError}
+    get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -5282,12 +4946,9 @@ Arguments:
 get_pipeline_executable_statistics_khr
 
 """
-    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Tuple{Vector{PipelineExecutableInternalRepresentationKHR}, VkResult}, VulkanError}
+    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
@@ -5311,12 +4972,9 @@ Arguments:
 cmd_set_line_stipple_ext
 
 """
-    get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::Result{Tuple{Vector{PhysicalDeviceToolPropertiesEXT}, VkResult}, VulkanError}
+    get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
-  - `VK_INCOMPLETE`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -5330,8 +4988,6 @@ get_physical_device_tool_properties_ext
     create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
   - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
@@ -5402,8 +5058,6 @@ get_acceleration_structure_device_address_khr
     create_deferred_operation_khr(device::Device; allocator = C_NULL)::Result{DeferredOperationKHR, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -5600,8 +5254,6 @@ cmd_set_stencil_op_ext
     create_private_data_slot_ext(device::Device, create_info::PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::Result{PrivateDataSlotEXT, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
@@ -5628,8 +5280,6 @@ destroy_private_data_slot_ext
     set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
-- Success:
-  - `VK_SUCCESS`
 - Error:
   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 

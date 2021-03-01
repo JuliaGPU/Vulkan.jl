@@ -18,7 +18,7 @@ const DEVICE_EXTENSIONS = [
 const ENABLED_FEATURES = PhysicalDeviceFeatures(
 )
 
-let (available_layers, _) = unwrap(enumerate_instance_layer_properties())
+let available_layers = unwrap(enumerate_instance_layer_properties())
     if VALIDATION_LAYER ∈ getproperty.(available_layers, :layer_name)
         push!(INSTANCE_LAYERS, VALIDATION_LAYER)
         push!(INSTANCE_EXTENSIONS, "VK_EXT_debug_utils")

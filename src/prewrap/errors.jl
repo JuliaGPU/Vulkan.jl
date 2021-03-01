@@ -28,3 +28,15 @@ macro check(expr, msg)
         end
     end)
 end
+
+"""
+Evaluate the given expression, and reexecute it while the local variable `_return_code` equals to `VK_INCOMPLETE`.
+"""
+macro repeat_while_incomplete(expr)
+    esc(quote
+        $expr
+        while _return_code == VK_INCOMPLETE
+            $expr
+        end
+    end)
+end
