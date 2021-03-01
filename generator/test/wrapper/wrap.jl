@@ -261,6 +261,10 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
         test_wrap_func(:vkGetQueryPoolResults, :(
             get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::Result{VkResult, VulkanError} = @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags)
         ))
+
+        test_wrap_func(:vkGetFenceStatus, :(
+            get_fence_status(device::Device, fence::Fence)::Result{VkResult, VulkanError} = @check(vkGetFenceStatus(device, fence))
+        ))
     end
 
     @testset "Additional constructors" begin
