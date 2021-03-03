@@ -417,28 +417,29 @@ function destructor(handle::SpecHandle; with_func_ptr=false)
     end
 end
 
-function add_constructor(spec::SpecHandle; with_func_ptr = false)
-    create = create_func_no_batch(spec)
+function add_constructors(spec::SpecHandle; with_func_ptr = false)
+    map(wrappable_constructors(spec)) do create
 
-    if isnothing(create.create_info_struct)
-        # just pass the arguments as-is
-        p_func = wrap(create.func; with_func_ptr)
-        args, kwargs = p_func[:args], p_func[:kwargs]
-        body = reconstruct_call(p_func; is_decl=false)
-    else
-        p_func_extended = extend_handle_constructor(create; with_func_ptr)
-        body = :(unwrap($(reconstruct_call(p_func_extended; is_decl=false))))
-        args, kwargs = p_func_extended[:args], p_func_extended[:kwargs]
+        if isnothing(create.create_info_struct)
+            # just pass the arguments as-is
+            p_func = wrap(create.func; with_func_ptr)
+            args, kwargs = p_func[:args], p_func[:kwargs]
+            body = reconstruct_call(p_func; is_decl=false)
+        else
+            p_func_extended = extend_handle_constructor(create; with_func_ptr)
+            body = :(unwrap($(reconstruct_call(p_func_extended; is_decl=false))))
+            args, kwargs = p_func_extended[:args], p_func_extended[:kwargs]
+        end
+
+        Dict(
+            :category => :function,
+            :name => remove_vk_prefix(spec.name),
+            :args => args,
+            :kwargs => kwargs,
+            :short => true,
+            :body => body,
+        )
     end
-
-    Dict(
-        :category => :function,
-        :name => remove_vk_prefix(spec.name),
-        :args => args,
-        :kwargs => kwargs,
-        :short => true,
-        :body => body,
-    )
 end
 
 """
@@ -455,7 +456,7 @@ function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
     kwargs = [p_func[:kwargs]; p_info[:kwargs]]
 
     info_expr = reconstruct_call(p_info; is_decl=false)
-    info_index = findfirst(==(p_info[:name]), type.(p_func[:args]))
+    info_index = findfirst(==(p_info[:name]), innermost_type.(type.(p_func[:args])))
     deleteat!(args, info_index)
 
     func_call_args = Vector{Any}(name.(p_func[:args]))
@@ -526,15 +527,15 @@ function VulkanWrapper()
         wrap.(spec_funcs),
         add_constructor.(api_structs),
         extend_from_vk.(returnedonly_structs),
-        add_constructor.(spec_handles_with_single_constructor),
-        extend_handle_constructor.(filter(x -> !isnothing(x.create_info_param), create_func_no_batch.(spec_handles_with_single_constructor))),
+        add_constructors.(spec_handles_with_wrappable_constructors)...,
+        extend_handle_constructor.(filter(x -> !isnothing(x.create_info_param), create_func.(spec_handles_with_wrappable_constructors))),
         wrap.(spec_funcs; with_func_ptr=true),
-        add_constructor.(spec_handles_with_single_constructor; with_func_ptr=true),
-        extend_handle_constructor.(filter(x -> !isnothing(x.create_info_param), create_func_no_batch.(spec_handles_with_single_constructor)); with_func_ptr=true),
+        add_constructors.(spec_handles_with_wrappable_constructors; with_func_ptr=true)...,
+        extend_handle_constructor.(filter(x -> !isnothing(x.create_info_param), create_func.(spec_handles_with_wrappable_constructors)); with_func_ptr=true),
     ))
 
     enums = to_expr.(wrap.(spec_bitmasks))
-    docs = vcat(document.(spec_funcs, wrap.(spec_funcs)), document.(api_structs, add_constructor.(api_structs)), document.(spec_handles_with_single_constructor, add_constructor.(spec_handles_with_single_constructor)))
+    docs = vcat(document.(spec_funcs, wrap.(spec_funcs)), document.(api_structs, add_constructor.(api_structs)), document.(spec_handles_with_wrappable_constructors)...)
     VulkanWrapper(handles, structs, funcs, enums, docs)
 end
 

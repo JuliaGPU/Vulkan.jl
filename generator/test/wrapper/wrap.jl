@@ -1,15 +1,18 @@
 test_ex(x, y) = @test prettify(x) == prettify(y)
+test_ex(x::Dict, y) = @test prettify(to_expr(x)) == prettify(y)
 
-test_wrap(f, value, ex; kwargs...) = test_ex(to_expr(wrap(f(value); kwargs...)), ex)
+test_wrap(f, value, ex; kwargs...) = test_ex(wrap(f(value); kwargs...), ex)
 test_wrap_handle(name, ex) = test_wrap(handle_by_name, name, ex)
 test_wrap_struct(name, ex) = test_wrap(struct_by_name, name, ex)
 test_wrap_func(name, ex; kwargs...) = test_wrap(func_by_name, name, ex; kwargs...)
 test_wrap_bitmask(name, ex) = test_wrap(bitmask_by_name, name, ex)
-test_add_constructor(f, name, ex; kwargs...) = test_ex(to_expr(add_constructor(f(name); kwargs...)), ex)
+test_add_constructor(f, name, ex; kwargs...) = test_ex(add_constructor(f(name); kwargs...), ex)
+test_add_constructors(f, name, exs; kwargs...) = test_ex.(add_constructors(f(name); kwargs...), exs)
 test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args...)
-test_handle_add_constructor(args...; kwargs...) = test_add_constructor(handle_by_name, args...; kwargs...)
-test_extend_from_vk(name, ex) = test_ex(to_expr(extend_from_vk(struct_by_name(name))), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
-test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_handle_constructor(create_func_no_batch(handle_by_name(name)); kwargs...)), ex)
+test_handle_add_constructor(name, ex; kwargs...) = test_ex(first(add_constructors(handle_by_name(name); kwargs...)), ex)
+test_handle_add_constructors(args...; kwargs...) = test_add_constructors(handle_by_name, args...; kwargs...)
+test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
+test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_constructor(create_func_no_batch(handle_by_name(name)); kwargs...), ex)
 
 @testset "Wrapping" begin
     @testset "Handles" begin
@@ -325,6 +328,15 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(to_expr(extend_han
             test_handle_add_constructor(:VkDeferredOperationKHR, :(
                 DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
             ))
+
+            test_handle_add_constructors(:VkRenderPass, [
+                :(
+                    RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass(device, attachments, subpasses, dependencies; allocator, next, flags))
+                ),
+                :(
+                    RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass_2(device, attachments, subpasses, dependencies, correlated_view_masks; allocator, next, flags))
+                ),
+            ])
         end
 
         @testset "Extended handle constructors" begin

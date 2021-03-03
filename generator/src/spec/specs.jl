@@ -392,7 +392,19 @@ end
 
 const spec_create_funcs = StructVector(CreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
 const spec_destroy_funcs = StructVector(DestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
-const spec_handles_with_single_constructor = filter(x -> length(something(findall(==(x), filter(x -> !x.batch, spec_create_funcs).handle), 0)) == 1, spec_handles)
+
+function wrappable_constructors(handle::SpecHandle)::Vector{CreateFunc}
+    # don't wrap VkSurfaceKHR, almost all signatures conflict with one another with create info parameters exposed
+    handle.name == :VkSurfaceKHR && return []
+    all_constructors_nobatch = filter(x -> x.handle == handle && !x.batch, spec_create_funcs)
+    if length(unique(all_constructors_nobatch.create_info_struct)) == length(all_constructors_nobatch)
+        all_constructors_nobatch
+    else
+        []
+    end
+end
+
+const spec_handles_with_wrappable_constructors = filter(x -> !isempty(wrappable_constructors(x)), spec_handles)
 
 is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
 

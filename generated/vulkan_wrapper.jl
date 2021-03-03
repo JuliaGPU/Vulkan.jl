@@ -4163,11 +4163,15 @@ create_debug_utils_messenger_ext(instance::Instance, message_severity::DebugUtil
 
 create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
 
-create_swapchain_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
+create_shared_swapchains_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_shared_swapchains_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
+
+create_android_surface_khr(instance::Instance, window::Cvoid, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_android_surface_khr(instance, AndroidSurfaceCreateInfoKHR(window; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags), fun_ptr_create; allocator)
 
 create_private_data_slot_ext(device::Device, flags::PrivateDataSlotCreateFlagEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next), fun_ptr_create, fun_ptr_destroy; allocator)
+
+create_acceleration_structure_nv(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_acceleration_structure_nv(device, AccelerationStructureCreateInfoNV(compacted_size, info; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_validation_cache_ext(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4178,6 +4182,8 @@ create_descriptor_update_template(device::Device, descriptor_update_entries::Abs
 create_indirect_commands_layout_nv(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_pipeline_cache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
+
+create_render_pass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass(device, RenderPassCreateInfo(attachments, subpasses, dependencies; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4227,6 +4233,10 @@ PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT, fun_ptr_
 
 DeferredOperationKHR(device::Device, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_deferred_operation_khr(device, fun_ptr_create, fun_ptr_destroy; allocator)
 
+AccelerationStructureKHR(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0) = unwrap(create_acceleration_structure_khr(device, compacted_size, type, geometry_infos, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, device_address))
+
+AccelerationStructureKHR(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = unwrap(create_acceleration_structure_nv(device, compacted_size, info, fun_ptr_create, fun_ptr_destroy; allocator, next))
+
 ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_validation_cache_ext(device, initial_data, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, initial_data_size))
 
 SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = unwrap(create_sampler_ycbcr_conversion(device, format, ycbcr_model, ycbcr_range, components, x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction, fun_ptr_create, fun_ptr_destroy; allocator, next))
@@ -4236,6 +4246,10 @@ DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArra
 IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = unwrap(create_indirect_commands_layout_nv(device, flags, pipeline_bind_point, tokens, stream_strides, fun_ptr_create, fun_ptr_destroy; allocator, next))
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_pipeline_cache(device, initial_data, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, initial_data_size))
+
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass_2(device, attachments, subpasses, dependencies, correlated_view_masks, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
+
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass(device, attachments, subpasses, dependencies, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
 
 Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_framebuffer(device, render_pass, attachments, width, height, layers, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
 
@@ -5826,11 +5840,15 @@ create_debug_utils_messenger_ext(instance::Instance, message_severity::DebugUtil
 
 create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data); allocator)
 
-create_swapchain_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
+create_shared_swapchains_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_shared_swapchains_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
+
+create_android_surface_khr(instance::Instance, window::Cvoid; allocator = C_NULL, next = C_NULL, flags = 0) = create_android_surface_khr(instance, AndroidSurfaceCreateInfoKHR(window; next, flags); allocator)
 
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags); allocator)
 
 create_private_data_slot_ext(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next); allocator)
+
+create_acceleration_structure_nv(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL) = create_acceleration_structure_nv(device, AccelerationStructureCreateInfoNV(compacted_size, info; next); allocator)
 
 create_validation_cache_ext(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags, initial_data_size); allocator)
 
@@ -5841,6 +5859,8 @@ create_descriptor_update_template(device::Device, descriptor_update_entries::Abs
 create_indirect_commands_layout_nv(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next); allocator)
 
 create_pipeline_cache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size); allocator)
+
+create_render_pass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass(device, RenderPassCreateInfo(attachments, subpasses, dependencies; next, flags); allocator)
 
 create_framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_framebuffer(device, FramebufferCreateInfo(render_pass, attachments, width, height, layers; next, flags); allocator)
 
@@ -5890,6 +5910,10 @@ PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocato
 
 DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
 
+AccelerationStructureKHR(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0) = unwrap(create_acceleration_structure_khr(device, compacted_size, type, geometry_infos; allocator, next, flags, device_address))
+
+AccelerationStructureKHR(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL) = unwrap(create_acceleration_structure_nv(device, compacted_size, info; allocator, next))
+
 ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_validation_cache_ext(device, initial_data; allocator, next, flags, initial_data_size))
 
 SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL) = unwrap(create_sampler_ycbcr_conversion(device, format, ycbcr_model, ycbcr_range, components, x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction; allocator, next))
@@ -5899,6 +5923,10 @@ DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArra
 IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL) = unwrap(create_indirect_commands_layout_nv(device, flags, pipeline_bind_point, tokens, stream_strides; allocator, next))
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_pipeline_cache(device, initial_data; allocator, next, flags, initial_data_size))
+
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass_2(device, attachments, subpasses, dependencies, correlated_view_masks; allocator, next, flags))
+
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass(device, attachments, subpasses, dependencies; allocator, next, flags))
 
 Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_framebuffer(device, render_pass, attachments, width, height, layers; allocator, next, flags))
 

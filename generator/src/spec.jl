@@ -61,7 +61,7 @@ export
         flag_by_name,
         enum_by_name,
         constant_by_name,
-        create_func_by_name,
+        create_func,
         destroy_func_by_name,
         create_func_no_batch,
         follow_constant,
@@ -75,6 +75,7 @@ export
         length_chain,
         is_fn_ptr,
         is_version,
+        wrappable_constructors,
 
         ### Render passes
         RenderPassRequirement,

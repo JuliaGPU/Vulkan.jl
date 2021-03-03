@@ -39,6 +39,7 @@ export
         VulkanWrapper,
         wrap,
         add_constructor,
+        add_constructors,
         extend_from_vk,
         extend_handle_constructor,
         to_expr,

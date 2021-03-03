@@ -5,6 +5,8 @@ function document(spec, p)
     end
 end
 
+document(spec::SpecHandle) = document.(Ref(spec), add_constructors(spec))
+
 backquoted(arg) = string('`', arg, '`')
 
 function document_return_codes(spec::SpecFunc)
@@ -30,7 +32,7 @@ document_return_codes(spec::SpecHandle) = document_return_codes(add_constructor(
 document_return_codes(spec::SpecStruct) = ""
 
 function document_function(spec::SpecHandle, p)
-    docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2))
+    docstring(reconstruct_call(p), string(' '^4, reconstruct_call(p), '\n'^2))
 end
 
 function append_to_argdoc!(argdocs, spec, str)
