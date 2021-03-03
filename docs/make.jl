@@ -22,6 +22,8 @@ makedocs(;
     authors="serenity4 <cedric.bel@hotmail.fr>, SimonDanisch",
     strict=true,
     doctest=false,
+    checkdocs=:exports,
+    linkcheck=:true,
 )
 
 deploydocs(
