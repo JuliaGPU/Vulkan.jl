@@ -1,0 +1,50 @@
+function from_vk_call(x::Spec)
+    prop = :(x.$(x.name))
+    jtype = nice_julian_type(x)
+    @match x begin
+
+        # array pointer
+        GuardBy(is_arr) => @match jtype begin
+            :(Vector{$_}) => :(unsafe_wrap($jtype, $prop, x.$(x.len); own=true))
+        end
+
+        GuardBy(is_length) => nothing
+        _ => @match t = x.type begin
+            :Cstring => :(unsafe_string($prop))
+            GuardBy(in(spec_flags.name)) => prop
+            GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(x.type))($prop))
+            GuardBy(is_ntuple) && if ntuple_type(x.type) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(x.type))), $prop))
+            if follow_constant(t) == jtype end => prop
+            _ => :(from_vk($jtype, $prop))
+        end
+    end
+end
+
+function vk_call(x::Spec)
+    var = wrap_identifier(x.name)
+    jtype = nice_julian_type(x)
+    @match x begin
+        ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(structure_types) end => structure_types[parent(x)]
+        ::SpecStructMember && if is_semantic_ptr(x.type) end => :(unsafe_convert($(x.type), $var))
+        if is_fn_ptr(x.type) end => var
+        GuardBy(is_size) && if x.requirement == POINTER_REQUIRED end => x.name # parameter converted to a Ref already
+        GuardBy(is_opaque_data) => var
+        GuardBy(is_length) => :(pointer_length($(wrap_identifier(first(x.arglen))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
+        GuardBy(is_pointer_start) => 0 # always set first* variables to 0, and the user should provide a (sub)array of the desired length
+        if x.type ∈ spec_handles.name end => var # handled by unsafe_convert in ccall
+
+        # constant pointer to a unique object
+        if is_ptr(x.type) && !is_arr(x) && (x.is_constant || (func = func_by_name(x.func); func.type == QUERY && x ≠ last(children(func)))) end => @match x begin
+            if ptr_type(x.type) ∈ spec_structs.name end => var # handled by cconvert and unsafe_convert in ccall
+            if x.requirement == OPTIONAL end => :($var == $(default(x)) ? $(default(x)) : Ref($var)) # allow optional pointers to be passed as C_NULL instead of a pointer to a 0-valued integer
+            _ => :(Ref($var))
+        end
+        if x.type ∈ spec_flags.name end => var
+        if x.type ∈ extension_types end => var
+        _ => @match jtype begin
+            :String || :Bool || :(Vector{$et}) || if jtype == follow_constant(x.type) end => var # conversions are already defined
+            if jtype == remove_vk_prefix(x.type) && x.type ∈ spec_structs.name end => :($var.vks)
+            _ => :(to_vk($(x.type), $var)) # fall back to the to_vk function for conversion
+        end
+    end
+end

@@ -25,6 +25,12 @@ prewalk(f, ex) = walk(f(ex), x -> prewalk(f, x), identity)
 
 striplines(ex) = prewalk(rmlines, ex)
 
+function unblock(ex::Expr)
+    prewalk(ex) do ex
+        ex isa Expr && ex.head == :block && length(ex.args) == 1 ? ex.args[1] : ex
+    end
+end
+
 function category(ex)
     @match ex begin
         Expr(:struct, _...)                                                  => :struct
@@ -196,8 +202,7 @@ function reconstruct(d::Dict)
     end
 end
 
-function unblock(ex::Expr)
-    prewalk(ex) do ex
-        ex isa Expr && ex.head == :block && length(ex.args) == 1 ? ex.args[1] : ex
-    end
+function to_expr(p::Dict)
+    p[:category] == :function && relax_function_signature!(p)
+    reconstruct(p)
 end

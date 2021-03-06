@@ -16,9 +16,8 @@ Vulkan_Headers_jll = "8d446b21-f3ad-5576-a034-752265b9b6f9"
 julia = "1.5"
 
 [extras]
-SafeTestsets = "1bc83da4-3b8d-516f-aca4-4fe02f6d838f"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
 [targets]
-test = ["Test", "VulkanCore", "SafeTestsets"]
+test = ["Test", "VulkanCore"]
