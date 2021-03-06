@@ -5,6 +5,8 @@ cconvert(T::Type{<:Ptr}, x::VulkanStruct{false}) = Ref(x.vks)
 cconvert(T::Type{<:Ptr}, x::VulkanStruct{true}) = (x, Ref(x.vks))
 cconvert(T::Type{<:Ptr}, x::Handle) = x
 
+convert(T::Type{<:Ptr}, x::Handle) = x.vks
+
 unsafe_convert(T::Type, x::VulkanStruct) = x.vks
 unsafe_convert(T::Type, x::Tuple{<:VulkanStruct{true}, <:Ref}) = unsafe_convert(T, last(x))
 unsafe_convert(T::Type, x::Tuple{<:AbstractVector{<:VulkanStruct{true}}, <:Any}) = unsafe_convert(T, last(x))

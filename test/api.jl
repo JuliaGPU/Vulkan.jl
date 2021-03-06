@@ -52,6 +52,10 @@ end
         @test buffer isa Buffer
         @test buffer_2 isa Buffer
     end
+
+    @testset "Buffers" begin
+        include("buffers.jl")
+    end
 end
 
 GC.gc()

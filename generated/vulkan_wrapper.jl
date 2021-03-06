@@ -710,38 +710,13 @@ struct PipelineLibraryCreateInfoKHR <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct DeferredOperationInfoKHR <: VulkanStruct{true}
-    vks::VkDeferredOperationInfoKHR
-    deps::Vector{Any}
-end
-
 struct RayTracingPipelineInterfaceCreateInfoKHR <: VulkanStruct{true}
     vks::VkRayTracingPipelineInterfaceCreateInfoKHR
     deps::Vector{Any}
 end
 
-struct CopyMemoryToAccelerationStructureInfoKHR <: VulkanStruct{true}
-    vks::VkCopyMemoryToAccelerationStructureInfoKHR
-    deps::Vector{Any}
-end
-
-struct CopyAccelerationStructureToMemoryInfoKHR <: VulkanStruct{true}
-    vks::VkCopyAccelerationStructureToMemoryInfoKHR
-    deps::Vector{Any}
-end
-
-struct CopyAccelerationStructureInfoKHR <: VulkanStruct{true}
-    vks::VkCopyAccelerationStructureInfoKHR
-    deps::Vector{Any}
-end
-
 struct AccelerationStructureVersionKHR <: VulkanStruct{true}
     vks::VkAccelerationStructureVersionKHR
-    deps::Vector{Any}
-end
-
-struct AccelerationStructureDeviceAddressInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureDeviceAddressInfoKHR
     deps::Vector{Any}
 end
 
@@ -769,11 +744,6 @@ end
 
 struct AccelerationStructureBuildOffsetInfoKHR <: VulkanStruct{false}
     vks::VkAccelerationStructureBuildOffsetInfoKHR
-end
-
-struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureBuildGeometryInfoKHR
-    deps::Vector{Any}
 end
 
 struct AccelerationStructureGeometryKHR <: VulkanStruct{true}
@@ -897,11 +867,6 @@ struct PhysicalDeviceLineRasterizationFeaturesEXT <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct{true}
-    vks::VkDeviceMemoryOpaqueCaptureAddressInfo
-    deps::Vector{Any}
-end
-
 struct MemoryOpaqueCaptureAddressAllocateInfo <: VulkanStruct{true}
     vks::VkMemoryOpaqueCaptureAddressAllocateInfo
     deps::Vector{Any}
@@ -972,11 +937,6 @@ struct PipelineExecutableStatisticKHR <: ReturnedOnly
     value::PipelineExecutableStatisticValueKHR
 end
 
-struct PipelineExecutableInfoKHR <: VulkanStruct{true}
-    vks::VkPipelineExecutableInfoKHR
-    deps::Vector{Any}
-end
-
 struct PipelineExecutablePropertiesKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
@@ -984,11 +944,6 @@ struct PipelineExecutablePropertiesKHR <: ReturnedOnly
     name::String
     description::String
     subgroup_size::UInt32
-end
-
-struct PipelineInfoKHR <: VulkanStruct{true}
-    vks::VkPipelineInfoKHR
-    deps::Vector{Any}
 end
 
 struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR <: VulkanStruct{true}
@@ -1191,11 +1146,6 @@ struct ImageViewAddressPropertiesNVX <: ReturnedOnly
     size::UInt64
 end
 
-struct ImageViewHandleInfoNVX <: VulkanStruct{true}
-    vks::VkImageViewHandleInfoNVX
-    deps::Vector{Any}
-end
-
 struct PhysicalDeviceYcbcrImageArraysFeaturesEXT <: VulkanStruct{true}
     vks::VkPhysicalDeviceYcbcrImageArraysFeaturesEXT
     deps::Vector{Any}
@@ -1261,11 +1211,6 @@ end
 
 struct BufferOpaqueCaptureAddressCreateInfo <: VulkanStruct{true}
     vks::VkBufferOpaqueCaptureAddressCreateInfo
-    deps::Vector{Any}
-end
-
-struct BufferDeviceAddressInfo <: VulkanStruct{true}
-    vks::VkBufferDeviceAddressInfo
     deps::Vector{Any}
 end
 
@@ -1434,18 +1379,8 @@ struct AccelerationStructureMemoryRequirementsInfoNV <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct AccelerationStructureMemoryRequirementsInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureMemoryRequirementsInfoKHR
-    deps::Vector{Any}
-end
-
 struct WriteDescriptorSetAccelerationStructureKHR <: VulkanStruct{true}
     vks::VkWriteDescriptorSetAccelerationStructureKHR
-    deps::Vector{Any}
-end
-
-struct BindAccelerationStructureMemoryInfoKHR <: VulkanStruct{true}
-    vks::VkBindAccelerationStructureMemoryInfoKHR
     deps::Vector{Any}
 end
 
@@ -1475,16 +1410,6 @@ end
 
 struct GeometryTrianglesNV <: VulkanStruct{true}
     vks::VkGeometryTrianglesNV
-    deps::Vector{Any}
-end
-
-struct RayTracingPipelineCreateInfoKHR <: VulkanStruct{true}
-    vks::VkRayTracingPipelineCreateInfoKHR
-    deps::Vector{Any}
-end
-
-struct RayTracingPipelineCreateInfoNV <: VulkanStruct{true}
-    vks::VkRayTracingPipelineCreateInfoNV
     deps::Vector{Any}
 end
 
@@ -1701,11 +1626,6 @@ struct CommandBufferInheritanceConditionalRenderingInfoEXT <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct MemoryGetAndroidHardwareBufferInfoANDROID <: VulkanStruct{true}
-    vks::VkMemoryGetAndroidHardwareBufferInfoANDROID
-    deps::Vector{Any}
-end
-
 struct AndroidHardwareBufferPropertiesANDROID <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
@@ -1746,11 +1666,6 @@ end
 
 struct VertexInputBindingDivisorDescriptionEXT <: VulkanStruct{false}
     vks::VkVertexInputBindingDivisorDescriptionEXT
-end
-
-struct SemaphoreSignalInfo <: VulkanStruct{true}
-    vks::VkSemaphoreSignalInfo
-    deps::Vector{Any}
 end
 
 struct SemaphoreWaitInfo <: VulkanStruct{true}
@@ -2028,11 +1943,6 @@ struct PhysicalDeviceMaintenance3Properties <: ReturnedOnly
     max_memory_allocation_size::UInt64
 end
 
-struct ShaderModuleValidationCacheCreateInfoEXT <: VulkanStruct{true}
-    vks::VkShaderModuleValidationCacheCreateInfoEXT
-    deps::Vector{Any}
-end
-
 struct ValidationCacheCreateInfoEXT <: VulkanStruct{true}
     vks::VkValidationCacheCreateInfoEXT
     deps::Vector{Any}
@@ -2159,11 +2069,6 @@ struct ProtectedSubmitInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct ConditionalRenderingBeginInfoEXT <: VulkanStruct{true}
-    vks::VkConditionalRenderingBeginInfoEXT
-    deps::Vector{Any}
-end
-
 struct TextureLODGatherFormatPropertiesAMD <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
@@ -2196,11 +2101,6 @@ struct SamplerYcbcrConversionCreateInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct SamplerYcbcrConversionInfo <: VulkanStruct{true}
-    vks::VkSamplerYcbcrConversionInfo
-    deps::Vector{Any}
-end
-
 struct PipelineTessellationDomainOriginStateCreateInfo <: VulkanStruct{true}
     vks::VkPipelineTessellationDomainOriginStateCreateInfo
     deps::Vector{Any}
@@ -2208,11 +2108,6 @@ end
 
 struct ImageViewUsageCreateInfo <: VulkanStruct{true}
     vks::VkImageViewUsageCreateInfo
-    deps::Vector{Any}
-end
-
-struct MemoryDedicatedAllocateInfo <: VulkanStruct{true}
-    vks::VkMemoryDedicatedAllocateInfo
     deps::Vector{Any}
 end
 
@@ -2227,21 +2122,6 @@ struct PhysicalDevicePointClippingProperties <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     point_clipping_behavior::VkPointClippingBehavior
-end
-
-struct ImageSparseMemoryRequirementsInfo2 <: VulkanStruct{true}
-    vks::VkImageSparseMemoryRequirementsInfo2
-    deps::Vector{Any}
-end
-
-struct ImageMemoryRequirementsInfo2 <: VulkanStruct{true}
-    vks::VkImageMemoryRequirementsInfo2
-    deps::Vector{Any}
-end
-
-struct BufferMemoryRequirementsInfo2 <: VulkanStruct{true}
-    vks::VkBufferMemoryRequirementsInfo2
-    deps::Vector{Any}
 end
 
 struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures <: VulkanStruct{true}
@@ -2267,16 +2147,6 @@ struct SharedPresentSurfaceCapabilitiesKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     shared_present_supported_usage_flags::ImageUsageFlag
-end
-
-struct DisplayPlaneInfo2KHR <: VulkanStruct{true}
-    vks::VkDisplayPlaneInfo2KHR
-    deps::Vector{Any}
-end
-
-struct PhysicalDeviceSurfaceInfo2KHR <: VulkanStruct{true}
-    vks::VkPhysicalDeviceSurfaceInfo2KHR
-    deps::Vector{Any}
 end
 
 struct RenderPassInputAttachmentAspectCreateInfo <: VulkanStruct{true}
@@ -2379,11 +2249,6 @@ struct XYColorEXT <: VulkanStruct{false}
     vks::VkXYColorEXT
 end
 
-struct DescriptorUpdateTemplateCreateInfo <: VulkanStruct{true}
-    vks::VkDescriptorUpdateTemplateCreateInfo
-    deps::Vector{Any}
-end
-
 struct DescriptorUpdateTemplateEntry <: VulkanStruct{false}
     vks::VkDescriptorUpdateTemplateEntry
 end
@@ -2400,21 +2265,6 @@ end
 
 struct DeviceGroupPresentInfoKHR <: VulkanStruct{true}
     vks::VkDeviceGroupPresentInfoKHR
-    deps::Vector{Any}
-end
-
-struct AcquireNextImageInfoKHR <: VulkanStruct{true}
-    vks::VkAcquireNextImageInfoKHR
-    deps::Vector{Any}
-end
-
-struct BindImageMemorySwapchainInfoKHR <: VulkanStruct{true}
-    vks::VkBindImageMemorySwapchainInfoKHR
-    deps::Vector{Any}
-end
-
-struct ImageSwapchainCreateInfoKHR <: VulkanStruct{true}
-    vks::VkImageSwapchainCreateInfoKHR
     deps::Vector{Any}
 end
 
@@ -2450,18 +2300,8 @@ struct BindImageMemoryDeviceGroupInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct BindImageMemoryInfo <: VulkanStruct{true}
-    vks::VkBindImageMemoryInfo
-    deps::Vector{Any}
-end
-
 struct BindBufferMemoryDeviceGroupInfo <: VulkanStruct{true}
     vks::VkBindBufferMemoryDeviceGroupInfo
-    deps::Vector{Any}
-end
-
-struct BindBufferMemoryInfo <: VulkanStruct{true}
-    vks::VkBindBufferMemoryInfo
     deps::Vector{Any}
 end
 
@@ -2515,28 +2355,8 @@ struct PhysicalDeviceMultiviewFeatures <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct FenceGetFdInfoKHR <: VulkanStruct{true}
-    vks::VkFenceGetFdInfoKHR
-    deps::Vector{Any}
-end
-
-struct ImportFenceFdInfoKHR <: VulkanStruct{true}
-    vks::VkImportFenceFdInfoKHR
-    deps::Vector{Any}
-end
-
-struct FenceGetWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkFenceGetWin32HandleInfoKHR
-    deps::Vector{Any}
-end
-
 struct ExportFenceWin32HandleInfoKHR <: VulkanStruct{true}
     vks::VkExportFenceWin32HandleInfoKHR
-    deps::Vector{Any}
-end
-
-struct ImportFenceWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkImportFenceWin32HandleInfoKHR
     deps::Vector{Any}
 end
 
@@ -2558,21 +2378,6 @@ struct PhysicalDeviceExternalFenceInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct SemaphoreGetFdInfoKHR <: VulkanStruct{true}
-    vks::VkSemaphoreGetFdInfoKHR
-    deps::Vector{Any}
-end
-
-struct ImportSemaphoreFdInfoKHR <: VulkanStruct{true}
-    vks::VkImportSemaphoreFdInfoKHR
-    deps::Vector{Any}
-end
-
-struct SemaphoreGetWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkSemaphoreGetWin32HandleInfoKHR
-    deps::Vector{Any}
-end
-
 struct D3D12FenceSubmitInfoKHR <: VulkanStruct{true}
     vks::VkD3D12FenceSubmitInfoKHR
     deps::Vector{Any}
@@ -2580,11 +2385,6 @@ end
 
 struct ExportSemaphoreWin32HandleInfoKHR <: VulkanStruct{true}
     vks::VkExportSemaphoreWin32HandleInfoKHR
-    deps::Vector{Any}
-end
-
-struct ImportSemaphoreWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkImportSemaphoreWin32HandleInfoKHR
     deps::Vector{Any}
 end
 
@@ -2611,11 +2411,6 @@ struct Win32KeyedMutexAcquireReleaseInfoKHR <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct MemoryGetFdInfoKHR <: VulkanStruct{true}
-    vks::VkMemoryGetFdInfoKHR
-    deps::Vector{Any}
-end
-
 struct MemoryFdPropertiesKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
@@ -2624,11 +2419,6 @@ end
 
 struct ImportMemoryFdInfoKHR <: VulkanStruct{true}
     vks::VkImportMemoryFdInfoKHR
-    deps::Vector{Any}
-end
-
-struct MemoryGetWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkMemoryGetWin32HandleInfoKHR
     deps::Vector{Any}
 end
 
@@ -2811,16 +2601,6 @@ struct PhysicalDeviceFeatures2 <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct GeneratedCommandsMemoryRequirementsInfoNV <: VulkanStruct{true}
-    vks::VkGeneratedCommandsMemoryRequirementsInfoNV
-    deps::Vector{Any}
-end
-
-struct GeneratedCommandsInfoNV <: VulkanStruct{true}
-    vks::VkGeneratedCommandsInfoNV
-    deps::Vector{Any}
-end
-
 struct IndirectCommandsLayoutCreateInfoNV <: VulkanStruct{true}
     vks::VkIndirectCommandsLayoutCreateInfoNV
     deps::Vector{Any}
@@ -2920,11 +2700,6 @@ struct ExternalMemoryImageCreateInfoNV <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct DedicatedAllocationMemoryAllocateInfoNV <: VulkanStruct{true}
-    vks::VkDedicatedAllocationMemoryAllocateInfoNV
-    deps::Vector{Any}
-end
-
 struct DedicatedAllocationBufferCreateInfoNV <: VulkanStruct{true}
     vks::VkDedicatedAllocationBufferCreateInfoNV
     deps::Vector{Any}
@@ -2972,11 +2747,6 @@ end
 
 struct PresentInfoKHR <: VulkanStruct{true}
     vks::VkPresentInfoKHR
-    deps::Vector{Any}
-end
-
-struct SwapchainCreateInfoKHR <: VulkanStruct{true}
-    vks::VkSwapchainCreateInfoKHR
     deps::Vector{Any}
 end
 
@@ -3041,11 +2811,6 @@ struct DisplayPresentInfoKHR <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct DisplaySurfaceCreateInfoKHR <: VulkanStruct{true}
-    vks::VkDisplaySurfaceCreateInfoKHR
-    deps::Vector{Any}
-end
-
 struct DisplayModeCreateInfoKHR <: VulkanStruct{true}
     vks::VkDisplayModeCreateInfoKHR
     deps::Vector{Any}
@@ -3070,11 +2835,6 @@ end
 
 struct DrawIndirectCommand <: VulkanStruct{false}
     vks::VkDrawIndirectCommand
-end
-
-struct FramebufferCreateInfo <: VulkanStruct{true}
-    vks::VkFramebufferCreateInfo
-    deps::Vector{Any}
 end
 
 struct QueryPoolCreateInfo <: VulkanStruct{true}
@@ -3256,23 +3016,8 @@ struct ClearColorValue <: VulkanStruct{false}
     vks::VkClearColorValue
 end
 
-struct RenderPassBeginInfo <: VulkanStruct{true}
-    vks::VkRenderPassBeginInfo
-    deps::Vector{Any}
-end
-
 struct CommandBufferBeginInfo <: VulkanStruct{true}
     vks::VkCommandBufferBeginInfo
-    deps::Vector{Any}
-end
-
-struct CommandBufferInheritanceInfo <: VulkanStruct{true}
-    vks::VkCommandBufferInheritanceInfo
-    deps::Vector{Any}
-end
-
-struct CommandBufferAllocateInfo <: VulkanStruct{true}
-    vks::VkCommandBufferAllocateInfo
     deps::Vector{Any}
 end
 
@@ -3297,11 +3042,6 @@ end
 
 struct PipelineCacheCreateInfo <: VulkanStruct{true}
     vks::VkPipelineCacheCreateInfo
-    deps::Vector{Any}
-end
-
-struct GraphicsPipelineCreateInfo <: VulkanStruct{true}
-    vks::VkGraphicsPipelineCreateInfo
     deps::Vector{Any}
 end
 
@@ -3366,16 +3106,6 @@ struct VertexInputBindingDescription <: VulkanStruct{false}
     vks::VkVertexInputBindingDescription
 end
 
-struct ComputePipelineCreateInfo <: VulkanStruct{true}
-    vks::VkComputePipelineCreateInfo
-    deps::Vector{Any}
-end
-
-struct PipelineShaderStageCreateInfo <: VulkanStruct{true}
-    vks::VkPipelineShaderStageCreateInfo
-    deps::Vector{Any}
-end
-
 struct SpecializationInfo <: VulkanStruct{true}
     vks::VkSpecializationInfo
     deps::Vector{Any}
@@ -3383,11 +3113,6 @@ end
 
 struct SpecializationMapEntry <: VulkanStruct{false}
     vks::VkSpecializationMapEntry
-end
-
-struct DescriptorSetAllocateInfo <: VulkanStruct{true}
-    vks::VkDescriptorSetAllocateInfo
-    deps::Vector{Any}
 end
 
 struct DescriptorPoolCreateInfo <: VulkanStruct{true}
@@ -3435,21 +3160,6 @@ struct BindSparseInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct SparseImageMemoryBindInfo <: VulkanStruct{true}
-    vks::VkSparseImageMemoryBindInfo
-    deps::Vector{Any}
-end
-
-struct SparseImageOpaqueMemoryBindInfo <: VulkanStruct{true}
-    vks::VkSparseImageOpaqueMemoryBindInfo
-    deps::Vector{Any}
-end
-
-struct SparseBufferMemoryBindInfo <: VulkanStruct{true}
-    vks::VkSparseBufferMemoryBindInfo
-    deps::Vector{Any}
-end
-
 struct SparseImageMemoryBind <: VulkanStruct{false}
     vks::VkSparseImageMemoryBind
 end
@@ -3460,11 +3170,6 @@ end
 
 struct BufferCopy <: VulkanStruct{false}
     vks::VkBufferCopy
-end
-
-struct ImageViewCreateInfo <: VulkanStruct{true}
-    vks::VkImageViewCreateInfo
-    deps::Vector{Any}
 end
 
 struct SubresourceLayout <: ReturnedOnly
@@ -3507,11 +3212,6 @@ struct ImageSubresource <: VulkanStruct{false}
     vks::VkImageSubresource
 end
 
-struct BufferViewCreateInfo <: VulkanStruct{true}
-    vks::VkBufferViewCreateInfo
-    deps::Vector{Any}
-end
-
 struct BufferCreateInfo <: VulkanStruct{true}
     vks::VkBufferCreateInfo
     deps::Vector{Any}
@@ -3525,14 +3225,6 @@ end
 struct WriteDescriptorSet <: VulkanStruct{true}
     vks::VkWriteDescriptorSet
     deps::Vector{Any}
-end
-
-struct DescriptorImageInfo <: VulkanStruct{false}
-    vks::VkDescriptorImageInfo
-end
-
-struct DescriptorBufferInfo <: VulkanStruct{false}
-    vks::VkDescriptorBufferInfo
 end
 
 struct FormatProperties <: ReturnedOnly
@@ -3868,6 +3560,18 @@ mutable struct SwapchainKHR <: Handle
     SwapchainKHR(vks::VkSwapchainKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct BindImageMemorySwapchainInfoKHR <: VulkanStruct{true}
+    vks::VkBindImageMemorySwapchainInfoKHR
+    deps::Vector{Any}
+    swapchain::SwapchainKHR
+end
+
+struct ImageSwapchainCreateInfoKHR <: VulkanStruct{true}
+    vks::VkImageSwapchainCreateInfoKHR
+    deps::Vector{Any}
+    swapchain::OptionalPtr{SwapchainKHR}
+end
+
 mutable struct SurfaceKHR <: Handle
     vks::VkSurfaceKHR
     refcount::RefCounter
@@ -3875,11 +3579,36 @@ mutable struct SurfaceKHR <: Handle
     SurfaceKHR(vks::VkSurfaceKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct PhysicalDeviceSurfaceInfo2KHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceSurfaceInfo2KHR
+    deps::Vector{Any}
+    surface::SurfaceKHR
+end
+
+struct SwapchainCreateInfoKHR <: VulkanStruct{true}
+    vks::VkSwapchainCreateInfoKHR
+    deps::Vector{Any}
+    surface::SurfaceKHR
+    old_swapchain::OptionalPtr{SwapchainKHR}
+end
+
 mutable struct DisplayModeKHR <: Handle
     vks::VkDisplayModeKHR
     refcount::RefCounter
     destructor
     DisplayModeKHR(vks::VkDisplayModeKHR, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+struct DisplayPlaneInfo2KHR <: VulkanStruct{true}
+    vks::VkDisplayPlaneInfo2KHR
+    deps::Vector{Any}
+    mode::DisplayModeKHR
+end
+
+struct DisplaySurfaceCreateInfoKHR <: VulkanStruct{true}
+    vks::VkDisplaySurfaceCreateInfoKHR
+    deps::Vector{Any}
+    display_mode::DisplayModeKHR
 end
 
 struct DisplayModePropertiesKHR <: ReturnedOnly
@@ -3941,6 +3670,12 @@ mutable struct DeferredOperationKHR <: Handle
     DeferredOperationKHR(vks::VkDeferredOperationKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct DeferredOperationInfoKHR <: VulkanStruct{true}
+    vks::VkDeferredOperationInfoKHR
+    deps::Vector{Any}
+    operation_handle::DeferredOperationKHR
+end
+
 mutable struct PerformanceConfigurationINTEL <: Handle
     vks::VkPerformanceConfigurationINTEL
     refcount::RefCounter
@@ -3955,6 +3690,44 @@ mutable struct AccelerationStructureKHR <: Handle
     AccelerationStructureKHR(vks::VkAccelerationStructureKHR, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct CopyMemoryToAccelerationStructureInfoKHR <: VulkanStruct{true}
+    vks::VkCopyMemoryToAccelerationStructureInfoKHR
+    deps::Vector{Any}
+    dst::AccelerationStructureKHR
+end
+
+struct CopyAccelerationStructureToMemoryInfoKHR <: VulkanStruct{true}
+    vks::VkCopyAccelerationStructureToMemoryInfoKHR
+    deps::Vector{Any}
+    src::AccelerationStructureKHR
+end
+
+struct CopyAccelerationStructureInfoKHR <: VulkanStruct{true}
+    vks::VkCopyAccelerationStructureInfoKHR
+    deps::Vector{Any}
+    src::AccelerationStructureKHR
+    dst::AccelerationStructureKHR
+end
+
+struct AccelerationStructureDeviceAddressInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureDeviceAddressInfoKHR
+    deps::Vector{Any}
+    acceleration_structure::AccelerationStructureKHR
+end
+
+struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureBuildGeometryInfoKHR
+    deps::Vector{Any}
+    src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
+    dst_acceleration_structure::AccelerationStructureKHR
+end
+
+struct AccelerationStructureMemoryRequirementsInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureMemoryRequirementsInfoKHR
+    deps::Vector{Any}
+    acceleration_structure::AccelerationStructureKHR
+end
+
 mutable struct ValidationCacheEXT <: Handle
     vks::VkValidationCacheEXT
     refcount::RefCounter
@@ -3962,11 +3735,23 @@ mutable struct ValidationCacheEXT <: Handle
     ValidationCacheEXT(vks::VkValidationCacheEXT, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct ShaderModuleValidationCacheCreateInfoEXT <: VulkanStruct{true}
+    vks::VkShaderModuleValidationCacheCreateInfoEXT
+    deps::Vector{Any}
+    validation_cache::ValidationCacheEXT
+end
+
 mutable struct SamplerYcbcrConversion <: Handle
     vks::VkSamplerYcbcrConversion
     refcount::RefCounter
     destructor
     SamplerYcbcrConversion(vks::VkSamplerYcbcrConversion, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+struct SamplerYcbcrConversionInfo <: VulkanStruct{true}
+    vks::VkSamplerYcbcrConversionInfo
+    deps::Vector{Any}
+    conversion::SamplerYcbcrConversion
 end
 
 mutable struct DescriptorUpdateTemplate <: Handle
@@ -3997,11 +3782,31 @@ mutable struct RenderPass <: Handle
     RenderPass(vks::VkRenderPass, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct FramebufferCreateInfo <: VulkanStruct{true}
+    vks::VkFramebufferCreateInfo
+    deps::Vector{Any}
+    render_pass::RenderPass
+end
+
 mutable struct Framebuffer <: Handle
     vks::VkFramebuffer
     refcount::RefCounter
     destructor
     Framebuffer(vks::VkFramebuffer, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+struct RenderPassBeginInfo <: VulkanStruct{true}
+    vks::VkRenderPassBeginInfo
+    deps::Vector{Any}
+    render_pass::RenderPass
+    framebuffer::Framebuffer
+end
+
+struct CommandBufferInheritanceInfo <: VulkanStruct{true}
+    vks::VkCommandBufferInheritanceInfo
+    deps::Vector{Any}
+    render_pass::OptionalPtr{RenderPass}
+    framebuffer::OptionalPtr{Framebuffer}
 end
 
 mutable struct QueryPool <: Handle
@@ -4025,6 +3830,36 @@ mutable struct Semaphore <: Handle
     Semaphore(vks::VkSemaphore, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct SemaphoreSignalInfo <: VulkanStruct{true}
+    vks::VkSemaphoreSignalInfo
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+struct SemaphoreGetFdInfoKHR <: VulkanStruct{true}
+    vks::VkSemaphoreGetFdInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+struct ImportSemaphoreFdInfoKHR <: VulkanStruct{true}
+    vks::VkImportSemaphoreFdInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+struct SemaphoreGetWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkSemaphoreGetWin32HandleInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+struct ImportSemaphoreWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkImportSemaphoreWin32HandleInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
 mutable struct Fence <: Handle
     vks::VkFence
     refcount::RefCounter
@@ -4032,11 +3867,49 @@ mutable struct Fence <: Handle
     Fence(vks::VkFence, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct AcquireNextImageInfoKHR <: VulkanStruct{true}
+    vks::VkAcquireNextImageInfoKHR
+    deps::Vector{Any}
+    swapchain::SwapchainKHR
+    semaphore::OptionalPtr{Semaphore}
+    fence::OptionalPtr{Fence}
+end
+
+struct FenceGetFdInfoKHR <: VulkanStruct{true}
+    vks::VkFenceGetFdInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
+struct ImportFenceFdInfoKHR <: VulkanStruct{true}
+    vks::VkImportFenceFdInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
+struct FenceGetWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkFenceGetWin32HandleInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
+struct ImportFenceWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkImportFenceWin32HandleInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
 mutable struct DescriptorPool <: Handle
     vks::VkDescriptorPool
     refcount::RefCounter
     destructor
     DescriptorPool(vks::VkDescriptorPool, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+struct DescriptorSetAllocateInfo <: VulkanStruct{true}
+    vks::VkDescriptorSetAllocateInfo
+    deps::Vector{Any}
+    descriptor_pool::DescriptorPool
 end
 
 mutable struct DescriptorSetLayout <: Handle
@@ -4067,11 +3940,66 @@ mutable struct PipelineLayout <: Handle
     PipelineLayout(vks::VkPipelineLayout, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct DescriptorUpdateTemplateCreateInfo <: VulkanStruct{true}
+    vks::VkDescriptorUpdateTemplateCreateInfo
+    deps::Vector{Any}
+    descriptor_set_layout::DescriptorSetLayout
+    pipeline_layout::PipelineLayout
+end
+
 mutable struct Pipeline <: Handle
     vks::VkPipeline
     refcount::RefCounter
     destructor
     Pipeline(vks::VkPipeline, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+struct PipelineExecutableInfoKHR <: VulkanStruct{true}
+    vks::VkPipelineExecutableInfoKHR
+    deps::Vector{Any}
+    pipeline::Pipeline
+end
+
+struct PipelineInfoKHR <: VulkanStruct{true}
+    vks::VkPipelineInfoKHR
+    deps::Vector{Any}
+    pipeline::Pipeline
+end
+
+struct RayTracingPipelineCreateInfoKHR <: VulkanStruct{true}
+    vks::VkRayTracingPipelineCreateInfoKHR
+    deps::Vector{Any}
+    layout::PipelineLayout
+    base_pipeline_handle::OptionalPtr{Pipeline}
+end
+
+struct RayTracingPipelineCreateInfoNV <: VulkanStruct{true}
+    vks::VkRayTracingPipelineCreateInfoNV
+    deps::Vector{Any}
+    layout::PipelineLayout
+    base_pipeline_handle::OptionalPtr{Pipeline}
+end
+
+struct GeneratedCommandsMemoryRequirementsInfoNV <: VulkanStruct{true}
+    vks::VkGeneratedCommandsMemoryRequirementsInfoNV
+    deps::Vector{Any}
+    pipeline::Pipeline
+    indirect_commands_layout::IndirectCommandsLayoutNV
+end
+
+struct GraphicsPipelineCreateInfo <: VulkanStruct{true}
+    vks::VkGraphicsPipelineCreateInfo
+    deps::Vector{Any}
+    layout::PipelineLayout
+    render_pass::RenderPass
+    base_pipeline_handle::OptionalPtr{Pipeline}
+end
+
+struct ComputePipelineCreateInfo <: VulkanStruct{true}
+    vks::VkComputePipelineCreateInfo
+    deps::Vector{Any}
+    layout::PipelineLayout
+    base_pipeline_handle::OptionalPtr{Pipeline}
 end
 
 mutable struct ShaderModule <: Handle
@@ -4081,6 +4009,12 @@ mutable struct ShaderModule <: Handle
     ShaderModule(vks::VkShaderModule, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct PipelineShaderStageCreateInfo <: VulkanStruct{true}
+    vks::VkPipelineShaderStageCreateInfo
+    deps::Vector{Any}
+    _module::ShaderModule
+end
+
 mutable struct ImageView <: Handle
     vks::VkImageView
     refcount::RefCounter
@@ -4088,11 +4022,54 @@ mutable struct ImageView <: Handle
     ImageView(vks::VkImageView, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct ImageViewHandleInfoNVX <: VulkanStruct{true}
+    vks::VkImageViewHandleInfoNVX
+    deps::Vector{Any}
+    image_view::ImageView
+    sampler::OptionalPtr{Sampler}
+end
+
+struct DescriptorImageInfo <: VulkanStruct{false}
+    vks::VkDescriptorImageInfo
+    sampler::Sampler
+    image_view::ImageView
+end
+
 mutable struct Image <: Handle
     vks::VkImage
     refcount::RefCounter
     destructor
     Image(vks::VkImage, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+struct ImageSparseMemoryRequirementsInfo2 <: VulkanStruct{true}
+    vks::VkImageSparseMemoryRequirementsInfo2
+    deps::Vector{Any}
+    image::Image
+end
+
+struct ImageMemoryRequirementsInfo2 <: VulkanStruct{true}
+    vks::VkImageMemoryRequirementsInfo2
+    deps::Vector{Any}
+    image::Image
+end
+
+struct SparseImageMemoryBindInfo <: VulkanStruct{true}
+    vks::VkSparseImageMemoryBindInfo
+    deps::Vector{Any}
+    image::Image
+end
+
+struct SparseImageOpaqueMemoryBindInfo <: VulkanStruct{true}
+    vks::VkSparseImageOpaqueMemoryBindInfo
+    deps::Vector{Any}
+    image::Image
+end
+
+struct ImageViewCreateInfo <: VulkanStruct{true}
+    vks::VkImageViewCreateInfo
+    deps::Vector{Any}
+    image::Image
 end
 
 mutable struct BufferView <: Handle
@@ -4109,6 +4086,65 @@ mutable struct Buffer <: Handle
     Buffer(vks::VkBuffer, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct BufferDeviceAddressInfo <: VulkanStruct{true}
+    vks::VkBufferDeviceAddressInfo
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+struct ConditionalRenderingBeginInfoEXT <: VulkanStruct{true}
+    vks::VkConditionalRenderingBeginInfoEXT
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+struct MemoryDedicatedAllocateInfo <: VulkanStruct{true}
+    vks::VkMemoryDedicatedAllocateInfo
+    deps::Vector{Any}
+    image::OptionalPtr{Image}
+    buffer::OptionalPtr{Buffer}
+end
+
+struct BufferMemoryRequirementsInfo2 <: VulkanStruct{true}
+    vks::VkBufferMemoryRequirementsInfo2
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+struct GeneratedCommandsInfoNV <: VulkanStruct{true}
+    vks::VkGeneratedCommandsInfoNV
+    deps::Vector{Any}
+    pipeline::Pipeline
+    indirect_commands_layout::IndirectCommandsLayoutNV
+    preprocess_buffer::Buffer
+    sequences_count_buffer::OptionalPtr{Buffer}
+    sequences_index_buffer::OptionalPtr{Buffer}
+end
+
+struct DedicatedAllocationMemoryAllocateInfoNV <: VulkanStruct{true}
+    vks::VkDedicatedAllocationMemoryAllocateInfoNV
+    deps::Vector{Any}
+    image::OptionalPtr{Image}
+    buffer::OptionalPtr{Buffer}
+end
+
+struct SparseBufferMemoryBindInfo <: VulkanStruct{true}
+    vks::VkSparseBufferMemoryBindInfo
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+struct BufferViewCreateInfo <: VulkanStruct{true}
+    vks::VkBufferViewCreateInfo
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+struct DescriptorBufferInfo <: VulkanStruct{false}
+    vks::VkDescriptorBufferInfo
+    buffer::OptionalPtr{Buffer}
+end
+
 mutable struct CommandPool <: Handle
     vks::VkCommandPool
     refcount::RefCounter
@@ -4116,11 +4152,62 @@ mutable struct CommandPool <: Handle
     CommandPool(vks::VkCommandPool, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
+struct CommandBufferAllocateInfo <: VulkanStruct{true}
+    vks::VkCommandBufferAllocateInfo
+    deps::Vector{Any}
+    command_pool::CommandPool
+end
+
 mutable struct DeviceMemory <: Handle
     vks::VkDeviceMemory
     refcount::RefCounter
     destructor
     DeviceMemory(vks::VkDeviceMemory, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+struct DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct{true}
+    vks::VkDeviceMemoryOpaqueCaptureAddressInfo
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+struct BindAccelerationStructureMemoryInfoKHR <: VulkanStruct{true}
+    vks::VkBindAccelerationStructureMemoryInfoKHR
+    deps::Vector{Any}
+    acceleration_structure::AccelerationStructureKHR
+    memory::DeviceMemory
+end
+
+struct MemoryGetAndroidHardwareBufferInfoANDROID <: VulkanStruct{true}
+    vks::VkMemoryGetAndroidHardwareBufferInfoANDROID
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+struct BindImageMemoryInfo <: VulkanStruct{true}
+    vks::VkBindImageMemoryInfo
+    deps::Vector{Any}
+    image::Image
+    memory::DeviceMemory
+end
+
+struct BindBufferMemoryInfo <: VulkanStruct{true}
+    vks::VkBindBufferMemoryInfo
+    deps::Vector{Any}
+    buffer::Buffer
+    memory::DeviceMemory
+end
+
+struct MemoryGetFdInfoKHR <: VulkanStruct{true}
+    vks::VkMemoryGetFdInfoKHR
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+struct MemoryGetWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkMemoryGetWin32HandleInfoKHR
+    deps::Vector{Any}
+    memory::DeviceMemory
 end
 
 mutable struct CommandBuffer <: Handle
@@ -6268,7 +6355,7 @@ function DeferredOperationInfoKHR(operation_handle::DeferredOperationKHR; next =
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkDeferredOperationInfoKHR(VK_STRUCTURE_TYPE_DEFERRED_OPERATION_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), operation_handle)
-    DeferredOperationInfoKHR(vks, deps)
+    DeferredOperationInfoKHR(vks, deps, operation_handle)
 end
 
 function RayTracingPipelineInterfaceCreateInfoKHR(max_payload_size::Integer, max_attribute_size::Integer, max_callable_size::Integer; next = C_NULL)
@@ -6282,21 +6369,21 @@ function CopyMemoryToAccelerationStructureInfoKHR(src::DeviceOrHostAddressConstK
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCopyMemoryToAccelerationStructureInfoKHR(VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), src.vks, dst, mode)
-    CopyMemoryToAccelerationStructureInfoKHR(vks, deps)
+    CopyMemoryToAccelerationStructureInfoKHR(vks, deps, dst)
 end
 
 function CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::DeviceOrHostAddressKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCopyAccelerationStructureToMemoryInfoKHR(VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), src, dst.vks, mode)
-    CopyAccelerationStructureToMemoryInfoKHR(vks, deps)
+    CopyAccelerationStructureToMemoryInfoKHR(vks, deps, src)
 end
 
 function CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCopyAccelerationStructureInfoKHR(VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), src, dst, mode)
-    CopyAccelerationStructureInfoKHR(vks, deps)
+    CopyAccelerationStructureInfoKHR(vks, deps, src, dst)
 end
 
 function AccelerationStructureVersionKHR(version_data::AbstractArray; next = C_NULL)
@@ -6311,7 +6398,7 @@ function AccelerationStructureDeviceAddressInfoKHR(acceleration_structure::Accel
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkAccelerationStructureDeviceAddressInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), acceleration_structure)
-    AccelerationStructureDeviceAddressInfoKHR(vks, deps)
+    AccelerationStructureDeviceAddressInfoKHR(vks, deps, acceleration_structure)
 end
 
 function AccelerationStructureInstanceKHR(transform::TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
@@ -6350,7 +6437,7 @@ function AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructure
     geometries = cconvert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries)
     deps = [next, geometries]
     vks = VkAccelerationStructureBuildGeometryInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), type, flags, update, src_acceleration_structure, dst_acceleration_structure, geometry_array_of_pointers, geometry_count, unsafe_convert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries), scratch_data.vks)
-    AccelerationStructureBuildGeometryInfoKHR(vks, deps)
+    AccelerationStructureBuildGeometryInfoKHR(vks, deps, src_acceleration_structure, dst_acceleration_structure)
 end
 
 function AccelerationStructureGeometryKHR(geometry_type::VkGeometryTypeKHR, geometry::AccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
@@ -6466,7 +6553,7 @@ function DeviceMemoryOpaqueCaptureAddressInfo(memory::DeviceMemory; next = C_NUL
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkDeviceMemoryOpaqueCaptureAddressInfo(VK_STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO, unsafe_convert(Ptr{Cvoid}, next), memory)
-    DeviceMemoryOpaqueCaptureAddressInfo(vks, deps)
+    DeviceMemoryOpaqueCaptureAddressInfo(vks, deps, memory)
 end
 
 function MemoryOpaqueCaptureAddressAllocateInfo(opaque_capture_address::Integer; next = C_NULL)
@@ -6501,14 +6588,14 @@ function PipelineExecutableInfoKHR(pipeline::Pipeline, executable_index::Integer
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPipelineExecutableInfoKHR(VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), pipeline, executable_index)
-    PipelineExecutableInfoKHR(vks, deps)
+    PipelineExecutableInfoKHR(vks, deps, pipeline)
 end
 
 function PipelineInfoKHR(pipeline::Pipeline; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPipelineInfoKHR(VK_STRUCTURE_TYPE_PIPELINE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), pipeline)
-    PipelineInfoKHR(vks, deps)
+    PipelineInfoKHR(vks, deps, pipeline)
 end
 
 function PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(pipeline_executable_info::Bool; next = C_NULL)
@@ -6723,7 +6810,7 @@ function ImageViewHandleInfoNVX(image_view::ImageView, descriptor_type::VkDescri
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImageViewHandleInfoNVX(VK_STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX, unsafe_convert(Ptr{Cvoid}, next), image_view, descriptor_type, sampler)
-    ImageViewHandleInfoNVX(vks, deps)
+    ImageViewHandleInfoNVX(vks, deps, image_view, sampler)
 end
 
 function PhysicalDeviceYcbcrImageArraysFeaturesEXT(ycbcr_image_arrays::Bool; next = C_NULL)
@@ -6810,7 +6897,7 @@ function BufferDeviceAddressInfo(buffer::Buffer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBufferDeviceAddressInfo(VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO, unsafe_convert(Ptr{Cvoid}, next), buffer)
-    BufferDeviceAddressInfo(vks, deps)
+    BufferDeviceAddressInfo(vks, deps, buffer)
 end
 
 function PhysicalDeviceBufferDeviceAddressFeaturesEXT(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
@@ -6961,7 +7048,7 @@ function AccelerationStructureMemoryRequirementsInfoKHR(type::VkAccelerationStru
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkAccelerationStructureMemoryRequirementsInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), type, build_type, acceleration_structure)
-    AccelerationStructureMemoryRequirementsInfoKHR(vks, deps)
+    AccelerationStructureMemoryRequirementsInfoKHR(vks, deps, acceleration_structure)
 end
 
 function WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray; next = C_NULL)
@@ -6977,7 +7064,7 @@ function BindAccelerationStructureMemoryInfoKHR(acceleration_structure::Accelera
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     deps = [next, device_indices]
     vks = VkBindAccelerationStructureMemoryInfoKHR(VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), acceleration_structure, memory, memory_offset, pointer_length(device_indices), unsafe_convert(Ptr{UInt32}, device_indices))
-    BindAccelerationStructureMemoryInfoKHR(vks, deps)
+    BindAccelerationStructureMemoryInfoKHR(vks, deps, acceleration_structure, memory)
 end
 
 function AccelerationStructureCreateInfoNV(compacted_size::Integer, info::AccelerationStructureInfoNV; next = C_NULL)
@@ -7010,14 +7097,14 @@ function GeometryAABBNV(num_aab_bs::Integer, stride::Integer, offset::Integer; n
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkGeometryAABBNV(VK_STRUCTURE_TYPE_GEOMETRY_AABB_NV, unsafe_convert(Ptr{Cvoid}, next), aabb_data, num_aab_bs, stride, offset)
-    GeometryAABBNV(vks, deps)
+    GeometryAABBNV(vks, deps, aabb_data)
 end
 
 function GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::VkFormat, index_offset::Integer, index_count::Integer, index_type::VkIndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkGeometryTrianglesNV(VK_STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV, unsafe_convert(Ptr{Cvoid}, next), vertex_data, vertex_offset, vertex_count, vertex_stride, vertex_format, index_data, index_offset, index_count, index_type, transform_data, transform_offset)
-    GeometryTrianglesNV(vks, deps)
+    GeometryTrianglesNV(vks, deps, vertex_data, index_data, transform_data)
 end
 
 function RayTracingPipelineCreateInfoKHR(stages::AbstractArray, groups::AbstractArray, max_recursion_depth::Integer, libraries::PipelineLibraryCreateInfoKHR, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_interface = C_NULL, base_pipeline_handle = C_NULL)
@@ -7027,7 +7114,7 @@ function RayTracingPipelineCreateInfoKHR(stages::AbstractArray, groups::Abstract
     library_interface = cconvert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface)
     deps = [next, stages, groups, library_interface]
     vks = VkRayTracingPipelineCreateInfoKHR(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups), max_recursion_depth, libraries.vks, unsafe_convert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface), layout, base_pipeline_handle, base_pipeline_index)
-    RayTracingPipelineCreateInfoKHR(vks, deps)
+    RayTracingPipelineCreateInfoKHR(vks, deps, layout, base_pipeline_handle)
 end
 
 function RayTracingPipelineCreateInfoNV(stages::AbstractArray, groups::AbstractArray, max_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
@@ -7036,7 +7123,7 @@ function RayTracingPipelineCreateInfoNV(stages::AbstractArray, groups::AbstractA
     groups = cconvert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups)
     deps = [next, stages, groups]
     vks = VkRayTracingPipelineCreateInfoNV(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups), max_recursion_depth, layout, base_pipeline_handle, base_pipeline_index)
-    RayTracingPipelineCreateInfoNV(vks, deps)
+    RayTracingPipelineCreateInfoNV(vks, deps, layout, base_pipeline_handle)
 end
 
 function RayTracingShaderGroupCreateInfoKHR(type::VkRayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL, shader_group_capture_replay_handle = C_NULL)
@@ -7266,7 +7353,7 @@ function MemoryGetAndroidHardwareBufferInfoANDROID(memory::DeviceMemory; next = 
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryGetAndroidHardwareBufferInfoANDROID(VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID, unsafe_convert(Ptr{Cvoid}, next), memory)
-    MemoryGetAndroidHardwareBufferInfoANDROID(vks, deps)
+    MemoryGetAndroidHardwareBufferInfoANDROID(vks, deps, memory)
 end
 
 function ImportAndroidHardwareBufferInfoANDROID(buffer::Cvoid; next = C_NULL)
@@ -7293,7 +7380,7 @@ function SemaphoreSignalInfo(semaphore::Semaphore, value::Integer; next = C_NULL
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSemaphoreSignalInfo(VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO, unsafe_convert(Ptr{Cvoid}, next), semaphore, value)
-    SemaphoreSignalInfo(vks, deps)
+    SemaphoreSignalInfo(vks, deps, semaphore)
 end
 
 function SemaphoreWaitInfo(semaphores::AbstractArray, values::AbstractArray; next = C_NULL, flags = 0)
@@ -7507,7 +7594,7 @@ function ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCa
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkShaderModuleValidationCacheCreateInfoEXT(VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), validation_cache)
-    ShaderModuleValidationCacheCreateInfoEXT(vks, deps)
+    ShaderModuleValidationCacheCreateInfoEXT(vks, deps, validation_cache)
 end
 
 function ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
@@ -7645,7 +7732,7 @@ function ConditionalRenderingBeginInfoEXT(buffer::Buffer, offset::Integer; next 
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkConditionalRenderingBeginInfoEXT(VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), buffer, offset, flags)
-    ConditionalRenderingBeginInfoEXT(vks, deps)
+    ConditionalRenderingBeginInfoEXT(vks, deps, buffer)
 end
 
 function PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::VersionNumber; next = C_NULL)
@@ -7680,7 +7767,7 @@ function SamplerYcbcrConversionInfo(conversion::SamplerYcbcrConversion; next = C
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSamplerYcbcrConversionInfo(VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO, unsafe_convert(Ptr{Cvoid}, next), conversion)
-    SamplerYcbcrConversionInfo(vks, deps)
+    SamplerYcbcrConversionInfo(vks, deps, conversion)
 end
 
 function PipelineTessellationDomainOriginStateCreateInfo(domain_origin::VkTessellationDomainOrigin; next = C_NULL)
@@ -7701,28 +7788,28 @@ function MemoryDedicatedAllocateInfo(; next = C_NULL, image = C_NULL, buffer = C
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryDedicatedAllocateInfo(VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), image, buffer)
-    MemoryDedicatedAllocateInfo(vks, deps)
+    MemoryDedicatedAllocateInfo(vks, deps, image, buffer)
 end
 
 function ImageSparseMemoryRequirementsInfo2(image::Image; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImageSparseMemoryRequirementsInfo2(VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2, unsafe_convert(Ptr{Cvoid}, next), image)
-    ImageSparseMemoryRequirementsInfo2(vks, deps)
+    ImageSparseMemoryRequirementsInfo2(vks, deps, image)
 end
 
 function ImageMemoryRequirementsInfo2(image::Image; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImageMemoryRequirementsInfo2(VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2, unsafe_convert(Ptr{Cvoid}, next), image)
-    ImageMemoryRequirementsInfo2(vks, deps)
+    ImageMemoryRequirementsInfo2(vks, deps, image)
 end
 
 function BufferMemoryRequirementsInfo2(buffer::Buffer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBufferMemoryRequirementsInfo2(VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2, unsafe_convert(Ptr{Cvoid}, next), buffer)
-    BufferMemoryRequirementsInfo2(vks, deps)
+    BufferMemoryRequirementsInfo2(vks, deps, buffer)
 end
 
 function PhysicalDeviceShaderSubgroupExtendedTypesFeatures(shader_subgroup_extended_types::Bool; next = C_NULL)
@@ -7743,14 +7830,14 @@ function DisplayPlaneInfo2KHR(mode::DisplayModeKHR, plane_index::Integer; next =
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkDisplayPlaneInfo2KHR(VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), mode, plane_index)
-    DisplayPlaneInfo2KHR(vks, deps)
+    DisplayPlaneInfo2KHR(vks, deps, mode)
 end
 
 function PhysicalDeviceSurfaceInfo2KHR(surface::SurfaceKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDeviceSurfaceInfo2KHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), surface)
-    PhysicalDeviceSurfaceInfo2KHR(vks, deps)
+    PhysicalDeviceSurfaceInfo2KHR(vks, deps, surface)
 end
 
 function RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractArray; next = C_NULL)
@@ -7856,7 +7943,7 @@ function DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractA
     descriptor_update_entries = cconvert(Ptr{VkDescriptorUpdateTemplateEntry}, descriptor_update_entries)
     deps = [next, descriptor_update_entries]
     vks = VkDescriptorUpdateTemplateCreateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(descriptor_update_entries), unsafe_convert(Ptr{VkDescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set)
-    DescriptorUpdateTemplateCreateInfo(vks, deps)
+    DescriptorUpdateTemplateCreateInfo(vks, deps, descriptor_set_layout, pipeline_layout)
 end
 
 function DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer, descriptor_type::VkDescriptorType, offset::Integer, stride::Integer)
@@ -7890,21 +7977,21 @@ function AcquireNextImageInfoKHR(swapchain::SwapchainKHR, timeout::Integer, devi
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkAcquireNextImageInfoKHR(VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), swapchain, timeout, semaphore, fence, device_mask)
-    AcquireNextImageInfoKHR(vks, deps)
+    AcquireNextImageInfoKHR(vks, deps, swapchain, semaphore, fence)
 end
 
 function BindImageMemorySwapchainInfoKHR(swapchain::SwapchainKHR, image_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBindImageMemorySwapchainInfoKHR(VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), swapchain, image_index)
-    BindImageMemorySwapchainInfoKHR(vks, deps)
+    BindImageMemorySwapchainInfoKHR(vks, deps, swapchain)
 end
 
 function ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImageSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), swapchain)
-    ImageSwapchainCreateInfoKHR(vks, deps)
+    ImageSwapchainCreateInfoKHR(vks, deps, swapchain)
 end
 
 function DeviceGroupBindSparseInfo(resource_device_index::Integer, memory_device_index::Integer; next = C_NULL)
@@ -7952,7 +8039,7 @@ function BindImageMemoryInfo(image::Image, memory::DeviceMemory, memory_offset::
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBindImageMemoryInfo(VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO, unsafe_convert(Ptr{Cvoid}, next), image, memory, memory_offset)
-    BindImageMemoryInfo(vks, deps)
+    BindImageMemoryInfo(vks, deps, image, memory)
 end
 
 function BindBufferMemoryDeviceGroupInfo(device_indices::AbstractArray; next = C_NULL)
@@ -7967,7 +8054,7 @@ function BindBufferMemoryInfo(buffer::Buffer, memory::DeviceMemory, memory_offse
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBindBufferMemoryInfo(VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO, unsafe_convert(Ptr{Cvoid}, next), buffer, memory, memory_offset)
-    BindBufferMemoryInfo(vks, deps)
+    BindBufferMemoryInfo(vks, deps, buffer, memory)
 end
 
 function MemoryAllocateFlagsInfo(device_mask::Integer; next = C_NULL, flags = 0)
@@ -8026,21 +8113,21 @@ function FenceGetFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeF
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkFenceGetFdInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
-    FenceGetFdInfoKHR(vks, deps)
+    FenceGetFdInfoKHR(vks, deps, fence)
 end
 
 function ImportFenceFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportFenceFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, handle_type, fd)
-    ImportFenceFdInfoKHR(vks, deps)
+    ImportFenceFdInfoKHR(vks, deps, fence)
 end
 
 function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkFenceGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
-    FenceGetWin32HandleInfoKHR(vks, deps)
+    FenceGetWin32HandleInfoKHR(vks, deps, fence)
 end
 
 function ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
@@ -8055,7 +8142,7 @@ function ImportFenceWin32HandleInfoKHR(fence::Fence; next = C_NULL, flags = 0, h
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, handle_type, handle, name)
-    ImportFenceWin32HandleInfoKHR(vks, deps)
+    ImportFenceWin32HandleInfoKHR(vks, deps, fence)
 end
 
 function ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
@@ -8076,21 +8163,21 @@ function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSema
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSemaphoreGetFdInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
-    SemaphoreGetFdInfoKHR(vks, deps)
+    SemaphoreGetFdInfoKHR(vks, deps, semaphore)
 end
 
 function ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportSemaphoreFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, handle_type, fd)
-    ImportSemaphoreFdInfoKHR(vks, deps)
+    ImportSemaphoreFdInfoKHR(vks, deps, semaphore)
 end
 
 function SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSemaphoreGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
-    SemaphoreGetWin32HandleInfoKHR(vks, deps)
+    SemaphoreGetWin32HandleInfoKHR(vks, deps, semaphore)
 end
 
 function D3D12FenceSubmitInfoKHR(; next = C_NULL, wait_semaphore_values = C_NULL, signal_semaphore_values = C_NULL)
@@ -8114,7 +8201,7 @@ function ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore; next = C_NULL, 
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, handle_type, handle, name)
-    ImportSemaphoreWin32HandleInfoKHR(vks, deps)
+    ImportSemaphoreWin32HandleInfoKHR(vks, deps, semaphore)
 end
 
 function ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
@@ -8147,7 +8234,7 @@ function MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryH
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryGetFdInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
-    MemoryGetFdInfoKHR(vks, deps)
+    MemoryGetFdInfoKHR(vks, deps, memory)
 end
 
 function ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
@@ -8161,7 +8248,7 @@ function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::VkExtern
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMemoryGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
-    MemoryGetWin32HandleInfoKHR(vks, deps)
+    MemoryGetWin32HandleInfoKHR(vks, deps, memory)
 end
 
 function ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
@@ -8269,7 +8356,7 @@ function GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::VkPipeli
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkGeneratedCommandsMemoryRequirementsInfoNV(VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), pipeline_bind_point, pipeline, indirect_commands_layout, max_sequences_count)
-    GeneratedCommandsMemoryRequirementsInfoNV(vks, deps)
+    GeneratedCommandsMemoryRequirementsInfoNV(vks, deps, pipeline, indirect_commands_layout)
 end
 
 function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_count_offset = 0, sequences_index_buffer = C_NULL, sequences_index_offset = 0)
@@ -8277,7 +8364,7 @@ function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipel
     streams = cconvert(Ptr{VkIndirectCommandsStreamNV}, streams)
     deps = [next, streams]
     vks = VkGeneratedCommandsInfoNV(VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), pipeline_bind_point, pipeline, indirect_commands_layout, pointer_length(streams), unsafe_convert(Ptr{VkIndirectCommandsStreamNV}, streams), sequences_count, preprocess_buffer, preprocess_offset, preprocess_size, sequences_count_buffer, sequences_count_offset, sequences_index_buffer, sequences_index_offset)
-    GeneratedCommandsInfoNV(vks, deps)
+    GeneratedCommandsInfoNV(vks, deps, pipeline, indirect_commands_layout, preprocess_buffer, sequences_count_buffer, sequences_index_buffer)
 end
 
 function IndirectCommandsLayoutCreateInfoNV(flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; next = C_NULL)
@@ -8295,7 +8382,7 @@ function IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV
     index_type_values = cconvert(Ptr{UInt32}, index_type_values)
     deps = [next, index_types, index_type_values]
     vks = VkIndirectCommandsLayoutTokenNV(VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV, unsafe_convert(Ptr{Cvoid}, next), token_type, stream, offset, vertex_binding_unit, vertex_dynamic_stride, pushconstant_pipeline_layout, pushconstant_shader_stage_flags, pushconstant_offset, pushconstant_size, indirect_state_flags, pointer_length(index_types), unsafe_convert(Ptr{VkIndexType}, index_types), unsafe_convert(Ptr{UInt32}, index_type_values))
-    IndirectCommandsLayoutTokenNV(vks, deps)
+    IndirectCommandsLayoutTokenNV(vks, deps, pushconstant_pipeline_layout)
 end
 
 function IndirectCommandsStreamNV(buffer::Buffer, offset::Integer)
@@ -8410,7 +8497,7 @@ function DedicatedAllocationMemoryAllocateInfoNV(; next = C_NULL, image = C_NULL
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkDedicatedAllocationMemoryAllocateInfoNV(VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), image, buffer)
-    DedicatedAllocationMemoryAllocateInfoNV(vks, deps)
+    DedicatedAllocationMemoryAllocateInfoNV(vks, deps, image, buffer)
 end
 
 function DedicatedAllocationBufferCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
@@ -8499,7 +8586,7 @@ function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, i
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
     vks = VkSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, surface, min_image_count, image_format, image_color_space, image_extent.vks, image_array_layers, image_usage, image_sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), pre_transform, composite_alpha, present_mode, clipped, old_swapchain)
-    SwapchainCreateInfoKHR(vks, deps)
+    SwapchainCreateInfoKHR(vks, deps, surface, old_swapchain)
 end
 
 function StreamDescriptorSurfaceCreateInfoGGP(stream_descriptor::vk.GgpStreamDescriptor; next = C_NULL, flags = 0)
@@ -8584,7 +8671,7 @@ function DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkDisplaySurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent.vks)
-    DisplaySurfaceCreateInfoKHR(vks, deps)
+    DisplaySurfaceCreateInfoKHR(vks, deps, display_mode)
 end
 
 function DisplayModeCreateInfoKHR(parameters::DisplayModeParametersKHR; next = C_NULL, flags = 0)
@@ -8626,7 +8713,7 @@ function FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArr
     attachments = cconvert(Ptr{VkImageView}, attachments)
     deps = [next, attachments]
     vks = VkFramebufferCreateInfo(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, render_pass, pointer_length(attachments), unsafe_convert(Ptr{VkImageView}, attachments), width, height, layers)
-    FramebufferCreateInfo(vks, deps)
+    FramebufferCreateInfo(vks, deps, render_pass)
 end
 
 function QueryPoolCreateInfo(query_type::VkQueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
@@ -8715,7 +8802,7 @@ function RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, 
     clear_values = cconvert(Ptr{VkClearValue}, clear_values)
     deps = [next, clear_values]
     vks = VkRenderPassBeginInfo(VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO, unsafe_convert(Ptr{Cvoid}, next), render_pass, framebuffer, render_area.vks, pointer_length(clear_values), unsafe_convert(Ptr{VkClearValue}, clear_values))
-    RenderPassBeginInfo(vks, deps)
+    RenderPassBeginInfo(vks, deps, render_pass, framebuffer)
 end
 
 function CommandBufferBeginInfo(; next = C_NULL, flags = 0, inheritance_info = C_NULL)
@@ -8730,14 +8817,14 @@ function CommandBufferInheritanceInfo(subpass::Integer, occlusion_query_enable::
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCommandBufferInheritanceInfo(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO, unsafe_convert(Ptr{Cvoid}, next), render_pass, subpass, framebuffer, occlusion_query_enable, query_flags, pipeline_statistics)
-    CommandBufferInheritanceInfo(vks, deps)
+    CommandBufferInheritanceInfo(vks, deps, render_pass, framebuffer)
 end
 
 function CommandBufferAllocateInfo(command_pool::CommandPool, level::VkCommandBufferLevel, command_buffer_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCommandBufferAllocateInfo(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), command_pool, level, command_buffer_count)
-    CommandBufferAllocateInfo(vks, deps)
+    CommandBufferAllocateInfo(vks, deps, command_pool)
 end
 
 function CommandPoolCreateInfo(queue_family_index::Integer; next = C_NULL, flags = 0)
@@ -8789,7 +8876,7 @@ function GraphicsPipelineCreateInfo(stages::AbstractArray, rasterization_state::
     dynamic_state = cconvert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state)
     deps = [next, stages, vertex_input_state, input_assembly_state, tessellation_state, viewport_state, rasterization_state, multisample_state, depth_stencil_state, color_blend_state, dynamic_state]
     vks = VkGraphicsPipelineCreateInfo(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), unsafe_convert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state), unsafe_convert(Ptr{VkPipelineInputAssemblyStateCreateInfo}, input_assembly_state), unsafe_convert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state), unsafe_convert(Ptr{VkPipelineViewportStateCreateInfo}, viewport_state), unsafe_convert(Ptr{VkPipelineRasterizationStateCreateInfo}, rasterization_state), unsafe_convert(Ptr{VkPipelineMultisampleStateCreateInfo}, multisample_state), unsafe_convert(Ptr{VkPipelineDepthStencilStateCreateInfo}, depth_stencil_state), unsafe_convert(Ptr{VkPipelineColorBlendStateCreateInfo}, color_blend_state), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), layout, render_pass, subpass, base_pipeline_handle, base_pipeline_index)
-    GraphicsPipelineCreateInfo(vks, deps)
+    GraphicsPipelineCreateInfo(vks, deps, layout, render_pass, base_pipeline_handle)
 end
 
 function PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable::Bool, depth_compare_op::VkCompareOp, depth_bounds_test_enable::Bool, stencil_test_enable::Bool, front::StencilOpState, back::StencilOpState, min_depth_bounds::Real, max_depth_bounds::Real; next = C_NULL, flags = 0)
@@ -8882,7 +8969,7 @@ function ComputePipelineCreateInfo(stage::PipelineShaderStageCreateInfo, layout:
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkComputePipelineCreateInfo(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, stage.vks, layout, base_pipeline_handle, base_pipeline_index)
-    ComputePipelineCreateInfo(vks, deps)
+    ComputePipelineCreateInfo(vks, deps, layout, base_pipeline_handle)
 end
 
 function PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
@@ -8891,7 +8978,7 @@ function PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::Sh
     specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
     deps = [next, name, specialization_info]
     vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, stage, _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
-    PipelineShaderStageCreateInfo(vks, deps)
+    PipelineShaderStageCreateInfo(vks, deps, _module)
 end
 
 function SpecializationInfo(map_entries::AbstractArray, data::Ptr{Cvoid}; data_size = 0)
@@ -8911,7 +8998,7 @@ function DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts:
     set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
     deps = [next, set_layouts]
     vks = VkDescriptorSetAllocateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, pointer_length(set_layouts), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
-    DescriptorSetAllocateInfo(vks, deps)
+    DescriptorSetAllocateInfo(vks, deps, descriptor_pool)
 end
 
 function DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray; next = C_NULL, flags = 0)
@@ -8981,21 +9068,21 @@ function SparseImageMemoryBindInfo(image::Image, binds::AbstractArray)
     binds = cconvert(Ptr{VkSparseImageMemoryBind}, binds)
     deps = [binds]
     vks = VkSparseImageMemoryBindInfo(image, pointer_length(binds), unsafe_convert(Ptr{VkSparseImageMemoryBind}, binds))
-    SparseImageMemoryBindInfo(vks, deps)
+    SparseImageMemoryBindInfo(vks, deps, image)
 end
 
 function SparseImageOpaqueMemoryBindInfo(image::Image, binds::AbstractArray)
     binds = cconvert(Ptr{VkSparseMemoryBind}, binds)
     deps = [binds]
     vks = VkSparseImageOpaqueMemoryBindInfo(image, pointer_length(binds), unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
-    SparseImageOpaqueMemoryBindInfo(vks, deps)
+    SparseImageOpaqueMemoryBindInfo(vks, deps, image)
 end
 
 function SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray)
     binds = cconvert(Ptr{VkSparseMemoryBind}, binds)
     deps = [binds]
     vks = VkSparseBufferMemoryBindInfo(buffer, pointer_length(binds), unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
-    SparseBufferMemoryBindInfo(vks, deps)
+    SparseBufferMemoryBindInfo(vks, deps, buffer)
 end
 
 function SparseImageMemoryBind(subresource::ImageSubresource, offset::Offset3D, extent::Extent3D, memory_offset::Integer; memory = C_NULL, flags = 0)
@@ -9014,7 +9101,7 @@ function ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::V
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImageViewCreateInfo(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, image, view_type, format, components.vks, subresource_range.vks)
-    ImageViewCreateInfo(vks, deps)
+    ImageViewCreateInfo(vks, deps, image)
 end
 
 function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
@@ -9029,14 +9116,14 @@ function ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::Access
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImageMemoryBarrier(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask, old_layout, new_layout, src_queue_family_index, dst_queue_family_index, image, subresource_range.vks)
-    ImageMemoryBarrier(vks, deps)
+    ImageMemoryBarrier(vks, deps, image)
 end
 
 function BufferMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBufferMemoryBarrier(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER, unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask, src_queue_family_index, dst_queue_family_index, buffer, offset, size)
-    BufferMemoryBarrier(vks, deps)
+    BufferMemoryBarrier(vks, deps, buffer)
 end
 
 function MemoryBarrier(; next = C_NULL, src_access_mask = 0, dst_access_mask = 0)
@@ -9062,7 +9149,7 @@ function BufferViewCreateInfo(buffer::Buffer, format::VkFormat, offset::Integer,
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkBufferViewCreateInfo(VK_STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, buffer, format, offset, range)
-    BufferViewCreateInfo(vks, deps)
+    BufferViewCreateInfo(vks, deps, buffer)
 end
 
 function BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray; next = C_NULL, flags = 0)
@@ -9077,7 +9164,7 @@ function CopyDescriptorSet(src_set::DescriptorSet, src_binding::Integer, src_arr
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkCopyDescriptorSet(VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET, unsafe_convert(Ptr{Cvoid}, next), src_set, src_binding, src_array_element, dst_set, dst_binding, dst_array_element, descriptor_count)
-    CopyDescriptorSet(vks, deps)
+    CopyDescriptorSet(vks, deps, src_set, dst_set)
 end
 
 function WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL)
@@ -9087,7 +9174,7 @@ function WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_ar
     texel_buffer_view = cconvert(Ptr{VkBufferView}, texel_buffer_view)
     deps = [next, image_info, buffer_info, texel_buffer_view]
     vks = VkWriteDescriptorSet(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET, unsafe_convert(Ptr{Cvoid}, next), dst_set, dst_binding, dst_array_element, pointer_length(image_info), descriptor_type, unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
-    WriteDescriptorSet(vks, deps)
+    WriteDescriptorSet(vks, deps, dst_set)
 end
 
 function DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
@@ -9102,7 +9189,7 @@ function MappedMemoryRange(memory::DeviceMemory, offset::Integer, size::Integer;
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkMappedMemoryRange(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, unsafe_convert(Ptr{Cvoid}, next), memory, offset, size)
-    MappedMemoryRange(vks, deps)
+    MappedMemoryRange(vks, deps, memory)
 end
 
 function MemoryAllocateInfo(allocation_size::Integer, memory_type_index::Integer; next = C_NULL)

@@ -10,6 +10,15 @@ function wrap(spec::SpecStruct)
             :(vks::$(spec.name)),
         ]
         needs_deps(spec) && push!(p[:fields], :(deps::Vector{Any}))
+
+        if spec.type ∈ (ALLOCATE_INFO, CREATE_INFO, GENERIC_INFO)
+            foreach(parent_handles(spec)) do member
+                handle_type = remove_vk_prefix(member.type)
+                name = wrap_identifier(member)
+                field_type = is_optional(member) ? :(OptionalPtr{$handle_type}) : handle_type
+                push!(p[:fields], :($name::$field_type))
+            end
+        end
     end
 
     p
@@ -23,7 +32,7 @@ function add_constructor(spec::SpecStruct)
             $((:($(wrap_identifier(m.name)) = cconvert($(m.type), $(wrap_identifier(m.name)))) for m ∈ cconverted_members)...)
             deps = [$((wrap_identifier(m.name) for m ∈ cconverted_members)...)]
             vks = $(spec.name)($(map(vk_call, spec.members)...))
-            $(p[:name])(vks, deps)
+            $(p[:name])(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end
     else
         p[:body] = :($(p[:name])($(spec.name)($(map(vk_call, spec.members)...))))

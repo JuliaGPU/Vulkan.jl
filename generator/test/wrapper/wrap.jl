@@ -70,6 +70,23 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
                 p_data::Ptr{Cvoid}
             end
         ))
+
+        test_wrap_struct(:VkDescriptorSetAllocateInfo, :(
+            struct DescriptorSetAllocateInfo <: VulkanStruct{true}
+                vks::VkDescriptorSetAllocateInfo
+                deps::Vector{Any}
+                descriptor_pool::DescriptorPool
+            end
+        ))
+
+        test_wrap_struct(:VkAccelerationStructureBuildGeometryInfoKHR, :(
+            struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
+                vks::VkAccelerationStructureBuildGeometryInfoKHR
+                deps::Vector{Any}
+                src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
+                dst_acceleration_structure::AccelerationStructureKHR
+            end
+        ))
     end
 
     @testset "API functions" begin
@@ -311,6 +328,17 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
                 DebugUtilsMessengerCreateInfoEXT(vks, deps)
             end
         ))
+
+        test_struct_add_constructor(:VkDescriptorSetAllocateInfo, :(
+            function DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL)
+                next = cconvert(Ptr{Cvoid}, next)
+                set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
+                deps = [next, set_layouts]
+                vks = VkDescriptorSetAllocateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, pointer_length(set_layouts), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
+                DescriptorSetAllocateInfo(vks, deps, descriptor_pool)
+            end
+        ))
+
         end
 
         @testset "Handle constructors" begin
