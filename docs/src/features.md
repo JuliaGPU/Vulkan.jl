@@ -259,6 +259,12 @@ command_buffers = unwrap(allocate_command_buffers(device, CommandBufferAllocateI
                                            command_pool, VK_COMMAND_BUFFER_LEVEL_PRIMARY, 3)))
 ```
 
+### Parent handle access
+
+Handles store their parent handle if they have one. This removes the need to have giant structures or global variables to store your handles. You can, e.g., just carry a `Pipeline` around and access its `device` field whenever you like, and the `physical_device` field of this device and so on until you reach the instance that has no parent. Therefore, you won't need to pass around all the other parent handles.
+
+It facilitates composability of Vulkan code, that is traditionally very hard because of these giant structures that are often found in applications.
+
 ## Bitmask flags
 
 In Vulkan, the value of some flags carry meaning through a bitmask structure. Bitmasks define bit values which they can be a composition of (using bitwise _and_, _or_, and _xor_ operations). However, the associated flag type is defined as a `UInt32`, which allows any value to be passed in as a flag. This opens up the door to incorrect usage that may be hard to debug. To circumvent that, every bitmask flag now has one associated type which prevents combinations with flags of other bitmask types.
