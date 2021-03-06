@@ -1,5 +1,5 @@
 function wrap(spec::SpecHandle)
-    Dict(
+    d = Dict(
         :category => :struct,
         :decl => :($(remove_vk_prefix(spec.name)) <: Handle),
         :is_mutable => true,
@@ -7,11 +7,23 @@ function wrap(spec::SpecHandle)
             :(vks::$(spec.name)),
             :(refcount::RefCounter),
             :destructor,
-        ],
-        :constructors => [
-            :($(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef)),
-        ],
+        ]
     )
+
+    if !isnothing(spec.parent)
+        id = wrap_identifier(handle_by_name(spec.parent))
+        pdecl = :($id::$(remove_vk_prefix(spec.parent)))
+        insert!(d[:fields], 2, pdecl)
+        d[:constructors] = [
+            :($(remove_vk_prefix(spec.name))(vks::$(spec.name), $pdecl, refcount::RefCounter) = new(vks, $id, refcount, undef)),
+        ]
+    else
+        d[:constructors] = [
+            :($(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef)),
+        ]
+    end
+
+    d
 end
 
 function destructor(handle::SpecHandle; with_func_ptr=false)

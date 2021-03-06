@@ -22,7 +22,28 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
                 refcount::RefCounter
                 destructor
                 Instance(vks::VkInstance, refcount::RefCounter) = new(vks, refcount, undef)
-            end))
+            end
+        ))
+
+        test_wrap_handle(:VkPhysicalDevice, :(
+            mutable struct PhysicalDevice <: Handle
+                vks::VkPhysicalDevice
+                instance::Instance
+                refcount::RefCounter
+                destructor
+                PhysicalDevice(vks::VkPhysicalDevice, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
+            end
+        ))
+
+        test_wrap_handle(:VkDevice, :(
+            mutable struct Device <: Handle
+                vks::VkDevice
+                physical_device::PhysicalDevice
+                refcount::RefCounter
+                destructor
+                Device(vks::VkDevice, physical_device::PhysicalDevice, refcount::RefCounter) = new(vks, physical_device, refcount, undef)
+            end
+        ))
     end
 
     @testset "Structs" begin

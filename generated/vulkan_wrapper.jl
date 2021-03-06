@@ -3539,25 +3539,49 @@ struct BaseOutStructure <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-mutable struct DebugUtilsMessengerEXT <: Handle
-    vks::VkDebugUtilsMessengerEXT
+mutable struct Instance <: Handle
+    vks::VkInstance
     refcount::RefCounter
     destructor
-    DebugUtilsMessengerEXT(vks::VkDebugUtilsMessengerEXT, refcount::RefCounter) = new(vks, refcount, undef)
+    Instance(vks::VkInstance, refcount::RefCounter) = new(vks, refcount, undef)
+end
+
+mutable struct DebugUtilsMessengerEXT <: Handle
+    vks::VkDebugUtilsMessengerEXT
+    instance::Instance
+    refcount::RefCounter
+    destructor
+    DebugUtilsMessengerEXT(vks::VkDebugUtilsMessengerEXT, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
 end
 
 mutable struct DebugReportCallbackEXT <: Handle
     vks::VkDebugReportCallbackEXT
+    instance::Instance
     refcount::RefCounter
     destructor
-    DebugReportCallbackEXT(vks::VkDebugReportCallbackEXT, refcount::RefCounter) = new(vks, refcount, undef)
+    DebugReportCallbackEXT(vks::VkDebugReportCallbackEXT, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
+end
+
+mutable struct SurfaceKHR <: Handle
+    vks::VkSurfaceKHR
+    instance::Instance
+    refcount::RefCounter
+    destructor
+    SurfaceKHR(vks::VkSurfaceKHR, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
+end
+
+struct PhysicalDeviceSurfaceInfo2KHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceSurfaceInfo2KHR
+    deps::Vector{Any}
+    surface::SurfaceKHR
 end
 
 mutable struct SwapchainKHR <: Handle
     vks::VkSwapchainKHR
+    surface::SurfaceKHR
     refcount::RefCounter
     destructor
-    SwapchainKHR(vks::VkSwapchainKHR, refcount::RefCounter) = new(vks, refcount, undef)
+    SwapchainKHR(vks::VkSwapchainKHR, surface::SurfaceKHR, refcount::RefCounter) = new(vks, surface, refcount, undef)
 end
 
 struct BindImageMemorySwapchainInfoKHR <: VulkanStruct{true}
@@ -3572,19 +3596,6 @@ struct ImageSwapchainCreateInfoKHR <: VulkanStruct{true}
     swapchain::OptionalPtr{SwapchainKHR}
 end
 
-mutable struct SurfaceKHR <: Handle
-    vks::VkSurfaceKHR
-    refcount::RefCounter
-    destructor
-    SurfaceKHR(vks::VkSurfaceKHR, refcount::RefCounter) = new(vks, refcount, undef)
-end
-
-struct PhysicalDeviceSurfaceInfo2KHR <: VulkanStruct{true}
-    vks::VkPhysicalDeviceSurfaceInfo2KHR
-    deps::Vector{Any}
-    surface::SurfaceKHR
-end
-
 struct SwapchainCreateInfoKHR <: VulkanStruct{true}
     vks::VkSwapchainCreateInfoKHR
     deps::Vector{Any}
@@ -3592,41 +3603,20 @@ struct SwapchainCreateInfoKHR <: VulkanStruct{true}
     old_swapchain::OptionalPtr{SwapchainKHR}
 end
 
-mutable struct DisplayModeKHR <: Handle
-    vks::VkDisplayModeKHR
+mutable struct PhysicalDevice <: Handle
+    vks::VkPhysicalDevice
+    instance::Instance
     refcount::RefCounter
     destructor
-    DisplayModeKHR(vks::VkDisplayModeKHR, refcount::RefCounter) = new(vks, refcount, undef)
-end
-
-struct DisplayPlaneInfo2KHR <: VulkanStruct{true}
-    vks::VkDisplayPlaneInfo2KHR
-    deps::Vector{Any}
-    mode::DisplayModeKHR
-end
-
-struct DisplaySurfaceCreateInfoKHR <: VulkanStruct{true}
-    vks::VkDisplaySurfaceCreateInfoKHR
-    deps::Vector{Any}
-    display_mode::DisplayModeKHR
-end
-
-struct DisplayModePropertiesKHR <: ReturnedOnly
-    display_mode::DisplayModeKHR
-    parameters::DisplayModeParametersKHR
-end
-
-struct DisplayModeProperties2KHR <: ReturnedOnly
-    s_type::VkStructureType
-    p_next::Ptr{Cvoid}
-    display_mode_properties::DisplayModePropertiesKHR
+    PhysicalDevice(vks::VkPhysicalDevice, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
 end
 
 mutable struct DisplayKHR <: Handle
     vks::VkDisplayKHR
+    physical_device::PhysicalDevice
     refcount::RefCounter
     destructor
-    DisplayKHR(vks::VkDisplayKHR, refcount::RefCounter) = new(vks, refcount, undef)
+    DisplayKHR(vks::VkDisplayKHR, physical_device::PhysicalDevice, refcount::RefCounter) = new(vks, physical_device, refcount, undef)
 end
 
 struct DisplayPlanePropertiesKHR <: ReturnedOnly
@@ -3656,18 +3646,59 @@ struct DisplayProperties2KHR <: ReturnedOnly
     display_properties::DisplayPropertiesKHR
 end
 
-mutable struct PrivateDataSlotEXT <: Handle
-    vks::VkPrivateDataSlotEXT
+mutable struct DisplayModeKHR <: Handle
+    vks::VkDisplayModeKHR
+    display::DisplayKHR
     refcount::RefCounter
     destructor
-    PrivateDataSlotEXT(vks::VkPrivateDataSlotEXT, refcount::RefCounter) = new(vks, refcount, undef)
+    DisplayModeKHR(vks::VkDisplayModeKHR, display::DisplayKHR, refcount::RefCounter) = new(vks, display, refcount, undef)
+end
+
+struct DisplayPlaneInfo2KHR <: VulkanStruct{true}
+    vks::VkDisplayPlaneInfo2KHR
+    deps::Vector{Any}
+    mode::DisplayModeKHR
+end
+
+struct DisplaySurfaceCreateInfoKHR <: VulkanStruct{true}
+    vks::VkDisplaySurfaceCreateInfoKHR
+    deps::Vector{Any}
+    display_mode::DisplayModeKHR
+end
+
+struct DisplayModePropertiesKHR <: ReturnedOnly
+    display_mode::DisplayModeKHR
+    parameters::DisplayModeParametersKHR
+end
+
+struct DisplayModeProperties2KHR <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    display_mode_properties::DisplayModePropertiesKHR
+end
+
+mutable struct Device <: Handle
+    vks::VkDevice
+    physical_device::PhysicalDevice
+    refcount::RefCounter
+    destructor
+    Device(vks::VkDevice, physical_device::PhysicalDevice, refcount::RefCounter) = new(vks, physical_device, refcount, undef)
+end
+
+mutable struct PrivateDataSlotEXT <: Handle
+    vks::VkPrivateDataSlotEXT
+    device::Device
+    refcount::RefCounter
+    destructor
+    PrivateDataSlotEXT(vks::VkPrivateDataSlotEXT, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct DeferredOperationKHR <: Handle
     vks::VkDeferredOperationKHR
+    device::Device
     refcount::RefCounter
     destructor
-    DeferredOperationKHR(vks::VkDeferredOperationKHR, refcount::RefCounter) = new(vks, refcount, undef)
+    DeferredOperationKHR(vks::VkDeferredOperationKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct DeferredOperationInfoKHR <: VulkanStruct{true}
@@ -3678,16 +3709,18 @@ end
 
 mutable struct PerformanceConfigurationINTEL <: Handle
     vks::VkPerformanceConfigurationINTEL
+    device::Device
     refcount::RefCounter
     destructor
-    PerformanceConfigurationINTEL(vks::VkPerformanceConfigurationINTEL, refcount::RefCounter) = new(vks, refcount, undef)
+    PerformanceConfigurationINTEL(vks::VkPerformanceConfigurationINTEL, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct AccelerationStructureKHR <: Handle
     vks::VkAccelerationStructureKHR
+    device::Device
     refcount::RefCounter
     destructor
-    AccelerationStructureKHR(vks::VkAccelerationStructureKHR, refcount::RefCounter) = new(vks, refcount, undef)
+    AccelerationStructureKHR(vks::VkAccelerationStructureKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct CopyMemoryToAccelerationStructureInfoKHR <: VulkanStruct{true}
@@ -3730,9 +3763,10 @@ end
 
 mutable struct ValidationCacheEXT <: Handle
     vks::VkValidationCacheEXT
+    device::Device
     refcount::RefCounter
     destructor
-    ValidationCacheEXT(vks::VkValidationCacheEXT, refcount::RefCounter) = new(vks, refcount, undef)
+    ValidationCacheEXT(vks::VkValidationCacheEXT, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct ShaderModuleValidationCacheCreateInfoEXT <: VulkanStruct{true}
@@ -3743,9 +3777,10 @@ end
 
 mutable struct SamplerYcbcrConversion <: Handle
     vks::VkSamplerYcbcrConversion
+    device::Device
     refcount::RefCounter
     destructor
-    SamplerYcbcrConversion(vks::VkSamplerYcbcrConversion, refcount::RefCounter) = new(vks, refcount, undef)
+    SamplerYcbcrConversion(vks::VkSamplerYcbcrConversion, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct SamplerYcbcrConversionInfo <: VulkanStruct{true}
@@ -3756,30 +3791,34 @@ end
 
 mutable struct DescriptorUpdateTemplate <: Handle
     vks::VkDescriptorUpdateTemplate
+    device::Device
     refcount::RefCounter
     destructor
-    DescriptorUpdateTemplate(vks::VkDescriptorUpdateTemplate, refcount::RefCounter) = new(vks, refcount, undef)
+    DescriptorUpdateTemplate(vks::VkDescriptorUpdateTemplate, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct IndirectCommandsLayoutNV <: Handle
     vks::VkIndirectCommandsLayoutNV
+    device::Device
     refcount::RefCounter
     destructor
-    IndirectCommandsLayoutNV(vks::VkIndirectCommandsLayoutNV, refcount::RefCounter) = new(vks, refcount, undef)
+    IndirectCommandsLayoutNV(vks::VkIndirectCommandsLayoutNV, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct PipelineCache <: Handle
     vks::VkPipelineCache
+    device::Device
     refcount::RefCounter
     destructor
-    PipelineCache(vks::VkPipelineCache, refcount::RefCounter) = new(vks, refcount, undef)
+    PipelineCache(vks::VkPipelineCache, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct RenderPass <: Handle
     vks::VkRenderPass
+    device::Device
     refcount::RefCounter
     destructor
-    RenderPass(vks::VkRenderPass, refcount::RefCounter) = new(vks, refcount, undef)
+    RenderPass(vks::VkRenderPass, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct FramebufferCreateInfo <: VulkanStruct{true}
@@ -3790,9 +3829,10 @@ end
 
 mutable struct Framebuffer <: Handle
     vks::VkFramebuffer
+    device::Device
     refcount::RefCounter
     destructor
-    Framebuffer(vks::VkFramebuffer, refcount::RefCounter) = new(vks, refcount, undef)
+    Framebuffer(vks::VkFramebuffer, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct RenderPassBeginInfo <: VulkanStruct{true}
@@ -3811,23 +3851,26 @@ end
 
 mutable struct QueryPool <: Handle
     vks::VkQueryPool
+    device::Device
     refcount::RefCounter
     destructor
-    QueryPool(vks::VkQueryPool, refcount::RefCounter) = new(vks, refcount, undef)
+    QueryPool(vks::VkQueryPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct Event <: Handle
     vks::VkEvent
+    device::Device
     refcount::RefCounter
     destructor
-    Event(vks::VkEvent, refcount::RefCounter) = new(vks, refcount, undef)
+    Event(vks::VkEvent, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct Semaphore <: Handle
     vks::VkSemaphore
+    device::Device
     refcount::RefCounter
     destructor
-    Semaphore(vks::VkSemaphore, refcount::RefCounter) = new(vks, refcount, undef)
+    Semaphore(vks::VkSemaphore, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct SemaphoreSignalInfo <: VulkanStruct{true}
@@ -3862,9 +3905,10 @@ end
 
 mutable struct Fence <: Handle
     vks::VkFence
+    device::Device
     refcount::RefCounter
     destructor
-    Fence(vks::VkFence, refcount::RefCounter) = new(vks, refcount, undef)
+    Fence(vks::VkFence, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct AcquireNextImageInfoKHR <: VulkanStruct{true}
@@ -3901,9 +3945,10 @@ end
 
 mutable struct DescriptorPool <: Handle
     vks::VkDescriptorPool
+    device::Device
     refcount::RefCounter
     destructor
-    DescriptorPool(vks::VkDescriptorPool, refcount::RefCounter) = new(vks, refcount, undef)
+    DescriptorPool(vks::VkDescriptorPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct DescriptorSetAllocateInfo <: VulkanStruct{true}
@@ -3912,32 +3957,36 @@ struct DescriptorSetAllocateInfo <: VulkanStruct{true}
     descriptor_pool::DescriptorPool
 end
 
-mutable struct DescriptorSetLayout <: Handle
-    vks::VkDescriptorSetLayout
-    refcount::RefCounter
-    destructor
-    DescriptorSetLayout(vks::VkDescriptorSetLayout, refcount::RefCounter) = new(vks, refcount, undef)
-end
-
 mutable struct DescriptorSet <: Handle
     vks::VkDescriptorSet
+    descriptor_pool::DescriptorPool
     refcount::RefCounter
     destructor
-    DescriptorSet(vks::VkDescriptorSet, refcount::RefCounter) = new(vks, refcount, undef)
+    DescriptorSet(vks::VkDescriptorSet, descriptor_pool::DescriptorPool, refcount::RefCounter) = new(vks, descriptor_pool, refcount, undef)
+end
+
+mutable struct DescriptorSetLayout <: Handle
+    vks::VkDescriptorSetLayout
+    device::Device
+    refcount::RefCounter
+    destructor
+    DescriptorSetLayout(vks::VkDescriptorSetLayout, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct Sampler <: Handle
     vks::VkSampler
+    device::Device
     refcount::RefCounter
     destructor
-    Sampler(vks::VkSampler, refcount::RefCounter) = new(vks, refcount, undef)
+    Sampler(vks::VkSampler, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct PipelineLayout <: Handle
     vks::VkPipelineLayout
+    device::Device
     refcount::RefCounter
     destructor
-    PipelineLayout(vks::VkPipelineLayout, refcount::RefCounter) = new(vks, refcount, undef)
+    PipelineLayout(vks::VkPipelineLayout, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct DescriptorUpdateTemplateCreateInfo <: VulkanStruct{true}
@@ -3949,9 +3998,10 @@ end
 
 mutable struct Pipeline <: Handle
     vks::VkPipeline
+    device::Device
     refcount::RefCounter
     destructor
-    Pipeline(vks::VkPipeline, refcount::RefCounter) = new(vks, refcount, undef)
+    Pipeline(vks::VkPipeline, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct PipelineExecutableInfoKHR <: VulkanStruct{true}
@@ -4004,9 +4054,10 @@ end
 
 mutable struct ShaderModule <: Handle
     vks::VkShaderModule
+    device::Device
     refcount::RefCounter
     destructor
-    ShaderModule(vks::VkShaderModule, refcount::RefCounter) = new(vks, refcount, undef)
+    ShaderModule(vks::VkShaderModule, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct PipelineShaderStageCreateInfo <: VulkanStruct{true}
@@ -4017,9 +4068,10 @@ end
 
 mutable struct ImageView <: Handle
     vks::VkImageView
+    device::Device
     refcount::RefCounter
     destructor
-    ImageView(vks::VkImageView, refcount::RefCounter) = new(vks, refcount, undef)
+    ImageView(vks::VkImageView, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct ImageViewHandleInfoNVX <: VulkanStruct{true}
@@ -4037,9 +4089,10 @@ end
 
 mutable struct Image <: Handle
     vks::VkImage
+    device::Device
     refcount::RefCounter
     destructor
-    Image(vks::VkImage, refcount::RefCounter) = new(vks, refcount, undef)
+    Image(vks::VkImage, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct ImageSparseMemoryRequirementsInfo2 <: VulkanStruct{true}
@@ -4074,16 +4127,18 @@ end
 
 mutable struct BufferView <: Handle
     vks::VkBufferView
+    device::Device
     refcount::RefCounter
     destructor
-    BufferView(vks::VkBufferView, refcount::RefCounter) = new(vks, refcount, undef)
+    BufferView(vks::VkBufferView, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 mutable struct Buffer <: Handle
     vks::VkBuffer
+    device::Device
     refcount::RefCounter
     destructor
-    Buffer(vks::VkBuffer, refcount::RefCounter) = new(vks, refcount, undef)
+    Buffer(vks::VkBuffer, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct BufferDeviceAddressInfo <: VulkanStruct{true}
@@ -4147,9 +4202,10 @@ end
 
 mutable struct CommandPool <: Handle
     vks::VkCommandPool
+    device::Device
     refcount::RefCounter
     destructor
-    CommandPool(vks::VkCommandPool, refcount::RefCounter) = new(vks, refcount, undef)
+    CommandPool(vks::VkCommandPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct CommandBufferAllocateInfo <: VulkanStruct{true}
@@ -4158,11 +4214,20 @@ struct CommandBufferAllocateInfo <: VulkanStruct{true}
     command_pool::CommandPool
 end
 
-mutable struct DeviceMemory <: Handle
-    vks::VkDeviceMemory
+mutable struct CommandBuffer <: Handle
+    vks::VkCommandBuffer
+    command_pool::CommandPool
     refcount::RefCounter
     destructor
-    DeviceMemory(vks::VkDeviceMemory, refcount::RefCounter) = new(vks, refcount, undef)
+    CommandBuffer(vks::VkCommandBuffer, command_pool::CommandPool, refcount::RefCounter) = new(vks, command_pool, refcount, undef)
+end
+
+mutable struct DeviceMemory <: Handle
+    vks::VkDeviceMemory
+    device::Device
+    refcount::RefCounter
+    destructor
+    DeviceMemory(vks::VkDeviceMemory, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 struct DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct{true}
@@ -4210,39 +4275,12 @@ struct MemoryGetWin32HandleInfoKHR <: VulkanStruct{true}
     memory::DeviceMemory
 end
 
-mutable struct CommandBuffer <: Handle
-    vks::VkCommandBuffer
-    refcount::RefCounter
-    destructor
-    CommandBuffer(vks::VkCommandBuffer, refcount::RefCounter) = new(vks, refcount, undef)
-end
-
 mutable struct Queue <: Handle
     vks::VkQueue
+    device::Device
     refcount::RefCounter
     destructor
-    Queue(vks::VkQueue, refcount::RefCounter) = new(vks, refcount, undef)
-end
-
-mutable struct Device <: Handle
-    vks::VkDevice
-    refcount::RefCounter
-    destructor
-    Device(vks::VkDevice, refcount::RefCounter) = new(vks, refcount, undef)
-end
-
-mutable struct PhysicalDevice <: Handle
-    vks::VkPhysicalDevice
-    refcount::RefCounter
-    destructor
-    PhysicalDevice(vks::VkPhysicalDevice, refcount::RefCounter) = new(vks, refcount, undef)
-end
-
-mutable struct Instance <: Handle
-    vks::VkInstance
-    refcount::RefCounter
-    destructor
-    Instance(vks::VkInstance, refcount::RefCounter) = new(vks, refcount, undef)
+    Queue(vks::VkQueue, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
 

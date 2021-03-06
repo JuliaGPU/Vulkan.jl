@@ -18,13 +18,16 @@ function try_destroy(f, handle::Handle)
     end
 end
 
-function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor)
-    handle = T(ptr, RefCounter(UInt(1)))
+function init_handle!(handle::Handle, destructor)
     handle.destructor = () -> try_destroy(destructor, handle)
     finalizer(x -> handle.destructor(), handle)
 end
 
+function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor)
+    init_handle!(T(ptr, RefCounter(UInt(1))), destructor)
+end
+
 function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent::Handle)
     increment_refcount!(parent)
-    finalizer(x -> parent.destructor(), T(ptr, destructor))
+    finalizer(x -> parent.destructor(), init_handle!(T(ptr, parent, RefCounter(UInt(1))), destructor))
 end
