@@ -5224,7 +5224,6 @@ destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::Function
 function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
     pSwapchain = Ref{VkSwapchainKHR}()
     @check vkCreateSwapchainKHR(device, create_info, allocator, pSwapchain, fun_ptr_create)
-    parent = getproperty(create_info, :surface)
     SwapchainKHR(pSwapchain[], (x->destroy_swapchain_khr(device, x, fun_ptr_destroy; allocator)), getproperty(create_info, :surface))
 end
 
@@ -5265,7 +5264,6 @@ destroy_surface_khr(instance::Instance, surface::SurfaceKHR, fun_ptr::FunctionPt
 function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
     @check vkCreateSharedSwapchainsKHR(device, pointer_length(create_infos), create_infos, allocator, pSwapchains, fun_ptr_create)
-    parent = getproperty(create_infos, :surface)
     SwapchainKHR.(pSwapchains, (x->destroy_swapchain_khr(device, x, fun_ptr_destroy; allocator)), getproperty(create_infos, :surface))
 end
 
@@ -5436,7 +5434,6 @@ free_command_buffers(device::Device, command_pool::CommandPool, command_buffers:
 function allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo, fun_ptr_create::FunctionPtr)::Result{Vector{CommandBuffer}, VulkanError}
     pCommandBuffers = Vector{VkCommandBuffer}(undef, allocate_info.vks.commandBufferCount)
     @check vkAllocateCommandBuffers(device, allocate_info, pCommandBuffers, fun_ptr_create)
-    parent = getproperty(allocate_info, :command_pool)
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
@@ -5479,7 +5476,6 @@ free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor
 function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo, fun_ptr_create::FunctionPtr)::Result{Vector{DescriptorSet}, VulkanError}
     pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
     @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets, fun_ptr_create)
-    parent = getproperty(allocate_info, :descriptor_pool)
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
@@ -10146,7 +10142,6 @@ destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NUL
 function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
     pSwapchain = Ref{VkSwapchainKHR}()
     @check vkCreateSwapchainKHR(device, create_info, allocator, pSwapchain)
-    parent = getproperty(create_info, :surface)
     SwapchainKHR(pSwapchain[], (x->destroy_swapchain_khr(device, x; allocator)), getproperty(create_info, :surface))
 end
 
@@ -10187,7 +10182,6 @@ destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL)
 function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
     @check vkCreateSharedSwapchainsKHR(device, pointer_length(create_infos), create_infos, allocator, pSwapchains)
-    parent = getproperty(create_infos, :surface)
     SwapchainKHR.(pSwapchains, (x->destroy_swapchain_khr(device, x; allocator)), getproperty(create_infos, :surface))
 end
 
@@ -10358,7 +10352,6 @@ free_command_buffers(device::Device, command_pool::CommandPool, command_buffers:
 function allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo)::Result{Vector{CommandBuffer}, VulkanError}
     pCommandBuffers = Vector{VkCommandBuffer}(undef, allocate_info.vks.commandBufferCount)
     @check vkAllocateCommandBuffers(device, allocate_info, pCommandBuffers)
-    parent = getproperty(allocate_info, :command_pool)
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
@@ -10401,7 +10394,6 @@ free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor
 function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet}, VulkanError}
     pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
     @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
-    parent = getproperty(allocate_info, :descriptor_pool)
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
