@@ -152,11 +152,10 @@ function wrap_implicit_return(spec::SpecFunc, args...; kwargs...)
 end
 
 function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex, with_func_ptr)
-    ret = @match ex begin
+    @match ex begin
         :($f($v[])) => :($f($v[], $(destructor(handle; with_func_ptr)), $parent_ex))
         :($f.($v)) => :($f.($v, $(destructor(handle; with_func_ptr)), $parent_ex))
     end
-    concat_exs(filter(!isnothing, [assign_parent(parent_ex), ret])...)
 end
 
 function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, with_func_ptr)

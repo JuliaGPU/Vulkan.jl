@@ -180,7 +180,6 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
             function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet},VulkanError}
                 pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
                 @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
-                parent = getproperty(allocate_info, :descriptor_pool)
                 DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
             end
         ))
