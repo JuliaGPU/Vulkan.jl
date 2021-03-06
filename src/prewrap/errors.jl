@@ -26,6 +26,7 @@ macro check(expr, msg)
         if Int32(_return_code) < 0
             return VulkanError($msg, _return_code)
         end
+        _return_code
     end)
 end
 
