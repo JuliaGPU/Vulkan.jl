@@ -8,6 +8,7 @@ test_bitmask(args...) = test_spec(bitmask_by_name, args...)
 test_enum(args...) = test_spec(enum_by_name, args...)
 test_constant(args...) = test_spec(constant_by_name, args...)
 test_struct(name, type, is_returnedonly, extends, members) = test_spec(struct_by_name, name, type, is_returnedonly, extends, StructVector(map(x -> SpecStructMember(name, x...), members)))
+test_union(name, types, selectors, is_returnedonly) = test_spec(union_by_name, name, types, selectors, is_returnedonly)
 test_func(name, type, return_type, render_pass_compatibility, queue_compatibility, params, success_codes, error_codes) = test_spec(func_by_name, name, type, return_type, render_pass_compatibility, queue_compatibility, StructVector(map(x -> SpecFuncParam(name, x...), params)), success_codes, error_codes)
 
 test_create_func(name, handle, _struct, index, batch) = test_spec(x -> spec_by_field(spec_create_funcs, :func, x), func_by_name(name), handle, _struct, func_by_name(name).params[index], batch)
@@ -160,6 +161,36 @@ test_destroy_func(name, handle, index, batch) = test_spec(x -> spec_by_field(spe
                     [],
                     [(:matrix, :(NTuple{3, NTuple{4, Float32}}), false, false, REQUIRED, nothing, [])]
             )
+    end
+
+    @testset "Unions" begin
+        test_union(:VkClearColorValue,
+                   [
+                       :(NTuple{4,Float32}),
+                       :(NTuple{4,Int32}),
+                       :(NTuple{4,UInt32}),
+                   ],
+                   [],
+                   false,
+        )
+
+        test_union(:VkPerformanceValueDataINTEL,
+            [
+                :UInt32,
+                :UInt64,
+                :Float32,
+                :VkBool32,
+                :Cstring,
+            ],
+            [
+                :VK_PERFORMANCE_VALUE_TYPE_UINT32_INTEL,
+                :VK_PERFORMANCE_VALUE_TYPE_UINT64_INTEL,
+                :VK_PERFORMANCE_VALUE_TYPE_FLOAT_INTEL,
+                :VK_PERFORMANCE_VALUE_TYPE_BOOL_INTEL,
+                :VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL,
+            ],
+            false,
+        )
     end
 
     @testset "Functions" begin

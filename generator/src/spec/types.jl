@@ -150,6 +150,20 @@ struct SpecStruct <: Spec
 end
 
 """
+Specification for a union type.
+"""
+struct SpecUnion <: Spec
+    "Name of the union type."
+    name::Symbol
+    "Possible types for the union."
+    types::Vector{ExprLike}
+    "Selector values, if any, to determine the type of the union in a given context (function call for example)."
+    selectors::Vector{Symbol}
+    "Whether the type is only returned by Vulkan functions (and never requested as input)."
+    is_returnedonly::Bool
+end
+
+"""
 Specification for a constant.
 """
 struct SpecConstant <: Spec

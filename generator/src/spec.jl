@@ -56,6 +56,7 @@ export
         default,
         func_by_name,
         struct_by_name,
+        union_by_name,
         handle_by_name,
         bitmask_by_name,
         flag_by_name,

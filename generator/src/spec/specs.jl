@@ -81,6 +81,12 @@ function SpecStruct(node::Node)
     SpecStruct(Symbol(name_str), type, returnedonly, extends, StructVector(SpecStructMember.(findall("./member", node))))
 end
 
+function SpecUnion(node::Node)
+    members = findall("./member", node)
+    selectors = getattr.(members, "selection")
+    SpecUnion(getattr(node, "name"), extract_type.(members), filter(!isnothing, selectors), haskey(node, "returnedonly"))
+end
+
 SpecFuncParam(node::Node) = SpecFuncParam(parent_name(node), extract_identifier(node), extract_type(node), is_constant(node), externsync(node), PARAM_REQUIREMENT(node), len(node), arglen(node))
 
 function SpecFunc(node::Node)
@@ -308,7 +314,12 @@ const spec_funcs = enabled_specs(StructVector(SpecFunc.(findall("//command[not(@
 """
 Specification structures.
 """
-const spec_structs = enabled_specs(StructVector(SpecStruct.(findall("//type[(@category = 'union' or @category = 'struct') and not(@alias)]", xroot))))
+const spec_structs = enabled_specs(StructVector(SpecStruct.(findall("//type[@category = 'struct' and not(@alias)]", xroot))))
+
+"""
+Specification for union types.
+"""
+const spec_unions = enabled_specs(StructVector(SpecUnion.(findall("//type[@category = 'union' and not(@alias)]", xroot))))
 
 """
 Specification handle types.
@@ -361,6 +372,8 @@ spec_by_name(specs, name) = spec_by_field(specs, :name, name)
 func_by_name(name) = spec_by_name(spec_funcs, name)
 
 struct_by_name(name) = spec_by_name(spec_structs, name)
+
+union_by_name(name) = spec_by_name(spec_unions, name)
 
 handle_by_name(name) = spec_by_name(spec_handles, name)
 
