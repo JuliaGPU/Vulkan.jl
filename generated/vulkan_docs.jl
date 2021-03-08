@@ -1642,13 +1642,13 @@ Arguments:
 cmd_fill_buffer
 
 """
-    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::ClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange})::Cvoid
+    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::VkClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `image::Image`
 - `image_layout::VkImageLayout`
-- `color::ClearColorValue`
+- `color::VkClearColorValue`
 - `ranges::AbstractArray{<:ImageSubresourceRange}`
 
 """
@@ -6262,28 +6262,17 @@ Arguments:
 CommandBufferBeginInfo
 
 """
-    RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, render_area::Rect2D, clear_values::AbstractArray{<:ClearValue}; next = C_NULL)
+    RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, render_area::Rect2D, clear_values::AbstractArray{<:VkClearValue}; next = C_NULL)
 
 Arguments:
 - `render_pass::RenderPass`
 - `framebuffer::Framebuffer`
 - `render_area::Rect2D`
-- `clear_values::AbstractArray{<:ClearValue}`
+- `clear_values::AbstractArray{<:VkClearValue}`
 - `next`: defaults to `C_NULL`
 
 """
 RenderPassBeginInfo
-
-"""
-    ClearColorValue(float32::NTuple{4, Float32}, int32::NTuple{4, Int32}, uint32::NTuple{4, UInt32})
-
-Arguments:
-- `float32::NTuple{4, Float32}`
-- `int32::NTuple{4, Int32}`
-- `uint32::NTuple{4, UInt32}`
-
-"""
-ClearColorValue
 
 """
     ClearDepthStencilValue(depth::Real, stencil::Integer)
@@ -6296,22 +6285,12 @@ Arguments:
 ClearDepthStencilValue
 
 """
-    ClearValue(color::ClearColorValue, depth_stencil::ClearDepthStencilValue)
-
-Arguments:
-- `color::ClearColorValue`
-- `depth_stencil::ClearDepthStencilValue`
-
-"""
-ClearValue
-
-"""
-    ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::ClearValue)
+    ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::VkClearValue)
 
 Arguments:
 - `aspect_mask::ImageAspectFlag`
 - `color_attachment::Integer`
-- `clear_value::ClearValue`
+- `clear_value::VkClearValue`
 
 """
 ClearAttachment
@@ -9638,20 +9617,6 @@ Arguments:
 QueryPoolPerformanceCreateInfoKHR
 
 """
-    PerformanceCounterResultKHR(int32::Integer, int64::Integer, uint32::Integer, uint64::Integer, float32::Real, float64::Real)
-
-Arguments:
-- `int32::Integer`
-- `int64::Integer`
-- `uint32::Integer`
-- `uint64::Integer`
-- `float32::Real`
-- `float64::Real`
-
-"""
-PerformanceCounterResultKHR
-
-"""
     AcquireProfilingLockInfoKHR(timeout::Integer; next = C_NULL, flags = 0)
 
 Arguments:
@@ -9714,24 +9679,11 @@ Arguments:
 PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
 
 """
-    PerformanceValueDataINTEL(value32::Integer, value64::Integer, value_float::Real, value_bool::Bool, value_string::AbstractString)
-
-Arguments:
-- `value32::Integer`
-- `value64::Integer`
-- `value_float::Real`
-- `value_bool::Bool`
-- `value_string::AbstractString`
-
-"""
-PerformanceValueDataINTEL
-
-"""
-    PerformanceValueINTEL(type::VkPerformanceValueTypeINTEL, data::PerformanceValueDataINTEL)
+    PerformanceValueINTEL(type::VkPerformanceValueTypeINTEL, data::VkPerformanceValueDataINTEL)
 
 Arguments:
 - `type::VkPerformanceValueTypeINTEL`
-- `data::PerformanceValueDataINTEL`
+- `data::VkPerformanceValueDataINTEL`
 
 """
 PerformanceValueINTEL
@@ -10090,10 +10042,10 @@ Arguments:
 PhysicalDeviceCoherentMemoryFeaturesAMD
 
 """
-    SamplerCustomBorderColorCreateInfoEXT(custom_border_color::ClearColorValue, format::VkFormat; next = C_NULL)
+    SamplerCustomBorderColorCreateInfoEXT(custom_border_color::VkClearColorValue, format::VkFormat; next = C_NULL)
 
 Arguments:
-- `custom_border_color::ClearColorValue`
+- `custom_border_color::VkClearColorValue`
 - `format::VkFormat`
 - `next`: defaults to `C_NULL`
 
@@ -10112,31 +10064,11 @@ Arguments:
 PhysicalDeviceCustomBorderColorFeaturesEXT
 
 """
-    DeviceOrHostAddressKHR(device_address::Integer, host_address::Ptr{Cvoid})
-
-Arguments:
-- `device_address::Integer`
-- `host_address::Ptr{Cvoid}`
-
-"""
-DeviceOrHostAddressKHR
-
-"""
-    DeviceOrHostAddressConstKHR(device_address::Integer, host_address::Ptr{Cvoid})
-
-Arguments:
-- `device_address::Integer`
-- `host_address::Ptr{Cvoid}`
-
-"""
-DeviceOrHostAddressConstKHR
-
-"""
-    AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::DeviceOrHostAddressConstKHR, vertex_stride::Integer, index_type::VkIndexType; next = C_NULL, index_data = 0, transform_data = 0)
+    AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, index_type::VkIndexType; next = C_NULL, index_data = 0, transform_data = 0)
 
 Arguments:
 - `vertex_format::VkFormat`
-- `vertex_data::DeviceOrHostAddressConstKHR`
+- `vertex_data::VkDeviceOrHostAddressConstKHR`
 - `vertex_stride::Integer`
 - `index_type::VkIndexType`
 - `next`: defaults to `C_NULL`
@@ -10147,10 +10079,10 @@ Arguments:
 AccelerationStructureGeometryTrianglesDataKHR
 
 """
-    AccelerationStructureGeometryAabbsDataKHR(data::DeviceOrHostAddressConstKHR, stride::Integer; next = C_NULL)
+    AccelerationStructureGeometryAabbsDataKHR(data::VkDeviceOrHostAddressConstKHR, stride::Integer; next = C_NULL)
 
 Arguments:
-- `data::DeviceOrHostAddressConstKHR`
+- `data::VkDeviceOrHostAddressConstKHR`
 - `stride::Integer`
 - `next`: defaults to `C_NULL`
 
@@ -10158,33 +10090,22 @@ Arguments:
 AccelerationStructureGeometryAabbsDataKHR
 
 """
-    AccelerationStructureGeometryInstancesDataKHR(array_of_pointers::Bool, data::DeviceOrHostAddressConstKHR; next = C_NULL)
+    AccelerationStructureGeometryInstancesDataKHR(array_of_pointers::Bool, data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
 
 Arguments:
 - `array_of_pointers::Bool`
-- `data::DeviceOrHostAddressConstKHR`
+- `data::VkDeviceOrHostAddressConstKHR`
 - `next`: defaults to `C_NULL`
 
 """
 AccelerationStructureGeometryInstancesDataKHR
 
 """
-    AccelerationStructureGeometryDataKHR(triangles::AccelerationStructureGeometryTrianglesDataKHR, aabbs::AccelerationStructureGeometryAabbsDataKHR, instances::AccelerationStructureGeometryInstancesDataKHR)
-
-Arguments:
-- `triangles::AccelerationStructureGeometryTrianglesDataKHR`
-- `aabbs::AccelerationStructureGeometryAabbsDataKHR`
-- `instances::AccelerationStructureGeometryInstancesDataKHR`
-
-"""
-AccelerationStructureGeometryDataKHR
-
-"""
-    AccelerationStructureGeometryKHR(geometry_type::VkGeometryTypeKHR, geometry::AccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
+    AccelerationStructureGeometryKHR(geometry_type::VkGeometryTypeKHR, geometry::VkAccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
 
 Arguments:
 - `geometry_type::VkGeometryTypeKHR`
-- `geometry::AccelerationStructureGeometryDataKHR`
+- `geometry::VkAccelerationStructureGeometryDataKHR`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -10192,7 +10113,7 @@ Arguments:
 AccelerationStructureGeometryKHR
 
 """
-    AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, update::Bool, dst_acceleration_structure::AccelerationStructureKHR, geometry_array_of_pointers::Bool, geometries::AccelerationStructureGeometryKHR, scratch_data::DeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, geometry_count = 0)
+    AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, update::Bool, dst_acceleration_structure::AccelerationStructureKHR, geometry_array_of_pointers::Bool, geometries::AccelerationStructureGeometryKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, geometry_count = 0)
 
 Arguments:
 - `type::VkAccelerationStructureTypeKHR`
@@ -10200,7 +10121,7 @@ Arguments:
 - `dst_acceleration_structure::AccelerationStructureKHR`
 - `geometry_array_of_pointers::Bool`
 - `geometries::AccelerationStructureGeometryKHR`
-- `scratch_data::DeviceOrHostAddressKHR`
+- `scratch_data::VkDeviceOrHostAddressKHR`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 - `src_acceleration_structure`: defaults to `C_NULL`
@@ -10320,11 +10241,11 @@ Arguments:
 CopyAccelerationStructureInfoKHR
 
 """
-    CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::DeviceOrHostAddressKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::VkDeviceOrHostAddressKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
 - `src::AccelerationStructureKHR`
-- `dst::DeviceOrHostAddressKHR`
+- `dst::VkDeviceOrHostAddressKHR`
 - `mode::VkCopyAccelerationStructureModeKHR`
 - `next`: defaults to `C_NULL`
 
@@ -10332,10 +10253,10 @@ Arguments:
 CopyAccelerationStructureToMemoryInfoKHR
 
 """
-    CopyMemoryToAccelerationStructureInfoKHR(src::DeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    CopyMemoryToAccelerationStructureInfoKHR(src::VkDeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
-- `src::DeviceOrHostAddressConstKHR`
+- `src::VkDeviceOrHostAddressConstKHR`
 - `dst::AccelerationStructureKHR`
 - `mode::VkCopyAccelerationStructureModeKHR`
 - `next`: defaults to `C_NULL`
