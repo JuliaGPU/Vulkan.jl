@@ -4705,13 +4705,13 @@ cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, o
 
 cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
 
-function get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID, fun_ptr::FunctionPtr)::Result{Cvoid, VulkanError}
+function get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID, fun_ptr::FunctionPtr)::Result{vk.AHardwareBuffer, VulkanError}
     pBuffer = Ref{Ptr{AHardwareBuffer}}()
     @check vkGetMemoryAndroidHardwareBufferANDROID(device, info, pBuffer, fun_ptr)
-    from_vk(Cvoid, pBuffer[])
+    from_vk(vk.AHardwareBuffer, pBuffer[])
 end
 
-function get_android_hardware_buffer_properties_android(device::Device, buffer::Cvoid, fun_ptr::FunctionPtr)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
+function get_android_hardware_buffer_properties_android(device::Device, buffer::vk.AHardwareBuffer, fun_ptr::FunctionPtr)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
     pProperties = Ref{VkAndroidHardwareBufferPropertiesANDROID}()
     @check vkGetAndroidHardwareBufferPropertiesANDROID(device, Ref(buffer), pProperties, fun_ptr)
     from_vk(AndroidHardwareBufferPropertiesANDROID, pProperties[])
@@ -6069,7 +6069,7 @@ from_vk(T::Type{PipelineExecutablePropertiesKHR}, x::VkPipelineExecutablePropert
 
 from_vk(T::Type{PhysicalDeviceShaderSMBuiltinsPropertiesNV}, x::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV) = T(x.sType, x.pNext, x.shaderSMCount, x.shaderWarpsPerSM)
 
-from_vk(T::Type{FramebufferMixedSamplesCombinationNV}, x::VkFramebufferMixedSamplesCombinationNV) = T(x.sType, x.pNext, x.coverageReductionMode, VkSampleCountFlagBits(x.rasterizationSamples.val), x.depthStencilSamples, x.colorSamples)
+from_vk(T::Type{FramebufferMixedSamplesCombinationNV}, x::VkFramebufferMixedSamplesCombinationNV) = T(x.sType, x.pNext, x.coverageReductionMode, SampleCountFlag(UInt32(x.rasterizationSamples)), x.depthStencilSamples, x.colorSamples)
 
 from_vk(T::Type{PerformanceCounterDescriptionKHR}, x::VkPerformanceCounterDescriptionKHR) = T(x.sType, x.pNext, x.flags, from_vk(String, x.name), from_vk(String, x.category), from_vk(String, x.description))
 
@@ -6109,7 +6109,7 @@ from_vk(T::Type{PhysicalDeviceTransformFeedbackPropertiesEXT}, x::VkPhysicalDevi
 
 from_vk(T::Type{PhysicalDeviceDepthStencilResolveProperties}, x::VkPhysicalDeviceDepthStencilResolveProperties) = T(x.sType, x.pNext, x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve))
 
-from_vk(T::Type{CheckpointDataNV}, x::VkCheckpointDataNV) = T(x.sType, x.pNext, VkPipelineStageFlagBits(x.stage.val), x.pCheckpointMarker)
+from_vk(T::Type{CheckpointDataNV}, x::VkCheckpointDataNV) = T(x.sType, x.pNext, PipelineStageFlag(UInt32(x.stage)), x.pCheckpointMarker)
 
 from_vk(T::Type{QueueFamilyCheckpointPropertiesNV}, x::VkQueueFamilyCheckpointPropertiesNV) = T(x.sType, x.pNext, x.checkpointExecutionStageMask)
 
@@ -6203,7 +6203,7 @@ from_vk(T::Type{DeviceGroupPresentCapabilitiesKHR}, x::VkDeviceGroupPresentCapab
 
 from_vk(T::Type{PhysicalDeviceGroupProperties}, x::VkPhysicalDeviceGroupProperties) = T(x.sType, x.pNext, x.physicalDeviceCount, x.physicalDevices, from_vk(Bool, x.subsetAllocation))
 
-from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) = T(x.sType, x.pNext, x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, VkSurfaceTransformFlagBitsKHR(x.currentTransform.val), x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
+from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) = T(x.sType, x.pNext, x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, SurfaceTransformFlagKHR(UInt32(x.currentTransform)), x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
 
 from_vk(T::Type{PhysicalDeviceMultiviewProperties}, x::VkPhysicalDeviceMultiviewProperties) = T(x.sType, x.pNext, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex)
 
@@ -6245,7 +6245,7 @@ from_vk(T::Type{ExternalImageFormatPropertiesNV}, x::VkExternalImageFormatProper
 
 from_vk(T::Type{SurfaceFormatKHR}, x::VkSurfaceFormatKHR) = T(x.format, x.colorSpace)
 
-from_vk(T::Type{SurfaceCapabilitiesKHR}, x::VkSurfaceCapabilitiesKHR) = T(x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, VkSurfaceTransformFlagBitsKHR(x.currentTransform.val), x.supportedCompositeAlpha, x.supportedUsageFlags)
+from_vk(T::Type{SurfaceCapabilitiesKHR}, x::VkSurfaceCapabilitiesKHR) = T(x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, SurfaceTransformFlagKHR(UInt32(x.currentTransform)), x.supportedCompositeAlpha, x.supportedUsageFlags)
 
 from_vk(T::Type{DisplayPlaneCapabilitiesKHR}, x::VkDisplayPlaneCapabilitiesKHR) = T(x.supportedAlpha, from_vk(Offset2D, x.minSrcPosition), from_vk(Offset2D, x.maxSrcPosition), from_vk(Extent2D, x.minSrcExtent), from_vk(Extent2D, x.maxSrcExtent), from_vk(Offset2D, x.minDstPosition), from_vk(Offset2D, x.maxDstPosition), from_vk(Extent2D, x.minDstExtent), from_vk(Extent2D, x.maxDstExtent))
 
@@ -7325,7 +7325,7 @@ function MemoryGetAndroidHardwareBufferInfoANDROID(memory::DeviceMemory; next = 
     MemoryGetAndroidHardwareBufferInfoANDROID(vks, deps, memory)
 end
 
-function ImportAndroidHardwareBufferInfoANDROID(buffer::Cvoid; next = C_NULL)
+function ImportAndroidHardwareBufferInfoANDROID(buffer::vk.AHardwareBuffer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     buffer = cconvert(Ptr{AHardwareBuffer}, buffer)
     deps = [next, buffer]
@@ -7853,7 +7853,7 @@ function ViewportWScalingNV(xcoeff::Real, ycoeff::Real)
     ViewportWScalingNV(VkViewportWScalingNV(xcoeff, ycoeff))
 end
 
-function MetalSurfaceCreateInfoEXT(layer::Cvoid; next = C_NULL, flags = 0)
+function MetalSurfaceCreateInfoEXT(layer::vk.CAMetalLayer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     layer = cconvert(Ptr{CAMetalLayer}, layer)
     deps = [next, layer]
@@ -8621,7 +8621,7 @@ function ViSurfaceCreateInfoNN(window::Ptr{Cvoid}; next = C_NULL, flags = 0)
     ViSurfaceCreateInfoNN(vks, deps)
 end
 
-function AndroidSurfaceCreateInfoKHR(window::Cvoid; next = C_NULL, flags = 0)
+function AndroidSurfaceCreateInfoKHR(window::vk.ANativeWindow; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     window = cconvert(Ptr{ANativeWindow}, window)
     deps = [next, window]
@@ -9584,13 +9584,13 @@ cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, o
 
 cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
 
-function get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID)::Result{Cvoid, VulkanError}
+function get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID)::Result{vk.AHardwareBuffer, VulkanError}
     pBuffer = Ref{Ptr{AHardwareBuffer}}()
     @check vkGetMemoryAndroidHardwareBufferANDROID(device, info, pBuffer)
-    from_vk(Cvoid, pBuffer[])
+    from_vk(vk.AHardwareBuffer, pBuffer[])
 end
 
-function get_android_hardware_buffer_properties_android(device::Device, buffer::Cvoid)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
+function get_android_hardware_buffer_properties_android(device::Device, buffer::vk.AHardwareBuffer)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
     pProperties = Ref{VkAndroidHardwareBufferPropertiesANDROID}()
     @check vkGetAndroidHardwareBufferPropertiesANDROID(device, Ref(buffer), pProperties)
     from_vk(AndroidHardwareBufferPropertiesANDROID, pProperties[])

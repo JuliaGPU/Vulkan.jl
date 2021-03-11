@@ -6,10 +6,20 @@ function nice_julian_type(type)
         :Cstring => :String
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)
-        GuardBy(in(spec_constants.name)) => follow_constant(t)
         GuardBy(in(extension_types)) => :(vk.$t)
         GuardBy(is_vulkan_type) => remove_vk_prefix(t)
-        _ => t
+        _ => @match _t = innermost_type(t) begin
+            GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => begin
+                bitmask_types = getproperty.(filter(!isnothing, spec_flags.bitmask), :name)
+                i = findfirst(==(_t), bitmask_types)
+                bitmask_flag_type(bitmask_types[i])
+            end
+            GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(_t).bitmask) end => bitmask_flag_type(flag_by_name(_t).bitmask)
+            _ => @match t begin
+                GuardBy(in(spec_constants.name)) => follow_constant(t)
+                _ => t
+            end
+        end
     end
 end
 
@@ -21,18 +31,6 @@ function nice_julian_type(spec::Spec)
         GuardBy(is_version) => :VersionNumber
         GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
         GuardBy(is_data) => :(Ptr{Cvoid})
-        if innermost_type(s.type) ∈ getproperty.(filter(!isnothing, spec_flags.bitmask), :name) end => begin
-            bitmask_types = getproperty.(filter(!isnothing, spec_flags.bitmask), :name)
-            i = findfirst(==(innermost_type(s.type)), bitmask_types)
-            bitmask_flag_type(bitmask_types[i])
-        end
-        if innermost_type(s.type) ∈ spec_flags.name end => begin
-            spec_flag = flag_by_name(innermost_type(s.type))
-            @match bm = spec_flag.bitmask begin
-                ::SpecBitmask => bitmask_flag_type(bm)
-                ::Nothing => nice_julian_type(s.type)
-            end
-        end
         _ => nice_julian_type(s.type)
     end
 end

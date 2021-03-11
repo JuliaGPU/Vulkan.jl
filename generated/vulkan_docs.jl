@@ -3926,7 +3926,7 @@ Arguments:
 signal_semaphore
 
 """
-    get_android_hardware_buffer_properties_android(device::Device, buffer::Cvoid)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
+    get_android_hardware_buffer_properties_android(device::Device, buffer::vk.AHardwareBuffer)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
 
 Return codes:
 - Error:
@@ -3935,13 +3935,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `buffer::Cvoid`
+- `buffer::vk.AHardwareBuffer`
 
 """
 get_android_hardware_buffer_properties_android
 
 """
-    get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID)::Result{Cvoid, VulkanError}
+    get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID)::Result{vk.AHardwareBuffer, VulkanError}
 
 Return codes:
 - Error:
@@ -6523,11 +6523,11 @@ Arguments:
 DispatchIndirectCommand
 
 """
-    SubmitInfo(wait_semaphores::AbstractArray{<:Semaphore}, wait_dst_stage_mask::AbstractArray{<:Integer}, command_buffers::AbstractArray{<:CommandBuffer}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
+    SubmitInfo(wait_semaphores::AbstractArray{<:Semaphore}, wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}, command_buffers::AbstractArray{<:CommandBuffer}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
 
 Arguments:
 - `wait_semaphores::AbstractArray{<:Semaphore}`
-- `wait_dst_stage_mask::AbstractArray{<:Integer}`
+- `wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}`
 - `command_buffers::AbstractArray{<:CommandBuffer}`
 - `signal_semaphores::AbstractArray{<:Semaphore}`
 - `next`: defaults to `C_NULL`
@@ -6586,10 +6586,10 @@ Arguments:
 DisplayPresentInfoKHR
 
 """
-    AndroidSurfaceCreateInfoKHR(window::Cvoid; next = C_NULL, flags = 0)
+    AndroidSurfaceCreateInfoKHR(window::vk.ANativeWindow; next = C_NULL, flags = 0)
 
 Arguments:
-- `window::Cvoid`
+- `window::vk.ANativeWindow`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -7801,10 +7801,10 @@ Arguments:
 MacOSSurfaceCreateInfoMVK
 
 """
-    MetalSurfaceCreateInfoEXT(layer::Cvoid; next = C_NULL, flags = 0)
+    MetalSurfaceCreateInfoEXT(layer::vk.CAMetalLayer; next = C_NULL, flags = 0)
 
 Arguments:
-- `layer::Cvoid`
+- `layer::vk.CAMetalLayer`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -8450,10 +8450,10 @@ Arguments:
 PhysicalDeviceDescriptorIndexingFeatures
 
 """
-    DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray{<:Integer}; next = C_NULL)
+    DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray{<:DescriptorBindingFlag}; next = C_NULL)
 
 Arguments:
-- `binding_flags::AbstractArray{<:Integer}`
+- `binding_flags::AbstractArray{<:DescriptorBindingFlag}`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8642,10 +8642,10 @@ Arguments:
 PipelineVertexInputDivisorStateCreateInfoEXT
 
 """
-    ImportAndroidHardwareBufferInfoANDROID(buffer::Cvoid; next = C_NULL)
+    ImportAndroidHardwareBufferInfoANDROID(buffer::vk.AHardwareBuffer; next = C_NULL)
 
 Arguments:
-- `buffer::Cvoid`
+- `buffer::vk.AHardwareBuffer`
 - `next`: defaults to `C_NULL`
 
 """
