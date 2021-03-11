@@ -11,15 +11,16 @@ const RefCounter = Threads.Atomic{UInt}
 increment_refcount!(handle::Handle) = Threads.atomic_add!(handle.refcount, UInt(1))
 decrement_refcount!(handle::Handle) = Threads.atomic_sub!(handle.refcount, UInt(1))
 
-function try_destroy(f, handle::Handle)
+function try_destroy(f, handle::Handle, parent)
     decrement_refcount!(handle)
     if iszero(handle.refcount[])
         f(handle)
+        !isnothing(parent) && parent.destructor()
     end
 end
 
-function init_handle!(handle::Handle, destructor)
-    handle.destructor = () -> try_destroy(destructor, handle)
+function init_handle!(handle::Handle, destructor, parent=nothing)
+    handle.destructor = () -> try_destroy(destructor, handle, parent)
     finalizer(x -> handle.destructor(), handle)
 end
 
@@ -29,5 +30,5 @@ end
 
 function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent::Handle)
     increment_refcount!(parent)
-    finalizer(x -> parent.destructor(), init_handle!(T(ptr, parent, RefCounter(UInt(1))), destructor))
+    init_handle!(T(ptr, parent, RefCounter(UInt(1))), destructor, parent)
 end
