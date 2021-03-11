@@ -1207,8 +1207,8 @@ end
 struct PhysicalDeviceMemoryBudgetPropertiesEXT <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    heap_budget::NTuple{VK_MAX_MEMORY_HEAPS, VkDeviceSize}
-    heap_usage::NTuple{VK_MAX_MEMORY_HEAPS, VkDeviceSize}
+    heap_budget::NTuple{VK_MAX_MEMORY_HEAPS, UInt64}
+    heap_usage::NTuple{VK_MAX_MEMORY_HEAPS, UInt64}
 end
 
 struct PipelineRasterizationDepthClipStateCreateInfoEXT <: VulkanStruct{true}
@@ -2280,14 +2280,6 @@ struct MemoryAllocateFlagsInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct PhysicalDeviceGroupProperties <: ReturnedOnly
-    s_type::VkStructureType
-    p_next::Ptr{Cvoid}
-    physical_device_count::UInt32
-    physical_devices::NTuple{VK_MAX_DEVICE_GROUP_SIZE, VkPhysicalDevice}
-    subset_allocation::Bool
-end
-
 struct SwapchainCounterCreateInfoEXT <: VulkanStruct{true}
     vks::VkSwapchainCounterCreateInfoEXT
     deps::Vector{Any}
@@ -3235,9 +3227,9 @@ end
 
 struct PhysicalDeviceMemoryProperties <: ReturnedOnly
     memory_type_count::UInt32
-    memory_types::NTuple{VK_MAX_MEMORY_TYPES, VkMemoryType}
+    memory_types::NTuple{VK_MAX_MEMORY_TYPES, MemoryType}
     memory_heap_count::UInt32
-    memory_heaps::NTuple{VK_MAX_MEMORY_HEAPS, VkMemoryHeap}
+    memory_heaps::NTuple{VK_MAX_MEMORY_HEAPS, MemoryHeap}
 end
 
 struct PhysicalDeviceMemoryProperties2 <: ReturnedOnly
@@ -3571,6 +3563,14 @@ mutable struct PhysicalDevice <: Handle
     refcount::RefCounter
     destructor
     PhysicalDevice(vks::VkPhysicalDevice, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
+end
+
+struct PhysicalDeviceGroupProperties <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    physical_device_count::UInt32
+    physical_devices::NTuple{VK_MAX_DEVICE_GROUP_SIZE, PhysicalDevice}
+    subset_allocation::Bool
 end
 
 mutable struct DisplayKHR <: Handle
@@ -6085,7 +6085,7 @@ from_vk(T::Type{PhysicalDeviceCooperativeMatrixPropertiesNV}, x::VkPhysicalDevic
 
 from_vk(T::Type{FilterCubicImageViewImageFormatPropertiesEXT}, x::VkFilterCubicImageViewImageFormatPropertiesEXT) = T(x.sType, x.pNext, from_vk(Bool, x.filterCubic), from_vk(Bool, x.filterCubicMinmax))
 
-from_vk(T::Type{PhysicalDeviceMemoryBudgetPropertiesEXT}, x::VkPhysicalDeviceMemoryBudgetPropertiesEXT) = T(x.sType, x.pNext, x.heapBudget, x.heapUsage)
+from_vk(T::Type{PhysicalDeviceMemoryBudgetPropertiesEXT}, x::VkPhysicalDeviceMemoryBudgetPropertiesEXT) = T(x.sType, x.pNext, from_vk(NTuple{VK_MAX_MEMORY_HEAPS, UInt64}, x.heapBudget), from_vk(NTuple{VK_MAX_MEMORY_HEAPS, UInt64}, x.heapUsage))
 
 from_vk(T::Type{PhysicalDeviceFragmentDensityMap2PropertiesEXT}, x::VkPhysicalDeviceFragmentDensityMap2PropertiesEXT) = T(x.sType, x.pNext, from_vk(Bool, x.subsampledLoads), from_vk(Bool, x.subsampledCoarseReconstructionEarlyAccess), x.maxSubsampledArrayLayers, x.maxDescriptorSetSubsampledSamplers)
 
@@ -6201,7 +6201,7 @@ from_vk(T::Type{DisplayNativeHdrSurfaceCapabilitiesAMD}, x::VkDisplayNativeHdrSu
 
 from_vk(T::Type{DeviceGroupPresentCapabilitiesKHR}, x::VkDeviceGroupPresentCapabilitiesKHR) = T(x.sType, x.pNext, x.presentMask, x.modes)
 
-from_vk(T::Type{PhysicalDeviceGroupProperties}, x::VkPhysicalDeviceGroupProperties) = T(x.sType, x.pNext, x.physicalDeviceCount, x.physicalDevices, from_vk(Bool, x.subsetAllocation))
+from_vk(T::Type{PhysicalDeviceGroupProperties}, x::VkPhysicalDeviceGroupProperties) = T(x.sType, x.pNext, x.physicalDeviceCount, PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
 
 from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) = T(x.sType, x.pNext, x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, SurfaceTransformFlagKHR(UInt32(x.currentTransform)), x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
 
@@ -9005,8 +9005,8 @@ function BufferImageCopy(buffer_offset::Integer, buffer_row_length::Integer, buf
     BufferImageCopy(VkBufferImageCopy(buffer_offset, buffer_row_length, buffer_image_height, image_subresource.vks, image_offset.vks, image_extent.vks))
 end
 
-function ImageBlit(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, VkOffset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, VkOffset3D})
-    ImageBlit(VkImageBlit(src_subresource.vks, src_offsets, dst_subresource.vks, dst_offsets))
+function ImageBlit(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, Offset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, Offset3D})
+    ImageBlit(VkImageBlit(src_subresource.vks, to_vk(NTuple{2, VkOffset3D}, src_offsets), dst_subresource.vks, to_vk(NTuple{2, VkOffset3D}, dst_offsets)))
 end
 
 function ImageCopy(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D)

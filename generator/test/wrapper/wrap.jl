@@ -431,6 +431,10 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         test_extend_from_vk(:VkDrmFormatModifierPropertiesListEXT, :(
             T(x.sType, x.pNext, unsafe_wrap(Vector{DrmFormatModifierPropertiesEXT}, x.pDrmFormatModifierProperties, x.drmFormatModifierCount; own = true))
         ))
+
+        test_extend_from_vk(:VkPhysicalDeviceGroupProperties, :(
+            T(x.sType, x.pNext, x.physicalDeviceCount, PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
+        ))
     end
 
     @testset "Bitmask flags" begin

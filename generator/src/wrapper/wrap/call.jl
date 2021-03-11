@@ -9,15 +9,20 @@ function from_vk_call(x::Spec)
         end
 
         GuardBy(is_length) => nothing
-        _ => @match t = x.type begin
-            :Cstring => :(unsafe_string($prop))
-            GuardBy(in(spec_flags.name)) => prop
-            GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => :($jtype(UInt32($prop)))
-            GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(x.type))($prop))
-            GuardBy(is_ntuple) && if ntuple_type(x.type) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(x.type))), $prop))
-            if follow_constant(t) == jtype end => prop
-            _ => :(from_vk($jtype, $prop))
-        end
+        _ => from_vk_call(prop, jtype, x.type)
+    end
+end
+
+function from_vk_call(prop, jtype, t)
+    @match t begin
+        :Cstring => :(unsafe_string($prop))
+        GuardBy(in(spec_flags.name)) => prop
+        GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => :($jtype(UInt32($prop)))
+        GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($prop))
+        GuardBy(is_ntuple) && if ntuple_type(t) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(t))), $prop))
+        if follow_constant(t) == jtype end => prop
+        :(NTuple{$N,$T}) && if is_vulkan_type(T) end => broadcast_ex(from_vk_call(prop, nice_julian_type(T), T))
+        _ => :(from_vk($jtype, $prop))
     end
 end
 

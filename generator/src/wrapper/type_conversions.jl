@@ -3,6 +3,7 @@ function nice_julian_type(type)
         GuardBy(is_fn_ptr) => :FunctionPtr
         GuardBy(is_opaque_pointer) => t
         :(NTuple{$N, UInt8}) => :String
+        :(NTuple{$N, $T}) => :(NTuple{$N, $(nice_julian_type(T))})
         :Cstring => :String
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)

@@ -5790,13 +5790,13 @@ Arguments:
 ImageCopy
 
 """
-    ImageBlit(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, VkOffset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, VkOffset3D})
+    ImageBlit(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, Offset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, Offset3D})
 
 Arguments:
 - `src_subresource::ImageSubresourceLayers`
-- `src_offsets::NTuple{2, VkOffset3D}`
+- `src_offsets::NTuple{2, Offset3D}`
 - `dst_subresource::ImageSubresourceLayers`
-- `dst_offsets::NTuple{2, VkOffset3D}`
+- `dst_offsets::NTuple{2, Offset3D}`
 
 """
 ImageBlit
