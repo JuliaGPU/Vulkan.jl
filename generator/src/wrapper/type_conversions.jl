@@ -21,6 +21,11 @@ function nice_julian_type(spec::Spec)
         GuardBy(is_version) => :VersionNumber
         GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
         GuardBy(is_data) => :(Ptr{Cvoid})
+        if innermost_type(s.type) ∈ getproperty.(filter(!isnothing, spec_flags.bitmask), :name) end => begin
+            bitmask_types = getproperty.(filter(!isnothing, spec_flags.bitmask), :name)
+            i = findfirst(==(innermost_type(s.type)), bitmask_types)
+            bitmask_flag_type(bitmask_types[i])
+        end
         if innermost_type(s.type) ∈ spec_flags.name end => begin
             spec_flag = flag_by_name(innermost_type(s.type))
             @match bm = spec_flag.bitmask begin

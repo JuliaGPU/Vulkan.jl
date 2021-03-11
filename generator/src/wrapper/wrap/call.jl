@@ -12,6 +12,7 @@ function from_vk_call(x::Spec)
         _ => @match t = x.type begin
             :Cstring => :(unsafe_string($prop))
             GuardBy(in(spec_flags.name)) => prop
+            GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => :($jtype(UInt32($prop)))
             GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(x.type))($prop))
             GuardBy(is_ntuple) && if ntuple_type(x.type) ∈ filter(x -> x.is_returnedonly, spec_structs).name end => :(from_vk.($(remove_vk_prefix(ntuple_type(x.type))), $prop))
             if follow_constant(t) == jtype end => prop
@@ -40,6 +41,7 @@ function vk_call(x::Spec)
             _ => :(Ref($var))
         end
         if x.type ∈ spec_flags.name end => var
+        if x.type ∈ getproperty.(filter(!isnothing, spec_flags.bitmask), :name) end => :($(x.type)($var.val))
         if x.type ∈ extension_types end => var
         _ => @match jtype begin
             :String || :Bool || :(Vector{$et}) || if jtype == follow_constant(x.type) end => var # conversions are already defined

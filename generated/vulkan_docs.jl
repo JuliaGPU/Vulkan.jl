@@ -451,13 +451,13 @@ Arguments:
 get_image_sparse_memory_requirements
 
 """
-    get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling)::Vector{SparseImageFormatProperties}
+    get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling)::Vector{SparseImageFormatProperties}
 
 Arguments:
 - `physical_device::PhysicalDevice`
 - `format::VkFormat`
 - `type::VkImageType`
-- `samples::VkSampleCountFlagBits`
+- `samples::SampleCountFlag`
 - `usage::ImageUsageFlag`
 - `tiling::VkImageTiling`
 
@@ -1799,11 +1799,11 @@ Arguments:
 cmd_reset_query_pool
 
 """
-    cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer)::Cvoid
+    cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `pipeline_stage::VkPipelineStageFlagBits`
+- `pipeline_stage::PipelineStageFlag`
 - `query_pool::QueryPool`
 - `query::Integer`
 
@@ -2712,7 +2712,7 @@ Arguments:
 get_memory_win_32_handle_khr
 
 """
-    get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
+    get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2721,7 +2721,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `handle_type::VkExternalMemoryHandleTypeFlagBits`
+- `handle_type::ExternalMemoryHandleTypeFlag`
 - `handle::vk.HANDLE`
 
 """
@@ -2743,7 +2743,7 @@ Arguments:
 get_memory_fd_khr
 
 """
-    get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer)::Result{MemoryFdPropertiesKHR, VulkanError}
+    get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::Result{MemoryFdPropertiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2752,7 +2752,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `handle_type::VkExternalMemoryHandleTypeFlagBits`
+- `handle_type::ExternalMemoryHandleTypeFlag`
 - `fd::Integer`
 
 """
@@ -2990,7 +2990,7 @@ Arguments:
 register_display_event_ext
 
 """
-    get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT)::Result{UInt64, VulkanError}
+    get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)::Result{UInt64, VulkanError}
 
 Return codes:
 - Error:
@@ -3001,7 +3001,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `swapchain::SwapchainKHR`
-- `counter::VkSurfaceCounterFlagBitsEXT`
+- `counter::SurfaceCounterFlagEXT`
 
 """
 get_swapchain_counter_ext
@@ -3375,11 +3375,11 @@ Arguments:
 cmd_set_sample_locations_ext
 
 """
-    get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)::MultisamplePropertiesEXT
+    get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag)::MultisamplePropertiesEXT
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `samples::VkSampleCountFlagBits`
+- `samples::SampleCountFlag`
 
 """
 get_physical_device_multisample_properties_ext
@@ -3612,7 +3612,7 @@ Arguments:
 get_descriptor_set_layout_support
 
 """
-    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
 - Error:
@@ -3622,7 +3622,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `pipeline::Pipeline`
-- `shader_stage::VkShaderStageFlagBits`
+- `shader_stage::ShaderStageFlag`
 - `info_type::VkShaderInfoTypeAMD`
 
 !!! warning
@@ -3786,11 +3786,11 @@ Arguments:
 destroy_debug_utils_messenger_ext
 
 """
-    submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)::Cvoid
+    submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)::Cvoid
 
 Arguments:
 - `instance::Instance`
-- `message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT`
+- `message_severity::DebugUtilsMessageSeverityFlagEXT`
 - `message_types::DebugUtilsMessageTypeFlagEXT`
 - `callback_data::DebugUtilsMessengerCallbackDataEXT`
 
@@ -3798,7 +3798,7 @@ Arguments:
 submit_debug_utils_message_ext
 
 """
-    get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid})::Result{MemoryHostPointerPropertiesEXT, VulkanError}
+    get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::Result{MemoryHostPointerPropertiesEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -3807,18 +3807,18 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `handle_type::VkExternalMemoryHandleTypeFlagBits`
+- `handle_type::ExternalMemoryHandleTypeFlag`
 - `host_pointer::Ptr{Cvoid}`
 
 """
 get_memory_host_pointer_properties_ext
 
 """
-    cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
+    cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `pipeline_stage::VkPipelineStageFlagBits`
+- `pipeline_stage::PipelineStageFlag`
 - `dst_buffer::Buffer`
 - `dst_offset::Integer`
 - `marker::Integer`
@@ -5659,7 +5659,7 @@ Arguments:
 ImageMemoryBarrier
 
 """
-    ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
+    ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
 - `image_type::VkImageType`
@@ -5667,7 +5667,7 @@ Arguments:
 - `extent::Extent3D`
 - `mip_levels::Integer`
 - `array_layers::Integer`
-- `samples::VkSampleCountFlagBits`
+- `samples::SampleCountFlag`
 - `tiling::VkImageTiling`
 - `usage::ImageUsageFlag`
 - `sharing_mode::VkSharingMode`
@@ -5919,10 +5919,10 @@ Arguments:
 SpecializationInfo
 
 """
-    PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+    PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
 
 Arguments:
-- `stage::VkShaderStageFlagBits`
+- `stage::ShaderStageFlag`
 - `_module::ShaderModule`
 - `name::AbstractString`
 - `next`: defaults to `C_NULL`
@@ -6037,10 +6037,10 @@ Arguments:
 PipelineRasterizationStateCreateInfo
 
 """
-    PipelineMultisampleStateCreateInfo(rasterization_samples::VkSampleCountFlagBits, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
+    PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountFlag, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
 
 Arguments:
-- `rasterization_samples::VkSampleCountFlagBits`
+- `rasterization_samples::SampleCountFlag`
 - `sample_shading_enable::Bool`
 - `min_sample_shading::Real`
 - `alpha_to_coverage_enable::Bool`
@@ -6296,11 +6296,11 @@ Arguments:
 ClearAttachment
 
 """
-    AttachmentDescription(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
+    AttachmentDescription(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
 
 Arguments:
 - `format::VkFormat`
-- `samples::VkSampleCountFlagBits`
+- `samples::SampleCountFlag`
 - `load_op::VkAttachmentLoadOp`
 - `store_op::VkAttachmentStoreOp`
 - `stencil_load_op::VkAttachmentLoadOp`
@@ -6557,15 +6557,15 @@ Arguments:
 DisplayModeCreateInfoKHR
 
 """
-    DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::VkSurfaceTransformFlagBitsKHR, global_alpha::Real, alpha_mode::VkDisplayPlaneAlphaFlagBitsKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
+    DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
 
 Arguments:
 - `display_mode::DisplayModeKHR`
 - `plane_index::Integer`
 - `plane_stack_index::Integer`
-- `transform::VkSurfaceTransformFlagBitsKHR`
+- `transform::SurfaceTransformFlagKHR`
 - `global_alpha::Real`
-- `alpha_mode::VkDisplayPlaneAlphaFlagBitsKHR`
+- `alpha_mode::DisplayPlaneAlphaFlagKHR`
 - `image_extent::Extent2D`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -6690,7 +6690,7 @@ Arguments:
 StreamDescriptorSurfaceCreateInfoGGP
 
 """
-    SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+    SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 Arguments:
 - `surface::SurfaceKHR`
@@ -6702,8 +6702,8 @@ Arguments:
 - `image_usage::ImageUsageFlag`
 - `image_sharing_mode::VkSharingMode`
 - `queue_family_indices::AbstractArray{<:Integer}`
-- `pre_transform::VkSurfaceTransformFlagBitsKHR`
-- `composite_alpha::VkCompositeAlphaFlagBitsKHR`
+- `pre_transform::SurfaceTransformFlagKHR`
+- `composite_alpha::CompositeAlphaFlagKHR`
 - `present_mode::VkPresentModeKHR`
 - `clipped::Bool`
 - `next`: defaults to `C_NULL`
@@ -7099,12 +7099,12 @@ Arguments:
 PhysicalDeviceImageFormatInfo2
 
 """
-    PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
+    PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
 
 Arguments:
 - `format::VkFormat`
 - `type::VkImageType`
-- `samples::VkSampleCountFlagBits`
+- `samples::SampleCountFlag`
 - `usage::ImageUsageFlag`
 - `tiling::VkImageTiling`
 - `next`: defaults to `C_NULL`
@@ -7176,11 +7176,11 @@ Arguments:
 PhysicalDeviceExternalImageFormatInfo
 
 """
-    PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL, flags = 0)
+    PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
 
 Arguments:
 - `usage::BufferUsageFlag`
-- `handle_type::VkExternalMemoryHandleTypeFlagBits`
+- `handle_type::ExternalMemoryHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -7242,11 +7242,11 @@ Arguments:
 ExportMemoryWin32HandleInfoKHR
 
 """
-    MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
+    MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
-- `handle_type::VkExternalMemoryHandleTypeFlagBits`
+- `handle_type::ExternalMemoryHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
@@ -7264,11 +7264,11 @@ Arguments:
 ImportMemoryFdInfoKHR
 
 """
-    MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
+    MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
-- `handle_type::VkExternalMemoryHandleTypeFlagBits`
+- `handle_type::ExternalMemoryHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
@@ -7289,10 +7289,10 @@ Arguments:
 Win32KeyedMutexAcquireReleaseInfoKHR
 
 """
-    PhysicalDeviceExternalSemaphoreInfo(handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+    PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `handle_type::VkExternalSemaphoreHandleTypeFlagBits`
+- `handle_type::ExternalSemaphoreHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
@@ -7346,22 +7346,22 @@ Arguments:
 D3D12FenceSubmitInfoKHR
 
 """
-    SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+    SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `semaphore::Semaphore`
-- `handle_type::VkExternalSemaphoreHandleTypeFlagBits`
+- `handle_type::ExternalSemaphoreHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
 SemaphoreGetWin32HandleInfoKHR
 
 """
-    ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
+    ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `semaphore::Semaphore` (externsync)
-- `handle_type::VkExternalSemaphoreHandleTypeFlagBits`
+- `handle_type::ExternalSemaphoreHandleTypeFlag`
 - `fd::Integer`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -7370,21 +7370,21 @@ Arguments:
 ImportSemaphoreFdInfoKHR
 
 """
-    SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+    SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `semaphore::Semaphore`
-- `handle_type::VkExternalSemaphoreHandleTypeFlagBits`
+- `handle_type::ExternalSemaphoreHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
 SemaphoreGetFdInfoKHR
 
 """
-    PhysicalDeviceExternalFenceInfo(handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+    PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `handle_type::VkExternalFenceHandleTypeFlagBits`
+- `handle_type::ExternalFenceHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
@@ -7427,22 +7427,22 @@ Arguments:
 ExportFenceWin32HandleInfoKHR
 
 """
-    FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+    FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `fence::Fence`
-- `handle_type::VkExternalFenceHandleTypeFlagBits`
+- `handle_type::ExternalFenceHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
 FenceGetWin32HandleInfoKHR
 
 """
-    ImportFenceFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
+    ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `fence::Fence` (externsync)
-- `handle_type::VkExternalFenceHandleTypeFlagBits`
+- `handle_type::ExternalFenceHandleTypeFlag`
 - `fd::Integer`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -7451,11 +7451,11 @@ Arguments:
 ImportFenceFdInfoKHR
 
 """
-    FenceGetFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+    FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `fence::Fence`
-- `handle_type::VkExternalFenceHandleTypeFlagBits`
+- `handle_type::ExternalFenceHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
@@ -7661,11 +7661,11 @@ Arguments:
 AcquireNextImageInfoKHR
 
 """
-    DeviceGroupPresentInfoKHR(device_masks::AbstractArray{<:Integer}, mode::VkDeviceGroupPresentModeFlagBitsKHR; next = C_NULL)
+    DeviceGroupPresentInfoKHR(device_masks::AbstractArray{<:Integer}, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
 
 Arguments:
 - `device_masks::AbstractArray{<:Integer}`
-- `mode::VkDeviceGroupPresentModeFlagBitsKHR`
+- `mode::DeviceGroupPresentModeFlagKHR`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8021,20 +8021,20 @@ Arguments:
 SamplerYcbcrConversionCreateInfo
 
 """
-    BindImagePlaneMemoryInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
+    BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
 
 Arguments:
-- `plane_aspect::VkImageAspectFlagBits`
+- `plane_aspect::ImageAspectFlag`
 - `next`: defaults to `C_NULL`
 
 """
 BindImagePlaneMemoryInfo
 
 """
-    ImagePlaneMemoryRequirementsInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
+    ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
 
 Arguments:
-- `plane_aspect::VkImageAspectFlagBits`
+- `plane_aspect::ImageAspectFlag`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8388,10 +8388,10 @@ Arguments:
 DebugUtilsMessengerCallbackDataEXT
 
 """
-    ImportMemoryHostPointerInfoEXT(handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}; next = C_NULL)
+    ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `handle_type::VkExternalMemoryHandleTypeFlagBits`
+- `handle_type::ExternalMemoryHandleTypeFlag`
 - `host_pointer::Ptr{Cvoid}`
 - `next`: defaults to `C_NULL`
 
@@ -8470,11 +8470,11 @@ Arguments:
 DescriptorSetVariableDescriptorCountAllocateInfo
 
 """
-    AttachmentDescription2(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
+    AttachmentDescription2(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
 - `format::VkFormat`
-- `samples::VkSampleCountFlagBits`
+- `samples::SampleCountFlag`
 - `load_op::VkAttachmentLoadOp`
 - `store_op::VkAttachmentStoreOp`
 - `stencil_load_op::VkAttachmentLoadOp`
@@ -8760,11 +8760,11 @@ Arguments:
 PhysicalDeviceVertexAttributeDivisorFeaturesEXT
 
 """
-    SubpassDescriptionDepthStencilResolve(depth_resolve_mode::VkResolveModeFlagBits, stencil_resolve_mode::VkResolveModeFlagBits; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
+    SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeFlag, stencil_resolve_mode::ResolveModeFlag; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
 
 Arguments:
-- `depth_resolve_mode::VkResolveModeFlagBits`
-- `stencil_resolve_mode::VkResolveModeFlagBits`
+- `depth_resolve_mode::ResolveModeFlag`
+- `stencil_resolve_mode::ResolveModeFlag`
 - `next`: defaults to `C_NULL`
 - `depth_stencil_resolve_attachment`: defaults to `C_NULL`
 
@@ -10307,20 +10307,20 @@ Arguments:
 PhysicalDeviceExtendedDynamicStateFeaturesEXT
 
 """
-    RenderPassTransformBeginInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR; next = C_NULL)
+    RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
 Arguments:
-- `transform::VkSurfaceTransformFlagBitsKHR`
+- `transform::SurfaceTransformFlagKHR`
 - `next`: defaults to `C_NULL`
 
 """
 RenderPassTransformBeginInfoQCOM
 
 """
-    CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR, render_area::Rect2D; next = C_NULL)
+    CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::Rect2D; next = C_NULL)
 
 Arguments:
-- `transform::VkSurfaceTransformFlagBitsKHR`
+- `transform::SurfaceTransformFlagKHR`
 - `render_area::Rect2D`
 - `next`: defaults to `C_NULL`
 
@@ -10423,11 +10423,11 @@ Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::VkSh
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
+    Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -10591,11 +10591,11 @@ PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocato
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
+    SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 
 """
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 """
     DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL)

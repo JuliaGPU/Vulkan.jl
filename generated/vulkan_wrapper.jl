@@ -1015,7 +1015,7 @@ struct FramebufferMixedSamplesCombinationNV <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     coverage_reduction_mode::VkCoverageReductionModeNV
-    rasterization_samples::VkSampleCountFlagBits
+    rasterization_samples::SampleCountFlag
     depth_stencil_samples::SampleCountFlag
     color_samples::SampleCountFlag
 end
@@ -1546,7 +1546,7 @@ end
 struct CheckpointDataNV <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
-    stage::VkPipelineStageFlagBits
+    stage::PipelineStageFlag
     p_checkpoint_marker::Ptr{Cvoid}
 end
 
@@ -3440,7 +3440,7 @@ struct SurfaceCapabilities2EXT <: ReturnedOnly
     max_image_extent::Extent2D
     max_image_array_layers::UInt32
     supported_transforms::SurfaceTransformFlagKHR
-    current_transform::VkSurfaceTransformFlagBitsKHR
+    current_transform::SurfaceTransformFlagKHR
     supported_composite_alpha::CompositeAlphaFlagKHR
     supported_usage_flags::ImageUsageFlag
     supported_surface_counters::SurfaceCounterFlagEXT
@@ -3454,7 +3454,7 @@ struct SurfaceCapabilitiesKHR <: ReturnedOnly
     max_image_extent::Extent2D
     max_image_array_layers::UInt32
     supported_transforms::SurfaceTransformFlagKHR
-    current_transform::VkSurfaceTransformFlagBitsKHR
+    current_transform::SurfaceTransformFlagKHR
     supported_composite_alpha::CompositeAlphaFlagKHR
     supported_usage_flags::ImageUsageFlag
 end
@@ -4250,7 +4250,7 @@ create_debug_utils_messenger_ext(instance::Instance, message_severity::DebugUtil
 
 create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
 
-create_shared_swapchains_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_shared_swapchains_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
+create_shared_swapchains_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_shared_swapchains_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags), fun_ptr_create; allocator)
 
@@ -4292,7 +4292,7 @@ create_shader_module(device::Device, code_size::Integer, code::AbstractArray, fu
 
 create_image_view(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-create_image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+create_image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_buffer_view(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4310,7 +4310,7 @@ DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSe
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, user_data))
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = unwrap(create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, old_swapchain))
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = unwrap(create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, old_swapchain))
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_display_mode_khr(physical_device, display, parameters, fun_ptr_create; allocator, next, flags))
 
@@ -4358,7 +4358,7 @@ ShaderModule(device::Device, code_size::Integer, code::AbstractArray, fun_ptr_cr
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_image_view(device, image, view_type, format, components, subresource_range, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_image(device, image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_image(device, image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_buffer_view(device, buffer, format, offset, range, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
 
@@ -4739,15 +4739,15 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker, fun_ptr)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), dst_buffer, dst_offset, marker, fun_ptr)
 
-function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{MemoryHostPointerPropertiesEXT, VulkanError}
+function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check vkGetMemoryHostPointerPropertiesEXT(device, handle_type, Ref(host_pointer), pMemoryHostPointerProperties, fun_ptr)
+    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), Ref(host_pointer), pMemoryHostPointerProperties, fun_ptr)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data, fun_ptr)
+submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT, fun_ptr::FunctionPtr)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, VkDebugUtilsMessageSeverityFlagBitsEXT(message_severity.val), message_types, callback_data, fun_ptr)
 
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator, fun_ptr)
 
@@ -4792,12 +4792,12 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable, fun_ptr)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD, fun_ptr::FunctionPtr)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
     pInfoSize = Ref{UInt}()
     @repeat_while_incomplete begin
-            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, C_NULL, fun_ptr)
+            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, C_NULL, fun_ptr)
             pInfo = Libc.malloc(pInfoSize[])
-            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo, fun_ptr)
+            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, pInfo, fun_ptr)
             if _return_code == VK_INCOMPLETE
                 Libc.free(pInfo)
             end
@@ -4920,9 +4920,9 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits, fun_ptr::FunctionPtr)::MultisamplePropertiesEXT
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag, fun_ptr::FunctionPtr)::MultisamplePropertiesEXT
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
-    vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties, fun_ptr)
+    vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(samples.val), pMultisampleProperties, fun_ptr)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
 end
 
@@ -5040,9 +5040,9 @@ function get_physical_device_surface_capabilities_2_ext(physical_device::Physica
     from_vk(SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
 
-function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT, fun_ptr::FunctionPtr)::Result{UInt64, VulkanError}
+function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT, fun_ptr::FunctionPtr)::Result{UInt64, VulkanError}
     pCounterValue = Ref{UInt64}()
-    @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue, fun_ptr)
+    @check vkGetSwapchainCounterEXT(device, swapchain, VkSurfaceCounterFlagBitsEXT(counter.val), pCounterValue, fun_ptr)
     pCounterValue[]
 end
 
@@ -5106,9 +5106,9 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-function get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer, fun_ptr::FunctionPtr)::Result{MemoryFdPropertiesKHR, VulkanError}
+function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer, fun_ptr::FunctionPtr)::Result{MemoryFdPropertiesKHR, VulkanError}
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
-    @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties, fun_ptr)
+    @check vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), fd, pMemoryFdProperties, fun_ptr)
     from_vk(MemoryFdPropertiesKHR, pMemoryFdProperties[])
 end
 
@@ -5118,9 +5118,9 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR, fun_
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE, fun_ptr::FunctionPtr)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
-    @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties, fun_ptr)
+    @check vkGetMemoryWin32HandlePropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), handle, pMemoryWin32HandleProperties, fun_ptr)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
 
@@ -5430,7 +5430,7 @@ cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fun_ptr)
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query, fun_ptr)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteTimestamp(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), query_pool, query, fun_ptr)
 
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count, fun_ptr)
 
@@ -5733,11 +5733,11 @@ end
 
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling, fun_ptr::FunctionPtr)::Vector{SparseImageFormatProperties}
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling, fun_ptr::FunctionPtr)::Vector{SparseImageFormatProperties}
     pPropertyCount = Ref{UInt32}()
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL, fun_ptr)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, C_NULL, fun_ptr)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, pProperties, fun_ptr)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, pProperties, fun_ptr)
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 
@@ -5921,7 +5921,7 @@ create_debug_utils_messenger_ext(instance::Instance, message_severity::DebugUtil
 
 create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data); allocator)
 
-create_shared_swapchains_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_shared_swapchains_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
+create_shared_swapchains_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_shared_swapchains_khr(device, SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain); allocator)
 
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, DisplayModeCreateInfoKHR(parameters; next, flags); allocator)
 
@@ -5963,7 +5963,7 @@ create_shader_module(device::Device, code_size::Integer, code::AbstractArray; al
 
 create_image_view(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, ImageViewCreateInfo(image, view_type, format, components, subresource_range; next, flags); allocator)
 
-create_image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
+create_image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, ImageCreateInfo(image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; next, flags); allocator)
 
 create_buffer_view(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_buffer_view(device, BufferViewCreateInfo(buffer, format, offset, range; next, flags); allocator)
 
@@ -5981,7 +5981,7 @@ DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSe
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback; allocator, next, flags, user_data))
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = unwrap(create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; allocator, next, flags, old_swapchain))
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = unwrap(create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; allocator, next, flags, old_swapchain))
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_display_mode_khr(physical_device, display, parameters; allocator, next, flags))
 
@@ -6029,7 +6029,7 @@ ShaderModule(device::Device, code_size::Integer, code::AbstractArray; allocator 
 
 ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_image_view(device, image, view_type, format, components, subresource_range; allocator, next, flags))
 
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_image(device, image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; allocator, next, flags))
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_image(device, image_type, format, extent, mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; allocator, next, flags))
 
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_buffer_view(device, buffer, format, offset, range; allocator, next, flags))
 
@@ -6069,7 +6069,7 @@ from_vk(T::Type{PipelineExecutablePropertiesKHR}, x::VkPipelineExecutablePropert
 
 from_vk(T::Type{PhysicalDeviceShaderSMBuiltinsPropertiesNV}, x::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV) = T(x.sType, x.pNext, x.shaderSMCount, x.shaderWarpsPerSM)
 
-from_vk(T::Type{FramebufferMixedSamplesCombinationNV}, x::VkFramebufferMixedSamplesCombinationNV) = T(x.sType, x.pNext, x.coverageReductionMode, x.rasterizationSamples, x.depthStencilSamples, x.colorSamples)
+from_vk(T::Type{FramebufferMixedSamplesCombinationNV}, x::VkFramebufferMixedSamplesCombinationNV) = T(x.sType, x.pNext, x.coverageReductionMode, VkSampleCountFlagBits(x.rasterizationSamples.val), x.depthStencilSamples, x.colorSamples)
 
 from_vk(T::Type{PerformanceCounterDescriptionKHR}, x::VkPerformanceCounterDescriptionKHR) = T(x.sType, x.pNext, x.flags, from_vk(String, x.name), from_vk(String, x.category), from_vk(String, x.description))
 
@@ -6109,7 +6109,7 @@ from_vk(T::Type{PhysicalDeviceTransformFeedbackPropertiesEXT}, x::VkPhysicalDevi
 
 from_vk(T::Type{PhysicalDeviceDepthStencilResolveProperties}, x::VkPhysicalDeviceDepthStencilResolveProperties) = T(x.sType, x.pNext, x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve))
 
-from_vk(T::Type{CheckpointDataNV}, x::VkCheckpointDataNV) = T(x.sType, x.pNext, x.stage, x.pCheckpointMarker)
+from_vk(T::Type{CheckpointDataNV}, x::VkCheckpointDataNV) = T(x.sType, x.pNext, VkPipelineStageFlagBits(x.stage.val), x.pCheckpointMarker)
 
 from_vk(T::Type{QueueFamilyCheckpointPropertiesNV}, x::VkQueueFamilyCheckpointPropertiesNV) = T(x.sType, x.pNext, x.checkpointExecutionStageMask)
 
@@ -6203,7 +6203,7 @@ from_vk(T::Type{DeviceGroupPresentCapabilitiesKHR}, x::VkDeviceGroupPresentCapab
 
 from_vk(T::Type{PhysicalDeviceGroupProperties}, x::VkPhysicalDeviceGroupProperties) = T(x.sType, x.pNext, x.physicalDeviceCount, x.physicalDevices, from_vk(Bool, x.subsetAllocation))
 
-from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) = T(x.sType, x.pNext, x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, x.currentTransform, x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
+from_vk(T::Type{SurfaceCapabilities2EXT}, x::VkSurfaceCapabilities2EXT) = T(x.sType, x.pNext, x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, VkSurfaceTransformFlagBitsKHR(x.currentTransform.val), x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
 
 from_vk(T::Type{PhysicalDeviceMultiviewProperties}, x::VkPhysicalDeviceMultiviewProperties) = T(x.sType, x.pNext, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex)
 
@@ -6245,7 +6245,7 @@ from_vk(T::Type{ExternalImageFormatPropertiesNV}, x::VkExternalImageFormatProper
 
 from_vk(T::Type{SurfaceFormatKHR}, x::VkSurfaceFormatKHR) = T(x.format, x.colorSpace)
 
-from_vk(T::Type{SurfaceCapabilitiesKHR}, x::VkSurfaceCapabilitiesKHR) = T(x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, x.currentTransform, x.supportedCompositeAlpha, x.supportedUsageFlags)
+from_vk(T::Type{SurfaceCapabilitiesKHR}, x::VkSurfaceCapabilitiesKHR) = T(x.minImageCount, x.maxImageCount, from_vk(Extent2D, x.currentExtent), from_vk(Extent2D, x.minImageExtent), from_vk(Extent2D, x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, VkSurfaceTransformFlagBitsKHR(x.currentTransform.val), x.supportedCompositeAlpha, x.supportedUsageFlags)
 
 from_vk(T::Type{DisplayPlaneCapabilitiesKHR}, x::VkDisplayPlaneCapabilitiesKHR) = T(x.supportedAlpha, from_vk(Offset2D, x.minSrcPosition), from_vk(Offset2D, x.maxSrcPosition), from_vk(Extent2D, x.minSrcExtent), from_vk(Extent2D, x.maxSrcExtent), from_vk(Offset2D, x.minDstPosition), from_vk(Offset2D, x.maxDstPosition), from_vk(Extent2D, x.minDstExtent), from_vk(Extent2D, x.maxDstExtent))
 
@@ -6320,17 +6320,17 @@ function PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; nex
     PhysicalDeviceDiagnosticsConfigFeaturesNV(vks, deps)
 end
 
-function CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR, render_area::Rect2D; next = C_NULL)
+function CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::Rect2D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkCommandBufferInheritanceRenderPassTransformInfoQCOM(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), transform, render_area.vks)
+    vks = VkCommandBufferInheritanceRenderPassTransformInfoQCOM(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(transform.val), render_area.vks)
     CommandBufferInheritanceRenderPassTransformInfoQCOM(vks, deps)
 end
 
-function RenderPassTransformBeginInfoQCOM(transform::VkSurfaceTransformFlagBitsKHR; next = C_NULL)
+function RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkRenderPassTransformBeginInfoQCOM(VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), transform)
+    vks = VkRenderPassTransformBeginInfoQCOM(VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(transform.val))
     RenderPassTransformBeginInfoQCOM(vks, deps)
 end
 
@@ -7254,11 +7254,11 @@ function ImageViewASTCDecodeModeEXT(decode_mode::VkFormat; next = C_NULL)
     ImageViewASTCDecodeModeEXT(vks, deps)
 end
 
-function SubpassDescriptionDepthStencilResolve(depth_resolve_mode::VkResolveModeFlagBits, stencil_resolve_mode::VkResolveModeFlagBits; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
+function SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeFlag, stencil_resolve_mode::ResolveModeFlag; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     depth_stencil_resolve_attachment = cconvert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment)
     deps = [next, depth_stencil_resolve_attachment]
-    vks = VkSubpassDescriptionDepthStencilResolve(VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE, unsafe_convert(Ptr{Cvoid}, next), depth_resolve_mode, stencil_resolve_mode, unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment))
+    vks = VkSubpassDescriptionDepthStencilResolve(VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE, unsafe_convert(Ptr{Cvoid}, next), VkResolveModeFlagBits(depth_resolve_mode.val), VkResolveModeFlagBits(stencil_resolve_mode.val), unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment))
     SubpassDescriptionDepthStencilResolve(vks, deps)
 end
 
@@ -7435,10 +7435,10 @@ function AttachmentReference2(attachment::Integer, layout::VkImageLayout, aspect
     AttachmentReference2(vks, deps)
 end
 
-function AttachmentDescription2(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
+function AttachmentDescription2(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkAttachmentDescription2(VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2, unsafe_convert(Ptr{Cvoid}, next), flags, format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout)
+    vks = VkAttachmentDescription2(VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2, unsafe_convert(Ptr{Cvoid}, next), flags, format, VkSampleCountFlagBits(samples.val), load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout)
     AttachmentDescription2(vks, deps)
 end
 
@@ -7479,11 +7479,11 @@ function CalibratedTimestampInfoEXT(time_domain::VkTimeDomainEXT; next = C_NULL)
     CalibratedTimestampInfoEXT(vks, deps)
 end
 
-function ImportMemoryHostPointerInfoEXT(handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid}; next = C_NULL)
+function ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     host_pointer = cconvert(Ptr{Cvoid}, host_pointer)
     deps = [next, host_pointer]
-    vks = VkImportMemoryHostPointerInfoEXT(VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), handle_type, unsafe_convert(Ptr{Cvoid}, host_pointer))
+    vks = VkImportMemoryHostPointerInfoEXT(VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val), unsafe_convert(Ptr{Cvoid}, host_pointer))
     ImportMemoryHostPointerInfoEXT(vks, deps)
 end
 
@@ -7661,7 +7661,7 @@ function SampleLocationsInfoEXT(sample_location_grid_size::Extent2D, sample_loca
     next = cconvert(Ptr{Cvoid}, next)
     sample_locations = cconvert(Ptr{VkSampleLocationEXT}, sample_locations)
     deps = [next, sample_locations]
-    vks = VkSampleLocationsInfoEXT(VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), sample_locations_per_pixel, sample_location_grid_size.vks, pointer_length(sample_locations), unsafe_convert(Ptr{VkSampleLocationEXT}, sample_locations))
+    vks = VkSampleLocationsInfoEXT(VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), VkSampleCountFlagBits(sample_locations_per_pixel.val), sample_location_grid_size.vks, pointer_length(sample_locations), unsafe_convert(Ptr{VkSampleLocationEXT}, sample_locations))
     SampleLocationsInfoEXT(vks, deps)
 end
 
@@ -7711,17 +7711,17 @@ function PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::
     PhysicalDeviceSamplerYcbcrConversionFeatures(vks, deps)
 end
 
-function ImagePlaneMemoryRequirementsInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
+function ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImagePlaneMemoryRequirementsInfo(VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO, unsafe_convert(Ptr{Cvoid}, next), plane_aspect)
+    vks = VkImagePlaneMemoryRequirementsInfo(VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO, unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(plane_aspect.val))
     ImagePlaneMemoryRequirementsInfo(vks, deps)
 end
 
-function BindImagePlaneMemoryInfo(plane_aspect::VkImageAspectFlagBits; next = C_NULL)
+function BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkBindImagePlaneMemoryInfo(VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO, unsafe_convert(Ptr{Cvoid}, next), plane_aspect)
+    vks = VkBindImagePlaneMemoryInfo(VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO, unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(plane_aspect.val))
     BindImagePlaneMemoryInfo(vks, deps)
 end
 
@@ -7934,11 +7934,11 @@ function DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray; next = C_N
     DeviceGroupDeviceCreateInfo(vks, deps)
 end
 
-function DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::VkDeviceGroupPresentModeFlagBitsKHR; next = C_NULL)
+function DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_masks = cconvert(Ptr{UInt32}, device_masks)
     deps = [next, device_masks]
-    vks = VkDeviceGroupPresentInfoKHR(VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), pointer_length(device_masks), unsafe_convert(Ptr{UInt32}, device_masks), mode)
+    vks = VkDeviceGroupPresentInfoKHR(VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), pointer_length(device_masks), unsafe_convert(Ptr{UInt32}, device_masks), VkDeviceGroupPresentModeFlagBitsKHR(mode.val))
     DeviceGroupPresentInfoKHR(vks, deps)
 end
 
@@ -8078,24 +8078,24 @@ function PhysicalDeviceMultiviewFeatures(multiview::Bool, multiview_geometry_sha
     PhysicalDeviceMultiviewFeatures(vks, deps)
 end
 
-function FenceGetFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+function FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkFenceGetFdInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
+    vks = VkFenceGetFdInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, VkExternalFenceHandleTypeFlagBits(handle_type.val))
     FenceGetFdInfoKHR(vks, deps, fence)
 end
 
-function ImportFenceFdInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
+function ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportFenceFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, handle_type, fd)
+    vks = VkImportFenceFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, VkExternalFenceHandleTypeFlagBits(handle_type.val), fd)
     ImportFenceFdInfoKHR(vks, deps, fence)
 end
 
-function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+function FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkFenceGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, handle_type)
+    vks = VkFenceGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, VkExternalFenceHandleTypeFlagBits(handle_type.val))
     FenceGetWin32HandleInfoKHR(vks, deps, fence)
 end
 
@@ -8110,7 +8110,7 @@ end
 function ImportFenceWin32HandleInfoKHR(fence::Fence; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, handle_type, handle, name)
+    vks = VkImportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, VkExternalFenceHandleTypeFlagBits(handle_type.val), handle, name)
     ImportFenceWin32HandleInfoKHR(vks, deps, fence)
 end
 
@@ -8121,31 +8121,31 @@ function ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
     ExportFenceCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalFenceInfo(handle_type::VkExternalFenceHandleTypeFlagBits; next = C_NULL)
+function PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceExternalFenceInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_type)
+    vks = VkPhysicalDeviceExternalFenceInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO, unsafe_convert(Ptr{Cvoid}, next), VkExternalFenceHandleTypeFlagBits(handle_type.val))
     PhysicalDeviceExternalFenceInfo(vks, deps)
 end
 
-function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkSemaphoreGetFdInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
+    vks = VkSemaphoreGetFdInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val))
     SemaphoreGetFdInfoKHR(vks, deps, semaphore)
 end
 
-function ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits, fd::Integer; next = C_NULL, flags = 0)
+function ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportSemaphoreFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, handle_type, fd)
+    vks = VkImportSemaphoreFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val), fd)
     ImportSemaphoreFdInfoKHR(vks, deps, semaphore)
 end
 
-function SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+function SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkSemaphoreGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, handle_type)
+    vks = VkSemaphoreGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val))
     SemaphoreGetWin32HandleInfoKHR(vks, deps, semaphore)
 end
 
@@ -8169,7 +8169,7 @@ end
 function ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, handle_type, handle, name)
+    vks = VkImportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val), handle, name)
     ImportSemaphoreWin32HandleInfoKHR(vks, deps, semaphore)
 end
 
@@ -8180,10 +8180,10 @@ function ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
     ExportSemaphoreCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalSemaphoreInfo(handle_type::VkExternalSemaphoreHandleTypeFlagBits; next = C_NULL)
+function PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceExternalSemaphoreInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_type)
+    vks = VkPhysicalDeviceExternalSemaphoreInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO, unsafe_convert(Ptr{Cvoid}, next), VkExternalSemaphoreHandleTypeFlagBits(handle_type.val))
     PhysicalDeviceExternalSemaphoreInfo(vks, deps)
 end
 
@@ -8199,24 +8199,24 @@ function Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray, acqu
     Win32KeyedMutexAcquireReleaseInfoKHR(vks, deps)
 end
 
-function MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
+function MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkMemoryGetFdInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
+    vks = VkMemoryGetFdInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
     MemoryGetFdInfoKHR(vks, deps, memory)
 end
 
 function ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportMemoryFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), handle_type, fd)
+    vks = VkImportMemoryFdInfoKHR(VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val), fd)
     ImportMemoryFdInfoKHR(vks, deps)
 end
 
-function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL)
+function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkMemoryGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, handle_type)
+    vks = VkMemoryGetWin32HandleInfoKHR(VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), memory, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
     MemoryGetWin32HandleInfoKHR(vks, deps, memory)
 end
 
@@ -8231,7 +8231,7 @@ end
 function ImportMemoryWin32HandleInfoKHR(; next = C_NULL, handle_type = 0, handle = 0, name = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkImportMemoryWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), handle_type, handle, name)
+    vks = VkImportMemoryWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val), handle, name)
     ImportMemoryWin32HandleInfoKHR(vks, deps)
 end
 
@@ -8256,17 +8256,17 @@ function ExternalMemoryImageCreateInfo(handle_types::ExternalMemoryHandleTypeFla
     ExternalMemoryImageCreateInfo(vks, deps)
 end
 
-function PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::VkExternalMemoryHandleTypeFlagBits; next = C_NULL, flags = 0)
+function PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceExternalBufferInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, usage, handle_type)
+    vks = VkPhysicalDeviceExternalBufferInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, usage, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
     PhysicalDeviceExternalBufferInfo(vks, deps)
 end
 
 function PhysicalDeviceExternalImageFormatInfo(; next = C_NULL, handle_type = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceExternalImageFormatInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_type)
+    vks = VkPhysicalDeviceExternalImageFormatInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO, unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val))
     PhysicalDeviceExternalImageFormatInfo(vks, deps)
 end
 
@@ -8300,10 +8300,10 @@ function ConformanceVersion(major::Integer, minor::Integer, subminor::Integer, p
     ConformanceVersion(VkConformanceVersion(major, minor, subminor, patch))
 end
 
-function PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
+function PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceSparseImageFormatInfo2(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2, unsafe_convert(Ptr{Cvoid}, next), format, type, samples, usage, tiling)
+    vks = VkPhysicalDeviceSparseImageFormatInfo2(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2, unsafe_convert(Ptr{Cvoid}, next), format, type, VkSampleCountFlagBits(samples.val), usage, tiling)
     PhysicalDeviceSparseImageFormatInfo2(vks, deps)
 end
 
@@ -8550,11 +8550,11 @@ function PresentInfoKHR(wait_semaphores::AbstractArray, swapchains::AbstractArra
     PresentInfoKHR(vks, deps)
 end
 
-function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::VkSurfaceTransformFlagBitsKHR, composite_alpha::VkCompositeAlphaFlagBitsKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
-    vks = VkSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, surface, min_image_count, image_format, image_color_space, image_extent.vks, image_array_layers, image_usage, image_sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), pre_transform, composite_alpha, present_mode, clipped, old_swapchain)
+    vks = VkSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, surface, min_image_count, image_format, image_color_space, image_extent.vks, image_array_layers, image_usage, image_sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), VkSurfaceTransformFlagBitsKHR(pre_transform.val), VkCompositeAlphaFlagBitsKHR(composite_alpha.val), present_mode, clipped, old_swapchain)
     SwapchainCreateInfoKHR(vks, deps, surface, old_swapchain)
 end
 
@@ -8636,10 +8636,10 @@ function DisplayPresentInfoKHR(src_rect::Rect2D, dst_rect::Rect2D, persistent::B
     DisplayPresentInfoKHR(vks, deps)
 end
 
-function DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::VkSurfaceTransformFlagBitsKHR, global_alpha::Real, alpha_mode::VkDisplayPlaneAlphaFlagBitsKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
+function DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkDisplaySurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent.vks)
+    vks = VkDisplaySurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, display_mode, plane_index, plane_stack_index, VkSurfaceTransformFlagBitsKHR(transform.val), global_alpha, VkDisplayPlaneAlphaFlagBitsKHR(alpha_mode.val), image_extent.vks)
     DisplaySurfaceCreateInfoKHR(vks, deps, display_mode)
 end
 
@@ -8746,8 +8746,8 @@ function AttachmentReference(attachment::Integer, layout::VkImageLayout)
     AttachmentReference(VkAttachmentReference(attachment, layout))
 end
 
-function AttachmentDescription(format::VkFormat, samples::VkSampleCountFlagBits, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
-    AttachmentDescription(VkAttachmentDescription(flags, format, samples, load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout))
+function AttachmentDescription(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
+    AttachmentDescription(VkAttachmentDescription(flags, format, VkSampleCountFlagBits(samples.val), load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout))
 end
 
 function ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::VkClearValue)
@@ -8871,11 +8871,11 @@ function PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_f
     PipelineColorBlendAttachmentState(VkPipelineColorBlendAttachmentState(blend_enable, src_color_blend_factor, dst_color_blend_factor, color_blend_op, src_alpha_blend_factor, dst_alpha_blend_factor, alpha_blend_op, color_write_mask))
 end
 
-function PipelineMultisampleStateCreateInfo(rasterization_samples::VkSampleCountFlagBits, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
+function PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountFlag, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     sample_mask = cconvert(Ptr{VkSampleMask}, sample_mask)
     deps = [next, sample_mask]
-    vks = VkPipelineMultisampleStateCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, rasterization_samples, sample_shading_enable, min_sample_shading, unsafe_convert(Ptr{VkSampleMask}, sample_mask), alpha_to_coverage_enable, alpha_to_one_enable)
+    vks = VkPipelineMultisampleStateCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, VkSampleCountFlagBits(rasterization_samples.val), sample_shading_enable, min_sample_shading, unsafe_convert(Ptr{VkSampleMask}, sample_mask), alpha_to_coverage_enable, alpha_to_one_enable)
     PipelineMultisampleStateCreateInfo(vks, deps)
 end
 
@@ -8933,12 +8933,12 @@ function ComputePipelineCreateInfo(stage::PipelineShaderStageCreateInfo, layout:
     ComputePipelineCreateInfo(vks, deps, layout, base_pipeline_handle)
 end
 
-function PipelineShaderStageCreateInfo(stage::VkShaderStageFlagBits, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+function PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     name = cconvert(Cstring, name)
     specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
     deps = [next, name, specialization_info]
-    vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, stage, _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
+    vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
     PipelineShaderStageCreateInfo(vks, deps, _module)
 end
 
@@ -9065,11 +9065,11 @@ function ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::V
     ImageViewCreateInfo(vks, deps, image)
 end
 
-function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::VkSampleCountFlagBits, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
+function ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = [next, queue_family_indices]
-    vks = VkImageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, image_type, format, extent.vks, mip_levels, array_layers, samples, tiling, usage, sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), initial_layout)
+    vks = VkImageCreateInfo(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, image_type, format, extent.vks, mip_levels, array_layers, VkSampleCountFlagBits(samples.val), tiling, usage, sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), initial_layout)
     ImageCreateInfo(vks, deps)
 end
 
@@ -9618,15 +9618,15 @@ function create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2
     RenderPass(pRenderPass[], (x->destroy_render_pass(device, x; allocator)), device)
 end
 
-cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, pipeline_stage, dst_buffer, dst_offset, marker)
+cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), dst_buffer, dst_offset, marker)
 
-function get_memory_host_pointer_properties_ext(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, host_pointer::Ptr{Cvoid})::Result{MemoryHostPointerPropertiesEXT, VulkanError}
+function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check vkGetMemoryHostPointerPropertiesEXT(device, handle_type, Ref(host_pointer), pMemoryHostPointerProperties)
+    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), Ref(host_pointer), pMemoryHostPointerProperties)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-submit_debug_utils_message_ext(instance::Instance, message_severity::VkDebugUtilsMessageSeverityFlagBitsEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, message_severity, message_types, callback_data)
+submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, VkDebugUtilsMessageSeverityFlagBitsEXT(message_severity.val), message_types, callback_data)
 
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL)::Cvoid = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator)
 
@@ -9671,12 +9671,12 @@ end
 
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)::Cvoid = vkSetLocalDimmingAMD(device, swap_chain, local_dimming_enable)
 
-function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::VkShaderStageFlagBits, info_type::VkShaderInfoTypeAMD)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+function get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
     pInfoSize = Ref{UInt}()
     @repeat_while_incomplete begin
-            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, C_NULL)
+            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, C_NULL)
             pInfo = Libc.malloc(pInfoSize[])
-            @check vkGetShaderInfoAMD(device, pipeline, shader_stage, info_type, pInfoSize, pInfo)
+            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, pInfo)
             if _return_code == VK_INCOMPLETE
                 Libc.free(pInfo)
             end
@@ -9799,9 +9799,9 @@ function get_physical_device_surface_capabilities_2_khr(physical_device::Physica
     from_vk(SurfaceCapabilities2KHR, pSurfaceCapabilities[])
 end
 
-function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::VkSampleCountFlagBits)::MultisamplePropertiesEXT
+function get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag)::MultisamplePropertiesEXT
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
-    vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, samples, pMultisampleProperties)
+    vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(samples.val), pMultisampleProperties)
     from_vk(MultisamplePropertiesEXT, pMultisampleProperties[])
 end
 
@@ -9919,9 +9919,9 @@ function get_physical_device_surface_capabilities_2_ext(physical_device::Physica
     from_vk(SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
 
-function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::VkSurfaceCounterFlagBitsEXT)::Result{UInt64, VulkanError}
+function get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)::Result{UInt64, VulkanError}
     pCounterValue = Ref{UInt64}()
-    @check vkGetSwapchainCounterEXT(device, swapchain, counter, pCounterValue)
+    @check vkGetSwapchainCounterEXT(device, swapchain, VkSurfaceCounterFlagBitsEXT(counter.val), pCounterValue)
     pCounterValue[]
 end
 
@@ -9985,9 +9985,9 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-function get_memory_fd_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, fd::Integer)::Result{MemoryFdPropertiesKHR, VulkanError}
+function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::Result{MemoryFdPropertiesKHR, VulkanError}
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
-    @check vkGetMemoryFdPropertiesKHR(device, handle_type, fd, pMemoryFdProperties)
+    @check vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), fd, pMemoryFdProperties)
     from_vk(MemoryFdPropertiesKHR, pMemoryFdProperties[])
 end
 
@@ -9997,9 +9997,9 @@ function get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR)::Res
     pFd[]
 end
 
-function get_memory_win_32_handle_properties_khr(device::Device, handle_type::VkExternalMemoryHandleTypeFlagBits, handle::vk.HANDLE)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
+function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
-    @check vkGetMemoryWin32HandlePropertiesKHR(device, handle_type, handle, pMemoryWin32HandleProperties)
+    @check vkGetMemoryWin32HandlePropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), handle, pMemoryWin32HandleProperties)
     from_vk(MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
 
@@ -10309,7 +10309,7 @@ cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_
 
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags)
 
-cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::VkPipelineStageFlagBits, query_pool::QueryPool, query::Integer)::Cvoid = vkCmdWriteTimestamp(command_buffer, pipeline_stage, query_pool, query)
+cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer)::Cvoid = vkCmdWriteTimestamp(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), query_pool, query)
 
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count)
 
@@ -10612,11 +10612,11 @@ end
 
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
 
-function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::VkSampleCountFlagBits, usage::ImageUsageFlag, tiling::VkImageTiling)::Vector{SparseImageFormatProperties}
+function get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling)::Vector{SparseImageFormatProperties}
     pPropertyCount = Ref{UInt32}()
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, C_NULL)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, samples, usage, tiling, pPropertyCount, pProperties)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, pProperties)
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 

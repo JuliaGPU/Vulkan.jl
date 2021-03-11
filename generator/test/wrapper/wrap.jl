@@ -360,6 +360,17 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
             end
         ))
 
+        test_struct_add_constructor(:VkPipelineShaderStageCreateInfo, :(
+            function PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+                next = cconvert(Ptr{Cvoid}, next)
+                name = cconvert(Cstring, name)
+                specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
+                deps = [next, name, specialization_info]
+                vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
+                PipelineShaderStageCreateInfo(vks, deps, _module)
+            end
+        ))
+
         end
 
         @testset "Handle constructors" begin
