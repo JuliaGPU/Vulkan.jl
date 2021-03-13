@@ -1308,10 +1308,6 @@ struct TraceRaysIndirectCommandKHR <: VulkanStruct{false}
     vks::VkTraceRaysIndirectCommandKHR
 end
 
-struct StridedBufferRegionKHR <: VulkanStruct{false}
-    vks::VkStridedBufferRegionKHR
-end
-
 struct PhysicalDeviceRayTracingPropertiesNV <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
@@ -1371,16 +1367,6 @@ end
 
 struct GeometryDataNV <: VulkanStruct{false}
     vks::VkGeometryDataNV
-end
-
-struct GeometryAABBNV <: VulkanStruct{true}
-    vks::VkGeometryAABBNV
-    deps::Vector{Any}
-end
-
-struct GeometryTrianglesNV <: VulkanStruct{true}
-    vks::VkGeometryTrianglesNV
-    deps::Vector{Any}
 end
 
 struct RayTracingShaderGroupCreateInfoKHR <: VulkanStruct{true}
@@ -2568,15 +2554,6 @@ struct IndirectCommandsLayoutCreateInfoNV <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct IndirectCommandsLayoutTokenNV <: VulkanStruct{true}
-    vks::VkIndirectCommandsLayoutTokenNV
-    deps::Vector{Any}
-end
-
-struct IndirectCommandsStreamNV <: VulkanStruct{false}
-    vks::VkIndirectCommandsStreamNV
-end
-
 struct SetStateFlagsIndirectCommandNV <: VulkanStruct{false}
     vks::VkSetStateFlagsIndirectCommandNV
 end
@@ -3114,14 +3091,6 @@ struct BindSparseInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct SparseImageMemoryBind <: VulkanStruct{false}
-    vks::VkSparseImageMemoryBind
-end
-
-struct SparseMemoryBind <: VulkanStruct{false}
-    vks::VkSparseMemoryBind
-end
-
 struct BufferCopy <: VulkanStruct{false}
     vks::VkBufferCopy
 end
@@ -3136,16 +3105,6 @@ end
 
 struct ImageCreateInfo <: VulkanStruct{true}
     vks::VkImageCreateInfo
-    deps::Vector{Any}
-end
-
-struct ImageMemoryBarrier <: VulkanStruct{true}
-    vks::VkImageMemoryBarrier
-    deps::Vector{Any}
-end
-
-struct BufferMemoryBarrier <: VulkanStruct{true}
-    vks::VkBufferMemoryBarrier
     deps::Vector{Any}
 end
 
@@ -3171,16 +3130,6 @@ struct BufferCreateInfo <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct CopyDescriptorSet <: VulkanStruct{true}
-    vks::VkCopyDescriptorSet
-    deps::Vector{Any}
-end
-
-struct WriteDescriptorSet <: VulkanStruct{true}
-    vks::VkWriteDescriptorSet
-    deps::Vector{Any}
-end
-
 struct FormatProperties <: ReturnedOnly
     linear_tiling_features::FormatFeatureFlag
     optimal_tiling_features::FormatFeatureFlag
@@ -3191,11 +3140,6 @@ struct FormatProperties2 <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     format_properties::FormatProperties
-end
-
-struct MappedMemoryRange <: VulkanStruct{true}
-    vks::VkMappedMemoryRange
-    deps::Vector{Any}
 end
 
 struct MemoryHeap <: ReturnedOnly
@@ -3927,6 +3871,19 @@ mutable struct DescriptorSet <: Handle
     DescriptorSet(vks::VkDescriptorSet, descriptor_pool::DescriptorPool, refcount::RefCounter) = new(vks, descriptor_pool, refcount, undef)
 end
 
+struct CopyDescriptorSet <: VulkanStruct{true}
+    vks::VkCopyDescriptorSet
+    deps::Vector{Any}
+    src_set::DescriptorSet
+    dst_set::DescriptorSet
+end
+
+struct WriteDescriptorSet <: VulkanStruct{true}
+    vks::VkWriteDescriptorSet
+    deps::Vector{Any}
+    dst_set::DescriptorSet
+end
+
 mutable struct DescriptorSetLayout <: Handle
     vks::VkDescriptorSetLayout
     device::Device
@@ -3956,6 +3913,12 @@ struct DescriptorUpdateTemplateCreateInfo <: VulkanStruct{true}
     deps::Vector{Any}
     descriptor_set_layout::DescriptorSetLayout
     pipeline_layout::PipelineLayout
+end
+
+struct IndirectCommandsLayoutTokenNV <: VulkanStruct{true}
+    vks::VkIndirectCommandsLayoutTokenNV
+    deps::Vector{Any}
+    pushconstant_pipeline_layout::OptionalPtr{PipelineLayout}
 end
 
 mutable struct Pipeline <: Handle
@@ -4087,6 +4050,12 @@ struct ImageViewCreateInfo <: VulkanStruct{true}
     image::Image
 end
 
+struct ImageMemoryBarrier <: VulkanStruct{true}
+    vks::VkImageMemoryBarrier
+    deps::Vector{Any}
+    image::Image
+end
+
 mutable struct BufferView <: Handle
     vks::VkBufferView
     device::Device
@@ -4107,6 +4076,25 @@ struct BufferDeviceAddressInfo <: VulkanStruct{true}
     vks::VkBufferDeviceAddressInfo
     deps::Vector{Any}
     buffer::Buffer
+end
+
+struct StridedBufferRegionKHR <: VulkanStruct{false}
+    vks::VkStridedBufferRegionKHR
+    buffer::OptionalPtr{Buffer}
+end
+
+struct GeometryAABBNV <: VulkanStruct{true}
+    vks::VkGeometryAABBNV
+    deps::Vector{Any}
+    aabb_data::OptionalPtr{Buffer}
+end
+
+struct GeometryTrianglesNV <: VulkanStruct{true}
+    vks::VkGeometryTrianglesNV
+    deps::Vector{Any}
+    vertex_data::OptionalPtr{Buffer}
+    index_data::OptionalPtr{Buffer}
+    transform_data::OptionalPtr{Buffer}
 end
 
 struct ConditionalRenderingBeginInfoEXT <: VulkanStruct{true}
@@ -4138,6 +4126,11 @@ struct GeneratedCommandsInfoNV <: VulkanStruct{true}
     sequences_index_buffer::OptionalPtr{Buffer}
 end
 
+struct IndirectCommandsStreamNV <: VulkanStruct{false}
+    vks::VkIndirectCommandsStreamNV
+    buffer::Buffer
+end
+
 struct DedicatedAllocationMemoryAllocateInfoNV <: VulkanStruct{true}
     vks::VkDedicatedAllocationMemoryAllocateInfoNV
     deps::Vector{Any}
@@ -4147,6 +4140,12 @@ end
 
 struct SparseBufferMemoryBindInfo <: VulkanStruct{true}
     vks::VkSparseBufferMemoryBindInfo
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+struct BufferMemoryBarrier <: VulkanStruct{true}
+    vks::VkBufferMemoryBarrier
     deps::Vector{Any}
     buffer::Buffer
 end
@@ -4233,6 +4232,22 @@ end
 
 struct MemoryGetWin32HandleInfoKHR <: VulkanStruct{true}
     vks::VkMemoryGetWin32HandleInfoKHR
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+struct SparseImageMemoryBind <: VulkanStruct{false}
+    vks::VkSparseImageMemoryBind
+    memory::OptionalPtr{DeviceMemory}
+end
+
+struct SparseMemoryBind <: VulkanStruct{false}
+    vks::VkSparseMemoryBind
+    memory::OptionalPtr{DeviceMemory}
+end
+
+struct MappedMemoryRange <: VulkanStruct{true}
+    vks::VkMappedMemoryRange
     deps::Vector{Any}
     memory::DeviceMemory
 end

@@ -11,13 +11,11 @@ function wrap(spec::SpecStruct)
         ]
         needs_deps(spec) && push!(p[:fields], :(deps::Vector{Any}))
 
-        if spec.type ∈ (ALLOCATE_INFO, CREATE_INFO, GENERIC_INFO)
-            foreach(parent_handles(spec)) do member
-                handle_type = remove_vk_prefix(member.type)
-                name = wrap_identifier(member)
-                field_type = is_optional(member) ? :(OptionalPtr{$handle_type}) : handle_type
-                push!(p[:fields], :($name::$field_type))
-            end
+        foreach(parent_handles(spec)) do member
+            handle_type = remove_vk_prefix(member.type)
+            name = wrap_identifier(member)
+            field_type = is_optional(member) ? :(OptionalPtr{$handle_type}) : handle_type
+            push!(p[:fields], :($name::$field_type))
         end
     end
 
