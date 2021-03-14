@@ -7,7 +7,7 @@ else
 end
 
 macro pref_log_destruction(expr)
-    if @load_preference("LOG_DESTRUCTION", "true") == "true"
+    if @load_preference("LOG_DESTRUCTION", "false") == "true"
         quote
             @ccall jl_safe_printf($(esc(:("Destroying $handle\n")))::Cstring)::Cvoid
             $(esc(expr))
