@@ -91,6 +91,8 @@ struct SpecFuncParam <: Spec
     len::Optional{Symbol}
     "Name of the parameters (of the same function) it is a length of."
     arglen::Vector{Symbol}
+    "Whether automatic validity documentation is enabled. If false, this means that the parameter may be an exception to at least one Vulkan convention."
+    autovalidity::Bool
 end
 
 """
@@ -133,6 +135,8 @@ struct SpecStructMember <: Spec
     len::Optional{ExprLike}
     "Name of the members (of the same structure) it is a length of."
     arglen::Vector{ExprLike}
+    "Whether automatic validity documentation is enabled. If false, this means that the member may be an exception to at least one Vulkan convention."
+    autovalidity::Bool
 end
 
 """

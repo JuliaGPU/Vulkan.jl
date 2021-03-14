@@ -377,6 +377,15 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
             end
         ))
 
+        test_struct_add_constructor(:VkDescriptorSetLayoutBinding, :(
+            function DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
+                immutable_samplers = cconvert(Ptr{VkSampler}, immutable_samplers)
+                deps = [immutable_samplers]
+                vks = VkDescriptorSetLayoutBinding(binding, descriptor_type, descriptor_count, stage_flags, unsafe_convert(Ptr{VkSampler}, immutable_samplers))
+                DescriptorSetLayoutBinding(vks, deps)
+            end
+        ))
+
         end
 
         @testset "Handle constructors" begin

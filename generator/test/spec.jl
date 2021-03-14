@@ -122,13 +122,13 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             false,
             [],
             [
-                (:sType, :VkStructureType, false, false, REQUIRED, nothing, []),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, []),
-                (:pApplicationName, :Cstring, true, false, OPTIONAL, nothing, []),
-                (:applicationVersion, :UInt32, false, false, REQUIRED, nothing, []),
-                (:pEngineName, :Cstring, true, false, OPTIONAL, nothing, []),
-                (:engineVersion, :UInt32, false, false, REQUIRED, nothing, []),
-                (:apiVersion, :UInt32, false, false, REQUIRED, nothing, []),
+                (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:pApplicationName, :Cstring, true, false, OPTIONAL, nothing, [], true),
+                (:applicationVersion, :UInt32, false, false, REQUIRED, nothing, [], true),
+                (:pEngineName, :Cstring, true, false, OPTIONAL, nothing, [], true),
+                (:engineVersion, :UInt32, false, false, REQUIRED, nothing, [], true),
+                (:apiVersion, :UInt32, false, false, REQUIRED, nothing, [], true),
             ],
         )
         test_struct(
@@ -137,10 +137,10 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             false,
             [:VkPipelineViewportStateCreateInfo],
             [
-                (:sType, :VkStructureType, false, false, REQUIRED, nothing, []),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, []),
-                (:sampleOrderType, :VkCoarseSampleOrderTypeNV, false, false, REQUIRED, nothing, []),
-                (:customSampleOrderCount, :UInt32, false, false, OPTIONAL, nothing, [:pCustomSampleOrders]),
+                (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:sampleOrderType, :VkCoarseSampleOrderTypeNV, false, false, REQUIRED, nothing, [], true),
+                (:customSampleOrderCount, :UInt32, false, false, OPTIONAL, nothing, [:pCustomSampleOrders], true),
                 (
                     :pCustomSampleOrders,
                     :(Ptr{VkCoarseSampleOrderCustomNV}),
@@ -149,6 +149,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
                     REQUIRED,
                     :customSampleOrderCount,
                     [],
+                    true,
                 ),
             ],
         )
@@ -158,10 +159,10 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             false,
             [:VkPhysicalDeviceFeatures2, :VkDeviceCreateInfo],
             [
-                (:sType, :VkStructureType, false, false, REQUIRED, nothing, []),
-                (:pNext, :(Ptr{Cvoid}), false, false, REQUIRED, nothing, []),
-                (:shadingRateImage, :VkBool32, false, false, REQUIRED, nothing, []),
-                (:shadingRateCoarseSampleOrder, :VkBool32, false, false, REQUIRED, nothing, []),
+                (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), false, false, REQUIRED, nothing, [], true),
+                (:shadingRateImage, :VkBool32, false, false, REQUIRED, nothing, [], true),
+                (:shadingRateCoarseSampleOrder, :VkBool32, false, false, REQUIRED, nothing, [], true),
             ],
         )
         test_struct(
@@ -170,10 +171,10 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             false,
             [:VkDescriptorSetLayoutCreateInfo],
             [
-                (:sType, :VkStructureType, false, false, REQUIRED, nothing, []),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, []),
-                (:bindingCount, :UInt32, false, false, OPTIONAL, nothing, [:pBindingFlags]),
-                (:pBindingFlags, :(Ptr{VkDescriptorBindingFlags}), true, false, POINTER_REQUIRED, :bindingCount, []),
+                (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:bindingCount, :UInt32, false, false, OPTIONAL, nothing, [:pBindingFlags], true),
+                (:pBindingFlags, :(Ptr{VkDescriptorBindingFlags}), true, false, POINTER_REQUIRED, :bindingCount, [], true),
             ],
         ),
         test_struct(
@@ -182,14 +183,14 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             false,
             [],
             [
-                (:sType, :VkStructureType, false, false, REQUIRED, nothing, []),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, []),
-                (:flags, :VkInstanceCreateFlags, false, false, OPTIONAL, nothing, []),
-                (:pApplicationInfo, :(Ptr{VkApplicationInfo}), true, false, OPTIONAL, nothing, []),
-                (:enabledLayerCount, :UInt32, false, false, OPTIONAL, nothing, [:ppEnabledLayerNames]),
-                (:ppEnabledLayerNames, :(Ptr{Cstring}), true, false, REQUIRED, :enabledLayerCount, []),
-                (:enabledExtensionCount, :UInt32, false, false, OPTIONAL, nothing, [:ppEnabledExtensionNames]),
-                (:ppEnabledExtensionNames, :(Ptr{Cstring}), true, false, REQUIRED, :enabledExtensionCount, []),
+                (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:flags, :VkInstanceCreateFlags, false, false, OPTIONAL, nothing, [], true),
+                (:pApplicationInfo, :(Ptr{VkApplicationInfo}), true, false, OPTIONAL, nothing, [], true),
+                (:enabledLayerCount, :UInt32, false, false, OPTIONAL, nothing, [:ppEnabledLayerNames], true),
+                (:ppEnabledLayerNames, :(Ptr{Cstring}), true, false, REQUIRED, :enabledLayerCount, [], true),
+                (:enabledExtensionCount, :UInt32, false, false, OPTIONAL, nothing, [:ppEnabledExtensionNames], true),
+                (:ppEnabledExtensionNames, :(Ptr{Cstring}), true, false, REQUIRED, :enabledExtensionCount, [], true),
             ],
         )
         test_struct(
@@ -198,10 +199,10 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             false,
             [],
             [
-                (:sType, :VkStructureType, false, false, REQUIRED, nothing, []),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, []),
-                (:mode, :VkDisplayModeKHR, false, true, REQUIRED, nothing, []),
-                (:planeIndex, :UInt32, false, false, REQUIRED, nothing, []),
+                (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:mode, :VkDisplayModeKHR, false, true, REQUIRED, nothing, [], true),
+                (:planeIndex, :UInt32, false, false, REQUIRED, nothing, [], true),
             ],
         )
         test_struct(
@@ -209,7 +210,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             DATA,
             false,
             [],
-            [(:matrix, :(NTuple{3,NTuple{4,Float32}}), false, false, REQUIRED, nothing, [])],
+            [(:matrix, :(NTuple{3,NTuple{4,Float32}}), false, false, REQUIRED, nothing, [], true)],
         )
     end
 
@@ -238,9 +239,9 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [],
             [],
             [
-                (:pCreateInfo, :(Ptr{VkInstanceCreateInfo}), true, false, REQUIRED, nothing, []),
-                (:pAllocator, :(Ptr{VkAllocationCallbacks}), true, false, OPTIONAL, nothing, []),
-                (:pInstance, :(Ptr{VkInstance}), false, false, REQUIRED, nothing, []),
+                (:pCreateInfo, :(Ptr{VkInstanceCreateInfo}), true, false, REQUIRED, nothing, [], true),
+                (:pAllocator, :(Ptr{VkAllocationCallbacks}), true, false, OPTIONAL, nothing, [], true),
+                (:pInstance, :(Ptr{VkInstance}), false, false, REQUIRED, nothing, [], true),
             ],
             [:VK_SUCCESS],
             [
@@ -259,9 +260,9 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [RenderPassInside(), RenderPassOutside()],
             [QueueGraphics(), QueueCompute()],
             [
-                (:commandBuffer, :VkCommandBuffer, false, true, REQUIRED, nothing, []),
-                (:pipelineBindPoint, :VkPipelineBindPoint, false, false, REQUIRED, nothing, []),
-                (:pipeline, :VkPipeline, false, false, REQUIRED, nothing, []),
+                (:commandBuffer, :VkCommandBuffer, false, true, REQUIRED, nothing, [], true),
+                (:pipelineBindPoint, :VkPipelineBindPoint, false, false, REQUIRED, nothing, [], true),
+                (:pipeline, :VkPipeline, false, false, REQUIRED, nothing, [], true),
             ],
             [],
             [],

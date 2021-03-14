@@ -75,6 +75,7 @@ function SpecStructMember(node::Node)
         PARAM_REQUIREMENT(node),
         len(node),
         arglen(node, neighbor_type = "member"),
+        !parse(Bool, getattr(node, "noautovalidity", default="false", symbol=false)),
     )
 end
 
@@ -124,6 +125,7 @@ SpecFuncParam(node::Node) = SpecFuncParam(
     PARAM_REQUIREMENT(node),
     len(node),
     arglen(node),
+    !parse(Bool, getattr(node, "noautovalidity", default="false", symbol=false)),
 )
 
 function SpecFunc(node::Node)
