@@ -2,11 +2,12 @@ function retrieve_length(spec)
     chain = length_chain(spec, spec.len)
     @match length(chain) begin
         1 => vk_call(first(chain))
-        GuardBy(>(1)) => chain_getproperty(:($(wrap_identifier(first(chain).name)).vks), getproperty.(chain[2:end], :name))
+        GuardBy(>(1)) =>
+            chain_getproperty(:($(wrap_identifier(first(chain).name)).vks), getproperty.(chain[2:end], :name))
     end
 end
 
-chain_getproperty(ex, props) = foldl((x, y) -> :($x.$y), props; init=ex)
+chain_getproperty(ex, props) = foldl((x, y) -> :($x.$y), props; init = ex)
 
 function initialize_ptr(param::SpecFuncParam, count_ptr::SpecFuncParam)
     @assert is_data(param) && is_size(count_ptr)

@@ -2,8 +2,8 @@ function nice_julian_type(type)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
         GuardBy(is_opaque_pointer) => t
-        :(NTuple{$N, UInt8}) => :String
-        :(NTuple{$N, $T}) => :(NTuple{$N, $(nice_julian_type(T))})
+        :(NTuple{$N,UInt8}) => :String
+        :(NTuple{$N,$T}) => :(NTuple{$N,$(nice_julian_type(T))})
         :Cstring => :String
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)
@@ -15,7 +15,8 @@ function nice_julian_type(type)
                 i = findfirst(==(_t), bitmask_types)
                 bitmask_flag_type(bitmask_types[i])
             end
-            GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(_t).bitmask) end => bitmask_flag_type(flag_by_name(_t).bitmask)
+            GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(_t).bitmask)
+            end => bitmask_flag_type(flag_by_name(_t).bitmask)
             _ => @match t begin
                 GuardBy(in(spec_constants.name)) => follow_constant(t)
                 _ => t

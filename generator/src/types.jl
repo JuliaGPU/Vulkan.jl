@@ -1,11 +1,11 @@
-const ExprLike = Union{Symbol, Expr}
-const Optional{T} = Union{Nothing, T}
+const ExprLike = Union{Symbol,Expr}
+const Optional{T} = Union{Nothing,T}
 
 is_ptr_to_ptr(ex) = !isnothing(ptrtype(ptrtype(ex)))
 is_ptr(ex) = !isnothing(ptr_type(ex))
 
 ptr_type(ex) = @when :(Ptr{$T}) = ex T
-ntuple_type(ex) = @when :(NTuple{$N, $T}) = ex T
+ntuple_type(ex) = @when :(NTuple{$N,$T}) = ex T
 
 is_ntuple(ex) = !isnothing(ntuple_type(ex))
 

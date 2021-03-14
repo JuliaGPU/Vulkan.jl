@@ -35,7 +35,7 @@ Types:
 - `QUERY`: used to query parameters, returned directly or indirectly through pointer mutation (typically, functions that begin with `vkEnumerate` and `vkGet`, but not all of them and possibly others).
 - `OTHER`: no identified type.
 """
-@enum FUNC_TYPE CREATE=1 DESTROY ALLOCATE FREE COMMAND QUERY OTHER
+@enum FUNC_TYPE CREATE = 1 DESTROY ALLOCATE FREE COMMAND QUERY OTHER
 
 """
 Structure type classification.
@@ -47,7 +47,7 @@ Types:
 - `DATA`: usually represents user or Vulkan data.
 - `PROPERTY`: is a property returned by Vulkan in a `returnedonly` structure, usually done through `QUERY` type functions.
 """
-@enum STRUCT_TYPE CREATE_INFO=1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
+@enum STRUCT_TYPE CREATE_INFO = 1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
 
 """
 Parameter requirement. Applies both to struct members and function parameters.
@@ -58,9 +58,11 @@ Requirement types:
 - `POINTER_OPTIONAL`: is a pointer which may be null, but must have valid elements if provided.
 - `POINTER_REQUIRED`: must be a valid pointer, but its elements are optional (e.g. are allowed to be sentinel values).
 """
-@enum PARAM_REQUIREMENT OPTIONAL=1 REQUIRED POINTER_OPTIONAL POINTER_REQUIRED
+@enum PARAM_REQUIREMENT OPTIONAL = 1 REQUIRED POINTER_OPTIONAL POINTER_REQUIRED
 
-PARAM_REQUIREMENT(node::Node) = !haskey(node, "optional") || node["optional"] == "false" ? REQUIRED : PARAM_REQUIREMENT(findfirst(node["optional"] .== ["true", "false", "true,false", "false,true"]))
+PARAM_REQUIREMENT(node::Node) =
+    !haskey(node, "optional") || node["optional"] == "false" ? REQUIRED :
+    PARAM_REQUIREMENT(findfirst(node["optional"] .== ["true", "false", "true,false", "false,true"]))
 
 """
 Everything that a Vulkan specification can apply to: data structures, functions, parameters...
@@ -170,7 +172,7 @@ struct SpecConstant <: Spec
     "Name of the constant."
     name::Symbol
     "Value of the constant."
-    value
+    value::Any
 end
 
 """

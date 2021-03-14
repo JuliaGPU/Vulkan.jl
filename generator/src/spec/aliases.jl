@@ -1,4 +1,6 @@
-const alias_dict = Dict(Symbol(alias.parentelement["name"]) => Symbol(alias.parentelement["alias"]) for alias ∈ findall("//@alias", xroot))
+const alias_dict = Dict(
+    Symbol(alias.parentelement["name"]) => Symbol(alias.parentelement["alias"]) for alias ∈ findall("//@alias", xroot)
+)
 
 """
 Whether this type is an alias for another name.
@@ -14,7 +16,7 @@ alias_verts = unique(vcat(collect(keys(alias_dict)), collect(values(alias_dict))
 
 function build_alias_graph(alias_verts, alias_dict)
     g = SimpleDiGraph(length(alias_verts))
-    
+
     for (j, (src, dst)) ∈ enumerate(alias_dict)
         i = findfirst(==(dst), alias_verts)
         add_edge!(g, i, j)
@@ -37,7 +39,9 @@ function follow_alias(alias_graph::SimpleDiGraph, index)
     if isempty(indices)
         alias_verts[index]
     elseif length(indices) > 1
-        error("More than one indices returned for $(alias_verts[index]) when following alias $(getindex.(Ref(alias_verts), indices))")
+        error(
+            "More than one indices returned for $(alias_verts[index]) when following alias $(getindex.(Ref(alias_verts), indices))",
+        )
     else
         i = first(indices)
         if i == index

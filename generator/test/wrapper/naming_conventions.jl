@@ -9,8 +9,8 @@ c2_novk = CamelCaseUpper("InstanceCreateInfo")
 
 const_s1 = SnakeCaseLower("this_is_some_message")
 const_s2 = SnakeCaseUpper("THIS_IS_SOME_MESSAGE")
-const_c1  = CamelCaseLower("thisIsSomeMessage")
-const_c2  = CamelCaseUpper("ThisIsSomeMessage")
+const_c1 = CamelCaseLower("thisIsSomeMessage")
+const_c2 = CamelCaseUpper("ThisIsSomeMessage")
 
 longstr = SnakeCaseLower("my_snake_case_with_many_words")
 

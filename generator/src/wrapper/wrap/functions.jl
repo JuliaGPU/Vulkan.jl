@@ -1,6 +1,10 @@
-wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(:($(spec.name)($((with_func_ptr ? [args; first(func_ptrs(spec))] : args)...))), spec.return_type, nice_julian_type(spec.return_type))
+wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(
+    :($(spec.name)($((with_func_ptr ? [args; first(func_ptrs(spec))] : args)...))),
+    spec.return_type,
+    nice_julian_type(spec.return_type),
+)
 
-function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free=[])
+function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free = [])
     if must_repeat_while_incomplete(spec)
         if !isempty(free)
             free_block = quote
@@ -17,34 +21,37 @@ function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free=[])
     end
 end
 
-function wrap(spec::SpecFunc; with_func_ptr=false)
+function wrap(spec::SpecFunc; with_func_ptr = false)
     p = init_wrapper_func(spec)
 
     count_ptr_index = findfirst(x -> (is_length(x) || is_size(x)) && x.requirement == POINTER_REQUIRED, children(spec))
     queried_params = getindex(children(spec), findall(is_implicit_return, children(spec)))
     if !isnothing(count_ptr_index)
         count_ptr = children(spec)[count_ptr_index]
-        queried_params = getindex(children(spec), findall(x -> x.len == count_ptr.name && !x.is_constant, children(spec)))
+        queried_params =
+            getindex(children(spec), findall(x -> x.len == count_ptr.name && !x.is_constant, children(spec)))
 
         first_call_args = map(@λ(begin
-                &count_ptr => count_ptr.name
-                GuardBy(in(queried_params)) => :C_NULL
-                x => vk_call(x)
+            &count_ptr => count_ptr.name
+            GuardBy(in(queried_params)) => :C_NULL
+            x => vk_call(x)
         end), children(spec))
 
         i = 0
         second_call_args = map(@λ(begin
-                :C_NULL && Do(i += 1) => queried_params[i].name
-                x => x
-            end), first_call_args)
+            :C_NULL && Do(i += 1) => queried_params[i].name
+            x => x
+        end), first_call_args)
 
         p[:body] = concat_exs(
             initialize_ptr(count_ptr),
-            wrap_enumeration_api_call(spec,
+            wrap_enumeration_api_call(
+                spec,
                 wrap_api_call(spec, first_call_args; with_func_ptr),
                 (is_length(count_ptr) ? initialize_array : initialize_ptr).(queried_params, count_ptr)...,
                 wrap_api_call(spec, second_call_args; with_func_ptr),
-                ; free=filter(is_data, queried_params)
+                ;
+                free = filter(is_data, queried_params),
             )...,
             wrap_implicit_return(spec, queried_params; with_func_ptr),
         )
@@ -52,15 +59,20 @@ function wrap(spec::SpecFunc; with_func_ptr=false)
         args = filter(!in(vcat(queried_params, count_ptr)), children(spec))
 
         ret_type = @match length(queried_params) begin
-            if any(is_data_with_retrievable_size, queried_params) end => Expr(:curly, :Tuple, nice_julian_type.([unique(len.(queried_params)); queried_params])...)
+            if any(is_data_with_retrievable_size, queried_params)
+            end => Expr(:curly, :Tuple, nice_julian_type.([unique(len.(queried_params)); queried_params])...)
             1 => :(Vector{$(remove_vk_prefix(ptr_type(first(queried_params).type)))})
-            _ => Expr(:curly, :Tuple, (:(Vector{$(remove_vk_prefix(ptr_type(param.type)))}) for param ∈ queried_params)...)
+            _ => Expr(
+                :curly,
+                :Tuple,
+                (:(Vector{$(remove_vk_prefix(ptr_type(param.type)))}) for param ∈ queried_params)...,
+            )
         end
     elseif !isempty(queried_params)
         call_args = map(@λ(begin
-                x && GuardBy(in(queried_params)) => x.name
-                x => vk_call(x)
-            end), children(spec))
+            x && GuardBy(in(queried_params)) => x.name
+            x => vk_call(x)
+        end), children(spec))
 
         p[:body] = concat_exs(
             map(initialize_ptr, queried_params)...,
@@ -101,7 +113,7 @@ function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
     args = [p_func[:args]; p_info[:args]]
     kwargs = [p_func[:kwargs]; p_info[:kwargs]]
 
-    info_expr = reconstruct_call(p_info; is_decl=false)
+    info_expr = reconstruct_call(p_info; is_decl = false)
     info_index = findfirst(==(p_info[:name]), innermost_type.(type.(p_func[:args])))
     deleteat!(args, info_index)
 

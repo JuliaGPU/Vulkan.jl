@@ -6,20 +6,18 @@ using LightGraphs
 using MLStyle
 using DocStringExtensions
 
-@template (FUNCTIONS, METHODS, MACROS) =
-    """
-    $(DOCSTRING)
-    $(TYPEDSIGNATURES)
-    """
+@template (FUNCTIONS, METHODS, MACROS) = """
+                                         $(DOCSTRING)
+                                         $(TYPEDSIGNATURES)
+                                         """
 
-@template TYPES =
-    """
-    $(DOCSTRING)
-    $(TYPEDEF)
-    $(TYPEDSIGNATURES)
-    $(TYPEDFIELDS)
-    $(SIGNATURES)
-    """
+@template TYPES = """
+                  $(DOCSTRING)
+                  $(TYPEDEF)
+                  $(TYPEDSIGNATURES)
+                  $(TYPEDFIELDS)
+                  $(SIGNATURES)
+                  """
 
 include("types.jl")
 include("spec.jl")

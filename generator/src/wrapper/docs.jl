@@ -58,12 +58,27 @@ function document_function(spec, p)
         elseif any(is_opaque_data, params)
             opaque_params = params[findall(is_opaque_data, params)]
             map(opaque_params) do param
-                append_to_argdoc!(argdocs, param, " (must be a valid pointer with `$(wrap_identifier(len(param)))` bytes)")
+                append_to_argdoc!(
+                    argdocs,
+                    param,
+                    " (must be a valid pointer with `$(wrap_identifier(len(param)))` bytes)",
+                )
             end
         end
     end
 
-    docstring(p[:name], string(' '^4, reconstruct_call(p), '\n'^2, document_return_codes(spec), join(["Arguments:"; last.(argdocs)], "\n- "), isempty(extra) ? "" : '\n'^2 * extra, '\n'))
+    docstring(
+        p[:name],
+        string(
+            ' '^4,
+            reconstruct_call(p),
+            '\n'^2,
+            document_return_codes(spec),
+            join(["Arguments:"; last.(argdocs)], "\n- "),
+            isempty(extra) ? "" : '\n'^2 * extra,
+            '\n',
+        ),
+    )
 end
 
 function document_arguments(p)
@@ -85,11 +100,7 @@ function document_struct(spec::SpecStruct, p)
 end
 
 function docstring(name, docstring)
-    p_with_docs = Dict(
-        :category => :doc,
-        :docstring => string('\n', docstring, '\n'),
-        :ex => name,
-    )
+    p_with_docs = Dict(:category => :doc, :docstring => string('\n', docstring, '\n'), :ex => name)
 
     reconstruct(p_with_docs)
 end

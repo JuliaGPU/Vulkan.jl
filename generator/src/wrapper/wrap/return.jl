@@ -4,11 +4,14 @@ wrap_return(ex, type, jtype) = @match t = type begin
     GuardBy(is_opaque_pointer) => ex
     GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex)) # call handle constructor
     GuardBy(in(vcat(spec_enums.name, spec_bitmasks.name))) => ex # don't change enumeration variables since they won't be wrapped under a new name
-    if is_fn_ptr(type) || follow_constant(type) == jtype || innermost_type(type) ∈ spec_flags.name end => ex # Vulkan and Julian types are the same (up to aliases)
+    if is_fn_ptr(type) || follow_constant(type) == jtype || innermost_type(type) ∈ spec_flags.name
+    end => ex # Vulkan and Julian types are the same (up to aliases)
     _ => :(from_vk($jtype, $ex)) # fall back to the from_vk function for conversion
 end
 
-_wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr=false) = length(params) == 1 ? _wrap_implicit_return(first(params); with_func_ptr) : Expr(:tuple, _wrap_implicit_return.(params; with_func_ptr)...)
+_wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr = false) =
+    length(params) == 1 ? _wrap_implicit_return(first(params); with_func_ptr) :
+    Expr(:tuple, _wrap_implicit_return.(params; with_func_ptr)...)
 
 
 """
@@ -42,7 +45,8 @@ function _wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = fals
     end
 
     @match p begin
-        if pt ∈ spec_handles.name end => wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex, with_func_ptr)
+        if pt ∈ spec_handles.name
+        end => wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex, with_func_ptr)
         _ => ex
     end
 end
@@ -80,7 +84,7 @@ end
 
 function wrap_return_type(spec::SpecFunc, ret_type)
     if must_return_success_code(spec) && has_implicit_return_parameters(spec)
-        ret_type = :(Tuple{$ret_type, VkResult})
+        ret_type = :(Tuple{$ret_type,VkResult})
     end
 
     @match spec.return_type begin

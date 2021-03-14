@@ -1,7 +1,8 @@
 function retrieve_parent_ex(parent_handle::SpecHandle, func::SpecFunc)
     parent_handle_var = findfirst(==(parent_handle.name), func.params.type)
     @match n = func.name begin
-        if !isnothing(parent_handle_var) end => wrap_identifier(func.params[parent_handle_var].name)
+        if !isnothing(parent_handle_var)
+        end => wrap_identifier(func.params[parent_handle_var].name)
         _ => nothing
     end
 end
@@ -10,7 +11,8 @@ function retrieve_parent_ex(parent_handle::SpecHandle, create::CreateFunc)
     throw_error() = error("Could not retrieve parent ($(parent_handle.name)) variable from the arguments of $create")
     @match retrieve_parent_ex(parent_handle, create.func) begin
         sym::Symbol => sym
-        ::Nothing && if !isnothing(create.create_info_param) end => begin
+        ::Nothing && if !isnothing(create.create_info_param)
+        end => begin
             p = create.create_info_param
             s = create.create_info_struct
             m_index = findfirst(in([parent_handle.name, :(Ptr{$(parent_handle.name)})]), s.members.type)

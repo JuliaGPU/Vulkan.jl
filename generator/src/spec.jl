@@ -1,5 +1,5 @@
 using EzXML: Node, readxml
-using Vulkan_Headers_jll:vk_xml
+using Vulkan_Headers_jll: vk_xml
 
 const xdoc = readxml(vk_xml)
 const xroot = xdoc.root
@@ -39,77 +39,75 @@ include("spec/types.jl")
 include("spec/specs.jl")
 include("spec/structure_types.jl")
 
-for name ∈ names(@__MODULE__, all=true)
+for name ∈ names(@__MODULE__, all = true)
     if any(startswith.(string(name), ["spec_", "Spec"]))
         @eval export $name
     end
 end
 
 export
-        # Alias manipulation
-        follow_alias,
-        isalias,
-        hasalias,
+    # Alias manipulation
+    follow_alias,
+    isalias,
+    hasalias,
 
-        # Specifications
-        ### Utility
-        default,
-        func_by_name,
-        struct_by_name,
-        union_by_name,
-        handle_by_name,
-        bitmask_by_name,
-        flag_by_name,
-        enum_by_name,
-        constant_by_name,
-        create_func,
-        destroy_func_by_name,
-        create_func_no_batch,
-        follow_constant,
-        children,
-        parent_spec,
-        has_length,
-        has_computable_length,
-        is_length,
-        is_arr,
-        is_size,
-        length_chain,
-        is_fn_ptr,
-        is_version,
-        wrappable_constructors,
+    # Specifications
+    ### Utility
+    default,
+    func_by_name,
+    struct_by_name,
+    union_by_name,
+    handle_by_name,
+    bitmask_by_name,
+    flag_by_name,
+    enum_by_name,
+    constant_by_name,
+    create_func,
+    destroy_func_by_name,
+    create_func_no_batch,
+    follow_constant,
+    children,
+    parent_spec,
+    has_length,
+    has_computable_length,
+    is_length,
+    is_arr,
+    is_size,
+    length_chain,
+    is_fn_ptr,
+    is_version,
+    wrappable_constructors,
 
-        ### Render passes
-        RenderPassRequirement,
-        RenderPassInside,
-        RenderPassOutside,
-        render_pass_compatibiltiy_map,
+    ### Render passes
+    RenderPassRequirement,
+    RenderPassInside,
+    RenderPassOutside,
+    render_pass_compatibiltiy_map,
 
-        ### Queues
-        QueueType,
-        QueueCompute,
-        QueueGraphics,
-        QueueTransfer,
-        QueueSparseBinding,
+    ### Queues
+    QueueType,
+    QueueCompute,
+    QueueGraphics,
+    QueueTransfer,
+    QueueSparseBinding,
 
-        ### Structures & functions
-        PARAM_REQUIREMENT,
-        OPTIONAL,
-        REQUIRED,
-        POINTER_OPTIONAL,
-        POINTER_REQUIRED,
-
-        STRUCT_TYPE,
-        CREATE_INFO,
-        ALLOCATE_INFO,
-        GENERIC_INFO,
-        DATA,
-        PROPERTY,
-
-        FUNC_TYPE,
-        CREATE,
-        DESTROY,
-        ALLOCATE,
-        FREE,
-        COMMAND,
-        QUERY,
-        OTHER
+    ### Structures & functions
+    PARAM_REQUIREMENT,
+    OPTIONAL,
+    REQUIRED,
+    POINTER_OPTIONAL,
+    POINTER_REQUIRED,
+    STRUCT_TYPE,
+    CREATE_INFO,
+    ALLOCATE_INFO,
+    GENERIC_INFO,
+    DATA,
+    PROPERTY,
+    FUNC_TYPE,
+    CREATE,
+    DESTROY,
+    ALLOCATE,
+    FREE,
+    COMMAND,
+    QUERY,
+    OTHER

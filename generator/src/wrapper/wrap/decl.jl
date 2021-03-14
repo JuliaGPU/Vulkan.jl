@@ -1,4 +1,5 @@
-init_wrapper_func(spec::SpecFunc) = Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
+init_wrapper_func(spec::SpecFunc) =
+    Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
 init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
 
 arg_decl(x::Spec) = :($(wrap_identifier(x.name))::$(signature_type(nice_julian_type(x))))
@@ -35,7 +36,7 @@ Corresponding pointer argument for a Vulkan function.
 """
 func_ptrs(spec::Spec) = name.(func_ptr_args(spec))
 
-function add_func_args!(p::Dict, spec, params; with_func_ptr=false)
+function add_func_args!(p::Dict, spec, params; with_func_ptr = false)
     params = filter(!drop_arg, params)
     arg_filter = if spec.type ∈ [DESTROY, FREE]
         destroyed_type = destroy_func(spec).handle.name

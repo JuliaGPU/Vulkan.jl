@@ -1,7 +1,4 @@
-const known_dependencies = [
-    :FunctionPtr,
-    :RefCounter,
-]
+const known_dependencies = [:FunctionPtr, :RefCounter]
 
 function raw_dependencies(ex)
     p = deconstruct(ex)
@@ -20,7 +17,19 @@ end
 
 function dependencies(ex)
     deps = raw_dependencies(ex)
-    filter!.([!isalias, x -> !startswith(string(x), r"(?:Vk|VK_)"), !is_vulkan_type, !in(known_dependencies), !in(extension_types), !in(names(Core)), !in(names(Base)), x -> x isa Symbol], Ref(deps))
+    filter!.(
+        [
+            !isalias,
+            x -> !startswith(string(x), r"(?:Vk|VK_)"),
+            !is_vulkan_type,
+            !in(known_dependencies),
+            !in(extension_types),
+            !in(names(Core)),
+            !in(names(Base)),
+            x -> x isa Symbol,
+        ],
+        Ref(deps),
+    )
     deps
 end
 
@@ -29,14 +38,16 @@ function check_is_dag(g, decls)
         cycles = simplecycles_hadwick_james(g)
         inds = unique(vcat(cycles...))
         problematic_decls = getindex.(Ref(decls), inds)
-        error("""
-        Dependency graph is not a directed acyclic graph (is $(is_directed(g) ? "directed" : "undirected") and $(is_cyclic(g) ? "cyclic" : "acyclic"))
+        error(
+            """
+      Dependency graph is not a directed acyclic graph (is $(is_directed(g) ? "directed" : "undirected") and $(is_cyclic(g) ? "cyclic" : "acyclic"))
 
-        $(is_cyclic(g) ? """
-        Cycles:
+      $(is_cyclic(g) ? """
+      Cycles:
 
-        $(join(generate.(problematic_decls), "\n"^2))""" : "")
-        """)
+      $(join(generate.(problematic_decls), "\n"^2))""" : "")
+      """,
+        )
     end
 end
 

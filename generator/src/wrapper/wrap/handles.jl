@@ -3,11 +3,7 @@ function wrap(spec::SpecHandle)
         :category => :struct,
         :decl => :($(remove_vk_prefix(spec.name)) <: Handle),
         :is_mutable => true,
-        :fields => [
-            :(vks::$(spec.name)),
-            :(refcount::RefCounter),
-            :destructor,
-        ]
+        :fields => [:(vks::$(spec.name)), :(refcount::RefCounter), :destructor],
     )
 
     if !isnothing(spec.parent)
@@ -15,26 +11,24 @@ function wrap(spec::SpecHandle)
         pdecl = :($id::$(remove_vk_prefix(spec.parent)))
         insert!(d[:fields], 2, pdecl)
         d[:constructors] = [
-            :($(remove_vk_prefix(spec.name))(vks::$(spec.name), $pdecl, refcount::RefCounter) = new(vks, $id, refcount, undef)),
+            :(
+                $(remove_vk_prefix(spec.name))(vks::$(spec.name), $pdecl, refcount::RefCounter) =
+                    new(vks, $id, refcount, undef)
+            ),
         ]
     else
-        d[:constructors] = [
-            :($(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef)),
-        ]
+        d[:constructors] =
+            [:($(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef))]
     end
 
     d
 end
 
-function destructor(handle::SpecHandle; with_func_ptr=false)
+function destructor(handle::SpecHandle; with_func_ptr = false)
     destroy = destroy_func(handle)
     if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
         p = wrap(destroy.func)
-        p_call = Dict(
-            :name => p[:name],
-            :args => Any[name.(p[:args])...],
-            :kwargs => name.(p[:kwargs]),
-        )
+        p_call = Dict(:name => p[:name], :args => Any[name.(p[:args])...], :kwargs => name.(p[:kwargs]))
         with_func_ptr && push!(p_call[:args], :fun_ptr_destroy)
         p_call[:args][findfirst(==(remove_vk_prefix(handle.name)), type.(p[:args]))] = :x
         :(x -> $(reconstruct_call(p_call)))
@@ -50,10 +44,10 @@ function add_constructors(spec::SpecHandle; with_func_ptr = false)
             # just pass the arguments as-is
             p_func = wrap(create.func; with_func_ptr)
             args, kwargs = p_func[:args], p_func[:kwargs]
-            body = reconstruct_call(p_func; is_decl=false)
+            body = reconstruct_call(p_func; is_decl = false)
         else
             p_func_extended = extend_handle_constructor(create; with_func_ptr)
-            body = :(unwrap($(reconstruct_call(p_func_extended; is_decl=false))))
+            body = :(unwrap($(reconstruct_call(p_func_extended; is_decl = false))))
             args, kwargs = p_func_extended[:args], p_func_extended[:kwargs]
         end
 

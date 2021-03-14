@@ -9,40 +9,38 @@ include("wrapper/dependency_resolution.jl")
 include("wrapper/write.jl")
 
 export
-        # Naming Conventions
-        ### Convention types
-        CamelCaseLower,
-        CamelCaseUpper,
-        SnakeCaseLower,
-        SnakeCaseUpper,
+    # Naming Conventions
+    ### Convention types
+    CamelCaseLower,
+    CamelCaseUpper,
+    SnakeCaseLower,
+    SnakeCaseUpper,
 
-        ### Convention utilities
-        detect_convention,
-        nc_convert,
-        remove_parts,
-        remove_prefix,
+    ### Convention utilities
+    detect_convention,
+    nc_convert,
+    remove_parts,
+    remove_prefix,
 
-        # Expr
-        name,
-        category,
-        deconstruct,
-        reconstruct,
-        rmlines,
-        striplines,
-        unblock,
-        prettify,
-        concat_exs,
-        broadcast_ex,
-        is_broadcast,
+    # Expr
+    name,
+    category,
+    deconstruct,
+    reconstruct,
+    rmlines,
+    striplines,
+    unblock,
+    prettify,
+    concat_exs,
+    broadcast_ex,
+    is_broadcast,
 
-        # Wrapping
-        VulkanWrapper,
-        wrap,
-        add_constructor,
-        add_constructors,
-        extend_from_vk,
-        extend_handle_constructor,
-        to_expr,
-        document
-
-
+    # Wrapping
+    VulkanWrapper,
+    wrap,
+    add_constructor,
+    add_constructors,
+    extend_from_vk,
+    extend_handle_constructor,
+    to_expr,
+    document

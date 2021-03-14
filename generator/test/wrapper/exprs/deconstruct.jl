@@ -44,6 +44,6 @@
         @test p[:category] == :enum
         @test p[:name] == :myotherenum
         @test p[:macro] == Symbol("@cenum")
-        @test p[:values] == [:(a=1), :(b=2), :(c=3), :(d=4)]
+        @test p[:values] == [:(a = 1), :(b = 2), :(c = 3), :(d = 4)]
     end
 end

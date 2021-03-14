@@ -14,15 +14,15 @@ function resolve_aliases!(collection::Dict, nodes)
 end
 
 function nested_ntuple(base_type, lengths)
-    make_tuple = (x, y) -> :(NTuple{$x, $y})
-    foldr(make_tuple, lengths; init=base_type)
+    make_tuple = (x, y) -> :(NTuple{$x,$y})
+    foldr(make_tuple, lengths; init = base_type)
 end
 
 function extract_type(param)
     base_type = Symbol(findfirst("./type", param).content)
 
     star_count = count("*", param.content)
-    type = star_count == 0 ? base_type : reduce((x, _) -> :(Ptr{$x}), 1:star_count; init=base_type)
+    type = star_count == 0 ? base_type : reduce((x, _) -> :(Ptr{$x}), 1:star_count; init = base_type)
     translated_type = translate_c_type(type)
     enum_param = findfirst("./enum", param)
     node_after_name = findfirst("./name", param).nextnode
@@ -39,11 +39,14 @@ function extract_type(param)
 end
 
 extract_identifier(param) = Symbol(findfirst("./name", param).content)
-getattr(node::Node, attr; default = nothing, symbol=true) = haskey(node, attr) ? (symbol ? Symbol(node[attr]) : node[attr]) : default
+getattr(node::Node, attr; default = nothing, symbol = true) =
+    haskey(node, attr) ? (symbol ? Symbol(node[attr]) : node[attr]) : default
 
 function parent_name(node::Node)
     parel = node.parentelement
-    parel.name == "command" ? command_name(parel) : parel.name == "type" && parel["category"] ∈ ["struct", "union"] ? struct_name(parel) : error("Unknown parent element:\n    $parel")
+    parel.name == "command" ? command_name(parel) :
+    parel.name == "type" && parel["category"] ∈ ["struct", "union"] ? struct_name(parel) :
+    error("Unknown parent element:\n    $parel")
 end
 
 function command_name(node::Node)
@@ -52,7 +55,8 @@ function command_name(node::Node)
 end
 
 function struct_name(node::Node)
-    (!haskey(node, "category") || node["category"] ∉ ["struct", "union"]) && return Symbol(struct_name(node.parentelement))
+    (!haskey(node, "category") || node["category"] ∉ ["struct", "union"]) &&
+        return Symbol(struct_name(node.parentelement))
     Symbol(node["name"])
 end
 
@@ -68,9 +72,12 @@ do not necessarily have the same layout, e.g. VkBool32 => Bool (8 bits).
 function translate_c_type(ctype)
     @match ctype begin
         :int => :Int
-        x::Symbol && if startswith(string(x), "uint") && endswith(string(x), "_t") end => Symbol(replace(string(x)[1:end-2], "uint" => "UInt"))
-        x::Symbol && if startswith(string(x), "int") && endswith(string(x), "_t") end => Symbol(replace(string(x)[1:end-2], "int" => "Int"))
-        if is_ptr(ctype) end => @match ptr_type(ctype) begin
+        x::Symbol && if startswith(string(x), "uint") && endswith(string(x), "_t")
+        end => Symbol(replace(string(x)[1:end-2], "uint" => "UInt"))
+        x::Symbol && if startswith(string(x), "int") && endswith(string(x), "_t")
+        end => Symbol(replace(string(x)[1:end-2], "int" => "Int"))
+        if is_ptr(ctype)
+        end => @match ptr_type(ctype) begin
             :char => :Cstring
             x => :(Ptr{$(translate_c_type(x))})
         end

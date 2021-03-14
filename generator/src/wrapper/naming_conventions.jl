@@ -4,23 +4,27 @@ abstract type CamelCase <: NamingConvention end
 abstract type SnakeCase <: NamingConvention end
 
 struct SnakeCaseLower <: SnakeCase
-    value
-    SnakeCaseLower(value) = is_snake_case(value) && lowercase(value) == value ? new(value) : error("Invalid string format $value")
+    value::Any
+    SnakeCaseLower(value) =
+        is_snake_case(value) && lowercase(value) == value ? new(value) : error("Invalid string format $value")
 end
 
 struct SnakeCaseUpper <: SnakeCase
-    value
-    SnakeCaseUpper(value) = is_snake_case(value) && uppercase(value) == value ? new(value) : error("Invalid string format $value")
+    value::Any
+    SnakeCaseUpper(value) =
+        is_snake_case(value) && uppercase(value) == value ? new(value) : error("Invalid string format $value")
 end
 
 struct CamelCaseLower <: CamelCase
-    value
-    CamelCaseLower(value) = is_camel_case(value) && uppercase(value[1]) != value[1]  ? new(value) : error("Invalid string format $value")
+    value::Any
+    CamelCaseLower(value) =
+        is_camel_case(value) && uppercase(value[1]) != value[1] ? new(value) : error("Invalid string format $value")
 end
 
 struct CamelCaseUpper <: CamelCase
-    value
-    CamelCaseUpper(value) = is_camel_case(value) && uppercase(value[1]) == value[1] ? new(value) : error("Invalid string format $value")
+    value::Any
+    CamelCaseUpper(value) =
+        is_camel_case(value) && uppercase(value[1]) == value[1] ? new(value) : error("Invalid string format $value")
 end
 
 Base.split(str::SnakeCase) = split(str.value, "_")
@@ -54,7 +58,8 @@ Base.convert(T::Type{CamelCaseLower}, str::CamelCaseUpper) = T(lowercase(str.val
 Base.convert(T::Type{CamelCaseUpper}, str::CamelCaseLower) = T(uppercasefirst(str.value))
 Base.convert(T::Type{<:CamelCase}, str::SnakeCase) = T(split(str))
 Base.convert(T::Type{<:SnakeCase}, str::CamelCase) = T(split(str))
-nc_convert(T::Type{<:NamingConvention}, str::AbstractString) = Base.convert(T, (detect_convention(str, instance=true))).value
+nc_convert(T::Type{<:NamingConvention}, str::AbstractString) =
+    Base.convert(T, (detect_convention(str, instance = true))).value
 nc_convert(T::Type{<:NamingConvention}, sym::Symbol) = Symbol(nc_convert(T, string(sym)))
 
 is_camel_case(str) = !occursin("_", str)
@@ -70,12 +75,12 @@ function remove_parts(str::T, discarded_parts) where {T<:NamingConvention}
     T(kept_parts)
 end
 
-remove_parts(str; discarded_parts=[1]) = remove_parts(detect_convention(str, instance=true), discarded_parts)
+remove_parts(str; discarded_parts = [1]) = remove_parts(detect_convention(str, instance = true), discarded_parts)
 
 remove_prefix(name::T) where {T<:NamingConvention} = T(split(name)[2:end])
-remove_prefix(str) = remove_prefix(detect_convention(str, instance=true)).value
+remove_prefix(str) = remove_prefix(detect_convention(str, instance = true)).value
 
-function detect_convention(str; instance=false)
+function detect_convention(str; instance = false)
     instanced(T, x) = instance ? T(x) : T
     is_camel_case(str) && lowercase(str)[1] == str[1] && return instanced(CamelCaseLower, str)
     is_camel_case(str) && uppercase(str)[1] == str[1] && return instanced(CamelCaseUpper, str)
