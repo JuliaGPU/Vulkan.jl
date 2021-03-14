@@ -213,6 +213,8 @@ This introduces a small overhead, since the parent handle and allocator are stor
 
 There are exceptions to the described above. `CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations. Please note also that, except for these two handle types, you should **never** explicitly call the destructors, otherwise they will be destroyed twice, likely resulting in a crash.
 
+Because finalization order is the source of many Vulkan bugs, particularly when objects implicitly depend on other objects being alive, there is a [preference](@ref preferences) `LOG_DESTRUCTION` that allows you to log all destructions if set to `"true"`.
+
 ### [Expose \*\[Create/Allocate\]Info arguments](@id expose-create-info-args)
 
 Handles that can only be created with a single API constructor possess an additional constructor that wraps around the generated create/allocate\* functions, building the required \*\[Create/Allocate\]Info from exposed arguments. That way, you do not have to explicitly construct this intermediate structure, which reduces boilerplate code.
@@ -301,9 +303,7 @@ Some of the above features may have configurable options that can be set via [Pr
 !!! warning
     Preferences require running at least Julia 1.6. For earlier versions, these options are not customizable, and will have their default values.
 
-No preferences are currently available. More will be added in the future.
-
-|    Preference    |                             Description                             | Default |
-|:----------------:|:-------------------------------------------------------------------:|:-------:|
-| | | |
+|    Preference     |              Description              |  Default  |
+|:-----------------:|:-------------------------------------:|:---------:|
+| `LOG_DESTRUCTION` | Log the destruction of Vulkan handles | `"false"` |
 

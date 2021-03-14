@@ -15,14 +15,6 @@ Base.broadcastable(r::Result) = Ref(r)
 
 const core = vk
 
-@static if VERSION < v"1.6.0-DEV"
-    macro load_preference(name, default)
-        esc(default)
-    end
-else
-    using Preferences: @load_preference
-end
-
 @template (FUNCTIONS, METHODS, MACROS) =
     """
     $(DOCSTRING)
@@ -37,6 +29,8 @@ end
     $(TYPEDFIELDS)
     $(SIGNATURES)
     """
+
+include("preferences.jl")
 
 # generated wrapper
 include("prewrap.jl")

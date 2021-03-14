@@ -14,8 +14,10 @@ decrement_refcount!(handle::Handle) = Threads.atomic_sub!(handle.refcount, UInt(
 function try_destroy(f, handle::Handle, parent)
     decrement_refcount!(handle)
     if iszero(handle.refcount[])
-        f(handle)
-        !isnothing(parent) && parent.destructor()
+        @pref_log_destruction f(handle)
+        if !isnothing(parent)
+            parent.destructor()
+        end
     end
 end
 
