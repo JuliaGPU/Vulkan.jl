@@ -36,7 +36,7 @@ function assigned_parent_symbol(parent_ex)
     end
 end
 
-assign_parent(parent_ex::Symbol) = nothing
+assign_parent(::Symbol) = nothing
 assign_parent(parent_ex::Expr) = :($(assigned_parent_symbol(parent_ex)) = $parent_ex)
 
 function parent_handles(spec::SpecStruct)

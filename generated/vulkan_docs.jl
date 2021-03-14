@@ -5841,12 +5841,13 @@ Arguments:
 ShaderModuleCreateInfo
 
 """
-    DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; immutable_samplers = C_NULL)
+    DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
 
 Arguments:
 - `binding::Integer`
 - `descriptor_type::VkDescriptorType`
 - `stage_flags::ShaderStageFlag`
+- `descriptor_count`: defaults to `0`
 - `immutable_samplers`: defaults to `C_NULL`
 
 """

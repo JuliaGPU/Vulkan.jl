@@ -27,3 +27,13 @@ is_implicit_return(spec::SpecFuncParam) =
     spec.type ∉ extension_types &&
     ptr_type(spec.type) ∉ extension_types
 has_implicit_return_parameters(spec::SpecFunc) = any(is_implicit_return, children(spec))
+
+function is_specific_count(spec::Spec)
+    @match spec begin
+        GuardBy(is_length) => @match parent(spec) begin
+            :VkDescriptorSetLayoutBinding => true
+            _ => false
+        end
+        _ => false
+    end
+end
