@@ -39,7 +39,7 @@ function add_constructor(spec::SpecStruct)
             $(p[:name])(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end
     else
-        p[:body] = :($(p[:name])($(spec.name)($(map(vk_call, spec.members)...))))
+        p[:body] = :($(p[:name])($(spec.name)($(map(vk_call, spec.members)...)), $(wrap_identifier.(parent_handles(spec))...)))
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, spec.members)
     add_func_args!(p, spec, potential_args)

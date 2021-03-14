@@ -7011,7 +7011,7 @@ function TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Int
 end
 
 function StridedBufferRegionKHR(offset::Integer, stride::Integer, size::Integer; buffer = C_NULL)
-    StridedBufferRegionKHR(VkStridedBufferRegionKHR(buffer, offset, stride, size))
+    StridedBufferRegionKHR(VkStridedBufferRegionKHR(buffer, offset, stride, size), buffer)
 end
 
 function PhysicalDeviceRayTracingFeaturesKHR(ray_tracing::Bool, ray_tracing_shader_group_handle_capture_replay::Bool, ray_tracing_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_acceleration_structure_capture_replay::Bool, ray_tracing_indirect_trace_rays::Bool, ray_tracing_indirect_acceleration_structure_build::Bool, ray_tracing_host_acceleration_structure_commands::Bool, ray_query::Bool, ray_tracing_primitive_culling::Bool; next = C_NULL)
@@ -8370,7 +8370,7 @@ function IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV
 end
 
 function IndirectCommandsStreamNV(buffer::Buffer, offset::Integer)
-    IndirectCommandsStreamNV(VkIndirectCommandsStreamNV(buffer, offset))
+    IndirectCommandsStreamNV(VkIndirectCommandsStreamNV(buffer, offset), buffer)
 end
 
 function SetStateFlagsIndirectCommandNV(data::Integer)
@@ -9062,11 +9062,11 @@ function SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray)
 end
 
 function SparseImageMemoryBind(subresource::ImageSubresource, offset::Offset3D, extent::Extent3D, memory_offset::Integer; memory = C_NULL, flags = 0)
-    SparseImageMemoryBind(VkSparseImageMemoryBind(subresource.vks, offset.vks, extent.vks, memory, memory_offset, flags))
+    SparseImageMemoryBind(VkSparseImageMemoryBind(subresource.vks, offset.vks, extent.vks, memory, memory_offset, flags), memory)
 end
 
 function SparseMemoryBind(resource_offset::Integer, size::Integer, memory_offset::Integer; memory = C_NULL, flags = 0)
-    SparseMemoryBind(VkSparseMemoryBind(resource_offset, size, memory, memory_offset, flags))
+    SparseMemoryBind(VkSparseMemoryBind(resource_offset, size, memory, memory_offset, flags), memory)
 end
 
 function BufferCopy(src_offset::Integer, dst_offset::Integer, size::Integer)
@@ -9154,11 +9154,11 @@ function WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_ar
 end
 
 function DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
-    DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout))
+    DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
 end
 
 function DescriptorBufferInfo(offset::Integer, range::Integer; buffer = C_NULL)
-    DescriptorBufferInfo(VkDescriptorBufferInfo(buffer, offset, range))
+    DescriptorBufferInfo(VkDescriptorBufferInfo(buffer, offset, range), buffer)
 end
 
 function MappedMemoryRange(memory::DeviceMemory, offset::Integer, size::Integer; next = C_NULL)

@@ -371,6 +371,12 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
             end
         ))
 
+        test_struct_add_constructor(:VkDescriptorImageInfo, :(
+            function DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
+                DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
+            end
+        ))
+
         end
 
         @testset "Handle constructors" begin
