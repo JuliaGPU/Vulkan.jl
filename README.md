@@ -10,9 +10,9 @@ This is a very similar approach to that taken by [VulkanHpp](https://github.com/
 
 ## Status
 
-This package is a work in progress and has not reached its 1.0 version yet. As such, documentation may not be complete and functionality may change without warning.
+This package is a work in progress and has not reached its 1.0 version yet. As such, documentation may not be complete and functionality may change without warning. At this stage, you should not use this library in production; however, you are encouraged to push its boundaries through non-critical projects. If you find limitations, bugs or want to suggest potential improvements, do not hesitate to submit issues or pull requests. The goal is definitely to be production-ready as soon as possible.
 
-If you find limitations, bugs or want to suggest potential improvements, do not hesitate to submit issues or pull requests.
+In particular, because the library relies on automatic code generation, there may be portions of the Vulkan API that are not wrapped correctly. While you should not have trouble in most cases, there are always edge cases which were not accounted for during generation. Please open an issue whenever you encounter such a case, so that we can reliably fix those wrapping issues for future use.
 
 ## Testing
 
