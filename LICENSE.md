@@ -1,6 +1,6 @@
-The VulkanAbstraction.jl package is licensed under the MIT "Expat" License:
+The Vulkan.jl package is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2016: SimonDanisch.
+> Copyright (c) 2016: Cédric Belmant, Simon Danisch and contributors.
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
