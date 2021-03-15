@@ -17,9 +17,9 @@ makedocs(;
         "Troubleshooting" => "troubleshooting.md",
         "Developer documentation" => "dev.md",
     ],
-    repo="https://github.com/serenity4/Vulkan.jl/blob/{commit}{path}#L{line}",
+    repo="https://github.com/JuliaGPU/Vulkan.jl/blob/{commit}{path}#L{line}",
     sitename="Vulkan.jl",
-    authors="serenity4 <cedric.bel@hotmail.fr>, SimonDanisch",
+    authors="serenity4 <cedric.bel@hotmail.fr>",
     strict=true,
     doctest=false,
     checkdocs=:exports,
@@ -27,5 +27,5 @@ makedocs(;
 )
 
 deploydocs(
-    repo = "github.com/serenity4/Vulkan.jl.git",
+    repo = "github.com/JuliaGPU/Vulkan.jl.git",
 )
