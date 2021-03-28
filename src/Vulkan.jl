@@ -72,7 +72,7 @@ export
 
         # Device
         physical_device_features,
-        find_queue_index,
+        find_queue_family,
 
         # Debugging
         default_debug_callback,

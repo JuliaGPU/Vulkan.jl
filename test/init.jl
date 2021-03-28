@@ -20,12 +20,12 @@ const device = let pdevices = unwrap(enumerate_physical_devices(instance))
     pdevice = first(pdevices)
 
     @info "Selected $(get_physical_device_properties(pdevice))"
-    @test_throws ErrorException("No queue with the desired capabilities could be found.") find_queue_index(pdevice, typemax(QueueFlag))
+    @test_throws ErrorException("No queue with the desired capabilities could be found.") find_queue_family(pdevice, typemax(QueueFlag))
     @test_throws ErrorException("Invalid physical device features: no_feature") PhysicalDeviceFeatures(:no_feature)
 
     Device(
         pdevice,
-        [DeviceQueueCreateInfo(find_queue_index(pdevice, QUEUE_GRAPHICS_BIT & QUEUE_COMPUTE_BIT), [1.0])],
+        [DeviceQueueCreateInfo(find_queue_family(pdevice, QUEUE_GRAPHICS_BIT & QUEUE_COMPUTE_BIT), [1.0])],
         [], DEVICE_EXTENSIONS; enabled_features = ENABLED_FEATURES
     )
 end
