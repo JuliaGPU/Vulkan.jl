@@ -5318,7 +5318,7 @@ function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR, fun_p
             pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
             @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages, fun_ptr)
         end
-    Image.(pSwapchainImages, (x->destroy_image(device, x, fun_ptr_destroy; allocator)), device)
+    Image.(pSwapchainImages, identity, device)
 end
 
 destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroySwapchainKHR(device, swapchain, allocator, fun_ptr)
@@ -10197,7 +10197,7 @@ function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Resu
             pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
             @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
         end
-    Image.(pSwapchainImages, (x->destroy_image(device, x; allocator)), device)
+    Image.(pSwapchainImages, identity, device)
 end
 
 destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL)::Cvoid = vkDestroySwapchainKHR(device, swapchain, allocator)

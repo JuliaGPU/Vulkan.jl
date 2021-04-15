@@ -305,6 +305,18 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         test_wrap_func(:vkGetFenceStatus, :(
             get_fence_status(device::Device, fence::Fence)::Result{VkResult, VulkanError} = @check(vkGetFenceStatus(device, fence))
         ))
+
+        test_wrap_func(:vkGetSwapchainImagesKHR, :(
+            function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Vector{Image}, VulkanError}
+                pSwapchainImageCount = Ref{UInt32}()
+                @repeat_while_incomplete begin
+                        @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL)
+                        pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
+                        @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
+                    end
+                Image.(pSwapchainImages, identity, device)
+            end
+        ))
     end
 
     @testset "Additional constructors" begin

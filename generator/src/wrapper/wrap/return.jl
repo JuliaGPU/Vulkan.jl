@@ -56,21 +56,22 @@ function wrap_implicit_return(spec::SpecFunc, args...; kwargs...)
     must_return_success_code(spec) ? :(($ex, _return_code)) : ex
 end
 
-function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex, with_func_ptr)
+function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex, destroy::Bool, with_func_ptr)
     @match ex begin
-        :($f($v[])) => :($f($v[], $(destructor(handle; with_func_ptr)), $parent_ex))
-        :($f.($v)) => :($f.($v, $(destructor(handle; with_func_ptr)), $parent_ex))
+        :($f($v[])) => :($f($v[], $(!destroy ? :identity : destructor(handle; with_func_ptr)), $parent_ex))
+        :($f.($v)) => :($f.($v, $(!destroy ? :identity : destructor(handle; with_func_ptr)), $parent_ex))
     end
 end
 
-function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, with_func_ptr)
+function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, destroy::Bool, with_func_ptr)
     @match ex begin
-        :($f($v[])) => :($f($v[], $(destructor(handle; with_func_ptr))))
-        :($f.($v)) => :($f.($v, $(destructor(handle; with_func_ptr))))
+        :($f($v[])) => :($f($v[], $(!destroy ? :identity : destructor(handle; with_func_ptr))))
+        :($f.($v)) => :($f.($v, $(!destroy ? :identity : destructor(handle; with_func_ptr))))
     end
 end
 
 function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Expr, with_func_ptr)
+    destroy = spec.type ≠ QUERY
     args = @match parent_spec(handle) begin
         ::Nothing => (handle, ex)
         p::SpecHandle => @match spec.type begin
@@ -79,7 +80,7 @@ function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Exp
         end
     end
 
-    wrap_implicit_handle_return(args..., with_func_ptr)
+    wrap_implicit_handle_return(args..., destroy, with_func_ptr)
 end
 
 function wrap_return_type(spec::SpecFunc, ret_type)
