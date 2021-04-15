@@ -1,7 +1,7 @@
 name = "Vulkan"
 uuid = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
 authors = ["Cédric Belmant"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
