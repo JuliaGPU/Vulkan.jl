@@ -4,7 +4,7 @@ using DocStringExtensions
 using VulkanCore
 using VulkanCore.vk
 using Base: RefArray
-import Base: convert, cconvert, unsafe_convert, &, |, xor
+import Base: convert, cconvert, unsafe_convert, &, |, xor, isless
 using MLStyle
 
 using Reexport
