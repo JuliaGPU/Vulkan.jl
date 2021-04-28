@@ -38,10 +38,10 @@ isless(a::T, b::T) where {T <: BitMask} = T(isless(a.val, b.val))
 xor(a::T, b::Integer) where {T <: BitMask} = T(xor(a.val, b))
 isless(a::T, b::Integer) where {T <: BitMask} = T(isless(a.val, b))
 
-(&)(a::Integer, b::T) where {T <: BitMask} = b & a
-(|)(a::Integer, b::T) where {T <: BitMask} = b | a
-xor(a::Integer, b::T) where {T <: BitMask} = xor(b, a)
-isless(a::Integer, b::T) where {T <: BitMask} = isless(b, a)
+(&)(a::Integer, b::T) where {T <: BitMask} = b.val & a
+(|)(a::Integer, b::T) where {T <: BitMask} = b.val | a
+xor(a::Integer, b::T) where {T <: BitMask} = xor(b.val, a)
+isless(a::Integer, b::T) where {T <: BitMask} = isless(b.val, a)
 
 (::Type{T})(bm::BitMask) where {T <: Integer} = T(bm.val)
 
