@@ -1,8 +1,12 @@
 # Utility
 
-Here we describe some external tools that can assist the development of Vulkan applications.
+Here we describe some tools that can assist the development of Vulkan applications.
 
-## Profilers
+## Validation
+
+The activation of debugging messages is done via the creation of a [`DebugUtilsMessengerEXT`](@ref). We provide an additional high-level constructor along with a default constructor function [`default_debug_callback`](@ref).
+
+## External tools
 
 ### NVIDIA Nsight Systems
 
@@ -16,7 +20,7 @@ Here we describe some external tools that can assist the development of Vulkan a
 
 [Renderdoc](https://renderdoc.org/) plays a similar role to Nsight Graphics for a wider range of GPUs. It is open-source and community-maintained.
 
-## CPU implementation
+### CPU implementation of Vulkan
 
 [SwiftShader](https://github.com/google/swiftshader) is a CPU implementation of Vulkan primarily designed to extend the portability of Vulkan applications. It can be used wherever there is a lack of proper driver support, including public continuous integration services.
 

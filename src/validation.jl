@@ -26,6 +26,9 @@ function vk_log(message_severity, str)
     ccall(:jl_safe_printf, Cvoid, (Cstring,), string(log, ": \e[m", str, '\n'))
 end
 
+"""
+Default callback for debugging with [`DebugUtilsMessengerEXT`](@ref).
+"""
 function default_debug_callback(message_severity, message_type, callback_data_ptr, user_data_ptr)
     callback_data_ptr == C_NULL && return UInt32(0)
     callback_data = unsafe_load(callback_data_ptr)
@@ -40,9 +43,9 @@ function default_debug_callback(message_severity, message_type, callback_data_pt
 end
 
 """
-Register a user callback and return the corresponding messenger.
+Register a user-defined callback and return the corresponding messenger.
 
-A default named `default_debug_callback` can be converted to a function pointer to use as a callback.
+A default function [`default_debug_callback`](@ref) can be converted to a function pointer to use as a callback.
 
 !!! warning
     `callback` must be a function pointer of type `Ptr{Nothing}` obtained from a `callback_f` function as follows:  
