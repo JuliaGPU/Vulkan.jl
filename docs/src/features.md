@@ -209,6 +209,17 @@ Handles can be created with the API functions `vkCreate*` and `vkAllocate*`, and
 
 However, finalizers can be run in arbitrary order, and some handles require to be destroyed only after all their children (such as `VkDevice`s). To avoid crashes related to bad finalization execution order, a simple thread-safe reference counting system is used to make sure that a handle is destroyed **only after all its children are destroyed**.
 
+!!! note
+    If you need to construct a handle from an opaque pointer (obtained, for example, via an external library such as a `VkSurfaceKHR` from GLFW), you can use the constructor `(::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor[, parent])` as in
+
+    ```julia
+    surface_ptr = GLFW.CreateWindowSurface(instance, window)
+    SurfaceKHR(surface_ptr, x -> destroy_surface_khr(instance, x), instance)
+    ```
+
+    If you don't need to destroy the surface (for example, if the external library does it for you), then you can just pass in the `identity` function as a destructor.
+
+
 This introduces a small overhead, since the parent handle and allocator are stored in an anonymous function for each handle at creation. However, it should be minor compared to the execution time of the API destructors.
 
 There are exceptions to the described above. `CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations. Please note also that, except for these two handle types, you should **never** explicitly call the destructors, otherwise they will be destroyed twice, likely resulting in a crash.
