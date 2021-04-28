@@ -14,10 +14,13 @@ end
     @test BIT_A & BIT_B == FlagBits(0)
     @test BIT_A | BIT_B == BIT_C
     @test xor(BIT_A, BIT_B) == BIT_C
-    @test isless(BIT_A, BIT_B) && isless(BIT_B, BIT_C) && isless(BIT_A, BIT_C)
+    @test BIT_A < BIT_B && BIT_B < BIT_C && BIT_A < BIT_C
     @test BIT_A & 1 == 1 & BIT_A == BIT_A
     @test BIT_A | 2 == 2 | BIT_A == BIT_C
     @test xor(BIT_A, 2) == xor(2, BIT_A) == BIT_C
-    @test isless(1, BIT_B) && isless(BIT_B, 3)
+    @test 1 < BIT_B && BIT_B < 3
+    @test BIT_A <= BIT_B <= BIT_C
+    @test BIT_A <= 1
+    @test 1 <= BIT_A
     @test_throws ErrorException("Bitwise operation not allowed between incompatible bitmasks 'FlagBits', 'FlagBits2'") BIT_A & BIT_A_2
 end
