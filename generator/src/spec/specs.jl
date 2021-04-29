@@ -292,7 +292,13 @@ function len(node::Node)
             val::Nothing => nothing
             val => begin
                 val_arr = filter(≠("null-terminated"), split(val, ','))
-                @assert length(val_arr) <= 1
+                if length(val_arr) > 1
+                    if length(last(val_arr)) == 1 && isdigit(first(last(val_arr))) # array of pointers, length is unaffected
+                        pop!(val_arr)
+                    else
+                        error("Failed to parse 'len' parameter '$val' for $(node.parentnode["name"]).")
+                    end
+                end
                 isempty(val_arr) ? nothing : Symbol(first(val_arr))
             end
         end
