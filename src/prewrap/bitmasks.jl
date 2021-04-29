@@ -1,4 +1,4 @@
-abstract type BitMask end
+abstract type BitMask{T<:Unsigned} end
 
 function generate_bitmask_flags(type, decl)
     identifier, value = decl.args
@@ -20,7 +20,13 @@ macro bitmask_flag(typedecl, expr)
         _ => error("First argument to @bitmask_flag must be of the form 'type::eltype'")
     end
     decls = filter(x -> typeof(x) ≠ LineNumberNode, expr.args)
-    Expr(:block, esc(:(struct $type <: BitMask; val::$eltype; end)), generate_bitmask_flags.(type, decls)...)
+
+    exs = [
+        esc(:(struct $type <: BitMask{$eltype}; val::$eltype; end));
+        generate_bitmask_flags.(type, decls)
+    ]
+
+    Expr(:block, exs...)
 end
 
 (&)(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
@@ -50,4 +56,4 @@ isless(a::Integer, b::T) where {T <: BitMask} = isless(a, b.val) # need b.val to
 convert(T::Type{<:Integer}, bm::BitMask) = T(bm.val)
 convert(T::Type{<:BitMask}, val::Integer) = T(val)
 
-Base.typemax(T::Type{<:BitMask}) = T(0x7fffffff)
+typemax(T::Type{<:BitMask{_T}}) where {_T} = T(typemax(_T))
