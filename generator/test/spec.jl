@@ -123,7 +123,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [],
             [
                 (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, OPTIONAL, nothing, [], true),
                 (:pApplicationName, :Cstring, true, false, OPTIONAL, nothing, [], true),
                 (:applicationVersion, :UInt32, false, false, REQUIRED, nothing, [], true),
                 (:pEngineName, :Cstring, true, false, OPTIONAL, nothing, [], true),
@@ -138,7 +138,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [:VkPipelineViewportStateCreateInfo],
             [
                 (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, OPTIONAL, nothing, [], true),
                 (:sampleOrderType, :VkCoarseSampleOrderTypeNV, false, false, REQUIRED, nothing, [], true),
                 (:customSampleOrderCount, :UInt32, false, false, OPTIONAL, nothing, [:pCustomSampleOrders], true),
                 (
@@ -160,7 +160,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [:VkPhysicalDeviceFeatures2, :VkDeviceCreateInfo],
             [
                 (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
-                (:pNext, :(Ptr{Cvoid}), false, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), false, false, OPTIONAL, nothing, [], true),
                 (:shadingRateImage, :VkBool32, false, false, REQUIRED, nothing, [], true),
                 (:shadingRateCoarseSampleOrder, :VkBool32, false, false, REQUIRED, nothing, [], true),
             ],
@@ -172,7 +172,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [:VkDescriptorSetLayoutCreateInfo],
             [
                 (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, OPTIONAL, nothing, [], true),
                 (:bindingCount, :UInt32, false, false, OPTIONAL, nothing, [:pBindingFlags], true),
                 (:pBindingFlags, :(Ptr{VkDescriptorBindingFlags}), true, false, POINTER_REQUIRED, :bindingCount, [], true),
             ],
@@ -184,7 +184,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [],
             [
                 (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, OPTIONAL, nothing, [], true),
                 (:flags, :VkInstanceCreateFlags, false, false, OPTIONAL, nothing, [], true),
                 (:pApplicationInfo, :(Ptr{VkApplicationInfo}), true, false, OPTIONAL, nothing, [], true),
                 (:enabledLayerCount, :UInt32, false, false, OPTIONAL, nothing, [:ppEnabledLayerNames], true),
@@ -200,7 +200,7 @@ test_destroy_func(name, handle, index, batch) = test_spec(
             [],
             [
                 (:sType, :VkStructureType, false, false, REQUIRED, nothing, [], true),
-                (:pNext, :(Ptr{Cvoid}), true, false, REQUIRED, nothing, [], true),
+                (:pNext, :(Ptr{Cvoid}), true, false, OPTIONAL, nothing, [], true),
                 (:mode, :VkDisplayModeKHR, false, true, REQUIRED, nothing, [], true),
                 (:planeIndex, :UInt32, false, false, REQUIRED, nothing, [], true),
             ],
@@ -272,8 +272,8 @@ test_destroy_func(name, handle, index, batch) = test_spec(
     @testset "Aliases" begin
         @test isalias(:VkDescriptorUpdateTemplateKHR)
         @test hasalias(:VkDescriptorUpdateTemplate)
-        @test isalias(:VkAccelerationStructureNV)
-        @test !isalias(:VkAccelerationStructureKHR)
+        @test isalias(:VkImageStencilUsageCreateInfoEXT)
+        @test !isalias(:VkImageStencilUsageCreateInfo)
 
         @test follow_alias(:VkDescriptorUpdateTemplateKHR) == :VkDescriptorUpdateTemplate
         @test follow_alias(:VkPhysicalDeviceMemoryProperties2KHR) == :VkPhysicalDeviceMemoryProperties2

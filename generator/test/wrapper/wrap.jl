@@ -105,7 +105,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
                 vks::VkAccelerationStructureBuildGeometryInfoKHR
                 deps::Vector{Any}
                 src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
-                dst_acceleration_structure::AccelerationStructureKHR
+                dst_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
             end
         ))
     end
