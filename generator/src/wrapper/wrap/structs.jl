@@ -30,11 +30,11 @@ function add_constructor(spec::SpecStruct)
         p[:body] = quote
             $(
                 (
-                    :($(wrap_identifier(m.name)) = cconvert($(m.type), $(wrap_identifier(m.name)))) for
+                    :($(wrap_identifier(m)) = cconvert($(m.type), $(wrap_identifier(m)))) for
                     m ∈ cconverted_members
                 )...
             )
-            deps = [$((wrap_identifier(m.name) for m ∈ cconverted_members)...)]
+            deps = [$((wrap_identifier(m) for m ∈ cconverted_members)...)]
             vks = $(spec.name)($(map(vk_call, spec.members)...))
             $(p[:name])(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end

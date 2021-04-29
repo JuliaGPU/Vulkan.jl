@@ -2,7 +2,7 @@ function retrieve_parent_ex(parent_handle::SpecHandle, func::SpecFunc)
     parent_handle_var = findfirst(==(parent_handle.name), func.params.type)
     @match n = func.name begin
         if !isnothing(parent_handle_var)
-        end => wrap_identifier(func.params[parent_handle_var].name)
+        end => wrap_identifier(func.params[parent_handle_var])
         _ => nothing
     end
 end
@@ -18,7 +18,7 @@ function retrieve_parent_ex(parent_handle::SpecHandle, create::CreateFunc)
             m_index = findfirst(in([parent_handle.name, :(Ptr{$(parent_handle.name)})]), s.members.type)
             if !isnothing(m_index)
                 m = s.members[m_index]
-                var_p, var_m = wrap_identifier.((p.name, m.name))
+                var_p, var_m = wrap_identifier.((p, m))
                 broadcast_ex(:(getproperty($var_p, $(QuoteNode(var_m)))), is_arr(m))
             else
                 throw_error()

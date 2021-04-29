@@ -3,7 +3,7 @@ function retrieve_length(spec)
     @match length(chain) begin
         1 => vk_call(first(chain))
         GuardBy(>(1)) =>
-            chain_getproperty(:($(wrap_identifier(first(chain).name)).vks), getproperty.(chain[2:end], :name))
+            chain_getproperty(:($(wrap_identifier(first(chain))).vks), getproperty.(chain[2:end], :name))
     end
 end
 

@@ -2,8 +2,8 @@ init_wrapper_func(spec::SpecFunc) =
     Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
 init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
 
-arg_decl(x::Spec) = :($(wrap_identifier(x.name))::$(signature_type(nice_julian_type(x))))
-kwarg_decl(x::Spec) = Expr(:kw, wrap_identifier(x.name), default(x))
+arg_decl(x::Spec) = :($(wrap_identifier(x))::$(signature_type(nice_julian_type(x))))
+kwarg_decl(x::Spec) = Expr(:kw, wrap_identifier(x), default(x))
 drop_arg(x::Spec) = is_length(x) && !is_specific_count(x) || is_pointer_start(x) || x.type == :(Ptr{Ptr{Cvoid}})
 
 """
