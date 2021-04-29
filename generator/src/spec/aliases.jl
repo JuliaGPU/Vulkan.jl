@@ -1,5 +1,5 @@
 const alias_dict = Dict(
-    Symbol(alias.parentelement["name"]) => Symbol(alias.parentelement["alias"]) for alias ∈ findall("//@alias", xroot)
+    Symbol(alias["name"]) => Symbol(alias["alias"]) for alias ∈ findall("//*[@alias and not(@feature)]", xroot)
 )
 
 """
