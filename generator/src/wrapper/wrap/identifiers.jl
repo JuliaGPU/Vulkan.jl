@@ -10,7 +10,25 @@ function wrap_identifier(identifier)
     Symbol(var_str)
 end
 
-wrap_identifier(spec::Union{SpecFuncParam,SpecStructMember}) = wrap_identifier(spec.name)
+function wrap_identifier(spec::Union{SpecFuncParam,SpecStructMember})
+
+    # handle the case where two identifiers end up being the same
+    # issue caused by VkAccelerationStructureBuildGeometryInfoKHR
+    # which has both pGeometries and ppGeometries
+    siblings = children(parent_spec(spec))
+    id = wrap_identifier(spec.name)
+    ids = wrap_identifier.(siblings.name)
+    if count(==(id), ids) == 2
+        lastidx = findlast(==(id), ids)
+        if siblings[lastidx] == spec
+            Symbol(id, "_2")
+        else
+            id
+        end
+    else
+        id
+    end
+end
 
 function wrap_identifier(spec::SpecHandle)
     # try to get an id from an existing function parameter
