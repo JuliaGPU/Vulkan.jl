@@ -1,5 +1,7 @@
 abstract type BitMask{T<:Unsigned} end
 
+Base.broadcastable(x::BitMask) = Ref(x)
+
 function generate_bitmask_flags(type, decl)
     identifier, value = decl.args
     :(const $(esc(identifier)) = $(esc(:($type($value)))))
