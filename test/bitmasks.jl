@@ -20,5 +20,7 @@ end
     @test xor(BIT_A, 2) == xor(2, BIT_A) == BIT_C
     @test 1 < BIT_B && BIT_B < 3
     @test BIT_A <= BIT_B <= BIT_C
+    @test BIT_A == BIT_A
     @test_throws ErrorException("Bitwise operation not allowed between incompatible bitmasks 'FlagBits', 'FlagBits2'") BIT_A & BIT_A_2
+    @test_throws ErrorException("Operation not allowed between incompatible bitmasks 'FlagBits', 'FlagBits2'") BIT_A == BIT_A_2
 end
