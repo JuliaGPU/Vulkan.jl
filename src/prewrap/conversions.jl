@@ -39,4 +39,12 @@ from_vk(T::Type{<:VulkanStruct{true}}, x) = T(x, [])
 from_vk(T, x) = convert(T, x)
 from_vk(T::Type{<:NTuple}, x) = from_vk.(eltype(T), x)
 from_vk(T::Type{VersionNumber}, version::UInt32) = T(VK_VERSION_MAJOR(version), VK_VERSION_MINOR(version), VK_VERSION_PATCH(version))
-from_vk(T::Type{S}, str::NTuple{N,UInt8}) where {N,S <: AbstractString} = T(collect(str[1:findfirst(iszero, str) - 1]))
+
+function from_vk(T::Type{S}, str::NTuple{N,UInt8}) where {N,S <: AbstractString}
+    nullchar = findfirst(iszero, str)
+    if isnothing(nullchar)
+        T(collect(str))
+    else
+        T(collect(str[1:nullchar - 1]))
+    end
+end
