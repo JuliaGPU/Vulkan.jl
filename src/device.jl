@@ -31,7 +31,7 @@ julia> find_queue_family(physical_device, QUEUE_COMPUTE_BIT & QUEUE_GRAPHICS_BIT
 """
 function find_queue_family(physical_device::PhysicalDevice, queue_capabilities::QueueFlag)
     queue_family_properties = get_physical_device_queue_family_properties(physical_device)
-    index = findfirst(x -> includes_bits(x.queue_flags, queue_capabilities), queue_family_properties)
+    index = findfirst(x -> x.queue_flags & queue_capabilities == queue_capabilities, queue_family_properties)
     if isnothing(index)
         error("No queue with the desired capabilities could be found.")
     end

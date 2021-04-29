@@ -39,7 +39,6 @@ include("../generated/vulkan_docs.jl")
 
 include("utils.jl")
 include("driver.jl")
-include("bitmasks.jl")
 include("validation.jl")
 include("device.jl")
 include("print.jl")
@@ -82,11 +81,6 @@ export
         pointer_length,
 
         # Bitmask manipulation utilities
-        includes_bits,
-        optional_bitwise_op,
-        optional_bitwise_or,
-        optional_bitwise_and,
-        optional_bitwise_xor,
         BitMask,
         @bitmask_flag,
 
