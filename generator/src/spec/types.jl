@@ -209,6 +209,7 @@ struct SpecBitmask <: Spec
     name::Symbol
     "Valid bits that can be combined to form the final bitmask value."
     bits::StructVector{SpecBit}
+    width::Integer
 end
 
 """

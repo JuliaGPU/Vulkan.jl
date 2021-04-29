@@ -167,7 +167,7 @@ SpecBit(node::Node) = SpecBit(
 )
 
 SpecBitmask(node::Node) =
-    SpecBitmask(Symbol(node["name"]), StructVector(SpecBit.(findall("./enum[not(@alias)]", node))))
+    SpecBitmask(Symbol(node["name"]), StructVector(SpecBit.(findall("./enum[not(@alias)]", node))), parse(Int, getattr(node, "bitwidth", symbol = false, default = "32")))
 
 function SpecFlag(node::Node)
     name = Symbol(findfirst("./name", node).content)
