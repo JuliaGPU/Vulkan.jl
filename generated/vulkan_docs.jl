@@ -1715,16 +1715,16 @@ Arguments:
 cmd_reset_event
 
 """
-    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier})::Cvoid
+    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `events::AbstractArray{<:Event}`
-- `src_stage_mask::PipelineStageFlag`
-- `dst_stage_mask::PipelineStageFlag`
 - `memory_barriers::AbstractArray{<:MemoryBarrier}`
 - `buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}`
 - `image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}`
+- `src_stage_mask`: defaults to `0`
+- `dst_stage_mask`: defaults to `0`
 
 """
 cmd_wait_events
@@ -2381,6 +2381,33 @@ Arguments:
 create_stream_descriptor_surface_ggp
 
 """
+    create_screen_surface_qnx(instance::Instance, create_info::ScreenSurfaceCreateInfoQNX; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `create_info::ScreenSurfaceCreateInfoQNX`
+- `allocator`: defaults to `C_NULL`
+
+"""
+create_screen_surface_qnx
+
+"""
+    get_physical_device_screen_presentation_support_qnx(physical_device::PhysicalDevice, queue_family_index::Integer, window::vk._screen_window)::Bool
+
+Arguments:
+- `physical_device::PhysicalDevice`
+- `queue_family_index::Integer`
+- `window::vk._screen_window`
+
+"""
+get_physical_device_screen_presentation_support_qnx
+
+"""
     create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::Result{DebugReportCallbackEXT, VulkanError}
 
 Return codes:
@@ -2759,6 +2786,37 @@ Arguments:
 get_memory_fd_properties_khr
 
 """
+    get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_TOO_MANY_OBJECTS`
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+
+Arguments:
+- `device::Device`
+- `get_zircon_handle_info::MemoryGetZirconHandleInfoFUCHSIA`
+- `zircon_handle::vk.zx_handle_t`
+
+"""
+get_memory_zircon_handle_fuchsia
+
+"""
+    get_memory_zircon_handle_properties_fuchsia(device::Device, handle_type::ExternalMemoryHandleTypeFlag, zircon_handle::vk.zx_handle_t)::Result{MemoryZirconHandlePropertiesFUCHSIA, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+
+Arguments:
+- `device::Device`
+- `handle_type::ExternalMemoryHandleTypeFlag`
+- `zircon_handle::vk.zx_handle_t`
+
+"""
+get_memory_zircon_handle_properties_fuchsia
+
+"""
     get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo)::ExternalSemaphoreProperties
 
 Arguments:
@@ -2828,6 +2886,37 @@ Arguments:
 
 """
 import_semaphore_fd_khr
+
+"""
+    get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_TOO_MANY_OBJECTS`
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+
+Arguments:
+- `device::Device`
+- `get_zircon_handle_info::SemaphoreGetZirconHandleInfoFUCHSIA`
+- `zircon_handle::vk.zx_handle_t`
+
+"""
+get_semaphore_zircon_handle_fuchsia
+
+"""
+    import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::ImportSemaphoreZirconHandleInfoFUCHSIA)::Result{VkResult, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+
+Arguments:
+- `device::Device`
+- `import_semaphore_zircon_handle_info::ImportSemaphoreZirconHandleInfoFUCHSIA`
+
+"""
+import_semaphore_zircon_handle_fuchsia
 
 """
     get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo)::ExternalFenceProperties
@@ -2942,6 +3031,38 @@ Arguments:
 
 """
 get_rand_r_output_display_ext
+
+"""
+    acquire_winrt_display_nv(physical_device::PhysicalDevice, display::DisplayKHR)::Result{VkResult, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_DEVICE_LOST`
+  - `VK_ERROR_INITIALIZATION_FAILED`
+
+Arguments:
+- `physical_device::PhysicalDevice`
+- `display::DisplayKHR`
+
+"""
+acquire_winrt_display_nv
+
+"""
+    get_winrt_display_nv(physical_device::PhysicalDevice, device_relative_id::Integer)::Result{DisplayKHR, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_DEVICE_LOST`
+  - `VK_ERROR_INITIALIZATION_FAILED`
+
+Arguments:
+- `physical_device::PhysicalDevice`
+- `device_relative_id::Integer`
+
+"""
+get_winrt_display_nv
 
 """
     display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{VkResult, VulkanError}
@@ -4176,7 +4297,7 @@ Arguments:
 compile_deferred_nv
 
 """
-    create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{VkAccelerationStructureNV, VulkanError}
+    create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{AccelerationStructureNV, VulkanError}
 
 Return codes:
 - Error:
@@ -4202,14 +4323,15 @@ Arguments:
 destroy_acceleration_structure_khr
 
 """
-    get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR)::MemoryRequirements2
+    destroy_acceleration_structure_nv(device::Device, acceleration_structure::AccelerationStructureNV; allocator = C_NULL)::Cvoid
 
 Arguments:
 - `device::Device`
-- `info::AccelerationStructureMemoryRequirementsInfoKHR`
+- `acceleration_structure::AccelerationStructureNV` (externsync)
+- `allocator`: defaults to `C_NULL`
 
 """
-get_acceleration_structure_memory_requirements_khr
+destroy_acceleration_structure_nv
 
 """
     get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
@@ -4222,7 +4344,7 @@ Arguments:
 get_acceleration_structure_memory_requirements_nv
 
 """
-    bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoKHR})::Result{VkResult, VulkanError}
+    bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoNV})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4231,18 +4353,18 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoKHR}`
+- `bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoNV}`
 
 """
-bind_acceleration_structure_memory_khr
+bind_acceleration_structure_memory_nv
 
 """
-    cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR)::Cvoid
+    cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::VkCopyAccelerationStructureModeKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `dst::AccelerationStructureKHR`
-- `src::AccelerationStructureKHR`
+- `dst::AccelerationStructureNV`
+- `src::AccelerationStructureNV`
 - `mode::VkCopyAccelerationStructureModeKHR`
 
 """
@@ -4259,7 +4381,7 @@ Arguments:
 cmd_copy_acceleration_structure_khr
 
 """
-    copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{VkResult, VulkanError}
+    copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4273,6 +4395,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `info::CopyAccelerationStructureInfoKHR`
+- `deferred_operation`: defaults to `C_NULL`
 
 """
 copy_acceleration_structure_khr
@@ -4288,7 +4411,7 @@ Arguments:
 cmd_copy_acceleration_structure_to_memory_khr
 
 """
-    copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{VkResult, VulkanError}
+    copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4302,6 +4425,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `info::CopyAccelerationStructureToMemoryInfoKHR`
+- `deferred_operation`: defaults to `C_NULL`
 
 """
 copy_acceleration_structure_to_memory_khr
@@ -4317,7 +4441,7 @@ Arguments:
 cmd_copy_memory_to_acceleration_structure_khr
 
 """
-    copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{VkResult, VulkanError}
+    copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4331,6 +4455,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `info::CopyMemoryToAccelerationStructureInfoKHR`
+- `deferred_operation`: defaults to `C_NULL`
 
 """
 copy_memory_to_acceleration_structure_khr
@@ -4349,14 +4474,27 @@ Arguments:
 cmd_write_acceleration_structures_properties_khr
 
 """
-    cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid
+    cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
+- `query_type::VkQueryType`
+- `query_pool::QueryPool`
+- `first_query::Integer`
+
+"""
+cmd_write_acceleration_structures_properties_nv
+
+"""
+    cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `info::AccelerationStructureInfoNV`
 - `instance_offset::Integer`
 - `update::Bool`
-- `dst::AccelerationStructureKHR`
+- `dst::AccelerationStructureNV`
 - `scratch::Buffer`
 - `scratch_offset::Integer`
 - `instance_data`: defaults to `C_NULL`
@@ -4385,14 +4523,14 @@ Arguments:
 write_acceleration_structures_properties_khr
 
 """
-    cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid
+    cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `raygen_shader_binding_table::StridedBufferRegionKHR`
-- `miss_shader_binding_table::StridedBufferRegionKHR`
-- `hit_shader_binding_table::StridedBufferRegionKHR`
-- `callable_shader_binding_table::StridedBufferRegionKHR`
+- `raygen_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `miss_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `hit_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `callable_shader_binding_table::StridedDeviceAddressRegionKHR`
 - `width::Integer`
 - `height::Integer`
 - `depth::Integer`
@@ -4462,7 +4600,7 @@ Arguments:
 get_ray_tracing_capture_replay_shader_group_handles_khr
 
 """
-    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
+    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4471,7 +4609,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `acceleration_structure::AccelerationStructureKHR`
+- `acceleration_structure::AccelerationStructureNV`
 - `data_size::Integer`
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
@@ -4500,7 +4638,7 @@ Arguments:
 create_ray_tracing_pipelines_nv
 
 """
-    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4516,6 +4654,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}`
+- `deferred_operation`: defaults to `C_NULL`
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
@@ -4537,33 +4676,50 @@ Arguments:
 get_physical_device_cooperative_matrix_properties_nv
 
 """
-    cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer)::Cvoid
+    cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, indirect_device_address::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `raygen_shader_binding_table::StridedBufferRegionKHR`
-- `miss_shader_binding_table::StridedBufferRegionKHR`
-- `hit_shader_binding_table::StridedBufferRegionKHR`
-- `callable_shader_binding_table::StridedBufferRegionKHR`
-- `buffer::Buffer`
-- `offset::Integer`
+- `raygen_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `miss_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `hit_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `callable_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `indirect_device_address::Integer`
 
 """
 cmd_trace_rays_indirect_khr
 
 """
-    get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR)::Result{VkResult, VulkanError}
-
-Return codes:
-- Error:
-  - `VK_ERROR_INCOMPATIBLE_VERSION_KHR`
+    get_device_acceleration_structure_compatibility_khr(device::Device, version_info::AccelerationStructureVersionInfoKHR)::VkAccelerationStructureCompatibilityKHR
 
 Arguments:
 - `device::Device`
-- `version::AccelerationStructureVersionKHR`
+- `version_info::AccelerationStructureVersionInfoKHR`
 
 """
 get_device_acceleration_structure_compatibility_khr
+
+"""
+    get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::VkShaderGroupShaderKHR)::UInt64
+
+Arguments:
+- `device::Device`
+- `pipeline::Pipeline`
+- `group::Integer`
+- `group_shader::VkShaderGroupShaderKHR`
+
+"""
+get_ray_tracing_shader_group_stack_size_khr
+
+"""
+    cmd_set_ray_tracing_pipeline_stack_size_khr(command_buffer::CommandBuffer, pipeline_stack_size::Integer)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `pipeline_stack_size::Integer`
+
+"""
+cmd_set_ray_tracing_pipeline_stack_size_khr
 
 """
     get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX)::UInt32
@@ -4855,7 +5011,7 @@ Arguments:
 acquire_performance_configuration_intel
 
 """
-    release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError}
+    release_performance_configuration_intel(device::Device; configuration = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4864,7 +5020,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `configuration::PerformanceConfigurationINTEL`
+- `configuration`: defaults to `C_NULL` (externsync)
 
 """
 release_performance_configuration_intel
@@ -4995,31 +5151,31 @@ Arguments:
 create_acceleration_structure_khr
 
 """
-    cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})::Cvoid
+    cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}`
-- `offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR}`
+- `build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}`
 
 """
-cmd_build_acceleration_structure_khr
+cmd_build_acceleration_structures_khr
 
 """
-    cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer)::Cvoid
+    cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `info::AccelerationStructureBuildGeometryInfoKHR`
-- `indirect_buffer::Buffer`
-- `indirect_offset::Integer`
-- `indirect_stride::Integer`
+- `infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}`
+- `indirect_device_addresses::AbstractArray{<:Integer}`
+- `indirect_strides::AbstractArray{<:Integer}`
+- `max_primitive_counts::AbstractArray{<:Integer}`
 
 """
-cmd_build_acceleration_structure_indirect_khr
+cmd_build_acceleration_structures_indirect_khr
 
 """
-    build_acceleration_structure_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR})::Result{VkResult, VulkanError}
+    build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5033,10 +5189,11 @@ Return codes:
 Arguments:
 - `device::Device`
 - `infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}`
-- `offset_infos::AbstractArray{<:AccelerationStructureBuildOffsetInfoKHR}`
+- `build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}`
+- `deferred_operation`: defaults to `C_NULL`
 
 """
-build_acceleration_structure_khr
+build_acceleration_structures_khr
 
 """
     get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR)::UInt64
@@ -5245,6 +5402,56 @@ Arguments:
 cmd_set_stencil_op_ext
 
 """
+    cmd_set_patch_control_points_ext(command_buffer::CommandBuffer, patch_control_points::Integer)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `patch_control_points::Integer`
+
+"""
+cmd_set_patch_control_points_ext
+
+"""
+    cmd_set_rasterizer_discard_enable_ext(command_buffer::CommandBuffer, rasterizer_discard_enable::Bool)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `rasterizer_discard_enable::Bool`
+
+"""
+cmd_set_rasterizer_discard_enable_ext
+
+"""
+    cmd_set_depth_bias_enable_ext(command_buffer::CommandBuffer, depth_bias_enable::Bool)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `depth_bias_enable::Bool`
+
+"""
+cmd_set_depth_bias_enable_ext
+
+"""
+    cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::VkLogicOp)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `logic_op::VkLogicOp`
+
+"""
+cmd_set_logic_op_ext
+
+"""
+    cmd_set_primitive_restart_enable_ext(command_buffer::CommandBuffer, primitive_restart_enable::Bool)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `primitive_restart_enable::Bool`
+
+"""
+cmd_set_primitive_restart_enable_ext
+
+"""
     create_private_data_slot_ext(device::Device, create_info::PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::Result{PrivateDataSlotEXT, VulkanError}
 
 Return codes:
@@ -5298,6 +5505,416 @@ Arguments:
 
 """
 get_private_data_ext
+
+"""
+    cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::CopyBufferInfo2KHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `copy_buffer_info::CopyBufferInfo2KHR`
+
+"""
+cmd_copy_buffer_2_khr
+
+"""
+    cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::CopyImageInfo2KHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `copy_image_info::CopyImageInfo2KHR`
+
+"""
+cmd_copy_image_2_khr
+
+"""
+    cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::BlitImageInfo2KHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `blit_image_info::BlitImageInfo2KHR`
+
+"""
+cmd_blit_image_2_khr
+
+"""
+    cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::CopyBufferToImageInfo2KHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `copy_buffer_to_image_info::CopyBufferToImageInfo2KHR`
+
+"""
+cmd_copy_buffer_to_image_2_khr
+
+"""
+    cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::CopyImageToBufferInfo2KHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `copy_image_to_buffer_info::CopyImageToBufferInfo2KHR`
+
+"""
+cmd_copy_image_to_buffer_2_khr
+
+"""
+    cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::ResolveImageInfo2KHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `resolve_image_info::ResolveImageInfo2KHR`
+
+"""
+cmd_resolve_image_2_khr
+
+"""
+    cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `fragment_size::Extent2D`
+- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+
+"""
+cmd_set_fragment_shading_rate_khr
+
+"""
+    get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice)::Result{Vector{PhysicalDeviceFragmentShadingRateKHR}, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+
+Arguments:
+- `physical_device::PhysicalDevice`
+
+"""
+get_physical_device_fragment_shading_rates_khr
+
+"""
+    cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `shading_rate::VkFragmentShadingRateNV`
+- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+
+"""
+cmd_set_fragment_shading_rate_enum_nv
+
+"""
+    get_acceleration_structure_build_sizes_khr(device::Device, build_type::VkAccelerationStructureBuildTypeKHR, build_info::AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::AccelerationStructureBuildSizesInfoKHR
+
+Arguments:
+- `device::Device`
+- `build_type::VkAccelerationStructureBuildTypeKHR`
+- `build_info::AccelerationStructureBuildGeometryInfoKHR`
+- `max_primitive_counts`: defaults to `C_NULL`
+
+"""
+get_acceleration_structure_build_sizes_khr
+
+"""
+    cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription2EXT})::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription2EXT}`
+- `vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription2EXT}`
+
+"""
+cmd_set_vertex_input_ext
+
+"""
+    cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray{<:Bool})::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `color_write_enables::AbstractArray{<:Bool}`
+
+"""
+cmd_set_color_write_enable_ext
+
+"""
+    cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::DependencyInfoKHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `event::Event`
+- `dependency_info::DependencyInfoKHR`
+
+"""
+cmd_set_event_2_khr
+
+"""
+    cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `event::Event`
+- `stage_mask::Integer`
+
+"""
+cmd_reset_event_2_khr
+
+"""
+    cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:DependencyInfoKHR})::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `events::AbstractArray{<:Event}`
+- `dependency_infos::AbstractArray{<:DependencyInfoKHR}`
+
+"""
+cmd_wait_events_2_khr
+
+"""
+    cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::DependencyInfoKHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `dependency_info::DependencyInfoKHR`
+
+"""
+cmd_pipeline_barrier_2_khr
+
+"""
+    queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:SubmitInfo2KHR}; fence = C_NULL)::Result{VkResult, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `VK_ERROR_DEVICE_LOST`
+
+Arguments:
+- `queue::Queue` (externsync)
+- `submits::AbstractArray{<:SubmitInfo2KHR}`
+- `fence`: defaults to `C_NULL` (externsync)
+
+"""
+queue_submit_2_khr
+
+"""
+    cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `stage::Integer`
+- `query_pool::QueryPool`
+- `query::Integer`
+
+"""
+cmd_write_timestamp_2_khr
+
+"""
+    cmd_write_buffer_marker_2_amd(command_buffer::CommandBuffer, stage::Integer, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer` (externsync)
+- `stage::Integer`
+- `dst_buffer::Buffer`
+- `dst_offset::Integer`
+- `marker::Integer`
+
+"""
+cmd_write_buffer_marker_2_amd
+
+"""
+    get_queue_checkpoint_data_2_nv(queue::Queue)::Vector{CheckpointData2NV}
+
+Arguments:
+- `queue::Queue`
+
+"""
+get_queue_checkpoint_data_2_nv
+
+"""
+    get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::VideoProfileKHR)::Result{VideoCapabilitiesKHR, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_EXTENSION_NOT_PRESENT`
+  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `VK_ERROR_FEATURE_NOT_PRESENT`
+  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+
+Arguments:
+- `physical_device::PhysicalDevice`
+- `video_profile::VideoProfileKHR`
+
+"""
+get_physical_device_video_capabilities_khr
+
+"""
+    get_physical_device_video_format_properties_khr(physical_device::PhysicalDevice, video_format_info::PhysicalDeviceVideoFormatInfoKHR)::Result{Vector{VideoFormatPropertiesKHR}, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_EXTENSION_NOT_PRESENT`
+  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+
+Arguments:
+- `physical_device::PhysicalDevice`
+- `video_format_info::PhysicalDeviceVideoFormatInfoKHR`
+
+"""
+get_physical_device_video_format_properties_khr
+
+"""
+    create_video_session_khr(device::Device, create_info::VideoSessionCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionKHR, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `VK_ERROR_INCOMPATIBLE_DRIVER`
+  - `VK_ERROR_FEATURE_NOT_PRESENT`
+
+Arguments:
+- `device::Device`
+- `create_info::VideoSessionCreateInfoKHR`
+- `allocator`: defaults to `C_NULL`
+
+"""
+create_video_session_khr
+
+"""
+    destroy_video_session_khr(device::Device, video_session::VideoSessionKHR; allocator = C_NULL)::Cvoid
+
+Arguments:
+- `device::Device`
+- `video_session::VideoSessionKHR`
+- `allocator`: defaults to `C_NULL`
+
+"""
+destroy_video_session_khr
+
+"""
+    create_video_session_parameters_khr(device::Device, create_info::VideoSessionParametersCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionParametersKHR, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `VK_ERROR_TOO_MANY_OBJECTS`
+
+Arguments:
+- `device::Device`
+- `create_info::VideoSessionParametersCreateInfoKHR`
+- `allocator`: defaults to `C_NULL`
+
+"""
+create_video_session_parameters_khr
+
+"""
+    update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::VideoSessionParametersUpdateInfoKHR)::Result{VkResult, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `VK_ERROR_TOO_MANY_OBJECTS`
+
+Arguments:
+- `device::Device`
+- `video_session_parameters::VideoSessionParametersKHR`
+- `update_info::VideoSessionParametersUpdateInfoKHR`
+
+"""
+update_video_session_parameters_khr
+
+"""
+    destroy_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR; allocator = C_NULL)::Cvoid
+
+Arguments:
+- `device::Device`
+- `video_session_parameters::VideoSessionParametersKHR`
+- `allocator`: defaults to `C_NULL`
+
+"""
+destroy_video_session_parameters_khr
+
+"""
+    get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR)::Result{Vector{VideoGetMemoryPropertiesKHR}, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_INITIALIZATION_FAILED`
+
+Arguments:
+- `device::Device`
+- `video_session::VideoSessionKHR`
+
+"""
+get_video_session_memory_requirements_khr
+
+"""
+    bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray{<:VideoBindMemoryKHR})::Result{VkResult, VulkanError}
+
+Return codes:
+- Error:
+  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `VK_ERROR_INITIALIZATION_FAILED`
+
+Arguments:
+- `device::Device`
+- `video_session::VideoSessionKHR`
+- `video_session_bind_memories::AbstractArray{<:VideoBindMemoryKHR}`
+
+"""
+bind_video_session_memory_khr
+
+"""
+    cmd_decode_video_khr(command_buffer::CommandBuffer, frame_info::VideoDecodeInfoKHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer`
+- `frame_info::VideoDecodeInfoKHR`
+
+"""
+cmd_decode_video_khr
+
+"""
+    cmd_begin_video_coding_khr(command_buffer::CommandBuffer, begin_info::VideoBeginCodingInfoKHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer`
+- `begin_info::VideoBeginCodingInfoKHR`
+
+"""
+cmd_begin_video_coding_khr
+
+"""
+    cmd_control_video_coding_khr(command_buffer::CommandBuffer, coding_control_info::VideoCodingControlInfoKHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer`
+- `coding_control_info::VideoCodingControlInfoKHR`
+
+"""
+cmd_control_video_coding_khr
+
+"""
+    cmd_end_video_coding_khr(command_buffer::CommandBuffer, end_coding_info::VideoEndCodingInfoKHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer`
+- `end_coding_info::VideoEndCodingInfoKHR`
+
+"""
+cmd_end_video_coding_khr
+
+"""
+    cmd_encode_video_khr(command_buffer::CommandBuffer, encode_info::VideoEncodeInfoKHR)::Cvoid
+
+Arguments:
+- `command_buffer::CommandBuffer`
+- `encode_info::VideoEncodeInfoKHR`
+
+"""
+cmd_encode_video_khr
 
 """
     BaseOutStructure(; next = C_NULL)
@@ -6339,13 +6956,13 @@ Arguments:
 SubpassDescription
 
 """
-    SubpassDependency(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag; src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
+    SubpassDependency(src_subpass::Integer, dst_subpass::Integer; src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
 
 Arguments:
 - `src_subpass::Integer`
 - `dst_subpass::Integer`
-- `src_stage_mask::PipelineStageFlag`
-- `dst_stage_mask::PipelineStageFlag`
+- `src_stage_mask`: defaults to `0`
+- `dst_stage_mask`: defaults to `0`
 - `src_access_mask`: defaults to `0`
 - `dst_access_mask`: defaults to `0`
 - `dependency_flags`: defaults to `0`
@@ -6691,6 +7308,18 @@ Arguments:
 StreamDescriptorSurfaceCreateInfoGGP
 
 """
+    ScreenSurfaceCreateInfoQNX(context::vk._screen_context, window::vk._screen_window; next = C_NULL, flags = 0)
+
+Arguments:
+- `context::vk._screen_context`
+- `window::vk._screen_window`
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+ScreenSurfaceCreateInfoQNX
+
+"""
     SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 Arguments:
@@ -6797,12 +7426,12 @@ Arguments:
 DebugMarkerObjectTagInfoEXT
 
 """
-    DebugMarkerMarkerInfoEXT(marker_name::AbstractString; next = C_NULL, color = 0)
+    DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
 Arguments:
 - `marker_name::AbstractString`
+- `color::NTuple{4, Float32}`
 - `next`: defaults to `C_NULL`
-- `color`: defaults to `0`
 
 """
 DebugMarkerMarkerInfoEXT
@@ -7029,20 +7658,20 @@ Arguments:
 IndirectCommandsLayoutTokenNV
 
 """
-    IndirectCommandsLayoutCreateInfoNV(flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL)
+    IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `flags::IndirectCommandsLayoutUsageFlagNV`
 - `pipeline_bind_point::VkPipelineBindPoint`
 - `tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}`
 - `stream_strides::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
 
 """
 IndirectCommandsLayoutCreateInfoNV
 
 """
-    GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_count_offset = 0, sequences_index_buffer = C_NULL, sequences_index_offset = 0)
+    GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
 
 Arguments:
 - `pipeline_bind_point::VkPipelineBindPoint`
@@ -7053,11 +7682,11 @@ Arguments:
 - `preprocess_buffer::Buffer`
 - `preprocess_offset::Integer`
 - `preprocess_size::Integer`
+- `sequences_count_offset::Integer`
+- `sequences_index_offset::Integer`
 - `next`: defaults to `C_NULL`
 - `sequences_count_buffer`: defaults to `C_NULL`
-- `sequences_count_offset`: defaults to `0`
 - `sequences_index_buffer`: defaults to `C_NULL`
-- `sequences_index_offset`: defaults to `0`
 
 """
 GeneratedCommandsInfoNV
@@ -7189,11 +7818,11 @@ Arguments:
 PhysicalDeviceExternalBufferInfo
 
 """
-    ExternalMemoryImageCreateInfo(handle_types::ExternalMemoryHandleTypeFlag; next = C_NULL)
+    ExternalMemoryImageCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `handle_types::ExternalMemoryHandleTypeFlag`
 - `next`: defaults to `C_NULL`
+- `handle_types`: defaults to `0`
 
 """
 ExternalMemoryImageCreateInfo
@@ -7241,6 +7870,28 @@ Arguments:
 
 """
 ExportMemoryWin32HandleInfoKHR
+
+"""
+    ImportMemoryZirconHandleInfoFUCHSIA(; next = C_NULL, handle_type = 0, handle = 0)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `handle_type`: defaults to `0`
+- `handle`: defaults to `0`
+
+"""
+ImportMemoryZirconHandleInfoFUCHSIA
+
+"""
+    MemoryGetZirconHandleInfoFUCHSIA(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+
+Arguments:
+- `memory::DeviceMemory`
+- `handle_type::ExternalMemoryHandleTypeFlag`
+- `next`: defaults to `C_NULL`
+
+"""
+MemoryGetZirconHandleInfoFUCHSIA
 
 """
     MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
@@ -7310,13 +7961,13 @@ Arguments:
 ExportSemaphoreCreateInfo
 
 """
-    ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
+    ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
 
 Arguments:
 - `semaphore::Semaphore` (externsync)
+- `handle_type::ExternalSemaphoreHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
-- `handle_type`: defaults to `0`
 - `handle`: defaults to `0`
 - `name`: defaults to `0`
 
@@ -7382,6 +8033,30 @@ Arguments:
 SemaphoreGetFdInfoKHR
 
 """
+    ImportSemaphoreZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, zircon_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
+
+Arguments:
+- `semaphore::Semaphore` (externsync)
+- `handle_type::ExternalSemaphoreHandleTypeFlag`
+- `zircon_handle::vk.zx_handle_t`
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+ImportSemaphoreZirconHandleInfoFUCHSIA
+
+"""
+    SemaphoreGetZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+
+Arguments:
+- `semaphore::Semaphore`
+- `handle_type::ExternalSemaphoreHandleTypeFlag`
+- `next`: defaults to `C_NULL`
+
+"""
+SemaphoreGetZirconHandleInfoFUCHSIA
+
+"""
     PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
@@ -7402,13 +8077,13 @@ Arguments:
 ExportFenceCreateInfo
 
 """
-    ImportFenceWin32HandleInfoKHR(fence::Fence; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
+    ImportFenceWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
 
 Arguments:
 - `fence::Fence` (externsync)
+- `handle_type::ExternalFenceHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
-- `handle_type`: defaults to `0`
 - `handle`: defaults to `0`
 - `name`: defaults to `0`
 
@@ -8118,13 +8793,13 @@ Arguments:
 SampleLocationEXT
 
 """
-    SampleLocationsInfoEXT(sample_location_grid_size::Extent2D, sample_locations::AbstractArray{<:SampleLocationEXT}; next = C_NULL, sample_locations_per_pixel = 0)
+    SampleLocationsInfoEXT(sample_locations_per_pixel::SampleCountFlag, sample_location_grid_size::Extent2D, sample_locations::AbstractArray{<:SampleLocationEXT}; next = C_NULL)
 
 Arguments:
+- `sample_locations_per_pixel::SampleCountFlag`
 - `sample_location_grid_size::Extent2D`
 - `sample_locations::AbstractArray{<:SampleLocationEXT}`
 - `next`: defaults to `C_NULL`
-- `sample_locations_per_pixel`: defaults to `0`
 
 """
 SampleLocationsInfoEXT
@@ -8348,12 +9023,12 @@ Arguments:
 DebugUtilsObjectTagInfoEXT
 
 """
-    DebugUtilsLabelEXT(label_name::AbstractString; next = C_NULL, color = 0)
+    DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
 Arguments:
 - `label_name::AbstractString`
+- `color::NTuple{4, Float32}`
 - `next`: defaults to `C_NULL`
-- `color`: defaults to `0`
 
 """
 DebugUtilsLabelEXT
@@ -8373,9 +9048,10 @@ Arguments:
 DebugUtilsMessengerCreateInfoEXT
 
 """
-    DebugUtilsMessengerCallbackDataEXT(message::AbstractString, queue_labels::AbstractArray{<:DebugUtilsLabelEXT}, cmd_buf_labels::AbstractArray{<:DebugUtilsLabelEXT}, objects::AbstractArray{<:DebugUtilsObjectNameInfoEXT}; next = C_NULL, flags = 0, message_id_name = C_NULL, message_id_number = 0)
+    DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::AbstractString, queue_labels::AbstractArray{<:DebugUtilsLabelEXT}, cmd_buf_labels::AbstractArray{<:DebugUtilsLabelEXT}, objects::AbstractArray{<:DebugUtilsObjectNameInfoEXT}; next = C_NULL, flags = 0, message_id_name = C_NULL)
 
 Arguments:
+- `message_id_number::Integer`
 - `message::AbstractString`
 - `queue_labels::AbstractArray{<:DebugUtilsLabelEXT}`
 - `cmd_buf_labels::AbstractArray{<:DebugUtilsLabelEXT}`
@@ -8383,10 +9059,31 @@ Arguments:
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 - `message_id_name`: defaults to `C_NULL`
-- `message_id_number`: defaults to `0`
 
 """
 DebugUtilsMessengerCallbackDataEXT
+
+"""
+    PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL)
+
+Arguments:
+- `device_memory_report::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceDeviceMemoryReportFeaturesEXT
+
+"""
+    DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL)
+
+Arguments:
+- `flags::Integer`
+- `pfn_user_callback::FunctionPtr`
+- `user_data::Ptr{Cvoid}`
+- `next`: defaults to `C_NULL`
+
+"""
+DeviceDeviceMemoryReportCreateInfoEXT
 
 """
     ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
@@ -8518,18 +9215,18 @@ Arguments:
 SubpassDescription2
 
 """
-    SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag; next = C_NULL, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0, view_offset = 0)
+    SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, view_offset::Integer; next = C_NULL, src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
 
 Arguments:
 - `src_subpass::Integer`
 - `dst_subpass::Integer`
-- `src_stage_mask::PipelineStageFlag`
-- `dst_stage_mask::PipelineStageFlag`
+- `view_offset::Integer`
 - `next`: defaults to `C_NULL`
+- `src_stage_mask`: defaults to `0`
+- `dst_stage_mask`: defaults to `0`
 - `src_access_mask`: defaults to `0`
 - `dst_access_mask`: defaults to `0`
 - `dependency_flags`: defaults to `0`
-- `view_offset`: defaults to `0`
 
 """
 SubpassDependency2
@@ -9036,18 +9733,19 @@ Arguments:
 RayTracingPipelineCreateInfoNV
 
 """
-    RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, groups::AbstractArray{<:RayTracingShaderGroupCreateInfoKHR}, max_recursion_depth::Integer, libraries::PipelineLibraryCreateInfoKHR, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_interface = C_NULL, base_pipeline_handle = C_NULL)
+    RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, groups::AbstractArray{<:RayTracingShaderGroupCreateInfoKHR}, max_pipeline_ray_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_info = C_NULL, library_interface = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
 
 Arguments:
 - `stages::AbstractArray{<:PipelineShaderStageCreateInfo}`
 - `groups::AbstractArray{<:RayTracingShaderGroupCreateInfoKHR}`
-- `max_recursion_depth::Integer`
-- `libraries::PipelineLibraryCreateInfoKHR`
+- `max_pipeline_ray_recursion_depth::Integer`
 - `layout::PipelineLayout`
 - `base_pipeline_index::Integer`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
+- `library_info`: defaults to `C_NULL`
 - `library_interface`: defaults to `C_NULL`
+- `dynamic_state`: defaults to `C_NULL`
 - `base_pipeline_handle`: defaults to `C_NULL`
 
 """
@@ -9133,17 +9831,17 @@ Arguments:
 AccelerationStructureCreateInfoNV
 
 """
-    BindAccelerationStructureMemoryInfoKHR(acceleration_structure::AccelerationStructureKHR, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray{<:Integer}; next = C_NULL)
+    BindAccelerationStructureMemoryInfoNV(acceleration_structure::AccelerationStructureNV, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `acceleration_structure::AccelerationStructureKHR`
+- `acceleration_structure::AccelerationStructureNV`
 - `memory::DeviceMemory`
 - `memory_offset::Integer`
 - `device_indices::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 
 """
-BindAccelerationStructureMemoryInfoKHR
+BindAccelerationStructureMemoryInfoNV
 
 """
     WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray{<:AccelerationStructureKHR}; next = C_NULL)
@@ -9156,57 +9854,74 @@ Arguments:
 WriteDescriptorSetAccelerationStructureKHR
 
 """
-    AccelerationStructureMemoryRequirementsInfoKHR(type::VkAccelerationStructureMemoryRequirementsTypeKHR, build_type::VkAccelerationStructureBuildTypeKHR, acceleration_structure::AccelerationStructureKHR; next = C_NULL)
+    WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray{<:AccelerationStructureNV}; next = C_NULL)
 
 Arguments:
-- `type::VkAccelerationStructureMemoryRequirementsTypeKHR`
-- `build_type::VkAccelerationStructureBuildTypeKHR`
-- `acceleration_structure::AccelerationStructureKHR`
+- `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureMemoryRequirementsInfoKHR
+WriteDescriptorSetAccelerationStructureNV
 
 """
-    AccelerationStructureMemoryRequirementsInfoNV(type::VkAccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::VkAccelerationStructureNV; next = C_NULL)
+    AccelerationStructureMemoryRequirementsInfoNV(type::VkAccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
 
 Arguments:
 - `type::VkAccelerationStructureMemoryRequirementsTypeNV`
-- `acceleration_structure::VkAccelerationStructureNV`
+- `acceleration_structure::AccelerationStructureNV`
 - `next`: defaults to `C_NULL`
 
 """
 AccelerationStructureMemoryRequirementsInfoNV
 
 """
-    PhysicalDeviceRayTracingFeaturesKHR(ray_tracing::Bool, ray_tracing_shader_group_handle_capture_replay::Bool, ray_tracing_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_acceleration_structure_capture_replay::Bool, ray_tracing_indirect_trace_rays::Bool, ray_tracing_indirect_acceleration_structure_build::Bool, ray_tracing_host_acceleration_structure_commands::Bool, ray_query::Bool, ray_tracing_primitive_culling::Bool; next = C_NULL)
+    PhysicalDeviceAccelerationStructureFeaturesKHR(acceleration_structure::Bool, acceleration_structure_capture_replay::Bool, acceleration_structure_indirect_build::Bool, acceleration_structure_host_commands::Bool, descriptor_binding_acceleration_structure_update_after_bind::Bool; next = C_NULL)
 
 Arguments:
-- `ray_tracing::Bool`
-- `ray_tracing_shader_group_handle_capture_replay::Bool`
-- `ray_tracing_shader_group_handle_capture_replay_mixed::Bool`
-- `ray_tracing_acceleration_structure_capture_replay::Bool`
-- `ray_tracing_indirect_trace_rays::Bool`
-- `ray_tracing_indirect_acceleration_structure_build::Bool`
-- `ray_tracing_host_acceleration_structure_commands::Bool`
-- `ray_query::Bool`
-- `ray_tracing_primitive_culling::Bool`
+- `acceleration_structure::Bool`
+- `acceleration_structure_capture_replay::Bool`
+- `acceleration_structure_indirect_build::Bool`
+- `acceleration_structure_host_commands::Bool`
+- `descriptor_binding_acceleration_structure_update_after_bind::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceRayTracingFeaturesKHR
+PhysicalDeviceAccelerationStructureFeaturesKHR
 
 """
-    StridedBufferRegionKHR(offset::Integer, stride::Integer, size::Integer; buffer = C_NULL)
+    PhysicalDeviceRayTracingPipelineFeaturesKHR(ray_tracing_pipeline::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_pipeline_trace_rays_indirect::Bool, ray_traversal_primitive_culling::Bool; next = C_NULL)
 
 Arguments:
-- `offset::Integer`
-- `stride::Integer`
-- `size::Integer`
-- `buffer`: defaults to `C_NULL`
+- `ray_tracing_pipeline::Bool`
+- `ray_tracing_pipeline_shader_group_handle_capture_replay::Bool`
+- `ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool`
+- `ray_tracing_pipeline_trace_rays_indirect::Bool`
+- `ray_traversal_primitive_culling::Bool`
+- `next`: defaults to `C_NULL`
 
 """
-StridedBufferRegionKHR
+PhysicalDeviceRayTracingPipelineFeaturesKHR
+
+"""
+    PhysicalDeviceRayQueryFeaturesKHR(ray_query::Bool; next = C_NULL)
+
+Arguments:
+- `ray_query::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceRayQueryFeaturesKHR
+
+"""
+    StridedDeviceAddressRegionKHR(stride::Integer, size::Integer; device_address = 0)
+
+Arguments:
+- `stride::Integer`
+- `size::Integer`
+- `device_address`: defaults to `0`
+
+"""
+StridedDeviceAddressRegionKHR
 
 """
     TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Integer)
@@ -9690,11 +10405,11 @@ Arguments:
 PerformanceValueINTEL
 
 """
-    InitializePerformanceApiInfoINTEL(user_data::Ptr{Cvoid}; next = C_NULL)
+    InitializePerformanceApiInfoINTEL(; next = C_NULL, user_data = C_NULL)
 
 Arguments:
-- `user_data::Ptr{Cvoid}`
 - `next`: defaults to `C_NULL`
+- `user_data`: defaults to `C_NULL`
 
 """
 InitializePerformanceApiInfoINTEL
@@ -9923,14 +10638,14 @@ Arguments:
 PhysicalDeviceLineRasterizationFeaturesEXT
 
 """
-    PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::VkLineRasterizationModeEXT, stippled_line_enable::Bool; next = C_NULL, line_stipple_factor = 0, line_stipple_pattern = 0)
+    PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::VkLineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
 
 Arguments:
 - `line_rasterization_mode::VkLineRasterizationModeEXT`
 - `stippled_line_enable::Bool`
+- `line_stipple_factor::Integer`
+- `line_stipple_pattern::Integer`
 - `next`: defaults to `C_NULL`
-- `line_stipple_factor`: defaults to `0`
-- `line_stipple_pattern`: defaults to `0`
 
 """
 PipelineRasterizationLineStateCreateInfoEXT
@@ -10065,16 +10780,17 @@ Arguments:
 PhysicalDeviceCustomBorderColorFeaturesEXT
 
 """
-    AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, index_type::VkIndexType; next = C_NULL, index_data = 0, transform_data = 0)
+    AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::VkIndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
 
 Arguments:
 - `vertex_format::VkFormat`
 - `vertex_data::VkDeviceOrHostAddressConstKHR`
 - `vertex_stride::Integer`
+- `max_vertex::Integer`
 - `index_type::VkIndexType`
+- `index_data::VkDeviceOrHostAddressConstKHR`
+- `transform_data::VkDeviceOrHostAddressConstKHR`
 - `next`: defaults to `C_NULL`
-- `index_data`: defaults to `0`
-- `transform_data`: defaults to `0`
 
 """
 AccelerationStructureGeometryTrianglesDataKHR
@@ -10114,59 +10830,44 @@ Arguments:
 AccelerationStructureGeometryKHR
 
 """
-    AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, update::Bool, dst_acceleration_structure::AccelerationStructureKHR, geometry_array_of_pointers::Bool, geometries::AccelerationStructureGeometryKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, geometry_count = 0)
+    AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, mode::VkBuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
 
 Arguments:
 - `type::VkAccelerationStructureTypeKHR`
-- `update::Bool`
-- `dst_acceleration_structure::AccelerationStructureKHR`
-- `geometry_array_of_pointers::Bool`
-- `geometries::AccelerationStructureGeometryKHR`
+- `mode::VkBuildAccelerationStructureModeKHR`
 - `scratch_data::VkDeviceOrHostAddressKHR`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 - `src_acceleration_structure`: defaults to `C_NULL`
-- `geometry_count`: defaults to `0`
+- `dst_acceleration_structure`: defaults to `C_NULL`
+- `geometries`: defaults to `C_NULL`
+- `geometries_2`: defaults to `C_NULL`
 
 """
 AccelerationStructureBuildGeometryInfoKHR
 
 """
-    AccelerationStructureBuildOffsetInfoKHR(primitive_count::Integer, primitive_offset::Integer; first_vertex = 0, transform_offset = 0)
+    AccelerationStructureBuildRangeInfoKHR(primitive_count::Integer, primitive_offset::Integer, first_vertex::Integer, transform_offset::Integer)
 
 Arguments:
 - `primitive_count::Integer`
 - `primitive_offset::Integer`
-- `first_vertex`: defaults to `0`
-- `transform_offset`: defaults to `0`
+- `first_vertex::Integer`
+- `transform_offset::Integer`
 
 """
-AccelerationStructureBuildOffsetInfoKHR
+AccelerationStructureBuildRangeInfoKHR
 
 """
-    AccelerationStructureCreateGeometryTypeInfoKHR(geometry_type::VkGeometryTypeKHR, max_primitive_count::Integer, index_type::VkIndexType; next = C_NULL, max_vertex_count = 0, vertex_format = 0, allows_transforms = 0)
+    AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
 
 Arguments:
-- `geometry_type::VkGeometryTypeKHR`
-- `max_primitive_count::Integer`
-- `index_type::VkIndexType`
-- `next`: defaults to `C_NULL`
-- `max_vertex_count`: defaults to `0`
-- `vertex_format`: defaults to `0`
-- `allows_transforms`: defaults to `0`
-
-"""
-AccelerationStructureCreateGeometryTypeInfoKHR
-
-"""
-    AccelerationStructureCreateInfoKHR(compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray{<:AccelerationStructureCreateGeometryTypeInfoKHR}; next = C_NULL, flags = 0, device_address = 0)
-
-Arguments:
-- `compacted_size::Integer`
+- `buffer::Buffer`
+- `offset::Integer`
+- `size::Integer`
 - `type::VkAccelerationStructureTypeKHR`
-- `geometry_infos::AbstractArray{<:AccelerationStructureCreateGeometryTypeInfoKHR}`
 - `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+- `create_flags`: defaults to `0`
 - `device_address`: defaults to `0`
 
 """
@@ -10220,14 +10921,14 @@ Arguments:
 AccelerationStructureDeviceAddressInfoKHR
 
 """
-    AccelerationStructureVersionKHR(version_data::AbstractArray{<:Integer}; next = C_NULL)
+    AccelerationStructureVersionInfoKHR(version_data::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `version_data::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureVersionKHR
+AccelerationStructureVersionInfoKHR
 
 """
     CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
@@ -10266,26 +10967,15 @@ Arguments:
 CopyMemoryToAccelerationStructureInfoKHR
 
 """
-    RayTracingPipelineInterfaceCreateInfoKHR(max_payload_size::Integer, max_attribute_size::Integer, max_callable_size::Integer; next = C_NULL)
+    RayTracingPipelineInterfaceCreateInfoKHR(max_pipeline_ray_payload_size::Integer, max_pipeline_ray_hit_attribute_size::Integer; next = C_NULL)
 
 Arguments:
-- `max_payload_size::Integer`
-- `max_attribute_size::Integer`
-- `max_callable_size::Integer`
+- `max_pipeline_ray_payload_size::Integer`
+- `max_pipeline_ray_hit_attribute_size::Integer`
 - `next`: defaults to `C_NULL`
 
 """
 RayTracingPipelineInterfaceCreateInfoKHR
-
-"""
-    DeferredOperationInfoKHR(operation_handle::DeferredOperationKHR; next = C_NULL)
-
-Arguments:
-- `operation_handle::DeferredOperationKHR`
-- `next`: defaults to `C_NULL`
-
-"""
-DeferredOperationInfoKHR
 
 """
     PipelineLibraryCreateInfoKHR(libraries::AbstractArray{<:Pipeline}; next = C_NULL)
@@ -10308,6 +10998,18 @@ Arguments:
 PhysicalDeviceExtendedDynamicStateFeaturesEXT
 
 """
+    PhysicalDeviceExtendedDynamicState2FeaturesEXT(extended_dynamic_state_2::Bool, extended_dynamic_state_2_logic_op::Bool, extended_dynamic_state_2_patch_control_points::Bool; next = C_NULL)
+
+Arguments:
+- `extended_dynamic_state_2::Bool`
+- `extended_dynamic_state_2_logic_op::Bool`
+- `extended_dynamic_state_2_patch_control_points::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceExtendedDynamicState2FeaturesEXT
+
+"""
     RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
 Arguments:
@@ -10316,6 +11018,16 @@ Arguments:
 
 """
 RenderPassTransformBeginInfoQCOM
+
+"""
+    CopyCommandTransformInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
+
+Arguments:
+- `transform::SurfaceTransformFlagKHR`
+- `next`: defaults to `C_NULL`
+
+"""
+CopyCommandTransformInfoQCOM
 
 """
     CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::Rect2D; next = C_NULL)
@@ -10349,6 +11061,16 @@ Arguments:
 DeviceDiagnosticsConfigCreateInfoNV
 
 """
+    PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(shader_zero_initialize_workgroup_memory::Bool; next = C_NULL)
+
+Arguments:
+- `shader_zero_initialize_workgroup_memory::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
+
+"""
     PhysicalDeviceRobustness2FeaturesEXT(robust_buffer_access_2::Bool, robust_image_access_2::Bool, null_descriptor::Bool; next = C_NULL)
 
 Arguments:
@@ -10371,6 +11093,53 @@ Arguments:
 PhysicalDeviceImageRobustnessFeaturesEXT
 
 """
+    PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(workgroup_memory_explicit_layout::Bool, workgroup_memory_explicit_layout_scalar_block_layout::Bool, workgroup_memory_explicit_layout_8_bit_access::Bool, workgroup_memory_explicit_layout_16_bit_access::Bool; next = C_NULL)
+
+Arguments:
+- `workgroup_memory_explicit_layout::Bool`
+- `workgroup_memory_explicit_layout_scalar_block_layout::Bool`
+- `workgroup_memory_explicit_layout_8_bit_access::Bool`
+- `workgroup_memory_explicit_layout_16_bit_access::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
+
+"""
+    PhysicalDevicePortabilitySubsetFeaturesKHR(constant_alpha_color_blend_factors::Bool, events::Bool, image_view_format_reinterpretation::Bool, image_view_format_swizzle::Bool, image_view_2_d_on_3_d_image::Bool, multisample_array_image::Bool, mutable_comparison_samplers::Bool, point_polygons::Bool, sampler_mip_lod_bias::Bool, separate_stencil_mask_ref::Bool, shader_sample_rate_interpolation_functions::Bool, tessellation_isolines::Bool, tessellation_point_mode::Bool, triangle_fans::Bool, vertex_attribute_access_beyond_stride::Bool; next = C_NULL)
+
+Arguments:
+- `constant_alpha_color_blend_factors::Bool`
+- `events::Bool`
+- `image_view_format_reinterpretation::Bool`
+- `image_view_format_swizzle::Bool`
+- `image_view_2_d_on_3_d_image::Bool`
+- `multisample_array_image::Bool`
+- `mutable_comparison_samplers::Bool`
+- `point_polygons::Bool`
+- `sampler_mip_lod_bias::Bool`
+- `separate_stencil_mask_ref::Bool`
+- `shader_sample_rate_interpolation_functions::Bool`
+- `tessellation_isolines::Bool`
+- `tessellation_point_mode::Bool`
+- `triangle_fans::Bool`
+- `vertex_attribute_access_beyond_stride::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDevicePortabilitySubsetFeaturesKHR
+
+"""
+    PhysicalDevicePortabilitySubsetPropertiesKHR(min_vertex_input_binding_stride_alignment::Integer; next = C_NULL)
+
+Arguments:
+- `min_vertex_input_binding_stride_alignment::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDevicePortabilitySubsetPropertiesKHR
+
+"""
     PhysicalDevice4444FormatsFeaturesEXT(format_a4r4g4b4::Bool, format_a4b4g4r4::Bool; next = C_NULL)
 
 Arguments:
@@ -10380,6 +11149,968 @@ Arguments:
 
 """
 PhysicalDevice4444FormatsFeaturesEXT
+
+"""
+    BufferCopy2KHR(src_offset::Integer, dst_offset::Integer, size::Integer; next = C_NULL)
+
+Arguments:
+- `src_offset::Integer`
+- `dst_offset::Integer`
+- `size::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+BufferCopy2KHR
+
+"""
+    ImageCopy2KHR(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D; next = C_NULL)
+
+Arguments:
+- `src_subresource::ImageSubresourceLayers`
+- `src_offset::Offset3D`
+- `dst_subresource::ImageSubresourceLayers`
+- `dst_offset::Offset3D`
+- `extent::Extent3D`
+- `next`: defaults to `C_NULL`
+
+"""
+ImageCopy2KHR
+
+"""
+    ImageBlit2KHR(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, Offset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, Offset3D}; next = C_NULL)
+
+Arguments:
+- `src_subresource::ImageSubresourceLayers`
+- `src_offsets::NTuple{2, Offset3D}`
+- `dst_subresource::ImageSubresourceLayers`
+- `dst_offsets::NTuple{2, Offset3D}`
+- `next`: defaults to `C_NULL`
+
+"""
+ImageBlit2KHR
+
+"""
+    BufferImageCopy2KHR(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::ImageSubresourceLayers, image_offset::Offset3D, image_extent::Extent3D; next = C_NULL)
+
+Arguments:
+- `buffer_offset::Integer`
+- `buffer_row_length::Integer`
+- `buffer_image_height::Integer`
+- `image_subresource::ImageSubresourceLayers`
+- `image_offset::Offset3D`
+- `image_extent::Extent3D`
+- `next`: defaults to `C_NULL`
+
+"""
+BufferImageCopy2KHR
+
+"""
+    ImageResolve2KHR(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D; next = C_NULL)
+
+Arguments:
+- `src_subresource::ImageSubresourceLayers`
+- `src_offset::Offset3D`
+- `dst_subresource::ImageSubresourceLayers`
+- `dst_offset::Offset3D`
+- `extent::Extent3D`
+- `next`: defaults to `C_NULL`
+
+"""
+ImageResolve2KHR
+
+"""
+    CopyBufferInfo2KHR(src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy2KHR}; next = C_NULL)
+
+Arguments:
+- `src_buffer::Buffer`
+- `dst_buffer::Buffer`
+- `regions::AbstractArray{<:BufferCopy2KHR}`
+- `next`: defaults to `C_NULL`
+
+"""
+CopyBufferInfo2KHR
+
+"""
+    CopyImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageCopy2KHR}; next = C_NULL)
+
+Arguments:
+- `src_image::Image`
+- `src_image_layout::VkImageLayout`
+- `dst_image::Image`
+- `dst_image_layout::VkImageLayout`
+- `regions::AbstractArray{<:ImageCopy2KHR}`
+- `next`: defaults to `C_NULL`
+
+"""
+CopyImageInfo2KHR
+
+"""
+    BlitImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageBlit2KHR}, filter::VkFilter; next = C_NULL)
+
+Arguments:
+- `src_image::Image`
+- `src_image_layout::VkImageLayout`
+- `dst_image::Image`
+- `dst_image_layout::VkImageLayout`
+- `regions::AbstractArray{<:ImageBlit2KHR}`
+- `filter::VkFilter`
+- `next`: defaults to `C_NULL`
+
+"""
+BlitImageInfo2KHR
+
+"""
+    CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:BufferImageCopy2KHR}; next = C_NULL)
+
+Arguments:
+- `src_buffer::Buffer`
+- `dst_image::Image`
+- `dst_image_layout::VkImageLayout`
+- `regions::AbstractArray{<:BufferImageCopy2KHR}`
+- `next`: defaults to `C_NULL`
+
+"""
+CopyBufferToImageInfo2KHR
+
+"""
+    CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy2KHR}; next = C_NULL)
+
+Arguments:
+- `src_image::Image`
+- `src_image_layout::VkImageLayout`
+- `dst_buffer::Buffer`
+- `regions::AbstractArray{<:BufferImageCopy2KHR}`
+- `next`: defaults to `C_NULL`
+
+"""
+CopyImageToBufferInfo2KHR
+
+"""
+    ResolveImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageResolve2KHR}; next = C_NULL)
+
+Arguments:
+- `src_image::Image`
+- `src_image_layout::VkImageLayout`
+- `dst_image::Image`
+- `dst_image_layout::VkImageLayout`
+- `regions::AbstractArray{<:ImageResolve2KHR}`
+- `next`: defaults to `C_NULL`
+
+"""
+ResolveImageInfo2KHR
+
+"""
+    PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(shader_image_int_64_atomics::Bool, sparse_image_int_64_atomics::Bool; next = C_NULL)
+
+Arguments:
+- `shader_image_int_64_atomics::Bool`
+- `sparse_image_int_64_atomics::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
+
+"""
+    FragmentShadingRateAttachmentInfoKHR(fragment_shading_rate_attachment::AttachmentReference2, shading_rate_attachment_texel_size::Extent2D; next = C_NULL)
+
+Arguments:
+- `fragment_shading_rate_attachment::AttachmentReference2`
+- `shading_rate_attachment_texel_size::Extent2D`
+- `next`: defaults to `C_NULL`
+
+"""
+FragmentShadingRateAttachmentInfoKHR
+
+"""
+    PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+
+Arguments:
+- `fragment_size::Extent2D`
+- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+- `next`: defaults to `C_NULL`
+
+"""
+PipelineFragmentShadingRateStateCreateInfoKHR
+
+"""
+    PhysicalDeviceFragmentShadingRateFeaturesKHR(pipeline_fragment_shading_rate::Bool, primitive_fragment_shading_rate::Bool, attachment_fragment_shading_rate::Bool; next = C_NULL)
+
+Arguments:
+- `pipeline_fragment_shading_rate::Bool`
+- `primitive_fragment_shading_rate::Bool`
+- `attachment_fragment_shading_rate::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceFragmentShadingRateFeaturesKHR
+
+"""
+    PhysicalDeviceShaderTerminateInvocationFeaturesKHR(shader_terminate_invocation::Bool; next = C_NULL)
+
+Arguments:
+- `shader_terminate_invocation::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceShaderTerminateInvocationFeaturesKHR
+
+"""
+    PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(fragment_shading_rate_enums::Bool, supersample_fragment_shading_rates::Bool, no_invocation_fragment_shading_rates::Bool; next = C_NULL)
+
+Arguments:
+- `fragment_shading_rate_enums::Bool`
+- `supersample_fragment_shading_rates::Bool`
+- `no_invocation_fragment_shading_rates::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
+
+"""
+    PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(max_fragment_shading_rate_invocation_count::SampleCountFlag; next = C_NULL)
+
+Arguments:
+- `max_fragment_shading_rate_invocation_count::SampleCountFlag`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
+
+"""
+    PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::VkFragmentShadingRateTypeNV, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+
+Arguments:
+- `shading_rate_type::VkFragmentShadingRateTypeNV`
+- `shading_rate::VkFragmentShadingRateNV`
+- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+- `next`: defaults to `C_NULL`
+
+"""
+PipelineFragmentShadingRateEnumStateCreateInfoNV
+
+"""
+    AccelerationStructureBuildSizesInfoKHR(acceleration_structure_size::Integer, update_scratch_size::Integer, build_scratch_size::Integer; next = C_NULL)
+
+Arguments:
+- `acceleration_structure_size::Integer`
+- `update_scratch_size::Integer`
+- `build_scratch_size::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+AccelerationStructureBuildSizesInfoKHR
+
+"""
+    PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(mutable_descriptor_type::Bool; next = C_NULL)
+
+Arguments:
+- `mutable_descriptor_type::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
+
+"""
+    MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray{<:VkDescriptorType})
+
+Arguments:
+- `descriptor_types::AbstractArray{<:VkDescriptorType}`
+
+"""
+MutableDescriptorTypeListVALVE
+
+"""
+    MutableDescriptorTypeCreateInfoVALVE(mutable_descriptor_type_lists::AbstractArray{<:MutableDescriptorTypeListVALVE}; next = C_NULL)
+
+Arguments:
+- `mutable_descriptor_type_lists::AbstractArray{<:MutableDescriptorTypeListVALVE}`
+- `next`: defaults to `C_NULL`
+
+"""
+MutableDescriptorTypeCreateInfoVALVE
+
+"""
+    PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vertex_input_dynamic_state::Bool; next = C_NULL)
+
+Arguments:
+- `vertex_input_dynamic_state::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceVertexInputDynamicStateFeaturesEXT
+
+"""
+    VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VkVertexInputRate, divisor::Integer; next = C_NULL)
+
+Arguments:
+- `binding::Integer`
+- `stride::Integer`
+- `input_rate::VkVertexInputRate`
+- `divisor::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+VertexInputBindingDescription2EXT
+
+"""
+    VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::VkFormat, offset::Integer; next = C_NULL)
+
+Arguments:
+- `location::Integer`
+- `binding::Integer`
+- `format::VkFormat`
+- `offset::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+VertexInputAttributeDescription2EXT
+
+"""
+    PhysicalDeviceColorWriteEnableFeaturesEXT(color_write_enable::Bool; next = C_NULL)
+
+Arguments:
+- `color_write_enable::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceColorWriteEnableFeaturesEXT
+
+"""
+    PipelineColorWriteCreateInfoEXT(color_write_enables::AbstractArray{<:Bool}; next = C_NULL)
+
+Arguments:
+- `color_write_enables::AbstractArray{<:Bool}`
+- `next`: defaults to `C_NULL`
+
+"""
+PipelineColorWriteCreateInfoEXT
+
+"""
+    MemoryBarrier2KHR(; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `src_stage_mask`: defaults to `0`
+- `src_access_mask`: defaults to `0`
+- `dst_stage_mask`: defaults to `0`
+- `dst_access_mask`: defaults to `0`
+
+"""
+MemoryBarrier2KHR
+
+"""
+    ImageMemoryBarrier2KHR(old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+
+Arguments:
+- `old_layout::VkImageLayout`
+- `new_layout::VkImageLayout`
+- `src_queue_family_index::Integer`
+- `dst_queue_family_index::Integer`
+- `image::Image`
+- `subresource_range::ImageSubresourceRange`
+- `next`: defaults to `C_NULL`
+- `src_stage_mask`: defaults to `0`
+- `src_access_mask`: defaults to `0`
+- `dst_stage_mask`: defaults to `0`
+- `dst_access_mask`: defaults to `0`
+
+"""
+ImageMemoryBarrier2KHR
+
+"""
+    BufferMemoryBarrier2KHR(src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+
+Arguments:
+- `src_queue_family_index::Integer`
+- `dst_queue_family_index::Integer`
+- `buffer::Buffer`
+- `offset::Integer`
+- `size::Integer`
+- `next`: defaults to `C_NULL`
+- `src_stage_mask`: defaults to `0`
+- `src_access_mask`: defaults to `0`
+- `dst_stage_mask`: defaults to `0`
+- `dst_access_mask`: defaults to `0`
+
+"""
+BufferMemoryBarrier2KHR
+
+"""
+    DependencyInfoKHR(memory_barriers::AbstractArray{<:MemoryBarrier2KHR}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier2KHR}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier2KHR}; next = C_NULL, dependency_flags = 0)
+
+Arguments:
+- `memory_barriers::AbstractArray{<:MemoryBarrier2KHR}`
+- `buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier2KHR}`
+- `image_memory_barriers::AbstractArray{<:ImageMemoryBarrier2KHR}`
+- `next`: defaults to `C_NULL`
+- `dependency_flags`: defaults to `0`
+
+"""
+DependencyInfoKHR
+
+"""
+    SemaphoreSubmitInfoKHR(semaphore::Semaphore, value::Integer, device_index::Integer; next = C_NULL, stage_mask = 0)
+
+Arguments:
+- `semaphore::Semaphore`
+- `value::Integer`
+- `device_index::Integer`
+- `next`: defaults to `C_NULL`
+- `stage_mask`: defaults to `0`
+
+"""
+SemaphoreSubmitInfoKHR
+
+"""
+    CommandBufferSubmitInfoKHR(command_buffer::CommandBuffer, device_mask::Integer; next = C_NULL)
+
+Arguments:
+- `command_buffer::CommandBuffer`
+- `device_mask::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+CommandBufferSubmitInfoKHR
+
+"""
+    SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{<:CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
+
+Arguments:
+- `wait_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}`
+- `command_buffer_infos::AbstractArray{<:CommandBufferSubmitInfoKHR}`
+- `signal_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}`
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+SubmitInfo2KHR
+
+"""
+    PhysicalDeviceSynchronization2FeaturesKHR(synchronization2::Bool; next = C_NULL)
+
+Arguments:
+- `synchronization2::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceSynchronization2FeaturesKHR
+
+"""
+    VideoQueueFamilyProperties2KHR(video_codec_operations::VideoCodecOperationFlagKHR; next = C_NULL)
+
+Arguments:
+- `video_codec_operations::VideoCodecOperationFlagKHR`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoQueueFamilyProperties2KHR
+
+"""
+    VideoProfilesKHR(profile_count::Integer, profiles::VideoProfileKHR; next = C_NULL)
+
+Arguments:
+- `profile_count::Integer`
+- `profiles::VideoProfileKHR`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoProfilesKHR
+
+"""
+    VideoProfileKHR(video_codec_operation::VideoCodecOperationFlagKHR, chroma_subsampling::VideoChromaSubsamplingFlagKHR, luma_bit_depth::VideoComponentBitDepthFlagKHR, chroma_bit_depth::VideoComponentBitDepthFlagKHR; next = C_NULL)
+
+Arguments:
+- `video_codec_operation::VideoCodecOperationFlagKHR`
+- `chroma_subsampling::VideoChromaSubsamplingFlagKHR`
+- `luma_bit_depth::VideoComponentBitDepthFlagKHR`
+- `chroma_bit_depth::VideoComponentBitDepthFlagKHR`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoProfileKHR
+
+"""
+    VideoGetMemoryPropertiesKHR(memory_bind_index::Integer, memory_requirements::MemoryRequirements2; next = C_NULL)
+
+Arguments:
+- `memory_bind_index::Integer`
+- `memory_requirements::MemoryRequirements2`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoGetMemoryPropertiesKHR
+
+"""
+    VideoBindMemoryKHR(memory_bind_index::Integer, memory::DeviceMemory, memory_offset::Integer, memory_size::Integer; next = C_NULL)
+
+Arguments:
+- `memory_bind_index::Integer`
+- `memory::DeviceMemory`
+- `memory_offset::Integer`
+- `memory_size::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoBindMemoryKHR
+
+"""
+    VideoPictureResourceKHR(coded_offset::Offset2D, coded_extent::Extent2D, base_array_layer::Integer, image_view_binding::ImageView; next = C_NULL)
+
+Arguments:
+- `coded_offset::Offset2D`
+- `coded_extent::Extent2D`
+- `base_array_layer::Integer`
+- `image_view_binding::ImageView`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoPictureResourceKHR
+
+"""
+    VideoReferenceSlotKHR(slot_index::Integer, picture_resource::VideoPictureResourceKHR; next = C_NULL)
+
+Arguments:
+- `slot_index::Integer`
+- `picture_resource::VideoPictureResourceKHR`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoReferenceSlotKHR
+
+"""
+    VideoDecodeInfoKHR(coded_offset::Offset2D, coded_extent::Extent2D, src_buffer::Buffer, src_buffer_offset::Integer, src_buffer_range::Integer, dst_picture_resource::VideoPictureResourceKHR, setup_reference_slot::VideoReferenceSlotKHR, reference_slots::AbstractArray{<:VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
+
+Arguments:
+- `coded_offset::Offset2D`
+- `coded_extent::Extent2D`
+- `src_buffer::Buffer`
+- `src_buffer_offset::Integer`
+- `src_buffer_range::Integer`
+- `dst_picture_resource::VideoPictureResourceKHR`
+- `setup_reference_slot::VideoReferenceSlotKHR`
+- `reference_slots::AbstractArray{<:VideoReferenceSlotKHR}`
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+VideoDecodeInfoKHR
+
+"""
+    VideoDecodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc, field_layout::VideoDecodeH264FieldLayoutFlagEXT; next = C_NULL)
+
+Arguments:
+- `std_profile_idc::StdVideoH264ProfileIdc`
+- `field_layout::VideoDecodeH264FieldLayoutFlagEXT`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH264ProfileEXT
+
+"""
+    VideoDecodeH264SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+
+Arguments:
+- `flags::Integer`
+- `std_extension_version::ExtensionProperties`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH264SessionCreateInfoEXT
+
+"""
+    VideoDecodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `sps_std`: defaults to `C_NULL`
+- `pps_std`: defaults to `C_NULL`
+
+"""
+VideoDecodeH264SessionParametersAddInfoEXT
+
+"""
+    VideoDecodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+
+Arguments:
+- `max_sps_std_count::Integer`
+- `max_pps_std_count::Integer`
+- `next`: defaults to `C_NULL`
+- `parameters_add_info`: defaults to `C_NULL`
+
+"""
+VideoDecodeH264SessionParametersCreateInfoEXT
+
+"""
+    VideoDecodeH264PictureInfoEXT(std_picture_info::StdVideoDecodeH264PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
+
+Arguments:
+- `std_picture_info::StdVideoDecodeH264PictureInfo`
+- `slices_data_offsets::AbstractArray{<:Integer}`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH264PictureInfoEXT
+
+"""
+    VideoDecodeH264DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH264ReferenceInfo; next = C_NULL)
+
+Arguments:
+- `std_reference_info::StdVideoDecodeH264ReferenceInfo`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH264DpbSlotInfoEXT
+
+"""
+    VideoDecodeH264MvcEXT(std_mvc::StdVideoDecodeH264Mvc; next = C_NULL)
+
+Arguments:
+- `std_mvc::StdVideoDecodeH264Mvc`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH264MvcEXT
+
+"""
+    VideoDecodeH265ProfileEXT(std_profile_idc::StdVideoH265ProfileIdc; next = C_NULL)
+
+Arguments:
+- `std_profile_idc::StdVideoH265ProfileIdc`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH265ProfileEXT
+
+"""
+    VideoDecodeH265SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+
+Arguments:
+- `flags::Integer`
+- `std_extension_version::ExtensionProperties`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH265SessionCreateInfoEXT
+
+"""
+    VideoDecodeH265SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `sps_std`: defaults to `C_NULL`
+- `pps_std`: defaults to `C_NULL`
+
+"""
+VideoDecodeH265SessionParametersAddInfoEXT
+
+"""
+    VideoDecodeH265SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+
+Arguments:
+- `max_sps_std_count::Integer`
+- `max_pps_std_count::Integer`
+- `next`: defaults to `C_NULL`
+- `parameters_add_info`: defaults to `C_NULL`
+
+"""
+VideoDecodeH265SessionParametersCreateInfoEXT
+
+"""
+    VideoDecodeH265PictureInfoEXT(std_picture_info::StdVideoDecodeH265PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
+
+Arguments:
+- `std_picture_info::StdVideoDecodeH265PictureInfo`
+- `slices_data_offsets::AbstractArray{<:Integer}`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH265PictureInfoEXT
+
+"""
+    VideoDecodeH265DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH265ReferenceInfo; next = C_NULL)
+
+Arguments:
+- `std_reference_info::StdVideoDecodeH265ReferenceInfo`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoDecodeH265DpbSlotInfoEXT
+
+"""
+    VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; next = C_NULL, flags = 0)
+
+Arguments:
+- `queue_family_index::Integer`
+- `video_profile::VideoProfileKHR`
+- `picture_format::VkFormat`
+- `max_coded_extent::Extent2D`
+- `reference_pictures_format::VkFormat`
+- `max_reference_pictures_slots_count::Integer`
+- `max_reference_pictures_active_count::Integer`
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+VideoSessionCreateInfoKHR
+
+"""
+    VideoSessionParametersCreateInfoKHR(video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; next = C_NULL)
+
+Arguments:
+- `video_session_parameters_template::VideoSessionParametersKHR`
+- `video_session::VideoSessionKHR`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoSessionParametersCreateInfoKHR
+
+"""
+    VideoSessionParametersUpdateInfoKHR(update_sequence_count::Integer; next = C_NULL)
+
+Arguments:
+- `update_sequence_count::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoSessionParametersUpdateInfoKHR
+
+"""
+    VideoBeginCodingInfoKHR(codec_quality_preset::VideoCodingQualityPresetFlagKHR, video_session::VideoSessionKHR, reference_slots::AbstractArray{<:VideoReferenceSlotKHR}; next = C_NULL, flags = 0, video_session_parameters = C_NULL)
+
+Arguments:
+- `codec_quality_preset::VideoCodingQualityPresetFlagKHR`
+- `video_session::VideoSessionKHR`
+- `reference_slots::AbstractArray{<:VideoReferenceSlotKHR}`
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+- `video_session_parameters`: defaults to `C_NULL`
+
+"""
+VideoBeginCodingInfoKHR
+
+"""
+    VideoEndCodingInfoKHR(; next = C_NULL, flags = 0)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+VideoEndCodingInfoKHR
+
+"""
+    VideoCodingControlInfoKHR(; next = C_NULL, flags = 0)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+VideoCodingControlInfoKHR
+
+"""
+    VideoEncodeInfoKHR(quality_level::Integer, coded_extent::Extent2D, dst_bitstream_buffer::Buffer, dst_bitstream_buffer_offset::Integer, dst_bitstream_buffer_max_range::Integer, src_picture_resource::VideoPictureResourceKHR, setup_reference_slot::VideoReferenceSlotKHR, reference_slots::AbstractArray{<:VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
+
+Arguments:
+- `quality_level::Integer`
+- `coded_extent::Extent2D`
+- `dst_bitstream_buffer::Buffer`
+- `dst_bitstream_buffer_offset::Integer`
+- `dst_bitstream_buffer_max_range::Integer`
+- `src_picture_resource::VideoPictureResourceKHR`
+- `setup_reference_slot::VideoReferenceSlotKHR`
+- `reference_slots::AbstractArray{<:VideoReferenceSlotKHR}`
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+VideoEncodeInfoKHR
+
+"""
+    VideoEncodeRateControlInfoKHR(flags::VideoEncodeRateControlFlagKHR, rate_control_mode::VideoEncodeRateControlModeFlagKHR, average_bitrate::Integer, peak_to_average_bitrate_ratio::Integer, frame_rate_numerator::Integer, frame_rate_denominator::Integer, virtual_buffer_size_in_ms::Integer; next = C_NULL)
+
+Arguments:
+- `flags::VideoEncodeRateControlFlagKHR`
+- `rate_control_mode::VideoEncodeRateControlModeFlagKHR`
+- `average_bitrate::Integer`
+- `peak_to_average_bitrate_ratio::Integer`
+- `frame_rate_numerator::Integer`
+- `frame_rate_denominator::Integer`
+- `virtual_buffer_size_in_ms::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeRateControlInfoKHR
+
+"""
+    VideoEncodeH264CapabilitiesEXT(flags::VideoEncodeH264CapabilitiesFlagEXT, input_mode_flags::VideoEncodeH264InputModeFlagEXT, output_mode_flags::VideoEncodeH264OutputModeFlagEXT, min_picture_size_in_mbs::Extent2D, max_picture_size_in_mbs::Extent2D, input_image_data_alignment::Extent2D, max_num_l_0_reference_for_p::Integer, max_num_l_0_reference_for_b::Integer, max_num_l_1_reference::Integer, quality_level_count::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+
+Arguments:
+- `flags::VideoEncodeH264CapabilitiesFlagEXT`
+- `input_mode_flags::VideoEncodeH264InputModeFlagEXT`
+- `output_mode_flags::VideoEncodeH264OutputModeFlagEXT`
+- `min_picture_size_in_mbs::Extent2D`
+- `max_picture_size_in_mbs::Extent2D`
+- `input_image_data_alignment::Extent2D`
+- `max_num_l_0_reference_for_p::Integer`
+- `max_num_l_0_reference_for_b::Integer`
+- `max_num_l_1_reference::Integer`
+- `quality_level_count::Integer`
+- `std_extension_version::ExtensionProperties`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264CapabilitiesEXT
+
+"""
+    VideoEncodeH264SessionCreateInfoEXT(flags::VideoEncodeH264CreateFlagEXT, max_picture_size_in_mbs::Extent2D, std_extension_version::ExtensionProperties; next = C_NULL)
+
+Arguments:
+- `flags::VideoEncodeH264CreateFlagEXT`
+- `max_picture_size_in_mbs::Extent2D`
+- `std_extension_version::ExtensionProperties`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264SessionCreateInfoEXT
+
+"""
+    VideoEncodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `sps_std`: defaults to `C_NULL`
+- `pps_std`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264SessionParametersAddInfoEXT
+
+"""
+    VideoEncodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+
+Arguments:
+- `max_sps_std_count::Integer`
+- `max_pps_std_count::Integer`
+- `next`: defaults to `C_NULL`
+- `parameters_add_info`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264SessionParametersCreateInfoEXT
+
+"""
+    VideoEncodeH264DpbSlotInfoEXT(slot_index::Integer, std_picture_info::StdVideoEncodeH264PictureInfo; next = C_NULL)
+
+Arguments:
+- `slot_index::Integer`
+- `std_picture_info::StdVideoEncodeH264PictureInfo`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264DpbSlotInfoEXT
+
+"""
+    VideoEncodeH264VclFrameInfoEXT(ref_default_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, nalu_slice_entries::AbstractArray{<:VideoEncodeH264NaluSliceEXT}, current_picture_info::VideoEncodeH264DpbSlotInfoEXT; next = C_NULL)
+
+Arguments:
+- `ref_default_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
+- `ref_default_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
+- `nalu_slice_entries::AbstractArray{<:VideoEncodeH264NaluSliceEXT}`
+- `current_picture_info::VideoEncodeH264DpbSlotInfoEXT`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264VclFrameInfoEXT
+
+"""
+    VideoEncodeH264EmitPictureParametersEXT(sps_id::Integer, emit_sps_enable::Bool, pps_id_entries::AbstractArray{<:Integer}; next = C_NULL)
+
+Arguments:
+- `sps_id::Integer`
+- `emit_sps_enable::Bool`
+- `pps_id_entries::AbstractArray{<:Integer}`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264EmitPictureParametersEXT
+
+"""
+    VideoEncodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc; next = C_NULL)
+
+Arguments:
+- `std_profile_idc::StdVideoH264ProfileIdc`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264ProfileEXT
+
+"""
+    VideoEncodeH264NaluSliceEXT(slice_header_std::StdVideoEncodeH264SliceHeader, mb_count::Integer, ref_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, ref_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, preceding_nalu_bytes::Integer, min_qp::Integer, max_qp::Integer; next = C_NULL)
+
+Arguments:
+- `slice_header_std::StdVideoEncodeH264SliceHeader`
+- `mb_count::Integer`
+- `ref_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
+- `ref_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
+- `preceding_nalu_bytes::Integer`
+- `min_qp::Integer`
+- `max_qp::Integer`
+- `next`: defaults to `C_NULL`
+
+"""
+VideoEncodeH264NaluSliceEXT
+
+"""
+    PhysicalDeviceInheritedViewportScissorFeaturesNV(inherited_viewport_scissor_2_d::Bool; next = C_NULL)
+
+Arguments:
+- `inherited_viewport_scissor_2_d::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceInheritedViewportScissorFeaturesNV
+
+"""
+    CommandBufferInheritanceViewportScissorInfoNV(viewport_scissor_2_d::Bool, viewport_depth_count::Integer, viewport_depths::Viewport; next = C_NULL)
+
+Arguments:
+- `viewport_scissor_2_d::Bool`
+- `viewport_depth_count::Integer`
+- `viewport_depths::Viewport`
+- `next`: defaults to `C_NULL`
+
+"""
+CommandBufferInheritanceViewportScissorInfoNV
+
+"""
+    PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(ycbcr_444_formats::Bool; next = C_NULL)
+
+Arguments:
+- `ycbcr_444_formats::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
+
+"""
+    PhysicalDeviceProvokingVertexFeaturesEXT(provoking_vertex_last::Bool, transform_feedback_preserves_provoking_vertex::Bool; next = C_NULL)
+
+Arguments:
+- `provoking_vertex_last::Bool`
+- `transform_feedback_preserves_provoking_vertex::Bool`
+- `next`: defaults to `C_NULL`
+
+"""
+PhysicalDeviceProvokingVertexFeaturesEXT
+
+"""
+    PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::VkProvokingVertexModeEXT; next = C_NULL)
+
+Arguments:
+- `provoking_vertex_mode::VkProvokingVertexModeEXT`
+- `next`: defaults to `C_NULL`
+
+"""
+PipelineRasterizationProvokingVertexStateCreateInfoEXT
 
 """
     Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL)
@@ -10529,11 +12260,11 @@ RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription2},
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
 
 """
-    IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL)
+    IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL)
+IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -10557,18 +12288,18 @@ SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerY
 ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
 
 """
-    AccelerationStructureKHR(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
+    AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0)
 
 
 """
-AccelerationStructureKHR(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
+AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0)
 
 """
-    AccelerationStructureKHR(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray{<:AccelerationStructureCreateGeometryTypeInfoKHR}; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0)
+    AccelerationStructureNV(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
 
 
 """
-AccelerationStructureKHR(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray{<:AccelerationStructureCreateGeometryTypeInfoKHR}; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0)
+AccelerationStructureNV(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
 
 """
     DeferredOperationKHR(device::Device; allocator = C_NULL)
@@ -10611,5 +12342,19 @@ DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator 
 
 """
 DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL)
+
+"""
+    VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+
+
+"""
+VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+
+"""
+    VideoSessionParametersKHR(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; allocator = C_NULL, next = C_NULL)
+
+
+"""
+VideoSessionParametersKHR(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; allocator = C_NULL, next = C_NULL)
 
 
