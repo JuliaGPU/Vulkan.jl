@@ -258,8 +258,19 @@ function CreateFunc(spec::SpecFunc)
     end
 end
 
+function find_destroyed_param(spec::SpecFunc)
+    idx = findlast(spec.params.is_externsync)
+    @match idx begin
+        ::Integer => spec.params[idx]
+        ::Nothing => @match idx = findfirst(in(spec_handles.name), innermost_type.(spec.params.type)) begin
+            ::Integer => spec.params[idx + 1]
+            ::Nothing => error("Failed to retrieve the parameter to be destroyed:\n $spec")
+        end
+    end
+end
+
 function DestroyFunc(spec::SpecFunc)
-    destroyed_param = spec.params[findlast(spec.params.is_externsync)]
+    destroyed_param = find_destroyed_param(spec)
     handle = spec_handles[findfirst(==(innermost_type(destroyed_param.type)), spec_handles.name)]
     DestroyFunc(spec, handle, destroyed_param, is_arr(destroyed_param))
 end
