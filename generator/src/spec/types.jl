@@ -7,6 +7,8 @@ struct QueueCompute <: QueueType end
 struct QueueGraphics <: QueueType end
 struct QueueTransfer <: QueueType end
 struct QueueSparseBinding <: QueueType end
+struct QueueVideoDecode <: QueueType end
+struct QueueVideoEncode <: QueueType end
 
 """
 Render pass execution specification for commands.

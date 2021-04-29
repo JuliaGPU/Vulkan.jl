@@ -3,6 +3,8 @@ const queue_map = Dict(
     :graphics => QueueGraphics(),
     :transfer => QueueTransfer(),
     :sparse_binding => QueueSparseBinding(),
+    :decode => QueueVideoDecode(),
+    :encode => QueueVideoEncode(),
 )
 
 const render_pass_compatibiltiy_map = Dict(

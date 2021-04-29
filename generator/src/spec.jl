@@ -31,6 +31,8 @@ const extension_types = [
     :ANativeWindow,
     :AHardwareBuffer,
     :CAMetalLayer,
+    :_screen_context,
+    :_screen_window,
 ]
 
 include("spec/utils.jl")
