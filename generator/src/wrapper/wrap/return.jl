@@ -3,7 +3,7 @@ wrap_return(ex, type, jtype) = @match t = type begin
     :Cstring => :(unsafe_string($ex))
     GuardBy(is_opaque_pointer) => ex
     GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex)) # call handle constructor
-    GuardBy(in(vcat(spec_enums.name, spec_bitmasks.name))) => ex # don't change enumeration variables since they won't be wrapped under a new name
+    GuardBy(in(spec_enums.name)) => ex # don't change enumeration variables since they won't be wrapped under a new name
     if is_fn_ptr(type) || follow_constant(type) == jtype || innermost_type(type) ∈ spec_flags.name
     end => ex # Vulkan and Julian types are the same (up to aliases)
     _ => :(from_vk($jtype, $ex)) # fall back to the from_vk function for conversion
