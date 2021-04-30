@@ -39,7 +39,7 @@ function VulkanWrapper()
                 add_constructors.(spec_handles_with_wrappable_constructors)...,
                 extend_handle_constructor.(
                     filter(
-                        x -> !isnothing(x.create_info_param),
+                        x -> !isnothing(x.create_info_param) && !x.batch,
                         collect(Iterators.flatten(create_funcs.(spec_handles_with_wrappable_constructors))),
                     ),
                 ),
@@ -47,7 +47,7 @@ function VulkanWrapper()
                 add_constructors.(spec_handles_with_wrappable_constructors; with_func_ptr = true)...,
                 extend_handle_constructor.(
                     filter(
-                        x -> !isnothing(x.create_info_param),
+                        x -> !isnothing(x.create_info_param) && !x.batch,
                         collect(Iterators.flatten(create_funcs.(spec_handles_with_wrappable_constructors))),
                     );
                     with_func_ptr = true,
