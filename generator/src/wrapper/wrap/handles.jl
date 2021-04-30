@@ -25,13 +25,20 @@ function wrap(spec::SpecHandle)
 end
 
 function destructor(handle::SpecHandle; with_func_ptr = false)
-    destroy = destroy_func(handle)
-    if !isnothing(destroy) && isnothing(destroy.destroyed_param.len)
-        p = wrap(destroy.func)
-        p_call = Dict(:name => p[:name], :args => Any[name.(p[:args])...], :kwargs => name.(p[:kwargs]))
-        with_func_ptr && push!(p_call[:args], :fun_ptr_destroy)
-        p_call[:args][findfirst(==(remove_vk_prefix(handle.name)), type.(p[:args]))] = :x
-        :(x -> $(reconstruct_call(p_call)))
+    dfs = destroy_funcs(handle)
+    has_destructors = !isempty(dfs)
+    if has_destructors
+        @assert length(dfs) == 1
+        df = first(dfs)
+        if isnothing(df.destroyed_param.len)
+            p = wrap(df.func)
+            p_call = Dict(:name => p[:name], :args => Any[name.(p[:args])...], :kwargs => name.(p[:kwargs]))
+            with_func_ptr && push!(p_call[:args], :fun_ptr_destroy)
+            p_call[:args][findfirst(==(remove_vk_prefix(handle.name)), type.(p[:args]))] = :x
+            :(x -> $(reconstruct_call(p_call)))
+        else
+            :identity
+        end
     else
         :identity
     end

@@ -29,21 +29,17 @@ test_func(name, type, return_type, render_pass_compatibility, queue_compatibilit
         error_codes,
     )
 
-test_create_func(name, handle, _struct, index, batch) = test_spec(
-    x -> spec_by_field(spec_create_funcs, :func, x),
-    func_by_name(name),
-    handle,
-    _struct,
-    func_by_name(name).params[index],
-    batch,
-)
-test_destroy_func(name, handle, index, batch) = test_spec(
-    x -> spec_by_field(spec_destroy_funcs, :func, x),
-    func_by_name(name),
-    handle,
-    func_by_name(name).params[index],
-    batch,
-)
+function test_create_func(name, handle, _struct, index, batch)
+    cf = create_func(name)
+    f = func_by_name(name)
+    @test cf == typeof(cf)(f, handle_by_name(handle), struct_by_name(_struct), children(f)[index], batch)
+end
+
+function test_destroy_func(name, handle, index, batch)
+    df = destroy_func(name)
+    f = func_by_name(name)
+    @test df == typeof(df)(f, handle_by_name(handle), children(f)[index], batch)
+end
 
 @testset "Vulkan Specification" begin
     @testset "Handles" begin
@@ -58,40 +54,40 @@ test_destroy_func(name, handle, index, batch) = test_spec(
         @testset "Creation" begin
             test_create_func(
                 :vkCreateInstance,
-                handle_by_name(:VkInstance),
-                struct_by_name(:VkInstanceCreateInfo),
+                :VkInstance,
+                :VkInstanceCreateInfo,
                 1,
                 false,
             )
             test_create_func(
                 :vkCreateGraphicsPipelines,
-                handle_by_name(:VkPipeline),
-                struct_by_name(:VkGraphicsPipelineCreateInfo),
+                :VkPipeline,
+                :VkGraphicsPipelineCreateInfo,
                 4,
                 true,
             )
             test_create_func(
                 :vkAllocateCommandBuffers,
-                handle_by_name(:VkCommandBuffer),
-                struct_by_name(:VkCommandBufferAllocateInfo),
+                :VkCommandBuffer,
+                :VkCommandBufferAllocateInfo,
                 2,
                 true,
             )
             test_create_func(
                 :vkAllocateMemory,
-                handle_by_name(:VkDeviceMemory),
-                struct_by_name(:VkMemoryAllocateInfo),
+                :VkDeviceMemory,
+                :VkMemoryAllocateInfo,
                 2,
                 false,
             )
         end
 
         @testset "Destruction" begin
-            test_destroy_func(:vkDestroyInstance, handle_by_name(:VkInstance), 1, false)
-            test_destroy_func(:vkDestroyDevice, handle_by_name(:VkDevice), 1, false)
-            test_destroy_func(:vkFreeDescriptorSets, handle_by_name(:VkDescriptorSet), 4, true)
-            test_destroy_func(:vkDestroyPipeline, handle_by_name(:VkPipeline), 2, false)
-            test_destroy_func(:vkFreeMemory, handle_by_name(:VkDeviceMemory), 2, false)
+            test_destroy_func(:vkDestroyInstance, :VkInstance, 1, false)
+            test_destroy_func(:vkDestroyDevice, :VkDevice, 1, false)
+            test_destroy_func(:vkFreeDescriptorSets, :VkDescriptorSet, 4, true)
+            test_destroy_func(:vkDestroyPipeline, :VkPipeline, 2, false)
+            test_destroy_func(:vkFreeMemory, :VkDeviceMemory, 2, false)
         end
     end
 

@@ -13,13 +13,7 @@ const render_pass_compatibiltiy_map = Dict(
     :outside => [RenderPassOutside()],
 )
 
-"""
-Check if `x` and `y` are equal, except for vectors which are tested element-wise.
-"""
-eq(x::AbstractVector, y::AbstractVector) = length(x) == length(y) && all(x .== y)
-eq(x, y) = x == y
-
-Base.:(==)(x::S, y::S) where {S<:Spec} = all(name -> eq(getproperty(x, name), getproperty(y, name)), fieldnames(S))
+Base.:(==)(x::S, y::S) where {S<:Spec} = all(name -> getproperty(x, name) == getproperty(y, name), fieldnames(S))
 
 print_parent_info(io::IO, spec::Union{SpecStruct,SpecFunc}, props) =
     println(io, join(string.(vcat(typeof(spec), spec.name, props)), ' '))
@@ -481,15 +475,18 @@ const spec_struct_members = collect(Iterators.flatten(spec_structs.members))
 const spec_create_info_structs = filter(x -> x.type ∈ [CREATE_INFO, ALLOCATE_INFO], spec_structs)
 
 function spec_by_field(specs, field, value)
-    i = findfirst(==(value), getproperty(specs, field))
-    if isnothing(i)
-        nothing
-    else
-        specs[i]
-    end
+    specs[findall(==(value), getproperty(specs, field))]
 end
 
-spec_by_name(specs, name) = spec_by_field(specs, :name, name)
+function spec_by_name(specs, name)
+    specs = spec_by_field(specs, :name, name)
+    if !isempty(specs)
+        length(specs) == 1 || error("Non-uniquely identified spec '$name': $specs")
+        first(specs)
+    else
+        nothing
+    end
+end
 
 func_by_name(name) = spec_by_name(spec_funcs, name)
 
@@ -552,15 +549,20 @@ default(spec::Union{SpecStructMember,SpecFuncParam}) = @match spec.requirement b
     &OPTIONAL || &REQUIRED => 0
 end
 
-create_func(func::SpecFunc) = spec_by_field(spec_create_funcs, :func, func)
-create_func(handle::SpecHandle) = spec_by_field(spec_create_funcs, :handle, handle)
-create_func(name) = spec_by_field(spec_create_funcs, :func, func_by_name(name))
-create_func_no_batch(handle::SpecHandle) =
-    spec_create_funcs[findfirst(x -> !x.batch && x.handle == handle, spec_create_funcs)]
+create_func(func::SpecFunc) = first(spec_by_field(spec_create_funcs, :func, func))
+create_func(name) = first(spec_by_field(spec_create_funcs, :func, func_by_name(name)))
 
-destroy_func(func::SpecFunc) = spec_by_field(spec_destroy_funcs, :func, func)
-destroy_func(handle::SpecHandle) = spec_by_field(spec_destroy_funcs, :handle, handle)
-destroy_func(name) = spec_by_field(spec_destroy_funcs, :func, func_by_name(name))
+create_funcs(handle::SpecHandle) = spec_by_field(spec_create_funcs, :handle, handle)
+
+function create_func_no_batch(handle::SpecHandle)
+    fs = create_funcs(handle)
+    fs[findfirst(x -> x.handle == handle && !x.batch, fs)]
+end
+
+destroy_func(func::SpecFunc) = first(spec_by_field(spec_destroy_funcs, :func, func))
+destroy_func(name) = first(spec_by_field(spec_destroy_funcs, :func, func_by_name(name)))
+
+destroy_funcs(handle::SpecHandle) = spec_by_field(spec_destroy_funcs, :handle, handle)
 
 function follow_constant(spec::SpecConstant)
     @match val = spec.value begin

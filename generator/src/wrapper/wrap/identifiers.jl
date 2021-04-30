@@ -32,14 +32,17 @@ end
 
 function wrap_identifier(spec::SpecHandle)
     # try to get an id from an existing function parameter
-    func = create_func(spec)
+    cfs = create_funcs(spec)
     id = nothing
-    if !isnothing(func)
-        id = _wrap_identifier(spec, func.func)
+    if !isempty(cfs)
+        for cf in cfs
+            id = _wrap_identifier(spec, first(cfs).func)
+            !isnothing(id) && break
+        end
     end
     if isnothing(id)
-        for func ∈ spec_funcs
-            id = _wrap_identifier(spec, func)
+        for f ∈ spec_funcs
+            id = _wrap_identifier(spec, f)
             !isnothing(id) && return id
         end
         wrap_identifier(remove_vk_prefix(spec.name))
