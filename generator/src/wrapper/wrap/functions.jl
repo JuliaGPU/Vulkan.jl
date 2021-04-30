@@ -61,11 +61,11 @@ function wrap(spec::SpecFunc; with_func_ptr = false)
         ret_type = @match length(queried_params) begin
             if any(is_data_with_retrievable_size, queried_params)
             end => Expr(:curly, :Tuple, nice_julian_type.([unique(len.(queried_params)); queried_params])...)
-            1 => :(Vector{$(remove_vk_prefix(ptr_type(first(queried_params).type)))})
+            1 => nice_julian_type(first(queried_params))
             _ => Expr(
                 :curly,
                 :Tuple,
-                (:(Vector{$(remove_vk_prefix(ptr_type(param.type)))}) for param ∈ queried_params)...,
+                (nice_julian_type(param) for param ∈ queried_params)...,
             )
         end
     elseif !isempty(queried_params)

@@ -163,7 +163,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         test_wrap_func(:vkGetInstanceProcAddr, :(get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name, fun_ptr)); with_func_ptr=true)
 
         test_wrap_func(:vkGetPhysicalDeviceSurfacePresentModesKHR, :(
-            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR},VulkanError}
+            function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{VkPresentModeKHR},VulkanError}
                 pPresentModeCount = Ref{UInt32}()
                 @repeat_while_incomplete begin
                     @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)

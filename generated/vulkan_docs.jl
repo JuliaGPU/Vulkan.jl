@@ -2084,7 +2084,7 @@ Arguments:
 get_physical_device_surface_formats_khr
 
 """
-    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR}, VulkanError}
+    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -3764,7 +3764,7 @@ Arguments:
 set_local_dimming_amd
 
 """
-    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{TimeDomainEXT}, VulkanError}
+    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{VkTimeDomainEXT}, VulkanError}
 
 Return codes:
 - Error:
@@ -4747,7 +4747,7 @@ Arguments:
 get_image_view_address_nvx
 
 """
-    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{PresentModeKHR}, VulkanError}
+    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
 
 Return codes:
 - Error:

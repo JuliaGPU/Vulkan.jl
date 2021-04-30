@@ -14,7 +14,7 @@ function nice_julian_type(type)
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)
         GuardBy(in(extension_types)) => :(vk.$t)
-        GuardBy(is_vulkan_type) => remove_vk_prefix(t)
+        GuardBy(is_vulkan_type) && GuardBy(!in(spec_enums.name)) => remove_vk_prefix(t)
         _ => @match _t = innermost_type(t) begin
             GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => begin
                 bitmask_types = getproperty.(filter(!isnothing, spec_flags.bitmask), :name)

@@ -5541,7 +5541,7 @@ function get_device_group_surface_present_modes_2_ext(device::Device, surface_in
     pModes[]
 end
 
-function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR, fun_ptr::FunctionPtr)::Result{Vector{VkPresentModeKHR}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, C_NULL, fun_ptr)
@@ -5760,7 +5760,7 @@ function get_calibrated_timestamps_ext(device::Device, timestamp_infos::Abstract
     (pTimestamps, pMaxDeviation[])
 end
 
-function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{TimeDomainEXT}, VulkanError}
+function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{VkTimeDomainEXT}, VulkanError}
     pTimeDomainCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, C_NULL, fun_ptr)
@@ -6322,7 +6322,7 @@ function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKH
     SwapchainKHR(pSwapchain[], (x->destroy_swapchain_khr(device, x, fun_ptr_destroy; allocator)), getproperty(create_info, :surface))
 end
 
-function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fun_ptr::FunctionPtr)::Result{Vector{VkPresentModeKHR}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL, fun_ptr)
@@ -11309,7 +11309,7 @@ function get_device_group_surface_present_modes_2_ext(device::Device, surface_in
     pModes[]
 end
 
-function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceSurfacePresentModes2EXT(physical_device, surface_info, pPresentModeCount, C_NULL)
@@ -11528,7 +11528,7 @@ function get_calibrated_timestamps_ext(device::Device, timestamp_infos::Abstract
     (pTimestamps, pMaxDeviation[])
 end
 
-function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{TimeDomainEXT}, VulkanError}
+function get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{VkTimeDomainEXT}, VulkanError}
     pTimeDomainCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(physical_device, pTimeDomainCount, C_NULL)
@@ -12090,7 +12090,7 @@ function create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKH
     SwapchainKHR(pSwapchain[], (x->destroy_swapchain_khr(device, x; allocator)), getproperty(create_info, :surface))
 end
 
-function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{PresentModeKHR}, VulkanError}
+function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
     pPresentModeCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
