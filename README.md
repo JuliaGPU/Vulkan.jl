@@ -8,6 +8,8 @@ It builds upon the core API provided by [VulkanCore.jl](https://github.com/Julia
 
 This is a very similar approach to that taken by [VulkanHpp](https://github.com/KhronosGroup/Vulkan-Hpp), except that the target language is Julia and not C++.
 
+If you have questions, want to brainstorm ideas or simply want to share cool things you do with Vulkan don't hesitate to create a thread in our [Zulip channel](https://julialang.zulipchat.com/#narrow/stream/287693-vulkan).
+
 ## Status
 
 This package is a work in progress and has not reached its 1.0 version yet. As such, documentation may not be complete and functionality may change without warning. At this stage, you should not use this library in production; however, you are encouraged to push its boundaries through non-critical projects. If you find limitations, bugs or want to suggest potential improvements, do not hesitate to submit issues or pull requests. The goal is definitely to be production-ready as soon as possible.
