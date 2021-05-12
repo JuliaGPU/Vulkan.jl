@@ -17,7 +17,7 @@ MLStyle = "0.4"
 Preferences = "1.2"
 Reexport = "1"
 ResultTypes = "3"
-VulkanCore = "= 1.2.3"
+VulkanCore = "= 1.2.3, 1.2"
 julia = "1.5"
 
 [extras]
