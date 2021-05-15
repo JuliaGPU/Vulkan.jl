@@ -2,6 +2,8 @@
 
 Here we describe some tools that can assist the development of Vulkan applications.
 
+Feel free to check out the official [Vulkan website](https://www.vulkan.org/) for a more complete list of resources.
+
 ## Validation
 
 The activation of debugging messages is done via the creation of a [`DebugUtilsMessengerEXT`](@ref). We provide an additional high-level constructor along with a default constructor function [`default_debug_callback`](@ref).
