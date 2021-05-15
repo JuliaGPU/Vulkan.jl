@@ -42,8 +42,14 @@ function vk_call(x::Spec)
         GuardBy(is_size) && if x.requirement == POINTER_REQUIRED
         end => x.name # parameter converted to a Ref already
         GuardBy(is_opaque_data) => var
-        GuardBy(is_length) && GuardBy(is_specific_count) => var
-        GuardBy(is_length) => :(pointer_length($(wrap_identifier(first(arglen(x)))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
+        GuardBy(is_length) => @match x begin
+            GuardBy(is_specific_count) => var
+
+            # manual wrapping; see `descriptorCount` at https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VkWriteDescriptorSet
+            if parent(x) == :VkWriteDescriptorSet end => :(max($((:(pointer_length($(wrap_identifier(arg)))) for arg in arglen(x))...)))
+
+            _ => :(pointer_length($(wrap_identifier(first(arglen(x)))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
+        end
         GuardBy(is_pointer_start) => 0 # always set first* variables to 0, and the user should provide a (sub)array of the desired length
         if x.type ∈ spec_handles.name
         end => var # handled by unsafe_convert in ccall
