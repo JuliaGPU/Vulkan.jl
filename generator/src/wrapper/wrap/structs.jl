@@ -25,16 +25,17 @@ end
 
 function add_constructor(spec::SpecStruct)
     cconverted_members = getindex(spec.members, findall(is_semantic_ptr, spec.members.type))
+    cconverted_ids = map(wrap_identifier, cconverted_members)
     p = init_wrapper_func(spec)
     if needs_deps(spec)
         p[:body] = quote
             $(
                 (
-                    :($(wrap_identifier(m)) = cconvert($(m.type), $(wrap_identifier(m)))) for
-                    m ∈ cconverted_members
+                    :($id = cconvert($(m.type), $id)) for
+                    (m, id) ∈ zip(cconverted_members, cconverted_ids)
                 )...
             )
-            deps = [$((wrap_identifier(m) for m ∈ cconverted_members)...)]
+            deps = [$((cconverted_ids)...)]
             vks = $(spec.name)($(map(vk_call, spec.members)...))
             $(p[:name])(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end
