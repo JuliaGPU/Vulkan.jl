@@ -1,4 +1,4 @@
-is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
+is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL] || is_default_count(member)
 is_optional(param::SpecFuncParam) = param.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
 
 """
@@ -27,6 +27,20 @@ is_implicit_return(spec::SpecFuncParam) =
     spec.type ∉ extension_types &&
     ptr_type(spec.type) ∉ extension_types
 has_implicit_return_parameters(spec::SpecFunc) = any(is_implicit_return, children(spec))
+
+function is_default_count(spec::Spec)
+    is_length(spec) && @match parent(spec) begin
+        # see `descriptorCount` at https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VkWriteDescriptorSet
+        :VkWriteDescriptorSet => true
+        _ => false
+    end
+end
+
+function default_count(spec::Spec)
+    @match parent(spec) begin
+        :VkWriteDescriptorSet => :(max($((:(pointer_length($(wrap_identifier(arg)))) for arg in arglen(spec))...)))
+    end
+end
 
 function is_specific_count(spec::Spec)
     @match spec begin

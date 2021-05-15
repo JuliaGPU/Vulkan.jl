@@ -6136,7 +6136,7 @@ Arguments:
 DescriptorImageInfo
 
 """
-    WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray{<:DescriptorImageInfo}, buffer_info::AbstractArray{<:DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL)
+    WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray{<:DescriptorImageInfo}, buffer_info::AbstractArray{<:DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
 
 Arguments:
 - `dst_set::DescriptorSet`
@@ -6147,6 +6147,7 @@ Arguments:
 - `buffer_info::AbstractArray{<:DescriptorBufferInfo}`
 - `texel_buffer_view::AbstractArray{<:BufferView}`
 - `next`: defaults to `C_NULL`
+- `descriptor_count`: defaults to `max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view))`
 
 """
 WriteDescriptorSet
