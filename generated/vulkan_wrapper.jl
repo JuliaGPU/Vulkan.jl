@@ -10885,7 +10885,7 @@ function WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_ar
     buffer_info = cconvert(Ptr{VkDescriptorBufferInfo}, buffer_info)
     texel_buffer_view = cconvert(Ptr{VkBufferView}, texel_buffer_view)
     deps = [next, image_info, buffer_info, texel_buffer_view]
-    vks = VkWriteDescriptorSet(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET, unsafe_convert(Ptr{Cvoid}, next), dst_set, dst_binding, dst_array_element, pointer_length(image_info), descriptor_type, unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
+    vks = VkWriteDescriptorSet(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET, unsafe_convert(Ptr{Cvoid}, next), dst_set, dst_binding, dst_array_element, max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)), descriptor_type, unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
     WriteDescriptorSet(vks, deps, dst_set)
 end
 
