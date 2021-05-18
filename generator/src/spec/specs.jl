@@ -315,7 +315,7 @@ has_computable_length(spec::Union{SpecStructMember,SpecFuncParam}) =
     !spec.is_constant && spec.requirement == POINTER_REQUIRED && is_arr(spec)
 is_data(spec::Union{SpecStructMember,SpecFuncParam}) = has_length(spec) && spec.type == :(Ptr{Cvoid})
 is_version(spec::Union{SpecStructMember,SpecFuncParam}) =
-    contains(lowercase(string(spec.name)), "version") && (
+    !isnothing(match(r"($v|V)ersion", string(spec.name))) && (
         follow_constant(spec.type) == :UInt32 ||
         is_ptr(spec.type) && !is_arr(spec) && !spec.is_constant && follow_constant(ptr_type(spec.type)) == :UInt32
     )
