@@ -8183,10 +8183,10 @@ function PhysicalDeviceVulkan12Features(sampler_mirror_clamp_to_edge::Bool, draw
     PhysicalDeviceVulkan12Features(vks, deps)
 end
 
-function PhysicalDeviceVulkan11Features(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool, multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool, variable_pointers_storage_buffer::Bool, variable_pointers::Bool, protected_memory::Bool, sampler_ycbcr_conversion::VersionNumber, shader_draw_parameters::Bool; next = C_NULL)
+function PhysicalDeviceVulkan11Features(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool, multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool, variable_pointers_storage_buffer::Bool, variable_pointers::Bool, protected_memory::Bool, sampler_ycbcr_conversion::Bool, shader_draw_parameters::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceVulkan11Features(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES, unsafe_convert(Ptr{Cvoid}, next), storage_buffer_16_bit_access, uniform_and_storage_buffer_16_bit_access, storage_push_constant_16, storage_input_output_16, multiview, multiview_geometry_shader, multiview_tessellation_shader, variable_pointers_storage_buffer, variable_pointers, protected_memory, to_vk(VkBool32, sampler_ycbcr_conversion), shader_draw_parameters)
+    vks = VkPhysicalDeviceVulkan11Features(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES, unsafe_convert(Ptr{Cvoid}, next), storage_buffer_16_bit_access, uniform_and_storage_buffer_16_bit_access, storage_push_constant_16, storage_input_output_16, multiview, multiview_geometry_shader, multiview_tessellation_shader, variable_pointers_storage_buffer, variable_pointers, protected_memory, sampler_ycbcr_conversion, shader_draw_parameters)
     PhysicalDeviceVulkan11Features(vks, deps)
 end
 
@@ -9418,10 +9418,10 @@ function ConditionalRenderingBeginInfoEXT(buffer::Buffer, offset::Integer; next 
     ConditionalRenderingBeginInfoEXT(vks, deps, buffer)
 end
 
-function PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::VersionNumber; next = C_NULL)
+function PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceSamplerYcbcrConversionFeatures(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES, unsafe_convert(Ptr{Cvoid}, next), to_vk(VkBool32, sampler_ycbcr_conversion))
+    vks = VkPhysicalDeviceSamplerYcbcrConversionFeatures(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES, unsafe_convert(Ptr{Cvoid}, next), sampler_ycbcr_conversion)
     PhysicalDeviceSamplerYcbcrConversionFeatures(vks, deps)
 end
 
