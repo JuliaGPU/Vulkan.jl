@@ -1,3 +1,191 @@
+@bitmask_flag VideoEncodeH264CreateFlagEXT::UInt32 begin
+        VIDEO_ENCODE_H264_CREATE_DEFAULT_EXT = 1
+        VIDEO_ENCODE_H264_CREATE_RESERVED_0_BIT_EXT = 1
+    end
+
+@bitmask_flag VideoEncodeH264OutputModeFlagEXT::UInt32 begin
+        VIDEO_ENCODE_H264_OUTPUT_MODE_FRAME_BIT_EXT = 1
+        VIDEO_ENCODE_H264_OUTPUT_MODE_SLICE_BIT_EXT = 2
+        VIDEO_ENCODE_H264_OUTPUT_MODE_NON_VCL_BIT_EXT = 4
+    end
+
+@bitmask_flag VideoEncodeH264InputModeFlagEXT::UInt32 begin
+        VIDEO_ENCODE_H264_INPUT_MODE_FRAME_BIT_EXT = 1
+        VIDEO_ENCODE_H264_INPUT_MODE_SLICE_BIT_EXT = 2
+        VIDEO_ENCODE_H264_INPUT_MODE_NON_VCL_BIT_EXT = 4
+    end
+
+@bitmask_flag VideoEncodeH264CapabilitiesFlagEXT::UInt32 begin
+        VIDEO_ENCODE_H264_CAPABILITY_CABAC_BIT_EXT = 1
+        VIDEO_ENCODE_H264_CAPABILITY_CAVLC_BIT_EXT = 2
+        VIDEO_ENCODE_H264_CAPABILITY_WEIGHTED_BI_PRED_IMPLICIT_BIT_EXT = 4
+        VIDEO_ENCODE_H264_CAPABILITY_TRANSFORM_8X8_BIT_EXT = 8
+        VIDEO_ENCODE_H264_CAPABILITY_CHROMA_QP_OFFSET_BIT_EXT = 16
+        VIDEO_ENCODE_H264_CAPABILITY_SECOND_CHROMA_QP_OFFSET_BIT_EXT = 32
+        VIDEO_ENCODE_H264_CAPABILITY_DEBLOCKING_FILTER_DISABLED_BIT_EXT = 64
+        VIDEO_ENCODE_H264_CAPABILITY_DEBLOCKING_FILTER_ENABLED_BIT_EXT = 128
+        VIDEO_ENCODE_H264_CAPABILITY_DEBLOCKING_FILTER_PARTIAL_BIT_EXT = 256
+        VIDEO_ENCODE_H264_CAPABILITY_MULTIPLE_SLICE_PER_FRAME_BIT_EXT = 512
+        VIDEO_ENCODE_H264_CAPABILITY_EVENLY_DISTRIBUTED_SLICE_SIZE_BIT_EXT = 1024
+    end
+
+@bitmask_flag VideoEncodeRateControlModeFlagKHR::UInt32 begin
+        VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR = 1
+        VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_BIT_KHR = 2
+        VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR = 4
+    end
+
+@bitmask_flag VideoEncodeRateControlFlagKHR::UInt32 begin
+        VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR = 1
+        VIDEO_ENCODE_RATE_CONTROL_RESET_BIT_KHR = 1
+    end
+
+@bitmask_flag VideoEncodeFlagKHR::UInt32 begin
+        VIDEO_ENCODE_DEFAULT_KHR = 1
+        VIDEO_ENCODE_RESERVED_0_BIT_KHR = 1
+    end
+
+@bitmask_flag VideoDecodeFlagKHR::UInt32 begin
+        VIDEO_DECODE_DEFAULT_KHR = 1
+        VIDEO_DECODE_RESERVED_0_BIT_KHR = 1
+    end
+
+@bitmask_flag VideoCodingControlFlagKHR::UInt32 begin
+        VIDEO_CODING_CONTROL_DEFAULT_KHR = 1
+        VIDEO_CODING_CONTROL_RESET_BIT_KHR = 1
+    end
+
+@bitmask_flag VideoDecodeH264FieldLayoutFlagEXT::UInt32 begin
+        VIDEO_DECODE_H264_PROGRESSIVE_PICTURES_ONLY_EXT = 1
+        VIDEO_DECODE_H264_FIELD_LAYOUT_LINE_INTERLACED_PLANE_BIT_EXT = 1
+        VIDEO_DECODE_H264_FIELD_LAYOUT_SEPARATE_INTERLACED_PLANE_BIT_EXT = 2
+    end
+
+@bitmask_flag VideoCodingQualityPresetFlagKHR::UInt32 begin
+        VIDEO_CODING_QUALITY_PRESET_DEFAULT_BIT_KHR = 1
+        VIDEO_CODING_QUALITY_PRESET_NORMAL_BIT_KHR = 1
+        VIDEO_CODING_QUALITY_PRESET_POWER_BIT_KHR = 2
+        VIDEO_CODING_QUALITY_PRESET_QUALITY_BIT_KHR = 4
+    end
+
+@bitmask_flag VideoSessionCreateFlagKHR::UInt32 begin
+        VIDEO_SESSION_CREATE_DEFAULT_KHR = 1
+        VIDEO_SESSION_CREATE_PROTECTED_CONTENT_BIT_KHR = 1
+    end
+
+@bitmask_flag VideoCapabilitiesFlagKHR::UInt32 begin
+        VIDEO_CAPABILITIES_PROTECTED_CONTENT_BIT_KHR = 1
+        VIDEO_CAPABILITIES_SEPARATE_REFERENCE_IMAGES_BIT_KHR = 2
+    end
+
+@bitmask_flag VideoComponentBitDepthFlagKHR::UInt32 begin
+        VIDEO_COMPONENT_BIT_DEPTH_INVALID_KHR = 1
+        VIDEO_COMPONENT_BIT_DEPTH_8_BIT_KHR = 1
+        VIDEO_COMPONENT_BIT_DEPTH_10_BIT_KHR = 4
+        VIDEO_COMPONENT_BIT_DEPTH_12_BIT_KHR = 16
+    end
+
+@bitmask_flag VideoChromaSubsamplingFlagKHR::UInt32 begin
+        VIDEO_CHROMA_SUBSAMPLING_INVALID_BIT_KHR = 1
+        VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_BIT_KHR = 1
+        VIDEO_CHROMA_SUBSAMPLING_420_BIT_KHR = 2
+        VIDEO_CHROMA_SUBSAMPLING_422_BIT_KHR = 4
+        VIDEO_CHROMA_SUBSAMPLING_444_BIT_KHR = 8
+    end
+
+@bitmask_flag VideoCodecOperationFlagKHR::UInt32 begin
+        VIDEO_CODEC_OPERATION_INVALID_BIT_KHR = 1
+        VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT = 65536
+        VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT = 1
+        VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT = 2
+    end
+
+@bitmask_flag EventCreateFlag::UInt32 begin
+        EVENT_CREATE_DEVICE_ONLY_BIT_KHR = 1
+    end
+
+@bitmask_flag SubmitFlagKHR::UInt32 begin
+        SUBMIT_PROTECTED_BIT_KHR = 1
+    end
+
+@bitmask_flag PipelineStageFlag2KHR::UInt64 begin
+        PIPELINE_STAGE_2_NONE_KHR = 1
+        PIPELINE_STAGE_2_TOP_OF_PIPE_BIT_KHR = 1
+        PIPELINE_STAGE_2_DRAW_INDIRECT_BIT_KHR = 2
+        PIPELINE_STAGE_2_VERTEX_INPUT_BIT_KHR = 4
+        PIPELINE_STAGE_2_VERTEX_SHADER_BIT_KHR = 8
+        PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT_KHR = 16
+        PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT_KHR = 32
+        PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT_KHR = 64
+        PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT_KHR = 128
+        PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT_KHR = 256
+        PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT_KHR = 512
+        PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT_KHR = 1024
+        PIPELINE_STAGE_2_COMPUTE_SHADER_BIT_KHR = 2048
+        PIPELINE_STAGE_2_ALL_TRANSFER_BIT_KHR = 4096
+        PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT_KHR = 8192
+        PIPELINE_STAGE_2_HOST_BIT_KHR = 16384
+        PIPELINE_STAGE_2_ALL_GRAPHICS_BIT_KHR = 32768
+        PIPELINE_STAGE_2_ALL_COMMANDS_BIT_KHR = 65536
+        PIPELINE_STAGE_2_COPY_BIT_KHR = 4294967296
+        PIPELINE_STAGE_2_RESOLVE_BIT_KHR = 8589934592
+        PIPELINE_STAGE_2_BLIT_BIT_KHR = 17179869184
+        PIPELINE_STAGE_2_CLEAR_BIT_KHR = 34359738368
+        PIPELINE_STAGE_2_INDEX_INPUT_BIT_KHR = 68719476736
+        PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT_KHR = 137438953472
+        PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT_KHR = 274877906944
+        PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR = 67108864
+        PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR = 134217728
+        PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT = 16777216
+        PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT = 262144
+        PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV = 131072
+        PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = 4194304
+        PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR = 33554432
+        PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR = 2097152
+        PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT = 8388608
+        PIPELINE_STAGE_2_TASK_SHADER_BIT_NV = 524288
+        PIPELINE_STAGE_2_MESH_SHADER_BIT_NV = 1048576
+    end
+
+@bitmask_flag AccessFlag2KHR::UInt64 begin
+        ACCESS_2_NONE_KHR = 1
+        ACCESS_2_INDIRECT_COMMAND_READ_BIT_KHR = 1
+        ACCESS_2_INDEX_READ_BIT_KHR = 2
+        ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT_KHR = 4
+        ACCESS_2_UNIFORM_READ_BIT_KHR = 8
+        ACCESS_2_INPUT_ATTACHMENT_READ_BIT_KHR = 16
+        ACCESS_2_SHADER_READ_BIT_KHR = 32
+        ACCESS_2_SHADER_WRITE_BIT_KHR = 64
+        ACCESS_2_COLOR_ATTACHMENT_READ_BIT_KHR = 128
+        ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT_KHR = 256
+        ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT_KHR = 512
+        ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_KHR = 1024
+        ACCESS_2_TRANSFER_READ_BIT_KHR = 2048
+        ACCESS_2_TRANSFER_WRITE_BIT_KHR = 4096
+        ACCESS_2_HOST_READ_BIT_KHR = 8192
+        ACCESS_2_HOST_WRITE_BIT_KHR = 16384
+        ACCESS_2_MEMORY_READ_BIT_KHR = 32768
+        ACCESS_2_MEMORY_WRITE_BIT_KHR = 65536
+        ACCESS_2_SHADER_SAMPLED_READ_BIT_KHR = 4294967296
+        ACCESS_2_SHADER_STORAGE_READ_BIT_KHR = 8589934592
+        ACCESS_2_SHADER_STORAGE_WRITE_BIT_KHR = 17179869184
+        ACCESS_2_VIDEO_DECODE_READ_BIT_KHR = 34359738368
+        ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR = 68719476736
+        ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR = 137438953472
+        ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR = 274877906944
+        ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT = 33554432
+        ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT = 67108864
+        ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT = 134217728
+        ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT = 1048576
+        ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV = 131072
+        ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV = 262144
+        ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR = 8388608
+        ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR = 2097152
+        ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR = 4194304
+        ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT = 16777216
+        ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT = 524288
+    end
+
 @bitmask_flag ToolPurposeFlagEXT::UInt32 begin
         TOOL_PURPOSE_VALIDATION_BIT_EXT = 1
         TOOL_PURPOSE_PROFILING_BIT_EXT = 2
@@ -24,8 +212,8 @@
     end
 
 @bitmask_flag PerformanceCounterDescriptionFlagKHR::UInt32 begin
-        PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR = 1
-        PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR = 2
+        PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR = 1
+        PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR = 2
     end
 
 @bitmask_flag PipelineCreationFeedbackFlagEXT::UInt32 begin
@@ -44,12 +232,18 @@
         FRAMEBUFFER_CREATE_IMAGELESS_BIT = 1
     end
 
+@bitmask_flag AccelerationStructureCreateFlagKHR::UInt32 begin
+        ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = 1
+        ACCELERATION_STRUCTURE_CREATE_RESERVED_BIT_2_NV = 4
+    end
+
 @bitmask_flag BuildAccelerationStructureFlagKHR::UInt32 begin
         BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR = 1
         BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR = 2
         BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR = 4
         BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR = 8
         BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR = 16
+        BUILD_ACCELERATION_STRUCTURE_RESERVED_BIT_5_NV = 32
     end
 
 @bitmask_flag GeometryFlagKHR::UInt32 begin
@@ -81,6 +275,7 @@
         DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT = 2
         DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT = 4
         DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT = 8
+        DESCRIPTOR_BINDING_RESERVED_4_BIT_QCOM = 16
     end
 
 @bitmask_flag DebugUtilsMessageTypeFlagEXT::UInt32 begin
@@ -131,7 +326,7 @@
     end
 
 @bitmask_flag SurfaceCounterFlagEXT::UInt32 begin
-        SURFACE_COUNTER_VBLANK_EXT = 1
+        SURFACE_COUNTER_VBLANK_BIT_EXT = 1
     end
 
 @bitmask_flag FenceImportFlag::UInt32 begin
@@ -148,6 +343,8 @@
         EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 2
         EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
         EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT = 8
+        EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_4_BIT_NV = 16
+        EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_5_BIT_NV = 32
     end
 
 @bitmask_flag SemaphoreImportFlag::UInt32 begin
@@ -165,6 +362,9 @@
         EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
         EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT = 8
         EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT = 16
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA = 128
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_5_BIT_NV = 32
+        EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_6_BIT_NV = 64
     end
 
 @bitmask_flag ExternalMemoryFeatureFlag::UInt32 begin
@@ -185,11 +385,14 @@
         EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID = 1024
         EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT = 128
         EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT = 256
+        EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA = 2048
+        EXTERNAL_MEMORY_HANDLE_TYPE_RESERVED_12_BIT_NV = 4096
     end
 
 @bitmask_flag DescriptorSetLayoutCreateFlag::UInt32 begin
         DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT = 2
         DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR = 1
+        DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE = 4
     end
 
 @bitmask_flag PrivateDataSlotCreateFlagEXT::UInt32 begin
@@ -277,6 +480,7 @@
 @bitmask_flag DescriptorPoolCreateFlag::UInt32 begin
         DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT = 1
         DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT = 2
+        DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE = 4
     end
 
 @bitmask_flag StencilFaceFlag::UInt32 begin
@@ -331,17 +535,16 @@
         PIPELINE_STAGE_HOST_BIT = 16384
         PIPELINE_STAGE_ALL_GRAPHICS_BIT = 32768
         PIPELINE_STAGE_ALL_COMMANDS_BIT = 65536
-        PIPELINE_STAGE_RESERVED_27_BIT_KHR = 134217728
-        PIPELINE_STAGE_RESERVED_26_BIT_KHR = 67108864
         PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT = 16777216
         PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT = 262144
-        PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR = 2097152
         PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR = 33554432
+        PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR = 2097152
         PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = 4194304
         PIPELINE_STAGE_TASK_SHADER_BIT_NV = 524288
         PIPELINE_STAGE_MESH_SHADER_BIT_NV = 1048576
         PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT = 8388608
         PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV = 131072
+        PIPELINE_STAGE_NONE_KHR = 1
     end
 
 @bitmask_flag SparseMemoryBindFlag::UInt32 begin
@@ -393,6 +596,7 @@
         QUERY_RESULT_WAIT_BIT = 2
         QUERY_RESULT_WITH_AVAILABILITY_BIT = 4
         QUERY_RESULT_PARTIAL_BIT = 8
+        QUERY_RESULT_WITH_STATUS_BIT_KHR = 16
     end
 
 @bitmask_flag QueryControlFlag::UInt32 begin
@@ -424,16 +628,13 @@
         FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT = 8388608
         FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT = 65536
         FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG = 8192
-        FORMAT_FEATURE_RESERVED_27_BIT_KHR = 134217728
-        FORMAT_FEATURE_RESERVED_28_BIT_KHR = 268435456
-        FORMAT_FEATURE_RESERVED_25_BIT_KHR = 33554432
-        FORMAT_FEATURE_RESERVED_26_BIT_KHR = 67108864
+        FORMAT_FEATURE_VIDEO_DECODE_OUTPUT_BIT_KHR = 33554432
+        FORMAT_FEATURE_VIDEO_DECODE_DPB_BIT_KHR = 67108864
+        FORMAT_FEATURE_VIDEO_ENCODE_INPUT_BIT_KHR = 134217728
+        FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR = 268435456
         FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR = 536870912
         FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT = 16777216
-        FORMAT_FEATURE_AMD_RESERVED_30_BIT = 1073741824
-    end
-
-@bitmask_flag SemaphoreCreateFlag::UInt32 begin
+        FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = 1073741824
     end
 
 @bitmask_flag FenceCreateFlag::UInt32 begin
@@ -466,14 +667,15 @@
         PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR = 131072
         PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR = 4096
         PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR = 8192
+        PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR = 524288
         PIPELINE_CREATE_DEFER_COMPILE_BIT_NV = 32
-        PIPELINE_CREATE_RESERVED_19_BIT_KHR = 524288
         PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR = 64
         PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR = 128
         PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV = 262144
         PIPELINE_CREATE_LIBRARY_BIT_KHR = 2048
         PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT = 256
         PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT = 512
+        PIPELINE_CREATE_RESERVED_BIT_20_NV = 1048576
     end
 
 @bitmask_flag SamplerCreateFlag::UInt32 begin
@@ -513,12 +715,12 @@
         IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT = 32
         IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT = 64
         IMAGE_USAGE_INPUT_ATTACHMENT_BIT = 128
-        IMAGE_USAGE_RESERVED_13_BIT_KHR = 8192
-        IMAGE_USAGE_RESERVED_14_BIT_KHR = 16384
-        IMAGE_USAGE_RESERVED_15_BIT_KHR = 32768
-        IMAGE_USAGE_RESERVED_10_BIT_KHR = 1024
-        IMAGE_USAGE_RESERVED_11_BIT_KHR = 2048
-        IMAGE_USAGE_RESERVED_12_BIT_KHR = 4096
+        IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR = 1024
+        IMAGE_USAGE_VIDEO_DECODE_SRC_BIT_KHR = 2048
+        IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR = 4096
+        IMAGE_USAGE_VIDEO_ENCODE_DST_BIT_KHR = 8192
+        IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR = 16384
+        IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR = 32768
         IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV = 256
         IMAGE_USAGE_RESERVED_16_BIT_QCOM = 65536
         IMAGE_USAGE_RESERVED_17_BIT_QCOM = 131072
@@ -563,16 +765,16 @@
         BUFFER_USAGE_VERTEX_BUFFER_BIT = 128
         BUFFER_USAGE_INDIRECT_BUFFER_BIT = 256
         BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT = 131072
-        BUFFER_USAGE_RESERVED_15_BIT_KHR = 32768
-        BUFFER_USAGE_RESERVED_16_BIT_KHR = 65536
-        BUFFER_USAGE_RESERVED_13_BIT_KHR = 8192
-        BUFFER_USAGE_RESERVED_14_BIT_KHR = 16384
+        BUFFER_USAGE_VIDEO_DECODE_SRC_BIT_KHR = 8192
+        BUFFER_USAGE_VIDEO_DECODE_DST_BIT_KHR = 16384
+        BUFFER_USAGE_VIDEO_ENCODE_DST_BIT_KHR = 32768
+        BUFFER_USAGE_VIDEO_ENCODE_SRC_BIT_KHR = 65536
         BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT = 2048
         BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT = 4096
         BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT = 512
-        BUFFER_USAGE_RAY_TRACING_BIT_KHR = 1024
-        BUFFER_USAGE_RESERVED_19_BIT_KHR = 524288
-        BUFFER_USAGE_RESERVED_20_BIT_KHR = 1048576
+        BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR = 524288
+        BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR = 1048576
+        BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR = 1024
         BUFFER_USAGE_RESERVED_18_BIT_QCOM = 262144
     end
 
@@ -594,9 +796,6 @@
         ACCESS_HOST_WRITE_BIT = 16384
         ACCESS_MEMORY_READ_BIT = 32768
         ACCESS_MEMORY_WRITE_BIT = 65536
-        ACCESS_RESERVED_30_BIT_KHR = 1073741824
-        ACCESS_RESERVED_28_BIT_KHR = 268435456
-        ACCESS_RESERVED_29_BIT_KHR = 536870912
         ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT = 33554432
         ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT = 67108864
         ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT = 134217728
@@ -608,6 +807,7 @@
         ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT = 16777216
         ACCESS_COMMAND_PREPROCESS_READ_BIT_NV = 131072
         ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV = 262144
+        ACCESS_NONE_KHR = 1
     end
 
 @bitmask_flag MemoryHeapFlag::UInt32 begin
@@ -625,6 +825,7 @@
         MEMORY_PROPERTY_PROTECTED_BIT = 32
         MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD = 64
         MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD = 128
+        MEMORY_PROPERTY_RESERVED_8_BIT_NV = 256
     end
 
 @bitmask_flag DeviceQueueCreateFlag::UInt32 begin
@@ -636,16 +837,6 @@
         RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM = 2
     end
 
-@bitmask_flag QueueFlag::UInt32 begin
-        QUEUE_GRAPHICS_BIT = 1
-        QUEUE_COMPUTE_BIT = 2
-        QUEUE_TRANSFER_BIT = 4
-        QUEUE_SPARSE_BINDING_BIT = 8
-        QUEUE_PROTECTED_BIT = 16
-        QUEUE_RESERVED_6_BIT_KHR = 64
-        QUEUE_RESERVED_5_BIT_KHR = 32
-    end
-
 @bitmask_flag CullModeFlag::UInt32 begin
         CULL_MODE_NONE = 1
         CULL_MODE_FRONT_BIT = 1
@@ -653,13 +844,388 @@
         CULL_MODE_FRONT_AND_BACK = 8
     end
 
+@bitmask_flag QueueFlag::UInt32 begin
+        QUEUE_GRAPHICS_BIT = 1
+        QUEUE_COMPUTE_BIT = 2
+        QUEUE_TRANSFER_BIT = 4
+        QUEUE_SPARSE_BINDING_BIT = 8
+        QUEUE_PROTECTED_BIT = 16
+        QUEUE_VIDEO_DECODE_BIT_KHR = 32
+        QUEUE_VIDEO_ENCODE_BIT_KHR = 64
+    end
+
 @bitmask_flag PipelineCacheCreateFlag::UInt32 begin
+        PIPELINE_CACHE_CREATE_RESERVED_1_BIT_EXT = 2
         PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT = 1
+        PIPELINE_CACHE_CREATE_RESERVED_2_BIT_EXT = 4
     end
 
 
+struct PipelineRasterizationProvokingVertexStateCreateInfoEXT <: VulkanStruct{true}
+    vks::VkPipelineRasterizationProvokingVertexStateCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceProvokingVertexPropertiesEXT <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    provoking_vertex_mode_per_pipeline::Bool
+    transform_feedback_preserves_triangle_fan_provoking_vertex::Bool
+end
+
+struct PhysicalDeviceProvokingVertexFeaturesEXT <: VulkanStruct{true}
+    vks::VkPhysicalDeviceProvokingVertexFeaturesEXT
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT <: VulkanStruct{true}
+    vks::VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
+    deps::Vector{Any}
+end
+
+struct CommandBufferInheritanceViewportScissorInfoNV <: VulkanStruct{true}
+    vks::VkCommandBufferInheritanceViewportScissorInfoNV
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceInheritedViewportScissorFeaturesNV <: VulkanStruct{true}
+    vks::VkPhysicalDeviceInheritedViewportScissorFeaturesNV
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264NaluSliceEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264NaluSliceEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264ProfileEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264ProfileEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264EmitPictureParametersEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264EmitPictureParametersEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264VclFrameInfoEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264VclFrameInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264DpbSlotInfoEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264DpbSlotInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264SessionParametersCreateInfoEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264SessionParametersCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264SessionParametersAddInfoEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264SessionParametersAddInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264SessionCreateInfoEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264SessionCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeH264CapabilitiesEXT <: VulkanStruct{true}
+    vks::VkVideoEncodeH264CapabilitiesEXT
+    deps::Vector{Any}
+end
+
+struct VideoEncodeRateControlInfoKHR <: VulkanStruct{true}
+    vks::VkVideoEncodeRateControlInfoKHR
+    deps::Vector{Any}
+end
+
+struct VideoCodingControlInfoKHR <: VulkanStruct{true}
+    vks::VkVideoCodingControlInfoKHR
+    deps::Vector{Any}
+end
+
+struct VideoEndCodingInfoKHR <: VulkanStruct{true}
+    vks::VkVideoEndCodingInfoKHR
+    deps::Vector{Any}
+end
+
+struct VideoSessionParametersUpdateInfoKHR <: VulkanStruct{true}
+    vks::VkVideoSessionParametersUpdateInfoKHR
+    deps::Vector{Any}
+end
+
+struct VideoSessionCreateInfoKHR <: VulkanStruct{true}
+    vks::VkVideoSessionCreateInfoKHR
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH265DpbSlotInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH265DpbSlotInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH265PictureInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH265PictureInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH265SessionParametersCreateInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH265SessionParametersCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH265SessionParametersAddInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH265SessionParametersAddInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH265SessionCreateInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH265SessionCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH265ProfileEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH265ProfileEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH264MvcEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH264MvcEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH264DpbSlotInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH264DpbSlotInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH264PictureInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH264PictureInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH264SessionParametersCreateInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH264SessionParametersCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH264SessionParametersAddInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH264SessionParametersAddInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH264SessionCreateInfoEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH264SessionCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct VideoDecodeH264ProfileEXT <: VulkanStruct{true}
+    vks::VkVideoDecodeH264ProfileEXT
+    deps::Vector{Any}
+end
+
+struct VideoReferenceSlotKHR <: VulkanStruct{true}
+    vks::VkVideoReferenceSlotKHR
+    deps::Vector{Any}
+end
+
+struct VideoGetMemoryPropertiesKHR <: VulkanStruct{true}
+    vks::VkVideoGetMemoryPropertiesKHR
+    deps::Vector{Any}
+end
+
+struct VideoProfileKHR <: VulkanStruct{true}
+    vks::VkVideoProfileKHR
+    deps::Vector{Any}
+end
+
+struct VideoFormatPropertiesKHR <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    format::VkFormat
+end
+
+struct VideoProfilesKHR <: VulkanStruct{true}
+    vks::VkVideoProfilesKHR
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceVideoFormatInfoKHR <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    image_usage::ImageUsageFlag
+    p_video_profiles::VideoProfilesKHR
+end
+
+struct VideoQueueFamilyProperties2KHR <: VulkanStruct{true}
+    vks::VkVideoQueueFamilyProperties2KHR
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceSynchronization2FeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceSynchronization2FeaturesKHR
+    deps::Vector{Any}
+end
+
+struct CheckpointData2NV <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    stage::UInt64
+    p_checkpoint_marker::Ptr{Cvoid}
+end
+
+struct QueueFamilyCheckpointProperties2NV <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    checkpoint_execution_stage_mask::UInt64
+end
+
+struct SubmitInfo2KHR <: VulkanStruct{true}
+    vks::VkSubmitInfo2KHR
+    deps::Vector{Any}
+end
+
+struct DependencyInfoKHR <: VulkanStruct{true}
+    vks::VkDependencyInfoKHR
+    deps::Vector{Any}
+end
+
+struct MemoryBarrier2KHR <: VulkanStruct{true}
+    vks::VkMemoryBarrier2KHR
+    deps::Vector{Any}
+end
+
+struct PipelineColorWriteCreateInfoEXT <: VulkanStruct{true}
+    vks::VkPipelineColorWriteCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceColorWriteEnableFeaturesEXT <: VulkanStruct{true}
+    vks::VkPhysicalDeviceColorWriteEnableFeaturesEXT
+    deps::Vector{Any}
+end
+
+struct VertexInputAttributeDescription2EXT <: VulkanStruct{true}
+    vks::VkVertexInputAttributeDescription2EXT
+    deps::Vector{Any}
+end
+
+struct VertexInputBindingDescription2EXT <: VulkanStruct{true}
+    vks::VkVertexInputBindingDescription2EXT
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT <: VulkanStruct{true}
+    vks::VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT
+    deps::Vector{Any}
+end
+
+struct MutableDescriptorTypeCreateInfoVALVE <: VulkanStruct{true}
+    vks::VkMutableDescriptorTypeCreateInfoVALVE
+    deps::Vector{Any}
+end
+
+struct MutableDescriptorTypeListVALVE <: VulkanStruct{true}
+    vks::VkMutableDescriptorTypeListVALVE
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE <: VulkanStruct{true}
+    vks::VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE
+    deps::Vector{Any}
+end
+
+struct AccelerationStructureBuildSizesInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureBuildSizesInfoKHR
+    deps::Vector{Any}
+end
+
+struct PipelineFragmentShadingRateEnumStateCreateInfoNV <: VulkanStruct{true}
+    vks::VkPipelineFragmentShadingRateEnumStateCreateInfoNV
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV <: VulkanStruct{true}
+    vks::VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV <: VulkanStruct{true}
+    vks::VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceShaderTerminateInvocationFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceFragmentShadingRateFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceFragmentShadingRateFeaturesKHR
+    deps::Vector{Any}
+end
+
+struct PipelineFragmentShadingRateStateCreateInfoKHR <: VulkanStruct{true}
+    vks::VkPipelineFragmentShadingRateStateCreateInfoKHR
+    deps::Vector{Any}
+end
+
+struct FragmentShadingRateAttachmentInfoKHR <: VulkanStruct{true}
+    vks::VkFragmentShadingRateAttachmentInfoKHR
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT <: VulkanStruct{true}
+    vks::VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT
+    deps::Vector{Any}
+end
+
+struct ImageResolve2KHR <: VulkanStruct{true}
+    vks::VkImageResolve2KHR
+    deps::Vector{Any}
+end
+
+struct BufferImageCopy2KHR <: VulkanStruct{true}
+    vks::VkBufferImageCopy2KHR
+    deps::Vector{Any}
+end
+
+struct ImageBlit2KHR <: VulkanStruct{true}
+    vks::VkImageBlit2KHR
+    deps::Vector{Any}
+end
+
+struct ImageCopy2KHR <: VulkanStruct{true}
+    vks::VkImageCopy2KHR
+    deps::Vector{Any}
+end
+
+struct BufferCopy2KHR <: VulkanStruct{true}
+    vks::VkBufferCopy2KHR
+    deps::Vector{Any}
+end
+
 struct PhysicalDevice4444FormatsFeaturesEXT <: VulkanStruct{true}
     vks::VkPhysicalDevice4444FormatsFeaturesEXT
+    deps::Vector{Any}
+end
+
+struct PhysicalDevicePortabilitySubsetPropertiesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDevicePortabilitySubsetPropertiesKHR
+    deps::Vector{Any}
+end
+
+struct PhysicalDevicePortabilitySubsetFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDevicePortabilitySubsetFeaturesKHR
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
     deps::Vector{Any}
 end
 
@@ -680,6 +1246,11 @@ struct PhysicalDeviceRobustness2FeaturesEXT <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
+struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
+    deps::Vector{Any}
+end
+
 struct DeviceDiagnosticsConfigCreateInfoNV <: VulkanStruct{true}
     vks::VkDeviceDiagnosticsConfigCreateInfoNV
     deps::Vector{Any}
@@ -695,8 +1266,18 @@ struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
+struct CopyCommandTransformInfoQCOM <: VulkanStruct{true}
+    vks::VkCopyCommandTransformInfoQCOM
+    deps::Vector{Any}
+end
+
 struct RenderPassTransformBeginInfoQCOM <: VulkanStruct{true}
     vks::VkRenderPassTransformBeginInfoQCOM
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceExtendedDynamicState2FeaturesEXT <: VulkanStruct{true}
+    vks::VkPhysicalDeviceExtendedDynamicState2FeaturesEXT
     deps::Vector{Any}
 end
 
@@ -715,8 +1296,8 @@ struct RayTracingPipelineInterfaceCreateInfoKHR <: VulkanStruct{true}
     deps::Vector{Any}
 end
 
-struct AccelerationStructureVersionKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureVersionKHR
+struct AccelerationStructureVersionInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureVersionInfoKHR
     deps::Vector{Any}
 end
 
@@ -732,18 +1313,8 @@ struct AabbPositionsKHR <: VulkanStruct{false}
     vks::VkAabbPositionsKHR
 end
 
-struct AccelerationStructureCreateInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureCreateInfoKHR
-    deps::Vector{Any}
-end
-
-struct AccelerationStructureCreateGeometryTypeInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureCreateGeometryTypeInfoKHR
-    deps::Vector{Any}
-end
-
-struct AccelerationStructureBuildOffsetInfoKHR <: VulkanStruct{false}
-    vks::VkAccelerationStructureBuildOffsetInfoKHR
+struct AccelerationStructureBuildRangeInfoKHR <: VulkanStruct{false}
+    vks::VkAccelerationStructureBuildRangeInfoKHR
 end
 
 struct AccelerationStructureGeometryKHR <: VulkanStruct{true}
@@ -1308,6 +1879,10 @@ struct TraceRaysIndirectCommandKHR <: VulkanStruct{false}
     vks::VkTraceRaysIndirectCommandKHR
 end
 
+struct StridedDeviceAddressRegionKHR <: VulkanStruct{false}
+    vks::VkStridedDeviceAddressRegionKHR
+end
+
 struct PhysicalDeviceRayTracingPropertiesNV <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
@@ -1321,27 +1896,49 @@ struct PhysicalDeviceRayTracingPropertiesNV <: ReturnedOnly
     max_descriptor_set_acceleration_structures::UInt32
 end
 
-struct PhysicalDeviceRayTracingPropertiesKHR <: ReturnedOnly
+struct PhysicalDeviceRayTracingPipelinePropertiesKHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     shader_group_handle_size::UInt32
-    max_recursion_depth::UInt32
+    max_ray_recursion_depth::UInt32
     max_shader_group_stride::UInt32
     shader_group_base_alignment::UInt32
+    shader_group_handle_capture_replay_size::UInt32
+    max_ray_dispatch_invocation_count::UInt32
+    shader_group_handle_alignment::UInt32
+    max_ray_hit_attribute_size::UInt32
+end
+
+struct PhysicalDeviceAccelerationStructurePropertiesKHR <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
     max_geometry_count::UInt64
     max_instance_count::UInt64
     max_primitive_count::UInt64
+    max_per_stage_descriptor_acceleration_structures::UInt32
+    max_per_stage_descriptor_update_after_bind_acceleration_structures::UInt32
     max_descriptor_set_acceleration_structures::UInt32
-    shader_group_handle_capture_replay_size::UInt32
+    max_descriptor_set_update_after_bind_acceleration_structures::UInt32
+    min_acceleration_structure_scratch_offset_alignment::UInt32
 end
 
-struct PhysicalDeviceRayTracingFeaturesKHR <: VulkanStruct{true}
-    vks::VkPhysicalDeviceRayTracingFeaturesKHR
+struct PhysicalDeviceRayQueryFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceRayQueryFeaturesKHR
     deps::Vector{Any}
 end
 
-struct AccelerationStructureMemoryRequirementsInfoNV <: VulkanStruct{true}
-    vks::VkAccelerationStructureMemoryRequirementsInfoNV
+struct PhysicalDeviceRayTracingPipelineFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceRayTracingPipelineFeaturesKHR
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceAccelerationStructureFeaturesKHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceAccelerationStructureFeaturesKHR
+    deps::Vector{Any}
+end
+
+struct WriteDescriptorSetAccelerationStructureNV <: VulkanStruct{true}
+    vks::VkWriteDescriptorSetAccelerationStructureNV
     deps::Vector{Any}
 end
 
@@ -1798,6 +2395,28 @@ end
 
 struct ImportMemoryHostPointerInfoEXT <: VulkanStruct{true}
     vks::VkImportMemoryHostPointerInfoEXT
+    deps::Vector{Any}
+end
+
+struct DeviceMemoryReportCallbackDataEXT <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    flags::UInt32
+    type::VkDeviceMemoryReportEventTypeEXT
+    memory_object_id::UInt64
+    size::UInt64
+    object_type::VkObjectType
+    object_handle::UInt64
+    heap_index::UInt32
+end
+
+struct DeviceDeviceMemoryReportCreateInfoEXT <: VulkanStruct{true}
+    vks::VkDeviceDeviceMemoryReportCreateInfoEXT
+    deps::Vector{Any}
+end
+
+struct PhysicalDeviceDeviceMemoryReportFeaturesEXT <: VulkanStruct{true}
+    vks::VkPhysicalDeviceDeviceMemoryReportFeaturesEXT
     deps::Vector{Any}
 end
 
@@ -2376,6 +2995,17 @@ struct MemoryWin32HandlePropertiesKHR <: ReturnedOnly
     memory_type_bits::UInt32
 end
 
+struct MemoryZirconHandlePropertiesFUCHSIA <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    memory_type_bits::UInt32
+end
+
+struct ImportMemoryZirconHandleInfoFUCHSIA <: VulkanStruct{true}
+    vks::VkImportMemoryZirconHandleInfoFUCHSIA
+    deps::Vector{Any}
+end
+
 struct ExportMemoryWin32HandleInfoKHR <: VulkanStruct{true}
     vks::VkExportMemoryWin32HandleInfoKHR
     deps::Vector{Any}
@@ -2698,6 +3328,11 @@ struct SurfaceFormat2KHR <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
     surface_format::SurfaceFormatKHR
+end
+
+struct ScreenSurfaceCreateInfoQNX <: VulkanStruct{true}
+    vks::VkScreenSurfaceCreateInfoQNX
+    deps::Vector{Any}
 end
 
 struct StreamDescriptorSurfaceCreateInfoGGP <: VulkanStruct{true}
@@ -3219,6 +3854,13 @@ struct ExtensionProperties <: ReturnedOnly
     spec_version::VersionNumber
 end
 
+struct VideoDecodeH265CapabilitiesEXT <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    max_level::UInt32
+    std_extension_version::ExtensionProperties
+end
+
 struct PhysicalDeviceProperties <: ReturnedOnly
     api_version::VersionNumber
     driver_version::VersionNumber
@@ -3334,6 +3976,48 @@ struct Extent2D <: VulkanStruct{false}
     vks::VkExtent2D
 end
 
+struct VideoCapabilitiesKHR <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    capability_flags::VideoCapabilitiesFlagKHR
+    min_bitstream_buffer_offset_alignment::UInt64
+    min_bitstream_buffer_size_alignment::UInt64
+    video_picture_extent_granularity::Extent2D
+    min_extent::Extent2D
+    max_extent::Extent2D
+    max_reference_pictures_slots_count::UInt32
+    max_reference_pictures_active_count::UInt32
+end
+
+struct PhysicalDeviceFragmentShadingRateKHR <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    sample_counts::SampleCountFlag
+    fragment_size::Extent2D
+end
+
+struct PhysicalDeviceFragmentShadingRatePropertiesKHR <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    min_fragment_shading_rate_attachment_texel_size::Extent2D
+    max_fragment_shading_rate_attachment_texel_size::Extent2D
+    max_fragment_shading_rate_attachment_texel_size_aspect_ratio::UInt32
+    primitive_fragment_shading_rate_with_multiple_viewports::Bool
+    layered_shading_rate_attachments::Bool
+    fragment_shading_rate_non_trivial_combiner_ops::Bool
+    max_fragment_size::Extent2D
+    max_fragment_size_aspect_ratio::UInt32
+    max_fragment_shading_rate_coverage_samples::UInt32
+    max_fragment_shading_rate_rasterization_samples::SampleCountFlag
+    fragment_shading_rate_with_shader_depth_stencil_writes::Bool
+    fragment_shading_rate_with_sample_mask::Bool
+    fragment_shading_rate_with_shader_sample_mask::Bool
+    fragment_shading_rate_with_conservative_rasterization::Bool
+    fragment_shading_rate_with_fragment_shader_interlock::Bool
+    fragment_shading_rate_with_custom_sample_locations::Bool
+    fragment_shading_rate_strict_multiply_combiner::Bool
+end
+
 struct PhysicalDeviceFragmentDensityMapPropertiesEXT <: ReturnedOnly
     s_type::VkStructureType
     p_next::Ptr{Cvoid}
@@ -3407,6 +4091,14 @@ end
 
 struct Offset2D <: VulkanStruct{false}
     vks::VkOffset2D
+end
+
+struct VideoDecodeH264CapabilitiesEXT <: ReturnedOnly
+    s_type::VkStructureType
+    p_next::Ptr{Cvoid}
+    max_level::UInt32
+    field_offset_granularity::Offset2D
+    std_extension_version::ExtensionProperties
 end
 
 struct DisplayPlaneCapabilitiesKHR <: ReturnedOnly
@@ -3591,6 +4283,36 @@ mutable struct Device <: Handle
     Device(vks::VkDevice, physical_device::PhysicalDevice, refcount::RefCounter) = new(vks, physical_device, refcount, undef)
 end
 
+mutable struct VideoSessionKHR <: Handle
+    vks::VkVideoSessionKHR
+    device::Device
+    refcount::RefCounter
+    destructor
+    VideoSessionKHR(vks::VkVideoSessionKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct VideoSessionParametersKHR <: Handle
+    vks::VkVideoSessionParametersKHR
+    video_session::VideoSessionKHR
+    refcount::RefCounter
+    destructor
+    VideoSessionParametersKHR(vks::VkVideoSessionParametersKHR, video_session::VideoSessionKHR, refcount::RefCounter) = new(vks, video_session, refcount, undef)
+end
+
+struct VideoBeginCodingInfoKHR <: VulkanStruct{true}
+    vks::VkVideoBeginCodingInfoKHR
+    deps::Vector{Any}
+    video_session::VideoSessionKHR
+    video_session_parameters::OptionalPtr{VideoSessionParametersKHR}
+end
+
+struct VideoSessionParametersCreateInfoKHR <: VulkanStruct{true}
+    vks::VkVideoSessionParametersCreateInfoKHR
+    deps::Vector{Any}
+    video_session_parameters_template::VideoSessionParametersKHR
+    video_session::VideoSessionKHR
+end
+
 mutable struct PrivateDataSlotEXT <: Handle
     vks::VkPrivateDataSlotEXT
     device::Device
@@ -3607,18 +4329,26 @@ mutable struct DeferredOperationKHR <: Handle
     DeferredOperationKHR(vks::VkDeferredOperationKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
-struct DeferredOperationInfoKHR <: VulkanStruct{true}
-    vks::VkDeferredOperationInfoKHR
-    deps::Vector{Any}
-    operation_handle::DeferredOperationKHR
-end
-
 mutable struct PerformanceConfigurationINTEL <: Handle
     vks::VkPerformanceConfigurationINTEL
     device::Device
     refcount::RefCounter
     destructor
     PerformanceConfigurationINTEL(vks::VkPerformanceConfigurationINTEL, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct AccelerationStructureNV <: Handle
+    vks::VkAccelerationStructureNV
+    device::Device
+    refcount::RefCounter
+    destructor
+    AccelerationStructureNV(vks::VkAccelerationStructureNV, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+struct AccelerationStructureMemoryRequirementsInfoNV <: VulkanStruct{true}
+    vks::VkAccelerationStructureMemoryRequirementsInfoNV
+    deps::Vector{Any}
+    acceleration_structure::AccelerationStructureNV
 end
 
 mutable struct AccelerationStructureKHR <: Handle
@@ -3658,13 +4388,7 @@ struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
     vks::VkAccelerationStructureBuildGeometryInfoKHR
     deps::Vector{Any}
     src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
-    dst_acceleration_structure::AccelerationStructureKHR
-end
-
-struct AccelerationStructureMemoryRequirementsInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureMemoryRequirementsInfoKHR
-    deps::Vector{Any}
-    acceleration_structure::AccelerationStructureKHR
+    dst_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
 end
 
 mutable struct ValidationCacheEXT <: Handle
@@ -3779,8 +4503,26 @@ mutable struct Semaphore <: Handle
     Semaphore(vks::VkSemaphore, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
+struct SemaphoreSubmitInfoKHR <: VulkanStruct{true}
+    vks::VkSemaphoreSubmitInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
 struct SemaphoreSignalInfo <: VulkanStruct{true}
     vks::VkSemaphoreSignalInfo
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+struct SemaphoreGetZirconHandleInfoFUCHSIA <: VulkanStruct{true}
+    vks::VkSemaphoreGetZirconHandleInfoFUCHSIA
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+struct ImportSemaphoreZirconHandleInfoFUCHSIA <: VulkanStruct{true}
+    vks::VkImportSemaphoreZirconHandleInfoFUCHSIA
     deps::Vector{Any}
     semaphore::Semaphore
 end
@@ -3999,6 +4741,12 @@ mutable struct ImageView <: Handle
     ImageView(vks::VkImageView, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
+struct VideoPictureResourceKHR <: VulkanStruct{true}
+    vks::VkVideoPictureResourceKHR
+    deps::Vector{Any}
+    image_view_binding::ImageView
+end
+
 struct ImageViewHandleInfoNVX <: VulkanStruct{true}
     vks::VkImageViewHandleInfoNVX
     deps::Vector{Any}
@@ -4018,6 +4766,33 @@ mutable struct Image <: Handle
     refcount::RefCounter
     destructor
     Image(vks::VkImage, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+struct ImageMemoryBarrier2KHR <: VulkanStruct{true}
+    vks::VkImageMemoryBarrier2KHR
+    deps::Vector{Any}
+    image::Image
+end
+
+struct ResolveImageInfo2KHR <: VulkanStruct{true}
+    vks::VkResolveImageInfo2KHR
+    deps::Vector{Any}
+    src_image::Image
+    dst_image::Image
+end
+
+struct BlitImageInfo2KHR <: VulkanStruct{true}
+    vks::VkBlitImageInfo2KHR
+    deps::Vector{Any}
+    src_image::Image
+    dst_image::Image
+end
+
+struct CopyImageInfo2KHR <: VulkanStruct{true}
+    vks::VkCopyImageInfo2KHR
+    deps::Vector{Any}
+    src_image::Image
+    dst_image::Image
 end
 
 struct ImageSparseMemoryRequirementsInfo2 <: VulkanStruct{true}
@@ -4072,15 +4847,55 @@ mutable struct Buffer <: Handle
     Buffer(vks::VkBuffer, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
-struct BufferDeviceAddressInfo <: VulkanStruct{true}
-    vks::VkBufferDeviceAddressInfo
+struct VideoEncodeInfoKHR <: VulkanStruct{true}
+    vks::VkVideoEncodeInfoKHR
+    deps::Vector{Any}
+    dst_bitstream_buffer::Buffer
+end
+
+struct VideoDecodeInfoKHR <: VulkanStruct{true}
+    vks::VkVideoDecodeInfoKHR
+    deps::Vector{Any}
+    src_buffer::Buffer
+end
+
+struct BufferMemoryBarrier2KHR <: VulkanStruct{true}
+    vks::VkBufferMemoryBarrier2KHR
     deps::Vector{Any}
     buffer::Buffer
 end
 
-struct StridedBufferRegionKHR <: VulkanStruct{false}
-    vks::VkStridedBufferRegionKHR
-    buffer::OptionalPtr{Buffer}
+struct CopyImageToBufferInfo2KHR <: VulkanStruct{true}
+    vks::VkCopyImageToBufferInfo2KHR
+    deps::Vector{Any}
+    src_image::Image
+    dst_buffer::Buffer
+end
+
+struct CopyBufferToImageInfo2KHR <: VulkanStruct{true}
+    vks::VkCopyBufferToImageInfo2KHR
+    deps::Vector{Any}
+    src_buffer::Buffer
+    dst_image::Image
+end
+
+struct CopyBufferInfo2KHR <: VulkanStruct{true}
+    vks::VkCopyBufferInfo2KHR
+    deps::Vector{Any}
+    src_buffer::Buffer
+    dst_buffer::Buffer
+end
+
+struct AccelerationStructureCreateInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureCreateInfoKHR
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+struct BufferDeviceAddressInfo <: VulkanStruct{true}
+    vks::VkBufferDeviceAddressInfo
+    deps::Vector{Any}
+    buffer::Buffer
 end
 
 struct GeometryAABBNV <: VulkanStruct{true}
@@ -4183,6 +4998,12 @@ mutable struct CommandBuffer <: Handle
     CommandBuffer(vks::VkCommandBuffer, command_pool::CommandPool, refcount::RefCounter) = new(vks, command_pool, refcount, undef)
 end
 
+struct CommandBufferSubmitInfoKHR <: VulkanStruct{true}
+    vks::VkCommandBufferSubmitInfoKHR
+    deps::Vector{Any}
+    command_buffer::CommandBuffer
+end
+
 mutable struct DeviceMemory <: Handle
     vks::VkDeviceMemory
     device::Device
@@ -4191,16 +5012,22 @@ mutable struct DeviceMemory <: Handle
     DeviceMemory(vks::VkDeviceMemory, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
 end
 
+struct VideoBindMemoryKHR <: VulkanStruct{true}
+    vks::VkVideoBindMemoryKHR
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
 struct DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct{true}
     vks::VkDeviceMemoryOpaqueCaptureAddressInfo
     deps::Vector{Any}
     memory::DeviceMemory
 end
 
-struct BindAccelerationStructureMemoryInfoKHR <: VulkanStruct{true}
-    vks::VkBindAccelerationStructureMemoryInfoKHR
+struct BindAccelerationStructureMemoryInfoNV <: VulkanStruct{true}
+    vks::VkBindAccelerationStructureMemoryInfoNV
     deps::Vector{Any}
-    acceleration_structure::AccelerationStructureKHR
+    acceleration_structure::AccelerationStructureNV
     memory::DeviceMemory
 end
 
@@ -4236,6 +5063,12 @@ struct MemoryGetWin32HandleInfoKHR <: VulkanStruct{true}
     memory::DeviceMemory
 end
 
+struct MemoryGetZirconHandleInfoFUCHSIA <: VulkanStruct{true}
+    vks::VkMemoryGetZirconHandleInfoFUCHSIA
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
 struct SparseImageMemoryBind <: VulkanStruct{false}
     vks::VkSparseImageMemoryBind
     memory::OptionalPtr{DeviceMemory}
@@ -4261,6 +5094,10 @@ mutable struct Queue <: Handle
 end
 
 
+create_video_session_parameters_khr(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_video_session_parameters_khr(device, VideoSessionParametersCreateInfoKHR(video_session_parameters_template, video_session; next), fun_ptr_create, fun_ptr_destroy; allocator)
+
+create_video_session_khr(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_video_session_khr(device, VideoSessionCreateInfoKHR(queue_family_index, video_profile, picture_format, max_coded_extent, reference_pictures_format, max_reference_pictures_slots_count, max_reference_pictures_active_count; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
+
 create_debug_utils_messenger_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_utils_messenger_ext(instance, DebugUtilsMessengerCreateInfoEXT(message_severity, message_type, pfn_user_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
@@ -4271,9 +5108,9 @@ create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, pa
 
 create_private_data_slot_ext(device::Device, flags::PrivateDataSlotCreateFlagEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next), fun_ptr_create, fun_ptr_destroy; allocator)
 
-create_acceleration_structure_khr(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0) = create_acceleration_structure_khr(device, AccelerationStructureCreateInfoKHR(compacted_size, type, geometry_infos; next, flags, device_address), fun_ptr_create, fun_ptr_destroy; allocator)
-
 create_acceleration_structure_nv(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_acceleration_structure_nv(device, AccelerationStructureCreateInfoNV(compacted_size, info; next), fun_ptr_create, fun_ptr_destroy; allocator)
+
+create_acceleration_structure_khr(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0) = create_acceleration_structure_khr(device, AccelerationStructureCreateInfoKHR(buffer, offset, size, type; next, create_flags, device_address), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_validation_cache_ext(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4281,7 +5118,7 @@ create_sampler_ycbcr_conversion(device::Device, format::VkFormat, ycbcr_model::V
 
 create_descriptor_update_template(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
-create_indirect_commands_layout_nv(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next), fun_ptr_create, fun_ptr_destroy; allocator)
+create_indirect_commands_layout_nv(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point, tokens, stream_strides; next, flags), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_pipeline_cache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -4325,6 +5162,10 @@ create_device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray
 
 create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
+VideoSessionParametersKHR(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = unwrap(create_video_session_parameters_khr(device, video_session_parameters_template, video_session, fun_ptr_create, fun_ptr_destroy; allocator, next))
+
+VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_video_session_khr(device, queue_family_index, video_profile, picture_format, max_coded_extent, reference_pictures_format, max_reference_pictures_slots_count, max_reference_pictures_active_count, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
+
 DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_utils_messenger_ext(instance, message_severity, message_type, pfn_user_callback, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, user_data))
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, user_data))
@@ -4337,9 +5178,9 @@ PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT, fun_ptr_
 
 DeferredOperationKHR(device::Device, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_deferred_operation_khr(device, fun_ptr_create, fun_ptr_destroy; allocator)
 
-AccelerationStructureKHR(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0) = unwrap(create_acceleration_structure_khr(device, compacted_size, type, geometry_infos, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, device_address))
+AccelerationStructureNV(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = unwrap(create_acceleration_structure_nv(device, compacted_size, info, fun_ptr_create, fun_ptr_destroy; allocator, next))
 
-AccelerationStructureKHR(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = unwrap(create_acceleration_structure_nv(device, compacted_size, info, fun_ptr_create, fun_ptr_destroy; allocator, next))
+AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0) = unwrap(create_acceleration_structure_khr(device, buffer, offset, size, type, fun_ptr_create, fun_ptr_destroy; allocator, next, create_flags, device_address))
 
 ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_validation_cache_ext(device, initial_data, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, initial_data_size))
 
@@ -4347,7 +5188,7 @@ SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerY
 
 DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_descriptor_update_template(device, descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
 
-IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = unwrap(create_indirect_commands_layout_nv(device, flags, pipeline_bind_point, tokens, stream_strides, fun_ptr_create, fun_ptr_destroy; allocator, next))
+IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_indirect_commands_layout_nv(device, pipeline_bind_point, tokens, stream_strides, fun_ptr_create, fun_ptr_destroy; allocator, next, flags))
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_pipeline_cache(device, initial_data, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, initial_data_size))
 
@@ -4391,6 +5232,112 @@ Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabl
 
 Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = unwrap(create_instance(enabled_layer_names, enabled_extension_names, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, application_info))
 
+cmd_encode_video_khr(command_buffer::CommandBuffer, encode_info::VideoEncodeInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdEncodeVideoKHR(command_buffer, encode_info, fun_ptr)
+
+cmd_end_video_coding_khr(command_buffer::CommandBuffer, end_coding_info::VideoEndCodingInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndVideoCodingKHR(command_buffer, end_coding_info, fun_ptr)
+
+cmd_control_video_coding_khr(command_buffer::CommandBuffer, coding_control_info::VideoCodingControlInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdControlVideoCodingKHR(command_buffer, coding_control_info, fun_ptr)
+
+cmd_begin_video_coding_khr(command_buffer::CommandBuffer, begin_info::VideoBeginCodingInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdBeginVideoCodingKHR(command_buffer, begin_info, fun_ptr)
+
+cmd_decode_video_khr(command_buffer::CommandBuffer, frame_info::VideoDecodeInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdDecodeVideoKHR(command_buffer, frame_info, fun_ptr)
+
+bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindVideoSessionMemoryKHR(device, video_session, pointer_length(video_session_bind_memories), video_session_bind_memories, fun_ptr))
+
+function get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR, fun_ptr::FunctionPtr)::Result{Vector{VideoGetMemoryPropertiesKHR}, VulkanError}
+    pVideoSessionMemoryRequirements = Vector{VkVideoGetMemoryPropertiesKHR}(undef, pointer_length(video_session_memory_requirements))
+    @check vkGetVideoSessionMemoryRequirementsKHR(device, video_session, pointer_length(video_session_memory_requirements), pVideoSessionMemoryRequirements, fun_ptr)
+    from_vk.(VideoGetMemoryPropertiesKHR, pVideoSessionMemoryRequirements)
+end
+
+destroy_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyVideoSessionParametersKHR(device, video_session_parameters, allocator, fun_ptr)
+
+update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::VideoSessionParametersUpdateInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkUpdateVideoSessionParametersKHR(device, video_session_parameters, update_info, fun_ptr))
+
+function create_video_session_parameters_khr(device::Device, create_info::VideoSessionParametersCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{VideoSessionParametersKHR, VulkanError}
+    pVideoSessionParameters = Ref{VkVideoSessionParametersKHR}()
+    @check vkCreateVideoSessionParametersKHR(device, create_info, allocator, pVideoSessionParameters, fun_ptr_create)
+    VideoSessionParametersKHR(pVideoSessionParameters[], (x->destroy_video_session_parameters_khr(device, x, fun_ptr_destroy; allocator)), getproperty(create_info, :video_session))
+end
+
+destroy_video_session_khr(device::Device, video_session::VideoSessionKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyVideoSessionKHR(device, video_session, allocator, fun_ptr)
+
+function create_video_session_khr(device::Device, create_info::VideoSessionCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{VideoSessionKHR, VulkanError}
+    pVideoSession = Ref{VkVideoSessionKHR}()
+    @check vkCreateVideoSessionKHR(device, create_info, allocator, pVideoSession, fun_ptr_create)
+    VideoSessionKHR(pVideoSession[], (x->destroy_video_session_khr(device, x, fun_ptr_destroy; allocator)), device)
+end
+
+function get_physical_device_video_format_properties_khr(physical_device::PhysicalDevice, video_format_info::PhysicalDeviceVideoFormatInfoKHR, fun_ptr::FunctionPtr)::Result{Vector{VideoFormatPropertiesKHR}, VulkanError}
+    pVideoFormatProperties = Vector{VkVideoFormatPropertiesKHR}(undef, pointer_length(video_format_properties))
+    @check vkGetPhysicalDeviceVideoFormatPropertiesKHR(physical_device, video_format_info, pointer_length(video_format_properties), pVideoFormatProperties, fun_ptr)
+    from_vk.(VideoFormatPropertiesKHR, pVideoFormatProperties)
+end
+
+function get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::VideoProfileKHR, fun_ptr::FunctionPtr)::Result{VideoCapabilitiesKHR, VulkanError}
+    pCapabilities = Ref{VkVideoCapabilitiesKHR}()
+    @check vkGetPhysicalDeviceVideoCapabilitiesKHR(physical_device, video_profile, pCapabilities, fun_ptr)
+    from_vk(VideoCapabilitiesKHR, pCapabilities[])
+end
+
+function get_queue_checkpoint_data_2_nv(queue::Queue, fun_ptr::FunctionPtr)::Vector{CheckpointData2NV}
+    pCheckpointDataCount = Ref{UInt32}()
+    vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, C_NULL, fun_ptr)
+    pCheckpointData = Vector{VkCheckpointData2NV}(undef, pCheckpointDataCount[])
+    vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, pCheckpointData, fun_ptr)
+    from_vk.(CheckpointData2NV, pCheckpointData)
+end
+
+cmd_write_buffer_marker_2_amd(command_buffer::CommandBuffer, stage::Integer, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteBufferMarker2AMD(command_buffer, stage, dst_buffer, dst_offset, marker, fun_ptr)
+
+cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteTimestamp2KHR(command_buffer, stage, query_pool, query, fun_ptr)
+
+queue_submit_2_khr(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueSubmit2KHR(queue, pointer_length(submits), submits, fence, fun_ptr))
+
+cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::DependencyInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdPipelineBarrier2KHR(command_buffer, dependency_info, fun_ptr)
+
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos, fun_ptr)
+
+cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetEvent2KHR(command_buffer, event, stage_mask, fun_ptr)
+
+cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::DependencyInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetEvent2KHR(command_buffer, event, dependency_info, fun_ptr)
+
+cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetColorWriteEnableEXT(command_buffer, pointer_length(color_write_enables), color_write_enables, fun_ptr)
+
+cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray, vertex_attribute_descriptions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetVertexInputEXT(command_buffer, pointer_length(vertex_binding_descriptions), vertex_binding_descriptions, pointer_length(vertex_attribute_descriptions), vertex_attribute_descriptions, fun_ptr)
+
+function get_acceleration_structure_build_sizes_khr(device::Device, build_type::VkAccelerationStructureBuildTypeKHR, build_info::AccelerationStructureBuildGeometryInfoKHR, fun_ptr::FunctionPtr; max_primitive_counts = C_NULL)::AccelerationStructureBuildSizesInfoKHR
+    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    vkGetAccelerationStructureBuildSizesKHR(device, build_type, build_info, max_primitive_counts, pSizeInfo, fun_ptr)
+    from_vk(AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
+end
+
+cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetFragmentShadingRateEnumNV(command_buffer, shading_rate, combiner_ops, fun_ptr)
+
+function get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{PhysicalDeviceFragmentShadingRateKHR}, VulkanError}
+    pFragmentShadingRateCount = Ref{UInt32}()
+    @repeat_while_incomplete begin
+            @check vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, C_NULL, fun_ptr)
+            pFragmentShadingRates = Vector{VkPhysicalDeviceFragmentShadingRateKHR}(undef, pFragmentShadingRateCount[])
+            @check vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, pFragmentShadingRates, fun_ptr)
+        end
+    from_vk.(PhysicalDeviceFragmentShadingRateKHR, pFragmentShadingRates)
+end
+
+cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetFragmentShadingRateKHR(command_buffer, fragment_size, combiner_ops, fun_ptr)
+
+cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::ResolveImageInfo2KHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdResolveImage2KHR(command_buffer, resolve_image_info, fun_ptr)
+
+cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::CopyImageToBufferInfo2KHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImageToBuffer2KHR(command_buffer, copy_image_to_buffer_info, fun_ptr)
+
+cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::CopyBufferToImageInfo2KHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBufferToImage2KHR(command_buffer, copy_buffer_to_image_info, fun_ptr)
+
+cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::BlitImageInfo2KHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdBlitImage2KHR(command_buffer, blit_image_info, fun_ptr)
+
+cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::CopyImageInfo2KHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImage2KHR(command_buffer, copy_image_info, fun_ptr)
+
+cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::CopyBufferInfo2KHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBuffer2KHR(command_buffer, copy_buffer_info, fun_ptr)
+
 function get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, fun_ptr::FunctionPtr)::UInt64
     pData = Ref{UInt64}()
     vkGetPrivateDataEXT(device, object_type, object_handle, private_data_slot, pData, fun_ptr)
@@ -4406,6 +5353,16 @@ function create_private_data_slot_ext(device::Device, create_info::PrivateDataSl
     @check vkCreatePrivateDataSlotEXT(device, create_info, allocator, pPrivateDataSlot, fun_ptr_create)
     PrivateDataSlotEXT(pPrivateDataSlot[], (x->destroy_private_data_slot_ext(device, x, fun_ptr_destroy; allocator)), device)
 end
+
+cmd_set_primitive_restart_enable_ext(command_buffer::CommandBuffer, primitive_restart_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetPrimitiveRestartEnableEXT(command_buffer, primitive_restart_enable, fun_ptr)
+
+cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::VkLogicOp, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetLogicOpEXT(command_buffer, logic_op, fun_ptr)
+
+cmd_set_depth_bias_enable_ext(command_buffer::CommandBuffer, depth_bias_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthBiasEnableEXT(command_buffer, depth_bias_enable, fun_ptr)
+
+cmd_set_rasterizer_discard_enable_ext(command_buffer::CommandBuffer, rasterizer_discard_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetRasterizerDiscardEnableEXT(command_buffer, rasterizer_discard_enable, fun_ptr)
+
+cmd_set_patch_control_points_ext(command_buffer::CommandBuffer, patch_control_points::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetPatchControlPointsEXT(command_buffer, patch_control_points, fun_ptr)
 
 cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op, fun_ptr)
 
@@ -4447,11 +5404,11 @@ end
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR, fun_ptr::FunctionPtr)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info, fun_ptr)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos, fun_ptr))
+build_acceleration_structures_khr(device::Device, infos::AbstractArray, build_range_infos::AbstractArray, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkBuildAccelerationStructuresKHR(device, deferred_operation, pointer_length(infos), infos, build_range_infos, fun_ptr))
 
-cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride, fun_ptr)
+cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructuresIndirectKHR(command_buffer, pointer_length(infos), infos, indirect_device_addresses, indirect_strides, max_primitive_counts, fun_ptr)
 
-cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos, fun_ptr)
+cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray, build_range_infos::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructuresKHR(command_buffer, pointer_length(infos), infos, build_range_infos, fun_ptr)
 
 function create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureKHR}()
@@ -4511,7 +5468,7 @@ end
 
 queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkQueueSetPerformanceConfigurationINTEL(queue, configuration, fun_ptr))
 
-release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration, fun_ptr))
+release_performance_configuration_intel(device::Device, fun_ptr::FunctionPtr; configuration = C_NULL)::Result{VkResult, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration, fun_ptr))
 
 function acquire_performance_configuration_intel(device::Device, acquire_info::PerformanceConfigurationAcquireInfoINTEL, fun_ptr::FunctionPtr)::Result{PerformanceConfigurationINTEL, VulkanError}
     pConfiguration = Ref{VkPerformanceConfigurationINTEL}()
@@ -4604,9 +5561,17 @@ end
 
 get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX, fun_ptr::FunctionPtr)::UInt32 = vkGetImageViewHandleNVX(device, info, fun_ptr)
 
-get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetDeviceAccelerationStructureCompatibilityKHR(device, version, fun_ptr))
+cmd_set_ray_tracing_pipeline_stack_size_khr(command_buffer::CommandBuffer, pipeline_stack_size::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetRayTracingPipelineStackSizeKHR(command_buffer, pipeline_stack_size, fun_ptr)
 
-cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset, fun_ptr)
+get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::VkShaderGroupShaderKHR, fun_ptr::FunctionPtr)::UInt64 = vkGetRayTracingShaderGroupStackSizeKHR(device, pipeline, group, group_shader, fun_ptr)
+
+function get_device_acceleration_structure_compatibility_khr(device::Device, version_info::AccelerationStructureVersionInfoKHR, fun_ptr::FunctionPtr)::VkAccelerationStructureCompatibilityKHR
+    pCompatibility = Ref{VkAccelerationStructureCompatibilityKHR}()
+    vkGetDeviceAccelerationStructureCompatibilityKHR(device, version_info, pCompatibility, fun_ptr)
+    pCompatibility[]
+end
+
+cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, indirect_device_address::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, indirect_device_address, fun_ptr)
 
 function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::Result{Vector{CooperativeMatrixPropertiesNV}, VulkanError}
     pPropertyCount = Ref{UInt32}()
@@ -4618,9 +5583,9 @@ function get_physical_device_cooperative_matrix_properties_nv(physical_device::P
     from_vk.(CooperativeMatrixPropertiesNV, pProperties)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
-    @check vkCreateRayTracingPipelinesKHR(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
+    @check vkCreateRayTracingPipelinesKHR(device, deferred_operation, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
@@ -4630,7 +5595,7 @@ function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractA
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data, fun_ptr))
+get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data, fun_ptr))
 
 get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, data, fun_ptr))
 
@@ -4638,29 +5603,31 @@ get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, fir
 
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth, fun_ptr)
 
-cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
+cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
 
 write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride, fun_ptr))
 
-cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
+cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
+
+cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
 cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
-copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info, fun_ptr))
+copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, deferred_operation, info, fun_ptr))
 
 cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info, fun_ptr)
 
-copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info, fun_ptr))
+copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, deferred_operation, info, fun_ptr))
 
 cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info, fun_ptr)
 
-copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info, fun_ptr))
+copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, deferred_operation, info, fun_ptr))
 
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureKHR(command_buffer, info, fun_ptr)
 
-cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode, fun_ptr)
+cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::VkCopyAccelerationStructureModeKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode, fun_ptr)
 
-bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkBindAccelerationStructureMemoryNV(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
 function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV, fun_ptr::FunctionPtr)::VkMemoryRequirements2KHR
     pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()
@@ -4668,18 +5635,14 @@ function get_acceleration_structure_memory_requirements_nv(device::Device, info:
     from_vk(VkMemoryRequirements2KHR, pMemoryRequirements[])
 end
 
-function get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR, fun_ptr::FunctionPtr)::MemoryRequirements2
-    pMemoryRequirements = Ref{VkMemoryRequirements2}()
-    vkGetAccelerationStructureMemoryRequirementsKHR(device, info, pMemoryRequirements, fun_ptr)
-    from_vk(MemoryRequirements2, pMemoryRequirements[])
-end
+destroy_acceleration_structure_nv(device::Device, acceleration_structure::AccelerationStructureNV, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyAccelerationStructureNV(device, acceleration_structure, allocator, fun_ptr)
 
 destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyAccelerationStructureKHR(device, acceleration_structure, allocator, fun_ptr)
 
-function create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{VkAccelerationStructureNV, VulkanError}
+function create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{AccelerationStructureNV, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureNV}()
     @check vkCreateAccelerationStructureNV(device, create_info, allocator, pAccelerationStructure, fun_ptr_create)
-    AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x, fun_ptr_destroy; allocator)), device)
+    AccelerationStructureNV(pAccelerationStructure[], (x->destroy_acceleration_structure_nv(device, x, fun_ptr_destroy; allocator)), device)
 end
 
 compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkCompileDeferredNV(device, pipeline, shader, fun_ptr))
@@ -5079,6 +6042,14 @@ end
 
 display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkDisplayPowerControlEXT(device, display, display_power_info, fun_ptr))
 
+function get_winrt_display_nv(physical_device::PhysicalDevice, device_relative_id::Integer, fun_ptr::FunctionPtr)::Result{DisplayKHR, VulkanError}
+    pDisplay = Ref{VkDisplayKHR}()
+    @check vkGetWinrtDisplayNV(physical_device, device_relative_id, pDisplay, fun_ptr)
+    DisplayKHR(pDisplay[], identity, physical_device)
+end
+
+acquire_winrt_display_nv(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkAcquireWinrtDisplayNV(physical_device, display, fun_ptr))
+
 function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput, fun_ptr::FunctionPtr)::Result{DisplayKHR, VulkanError}
     pDisplay = Ref{VkDisplayKHR}()
     @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay, fun_ptr)
@@ -5107,6 +6078,10 @@ function get_physical_device_external_fence_properties(physical_device::Physical
     from_vk(ExternalFenceProperties, pExternalFenceProperties[])
 end
 
+import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::ImportSemaphoreZirconHandleInfoFUCHSIA, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreZirconHandleFUCHSIA(device, import_semaphore_zircon_handle_info, fun_ptr))
+
+get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetSemaphoreZirconHandleFUCHSIA(device, get_zircon_handle_info, to_vk(Ptr{zx_handle_t}, zircon_handle), fun_ptr))
+
 import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreFdKHR(device, import_semaphore_fd_info, fun_ptr))
 
 function get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR, fun_ptr::FunctionPtr)::Result{Int, VulkanError}
@@ -5124,6 +6099,14 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     vkGetPhysicalDeviceExternalSemaphoreProperties(physical_device, external_semaphore_info, pExternalSemaphoreProperties, fun_ptr)
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
+
+function get_memory_zircon_handle_properties_fuchsia(device::Device, handle_type::ExternalMemoryHandleTypeFlag, zircon_handle::vk.zx_handle_t, fun_ptr::FunctionPtr)::Result{MemoryZirconHandlePropertiesFUCHSIA, VulkanError}
+    pMemoryZirconHandleProperties = Ref{VkMemoryZirconHandlePropertiesFUCHSIA}()
+    @check vkGetMemoryZirconHandlePropertiesFUCHSIA(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), zircon_handle, pMemoryZirconHandleProperties, fun_ptr)
+    from_vk(MemoryZirconHandlePropertiesFUCHSIA, pMemoryZirconHandleProperties[])
+end
+
+get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t, fun_ptr::FunctionPtr)::Result{VkResult, VulkanError} = @check(vkGetMemoryZirconHandleFUCHSIA(device, get_zircon_handle_info, to_vk(Ptr{zx_handle_t}, zircon_handle), fun_ptr))
 
 function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer, fun_ptr::FunctionPtr)::Result{MemoryFdPropertiesKHR, VulkanError}
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
@@ -5247,6 +6230,14 @@ function create_debug_report_callback_ext(instance::Instance, create_info::Debug
     pCallback = Ref{VkDebugReportCallbackEXT}()
     @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fun_ptr_create)
     DebugReportCallbackEXT(pCallback[], (x->destroy_debug_report_callback_ext(instance, x, fun_ptr_destroy; allocator)), instance)
+end
+
+get_physical_device_screen_presentation_support_qnx(physical_device::PhysicalDevice, queue_family_index::Integer, window::vk._screen_window, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceScreenPresentationSupportQNX(physical_device, queue_family_index, to_vk(Ptr{_screen_window}, window), fun_ptr))
+
+function create_screen_surface_qnx(instance::Instance, create_info::ScreenSurfaceCreateInfoQNX, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    pSurface = Ref{VkSurfaceKHR}()
+    @check vkCreateScreenSurfaceQNX(instance, create_info, allocator, pSurface, fun_ptr_create)
+    SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
 function create_stream_descriptor_surface_ggp(instance::Instance, create_info::StreamDescriptorSurfaceCreateInfoGGP, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
@@ -5463,7 +6454,7 @@ cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Int
 
 cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask, fun_ptr)
 
@@ -5936,6 +6927,10 @@ function create_instance(create_info::InstanceCreateInfo, fun_ptr_create::Functi
     Instance(pInstance[], (x->destroy_instance(x, fun_ptr_destroy; allocator)))
 end
 
+create_video_session_parameters_khr(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; allocator = C_NULL, next = C_NULL) = create_video_session_parameters_khr(device, VideoSessionParametersCreateInfoKHR(video_session_parameters_template, video_session; next); allocator)
+
+create_video_session_khr(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_video_session_khr(device, VideoSessionCreateInfoKHR(queue_family_index, video_profile, picture_format, max_coded_extent, reference_pictures_format, max_reference_pictures_slots_count, max_reference_pictures_active_count; next, flags); allocator)
+
 create_debug_utils_messenger_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_utils_messenger_ext(instance, DebugUtilsMessengerCreateInfoEXT(message_severity, message_type, pfn_user_callback; next, flags, user_data); allocator)
 
 create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data); allocator)
@@ -5946,9 +6941,9 @@ create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, pa
 
 create_private_data_slot_ext(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocator = C_NULL, next = C_NULL) = create_private_data_slot_ext(device, PrivateDataSlotCreateInfoEXT(flags; next); allocator)
 
-create_acceleration_structure_khr(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0) = create_acceleration_structure_khr(device, AccelerationStructureCreateInfoKHR(compacted_size, type, geometry_infos; next, flags, device_address); allocator)
-
 create_acceleration_structure_nv(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL) = create_acceleration_structure_nv(device, AccelerationStructureCreateInfoNV(compacted_size, info; next); allocator)
+
+create_acceleration_structure_khr(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0) = create_acceleration_structure_khr(device, AccelerationStructureCreateInfoKHR(buffer, offset, size, type; next, create_flags, device_address); allocator)
 
 create_validation_cache_ext(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_validation_cache_ext(device, ValidationCacheCreateInfoEXT(initial_data; next, flags, initial_data_size); allocator)
 
@@ -5956,7 +6951,7 @@ create_sampler_ycbcr_conversion(device::Device, format::VkFormat, ycbcr_model::V
 
 create_descriptor_update_template(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, DescriptorUpdateTemplateCreateInfo(descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; next, flags); allocator)
 
-create_indirect_commands_layout_nv(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(flags, pipeline_bind_point, tokens, stream_strides; next); allocator)
+create_indirect_commands_layout_nv(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_indirect_commands_layout_nv(device, IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point, tokens, stream_strides; next, flags); allocator)
 
 create_pipeline_cache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = create_pipeline_cache(device, PipelineCacheCreateInfo(initial_data; next, flags, initial_data_size); allocator)
 
@@ -6000,6 +6995,10 @@ create_device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray
 
 create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
 
+VideoSessionParametersKHR(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; allocator = C_NULL, next = C_NULL) = unwrap(create_video_session_parameters_khr(device, video_session_parameters_template, video_session; allocator, next))
+
+VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_video_session_khr(device, queue_family_index, video_profile, picture_format, max_coded_extent, reference_pictures_format, max_reference_pictures_slots_count, max_reference_pictures_active_count; allocator, next, flags))
+
 DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_utils_messenger_ext(instance, message_severity, message_type, pfn_user_callback; allocator, next, flags, user_data))
 
 DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback; allocator, next, flags, user_data))
@@ -6012,9 +7011,9 @@ PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocato
 
 DeferredOperationKHR(device::Device; allocator = C_NULL) = create_deferred_operation_khr(device; allocator)
 
-AccelerationStructureKHR(device::Device, compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, device_address = 0) = unwrap(create_acceleration_structure_khr(device, compacted_size, type, geometry_infos; allocator, next, flags, device_address))
+AccelerationStructureNV(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL) = unwrap(create_acceleration_structure_nv(device, compacted_size, info; allocator, next))
 
-AccelerationStructureKHR(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL) = unwrap(create_acceleration_structure_nv(device, compacted_size, info; allocator, next))
+AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0) = unwrap(create_acceleration_structure_khr(device, buffer, offset, size, type; allocator, next, create_flags, device_address))
 
 ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_validation_cache_ext(device, initial_data; allocator, next, flags, initial_data_size))
 
@@ -6022,7 +7021,7 @@ SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerY
 
 DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_descriptor_update_template(device, descriptor_update_entries, template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; allocator, next, flags))
 
-IndirectCommandsLayoutNV(device::Device, flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL) = unwrap(create_indirect_commands_layout_nv(device, flags, pipeline_bind_point, tokens, stream_strides; allocator, next))
+IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_indirect_commands_layout_nv(device, pipeline_bind_point, tokens, stream_strides; allocator, next, flags))
 
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0) = unwrap(create_pipeline_cache(device, initial_data; allocator, next, flags, initial_data_size))
 
@@ -6065,6 +7064,26 @@ DeviceMemory(device::Device, allocation_size::Integer, memory_type_index::Intege
 Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = unwrap(create_device(physical_device, queue_create_infos, enabled_layer_names, enabled_extension_names; allocator, next, flags, enabled_features))
 
 Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = unwrap(create_instance(enabled_layer_names, enabled_extension_names; allocator, next, flags, application_info))
+
+from_vk(T::Type{PhysicalDeviceProvokingVertexPropertiesEXT}, x::VkPhysicalDeviceProvokingVertexPropertiesEXT) = T(x.sType, x.pNext, from_vk(Bool, x.provokingVertexModePerPipeline), from_vk(Bool, x.transformFeedbackPreservesTriangleFanProvokingVertex))
+
+from_vk(T::Type{VideoDecodeH265CapabilitiesEXT}, x::VkVideoDecodeH265CapabilitiesEXT) = T(x.sType, x.pNext, x.maxLevel, from_vk(ExtensionProperties, x.stdExtensionVersion))
+
+from_vk(T::Type{VideoDecodeH264CapabilitiesEXT}, x::VkVideoDecodeH264CapabilitiesEXT) = T(x.sType, x.pNext, x.maxLevel, from_vk(Offset2D, x.fieldOffsetGranularity), from_vk(ExtensionProperties, x.stdExtensionVersion))
+
+from_vk(T::Type{VideoCapabilitiesKHR}, x::VkVideoCapabilitiesKHR) = T(x.sType, x.pNext, x.capabilityFlags, x.minBitstreamBufferOffsetAlignment, x.minBitstreamBufferSizeAlignment, from_vk(Extent2D, x.videoPictureExtentGranularity), from_vk(Extent2D, x.minExtent), from_vk(Extent2D, x.maxExtent), x.maxReferencePicturesSlotsCount, x.maxReferencePicturesActiveCount)
+
+from_vk(T::Type{VideoFormatPropertiesKHR}, x::VkVideoFormatPropertiesKHR) = T(x.sType, x.pNext, x.format)
+
+from_vk(T::Type{PhysicalDeviceVideoFormatInfoKHR}, x::VkPhysicalDeviceVideoFormatInfoKHR) = T(x.sType, x.pNext, x.imageUsage, from_vk(VideoProfilesKHR, x.pVideoProfiles))
+
+from_vk(T::Type{CheckpointData2NV}, x::VkCheckpointData2NV) = T(x.sType, x.pNext, x.stage, x.pCheckpointMarker)
+
+from_vk(T::Type{QueueFamilyCheckpointProperties2NV}, x::VkQueueFamilyCheckpointProperties2NV) = T(x.sType, x.pNext, x.checkpointExecutionStageMask)
+
+from_vk(T::Type{PhysicalDeviceFragmentShadingRateKHR}, x::VkPhysicalDeviceFragmentShadingRateKHR) = T(x.sType, x.pNext, x.sampleCounts, from_vk(Extent2D, x.fragmentSize))
+
+from_vk(T::Type{PhysicalDeviceFragmentShadingRatePropertiesKHR}, x::VkPhysicalDeviceFragmentShadingRatePropertiesKHR) = T(x.sType, x.pNext, from_vk(Extent2D, x.minFragmentShadingRateAttachmentTexelSize), from_vk(Extent2D, x.maxFragmentShadingRateAttachmentTexelSize), x.maxFragmentShadingRateAttachmentTexelSizeAspectRatio, from_vk(Bool, x.primitiveFragmentShadingRateWithMultipleViewports), from_vk(Bool, x.layeredShadingRateAttachments), from_vk(Bool, x.fragmentShadingRateNonTrivialCombinerOps), from_vk(Extent2D, x.maxFragmentSize), x.maxFragmentSizeAspectRatio, x.maxFragmentShadingRateCoverageSamples, SampleCountFlag(UInt32(x.maxFragmentShadingRateRasterizationSamples)), from_vk(Bool, x.fragmentShadingRateWithShaderDepthStencilWrites), from_vk(Bool, x.fragmentShadingRateWithSampleMask), from_vk(Bool, x.fragmentShadingRateWithShaderSampleMask), from_vk(Bool, x.fragmentShadingRateWithConservativeRasterization), from_vk(Bool, x.fragmentShadingRateWithFragmentShaderInterlock), from_vk(Bool, x.fragmentShadingRateWithCustomSampleLocations), from_vk(Bool, x.fragmentShadingRateStrictMultiplyCombiner))
 
 from_vk(T::Type{PhysicalDeviceRobustness2PropertiesEXT}, x::VkPhysicalDeviceRobustness2PropertiesEXT) = T(x.sType, x.pNext, x.robustStorageBufferAccessSizeAlignment, x.robustUniformBufferAccessSizeAlignment)
 
@@ -6122,7 +7141,9 @@ from_vk(T::Type{DrmFormatModifierPropertiesListEXT}, x::VkDrmFormatModifierPrope
 
 from_vk(T::Type{PhysicalDeviceRayTracingPropertiesNV}, x::VkPhysicalDeviceRayTracingPropertiesNV) = T(x.sType, x.pNext, x.shaderGroupHandleSize, x.maxRecursionDepth, x.maxShaderGroupStride, x.shaderGroupBaseAlignment, x.maxGeometryCount, x.maxInstanceCount, x.maxTriangleCount, x.maxDescriptorSetAccelerationStructures)
 
-from_vk(T::Type{PhysicalDeviceRayTracingPropertiesKHR}, x::VkPhysicalDeviceRayTracingPropertiesKHR) = T(x.sType, x.pNext, x.shaderGroupHandleSize, x.maxRecursionDepth, x.maxShaderGroupStride, x.shaderGroupBaseAlignment, x.maxGeometryCount, x.maxInstanceCount, x.maxPrimitiveCount, x.maxDescriptorSetAccelerationStructures, x.shaderGroupHandleCaptureReplaySize)
+from_vk(T::Type{PhysicalDeviceRayTracingPipelinePropertiesKHR}, x::VkPhysicalDeviceRayTracingPipelinePropertiesKHR) = T(x.sType, x.pNext, x.shaderGroupHandleSize, x.maxRayRecursionDepth, x.maxShaderGroupStride, x.shaderGroupBaseAlignment, x.shaderGroupHandleCaptureReplaySize, x.maxRayDispatchInvocationCount, x.shaderGroupHandleAlignment, x.maxRayHitAttributeSize)
+
+from_vk(T::Type{PhysicalDeviceAccelerationStructurePropertiesKHR}, x::VkPhysicalDeviceAccelerationStructurePropertiesKHR) = T(x.sType, x.pNext, x.maxGeometryCount, x.maxInstanceCount, x.maxPrimitiveCount, x.maxPerStageDescriptorAccelerationStructures, x.maxPerStageDescriptorUpdateAfterBindAccelerationStructures, x.maxDescriptorSetAccelerationStructures, x.maxDescriptorSetUpdateAfterBindAccelerationStructures, x.minAccelerationStructureScratchOffsetAlignment)
 
 from_vk(T::Type{PhysicalDeviceMeshShaderPropertiesNV}, x::VkPhysicalDeviceMeshShaderPropertiesNV) = T(x.sType, x.pNext, x.maxDrawMeshTasksCount, x.maxTaskWorkGroupInvocations, x.maxTaskWorkGroupSize, x.maxTaskTotalMemorySize, x.maxTaskOutputCount, x.maxMeshWorkGroupInvocations, x.maxMeshWorkGroupSize, x.maxMeshTotalMemorySize, x.maxMeshOutputVertices, x.maxMeshOutputPrimitives, x.maxMeshMultiviewViewCount, x.meshOutputPerVertexGranularity, x.meshOutputPerPrimitiveGranularity)
 
@@ -6161,6 +7182,8 @@ from_vk(T::Type{PhysicalDeviceConservativeRasterizationPropertiesEXT}, x::VkPhys
 from_vk(T::Type{PhysicalDeviceExternalMemoryHostPropertiesEXT}, x::VkPhysicalDeviceExternalMemoryHostPropertiesEXT) = T(x.sType, x.pNext, x.minImportedHostPointerAlignment)
 
 from_vk(T::Type{MemoryHostPointerPropertiesEXT}, x::VkMemoryHostPointerPropertiesEXT) = T(x.sType, x.pNext, x.memoryTypeBits)
+
+from_vk(T::Type{DeviceMemoryReportCallbackDataEXT}, x::VkDeviceMemoryReportCallbackDataEXT) = T(x.sType, x.pNext, x.flags, x.type, x.memoryObjectId, x.size, x.objectType, x.objectHandle, x.heapIndex)
 
 from_vk(T::Type{ShaderStatisticsInfoAMD}, x::VkShaderStatisticsInfoAMD) = T(x.shaderStageMask, from_vk(ShaderResourceUsageAMD, x.resourceUsage), x.numPhysicalVgprs, x.numPhysicalSgprs, x.numAvailableVgprs, x.numAvailableSgprs, x.computeWorkGroupSize)
 
@@ -6238,6 +7261,8 @@ from_vk(T::Type{MemoryFdPropertiesKHR}, x::VkMemoryFdPropertiesKHR) = T(x.sType,
 
 from_vk(T::Type{MemoryWin32HandlePropertiesKHR}, x::VkMemoryWin32HandlePropertiesKHR) = T(x.sType, x.pNext, x.memoryTypeBits)
 
+from_vk(T::Type{MemoryZirconHandlePropertiesFUCHSIA}, x::VkMemoryZirconHandlePropertiesFUCHSIA) = T(x.sType, x.pNext, x.memoryTypeBits)
+
 from_vk(T::Type{PhysicalDeviceIDProperties}, x::VkPhysicalDeviceIDProperties) = T(x.sType, x.pNext, from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid))
 
 from_vk(T::Type{ExternalBufferProperties}, x::VkExternalBufferProperties) = T(x.sType, x.pNext, from_vk(ExternalMemoryProperties, x.externalMemoryProperties))
@@ -6308,11 +7333,638 @@ from_vk(T::Type{ExtensionProperties}, x::VkExtensionProperties) = T(from_vk(Stri
 
 from_vk(T::Type{PhysicalDeviceProperties}, x::VkPhysicalDeviceProperties) = T(from_vk(VersionNumber, x.apiVersion), from_vk(VersionNumber, x.driverVersion), x.vendorID, x.deviceID, x.deviceType, from_vk(String, x.deviceName), from_vk(String, x.pipelineCacheUUID), from_vk(PhysicalDeviceLimits, x.limits), from_vk(PhysicalDeviceSparseProperties, x.sparseProperties))
 
+function PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::VkProvokingVertexModeEXT; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPipelineRasterizationProvokingVertexStateCreateInfoEXT(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), provoking_vertex_mode)
+    PipelineRasterizationProvokingVertexStateCreateInfoEXT(vks, deps)
+end
+
+function PhysicalDeviceProvokingVertexFeaturesEXT(provoking_vertex_last::Bool, transform_feedback_preserves_provoking_vertex::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceProvokingVertexFeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), provoking_vertex_last, transform_feedback_preserves_provoking_vertex)
+    PhysicalDeviceProvokingVertexFeaturesEXT(vks, deps)
+end
+
+function PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(ycbcr_444_formats::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), ycbcr_444_formats)
+    PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(vks, deps)
+end
+
+function CommandBufferInheritanceViewportScissorInfoNV(viewport_scissor_2_d::Bool, viewport_depth_count::Integer, viewport_depths::Viewport; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    viewport_depths = cconvert(Ptr{VkViewport}, viewport_depths)
+    deps = [next, viewport_depths]
+    vks = VkCommandBufferInheritanceViewportScissorInfoNV(VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), viewport_scissor_2_d, viewport_depth_count, unsafe_convert(Ptr{VkViewport}, viewport_depths))
+    CommandBufferInheritanceViewportScissorInfoNV(vks, deps)
+end
+
+function PhysicalDeviceInheritedViewportScissorFeaturesNV(inherited_viewport_scissor_2_d::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceInheritedViewportScissorFeaturesNV(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV, unsafe_convert(Ptr{Cvoid}, next), inherited_viewport_scissor_2_d)
+    PhysicalDeviceInheritedViewportScissorFeaturesNV(vks, deps)
+end
+
+function VideoEncodeH264NaluSliceEXT(slice_header_std::StdVideoEncodeH264SliceHeader, mb_count::Integer, ref_final_list_0_entries::AbstractArray, ref_final_list_1_entries::AbstractArray, preceding_nalu_bytes::Integer, min_qp::Integer, max_qp::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    slice_header_std = cconvert(Ptr{StdVideoEncodeH264SliceHeader}, slice_header_std)
+    ref_final_list_0_entries = cconvert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_final_list_0_entries)
+    ref_final_list_1_entries = cconvert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_final_list_1_entries)
+    deps = [next, slice_header_std, ref_final_list_0_entries, ref_final_list_1_entries]
+    vks = VkVideoEncodeH264NaluSliceEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_NALU_SLICE_EXT, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoEncodeH264SliceHeader}, slice_header_std), mb_count, pointer_length(ref_final_list_0_entries), unsafe_convert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_final_list_0_entries), pointer_length(ref_final_list_1_entries), unsafe_convert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_final_list_1_entries), preceding_nalu_bytes, min_qp, max_qp)
+    VideoEncodeH264NaluSliceEXT(vks, deps)
+end
+
+function VideoEncodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoEncodeH264ProfileEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_PROFILE_EXT, unsafe_convert(Ptr{Cvoid}, next), std_profile_idc)
+    VideoEncodeH264ProfileEXT(vks, deps)
+end
+
+function VideoEncodeH264EmitPictureParametersEXT(sps_id::Integer, emit_sps_enable::Bool, pps_id_entries::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    pps_id_entries = cconvert(Ptr{UInt8}, pps_id_entries)
+    deps = [next, pps_id_entries]
+    vks = VkVideoEncodeH264EmitPictureParametersEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_EMIT_PICTURE_PARAMETERS_EXT, unsafe_convert(Ptr{Cvoid}, next), sps_id, emit_sps_enable, pointer_length(pps_id_entries), unsafe_convert(Ptr{UInt8}, pps_id_entries))
+    VideoEncodeH264EmitPictureParametersEXT(vks, deps)
+end
+
+function VideoEncodeH264VclFrameInfoEXT(ref_default_final_list_0_entries::AbstractArray, ref_default_final_list_1_entries::AbstractArray, nalu_slice_entries::AbstractArray, current_picture_info::VideoEncodeH264DpbSlotInfoEXT; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    ref_default_final_list_0_entries = cconvert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_0_entries)
+    ref_default_final_list_1_entries = cconvert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_1_entries)
+    nalu_slice_entries = cconvert(Ptr{VkVideoEncodeH264NaluSliceEXT}, nalu_slice_entries)
+    current_picture_info = cconvert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, current_picture_info)
+    deps = [next, ref_default_final_list_0_entries, ref_default_final_list_1_entries, nalu_slice_entries, current_picture_info]
+    vks = VkVideoEncodeH264VclFrameInfoEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_VCL_FRAME_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), pointer_length(ref_default_final_list_0_entries), unsafe_convert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_0_entries), pointer_length(ref_default_final_list_1_entries), unsafe_convert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_1_entries), pointer_length(nalu_slice_entries), unsafe_convert(Ptr{VkVideoEncodeH264NaluSliceEXT}, nalu_slice_entries), unsafe_convert(Ptr{VkVideoEncodeH264DpbSlotInfoEXT}, current_picture_info))
+    VideoEncodeH264VclFrameInfoEXT(vks, deps)
+end
+
+function VideoEncodeH264DpbSlotInfoEXT(slot_index::Integer, std_picture_info::StdVideoEncodeH264PictureInfo; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_picture_info = cconvert(Ptr{StdVideoEncodeH264PictureInfo}, std_picture_info)
+    deps = [next, std_picture_info]
+    vks = VkVideoEncodeH264DpbSlotInfoEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_DPB_SLOT_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), slot_index, unsafe_convert(Ptr{StdVideoEncodeH264PictureInfo}, std_picture_info))
+    VideoEncodeH264DpbSlotInfoEXT(vks, deps)
+end
+
+function VideoEncodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    parameters_add_info = cconvert(Ptr{VkVideoEncodeH264SessionParametersAddInfoEXT}, parameters_add_info)
+    deps = [next, parameters_add_info]
+    vks = VkVideoEncodeH264SessionParametersCreateInfoEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), max_sps_std_count, max_pps_std_count, unsafe_convert(Ptr{VkVideoEncodeH264SessionParametersAddInfoEXT}, parameters_add_info))
+    VideoEncodeH264SessionParametersCreateInfoEXT(vks, deps)
+end
+
+function VideoEncodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    sps_std = cconvert(Ptr{StdVideoH264SequenceParameterSet}, sps_std)
+    pps_std = cconvert(Ptr{StdVideoH264PictureParameterSet}, pps_std)
+    deps = [next, sps_std, pps_std]
+    vks = VkVideoEncodeH264SessionParametersAddInfoEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), pointer_length(sps_std), unsafe_convert(Ptr{StdVideoH264SequenceParameterSet}, sps_std), pointer_length(pps_std), unsafe_convert(Ptr{StdVideoH264PictureParameterSet}, pps_std))
+    VideoEncodeH264SessionParametersAddInfoEXT(vks, deps)
+end
+
+function VideoEncodeH264SessionCreateInfoEXT(flags::VideoEncodeH264CreateFlagEXT, max_picture_size_in_mbs::Extent2D, std_extension_version::ExtensionProperties; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_extension_version = cconvert(Ptr{VkExtensionProperties}, std_extension_version)
+    deps = [next, std_extension_version]
+    vks = VkVideoEncodeH264SessionCreateInfoEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, max_picture_size_in_mbs.vks, unsafe_convert(Ptr{VkExtensionProperties}, std_extension_version))
+    VideoEncodeH264SessionCreateInfoEXT(vks, deps)
+end
+
+function VideoEncodeH264CapabilitiesEXT(flags::VideoEncodeH264CapabilitiesFlagEXT, input_mode_flags::VideoEncodeH264InputModeFlagEXT, output_mode_flags::VideoEncodeH264OutputModeFlagEXT, min_picture_size_in_mbs::Extent2D, max_picture_size_in_mbs::Extent2D, input_image_data_alignment::Extent2D, max_num_l_0_reference_for_p::Integer, max_num_l_0_reference_for_b::Integer, max_num_l_1_reference::Integer, quality_level_count::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoEncodeH264CapabilitiesEXT(VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_CAPABILITIES_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, input_mode_flags, output_mode_flags, min_picture_size_in_mbs.vks, max_picture_size_in_mbs.vks, input_image_data_alignment.vks, max_num_l_0_reference_for_p, max_num_l_0_reference_for_b, max_num_l_1_reference, quality_level_count, std_extension_version.vks)
+    VideoEncodeH264CapabilitiesEXT(vks, deps)
+end
+
+function VideoEncodeRateControlInfoKHR(flags::VideoEncodeRateControlFlagKHR, rate_control_mode::VideoEncodeRateControlModeFlagKHR, average_bitrate::Integer, peak_to_average_bitrate_ratio::Integer, frame_rate_numerator::Integer, frame_rate_denominator::Integer, virtual_buffer_size_in_ms::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoEncodeRateControlInfoKHR(VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, VkVideoEncodeRateControlModeFlagBitsKHR(rate_control_mode.val), average_bitrate, peak_to_average_bitrate_ratio, frame_rate_numerator, frame_rate_denominator, virtual_buffer_size_in_ms)
+    VideoEncodeRateControlInfoKHR(vks, deps)
+end
+
+function VideoEncodeInfoKHR(quality_level::Integer, coded_extent::Extent2D, dst_bitstream_buffer::Buffer, dst_bitstream_buffer_offset::Integer, dst_bitstream_buffer_max_range::Integer, src_picture_resource::VideoPictureResourceKHR, setup_reference_slot::VideoReferenceSlotKHR, reference_slots::AbstractArray; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    setup_reference_slot = cconvert(Ptr{VkVideoReferenceSlotKHR}, setup_reference_slot)
+    reference_slots = cconvert(Ptr{VkVideoReferenceSlotKHR}, reference_slots)
+    deps = [next, setup_reference_slot, reference_slots]
+    vks = VkVideoEncodeInfoKHR(VK_STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, quality_level, coded_extent.vks, dst_bitstream_buffer, dst_bitstream_buffer_offset, dst_bitstream_buffer_max_range, src_picture_resource.vks, unsafe_convert(Ptr{VkVideoReferenceSlotKHR}, setup_reference_slot), pointer_length(reference_slots), unsafe_convert(Ptr{VkVideoReferenceSlotKHR}, reference_slots))
+    VideoEncodeInfoKHR(vks, deps, dst_bitstream_buffer)
+end
+
+function VideoCodingControlInfoKHR(; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoCodingControlInfoKHR(VK_STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags)
+    VideoCodingControlInfoKHR(vks, deps)
+end
+
+function VideoEndCodingInfoKHR(; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoEndCodingInfoKHR(VK_STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags)
+    VideoEndCodingInfoKHR(vks, deps)
+end
+
+function VideoBeginCodingInfoKHR(codec_quality_preset::VideoCodingQualityPresetFlagKHR, video_session::VideoSessionKHR, reference_slots::AbstractArray; next = C_NULL, flags = 0, video_session_parameters = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    reference_slots = cconvert(Ptr{VkVideoReferenceSlotKHR}, reference_slots)
+    deps = [next, reference_slots]
+    vks = VkVideoBeginCodingInfoKHR(VK_STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, codec_quality_preset, video_session, video_session_parameters, pointer_length(reference_slots), unsafe_convert(Ptr{VkVideoReferenceSlotKHR}, reference_slots))
+    VideoBeginCodingInfoKHR(vks, deps, video_session, video_session_parameters)
+end
+
+function VideoSessionParametersUpdateInfoKHR(update_sequence_count::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoSessionParametersUpdateInfoKHR(VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), update_sequence_count)
+    VideoSessionParametersUpdateInfoKHR(vks, deps)
+end
+
+function VideoSessionParametersCreateInfoKHR(video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoSessionParametersCreateInfoKHR(VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), video_session_parameters_template, video_session)
+    VideoSessionParametersCreateInfoKHR(vks, deps, video_session_parameters_template, video_session)
+end
+
+function VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    video_profile = cconvert(Ptr{VkVideoProfileKHR}, video_profile)
+    deps = [next, video_profile]
+    vks = VkVideoSessionCreateInfoKHR(VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), queue_family_index, flags, unsafe_convert(Ptr{VkVideoProfileKHR}, video_profile), picture_format, max_coded_extent.vks, reference_pictures_format, max_reference_pictures_slots_count, max_reference_pictures_active_count)
+    VideoSessionCreateInfoKHR(vks, deps)
+end
+
+function VideoDecodeH265DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH265ReferenceInfo; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_reference_info = cconvert(Ptr{StdVideoDecodeH265ReferenceInfo}, std_reference_info)
+    deps = [next, std_reference_info]
+    vks = VkVideoDecodeH265DpbSlotInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH265ReferenceInfo}, std_reference_info))
+    VideoDecodeH265DpbSlotInfoEXT(vks, deps)
+end
+
+function VideoDecodeH265PictureInfoEXT(std_picture_info::StdVideoDecodeH265PictureInfo, slices_data_offsets::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_picture_info = cconvert(Ptr{StdVideoDecodeH265PictureInfo}, std_picture_info)
+    slices_data_offsets = cconvert(Ptr{UInt32}, slices_data_offsets)
+    deps = [next, std_picture_info, slices_data_offsets]
+    vks = VkVideoDecodeH265PictureInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH265PictureInfo}, std_picture_info), pointer_length(slices_data_offsets), unsafe_convert(Ptr{UInt32}, slices_data_offsets))
+    VideoDecodeH265PictureInfoEXT(vks, deps)
+end
+
+function VideoDecodeH265SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    parameters_add_info = cconvert(Ptr{VkVideoDecodeH265SessionParametersAddInfoEXT}, parameters_add_info)
+    deps = [next, parameters_add_info]
+    vks = VkVideoDecodeH265SessionParametersCreateInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), max_sps_std_count, max_pps_std_count, unsafe_convert(Ptr{VkVideoDecodeH265SessionParametersAddInfoEXT}, parameters_add_info))
+    VideoDecodeH265SessionParametersCreateInfoEXT(vks, deps)
+end
+
+function VideoDecodeH265SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    sps_std = cconvert(Ptr{StdVideoH265SequenceParameterSet}, sps_std)
+    pps_std = cconvert(Ptr{StdVideoH265PictureParameterSet}, pps_std)
+    deps = [next, sps_std, pps_std]
+    vks = VkVideoDecodeH265SessionParametersAddInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), pointer_length(sps_std), unsafe_convert(Ptr{StdVideoH265SequenceParameterSet}, sps_std), pointer_length(pps_std), unsafe_convert(Ptr{StdVideoH265PictureParameterSet}, pps_std))
+    VideoDecodeH265SessionParametersAddInfoEXT(vks, deps)
+end
+
+function VideoDecodeH265SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_extension_version = cconvert(Ptr{VkExtensionProperties}, std_extension_version)
+    deps = [next, std_extension_version]
+    vks = VkVideoDecodeH265SessionCreateInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{VkExtensionProperties}, std_extension_version))
+    VideoDecodeH265SessionCreateInfoEXT(vks, deps)
+end
+
+function VideoDecodeH265ProfileEXT(std_profile_idc::StdVideoH265ProfileIdc; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoDecodeH265ProfileEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT, unsafe_convert(Ptr{Cvoid}, next), std_profile_idc)
+    VideoDecodeH265ProfileEXT(vks, deps)
+end
+
+function VideoDecodeH264MvcEXT(std_mvc::StdVideoDecodeH264Mvc; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_mvc = cconvert(Ptr{StdVideoDecodeH264Mvc}, std_mvc)
+    deps = [next, std_mvc]
+    vks = VkVideoDecodeH264MvcEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_MVC_EXT, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH264Mvc}, std_mvc))
+    VideoDecodeH264MvcEXT(vks, deps)
+end
+
+function VideoDecodeH264DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH264ReferenceInfo; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_reference_info = cconvert(Ptr{StdVideoDecodeH264ReferenceInfo}, std_reference_info)
+    deps = [next, std_reference_info]
+    vks = VkVideoDecodeH264DpbSlotInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_DPB_SLOT_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH264ReferenceInfo}, std_reference_info))
+    VideoDecodeH264DpbSlotInfoEXT(vks, deps)
+end
+
+function VideoDecodeH264PictureInfoEXT(std_picture_info::StdVideoDecodeH264PictureInfo, slices_data_offsets::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_picture_info = cconvert(Ptr{StdVideoDecodeH264PictureInfo}, std_picture_info)
+    slices_data_offsets = cconvert(Ptr{UInt32}, slices_data_offsets)
+    deps = [next, std_picture_info, slices_data_offsets]
+    vks = VkVideoDecodeH264PictureInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PICTURE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH264PictureInfo}, std_picture_info), pointer_length(slices_data_offsets), unsafe_convert(Ptr{UInt32}, slices_data_offsets))
+    VideoDecodeH264PictureInfoEXT(vks, deps)
+end
+
+function VideoDecodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    parameters_add_info = cconvert(Ptr{VkVideoDecodeH264SessionParametersAddInfoEXT}, parameters_add_info)
+    deps = [next, parameters_add_info]
+    vks = VkVideoDecodeH264SessionParametersCreateInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), max_sps_std_count, max_pps_std_count, unsafe_convert(Ptr{VkVideoDecodeH264SessionParametersAddInfoEXT}, parameters_add_info))
+    VideoDecodeH264SessionParametersCreateInfoEXT(vks, deps)
+end
+
+function VideoDecodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    sps_std = cconvert(Ptr{StdVideoH264SequenceParameterSet}, sps_std)
+    pps_std = cconvert(Ptr{StdVideoH264PictureParameterSet}, pps_std)
+    deps = [next, sps_std, pps_std]
+    vks = VkVideoDecodeH264SessionParametersAddInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), pointer_length(sps_std), unsafe_convert(Ptr{StdVideoH264SequenceParameterSet}, sps_std), pointer_length(pps_std), unsafe_convert(Ptr{StdVideoH264PictureParameterSet}, pps_std))
+    VideoDecodeH264SessionParametersAddInfoEXT(vks, deps)
+end
+
+function VideoDecodeH264SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    std_extension_version = cconvert(Ptr{VkExtensionProperties}, std_extension_version)
+    deps = [next, std_extension_version]
+    vks = VkVideoDecodeH264SessionCreateInfoEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{VkExtensionProperties}, std_extension_version))
+    VideoDecodeH264SessionCreateInfoEXT(vks, deps)
+end
+
+function VideoDecodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc, field_layout::VideoDecodeH264FieldLayoutFlagEXT; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoDecodeH264ProfileEXT(VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_EXT, unsafe_convert(Ptr{Cvoid}, next), std_profile_idc, field_layout)
+    VideoDecodeH264ProfileEXT(vks, deps)
+end
+
+function VideoDecodeInfoKHR(coded_offset::Offset2D, coded_extent::Extent2D, src_buffer::Buffer, src_buffer_offset::Integer, src_buffer_range::Integer, dst_picture_resource::VideoPictureResourceKHR, setup_reference_slot::VideoReferenceSlotKHR, reference_slots::AbstractArray; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    setup_reference_slot = cconvert(Ptr{VkVideoReferenceSlotKHR}, setup_reference_slot)
+    reference_slots = cconvert(Ptr{VkVideoReferenceSlotKHR}, reference_slots)
+    deps = [next, setup_reference_slot, reference_slots]
+    vks = VkVideoDecodeInfoKHR(VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, coded_offset.vks, coded_extent.vks, src_buffer, src_buffer_offset, src_buffer_range, dst_picture_resource.vks, unsafe_convert(Ptr{VkVideoReferenceSlotKHR}, setup_reference_slot), pointer_length(reference_slots), unsafe_convert(Ptr{VkVideoReferenceSlotKHR}, reference_slots))
+    VideoDecodeInfoKHR(vks, deps, src_buffer)
+end
+
+function VideoReferenceSlotKHR(slot_index::Integer, picture_resource::VideoPictureResourceKHR; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    picture_resource = cconvert(Ptr{VkVideoPictureResourceKHR}, picture_resource)
+    deps = [next, picture_resource]
+    vks = VkVideoReferenceSlotKHR(VK_STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_KHR, unsafe_convert(Ptr{Cvoid}, next), slot_index, unsafe_convert(Ptr{VkVideoPictureResourceKHR}, picture_resource))
+    VideoReferenceSlotKHR(vks, deps)
+end
+
+function VideoPictureResourceKHR(coded_offset::Offset2D, coded_extent::Extent2D, base_array_layer::Integer, image_view_binding::ImageView; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoPictureResourceKHR(VK_STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_KHR, unsafe_convert(Ptr{Cvoid}, next), coded_offset.vks, coded_extent.vks, base_array_layer, image_view_binding)
+    VideoPictureResourceKHR(vks, deps, image_view_binding)
+end
+
+function VideoBindMemoryKHR(memory_bind_index::Integer, memory::DeviceMemory, memory_offset::Integer, memory_size::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoBindMemoryKHR(VK_STRUCTURE_TYPE_VIDEO_BIND_MEMORY_KHR, unsafe_convert(Ptr{Cvoid}, next), memory_bind_index, memory, memory_offset, memory_size)
+    VideoBindMemoryKHR(vks, deps, memory)
+end
+
+function VideoGetMemoryPropertiesKHR(memory_bind_index::Integer, memory_requirements::MemoryRequirements2; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    memory_requirements = cconvert(Ptr{VkMemoryRequirements2}, memory_requirements)
+    deps = [next, memory_requirements]
+    vks = VkVideoGetMemoryPropertiesKHR(VK_STRUCTURE_TYPE_VIDEO_GET_MEMORY_PROPERTIES_KHR, unsafe_convert(Ptr{Cvoid}, next), memory_bind_index, unsafe_convert(Ptr{VkMemoryRequirements2}, memory_requirements))
+    VideoGetMemoryPropertiesKHR(vks, deps)
+end
+
+function VideoProfileKHR(video_codec_operation::VideoCodecOperationFlagKHR, chroma_subsampling::VideoChromaSubsamplingFlagKHR, luma_bit_depth::VideoComponentBitDepthFlagKHR, chroma_bit_depth::VideoComponentBitDepthFlagKHR; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoProfileKHR(VK_STRUCTURE_TYPE_VIDEO_PROFILE_KHR, unsafe_convert(Ptr{Cvoid}, next), VkVideoCodecOperationFlagBitsKHR(video_codec_operation.val), chroma_subsampling, luma_bit_depth, chroma_bit_depth)
+    VideoProfileKHR(vks, deps)
+end
+
+function VideoProfilesKHR(profile_count::Integer, profiles::VideoProfileKHR; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    profiles = cconvert(Ptr{VkVideoProfileKHR}, profiles)
+    deps = [next, profiles]
+    vks = VkVideoProfilesKHR(VK_STRUCTURE_TYPE_VIDEO_PROFILES_KHR, unsafe_convert(Ptr{Cvoid}, next), profile_count, unsafe_convert(Ptr{VkVideoProfileKHR}, profiles))
+    VideoProfilesKHR(vks, deps)
+end
+
+function VideoQueueFamilyProperties2KHR(video_codec_operations::VideoCodecOperationFlagKHR; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVideoQueueFamilyProperties2KHR(VK_STRUCTURE_TYPE_VIDEO_QUEUE_FAMILY_PROPERTIES_2_KHR, unsafe_convert(Ptr{Cvoid}, next), video_codec_operations)
+    VideoQueueFamilyProperties2KHR(vks, deps)
+end
+
+function PhysicalDeviceSynchronization2FeaturesKHR(synchronization2::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceSynchronization2FeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), synchronization2)
+    PhysicalDeviceSynchronization2FeaturesKHR(vks, deps)
+end
+
+function SubmitInfo2KHR(wait_semaphore_infos::AbstractArray, command_buffer_infos::AbstractArray, signal_semaphore_infos::AbstractArray; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    wait_semaphore_infos = cconvert(Ptr{VkSemaphoreSubmitInfoKHR}, wait_semaphore_infos)
+    command_buffer_infos = cconvert(Ptr{VkCommandBufferSubmitInfoKHR}, command_buffer_infos)
+    signal_semaphore_infos = cconvert(Ptr{VkSemaphoreSubmitInfoKHR}, signal_semaphore_infos)
+    deps = [next, wait_semaphore_infos, command_buffer_infos, signal_semaphore_infos]
+    vks = VkSubmitInfo2KHR(VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(wait_semaphore_infos), unsafe_convert(Ptr{VkSemaphoreSubmitInfoKHR}, wait_semaphore_infos), pointer_length(command_buffer_infos), unsafe_convert(Ptr{VkCommandBufferSubmitInfoKHR}, command_buffer_infos), pointer_length(signal_semaphore_infos), unsafe_convert(Ptr{VkSemaphoreSubmitInfoKHR}, signal_semaphore_infos))
+    SubmitInfo2KHR(vks, deps)
+end
+
+function CommandBufferSubmitInfoKHR(command_buffer::CommandBuffer, device_mask::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkCommandBufferSubmitInfoKHR(VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), command_buffer, device_mask)
+    CommandBufferSubmitInfoKHR(vks, deps, command_buffer)
+end
+
+function SemaphoreSubmitInfoKHR(semaphore::Semaphore, value::Integer, device_index::Integer; next = C_NULL, stage_mask = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkSemaphoreSubmitInfoKHR(VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, value, stage_mask, device_index)
+    SemaphoreSubmitInfoKHR(vks, deps, semaphore)
+end
+
+function DependencyInfoKHR(memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; next = C_NULL, dependency_flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    memory_barriers = cconvert(Ptr{VkMemoryBarrier2KHR}, memory_barriers)
+    buffer_memory_barriers = cconvert(Ptr{VkBufferMemoryBarrier2KHR}, buffer_memory_barriers)
+    image_memory_barriers = cconvert(Ptr{VkImageMemoryBarrier2KHR}, image_memory_barriers)
+    deps = [next, memory_barriers, buffer_memory_barriers, image_memory_barriers]
+    vks = VkDependencyInfoKHR(VK_STRUCTURE_TYPE_DEPENDENCY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), dependency_flags, pointer_length(memory_barriers), unsafe_convert(Ptr{VkMemoryBarrier2KHR}, memory_barriers), pointer_length(buffer_memory_barriers), unsafe_convert(Ptr{VkBufferMemoryBarrier2KHR}, buffer_memory_barriers), pointer_length(image_memory_barriers), unsafe_convert(Ptr{VkImageMemoryBarrier2KHR}, image_memory_barriers))
+    DependencyInfoKHR(vks, deps)
+end
+
+function BufferMemoryBarrier2KHR(src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkBufferMemoryBarrier2KHR(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_stage_mask, src_access_mask, dst_stage_mask, dst_access_mask, src_queue_family_index, dst_queue_family_index, buffer, offset, size)
+    BufferMemoryBarrier2KHR(vks, deps, buffer)
+end
+
+function ImageMemoryBarrier2KHR(old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkImageMemoryBarrier2KHR(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_stage_mask, src_access_mask, dst_stage_mask, dst_access_mask, old_layout, new_layout, src_queue_family_index, dst_queue_family_index, image, subresource_range.vks)
+    ImageMemoryBarrier2KHR(vks, deps, image)
+end
+
+function MemoryBarrier2KHR(; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkMemoryBarrier2KHR(VK_STRUCTURE_TYPE_MEMORY_BARRIER_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_stage_mask, src_access_mask, dst_stage_mask, dst_access_mask)
+    MemoryBarrier2KHR(vks, deps)
+end
+
+function PipelineColorWriteCreateInfoEXT(color_write_enables::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    color_write_enables = cconvert(Ptr{VkBool32}, color_write_enables)
+    deps = [next, color_write_enables]
+    vks = VkPipelineColorWriteCreateInfoEXT(VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), pointer_length(color_write_enables), unsafe_convert(Ptr{VkBool32}, color_write_enables))
+    PipelineColorWriteCreateInfoEXT(vks, deps)
+end
+
+function PhysicalDeviceColorWriteEnableFeaturesEXT(color_write_enable::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceColorWriteEnableFeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), color_write_enable)
+    PhysicalDeviceColorWriteEnableFeaturesEXT(vks, deps)
+end
+
+function VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::VkFormat, offset::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVertexInputAttributeDescription2EXT(VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT, unsafe_convert(Ptr{Cvoid}, next), location, binding, format, offset)
+    VertexInputAttributeDescription2EXT(vks, deps)
+end
+
+function VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VkVertexInputRate, divisor::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkVertexInputBindingDescription2EXT(VK_STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT, unsafe_convert(Ptr{Cvoid}, next), binding, stride, input_rate, divisor)
+    VertexInputBindingDescription2EXT(vks, deps)
+end
+
+function PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vertex_input_dynamic_state::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), vertex_input_dynamic_state)
+    PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vks, deps)
+end
+
+function MutableDescriptorTypeCreateInfoVALVE(mutable_descriptor_type_lists::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    mutable_descriptor_type_lists = cconvert(Ptr{VkMutableDescriptorTypeListVALVE}, mutable_descriptor_type_lists)
+    deps = [next, mutable_descriptor_type_lists]
+    vks = VkMutableDescriptorTypeCreateInfoVALVE(VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE, unsafe_convert(Ptr{Cvoid}, next), pointer_length(mutable_descriptor_type_lists), unsafe_convert(Ptr{VkMutableDescriptorTypeListVALVE}, mutable_descriptor_type_lists))
+    MutableDescriptorTypeCreateInfoVALVE(vks, deps)
+end
+
+function MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray)
+    descriptor_types = cconvert(Ptr{VkDescriptorType}, descriptor_types)
+    deps = [descriptor_types]
+    vks = VkMutableDescriptorTypeListVALVE(pointer_length(descriptor_types), unsafe_convert(Ptr{VkDescriptorType}, descriptor_types))
+    MutableDescriptorTypeListVALVE(vks, deps)
+end
+
+function PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(mutable_descriptor_type::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE, unsafe_convert(Ptr{Cvoid}, next), mutable_descriptor_type)
+    PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(vks, deps)
+end
+
+function AccelerationStructureBuildSizesInfoKHR(acceleration_structure_size::Integer, update_scratch_size::Integer, build_scratch_size::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkAccelerationStructureBuildSizesInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), acceleration_structure_size, update_scratch_size, build_scratch_size)
+    AccelerationStructureBuildSizesInfoKHR(vks, deps)
+end
+
+function PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::VkFragmentShadingRateTypeNV, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPipelineFragmentShadingRateEnumStateCreateInfoNV(VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), shading_rate_type, shading_rate, combiner_ops)
+    PipelineFragmentShadingRateEnumStateCreateInfoNV(vks, deps)
+end
+
+function PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(max_fragment_shading_rate_invocation_count::SampleCountFlag; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV, unsafe_convert(Ptr{Cvoid}, next), VkSampleCountFlagBits(max_fragment_shading_rate_invocation_count.val))
+    PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(vks, deps)
+end
+
+function PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(fragment_shading_rate_enums::Bool, supersample_fragment_shading_rates::Bool, no_invocation_fragment_shading_rates::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV, unsafe_convert(Ptr{Cvoid}, next), fragment_shading_rate_enums, supersample_fragment_shading_rates, no_invocation_fragment_shading_rates)
+    PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(vks, deps)
+end
+
+function PhysicalDeviceShaderTerminateInvocationFeaturesKHR(shader_terminate_invocation::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), shader_terminate_invocation)
+    PhysicalDeviceShaderTerminateInvocationFeaturesKHR(vks, deps)
+end
+
+function PhysicalDeviceFragmentShadingRateFeaturesKHR(pipeline_fragment_shading_rate::Bool, primitive_fragment_shading_rate::Bool, attachment_fragment_shading_rate::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceFragmentShadingRateFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), pipeline_fragment_shading_rate, primitive_fragment_shading_rate, attachment_fragment_shading_rate)
+    PhysicalDeviceFragmentShadingRateFeaturesKHR(vks, deps)
+end
+
+function PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPipelineFragmentShadingRateStateCreateInfoKHR(VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fragment_size.vks, combiner_ops)
+    PipelineFragmentShadingRateStateCreateInfoKHR(vks, deps)
+end
+
+function FragmentShadingRateAttachmentInfoKHR(fragment_shading_rate_attachment::AttachmentReference2, shading_rate_attachment_texel_size::Extent2D; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    fragment_shading_rate_attachment = cconvert(Ptr{VkAttachmentReference2}, fragment_shading_rate_attachment)
+    deps = [next, fragment_shading_rate_attachment]
+    vks = VkFragmentShadingRateAttachmentInfoKHR(VK_STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkAttachmentReference2}, fragment_shading_rate_attachment), shading_rate_attachment_texel_size.vks)
+    FragmentShadingRateAttachmentInfoKHR(vks, deps)
+end
+
+function PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(shader_image_int_64_atomics::Bool, sparse_image_int_64_atomics::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), shader_image_int_64_atomics, sparse_image_int_64_atomics)
+    PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(vks, deps)
+end
+
+function ResolveImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    regions = cconvert(Ptr{VkImageResolve2KHR}, regions)
+    deps = [next, regions]
+    vks = VkResolveImageInfo2KHR(VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), unsafe_convert(Ptr{VkImageResolve2KHR}, regions))
+    ResolveImageInfo2KHR(vks, deps, src_image, dst_image)
+end
+
+function CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    regions = cconvert(Ptr{VkBufferImageCopy2KHR}, regions)
+    deps = [next, regions]
+    vks = VkCopyImageToBufferInfo2KHR(VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_buffer, pointer_length(regions), unsafe_convert(Ptr{VkBufferImageCopy2KHR}, regions))
+    CopyImageToBufferInfo2KHR(vks, deps, src_image, dst_buffer)
+end
+
+function CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    regions = cconvert(Ptr{VkBufferImageCopy2KHR}, regions)
+    deps = [next, regions]
+    vks = VkCopyBufferToImageInfo2KHR(VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_buffer, dst_image, dst_image_layout, pointer_length(regions), unsafe_convert(Ptr{VkBufferImageCopy2KHR}, regions))
+    CopyBufferToImageInfo2KHR(vks, deps, src_buffer, dst_image)
+end
+
+function BlitImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray, filter::VkFilter; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    regions = cconvert(Ptr{VkImageBlit2KHR}, regions)
+    deps = [next, regions]
+    vks = VkBlitImageInfo2KHR(VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), unsafe_convert(Ptr{VkImageBlit2KHR}, regions), filter)
+    BlitImageInfo2KHR(vks, deps, src_image, dst_image)
+end
+
+function CopyImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    regions = cconvert(Ptr{VkImageCopy2KHR}, regions)
+    deps = [next, regions]
+    vks = VkCopyImageInfo2KHR(VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), unsafe_convert(Ptr{VkImageCopy2KHR}, regions))
+    CopyImageInfo2KHR(vks, deps, src_image, dst_image)
+end
+
+function CopyBufferInfo2KHR(src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    regions = cconvert(Ptr{VkBufferCopy2KHR}, regions)
+    deps = [next, regions]
+    vks = VkCopyBufferInfo2KHR(VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_buffer, dst_buffer, pointer_length(regions), unsafe_convert(Ptr{VkBufferCopy2KHR}, regions))
+    CopyBufferInfo2KHR(vks, deps, src_buffer, dst_buffer)
+end
+
+function ImageResolve2KHR(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkImageResolve2KHR(VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_subresource.vks, src_offset.vks, dst_subresource.vks, dst_offset.vks, extent.vks)
+    ImageResolve2KHR(vks, deps)
+end
+
+function BufferImageCopy2KHR(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::ImageSubresourceLayers, image_offset::Offset3D, image_extent::Extent3D; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkBufferImageCopy2KHR(VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR, unsafe_convert(Ptr{Cvoid}, next), buffer_offset, buffer_row_length, buffer_image_height, image_subresource.vks, image_offset.vks, image_extent.vks)
+    BufferImageCopy2KHR(vks, deps)
+end
+
+function ImageBlit2KHR(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, Offset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, Offset3D}; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkImageBlit2KHR(VK_STRUCTURE_TYPE_IMAGE_BLIT_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_subresource.vks, to_vk(NTuple{2, VkOffset3D}, src_offsets), dst_subresource.vks, to_vk(NTuple{2, VkOffset3D}, dst_offsets))
+    ImageBlit2KHR(vks, deps)
+end
+
+function ImageCopy2KHR(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkImageCopy2KHR(VK_STRUCTURE_TYPE_IMAGE_COPY_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_subresource.vks, src_offset.vks, dst_subresource.vks, dst_offset.vks, extent.vks)
+    ImageCopy2KHR(vks, deps)
+end
+
+function BufferCopy2KHR(src_offset::Integer, dst_offset::Integer, size::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkBufferCopy2KHR(VK_STRUCTURE_TYPE_BUFFER_COPY_2_KHR, unsafe_convert(Ptr{Cvoid}, next), src_offset, dst_offset, size)
+    BufferCopy2KHR(vks, deps)
+end
+
 function PhysicalDevice4444FormatsFeaturesEXT(format_a4r4g4b4::Bool, format_a4b4g4r4::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPhysicalDevice4444FormatsFeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), format_a4r4g4b4, format_a4b4g4r4)
     PhysicalDevice4444FormatsFeaturesEXT(vks, deps)
+end
+
+function PhysicalDevicePortabilitySubsetPropertiesKHR(min_vertex_input_binding_stride_alignment::Integer; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDevicePortabilitySubsetPropertiesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR, unsafe_convert(Ptr{Cvoid}, next), min_vertex_input_binding_stride_alignment)
+    PhysicalDevicePortabilitySubsetPropertiesKHR(vks, deps)
+end
+
+function PhysicalDevicePortabilitySubsetFeaturesKHR(constant_alpha_color_blend_factors::Bool, events::Bool, image_view_format_reinterpretation::Bool, image_view_format_swizzle::Bool, image_view_2_d_on_3_d_image::Bool, multisample_array_image::Bool, mutable_comparison_samplers::Bool, point_polygons::Bool, sampler_mip_lod_bias::Bool, separate_stencil_mask_ref::Bool, shader_sample_rate_interpolation_functions::Bool, tessellation_isolines::Bool, tessellation_point_mode::Bool, triangle_fans::Bool, vertex_attribute_access_beyond_stride::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDevicePortabilitySubsetFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), constant_alpha_color_blend_factors, events, image_view_format_reinterpretation, image_view_format_swizzle, image_view_2_d_on_3_d_image, multisample_array_image, mutable_comparison_samplers, point_polygons, sampler_mip_lod_bias, separate_stencil_mask_ref, shader_sample_rate_interpolation_functions, tessellation_isolines, tessellation_point_mode, triangle_fans, vertex_attribute_access_beyond_stride)
+    PhysicalDevicePortabilitySubsetFeaturesKHR(vks, deps)
+end
+
+function PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(workgroup_memory_explicit_layout::Bool, workgroup_memory_explicit_layout_scalar_block_layout::Bool, workgroup_memory_explicit_layout_8_bit_access::Bool, workgroup_memory_explicit_layout_16_bit_access::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), workgroup_memory_explicit_layout, workgroup_memory_explicit_layout_scalar_block_layout, workgroup_memory_explicit_layout_8_bit_access, workgroup_memory_explicit_layout_16_bit_access)
+    PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(vks, deps)
 end
 
 function PhysicalDeviceImageRobustnessFeaturesEXT(robust_image_access::Bool; next = C_NULL)
@@ -6327,6 +7979,13 @@ function PhysicalDeviceRobustness2FeaturesEXT(robust_buffer_access_2::Bool, robu
     deps = [next]
     vks = VkPhysicalDeviceRobustness2FeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), robust_buffer_access_2, robust_image_access_2, null_descriptor)
     PhysicalDeviceRobustness2FeaturesEXT(vks, deps)
+end
+
+function PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(shader_zero_initialize_workgroup_memory::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), shader_zero_initialize_workgroup_memory)
+    PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(vks, deps)
 end
 
 function DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
@@ -6350,11 +8009,25 @@ function CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceT
     CommandBufferInheritanceRenderPassTransformInfoQCOM(vks, deps)
 end
 
+function CopyCommandTransformInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkCopyCommandTransformInfoQCOM(VK_STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(transform.val))
+    CopyCommandTransformInfoQCOM(vks, deps)
+end
+
 function RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkRenderPassTransformBeginInfoQCOM(VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM, unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(transform.val))
     RenderPassTransformBeginInfoQCOM(vks, deps)
+end
+
+function PhysicalDeviceExtendedDynamicState2FeaturesEXT(extended_dynamic_state_2::Bool, extended_dynamic_state_2_logic_op::Bool, extended_dynamic_state_2_patch_control_points::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceExtendedDynamicState2FeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), extended_dynamic_state_2, extended_dynamic_state_2_logic_op, extended_dynamic_state_2_patch_control_points)
+    PhysicalDeviceExtendedDynamicState2FeaturesEXT(vks, deps)
 end
 
 function PhysicalDeviceExtendedDynamicStateFeaturesEXT(extended_dynamic_state::Bool; next = C_NULL)
@@ -6372,17 +8045,10 @@ function PipelineLibraryCreateInfoKHR(libraries::AbstractArray; next = C_NULL)
     PipelineLibraryCreateInfoKHR(vks, deps)
 end
 
-function DeferredOperationInfoKHR(operation_handle::DeferredOperationKHR; next = C_NULL)
+function RayTracingPipelineInterfaceCreateInfoKHR(max_pipeline_ray_payload_size::Integer, max_pipeline_ray_hit_attribute_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkDeferredOperationInfoKHR(VK_STRUCTURE_TYPE_DEFERRED_OPERATION_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), operation_handle)
-    DeferredOperationInfoKHR(vks, deps, operation_handle)
-end
-
-function RayTracingPipelineInterfaceCreateInfoKHR(max_payload_size::Integer, max_attribute_size::Integer, max_callable_size::Integer; next = C_NULL)
-    next = cconvert(Ptr{Cvoid}, next)
-    deps = [next]
-    vks = VkRayTracingPipelineInterfaceCreateInfoKHR(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), max_payload_size, max_attribute_size, max_callable_size)
+    vks = VkRayTracingPipelineInterfaceCreateInfoKHR(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), max_pipeline_ray_payload_size, max_pipeline_ray_hit_attribute_size)
     RayTracingPipelineInterfaceCreateInfoKHR(vks, deps)
 end
 
@@ -6407,12 +8073,12 @@ function CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::Ac
     CopyAccelerationStructureInfoKHR(vks, deps, src, dst)
 end
 
-function AccelerationStructureVersionKHR(version_data::AbstractArray; next = C_NULL)
+function AccelerationStructureVersionInfoKHR(version_data::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     version_data = cconvert(Ptr{UInt8}, version_data)
     deps = [next, version_data]
-    vks = VkAccelerationStructureVersionKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{UInt8}, version_data))
-    AccelerationStructureVersionKHR(vks, deps)
+    vks = VkAccelerationStructureVersionInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{UInt8}, version_data))
+    AccelerationStructureVersionInfoKHR(vks, deps)
 end
 
 function AccelerationStructureDeviceAddressInfoKHR(acceleration_structure::AccelerationStructureKHR; next = C_NULL)
@@ -6434,30 +8100,23 @@ function AabbPositionsKHR(min_x::Real, min_y::Real, min_z::Real, max_x::Real, ma
     AabbPositionsKHR(VkAabbPositionsKHR(min_x, min_y, min_z, max_x, max_y, max_z))
 end
 
-function AccelerationStructureCreateInfoKHR(compacted_size::Integer, type::VkAccelerationStructureTypeKHR, geometry_infos::AbstractArray; next = C_NULL, flags = 0, device_address = 0)
-    next = cconvert(Ptr{Cvoid}, next)
-    geometry_infos = cconvert(Ptr{VkAccelerationStructureCreateGeometryTypeInfoKHR}, geometry_infos)
-    deps = [next, geometry_infos]
-    vks = VkAccelerationStructureCreateInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), compacted_size, type, flags, pointer_length(geometry_infos), unsafe_convert(Ptr{VkAccelerationStructureCreateGeometryTypeInfoKHR}, geometry_infos), device_address)
-    AccelerationStructureCreateInfoKHR(vks, deps)
-end
-
-function AccelerationStructureCreateGeometryTypeInfoKHR(geometry_type::VkGeometryTypeKHR, max_primitive_count::Integer, index_type::VkIndexType; next = C_NULL, max_vertex_count = 0, vertex_format = 0, allows_transforms = 0)
+function AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkAccelerationStructureCreateGeometryTypeInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_GEOMETRY_TYPE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), geometry_type, max_primitive_count, index_type, max_vertex_count, vertex_format, allows_transforms)
-    AccelerationStructureCreateGeometryTypeInfoKHR(vks, deps)
+    vks = VkAccelerationStructureCreateInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), create_flags, buffer, offset, size, type, device_address)
+    AccelerationStructureCreateInfoKHR(vks, deps, buffer)
 end
 
-function AccelerationStructureBuildOffsetInfoKHR(primitive_count::Integer, primitive_offset::Integer; first_vertex = 0, transform_offset = 0)
-    AccelerationStructureBuildOffsetInfoKHR(VkAccelerationStructureBuildOffsetInfoKHR(primitive_count, primitive_offset, first_vertex, transform_offset))
+function AccelerationStructureBuildRangeInfoKHR(primitive_count::Integer, primitive_offset::Integer, first_vertex::Integer, transform_offset::Integer)
+    AccelerationStructureBuildRangeInfoKHR(VkAccelerationStructureBuildRangeInfoKHR(primitive_count, primitive_offset, first_vertex, transform_offset))
 end
 
-function AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, update::Bool, dst_acceleration_structure::AccelerationStructureKHR, geometry_array_of_pointers::Bool, geometries::AccelerationStructureGeometryKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, geometry_count = 0)
+function AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, mode::VkBuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
-    geometries = cconvert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries)
-    deps = [next, geometries]
-    vks = VkAccelerationStructureBuildGeometryInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), type, flags, update, src_acceleration_structure, dst_acceleration_structure, geometry_array_of_pointers, geometry_count, unsafe_convert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries), scratch_data)
+    geometries = cconvert(Ptr{VkAccelerationStructureGeometryKHR}, geometries)
+    geometries_2 = cconvert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries_2)
+    deps = [next, geometries, geometries_2]
+    vks = VkAccelerationStructureBuildGeometryInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), type, flags, mode, src_acceleration_structure, dst_acceleration_structure, pointer_length(geometries), unsafe_convert(Ptr{VkAccelerationStructureGeometryKHR}, geometries), unsafe_convert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries), scratch_data)
     AccelerationStructureBuildGeometryInfoKHR(vks, deps, src_acceleration_structure, dst_acceleration_structure)
 end
 
@@ -6482,10 +8141,10 @@ function AccelerationStructureGeometryAabbsDataKHR(data::VkDeviceOrHostAddressCo
     AccelerationStructureGeometryAabbsDataKHR(vks, deps)
 end
 
-function AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, index_type::VkIndexType; next = C_NULL, index_data = 0, transform_data = 0)
+function AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::VkIndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkAccelerationStructureGeometryTrianglesDataKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR, unsafe_convert(Ptr{Cvoid}, next), vertex_format, vertex_data, vertex_stride, index_type, index_data, transform_data)
+    vks = VkAccelerationStructureGeometryTrianglesDataKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR, unsafe_convert(Ptr{Cvoid}, next), vertex_format, vertex_data, vertex_stride, max_vertex, index_type, index_data, transform_data)
     AccelerationStructureGeometryTrianglesDataKHR(vks, deps)
 end
 
@@ -6538,7 +8197,7 @@ function PhysicalDevicePipelineCreationCacheControlFeaturesEXT(pipeline_creation
     PhysicalDevicePipelineCreationCacheControlFeaturesEXT(vks, deps)
 end
 
-function PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::VkLineRasterizationModeEXT, stippled_line_enable::Bool; next = C_NULL, line_stipple_factor = 0, line_stipple_pattern = 0)
+function PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::VkLineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkPipelineRasterizationLineStateCreateInfoEXT(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), line_rasterization_mode, stippled_line_enable, line_stipple_factor, line_stipple_pattern)
@@ -6692,7 +8351,7 @@ function QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling:
     QueryPoolPerformanceQueryCreateInfoINTEL(vks, deps)
 end
 
-function InitializePerformanceApiInfoINTEL(user_data::Ptr{Cvoid}; next = C_NULL)
+function InitializePerformanceApiInfoINTEL(; next = C_NULL, user_data = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     user_data = cconvert(Ptr{Cvoid}, user_data)
     deps = [next, user_data]
@@ -7018,29 +8677,44 @@ function TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Int
     TraceRaysIndirectCommandKHR(VkTraceRaysIndirectCommandKHR(width, height, depth))
 end
 
-function StridedBufferRegionKHR(offset::Integer, stride::Integer, size::Integer; buffer = C_NULL)
-    StridedBufferRegionKHR(VkStridedBufferRegionKHR(buffer, offset, stride, size), buffer)
+function StridedDeviceAddressRegionKHR(stride::Integer, size::Integer; device_address = 0)
+    StridedDeviceAddressRegionKHR(VkStridedDeviceAddressRegionKHR(device_address, stride, size))
 end
 
-function PhysicalDeviceRayTracingFeaturesKHR(ray_tracing::Bool, ray_tracing_shader_group_handle_capture_replay::Bool, ray_tracing_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_acceleration_structure_capture_replay::Bool, ray_tracing_indirect_trace_rays::Bool, ray_tracing_indirect_acceleration_structure_build::Bool, ray_tracing_host_acceleration_structure_commands::Bool, ray_query::Bool, ray_tracing_primitive_culling::Bool; next = C_NULL)
+function PhysicalDeviceRayQueryFeaturesKHR(ray_query::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
-    vks = VkPhysicalDeviceRayTracingFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), ray_tracing, ray_tracing_shader_group_handle_capture_replay, ray_tracing_shader_group_handle_capture_replay_mixed, ray_tracing_acceleration_structure_capture_replay, ray_tracing_indirect_trace_rays, ray_tracing_indirect_acceleration_structure_build, ray_tracing_host_acceleration_structure_commands, ray_query, ray_tracing_primitive_culling)
-    PhysicalDeviceRayTracingFeaturesKHR(vks, deps)
+    vks = VkPhysicalDeviceRayQueryFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), ray_query)
+    PhysicalDeviceRayQueryFeaturesKHR(vks, deps)
 end
 
-function AccelerationStructureMemoryRequirementsInfoNV(type::VkAccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::VkAccelerationStructureNV; next = C_NULL)
+function PhysicalDeviceRayTracingPipelineFeaturesKHR(ray_tracing_pipeline::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_pipeline_trace_rays_indirect::Bool, ray_traversal_primitive_culling::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceRayTracingPipelineFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), ray_tracing_pipeline, ray_tracing_pipeline_shader_group_handle_capture_replay, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed, ray_tracing_pipeline_trace_rays_indirect, ray_traversal_primitive_culling)
+    PhysicalDeviceRayTracingPipelineFeaturesKHR(vks, deps)
+end
+
+function PhysicalDeviceAccelerationStructureFeaturesKHR(acceleration_structure::Bool, acceleration_structure_capture_replay::Bool, acceleration_structure_indirect_build::Bool, acceleration_structure_host_commands::Bool, descriptor_binding_acceleration_structure_update_after_bind::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceAccelerationStructureFeaturesKHR(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR, unsafe_convert(Ptr{Cvoid}, next), acceleration_structure, acceleration_structure_capture_replay, acceleration_structure_indirect_build, acceleration_structure_host_commands, descriptor_binding_acceleration_structure_update_after_bind)
+    PhysicalDeviceAccelerationStructureFeaturesKHR(vks, deps)
+end
+
+function AccelerationStructureMemoryRequirementsInfoNV(type::VkAccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkAccelerationStructureMemoryRequirementsInfoNV(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), type, acceleration_structure)
-    AccelerationStructureMemoryRequirementsInfoNV(vks, deps)
+    AccelerationStructureMemoryRequirementsInfoNV(vks, deps, acceleration_structure)
 end
 
-function AccelerationStructureMemoryRequirementsInfoKHR(type::VkAccelerationStructureMemoryRequirementsTypeKHR, build_type::VkAccelerationStructureBuildTypeKHR, acceleration_structure::AccelerationStructureKHR; next = C_NULL)
+function WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
-    deps = [next]
-    vks = VkAccelerationStructureMemoryRequirementsInfoKHR(VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), type, build_type, acceleration_structure)
-    AccelerationStructureMemoryRequirementsInfoKHR(vks, deps, acceleration_structure)
+    acceleration_structures = cconvert(Ptr{VkAccelerationStructureNV}, acceleration_structures)
+    deps = [next, acceleration_structures]
+    vks = VkWriteDescriptorSetAccelerationStructureNV(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV, unsafe_convert(Ptr{Cvoid}, next), pointer_length(acceleration_structures), unsafe_convert(Ptr{VkAccelerationStructureNV}, acceleration_structures))
+    WriteDescriptorSetAccelerationStructureNV(vks, deps)
 end
 
 function WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray; next = C_NULL)
@@ -7051,12 +8725,12 @@ function WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::Abs
     WriteDescriptorSetAccelerationStructureKHR(vks, deps)
 end
 
-function BindAccelerationStructureMemoryInfoKHR(acceleration_structure::AccelerationStructureKHR, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray; next = C_NULL)
+function BindAccelerationStructureMemoryInfoNV(acceleration_structure::AccelerationStructureNV, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     deps = [next, device_indices]
-    vks = VkBindAccelerationStructureMemoryInfoKHR(VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), acceleration_structure, memory, memory_offset, pointer_length(device_indices), unsafe_convert(Ptr{UInt32}, device_indices))
-    BindAccelerationStructureMemoryInfoKHR(vks, deps, acceleration_structure, memory)
+    vks = VkBindAccelerationStructureMemoryInfoNV(VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), acceleration_structure, memory, memory_offset, pointer_length(device_indices), unsafe_convert(Ptr{UInt32}, device_indices))
+    BindAccelerationStructureMemoryInfoNV(vks, deps, acceleration_structure, memory)
 end
 
 function AccelerationStructureCreateInfoNV(compacted_size::Integer, info::AccelerationStructureInfoNV; next = C_NULL)
@@ -7099,13 +8773,15 @@ function GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vert
     GeometryTrianglesNV(vks, deps, vertex_data, index_data, transform_data)
 end
 
-function RayTracingPipelineCreateInfoKHR(stages::AbstractArray, groups::AbstractArray, max_recursion_depth::Integer, libraries::PipelineLibraryCreateInfoKHR, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_interface = C_NULL, base_pipeline_handle = C_NULL)
+function RayTracingPipelineCreateInfoKHR(stages::AbstractArray, groups::AbstractArray, max_pipeline_ray_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_info = C_NULL, library_interface = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     stages = cconvert(Ptr{VkPipelineShaderStageCreateInfo}, stages)
     groups = cconvert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups)
+    library_info = cconvert(Ptr{VkPipelineLibraryCreateInfoKHR}, library_info)
     library_interface = cconvert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface)
-    deps = [next, stages, groups, library_interface]
-    vks = VkRayTracingPipelineCreateInfoKHR(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups), max_recursion_depth, libraries.vks, unsafe_convert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface), layout, base_pipeline_handle, base_pipeline_index)
+    dynamic_state = cconvert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state)
+    deps = [next, stages, groups, library_info, library_interface, dynamic_state]
+    vks = VkRayTracingPipelineCreateInfoKHR(VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, pointer_length(stages), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), pointer_length(groups), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups), max_pipeline_ray_recursion_depth, unsafe_convert(Ptr{VkPipelineLibraryCreateInfoKHR}, library_info), unsafe_convert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), layout, base_pipeline_handle, base_pipeline_index)
     RayTracingPipelineCreateInfoKHR(vks, deps, layout, base_pipeline_handle)
 end
 
@@ -7432,7 +9108,7 @@ function RenderPassCreateInfo2(attachments::AbstractArray, subpasses::AbstractAr
     RenderPassCreateInfo2(vks, deps)
 end
 
-function SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag; next = C_NULL, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0, view_offset = 0)
+function SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, view_offset::Integer; next = C_NULL, src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkSubpassDependency2(VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2, unsafe_convert(Ptr{Cvoid}, next), src_subpass, dst_subpass, src_stage_mask, dst_stage_mask, src_access_mask, dst_access_mask, dependency_flags, view_offset)
@@ -7510,7 +9186,22 @@ function ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFla
     ImportMemoryHostPointerInfoEXT(vks, deps)
 end
 
-function DebugUtilsMessengerCallbackDataEXT(message::AbstractString, queue_labels::AbstractArray, cmd_buf_labels::AbstractArray, objects::AbstractArray; next = C_NULL, flags = 0, message_id_name = C_NULL, message_id_number = 0)
+function DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    user_data = cconvert(Ptr{Cvoid}, user_data)
+    deps = [next, user_data]
+    vks = VkDeviceDeviceMemoryReportCreateInfoEXT(VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+    DeviceDeviceMemoryReportCreateInfoEXT(vks, deps)
+end
+
+function PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkPhysicalDeviceDeviceMemoryReportFeaturesEXT(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT, unsafe_convert(Ptr{Cvoid}, next), device_memory_report)
+    PhysicalDeviceDeviceMemoryReportFeaturesEXT(vks, deps)
+end
+
+function DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::AbstractString, queue_labels::AbstractArray, cmd_buf_labels::AbstractArray, objects::AbstractArray; next = C_NULL, flags = 0, message_id_name = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     message_id_name = cconvert(Cstring, message_id_name)
     message = cconvert(Cstring, message)
@@ -7530,7 +9221,7 @@ function DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSev
     DebugUtilsMessengerCreateInfoEXT(vks, deps)
 end
 
-function DebugUtilsLabelEXT(label_name::AbstractString; next = C_NULL, color = 0)
+function DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     label_name = cconvert(Cstring, label_name)
     deps = [next, label_name]
@@ -7680,7 +9371,7 @@ function AttachmentSampleLocationsEXT(attachment_index::Integer, sample_location
     AttachmentSampleLocationsEXT(VkAttachmentSampleLocationsEXT(attachment_index, sample_locations_info.vks))
 end
 
-function SampleLocationsInfoEXT(sample_location_grid_size::Extent2D, sample_locations::AbstractArray; next = C_NULL, sample_locations_per_pixel = 0)
+function SampleLocationsInfoEXT(sample_locations_per_pixel::SampleCountFlag, sample_location_grid_size::Extent2D, sample_locations::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     sample_locations = cconvert(Ptr{VkSampleLocationEXT}, sample_locations)
     deps = [next, sample_locations]
@@ -8130,7 +9821,7 @@ function ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; ne
     ExportFenceWin32HandleInfoKHR(vks, deps)
 end
 
-function ImportFenceWin32HandleInfoKHR(fence::Fence; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
+function ImportFenceWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), fence, flags, VkExternalFenceHandleTypeFlagBits(handle_type.val), handle, name)
@@ -8149,6 +9840,20 @@ function PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFla
     deps = [next]
     vks = VkPhysicalDeviceExternalFenceInfo(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO, unsafe_convert(Ptr{Cvoid}, next), VkExternalFenceHandleTypeFlagBits(handle_type.val))
     PhysicalDeviceExternalFenceInfo(vks, deps)
+end
+
+function SemaphoreGetZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkSemaphoreGetZirconHandleInfoFUCHSIA(VK_STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA, unsafe_convert(Ptr{Cvoid}, next), semaphore, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val))
+    SemaphoreGetZirconHandleInfoFUCHSIA(vks, deps, semaphore)
+end
+
+function ImportSemaphoreZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, zircon_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkImportSemaphoreZirconHandleInfoFUCHSIA(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val), zircon_handle)
+    ImportSemaphoreZirconHandleInfoFUCHSIA(vks, deps, semaphore)
 end
 
 function SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
@@ -8189,7 +9894,7 @@ function ExportSemaphoreWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR
     ExportSemaphoreWin32HandleInfoKHR(vks, deps)
 end
 
-function ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore; next = C_NULL, flags = 0, handle_type = 0, handle = 0, name = 0)
+function ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkImportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val), handle, name)
@@ -8243,6 +9948,20 @@ function MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::External
     MemoryGetWin32HandleInfoKHR(vks, deps, memory)
 end
 
+function MemoryGetZirconHandleInfoFUCHSIA(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkMemoryGetZirconHandleInfoFUCHSIA(VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA, unsafe_convert(Ptr{Cvoid}, next), memory, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
+    MemoryGetZirconHandleInfoFUCHSIA(vks, deps, memory)
+end
+
+function ImportMemoryZirconHandleInfoFUCHSIA(; next = C_NULL, handle_type = 0, handle = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    deps = [next]
+    vks = VkImportMemoryZirconHandleInfoFUCHSIA(VK_STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA, unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val), handle)
+    ImportMemoryZirconHandleInfoFUCHSIA(vks, deps)
+end
+
 function ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
@@ -8272,7 +9991,7 @@ function ExternalMemoryBufferCreateInfo(; next = C_NULL, handle_types = 0)
     ExternalMemoryBufferCreateInfo(vks, deps)
 end
 
-function ExternalMemoryImageCreateInfo(handle_types::ExternalMemoryHandleTypeFlag; next = C_NULL)
+function ExternalMemoryImageCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = [next]
     vks = VkExternalMemoryImageCreateInfo(VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), handle_types)
@@ -8351,7 +10070,7 @@ function GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::VkPipeli
     GeneratedCommandsMemoryRequirementsInfoNV(vks, deps, pipeline, indirect_commands_layout)
 end
 
-function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_count_offset = 0, sequences_index_buffer = C_NULL, sequences_index_offset = 0)
+function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     streams = cconvert(Ptr{VkIndirectCommandsStreamNV}, streams)
     deps = [next, streams]
@@ -8359,7 +10078,7 @@ function GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipel
     GeneratedCommandsInfoNV(vks, deps, pipeline, indirect_commands_layout, preprocess_buffer, sequences_count_buffer, sequences_index_buffer)
 end
 
-function IndirectCommandsLayoutCreateInfoNV(flags::IndirectCommandsLayoutUsageFlagNV, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; next = C_NULL)
+function IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     tokens = cconvert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens)
     stream_strides = cconvert(Ptr{UInt32}, stream_strides)
@@ -8506,7 +10225,7 @@ function DedicatedAllocationImageCreateInfoNV(dedicated_allocation::Bool; next =
     DedicatedAllocationImageCreateInfoNV(vks, deps)
 end
 
-function DebugMarkerMarkerInfoEXT(marker_name::AbstractString; next = C_NULL, color = 0)
+function DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     marker_name = cconvert(Cstring, marker_name)
     deps = [next, marker_name]
@@ -8579,6 +10298,15 @@ function SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, i
     deps = [next, queue_family_indices]
     vks = VkSwapchainCreateInfoKHR(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, surface, min_image_count, image_format, image_color_space, image_extent.vks, image_array_layers, image_usage, image_sharing_mode, pointer_length(queue_family_indices), unsafe_convert(Ptr{UInt32}, queue_family_indices), VkSurfaceTransformFlagBitsKHR(pre_transform.val), VkCompositeAlphaFlagBitsKHR(composite_alpha.val), present_mode, clipped, old_swapchain)
     SwapchainCreateInfoKHR(vks, deps, surface, old_swapchain)
+end
+
+function ScreenSurfaceCreateInfoQNX(context::vk._screen_context, window::vk._screen_window; next = C_NULL, flags = 0)
+    next = cconvert(Ptr{Cvoid}, next)
+    context = cconvert(Ptr{_screen_context}, context)
+    window = cconvert(Ptr{_screen_window}, window)
+    deps = [next, context, window]
+    vks = VkScreenSurfaceCreateInfoQNX(VK_STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{_screen_context}, context), unsafe_convert(Ptr{_screen_window}, window))
+    ScreenSurfaceCreateInfoQNX(vks, deps)
 end
 
 function StreamDescriptorSurfaceCreateInfoGGP(stream_descriptor::vk.GgpStreamDescriptor; next = C_NULL, flags = 0)
@@ -8750,7 +10478,7 @@ function RenderPassCreateInfo(attachments::AbstractArray, subpasses::AbstractArr
     RenderPassCreateInfo(vks, deps)
 end
 
-function SubpassDependency(src_subpass::Integer, dst_subpass::Integer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag; src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
+function SubpassDependency(src_subpass::Integer, dst_subpass::Integer; src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
     SubpassDependency(VkSubpassDependency(src_subpass, dst_subpass, src_stage_mask, dst_stage_mask, src_access_mask, dst_access_mask, dependency_flags))
 end
 
@@ -9274,6 +11002,112 @@ function BaseOutStructure(; next = C_NULL)
     BaseOutStructure(vks, deps)
 end
 
+cmd_encode_video_khr(command_buffer::CommandBuffer, encode_info::VideoEncodeInfoKHR)::Cvoid = vkCmdEncodeVideoKHR(command_buffer, encode_info)
+
+cmd_end_video_coding_khr(command_buffer::CommandBuffer, end_coding_info::VideoEndCodingInfoKHR)::Cvoid = vkCmdEndVideoCodingKHR(command_buffer, end_coding_info)
+
+cmd_control_video_coding_khr(command_buffer::CommandBuffer, coding_control_info::VideoCodingControlInfoKHR)::Cvoid = vkCmdControlVideoCodingKHR(command_buffer, coding_control_info)
+
+cmd_begin_video_coding_khr(command_buffer::CommandBuffer, begin_info::VideoBeginCodingInfoKHR)::Cvoid = vkCmdBeginVideoCodingKHR(command_buffer, begin_info)
+
+cmd_decode_video_khr(command_buffer::CommandBuffer, frame_info::VideoDecodeInfoKHR)::Cvoid = vkCmdDecodeVideoKHR(command_buffer, frame_info)
+
+bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBindVideoSessionMemoryKHR(device, video_session, pointer_length(video_session_bind_memories), video_session_bind_memories))
+
+function get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR)::Result{Vector{VideoGetMemoryPropertiesKHR}, VulkanError}
+    pVideoSessionMemoryRequirements = Vector{VkVideoGetMemoryPropertiesKHR}(undef, pointer_length(video_session_memory_requirements))
+    @check vkGetVideoSessionMemoryRequirementsKHR(device, video_session, pointer_length(video_session_memory_requirements), pVideoSessionMemoryRequirements)
+    from_vk.(VideoGetMemoryPropertiesKHR, pVideoSessionMemoryRequirements)
+end
+
+destroy_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR; allocator = C_NULL)::Cvoid = vkDestroyVideoSessionParametersKHR(device, video_session_parameters, allocator)
+
+update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::VideoSessionParametersUpdateInfoKHR)::Result{VkResult, VulkanError} = @check(vkUpdateVideoSessionParametersKHR(device, video_session_parameters, update_info))
+
+function create_video_session_parameters_khr(device::Device, create_info::VideoSessionParametersCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionParametersKHR, VulkanError}
+    pVideoSessionParameters = Ref{VkVideoSessionParametersKHR}()
+    @check vkCreateVideoSessionParametersKHR(device, create_info, allocator, pVideoSessionParameters)
+    VideoSessionParametersKHR(pVideoSessionParameters[], (x->destroy_video_session_parameters_khr(device, x; allocator)), getproperty(create_info, :video_session))
+end
+
+destroy_video_session_khr(device::Device, video_session::VideoSessionKHR; allocator = C_NULL)::Cvoid = vkDestroyVideoSessionKHR(device, video_session, allocator)
+
+function create_video_session_khr(device::Device, create_info::VideoSessionCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionKHR, VulkanError}
+    pVideoSession = Ref{VkVideoSessionKHR}()
+    @check vkCreateVideoSessionKHR(device, create_info, allocator, pVideoSession)
+    VideoSessionKHR(pVideoSession[], (x->destroy_video_session_khr(device, x; allocator)), device)
+end
+
+function get_physical_device_video_format_properties_khr(physical_device::PhysicalDevice, video_format_info::PhysicalDeviceVideoFormatInfoKHR)::Result{Vector{VideoFormatPropertiesKHR}, VulkanError}
+    pVideoFormatProperties = Vector{VkVideoFormatPropertiesKHR}(undef, pointer_length(video_format_properties))
+    @check vkGetPhysicalDeviceVideoFormatPropertiesKHR(physical_device, video_format_info, pointer_length(video_format_properties), pVideoFormatProperties)
+    from_vk.(VideoFormatPropertiesKHR, pVideoFormatProperties)
+end
+
+function get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::VideoProfileKHR)::Result{VideoCapabilitiesKHR, VulkanError}
+    pCapabilities = Ref{VkVideoCapabilitiesKHR}()
+    @check vkGetPhysicalDeviceVideoCapabilitiesKHR(physical_device, video_profile, pCapabilities)
+    from_vk(VideoCapabilitiesKHR, pCapabilities[])
+end
+
+function get_queue_checkpoint_data_2_nv(queue::Queue)::Vector{CheckpointData2NV}
+    pCheckpointDataCount = Ref{UInt32}()
+    vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, C_NULL)
+    pCheckpointData = Vector{VkCheckpointData2NV}(undef, pCheckpointDataCount[])
+    vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, pCheckpointData)
+    from_vk.(CheckpointData2NV, pCheckpointData)
+end
+
+cmd_write_buffer_marker_2_amd(command_buffer::CommandBuffer, stage::Integer, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid = vkCmdWriteBufferMarker2AMD(command_buffer, stage, dst_buffer, dst_offset, marker)
+
+cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer)::Cvoid = vkCmdWriteTimestamp2KHR(command_buffer, stage, query_pool, query)
+
+queue_submit_2_khr(queue::Queue, submits::AbstractArray; fence = C_NULL)::Result{VkResult, VulkanError} = @check(vkQueueSubmit2KHR(queue, pointer_length(submits), submits, fence))
+
+cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::DependencyInfoKHR)::Cvoid = vkCmdPipelineBarrier2KHR(command_buffer, dependency_info)
+
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray)::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos)
+
+cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer)::Cvoid = vkCmdResetEvent2KHR(command_buffer, event, stage_mask)
+
+cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::DependencyInfoKHR)::Cvoid = vkCmdSetEvent2KHR(command_buffer, event, dependency_info)
+
+cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray)::Cvoid = vkCmdSetColorWriteEnableEXT(command_buffer, pointer_length(color_write_enables), color_write_enables)
+
+cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray, vertex_attribute_descriptions::AbstractArray)::Cvoid = vkCmdSetVertexInputEXT(command_buffer, pointer_length(vertex_binding_descriptions), vertex_binding_descriptions, pointer_length(vertex_attribute_descriptions), vertex_attribute_descriptions)
+
+function get_acceleration_structure_build_sizes_khr(device::Device, build_type::VkAccelerationStructureBuildTypeKHR, build_info::AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::AccelerationStructureBuildSizesInfoKHR
+    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    vkGetAccelerationStructureBuildSizesKHR(device, build_type, build_info, max_primitive_counts, pSizeInfo)
+    from_vk(AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
+end
+
+cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid = vkCmdSetFragmentShadingRateEnumNV(command_buffer, shading_rate, combiner_ops)
+
+function get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice)::Result{Vector{PhysicalDeviceFragmentShadingRateKHR}, VulkanError}
+    pFragmentShadingRateCount = Ref{UInt32}()
+    @repeat_while_incomplete begin
+            @check vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, C_NULL)
+            pFragmentShadingRates = Vector{VkPhysicalDeviceFragmentShadingRateKHR}(undef, pFragmentShadingRateCount[])
+            @check vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, pFragmentShadingRates)
+        end
+    from_vk.(PhysicalDeviceFragmentShadingRateKHR, pFragmentShadingRates)
+end
+
+cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid = vkCmdSetFragmentShadingRateKHR(command_buffer, fragment_size, combiner_ops)
+
+cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::ResolveImageInfo2KHR)::Cvoid = vkCmdResolveImage2KHR(command_buffer, resolve_image_info)
+
+cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::CopyImageToBufferInfo2KHR)::Cvoid = vkCmdCopyImageToBuffer2KHR(command_buffer, copy_image_to_buffer_info)
+
+cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::CopyBufferToImageInfo2KHR)::Cvoid = vkCmdCopyBufferToImage2KHR(command_buffer, copy_buffer_to_image_info)
+
+cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::BlitImageInfo2KHR)::Cvoid = vkCmdBlitImage2KHR(command_buffer, blit_image_info)
+
+cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::CopyImageInfo2KHR)::Cvoid = vkCmdCopyImage2KHR(command_buffer, copy_image_info)
+
+cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::CopyBufferInfo2KHR)::Cvoid = vkCmdCopyBuffer2KHR(command_buffer, copy_buffer_info)
+
 function get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)::UInt64
     pData = Ref{UInt64}()
     vkGetPrivateDataEXT(device, object_type, object_handle, private_data_slot, pData)
@@ -9289,6 +11123,16 @@ function create_private_data_slot_ext(device::Device, create_info::PrivateDataSl
     @check vkCreatePrivateDataSlotEXT(device, create_info, allocator, pPrivateDataSlot)
     PrivateDataSlotEXT(pPrivateDataSlot[], (x->destroy_private_data_slot_ext(device, x; allocator)), device)
 end
+
+cmd_set_primitive_restart_enable_ext(command_buffer::CommandBuffer, primitive_restart_enable::Bool)::Cvoid = vkCmdSetPrimitiveRestartEnableEXT(command_buffer, primitive_restart_enable)
+
+cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::VkLogicOp)::Cvoid = vkCmdSetLogicOpEXT(command_buffer, logic_op)
+
+cmd_set_depth_bias_enable_ext(command_buffer::CommandBuffer, depth_bias_enable::Bool)::Cvoid = vkCmdSetDepthBiasEnableEXT(command_buffer, depth_bias_enable)
+
+cmd_set_rasterizer_discard_enable_ext(command_buffer::CommandBuffer, rasterizer_discard_enable::Bool)::Cvoid = vkCmdSetRasterizerDiscardEnableEXT(command_buffer, rasterizer_discard_enable)
+
+cmd_set_patch_control_points_ext(command_buffer::CommandBuffer, patch_control_points::Integer)::Cvoid = vkCmdSetPatchControlPointsEXT(command_buffer, patch_control_points)
 
 cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp)::Cvoid = vkCmdSetStencilOpEXT(command_buffer, face_mask, fail_op, pass_op, depth_fail_op, compare_op)
 
@@ -9330,11 +11174,11 @@ end
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info)
 
-build_acceleration_structure_khr(device::Device, infos::AbstractArray, offset_infos::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBuildAccelerationStructureKHR(device, pointer_length(infos), infos, offset_infos))
+build_acceleration_structures_khr(device::Device, infos::AbstractArray, build_range_infos::AbstractArray; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkBuildAccelerationStructuresKHR(device, deferred_operation, pointer_length(infos), infos, build_range_infos))
 
-cmd_build_acceleration_structure_indirect_khr(command_buffer::CommandBuffer, info::AccelerationStructureBuildGeometryInfoKHR, indirect_buffer::Buffer, indirect_offset::Integer, indirect_stride::Integer)::Cvoid = vkCmdBuildAccelerationStructureIndirectKHR(command_buffer, info, indirect_buffer, indirect_offset, indirect_stride)
+cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray)::Cvoid = vkCmdBuildAccelerationStructuresIndirectKHR(command_buffer, pointer_length(infos), infos, indirect_device_addresses, indirect_strides, max_primitive_counts)
 
-cmd_build_acceleration_structure_khr(command_buffer::CommandBuffer, infos::AbstractArray, offset_infos::AbstractArray)::Cvoid = vkCmdBuildAccelerationStructureKHR(command_buffer, pointer_length(infos), infos, offset_infos)
+cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray, build_range_infos::AbstractArray)::Cvoid = vkCmdBuildAccelerationStructuresKHR(command_buffer, pointer_length(infos), infos, build_range_infos)
 
 function create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureKHR}()
@@ -9394,7 +11238,7 @@ end
 
 queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError} = @check(vkQueueSetPerformanceConfigurationINTEL(queue, configuration))
 
-release_performance_configuration_intel(device::Device, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration))
+release_performance_configuration_intel(device::Device; configuration = C_NULL)::Result{VkResult, VulkanError} = @check(vkReleasePerformanceConfigurationINTEL(device, configuration))
 
 function acquire_performance_configuration_intel(device::Device, acquire_info::PerformanceConfigurationAcquireInfoINTEL)::Result{PerformanceConfigurationINTEL, VulkanError}
     pConfiguration = Ref{VkPerformanceConfigurationINTEL}()
@@ -9487,9 +11331,17 @@ end
 
 get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX)::UInt32 = vkGetImageViewHandleNVX(device, info)
 
-get_device_acceleration_structure_compatibility_khr(device::Device, version::AccelerationStructureVersionKHR)::Result{VkResult, VulkanError} = @check(vkGetDeviceAccelerationStructureCompatibilityKHR(device, version))
+cmd_set_ray_tracing_pipeline_stack_size_khr(command_buffer::CommandBuffer, pipeline_stack_size::Integer)::Cvoid = vkCmdSetRayTracingPipelineStackSizeKHR(command_buffer, pipeline_stack_size)
 
-cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, buffer::Buffer, offset::Integer)::Cvoid = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, buffer, offset)
+get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::VkShaderGroupShaderKHR)::UInt64 = vkGetRayTracingShaderGroupStackSizeKHR(device, pipeline, group, group_shader)
+
+function get_device_acceleration_structure_compatibility_khr(device::Device, version_info::AccelerationStructureVersionInfoKHR)::VkAccelerationStructureCompatibilityKHR
+    pCompatibility = Ref{VkAccelerationStructureCompatibilityKHR}()
+    vkGetDeviceAccelerationStructureCompatibilityKHR(device, version_info, pCompatibility)
+    pCompatibility[]
+end
+
+cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, indirect_device_address::Integer)::Cvoid = vkCmdTraceRaysIndirectKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, indirect_device_address)
 
 function get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Vector{CooperativeMatrixPropertiesNV}, VulkanError}
     pPropertyCount = Ref{UInt32}()
@@ -9501,9 +11353,9 @@ function get_physical_device_cooperative_matrix_properties_nv(physical_device::P
     from_vk.(CooperativeMatrixPropertiesNV, pProperties)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
-    @check vkCreateRayTracingPipelinesKHR(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
+    @check vkCreateRayTracingPipelinesKHR(device, deferred_operation, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
@@ -9513,7 +11365,7 @@ function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractA
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
-get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureKHR, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data))
+get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data))
 
 get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError} = @check(vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(device, pipeline, first_group, group_count, data_size, data))
 
@@ -9521,29 +11373,31 @@ get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, fir
 
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid = vkCmdTraceRaysNV(command_buffer, raygen_shader_binding_table_buffer, raygen_shader_binding_offset, miss_shader_binding_table_buffer, miss_shader_binding_offset, miss_shader_binding_stride, hit_shader_binding_table_buffer, hit_shader_binding_offset, hit_shader_binding_stride, callable_shader_binding_table_buffer, callable_shader_binding_offset, callable_shader_binding_stride, width, height, depth)
 
-cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedBufferRegionKHR, miss_shader_binding_table::StridedBufferRegionKHR, hit_shader_binding_table::StridedBufferRegionKHR, callable_shader_binding_table::StridedBufferRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
+cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
 
 write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::Result{VkResult, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride))
 
-cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureKHR, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
+cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
+
+cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
 cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
-copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR)::Result{VkResult, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, info))
+copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, deferred_operation, info))
 
 cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR)::Cvoid = vkCmdCopyMemoryToAccelerationStructureKHR(command_buffer, info)
 
-copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, info))
+copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureToMemoryKHR(device, deferred_operation, info))
 
 cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR)::Cvoid = vkCmdCopyAccelerationStructureToMemoryKHR(command_buffer, info)
 
-copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, info))
+copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError} = @check(vkCopyAccelerationStructureKHR(device, deferred_operation, info))
 
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR)::Cvoid = vkCmdCopyAccelerationStructureKHR(command_buffer, info)
 
-cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureKHR, src::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode)
+cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::VkCopyAccelerationStructureModeKHR)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode)
 
-bind_acceleration_structure_memory_khr(device::Device, bind_infos::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBindAccelerationStructureMemoryKHR(device, pointer_length(bind_infos), bind_infos))
+bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray)::Result{VkResult, VulkanError} = @check(vkBindAccelerationStructureMemoryNV(device, pointer_length(bind_infos), bind_infos))
 
 function get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
     pMemoryRequirements = Ref{VkMemoryRequirements2KHR}()
@@ -9551,18 +11405,14 @@ function get_acceleration_structure_memory_requirements_nv(device::Device, info:
     from_vk(VkMemoryRequirements2KHR, pMemoryRequirements[])
 end
 
-function get_acceleration_structure_memory_requirements_khr(device::Device, info::AccelerationStructureMemoryRequirementsInfoKHR)::MemoryRequirements2
-    pMemoryRequirements = Ref{VkMemoryRequirements2}()
-    vkGetAccelerationStructureMemoryRequirementsKHR(device, info, pMemoryRequirements)
-    from_vk(MemoryRequirements2, pMemoryRequirements[])
-end
+destroy_acceleration_structure_nv(device::Device, acceleration_structure::AccelerationStructureNV; allocator = C_NULL)::Cvoid = vkDestroyAccelerationStructureNV(device, acceleration_structure, allocator)
 
 destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL)::Cvoid = vkDestroyAccelerationStructureKHR(device, acceleration_structure, allocator)
 
-function create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{VkAccelerationStructureNV, VulkanError}
+function create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{AccelerationStructureNV, VulkanError}
     pAccelerationStructure = Ref{VkAccelerationStructureNV}()
     @check vkCreateAccelerationStructureNV(device, create_info, allocator, pAccelerationStructure)
-    AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x; allocator)), device)
+    AccelerationStructureNV(pAccelerationStructure[], (x->destroy_acceleration_structure_nv(device, x; allocator)), device)
 end
 
 compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::Result{VkResult, VulkanError} = @check(vkCompileDeferredNV(device, pipeline, shader))
@@ -9962,6 +11812,14 @@ end
 
 display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{VkResult, VulkanError} = @check(vkDisplayPowerControlEXT(device, display, display_power_info))
 
+function get_winrt_display_nv(physical_device::PhysicalDevice, device_relative_id::Integer)::Result{DisplayKHR, VulkanError}
+    pDisplay = Ref{VkDisplayKHR}()
+    @check vkGetWinrtDisplayNV(physical_device, device_relative_id, pDisplay)
+    DisplayKHR(pDisplay[], identity, physical_device)
+end
+
+acquire_winrt_display_nv(physical_device::PhysicalDevice, display::DisplayKHR)::Result{VkResult, VulkanError} = @check(vkAcquireWinrtDisplayNV(physical_device, display))
+
 function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::Result{DisplayKHR, VulkanError}
     pDisplay = Ref{VkDisplayKHR}()
     @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
@@ -9990,6 +11848,10 @@ function get_physical_device_external_fence_properties(physical_device::Physical
     from_vk(ExternalFenceProperties, pExternalFenceProperties[])
 end
 
+import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::ImportSemaphoreZirconHandleInfoFUCHSIA)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreZirconHandleFUCHSIA(device, import_semaphore_zircon_handle_info))
+
+get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError} = @check(vkGetSemaphoreZirconHandleFUCHSIA(device, get_zircon_handle_info, to_vk(Ptr{zx_handle_t}, zircon_handle)))
+
 import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR)::Result{VkResult, VulkanError} = @check(vkImportSemaphoreFdKHR(device, import_semaphore_fd_info))
 
 function get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR)::Result{Int, VulkanError}
@@ -10007,6 +11869,14 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     vkGetPhysicalDeviceExternalSemaphoreProperties(physical_device, external_semaphore_info, pExternalSemaphoreProperties)
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
+
+function get_memory_zircon_handle_properties_fuchsia(device::Device, handle_type::ExternalMemoryHandleTypeFlag, zircon_handle::vk.zx_handle_t)::Result{MemoryZirconHandlePropertiesFUCHSIA, VulkanError}
+    pMemoryZirconHandleProperties = Ref{VkMemoryZirconHandlePropertiesFUCHSIA}()
+    @check vkGetMemoryZirconHandlePropertiesFUCHSIA(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), zircon_handle, pMemoryZirconHandleProperties)
+    from_vk(MemoryZirconHandlePropertiesFUCHSIA, pMemoryZirconHandleProperties[])
+end
+
+get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError} = @check(vkGetMemoryZirconHandleFUCHSIA(device, get_zircon_handle_info, to_vk(Ptr{zx_handle_t}, zircon_handle)))
 
 function get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::Result{MemoryFdPropertiesKHR, VulkanError}
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
@@ -10130,6 +12000,14 @@ function create_debug_report_callback_ext(instance::Instance, create_info::Debug
     pCallback = Ref{VkDebugReportCallbackEXT}()
     @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback)
     DebugReportCallbackEXT(pCallback[], (x->destroy_debug_report_callback_ext(instance, x; allocator)), instance)
+end
+
+get_physical_device_screen_presentation_support_qnx(physical_device::PhysicalDevice, queue_family_index::Integer, window::vk._screen_window)::Bool = from_vk(Bool, vkGetPhysicalDeviceScreenPresentationSupportQNX(physical_device, queue_family_index, to_vk(Ptr{_screen_window}, window)))
+
+function create_screen_surface_qnx(instance::Instance, create_info::ScreenSurfaceCreateInfoQNX; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    pSurface = Ref{VkSurfaceKHR}()
+    @check vkCreateScreenSurfaceQNX(instance, create_info, allocator, pSurface)
+    SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
 function create_stream_descriptor_surface_ggp(instance::Instance, create_info::StreamDescriptorSurfaceCreateInfoGGP; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
@@ -10346,7 +12224,7 @@ cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Int
 
 cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask)
 
@@ -10822,4 +12700,4 @@ end
 
 
 
-export ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_COLOR_ATTACHMENT_READ_BIT, ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_COLOR_ATTACHMENT_WRITE_BIT, ACCESS_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT, ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT, ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_HOST_READ_BIT, ACCESS_HOST_WRITE_BIT, ACCESS_INDEX_READ_BIT, ACCESS_INDIRECT_COMMAND_READ_BIT, ACCESS_INPUT_ATTACHMENT_READ_BIT, ACCESS_MEMORY_READ_BIT, ACCESS_MEMORY_WRITE_BIT, ACCESS_RESERVED_28_BIT_KHR, ACCESS_RESERVED_29_BIT_KHR, ACCESS_RESERVED_30_BIT_KHR, ACCESS_SHADER_READ_BIT, ACCESS_SHADER_WRITE_BIT, ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV, ACCESS_TRANSFER_READ_BIT, ACCESS_TRANSFER_WRITE_BIT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_UNIFORM_READ_BIT, ACCESS_VERTEX_ATTRIBUTE_READ_BIT, ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, AabbPositionsKHR, AccelerationStructureBuildGeometryInfoKHR, AccelerationStructureBuildOffsetInfoKHR, AccelerationStructureCreateGeometryTypeInfoKHR, AccelerationStructureCreateInfoKHR, AccelerationStructureCreateInfoNV, AccelerationStructureDeviceAddressInfoKHR, AccelerationStructureGeometryAabbsDataKHR, AccelerationStructureGeometryInstancesDataKHR, AccelerationStructureGeometryKHR, AccelerationStructureGeometryTrianglesDataKHR, AccelerationStructureInfoNV, AccelerationStructureInstanceKHR, AccelerationStructureKHR, AccelerationStructureMemoryRequirementsInfoKHR, AccelerationStructureMemoryRequirementsInfoNV, AccelerationStructureVersionKHR, AccessFlag, AcquireNextImageInfoKHR, AcquireProfilingLockFlagKHR, AcquireProfilingLockInfoKHR, AllocationCallbacks, AndroidHardwareBufferFormatPropertiesANDROID, AndroidHardwareBufferPropertiesANDROID, AndroidHardwareBufferUsageANDROID, AndroidSurfaceCreateInfoKHR, ApplicationInfo, AttachmentDescription, AttachmentDescription2, AttachmentDescriptionFlag, AttachmentDescriptionStencilLayout, AttachmentReference, AttachmentReference2, AttachmentReferenceStencilLayout, AttachmentSampleLocationsEXT, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, BUFFER_CREATE_PROTECTED_BIT, BUFFER_CREATE_SPARSE_ALIASED_BIT, BUFFER_CREATE_SPARSE_BINDING_BIT, BUFFER_CREATE_SPARSE_RESIDENCY_BIT, BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT, BUFFER_USAGE_INDEX_BUFFER_BIT, BUFFER_USAGE_INDIRECT_BUFFER_BIT, BUFFER_USAGE_RAY_TRACING_BIT_KHR, BUFFER_USAGE_RESERVED_13_BIT_KHR, BUFFER_USAGE_RESERVED_14_BIT_KHR, BUFFER_USAGE_RESERVED_15_BIT_KHR, BUFFER_USAGE_RESERVED_16_BIT_KHR, BUFFER_USAGE_RESERVED_18_BIT_QCOM, BUFFER_USAGE_RESERVED_19_BIT_KHR, BUFFER_USAGE_RESERVED_20_BIT_KHR, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, BUFFER_USAGE_STORAGE_BUFFER_BIT, BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, BUFFER_USAGE_TRANSFER_DST_BIT, BUFFER_USAGE_TRANSFER_SRC_BIT, BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT, BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT, BUFFER_USAGE_UNIFORM_BUFFER_BIT, BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT, BUFFER_USAGE_VERTEX_BUFFER_BIT, BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR, BaseInStructure, BaseOutStructure, BindAccelerationStructureMemoryInfoKHR, BindBufferMemoryDeviceGroupInfo, BindBufferMemoryInfo, BindImageMemoryDeviceGroupInfo, BindImageMemoryInfo, BindImageMemorySwapchainInfoKHR, BindImagePlaneMemoryInfo, BindIndexBufferIndirectCommandNV, BindShaderGroupIndirectCommandNV, BindSparseInfo, BindVertexBufferIndirectCommandNV, Buffer, BufferCopy, BufferCreateFlag, BufferCreateInfo, BufferDeviceAddressCreateInfoEXT, BufferDeviceAddressInfo, BufferImageCopy, BufferMemoryBarrier, BufferMemoryRequirementsInfo2, BufferOpaqueCaptureAddressCreateInfo, BufferUsageFlag, BufferView, BufferViewCreateInfo, BuildAccelerationStructureFlagKHR, COLOR_COMPONENT_A_BIT, COLOR_COMPONENT_B_BIT, COLOR_COMPONENT_G_BIT, COLOR_COMPONENT_R_BIT, COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT, COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT, COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT, COMMAND_POOL_CREATE_PROTECTED_BIT, COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT, COMMAND_POOL_CREATE_TRANSIENT_BIT, COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT, COMPOSITE_ALPHA_INHERIT_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR, COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR, CONDITIONAL_RENDERING_INVERTED_BIT_EXT, CULL_MODE_BACK_BIT, CULL_MODE_FRONT_AND_BACK, CULL_MODE_FRONT_BIT, CULL_MODE_NONE, CalibratedTimestampInfoEXT, CheckpointDataNV, ClearAttachment, ClearDepthStencilValue, ClearRect, CoarseSampleLocationNV, CoarseSampleOrderCustomNV, ColorComponentFlag, CommandBuffer, CommandBufferAllocateInfo, CommandBufferBeginInfo, CommandBufferInheritanceConditionalRenderingInfoEXT, CommandBufferInheritanceInfo, CommandBufferInheritanceRenderPassTransformInfoQCOM, CommandBufferResetFlag, CommandBufferUsageFlag, CommandPool, CommandPoolCreateFlag, CommandPoolCreateInfo, CommandPoolResetFlag, ComponentMapping, CompositeAlphaFlagKHR, ComputePipelineCreateInfo, ConditionalRenderingBeginInfoEXT, ConditionalRenderingFlagEXT, ConformanceVersion, CooperativeMatrixPropertiesNV, CopyAccelerationStructureInfoKHR, CopyAccelerationStructureToMemoryInfoKHR, CopyDescriptorSet, CopyMemoryToAccelerationStructureInfoKHR, CullModeFlag, D3D12FenceSubmitInfoKHR, DEBUG_REPORT_DEBUG_BIT_EXT, DEBUG_REPORT_ERROR_BIT_EXT, DEBUG_REPORT_INFORMATION_BIT_EXT, DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT, DEBUG_REPORT_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT, DEPENDENCY_BY_REGION_BIT, DEPENDENCY_DEVICE_GROUP_BIT, DEPENDENCY_VIEW_LOCAL_BIT, DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT, DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT, DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT, DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT, DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR, DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV, DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR, DEVICE_QUEUE_CREATE_PROTECTED_BIT, DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR, DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR, DebugMarkerMarkerInfoEXT, DebugMarkerObjectNameInfoEXT, DebugMarkerObjectTagInfoEXT, DebugReportCallbackCreateInfoEXT, DebugReportCallbackEXT, DebugReportFlagEXT, DebugUtilsLabelEXT, DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerEXT, DebugUtilsObjectNameInfoEXT, DebugUtilsObjectTagInfoEXT, DedicatedAllocationBufferCreateInfoNV, DedicatedAllocationImageCreateInfoNV, DedicatedAllocationMemoryAllocateInfoNV, DeferredOperationInfoKHR, DeferredOperationKHR, DependencyFlag, DescriptorBindingFlag, DescriptorBufferInfo, DescriptorImageInfo, DescriptorPool, DescriptorPoolCreateFlag, DescriptorPoolCreateInfo, DescriptorPoolInlineUniformBlockCreateInfoEXT, DescriptorPoolSize, DescriptorSet, DescriptorSetAllocateInfo, DescriptorSetLayout, DescriptorSetLayoutBinding, DescriptorSetLayoutBindingFlagsCreateInfo, DescriptorSetLayoutCreateFlag, DescriptorSetLayoutCreateInfo, DescriptorSetLayoutSupport, DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport, DescriptorUpdateTemplate, DescriptorUpdateTemplateCreateInfo, DescriptorUpdateTemplateEntry, Device, DeviceCreateInfo, DeviceDiagnosticsConfigCreateInfoNV, DeviceDiagnosticsConfigFlagNV, DeviceEventInfoEXT, DeviceGroupBindSparseInfo, DeviceGroupCommandBufferBeginInfo, DeviceGroupDeviceCreateInfo, DeviceGroupPresentCapabilitiesKHR, DeviceGroupPresentInfoKHR, DeviceGroupPresentModeFlagKHR, DeviceGroupRenderPassBeginInfo, DeviceGroupSubmitInfo, DeviceGroupSwapchainCreateInfoKHR, DeviceMemory, DeviceMemoryOpaqueCaptureAddressInfo, DeviceMemoryOverallocationCreateInfoAMD, DevicePrivateDataCreateInfoEXT, DeviceQueueCreateFlag, DeviceQueueCreateInfo, DeviceQueueGlobalPriorityCreateInfoEXT, DeviceQueueInfo2, DirectFBSurfaceCreateInfoEXT, DispatchIndirectCommand, DisplayEventInfoEXT, DisplayKHR, DisplayModeCreateInfoKHR, DisplayModeKHR, DisplayModeParametersKHR, DisplayModeProperties2KHR, DisplayModePropertiesKHR, DisplayNativeHdrSurfaceCapabilitiesAMD, DisplayPlaneAlphaFlagKHR, DisplayPlaneCapabilities2KHR, DisplayPlaneCapabilitiesKHR, DisplayPlaneInfo2KHR, DisplayPlaneProperties2KHR, DisplayPlanePropertiesKHR, DisplayPowerInfoEXT, DisplayPresentInfoKHR, DisplayProperties2KHR, DisplayPropertiesKHR, DisplaySurfaceCreateInfoKHR, DrawIndexedIndirectCommand, DrawIndirectCommand, DrawMeshTasksIndirectCommandNV, DrmFormatModifierPropertiesEXT, DrmFormatModifierPropertiesListEXT, EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT, EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV, EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT, EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT, Event, EventCreateInfo, ExportFenceCreateInfo, ExportFenceWin32HandleInfoKHR, ExportMemoryAllocateInfo, ExportMemoryAllocateInfoNV, ExportMemoryWin32HandleInfoKHR, ExportMemoryWin32HandleInfoNV, ExportSemaphoreCreateInfo, ExportSemaphoreWin32HandleInfoKHR, ExtensionProperties, Extent2D, Extent3D, ExternalBufferProperties, ExternalFenceFeatureFlag, ExternalFenceHandleTypeFlag, ExternalFenceProperties, ExternalFormatANDROID, ExternalImageFormatProperties, ExternalImageFormatPropertiesNV, ExternalMemoryBufferCreateInfo, ExternalMemoryFeatureFlag, ExternalMemoryFeatureFlagNV, ExternalMemoryHandleTypeFlag, ExternalMemoryHandleTypeFlagNV, ExternalMemoryImageCreateInfo, ExternalMemoryImageCreateInfoNV, ExternalMemoryProperties, ExternalSemaphoreFeatureFlag, ExternalSemaphoreHandleTypeFlag, ExternalSemaphoreProperties, FENCE_CREATE_SIGNALED_BIT, FENCE_IMPORT_TEMPORARY_BIT, FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_AMD_RESERVED_30_BIT, FORMAT_FEATURE_BLIT_DST_BIT, FORMAT_FEATURE_BLIT_SRC_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT, FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT, FORMAT_FEATURE_DISJOINT_BIT, FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT, FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_RESERVED_25_BIT_KHR, FORMAT_FEATURE_RESERVED_26_BIT_KHR, FORMAT_FEATURE_RESERVED_27_BIT_KHR, FORMAT_FEATURE_RESERVED_28_BIT_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT, FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT, FORMAT_FEATURE_STORAGE_IMAGE_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT, FORMAT_FEATURE_TRANSFER_DST_BIT, FORMAT_FEATURE_TRANSFER_SRC_BIT, FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT, FORMAT_FEATURE_VERTEX_BUFFER_BIT, FRAMEBUFFER_CREATE_IMAGELESS_BIT, Fence, FenceCreateFlag, FenceCreateInfo, FenceGetFdInfoKHR, FenceGetWin32HandleInfoKHR, FenceImportFlag, FilterCubicImageViewImageFormatPropertiesEXT, FormatFeatureFlag, FormatProperties, FormatProperties2, Framebuffer, FramebufferAttachmentImageInfo, FramebufferAttachmentsCreateInfo, FramebufferCreateFlag, FramebufferCreateInfo, FramebufferMixedSamplesCombinationNV, GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR, GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR, GEOMETRY_OPAQUE_BIT_KHR, GeneratedCommandsInfoNV, GeneratedCommandsMemoryRequirementsInfoNV, GeometryAABBNV, GeometryDataNV, GeometryFlagKHR, GeometryInstanceFlagKHR, GeometryNV, GeometryTrianglesNV, GraphicsPipelineCreateInfo, GraphicsPipelineShaderGroupsCreateInfoNV, GraphicsShaderGroupCreateInfoNV, HdrMetadataEXT, HeadlessSurfaceCreateInfoEXT, IMAGE_ASPECT_COLOR_BIT, IMAGE_ASPECT_DEPTH_BIT, IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT, IMAGE_ASPECT_METADATA_BIT, IMAGE_ASPECT_PLANE_0_BIT, IMAGE_ASPECT_PLANE_1_BIT, IMAGE_ASPECT_PLANE_2_BIT, IMAGE_ASPECT_STENCIL_BIT, IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT, IMAGE_CREATE_ALIAS_BIT, IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT, IMAGE_CREATE_CORNER_SAMPLED_BIT_NV, IMAGE_CREATE_CUBE_COMPATIBLE_BIT, IMAGE_CREATE_DISJOINT_BIT, IMAGE_CREATE_EXTENDED_USAGE_BIT, IMAGE_CREATE_MUTABLE_FORMAT_BIT, IMAGE_CREATE_PROTECTED_BIT, IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT, IMAGE_CREATE_SPARSE_ALIASED_BIT, IMAGE_CREATE_SPARSE_BINDING_BIT, IMAGE_CREATE_SPARSE_RESIDENCY_BIT, IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT, IMAGE_CREATE_SUBSAMPLED_BIT_EXT, IMAGE_USAGE_COLOR_ATTACHMENT_BIT, IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT, IMAGE_USAGE_INPUT_ATTACHMENT_BIT, IMAGE_USAGE_RESERVED_10_BIT_KHR, IMAGE_USAGE_RESERVED_11_BIT_KHR, IMAGE_USAGE_RESERVED_12_BIT_KHR, IMAGE_USAGE_RESERVED_13_BIT_KHR, IMAGE_USAGE_RESERVED_14_BIT_KHR, IMAGE_USAGE_RESERVED_15_BIT_KHR, IMAGE_USAGE_RESERVED_16_BIT_QCOM, IMAGE_USAGE_RESERVED_17_BIT_QCOM, IMAGE_USAGE_SAMPLED_BIT, IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV, IMAGE_USAGE_STORAGE_BIT, IMAGE_USAGE_TRANSFER_DST_BIT, IMAGE_USAGE_TRANSFER_SRC_BIT, IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT, INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV, INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV, IOSSurfaceCreateInfoMVK, Image, ImageAspectFlag, ImageBlit, ImageCopy, ImageCreateFlag, ImageCreateInfo, ImageDrmFormatModifierExplicitCreateInfoEXT, ImageDrmFormatModifierListCreateInfoEXT, ImageDrmFormatModifierPropertiesEXT, ImageFormatListCreateInfo, ImageFormatProperties, ImageFormatProperties2, ImageMemoryBarrier, ImageMemoryRequirementsInfo2, ImagePipeSurfaceCreateInfoFUCHSIA, ImagePlaneMemoryRequirementsInfo, ImageResolve, ImageSparseMemoryRequirementsInfo2, ImageStencilUsageCreateInfo, ImageSubresource, ImageSubresourceLayers, ImageSubresourceRange, ImageSwapchainCreateInfoKHR, ImageUsageFlag, ImageView, ImageViewASTCDecodeModeEXT, ImageViewAddressPropertiesNVX, ImageViewCreateFlag, ImageViewCreateInfo, ImageViewHandleInfoNVX, ImageViewUsageCreateInfo, ImportAndroidHardwareBufferInfoANDROID, ImportFenceFdInfoKHR, ImportFenceWin32HandleInfoKHR, ImportMemoryFdInfoKHR, ImportMemoryHostPointerInfoEXT, ImportMemoryWin32HandleInfoKHR, ImportMemoryWin32HandleInfoNV, ImportSemaphoreFdInfoKHR, ImportSemaphoreWin32HandleInfoKHR, IndirectCommandsLayoutCreateInfoNV, IndirectCommandsLayoutNV, IndirectCommandsLayoutTokenNV, IndirectCommandsLayoutUsageFlagNV, IndirectCommandsStreamNV, IndirectStateFlagNV, InitializePerformanceApiInfoINTEL, InputAttachmentAspectReference, Instance, InstanceCreateInfo, LayerProperties, MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT, MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, MEMORY_ALLOCATE_DEVICE_MASK_BIT, MEMORY_HEAP_DEVICE_LOCAL_BIT, MEMORY_HEAP_MULTI_INSTANCE_BIT, MEMORY_HEAP_RESERVED_2_BIT_KHR, MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD, MEMORY_PROPERTY_DEVICE_LOCAL_BIT, MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD, MEMORY_PROPERTY_HOST_CACHED_BIT, MEMORY_PROPERTY_HOST_COHERENT_BIT, MEMORY_PROPERTY_HOST_VISIBLE_BIT, MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT, MEMORY_PROPERTY_PROTECTED_BIT, MacOSSurfaceCreateInfoMVK, MappedMemoryRange, MemoryAllocateFlag, MemoryAllocateFlagsInfo, MemoryAllocateInfo, MemoryBarrier, MemoryDedicatedAllocateInfo, MemoryDedicatedRequirements, MemoryFdPropertiesKHR, MemoryGetAndroidHardwareBufferInfoANDROID, MemoryGetFdInfoKHR, MemoryGetWin32HandleInfoKHR, MemoryHeap, MemoryHeapFlag, MemoryHostPointerPropertiesEXT, MemoryOpaqueCaptureAddressAllocateInfo, MemoryPriorityAllocateInfoEXT, MemoryPropertyFlag, MemoryRequirements, MemoryRequirements2, MemoryType, MemoryWin32HandlePropertiesKHR, MetalSurfaceCreateInfoEXT, MultisamplePropertiesEXT, Offset2D, Offset3D, PEER_MEMORY_FEATURE_COPY_DST_BIT, PEER_MEMORY_FEATURE_COPY_SRC_BIT, PEER_MEMORY_FEATURE_GENERIC_DST_BIT, PEER_MEMORY_FEATURE_GENERIC_SRC_BIT, PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR, PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR, PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT, PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT, PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR, PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR, PIPELINE_CREATE_DEFER_COMPILE_BIT_NV, PIPELINE_CREATE_DERIVATIVE_BIT, PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT, PIPELINE_CREATE_DISPATCH_BASE_BIT, PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT, PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT, PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV, PIPELINE_CREATE_LIBRARY_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR, PIPELINE_CREATE_RESERVED_19_BIT_KHR, PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT, PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT, PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT, PIPELINE_CREATION_FEEDBACK_VALID_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_RESERVED_2_BIT_NV, PIPELINE_SHADER_STAGE_CREATE_RESERVED_3_BIT_KHR, PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_ALL_COMMANDS_BIT, PIPELINE_STAGE_ALL_GRAPHICS_BIT, PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_COMPUTE_SHADER_BIT, PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_DRAW_INDIRECT_BIT, PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_FRAGMENT_SHADER_BIT, PIPELINE_STAGE_GEOMETRY_SHADER_BIT, PIPELINE_STAGE_HOST_BIT, PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_MESH_SHADER_BIT_NV, PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_RESERVED_26_BIT_KHR, PIPELINE_STAGE_RESERVED_27_BIT_KHR, PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV, PIPELINE_STAGE_TASK_SHADER_BIT_NV, PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT, PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT, PIPELINE_STAGE_TOP_OF_PIPE_BIT, PIPELINE_STAGE_TRANSFER_BIT, PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_VERTEX_INPUT_BIT, PIPELINE_STAGE_VERTEX_SHADER_BIT, PastPresentationTimingGOOGLE, PeerMemoryFeatureFlag, PerformanceConfigurationAcquireInfoINTEL, PerformanceConfigurationINTEL, PerformanceCounterDescriptionFlagKHR, PerformanceCounterDescriptionKHR, PerformanceCounterKHR, PerformanceMarkerInfoINTEL, PerformanceOverrideInfoINTEL, PerformanceQuerySubmitInfoKHR, PerformanceStreamMarkerInfoINTEL, PerformanceValueINTEL, PhysicalDevice, PhysicalDevice16BitStorageFeatures, PhysicalDevice4444FormatsFeaturesEXT, PhysicalDevice8BitStorageFeatures, PhysicalDeviceASTCDecodeFeaturesEXT, PhysicalDeviceBlendOperationAdvancedFeaturesEXT, PhysicalDeviceBlendOperationAdvancedPropertiesEXT, PhysicalDeviceBufferDeviceAddressFeatures, PhysicalDeviceBufferDeviceAddressFeaturesEXT, PhysicalDeviceCoherentMemoryFeaturesAMD, PhysicalDeviceComputeShaderDerivativesFeaturesNV, PhysicalDeviceConditionalRenderingFeaturesEXT, PhysicalDeviceConservativeRasterizationPropertiesEXT, PhysicalDeviceCooperativeMatrixFeaturesNV, PhysicalDeviceCooperativeMatrixPropertiesNV, PhysicalDeviceCornerSampledImageFeaturesNV, PhysicalDeviceCoverageReductionModeFeaturesNV, PhysicalDeviceCustomBorderColorFeaturesEXT, PhysicalDeviceCustomBorderColorPropertiesEXT, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, PhysicalDeviceDepthClipEnableFeaturesEXT, PhysicalDeviceDepthStencilResolveProperties, PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, PhysicalDeviceDiagnosticsConfigFeaturesNV, PhysicalDeviceDiscardRectanglePropertiesEXT, PhysicalDeviceDriverProperties, PhysicalDeviceExclusiveScissorFeaturesNV, PhysicalDeviceExtendedDynamicStateFeaturesEXT, PhysicalDeviceExternalBufferInfo, PhysicalDeviceExternalFenceInfo, PhysicalDeviceExternalImageFormatInfo, PhysicalDeviceExternalMemoryHostPropertiesEXT, PhysicalDeviceExternalSemaphoreInfo, PhysicalDeviceFeatures, PhysicalDeviceFeatures2, PhysicalDeviceFloatControlsProperties, PhysicalDeviceFragmentDensityMap2FeaturesEXT, PhysicalDeviceFragmentDensityMap2PropertiesEXT, PhysicalDeviceFragmentDensityMapFeaturesEXT, PhysicalDeviceFragmentDensityMapPropertiesEXT, PhysicalDeviceFragmentShaderBarycentricFeaturesNV, PhysicalDeviceFragmentShaderInterlockFeaturesEXT, PhysicalDeviceGroupProperties, PhysicalDeviceHostQueryResetFeatures, PhysicalDeviceIDProperties, PhysicalDeviceImageDrmFormatModifierInfoEXT, PhysicalDeviceImageFormatInfo2, PhysicalDeviceImageRobustnessFeaturesEXT, PhysicalDeviceImageViewImageFormatInfoEXT, PhysicalDeviceImagelessFramebufferFeatures, PhysicalDeviceIndexTypeUint8FeaturesEXT, PhysicalDeviceInlineUniformBlockFeaturesEXT, PhysicalDeviceInlineUniformBlockPropertiesEXT, PhysicalDeviceLimits, PhysicalDeviceLineRasterizationFeaturesEXT, PhysicalDeviceLineRasterizationPropertiesEXT, PhysicalDeviceMaintenance3Properties, PhysicalDeviceMemoryBudgetPropertiesEXT, PhysicalDeviceMemoryPriorityFeaturesEXT, PhysicalDeviceMemoryProperties, PhysicalDeviceMemoryProperties2, PhysicalDeviceMeshShaderFeaturesNV, PhysicalDeviceMeshShaderPropertiesNV, PhysicalDeviceMultiviewFeatures, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, PhysicalDeviceMultiviewProperties, PhysicalDevicePCIBusInfoPropertiesEXT, PhysicalDevicePerformanceQueryFeaturesKHR, PhysicalDevicePerformanceQueryPropertiesKHR, PhysicalDevicePipelineCreationCacheControlFeaturesEXT, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, PhysicalDevicePointClippingProperties, PhysicalDevicePrivateDataFeaturesEXT, PhysicalDeviceProperties, PhysicalDeviceProperties2, PhysicalDeviceProtectedMemoryFeatures, PhysicalDeviceProtectedMemoryProperties, PhysicalDevicePushDescriptorPropertiesKHR, PhysicalDeviceRayTracingFeaturesKHR, PhysicalDeviceRayTracingPropertiesKHR, PhysicalDeviceRayTracingPropertiesNV, PhysicalDeviceRepresentativeFragmentTestFeaturesNV, PhysicalDeviceRobustness2FeaturesEXT, PhysicalDeviceRobustness2PropertiesEXT, PhysicalDeviceSampleLocationsPropertiesEXT, PhysicalDeviceSamplerFilterMinmaxProperties, PhysicalDeviceSamplerYcbcrConversionFeatures, PhysicalDeviceScalarBlockLayoutFeatures, PhysicalDeviceSeparateDepthStencilLayoutsFeatures, PhysicalDeviceShaderAtomicFloatFeaturesEXT, PhysicalDeviceShaderAtomicInt64Features, PhysicalDeviceShaderClockFeaturesKHR, PhysicalDeviceShaderCoreProperties2AMD, PhysicalDeviceShaderCorePropertiesAMD, PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, PhysicalDeviceShaderDrawParametersFeatures, PhysicalDeviceShaderFloat16Int8Features, PhysicalDeviceShaderImageFootprintFeaturesNV, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, PhysicalDeviceShaderSMBuiltinsFeaturesNV, PhysicalDeviceShaderSMBuiltinsPropertiesNV, PhysicalDeviceShaderSubgroupExtendedTypesFeatures, PhysicalDeviceShadingRateImageFeaturesNV, PhysicalDeviceShadingRateImagePropertiesNV, PhysicalDeviceSparseImageFormatInfo2, PhysicalDeviceSparseProperties, PhysicalDeviceSubgroupProperties, PhysicalDeviceSubgroupSizeControlFeaturesEXT, PhysicalDeviceSubgroupSizeControlPropertiesEXT, PhysicalDeviceSurfaceInfo2KHR, PhysicalDeviceTexelBufferAlignmentFeaturesEXT, PhysicalDeviceTexelBufferAlignmentPropertiesEXT, PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, PhysicalDeviceTimelineSemaphoreFeatures, PhysicalDeviceTimelineSemaphoreProperties, PhysicalDeviceToolPropertiesEXT, PhysicalDeviceTransformFeedbackFeaturesEXT, PhysicalDeviceTransformFeedbackPropertiesEXT, PhysicalDeviceUniformBufferStandardLayoutFeatures, PhysicalDeviceVariablePointersFeatures, PhysicalDeviceVertexAttributeDivisorFeaturesEXT, PhysicalDeviceVertexAttributeDivisorPropertiesEXT, PhysicalDeviceVulkan11Features, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkan12Properties, PhysicalDeviceVulkanMemoryModelFeatures, PhysicalDeviceYcbcrImageArraysFeaturesEXT, Pipeline, PipelineCache, PipelineCacheCreateFlag, PipelineCacheCreateInfo, PipelineColorBlendAdvancedStateCreateInfoEXT, PipelineColorBlendAttachmentState, PipelineColorBlendStateCreateInfo, PipelineCompilerControlCreateInfoAMD, PipelineCompilerControlFlagAMD, PipelineCoverageModulationStateCreateInfoNV, PipelineCoverageReductionStateCreateInfoNV, PipelineCoverageToColorStateCreateInfoNV, PipelineCreateFlag, PipelineCreationFeedbackCreateInfoEXT, PipelineCreationFeedbackEXT, PipelineCreationFeedbackFlagEXT, PipelineDepthStencilStateCreateInfo, PipelineDiscardRectangleStateCreateInfoEXT, PipelineDynamicStateCreateInfo, PipelineExecutableInfoKHR, PipelineExecutableInternalRepresentationKHR, PipelineExecutablePropertiesKHR, PipelineExecutableStatisticKHR, PipelineInfoKHR, PipelineInputAssemblyStateCreateInfo, PipelineLayout, PipelineLayoutCreateInfo, PipelineLibraryCreateInfoKHR, PipelineMultisampleStateCreateInfo, PipelineRasterizationConservativeStateCreateInfoEXT, PipelineRasterizationDepthClipStateCreateInfoEXT, PipelineRasterizationLineStateCreateInfoEXT, PipelineRasterizationStateCreateInfo, PipelineRasterizationStateRasterizationOrderAMD, PipelineRasterizationStateStreamCreateInfoEXT, PipelineRepresentativeFragmentTestStateCreateInfoNV, PipelineSampleLocationsStateCreateInfoEXT, PipelineShaderStageCreateFlag, PipelineShaderStageCreateInfo, PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, PipelineStageFlag, PipelineTessellationDomainOriginStateCreateInfo, PipelineTessellationStateCreateInfo, PipelineVertexInputDivisorStateCreateInfoEXT, PipelineVertexInputStateCreateInfo, PipelineViewportCoarseSampleOrderStateCreateInfoNV, PipelineViewportExclusiveScissorStateCreateInfoNV, PipelineViewportShadingRateImageStateCreateInfoNV, PipelineViewportStateCreateInfo, PipelineViewportSwizzleStateCreateInfoNV, PipelineViewportWScalingStateCreateInfoNV, PresentFrameTokenGGP, PresentInfoKHR, PresentRegionKHR, PresentRegionsKHR, PresentTimeGOOGLE, PresentTimesInfoGOOGLE, PrivateDataSlotCreateFlagEXT, PrivateDataSlotCreateInfoEXT, PrivateDataSlotEXT, ProtectedSubmitInfo, PushConstantRange, QUERY_CONTROL_PRECISE_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT, QUERY_RESULT_64_BIT, QUERY_RESULT_PARTIAL_BIT, QUERY_RESULT_WAIT_BIT, QUERY_RESULT_WITH_AVAILABILITY_BIT, QUEUE_COMPUTE_BIT, QUEUE_GRAPHICS_BIT, QUEUE_PROTECTED_BIT, QUEUE_RESERVED_5_BIT_KHR, QUEUE_RESERVED_6_BIT_KHR, QUEUE_SPARSE_BINDING_BIT, QUEUE_TRANSFER_BIT, QueryControlFlag, QueryPipelineStatisticFlag, QueryPool, QueryPoolCreateInfo, QueryPoolPerformanceCreateInfoKHR, QueryPoolPerformanceQueryCreateInfoINTEL, QueryResultFlag, Queue, QueueFamilyCheckpointPropertiesNV, QueueFamilyProperties, QueueFamilyProperties2, QueueFlag, RENDER_PASS_CREATE_RESERVED_0_BIT_KHR, RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM, RESOLVE_MODE_AVERAGE_BIT, RESOLVE_MODE_MAX_BIT, RESOLVE_MODE_MIN_BIT, RESOLVE_MODE_NONE, RESOLVE_MODE_SAMPLE_ZERO_BIT, RayTracingPipelineCreateInfoKHR, RayTracingPipelineCreateInfoNV, RayTracingPipelineInterfaceCreateInfoKHR, RayTracingShaderGroupCreateInfoKHR, RayTracingShaderGroupCreateInfoNV, Rect2D, RectLayerKHR, RefreshCycleDurationGOOGLE, RenderPass, RenderPassAttachmentBeginInfo, RenderPassBeginInfo, RenderPassCreateFlag, RenderPassCreateInfo, RenderPassCreateInfo2, RenderPassFragmentDensityMapCreateInfoEXT, RenderPassInputAttachmentAspectCreateInfo, RenderPassMultiviewCreateInfo, RenderPassSampleLocationsBeginInfoEXT, RenderPassTransformBeginInfoQCOM, ResolveModeFlag, SAMPLER_CREATE_SUBSAMPLED_BIT_EXT, SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT, SAMPLE_COUNT_16_BIT, SAMPLE_COUNT_1_BIT, SAMPLE_COUNT_2_BIT, SAMPLE_COUNT_32_BIT, SAMPLE_COUNT_4_BIT, SAMPLE_COUNT_64_BIT, SAMPLE_COUNT_8_BIT, SEMAPHORE_IMPORT_TEMPORARY_BIT, SEMAPHORE_WAIT_ANY_BIT, SHADER_MODULE_CREATE_RESERVED_0_BIT_NV, SHADER_STAGE_ALL, SHADER_STAGE_ALL_GRAPHICS, SHADER_STAGE_ANY_HIT_BIT_KHR, SHADER_STAGE_CALLABLE_BIT_KHR, SHADER_STAGE_CLOSEST_HIT_BIT_KHR, SHADER_STAGE_COMPUTE_BIT, SHADER_STAGE_FRAGMENT_BIT, SHADER_STAGE_GEOMETRY_BIT, SHADER_STAGE_INTERSECTION_BIT_KHR, SHADER_STAGE_MESH_BIT_NV, SHADER_STAGE_MISS_BIT_KHR, SHADER_STAGE_RAYGEN_BIT_KHR, SHADER_STAGE_TASK_BIT_NV, SHADER_STAGE_TESSELLATION_CONTROL_BIT, SHADER_STAGE_TESSELLATION_EVALUATION_BIT, SHADER_STAGE_VERTEX_BIT, SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT, SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT, SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, SPARSE_MEMORY_BIND_METADATA_BIT, STENCIL_FACE_BACK_BIT, STENCIL_FACE_FRONT_AND_BACK, STENCIL_FACE_FRONT_BIT, SUBGROUP_FEATURE_ARITHMETIC_BIT, SUBGROUP_FEATURE_BALLOT_BIT, SUBGROUP_FEATURE_BASIC_BIT, SUBGROUP_FEATURE_CLUSTERED_BIT, SUBGROUP_FEATURE_PARTITIONED_BIT_NV, SUBGROUP_FEATURE_QUAD_BIT, SUBGROUP_FEATURE_SHUFFLE_BIT, SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT, SUBGROUP_FEATURE_VOTE_BIT, SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM, SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX, SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX, SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM, SURFACE_COUNTER_VBLANK_EXT, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR, SURFACE_TRANSFORM_IDENTITY_BIT_KHR, SURFACE_TRANSFORM_INHERIT_BIT_KHR, SURFACE_TRANSFORM_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_ROTATE_90_BIT_KHR, SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR, SWAPCHAIN_CREATE_PROTECTED_BIT_KHR, SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR, SampleCountFlag, SampleLocationEXT, SampleLocationsInfoEXT, Sampler, SamplerCreateFlag, SamplerCreateInfo, SamplerCustomBorderColorCreateInfoEXT, SamplerReductionModeCreateInfo, SamplerYcbcrConversion, SamplerYcbcrConversionCreateInfo, SamplerYcbcrConversionImageFormatProperties, SamplerYcbcrConversionInfo, Semaphore, SemaphoreCreateFlag, SemaphoreCreateInfo, SemaphoreGetFdInfoKHR, SemaphoreGetWin32HandleInfoKHR, SemaphoreImportFlag, SemaphoreSignalInfo, SemaphoreTypeCreateInfo, SemaphoreWaitFlag, SemaphoreWaitInfo, SetStateFlagsIndirectCommandNV, ShaderCorePropertiesFlagAMD, ShaderModule, ShaderModuleCreateFlag, ShaderModuleCreateInfo, ShaderModuleValidationCacheCreateInfoEXT, ShaderResourceUsageAMD, ShaderStageFlag, ShaderStatisticsInfoAMD, ShadingRatePaletteNV, SharedPresentSurfaceCapabilitiesKHR, SparseBufferMemoryBindInfo, SparseImageFormatFlag, SparseImageFormatProperties, SparseImageFormatProperties2, SparseImageMemoryBind, SparseImageMemoryBindInfo, SparseImageMemoryRequirements, SparseImageMemoryRequirements2, SparseImageOpaqueMemoryBindInfo, SparseMemoryBind, SparseMemoryBindFlag, SpecializationInfo, SpecializationMapEntry, StencilFaceFlag, StencilOpState, StreamDescriptorSurfaceCreateInfoGGP, StridedBufferRegionKHR, SubgroupFeatureFlag, SubmitInfo, SubpassBeginInfo, SubpassDependency, SubpassDependency2, SubpassDescription, SubpassDescription2, SubpassDescriptionDepthStencilResolve, SubpassDescriptionFlag, SubpassEndInfo, SubpassSampleLocationsEXT, SubresourceLayout, SurfaceCapabilities2EXT, SurfaceCapabilities2KHR, SurfaceCapabilitiesFullScreenExclusiveEXT, SurfaceCapabilitiesKHR, SurfaceCounterFlagEXT, SurfaceFormat2KHR, SurfaceFormatKHR, SurfaceFullScreenExclusiveInfoEXT, SurfaceFullScreenExclusiveWin32InfoEXT, SurfaceKHR, SurfaceProtectedCapabilitiesKHR, SurfaceTransformFlagKHR, SwapchainCounterCreateInfoEXT, SwapchainCreateFlagKHR, SwapchainCreateInfoKHR, SwapchainDisplayNativeHdrCreateInfoAMD, SwapchainKHR, TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT, TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT, TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT, TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT, TOOL_PURPOSE_PROFILING_BIT_EXT, TOOL_PURPOSE_TRACING_BIT_EXT, TOOL_PURPOSE_VALIDATION_BIT_EXT, TextureLODGatherFormatPropertiesAMD, TimelineSemaphoreSubmitInfo, ToolPurposeFlagEXT, TraceRaysIndirectCommandKHR, TransformMatrixKHR, ValidationCacheCreateInfoEXT, ValidationCacheEXT, ValidationFeaturesEXT, ValidationFlagsEXT, VertexInputAttributeDescription, VertexInputBindingDescription, VertexInputBindingDivisorDescriptionEXT, ViSurfaceCreateInfoNN, Viewport, ViewportSwizzleNV, ViewportWScalingNV, WaylandSurfaceCreateInfoKHR, Win32KeyedMutexAcquireReleaseInfoKHR, Win32KeyedMutexAcquireReleaseInfoNV, Win32SurfaceCreateInfoKHR, WriteDescriptorSet, WriteDescriptorSetAccelerationStructureKHR, WriteDescriptorSetInlineUniformBlockEXT, XYColorEXT, XcbSurfaceCreateInfoKHR, XlibSurfaceCreateInfoKHR, acquire_full_screen_exclusive_mode_ext, acquire_next_image_2_khr, acquire_next_image_khr, acquire_performance_configuration_intel, acquire_profiling_lock_khr, acquire_xlib_display_ext, allocate_command_buffers, allocate_descriptor_sets, allocate_memory, begin_command_buffer, bind_acceleration_structure_memory_khr, bind_buffer_memory, bind_buffer_memory_2, bind_image_memory, bind_image_memory_2, build_acceleration_structure_khr, cmd_begin_conditional_rendering_ext, cmd_begin_debug_utils_label_ext, cmd_begin_query, cmd_begin_query_indexed_ext, cmd_begin_render_pass, cmd_begin_render_pass_2, cmd_begin_transform_feedback_ext, cmd_bind_descriptor_sets, cmd_bind_index_buffer, cmd_bind_pipeline, cmd_bind_pipeline_shader_group_nv, cmd_bind_shading_rate_image_nv, cmd_bind_transform_feedback_buffers_ext, cmd_bind_vertex_buffers, cmd_bind_vertex_buffers_2_ext, cmd_blit_image, cmd_build_acceleration_structure_indirect_khr, cmd_build_acceleration_structure_khr, cmd_build_acceleration_structure_nv, cmd_clear_attachments, cmd_clear_color_image, cmd_clear_depth_stencil_image, cmd_copy_acceleration_structure_khr, cmd_copy_acceleration_structure_nv, cmd_copy_acceleration_structure_to_memory_khr, cmd_copy_buffer, cmd_copy_buffer_to_image, cmd_copy_image, cmd_copy_image_to_buffer, cmd_copy_memory_to_acceleration_structure_khr, cmd_copy_query_pool_results, cmd_debug_marker_begin_ext, cmd_debug_marker_end_ext, cmd_debug_marker_insert_ext, cmd_dispatch, cmd_dispatch_base, cmd_dispatch_indirect, cmd_draw, cmd_draw_indexed, cmd_draw_indexed_indirect, cmd_draw_indexed_indirect_count, cmd_draw_indirect, cmd_draw_indirect_byte_count_ext, cmd_draw_indirect_count, cmd_draw_mesh_tasks_indirect_count_nv, cmd_draw_mesh_tasks_indirect_nv, cmd_draw_mesh_tasks_nv, cmd_end_conditional_rendering_ext, cmd_end_debug_utils_label_ext, cmd_end_query, cmd_end_query_indexed_ext, cmd_end_render_pass, cmd_end_render_pass_2, cmd_end_transform_feedback_ext, cmd_execute_commands, cmd_execute_generated_commands_nv, cmd_fill_buffer, cmd_insert_debug_utils_label_ext, cmd_next_subpass, cmd_next_subpass_2, cmd_pipeline_barrier, cmd_preprocess_generated_commands_nv, cmd_push_constants, cmd_push_descriptor_set_khr, cmd_push_descriptor_set_with_template_khr, cmd_reset_event, cmd_reset_query_pool, cmd_resolve_image, cmd_set_blend_constants, cmd_set_checkpoint_nv, cmd_set_coarse_sample_order_nv, cmd_set_cull_mode_ext, cmd_set_depth_bias, cmd_set_depth_bounds, cmd_set_depth_bounds_test_enable_ext, cmd_set_depth_compare_op_ext, cmd_set_depth_test_enable_ext, cmd_set_depth_write_enable_ext, cmd_set_device_mask, cmd_set_discard_rectangle_ext, cmd_set_event, cmd_set_exclusive_scissor_nv, cmd_set_front_face_ext, cmd_set_line_stipple_ext, cmd_set_line_width, cmd_set_performance_marker_intel, cmd_set_performance_override_intel, cmd_set_performance_stream_marker_intel, cmd_set_primitive_topology_ext, cmd_set_sample_locations_ext, cmd_set_scissor, cmd_set_scissor_with_count_ext, cmd_set_stencil_compare_mask, cmd_set_stencil_op_ext, cmd_set_stencil_reference, cmd_set_stencil_test_enable_ext, cmd_set_stencil_write_mask, cmd_set_viewport, cmd_set_viewport_shading_rate_palette_nv, cmd_set_viewport_w_scaling_nv, cmd_set_viewport_with_count_ext, cmd_trace_rays_indirect_khr, cmd_trace_rays_khr, cmd_trace_rays_nv, cmd_update_buffer, cmd_wait_events, cmd_write_acceleration_structures_properties_khr, cmd_write_buffer_marker_amd, cmd_write_timestamp, compile_deferred_nv, copy_acceleration_structure_khr, copy_acceleration_structure_to_memory_khr, copy_memory_to_acceleration_structure_khr, create_acceleration_structure_khr, create_acceleration_structure_nv, create_android_surface_khr, create_buffer, create_buffer_view, create_command_pool, create_compute_pipelines, create_debug_report_callback_ext, create_debug_utils_messenger_ext, create_deferred_operation_khr, create_descriptor_pool, create_descriptor_set_layout, create_descriptor_update_template, create_device, create_direct_fb_surface_ext, create_display_mode_khr, create_display_plane_surface_khr, create_event, create_fence, create_framebuffer, create_graphics_pipelines, create_headless_surface_ext, create_image, create_image_pipe_surface_fuchsia, create_image_view, create_indirect_commands_layout_nv, create_instance, create_ios_surface_mvk, create_mac_os_surface_mvk, create_metal_surface_ext, create_pipeline_cache, create_pipeline_layout, create_private_data_slot_ext, create_query_pool, create_ray_tracing_pipelines_khr, create_ray_tracing_pipelines_nv, create_render_pass, create_render_pass_2, create_sampler, create_sampler_ycbcr_conversion, create_semaphore, create_shader_module, create_shared_swapchains_khr, create_stream_descriptor_surface_ggp, create_swapchain_khr, create_validation_cache_ext, create_vi_surface_nn, create_wayland_surface_khr, create_win_32_surface_khr, create_xcb_surface_khr, create_xlib_surface_khr, debug_marker_set_object_name_ext, debug_marker_set_object_tag_ext, debug_report_message_ext, deferred_operation_join_khr, destroy_acceleration_structure_khr, destroy_buffer, destroy_buffer_view, destroy_command_pool, destroy_debug_report_callback_ext, destroy_debug_utils_messenger_ext, destroy_deferred_operation_khr, destroy_descriptor_pool, destroy_descriptor_set_layout, destroy_descriptor_update_template, destroy_device, destroy_event, destroy_fence, destroy_framebuffer, destroy_image, destroy_image_view, destroy_indirect_commands_layout_nv, destroy_instance, destroy_pipeline, destroy_pipeline_cache, destroy_pipeline_layout, destroy_private_data_slot_ext, destroy_query_pool, destroy_render_pass, destroy_sampler, destroy_sampler_ycbcr_conversion, destroy_semaphore, destroy_shader_module, destroy_surface_khr, destroy_swapchain_khr, destroy_validation_cache_ext, device_wait_idle, display_power_control_ext, end_command_buffer, enumerate_device_extension_properties, enumerate_device_layer_properties, enumerate_instance_extension_properties, enumerate_instance_layer_properties, enumerate_instance_version, enumerate_physical_device_groups, enumerate_physical_device_queue_family_performance_query_counters_khr, enumerate_physical_devices, flush_mapped_memory_ranges, free_command_buffers, free_descriptor_sets, free_memory, from_vk, get_acceleration_structure_device_address_khr, get_acceleration_structure_handle_nv, get_acceleration_structure_memory_requirements_khr, get_acceleration_structure_memory_requirements_nv, get_android_hardware_buffer_properties_android, get_buffer_device_address, get_buffer_memory_requirements, get_buffer_memory_requirements_2, get_buffer_opaque_capture_address, get_calibrated_timestamps_ext, get_deferred_operation_max_concurrency_khr, get_deferred_operation_result_khr, get_descriptor_set_layout_support, get_device_acceleration_structure_compatibility_khr, get_device_group_peer_memory_features, get_device_group_present_capabilities_khr, get_device_group_surface_present_modes_2_ext, get_device_group_surface_present_modes_khr, get_device_memory_commitment, get_device_memory_opaque_capture_address, get_device_proc_addr, get_device_queue, get_device_queue_2, get_display_mode_properties_2_khr, get_display_mode_properties_khr, get_display_plane_capabilities_2_khr, get_display_plane_capabilities_khr, get_display_plane_supported_displays_khr, get_event_status, get_fence_fd_khr, get_fence_status, get_fence_win_32_handle_khr, get_generated_commands_memory_requirements_nv, get_image_drm_format_modifier_properties_ext, get_image_memory_requirements, get_image_memory_requirements_2, get_image_sparse_memory_requirements, get_image_sparse_memory_requirements_2, get_image_subresource_layout, get_image_view_address_nvx, get_image_view_handle_nvx, get_instance_proc_addr, get_memory_android_hardware_buffer_android, get_memory_fd_khr, get_memory_fd_properties_khr, get_memory_host_pointer_properties_ext, get_memory_win_32_handle_khr, get_memory_win_32_handle_nv, get_memory_win_32_handle_properties_khr, get_past_presentation_timing_google, get_performance_parameter_intel, get_physical_device_calibrateable_time_domains_ext, get_physical_device_cooperative_matrix_properties_nv, get_physical_device_direct_fb_presentation_support_ext, get_physical_device_display_plane_properties_2_khr, get_physical_device_display_plane_properties_khr, get_physical_device_display_properties_2_khr, get_physical_device_display_properties_khr, get_physical_device_external_buffer_properties, get_physical_device_external_fence_properties, get_physical_device_external_image_format_properties_nv, get_physical_device_external_semaphore_properties, get_physical_device_features, get_physical_device_features_2, get_physical_device_format_properties, get_physical_device_format_properties_2, get_physical_device_image_format_properties, get_physical_device_image_format_properties_2, get_physical_device_memory_properties, get_physical_device_memory_properties_2, get_physical_device_multisample_properties_ext, get_physical_device_present_rectangles_khr, get_physical_device_properties, get_physical_device_properties_2, get_physical_device_queue_family_performance_query_passes_khr, get_physical_device_queue_family_properties, get_physical_device_queue_family_properties_2, get_physical_device_sparse_image_format_properties, get_physical_device_sparse_image_format_properties_2, get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, get_physical_device_surface_capabilities_2_ext, get_physical_device_surface_capabilities_2_khr, get_physical_device_surface_capabilities_khr, get_physical_device_surface_formats_2_khr, get_physical_device_surface_formats_khr, get_physical_device_surface_present_modes_2_ext, get_physical_device_surface_present_modes_khr, get_physical_device_surface_support_khr, get_physical_device_tool_properties_ext, get_physical_device_wayland_presentation_support_khr, get_physical_device_win_32_presentation_support_khr, get_physical_device_xcb_presentation_support_khr, get_physical_device_xlib_presentation_support_khr, get_pipeline_cache_data, get_pipeline_executable_internal_representations_khr, get_pipeline_executable_properties_khr, get_pipeline_executable_statistics_khr, get_private_data_ext, get_query_pool_results, get_queue_checkpoint_data_nv, get_rand_r_output_display_ext, get_ray_tracing_capture_replay_shader_group_handles_khr, get_ray_tracing_shader_group_handles_khr, get_refresh_cycle_duration_google, get_render_area_granularity, get_semaphore_counter_value, get_semaphore_fd_khr, get_semaphore_win_32_handle_khr, get_shader_info_amd, get_swapchain_counter_ext, get_swapchain_images_khr, get_swapchain_status_khr, get_validation_cache_data_ext, import_fence_fd_khr, import_fence_win_32_handle_khr, import_semaphore_fd_khr, import_semaphore_win_32_handle_khr, initialize_performance_api_intel, invalidate_mapped_memory_ranges, map_memory, merge_pipeline_caches, merge_validation_caches_ext, queue_begin_debug_utils_label_ext, queue_bind_sparse, queue_end_debug_utils_label_ext, queue_insert_debug_utils_label_ext, queue_present_khr, queue_set_performance_configuration_intel, queue_submit, queue_wait_idle, register_device_event_ext, register_display_event_ext, release_display_ext, release_full_screen_exclusive_mode_ext, release_performance_configuration_intel, release_profiling_lock_khr, reset_command_buffer, reset_command_pool, reset_descriptor_pool, reset_event, reset_fences, reset_query_pool, set_debug_utils_object_name_ext, set_debug_utils_object_tag_ext, set_event, set_hdr_metadata_ext, set_local_dimming_amd, set_private_data_ext, signal_semaphore, submit_debug_utils_message_ext, trim_command_pool, uninitialize_performance_api_intel, unmap_memory, update_descriptor_set_with_template, update_descriptor_sets, wait_for_fences, wait_semaphores, write_acceleration_structures_properties_khr, VkImageLayout, VkAttachmentLoadOp, VkAttachmentStoreOp, VkImageType, VkImageTiling, VkImageViewType, VkCommandBufferLevel, VkComponentSwizzle, VkDescriptorType, VkQueryType, VkBorderColor, VkPipelineBindPoint, VkPipelineCacheHeaderVersion, VkPrimitiveTopology, VkSharingMode, VkIndexType, VkFilter, VkSamplerMipmapMode, VkSamplerAddressMode, VkCompareOp, VkPolygonMode, VkFrontFace, VkBlendFactor, VkBlendOp, VkStencilOp, VkLogicOp, VkInternalAllocationType, VkSystemAllocationScope, VkPhysicalDeviceType, VkVertexInputRate, VkFormat, VkStructureType, VkSubpassContents, VkResult, VkDynamicState, VkDescriptorUpdateTemplateType, VkObjectType, VkSemaphoreType, VkPresentModeKHR, VkColorSpaceKHR, VkTimeDomainEXT, VkDebugReportObjectTypeEXT, VkRasterizationOrderAMD, VkValidationCheckEXT, VkValidationFeatureEnableEXT, VkValidationFeatureDisableEXT, VkIndirectCommandsTokenTypeNV, VkDisplayPowerStateEXT, VkDeviceEventTypeEXT, VkDisplayEventTypeEXT, VkViewportCoordinateSwizzleNV, VkDiscardRectangleModeEXT, VkPointClippingBehavior, VkSamplerReductionMode, VkTessellationDomainOrigin, VkSamplerYcbcrModelConversion, VkSamplerYcbcrRange, VkChromaLocation, VkBlendOverlapEXT, VkCoverageModulationModeNV, VkCoverageReductionModeNV, VkValidationCacheHeaderVersionEXT, VkShaderInfoTypeAMD, VkQueueGlobalPriorityEXT, VkConservativeRasterizationModeEXT, VkVendorId, VkDriverId, VkShadingRatePaletteEntryNV, VkCoarseSampleOrderTypeNV, VkCopyAccelerationStructureModeKHR, VkAccelerationStructureTypeKHR, VkGeometryTypeKHR, VkAccelerationStructureMemoryRequirementsTypeKHR, VkAccelerationStructureBuildTypeKHR, VkRayTracingShaderGroupTypeKHR, VkMemoryOverallocationBehaviorAMD, VkScopeNV, VkComponentTypeNV, VkFullScreenExclusiveEXT, VkPerformanceCounterScopeKHR, VkPerformanceCounterUnitKHR, VkPerformanceCounterStorageKHR, VkPerformanceConfigurationTypeINTEL, VkQueryPoolSamplingModeINTEL, VkPerformanceOverrideTypeINTEL, VkPerformanceParameterTypeINTEL, VkPerformanceValueTypeINTEL, VkShaderFloatControlsIndependence, VkPipelineExecutableStatisticFormatKHR, VkLineRasterizationModeEXT, VkPipelineCacheCreateFlagBits, VkCullModeFlagBits, VkQueueFlagBits, VkRenderPassCreateFlagBits, VkDeviceQueueCreateFlagBits, VkMemoryPropertyFlagBits, VkMemoryHeapFlagBits, VkAccessFlagBits, VkBufferUsageFlagBits, VkBufferCreateFlagBits, VkShaderStageFlagBits, VkImageUsageFlagBits, VkImageCreateFlagBits, VkImageViewCreateFlagBits, VkSamplerCreateFlagBits, VkPipelineCreateFlagBits, VkPipelineShaderStageCreateFlagBits, VkColorComponentFlagBits, VkFenceCreateFlagBits, VkSemaphoreCreateFlagBits, VkFormatFeatureFlagBits, VkQueryControlFlagBits, VkQueryResultFlagBits, VkCommandBufferUsageFlagBits, VkQueryPipelineStatisticFlagBits, VkImageAspectFlagBits, VkSparseImageFormatFlagBits, VkSparseMemoryBindFlagBits, VkPipelineStageFlagBits, VkCommandPoolCreateFlagBits, VkCommandPoolResetFlagBits, VkCommandBufferResetFlagBits, VkSampleCountFlagBits, VkAttachmentDescriptionFlagBits, VkStencilFaceFlagBits, VkDescriptorPoolCreateFlagBits, VkDependencyFlagBits, VkSemaphoreWaitFlagBits, VkDisplayPlaneAlphaFlagBitsKHR, VkCompositeAlphaFlagBitsKHR, VkSurfaceTransformFlagBitsKHR, VkDebugReportFlagBitsEXT, VkExternalMemoryHandleTypeFlagBitsNV, VkExternalMemoryFeatureFlagBitsNV, VkSubgroupFeatureFlagBits, VkIndirectCommandsLayoutUsageFlagBitsNV, VkIndirectStateFlagBitsNV, VkPrivateDataSlotCreateFlagBitsEXT, VkDescriptorSetLayoutCreateFlagBits, VkExternalMemoryHandleTypeFlagBits, VkExternalMemoryFeatureFlagBits, VkExternalSemaphoreHandleTypeFlagBits, VkExternalSemaphoreFeatureFlagBits, VkSemaphoreImportFlagBits, VkExternalFenceHandleTypeFlagBits, VkExternalFenceFeatureFlagBits, VkFenceImportFlagBits, VkSurfaceCounterFlagBitsEXT, VkPeerMemoryFeatureFlagBits, VkMemoryAllocateFlagBits, VkDeviceGroupPresentModeFlagBitsKHR, VkSwapchainCreateFlagBitsKHR, VkSubpassDescriptionFlagBits, VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, VkDescriptorBindingFlagBits, VkConditionalRenderingFlagBitsEXT, VkResolveModeFlagBits, VkGeometryInstanceFlagBitsKHR, VkGeometryFlagBitsKHR, VkBuildAccelerationStructureFlagBitsKHR, VkFramebufferCreateFlagBits, VkDeviceDiagnosticsConfigFlagBitsNV, VkPipelineCreationFeedbackFlagBitsEXT, VkPerformanceCounterDescriptionFlagBitsKHR, VkAcquireProfilingLockFlagBitsKHR, VkShaderCorePropertiesFlagBitsAMD, VkShaderModuleCreateFlagBits, VkPipelineCompilerControlFlagBitsAMD, VkToolPurposeFlagBitsEXT
+export ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR, ACCELERATION_STRUCTURE_CREATE_RESERVED_BIT_2_NV, ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_2_COLOR_ATTACHMENT_READ_BIT_KHR, ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT_KHR, ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT_KHR, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_KHR, ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR, ACCESS_2_HOST_READ_BIT_KHR, ACCESS_2_HOST_WRITE_BIT_KHR, ACCESS_2_INDEX_READ_BIT_KHR, ACCESS_2_INDIRECT_COMMAND_READ_BIT_KHR, ACCESS_2_INPUT_ATTACHMENT_READ_BIT_KHR, ACCESS_2_MEMORY_READ_BIT_KHR, ACCESS_2_MEMORY_WRITE_BIT_KHR, ACCESS_2_NONE_KHR, ACCESS_2_SHADER_READ_BIT_KHR, ACCESS_2_SHADER_SAMPLED_READ_BIT_KHR, ACCESS_2_SHADER_STORAGE_READ_BIT_KHR, ACCESS_2_SHADER_STORAGE_WRITE_BIT_KHR, ACCESS_2_SHADER_WRITE_BIT_KHR, ACCESS_2_TRANSFER_READ_BIT_KHR, ACCESS_2_TRANSFER_WRITE_BIT_KHR, ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_2_UNIFORM_READ_BIT_KHR, ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT_KHR, ACCESS_2_VIDEO_DECODE_READ_BIT_KHR, ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR, ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR, ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR, ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_COLOR_ATTACHMENT_READ_BIT, ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_COLOR_ATTACHMENT_WRITE_BIT, ACCESS_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT, ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT, ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_HOST_READ_BIT, ACCESS_HOST_WRITE_BIT, ACCESS_INDEX_READ_BIT, ACCESS_INDIRECT_COMMAND_READ_BIT, ACCESS_INPUT_ATTACHMENT_READ_BIT, ACCESS_MEMORY_READ_BIT, ACCESS_MEMORY_WRITE_BIT, ACCESS_NONE_KHR, ACCESS_SHADER_READ_BIT, ACCESS_SHADER_WRITE_BIT, ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV, ACCESS_TRANSFER_READ_BIT, ACCESS_TRANSFER_WRITE_BIT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_UNIFORM_READ_BIT, ACCESS_VERTEX_ATTRIBUTE_READ_BIT, ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, AabbPositionsKHR, AccelerationStructureBuildGeometryInfoKHR, AccelerationStructureBuildRangeInfoKHR, AccelerationStructureBuildSizesInfoKHR, AccelerationStructureCreateFlagKHR, AccelerationStructureCreateInfoKHR, AccelerationStructureCreateInfoNV, AccelerationStructureDeviceAddressInfoKHR, AccelerationStructureGeometryAabbsDataKHR, AccelerationStructureGeometryInstancesDataKHR, AccelerationStructureGeometryKHR, AccelerationStructureGeometryTrianglesDataKHR, AccelerationStructureInfoNV, AccelerationStructureInstanceKHR, AccelerationStructureKHR, AccelerationStructureMemoryRequirementsInfoNV, AccelerationStructureNV, AccelerationStructureVersionInfoKHR, AccessFlag, AccessFlag2KHR, AcquireNextImageInfoKHR, AcquireProfilingLockFlagKHR, AcquireProfilingLockInfoKHR, AllocationCallbacks, AndroidHardwareBufferFormatPropertiesANDROID, AndroidHardwareBufferPropertiesANDROID, AndroidHardwareBufferUsageANDROID, AndroidSurfaceCreateInfoKHR, ApplicationInfo, AttachmentDescription, AttachmentDescription2, AttachmentDescriptionFlag, AttachmentDescriptionStencilLayout, AttachmentReference, AttachmentReference2, AttachmentReferenceStencilLayout, AttachmentSampleLocationsEXT, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, BUFFER_CREATE_PROTECTED_BIT, BUFFER_CREATE_SPARSE_ALIASED_BIT, BUFFER_CREATE_SPARSE_BINDING_BIT, BUFFER_CREATE_SPARSE_RESIDENCY_BIT, BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR, BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR, BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT, BUFFER_USAGE_INDEX_BUFFER_BIT, BUFFER_USAGE_INDIRECT_BUFFER_BIT, BUFFER_USAGE_RESERVED_18_BIT_QCOM, BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, BUFFER_USAGE_STORAGE_BUFFER_BIT, BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, BUFFER_USAGE_TRANSFER_DST_BIT, BUFFER_USAGE_TRANSFER_SRC_BIT, BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT, BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT, BUFFER_USAGE_UNIFORM_BUFFER_BIT, BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT, BUFFER_USAGE_VERTEX_BUFFER_BIT, BUFFER_USAGE_VIDEO_DECODE_DST_BIT_KHR, BUFFER_USAGE_VIDEO_DECODE_SRC_BIT_KHR, BUFFER_USAGE_VIDEO_ENCODE_DST_BIT_KHR, BUFFER_USAGE_VIDEO_ENCODE_SRC_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_RESERVED_BIT_5_NV, BaseInStructure, BaseOutStructure, BindAccelerationStructureMemoryInfoNV, BindBufferMemoryDeviceGroupInfo, BindBufferMemoryInfo, BindImageMemoryDeviceGroupInfo, BindImageMemoryInfo, BindImageMemorySwapchainInfoKHR, BindImagePlaneMemoryInfo, BindIndexBufferIndirectCommandNV, BindShaderGroupIndirectCommandNV, BindSparseInfo, BindVertexBufferIndirectCommandNV, BlitImageInfo2KHR, Buffer, BufferCopy, BufferCopy2KHR, BufferCreateFlag, BufferCreateInfo, BufferDeviceAddressCreateInfoEXT, BufferDeviceAddressInfo, BufferImageCopy, BufferImageCopy2KHR, BufferMemoryBarrier, BufferMemoryBarrier2KHR, BufferMemoryRequirementsInfo2, BufferOpaqueCaptureAddressCreateInfo, BufferUsageFlag, BufferView, BufferViewCreateInfo, BuildAccelerationStructureFlagKHR, COLOR_COMPONENT_A_BIT, COLOR_COMPONENT_B_BIT, COLOR_COMPONENT_G_BIT, COLOR_COMPONENT_R_BIT, COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT, COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT, COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT, COMMAND_POOL_CREATE_PROTECTED_BIT, COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT, COMMAND_POOL_CREATE_TRANSIENT_BIT, COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT, COMPOSITE_ALPHA_INHERIT_BIT_KHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR, COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR, CONDITIONAL_RENDERING_INVERTED_BIT_EXT, CULL_MODE_BACK_BIT, CULL_MODE_FRONT_AND_BACK, CULL_MODE_FRONT_BIT, CULL_MODE_NONE, CalibratedTimestampInfoEXT, CheckpointData2NV, CheckpointDataNV, ClearAttachment, ClearDepthStencilValue, ClearRect, CoarseSampleLocationNV, CoarseSampleOrderCustomNV, ColorComponentFlag, CommandBuffer, CommandBufferAllocateInfo, CommandBufferBeginInfo, CommandBufferInheritanceConditionalRenderingInfoEXT, CommandBufferInheritanceInfo, CommandBufferInheritanceRenderPassTransformInfoQCOM, CommandBufferInheritanceViewportScissorInfoNV, CommandBufferResetFlag, CommandBufferSubmitInfoKHR, CommandBufferUsageFlag, CommandPool, CommandPoolCreateFlag, CommandPoolCreateInfo, CommandPoolResetFlag, ComponentMapping, CompositeAlphaFlagKHR, ComputePipelineCreateInfo, ConditionalRenderingBeginInfoEXT, ConditionalRenderingFlagEXT, ConformanceVersion, CooperativeMatrixPropertiesNV, CopyAccelerationStructureInfoKHR, CopyAccelerationStructureToMemoryInfoKHR, CopyBufferInfo2KHR, CopyBufferToImageInfo2KHR, CopyCommandTransformInfoQCOM, CopyDescriptorSet, CopyImageInfo2KHR, CopyImageToBufferInfo2KHR, CopyMemoryToAccelerationStructureInfoKHR, CullModeFlag, D3D12FenceSubmitInfoKHR, DEBUG_REPORT_DEBUG_BIT_EXT, DEBUG_REPORT_ERROR_BIT_EXT, DEBUG_REPORT_INFORMATION_BIT_EXT, DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT, DEBUG_REPORT_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT, DEPENDENCY_BY_REGION_BIT, DEPENDENCY_DEVICE_GROUP_BIT, DEPENDENCY_VIEW_LOCAL_BIT, DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT, DESCRIPTOR_BINDING_RESERVED_4_BIT_QCOM, DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT, DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT, DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT, DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE, DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE, DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR, DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV, DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR, DEVICE_QUEUE_CREATE_PROTECTED_BIT, DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR, DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR, DebugMarkerMarkerInfoEXT, DebugMarkerObjectNameInfoEXT, DebugMarkerObjectTagInfoEXT, DebugReportCallbackCreateInfoEXT, DebugReportCallbackEXT, DebugReportFlagEXT, DebugUtilsLabelEXT, DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerEXT, DebugUtilsObjectNameInfoEXT, DebugUtilsObjectTagInfoEXT, DedicatedAllocationBufferCreateInfoNV, DedicatedAllocationImageCreateInfoNV, DedicatedAllocationMemoryAllocateInfoNV, DeferredOperationKHR, DependencyFlag, DependencyInfoKHR, DescriptorBindingFlag, DescriptorBufferInfo, DescriptorImageInfo, DescriptorPool, DescriptorPoolCreateFlag, DescriptorPoolCreateInfo, DescriptorPoolInlineUniformBlockCreateInfoEXT, DescriptorPoolSize, DescriptorSet, DescriptorSetAllocateInfo, DescriptorSetLayout, DescriptorSetLayoutBinding, DescriptorSetLayoutBindingFlagsCreateInfo, DescriptorSetLayoutCreateFlag, DescriptorSetLayoutCreateInfo, DescriptorSetLayoutSupport, DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport, DescriptorUpdateTemplate, DescriptorUpdateTemplateCreateInfo, DescriptorUpdateTemplateEntry, Device, DeviceCreateInfo, DeviceDeviceMemoryReportCreateInfoEXT, DeviceDiagnosticsConfigCreateInfoNV, DeviceDiagnosticsConfigFlagNV, DeviceEventInfoEXT, DeviceGroupBindSparseInfo, DeviceGroupCommandBufferBeginInfo, DeviceGroupDeviceCreateInfo, DeviceGroupPresentCapabilitiesKHR, DeviceGroupPresentInfoKHR, DeviceGroupPresentModeFlagKHR, DeviceGroupRenderPassBeginInfo, DeviceGroupSubmitInfo, DeviceGroupSwapchainCreateInfoKHR, DeviceMemory, DeviceMemoryOpaqueCaptureAddressInfo, DeviceMemoryOverallocationCreateInfoAMD, DeviceMemoryReportCallbackDataEXT, DevicePrivateDataCreateInfoEXT, DeviceQueueCreateFlag, DeviceQueueCreateInfo, DeviceQueueGlobalPriorityCreateInfoEXT, DeviceQueueInfo2, DirectFBSurfaceCreateInfoEXT, DispatchIndirectCommand, DisplayEventInfoEXT, DisplayKHR, DisplayModeCreateInfoKHR, DisplayModeKHR, DisplayModeParametersKHR, DisplayModeProperties2KHR, DisplayModePropertiesKHR, DisplayNativeHdrSurfaceCapabilitiesAMD, DisplayPlaneAlphaFlagKHR, DisplayPlaneCapabilities2KHR, DisplayPlaneCapabilitiesKHR, DisplayPlaneInfo2KHR, DisplayPlaneProperties2KHR, DisplayPlanePropertiesKHR, DisplayPowerInfoEXT, DisplayPresentInfoKHR, DisplayProperties2KHR, DisplayPropertiesKHR, DisplaySurfaceCreateInfoKHR, DrawIndexedIndirectCommand, DrawIndirectCommand, DrawMeshTasksIndirectCommandNV, DrmFormatModifierPropertiesEXT, DrmFormatModifierPropertiesListEXT, EVENT_CREATE_DEVICE_ONLY_BIT_KHR, EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT, EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_4_BIT_NV, EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_5_BIT_NV, EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_RESERVED_12_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA, EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT, EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_5_BIT_NV, EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_6_BIT_NV, EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA, Event, EventCreateFlag, EventCreateInfo, ExportFenceCreateInfo, ExportFenceWin32HandleInfoKHR, ExportMemoryAllocateInfo, ExportMemoryAllocateInfoNV, ExportMemoryWin32HandleInfoKHR, ExportMemoryWin32HandleInfoNV, ExportSemaphoreCreateInfo, ExportSemaphoreWin32HandleInfoKHR, ExtensionProperties, Extent2D, Extent3D, ExternalBufferProperties, ExternalFenceFeatureFlag, ExternalFenceHandleTypeFlag, ExternalFenceProperties, ExternalFormatANDROID, ExternalImageFormatProperties, ExternalImageFormatPropertiesNV, ExternalMemoryBufferCreateInfo, ExternalMemoryFeatureFlag, ExternalMemoryFeatureFlagNV, ExternalMemoryHandleTypeFlag, ExternalMemoryHandleTypeFlagNV, ExternalMemoryImageCreateInfo, ExternalMemoryImageCreateInfoNV, ExternalMemoryProperties, ExternalSemaphoreFeatureFlag, ExternalSemaphoreHandleTypeFlag, ExternalSemaphoreProperties, FENCE_CREATE_SIGNALED_BIT, FENCE_IMPORT_TEMPORARY_BIT, FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_BLIT_DST_BIT, FORMAT_FEATURE_BLIT_SRC_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT, FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT, FORMAT_FEATURE_DISJOINT_BIT, FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT, FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT, FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT, FORMAT_FEATURE_STORAGE_IMAGE_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT, FORMAT_FEATURE_TRANSFER_DST_BIT, FORMAT_FEATURE_TRANSFER_SRC_BIT, FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT, FORMAT_FEATURE_VERTEX_BUFFER_BIT, FORMAT_FEATURE_VIDEO_DECODE_DPB_BIT_KHR, FORMAT_FEATURE_VIDEO_DECODE_OUTPUT_BIT_KHR, FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR, FORMAT_FEATURE_VIDEO_ENCODE_INPUT_BIT_KHR, FRAMEBUFFER_CREATE_IMAGELESS_BIT, Fence, FenceCreateFlag, FenceCreateInfo, FenceGetFdInfoKHR, FenceGetWin32HandleInfoKHR, FenceImportFlag, FilterCubicImageViewImageFormatPropertiesEXT, FormatFeatureFlag, FormatProperties, FormatProperties2, FragmentShadingRateAttachmentInfoKHR, Framebuffer, FramebufferAttachmentImageInfo, FramebufferAttachmentsCreateInfo, FramebufferCreateFlag, FramebufferCreateInfo, FramebufferMixedSamplesCombinationNV, GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR, GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR, GEOMETRY_OPAQUE_BIT_KHR, GeneratedCommandsInfoNV, GeneratedCommandsMemoryRequirementsInfoNV, GeometryAABBNV, GeometryDataNV, GeometryFlagKHR, GeometryInstanceFlagKHR, GeometryNV, GeometryTrianglesNV, GraphicsPipelineCreateInfo, GraphicsPipelineShaderGroupsCreateInfoNV, GraphicsShaderGroupCreateInfoNV, HdrMetadataEXT, HeadlessSurfaceCreateInfoEXT, IMAGE_ASPECT_COLOR_BIT, IMAGE_ASPECT_DEPTH_BIT, IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT, IMAGE_ASPECT_METADATA_BIT, IMAGE_ASPECT_PLANE_0_BIT, IMAGE_ASPECT_PLANE_1_BIT, IMAGE_ASPECT_PLANE_2_BIT, IMAGE_ASPECT_STENCIL_BIT, IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT, IMAGE_CREATE_ALIAS_BIT, IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT, IMAGE_CREATE_CORNER_SAMPLED_BIT_NV, IMAGE_CREATE_CUBE_COMPATIBLE_BIT, IMAGE_CREATE_DISJOINT_BIT, IMAGE_CREATE_EXTENDED_USAGE_BIT, IMAGE_CREATE_MUTABLE_FORMAT_BIT, IMAGE_CREATE_PROTECTED_BIT, IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT, IMAGE_CREATE_SPARSE_ALIASED_BIT, IMAGE_CREATE_SPARSE_BINDING_BIT, IMAGE_CREATE_SPARSE_RESIDENCY_BIT, IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT, IMAGE_CREATE_SUBSAMPLED_BIT_EXT, IMAGE_USAGE_COLOR_ATTACHMENT_BIT, IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT, IMAGE_USAGE_INPUT_ATTACHMENT_BIT, IMAGE_USAGE_RESERVED_16_BIT_QCOM, IMAGE_USAGE_RESERVED_17_BIT_QCOM, IMAGE_USAGE_SAMPLED_BIT, IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV, IMAGE_USAGE_STORAGE_BIT, IMAGE_USAGE_TRANSFER_DST_BIT, IMAGE_USAGE_TRANSFER_SRC_BIT, IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT, IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR, IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR, IMAGE_USAGE_VIDEO_DECODE_SRC_BIT_KHR, IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR, IMAGE_USAGE_VIDEO_ENCODE_DST_BIT_KHR, IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT, INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV, INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV, IOSSurfaceCreateInfoMVK, Image, ImageAspectFlag, ImageBlit, ImageBlit2KHR, ImageCopy, ImageCopy2KHR, ImageCreateFlag, ImageCreateInfo, ImageDrmFormatModifierExplicitCreateInfoEXT, ImageDrmFormatModifierListCreateInfoEXT, ImageDrmFormatModifierPropertiesEXT, ImageFormatListCreateInfo, ImageFormatProperties, ImageFormatProperties2, ImageMemoryBarrier, ImageMemoryBarrier2KHR, ImageMemoryRequirementsInfo2, ImagePipeSurfaceCreateInfoFUCHSIA, ImagePlaneMemoryRequirementsInfo, ImageResolve, ImageResolve2KHR, ImageSparseMemoryRequirementsInfo2, ImageStencilUsageCreateInfo, ImageSubresource, ImageSubresourceLayers, ImageSubresourceRange, ImageSwapchainCreateInfoKHR, ImageUsageFlag, ImageView, ImageViewASTCDecodeModeEXT, ImageViewAddressPropertiesNVX, ImageViewCreateFlag, ImageViewCreateInfo, ImageViewHandleInfoNVX, ImageViewUsageCreateInfo, ImportAndroidHardwareBufferInfoANDROID, ImportFenceFdInfoKHR, ImportFenceWin32HandleInfoKHR, ImportMemoryFdInfoKHR, ImportMemoryHostPointerInfoEXT, ImportMemoryWin32HandleInfoKHR, ImportMemoryWin32HandleInfoNV, ImportMemoryZirconHandleInfoFUCHSIA, ImportSemaphoreFdInfoKHR, ImportSemaphoreWin32HandleInfoKHR, ImportSemaphoreZirconHandleInfoFUCHSIA, IndirectCommandsLayoutCreateInfoNV, IndirectCommandsLayoutNV, IndirectCommandsLayoutTokenNV, IndirectCommandsLayoutUsageFlagNV, IndirectCommandsStreamNV, IndirectStateFlagNV, InitializePerformanceApiInfoINTEL, InputAttachmentAspectReference, Instance, InstanceCreateInfo, LayerProperties, MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT, MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, MEMORY_ALLOCATE_DEVICE_MASK_BIT, MEMORY_HEAP_DEVICE_LOCAL_BIT, MEMORY_HEAP_MULTI_INSTANCE_BIT, MEMORY_HEAP_RESERVED_2_BIT_KHR, MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD, MEMORY_PROPERTY_DEVICE_LOCAL_BIT, MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD, MEMORY_PROPERTY_HOST_CACHED_BIT, MEMORY_PROPERTY_HOST_COHERENT_BIT, MEMORY_PROPERTY_HOST_VISIBLE_BIT, MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT, MEMORY_PROPERTY_PROTECTED_BIT, MEMORY_PROPERTY_RESERVED_8_BIT_NV, MacOSSurfaceCreateInfoMVK, MappedMemoryRange, MemoryAllocateFlag, MemoryAllocateFlagsInfo, MemoryAllocateInfo, MemoryBarrier, MemoryBarrier2KHR, MemoryDedicatedAllocateInfo, MemoryDedicatedRequirements, MemoryFdPropertiesKHR, MemoryGetAndroidHardwareBufferInfoANDROID, MemoryGetFdInfoKHR, MemoryGetWin32HandleInfoKHR, MemoryGetZirconHandleInfoFUCHSIA, MemoryHeap, MemoryHeapFlag, MemoryHostPointerPropertiesEXT, MemoryOpaqueCaptureAddressAllocateInfo, MemoryPriorityAllocateInfoEXT, MemoryPropertyFlag, MemoryRequirements, MemoryRequirements2, MemoryType, MemoryWin32HandlePropertiesKHR, MemoryZirconHandlePropertiesFUCHSIA, MetalSurfaceCreateInfoEXT, MultisamplePropertiesEXT, MutableDescriptorTypeCreateInfoVALVE, MutableDescriptorTypeListVALVE, Offset2D, Offset3D, PEER_MEMORY_FEATURE_COPY_DST_BIT, PEER_MEMORY_FEATURE_COPY_SRC_BIT, PEER_MEMORY_FEATURE_GENERIC_DST_BIT, PEER_MEMORY_FEATURE_GENERIC_SRC_BIT, PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR, PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR, PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT, PIPELINE_CACHE_CREATE_RESERVED_1_BIT_EXT, PIPELINE_CACHE_CREATE_RESERVED_2_BIT_EXT, PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT, PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR, PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR, PIPELINE_CREATE_DEFER_COMPILE_BIT_NV, PIPELINE_CREATE_DERIVATIVE_BIT, PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT, PIPELINE_CREATE_DISPATCH_BASE_BIT, PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT, PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT, PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV, PIPELINE_CREATE_LIBRARY_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR, PIPELINE_CREATE_RESERVED_BIT_20_NV, PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT, PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT, PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT, PIPELINE_CREATION_FEEDBACK_VALID_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_RESERVED_2_BIT_NV, PIPELINE_SHADER_STAGE_CREATE_RESERVED_3_BIT_KHR, PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_2_ALL_COMMANDS_BIT_KHR, PIPELINE_STAGE_2_ALL_GRAPHICS_BIT_KHR, PIPELINE_STAGE_2_ALL_TRANSFER_BIT_KHR, PIPELINE_STAGE_2_BLIT_BIT_KHR, PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT_KHR, PIPELINE_STAGE_2_CLEAR_BIT_KHR, PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT_KHR, PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_2_COMPUTE_SHADER_BIT_KHR, PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_2_COPY_BIT_KHR, PIPELINE_STAGE_2_DRAW_INDIRECT_BIT_KHR, PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT_KHR, PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT_KHR, PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT_KHR, PIPELINE_STAGE_2_HOST_BIT_KHR, PIPELINE_STAGE_2_INDEX_INPUT_BIT_KHR, PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT_KHR, PIPELINE_STAGE_2_MESH_SHADER_BIT_NV, PIPELINE_STAGE_2_NONE_KHR, PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT_KHR, PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_2_RESOLVE_BIT_KHR, PIPELINE_STAGE_2_TASK_SHADER_BIT_NV, PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT_KHR, PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT_KHR, PIPELINE_STAGE_2_TOP_OF_PIPE_BIT_KHR, PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT_KHR, PIPELINE_STAGE_2_VERTEX_INPUT_BIT_KHR, PIPELINE_STAGE_2_VERTEX_SHADER_BIT_KHR, PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR, PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR, PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_ALL_COMMANDS_BIT, PIPELINE_STAGE_ALL_GRAPHICS_BIT, PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_COMPUTE_SHADER_BIT, PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_DRAW_INDIRECT_BIT, PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_FRAGMENT_SHADER_BIT, PIPELINE_STAGE_GEOMETRY_SHADER_BIT, PIPELINE_STAGE_HOST_BIT, PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_MESH_SHADER_BIT_NV, PIPELINE_STAGE_NONE_KHR, PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV, PIPELINE_STAGE_TASK_SHADER_BIT_NV, PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT, PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT, PIPELINE_STAGE_TOP_OF_PIPE_BIT, PIPELINE_STAGE_TRANSFER_BIT, PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_VERTEX_INPUT_BIT, PIPELINE_STAGE_VERTEX_SHADER_BIT, PastPresentationTimingGOOGLE, PeerMemoryFeatureFlag, PerformanceConfigurationAcquireInfoINTEL, PerformanceConfigurationINTEL, PerformanceCounterDescriptionFlagKHR, PerformanceCounterDescriptionKHR, PerformanceCounterKHR, PerformanceMarkerInfoINTEL, PerformanceOverrideInfoINTEL, PerformanceQuerySubmitInfoKHR, PerformanceStreamMarkerInfoINTEL, PerformanceValueINTEL, PhysicalDevice, PhysicalDevice16BitStorageFeatures, PhysicalDevice4444FormatsFeaturesEXT, PhysicalDevice8BitStorageFeatures, PhysicalDeviceASTCDecodeFeaturesEXT, PhysicalDeviceAccelerationStructureFeaturesKHR, PhysicalDeviceAccelerationStructurePropertiesKHR, PhysicalDeviceBlendOperationAdvancedFeaturesEXT, PhysicalDeviceBlendOperationAdvancedPropertiesEXT, PhysicalDeviceBufferDeviceAddressFeatures, PhysicalDeviceBufferDeviceAddressFeaturesEXT, PhysicalDeviceCoherentMemoryFeaturesAMD, PhysicalDeviceColorWriteEnableFeaturesEXT, PhysicalDeviceComputeShaderDerivativesFeaturesNV, PhysicalDeviceConditionalRenderingFeaturesEXT, PhysicalDeviceConservativeRasterizationPropertiesEXT, PhysicalDeviceCooperativeMatrixFeaturesNV, PhysicalDeviceCooperativeMatrixPropertiesNV, PhysicalDeviceCornerSampledImageFeaturesNV, PhysicalDeviceCoverageReductionModeFeaturesNV, PhysicalDeviceCustomBorderColorFeaturesEXT, PhysicalDeviceCustomBorderColorPropertiesEXT, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, PhysicalDeviceDepthClipEnableFeaturesEXT, PhysicalDeviceDepthStencilResolveProperties, PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, PhysicalDeviceDeviceMemoryReportFeaturesEXT, PhysicalDeviceDiagnosticsConfigFeaturesNV, PhysicalDeviceDiscardRectanglePropertiesEXT, PhysicalDeviceDriverProperties, PhysicalDeviceExclusiveScissorFeaturesNV, PhysicalDeviceExtendedDynamicState2FeaturesEXT, PhysicalDeviceExtendedDynamicStateFeaturesEXT, PhysicalDeviceExternalBufferInfo, PhysicalDeviceExternalFenceInfo, PhysicalDeviceExternalImageFormatInfo, PhysicalDeviceExternalMemoryHostPropertiesEXT, PhysicalDeviceExternalSemaphoreInfo, PhysicalDeviceFeatures, PhysicalDeviceFeatures2, PhysicalDeviceFloatControlsProperties, PhysicalDeviceFragmentDensityMap2FeaturesEXT, PhysicalDeviceFragmentDensityMap2PropertiesEXT, PhysicalDeviceFragmentDensityMapFeaturesEXT, PhysicalDeviceFragmentDensityMapPropertiesEXT, PhysicalDeviceFragmentShaderBarycentricFeaturesNV, PhysicalDeviceFragmentShaderInterlockFeaturesEXT, PhysicalDeviceFragmentShadingRateEnumsFeaturesNV, PhysicalDeviceFragmentShadingRateEnumsPropertiesNV, PhysicalDeviceFragmentShadingRateFeaturesKHR, PhysicalDeviceFragmentShadingRateKHR, PhysicalDeviceFragmentShadingRatePropertiesKHR, PhysicalDeviceGroupProperties, PhysicalDeviceHostQueryResetFeatures, PhysicalDeviceIDProperties, PhysicalDeviceImageDrmFormatModifierInfoEXT, PhysicalDeviceImageFormatInfo2, PhysicalDeviceImageRobustnessFeaturesEXT, PhysicalDeviceImageViewImageFormatInfoEXT, PhysicalDeviceImagelessFramebufferFeatures, PhysicalDeviceIndexTypeUint8FeaturesEXT, PhysicalDeviceInheritedViewportScissorFeaturesNV, PhysicalDeviceInlineUniformBlockFeaturesEXT, PhysicalDeviceInlineUniformBlockPropertiesEXT, PhysicalDeviceLimits, PhysicalDeviceLineRasterizationFeaturesEXT, PhysicalDeviceLineRasterizationPropertiesEXT, PhysicalDeviceMaintenance3Properties, PhysicalDeviceMemoryBudgetPropertiesEXT, PhysicalDeviceMemoryPriorityFeaturesEXT, PhysicalDeviceMemoryProperties, PhysicalDeviceMemoryProperties2, PhysicalDeviceMeshShaderFeaturesNV, PhysicalDeviceMeshShaderPropertiesNV, PhysicalDeviceMultiviewFeatures, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, PhysicalDeviceMultiviewProperties, PhysicalDeviceMutableDescriptorTypeFeaturesVALVE, PhysicalDevicePCIBusInfoPropertiesEXT, PhysicalDevicePerformanceQueryFeaturesKHR, PhysicalDevicePerformanceQueryPropertiesKHR, PhysicalDevicePipelineCreationCacheControlFeaturesEXT, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, PhysicalDevicePointClippingProperties, PhysicalDevicePortabilitySubsetFeaturesKHR, PhysicalDevicePortabilitySubsetPropertiesKHR, PhysicalDevicePrivateDataFeaturesEXT, PhysicalDeviceProperties, PhysicalDeviceProperties2, PhysicalDeviceProtectedMemoryFeatures, PhysicalDeviceProtectedMemoryProperties, PhysicalDeviceProvokingVertexFeaturesEXT, PhysicalDeviceProvokingVertexPropertiesEXT, PhysicalDevicePushDescriptorPropertiesKHR, PhysicalDeviceRayQueryFeaturesKHR, PhysicalDeviceRayTracingPipelineFeaturesKHR, PhysicalDeviceRayTracingPipelinePropertiesKHR, PhysicalDeviceRayTracingPropertiesNV, PhysicalDeviceRepresentativeFragmentTestFeaturesNV, PhysicalDeviceRobustness2FeaturesEXT, PhysicalDeviceRobustness2PropertiesEXT, PhysicalDeviceSampleLocationsPropertiesEXT, PhysicalDeviceSamplerFilterMinmaxProperties, PhysicalDeviceSamplerYcbcrConversionFeatures, PhysicalDeviceScalarBlockLayoutFeatures, PhysicalDeviceSeparateDepthStencilLayoutsFeatures, PhysicalDeviceShaderAtomicFloatFeaturesEXT, PhysicalDeviceShaderAtomicInt64Features, PhysicalDeviceShaderClockFeaturesKHR, PhysicalDeviceShaderCoreProperties2AMD, PhysicalDeviceShaderCorePropertiesAMD, PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, PhysicalDeviceShaderDrawParametersFeatures, PhysicalDeviceShaderFloat16Int8Features, PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, PhysicalDeviceShaderImageFootprintFeaturesNV, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, PhysicalDeviceShaderSMBuiltinsFeaturesNV, PhysicalDeviceShaderSMBuiltinsPropertiesNV, PhysicalDeviceShaderSubgroupExtendedTypesFeatures, PhysicalDeviceShaderTerminateInvocationFeaturesKHR, PhysicalDeviceShadingRateImageFeaturesNV, PhysicalDeviceShadingRateImagePropertiesNV, PhysicalDeviceSparseImageFormatInfo2, PhysicalDeviceSparseProperties, PhysicalDeviceSubgroupProperties, PhysicalDeviceSubgroupSizeControlFeaturesEXT, PhysicalDeviceSubgroupSizeControlPropertiesEXT, PhysicalDeviceSurfaceInfo2KHR, PhysicalDeviceSynchronization2FeaturesKHR, PhysicalDeviceTexelBufferAlignmentFeaturesEXT, PhysicalDeviceTexelBufferAlignmentPropertiesEXT, PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, PhysicalDeviceTimelineSemaphoreFeatures, PhysicalDeviceTimelineSemaphoreProperties, PhysicalDeviceToolPropertiesEXT, PhysicalDeviceTransformFeedbackFeaturesEXT, PhysicalDeviceTransformFeedbackPropertiesEXT, PhysicalDeviceUniformBufferStandardLayoutFeatures, PhysicalDeviceVariablePointersFeatures, PhysicalDeviceVertexAttributeDivisorFeaturesEXT, PhysicalDeviceVertexAttributeDivisorPropertiesEXT, PhysicalDeviceVertexInputDynamicStateFeaturesEXT, PhysicalDeviceVideoFormatInfoKHR, PhysicalDeviceVulkan11Features, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkan12Properties, PhysicalDeviceVulkanMemoryModelFeatures, PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, PhysicalDeviceYcbcrImageArraysFeaturesEXT, PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR, Pipeline, PipelineCache, PipelineCacheCreateFlag, PipelineCacheCreateInfo, PipelineColorBlendAdvancedStateCreateInfoEXT, PipelineColorBlendAttachmentState, PipelineColorBlendStateCreateInfo, PipelineColorWriteCreateInfoEXT, PipelineCompilerControlCreateInfoAMD, PipelineCompilerControlFlagAMD, PipelineCoverageModulationStateCreateInfoNV, PipelineCoverageReductionStateCreateInfoNV, PipelineCoverageToColorStateCreateInfoNV, PipelineCreateFlag, PipelineCreationFeedbackCreateInfoEXT, PipelineCreationFeedbackEXT, PipelineCreationFeedbackFlagEXT, PipelineDepthStencilStateCreateInfo, PipelineDiscardRectangleStateCreateInfoEXT, PipelineDynamicStateCreateInfo, PipelineExecutableInfoKHR, PipelineExecutableInternalRepresentationKHR, PipelineExecutablePropertiesKHR, PipelineExecutableStatisticKHR, PipelineFragmentShadingRateEnumStateCreateInfoNV, PipelineFragmentShadingRateStateCreateInfoKHR, PipelineInfoKHR, PipelineInputAssemblyStateCreateInfo, PipelineLayout, PipelineLayoutCreateInfo, PipelineLibraryCreateInfoKHR, PipelineMultisampleStateCreateInfo, PipelineRasterizationConservativeStateCreateInfoEXT, PipelineRasterizationDepthClipStateCreateInfoEXT, PipelineRasterizationLineStateCreateInfoEXT, PipelineRasterizationProvokingVertexStateCreateInfoEXT, PipelineRasterizationStateCreateInfo, PipelineRasterizationStateRasterizationOrderAMD, PipelineRasterizationStateStreamCreateInfoEXT, PipelineRepresentativeFragmentTestStateCreateInfoNV, PipelineSampleLocationsStateCreateInfoEXT, PipelineShaderStageCreateFlag, PipelineShaderStageCreateInfo, PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, PipelineStageFlag, PipelineStageFlag2KHR, PipelineTessellationDomainOriginStateCreateInfo, PipelineTessellationStateCreateInfo, PipelineVertexInputDivisorStateCreateInfoEXT, PipelineVertexInputStateCreateInfo, PipelineViewportCoarseSampleOrderStateCreateInfoNV, PipelineViewportExclusiveScissorStateCreateInfoNV, PipelineViewportShadingRateImageStateCreateInfoNV, PipelineViewportStateCreateInfo, PipelineViewportSwizzleStateCreateInfoNV, PipelineViewportWScalingStateCreateInfoNV, PresentFrameTokenGGP, PresentInfoKHR, PresentRegionKHR, PresentRegionsKHR, PresentTimeGOOGLE, PresentTimesInfoGOOGLE, PrivateDataSlotCreateFlagEXT, PrivateDataSlotCreateInfoEXT, PrivateDataSlotEXT, ProtectedSubmitInfo, PushConstantRange, QUERY_CONTROL_PRECISE_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT, QUERY_RESULT_64_BIT, QUERY_RESULT_PARTIAL_BIT, QUERY_RESULT_WAIT_BIT, QUERY_RESULT_WITH_AVAILABILITY_BIT, QUERY_RESULT_WITH_STATUS_BIT_KHR, QUEUE_COMPUTE_BIT, QUEUE_GRAPHICS_BIT, QUEUE_PROTECTED_BIT, QUEUE_SPARSE_BINDING_BIT, QUEUE_TRANSFER_BIT, QUEUE_VIDEO_DECODE_BIT_KHR, QUEUE_VIDEO_ENCODE_BIT_KHR, QueryControlFlag, QueryPipelineStatisticFlag, QueryPool, QueryPoolCreateInfo, QueryPoolPerformanceCreateInfoKHR, QueryPoolPerformanceQueryCreateInfoINTEL, QueryResultFlag, Queue, QueueFamilyCheckpointProperties2NV, QueueFamilyCheckpointPropertiesNV, QueueFamilyProperties, QueueFamilyProperties2, QueueFlag, RENDER_PASS_CREATE_RESERVED_0_BIT_KHR, RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM, RESOLVE_MODE_AVERAGE_BIT, RESOLVE_MODE_MAX_BIT, RESOLVE_MODE_MIN_BIT, RESOLVE_MODE_NONE, RESOLVE_MODE_SAMPLE_ZERO_BIT, RayTracingPipelineCreateInfoKHR, RayTracingPipelineCreateInfoNV, RayTracingPipelineInterfaceCreateInfoKHR, RayTracingShaderGroupCreateInfoKHR, RayTracingShaderGroupCreateInfoNV, Rect2D, RectLayerKHR, RefreshCycleDurationGOOGLE, RenderPass, RenderPassAttachmentBeginInfo, RenderPassBeginInfo, RenderPassCreateFlag, RenderPassCreateInfo, RenderPassCreateInfo2, RenderPassFragmentDensityMapCreateInfoEXT, RenderPassInputAttachmentAspectCreateInfo, RenderPassMultiviewCreateInfo, RenderPassSampleLocationsBeginInfoEXT, RenderPassTransformBeginInfoQCOM, ResolveImageInfo2KHR, ResolveModeFlag, SAMPLER_CREATE_SUBSAMPLED_BIT_EXT, SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT, SAMPLE_COUNT_16_BIT, SAMPLE_COUNT_1_BIT, SAMPLE_COUNT_2_BIT, SAMPLE_COUNT_32_BIT, SAMPLE_COUNT_4_BIT, SAMPLE_COUNT_64_BIT, SAMPLE_COUNT_8_BIT, SEMAPHORE_IMPORT_TEMPORARY_BIT, SEMAPHORE_WAIT_ANY_BIT, SHADER_MODULE_CREATE_RESERVED_0_BIT_NV, SHADER_STAGE_ALL, SHADER_STAGE_ALL_GRAPHICS, SHADER_STAGE_ANY_HIT_BIT_KHR, SHADER_STAGE_CALLABLE_BIT_KHR, SHADER_STAGE_CLOSEST_HIT_BIT_KHR, SHADER_STAGE_COMPUTE_BIT, SHADER_STAGE_FRAGMENT_BIT, SHADER_STAGE_GEOMETRY_BIT, SHADER_STAGE_INTERSECTION_BIT_KHR, SHADER_STAGE_MESH_BIT_NV, SHADER_STAGE_MISS_BIT_KHR, SHADER_STAGE_RAYGEN_BIT_KHR, SHADER_STAGE_TASK_BIT_NV, SHADER_STAGE_TESSELLATION_CONTROL_BIT, SHADER_STAGE_TESSELLATION_EVALUATION_BIT, SHADER_STAGE_VERTEX_BIT, SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT, SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT, SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, SPARSE_MEMORY_BIND_METADATA_BIT, STENCIL_FACE_BACK_BIT, STENCIL_FACE_FRONT_AND_BACK, STENCIL_FACE_FRONT_BIT, SUBGROUP_FEATURE_ARITHMETIC_BIT, SUBGROUP_FEATURE_BALLOT_BIT, SUBGROUP_FEATURE_BASIC_BIT, SUBGROUP_FEATURE_CLUSTERED_BIT, SUBGROUP_FEATURE_PARTITIONED_BIT_NV, SUBGROUP_FEATURE_QUAD_BIT, SUBGROUP_FEATURE_SHUFFLE_BIT, SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT, SUBGROUP_FEATURE_VOTE_BIT, SUBMIT_PROTECTED_BIT_KHR, SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM, SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX, SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX, SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM, SURFACE_COUNTER_VBLANK_BIT_EXT, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR, SURFACE_TRANSFORM_IDENTITY_BIT_KHR, SURFACE_TRANSFORM_INHERIT_BIT_KHR, SURFACE_TRANSFORM_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_ROTATE_90_BIT_KHR, SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR, SWAPCHAIN_CREATE_PROTECTED_BIT_KHR, SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR, SampleCountFlag, SampleLocationEXT, SampleLocationsInfoEXT, Sampler, SamplerCreateFlag, SamplerCreateInfo, SamplerCustomBorderColorCreateInfoEXT, SamplerReductionModeCreateInfo, SamplerYcbcrConversion, SamplerYcbcrConversionCreateInfo, SamplerYcbcrConversionImageFormatProperties, SamplerYcbcrConversionInfo, ScreenSurfaceCreateInfoQNX, Semaphore, SemaphoreCreateInfo, SemaphoreGetFdInfoKHR, SemaphoreGetWin32HandleInfoKHR, SemaphoreGetZirconHandleInfoFUCHSIA, SemaphoreImportFlag, SemaphoreSignalInfo, SemaphoreSubmitInfoKHR, SemaphoreTypeCreateInfo, SemaphoreWaitFlag, SemaphoreWaitInfo, SetStateFlagsIndirectCommandNV, ShaderCorePropertiesFlagAMD, ShaderModule, ShaderModuleCreateFlag, ShaderModuleCreateInfo, ShaderModuleValidationCacheCreateInfoEXT, ShaderResourceUsageAMD, ShaderStageFlag, ShaderStatisticsInfoAMD, ShadingRatePaletteNV, SharedPresentSurfaceCapabilitiesKHR, SparseBufferMemoryBindInfo, SparseImageFormatFlag, SparseImageFormatProperties, SparseImageFormatProperties2, SparseImageMemoryBind, SparseImageMemoryBindInfo, SparseImageMemoryRequirements, SparseImageMemoryRequirements2, SparseImageOpaqueMemoryBindInfo, SparseMemoryBind, SparseMemoryBindFlag, SpecializationInfo, SpecializationMapEntry, StencilFaceFlag, StencilOpState, StreamDescriptorSurfaceCreateInfoGGP, StridedDeviceAddressRegionKHR, SubgroupFeatureFlag, SubmitFlagKHR, SubmitInfo, SubmitInfo2KHR, SubpassBeginInfo, SubpassDependency, SubpassDependency2, SubpassDescription, SubpassDescription2, SubpassDescriptionDepthStencilResolve, SubpassDescriptionFlag, SubpassEndInfo, SubpassSampleLocationsEXT, SubresourceLayout, SurfaceCapabilities2EXT, SurfaceCapabilities2KHR, SurfaceCapabilitiesFullScreenExclusiveEXT, SurfaceCapabilitiesKHR, SurfaceCounterFlagEXT, SurfaceFormat2KHR, SurfaceFormatKHR, SurfaceFullScreenExclusiveInfoEXT, SurfaceFullScreenExclusiveWin32InfoEXT, SurfaceKHR, SurfaceProtectedCapabilitiesKHR, SurfaceTransformFlagKHR, SwapchainCounterCreateInfoEXT, SwapchainCreateFlagKHR, SwapchainCreateInfoKHR, SwapchainDisplayNativeHdrCreateInfoAMD, SwapchainKHR, TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT, TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT, TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT, TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT, TOOL_PURPOSE_PROFILING_BIT_EXT, TOOL_PURPOSE_TRACING_BIT_EXT, TOOL_PURPOSE_VALIDATION_BIT_EXT, TextureLODGatherFormatPropertiesAMD, TimelineSemaphoreSubmitInfo, ToolPurposeFlagEXT, TraceRaysIndirectCommandKHR, TransformMatrixKHR, VIDEO_CAPABILITIES_PROTECTED_CONTENT_BIT_KHR, VIDEO_CAPABILITIES_SEPARATE_REFERENCE_IMAGES_BIT_KHR, VIDEO_CHROMA_SUBSAMPLING_420_BIT_KHR, VIDEO_CHROMA_SUBSAMPLING_422_BIT_KHR, VIDEO_CHROMA_SUBSAMPLING_444_BIT_KHR, VIDEO_CHROMA_SUBSAMPLING_INVALID_BIT_KHR, VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_BIT_KHR, VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT, VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT, VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT, VIDEO_CODEC_OPERATION_INVALID_BIT_KHR, VIDEO_CODING_CONTROL_DEFAULT_KHR, VIDEO_CODING_CONTROL_RESET_BIT_KHR, VIDEO_CODING_QUALITY_PRESET_DEFAULT_BIT_KHR, VIDEO_CODING_QUALITY_PRESET_NORMAL_BIT_KHR, VIDEO_CODING_QUALITY_PRESET_POWER_BIT_KHR, VIDEO_CODING_QUALITY_PRESET_QUALITY_BIT_KHR, VIDEO_COMPONENT_BIT_DEPTH_10_BIT_KHR, VIDEO_COMPONENT_BIT_DEPTH_12_BIT_KHR, VIDEO_COMPONENT_BIT_DEPTH_8_BIT_KHR, VIDEO_COMPONENT_BIT_DEPTH_INVALID_KHR, VIDEO_DECODE_DEFAULT_KHR, VIDEO_DECODE_H264_FIELD_LAYOUT_LINE_INTERLACED_PLANE_BIT_EXT, VIDEO_DECODE_H264_FIELD_LAYOUT_SEPARATE_INTERLACED_PLANE_BIT_EXT, VIDEO_DECODE_H264_PROGRESSIVE_PICTURES_ONLY_EXT, VIDEO_DECODE_RESERVED_0_BIT_KHR, VIDEO_ENCODE_DEFAULT_KHR, VIDEO_ENCODE_H264_CAPABILITY_CABAC_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_CAVLC_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_CHROMA_QP_OFFSET_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_DEBLOCKING_FILTER_DISABLED_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_DEBLOCKING_FILTER_ENABLED_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_DEBLOCKING_FILTER_PARTIAL_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_EVENLY_DISTRIBUTED_SLICE_SIZE_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_MULTIPLE_SLICE_PER_FRAME_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_SECOND_CHROMA_QP_OFFSET_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_TRANSFORM_8X8_BIT_EXT, VIDEO_ENCODE_H264_CAPABILITY_WEIGHTED_BI_PRED_IMPLICIT_BIT_EXT, VIDEO_ENCODE_H264_CREATE_DEFAULT_EXT, VIDEO_ENCODE_H264_CREATE_RESERVED_0_BIT_EXT, VIDEO_ENCODE_H264_INPUT_MODE_FRAME_BIT_EXT, VIDEO_ENCODE_H264_INPUT_MODE_NON_VCL_BIT_EXT, VIDEO_ENCODE_H264_INPUT_MODE_SLICE_BIT_EXT, VIDEO_ENCODE_H264_OUTPUT_MODE_FRAME_BIT_EXT, VIDEO_ENCODE_H264_OUTPUT_MODE_NON_VCL_BIT_EXT, VIDEO_ENCODE_H264_OUTPUT_MODE_SLICE_BIT_EXT, VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR, VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_BIT_KHR, VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR, VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR, VIDEO_ENCODE_RATE_CONTROL_RESET_BIT_KHR, VIDEO_ENCODE_RESERVED_0_BIT_KHR, VIDEO_SESSION_CREATE_DEFAULT_KHR, VIDEO_SESSION_CREATE_PROTECTED_CONTENT_BIT_KHR, ValidationCacheCreateInfoEXT, ValidationCacheEXT, ValidationFeaturesEXT, ValidationFlagsEXT, VertexInputAttributeDescription, VertexInputAttributeDescription2EXT, VertexInputBindingDescription, VertexInputBindingDescription2EXT, VertexInputBindingDivisorDescriptionEXT, ViSurfaceCreateInfoNN, VideoBeginCodingInfoKHR, VideoBindMemoryKHR, VideoCapabilitiesFlagKHR, VideoCapabilitiesKHR, VideoChromaSubsamplingFlagKHR, VideoCodecOperationFlagKHR, VideoCodingControlFlagKHR, VideoCodingControlInfoKHR, VideoCodingQualityPresetFlagKHR, VideoComponentBitDepthFlagKHR, VideoDecodeFlagKHR, VideoDecodeH264CapabilitiesEXT, VideoDecodeH264DpbSlotInfoEXT, VideoDecodeH264FieldLayoutFlagEXT, VideoDecodeH264MvcEXT, VideoDecodeH264PictureInfoEXT, VideoDecodeH264ProfileEXT, VideoDecodeH264SessionCreateInfoEXT, VideoDecodeH264SessionParametersAddInfoEXT, VideoDecodeH264SessionParametersCreateInfoEXT, VideoDecodeH265CapabilitiesEXT, VideoDecodeH265DpbSlotInfoEXT, VideoDecodeH265PictureInfoEXT, VideoDecodeH265ProfileEXT, VideoDecodeH265SessionCreateInfoEXT, VideoDecodeH265SessionParametersAddInfoEXT, VideoDecodeH265SessionParametersCreateInfoEXT, VideoDecodeInfoKHR, VideoEncodeFlagKHR, VideoEncodeH264CapabilitiesEXT, VideoEncodeH264CapabilitiesFlagEXT, VideoEncodeH264CreateFlagEXT, VideoEncodeH264DpbSlotInfoEXT, VideoEncodeH264EmitPictureParametersEXT, VideoEncodeH264InputModeFlagEXT, VideoEncodeH264NaluSliceEXT, VideoEncodeH264OutputModeFlagEXT, VideoEncodeH264ProfileEXT, VideoEncodeH264SessionCreateInfoEXT, VideoEncodeH264SessionParametersAddInfoEXT, VideoEncodeH264SessionParametersCreateInfoEXT, VideoEncodeH264VclFrameInfoEXT, VideoEncodeInfoKHR, VideoEncodeRateControlFlagKHR, VideoEncodeRateControlInfoKHR, VideoEncodeRateControlModeFlagKHR, VideoEndCodingInfoKHR, VideoFormatPropertiesKHR, VideoGetMemoryPropertiesKHR, VideoPictureResourceKHR, VideoProfileKHR, VideoProfilesKHR, VideoQueueFamilyProperties2KHR, VideoReferenceSlotKHR, VideoSessionCreateFlagKHR, VideoSessionCreateInfoKHR, VideoSessionKHR, VideoSessionParametersCreateInfoKHR, VideoSessionParametersKHR, VideoSessionParametersUpdateInfoKHR, Viewport, ViewportSwizzleNV, ViewportWScalingNV, WaylandSurfaceCreateInfoKHR, Win32KeyedMutexAcquireReleaseInfoKHR, Win32KeyedMutexAcquireReleaseInfoNV, Win32SurfaceCreateInfoKHR, WriteDescriptorSet, WriteDescriptorSetAccelerationStructureKHR, WriteDescriptorSetAccelerationStructureNV, WriteDescriptorSetInlineUniformBlockEXT, XYColorEXT, XcbSurfaceCreateInfoKHR, XlibSurfaceCreateInfoKHR, acquire_full_screen_exclusive_mode_ext, acquire_next_image_2_khr, acquire_next_image_khr, acquire_performance_configuration_intel, acquire_profiling_lock_khr, acquire_winrt_display_nv, acquire_xlib_display_ext, allocate_command_buffers, allocate_descriptor_sets, allocate_memory, begin_command_buffer, bind_acceleration_structure_memory_nv, bind_buffer_memory, bind_buffer_memory_2, bind_image_memory, bind_image_memory_2, bind_video_session_memory_khr, build_acceleration_structures_khr, cmd_begin_conditional_rendering_ext, cmd_begin_debug_utils_label_ext, cmd_begin_query, cmd_begin_query_indexed_ext, cmd_begin_render_pass, cmd_begin_render_pass_2, cmd_begin_transform_feedback_ext, cmd_begin_video_coding_khr, cmd_bind_descriptor_sets, cmd_bind_index_buffer, cmd_bind_pipeline, cmd_bind_pipeline_shader_group_nv, cmd_bind_shading_rate_image_nv, cmd_bind_transform_feedback_buffers_ext, cmd_bind_vertex_buffers, cmd_bind_vertex_buffers_2_ext, cmd_blit_image, cmd_blit_image_2_khr, cmd_build_acceleration_structure_nv, cmd_build_acceleration_structures_indirect_khr, cmd_build_acceleration_structures_khr, cmd_clear_attachments, cmd_clear_color_image, cmd_clear_depth_stencil_image, cmd_control_video_coding_khr, cmd_copy_acceleration_structure_khr, cmd_copy_acceleration_structure_nv, cmd_copy_acceleration_structure_to_memory_khr, cmd_copy_buffer, cmd_copy_buffer_2_khr, cmd_copy_buffer_to_image, cmd_copy_buffer_to_image_2_khr, cmd_copy_image, cmd_copy_image_2_khr, cmd_copy_image_to_buffer, cmd_copy_image_to_buffer_2_khr, cmd_copy_memory_to_acceleration_structure_khr, cmd_copy_query_pool_results, cmd_debug_marker_begin_ext, cmd_debug_marker_end_ext, cmd_debug_marker_insert_ext, cmd_decode_video_khr, cmd_dispatch, cmd_dispatch_base, cmd_dispatch_indirect, cmd_draw, cmd_draw_indexed, cmd_draw_indexed_indirect, cmd_draw_indexed_indirect_count, cmd_draw_indirect, cmd_draw_indirect_byte_count_ext, cmd_draw_indirect_count, cmd_draw_mesh_tasks_indirect_count_nv, cmd_draw_mesh_tasks_indirect_nv, cmd_draw_mesh_tasks_nv, cmd_encode_video_khr, cmd_end_conditional_rendering_ext, cmd_end_debug_utils_label_ext, cmd_end_query, cmd_end_query_indexed_ext, cmd_end_render_pass, cmd_end_render_pass_2, cmd_end_transform_feedback_ext, cmd_end_video_coding_khr, cmd_execute_commands, cmd_execute_generated_commands_nv, cmd_fill_buffer, cmd_insert_debug_utils_label_ext, cmd_next_subpass, cmd_next_subpass_2, cmd_pipeline_barrier, cmd_pipeline_barrier_2_khr, cmd_preprocess_generated_commands_nv, cmd_push_constants, cmd_push_descriptor_set_khr, cmd_push_descriptor_set_with_template_khr, cmd_reset_event, cmd_reset_event_2_khr, cmd_reset_query_pool, cmd_resolve_image, cmd_resolve_image_2_khr, cmd_set_blend_constants, cmd_set_checkpoint_nv, cmd_set_coarse_sample_order_nv, cmd_set_color_write_enable_ext, cmd_set_cull_mode_ext, cmd_set_depth_bias, cmd_set_depth_bias_enable_ext, cmd_set_depth_bounds, cmd_set_depth_bounds_test_enable_ext, cmd_set_depth_compare_op_ext, cmd_set_depth_test_enable_ext, cmd_set_depth_write_enable_ext, cmd_set_device_mask, cmd_set_discard_rectangle_ext, cmd_set_event, cmd_set_event_2_khr, cmd_set_exclusive_scissor_nv, cmd_set_fragment_shading_rate_enum_nv, cmd_set_fragment_shading_rate_khr, cmd_set_front_face_ext, cmd_set_line_stipple_ext, cmd_set_line_width, cmd_set_logic_op_ext, cmd_set_patch_control_points_ext, cmd_set_performance_marker_intel, cmd_set_performance_override_intel, cmd_set_performance_stream_marker_intel, cmd_set_primitive_restart_enable_ext, cmd_set_primitive_topology_ext, cmd_set_rasterizer_discard_enable_ext, cmd_set_ray_tracing_pipeline_stack_size_khr, cmd_set_sample_locations_ext, cmd_set_scissor, cmd_set_scissor_with_count_ext, cmd_set_stencil_compare_mask, cmd_set_stencil_op_ext, cmd_set_stencil_reference, cmd_set_stencil_test_enable_ext, cmd_set_stencil_write_mask, cmd_set_vertex_input_ext, cmd_set_viewport, cmd_set_viewport_shading_rate_palette_nv, cmd_set_viewport_w_scaling_nv, cmd_set_viewport_with_count_ext, cmd_trace_rays_indirect_khr, cmd_trace_rays_khr, cmd_trace_rays_nv, cmd_update_buffer, cmd_wait_events, cmd_wait_events_2_khr, cmd_write_acceleration_structures_properties_khr, cmd_write_acceleration_structures_properties_nv, cmd_write_buffer_marker_2_amd, cmd_write_buffer_marker_amd, cmd_write_timestamp, cmd_write_timestamp_2_khr, compile_deferred_nv, copy_acceleration_structure_khr, copy_acceleration_structure_to_memory_khr, copy_memory_to_acceleration_structure_khr, create_acceleration_structure_khr, create_acceleration_structure_nv, create_android_surface_khr, create_buffer, create_buffer_view, create_command_pool, create_compute_pipelines, create_debug_report_callback_ext, create_debug_utils_messenger_ext, create_deferred_operation_khr, create_descriptor_pool, create_descriptor_set_layout, create_descriptor_update_template, create_device, create_direct_fb_surface_ext, create_display_mode_khr, create_display_plane_surface_khr, create_event, create_fence, create_framebuffer, create_graphics_pipelines, create_headless_surface_ext, create_image, create_image_pipe_surface_fuchsia, create_image_view, create_indirect_commands_layout_nv, create_instance, create_ios_surface_mvk, create_mac_os_surface_mvk, create_metal_surface_ext, create_pipeline_cache, create_pipeline_layout, create_private_data_slot_ext, create_query_pool, create_ray_tracing_pipelines_khr, create_ray_tracing_pipelines_nv, create_render_pass, create_render_pass_2, create_sampler, create_sampler_ycbcr_conversion, create_screen_surface_qnx, create_semaphore, create_shader_module, create_shared_swapchains_khr, create_stream_descriptor_surface_ggp, create_swapchain_khr, create_validation_cache_ext, create_vi_surface_nn, create_video_session_khr, create_video_session_parameters_khr, create_wayland_surface_khr, create_win_32_surface_khr, create_xcb_surface_khr, create_xlib_surface_khr, debug_marker_set_object_name_ext, debug_marker_set_object_tag_ext, debug_report_message_ext, deferred_operation_join_khr, destroy_acceleration_structure_khr, destroy_acceleration_structure_nv, destroy_buffer, destroy_buffer_view, destroy_command_pool, destroy_debug_report_callback_ext, destroy_debug_utils_messenger_ext, destroy_deferred_operation_khr, destroy_descriptor_pool, destroy_descriptor_set_layout, destroy_descriptor_update_template, destroy_device, destroy_event, destroy_fence, destroy_framebuffer, destroy_image, destroy_image_view, destroy_indirect_commands_layout_nv, destroy_instance, destroy_pipeline, destroy_pipeline_cache, destroy_pipeline_layout, destroy_private_data_slot_ext, destroy_query_pool, destroy_render_pass, destroy_sampler, destroy_sampler_ycbcr_conversion, destroy_semaphore, destroy_shader_module, destroy_surface_khr, destroy_swapchain_khr, destroy_validation_cache_ext, destroy_video_session_khr, destroy_video_session_parameters_khr, device_wait_idle, display_power_control_ext, end_command_buffer, enumerate_device_extension_properties, enumerate_device_layer_properties, enumerate_instance_extension_properties, enumerate_instance_layer_properties, enumerate_instance_version, enumerate_physical_device_groups, enumerate_physical_device_queue_family_performance_query_counters_khr, enumerate_physical_devices, flush_mapped_memory_ranges, free_command_buffers, free_descriptor_sets, free_memory, from_vk, get_acceleration_structure_build_sizes_khr, get_acceleration_structure_device_address_khr, get_acceleration_structure_handle_nv, get_acceleration_structure_memory_requirements_nv, get_android_hardware_buffer_properties_android, get_buffer_device_address, get_buffer_memory_requirements, get_buffer_memory_requirements_2, get_buffer_opaque_capture_address, get_calibrated_timestamps_ext, get_deferred_operation_max_concurrency_khr, get_deferred_operation_result_khr, get_descriptor_set_layout_support, get_device_acceleration_structure_compatibility_khr, get_device_group_peer_memory_features, get_device_group_present_capabilities_khr, get_device_group_surface_present_modes_2_ext, get_device_group_surface_present_modes_khr, get_device_memory_commitment, get_device_memory_opaque_capture_address, get_device_proc_addr, get_device_queue, get_device_queue_2, get_display_mode_properties_2_khr, get_display_mode_properties_khr, get_display_plane_capabilities_2_khr, get_display_plane_capabilities_khr, get_display_plane_supported_displays_khr, get_event_status, get_fence_fd_khr, get_fence_status, get_fence_win_32_handle_khr, get_generated_commands_memory_requirements_nv, get_image_drm_format_modifier_properties_ext, get_image_memory_requirements, get_image_memory_requirements_2, get_image_sparse_memory_requirements, get_image_sparse_memory_requirements_2, get_image_subresource_layout, get_image_view_address_nvx, get_image_view_handle_nvx, get_instance_proc_addr, get_memory_android_hardware_buffer_android, get_memory_fd_khr, get_memory_fd_properties_khr, get_memory_host_pointer_properties_ext, get_memory_win_32_handle_khr, get_memory_win_32_handle_nv, get_memory_win_32_handle_properties_khr, get_memory_zircon_handle_fuchsia, get_memory_zircon_handle_properties_fuchsia, get_past_presentation_timing_google, get_performance_parameter_intel, get_physical_device_calibrateable_time_domains_ext, get_physical_device_cooperative_matrix_properties_nv, get_physical_device_direct_fb_presentation_support_ext, get_physical_device_display_plane_properties_2_khr, get_physical_device_display_plane_properties_khr, get_physical_device_display_properties_2_khr, get_physical_device_display_properties_khr, get_physical_device_external_buffer_properties, get_physical_device_external_fence_properties, get_physical_device_external_image_format_properties_nv, get_physical_device_external_semaphore_properties, get_physical_device_features, get_physical_device_features_2, get_physical_device_format_properties, get_physical_device_format_properties_2, get_physical_device_fragment_shading_rates_khr, get_physical_device_image_format_properties, get_physical_device_image_format_properties_2, get_physical_device_memory_properties, get_physical_device_memory_properties_2, get_physical_device_multisample_properties_ext, get_physical_device_present_rectangles_khr, get_physical_device_properties, get_physical_device_properties_2, get_physical_device_queue_family_performance_query_passes_khr, get_physical_device_queue_family_properties, get_physical_device_queue_family_properties_2, get_physical_device_screen_presentation_support_qnx, get_physical_device_sparse_image_format_properties, get_physical_device_sparse_image_format_properties_2, get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, get_physical_device_surface_capabilities_2_ext, get_physical_device_surface_capabilities_2_khr, get_physical_device_surface_capabilities_khr, get_physical_device_surface_formats_2_khr, get_physical_device_surface_formats_khr, get_physical_device_surface_present_modes_2_ext, get_physical_device_surface_present_modes_khr, get_physical_device_surface_support_khr, get_physical_device_tool_properties_ext, get_physical_device_video_capabilities_khr, get_physical_device_video_format_properties_khr, get_physical_device_wayland_presentation_support_khr, get_physical_device_win_32_presentation_support_khr, get_physical_device_xcb_presentation_support_khr, get_physical_device_xlib_presentation_support_khr, get_pipeline_cache_data, get_pipeline_executable_internal_representations_khr, get_pipeline_executable_properties_khr, get_pipeline_executable_statistics_khr, get_private_data_ext, get_query_pool_results, get_queue_checkpoint_data_2_nv, get_queue_checkpoint_data_nv, get_rand_r_output_display_ext, get_ray_tracing_capture_replay_shader_group_handles_khr, get_ray_tracing_shader_group_handles_khr, get_ray_tracing_shader_group_stack_size_khr, get_refresh_cycle_duration_google, get_render_area_granularity, get_semaphore_counter_value, get_semaphore_fd_khr, get_semaphore_win_32_handle_khr, get_semaphore_zircon_handle_fuchsia, get_shader_info_amd, get_swapchain_counter_ext, get_swapchain_images_khr, get_swapchain_status_khr, get_validation_cache_data_ext, get_video_session_memory_requirements_khr, get_winrt_display_nv, import_fence_fd_khr, import_fence_win_32_handle_khr, import_semaphore_fd_khr, import_semaphore_win_32_handle_khr, import_semaphore_zircon_handle_fuchsia, initialize_performance_api_intel, invalidate_mapped_memory_ranges, map_memory, merge_pipeline_caches, merge_validation_caches_ext, queue_begin_debug_utils_label_ext, queue_bind_sparse, queue_end_debug_utils_label_ext, queue_insert_debug_utils_label_ext, queue_present_khr, queue_set_performance_configuration_intel, queue_submit, queue_submit_2_khr, queue_wait_idle, register_device_event_ext, register_display_event_ext, release_display_ext, release_full_screen_exclusive_mode_ext, release_performance_configuration_intel, release_profiling_lock_khr, reset_command_buffer, reset_command_pool, reset_descriptor_pool, reset_event, reset_fences, reset_query_pool, set_debug_utils_object_name_ext, set_debug_utils_object_tag_ext, set_event, set_hdr_metadata_ext, set_local_dimming_amd, set_private_data_ext, signal_semaphore, submit_debug_utils_message_ext, trim_command_pool, uninitialize_performance_api_intel, unmap_memory, update_descriptor_set_with_template, update_descriptor_sets, update_video_session_parameters_khr, wait_for_fences, wait_semaphores, write_acceleration_structures_properties_khr, VkImageLayout, VkAttachmentLoadOp, VkAttachmentStoreOp, VkImageType, VkImageTiling, VkImageViewType, VkCommandBufferLevel, VkComponentSwizzle, VkDescriptorType, VkQueryType, VkBorderColor, VkPipelineBindPoint, VkPipelineCacheHeaderVersion, VkPrimitiveTopology, VkSharingMode, VkIndexType, VkFilter, VkSamplerMipmapMode, VkSamplerAddressMode, VkCompareOp, VkPolygonMode, VkFrontFace, VkBlendFactor, VkBlendOp, VkStencilOp, VkLogicOp, VkInternalAllocationType, VkSystemAllocationScope, VkPhysicalDeviceType, VkVertexInputRate, VkFormat, VkStructureType, VkSubpassContents, VkResult, VkDynamicState, VkDescriptorUpdateTemplateType, VkObjectType, VkSemaphoreType, VkPresentModeKHR, VkColorSpaceKHR, VkTimeDomainEXT, VkDebugReportObjectTypeEXT, VkDeviceMemoryReportEventTypeEXT, VkRasterizationOrderAMD, VkValidationCheckEXT, VkValidationFeatureEnableEXT, VkValidationFeatureDisableEXT, VkIndirectCommandsTokenTypeNV, VkDisplayPowerStateEXT, VkDeviceEventTypeEXT, VkDisplayEventTypeEXT, VkViewportCoordinateSwizzleNV, VkDiscardRectangleModeEXT, VkPointClippingBehavior, VkSamplerReductionMode, VkTessellationDomainOrigin, VkSamplerYcbcrModelConversion, VkSamplerYcbcrRange, VkChromaLocation, VkBlendOverlapEXT, VkCoverageModulationModeNV, VkCoverageReductionModeNV, VkValidationCacheHeaderVersionEXT, VkShaderInfoTypeAMD, VkQueueGlobalPriorityEXT, VkConservativeRasterizationModeEXT, VkVendorId, VkDriverId, VkShadingRatePaletteEntryNV, VkCoarseSampleOrderTypeNV, VkCopyAccelerationStructureModeKHR, VkBuildAccelerationStructureModeKHR, VkAccelerationStructureTypeKHR, VkGeometryTypeKHR, VkAccelerationStructureMemoryRequirementsTypeNV, VkAccelerationStructureBuildTypeKHR, VkRayTracingShaderGroupTypeKHR, VkAccelerationStructureCompatibilityKHR, VkShaderGroupShaderKHR, VkMemoryOverallocationBehaviorAMD, VkScopeNV, VkComponentTypeNV, VkFullScreenExclusiveEXT, VkPerformanceCounterScopeKHR, VkPerformanceCounterUnitKHR, VkPerformanceCounterStorageKHR, VkPerformanceConfigurationTypeINTEL, VkQueryPoolSamplingModeINTEL, VkPerformanceOverrideTypeINTEL, VkPerformanceParameterTypeINTEL, VkPerformanceValueTypeINTEL, VkShaderFloatControlsIndependence, VkPipelineExecutableStatisticFormatKHR, VkLineRasterizationModeEXT, VkFragmentShadingRateCombinerOpKHR, VkFragmentShadingRateNV, VkFragmentShadingRateTypeNV, VkProvokingVertexModeEXT, VkQueryResultStatusKHR, VkPipelineCacheCreateFlagBits, VkQueueFlagBits, VkCullModeFlagBits, VkRenderPassCreateFlagBits, VkDeviceQueueCreateFlagBits, VkMemoryPropertyFlagBits, VkMemoryHeapFlagBits, VkAccessFlagBits, VkBufferUsageFlagBits, VkBufferCreateFlagBits, VkShaderStageFlagBits, VkImageUsageFlagBits, VkImageCreateFlagBits, VkImageViewCreateFlagBits, VkSamplerCreateFlagBits, VkPipelineCreateFlagBits, VkPipelineShaderStageCreateFlagBits, VkColorComponentFlagBits, VkFenceCreateFlagBits, VkFormatFeatureFlagBits, VkQueryControlFlagBits, VkQueryResultFlagBits, VkCommandBufferUsageFlagBits, VkQueryPipelineStatisticFlagBits, VkImageAspectFlagBits, VkSparseImageFormatFlagBits, VkSparseMemoryBindFlagBits, VkPipelineStageFlagBits, VkCommandPoolCreateFlagBits, VkCommandPoolResetFlagBits, VkCommandBufferResetFlagBits, VkSampleCountFlagBits, VkAttachmentDescriptionFlagBits, VkStencilFaceFlagBits, VkDescriptorPoolCreateFlagBits, VkDependencyFlagBits, VkSemaphoreWaitFlagBits, VkDisplayPlaneAlphaFlagBitsKHR, VkCompositeAlphaFlagBitsKHR, VkSurfaceTransformFlagBitsKHR, VkDebugReportFlagBitsEXT, VkExternalMemoryHandleTypeFlagBitsNV, VkExternalMemoryFeatureFlagBitsNV, VkSubgroupFeatureFlagBits, VkIndirectCommandsLayoutUsageFlagBitsNV, VkIndirectStateFlagBitsNV, VkPrivateDataSlotCreateFlagBitsEXT, VkDescriptorSetLayoutCreateFlagBits, VkExternalMemoryHandleTypeFlagBits, VkExternalMemoryFeatureFlagBits, VkExternalSemaphoreHandleTypeFlagBits, VkExternalSemaphoreFeatureFlagBits, VkSemaphoreImportFlagBits, VkExternalFenceHandleTypeFlagBits, VkExternalFenceFeatureFlagBits, VkFenceImportFlagBits, VkSurfaceCounterFlagBitsEXT, VkPeerMemoryFeatureFlagBits, VkMemoryAllocateFlagBits, VkDeviceGroupPresentModeFlagBitsKHR, VkSwapchainCreateFlagBitsKHR, VkSubpassDescriptionFlagBits, VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, VkDescriptorBindingFlagBits, VkConditionalRenderingFlagBitsEXT, VkResolveModeFlagBits, VkGeometryInstanceFlagBitsKHR, VkGeometryFlagBitsKHR, VkBuildAccelerationStructureFlagBitsKHR, VkAccelerationStructureCreateFlagBitsKHR, VkFramebufferCreateFlagBits, VkDeviceDiagnosticsConfigFlagBitsNV, VkPipelineCreationFeedbackFlagBitsEXT, VkPerformanceCounterDescriptionFlagBitsKHR, VkAcquireProfilingLockFlagBitsKHR, VkShaderCorePropertiesFlagBitsAMD, VkShaderModuleCreateFlagBits, VkPipelineCompilerControlFlagBitsAMD, VkToolPurposeFlagBitsEXT, VkAccessFlagBits2KHR, VkPipelineStageFlagBits2KHR, VkSubmitFlagBitsKHR, VkEventCreateFlagBits, VkVideoCodecOperationFlagBitsKHR, VkVideoChromaSubsamplingFlagBitsKHR, VkVideoComponentBitDepthFlagBitsKHR, VkVideoCapabilitiesFlagBitsKHR, VkVideoSessionCreateFlagBitsKHR, VkVideoCodingQualityPresetFlagBitsKHR, VkVideoDecodeH264FieldLayoutFlagBitsEXT, VkVideoCodingControlFlagBitsKHR, VkVideoDecodeFlagBitsKHR, VkVideoEncodeFlagBitsKHR, VkVideoEncodeRateControlFlagBitsKHR, VkVideoEncodeRateControlModeFlagBitsKHR, VkVideoEncodeH264CapabilitiesFlagBitsEXT, VkVideoEncodeH264InputModeFlagBitsEXT, VkVideoEncodeH264OutputModeFlagBitsEXT, VkVideoEncodeH264CreateFlagBitsEXT

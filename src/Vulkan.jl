@@ -70,7 +70,6 @@ export
         print_devices,
 
         # Device
-        physical_device_features,
         find_queue_family,
 
         # Debugging
