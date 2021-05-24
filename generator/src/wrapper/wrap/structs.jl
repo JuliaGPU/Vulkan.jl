@@ -2,7 +2,7 @@ function wrap(spec::SpecStruct)
     p = Dict(
         :category => :struct,
         :decl => :(
-            $(remove_vk_prefix(spec.name)) <:
+            $(struct_name(spec.name)) <:
             $(spec.is_returnedonly ? :ReturnedOnly : :(VulkanStruct{$(needs_deps(spec))}))
         ),
     )
@@ -45,4 +45,15 @@ function add_constructor(spec::SpecStruct)
     potential_args = filter(x -> x.type ≠ :VkStructureType, spec.members)
     add_func_args!(p, spec, potential_args)
     p
+end
+
+function hl_wrap(spec::SpecStruct)
+    @assert !spec.is_returnedonly
+    p = Dict(
+        :category => :struct,
+        :decl => :(
+            $(struct_name(spec.name, true)) <: HighLevelStruct
+        ),
+        :fields => map(x -> :($(nc_convert(SnakeCaseLower, x.name))::$(nice_julian_type(x, true))), spec.members)
+    )
 end

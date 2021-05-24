@@ -7,7 +7,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
         struct_by_name(:VkExtent2D),
         """
 
-            Extent2D(width::Integer, height::Integer)
+            _Extent2D(width::Integer, height::Integer)
 
         Arguments:
         - `width::Integer`
@@ -20,7 +20,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
         struct_by_name(:VkInstanceCreateInfo),
         """
 
-            InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
+            _InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
 
         Arguments:
         - `enabled_layer_names::AbstractArray{<:AbstractString}`

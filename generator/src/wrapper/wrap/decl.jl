@@ -1,6 +1,7 @@
 init_wrapper_func(spec::SpecFunc) =
     Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
 init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
+init_wrapper_func(spec::SpecStruct, is_high_level=false) = Dict(:category => :function, :name => struct_name(spec.name, is_high_level), :short => false)
 
 arg_decl(x::Spec) = :($(wrap_identifier(x))::$(signature_type(nice_julian_type(x))))
 

@@ -57,3 +57,10 @@ function _wrap_identifier(spec::SpecHandle, func::SpecFunc)
     end
     nothing
 end
+
+struct_name(sym::Symbol, is_high_level = false) = struct_name(struct_by_name(sym), is_high_level)
+
+function struct_name(spec::SpecStruct, is_high_level = false)
+    sym = remove_vk_prefix(spec.name)
+    is_high_level || spec.is_returnedonly ? sym : Symbol(:_, sym)
+end

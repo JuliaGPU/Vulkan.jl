@@ -1,4 +1,4 @@
-function nice_julian_type(type)
+function nice_julian_type(type, is_high_level = false)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
         GuardBy(is_opaque_pointer) => t
@@ -14,6 +14,7 @@ function nice_julian_type(type)
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)
         GuardBy(in(extension_types)) => :(vk.$t)
+        GuardBy(is_vulkan_type) && GuardBy(in(spec_structs.name)) => struct_name(t, is_high_level)
         GuardBy(is_vulkan_type) && GuardBy(!in(spec_enums.name)) => remove_vk_prefix(t)
         _ => @match _t = innermost_type(t) begin
             GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => begin

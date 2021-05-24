@@ -62,13 +62,13 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
             end))
 
         test_wrap_struct(:VkApplicationInfo, :(
-            struct ApplicationInfo <: VulkanStruct{true}
+            struct _ApplicationInfo <: VulkanStruct{true}
                 vks::VkApplicationInfo
                 deps::Vector{Any}
             end))
 
         test_wrap_struct(:VkExtent2D, :(
-            struct Extent2D <: VulkanStruct{false}
+            struct _Extent2D <: VulkanStruct{false}
                 vks::VkExtent2D
             end))
 
@@ -93,7 +93,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_struct(:VkDescriptorSetAllocateInfo, :(
-            struct DescriptorSetAllocateInfo <: VulkanStruct{true}
+            struct _DescriptorSetAllocateInfo <: VulkanStruct{true}
                 vks::VkDescriptorSetAllocateInfo
                 deps::Vector{Any}
                 descriptor_pool::DescriptorPool
@@ -101,7 +101,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_struct(:VkAccelerationStructureBuildGeometryInfoKHR, :(
-            struct AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
+            struct _AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
                 vks::VkAccelerationStructureBuildGeometryInfoKHR
                 deps::Vector{Any}
                 src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
@@ -152,7 +152,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkGetGeneratedCommandsMemoryRequirementsNV, :(
-            function get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
+            function get_generated_commands_memory_requirements_nv(device::Device, info::_GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
                 pMemoryRequirements = Ref{VkMemoryRequirements2}()
                 vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements)
                 from_vk(MemoryRequirements2, pMemoryRequirements[])
@@ -183,7 +183,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkRegisterDeviceEventEXT, :(
-            function register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT; allocator = C_NULL)::Result{Fence,VulkanError}
+            function register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::Result{Fence,VulkanError}
                 pFence = Ref{VkFence}()
                 @check vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
                 Fence(pFence[], (x->destroy_fence(device, x; allocator)), device)
@@ -191,7 +191,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkCreateInstance, :(
-            function create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)::Result{Instance,VulkanError}
+            function create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::Result{Instance,VulkanError}
                 pInstance = Ref{VkInstance}()
                 @check vkCreateInstance(create_info, allocator, pInstance)
                 Instance(pInstance[], x -> destroy_instance(x; allocator))
@@ -199,7 +199,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkCreateDebugReportCallbackEXT, :(
-            function create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DebugReportCallbackEXT,VulkanError}
+            function create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::Result{DebugReportCallbackEXT,VulkanError}
                 pCallback = Ref{VkDebugReportCallbackEXT}()
                 @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fun_ptr_create)
                 DebugReportCallbackEXT(pCallback[], (x->destroy_debug_report_callback_ext(instance, x, fun_ptr_destroy; allocator)), instance)
@@ -215,7 +215,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkAllocateDescriptorSets, :(
-            function allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet},VulkanError}
+            function allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet},VulkanError}
                 pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
                 @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
                 DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
@@ -227,7 +227,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkGetFenceFdKHR, :(
-            function get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR)::Result{Int,VulkanError}
+            function get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)::Result{Int,VulkanError}
                 pFd = Ref{Int}()
                 @check vkGetFenceFdKHR(device, get_fd_info, pFd)
                 pFd[]
@@ -322,7 +322,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
     @testset "Additional constructors" begin
         @testset "Struct constructors" begin
             test_struct_add_constructor(:VkInstanceCreateInfo, :(
-                function InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
+                function _InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
                     next = cconvert(Ptr{Cvoid}, next)
                     application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
                     enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
@@ -342,59 +342,59 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
                                             pointer_length(enabled_extension_names),
                                             unsafe_convert(Ptr{Cstring}, enabled_extension_names),
                                             )
-                    InstanceCreateInfo(vks, deps)
+                    _InstanceCreateInfo(vks, deps)
                 end
             ))
 
         test_struct_add_constructor(:VkSubpassSampleLocationsEXT, :(
-            function SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::SampleLocationsInfoEXT)
-                SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
+            function _SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
+                _SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
             end
         ))
 
         test_struct_add_constructor(:VkDebugUtilsMessengerCreateInfoEXT, :(
-            function DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
+            function _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 user_data = cconvert(Ptr{Cvoid}, user_data)
                 deps = [next, user_data]
                 vks = VkDebugUtilsMessengerCreateInfoEXT(VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, message_severity, message_type, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
-                DebugUtilsMessengerCreateInfoEXT(vks, deps)
+                _DebugUtilsMessengerCreateInfoEXT(vks, deps)
             end
         ))
 
         test_struct_add_constructor(:VkDescriptorSetAllocateInfo, :(
-            function DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL)
+            function _DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
                 deps = [next, set_layouts]
                 vks = VkDescriptorSetAllocateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, pointer_length(set_layouts), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
-                DescriptorSetAllocateInfo(vks, deps, descriptor_pool)
+                _DescriptorSetAllocateInfo(vks, deps, descriptor_pool)
             end
         ))
 
         test_struct_add_constructor(:VkPipelineShaderStageCreateInfo, :(
-            function PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+            function _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 name = cconvert(Cstring, name)
                 specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
                 deps = [next, name, specialization_info]
                 vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
-                PipelineShaderStageCreateInfo(vks, deps, _module)
+                _PipelineShaderStageCreateInfo(vks, deps, _module)
             end
         ))
 
         test_struct_add_constructor(:VkDescriptorImageInfo, :(
-            function DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
-                DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
+            function _DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
+                _DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
             end
         ))
 
         test_struct_add_constructor(:VkDescriptorSetLayoutBinding, :(
-            function DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
+            function _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
                 immutable_samplers = cconvert(Ptr{VkSampler}, immutable_samplers)
                 deps = [immutable_samplers]
                 vks = VkDescriptorSetLayoutBinding(binding, descriptor_type, descriptor_count, stage_flags, unsafe_convert(Ptr{VkSampler}, immutable_samplers))
-                DescriptorSetLayoutBinding(vks, deps)
+                _DescriptorSetLayoutBinding(vks, deps)
             end
         ))
 
@@ -406,7 +406,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
             ))
 
             test_handle_add_constructor(:VkDebugReportCallbackEXT, :(
-                    DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) =    unwrap(create_debug_report_callback_ext(instance, pfn_callback, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, user_data))
+                    DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, user_data))
                 ),
                 with_func_ptr=true,
             )
@@ -427,11 +427,11 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
 
         @testset "Extended handle constructors" begin
             test_extend_handle_constructor(:VkInstance, :(
-                create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
+                create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = create_instance(_InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
             ))
 
             test_extend_handle_constructor(:VkDebugReportCallbackEXT, :(
-                create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
+                create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, _DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
                 ),
                 with_func_ptr=true,
             )
@@ -444,7 +444,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_extend_from_vk(:VkQueueFamilyProperties, :(
-            T(x.queueFlags, x.queueCount, x.timestampValidBits, from_vk(Extent3D, x.minImageTransferGranularity))
+            T(x.queueFlags, x.queueCount, x.timestampValidBits, from_vk(_Extent3D, x.minImageTransferGranularity))
         ))
 
         test_extend_from_vk(:VkPhysicalDeviceMemoryProperties, :(
@@ -490,14 +490,14 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
 
     @testset "Manual tweaks" begin
         test_struct_add_constructor(:VkWriteDescriptorSet, :(
-            function WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
+            function _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
                 next = cconvert(Ptr{Cvoid}, next)
                 image_info = cconvert(Ptr{VkDescriptorImageInfo}, image_info)
                 buffer_info = cconvert(Ptr{VkDescriptorBufferInfo}, buffer_info)
                 texel_buffer_view = cconvert(Ptr{VkBufferView}, texel_buffer_view)
                 deps = [next, image_info, buffer_info, texel_buffer_view]
                 vks = VkWriteDescriptorSet(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET, unsafe_convert(Ptr{Cvoid}, next), dst_set, dst_binding, dst_array_element, descriptor_count, descriptor_type, unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
-                WriteDescriptorSet(vks, deps, dst_set)
+                _WriteDescriptorSet(vks, deps, dst_set)
             end
         ))
     end
