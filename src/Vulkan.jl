@@ -34,6 +34,10 @@ include("preferences.jl")
 
 # generated wrapper
 include("prewrap.jl")
+
+include("CEnum/CEnum.jl")
+using .CEnum
+
 include("../generated/vulkan_wrapper.jl")
 include("../generated/vulkan_docs.jl")
 
@@ -42,12 +46,6 @@ include("driver.jl")
 include("validation.jl")
 include("device.jl")
 include("print.jl")
-
-for sym ∈ names(vk)
-    if startswith(string(sym), "VK_") && !contains(string(sym), "FlagBits")
-        @eval export $sym
-    end
-end
 
 export
         vk,

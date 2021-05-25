@@ -20,6 +20,7 @@ include("wrap/initialization.jl")
 include("wrap/parent.jl")
 
 include("wrap/bitmasks.jl")
+include("wrap/enums.jl")
 include("wrap/overloads.jl")
 include("wrap/structs.jl")
 include("wrap/functions.jl")
@@ -55,7 +56,7 @@ function VulkanWrapper()
             ),
         )
 
-    enums = to_expr.(wrap.(spec_bitmasks))
+    enums = to_expr.([wrap.(spec_bitmasks); wrap.(spec_enums)])
     docs = vcat(
         document.(spec_funcs, wrap.(spec_funcs)),
         document.(api_structs, add_constructor.(api_structs)),

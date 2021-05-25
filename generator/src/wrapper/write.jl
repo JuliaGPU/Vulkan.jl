@@ -61,9 +61,18 @@ function write_exports(io::IO, decls)
 
     ignored_symbols = vcat(:(Base.convert), :Base)
 
-    decl_symbols = sort(filter(!in(ignored_symbols), unique(Iterators.flatten(exported_names.(decls)))))
+    candidates = unique(Iterators.flatten(exported_names.(decls)))
+    decl_symbols = collect(Iterators.flatten(sort(
+        filter!.(
+            [
+                !in(ignored_symbols),
+                !is_vulkan_type,
+            ],
+            Ref(candidates),
+        )
+    )))
 
-    exports = :(export $([decl_symbols; getproperty.(spec_all_semantic_enums, :name)]...))
+    exports = :(export $(decl_symbols...))
 
     println(io, string(exports))
 end
