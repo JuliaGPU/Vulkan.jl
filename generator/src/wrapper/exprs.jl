@@ -94,7 +94,11 @@ function deconstruct(ex::Expr)
         dict[:is_mutable] = is_mutable
         dict[:fields] = []
         dict[:constructors] = []
-        for field ∈ fields.args
+        fields = @match fields begin
+            Expr(:block, fields...) => fields
+            _ => [fields]
+        end
+        for field ∈ fields
             field isa LineNumberNode && continue
             @when :function = category(field) begin
                 push!(dict[:constructors], deconstruct(field))
@@ -182,7 +186,7 @@ function reconstruct(d::Dict)
     category = d[:category]
     ex = @match category begin
         :struct   => begin
-            props = vcat(get(d, :fields, []), get(d, :constructors, []))
+            props = [get(d, :fields, []); get(d, :constructors, [])]
             Expr(:struct, get(d, :is_mutable, false), d[:decl], Expr(:block, props...))
         end
         :const    => :(const $(d[:name]) = $(d[:value]))

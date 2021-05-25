@@ -42,5 +42,6 @@ export
     add_constructors,
     extend_from_vk,
     extend_handle_constructor,
+    hl_wrap,
     to_expr,
     document

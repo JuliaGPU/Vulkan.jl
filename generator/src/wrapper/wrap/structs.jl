@@ -54,6 +54,14 @@ function hl_wrap(spec::SpecStruct)
         :decl => :(
             $(struct_name(spec.name, true)) <: HighLevelStruct
         ),
-        :fields => map(x -> :($(nc_convert(SnakeCaseLower, x.name))::$(nice_julian_type(x, true))), spec.members)
+        :fields => Expr[],
     )
+    for member in spec.members
+        if !drop_field(member)
+            push!(p[:fields], :($(wrap_identifier(member))::$(nice_julian_type(member, true))))
+        end
+    end
+    p
 end
+
+drop_field(x::Spec) = drop_arg(x) || x.name == :sType

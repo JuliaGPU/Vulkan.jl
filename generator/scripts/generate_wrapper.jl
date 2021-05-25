@@ -1,8 +1,7 @@
 using VulkanGen
 
-const destfile = joinpath(dirname(dirname(@__DIR__)), "generated", "vulkan_wrapper.jl")
-const docfile = joinpath(dirname(dirname(@__DIR__)), "generated", "vulkan_docs.jl")
+const destdir = joinpath(dirname(dirname(@__DIR__)), "generated")
 
 vw = VulkanWrapper()
 @info "Vulkan successfully wrapped."
-write(vw, destfile, docfile)
+write(vw, destdir)

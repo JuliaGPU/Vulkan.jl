@@ -13,3 +13,8 @@ abstract type ReturnedOnly <: VulkanStruct{false} end
 
 const FunctionPtr = Union{Ptr{Cvoid}, Base.CFunction}
 const OptionalPtr{T} = Union{T, Ptr{Cvoid}}
+
+"""
+High-level structure with Julian types.
+"""
+abstract type HighLevelStruct end

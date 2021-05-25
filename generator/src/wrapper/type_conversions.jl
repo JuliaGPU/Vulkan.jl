@@ -35,12 +35,12 @@ end
 """
 Return a new type easier to deal with.
 """
-function nice_julian_type(spec::Spec)
+function nice_julian_type(spec::Spec, is_high_level = false)
     @match s = spec begin
         GuardBy(is_version) => :VersionNumber
-        GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
+        GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type), is_high_level))})
         GuardBy(is_data) => :(Ptr{Cvoid})
-        _ => nice_julian_type(s.type)
+        _ => nice_julian_type(s.type, is_high_level)
     end
 end
 

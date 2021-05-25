@@ -1,24 +1,29 @@
 """
-Write the wrapper to `destfile`.
+Write the wrapper to `destdir`.
 """
-function Base.write(vw::VulkanWrapper, destfile, docfile)
-    exprs = vcat(vw.handles, vw.structs, vw.funcs, vw.enums)
+function Base.write(vw::VulkanWrapper, destdir)
+    exprs = vcat(vw.handles, vw.structs, vw.funcs, vw.enums, vw.hl_structs)
     ordered_exprs = sort_expressions(exprs)
-    structs = filter(is_category(:struct), ordered_exprs)
-    funcs = filter(is_category(:function), ordered_exprs)
-    enums = filter(is_category(:enum), ordered_exprs)
+    ll_exprs = filter(in(vw.hl_structs), ordered_exprs)
+    enums = filter(in(vw.enums), ordered_exprs)
+    structs = filter(x -> x in vw.structs || x in vw.handles, ordered_exprs)
+    funcs = filter(in(vw.funcs), ordered_exprs)
 
-    open(destfile, "w+") do io
+    open(joinpath(destdir, "vulkan_wrapper.jl"), "w+") do io
         print_block(io, enums)
         print_block(io, structs)
         print_block(io, funcs)
-        print_block(io, setdiff(ordered_exprs, vcat(structs, funcs, enums)))
 
         write_exports(io, exprs)
     end
 
-    open(docfile, "w+") do io
+    open(joinpath(destdir, "vulkan_docs.jl"), "w+") do io
         print_block(io, vw.docs)
+    end
+
+    open(joinpath(destdir, "vulkan_wrapper_hl.jl"), "w+") do io
+        print_block(io, ll_exprs)
+        write_exports(io, ll_exprs)
     end
 end
 

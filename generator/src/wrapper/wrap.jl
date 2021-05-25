@@ -4,6 +4,7 @@ struct VulkanWrapper
     funcs::Vector{Expr}
     enums::Vector{Expr}
     docs::Vector{Expr}
+    hl_structs::Vector{Expr}
 end
 
 Base.show(io::IO, vw::VulkanWrapper) = print(
@@ -62,5 +63,5 @@ function VulkanWrapper()
         document.(api_structs, add_constructor.(api_structs)),
         document.(spec_handles_with_wrappable_constructors)...,
     )
-    VulkanWrapper(handles, structs, funcs, enums, docs)
+    VulkanWrapper(handles, structs, funcs, enums, docs, to_expr.(hl_wrap.(filter(x -> !x.is_returnedonly, spec_structs))))
 end

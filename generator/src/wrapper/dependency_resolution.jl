@@ -1,9 +1,16 @@
 const known_dependencies = [:FunctionPtr, :RefCounter]
 
+function field_deps(ex)
+    @match ex begin
+        :($_::$T) => innermost_type(T)
+        _ => nothing
+    end
+end
+
 function raw_dependencies(ex)
     p = deconstruct(ex)
     deps = @match category(ex) begin
-        :struct => map(x -> x isa Symbol ? nothing : innermost_type(x.args[2]), p[:fields])
+        :struct => field_deps.(p[:fields])
         :function => vcat(map.(Ref(@λ(begin
             :($arg::$type) => inner_type(type)
             :(::$type) => inner_type(type)
@@ -20,7 +27,7 @@ function dependencies(ex)
     filter!.(
         [
             !isalias,
-            x -> !startswith(string(x), r"(?:Vk|VK_)"),
+            x -> !startswith(string(x), r"(?:Vk|VK_|StdVideo)"),
             !is_vulkan_type,
             !in(known_dependencies),
             !in(extension_types),
