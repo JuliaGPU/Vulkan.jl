@@ -1,5 +1,5 @@
 """
-    create_instance(create_info::InstanceCreateInfo; allocator = C_NULL)::Result{Instance, VulkanError}
+    create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::Result{Instance, VulkanError}
 
 Return codes:
 - Error:
@@ -11,7 +11,7 @@ Return codes:
   - `VK_ERROR_INCOMPATIBLE_DRIVER`
 
 Arguments:
-- `create_info::InstanceCreateInfo`
+- `create_info::_InstanceCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -90,7 +90,7 @@ Arguments:
 get_physical_device_memory_properties
 
 """
-    get_physical_device_features(physical_device::PhysicalDevice)::PhysicalDeviceFeatures
+    get_physical_device_features(physical_device::PhysicalDevice)::_PhysicalDeviceFeatures
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -129,7 +129,7 @@ Arguments:
 get_physical_device_image_format_properties
 
 """
-    create_device(physical_device::PhysicalDevice, create_info::DeviceCreateInfo; allocator = C_NULL)::Result{Device, VulkanError}
+    create_device(physical_device::PhysicalDevice, create_info::_DeviceCreateInfo; allocator = C_NULL)::Result{Device, VulkanError}
 
 Return codes:
 - Error:
@@ -143,7 +143,7 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `create_info::DeviceCreateInfo`
+- `create_info::_DeviceCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -241,7 +241,7 @@ Arguments:
 get_device_queue
 
 """
-    queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
+    queue_submit(queue::Queue, submits::AbstractArray{<:_SubmitInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -251,7 +251,7 @@ Return codes:
 
 Arguments:
 - `queue::Queue` (externsync)
-- `submits::AbstractArray{<:SubmitInfo}`
+- `submits::AbstractArray{<:_SubmitInfo}`
 - `fence`: defaults to `C_NULL` (externsync)
 
 """
@@ -288,7 +288,7 @@ Arguments:
 device_wait_idle
 
 """
-    allocate_memory(device::Device, allocate_info::MemoryAllocateInfo; allocator = C_NULL)::Result{DeviceMemory, VulkanError}
+    allocate_memory(device::Device, allocate_info::_MemoryAllocateInfo; allocator = C_NULL)::Result{DeviceMemory, VulkanError}
 
 Return codes:
 - Error:
@@ -299,7 +299,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `allocate_info::MemoryAllocateInfo`
+- `allocate_info::_MemoryAllocateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -346,7 +346,7 @@ Arguments:
 unmap_memory
 
 """
-    flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{VkResult, VulkanError}
+    flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -355,13 +355,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `memory_ranges::AbstractArray{<:MappedMemoryRange}`
+- `memory_ranges::AbstractArray{<:_MappedMemoryRange}`
 
 """
 flush_mapped_memory_ranges
 
 """
-    invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange})::Result{VkResult, VulkanError}
+    invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -370,7 +370,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `memory_ranges::AbstractArray{<:MappedMemoryRange}`
+- `memory_ranges::AbstractArray{<:_MappedMemoryRange}`
 
 """
 invalidate_mapped_memory_ranges
@@ -465,7 +465,7 @@ Arguments:
 get_physical_device_sparse_image_format_properties
 
 """
-    queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
+    queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:_BindSparseInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -475,14 +475,14 @@ Return codes:
 
 Arguments:
 - `queue::Queue` (externsync)
-- `bind_info::AbstractArray{<:BindSparseInfo}` (externsync)
+- `bind_info::AbstractArray{<:_BindSparseInfo}` (externsync)
 - `fence`: defaults to `C_NULL` (externsync)
 
 """
 queue_bind_sparse
 
 """
-    create_fence(device::Device, create_info::FenceCreateInfo; allocator = C_NULL)::Result{Fence, VulkanError}
+    create_fence(device::Device, create_info::_FenceCreateInfo; allocator = C_NULL)::Result{Fence, VulkanError}
 
 Return codes:
 - Error:
@@ -491,7 +491,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::FenceCreateInfo`
+- `create_info::_FenceCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -563,7 +563,7 @@ Arguments:
 wait_for_fences
 
 """
-    create_semaphore(device::Device, create_info::SemaphoreCreateInfo; allocator = C_NULL)::Result{Semaphore, VulkanError}
+    create_semaphore(device::Device, create_info::_SemaphoreCreateInfo; allocator = C_NULL)::Result{Semaphore, VulkanError}
 
 Return codes:
 - Error:
@@ -572,7 +572,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::SemaphoreCreateInfo`
+- `create_info::_SemaphoreCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -590,7 +590,7 @@ Arguments:
 destroy_semaphore
 
 """
-    create_event(device::Device, create_info::EventCreateInfo; allocator = C_NULL)::Result{Event, VulkanError}
+    create_event(device::Device, create_info::_EventCreateInfo; allocator = C_NULL)::Result{Event, VulkanError}
 
 Return codes:
 - Error:
@@ -599,7 +599,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::EventCreateInfo`
+- `create_info::_EventCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -665,7 +665,7 @@ Arguments:
 reset_event
 
 """
-    create_query_pool(device::Device, create_info::QueryPoolCreateInfo; allocator = C_NULL)::Result{QueryPool, VulkanError}
+    create_query_pool(device::Device, create_info::_QueryPoolCreateInfo; allocator = C_NULL)::Result{QueryPool, VulkanError}
 
 Return codes:
 - Error:
@@ -674,7 +674,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::QueryPoolCreateInfo`
+- `create_info::_QueryPoolCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -729,7 +729,7 @@ Arguments:
 reset_query_pool
 
 """
-    create_buffer(device::Device, create_info::BufferCreateInfo; allocator = C_NULL)::Result{Buffer, VulkanError}
+    create_buffer(device::Device, create_info::_BufferCreateInfo; allocator = C_NULL)::Result{Buffer, VulkanError}
 
 Return codes:
 - Error:
@@ -739,7 +739,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::BufferCreateInfo`
+- `create_info::_BufferCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -757,7 +757,7 @@ Arguments:
 destroy_buffer
 
 """
-    create_buffer_view(device::Device, create_info::BufferViewCreateInfo; allocator = C_NULL)::Result{BufferView, VulkanError}
+    create_buffer_view(device::Device, create_info::_BufferViewCreateInfo; allocator = C_NULL)::Result{BufferView, VulkanError}
 
 Return codes:
 - Error:
@@ -766,7 +766,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::BufferViewCreateInfo`
+- `create_info::_BufferViewCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -784,7 +784,7 @@ Arguments:
 destroy_buffer_view
 
 """
-    create_image(device::Device, create_info::ImageCreateInfo; allocator = C_NULL)::Result{Image, VulkanError}
+    create_image(device::Device, create_info::_ImageCreateInfo; allocator = C_NULL)::Result{Image, VulkanError}
 
 Return codes:
 - Error:
@@ -793,7 +793,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::ImageCreateInfo`
+- `create_info::_ImageCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -811,18 +811,18 @@ Arguments:
 destroy_image
 
 """
-    get_image_subresource_layout(device::Device, image::Image, subresource::ImageSubresource)::SubresourceLayout
+    get_image_subresource_layout(device::Device, image::Image, subresource::_ImageSubresource)::SubresourceLayout
 
 Arguments:
 - `device::Device`
 - `image::Image`
-- `subresource::ImageSubresource`
+- `subresource::_ImageSubresource`
 
 """
 get_image_subresource_layout
 
 """
-    create_image_view(device::Device, create_info::ImageViewCreateInfo; allocator = C_NULL)::Result{ImageView, VulkanError}
+    create_image_view(device::Device, create_info::_ImageViewCreateInfo; allocator = C_NULL)::Result{ImageView, VulkanError}
 
 Return codes:
 - Error:
@@ -831,7 +831,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::ImageViewCreateInfo`
+- `create_info::_ImageViewCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -849,7 +849,7 @@ Arguments:
 destroy_image_view
 
 """
-    create_shader_module(device::Device, create_info::ShaderModuleCreateInfo; allocator = C_NULL)::Result{ShaderModule, VulkanError}
+    create_shader_module(device::Device, create_info::_ShaderModuleCreateInfo; allocator = C_NULL)::Result{ShaderModule, VulkanError}
 
 Return codes:
 - Error:
@@ -859,7 +859,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::ShaderModuleCreateInfo`
+- `create_info::_ShaderModuleCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -877,7 +877,7 @@ Arguments:
 destroy_shader_module
 
 """
-    create_pipeline_cache(device::Device, create_info::PipelineCacheCreateInfo; allocator = C_NULL)::Result{PipelineCache, VulkanError}
+    create_pipeline_cache(device::Device, create_info::_PipelineCacheCreateInfo; allocator = C_NULL)::Result{PipelineCache, VulkanError}
 
 Return codes:
 - Error:
@@ -886,7 +886,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::PipelineCacheCreateInfo`
+- `create_info::_PipelineCacheCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -938,7 +938,7 @@ Arguments:
 merge_pipeline_caches
 
 """
-    create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -951,7 +951,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}`
+- `create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}`
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
@@ -959,7 +959,7 @@ Arguments:
 create_graphics_pipelines
 
 """
-    create_compute_pipelines(device::Device, create_infos::AbstractArray{<:ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_compute_pipelines(device::Device, create_infos::AbstractArray{<:_ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -972,7 +972,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_infos::AbstractArray{<:ComputePipelineCreateInfo}`
+- `create_infos::AbstractArray{<:_ComputePipelineCreateInfo}`
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
@@ -991,7 +991,7 @@ Arguments:
 destroy_pipeline
 
 """
-    create_pipeline_layout(device::Device, create_info::PipelineLayoutCreateInfo; allocator = C_NULL)::Result{PipelineLayout, VulkanError}
+    create_pipeline_layout(device::Device, create_info::_PipelineLayoutCreateInfo; allocator = C_NULL)::Result{PipelineLayout, VulkanError}
 
 Return codes:
 - Error:
@@ -1000,7 +1000,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::PipelineLayoutCreateInfo`
+- `create_info::_PipelineLayoutCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1018,7 +1018,7 @@ Arguments:
 destroy_pipeline_layout
 
 """
-    create_sampler(device::Device, create_info::SamplerCreateInfo; allocator = C_NULL)::Result{Sampler, VulkanError}
+    create_sampler(device::Device, create_info::_SamplerCreateInfo; allocator = C_NULL)::Result{Sampler, VulkanError}
 
 Return codes:
 - Error:
@@ -1027,7 +1027,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::SamplerCreateInfo`
+- `create_info::_SamplerCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1045,7 +1045,7 @@ Arguments:
 destroy_sampler
 
 """
-    create_descriptor_set_layout(device::Device, create_info::DescriptorSetLayoutCreateInfo; allocator = C_NULL)::Result{DescriptorSetLayout, VulkanError}
+    create_descriptor_set_layout(device::Device, create_info::_DescriptorSetLayoutCreateInfo; allocator = C_NULL)::Result{DescriptorSetLayout, VulkanError}
 
 Return codes:
 - Error:
@@ -1054,7 +1054,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::DescriptorSetLayoutCreateInfo`
+- `create_info::_DescriptorSetLayoutCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1072,7 +1072,7 @@ Arguments:
 destroy_descriptor_set_layout
 
 """
-    create_descriptor_pool(device::Device, create_info::DescriptorPoolCreateInfo; allocator = C_NULL)::Result{DescriptorPool, VulkanError}
+    create_descriptor_pool(device::Device, create_info::_DescriptorPoolCreateInfo; allocator = C_NULL)::Result{DescriptorPool, VulkanError}
 
 Return codes:
 - Error:
@@ -1082,7 +1082,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::DescriptorPoolCreateInfo`
+- `create_info::_DescriptorPoolCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1113,7 +1113,7 @@ Arguments:
 reset_descriptor_pool
 
 """
-    allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet}, VulkanError}
+    allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet}, VulkanError}
 
 Return codes:
 - Error:
@@ -1124,7 +1124,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `allocate_info::DescriptorSetAllocateInfo` (externsync)
+- `allocate_info::_DescriptorSetAllocateInfo` (externsync)
 
 """
 allocate_descriptor_sets
@@ -1143,18 +1143,18 @@ Arguments:
 free_descriptor_sets
 
 """
-    update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet})::Cvoid
+    update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, descriptor_copies::AbstractArray{<:_CopyDescriptorSet})::Cvoid
 
 Arguments:
 - `device::Device`
-- `descriptor_writes::AbstractArray{<:WriteDescriptorSet}` (externsync)
-- `descriptor_copies::AbstractArray{<:CopyDescriptorSet}` (externsync)
+- `descriptor_writes::AbstractArray{<:_WriteDescriptorSet}` (externsync)
+- `descriptor_copies::AbstractArray{<:_CopyDescriptorSet}` (externsync)
 
 """
 update_descriptor_sets
 
 """
-    create_framebuffer(device::Device, create_info::FramebufferCreateInfo; allocator = C_NULL)::Result{Framebuffer, VulkanError}
+    create_framebuffer(device::Device, create_info::_FramebufferCreateInfo; allocator = C_NULL)::Result{Framebuffer, VulkanError}
 
 Return codes:
 - Error:
@@ -1163,7 +1163,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::FramebufferCreateInfo`
+- `create_info::_FramebufferCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1181,7 +1181,7 @@ Arguments:
 destroy_framebuffer
 
 """
-    create_render_pass(device::Device, create_info::RenderPassCreateInfo; allocator = C_NULL)::Result{RenderPass, VulkanError}
+    create_render_pass(device::Device, create_info::_RenderPassCreateInfo; allocator = C_NULL)::Result{RenderPass, VulkanError}
 
 Return codes:
 - Error:
@@ -1190,7 +1190,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::RenderPassCreateInfo`
+- `create_info::_RenderPassCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1208,7 +1208,7 @@ Arguments:
 destroy_render_pass
 
 """
-    get_render_area_granularity(device::Device, render_pass::RenderPass)::Extent2D
+    get_render_area_granularity(device::Device, render_pass::RenderPass)::_Extent2D
 
 Arguments:
 - `device::Device`
@@ -1218,7 +1218,7 @@ Arguments:
 get_render_area_granularity
 
 """
-    create_command_pool(device::Device, create_info::CommandPoolCreateInfo; allocator = C_NULL)::Result{CommandPool, VulkanError}
+    create_command_pool(device::Device, create_info::_CommandPoolCreateInfo; allocator = C_NULL)::Result{CommandPool, VulkanError}
 
 Return codes:
 - Error:
@@ -1227,7 +1227,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::CommandPoolCreateInfo`
+- `create_info::_CommandPoolCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1260,7 +1260,7 @@ Arguments:
 reset_command_pool
 
 """
-    allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInfo)::Result{Vector{CommandBuffer}, VulkanError}
+    allocate_command_buffers(device::Device, allocate_info::_CommandBufferAllocateInfo)::Result{Vector{CommandBuffer}, VulkanError}
 
 Return codes:
 - Error:
@@ -1269,7 +1269,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `allocate_info::CommandBufferAllocateInfo` (externsync)
+- `allocate_info::_CommandBufferAllocateInfo` (externsync)
 
 """
 allocate_command_buffers
@@ -1286,7 +1286,7 @@ Arguments:
 free_command_buffers
 
 """
-    begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo)::Result{VkResult, VulkanError}
+    begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -1295,7 +1295,7 @@ Return codes:
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `begin_info::CommandBufferBeginInfo`
+- `begin_info::_CommandBufferBeginInfo`
 
 """
 begin_command_buffer
@@ -1340,21 +1340,21 @@ Arguments:
 cmd_bind_pipeline
 
 """
-    cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport})::Cvoid
+    cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `viewports::AbstractArray{<:Viewport}`
+- `viewports::AbstractArray{<:_Viewport}`
 
 """
 cmd_set_viewport
 
 """
-    cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D})::Cvoid
+    cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `scissors::AbstractArray{<:Rect2D}`
+- `scissors::AbstractArray{<:_Rect2D}`
 
 """
 cmd_set_scissor
@@ -1549,19 +1549,19 @@ Arguments:
 cmd_dispatch_indirect
 
 """
-    cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy})::Cvoid
+    cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:_BufferCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_buffer::Buffer`
 - `dst_buffer::Buffer`
-- `regions::AbstractArray{<:BufferCopy}`
+- `regions::AbstractArray{<:_BufferCopy}`
 
 """
 cmd_copy_buffer
 
 """
-    cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageCopy})::Cvoid
+    cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1569,13 +1569,13 @@ Arguments:
 - `src_image_layout::VkImageLayout`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:ImageCopy}`
+- `regions::AbstractArray{<:_ImageCopy}`
 
 """
 cmd_copy_image
 
 """
-    cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageBlit}, filter::VkFilter)::Cvoid
+    cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageBlit}, filter::VkFilter)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1583,34 +1583,34 @@ Arguments:
 - `src_image_layout::VkImageLayout`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:ImageBlit}`
+- `regions::AbstractArray{<:_ImageBlit}`
 - `filter::VkFilter`
 
 """
 cmd_blit_image
 
 """
-    cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:BufferImageCopy})::Cvoid
+    cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_buffer::Buffer`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:BufferImageCopy}`
+- `regions::AbstractArray{<:_BufferImageCopy}`
 
 """
 cmd_copy_buffer_to_image
 
 """
-    cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy})::Cvoid
+    cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_image::Image`
 - `src_image_layout::VkImageLayout`
 - `dst_buffer::Buffer`
-- `regions::AbstractArray{<:BufferImageCopy}`
+- `regions::AbstractArray{<:_BufferImageCopy}`
 
 """
 cmd_copy_image_to_buffer
@@ -1642,44 +1642,44 @@ Arguments:
 cmd_fill_buffer
 
 """
-    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::VkClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange})::Cvoid
+    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::VkClearColorValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `image::Image`
 - `image_layout::VkImageLayout`
 - `color::VkClearColorValue`
-- `ranges::AbstractArray{<:ImageSubresourceRange}`
+- `ranges::AbstractArray{<:_ImageSubresourceRange}`
 
 """
 cmd_clear_color_image
 
 """
-    cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray{<:ImageSubresourceRange})::Cvoid
+    cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `image::Image`
 - `image_layout::VkImageLayout`
-- `depth_stencil::ClearDepthStencilValue`
-- `ranges::AbstractArray{<:ImageSubresourceRange}`
+- `depth_stencil::_ClearDepthStencilValue`
+- `ranges::AbstractArray{<:_ImageSubresourceRange}`
 
 """
 cmd_clear_depth_stencil_image
 
 """
-    cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:ClearAttachment}, rects::AbstractArray{<:ClearRect})::Cvoid
+    cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:_ClearAttachment}, rects::AbstractArray{<:_ClearRect})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `attachments::AbstractArray{<:ClearAttachment}`
-- `rects::AbstractArray{<:ClearRect}`
+- `attachments::AbstractArray{<:_ClearAttachment}`
+- `rects::AbstractArray{<:_ClearRect}`
 
 """
 cmd_clear_attachments
 
 """
-    cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageResolve})::Cvoid
+    cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageResolve})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1687,7 +1687,7 @@ Arguments:
 - `src_image_layout::VkImageLayout`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:ImageResolve}`
+- `regions::AbstractArray{<:_ImageResolve}`
 
 """
 cmd_resolve_image
@@ -1715,14 +1715,14 @@ Arguments:
 cmd_reset_event
 
 """
-    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid
+    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `events::AbstractArray{<:Event}`
-- `memory_barriers::AbstractArray{<:MemoryBarrier}`
-- `buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}`
-- `image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}`
+- `memory_barriers::AbstractArray{<:_MemoryBarrier}`
+- `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}`
+- `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}`
 - `src_stage_mask`: defaults to `0`
 - `dst_stage_mask`: defaults to `0`
 
@@ -1730,15 +1730,15 @@ Arguments:
 cmd_wait_events
 
 """
-    cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; dependency_flags = 0)::Cvoid
+    cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; dependency_flags = 0)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_stage_mask::PipelineStageFlag`
 - `dst_stage_mask::PipelineStageFlag`
-- `memory_barriers::AbstractArray{<:MemoryBarrier}`
-- `buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}`
-- `image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}`
+- `memory_barriers::AbstractArray{<:_MemoryBarrier}`
+- `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}`
+- `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}`
 - `dependency_flags`: defaults to `0`
 
 """
@@ -1768,11 +1768,11 @@ Arguments:
 cmd_end_query
 
 """
-    cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT)::Cvoid
+    cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `conditional_rendering_begin::ConditionalRenderingBeginInfoEXT`
+- `conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT`
 
 """
 cmd_begin_conditional_rendering_ext
@@ -1840,11 +1840,11 @@ Arguments:
 cmd_push_constants
 
 """
-    cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, contents::VkSubpassContents)::Cvoid
+    cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::VkSubpassContents)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `render_pass_begin::RenderPassBeginInfo`
+- `render_pass_begin::_RenderPassBeginInfo`
 - `contents::VkSubpassContents`
 
 """
@@ -1880,7 +1880,7 @@ Arguments:
 cmd_execute_commands
 
 """
-    create_android_surface_khr(instance::Instance, create_info::AndroidSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_android_surface_khr(instance::Instance, create_info::_AndroidSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -1890,7 +1890,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::AndroidSurfaceCreateInfoKHR`
+- `create_info::_AndroidSurfaceCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1955,7 +1955,7 @@ Arguments:
 get_display_mode_properties_khr
 
 """
-    create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::DisplayModeCreateInfoKHR; allocator = C_NULL)::Result{DisplayModeKHR, VulkanError}
+    create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::_DisplayModeCreateInfoKHR; allocator = C_NULL)::Result{DisplayModeKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -1966,7 +1966,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 - `display::DisplayKHR` (externsync)
-- `create_info::DisplayModeCreateInfoKHR`
+- `create_info::_DisplayModeCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -1989,7 +1989,7 @@ Arguments:
 get_display_plane_capabilities_khr
 
 """
-    create_display_plane_surface_khr(instance::Instance, create_info::DisplaySurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_display_plane_surface_khr(instance::Instance, create_info::_DisplaySurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -1998,14 +1998,14 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::DisplaySurfaceCreateInfoKHR`
+- `create_info::_DisplaySurfaceCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_display_plane_surface_khr
 
 """
-    create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:SwapchainCreateInfoKHR}; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
+    create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -2017,7 +2017,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_infos::AbstractArray{<:SwapchainCreateInfoKHR}` (externsync)
+- `create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}` (externsync)
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2100,7 +2100,7 @@ Arguments:
 get_physical_device_surface_present_modes_khr
 
 """
-    create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
+    create_swapchain_khr(device::Device, create_info::_SwapchainCreateInfoKHR; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2113,7 +2113,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::SwapchainCreateInfoKHR` (externsync)
+- `create_info::_SwapchainCreateInfoKHR` (externsync)
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2173,7 +2173,7 @@ Arguments:
 acquire_next_image_khr
 
 """
-    queue_present_khr(queue::Queue, present_info::PresentInfoKHR)::Result{VkResult, VulkanError}
+    queue_present_khr(queue::Queue, present_info::_PresentInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -2189,13 +2189,13 @@ Return codes:
 
 Arguments:
 - `queue::Queue` (externsync)
-- `present_info::PresentInfoKHR` (externsync)
+- `present_info::_PresentInfoKHR` (externsync)
 
 """
 queue_present_khr
 
 """
-    create_vi_surface_nn(instance::Instance, create_info::ViSurfaceCreateInfoNN; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_vi_surface_nn(instance::Instance, create_info::_ViSurfaceCreateInfoNN; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2205,14 +2205,14 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::ViSurfaceCreateInfoNN`
+- `create_info::_ViSurfaceCreateInfoNN`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_vi_surface_nn
 
 """
-    create_wayland_surface_khr(instance::Instance, create_info::WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_wayland_surface_khr(instance::Instance, create_info::_WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2221,7 +2221,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::WaylandSurfaceCreateInfoKHR`
+- `create_info::_WaylandSurfaceCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2239,7 +2239,7 @@ Arguments:
 get_physical_device_wayland_presentation_support_khr
 
 """
-    create_win_32_surface_khr(instance::Instance, create_info::Win32SurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_win_32_surface_khr(instance::Instance, create_info::_Win32SurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2248,7 +2248,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::Win32SurfaceCreateInfoKHR`
+- `create_info::_Win32SurfaceCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2265,7 +2265,7 @@ Arguments:
 get_physical_device_win_32_presentation_support_khr
 
 """
-    create_xlib_surface_khr(instance::Instance, create_info::XlibSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2274,7 +2274,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::XlibSurfaceCreateInfoKHR`
+- `create_info::_XlibSurfaceCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2293,7 +2293,7 @@ Arguments:
 get_physical_device_xlib_presentation_support_khr
 
 """
-    create_xcb_surface_khr(instance::Instance, create_info::XcbSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2302,7 +2302,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::XcbSurfaceCreateInfoKHR`
+- `create_info::_XcbSurfaceCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2321,7 +2321,7 @@ Arguments:
 get_physical_device_xcb_presentation_support_khr
 
 """
-    create_direct_fb_surface_ext(instance::Instance, create_info::DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_direct_fb_surface_ext(instance::Instance, create_info::_DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2330,7 +2330,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::DirectFBSurfaceCreateInfoEXT`
+- `create_info::_DirectFBSurfaceCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2348,7 +2348,7 @@ Arguments:
 get_physical_device_direct_fb_presentation_support_ext
 
 """
-    create_image_pipe_surface_fuchsia(instance::Instance, create_info::ImagePipeSurfaceCreateInfoFUCHSIA; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_image_pipe_surface_fuchsia(instance::Instance, create_info::_ImagePipeSurfaceCreateInfoFUCHSIA; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2357,14 +2357,14 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::ImagePipeSurfaceCreateInfoFUCHSIA`
+- `create_info::_ImagePipeSurfaceCreateInfoFUCHSIA`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_image_pipe_surface_fuchsia
 
 """
-    create_stream_descriptor_surface_ggp(instance::Instance, create_info::StreamDescriptorSurfaceCreateInfoGGP; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_stream_descriptor_surface_ggp(instance::Instance, create_info::_StreamDescriptorSurfaceCreateInfoGGP; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2374,14 +2374,14 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::StreamDescriptorSurfaceCreateInfoGGP`
+- `create_info::_StreamDescriptorSurfaceCreateInfoGGP`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_stream_descriptor_surface_ggp
 
 """
-    create_screen_surface_qnx(instance::Instance, create_info::ScreenSurfaceCreateInfoQNX; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_screen_surface_qnx(instance::Instance, create_info::_ScreenSurfaceCreateInfoQNX; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2390,7 +2390,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::ScreenSurfaceCreateInfoQNX`
+- `create_info::_ScreenSurfaceCreateInfoQNX`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2408,7 +2408,7 @@ Arguments:
 get_physical_device_screen_presentation_support_qnx
 
 """
-    create_debug_report_callback_ext(instance::Instance, create_info::DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::Result{DebugReportCallbackEXT, VulkanError}
+    create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::Result{DebugReportCallbackEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -2416,7 +2416,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::DebugReportCallbackCreateInfoEXT`
+- `create_info::_DebugReportCallbackCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2450,7 +2450,7 @@ Arguments:
 debug_report_message_ext
 
 """
-    debug_marker_set_object_name_ext(device::Device, name_info::DebugMarkerObjectNameInfoEXT)::Result{VkResult, VulkanError}
+    debug_marker_set_object_name_ext(device::Device, name_info::_DebugMarkerObjectNameInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2459,13 +2459,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `name_info::DebugMarkerObjectNameInfoEXT` (externsync)
+- `name_info::_DebugMarkerObjectNameInfoEXT` (externsync)
 
 """
 debug_marker_set_object_name_ext
 
 """
-    debug_marker_set_object_tag_ext(device::Device, tag_info::DebugMarkerObjectTagInfoEXT)::Result{VkResult, VulkanError}
+    debug_marker_set_object_tag_ext(device::Device, tag_info::_DebugMarkerObjectTagInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2474,17 +2474,17 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `tag_info::DebugMarkerObjectTagInfoEXT` (externsync)
+- `tag_info::_DebugMarkerObjectTagInfoEXT` (externsync)
 
 """
 debug_marker_set_object_tag_ext
 
 """
-    cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)::Cvoid
+    cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `marker_info::DebugMarkerMarkerInfoEXT`
+- `marker_info::_DebugMarkerMarkerInfoEXT`
 
 """
 cmd_debug_marker_begin_ext
@@ -2499,11 +2499,11 @@ Arguments:
 cmd_debug_marker_end_ext
 
 """
-    cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::DebugMarkerMarkerInfoEXT)::Cvoid
+    cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `marker_info::DebugMarkerMarkerInfoEXT`
+- `marker_info::_DebugMarkerMarkerInfoEXT`
 
 """
 cmd_debug_marker_insert_ext
@@ -2547,22 +2547,22 @@ Arguments:
 get_memory_win_32_handle_nv
 
 """
-    cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::GeneratedCommandsInfoNV)::Cvoid
+    cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::_GeneratedCommandsInfoNV)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `is_preprocessed::Bool`
-- `generated_commands_info::GeneratedCommandsInfoNV`
+- `generated_commands_info::_GeneratedCommandsInfoNV`
 
 """
 cmd_execute_generated_commands_nv
 
 """
-    cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::GeneratedCommandsInfoNV)::Cvoid
+    cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::_GeneratedCommandsInfoNV)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `generated_commands_info::GeneratedCommandsInfoNV`
+- `generated_commands_info::_GeneratedCommandsInfoNV`
 
 """
 cmd_preprocess_generated_commands_nv
@@ -2580,17 +2580,17 @@ Arguments:
 cmd_bind_pipeline_shader_group_nv
 
 """
-    get_generated_commands_memory_requirements_nv(device::Device, info::GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
+    get_generated_commands_memory_requirements_nv(device::Device, info::_GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
 
 Arguments:
 - `device::Device`
-- `info::GeneratedCommandsMemoryRequirementsInfoNV`
+- `info::_GeneratedCommandsMemoryRequirementsInfoNV`
 
 """
 get_generated_commands_memory_requirements_nv
 
 """
-    create_indirect_commands_layout_nv(device::Device, create_info::IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::Result{IndirectCommandsLayoutNV, VulkanError}
+    create_indirect_commands_layout_nv(device::Device, create_info::_IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::Result{IndirectCommandsLayoutNV, VulkanError}
 
 Return codes:
 - Error:
@@ -2599,7 +2599,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::IndirectCommandsLayoutCreateInfoNV`
+- `create_info::_IndirectCommandsLayoutCreateInfoNV`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -2617,7 +2617,7 @@ Arguments:
 destroy_indirect_commands_layout_nv
 
 """
-    get_physical_device_features_2(physical_device::PhysicalDevice)::PhysicalDeviceFeatures2
+    get_physical_device_features_2(physical_device::PhysicalDevice)::_PhysicalDeviceFeatures2
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2645,7 +2645,7 @@ Arguments:
 get_physical_device_format_properties_2
 
 """
-    get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::PhysicalDeviceImageFormatInfo2)::Result{ImageFormatProperties2, VulkanError}
+    get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::_PhysicalDeviceImageFormatInfo2)::Result{ImageFormatProperties2, VulkanError}
 
 Return codes:
 - Error:
@@ -2655,7 +2655,7 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `image_format_info::PhysicalDeviceImageFormatInfo2`
+- `image_format_info::_PhysicalDeviceImageFormatInfo2`
 
 """
 get_physical_device_image_format_properties_2
@@ -2679,24 +2679,24 @@ Arguments:
 get_physical_device_memory_properties_2
 
 """
-    get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2)::Vector{SparseImageFormatProperties2}
+    get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::_PhysicalDeviceSparseImageFormatInfo2)::Vector{SparseImageFormatProperties2}
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `format_info::PhysicalDeviceSparseImageFormatInfo2`
+- `format_info::_PhysicalDeviceSparseImageFormatInfo2`
 
 """
 get_physical_device_sparse_image_format_properties_2
 
 """
-    cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet})::Cvoid
+    cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:_WriteDescriptorSet})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `pipeline_bind_point::VkPipelineBindPoint`
 - `layout::PipelineLayout`
 - `set::Integer`
-- `descriptor_writes::AbstractArray{<:WriteDescriptorSet}`
+- `descriptor_writes::AbstractArray{<:_WriteDescriptorSet}`
 
 """
 cmd_push_descriptor_set_khr
@@ -2713,17 +2713,17 @@ Arguments:
 trim_command_pool
 
 """
-    get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo)::ExternalBufferProperties
+    get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::_PhysicalDeviceExternalBufferInfo)::ExternalBufferProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `external_buffer_info::PhysicalDeviceExternalBufferInfo`
+- `external_buffer_info::_PhysicalDeviceExternalBufferInfo`
 
 """
 get_physical_device_external_buffer_properties
 
 """
-    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
+    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2732,7 +2732,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_win_32_handle_info::MemoryGetWin32HandleInfoKHR`
+- `get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR`
 - `handle::vk.HANDLE`
 
 """
@@ -2755,7 +2755,7 @@ Arguments:
 get_memory_win_32_handle_properties_khr
 
 """
-    get_memory_fd_khr(device::Device, get_fd_info::MemoryGetFdInfoKHR)::Result{Int, VulkanError}
+    get_memory_fd_khr(device::Device, get_fd_info::_MemoryGetFdInfoKHR)::Result{Int, VulkanError}
 
 Return codes:
 - Error:
@@ -2764,7 +2764,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_fd_info::MemoryGetFdInfoKHR`
+- `get_fd_info::_MemoryGetFdInfoKHR`
 
 """
 get_memory_fd_khr
@@ -2786,7 +2786,7 @@ Arguments:
 get_memory_fd_properties_khr
 
 """
-    get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
+    get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2795,7 +2795,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_zircon_handle_info::MemoryGetZirconHandleInfoFUCHSIA`
+- `get_zircon_handle_info::_MemoryGetZirconHandleInfoFUCHSIA`
 - `zircon_handle::vk.zx_handle_t`
 
 """
@@ -2817,17 +2817,17 @@ Arguments:
 get_memory_zircon_handle_properties_fuchsia
 
 """
-    get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo)::ExternalSemaphoreProperties
+    get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo)::ExternalSemaphoreProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `external_semaphore_info::PhysicalDeviceExternalSemaphoreInfo`
+- `external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo`
 
 """
 get_physical_device_external_semaphore_properties
 
 """
-    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
+    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2836,14 +2836,14 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_win_32_handle_info::SemaphoreGetWin32HandleInfoKHR`
+- `get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR`
 - `handle::vk.HANDLE`
 
 """
 get_semaphore_win_32_handle_khr
 
 """
-    import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR)::Result{VkResult, VulkanError}
+    import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2852,13 +2852,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `import_semaphore_win_32_handle_info::ImportSemaphoreWin32HandleInfoKHR`
+- `import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR`
 
 """
 import_semaphore_win_32_handle_khr
 
 """
-    get_semaphore_fd_khr(device::Device, get_fd_info::SemaphoreGetFdInfoKHR)::Result{Int, VulkanError}
+    get_semaphore_fd_khr(device::Device, get_fd_info::_SemaphoreGetFdInfoKHR)::Result{Int, VulkanError}
 
 Return codes:
 - Error:
@@ -2867,13 +2867,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_fd_info::SemaphoreGetFdInfoKHR`
+- `get_fd_info::_SemaphoreGetFdInfoKHR`
 
 """
 get_semaphore_fd_khr
 
 """
-    import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::ImportSemaphoreFdInfoKHR)::Result{VkResult, VulkanError}
+    import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2882,13 +2882,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `import_semaphore_fd_info::ImportSemaphoreFdInfoKHR`
+- `import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR`
 
 """
 import_semaphore_fd_khr
 
 """
-    get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
+    get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2897,14 +2897,14 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_zircon_handle_info::SemaphoreGetZirconHandleInfoFUCHSIA`
+- `get_zircon_handle_info::_SemaphoreGetZirconHandleInfoFUCHSIA`
 - `zircon_handle::vk.zx_handle_t`
 
 """
 get_semaphore_zircon_handle_fuchsia
 
 """
-    import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::ImportSemaphoreZirconHandleInfoFUCHSIA)::Result{VkResult, VulkanError}
+    import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::_ImportSemaphoreZirconHandleInfoFUCHSIA)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2913,23 +2913,23 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `import_semaphore_zircon_handle_info::ImportSemaphoreZirconHandleInfoFUCHSIA`
+- `import_semaphore_zircon_handle_info::_ImportSemaphoreZirconHandleInfoFUCHSIA`
 
 """
 import_semaphore_zircon_handle_fuchsia
 
 """
-    get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::PhysicalDeviceExternalFenceInfo)::ExternalFenceProperties
+    get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::_PhysicalDeviceExternalFenceInfo)::ExternalFenceProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `external_fence_info::PhysicalDeviceExternalFenceInfo`
+- `external_fence_info::_PhysicalDeviceExternalFenceInfo`
 
 """
 get_physical_device_external_fence_properties
 
 """
-    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
+    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2938,14 +2938,14 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_win_32_handle_info::FenceGetWin32HandleInfoKHR`
+- `get_win_32_handle_info::_FenceGetWin32HandleInfoKHR`
 - `handle::vk.HANDLE`
 
 """
 get_fence_win_32_handle_khr
 
 """
-    import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR)::Result{VkResult, VulkanError}
+    import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2954,13 +2954,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `import_fence_win_32_handle_info::ImportFenceWin32HandleInfoKHR`
+- `import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR`
 
 """
 import_fence_win_32_handle_khr
 
 """
-    get_fence_fd_khr(device::Device, get_fd_info::FenceGetFdInfoKHR)::Result{Int, VulkanError}
+    get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)::Result{Int, VulkanError}
 
 Return codes:
 - Error:
@@ -2969,13 +2969,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `get_fd_info::FenceGetFdInfoKHR`
+- `get_fd_info::_FenceGetFdInfoKHR`
 
 """
 get_fence_fd_khr
 
 """
-    import_fence_fd_khr(device::Device, import_fence_fd_info::ImportFenceFdInfoKHR)::Result{VkResult, VulkanError}
+    import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -2984,7 +2984,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `import_fence_fd_info::ImportFenceFdInfoKHR`
+- `import_fence_fd_info::_ImportFenceFdInfoKHR`
 
 """
 import_fence_fd_khr
@@ -3065,7 +3065,7 @@ Arguments:
 get_winrt_display_nv
 
 """
-    display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::DisplayPowerInfoEXT)::Result{VkResult, VulkanError}
+    display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::_DisplayPowerInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -3074,13 +3074,13 @@ Return codes:
 Arguments:
 - `device::Device`
 - `display::DisplayKHR`
-- `display_power_info::DisplayPowerInfoEXT`
+- `display_power_info::_DisplayPowerInfoEXT`
 
 """
 display_power_control_ext
 
 """
-    register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
+    register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
 
 Return codes:
 - Error:
@@ -3088,14 +3088,14 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `device_event_info::DeviceEventInfoEXT`
+- `device_event_info::_DeviceEventInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
 register_device_event_ext
 
 """
-    register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::DisplayEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
+    register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::_DisplayEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
 
 Return codes:
 - Error:
@@ -3104,7 +3104,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `display::DisplayKHR`
-- `display_event_info::DisplayEventInfoEXT`
+- `display_event_info::_DisplayEventInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -3171,7 +3171,7 @@ Arguments:
 get_device_group_peer_memory_features
 
 """
-    bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo})::Result{VkResult, VulkanError}
+    bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:_BindBufferMemoryInfo})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -3181,13 +3181,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `bind_infos::AbstractArray{<:BindBufferMemoryInfo}`
+- `bind_infos::AbstractArray{<:_BindBufferMemoryInfo}`
 
 """
 bind_buffer_memory_2
 
 """
-    bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo})::Result{VkResult, VulkanError}
+    bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:_BindImageMemoryInfo})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -3196,7 +3196,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `bind_infos::AbstractArray{<:BindImageMemoryInfo}`
+- `bind_infos::AbstractArray{<:_BindImageMemoryInfo}`
 
 """
 bind_image_memory_2
@@ -3243,7 +3243,7 @@ Arguments:
 get_device_group_surface_present_modes_khr
 
 """
-    acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR)::Result{Tuple{UInt32, VkResult}, VulkanError}
+    acquire_next_image_2_khr(device::Device, acquire_info::_AcquireNextImageInfoKHR)::Result{Tuple{UInt32, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -3261,7 +3261,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `acquire_info::AcquireNextImageInfoKHR`
+- `acquire_info::_AcquireNextImageInfoKHR`
 
 """
 acquire_next_image_2_khr
@@ -3282,7 +3282,7 @@ Arguments:
 cmd_dispatch_base
 
 """
-    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{Rect2D}, VulkanError}
+    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{_Rect2D}, VulkanError}
 
 Return codes:
 - Error:
@@ -3297,7 +3297,7 @@ Arguments:
 get_physical_device_present_rectangles_khr
 
 """
-    create_descriptor_update_template(device::Device, create_info::DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)::Result{DescriptorUpdateTemplate, VulkanError}
+    create_descriptor_update_template(device::Device, create_info::_DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)::Result{DescriptorUpdateTemplate, VulkanError}
 
 Return codes:
 - Error:
@@ -3306,7 +3306,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::DescriptorUpdateTemplateCreateInfo`
+- `create_info::_DescriptorUpdateTemplateCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -3349,12 +3349,12 @@ Arguments:
 cmd_push_descriptor_set_with_template_khr
 
 """
-    set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:HdrMetadataEXT})::Cvoid
+    set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid
 
 Arguments:
 - `device::Device`
 - `swapchains::AbstractArray{<:SwapchainKHR}`
-- `metadata::AbstractArray{<:HdrMetadataEXT}`
+- `metadata::AbstractArray{<:_HdrMetadataEXT}`
 
 """
 set_hdr_metadata_ext
@@ -3415,7 +3415,7 @@ Arguments:
 get_past_presentation_timing_google
 
 """
-    create_ios_surface_mvk(instance::Instance, create_info::IOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_ios_surface_mvk(instance::Instance, create_info::_IOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3425,14 +3425,14 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::IOSSurfaceCreateInfoMVK`
+- `create_info::_IOSSurfaceCreateInfoMVK`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_ios_surface_mvk
 
 """
-    create_mac_os_surface_mvk(instance::Instance, create_info::MacOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_mac_os_surface_mvk(instance::Instance, create_info::_MacOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3442,14 +3442,14 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::MacOSSurfaceCreateInfoMVK`
+- `create_info::_MacOSSurfaceCreateInfoMVK`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_mac_os_surface_mvk
 
 """
-    create_metal_surface_ext(instance::Instance, create_info::MetalSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_metal_surface_ext(instance::Instance, create_info::_MetalSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3459,38 +3459,38 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::MetalSurfaceCreateInfoEXT`
+- `create_info::_MetalSurfaceCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_metal_surface_ext
 
 """
-    cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:ViewportWScalingNV})::Cvoid
+    cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `viewport_w_scalings::AbstractArray{<:ViewportWScalingNV}`
+- `viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV}`
 
 """
 cmd_set_viewport_w_scaling_nv
 
 """
-    cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:Rect2D})::Cvoid
+    cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `discard_rectangles::AbstractArray{<:Rect2D}`
+- `discard_rectangles::AbstractArray{<:_Rect2D}`
 
 """
 cmd_set_discard_rectangle_ext
 
 """
-    cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT)::Cvoid
+    cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::_SampleLocationsInfoEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `sample_locations_info::SampleLocationsInfoEXT`
+- `sample_locations_info::_SampleLocationsInfoEXT`
 
 """
 cmd_set_sample_locations_ext
@@ -3506,7 +3506,7 @@ Arguments:
 get_physical_device_multisample_properties_ext
 
 """
-    get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{SurfaceCapabilities2KHR, VulkanError}
+    get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::Result{SurfaceCapabilities2KHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3516,13 +3516,13 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `surface_info::PhysicalDeviceSurfaceInfo2KHR`
+- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 
 """
 get_physical_device_surface_capabilities_2_khr
 
 """
-    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{SurfaceFormat2KHR}, VulkanError}
+    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{SurfaceFormat2KHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -3532,7 +3532,7 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `surface_info::PhysicalDeviceSurfaceInfo2KHR`
+- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 
 """
 get_physical_device_surface_formats_2_khr
@@ -3581,7 +3581,7 @@ Arguments:
 get_display_mode_properties_2_khr
 
 """
-    get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::DisplayPlaneInfo2KHR)::Result{DisplayPlaneCapabilities2KHR, VulkanError}
+    get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::_DisplayPlaneInfo2KHR)::Result{DisplayPlaneCapabilities2KHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3590,43 +3590,43 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `display_plane_info::DisplayPlaneInfo2KHR`
+- `display_plane_info::_DisplayPlaneInfo2KHR`
 
 """
 get_display_plane_capabilities_2_khr
 
 """
-    get_buffer_memory_requirements_2(device::Device, info::BufferMemoryRequirementsInfo2)::MemoryRequirements2
+    get_buffer_memory_requirements_2(device::Device, info::_BufferMemoryRequirementsInfo2)::MemoryRequirements2
 
 Arguments:
 - `device::Device`
-- `info::BufferMemoryRequirementsInfo2`
+- `info::_BufferMemoryRequirementsInfo2`
 
 """
 get_buffer_memory_requirements_2
 
 """
-    get_image_memory_requirements_2(device::Device, info::ImageMemoryRequirementsInfo2)::MemoryRequirements2
+    get_image_memory_requirements_2(device::Device, info::_ImageMemoryRequirementsInfo2)::MemoryRequirements2
 
 Arguments:
 - `device::Device`
-- `info::ImageMemoryRequirementsInfo2`
+- `info::_ImageMemoryRequirementsInfo2`
 
 """
 get_image_memory_requirements_2
 
 """
-    get_image_sparse_memory_requirements_2(device::Device, info::ImageSparseMemoryRequirementsInfo2)::Vector{SparseImageMemoryRequirements2}
+    get_image_sparse_memory_requirements_2(device::Device, info::_ImageSparseMemoryRequirementsInfo2)::Vector{SparseImageMemoryRequirements2}
 
 Arguments:
 - `device::Device`
-- `info::ImageSparseMemoryRequirementsInfo2`
+- `info::_ImageSparseMemoryRequirementsInfo2`
 
 """
 get_image_sparse_memory_requirements_2
 
 """
-    create_sampler_ycbcr_conversion(device::Device, create_info::SamplerYcbcrConversionCreateInfo; allocator = C_NULL)::Result{SamplerYcbcrConversion, VulkanError}
+    create_sampler_ycbcr_conversion(device::Device, create_info::_SamplerYcbcrConversionCreateInfo; allocator = C_NULL)::Result{SamplerYcbcrConversion, VulkanError}
 
 Return codes:
 - Error:
@@ -3635,7 +3635,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::SamplerYcbcrConversionCreateInfo`
+- `create_info::_SamplerYcbcrConversionCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -3653,17 +3653,17 @@ Arguments:
 destroy_sampler_ycbcr_conversion
 
 """
-    get_device_queue_2(device::Device, queue_info::DeviceQueueInfo2)::Queue
+    get_device_queue_2(device::Device, queue_info::_DeviceQueueInfo2)::Queue
 
 Arguments:
 - `device::Device`
-- `queue_info::DeviceQueueInfo2`
+- `queue_info::_DeviceQueueInfo2`
 
 """
 get_device_queue_2
 
 """
-    create_validation_cache_ext(device::Device, create_info::ValidationCacheCreateInfoEXT; allocator = C_NULL)::Result{ValidationCacheEXT, VulkanError}
+    create_validation_cache_ext(device::Device, create_info::_ValidationCacheCreateInfoEXT; allocator = C_NULL)::Result{ValidationCacheEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -3671,7 +3671,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::ValidationCacheCreateInfoEXT`
+- `create_info::_ValidationCacheCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -3723,11 +3723,11 @@ Arguments:
 merge_validation_caches_ext
 
 """
-    get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
+    get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
 
 Arguments:
 - `device::Device`
-- `create_info::DescriptorSetLayoutCreateInfo`
+- `create_info::_DescriptorSetLayoutCreateInfo`
 
 """
 get_descriptor_set_layout_support
@@ -3778,7 +3778,7 @@ Arguments:
 get_physical_device_calibrateable_time_domains_ext
 
 """
-    get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT})::Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
+    get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT})::Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
 
 Return codes:
 - Error:
@@ -3787,13 +3787,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT}`
+- `timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT}`
 
 """
 get_calibrated_timestamps_ext
 
 """
-    set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT)::Result{VkResult, VulkanError}
+    set_debug_utils_object_name_ext(device::Device, name_info::_DebugUtilsObjectNameInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -3802,13 +3802,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `name_info::DebugUtilsObjectNameInfoEXT` (externsync)
+- `name_info::_DebugUtilsObjectNameInfoEXT` (externsync)
 
 """
 set_debug_utils_object_name_ext
 
 """
-    set_debug_utils_object_tag_ext(device::Device, tag_info::DebugUtilsObjectTagInfoEXT)::Result{VkResult, VulkanError}
+    set_debug_utils_object_tag_ext(device::Device, tag_info::_DebugUtilsObjectTagInfoEXT)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -3817,17 +3817,17 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `tag_info::DebugUtilsObjectTagInfoEXT` (externsync)
+- `tag_info::_DebugUtilsObjectTagInfoEXT` (externsync)
 
 """
 set_debug_utils_object_tag_ext
 
 """
-    queue_begin_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)::Cvoid
+    queue_begin_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `queue::Queue`
-- `label_info::DebugUtilsLabelEXT`
+- `label_info::_DebugUtilsLabelEXT`
 
 """
 queue_begin_debug_utils_label_ext
@@ -3842,21 +3842,21 @@ Arguments:
 queue_end_debug_utils_label_ext
 
 """
-    queue_insert_debug_utils_label_ext(queue::Queue, label_info::DebugUtilsLabelEXT)::Cvoid
+    queue_insert_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `queue::Queue`
-- `label_info::DebugUtilsLabelEXT`
+- `label_info::_DebugUtilsLabelEXT`
 
 """
 queue_insert_debug_utils_label_ext
 
 """
-    cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)::Cvoid
+    cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `label_info::DebugUtilsLabelEXT`
+- `label_info::_DebugUtilsLabelEXT`
 
 """
 cmd_begin_debug_utils_label_ext
@@ -3871,17 +3871,17 @@ Arguments:
 cmd_end_debug_utils_label_ext
 
 """
-    cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::DebugUtilsLabelEXT)::Cvoid
+    cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `label_info::DebugUtilsLabelEXT`
+- `label_info::_DebugUtilsLabelEXT`
 
 """
 cmd_insert_debug_utils_label_ext
 
 """
-    create_debug_utils_messenger_ext(instance::Instance, create_info::DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::Result{DebugUtilsMessengerEXT, VulkanError}
+    create_debug_utils_messenger_ext(instance::Instance, create_info::_DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::Result{DebugUtilsMessengerEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -3889,7 +3889,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::DebugUtilsMessengerCreateInfoEXT`
+- `create_info::_DebugUtilsMessengerCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -3907,13 +3907,13 @@ Arguments:
 destroy_debug_utils_messenger_ext
 
 """
-    submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::DebugUtilsMessengerCallbackDataEXT)::Cvoid
+    submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT)::Cvoid
 
 Arguments:
 - `instance::Instance`
 - `message_severity::DebugUtilsMessageSeverityFlagEXT`
 - `message_types::DebugUtilsMessageTypeFlagEXT`
-- `callback_data::DebugUtilsMessengerCallbackDataEXT`
+- `callback_data::_DebugUtilsMessengerCallbackDataEXT`
 
 """
 submit_debug_utils_message_ext
@@ -3948,7 +3948,7 @@ Arguments:
 cmd_write_buffer_marker_amd
 
 """
-    create_render_pass_2(device::Device, create_info::RenderPassCreateInfo2; allocator = C_NULL)::Result{RenderPass, VulkanError}
+    create_render_pass_2(device::Device, create_info::_RenderPassCreateInfo2; allocator = C_NULL)::Result{RenderPass, VulkanError}
 
 Return codes:
 - Error:
@@ -3957,40 +3957,40 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::RenderPassCreateInfo2`
+- `create_info::_RenderPassCreateInfo2`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_render_pass_2
 
 """
-    cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::RenderPassBeginInfo, subpass_begin_info::SubpassBeginInfo)::Cvoid
+    cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, subpass_begin_info::_SubpassBeginInfo)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `render_pass_begin::RenderPassBeginInfo`
-- `subpass_begin_info::SubpassBeginInfo`
+- `render_pass_begin::_RenderPassBeginInfo`
+- `subpass_begin_info::_SubpassBeginInfo`
 
 """
 cmd_begin_render_pass_2
 
 """
-    cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::SubpassBeginInfo, subpass_end_info::SubpassEndInfo)::Cvoid
+    cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::_SubpassBeginInfo, subpass_end_info::_SubpassEndInfo)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `subpass_begin_info::SubpassBeginInfo`
-- `subpass_end_info::SubpassEndInfo`
+- `subpass_begin_info::_SubpassBeginInfo`
+- `subpass_end_info::_SubpassEndInfo`
 
 """
 cmd_next_subpass_2
 
 """
-    cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::SubpassEndInfo)::Cvoid
+    cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::_SubpassEndInfo)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `subpass_end_info::SubpassEndInfo`
+- `subpass_end_info::_SubpassEndInfo`
 
 """
 cmd_end_render_pass_2
@@ -4012,7 +4012,7 @@ Arguments:
 get_semaphore_counter_value
 
 """
-    wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer)::Result{VkResult, VulkanError}
+    wait_semaphores(device::Device, wait_info::_SemaphoreWaitInfo, timeout::Integer)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4025,14 +4025,14 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `wait_info::SemaphoreWaitInfo`
+- `wait_info::_SemaphoreWaitInfo`
 - `timeout::Integer`
 
 """
 wait_semaphores
 
 """
-    signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo)::Result{VkResult, VulkanError}
+    signal_semaphore(device::Device, signal_info::_SemaphoreSignalInfo)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4041,7 +4041,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `signal_info::SemaphoreSignalInfo`
+- `signal_info::_SemaphoreSignalInfo`
 
 """
 signal_semaphore
@@ -4062,7 +4062,7 @@ Arguments:
 get_android_hardware_buffer_properties_android
 
 """
-    get_memory_android_hardware_buffer_android(device::Device, info::MemoryGetAndroidHardwareBufferInfoANDROID)::Result{vk.AHardwareBuffer, VulkanError}
+    get_memory_android_hardware_buffer_android(device::Device, info::_MemoryGetAndroidHardwareBufferInfoANDROID)::Result{vk.AHardwareBuffer, VulkanError}
 
 Return codes:
 - Error:
@@ -4071,7 +4071,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `info::MemoryGetAndroidHardwareBufferInfoANDROID`
+- `info::_MemoryGetAndroidHardwareBufferInfoANDROID`
 
 """
 get_memory_android_hardware_buffer_android
@@ -4200,11 +4200,11 @@ Arguments:
 cmd_draw_indirect_byte_count_ext
 
 """
-    cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:Rect2D})::Cvoid
+    cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `exclusive_scissors::AbstractArray{<:Rect2D}`
+- `exclusive_scissors::AbstractArray{<:_Rect2D}`
 
 """
 cmd_set_exclusive_scissor_nv
@@ -4221,22 +4221,22 @@ Arguments:
 cmd_bind_shading_rate_image_nv
 
 """
-    cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV})::Cvoid
+    cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}`
+- `shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}`
 
 """
 cmd_set_viewport_shading_rate_palette_nv
 
 """
-    cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV})::Cvoid
+    cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `sample_order_type::VkCoarseSampleOrderTypeNV`
-- `custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}`
+- `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
 
 """
 cmd_set_coarse_sample_order_nv
@@ -4297,7 +4297,7 @@ Arguments:
 compile_deferred_nv
 
 """
-    create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{AccelerationStructureNV, VulkanError}
+    create_acceleration_structure_nv(device::Device, create_info::_AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{AccelerationStructureNV, VulkanError}
 
 Return codes:
 - Error:
@@ -4305,7 +4305,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::AccelerationStructureCreateInfoNV`
+- `create_info::_AccelerationStructureCreateInfoNV`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -4334,17 +4334,17 @@ Arguments:
 destroy_acceleration_structure_nv
 
 """
-    get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
+    get_acceleration_structure_memory_requirements_nv(device::Device, info::_AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
 
 Arguments:
 - `device::Device`
-- `info::AccelerationStructureMemoryRequirementsInfoNV`
+- `info::_AccelerationStructureMemoryRequirementsInfoNV`
 
 """
 get_acceleration_structure_memory_requirements_nv
 
 """
-    bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoNV})::Result{VkResult, VulkanError}
+    bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4353,7 +4353,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoNV}`
+- `bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV}`
 
 """
 bind_acceleration_structure_memory_nv
@@ -4371,17 +4371,17 @@ Arguments:
 cmd_copy_acceleration_structure_nv
 
 """
-    cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR)::Cvoid
+    cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `info::CopyAccelerationStructureInfoKHR`
+- `info::_CopyAccelerationStructureInfoKHR`
 
 """
 cmd_copy_acceleration_structure_khr
 
 """
-    copy_acceleration_structure_khr(device::Device, info::CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    copy_acceleration_structure_khr(device::Device, info::_CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4394,24 +4394,24 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `info::CopyAccelerationStructureInfoKHR`
+- `info::_CopyAccelerationStructureInfoKHR`
 - `deferred_operation`: defaults to `C_NULL`
 
 """
 copy_acceleration_structure_khr
 
 """
-    cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureToMemoryInfoKHR)::Cvoid
+    cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureToMemoryInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `info::CopyAccelerationStructureToMemoryInfoKHR`
+- `info::_CopyAccelerationStructureToMemoryInfoKHR`
 
 """
 cmd_copy_acceleration_structure_to_memory_khr
 
 """
-    copy_acceleration_structure_to_memory_khr(device::Device, info::CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    copy_acceleration_structure_to_memory_khr(device::Device, info::_CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4424,24 +4424,24 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `info::CopyAccelerationStructureToMemoryInfoKHR`
+- `info::_CopyAccelerationStructureToMemoryInfoKHR`
 - `deferred_operation`: defaults to `C_NULL`
 
 """
 copy_acceleration_structure_to_memory_khr
 
 """
-    cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyMemoryToAccelerationStructureInfoKHR)::Cvoid
+    cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyMemoryToAccelerationStructureInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `info::CopyMemoryToAccelerationStructureInfoKHR`
+- `info::_CopyMemoryToAccelerationStructureInfoKHR`
 
 """
 cmd_copy_memory_to_acceleration_structure_khr
 
 """
-    copy_memory_to_acceleration_structure_khr(device::Device, info::CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -4454,7 +4454,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `info::CopyMemoryToAccelerationStructureInfoKHR`
+- `info::_CopyMemoryToAccelerationStructureInfoKHR`
 - `deferred_operation`: defaults to `C_NULL`
 
 """
@@ -4487,11 +4487,11 @@ Arguments:
 cmd_write_acceleration_structures_properties_nv
 
 """
-    cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid
+    cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `info::AccelerationStructureInfoNV`
+- `info::_AccelerationStructureInfoNV`
 - `instance_offset::Integer`
 - `update::Bool`
 - `dst::AccelerationStructureNV`
@@ -4523,14 +4523,14 @@ Arguments:
 write_acceleration_structures_properties_khr
 
 """
-    cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid
+    cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `raygen_shader_binding_table::StridedDeviceAddressRegionKHR`
-- `miss_shader_binding_table::StridedDeviceAddressRegionKHR`
-- `hit_shader_binding_table::StridedDeviceAddressRegionKHR`
-- `callable_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `raygen_shader_binding_table::_StridedDeviceAddressRegionKHR`
+- `miss_shader_binding_table::_StridedDeviceAddressRegionKHR`
+- `hit_shader_binding_table::_StridedDeviceAddressRegionKHR`
+- `callable_shader_binding_table::_StridedDeviceAddressRegionKHR`
 - `width::Integer`
 - `height::Integer`
 - `depth::Integer`
@@ -4617,7 +4617,7 @@ Arguments:
 get_acceleration_structure_handle_nv
 
 """
-    create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4630,7 +4630,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}`
+- `create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}`
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
@@ -4638,7 +4638,7 @@ Arguments:
 create_ray_tracing_pipelines_nv
 
 """
-    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
 
 Return codes:
 - Success:
@@ -4653,7 +4653,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}`
+- `create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}`
 - `deferred_operation`: defaults to `C_NULL`
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
@@ -4662,7 +4662,7 @@ Arguments:
 create_ray_tracing_pipelines_khr
 
 """
-    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Vector{CooperativeMatrixPropertiesNV}, VulkanError}
+    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Vector{_CooperativeMatrixPropertiesNV}, VulkanError}
 
 Return codes:
 - Error:
@@ -4676,25 +4676,25 @@ Arguments:
 get_physical_device_cooperative_matrix_properties_nv
 
 """
-    cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, indirect_device_address::Integer)::Cvoid
+    cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, indirect_device_address::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `raygen_shader_binding_table::StridedDeviceAddressRegionKHR`
-- `miss_shader_binding_table::StridedDeviceAddressRegionKHR`
-- `hit_shader_binding_table::StridedDeviceAddressRegionKHR`
-- `callable_shader_binding_table::StridedDeviceAddressRegionKHR`
+- `raygen_shader_binding_table::_StridedDeviceAddressRegionKHR`
+- `miss_shader_binding_table::_StridedDeviceAddressRegionKHR`
+- `hit_shader_binding_table::_StridedDeviceAddressRegionKHR`
+- `callable_shader_binding_table::_StridedDeviceAddressRegionKHR`
 - `indirect_device_address::Integer`
 
 """
 cmd_trace_rays_indirect_khr
 
 """
-    get_device_acceleration_structure_compatibility_khr(device::Device, version_info::AccelerationStructureVersionInfoKHR)::VkAccelerationStructureCompatibilityKHR
+    get_device_acceleration_structure_compatibility_khr(device::Device, version_info::_AccelerationStructureVersionInfoKHR)::VkAccelerationStructureCompatibilityKHR
 
 Arguments:
 - `device::Device`
-- `version_info::AccelerationStructureVersionInfoKHR`
+- `version_info::_AccelerationStructureVersionInfoKHR`
 
 """
 get_device_acceleration_structure_compatibility_khr
@@ -4722,11 +4722,11 @@ Arguments:
 cmd_set_ray_tracing_pipeline_stack_size_khr
 
 """
-    get_image_view_handle_nvx(device::Device, info::ImageViewHandleInfoNVX)::UInt32
+    get_image_view_handle_nvx(device::Device, info::_ImageViewHandleInfoNVX)::UInt32
 
 Arguments:
 - `device::Device`
-- `info::ImageViewHandleInfoNVX`
+- `info::_ImageViewHandleInfoNVX`
 
 """
 get_image_view_handle_nvx
@@ -4747,7 +4747,7 @@ Arguments:
 get_image_view_address_nvx
 
 """
-    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
+    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -4757,13 +4757,13 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `surface_info::PhysicalDeviceSurfaceInfo2KHR`
+- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 
 """
 get_physical_device_surface_present_modes_2_ext
 
 """
-    get_device_group_surface_present_modes_2_ext(device::Device, surface_info::PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
+    get_device_group_surface_present_modes_2_ext(device::Device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -4773,7 +4773,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `surface_info::PhysicalDeviceSurfaceInfo2KHR`
+- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 - `modes::DeviceGroupPresentModeFlagKHR`
 
 """
@@ -4829,17 +4829,17 @@ Arguments:
 enumerate_physical_device_queue_family_performance_query_counters_khr
 
 """
-    get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::QueryPoolPerformanceCreateInfoKHR)::UInt32
+    get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR)::UInt32
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `performance_query_create_info::QueryPoolPerformanceCreateInfoKHR`
+- `performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR`
 
 """
 get_physical_device_queue_family_performance_query_passes_khr
 
 """
-    acquire_profiling_lock_khr(device::Device, info::AcquireProfilingLockInfoKHR)::Result{VkResult, VulkanError}
+    acquire_profiling_lock_khr(device::Device, info::_AcquireProfilingLockInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4848,7 +4848,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `info::AcquireProfilingLockInfoKHR`
+- `info::_AcquireProfilingLockInfoKHR`
 
 """
 acquire_profiling_lock_khr
@@ -4877,27 +4877,27 @@ Arguments:
 get_image_drm_format_modifier_properties_ext
 
 """
-    get_buffer_opaque_capture_address(device::Device, info::BufferDeviceAddressInfo)::UInt64
+    get_buffer_opaque_capture_address(device::Device, info::_BufferDeviceAddressInfo)::UInt64
 
 Arguments:
 - `device::Device`
-- `info::BufferDeviceAddressInfo`
+- `info::_BufferDeviceAddressInfo`
 
 """
 get_buffer_opaque_capture_address
 
 """
-    get_buffer_device_address(device::Device, info::BufferDeviceAddressInfo)::UInt64
+    get_buffer_device_address(device::Device, info::_BufferDeviceAddressInfo)::UInt64
 
 Arguments:
 - `device::Device`
-- `info::BufferDeviceAddressInfo`
+- `info::_BufferDeviceAddressInfo`
 
 """
 get_buffer_device_address
 
 """
-    create_headless_surface_ext(instance::Instance, create_info::HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_headless_surface_ext(instance::Instance, create_info::_HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -4906,7 +4906,7 @@ Return codes:
 
 Arguments:
 - `instance::Instance`
-- `create_info::HeadlessSurfaceCreateInfoEXT`
+- `create_info::_HeadlessSurfaceCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -4927,7 +4927,7 @@ Arguments:
 get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
 
 """
-    initialize_performance_api_intel(device::Device, initialize_info::InitializePerformanceApiInfoINTEL)::Result{VkResult, VulkanError}
+    initialize_performance_api_intel(device::Device, initialize_info::_InitializePerformanceApiInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4936,7 +4936,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `initialize_info::InitializePerformanceApiInfoINTEL`
+- `initialize_info::_InitializePerformanceApiInfoINTEL`
 
 """
 initialize_performance_api_intel
@@ -4951,7 +4951,7 @@ Arguments:
 uninitialize_performance_api_intel
 
 """
-    cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceMarkerInfoINTEL)::Result{VkResult, VulkanError}
+    cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceMarkerInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4960,13 +4960,13 @@ Return codes:
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `marker_info::PerformanceMarkerInfoINTEL`
+- `marker_info::_PerformanceMarkerInfoINTEL`
 
 """
 cmd_set_performance_marker_intel
 
 """
-    cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::PerformanceStreamMarkerInfoINTEL)::Result{VkResult, VulkanError}
+    cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceStreamMarkerInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4975,13 +4975,13 @@ Return codes:
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `marker_info::PerformanceStreamMarkerInfoINTEL`
+- `marker_info::_PerformanceStreamMarkerInfoINTEL`
 
 """
 cmd_set_performance_stream_marker_intel
 
 """
-    cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::PerformanceOverrideInfoINTEL)::Result{VkResult, VulkanError}
+    cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::_PerformanceOverrideInfoINTEL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -4990,13 +4990,13 @@ Return codes:
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `override_info::PerformanceOverrideInfoINTEL`
+- `override_info::_PerformanceOverrideInfoINTEL`
 
 """
 cmd_set_performance_override_intel
 
 """
-    acquire_performance_configuration_intel(device::Device, acquire_info::PerformanceConfigurationAcquireInfoINTEL)::Result{PerformanceConfigurationINTEL, VulkanError}
+    acquire_performance_configuration_intel(device::Device, acquire_info::_PerformanceConfigurationAcquireInfoINTEL)::Result{PerformanceConfigurationINTEL, VulkanError}
 
 Return codes:
 - Error:
@@ -5005,7 +5005,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `acquire_info::PerformanceConfigurationAcquireInfoINTEL`
+- `acquire_info::_PerformanceConfigurationAcquireInfoINTEL`
 
 """
 acquire_performance_configuration_intel
@@ -5041,7 +5041,7 @@ Arguments:
 queue_set_performance_configuration_intel
 
 """
-    get_performance_parameter_intel(device::Device, parameter::VkPerformanceParameterTypeINTEL)::Result{PerformanceValueINTEL, VulkanError}
+    get_performance_parameter_intel(device::Device, parameter::VkPerformanceParameterTypeINTEL)::Result{_PerformanceValueINTEL, VulkanError}
 
 Return codes:
 - Error:
@@ -5056,17 +5056,17 @@ Arguments:
 get_performance_parameter_intel
 
 """
-    get_device_memory_opaque_capture_address(device::Device, info::DeviceMemoryOpaqueCaptureAddressInfo)::UInt64
+    get_device_memory_opaque_capture_address(device::Device, info::_DeviceMemoryOpaqueCaptureAddressInfo)::UInt64
 
 Arguments:
 - `device::Device`
-- `info::DeviceMemoryOpaqueCaptureAddressInfo`
+- `info::_DeviceMemoryOpaqueCaptureAddressInfo`
 
 """
 get_device_memory_opaque_capture_address
 
 """
-    get_pipeline_executable_properties_khr(device::Device, pipeline_info::PipelineInfoKHR)::Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
+    get_pipeline_executable_properties_khr(device::Device, pipeline_info::_PipelineInfoKHR)::Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5075,13 +5075,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `pipeline_info::PipelineInfoKHR`
+- `pipeline_info::_PipelineInfoKHR`
 
 """
 get_pipeline_executable_properties_khr
 
 """
-    get_pipeline_executable_statistics_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
+    get_pipeline_executable_statistics_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5090,13 +5090,13 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `executable_info::PipelineExecutableInfoKHR`
+- `executable_info::_PipelineExecutableInfoKHR`
 
 """
 get_pipeline_executable_statistics_khr
 
 """
-    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
+    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5105,7 +5105,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `executable_info::PipelineExecutableInfoKHR`
+- `executable_info::_PipelineExecutableInfoKHR`
 
 """
 get_pipeline_executable_internal_representations_khr
@@ -5135,7 +5135,7 @@ Arguments:
 get_physical_device_tool_properties_ext
 
 """
-    create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
+    create_acceleration_structure_khr(device::Device, create_info::_AccelerationStructureCreateInfoKHR; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5144,29 +5144,29 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::AccelerationStructureCreateInfoKHR`
+- `create_info::_AccelerationStructureCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_acceleration_structure_khr
 
 """
-    cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR})::Cvoid
+    cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}`
-- `build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}`
+- `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
+- `build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}`
 
 """
 cmd_build_acceleration_structures_khr
 
 """
-    cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer})::Cvoid
+    cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}`
+- `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
 - `indirect_device_addresses::AbstractArray{<:Integer}`
 - `indirect_strides::AbstractArray{<:Integer}`
 - `max_primitive_counts::AbstractArray{<:Integer}`
@@ -5175,7 +5175,7 @@ Arguments:
 cmd_build_acceleration_structures_indirect_khr
 
 """
-    build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Success:
@@ -5188,19 +5188,19 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}`
-- `build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}`
+- `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
+- `build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}`
 - `deferred_operation`: defaults to `C_NULL`
 
 """
 build_acceleration_structures_khr
 
 """
-    get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR)::UInt64
+    get_acceleration_structure_device_address_khr(device::Device, info::_AccelerationStructureDeviceAddressInfoKHR)::UInt64
 
 Arguments:
 - `device::Device`
-- `info::AccelerationStructureDeviceAddressInfoKHR`
+- `info::_AccelerationStructureDeviceAddressInfoKHR`
 
 """
 get_acceleration_structure_device_address_khr
@@ -5305,21 +5305,21 @@ Arguments:
 cmd_set_primitive_topology_ext
 
 """
-    cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport})::Cvoid
+    cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `viewports::AbstractArray{<:Viewport}`
+- `viewports::AbstractArray{<:_Viewport}`
 
 """
 cmd_set_viewport_with_count_ext
 
 """
-    cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D})::Cvoid
+    cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `scissors::AbstractArray{<:Rect2D}`
+- `scissors::AbstractArray{<:_Rect2D}`
 
 """
 cmd_set_scissor_with_count_ext
@@ -5452,7 +5452,7 @@ Arguments:
 cmd_set_primitive_restart_enable_ext
 
 """
-    create_private_data_slot_ext(device::Device, create_info::PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::Result{PrivateDataSlotEXT, VulkanError}
+    create_private_data_slot_ext(device::Device, create_info::_PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::Result{PrivateDataSlotEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -5460,7 +5460,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::PrivateDataSlotCreateInfoEXT`
+- `create_info::_PrivateDataSlotCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -5507,71 +5507,71 @@ Arguments:
 get_private_data_ext
 
 """
-    cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::CopyBufferInfo2KHR)::Cvoid
+    cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::_CopyBufferInfo2KHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `copy_buffer_info::CopyBufferInfo2KHR`
+- `copy_buffer_info::_CopyBufferInfo2KHR`
 
 """
 cmd_copy_buffer_2_khr
 
 """
-    cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::CopyImageInfo2KHR)::Cvoid
+    cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::_CopyImageInfo2KHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `copy_image_info::CopyImageInfo2KHR`
+- `copy_image_info::_CopyImageInfo2KHR`
 
 """
 cmd_copy_image_2_khr
 
 """
-    cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::BlitImageInfo2KHR)::Cvoid
+    cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::_BlitImageInfo2KHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `blit_image_info::BlitImageInfo2KHR`
+- `blit_image_info::_BlitImageInfo2KHR`
 
 """
 cmd_blit_image_2_khr
 
 """
-    cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::CopyBufferToImageInfo2KHR)::Cvoid
+    cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `copy_buffer_to_image_info::CopyBufferToImageInfo2KHR`
+- `copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR`
 
 """
 cmd_copy_buffer_to_image_2_khr
 
 """
-    cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::CopyImageToBufferInfo2KHR)::Cvoid
+    cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `copy_image_to_buffer_info::CopyImageToBufferInfo2KHR`
+- `copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR`
 
 """
 cmd_copy_image_to_buffer_2_khr
 
 """
-    cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::ResolveImageInfo2KHR)::Cvoid
+    cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::_ResolveImageInfo2KHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `resolve_image_info::ResolveImageInfo2KHR`
+- `resolve_image_info::_ResolveImageInfo2KHR`
 
 """
 cmd_resolve_image_2_khr
 
 """
-    cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid
+    cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::_Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `fragment_size::Extent2D`
+- `fragment_size::_Extent2D`
 - `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
 
 """
@@ -5602,24 +5602,24 @@ Arguments:
 cmd_set_fragment_shading_rate_enum_nv
 
 """
-    get_acceleration_structure_build_sizes_khr(device::Device, build_type::VkAccelerationStructureBuildTypeKHR, build_info::AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::AccelerationStructureBuildSizesInfoKHR
+    get_acceleration_structure_build_sizes_khr(device::Device, build_type::VkAccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::_AccelerationStructureBuildSizesInfoKHR
 
 Arguments:
 - `device::Device`
 - `build_type::VkAccelerationStructureBuildTypeKHR`
-- `build_info::AccelerationStructureBuildGeometryInfoKHR`
+- `build_info::_AccelerationStructureBuildGeometryInfoKHR`
 - `max_primitive_counts`: defaults to `C_NULL`
 
 """
 get_acceleration_structure_build_sizes_khr
 
 """
-    cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription2EXT})::Cvoid
+    cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription2EXT}`
-- `vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription2EXT}`
+- `vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}`
+- `vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT}`
 
 """
 cmd_set_vertex_input_ext
@@ -5635,12 +5635,12 @@ Arguments:
 cmd_set_color_write_enable_ext
 
 """
-    cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::DependencyInfoKHR)::Cvoid
+    cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::_DependencyInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `event::Event`
-- `dependency_info::DependencyInfoKHR`
+- `dependency_info::_DependencyInfoKHR`
 
 """
 cmd_set_event_2_khr
@@ -5657,28 +5657,28 @@ Arguments:
 cmd_reset_event_2_khr
 
 """
-    cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:DependencyInfoKHR})::Cvoid
+    cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `events::AbstractArray{<:Event}`
-- `dependency_infos::AbstractArray{<:DependencyInfoKHR}`
+- `dependency_infos::AbstractArray{<:_DependencyInfoKHR}`
 
 """
 cmd_wait_events_2_khr
 
 """
-    cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::DependencyInfoKHR)::Cvoid
+    cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `dependency_info::DependencyInfoKHR`
+- `dependency_info::_DependencyInfoKHR`
 
 """
 cmd_pipeline_barrier_2_khr
 
 """
-    queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:SubmitInfo2KHR}; fence = C_NULL)::Result{VkResult, VulkanError}
+    queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:_SubmitInfo2KHR}; fence = C_NULL)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -5688,7 +5688,7 @@ Return codes:
 
 Arguments:
 - `queue::Queue` (externsync)
-- `submits::AbstractArray{<:SubmitInfo2KHR}`
+- `submits::AbstractArray{<:_SubmitInfo2KHR}`
 - `fence`: defaults to `C_NULL` (externsync)
 
 """
@@ -5729,7 +5729,7 @@ Arguments:
 get_queue_checkpoint_data_2_nv
 
 """
-    get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::VideoProfileKHR)::Result{VideoCapabilitiesKHR, VulkanError}
+    get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::_VideoProfileKHR)::Result{VideoCapabilitiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5740,7 +5740,7 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `video_profile::VideoProfileKHR`
+- `video_profile::_VideoProfileKHR`
 
 """
 get_physical_device_video_capabilities_khr
@@ -5762,7 +5762,7 @@ Arguments:
 get_physical_device_video_format_properties_khr
 
 """
-    create_video_session_khr(device::Device, create_info::VideoSessionCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionKHR, VulkanError}
+    create_video_session_khr(device::Device, create_info::_VideoSessionCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5774,7 +5774,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::VideoSessionCreateInfoKHR`
+- `create_info::_VideoSessionCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
@@ -5792,7 +5792,7 @@ Arguments:
 destroy_video_session_khr
 
 """
-    create_video_session_parameters_khr(device::Device, create_info::VideoSessionParametersCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionParametersKHR, VulkanError}
+    create_video_session_parameters_khr(device::Device, create_info::_VideoSessionParametersCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionParametersKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5802,14 +5802,14 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `create_info::VideoSessionParametersCreateInfoKHR`
+- `create_info::_VideoSessionParametersCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
 """
 create_video_session_parameters_khr
 
 """
-    update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::VideoSessionParametersUpdateInfoKHR)::Result{VkResult, VulkanError}
+    update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::_VideoSessionParametersUpdateInfoKHR)::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -5819,7 +5819,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `video_session_parameters::VideoSessionParametersKHR`
-- `update_info::VideoSessionParametersUpdateInfoKHR`
+- `update_info::_VideoSessionParametersUpdateInfoKHR`
 
 """
 update_video_session_parameters_khr
@@ -5836,7 +5836,7 @@ Arguments:
 destroy_video_session_parameters_khr
 
 """
-    get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR)::Result{Vector{VideoGetMemoryPropertiesKHR}, VulkanError}
+    get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR)::Result{Vector{_VideoGetMemoryPropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5850,7 +5850,7 @@ Arguments:
 get_video_session_memory_requirements_khr
 
 """
-    bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray{<:VideoBindMemoryKHR})::Result{VkResult, VulkanError}
+    bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray{<:_VideoBindMemoryKHR})::Result{VkResult, VulkanError}
 
 Return codes:
 - Error:
@@ -5861,91 +5861,91 @@ Return codes:
 Arguments:
 - `device::Device`
 - `video_session::VideoSessionKHR`
-- `video_session_bind_memories::AbstractArray{<:VideoBindMemoryKHR}`
+- `video_session_bind_memories::AbstractArray{<:_VideoBindMemoryKHR}`
 
 """
 bind_video_session_memory_khr
 
 """
-    cmd_decode_video_khr(command_buffer::CommandBuffer, frame_info::VideoDecodeInfoKHR)::Cvoid
+    cmd_decode_video_khr(command_buffer::CommandBuffer, frame_info::_VideoDecodeInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer`
-- `frame_info::VideoDecodeInfoKHR`
+- `frame_info::_VideoDecodeInfoKHR`
 
 """
 cmd_decode_video_khr
 
 """
-    cmd_begin_video_coding_khr(command_buffer::CommandBuffer, begin_info::VideoBeginCodingInfoKHR)::Cvoid
+    cmd_begin_video_coding_khr(command_buffer::CommandBuffer, begin_info::_VideoBeginCodingInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer`
-- `begin_info::VideoBeginCodingInfoKHR`
+- `begin_info::_VideoBeginCodingInfoKHR`
 
 """
 cmd_begin_video_coding_khr
 
 """
-    cmd_control_video_coding_khr(command_buffer::CommandBuffer, coding_control_info::VideoCodingControlInfoKHR)::Cvoid
+    cmd_control_video_coding_khr(command_buffer::CommandBuffer, coding_control_info::_VideoCodingControlInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer`
-- `coding_control_info::VideoCodingControlInfoKHR`
+- `coding_control_info::_VideoCodingControlInfoKHR`
 
 """
 cmd_control_video_coding_khr
 
 """
-    cmd_end_video_coding_khr(command_buffer::CommandBuffer, end_coding_info::VideoEndCodingInfoKHR)::Cvoid
+    cmd_end_video_coding_khr(command_buffer::CommandBuffer, end_coding_info::_VideoEndCodingInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer`
-- `end_coding_info::VideoEndCodingInfoKHR`
+- `end_coding_info::_VideoEndCodingInfoKHR`
 
 """
 cmd_end_video_coding_khr
 
 """
-    cmd_encode_video_khr(command_buffer::CommandBuffer, encode_info::VideoEncodeInfoKHR)::Cvoid
+    cmd_encode_video_khr(command_buffer::CommandBuffer, encode_info::_VideoEncodeInfoKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer`
-- `encode_info::VideoEncodeInfoKHR`
+- `encode_info::_VideoEncodeInfoKHR`
 
 """
 cmd_encode_video_khr
 
 """
-    BaseOutStructure(; next = C_NULL)
+    _BaseOutStructure(; next = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BaseOutStructure
+_BaseOutStructure
 
 """
-    BaseInStructure(; next = C_NULL)
+    _BaseInStructure(; next = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BaseInStructure
+_BaseInStructure
 
 """
-    Offset2D(x::Integer, y::Integer)
+    _Offset2D(x::Integer, y::Integer)
 
 Arguments:
 - `x::Integer`
 - `y::Integer`
 
 """
-Offset2D
+_Offset2D
 
 """
-    Offset3D(x::Integer, y::Integer, z::Integer)
+    _Offset3D(x::Integer, y::Integer, z::Integer)
 
 Arguments:
 - `x::Integer`
@@ -5953,20 +5953,20 @@ Arguments:
 - `z::Integer`
 
 """
-Offset3D
+_Offset3D
 
 """
-    Extent2D(width::Integer, height::Integer)
+    _Extent2D(width::Integer, height::Integer)
 
 Arguments:
 - `width::Integer`
 - `height::Integer`
 
 """
-Extent2D
+_Extent2D
 
 """
-    Extent3D(width::Integer, height::Integer, depth::Integer)
+    _Extent3D(width::Integer, height::Integer, depth::Integer)
 
 Arguments:
 - `width::Integer`
@@ -5974,10 +5974,10 @@ Arguments:
 - `depth::Integer`
 
 """
-Extent3D
+_Extent3D
 
 """
-    Viewport(x::Real, y::Real, width::Real, height::Real, min_depth::Real, max_depth::Real)
+    _Viewport(x::Real, y::Real, width::Real, height::Real, min_depth::Real, max_depth::Real)
 
 Arguments:
 - `x::Real`
@@ -5988,31 +5988,31 @@ Arguments:
 - `max_depth::Real`
 
 """
-Viewport
+_Viewport
 
 """
-    Rect2D(offset::Offset2D, extent::Extent2D)
+    _Rect2D(offset::_Offset2D, extent::_Extent2D)
 
 Arguments:
-- `offset::Offset2D`
-- `extent::Extent2D`
+- `offset::_Offset2D`
+- `extent::_Extent2D`
 
 """
-Rect2D
+_Rect2D
 
 """
-    ClearRect(rect::Rect2D, base_array_layer::Integer, layer_count::Integer)
+    _ClearRect(rect::_Rect2D, base_array_layer::Integer, layer_count::Integer)
 
 Arguments:
-- `rect::Rect2D`
+- `rect::_Rect2D`
 - `base_array_layer::Integer`
 - `layer_count::Integer`
 
 """
-ClearRect
+_ClearRect
 
 """
-    ComponentMapping(r::VkComponentSwizzle, g::VkComponentSwizzle, b::VkComponentSwizzle, a::VkComponentSwizzle)
+    _ComponentMapping(r::VkComponentSwizzle, g::VkComponentSwizzle, b::VkComponentSwizzle, a::VkComponentSwizzle)
 
 Arguments:
 - `r::VkComponentSwizzle`
@@ -6021,10 +6021,10 @@ Arguments:
 - `a::VkComponentSwizzle`
 
 """
-ComponentMapping
+_ComponentMapping
 
 """
-    ApplicationInfo(application_version::VersionNumber, engine_version::VersionNumber, api_version::VersionNumber; next = C_NULL, application_name = C_NULL, engine_name = C_NULL)
+    _ApplicationInfo(application_version::VersionNumber, engine_version::VersionNumber, api_version::VersionNumber; next = C_NULL, application_name = C_NULL, engine_name = C_NULL)
 
 Arguments:
 - `application_version::VersionNumber`
@@ -6035,10 +6035,10 @@ Arguments:
 - `engine_name`: defaults to `C_NULL`
 
 """
-ApplicationInfo
+_ApplicationInfo
 
 """
-    AllocationCallbacks(pfn_allocation::FunctionPtr, pfn_reallocation::FunctionPtr, pfn_free::FunctionPtr; user_data = C_NULL, pfn_internal_allocation = 0, pfn_internal_free = 0)
+    _AllocationCallbacks(pfn_allocation::FunctionPtr, pfn_reallocation::FunctionPtr, pfn_free::FunctionPtr; user_data = C_NULL, pfn_internal_allocation = 0, pfn_internal_free = 0)
 
 Arguments:
 - `pfn_allocation::FunctionPtr`
@@ -6049,10 +6049,10 @@ Arguments:
 - `pfn_internal_free`: defaults to `0`
 
 """
-AllocationCallbacks
+_AllocationCallbacks
 
 """
-    DeviceQueueCreateInfo(queue_family_index::Integer, queue_priorities::AbstractArray{<:Real}; next = C_NULL, flags = 0)
+    _DeviceQueueCreateInfo(queue_family_index::Integer, queue_priorities::AbstractArray{<:Real}; next = C_NULL, flags = 0)
 
 Arguments:
 - `queue_family_index::Integer`
@@ -6061,13 +6061,13 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-DeviceQueueCreateInfo
+_DeviceQueueCreateInfo
 
 """
-    DeviceCreateInfo(queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, enabled_features = C_NULL)
+    _DeviceCreateInfo(queue_create_infos::AbstractArray{<:_DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, enabled_features = C_NULL)
 
 Arguments:
-- `queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}`
+- `queue_create_infos::AbstractArray{<:_DeviceQueueCreateInfo}`
 - `enabled_layer_names::AbstractArray{<:AbstractString}`
 - `enabled_extension_names::AbstractArray{<:AbstractString}`
 - `next`: defaults to `C_NULL`
@@ -6075,10 +6075,10 @@ Arguments:
 - `enabled_features`: defaults to `C_NULL`
 
 """
-DeviceCreateInfo
+_DeviceCreateInfo
 
 """
-    InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
+    _InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
 
 Arguments:
 - `enabled_layer_names::AbstractArray{<:AbstractString}`
@@ -6088,10 +6088,10 @@ Arguments:
 - `application_info`: defaults to `C_NULL`
 
 """
-InstanceCreateInfo
+_InstanceCreateInfo
 
 """
-    MemoryAllocateInfo(allocation_size::Integer, memory_type_index::Integer; next = C_NULL)
+    _MemoryAllocateInfo(allocation_size::Integer, memory_type_index::Integer; next = C_NULL)
 
 Arguments:
 - `allocation_size::Integer`
@@ -6099,10 +6099,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-MemoryAllocateInfo
+_MemoryAllocateInfo
 
 """
-    MappedMemoryRange(memory::DeviceMemory, offset::Integer, size::Integer; next = C_NULL)
+    _MappedMemoryRange(memory::DeviceMemory, offset::Integer, size::Integer; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
@@ -6111,10 +6111,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-MappedMemoryRange
+_MappedMemoryRange
 
 """
-    DescriptorBufferInfo(offset::Integer, range::Integer; buffer = C_NULL)
+    _DescriptorBufferInfo(offset::Integer, range::Integer; buffer = C_NULL)
 
 Arguments:
 - `offset::Integer`
@@ -6122,10 +6122,10 @@ Arguments:
 - `buffer`: defaults to `C_NULL`
 
 """
-DescriptorBufferInfo
+_DescriptorBufferInfo
 
 """
-    DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
+    _DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
 
 Arguments:
 - `sampler::Sampler`
@@ -6133,27 +6133,27 @@ Arguments:
 - `image_layout::VkImageLayout`
 
 """
-DescriptorImageInfo
+_DescriptorImageInfo
 
 """
-    WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray{<:DescriptorImageInfo}, buffer_info::AbstractArray{<:DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
+    _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray{<:_DescriptorImageInfo}, buffer_info::AbstractArray{<:_DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
 
 Arguments:
 - `dst_set::DescriptorSet`
 - `dst_binding::Integer`
 - `dst_array_element::Integer`
 - `descriptor_type::VkDescriptorType`
-- `image_info::AbstractArray{<:DescriptorImageInfo}`
-- `buffer_info::AbstractArray{<:DescriptorBufferInfo}`
+- `image_info::AbstractArray{<:_DescriptorImageInfo}`
+- `buffer_info::AbstractArray{<:_DescriptorBufferInfo}`
 - `texel_buffer_view::AbstractArray{<:BufferView}`
 - `next`: defaults to `C_NULL`
 - `descriptor_count`: defaults to `max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view))`
 
 """
-WriteDescriptorSet
+_WriteDescriptorSet
 
 """
-    CopyDescriptorSet(src_set::DescriptorSet, src_binding::Integer, src_array_element::Integer, dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer; next = C_NULL)
+    _CopyDescriptorSet(src_set::DescriptorSet, src_binding::Integer, src_array_element::Integer, dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer; next = C_NULL)
 
 Arguments:
 - `src_set::DescriptorSet`
@@ -6166,10 +6166,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-CopyDescriptorSet
+_CopyDescriptorSet
 
 """
-    BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
 - `size::Integer`
@@ -6180,10 +6180,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-BufferCreateInfo
+_BufferCreateInfo
 
 """
-    BufferViewCreateInfo(buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; next = C_NULL, flags = 0)
+    _BufferViewCreateInfo(buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `buffer::Buffer`
@@ -6194,10 +6194,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-BufferViewCreateInfo
+_BufferViewCreateInfo
 
 """
-    ImageSubresource(aspect_mask::ImageAspectFlag, mip_level::Integer, array_layer::Integer)
+    _ImageSubresource(aspect_mask::ImageAspectFlag, mip_level::Integer, array_layer::Integer)
 
 Arguments:
 - `aspect_mask::ImageAspectFlag`
@@ -6205,10 +6205,10 @@ Arguments:
 - `array_layer::Integer`
 
 """
-ImageSubresource
+_ImageSubresource
 
 """
-    ImageSubresourceLayers(aspect_mask::ImageAspectFlag, mip_level::Integer, base_array_layer::Integer, layer_count::Integer)
+    _ImageSubresourceLayers(aspect_mask::ImageAspectFlag, mip_level::Integer, base_array_layer::Integer, layer_count::Integer)
 
 Arguments:
 - `aspect_mask::ImageAspectFlag`
@@ -6217,10 +6217,10 @@ Arguments:
 - `layer_count::Integer`
 
 """
-ImageSubresourceLayers
+_ImageSubresourceLayers
 
 """
-    ImageSubresourceRange(aspect_mask::ImageAspectFlag, base_mip_level::Integer, level_count::Integer, base_array_layer::Integer, layer_count::Integer)
+    _ImageSubresourceRange(aspect_mask::ImageAspectFlag, base_mip_level::Integer, level_count::Integer, base_array_layer::Integer, layer_count::Integer)
 
 Arguments:
 - `aspect_mask::ImageAspectFlag`
@@ -6230,10 +6230,10 @@ Arguments:
 - `layer_count::Integer`
 
 """
-ImageSubresourceRange
+_ImageSubresourceRange
 
 """
-    MemoryBarrier(; next = C_NULL, src_access_mask = 0, dst_access_mask = 0)
+    _MemoryBarrier(; next = C_NULL, src_access_mask = 0, dst_access_mask = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -6241,10 +6241,10 @@ Arguments:
 - `dst_access_mask`: defaults to `0`
 
 """
-MemoryBarrier
+_MemoryBarrier
 
 """
-    BufferMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL)
+    _BufferMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL)
 
 Arguments:
 - `src_access_mask::AccessFlag`
@@ -6257,10 +6257,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BufferMemoryBarrier
+_BufferMemoryBarrier
 
 """
-    ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::ImageSubresourceRange; next = C_NULL)
+    _ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL)
 
 Arguments:
 - `src_access_mask::AccessFlag`
@@ -6270,19 +6270,19 @@ Arguments:
 - `src_queue_family_index::Integer`
 - `dst_queue_family_index::Integer`
 - `image::Image`
-- `subresource_range::ImageSubresourceRange`
+- `subresource_range::_ImageSubresourceRange`
 - `next`: defaults to `C_NULL`
 
 """
-ImageMemoryBarrier
+_ImageMemoryBarrier
 
 """
-    ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
+    _ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
 - `image_type::VkImageType`
 - `format::VkFormat`
-- `extent::Extent3D`
+- `extent::_Extent3D`
 - `mip_levels::Integer`
 - `array_layers::Integer`
 - `samples::SampleCountFlag`
@@ -6295,25 +6295,25 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ImageCreateInfo
+_ImageCreateInfo
 
 """
-    ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; next = C_NULL, flags = 0)
+    _ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::VkFormat, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; next = C_NULL, flags = 0)
 
 Arguments:
 - `image::Image`
 - `view_type::VkImageViewType`
 - `format::VkFormat`
-- `components::ComponentMapping`
-- `subresource_range::ImageSubresourceRange`
+- `components::_ComponentMapping`
+- `subresource_range::_ImageSubresourceRange`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-ImageViewCreateInfo
+_ImageViewCreateInfo
 
 """
-    BufferCopy(src_offset::Integer, dst_offset::Integer, size::Integer)
+    _BufferCopy(src_offset::Integer, dst_offset::Integer, size::Integer)
 
 Arguments:
 - `src_offset::Integer`
@@ -6321,10 +6321,10 @@ Arguments:
 - `size::Integer`
 
 """
-BufferCopy
+_BufferCopy
 
 """
-    SparseMemoryBind(resource_offset::Integer, size::Integer, memory_offset::Integer; memory = C_NULL, flags = 0)
+    _SparseMemoryBind(resource_offset::Integer, size::Integer, memory_offset::Integer; memory = C_NULL, flags = 0)
 
 Arguments:
 - `resource_offset::Integer`
@@ -6334,120 +6334,120 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-SparseMemoryBind
+_SparseMemoryBind
 
 """
-    SparseImageMemoryBind(subresource::ImageSubresource, offset::Offset3D, extent::Extent3D, memory_offset::Integer; memory = C_NULL, flags = 0)
+    _SparseImageMemoryBind(subresource::_ImageSubresource, offset::_Offset3D, extent::_Extent3D, memory_offset::Integer; memory = C_NULL, flags = 0)
 
 Arguments:
-- `subresource::ImageSubresource`
-- `offset::Offset3D`
-- `extent::Extent3D`
+- `subresource::_ImageSubresource`
+- `offset::_Offset3D`
+- `extent::_Extent3D`
 - `memory_offset::Integer`
 - `memory`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-SparseImageMemoryBind
+_SparseImageMemoryBind
 
 """
-    SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray{<:SparseMemoryBind})
+    _SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray{<:_SparseMemoryBind})
 
 Arguments:
 - `buffer::Buffer`
-- `binds::AbstractArray{<:SparseMemoryBind}`
+- `binds::AbstractArray{<:_SparseMemoryBind}`
 
 """
-SparseBufferMemoryBindInfo
+_SparseBufferMemoryBindInfo
 
 """
-    SparseImageOpaqueMemoryBindInfo(image::Image, binds::AbstractArray{<:SparseMemoryBind})
+    _SparseImageOpaqueMemoryBindInfo(image::Image, binds::AbstractArray{<:_SparseMemoryBind})
 
 Arguments:
 - `image::Image`
-- `binds::AbstractArray{<:SparseMemoryBind}`
+- `binds::AbstractArray{<:_SparseMemoryBind}`
 
 """
-SparseImageOpaqueMemoryBindInfo
+_SparseImageOpaqueMemoryBindInfo
 
 """
-    SparseImageMemoryBindInfo(image::Image, binds::AbstractArray{<:SparseImageMemoryBind})
+    _SparseImageMemoryBindInfo(image::Image, binds::AbstractArray{<:_SparseImageMemoryBind})
 
 Arguments:
 - `image::Image`
-- `binds::AbstractArray{<:SparseImageMemoryBind}`
+- `binds::AbstractArray{<:_SparseImageMemoryBind}`
 
 """
-SparseImageMemoryBindInfo
+_SparseImageMemoryBindInfo
 
 """
-    BindSparseInfo(wait_semaphores::AbstractArray{<:Semaphore}, buffer_binds::AbstractArray{<:SparseBufferMemoryBindInfo}, image_opaque_binds::AbstractArray{<:SparseImageOpaqueMemoryBindInfo}, image_binds::AbstractArray{<:SparseImageMemoryBindInfo}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
+    _BindSparseInfo(wait_semaphores::AbstractArray{<:Semaphore}, buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}, image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}, image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
 
 Arguments:
 - `wait_semaphores::AbstractArray{<:Semaphore}`
-- `buffer_binds::AbstractArray{<:SparseBufferMemoryBindInfo}`
-- `image_opaque_binds::AbstractArray{<:SparseImageOpaqueMemoryBindInfo}`
-- `image_binds::AbstractArray{<:SparseImageMemoryBindInfo}`
+- `buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}`
+- `image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}`
+- `image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}`
 - `signal_semaphores::AbstractArray{<:Semaphore}`
 - `next`: defaults to `C_NULL`
 
 """
-BindSparseInfo
+_BindSparseInfo
 
 """
-    ImageCopy(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D)
+    _ImageCopy(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D)
 
 Arguments:
-- `src_subresource::ImageSubresourceLayers`
-- `src_offset::Offset3D`
-- `dst_subresource::ImageSubresourceLayers`
-- `dst_offset::Offset3D`
-- `extent::Extent3D`
+- `src_subresource::_ImageSubresourceLayers`
+- `src_offset::_Offset3D`
+- `dst_subresource::_ImageSubresourceLayers`
+- `dst_offset::_Offset3D`
+- `extent::_Extent3D`
 
 """
-ImageCopy
+_ImageCopy
 
 """
-    ImageBlit(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, Offset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, Offset3D})
+    _ImageBlit(src_subresource::_ImageSubresourceLayers, src_offsets::NTuple{2, _Offset3D}, dst_subresource::_ImageSubresourceLayers, dst_offsets::NTuple{2, _Offset3D})
 
 Arguments:
-- `src_subresource::ImageSubresourceLayers`
-- `src_offsets::NTuple{2, Offset3D}`
-- `dst_subresource::ImageSubresourceLayers`
-- `dst_offsets::NTuple{2, Offset3D}`
+- `src_subresource::_ImageSubresourceLayers`
+- `src_offsets::NTuple{2, _Offset3D}`
+- `dst_subresource::_ImageSubresourceLayers`
+- `dst_offsets::NTuple{2, _Offset3D}`
 
 """
-ImageBlit
+_ImageBlit
 
 """
-    BufferImageCopy(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::ImageSubresourceLayers, image_offset::Offset3D, image_extent::Extent3D)
+    _BufferImageCopy(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D)
 
 Arguments:
 - `buffer_offset::Integer`
 - `buffer_row_length::Integer`
 - `buffer_image_height::Integer`
-- `image_subresource::ImageSubresourceLayers`
-- `image_offset::Offset3D`
-- `image_extent::Extent3D`
+- `image_subresource::_ImageSubresourceLayers`
+- `image_offset::_Offset3D`
+- `image_extent::_Extent3D`
 
 """
-BufferImageCopy
+_BufferImageCopy
 
 """
-    ImageResolve(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D)
+    _ImageResolve(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D)
 
 Arguments:
-- `src_subresource::ImageSubresourceLayers`
-- `src_offset::Offset3D`
-- `dst_subresource::ImageSubresourceLayers`
-- `dst_offset::Offset3D`
-- `extent::Extent3D`
+- `src_subresource::_ImageSubresourceLayers`
+- `src_offset::_Offset3D`
+- `dst_subresource::_ImageSubresourceLayers`
+- `dst_offset::_Offset3D`
+- `extent::_Extent3D`
 
 """
-ImageResolve
+_ImageResolve
 
 """
-    ShaderModuleCreateInfo(code_size::Integer, code::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _ShaderModuleCreateInfo(code_size::Integer, code::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
 - `code_size::Integer`
@@ -6456,10 +6456,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ShaderModuleCreateInfo
+_ShaderModuleCreateInfo
 
 """
-    DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
+    _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
 
 Arguments:
 - `binding::Integer`
@@ -6469,43 +6469,43 @@ Arguments:
 - `immutable_samplers`: defaults to `C_NULL`
 
 """
-DescriptorSetLayoutBinding
+_DescriptorSetLayoutBinding
 
 """
-    DescriptorSetLayoutCreateInfo(bindings::AbstractArray{<:DescriptorSetLayoutBinding}; next = C_NULL, flags = 0)
+    _DescriptorSetLayoutCreateInfo(bindings::AbstractArray{<:_DescriptorSetLayoutBinding}; next = C_NULL, flags = 0)
 
 Arguments:
-- `bindings::AbstractArray{<:DescriptorSetLayoutBinding}`
+- `bindings::AbstractArray{<:_DescriptorSetLayoutBinding}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-DescriptorSetLayoutCreateInfo
+_DescriptorSetLayoutCreateInfo
 
 """
-    DescriptorPoolSize(type::VkDescriptorType, descriptor_count::Integer)
+    _DescriptorPoolSize(type::VkDescriptorType, descriptor_count::Integer)
 
 Arguments:
 - `type::VkDescriptorType`
 - `descriptor_count::Integer`
 
 """
-DescriptorPoolSize
+_DescriptorPoolSize
 
 """
-    DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}; next = C_NULL, flags = 0)
+    _DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray{<:_DescriptorPoolSize}; next = C_NULL, flags = 0)
 
 Arguments:
 - `max_sets::Integer`
-- `pool_sizes::AbstractArray{<:DescriptorPoolSize}`
+- `pool_sizes::AbstractArray{<:_DescriptorPoolSize}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-DescriptorPoolCreateInfo
+_DescriptorPoolCreateInfo
 
 """
-    DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray{<:DescriptorSetLayout}; next = C_NULL)
+    _DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray{<:DescriptorSetLayout}; next = C_NULL)
 
 Arguments:
 - `descriptor_pool::DescriptorPool`
@@ -6513,10 +6513,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DescriptorSetAllocateInfo
+_DescriptorSetAllocateInfo
 
 """
-    SpecializationMapEntry(constant_id::Integer, offset::Integer, size::Integer)
+    _SpecializationMapEntry(constant_id::Integer, offset::Integer, size::Integer)
 
 Arguments:
 - `constant_id::Integer`
@@ -6524,21 +6524,21 @@ Arguments:
 - `size::Integer`
 
 """
-SpecializationMapEntry
+_SpecializationMapEntry
 
 """
-    SpecializationInfo(map_entries::AbstractArray{<:SpecializationMapEntry}, data::Ptr{Cvoid}; data_size = 0)
+    _SpecializationInfo(map_entries::AbstractArray{<:_SpecializationMapEntry}, data::Ptr{Cvoid}; data_size = 0)
 
 Arguments:
-- `map_entries::AbstractArray{<:SpecializationMapEntry}`
+- `map_entries::AbstractArray{<:_SpecializationMapEntry}`
 - `data::Ptr{Cvoid}`
 - `data_size`: defaults to `0`
 
 """
-SpecializationInfo
+_SpecializationInfo
 
 """
-    PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+    _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
 
 Arguments:
 - `stage::ShaderStageFlag`
@@ -6549,13 +6549,13 @@ Arguments:
 - `specialization_info`: defaults to `C_NULL`
 
 """
-PipelineShaderStageCreateInfo
+_PipelineShaderStageCreateInfo
 
 """
-    ComputePipelineCreateInfo(stage::PipelineShaderStageCreateInfo, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
+    _ComputePipelineCreateInfo(stage::_PipelineShaderStageCreateInfo, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stage::PipelineShaderStageCreateInfo`
+- `stage::_PipelineShaderStageCreateInfo`
 - `layout::PipelineLayout`
 - `base_pipeline_index::Integer`
 - `next`: defaults to `C_NULL`
@@ -6563,10 +6563,10 @@ Arguments:
 - `base_pipeline_handle`: defaults to `C_NULL`
 
 """
-ComputePipelineCreateInfo
+_ComputePipelineCreateInfo
 
 """
-    VertexInputBindingDescription(binding::Integer, stride::Integer, input_rate::VkVertexInputRate)
+    _VertexInputBindingDescription(binding::Integer, stride::Integer, input_rate::VkVertexInputRate)
 
 Arguments:
 - `binding::Integer`
@@ -6574,10 +6574,10 @@ Arguments:
 - `input_rate::VkVertexInputRate`
 
 """
-VertexInputBindingDescription
+_VertexInputBindingDescription
 
 """
-    VertexInputAttributeDescription(location::Integer, binding::Integer, format::VkFormat, offset::Integer)
+    _VertexInputAttributeDescription(location::Integer, binding::Integer, format::VkFormat, offset::Integer)
 
 Arguments:
 - `location::Integer`
@@ -6586,22 +6586,22 @@ Arguments:
 - `offset::Integer`
 
 """
-VertexInputAttributeDescription
+_VertexInputAttributeDescription
 
 """
-    PipelineVertexInputStateCreateInfo(vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription}, vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription}; next = C_NULL, flags = 0)
+    _PipelineVertexInputStateCreateInfo(vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription}, vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription}; next = C_NULL, flags = 0)
 
 Arguments:
-- `vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription}`
-- `vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription}`
+- `vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription}`
+- `vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-PipelineVertexInputStateCreateInfo
+_PipelineVertexInputStateCreateInfo
 
 """
-    PipelineInputAssemblyStateCreateInfo(topology::VkPrimitiveTopology, primitive_restart_enable::Bool; next = C_NULL, flags = 0)
+    _PipelineInputAssemblyStateCreateInfo(topology::VkPrimitiveTopology, primitive_restart_enable::Bool; next = C_NULL, flags = 0)
 
 Arguments:
 - `topology::VkPrimitiveTopology`
@@ -6610,10 +6610,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PipelineInputAssemblyStateCreateInfo
+_PipelineInputAssemblyStateCreateInfo
 
 """
-    PipelineTessellationStateCreateInfo(patch_control_points::Integer; next = C_NULL, flags = 0)
+    _PipelineTessellationStateCreateInfo(patch_control_points::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `patch_control_points::Integer`
@@ -6621,10 +6621,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PipelineTessellationStateCreateInfo
+_PipelineTessellationStateCreateInfo
 
 """
-    PipelineViewportStateCreateInfo(; next = C_NULL, flags = 0, viewports = C_NULL, scissors = C_NULL)
+    _PipelineViewportStateCreateInfo(; next = C_NULL, flags = 0, viewports = C_NULL, scissors = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -6633,10 +6633,10 @@ Arguments:
 - `scissors`: defaults to `C_NULL`
 
 """
-PipelineViewportStateCreateInfo
+_PipelineViewportStateCreateInfo
 
 """
-    PipelineRasterizationStateCreateInfo(depth_clamp_enable::Bool, rasterizer_discard_enable::Bool, polygon_mode::VkPolygonMode, front_face::VkFrontFace, depth_bias_enable::Bool, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, line_width::Real; next = C_NULL, flags = 0, cull_mode = 0)
+    _PipelineRasterizationStateCreateInfo(depth_clamp_enable::Bool, rasterizer_discard_enable::Bool, polygon_mode::VkPolygonMode, front_face::VkFrontFace, depth_bias_enable::Bool, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, line_width::Real; next = C_NULL, flags = 0, cull_mode = 0)
 
 Arguments:
 - `depth_clamp_enable::Bool`
@@ -6653,10 +6653,10 @@ Arguments:
 - `cull_mode`: defaults to `0`
 
 """
-PipelineRasterizationStateCreateInfo
+_PipelineRasterizationStateCreateInfo
 
 """
-    PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountFlag, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
+    _PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountFlag, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
 
 Arguments:
 - `rasterization_samples::SampleCountFlag`
@@ -6669,10 +6669,10 @@ Arguments:
 - `sample_mask`: defaults to `C_NULL`
 
 """
-PipelineMultisampleStateCreateInfo
+_PipelineMultisampleStateCreateInfo
 
 """
-    PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_factor::VkBlendFactor, dst_color_blend_factor::VkBlendFactor, color_blend_op::VkBlendOp, src_alpha_blend_factor::VkBlendFactor, dst_alpha_blend_factor::VkBlendFactor, alpha_blend_op::VkBlendOp; color_write_mask = 0)
+    _PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_factor::VkBlendFactor, dst_color_blend_factor::VkBlendFactor, color_blend_op::VkBlendOp, src_alpha_blend_factor::VkBlendFactor, dst_alpha_blend_factor::VkBlendFactor, alpha_blend_op::VkBlendOp; color_write_mask = 0)
 
 Arguments:
 - `blend_enable::Bool`
@@ -6685,24 +6685,24 @@ Arguments:
 - `color_write_mask`: defaults to `0`
 
 """
-PipelineColorBlendAttachmentState
+_PipelineColorBlendAttachmentState
 
 """
-    PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::VkLogicOp, attachments::AbstractArray{<:PipelineColorBlendAttachmentState}, blend_constants::NTuple{4, Float32}; next = C_NULL, flags = 0)
+    _PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::VkLogicOp, attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}, blend_constants::NTuple{4, Float32}; next = C_NULL, flags = 0)
 
 Arguments:
 - `logic_op_enable::Bool`
 - `logic_op::VkLogicOp`
-- `attachments::AbstractArray{<:PipelineColorBlendAttachmentState}`
+- `attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}`
 - `blend_constants::NTuple{4, Float32}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-PipelineColorBlendStateCreateInfo
+_PipelineColorBlendStateCreateInfo
 
 """
-    PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray{<:VkDynamicState}; next = C_NULL, flags = 0)
+    _PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray{<:VkDynamicState}; next = C_NULL, flags = 0)
 
 Arguments:
 - `dynamic_states::AbstractArray{<:VkDynamicState}`
@@ -6710,10 +6710,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PipelineDynamicStateCreateInfo
+_PipelineDynamicStateCreateInfo
 
 """
-    StencilOpState(fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, compare_mask::Integer, write_mask::Integer, reference::Integer)
+    _StencilOpState(fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, compare_mask::Integer, write_mask::Integer, reference::Integer)
 
 Arguments:
 - `fail_op::VkStencilOp`
@@ -6725,10 +6725,10 @@ Arguments:
 - `reference::Integer`
 
 """
-StencilOpState
+_StencilOpState
 
 """
-    PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable::Bool, depth_compare_op::VkCompareOp, depth_bounds_test_enable::Bool, stencil_test_enable::Bool, front::StencilOpState, back::StencilOpState, min_depth_bounds::Real, max_depth_bounds::Real; next = C_NULL, flags = 0)
+    _PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable::Bool, depth_compare_op::VkCompareOp, depth_bounds_test_enable::Bool, stencil_test_enable::Bool, front::_StencilOpState, back::_StencilOpState, min_depth_bounds::Real, max_depth_bounds::Real; next = C_NULL, flags = 0)
 
 Arguments:
 - `depth_test_enable::Bool`
@@ -6736,22 +6736,22 @@ Arguments:
 - `depth_compare_op::VkCompareOp`
 - `depth_bounds_test_enable::Bool`
 - `stencil_test_enable::Bool`
-- `front::StencilOpState`
-- `back::StencilOpState`
+- `front::_StencilOpState`
+- `back::_StencilOpState`
 - `min_depth_bounds::Real`
 - `max_depth_bounds::Real`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-PipelineDepthStencilStateCreateInfo
+_PipelineDepthStencilStateCreateInfo
 
 """
-    GraphicsPipelineCreateInfo(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, rasterization_state::PipelineRasterizationStateCreateInfo, layout::PipelineLayout, render_pass::RenderPass, subpass::Integer, base_pipeline_index::Integer; next = C_NULL, flags = 0, vertex_input_state = C_NULL, input_assembly_state = C_NULL, tessellation_state = C_NULL, viewport_state = C_NULL, multisample_state = C_NULL, depth_stencil_state = C_NULL, color_blend_state = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
+    _GraphicsPipelineCreateInfo(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, rasterization_state::_PipelineRasterizationStateCreateInfo, layout::PipelineLayout, render_pass::RenderPass, subpass::Integer, base_pipeline_index::Integer; next = C_NULL, flags = 0, vertex_input_state = C_NULL, input_assembly_state = C_NULL, tessellation_state = C_NULL, viewport_state = C_NULL, multisample_state = C_NULL, depth_stencil_state = C_NULL, color_blend_state = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:PipelineShaderStageCreateInfo}`
-- `rasterization_state::PipelineRasterizationStateCreateInfo`
+- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
+- `rasterization_state::_PipelineRasterizationStateCreateInfo`
 - `layout::PipelineLayout`
 - `render_pass::RenderPass`
 - `subpass::Integer`
@@ -6769,10 +6769,10 @@ Arguments:
 - `base_pipeline_handle`: defaults to `C_NULL`
 
 """
-GraphicsPipelineCreateInfo
+_GraphicsPipelineCreateInfo
 
 """
-    PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
+    _PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
 
 Arguments:
 - `initial_data::Ptr{Cvoid}`
@@ -6781,10 +6781,10 @@ Arguments:
 - `initial_data_size`: defaults to `0`
 
 """
-PipelineCacheCreateInfo
+_PipelineCacheCreateInfo
 
 """
-    PushConstantRange(stage_flags::ShaderStageFlag, offset::Integer, size::Integer)
+    _PushConstantRange(stage_flags::ShaderStageFlag, offset::Integer, size::Integer)
 
 Arguments:
 - `stage_flags::ShaderStageFlag`
@@ -6792,22 +6792,22 @@ Arguments:
 - `size::Integer`
 
 """
-PushConstantRange
+_PushConstantRange
 
 """
-    PipelineLayoutCreateInfo(set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}; next = C_NULL, flags = 0)
+    _PipelineLayoutCreateInfo(set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; next = C_NULL, flags = 0)
 
 Arguments:
 - `set_layouts::AbstractArray{<:DescriptorSetLayout}`
-- `push_constant_ranges::AbstractArray{<:PushConstantRange}`
+- `push_constant_ranges::AbstractArray{<:_PushConstantRange}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-PipelineLayoutCreateInfo
+_PipelineLayoutCreateInfo
 
 """
-    SamplerCreateInfo(mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; next = C_NULL, flags = 0)
+    _SamplerCreateInfo(mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; next = C_NULL, flags = 0)
 
 Arguments:
 - `mag_filter::VkFilter`
@@ -6829,10 +6829,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-SamplerCreateInfo
+_SamplerCreateInfo
 
 """
-    CommandPoolCreateInfo(queue_family_index::Integer; next = C_NULL, flags = 0)
+    _CommandPoolCreateInfo(queue_family_index::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `queue_family_index::Integer`
@@ -6840,10 +6840,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-CommandPoolCreateInfo
+_CommandPoolCreateInfo
 
 """
-    CommandBufferAllocateInfo(command_pool::CommandPool, level::VkCommandBufferLevel, command_buffer_count::Integer; next = C_NULL)
+    _CommandBufferAllocateInfo(command_pool::CommandPool, level::VkCommandBufferLevel, command_buffer_count::Integer; next = C_NULL)
 
 Arguments:
 - `command_pool::CommandPool`
@@ -6852,10 +6852,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-CommandBufferAllocateInfo
+_CommandBufferAllocateInfo
 
 """
-    CommandBufferInheritanceInfo(subpass::Integer, occlusion_query_enable::Bool; next = C_NULL, render_pass = C_NULL, framebuffer = C_NULL, query_flags = 0, pipeline_statistics = 0)
+    _CommandBufferInheritanceInfo(subpass::Integer, occlusion_query_enable::Bool; next = C_NULL, render_pass = C_NULL, framebuffer = C_NULL, query_flags = 0, pipeline_statistics = 0)
 
 Arguments:
 - `subpass::Integer`
@@ -6867,10 +6867,10 @@ Arguments:
 - `pipeline_statistics`: defaults to `0`
 
 """
-CommandBufferInheritanceInfo
+_CommandBufferInheritanceInfo
 
 """
-    CommandBufferBeginInfo(; next = C_NULL, flags = 0, inheritance_info = C_NULL)
+    _CommandBufferBeginInfo(; next = C_NULL, flags = 0, inheritance_info = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -6878,33 +6878,33 @@ Arguments:
 - `inheritance_info`: defaults to `C_NULL`
 
 """
-CommandBufferBeginInfo
+_CommandBufferBeginInfo
 
 """
-    RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, render_area::Rect2D, clear_values::AbstractArray{<:VkClearValue}; next = C_NULL)
+    _RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, render_area::_Rect2D, clear_values::AbstractArray{<:VkClearValue}; next = C_NULL)
 
 Arguments:
 - `render_pass::RenderPass`
 - `framebuffer::Framebuffer`
-- `render_area::Rect2D`
+- `render_area::_Rect2D`
 - `clear_values::AbstractArray{<:VkClearValue}`
 - `next`: defaults to `C_NULL`
 
 """
-RenderPassBeginInfo
+_RenderPassBeginInfo
 
 """
-    ClearDepthStencilValue(depth::Real, stencil::Integer)
+    _ClearDepthStencilValue(depth::Real, stencil::Integer)
 
 Arguments:
 - `depth::Real`
 - `stencil::Integer`
 
 """
-ClearDepthStencilValue
+_ClearDepthStencilValue
 
 """
-    ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::VkClearValue)
+    _ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::VkClearValue)
 
 Arguments:
 - `aspect_mask::ImageAspectFlag`
@@ -6912,10 +6912,10 @@ Arguments:
 - `clear_value::VkClearValue`
 
 """
-ClearAttachment
+_ClearAttachment
 
 """
-    AttachmentDescription(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
+    _AttachmentDescription(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
 
 Arguments:
 - `format::VkFormat`
@@ -6929,35 +6929,35 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-AttachmentDescription
+_AttachmentDescription
 
 """
-    AttachmentReference(attachment::Integer, layout::VkImageLayout)
+    _AttachmentReference(attachment::Integer, layout::VkImageLayout)
 
 Arguments:
 - `attachment::Integer`
 - `layout::VkImageLayout`
 
 """
-AttachmentReference
+_AttachmentReference
 
 """
-    SubpassDescription(pipeline_bind_point::VkPipelineBindPoint, input_attachments::AbstractArray{<:AttachmentReference}, color_attachments::AbstractArray{<:AttachmentReference}, preserve_attachments::AbstractArray{<:Integer}; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
+    _SubpassDescription(pipeline_bind_point::VkPipelineBindPoint, input_attachments::AbstractArray{<:_AttachmentReference}, color_attachments::AbstractArray{<:_AttachmentReference}, preserve_attachments::AbstractArray{<:Integer}; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
 
 Arguments:
 - `pipeline_bind_point::VkPipelineBindPoint`
-- `input_attachments::AbstractArray{<:AttachmentReference}`
-- `color_attachments::AbstractArray{<:AttachmentReference}`
+- `input_attachments::AbstractArray{<:_AttachmentReference}`
+- `color_attachments::AbstractArray{<:_AttachmentReference}`
 - `preserve_attachments::AbstractArray{<:Integer}`
 - `flags`: defaults to `0`
 - `resolve_attachments`: defaults to `C_NULL`
 - `depth_stencil_attachment`: defaults to `C_NULL`
 
 """
-SubpassDescription
+_SubpassDescription
 
 """
-    SubpassDependency(src_subpass::Integer, dst_subpass::Integer; src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
+    _SubpassDependency(src_subpass::Integer, dst_subpass::Integer; src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
 
 Arguments:
 - `src_subpass::Integer`
@@ -6969,43 +6969,43 @@ Arguments:
 - `dependency_flags`: defaults to `0`
 
 """
-SubpassDependency
+_SubpassDependency
 
 """
-    RenderPassCreateInfo(attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}; next = C_NULL, flags = 0)
+    _RenderPassCreateInfo(attachments::AbstractArray{<:_AttachmentDescription}, subpasses::AbstractArray{<:_SubpassDescription}, dependencies::AbstractArray{<:_SubpassDependency}; next = C_NULL, flags = 0)
 
 Arguments:
-- `attachments::AbstractArray{<:AttachmentDescription}`
-- `subpasses::AbstractArray{<:SubpassDescription}`
-- `dependencies::AbstractArray{<:SubpassDependency}`
+- `attachments::AbstractArray{<:_AttachmentDescription}`
+- `subpasses::AbstractArray{<:_SubpassDescription}`
+- `dependencies::AbstractArray{<:_SubpassDependency}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-RenderPassCreateInfo
+_RenderPassCreateInfo
 
 """
-    EventCreateInfo(; next = C_NULL, flags = 0)
-
-Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-
-"""
-EventCreateInfo
-
-"""
-    FenceCreateInfo(; next = C_NULL, flags = 0)
+    _EventCreateInfo(; next = C_NULL, flags = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-FenceCreateInfo
+_EventCreateInfo
 
 """
-    PhysicalDeviceFeatures(robust_buffer_access::Bool, full_draw_index_uint_32::Bool, image_cube_array::Bool, independent_blend::Bool, geometry_shader::Bool, tessellation_shader::Bool, sample_rate_shading::Bool, dual_src_blend::Bool, logic_op::Bool, multi_draw_indirect::Bool, draw_indirect_first_instance::Bool, depth_clamp::Bool, depth_bias_clamp::Bool, fill_mode_non_solid::Bool, depth_bounds::Bool, wide_lines::Bool, large_points::Bool, alpha_to_one::Bool, multi_viewport::Bool, sampler_anisotropy::Bool, texture_compression_etc_2::Bool, texture_compression_astc_ldr::Bool, texture_compression_bc::Bool, occlusion_query_precise::Bool, pipeline_statistics_query::Bool, vertex_pipeline_stores_and_atomics::Bool, fragment_stores_and_atomics::Bool, shader_tessellation_and_geometry_point_size::Bool, shader_image_gather_extended::Bool, shader_storage_image_extended_formats::Bool, shader_storage_image_multisample::Bool, shader_storage_image_read_without_format::Bool, shader_storage_image_write_without_format::Bool, shader_uniform_buffer_array_dynamic_indexing::Bool, shader_sampled_image_array_dynamic_indexing::Bool, shader_storage_buffer_array_dynamic_indexing::Bool, shader_storage_image_array_dynamic_indexing::Bool, shader_clip_distance::Bool, shader_cull_distance::Bool, shader_float_64::Bool, shader_int_64::Bool, shader_int_16::Bool, shader_resource_residency::Bool, shader_resource_min_lod::Bool, sparse_binding::Bool, sparse_residency_buffer::Bool, sparse_residency_image_2_d::Bool, sparse_residency_image_3_d::Bool, sparse_residency_2_samples::Bool, sparse_residency_4_samples::Bool, sparse_residency_8_samples::Bool, sparse_residency_16_samples::Bool, sparse_residency_aliased::Bool, variable_multisample_rate::Bool, inherited_queries::Bool)
+    _FenceCreateInfo(; next = C_NULL, flags = 0)
+
+Arguments:
+- `next`: defaults to `C_NULL`
+- `flags`: defaults to `0`
+
+"""
+_FenceCreateInfo
+
+"""
+    _PhysicalDeviceFeatures(robust_buffer_access::Bool, full_draw_index_uint_32::Bool, image_cube_array::Bool, independent_blend::Bool, geometry_shader::Bool, tessellation_shader::Bool, sample_rate_shading::Bool, dual_src_blend::Bool, logic_op::Bool, multi_draw_indirect::Bool, draw_indirect_first_instance::Bool, depth_clamp::Bool, depth_bias_clamp::Bool, fill_mode_non_solid::Bool, depth_bounds::Bool, wide_lines::Bool, large_points::Bool, alpha_to_one::Bool, multi_viewport::Bool, sampler_anisotropy::Bool, texture_compression_etc_2::Bool, texture_compression_astc_ldr::Bool, texture_compression_bc::Bool, occlusion_query_precise::Bool, pipeline_statistics_query::Bool, vertex_pipeline_stores_and_atomics::Bool, fragment_stores_and_atomics::Bool, shader_tessellation_and_geometry_point_size::Bool, shader_image_gather_extended::Bool, shader_storage_image_extended_formats::Bool, shader_storage_image_multisample::Bool, shader_storage_image_read_without_format::Bool, shader_storage_image_write_without_format::Bool, shader_uniform_buffer_array_dynamic_indexing::Bool, shader_sampled_image_array_dynamic_indexing::Bool, shader_storage_buffer_array_dynamic_indexing::Bool, shader_storage_image_array_dynamic_indexing::Bool, shader_clip_distance::Bool, shader_cull_distance::Bool, shader_float_64::Bool, shader_int_64::Bool, shader_int_16::Bool, shader_resource_residency::Bool, shader_resource_min_lod::Bool, sparse_binding::Bool, sparse_residency_buffer::Bool, sparse_residency_image_2_d::Bool, sparse_residency_image_3_d::Bool, sparse_residency_2_samples::Bool, sparse_residency_4_samples::Bool, sparse_residency_8_samples::Bool, sparse_residency_16_samples::Bool, sparse_residency_aliased::Bool, variable_multisample_rate::Bool, inherited_queries::Bool)
 
 Arguments:
 - `robust_buffer_access::Bool`
@@ -7065,20 +7065,20 @@ Arguments:
 - `inherited_queries::Bool`
 
 """
-PhysicalDeviceFeatures
+_PhysicalDeviceFeatures
 
 """
-    SemaphoreCreateInfo(; next = C_NULL, flags = 0)
+    _SemaphoreCreateInfo(; next = C_NULL, flags = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-SemaphoreCreateInfo
+_SemaphoreCreateInfo
 
 """
-    QueryPoolCreateInfo(query_type::VkQueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
+    _QueryPoolCreateInfo(query_type::VkQueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
 
 Arguments:
 - `query_type::VkQueryType`
@@ -7088,10 +7088,10 @@ Arguments:
 - `pipeline_statistics`: defaults to `0`
 
 """
-QueryPoolCreateInfo
+_QueryPoolCreateInfo
 
 """
-    FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; next = C_NULL, flags = 0)
+    _FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `render_pass::RenderPass`
@@ -7103,10 +7103,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-FramebufferCreateInfo
+_FramebufferCreateInfo
 
 """
-    DrawIndirectCommand(vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)
+    _DrawIndirectCommand(vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)
 
 Arguments:
 - `vertex_count::Integer`
@@ -7115,10 +7115,10 @@ Arguments:
 - `first_instance::Integer`
 
 """
-DrawIndirectCommand
+_DrawIndirectCommand
 
 """
-    DrawIndexedIndirectCommand(index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)
+    _DrawIndexedIndirectCommand(index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)
 
 Arguments:
 - `index_count::Integer`
@@ -7128,10 +7128,10 @@ Arguments:
 - `first_instance::Integer`
 
 """
-DrawIndexedIndirectCommand
+_DrawIndexedIndirectCommand
 
 """
-    DispatchIndirectCommand(x::Integer, y::Integer, z::Integer)
+    _DispatchIndirectCommand(x::Integer, y::Integer, z::Integer)
 
 Arguments:
 - `x::Integer`
@@ -7139,10 +7139,10 @@ Arguments:
 - `z::Integer`
 
 """
-DispatchIndirectCommand
+_DispatchIndirectCommand
 
 """
-    SubmitInfo(wait_semaphores::AbstractArray{<:Semaphore}, wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}, command_buffers::AbstractArray{<:CommandBuffer}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
+    _SubmitInfo(wait_semaphores::AbstractArray{<:Semaphore}, wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}, command_buffers::AbstractArray{<:CommandBuffer}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
 
 Arguments:
 - `wait_semaphores::AbstractArray{<:Semaphore}`
@@ -7152,31 +7152,31 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SubmitInfo
+_SubmitInfo
 
 """
-    DisplayModeParametersKHR(visible_region::Extent2D, refresh_rate::Integer)
+    _DisplayModeParametersKHR(visible_region::_Extent2D, refresh_rate::Integer)
 
 Arguments:
-- `visible_region::Extent2D`
+- `visible_region::_Extent2D`
 - `refresh_rate::Integer`
 
 """
-DisplayModeParametersKHR
+_DisplayModeParametersKHR
 
 """
-    DisplayModeCreateInfoKHR(parameters::DisplayModeParametersKHR; next = C_NULL, flags = 0)
+    _DisplayModeCreateInfoKHR(parameters::_DisplayModeParametersKHR; next = C_NULL, flags = 0)
 
 Arguments:
-- `parameters::DisplayModeParametersKHR`
+- `parameters::_DisplayModeParametersKHR`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-DisplayModeCreateInfoKHR
+_DisplayModeCreateInfoKHR
 
 """
-    DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D; next = C_NULL, flags = 0)
+    _DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D; next = C_NULL, flags = 0)
 
 Arguments:
 - `display_mode::DisplayModeKHR`
@@ -7185,27 +7185,27 @@ Arguments:
 - `transform::SurfaceTransformFlagKHR`
 - `global_alpha::Real`
 - `alpha_mode::DisplayPlaneAlphaFlagKHR`
-- `image_extent::Extent2D`
+- `image_extent::_Extent2D`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-DisplaySurfaceCreateInfoKHR
+_DisplaySurfaceCreateInfoKHR
 
 """
-    DisplayPresentInfoKHR(src_rect::Rect2D, dst_rect::Rect2D, persistent::Bool; next = C_NULL)
+    _DisplayPresentInfoKHR(src_rect::_Rect2D, dst_rect::_Rect2D, persistent::Bool; next = C_NULL)
 
 Arguments:
-- `src_rect::Rect2D`
-- `dst_rect::Rect2D`
+- `src_rect::_Rect2D`
+- `dst_rect::_Rect2D`
 - `persistent::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-DisplayPresentInfoKHR
+_DisplayPresentInfoKHR
 
 """
-    AndroidSurfaceCreateInfoKHR(window::vk.ANativeWindow; next = C_NULL, flags = 0)
+    _AndroidSurfaceCreateInfoKHR(window::vk.ANativeWindow; next = C_NULL, flags = 0)
 
 Arguments:
 - `window::vk.ANativeWindow`
@@ -7213,10 +7213,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-AndroidSurfaceCreateInfoKHR
+_AndroidSurfaceCreateInfoKHR
 
 """
-    ViSurfaceCreateInfoNN(window::Ptr{Cvoid}; next = C_NULL, flags = 0)
+    _ViSurfaceCreateInfoNN(window::Ptr{Cvoid}; next = C_NULL, flags = 0)
 
 Arguments:
 - `window::Ptr{Cvoid}`
@@ -7224,10 +7224,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ViSurfaceCreateInfoNN
+_ViSurfaceCreateInfoNN
 
 """
-    WaylandSurfaceCreateInfoKHR(display::vk.wl_display, surface::vk.wl_surface; next = C_NULL, flags = 0)
+    _WaylandSurfaceCreateInfoKHR(display::vk.wl_display, surface::vk.wl_surface; next = C_NULL, flags = 0)
 
 Arguments:
 - `display::vk.wl_display`
@@ -7236,10 +7236,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-WaylandSurfaceCreateInfoKHR
+_WaylandSurfaceCreateInfoKHR
 
 """
-    Win32SurfaceCreateInfoKHR(hinstance::vk.HINSTANCE, hwnd::vk.HWND; next = C_NULL, flags = 0)
+    _Win32SurfaceCreateInfoKHR(hinstance::vk.HINSTANCE, hwnd::vk.HWND; next = C_NULL, flags = 0)
 
 Arguments:
 - `hinstance::vk.HINSTANCE`
@@ -7248,10 +7248,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-Win32SurfaceCreateInfoKHR
+_Win32SurfaceCreateInfoKHR
 
 """
-    XlibSurfaceCreateInfoKHR(dpy::vk.Display, window::vk.Window; next = C_NULL, flags = 0)
+    _XlibSurfaceCreateInfoKHR(dpy::vk.Display, window::vk.Window; next = C_NULL, flags = 0)
 
 Arguments:
 - `dpy::vk.Display`
@@ -7260,10 +7260,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-XlibSurfaceCreateInfoKHR
+_XlibSurfaceCreateInfoKHR
 
 """
-    XcbSurfaceCreateInfoKHR(connection::vk.xcb_connection_t, window::vk.xcb_window_t; next = C_NULL, flags = 0)
+    _XcbSurfaceCreateInfoKHR(connection::vk.xcb_connection_t, window::vk.xcb_window_t; next = C_NULL, flags = 0)
 
 Arguments:
 - `connection::vk.xcb_connection_t`
@@ -7272,10 +7272,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-XcbSurfaceCreateInfoKHR
+_XcbSurfaceCreateInfoKHR
 
 """
-    DirectFBSurfaceCreateInfoEXT(dfb::vk.IDirectFB, surface::vk.IDirectFBSurface; next = C_NULL, flags = 0)
+    _DirectFBSurfaceCreateInfoEXT(dfb::vk.IDirectFB, surface::vk.IDirectFBSurface; next = C_NULL, flags = 0)
 
 Arguments:
 - `dfb::vk.IDirectFB`
@@ -7284,10 +7284,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-DirectFBSurfaceCreateInfoEXT
+_DirectFBSurfaceCreateInfoEXT
 
 """
-    ImagePipeSurfaceCreateInfoFUCHSIA(image_pipe_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
+    _ImagePipeSurfaceCreateInfoFUCHSIA(image_pipe_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
 
 Arguments:
 - `image_pipe_handle::vk.zx_handle_t`
@@ -7295,10 +7295,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ImagePipeSurfaceCreateInfoFUCHSIA
+_ImagePipeSurfaceCreateInfoFUCHSIA
 
 """
-    StreamDescriptorSurfaceCreateInfoGGP(stream_descriptor::vk.GgpStreamDescriptor; next = C_NULL, flags = 0)
+    _StreamDescriptorSurfaceCreateInfoGGP(stream_descriptor::vk.GgpStreamDescriptor; next = C_NULL, flags = 0)
 
 Arguments:
 - `stream_descriptor::vk.GgpStreamDescriptor`
@@ -7306,10 +7306,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-StreamDescriptorSurfaceCreateInfoGGP
+_StreamDescriptorSurfaceCreateInfoGGP
 
 """
-    ScreenSurfaceCreateInfoQNX(context::vk._screen_context, window::vk._screen_window; next = C_NULL, flags = 0)
+    _ScreenSurfaceCreateInfoQNX(context::vk._screen_context, window::vk._screen_window; next = C_NULL, flags = 0)
 
 Arguments:
 - `context::vk._screen_context`
@@ -7318,17 +7318,17 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ScreenSurfaceCreateInfoQNX
+_ScreenSurfaceCreateInfoQNX
 
 """
-    SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+    _SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 Arguments:
 - `surface::SurfaceKHR`
 - `min_image_count::Integer`
 - `image_format::VkFormat`
 - `image_color_space::VkColorSpaceKHR`
-- `image_extent::Extent2D`
+- `image_extent::_Extent2D`
 - `image_array_layers::Integer`
 - `image_usage::ImageUsageFlag`
 - `image_sharing_mode::VkSharingMode`
@@ -7342,10 +7342,10 @@ Arguments:
 - `old_swapchain`: defaults to `C_NULL`
 
 """
-SwapchainCreateInfoKHR
+_SwapchainCreateInfoKHR
 
 """
-    PresentInfoKHR(wait_semaphores::AbstractArray{<:Semaphore}, swapchains::AbstractArray{<:SwapchainKHR}, image_indices::AbstractArray{<:Integer}; next = C_NULL, results = C_NULL)
+    _PresentInfoKHR(wait_semaphores::AbstractArray{<:Semaphore}, swapchains::AbstractArray{<:SwapchainKHR}, image_indices::AbstractArray{<:Integer}; next = C_NULL, results = C_NULL)
 
 Arguments:
 - `wait_semaphores::AbstractArray{<:Semaphore}`
@@ -7355,10 +7355,10 @@ Arguments:
 - `results`: defaults to `C_NULL`
 
 """
-PresentInfoKHR
+_PresentInfoKHR
 
 """
-    DebugReportCallbackCreateInfoEXT(pfn_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
+    _DebugReportCallbackCreateInfoEXT(pfn_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
 
 Arguments:
 - `pfn_callback::FunctionPtr`
@@ -7367,20 +7367,20 @@ Arguments:
 - `user_data`: defaults to `C_NULL`
 
 """
-DebugReportCallbackCreateInfoEXT
+_DebugReportCallbackCreateInfoEXT
 
 """
-    ValidationFlagsEXT(disabled_validation_checks::AbstractArray{<:VkValidationCheckEXT}; next = C_NULL)
+    _ValidationFlagsEXT(disabled_validation_checks::AbstractArray{<:VkValidationCheckEXT}; next = C_NULL)
 
 Arguments:
 - `disabled_validation_checks::AbstractArray{<:VkValidationCheckEXT}`
 - `next`: defaults to `C_NULL`
 
 """
-ValidationFlagsEXT
+_ValidationFlagsEXT
 
 """
-    ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:VkValidationFeatureEnableEXT}, disabled_validation_features::AbstractArray{<:VkValidationFeatureDisableEXT}; next = C_NULL)
+    _ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:VkValidationFeatureEnableEXT}, disabled_validation_features::AbstractArray{<:VkValidationFeatureDisableEXT}; next = C_NULL)
 
 Arguments:
 - `enabled_validation_features::AbstractArray{<:VkValidationFeatureEnableEXT}`
@@ -7388,20 +7388,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-ValidationFeaturesEXT
+_ValidationFeaturesEXT
 
 """
-    PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::VkRasterizationOrderAMD; next = C_NULL)
+    _PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::VkRasterizationOrderAMD; next = C_NULL)
 
 Arguments:
 - `rasterization_order::VkRasterizationOrderAMD`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineRasterizationStateRasterizationOrderAMD
+_PipelineRasterizationStateRasterizationOrderAMD
 
 """
-    DebugMarkerObjectNameInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL)
+    _DebugMarkerObjectNameInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL)
 
 Arguments:
 - `object_type::VkDebugReportObjectTypeEXT`
@@ -7410,10 +7410,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DebugMarkerObjectNameInfoEXT
+_DebugMarkerObjectNameInfoEXT
 
 """
-    DebugMarkerObjectTagInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+    _DebugMarkerObjectTagInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
 - `object_type::VkDebugReportObjectTypeEXT`
@@ -7424,10 +7424,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DebugMarkerObjectTagInfoEXT
+_DebugMarkerObjectTagInfoEXT
 
 """
-    DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
+    _DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
 Arguments:
 - `marker_name::AbstractString`
@@ -7435,30 +7435,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DebugMarkerMarkerInfoEXT
+_DebugMarkerMarkerInfoEXT
 
 """
-    DedicatedAllocationImageCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
+    _DedicatedAllocationImageCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
 
 Arguments:
 - `dedicated_allocation::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-DedicatedAllocationImageCreateInfoNV
+_DedicatedAllocationImageCreateInfoNV
 
 """
-    DedicatedAllocationBufferCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
+    _DedicatedAllocationBufferCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
 
 Arguments:
 - `dedicated_allocation::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-DedicatedAllocationBufferCreateInfoNV
+_DedicatedAllocationBufferCreateInfoNV
 
 """
-    DedicatedAllocationMemoryAllocateInfoNV(; next = C_NULL, image = C_NULL, buffer = C_NULL)
+    _DedicatedAllocationMemoryAllocateInfoNV(; next = C_NULL, image = C_NULL, buffer = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -7466,30 +7466,30 @@ Arguments:
 - `buffer`: defaults to `C_NULL`
 
 """
-DedicatedAllocationMemoryAllocateInfoNV
+_DedicatedAllocationMemoryAllocateInfoNV
 
 """
-    ExternalMemoryImageCreateInfoNV(; next = C_NULL, handle_types = 0)
+    _ExternalMemoryImageCreateInfoNV(; next = C_NULL, handle_types = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_types`: defaults to `0`
 
 """
-ExternalMemoryImageCreateInfoNV
+_ExternalMemoryImageCreateInfoNV
 
 """
-    ExportMemoryAllocateInfoNV(; next = C_NULL, handle_types = 0)
+    _ExportMemoryAllocateInfoNV(; next = C_NULL, handle_types = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_types`: defaults to `0`
 
 """
-ExportMemoryAllocateInfoNV
+_ExportMemoryAllocateInfoNV
 
 """
-    ImportMemoryWin32HandleInfoNV(; next = C_NULL, handle_type = 0, handle = 0)
+    _ImportMemoryWin32HandleInfoNV(; next = C_NULL, handle_type = 0, handle = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -7497,10 +7497,10 @@ Arguments:
 - `handle`: defaults to `0`
 
 """
-ImportMemoryWin32HandleInfoNV
+_ImportMemoryWin32HandleInfoNV
 
 """
-    ExportMemoryWin32HandleInfoNV(; next = C_NULL, attributes = C_NULL, dw_access = 0)
+    _ExportMemoryWin32HandleInfoNV(; next = C_NULL, attributes = C_NULL, dw_access = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -7508,10 +7508,10 @@ Arguments:
 - `dw_access`: defaults to `0`
 
 """
-ExportMemoryWin32HandleInfoNV
+_ExportMemoryWin32HandleInfoNV
 
 """
-    Win32KeyedMutexAcquireReleaseInfoNV(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeout_milliseconds::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
+    _Win32KeyedMutexAcquireReleaseInfoNV(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeout_milliseconds::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `acquire_syncs::AbstractArray{<:DeviceMemory}`
@@ -7522,82 +7522,82 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-Win32KeyedMutexAcquireReleaseInfoNV
+_Win32KeyedMutexAcquireReleaseInfoNV
 
 """
-    PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(device_generated_commands::Bool; next = C_NULL)
+    _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(device_generated_commands::Bool; next = C_NULL)
 
 Arguments:
 - `device_generated_commands::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
+_PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
 
 """
-    DevicePrivateDataCreateInfoEXT(private_data_slot_request_count::Integer; next = C_NULL)
+    _DevicePrivateDataCreateInfoEXT(private_data_slot_request_count::Integer; next = C_NULL)
 
 Arguments:
 - `private_data_slot_request_count::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-DevicePrivateDataCreateInfoEXT
+_DevicePrivateDataCreateInfoEXT
 
 """
-    PrivateDataSlotCreateInfoEXT(flags::PrivateDataSlotCreateFlagEXT; next = C_NULL)
+    _PrivateDataSlotCreateInfoEXT(flags::PrivateDataSlotCreateFlagEXT; next = C_NULL)
 
 Arguments:
 - `flags::PrivateDataSlotCreateFlagEXT`
 - `next`: defaults to `C_NULL`
 
 """
-PrivateDataSlotCreateInfoEXT
+_PrivateDataSlotCreateInfoEXT
 
 """
-    PhysicalDevicePrivateDataFeaturesEXT(private_data::Bool; next = C_NULL)
+    _PhysicalDevicePrivateDataFeaturesEXT(private_data::Bool; next = C_NULL)
 
 Arguments:
 - `private_data::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevicePrivateDataFeaturesEXT
+_PhysicalDevicePrivateDataFeaturesEXT
 
 """
-    GraphicsShaderGroupCreateInfoNV(stages::AbstractArray{<:PipelineShaderStageCreateInfo}; next = C_NULL, vertex_input_state = C_NULL, tessellation_state = C_NULL)
+    _GraphicsShaderGroupCreateInfoNV(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}; next = C_NULL, vertex_input_state = C_NULL, tessellation_state = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:PipelineShaderStageCreateInfo}`
+- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
 - `next`: defaults to `C_NULL`
 - `vertex_input_state`: defaults to `C_NULL`
 - `tessellation_state`: defaults to `C_NULL`
 
 """
-GraphicsShaderGroupCreateInfoNV
+_GraphicsShaderGroupCreateInfoNV
 
 """
-    GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:GraphicsShaderGroupCreateInfoNV}, pipelines::AbstractArray{<:Pipeline}; next = C_NULL)
+    _GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}, pipelines::AbstractArray{<:Pipeline}; next = C_NULL)
 
 Arguments:
-- `groups::AbstractArray{<:GraphicsShaderGroupCreateInfoNV}`
+- `groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}`
 - `pipelines::AbstractArray{<:Pipeline}`
 - `next`: defaults to `C_NULL`
 
 """
-GraphicsPipelineShaderGroupsCreateInfoNV
+_GraphicsPipelineShaderGroupsCreateInfoNV
 
 """
-    BindShaderGroupIndirectCommandNV(group_index::Integer)
+    _BindShaderGroupIndirectCommandNV(group_index::Integer)
 
 Arguments:
 - `group_index::Integer`
 
 """
-BindShaderGroupIndirectCommandNV
+_BindShaderGroupIndirectCommandNV
 
 """
-    BindIndexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, index_type::VkIndexType)
+    _BindIndexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, index_type::VkIndexType)
 
 Arguments:
 - `buffer_address::Integer`
@@ -7605,10 +7605,10 @@ Arguments:
 - `index_type::VkIndexType`
 
 """
-BindIndexBufferIndirectCommandNV
+_BindIndexBufferIndirectCommandNV
 
 """
-    BindVertexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, stride::Integer)
+    _BindVertexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, stride::Integer)
 
 Arguments:
 - `buffer_address::Integer`
@@ -7616,29 +7616,29 @@ Arguments:
 - `stride::Integer`
 
 """
-BindVertexBufferIndirectCommandNV
+_BindVertexBufferIndirectCommandNV
 
 """
-    SetStateFlagsIndirectCommandNV(data::Integer)
+    _SetStateFlagsIndirectCommandNV(data::Integer)
 
 Arguments:
 - `data::Integer`
 
 """
-SetStateFlagsIndirectCommandNV
+_SetStateFlagsIndirectCommandNV
 
 """
-    IndirectCommandsStreamNV(buffer::Buffer, offset::Integer)
+    _IndirectCommandsStreamNV(buffer::Buffer, offset::Integer)
 
 Arguments:
 - `buffer::Buffer`
 - `offset::Integer`
 
 """
-IndirectCommandsStreamNV
+_IndirectCommandsStreamNV
 
 """
-    IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray{<:VkIndexType}, index_type_values::AbstractArray{<:Integer}; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
+    _IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray{<:VkIndexType}, index_type_values::AbstractArray{<:Integer}; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
 
 Arguments:
 - `token_type::VkIndirectCommandsTokenTypeNV`
@@ -7656,29 +7656,29 @@ Arguments:
 - `indirect_state_flags`: defaults to `0`
 
 """
-IndirectCommandsLayoutTokenNV
+_IndirectCommandsLayoutTokenNV
 
 """
-    IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
 - `pipeline_bind_point::VkPipelineBindPoint`
-- `tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}`
+- `tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}`
 - `stream_strides::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-IndirectCommandsLayoutCreateInfoNV
+_IndirectCommandsLayoutCreateInfoNV
 
 """
-    GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
+    _GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:_IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
 
 Arguments:
 - `pipeline_bind_point::VkPipelineBindPoint`
 - `pipeline::Pipeline`
 - `indirect_commands_layout::IndirectCommandsLayoutNV`
-- `streams::AbstractArray{<:IndirectCommandsStreamNV}`
+- `streams::AbstractArray{<:_IndirectCommandsStreamNV}`
 - `sequences_count::Integer`
 - `preprocess_buffer::Buffer`
 - `preprocess_offset::Integer`
@@ -7690,10 +7690,10 @@ Arguments:
 - `sequences_index_buffer`: defaults to `C_NULL`
 
 """
-GeneratedCommandsInfoNV
+_GeneratedCommandsInfoNV
 
 """
-    GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, max_sequences_count::Integer; next = C_NULL)
+    _GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, max_sequences_count::Integer; next = C_NULL)
 
 Arguments:
 - `pipeline_bind_point::VkPipelineBindPoint`
@@ -7703,20 +7703,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-GeneratedCommandsMemoryRequirementsInfoNV
+_GeneratedCommandsMemoryRequirementsInfoNV
 
 """
-    PhysicalDeviceFeatures2(features::PhysicalDeviceFeatures; next = C_NULL)
+    _PhysicalDeviceFeatures2(features::_PhysicalDeviceFeatures; next = C_NULL)
 
 Arguments:
-- `features::PhysicalDeviceFeatures`
+- `features::_PhysicalDeviceFeatures`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFeatures2
+_PhysicalDeviceFeatures2
 
 """
-    PhysicalDeviceImageFormatInfo2(format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; next = C_NULL, flags = 0)
+    _PhysicalDeviceImageFormatInfo2(format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; next = C_NULL, flags = 0)
 
 Arguments:
 - `format::VkFormat`
@@ -7727,10 +7727,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PhysicalDeviceImageFormatInfo2
+_PhysicalDeviceImageFormatInfo2
 
 """
-    PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
+    _PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
 
 Arguments:
 - `format::VkFormat`
@@ -7741,10 +7741,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceSparseImageFormatInfo2
+_PhysicalDeviceSparseImageFormatInfo2
 
 """
-    ConformanceVersion(major::Integer, minor::Integer, subminor::Integer, patch::Integer)
+    _ConformanceVersion(major::Integer, minor::Integer, subminor::Integer, patch::Integer)
 
 Arguments:
 - `major::Integer`
@@ -7753,40 +7753,40 @@ Arguments:
 - `patch::Integer`
 
 """
-ConformanceVersion
+_ConformanceVersion
 
 """
-    PresentRegionsKHR(; next = C_NULL, regions = C_NULL)
+    _PresentRegionsKHR(; next = C_NULL, regions = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `regions`: defaults to `C_NULL`
 
 """
-PresentRegionsKHR
+_PresentRegionsKHR
 
 """
-    PresentRegionKHR(; rectangles = C_NULL)
+    _PresentRegionKHR(; rectangles = C_NULL)
 
 Arguments:
 - `rectangles`: defaults to `C_NULL`
 
 """
-PresentRegionKHR
+_PresentRegionKHR
 
 """
-    RectLayerKHR(offset::Offset2D, extent::Extent2D, layer::Integer)
+    _RectLayerKHR(offset::_Offset2D, extent::_Extent2D, layer::Integer)
 
 Arguments:
-- `offset::Offset2D`
-- `extent::Extent2D`
+- `offset::_Offset2D`
+- `extent::_Extent2D`
 - `layer::Integer`
 
 """
-RectLayerKHR
+_RectLayerKHR
 
 """
-    PhysicalDeviceVariablePointersFeatures(variable_pointers_storage_buffer::Bool, variable_pointers::Bool; next = C_NULL)
+    _PhysicalDeviceVariablePointersFeatures(variable_pointers_storage_buffer::Bool, variable_pointers::Bool; next = C_NULL)
 
 Arguments:
 - `variable_pointers_storage_buffer::Bool`
@@ -7794,20 +7794,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceVariablePointersFeatures
+_PhysicalDeviceVariablePointersFeatures
 
 """
-    PhysicalDeviceExternalImageFormatInfo(; next = C_NULL, handle_type = 0)
+    _PhysicalDeviceExternalImageFormatInfo(; next = C_NULL, handle_type = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_type`: defaults to `0`
 
 """
-PhysicalDeviceExternalImageFormatInfo
+_PhysicalDeviceExternalImageFormatInfo
 
 """
-    PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
+    _PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
 
 Arguments:
 - `usage::BufferUsageFlag`
@@ -7816,40 +7816,40 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PhysicalDeviceExternalBufferInfo
+_PhysicalDeviceExternalBufferInfo
 
 """
-    ExternalMemoryImageCreateInfo(; next = C_NULL, handle_types = 0)
+    _ExternalMemoryImageCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_types`: defaults to `0`
 
 """
-ExternalMemoryImageCreateInfo
+_ExternalMemoryImageCreateInfo
 
 """
-    ExternalMemoryBufferCreateInfo(; next = C_NULL, handle_types = 0)
+    _ExternalMemoryBufferCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_types`: defaults to `0`
 
 """
-ExternalMemoryBufferCreateInfo
+_ExternalMemoryBufferCreateInfo
 
 """
-    ExportMemoryAllocateInfo(; next = C_NULL, handle_types = 0)
+    _ExportMemoryAllocateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_types`: defaults to `0`
 
 """
-ExportMemoryAllocateInfo
+_ExportMemoryAllocateInfo
 
 """
-    ImportMemoryWin32HandleInfoKHR(; next = C_NULL, handle_type = 0, handle = 0, name = 0)
+    _ImportMemoryWin32HandleInfoKHR(; next = C_NULL, handle_type = 0, handle = 0, name = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -7858,10 +7858,10 @@ Arguments:
 - `name`: defaults to `0`
 
 """
-ImportMemoryWin32HandleInfoKHR
+_ImportMemoryWin32HandleInfoKHR
 
 """
-    ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+    _ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
 - `dw_access::vk.DWORD`
@@ -7870,10 +7870,10 @@ Arguments:
 - `attributes`: defaults to `C_NULL`
 
 """
-ExportMemoryWin32HandleInfoKHR
+_ExportMemoryWin32HandleInfoKHR
 
 """
-    ImportMemoryZirconHandleInfoFUCHSIA(; next = C_NULL, handle_type = 0, handle = 0)
+    _ImportMemoryZirconHandleInfoFUCHSIA(; next = C_NULL, handle_type = 0, handle = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -7881,10 +7881,10 @@ Arguments:
 - `handle`: defaults to `0`
 
 """
-ImportMemoryZirconHandleInfoFUCHSIA
+_ImportMemoryZirconHandleInfoFUCHSIA
 
 """
-    MemoryGetZirconHandleInfoFUCHSIA(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+    _MemoryGetZirconHandleInfoFUCHSIA(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
@@ -7892,10 +7892,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-MemoryGetZirconHandleInfoFUCHSIA
+_MemoryGetZirconHandleInfoFUCHSIA
 
 """
-    MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+    _MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
@@ -7903,10 +7903,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-MemoryGetWin32HandleInfoKHR
+_MemoryGetWin32HandleInfoKHR
 
 """
-    ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
+    _ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
 
 Arguments:
 - `fd::Integer`
@@ -7914,10 +7914,10 @@ Arguments:
 - `handle_type`: defaults to `0`
 
 """
-ImportMemoryFdInfoKHR
+_ImportMemoryFdInfoKHR
 
 """
-    MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+    _MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
@@ -7925,10 +7925,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-MemoryGetFdInfoKHR
+_MemoryGetFdInfoKHR
 
 """
-    Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeouts::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
+    _Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeouts::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `acquire_syncs::AbstractArray{<:DeviceMemory}`
@@ -7939,30 +7939,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-Win32KeyedMutexAcquireReleaseInfoKHR
+_Win32KeyedMutexAcquireReleaseInfoKHR
 
 """
-    PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+    _PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `handle_type::ExternalSemaphoreHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceExternalSemaphoreInfo
+_PhysicalDeviceExternalSemaphoreInfo
 
 """
-    ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
+    _ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_types`: defaults to `0`
 
 """
-ExportSemaphoreCreateInfo
+_ExportSemaphoreCreateInfo
 
 """
-    ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
+    _ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
 
 Arguments:
 - `semaphore::Semaphore` (externsync)
@@ -7973,10 +7973,10 @@ Arguments:
 - `name`: defaults to `0`
 
 """
-ImportSemaphoreWin32HandleInfoKHR
+_ImportSemaphoreWin32HandleInfoKHR
 
 """
-    ExportSemaphoreWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+    _ExportSemaphoreWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
 - `dw_access::vk.DWORD`
@@ -7985,10 +7985,10 @@ Arguments:
 - `attributes`: defaults to `C_NULL`
 
 """
-ExportSemaphoreWin32HandleInfoKHR
+_ExportSemaphoreWin32HandleInfoKHR
 
 """
-    D3D12FenceSubmitInfoKHR(; next = C_NULL, wait_semaphore_values = C_NULL, signal_semaphore_values = C_NULL)
+    _D3D12FenceSubmitInfoKHR(; next = C_NULL, wait_semaphore_values = C_NULL, signal_semaphore_values = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -7996,10 +7996,10 @@ Arguments:
 - `signal_semaphore_values`: defaults to `C_NULL`
 
 """
-D3D12FenceSubmitInfoKHR
+_D3D12FenceSubmitInfoKHR
 
 """
-    SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+    _SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `semaphore::Semaphore`
@@ -8007,10 +8007,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SemaphoreGetWin32HandleInfoKHR
+_SemaphoreGetWin32HandleInfoKHR
 
 """
-    ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
+    _ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `semaphore::Semaphore` (externsync)
@@ -8020,10 +8020,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ImportSemaphoreFdInfoKHR
+_ImportSemaphoreFdInfoKHR
 
 """
-    SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+    _SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `semaphore::Semaphore`
@@ -8031,10 +8031,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SemaphoreGetFdInfoKHR
+_SemaphoreGetFdInfoKHR
 
 """
-    ImportSemaphoreZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, zircon_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
+    _ImportSemaphoreZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, zircon_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
 
 Arguments:
 - `semaphore::Semaphore` (externsync)
@@ -8044,10 +8044,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ImportSemaphoreZirconHandleInfoFUCHSIA
+_ImportSemaphoreZirconHandleInfoFUCHSIA
 
 """
-    SemaphoreGetZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+    _SemaphoreGetZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `semaphore::Semaphore`
@@ -8055,30 +8055,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SemaphoreGetZirconHandleInfoFUCHSIA
+_SemaphoreGetZirconHandleInfoFUCHSIA
 
 """
-    PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
+    _PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `handle_type::ExternalFenceHandleTypeFlag`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceExternalFenceInfo
+_PhysicalDeviceExternalFenceInfo
 
 """
-    ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
+    _ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `handle_types`: defaults to `0`
 
 """
-ExportFenceCreateInfo
+_ExportFenceCreateInfo
 
 """
-    ImportFenceWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
+    _ImportFenceWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
 
 Arguments:
 - `fence::Fence` (externsync)
@@ -8089,10 +8089,10 @@ Arguments:
 - `name`: defaults to `0`
 
 """
-ImportFenceWin32HandleInfoKHR
+_ImportFenceWin32HandleInfoKHR
 
 """
-    ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+    _ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
 - `dw_access::vk.DWORD`
@@ -8101,10 +8101,10 @@ Arguments:
 - `attributes`: defaults to `C_NULL`
 
 """
-ExportFenceWin32HandleInfoKHR
+_ExportFenceWin32HandleInfoKHR
 
 """
-    FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
+    _FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `fence::Fence`
@@ -8112,10 +8112,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-FenceGetWin32HandleInfoKHR
+_FenceGetWin32HandleInfoKHR
 
 """
-    ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
+    _ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `fence::Fence` (externsync)
@@ -8125,10 +8125,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ImportFenceFdInfoKHR
+_ImportFenceFdInfoKHR
 
 """
-    FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
+    _FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
 - `fence::Fence`
@@ -8136,10 +8136,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-FenceGetFdInfoKHR
+_FenceGetFdInfoKHR
 
 """
-    PhysicalDeviceMultiviewFeatures(multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool; next = C_NULL)
+    _PhysicalDeviceMultiviewFeatures(multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool; next = C_NULL)
 
 Arguments:
 - `multiview::Bool`
@@ -8148,10 +8148,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceMultiviewFeatures
+_PhysicalDeviceMultiviewFeatures
 
 """
-    RenderPassMultiviewCreateInfo(view_masks::AbstractArray{<:Integer}, view_offsets::AbstractArray{<:Integer}, correlation_masks::AbstractArray{<:Integer}; next = C_NULL)
+    _RenderPassMultiviewCreateInfo(view_masks::AbstractArray{<:Integer}, view_offsets::AbstractArray{<:Integer}, correlation_masks::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `view_masks::AbstractArray{<:Integer}`
@@ -8160,50 +8160,50 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-RenderPassMultiviewCreateInfo
+_RenderPassMultiviewCreateInfo
 
 """
-    DisplayPowerInfoEXT(power_state::VkDisplayPowerStateEXT; next = C_NULL)
+    _DisplayPowerInfoEXT(power_state::VkDisplayPowerStateEXT; next = C_NULL)
 
 Arguments:
 - `power_state::VkDisplayPowerStateEXT`
 - `next`: defaults to `C_NULL`
 
 """
-DisplayPowerInfoEXT
+_DisplayPowerInfoEXT
 
 """
-    DeviceEventInfoEXT(device_event::VkDeviceEventTypeEXT; next = C_NULL)
+    _DeviceEventInfoEXT(device_event::VkDeviceEventTypeEXT; next = C_NULL)
 
 Arguments:
 - `device_event::VkDeviceEventTypeEXT`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceEventInfoEXT
+_DeviceEventInfoEXT
 
 """
-    DisplayEventInfoEXT(display_event::VkDisplayEventTypeEXT; next = C_NULL)
+    _DisplayEventInfoEXT(display_event::VkDisplayEventTypeEXT; next = C_NULL)
 
 Arguments:
 - `display_event::VkDisplayEventTypeEXT`
 - `next`: defaults to `C_NULL`
 
 """
-DisplayEventInfoEXT
+_DisplayEventInfoEXT
 
 """
-    SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0)
+    _SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `surface_counters`: defaults to `0`
 
 """
-SwapchainCounterCreateInfoEXT
+_SwapchainCounterCreateInfoEXT
 
 """
-    MemoryAllocateFlagsInfo(device_mask::Integer; next = C_NULL, flags = 0)
+    _MemoryAllocateFlagsInfo(device_mask::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `device_mask::Integer`
@@ -8211,10 +8211,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-MemoryAllocateFlagsInfo
+_MemoryAllocateFlagsInfo
 
 """
-    BindBufferMemoryInfo(buffer::Buffer, memory::DeviceMemory, memory_offset::Integer; next = C_NULL)
+    _BindBufferMemoryInfo(buffer::Buffer, memory::DeviceMemory, memory_offset::Integer; next = C_NULL)
 
 Arguments:
 - `buffer::Buffer`
@@ -8223,20 +8223,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BindBufferMemoryInfo
+_BindBufferMemoryInfo
 
 """
-    BindBufferMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}; next = C_NULL)
+    _BindBufferMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `device_indices::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 
 """
-BindBufferMemoryDeviceGroupInfo
+_BindBufferMemoryDeviceGroupInfo
 
 """
-    BindImageMemoryInfo(image::Image, memory::DeviceMemory, memory_offset::Integer; next = C_NULL)
+    _BindImageMemoryInfo(image::Image, memory::DeviceMemory, memory_offset::Integer; next = C_NULL)
 
 Arguments:
 - `image::Image`
@@ -8245,42 +8245,42 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BindImageMemoryInfo
+_BindImageMemoryInfo
 
 """
-    BindImageMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}, split_instance_bind_regions::AbstractArray{<:Rect2D}; next = C_NULL)
+    _BindImageMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}, split_instance_bind_regions::AbstractArray{<:_Rect2D}; next = C_NULL)
 
 Arguments:
 - `device_indices::AbstractArray{<:Integer}`
-- `split_instance_bind_regions::AbstractArray{<:Rect2D}`
+- `split_instance_bind_regions::AbstractArray{<:_Rect2D}`
 - `next`: defaults to `C_NULL`
 
 """
-BindImageMemoryDeviceGroupInfo
+_BindImageMemoryDeviceGroupInfo
 
 """
-    DeviceGroupRenderPassBeginInfo(device_mask::Integer, device_render_areas::AbstractArray{<:Rect2D}; next = C_NULL)
+    _DeviceGroupRenderPassBeginInfo(device_mask::Integer, device_render_areas::AbstractArray{<:_Rect2D}; next = C_NULL)
 
 Arguments:
 - `device_mask::Integer`
-- `device_render_areas::AbstractArray{<:Rect2D}`
+- `device_render_areas::AbstractArray{<:_Rect2D}`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceGroupRenderPassBeginInfo
+_DeviceGroupRenderPassBeginInfo
 
 """
-    DeviceGroupCommandBufferBeginInfo(device_mask::Integer; next = C_NULL)
+    _DeviceGroupCommandBufferBeginInfo(device_mask::Integer; next = C_NULL)
 
 Arguments:
 - `device_mask::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceGroupCommandBufferBeginInfo
+_DeviceGroupCommandBufferBeginInfo
 
 """
-    DeviceGroupSubmitInfo(wait_semaphore_device_indices::AbstractArray{<:Integer}, command_buffer_device_masks::AbstractArray{<:Integer}, signal_semaphore_device_indices::AbstractArray{<:Integer}; next = C_NULL)
+    _DeviceGroupSubmitInfo(wait_semaphore_device_indices::AbstractArray{<:Integer}, command_buffer_device_masks::AbstractArray{<:Integer}, signal_semaphore_device_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `wait_semaphore_device_indices::AbstractArray{<:Integer}`
@@ -8289,10 +8289,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DeviceGroupSubmitInfo
+_DeviceGroupSubmitInfo
 
 """
-    DeviceGroupBindSparseInfo(resource_device_index::Integer, memory_device_index::Integer; next = C_NULL)
+    _DeviceGroupBindSparseInfo(resource_device_index::Integer, memory_device_index::Integer; next = C_NULL)
 
 Arguments:
 - `resource_device_index::Integer`
@@ -8300,20 +8300,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DeviceGroupBindSparseInfo
+_DeviceGroupBindSparseInfo
 
 """
-    ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
+    _ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `swapchain`: defaults to `C_NULL`
 
 """
-ImageSwapchainCreateInfoKHR
+_ImageSwapchainCreateInfoKHR
 
 """
-    BindImageMemorySwapchainInfoKHR(swapchain::SwapchainKHR, image_index::Integer; next = C_NULL)
+    _BindImageMemorySwapchainInfoKHR(swapchain::SwapchainKHR, image_index::Integer; next = C_NULL)
 
 Arguments:
 - `swapchain::SwapchainKHR` (externsync)
@@ -8321,10 +8321,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BindImageMemorySwapchainInfoKHR
+_BindImageMemorySwapchainInfoKHR
 
 """
-    AcquireNextImageInfoKHR(swapchain::SwapchainKHR, timeout::Integer, device_mask::Integer; next = C_NULL, semaphore = C_NULL, fence = C_NULL)
+    _AcquireNextImageInfoKHR(swapchain::SwapchainKHR, timeout::Integer, device_mask::Integer; next = C_NULL, semaphore = C_NULL, fence = C_NULL)
 
 Arguments:
 - `swapchain::SwapchainKHR` (externsync)
@@ -8335,10 +8335,10 @@ Arguments:
 - `fence`: defaults to `C_NULL` (externsync)
 
 """
-AcquireNextImageInfoKHR
+_AcquireNextImageInfoKHR
 
 """
-    DeviceGroupPresentInfoKHR(device_masks::AbstractArray{<:Integer}, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
+    _DeviceGroupPresentInfoKHR(device_masks::AbstractArray{<:Integer}, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
 
 Arguments:
 - `device_masks::AbstractArray{<:Integer}`
@@ -8346,30 +8346,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DeviceGroupPresentInfoKHR
+_DeviceGroupPresentInfoKHR
 
 """
-    DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray{<:PhysicalDevice}; next = C_NULL)
+    _DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray{<:PhysicalDevice}; next = C_NULL)
 
 Arguments:
 - `physical_devices::AbstractArray{<:PhysicalDevice}`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceGroupDeviceCreateInfo
+_DeviceGroupDeviceCreateInfo
 
 """
-    DeviceGroupSwapchainCreateInfoKHR(modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
+    _DeviceGroupSwapchainCreateInfoKHR(modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
 
 Arguments:
 - `modes::DeviceGroupPresentModeFlagKHR`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceGroupSwapchainCreateInfoKHR
+_DeviceGroupSwapchainCreateInfoKHR
 
 """
-    DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer, descriptor_type::VkDescriptorType, offset::Integer, stride::Integer)
+    _DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer, descriptor_type::VkDescriptorType, offset::Integer, stride::Integer)
 
 Arguments:
 - `dst_binding::Integer`
@@ -8380,13 +8380,13 @@ Arguments:
 - `stride::Integer`
 
 """
-DescriptorUpdateTemplateEntry
+_DescriptorUpdateTemplateEntry
 
 """
-    DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; next = C_NULL, flags = 0)
+    _DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}`
+- `descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}`
 - `template_type::VkDescriptorUpdateTemplateType`
 - `descriptor_set_layout::DescriptorSetLayout`
 - `pipeline_bind_point::VkPipelineBindPoint`
@@ -8396,26 +8396,26 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-DescriptorUpdateTemplateCreateInfo
+_DescriptorUpdateTemplateCreateInfo
 
 """
-    XYColorEXT(x::Real, y::Real)
+    _XYColorEXT(x::Real, y::Real)
 
 Arguments:
 - `x::Real`
 - `y::Real`
 
 """
-XYColorEXT
+_XYColorEXT
 
 """
-    HdrMetadataEXT(display_primary_red::XYColorEXT, display_primary_green::XYColorEXT, display_primary_blue::XYColorEXT, white_point::XYColorEXT, max_luminance::Real, min_luminance::Real, max_content_light_level::Real, max_frame_average_light_level::Real; next = C_NULL)
+    _HdrMetadataEXT(display_primary_red::_XYColorEXT, display_primary_green::_XYColorEXT, display_primary_blue::_XYColorEXT, white_point::_XYColorEXT, max_luminance::Real, min_luminance::Real, max_content_light_level::Real, max_frame_average_light_level::Real; next = C_NULL)
 
 Arguments:
-- `display_primary_red::XYColorEXT`
-- `display_primary_green::XYColorEXT`
-- `display_primary_blue::XYColorEXT`
-- `white_point::XYColorEXT`
+- `display_primary_red::_XYColorEXT`
+- `display_primary_green::_XYColorEXT`
+- `display_primary_blue::_XYColorEXT`
+- `white_point::_XYColorEXT`
 - `max_luminance::Real`
 - `min_luminance::Real`
 - `max_content_light_level::Real`
@@ -8423,40 +8423,40 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-HdrMetadataEXT
+_HdrMetadataEXT
 
 """
-    SwapchainDisplayNativeHdrCreateInfoAMD(local_dimming_enable::Bool; next = C_NULL)
+    _SwapchainDisplayNativeHdrCreateInfoAMD(local_dimming_enable::Bool; next = C_NULL)
 
 Arguments:
 - `local_dimming_enable::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-SwapchainDisplayNativeHdrCreateInfoAMD
+_SwapchainDisplayNativeHdrCreateInfoAMD
 
 """
-    PresentTimesInfoGOOGLE(; next = C_NULL, times = C_NULL)
+    _PresentTimesInfoGOOGLE(; next = C_NULL, times = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `times`: defaults to `C_NULL`
 
 """
-PresentTimesInfoGOOGLE
+_PresentTimesInfoGOOGLE
 
 """
-    PresentTimeGOOGLE(present_id::Integer, desired_present_time::Integer)
+    _PresentTimeGOOGLE(present_id::Integer, desired_present_time::Integer)
 
 Arguments:
 - `present_id::Integer`
 - `desired_present_time::Integer`
 
 """
-PresentTimeGOOGLE
+_PresentTimeGOOGLE
 
 """
-    IOSSurfaceCreateInfoMVK(view::Ptr{Cvoid}; next = C_NULL, flags = 0)
+    _IOSSurfaceCreateInfoMVK(view::Ptr{Cvoid}; next = C_NULL, flags = 0)
 
 Arguments:
 - `view::Ptr{Cvoid}`
@@ -8464,10 +8464,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-IOSSurfaceCreateInfoMVK
+_IOSSurfaceCreateInfoMVK
 
 """
-    MacOSSurfaceCreateInfoMVK(view::Ptr{Cvoid}; next = C_NULL, flags = 0)
+    _MacOSSurfaceCreateInfoMVK(view::Ptr{Cvoid}; next = C_NULL, flags = 0)
 
 Arguments:
 - `view::Ptr{Cvoid}`
@@ -8475,10 +8475,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-MacOSSurfaceCreateInfoMVK
+_MacOSSurfaceCreateInfoMVK
 
 """
-    MetalSurfaceCreateInfoEXT(layer::vk.CAMetalLayer; next = C_NULL, flags = 0)
+    _MetalSurfaceCreateInfoEXT(layer::vk.CAMetalLayer; next = C_NULL, flags = 0)
 
 Arguments:
 - `layer::vk.CAMetalLayer`
@@ -8486,20 +8486,20 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-MetalSurfaceCreateInfoEXT
+_MetalSurfaceCreateInfoEXT
 
 """
-    ViewportWScalingNV(xcoeff::Real, ycoeff::Real)
+    _ViewportWScalingNV(xcoeff::Real, ycoeff::Real)
 
 Arguments:
 - `xcoeff::Real`
 - `ycoeff::Real`
 
 """
-ViewportWScalingNV
+_ViewportWScalingNV
 
 """
-    PipelineViewportWScalingStateCreateInfoNV(viewport_w_scaling_enable::Bool; next = C_NULL, viewport_w_scalings = C_NULL)
+    _PipelineViewportWScalingStateCreateInfoNV(viewport_w_scaling_enable::Bool; next = C_NULL, viewport_w_scalings = C_NULL)
 
 Arguments:
 - `viewport_w_scaling_enable::Bool`
@@ -8507,10 +8507,10 @@ Arguments:
 - `viewport_w_scalings`: defaults to `C_NULL`
 
 """
-PipelineViewportWScalingStateCreateInfoNV
+_PipelineViewportWScalingStateCreateInfoNV
 
 """
-    ViewportSwizzleNV(x::VkViewportCoordinateSwizzleNV, y::VkViewportCoordinateSwizzleNV, z::VkViewportCoordinateSwizzleNV, w::VkViewportCoordinateSwizzleNV)
+    _ViewportSwizzleNV(x::VkViewportCoordinateSwizzleNV, y::VkViewportCoordinateSwizzleNV, z::VkViewportCoordinateSwizzleNV, w::VkViewportCoordinateSwizzleNV)
 
 Arguments:
 - `x::VkViewportCoordinateSwizzleNV`
@@ -8519,33 +8519,33 @@ Arguments:
 - `w::VkViewportCoordinateSwizzleNV`
 
 """
-ViewportSwizzleNV
+_ViewportSwizzleNV
 
 """
-    PipelineViewportSwizzleStateCreateInfoNV(viewport_swizzles::AbstractArray{<:ViewportSwizzleNV}; next = C_NULL, flags = 0)
+    _PipelineViewportSwizzleStateCreateInfoNV(viewport_swizzles::AbstractArray{<:_ViewportSwizzleNV}; next = C_NULL, flags = 0)
 
 Arguments:
-- `viewport_swizzles::AbstractArray{<:ViewportSwizzleNV}`
+- `viewport_swizzles::AbstractArray{<:_ViewportSwizzleNV}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-PipelineViewportSwizzleStateCreateInfoNV
+_PipelineViewportSwizzleStateCreateInfoNV
 
 """
-    PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::VkDiscardRectangleModeEXT, discard_rectangles::AbstractArray{<:Rect2D}; next = C_NULL, flags = 0)
+    _PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::VkDiscardRectangleModeEXT, discard_rectangles::AbstractArray{<:_Rect2D}; next = C_NULL, flags = 0)
 
 Arguments:
 - `discard_rectangle_mode::VkDiscardRectangleModeEXT`
-- `discard_rectangles::AbstractArray{<:Rect2D}`
+- `discard_rectangles::AbstractArray{<:_Rect2D}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-PipelineDiscardRectangleStateCreateInfoEXT
+_PipelineDiscardRectangleStateCreateInfoEXT
 
 """
-    InputAttachmentAspectReference(subpass::Integer, input_attachment_index::Integer, aspect_mask::ImageAspectFlag)
+    _InputAttachmentAspectReference(subpass::Integer, input_attachment_index::Integer, aspect_mask::ImageAspectFlag)
 
 Arguments:
 - `subpass::Integer`
@@ -8553,30 +8553,30 @@ Arguments:
 - `aspect_mask::ImageAspectFlag`
 
 """
-InputAttachmentAspectReference
+_InputAttachmentAspectReference
 
 """
-    RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractArray{<:InputAttachmentAspectReference}; next = C_NULL)
+    _RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractArray{<:_InputAttachmentAspectReference}; next = C_NULL)
 
 Arguments:
-- `aspect_references::AbstractArray{<:InputAttachmentAspectReference}`
+- `aspect_references::AbstractArray{<:_InputAttachmentAspectReference}`
 - `next`: defaults to `C_NULL`
 
 """
-RenderPassInputAttachmentAspectCreateInfo
+_RenderPassInputAttachmentAspectCreateInfo
 
 """
-    PhysicalDeviceSurfaceInfo2KHR(surface::SurfaceKHR; next = C_NULL)
+    _PhysicalDeviceSurfaceInfo2KHR(surface::SurfaceKHR; next = C_NULL)
 
 Arguments:
 - `surface::SurfaceKHR`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceSurfaceInfo2KHR
+_PhysicalDeviceSurfaceInfo2KHR
 
 """
-    DisplayPlaneInfo2KHR(mode::DisplayModeKHR, plane_index::Integer; next = C_NULL)
+    _DisplayPlaneInfo2KHR(mode::DisplayModeKHR, plane_index::Integer; next = C_NULL)
 
 Arguments:
 - `mode::DisplayModeKHR` (externsync)
@@ -8584,10 +8584,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DisplayPlaneInfo2KHR
+_DisplayPlaneInfo2KHR
 
 """
-    PhysicalDevice16BitStorageFeatures(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool; next = C_NULL)
+    _PhysicalDevice16BitStorageFeatures(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool; next = C_NULL)
 
 Arguments:
 - `storage_buffer_16_bit_access::Bool`
@@ -8597,50 +8597,50 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevice16BitStorageFeatures
+_PhysicalDevice16BitStorageFeatures
 
 """
-    PhysicalDeviceShaderSubgroupExtendedTypesFeatures(shader_subgroup_extended_types::Bool; next = C_NULL)
+    _PhysicalDeviceShaderSubgroupExtendedTypesFeatures(shader_subgroup_extended_types::Bool; next = C_NULL)
 
 Arguments:
 - `shader_subgroup_extended_types::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderSubgroupExtendedTypesFeatures
+_PhysicalDeviceShaderSubgroupExtendedTypesFeatures
 
 """
-    BufferMemoryRequirementsInfo2(buffer::Buffer; next = C_NULL)
+    _BufferMemoryRequirementsInfo2(buffer::Buffer; next = C_NULL)
 
 Arguments:
 - `buffer::Buffer`
 - `next`: defaults to `C_NULL`
 
 """
-BufferMemoryRequirementsInfo2
+_BufferMemoryRequirementsInfo2
 
 """
-    ImageMemoryRequirementsInfo2(image::Image; next = C_NULL)
+    _ImageMemoryRequirementsInfo2(image::Image; next = C_NULL)
 
 Arguments:
 - `image::Image`
 - `next`: defaults to `C_NULL`
 
 """
-ImageMemoryRequirementsInfo2
+_ImageMemoryRequirementsInfo2
 
 """
-    ImageSparseMemoryRequirementsInfo2(image::Image; next = C_NULL)
+    _ImageSparseMemoryRequirementsInfo2(image::Image; next = C_NULL)
 
 Arguments:
 - `image::Image`
 - `next`: defaults to `C_NULL`
 
 """
-ImageSparseMemoryRequirementsInfo2
+_ImageSparseMemoryRequirementsInfo2
 
 """
-    MemoryDedicatedAllocateInfo(; next = C_NULL, image = C_NULL, buffer = C_NULL)
+    _MemoryDedicatedAllocateInfo(; next = C_NULL, image = C_NULL, buffer = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -8648,46 +8648,46 @@ Arguments:
 - `buffer`: defaults to `C_NULL`
 
 """
-MemoryDedicatedAllocateInfo
+_MemoryDedicatedAllocateInfo
 
 """
-    ImageViewUsageCreateInfo(usage::ImageUsageFlag; next = C_NULL)
+    _ImageViewUsageCreateInfo(usage::ImageUsageFlag; next = C_NULL)
 
 Arguments:
 - `usage::ImageUsageFlag`
 - `next`: defaults to `C_NULL`
 
 """
-ImageViewUsageCreateInfo
+_ImageViewUsageCreateInfo
 
 """
-    PipelineTessellationDomainOriginStateCreateInfo(domain_origin::VkTessellationDomainOrigin; next = C_NULL)
+    _PipelineTessellationDomainOriginStateCreateInfo(domain_origin::VkTessellationDomainOrigin; next = C_NULL)
 
 Arguments:
 - `domain_origin::VkTessellationDomainOrigin`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineTessellationDomainOriginStateCreateInfo
+_PipelineTessellationDomainOriginStateCreateInfo
 
 """
-    SamplerYcbcrConversionInfo(conversion::SamplerYcbcrConversion; next = C_NULL)
+    _SamplerYcbcrConversionInfo(conversion::SamplerYcbcrConversion; next = C_NULL)
 
 Arguments:
 - `conversion::SamplerYcbcrConversion`
 - `next`: defaults to `C_NULL`
 
 """
-SamplerYcbcrConversionInfo
+_SamplerYcbcrConversionInfo
 
 """
-    SamplerYcbcrConversionCreateInfo(format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; next = C_NULL)
+    _SamplerYcbcrConversionCreateInfo(format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; next = C_NULL)
 
 Arguments:
 - `format::VkFormat`
 - `ycbcr_model::VkSamplerYcbcrModelConversion`
 - `ycbcr_range::VkSamplerYcbcrRange`
-- `components::ComponentMapping`
+- `components::_ComponentMapping`
 - `x_chroma_offset::VkChromaLocation`
 - `y_chroma_offset::VkChromaLocation`
 - `chroma_filter::VkFilter`
@@ -8695,40 +8695,40 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SamplerYcbcrConversionCreateInfo
+_SamplerYcbcrConversionCreateInfo
 
 """
-    BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
+    _BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
 
 Arguments:
 - `plane_aspect::ImageAspectFlag`
 - `next`: defaults to `C_NULL`
 
 """
-BindImagePlaneMemoryInfo
+_BindImagePlaneMemoryInfo
 
 """
-    ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
+    _ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
 
 Arguments:
 - `plane_aspect::ImageAspectFlag`
 - `next`: defaults to `C_NULL`
 
 """
-ImagePlaneMemoryRequirementsInfo
+_ImagePlaneMemoryRequirementsInfo
 
 """
-    PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::Bool; next = C_NULL)
+    _PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::Bool; next = C_NULL)
 
 Arguments:
 - `sampler_ycbcr_conversion::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceSamplerYcbcrConversionFeatures
+_PhysicalDeviceSamplerYcbcrConversionFeatures
 
 """
-    ConditionalRenderingBeginInfoEXT(buffer::Buffer, offset::Integer; next = C_NULL, flags = 0)
+    _ConditionalRenderingBeginInfoEXT(buffer::Buffer, offset::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `buffer::Buffer`
@@ -8737,30 +8737,30 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-ConditionalRenderingBeginInfoEXT
+_ConditionalRenderingBeginInfoEXT
 
 """
-    ProtectedSubmitInfo(protected_submit::Bool; next = C_NULL)
+    _ProtectedSubmitInfo(protected_submit::Bool; next = C_NULL)
 
 Arguments:
 - `protected_submit::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-ProtectedSubmitInfo
+_ProtectedSubmitInfo
 
 """
-    PhysicalDeviceProtectedMemoryFeatures(protected_memory::Bool; next = C_NULL)
+    _PhysicalDeviceProtectedMemoryFeatures(protected_memory::Bool; next = C_NULL)
 
 Arguments:
 - `protected_memory::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceProtectedMemoryFeatures
+_PhysicalDeviceProtectedMemoryFeatures
 
 """
-    DeviceQueueInfo2(queue_family_index::Integer, queue_index::Integer; next = C_NULL, flags = 0)
+    _DeviceQueueInfo2(queue_family_index::Integer, queue_index::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `queue_family_index::Integer`
@@ -8769,10 +8769,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-DeviceQueueInfo2
+_DeviceQueueInfo2
 
 """
-    PipelineCoverageToColorStateCreateInfoNV(coverage_to_color_enable::Bool; next = C_NULL, flags = 0, coverage_to_color_location = 0)
+    _PipelineCoverageToColorStateCreateInfoNV(coverage_to_color_enable::Bool; next = C_NULL, flags = 0, coverage_to_color_location = 0)
 
 Arguments:
 - `coverage_to_color_enable::Bool`
@@ -8781,94 +8781,94 @@ Arguments:
 - `coverage_to_color_location`: defaults to `0`
 
 """
-PipelineCoverageToColorStateCreateInfoNV
+_PipelineCoverageToColorStateCreateInfoNV
 
 """
-    SampleLocationEXT(x::Real, y::Real)
+    _SampleLocationEXT(x::Real, y::Real)
 
 Arguments:
 - `x::Real`
 - `y::Real`
 
 """
-SampleLocationEXT
+_SampleLocationEXT
 
 """
-    SampleLocationsInfoEXT(sample_locations_per_pixel::SampleCountFlag, sample_location_grid_size::Extent2D, sample_locations::AbstractArray{<:SampleLocationEXT}; next = C_NULL)
+    _SampleLocationsInfoEXT(sample_locations_per_pixel::SampleCountFlag, sample_location_grid_size::_Extent2D, sample_locations::AbstractArray{<:_SampleLocationEXT}; next = C_NULL)
 
 Arguments:
 - `sample_locations_per_pixel::SampleCountFlag`
-- `sample_location_grid_size::Extent2D`
-- `sample_locations::AbstractArray{<:SampleLocationEXT}`
+- `sample_location_grid_size::_Extent2D`
+- `sample_locations::AbstractArray{<:_SampleLocationEXT}`
 - `next`: defaults to `C_NULL`
 
 """
-SampleLocationsInfoEXT
+_SampleLocationsInfoEXT
 
 """
-    AttachmentSampleLocationsEXT(attachment_index::Integer, sample_locations_info::SampleLocationsInfoEXT)
+    _AttachmentSampleLocationsEXT(attachment_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
 
 Arguments:
 - `attachment_index::Integer`
-- `sample_locations_info::SampleLocationsInfoEXT`
+- `sample_locations_info::_SampleLocationsInfoEXT`
 
 """
-AttachmentSampleLocationsEXT
+_AttachmentSampleLocationsEXT
 
 """
-    SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::SampleLocationsInfoEXT)
+    _SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
 
 Arguments:
 - `subpass_index::Integer`
-- `sample_locations_info::SampleLocationsInfoEXT`
+- `sample_locations_info::_SampleLocationsInfoEXT`
 
 """
-SubpassSampleLocationsEXT
+_SubpassSampleLocationsEXT
 
 """
-    RenderPassSampleLocationsBeginInfoEXT(attachment_initial_sample_locations::AbstractArray{<:AttachmentSampleLocationsEXT}, post_subpass_sample_locations::AbstractArray{<:SubpassSampleLocationsEXT}; next = C_NULL)
+    _RenderPassSampleLocationsBeginInfoEXT(attachment_initial_sample_locations::AbstractArray{<:_AttachmentSampleLocationsEXT}, post_subpass_sample_locations::AbstractArray{<:_SubpassSampleLocationsEXT}; next = C_NULL)
 
 Arguments:
-- `attachment_initial_sample_locations::AbstractArray{<:AttachmentSampleLocationsEXT}`
-- `post_subpass_sample_locations::AbstractArray{<:SubpassSampleLocationsEXT}`
+- `attachment_initial_sample_locations::AbstractArray{<:_AttachmentSampleLocationsEXT}`
+- `post_subpass_sample_locations::AbstractArray{<:_SubpassSampleLocationsEXT}`
 - `next`: defaults to `C_NULL`
 
 """
-RenderPassSampleLocationsBeginInfoEXT
+_RenderPassSampleLocationsBeginInfoEXT
 
 """
-    PipelineSampleLocationsStateCreateInfoEXT(sample_locations_enable::Bool, sample_locations_info::SampleLocationsInfoEXT; next = C_NULL)
+    _PipelineSampleLocationsStateCreateInfoEXT(sample_locations_enable::Bool, sample_locations_info::_SampleLocationsInfoEXT; next = C_NULL)
 
 Arguments:
 - `sample_locations_enable::Bool`
-- `sample_locations_info::SampleLocationsInfoEXT`
+- `sample_locations_info::_SampleLocationsInfoEXT`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineSampleLocationsStateCreateInfoEXT
+_PipelineSampleLocationsStateCreateInfoEXT
 
 """
-    SamplerReductionModeCreateInfo(reduction_mode::VkSamplerReductionMode; next = C_NULL)
+    _SamplerReductionModeCreateInfo(reduction_mode::VkSamplerReductionMode; next = C_NULL)
 
 Arguments:
 - `reduction_mode::VkSamplerReductionMode`
 - `next`: defaults to `C_NULL`
 
 """
-SamplerReductionModeCreateInfo
+_SamplerReductionModeCreateInfo
 
 """
-    PhysicalDeviceBlendOperationAdvancedFeaturesEXT(advanced_blend_coherent_operations::Bool; next = C_NULL)
+    _PhysicalDeviceBlendOperationAdvancedFeaturesEXT(advanced_blend_coherent_operations::Bool; next = C_NULL)
 
 Arguments:
 - `advanced_blend_coherent_operations::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceBlendOperationAdvancedFeaturesEXT
+_PhysicalDeviceBlendOperationAdvancedFeaturesEXT
 
 """
-    PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::VkBlendOverlapEXT; next = C_NULL)
+    _PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::VkBlendOverlapEXT; next = C_NULL)
 
 Arguments:
 - `src_premultiplied::Bool`
@@ -8877,10 +8877,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PipelineColorBlendAdvancedStateCreateInfoEXT
+_PipelineColorBlendAdvancedStateCreateInfoEXT
 
 """
-    PhysicalDeviceInlineUniformBlockFeaturesEXT(inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool; next = C_NULL)
+    _PhysicalDeviceInlineUniformBlockFeaturesEXT(inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool; next = C_NULL)
 
 Arguments:
 - `inline_uniform_block::Bool`
@@ -8888,10 +8888,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceInlineUniformBlockFeaturesEXT
+_PhysicalDeviceInlineUniformBlockFeaturesEXT
 
 """
-    WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Ptr{Cvoid}; next = C_NULL)
+    _WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
 - `data_size::Integer`
@@ -8899,20 +8899,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-WriteDescriptorSetInlineUniformBlockEXT
+_WriteDescriptorSetInlineUniformBlockEXT
 
 """
-    DescriptorPoolInlineUniformBlockCreateInfoEXT(max_inline_uniform_block_bindings::Integer; next = C_NULL)
+    _DescriptorPoolInlineUniformBlockCreateInfoEXT(max_inline_uniform_block_bindings::Integer; next = C_NULL)
 
 Arguments:
 - `max_inline_uniform_block_bindings::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-DescriptorPoolInlineUniformBlockCreateInfoEXT
+_DescriptorPoolInlineUniformBlockCreateInfoEXT
 
 """
-    PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::VkCoverageModulationModeNV, coverage_modulation_table_enable::Bool; next = C_NULL, flags = 0, coverage_modulation_table = C_NULL)
+    _PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::VkCoverageModulationModeNV, coverage_modulation_table_enable::Bool; next = C_NULL, flags = 0, coverage_modulation_table = C_NULL)
 
 Arguments:
 - `coverage_modulation_mode::VkCoverageModulationModeNV`
@@ -8922,20 +8922,20 @@ Arguments:
 - `coverage_modulation_table`: defaults to `C_NULL`
 
 """
-PipelineCoverageModulationStateCreateInfoNV
+_PipelineCoverageModulationStateCreateInfoNV
 
 """
-    ImageFormatListCreateInfo(view_formats::AbstractArray{<:VkFormat}; next = C_NULL)
+    _ImageFormatListCreateInfo(view_formats::AbstractArray{<:VkFormat}; next = C_NULL)
 
 Arguments:
 - `view_formats::AbstractArray{<:VkFormat}`
 - `next`: defaults to `C_NULL`
 
 """
-ImageFormatListCreateInfo
+_ImageFormatListCreateInfo
 
 """
-    ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
+    _ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
 
 Arguments:
 - `initial_data::Ptr{Cvoid}`
@@ -8944,30 +8944,30 @@ Arguments:
 - `initial_data_size`: defaults to `0`
 
 """
-ValidationCacheCreateInfoEXT
+_ValidationCacheCreateInfoEXT
 
 """
-    ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCacheEXT; next = C_NULL)
+    _ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCacheEXT; next = C_NULL)
 
 Arguments:
 - `validation_cache::ValidationCacheEXT`
 - `next`: defaults to `C_NULL`
 
 """
-ShaderModuleValidationCacheCreateInfoEXT
+_ShaderModuleValidationCacheCreateInfoEXT
 
 """
-    PhysicalDeviceShaderDrawParametersFeatures(shader_draw_parameters::Bool; next = C_NULL)
+    _PhysicalDeviceShaderDrawParametersFeatures(shader_draw_parameters::Bool; next = C_NULL)
 
 Arguments:
 - `shader_draw_parameters::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderDrawParametersFeatures
+_PhysicalDeviceShaderDrawParametersFeatures
 
 """
-    PhysicalDeviceShaderFloat16Int8Features(shader_float_16::Bool, shader_int_8::Bool; next = C_NULL)
+    _PhysicalDeviceShaderFloat16Int8Features(shader_float_16::Bool, shader_int_8::Bool; next = C_NULL)
 
 Arguments:
 - `shader_float_16::Bool`
@@ -8975,30 +8975,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderFloat16Int8Features
+_PhysicalDeviceShaderFloat16Int8Features
 
 """
-    PhysicalDeviceHostQueryResetFeatures(host_query_reset::Bool; next = C_NULL)
+    _PhysicalDeviceHostQueryResetFeatures(host_query_reset::Bool; next = C_NULL)
 
 Arguments:
 - `host_query_reset::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceHostQueryResetFeatures
+_PhysicalDeviceHostQueryResetFeatures
 
 """
-    DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::VkQueueGlobalPriorityEXT; next = C_NULL)
+    _DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::VkQueueGlobalPriorityEXT; next = C_NULL)
 
 Arguments:
 - `global_priority::VkQueueGlobalPriorityEXT`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceQueueGlobalPriorityCreateInfoEXT
+_DeviceQueueGlobalPriorityCreateInfoEXT
 
 """
-    DebugUtilsObjectNameInfoEXT(object_type::VkObjectType, object_handle::Integer; next = C_NULL, object_name = C_NULL)
+    _DebugUtilsObjectNameInfoEXT(object_type::VkObjectType, object_handle::Integer; next = C_NULL, object_name = C_NULL)
 
 Arguments:
 - `object_type::VkObjectType`
@@ -9007,10 +9007,10 @@ Arguments:
 - `object_name`: defaults to `C_NULL`
 
 """
-DebugUtilsObjectNameInfoEXT
+_DebugUtilsObjectNameInfoEXT
 
 """
-    DebugUtilsObjectTagInfoEXT(object_type::VkObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+    _DebugUtilsObjectTagInfoEXT(object_type::VkObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
 - `object_type::VkObjectType`
@@ -9021,10 +9021,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DebugUtilsObjectTagInfoEXT
+_DebugUtilsObjectTagInfoEXT
 
 """
-    DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
+    _DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
 Arguments:
 - `label_name::AbstractString`
@@ -9032,10 +9032,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DebugUtilsLabelEXT
+_DebugUtilsLabelEXT
 
 """
-    DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
+    _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
 
 Arguments:
 - `message_severity::DebugUtilsMessageSeverityFlagEXT`
@@ -9046,36 +9046,36 @@ Arguments:
 - `user_data`: defaults to `C_NULL`
 
 """
-DebugUtilsMessengerCreateInfoEXT
+_DebugUtilsMessengerCreateInfoEXT
 
 """
-    DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::AbstractString, queue_labels::AbstractArray{<:DebugUtilsLabelEXT}, cmd_buf_labels::AbstractArray{<:DebugUtilsLabelEXT}, objects::AbstractArray{<:DebugUtilsObjectNameInfoEXT}; next = C_NULL, flags = 0, message_id_name = C_NULL)
+    _DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::AbstractString, queue_labels::AbstractArray{<:_DebugUtilsLabelEXT}, cmd_buf_labels::AbstractArray{<:_DebugUtilsLabelEXT}, objects::AbstractArray{<:_DebugUtilsObjectNameInfoEXT}; next = C_NULL, flags = 0, message_id_name = C_NULL)
 
 Arguments:
 - `message_id_number::Integer`
 - `message::AbstractString`
-- `queue_labels::AbstractArray{<:DebugUtilsLabelEXT}`
-- `cmd_buf_labels::AbstractArray{<:DebugUtilsLabelEXT}`
-- `objects::AbstractArray{<:DebugUtilsObjectNameInfoEXT}`
+- `queue_labels::AbstractArray{<:_DebugUtilsLabelEXT}`
+- `cmd_buf_labels::AbstractArray{<:_DebugUtilsLabelEXT}`
+- `objects::AbstractArray{<:_DebugUtilsObjectNameInfoEXT}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 - `message_id_name`: defaults to `C_NULL`
 
 """
-DebugUtilsMessengerCallbackDataEXT
+_DebugUtilsMessengerCallbackDataEXT
 
 """
-    PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL)
+    _PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL)
 
 Arguments:
 - `device_memory_report::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceDeviceMemoryReportFeaturesEXT
+_PhysicalDeviceDeviceMemoryReportFeaturesEXT
 
 """
-    DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL)
+    _DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
 - `flags::Integer`
@@ -9084,10 +9084,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-DeviceDeviceMemoryReportCreateInfoEXT
+_DeviceDeviceMemoryReportCreateInfoEXT
 
 """
-    ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
+    _ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
 - `handle_type::ExternalMemoryHandleTypeFlag`
@@ -9095,20 +9095,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-ImportMemoryHostPointerInfoEXT
+_ImportMemoryHostPointerInfoEXT
 
 """
-    CalibratedTimestampInfoEXT(time_domain::VkTimeDomainEXT; next = C_NULL)
+    _CalibratedTimestampInfoEXT(time_domain::VkTimeDomainEXT; next = C_NULL)
 
 Arguments:
 - `time_domain::VkTimeDomainEXT`
 - `next`: defaults to `C_NULL`
 
 """
-CalibratedTimestampInfoEXT
+_CalibratedTimestampInfoEXT
 
 """
-    PipelineRasterizationConservativeStateCreateInfoEXT(conservative_rasterization_mode::VkConservativeRasterizationModeEXT, extra_primitive_overestimation_size::Real; next = C_NULL, flags = 0)
+    _PipelineRasterizationConservativeStateCreateInfoEXT(conservative_rasterization_mode::VkConservativeRasterizationModeEXT, extra_primitive_overestimation_size::Real; next = C_NULL, flags = 0)
 
 Arguments:
 - `conservative_rasterization_mode::VkConservativeRasterizationModeEXT`
@@ -9117,10 +9117,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PipelineRasterizationConservativeStateCreateInfoEXT
+_PipelineRasterizationConservativeStateCreateInfoEXT
 
 """
-    PhysicalDeviceDescriptorIndexingFeatures(shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool; next = C_NULL)
+    _PhysicalDeviceDescriptorIndexingFeatures(shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool; next = C_NULL)
 
 Arguments:
 - `shader_input_attachment_array_dynamic_indexing::Bool`
@@ -9146,30 +9146,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceDescriptorIndexingFeatures
+_PhysicalDeviceDescriptorIndexingFeatures
 
 """
-    DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray{<:DescriptorBindingFlag}; next = C_NULL)
+    _DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray{<:DescriptorBindingFlag}; next = C_NULL)
 
 Arguments:
 - `binding_flags::AbstractArray{<:DescriptorBindingFlag}`
 - `next`: defaults to `C_NULL`
 
 """
-DescriptorSetLayoutBindingFlagsCreateInfo
+_DescriptorSetLayoutBindingFlagsCreateInfo
 
 """
-    DescriptorSetVariableDescriptorCountAllocateInfo(descriptor_counts::AbstractArray{<:Integer}; next = C_NULL)
+    _DescriptorSetVariableDescriptorCountAllocateInfo(descriptor_counts::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `descriptor_counts::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 
 """
-DescriptorSetVariableDescriptorCountAllocateInfo
+_DescriptorSetVariableDescriptorCountAllocateInfo
 
 """
-    AttachmentDescription2(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
+    _AttachmentDescription2(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
 - `format::VkFormat`
@@ -9184,10 +9184,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-AttachmentDescription2
+_AttachmentDescription2
 
 """
-    AttachmentReference2(attachment::Integer, layout::VkImageLayout, aspect_mask::ImageAspectFlag; next = C_NULL)
+    _AttachmentReference2(attachment::Integer, layout::VkImageLayout, aspect_mask::ImageAspectFlag; next = C_NULL)
 
 Arguments:
 - `attachment::Integer`
@@ -9196,16 +9196,16 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-AttachmentReference2
+_AttachmentReference2
 
 """
-    SubpassDescription2(pipeline_bind_point::VkPipelineBindPoint, view_mask::Integer, input_attachments::AbstractArray{<:AttachmentReference2}, color_attachments::AbstractArray{<:AttachmentReference2}, preserve_attachments::AbstractArray{<:Integer}; next = C_NULL, flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
+    _SubpassDescription2(pipeline_bind_point::VkPipelineBindPoint, view_mask::Integer, input_attachments::AbstractArray{<:_AttachmentReference2}, color_attachments::AbstractArray{<:_AttachmentReference2}, preserve_attachments::AbstractArray{<:Integer}; next = C_NULL, flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
 
 Arguments:
 - `pipeline_bind_point::VkPipelineBindPoint`
 - `view_mask::Integer`
-- `input_attachments::AbstractArray{<:AttachmentReference2}`
-- `color_attachments::AbstractArray{<:AttachmentReference2}`
+- `input_attachments::AbstractArray{<:_AttachmentReference2}`
+- `color_attachments::AbstractArray{<:_AttachmentReference2}`
 - `preserve_attachments::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -9213,10 +9213,10 @@ Arguments:
 - `depth_stencil_attachment`: defaults to `C_NULL`
 
 """
-SubpassDescription2
+_SubpassDescription2
 
 """
-    SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, view_offset::Integer; next = C_NULL, src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
+    _SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, view_offset::Integer; next = C_NULL, src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
 
 Arguments:
 - `src_subpass::Integer`
@@ -9230,53 +9230,53 @@ Arguments:
 - `dependency_flags`: defaults to `0`
 
 """
-SubpassDependency2
+_SubpassDependency2
 
 """
-    RenderPassCreateInfo2(attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _RenderPassCreateInfo2(attachments::AbstractArray{<:_AttachmentDescription2}, subpasses::AbstractArray{<:_SubpassDescription2}, dependencies::AbstractArray{<:_SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `attachments::AbstractArray{<:AttachmentDescription2}`
-- `subpasses::AbstractArray{<:SubpassDescription2}`
-- `dependencies::AbstractArray{<:SubpassDependency2}`
+- `attachments::AbstractArray{<:_AttachmentDescription2}`
+- `subpasses::AbstractArray{<:_SubpassDescription2}`
+- `dependencies::AbstractArray{<:_SubpassDependency2}`
 - `correlated_view_masks::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-RenderPassCreateInfo2
+_RenderPassCreateInfo2
 
 """
-    SubpassBeginInfo(contents::VkSubpassContents; next = C_NULL)
+    _SubpassBeginInfo(contents::VkSubpassContents; next = C_NULL)
 
 Arguments:
 - `contents::VkSubpassContents`
 - `next`: defaults to `C_NULL`
 
 """
-SubpassBeginInfo
+_SubpassBeginInfo
 
 """
-    SubpassEndInfo(; next = C_NULL)
+    _SubpassEndInfo(; next = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SubpassEndInfo
+_SubpassEndInfo
 
 """
-    PhysicalDeviceTimelineSemaphoreFeatures(timeline_semaphore::Bool; next = C_NULL)
+    _PhysicalDeviceTimelineSemaphoreFeatures(timeline_semaphore::Bool; next = C_NULL)
 
 Arguments:
 - `timeline_semaphore::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceTimelineSemaphoreFeatures
+_PhysicalDeviceTimelineSemaphoreFeatures
 
 """
-    SemaphoreTypeCreateInfo(semaphore_type::VkSemaphoreType, initial_value::Integer; next = C_NULL)
+    _SemaphoreTypeCreateInfo(semaphore_type::VkSemaphoreType, initial_value::Integer; next = C_NULL)
 
 Arguments:
 - `semaphore_type::VkSemaphoreType`
@@ -9284,10 +9284,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SemaphoreTypeCreateInfo
+_SemaphoreTypeCreateInfo
 
 """
-    TimelineSemaphoreSubmitInfo(; next = C_NULL, wait_semaphore_values = C_NULL, signal_semaphore_values = C_NULL)
+    _TimelineSemaphoreSubmitInfo(; next = C_NULL, wait_semaphore_values = C_NULL, signal_semaphore_values = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -9295,10 +9295,10 @@ Arguments:
 - `signal_semaphore_values`: defaults to `C_NULL`
 
 """
-TimelineSemaphoreSubmitInfo
+_TimelineSemaphoreSubmitInfo
 
 """
-    SemaphoreWaitInfo(semaphores::AbstractArray{<:Semaphore}, values::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _SemaphoreWaitInfo(semaphores::AbstractArray{<:Semaphore}, values::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
 - `semaphores::AbstractArray{<:Semaphore}`
@@ -9307,10 +9307,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-SemaphoreWaitInfo
+_SemaphoreWaitInfo
 
 """
-    SemaphoreSignalInfo(semaphore::Semaphore, value::Integer; next = C_NULL)
+    _SemaphoreSignalInfo(semaphore::Semaphore, value::Integer; next = C_NULL)
 
 Arguments:
 - `semaphore::Semaphore`
@@ -9318,70 +9318,70 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SemaphoreSignalInfo
+_SemaphoreSignalInfo
 
 """
-    VertexInputBindingDivisorDescriptionEXT(binding::Integer, divisor::Integer)
+    _VertexInputBindingDivisorDescriptionEXT(binding::Integer, divisor::Integer)
 
 Arguments:
 - `binding::Integer`
 - `divisor::Integer`
 
 """
-VertexInputBindingDivisorDescriptionEXT
+_VertexInputBindingDivisorDescriptionEXT
 
 """
-    PipelineVertexInputDivisorStateCreateInfoEXT(vertex_binding_divisors::AbstractArray{<:VertexInputBindingDivisorDescriptionEXT}; next = C_NULL)
+    _PipelineVertexInputDivisorStateCreateInfoEXT(vertex_binding_divisors::AbstractArray{<:_VertexInputBindingDivisorDescriptionEXT}; next = C_NULL)
 
 Arguments:
-- `vertex_binding_divisors::AbstractArray{<:VertexInputBindingDivisorDescriptionEXT}`
+- `vertex_binding_divisors::AbstractArray{<:_VertexInputBindingDivisorDescriptionEXT}`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineVertexInputDivisorStateCreateInfoEXT
+_PipelineVertexInputDivisorStateCreateInfoEXT
 
 """
-    ImportAndroidHardwareBufferInfoANDROID(buffer::vk.AHardwareBuffer; next = C_NULL)
+    _ImportAndroidHardwareBufferInfoANDROID(buffer::vk.AHardwareBuffer; next = C_NULL)
 
 Arguments:
 - `buffer::vk.AHardwareBuffer`
 - `next`: defaults to `C_NULL`
 
 """
-ImportAndroidHardwareBufferInfoANDROID
+_ImportAndroidHardwareBufferInfoANDROID
 
 """
-    MemoryGetAndroidHardwareBufferInfoANDROID(memory::DeviceMemory; next = C_NULL)
+    _MemoryGetAndroidHardwareBufferInfoANDROID(memory::DeviceMemory; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
 - `next`: defaults to `C_NULL`
 
 """
-MemoryGetAndroidHardwareBufferInfoANDROID
+_MemoryGetAndroidHardwareBufferInfoANDROID
 
 """
-    CommandBufferInheritanceConditionalRenderingInfoEXT(conditional_rendering_enable::Bool; next = C_NULL)
+    _CommandBufferInheritanceConditionalRenderingInfoEXT(conditional_rendering_enable::Bool; next = C_NULL)
 
 Arguments:
 - `conditional_rendering_enable::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-CommandBufferInheritanceConditionalRenderingInfoEXT
+_CommandBufferInheritanceConditionalRenderingInfoEXT
 
 """
-    ExternalFormatANDROID(external_format::Integer; next = C_NULL)
+    _ExternalFormatANDROID(external_format::Integer; next = C_NULL)
 
 Arguments:
 - `external_format::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-ExternalFormatANDROID
+_ExternalFormatANDROID
 
 """
-    PhysicalDevice8BitStorageFeatures(storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool; next = C_NULL)
+    _PhysicalDevice8BitStorageFeatures(storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool; next = C_NULL)
 
 Arguments:
 - `storage_buffer_8_bit_access::Bool`
@@ -9390,10 +9390,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevice8BitStorageFeatures
+_PhysicalDevice8BitStorageFeatures
 
 """
-    PhysicalDeviceConditionalRenderingFeaturesEXT(conditional_rendering::Bool, inherited_conditional_rendering::Bool; next = C_NULL)
+    _PhysicalDeviceConditionalRenderingFeaturesEXT(conditional_rendering::Bool, inherited_conditional_rendering::Bool; next = C_NULL)
 
 Arguments:
 - `conditional_rendering::Bool`
@@ -9401,10 +9401,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceConditionalRenderingFeaturesEXT
+_PhysicalDeviceConditionalRenderingFeaturesEXT
 
 """
-    PhysicalDeviceVulkanMemoryModelFeatures(vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool; next = C_NULL)
+    _PhysicalDeviceVulkanMemoryModelFeatures(vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool; next = C_NULL)
 
 Arguments:
 - `vulkan_memory_model::Bool`
@@ -9413,10 +9413,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceVulkanMemoryModelFeatures
+_PhysicalDeviceVulkanMemoryModelFeatures
 
 """
-    PhysicalDeviceShaderAtomicInt64Features(shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool; next = C_NULL)
+    _PhysicalDeviceShaderAtomicInt64Features(shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool; next = C_NULL)
 
 Arguments:
 - `shader_buffer_int_64_atomics::Bool`
@@ -9424,10 +9424,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderAtomicInt64Features
+_PhysicalDeviceShaderAtomicInt64Features
 
 """
-    PhysicalDeviceShaderAtomicFloatFeaturesEXT(shader_buffer_float_32_atomics::Bool, shader_buffer_float_32_atomic_add::Bool, shader_buffer_float_64_atomics::Bool, shader_buffer_float_64_atomic_add::Bool, shader_shared_float_32_atomics::Bool, shader_shared_float_32_atomic_add::Bool, shader_shared_float_64_atomics::Bool, shader_shared_float_64_atomic_add::Bool, shader_image_float_32_atomics::Bool, shader_image_float_32_atomic_add::Bool, sparse_image_float_32_atomics::Bool, sparse_image_float_32_atomic_add::Bool; next = C_NULL)
+    _PhysicalDeviceShaderAtomicFloatFeaturesEXT(shader_buffer_float_32_atomics::Bool, shader_buffer_float_32_atomic_add::Bool, shader_buffer_float_64_atomics::Bool, shader_buffer_float_64_atomic_add::Bool, shader_shared_float_32_atomics::Bool, shader_shared_float_32_atomic_add::Bool, shader_shared_float_64_atomics::Bool, shader_shared_float_64_atomic_add::Bool, shader_image_float_32_atomics::Bool, shader_image_float_32_atomic_add::Bool, sparse_image_float_32_atomics::Bool, sparse_image_float_32_atomic_add::Bool; next = C_NULL)
 
 Arguments:
 - `shader_buffer_float_32_atomics::Bool`
@@ -9445,10 +9445,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderAtomicFloatFeaturesEXT
+_PhysicalDeviceShaderAtomicFloatFeaturesEXT
 
 """
-    PhysicalDeviceVertexAttributeDivisorFeaturesEXT(vertex_attribute_instance_rate_divisor::Bool, vertex_attribute_instance_rate_zero_divisor::Bool; next = C_NULL)
+    _PhysicalDeviceVertexAttributeDivisorFeaturesEXT(vertex_attribute_instance_rate_divisor::Bool, vertex_attribute_instance_rate_zero_divisor::Bool; next = C_NULL)
 
 Arguments:
 - `vertex_attribute_instance_rate_divisor::Bool`
@@ -9456,10 +9456,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceVertexAttributeDivisorFeaturesEXT
+_PhysicalDeviceVertexAttributeDivisorFeaturesEXT
 
 """
-    SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeFlag, stencil_resolve_mode::ResolveModeFlag; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
+    _SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeFlag, stencil_resolve_mode::ResolveModeFlag; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
 
 Arguments:
 - `depth_resolve_mode::ResolveModeFlag`
@@ -9468,30 +9468,30 @@ Arguments:
 - `depth_stencil_resolve_attachment`: defaults to `C_NULL`
 
 """
-SubpassDescriptionDepthStencilResolve
+_SubpassDescriptionDepthStencilResolve
 
 """
-    ImageViewASTCDecodeModeEXT(decode_mode::VkFormat; next = C_NULL)
+    _ImageViewASTCDecodeModeEXT(decode_mode::VkFormat; next = C_NULL)
 
 Arguments:
 - `decode_mode::VkFormat`
 - `next`: defaults to `C_NULL`
 
 """
-ImageViewASTCDecodeModeEXT
+_ImageViewASTCDecodeModeEXT
 
 """
-    PhysicalDeviceASTCDecodeFeaturesEXT(decode_mode_shared_exponent::Bool; next = C_NULL)
+    _PhysicalDeviceASTCDecodeFeaturesEXT(decode_mode_shared_exponent::Bool; next = C_NULL)
 
 Arguments:
 - `decode_mode_shared_exponent::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceASTCDecodeFeaturesEXT
+_PhysicalDeviceASTCDecodeFeaturesEXT
 
 """
-    PhysicalDeviceTransformFeedbackFeaturesEXT(transform_feedback::Bool, geometry_streams::Bool; next = C_NULL)
+    _PhysicalDeviceTransformFeedbackFeaturesEXT(transform_feedback::Bool, geometry_streams::Bool; next = C_NULL)
 
 Arguments:
 - `transform_feedback::Bool`
@@ -9499,10 +9499,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceTransformFeedbackFeaturesEXT
+_PhysicalDeviceTransformFeedbackFeaturesEXT
 
 """
-    PipelineRasterizationStateStreamCreateInfoEXT(rasterization_stream::Integer; next = C_NULL, flags = 0)
+    _PipelineRasterizationStateStreamCreateInfoEXT(rasterization_stream::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `rasterization_stream::Integer`
@@ -9510,60 +9510,60 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PipelineRasterizationStateStreamCreateInfoEXT
+_PipelineRasterizationStateStreamCreateInfoEXT
 
 """
-    PhysicalDeviceRepresentativeFragmentTestFeaturesNV(representative_fragment_test::Bool; next = C_NULL)
+    _PhysicalDeviceRepresentativeFragmentTestFeaturesNV(representative_fragment_test::Bool; next = C_NULL)
 
 Arguments:
 - `representative_fragment_test::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceRepresentativeFragmentTestFeaturesNV
+_PhysicalDeviceRepresentativeFragmentTestFeaturesNV
 
 """
-    PipelineRepresentativeFragmentTestStateCreateInfoNV(representative_fragment_test_enable::Bool; next = C_NULL)
+    _PipelineRepresentativeFragmentTestStateCreateInfoNV(representative_fragment_test_enable::Bool; next = C_NULL)
 
 Arguments:
 - `representative_fragment_test_enable::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineRepresentativeFragmentTestStateCreateInfoNV
+_PipelineRepresentativeFragmentTestStateCreateInfoNV
 
 """
-    PhysicalDeviceExclusiveScissorFeaturesNV(exclusive_scissor::Bool; next = C_NULL)
+    _PhysicalDeviceExclusiveScissorFeaturesNV(exclusive_scissor::Bool; next = C_NULL)
 
 Arguments:
 - `exclusive_scissor::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceExclusiveScissorFeaturesNV
+_PhysicalDeviceExclusiveScissorFeaturesNV
 
 """
-    PipelineViewportExclusiveScissorStateCreateInfoNV(exclusive_scissors::AbstractArray{<:Rect2D}; next = C_NULL)
+    _PipelineViewportExclusiveScissorStateCreateInfoNV(exclusive_scissors::AbstractArray{<:_Rect2D}; next = C_NULL)
 
 Arguments:
-- `exclusive_scissors::AbstractArray{<:Rect2D}`
+- `exclusive_scissors::AbstractArray{<:_Rect2D}`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineViewportExclusiveScissorStateCreateInfoNV
+_PipelineViewportExclusiveScissorStateCreateInfoNV
 
 """
-    PhysicalDeviceCornerSampledImageFeaturesNV(corner_sampled_image::Bool; next = C_NULL)
+    _PhysicalDeviceCornerSampledImageFeaturesNV(corner_sampled_image::Bool; next = C_NULL)
 
 Arguments:
 - `corner_sampled_image::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceCornerSampledImageFeaturesNV
+_PhysicalDeviceCornerSampledImageFeaturesNV
 
 """
-    PhysicalDeviceComputeShaderDerivativesFeaturesNV(compute_derivative_group_quads::Bool, compute_derivative_group_linear::Bool; next = C_NULL)
+    _PhysicalDeviceComputeShaderDerivativesFeaturesNV(compute_derivative_group_quads::Bool, compute_derivative_group_linear::Bool; next = C_NULL)
 
 Arguments:
 - `compute_derivative_group_quads::Bool`
@@ -9571,60 +9571,60 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceComputeShaderDerivativesFeaturesNV
+_PhysicalDeviceComputeShaderDerivativesFeaturesNV
 
 """
-    PhysicalDeviceFragmentShaderBarycentricFeaturesNV(fragment_shader_barycentric::Bool; next = C_NULL)
+    _PhysicalDeviceFragmentShaderBarycentricFeaturesNV(fragment_shader_barycentric::Bool; next = C_NULL)
 
 Arguments:
 - `fragment_shader_barycentric::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFragmentShaderBarycentricFeaturesNV
+_PhysicalDeviceFragmentShaderBarycentricFeaturesNV
 
 """
-    PhysicalDeviceShaderImageFootprintFeaturesNV(image_footprint::Bool; next = C_NULL)
+    _PhysicalDeviceShaderImageFootprintFeaturesNV(image_footprint::Bool; next = C_NULL)
 
 Arguments:
 - `image_footprint::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderImageFootprintFeaturesNV
+_PhysicalDeviceShaderImageFootprintFeaturesNV
 
 """
-    PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(dedicated_allocation_image_aliasing::Bool; next = C_NULL)
+    _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(dedicated_allocation_image_aliasing::Bool; next = C_NULL)
 
 Arguments:
 - `dedicated_allocation_image_aliasing::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
+_PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
 
 """
-    ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray{<:VkShadingRatePaletteEntryNV})
+    _ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray{<:VkShadingRatePaletteEntryNV})
 
 Arguments:
 - `shading_rate_palette_entries::AbstractArray{<:VkShadingRatePaletteEntryNV}`
 
 """
-ShadingRatePaletteNV
+_ShadingRatePaletteNV
 
 """
-    PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_enable::Bool, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}; next = C_NULL)
+    _PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_enable::Bool, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}; next = C_NULL)
 
 Arguments:
 - `shading_rate_image_enable::Bool`
-- `shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}`
+- `shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineViewportShadingRateImageStateCreateInfoNV
+_PipelineViewportShadingRateImageStateCreateInfoNV
 
 """
-    PhysicalDeviceShadingRateImageFeaturesNV(shading_rate_image::Bool, shading_rate_coarse_sample_order::Bool; next = C_NULL)
+    _PhysicalDeviceShadingRateImageFeaturesNV(shading_rate_image::Bool, shading_rate_coarse_sample_order::Bool; next = C_NULL)
 
 Arguments:
 - `shading_rate_image::Bool`
@@ -9632,10 +9632,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShadingRateImageFeaturesNV
+_PhysicalDeviceShadingRateImageFeaturesNV
 
 """
-    CoarseSampleLocationNV(pixel_x::Integer, pixel_y::Integer, sample::Integer)
+    _CoarseSampleLocationNV(pixel_x::Integer, pixel_y::Integer, sample::Integer)
 
 Arguments:
 - `pixel_x::Integer`
@@ -9643,32 +9643,32 @@ Arguments:
 - `sample::Integer`
 
 """
-CoarseSampleLocationNV
+_CoarseSampleLocationNV
 
 """
-    CoarseSampleOrderCustomNV(shading_rate::VkShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray{<:CoarseSampleLocationNV})
+    _CoarseSampleOrderCustomNV(shading_rate::VkShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray{<:_CoarseSampleLocationNV})
 
 Arguments:
 - `shading_rate::VkShadingRatePaletteEntryNV`
 - `sample_count::Integer`
-- `sample_locations::AbstractArray{<:CoarseSampleLocationNV}`
+- `sample_locations::AbstractArray{<:_CoarseSampleLocationNV}`
 
 """
-CoarseSampleOrderCustomNV
+_CoarseSampleOrderCustomNV
 
 """
-    PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}; next = C_NULL)
+    _PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}; next = C_NULL)
 
 Arguments:
 - `sample_order_type::VkCoarseSampleOrderTypeNV`
-- `custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}`
+- `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineViewportCoarseSampleOrderStateCreateInfoNV
+_PipelineViewportCoarseSampleOrderStateCreateInfoNV
 
 """
-    PhysicalDeviceMeshShaderFeaturesNV(task_shader::Bool, mesh_shader::Bool; next = C_NULL)
+    _PhysicalDeviceMeshShaderFeaturesNV(task_shader::Bool, mesh_shader::Bool; next = C_NULL)
 
 Arguments:
 - `task_shader::Bool`
@@ -9676,20 +9676,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceMeshShaderFeaturesNV
+_PhysicalDeviceMeshShaderFeaturesNV
 
 """
-    DrawMeshTasksIndirectCommandNV(task_count::Integer, first_task::Integer)
+    _DrawMeshTasksIndirectCommandNV(task_count::Integer, first_task::Integer)
 
 Arguments:
 - `task_count::Integer`
 - `first_task::Integer`
 
 """
-DrawMeshTasksIndirectCommandNV
+_DrawMeshTasksIndirectCommandNV
 
 """
-    RayTracingShaderGroupCreateInfoNV(type::VkRayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL)
+    _RayTracingShaderGroupCreateInfoNV(type::VkRayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL)
 
 Arguments:
 - `type::VkRayTracingShaderGroupTypeKHR`
@@ -9700,10 +9700,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-RayTracingShaderGroupCreateInfoNV
+_RayTracingShaderGroupCreateInfoNV
 
 """
-    RayTracingShaderGroupCreateInfoKHR(type::VkRayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL, shader_group_capture_replay_handle = C_NULL)
+    _RayTracingShaderGroupCreateInfoKHR(type::VkRayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL, shader_group_capture_replay_handle = C_NULL)
 
 Arguments:
 - `type::VkRayTracingShaderGroupTypeKHR`
@@ -9715,14 +9715,14 @@ Arguments:
 - `shader_group_capture_replay_handle`: defaults to `C_NULL`
 
 """
-RayTracingShaderGroupCreateInfoKHR
+_RayTracingShaderGroupCreateInfoKHR
 
 """
-    RayTracingPipelineCreateInfoNV(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, groups::AbstractArray{<:RayTracingShaderGroupCreateInfoNV}, max_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
+    _RayTracingPipelineCreateInfoNV(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoNV}, max_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:PipelineShaderStageCreateInfo}`
-- `groups::AbstractArray{<:RayTracingShaderGroupCreateInfoNV}`
+- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
+- `groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoNV}`
 - `max_recursion_depth::Integer`
 - `layout::PipelineLayout`
 - `base_pipeline_index::Integer`
@@ -9731,14 +9731,14 @@ Arguments:
 - `base_pipeline_handle`: defaults to `C_NULL`
 
 """
-RayTracingPipelineCreateInfoNV
+_RayTracingPipelineCreateInfoNV
 
 """
-    RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:PipelineShaderStageCreateInfo}, groups::AbstractArray{<:RayTracingShaderGroupCreateInfoKHR}, max_pipeline_ray_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_info = C_NULL, library_interface = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
+    _RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoKHR}, max_pipeline_ray_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_info = C_NULL, library_interface = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:PipelineShaderStageCreateInfo}`
-- `groups::AbstractArray{<:RayTracingShaderGroupCreateInfoKHR}`
+- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
+- `groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoKHR}`
 - `max_pipeline_ray_recursion_depth::Integer`
 - `layout::PipelineLayout`
 - `base_pipeline_index::Integer`
@@ -9750,10 +9750,10 @@ Arguments:
 - `base_pipeline_handle`: defaults to `C_NULL`
 
 """
-RayTracingPipelineCreateInfoKHR
+_RayTracingPipelineCreateInfoKHR
 
 """
-    GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::VkFormat, index_offset::Integer, index_count::Integer, index_type::VkIndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
+    _GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::VkFormat, index_offset::Integer, index_count::Integer, index_type::VkIndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
 
 Arguments:
 - `vertex_offset::Integer`
@@ -9770,10 +9770,10 @@ Arguments:
 - `transform_data`: defaults to `C_NULL`
 
 """
-GeometryTrianglesNV
+_GeometryTrianglesNV
 
 """
-    GeometryAABBNV(num_aab_bs::Integer, stride::Integer, offset::Integer; next = C_NULL, aabb_data = C_NULL)
+    _GeometryAABBNV(num_aab_bs::Integer, stride::Integer, offset::Integer; next = C_NULL, aabb_data = C_NULL)
 
 Arguments:
 - `num_aab_bs::Integer`
@@ -9783,56 +9783,56 @@ Arguments:
 - `aabb_data`: defaults to `C_NULL`
 
 """
-GeometryAABBNV
+_GeometryAABBNV
 
 """
-    GeometryDataNV(triangles::GeometryTrianglesNV, aabbs::GeometryAABBNV)
+    _GeometryDataNV(triangles::_GeometryTrianglesNV, aabbs::_GeometryAABBNV)
 
 Arguments:
-- `triangles::GeometryTrianglesNV`
-- `aabbs::GeometryAABBNV`
+- `triangles::_GeometryTrianglesNV`
+- `aabbs::_GeometryAABBNV`
 
 """
-GeometryDataNV
+_GeometryDataNV
 
 """
-    GeometryNV(geometry_type::VkGeometryTypeKHR, geometry::GeometryDataNV; next = C_NULL, flags = 0)
+    _GeometryNV(geometry_type::VkGeometryTypeKHR, geometry::_GeometryDataNV; next = C_NULL, flags = 0)
 
 Arguments:
 - `geometry_type::VkGeometryTypeKHR`
-- `geometry::GeometryDataNV`
+- `geometry::_GeometryDataNV`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-GeometryNV
+_GeometryNV
 
 """
-    AccelerationStructureInfoNV(type::VkAccelerationStructureTypeNV, geometries::AbstractArray{<:GeometryNV}; next = C_NULL, flags = 0, instance_count = 0)
+    _AccelerationStructureInfoNV(type::VkAccelerationStructureTypeNV, geometries::AbstractArray{<:_GeometryNV}; next = C_NULL, flags = 0, instance_count = 0)
 
 Arguments:
 - `type::VkAccelerationStructureTypeNV`
-- `geometries::AbstractArray{<:GeometryNV}`
+- `geometries::AbstractArray{<:_GeometryNV}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 - `instance_count`: defaults to `0`
 
 """
-AccelerationStructureInfoNV
+_AccelerationStructureInfoNV
 
 """
-    AccelerationStructureCreateInfoNV(compacted_size::Integer, info::AccelerationStructureInfoNV; next = C_NULL)
+    _AccelerationStructureCreateInfoNV(compacted_size::Integer, info::_AccelerationStructureInfoNV; next = C_NULL)
 
 Arguments:
 - `compacted_size::Integer`
-- `info::AccelerationStructureInfoNV`
+- `info::_AccelerationStructureInfoNV`
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureCreateInfoNV
+_AccelerationStructureCreateInfoNV
 
 """
-    BindAccelerationStructureMemoryInfoNV(acceleration_structure::AccelerationStructureNV, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray{<:Integer}; next = C_NULL)
+    _BindAccelerationStructureMemoryInfoNV(acceleration_structure::AccelerationStructureNV, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `acceleration_structure::AccelerationStructureNV`
@@ -9842,30 +9842,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BindAccelerationStructureMemoryInfoNV
+_BindAccelerationStructureMemoryInfoNV
 
 """
-    WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray{<:AccelerationStructureKHR}; next = C_NULL)
+    _WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray{<:AccelerationStructureKHR}; next = C_NULL)
 
 Arguments:
 - `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
 - `next`: defaults to `C_NULL`
 
 """
-WriteDescriptorSetAccelerationStructureKHR
+_WriteDescriptorSetAccelerationStructureKHR
 
 """
-    WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray{<:AccelerationStructureNV}; next = C_NULL)
+    _WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray{<:AccelerationStructureNV}; next = C_NULL)
 
 Arguments:
 - `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
 - `next`: defaults to `C_NULL`
 
 """
-WriteDescriptorSetAccelerationStructureNV
+_WriteDescriptorSetAccelerationStructureNV
 
 """
-    AccelerationStructureMemoryRequirementsInfoNV(type::VkAccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
+    _AccelerationStructureMemoryRequirementsInfoNV(type::VkAccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
 
 Arguments:
 - `type::VkAccelerationStructureMemoryRequirementsTypeNV`
@@ -9873,10 +9873,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureMemoryRequirementsInfoNV
+_AccelerationStructureMemoryRequirementsInfoNV
 
 """
-    PhysicalDeviceAccelerationStructureFeaturesKHR(acceleration_structure::Bool, acceleration_structure_capture_replay::Bool, acceleration_structure_indirect_build::Bool, acceleration_structure_host_commands::Bool, descriptor_binding_acceleration_structure_update_after_bind::Bool; next = C_NULL)
+    _PhysicalDeviceAccelerationStructureFeaturesKHR(acceleration_structure::Bool, acceleration_structure_capture_replay::Bool, acceleration_structure_indirect_build::Bool, acceleration_structure_host_commands::Bool, descriptor_binding_acceleration_structure_update_after_bind::Bool; next = C_NULL)
 
 Arguments:
 - `acceleration_structure::Bool`
@@ -9887,10 +9887,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceAccelerationStructureFeaturesKHR
+_PhysicalDeviceAccelerationStructureFeaturesKHR
 
 """
-    PhysicalDeviceRayTracingPipelineFeaturesKHR(ray_tracing_pipeline::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_pipeline_trace_rays_indirect::Bool, ray_traversal_primitive_culling::Bool; next = C_NULL)
+    _PhysicalDeviceRayTracingPipelineFeaturesKHR(ray_tracing_pipeline::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_pipeline_trace_rays_indirect::Bool, ray_traversal_primitive_culling::Bool; next = C_NULL)
 
 Arguments:
 - `ray_tracing_pipeline::Bool`
@@ -9901,20 +9901,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceRayTracingPipelineFeaturesKHR
+_PhysicalDeviceRayTracingPipelineFeaturesKHR
 
 """
-    PhysicalDeviceRayQueryFeaturesKHR(ray_query::Bool; next = C_NULL)
+    _PhysicalDeviceRayQueryFeaturesKHR(ray_query::Bool; next = C_NULL)
 
 Arguments:
 - `ray_query::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceRayQueryFeaturesKHR
+_PhysicalDeviceRayQueryFeaturesKHR
 
 """
-    StridedDeviceAddressRegionKHR(stride::Integer, size::Integer; device_address = 0)
+    _StridedDeviceAddressRegionKHR(stride::Integer, size::Integer; device_address = 0)
 
 Arguments:
 - `stride::Integer`
@@ -9922,10 +9922,10 @@ Arguments:
 - `device_address`: defaults to `0`
 
 """
-StridedDeviceAddressRegionKHR
+_StridedDeviceAddressRegionKHR
 
 """
-    TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Integer)
+    _TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Integer)
 
 Arguments:
 - `width::Integer`
@@ -9933,10 +9933,10 @@ Arguments:
 - `depth::Integer`
 
 """
-TraceRaysIndirectCommandKHR
+_TraceRaysIndirectCommandKHR
 
 """
-    PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL)
+    _PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `drm_format_modifier::Integer`
@@ -9945,20 +9945,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceImageDrmFormatModifierInfoEXT
+_PhysicalDeviceImageDrmFormatModifierInfoEXT
 
 """
-    ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::AbstractArray{<:Integer}; next = C_NULL)
+    _ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `drm_format_modifiers::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 
 """
-ImageDrmFormatModifierListCreateInfoEXT
+_ImageDrmFormatModifierListCreateInfoEXT
 
 """
-    ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Integer, plane_layouts::AbstractArray{<:SubresourceLayout}; next = C_NULL)
+    _ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Integer, plane_layouts::AbstractArray{<:SubresourceLayout}; next = C_NULL)
 
 Arguments:
 - `drm_format_modifier::Integer`
@@ -9966,30 +9966,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-ImageDrmFormatModifierExplicitCreateInfoEXT
+_ImageDrmFormatModifierExplicitCreateInfoEXT
 
 """
-    ImageStencilUsageCreateInfo(stencil_usage::ImageUsageFlag; next = C_NULL)
+    _ImageStencilUsageCreateInfo(stencil_usage::ImageUsageFlag; next = C_NULL)
 
 Arguments:
 - `stencil_usage::ImageUsageFlag`
 - `next`: defaults to `C_NULL`
 
 """
-ImageStencilUsageCreateInfo
+_ImageStencilUsageCreateInfo
 
 """
-    DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::VkMemoryOverallocationBehaviorAMD; next = C_NULL)
+    _DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::VkMemoryOverallocationBehaviorAMD; next = C_NULL)
 
 Arguments:
 - `overallocation_behavior::VkMemoryOverallocationBehaviorAMD`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceMemoryOverallocationCreateInfoAMD
+_DeviceMemoryOverallocationCreateInfoAMD
 
 """
-    PhysicalDeviceFragmentDensityMapFeaturesEXT(fragment_density_map::Bool, fragment_density_map_dynamic::Bool, fragment_density_map_non_subsampled_images::Bool; next = C_NULL)
+    _PhysicalDeviceFragmentDensityMapFeaturesEXT(fragment_density_map::Bool, fragment_density_map_dynamic::Bool, fragment_density_map_non_subsampled_images::Bool; next = C_NULL)
 
 Arguments:
 - `fragment_density_map::Bool`
@@ -9998,70 +9998,70 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFragmentDensityMapFeaturesEXT
+_PhysicalDeviceFragmentDensityMapFeaturesEXT
 
 """
-    PhysicalDeviceFragmentDensityMap2FeaturesEXT(fragment_density_map_deferred::Bool; next = C_NULL)
+    _PhysicalDeviceFragmentDensityMap2FeaturesEXT(fragment_density_map_deferred::Bool; next = C_NULL)
 
 Arguments:
 - `fragment_density_map_deferred::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFragmentDensityMap2FeaturesEXT
+_PhysicalDeviceFragmentDensityMap2FeaturesEXT
 
 """
-    RenderPassFragmentDensityMapCreateInfoEXT(fragment_density_map_attachment::AttachmentReference; next = C_NULL)
+    _RenderPassFragmentDensityMapCreateInfoEXT(fragment_density_map_attachment::_AttachmentReference; next = C_NULL)
 
 Arguments:
-- `fragment_density_map_attachment::AttachmentReference`
+- `fragment_density_map_attachment::_AttachmentReference`
 - `next`: defaults to `C_NULL`
 
 """
-RenderPassFragmentDensityMapCreateInfoEXT
+_RenderPassFragmentDensityMapCreateInfoEXT
 
 """
-    PhysicalDeviceScalarBlockLayoutFeatures(scalar_block_layout::Bool; next = C_NULL)
+    _PhysicalDeviceScalarBlockLayoutFeatures(scalar_block_layout::Bool; next = C_NULL)
 
 Arguments:
 - `scalar_block_layout::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceScalarBlockLayoutFeatures
+_PhysicalDeviceScalarBlockLayoutFeatures
 
 """
-    SurfaceProtectedCapabilitiesKHR(supports_protected::Bool; next = C_NULL)
+    _SurfaceProtectedCapabilitiesKHR(supports_protected::Bool; next = C_NULL)
 
 Arguments:
 - `supports_protected::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-SurfaceProtectedCapabilitiesKHR
+_SurfaceProtectedCapabilitiesKHR
 
 """
-    PhysicalDeviceUniformBufferStandardLayoutFeatures(uniform_buffer_standard_layout::Bool; next = C_NULL)
+    _PhysicalDeviceUniformBufferStandardLayoutFeatures(uniform_buffer_standard_layout::Bool; next = C_NULL)
 
 Arguments:
 - `uniform_buffer_standard_layout::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceUniformBufferStandardLayoutFeatures
+_PhysicalDeviceUniformBufferStandardLayoutFeatures
 
 """
-    PhysicalDeviceDepthClipEnableFeaturesEXT(depth_clip_enable::Bool; next = C_NULL)
+    _PhysicalDeviceDepthClipEnableFeaturesEXT(depth_clip_enable::Bool; next = C_NULL)
 
 Arguments:
 - `depth_clip_enable::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceDepthClipEnableFeaturesEXT
+_PhysicalDeviceDepthClipEnableFeaturesEXT
 
 """
-    PipelineRasterizationDepthClipStateCreateInfoEXT(depth_clip_enable::Bool; next = C_NULL, flags = 0)
+    _PipelineRasterizationDepthClipStateCreateInfoEXT(depth_clip_enable::Bool; next = C_NULL, flags = 0)
 
 Arguments:
 - `depth_clip_enable::Bool`
@@ -10069,30 +10069,30 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PipelineRasterizationDepthClipStateCreateInfoEXT
+_PipelineRasterizationDepthClipStateCreateInfoEXT
 
 """
-    PhysicalDeviceMemoryPriorityFeaturesEXT(memory_priority::Bool; next = C_NULL)
+    _PhysicalDeviceMemoryPriorityFeaturesEXT(memory_priority::Bool; next = C_NULL)
 
 Arguments:
 - `memory_priority::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceMemoryPriorityFeaturesEXT
+_PhysicalDeviceMemoryPriorityFeaturesEXT
 
 """
-    MemoryPriorityAllocateInfoEXT(priority::Real; next = C_NULL)
+    _MemoryPriorityAllocateInfoEXT(priority::Real; next = C_NULL)
 
 Arguments:
 - `priority::Real`
 - `next`: defaults to `C_NULL`
 
 """
-MemoryPriorityAllocateInfoEXT
+_MemoryPriorityAllocateInfoEXT
 
 """
-    PhysicalDeviceBufferDeviceAddressFeatures(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
+    _PhysicalDeviceBufferDeviceAddressFeatures(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
 
 Arguments:
 - `buffer_device_address::Bool`
@@ -10101,10 +10101,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceBufferDeviceAddressFeatures
+_PhysicalDeviceBufferDeviceAddressFeatures
 
 """
-    PhysicalDeviceBufferDeviceAddressFeaturesEXT(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
+    _PhysicalDeviceBufferDeviceAddressFeaturesEXT(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
 
 Arguments:
 - `buffer_device_address::Bool`
@@ -10113,70 +10113,70 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceBufferDeviceAddressFeaturesEXT
+_PhysicalDeviceBufferDeviceAddressFeaturesEXT
 
 """
-    BufferDeviceAddressInfo(buffer::Buffer; next = C_NULL)
+    _BufferDeviceAddressInfo(buffer::Buffer; next = C_NULL)
 
 Arguments:
 - `buffer::Buffer`
 - `next`: defaults to `C_NULL`
 
 """
-BufferDeviceAddressInfo
+_BufferDeviceAddressInfo
 
 """
-    BufferOpaqueCaptureAddressCreateInfo(opaque_capture_address::Integer; next = C_NULL)
+    _BufferOpaqueCaptureAddressCreateInfo(opaque_capture_address::Integer; next = C_NULL)
 
 Arguments:
 - `opaque_capture_address::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-BufferOpaqueCaptureAddressCreateInfo
+_BufferOpaqueCaptureAddressCreateInfo
 
 """
-    BufferDeviceAddressCreateInfoEXT(device_address::Integer; next = C_NULL)
+    _BufferDeviceAddressCreateInfoEXT(device_address::Integer; next = C_NULL)
 
 Arguments:
 - `device_address::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-BufferDeviceAddressCreateInfoEXT
+_BufferDeviceAddressCreateInfoEXT
 
 """
-    PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type::VkImageViewType; next = C_NULL)
+    _PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type::VkImageViewType; next = C_NULL)
 
 Arguments:
 - `image_view_type::VkImageViewType`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceImageViewImageFormatInfoEXT
+_PhysicalDeviceImageViewImageFormatInfoEXT
 
 """
-    PhysicalDeviceImagelessFramebufferFeatures(imageless_framebuffer::Bool; next = C_NULL)
+    _PhysicalDeviceImagelessFramebufferFeatures(imageless_framebuffer::Bool; next = C_NULL)
 
 Arguments:
 - `imageless_framebuffer::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceImagelessFramebufferFeatures
+_PhysicalDeviceImagelessFramebufferFeatures
 
 """
-    FramebufferAttachmentsCreateInfo(attachment_image_infos::AbstractArray{<:FramebufferAttachmentImageInfo}; next = C_NULL)
+    _FramebufferAttachmentsCreateInfo(attachment_image_infos::AbstractArray{<:_FramebufferAttachmentImageInfo}; next = C_NULL)
 
 Arguments:
-- `attachment_image_infos::AbstractArray{<:FramebufferAttachmentImageInfo}`
+- `attachment_image_infos::AbstractArray{<:_FramebufferAttachmentImageInfo}`
 - `next`: defaults to `C_NULL`
 
 """
-FramebufferAttachmentsCreateInfo
+_FramebufferAttachmentsCreateInfo
 
 """
-    FramebufferAttachmentImageInfo(usage::ImageUsageFlag, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray{<:VkFormat}; next = C_NULL, flags = 0)
+    _FramebufferAttachmentImageInfo(usage::ImageUsageFlag, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray{<:VkFormat}; next = C_NULL, flags = 0)
 
 Arguments:
 - `usage::ImageUsageFlag`
@@ -10188,30 +10188,30 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-FramebufferAttachmentImageInfo
+_FramebufferAttachmentImageInfo
 
 """
-    RenderPassAttachmentBeginInfo(attachments::AbstractArray{<:ImageView}; next = C_NULL)
+    _RenderPassAttachmentBeginInfo(attachments::AbstractArray{<:ImageView}; next = C_NULL)
 
 Arguments:
 - `attachments::AbstractArray{<:ImageView}`
 - `next`: defaults to `C_NULL`
 
 """
-RenderPassAttachmentBeginInfo
+_RenderPassAttachmentBeginInfo
 
 """
-    PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(texture_compression_astc_hdr::Bool; next = C_NULL)
+    _PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(texture_compression_astc_hdr::Bool; next = C_NULL)
 
 Arguments:
 - `texture_compression_astc_hdr::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
+_PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
 
 """
-    PhysicalDeviceCooperativeMatrixFeaturesNV(cooperative_matrix::Bool, cooperative_matrix_robust_buffer_access::Bool; next = C_NULL)
+    _PhysicalDeviceCooperativeMatrixFeaturesNV(cooperative_matrix::Bool, cooperative_matrix_robust_buffer_access::Bool; next = C_NULL)
 
 Arguments:
 - `cooperative_matrix::Bool`
@@ -10219,10 +10219,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceCooperativeMatrixFeaturesNV
+_PhysicalDeviceCooperativeMatrixFeaturesNV
 
 """
-    CooperativeMatrixPropertiesNV(m_size::Integer, n_size::Integer, k_size::Integer, a_type::VkComponentTypeNV, b_type::VkComponentTypeNV, c_type::VkComponentTypeNV, d_type::VkComponentTypeNV, scope::VkScopeNV; next = C_NULL)
+    _CooperativeMatrixPropertiesNV(m_size::Integer, n_size::Integer, k_size::Integer, a_type::VkComponentTypeNV, b_type::VkComponentTypeNV, c_type::VkComponentTypeNV, d_type::VkComponentTypeNV, scope::VkScopeNV; next = C_NULL)
 
 Arguments:
 - `m_size::Integer`
@@ -10236,20 +10236,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-CooperativeMatrixPropertiesNV
+_CooperativeMatrixPropertiesNV
 
 """
-    PhysicalDeviceYcbcrImageArraysFeaturesEXT(ycbcr_image_arrays::Bool; next = C_NULL)
+    _PhysicalDeviceYcbcrImageArraysFeaturesEXT(ycbcr_image_arrays::Bool; next = C_NULL)
 
 Arguments:
 - `ycbcr_image_arrays::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceYcbcrImageArraysFeaturesEXT
+_PhysicalDeviceYcbcrImageArraysFeaturesEXT
 
 """
-    ImageViewHandleInfoNVX(image_view::ImageView, descriptor_type::VkDescriptorType; next = C_NULL, sampler = C_NULL)
+    _ImageViewHandleInfoNVX(image_view::ImageView, descriptor_type::VkDescriptorType; next = C_NULL, sampler = C_NULL)
 
 Arguments:
 - `image_view::ImageView`
@@ -10258,20 +10258,20 @@ Arguments:
 - `sampler`: defaults to `C_NULL`
 
 """
-ImageViewHandleInfoNVX
+_ImageViewHandleInfoNVX
 
 """
-    PresentFrameTokenGGP(frame_token::vk.GgpFrameToken; next = C_NULL)
+    _PresentFrameTokenGGP(frame_token::vk.GgpFrameToken; next = C_NULL)
 
 Arguments:
 - `frame_token::vk.GgpFrameToken`
 - `next`: defaults to `C_NULL`
 
 """
-PresentFrameTokenGGP
+_PresentFrameTokenGGP
 
 """
-    PipelineCreationFeedbackCreateInfoEXT(pipeline_creation_feedback::PipelineCreationFeedbackEXT, pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}; next = C_NULL)
+    _PipelineCreationFeedbackCreateInfoEXT(pipeline_creation_feedback::PipelineCreationFeedbackEXT, pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}; next = C_NULL)
 
 Arguments:
 - `pipeline_creation_feedback::PipelineCreationFeedbackEXT`
@@ -10279,40 +10279,40 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PipelineCreationFeedbackCreateInfoEXT
+_PipelineCreationFeedbackCreateInfoEXT
 
 """
-    SurfaceFullScreenExclusiveInfoEXT(full_screen_exclusive::VkFullScreenExclusiveEXT; next = C_NULL)
+    _SurfaceFullScreenExclusiveInfoEXT(full_screen_exclusive::VkFullScreenExclusiveEXT; next = C_NULL)
 
 Arguments:
 - `full_screen_exclusive::VkFullScreenExclusiveEXT`
 - `next`: defaults to `C_NULL`
 
 """
-SurfaceFullScreenExclusiveInfoEXT
+_SurfaceFullScreenExclusiveInfoEXT
 
 """
-    SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor::vk.HMONITOR; next = C_NULL)
+    _SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor::vk.HMONITOR; next = C_NULL)
 
 Arguments:
 - `hmonitor::vk.HMONITOR`
 - `next`: defaults to `C_NULL`
 
 """
-SurfaceFullScreenExclusiveWin32InfoEXT
+_SurfaceFullScreenExclusiveWin32InfoEXT
 
 """
-    SurfaceCapabilitiesFullScreenExclusiveEXT(full_screen_exclusive_supported::Bool; next = C_NULL)
+    _SurfaceCapabilitiesFullScreenExclusiveEXT(full_screen_exclusive_supported::Bool; next = C_NULL)
 
 Arguments:
 - `full_screen_exclusive_supported::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-SurfaceCapabilitiesFullScreenExclusiveEXT
+_SurfaceCapabilitiesFullScreenExclusiveEXT
 
 """
-    PhysicalDevicePerformanceQueryFeaturesKHR(performance_counter_query_pools::Bool, performance_counter_multiple_query_pools::Bool; next = C_NULL)
+    _PhysicalDevicePerformanceQueryFeaturesKHR(performance_counter_query_pools::Bool, performance_counter_multiple_query_pools::Bool; next = C_NULL)
 
 Arguments:
 - `performance_counter_query_pools::Bool`
@@ -10320,10 +10320,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevicePerformanceQueryFeaturesKHR
+_PhysicalDevicePerformanceQueryFeaturesKHR
 
 """
-    QueryPoolPerformanceCreateInfoKHR(queue_family_index::Integer, counter_indices::AbstractArray{<:Integer}; next = C_NULL)
+    _QueryPoolPerformanceCreateInfoKHR(queue_family_index::Integer, counter_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `queue_family_index::Integer`
@@ -10331,10 +10331,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-QueryPoolPerformanceCreateInfoKHR
+_QueryPoolPerformanceCreateInfoKHR
 
 """
-    AcquireProfilingLockInfoKHR(timeout::Integer; next = C_NULL, flags = 0)
+    _AcquireProfilingLockInfoKHR(timeout::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `timeout::Integer`
@@ -10342,40 +10342,40 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-AcquireProfilingLockInfoKHR
+_AcquireProfilingLockInfoKHR
 
 """
-    PerformanceQuerySubmitInfoKHR(counter_pass_index::Integer; next = C_NULL)
+    _PerformanceQuerySubmitInfoKHR(counter_pass_index::Integer; next = C_NULL)
 
 Arguments:
 - `counter_pass_index::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-PerformanceQuerySubmitInfoKHR
+_PerformanceQuerySubmitInfoKHR
 
 """
-    HeadlessSurfaceCreateInfoEXT(; next = C_NULL, flags = 0)
+    _HeadlessSurfaceCreateInfoEXT(; next = C_NULL, flags = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-HeadlessSurfaceCreateInfoEXT
+_HeadlessSurfaceCreateInfoEXT
 
 """
-    PhysicalDeviceCoverageReductionModeFeaturesNV(coverage_reduction_mode::Bool; next = C_NULL)
+    _PhysicalDeviceCoverageReductionModeFeaturesNV(coverage_reduction_mode::Bool; next = C_NULL)
 
 Arguments:
 - `coverage_reduction_mode::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceCoverageReductionModeFeaturesNV
+_PhysicalDeviceCoverageReductionModeFeaturesNV
 
 """
-    PipelineCoverageReductionStateCreateInfoNV(coverage_reduction_mode::VkCoverageReductionModeNV; next = C_NULL, flags = 0)
+    _PipelineCoverageReductionStateCreateInfoNV(coverage_reduction_mode::VkCoverageReductionModeNV; next = C_NULL, flags = 0)
 
 Arguments:
 - `coverage_reduction_mode::VkCoverageReductionModeNV`
@@ -10383,70 +10383,70 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-PipelineCoverageReductionStateCreateInfoNV
+_PipelineCoverageReductionStateCreateInfoNV
 
 """
-    PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(shader_integer_functions_2::Bool; next = C_NULL)
+    _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(shader_integer_functions_2::Bool; next = C_NULL)
 
 Arguments:
 - `shader_integer_functions_2::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
+_PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
 
 """
-    PerformanceValueINTEL(type::VkPerformanceValueTypeINTEL, data::VkPerformanceValueDataINTEL)
+    _PerformanceValueINTEL(type::VkPerformanceValueTypeINTEL, data::VkPerformanceValueDataINTEL)
 
 Arguments:
 - `type::VkPerformanceValueTypeINTEL`
 - `data::VkPerformanceValueDataINTEL`
 
 """
-PerformanceValueINTEL
+_PerformanceValueINTEL
 
 """
-    InitializePerformanceApiInfoINTEL(; next = C_NULL, user_data = C_NULL)
+    _InitializePerformanceApiInfoINTEL(; next = C_NULL, user_data = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `user_data`: defaults to `C_NULL`
 
 """
-InitializePerformanceApiInfoINTEL
+_InitializePerformanceApiInfoINTEL
 
 """
-    QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling::VkQueryPoolSamplingModeINTEL; next = C_NULL)
+    _QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling::VkQueryPoolSamplingModeINTEL; next = C_NULL)
 
 Arguments:
 - `performance_counters_sampling::VkQueryPoolSamplingModeINTEL`
 - `next`: defaults to `C_NULL`
 
 """
-QueryPoolPerformanceQueryCreateInfoINTEL
+_QueryPoolPerformanceQueryCreateInfoINTEL
 
 """
-    PerformanceMarkerInfoINTEL(marker::Integer; next = C_NULL)
+    _PerformanceMarkerInfoINTEL(marker::Integer; next = C_NULL)
 
 Arguments:
 - `marker::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-PerformanceMarkerInfoINTEL
+_PerformanceMarkerInfoINTEL
 
 """
-    PerformanceStreamMarkerInfoINTEL(marker::Integer; next = C_NULL)
+    _PerformanceStreamMarkerInfoINTEL(marker::Integer; next = C_NULL)
 
 Arguments:
 - `marker::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-PerformanceStreamMarkerInfoINTEL
+_PerformanceStreamMarkerInfoINTEL
 
 """
-    PerformanceOverrideInfoINTEL(type::VkPerformanceOverrideTypeINTEL, enable::Bool, parameter::Integer; next = C_NULL)
+    _PerformanceOverrideInfoINTEL(type::VkPerformanceOverrideTypeINTEL, enable::Bool, parameter::Integer; next = C_NULL)
 
 Arguments:
 - `type::VkPerformanceOverrideTypeINTEL`
@@ -10455,20 +10455,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PerformanceOverrideInfoINTEL
+_PerformanceOverrideInfoINTEL
 
 """
-    PerformanceConfigurationAcquireInfoINTEL(type::VkPerformanceConfigurationTypeINTEL; next = C_NULL)
+    _PerformanceConfigurationAcquireInfoINTEL(type::VkPerformanceConfigurationTypeINTEL; next = C_NULL)
 
 Arguments:
 - `type::VkPerformanceConfigurationTypeINTEL`
 - `next`: defaults to `C_NULL`
 
 """
-PerformanceConfigurationAcquireInfoINTEL
+_PerformanceConfigurationAcquireInfoINTEL
 
 """
-    PhysicalDeviceShaderClockFeaturesKHR(shader_subgroup_clock::Bool, shader_device_clock::Bool; next = C_NULL)
+    _PhysicalDeviceShaderClockFeaturesKHR(shader_subgroup_clock::Bool, shader_device_clock::Bool; next = C_NULL)
 
 Arguments:
 - `shader_subgroup_clock::Bool`
@@ -10476,30 +10476,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderClockFeaturesKHR
+_PhysicalDeviceShaderClockFeaturesKHR
 
 """
-    PhysicalDeviceIndexTypeUint8FeaturesEXT(index_type_uint_8::Bool; next = C_NULL)
+    _PhysicalDeviceIndexTypeUint8FeaturesEXT(index_type_uint_8::Bool; next = C_NULL)
 
 Arguments:
 - `index_type_uint_8::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceIndexTypeUint8FeaturesEXT
+_PhysicalDeviceIndexTypeUint8FeaturesEXT
 
 """
-    PhysicalDeviceShaderSMBuiltinsFeaturesNV(shader_sm_builtins::Bool; next = C_NULL)
+    _PhysicalDeviceShaderSMBuiltinsFeaturesNV(shader_sm_builtins::Bool; next = C_NULL)
 
 Arguments:
 - `shader_sm_builtins::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderSMBuiltinsFeaturesNV
+_PhysicalDeviceShaderSMBuiltinsFeaturesNV
 
 """
-    PhysicalDeviceFragmentShaderInterlockFeaturesEXT(fragment_shader_sample_interlock::Bool, fragment_shader_pixel_interlock::Bool, fragment_shader_shading_rate_interlock::Bool; next = C_NULL)
+    _PhysicalDeviceFragmentShaderInterlockFeaturesEXT(fragment_shader_sample_interlock::Bool, fragment_shader_pixel_interlock::Bool, fragment_shader_shading_rate_interlock::Bool; next = C_NULL)
 
 Arguments:
 - `fragment_shader_sample_interlock::Bool`
@@ -10508,30 +10508,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFragmentShaderInterlockFeaturesEXT
+_PhysicalDeviceFragmentShaderInterlockFeaturesEXT
 
 """
-    PhysicalDeviceSeparateDepthStencilLayoutsFeatures(separate_depth_stencil_layouts::Bool; next = C_NULL)
+    _PhysicalDeviceSeparateDepthStencilLayoutsFeatures(separate_depth_stencil_layouts::Bool; next = C_NULL)
 
 Arguments:
 - `separate_depth_stencil_layouts::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceSeparateDepthStencilLayoutsFeatures
+_PhysicalDeviceSeparateDepthStencilLayoutsFeatures
 
 """
-    AttachmentReferenceStencilLayout(stencil_layout::VkImageLayout; next = C_NULL)
+    _AttachmentReferenceStencilLayout(stencil_layout::VkImageLayout; next = C_NULL)
 
 Arguments:
 - `stencil_layout::VkImageLayout`
 - `next`: defaults to `C_NULL`
 
 """
-AttachmentReferenceStencilLayout
+_AttachmentReferenceStencilLayout
 
 """
-    AttachmentDescriptionStencilLayout(stencil_initial_layout::VkImageLayout, stencil_final_layout::VkImageLayout; next = C_NULL)
+    _AttachmentDescriptionStencilLayout(stencil_initial_layout::VkImageLayout, stencil_final_layout::VkImageLayout; next = C_NULL)
 
 Arguments:
 - `stencil_initial_layout::VkImageLayout`
@@ -10539,30 +10539,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-AttachmentDescriptionStencilLayout
+_AttachmentDescriptionStencilLayout
 
 """
-    PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(pipeline_executable_info::Bool; next = C_NULL)
+    _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(pipeline_executable_info::Bool; next = C_NULL)
 
 Arguments:
 - `pipeline_executable_info::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
+_PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
 
 """
-    PipelineInfoKHR(pipeline::Pipeline; next = C_NULL)
+    _PipelineInfoKHR(pipeline::Pipeline; next = C_NULL)
 
 Arguments:
 - `pipeline::Pipeline`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineInfoKHR
+_PipelineInfoKHR
 
 """
-    PipelineExecutableInfoKHR(pipeline::Pipeline, executable_index::Integer; next = C_NULL)
+    _PipelineExecutableInfoKHR(pipeline::Pipeline, executable_index::Integer; next = C_NULL)
 
 Arguments:
 - `pipeline::Pipeline`
@@ -10570,30 +10570,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PipelineExecutableInfoKHR
+_PipelineExecutableInfoKHR
 
 """
-    PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(shader_demote_to_helper_invocation::Bool; next = C_NULL)
+    _PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(shader_demote_to_helper_invocation::Bool; next = C_NULL)
 
 Arguments:
 - `shader_demote_to_helper_invocation::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
+_PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
 
 """
-    PhysicalDeviceTexelBufferAlignmentFeaturesEXT(texel_buffer_alignment::Bool; next = C_NULL)
+    _PhysicalDeviceTexelBufferAlignmentFeaturesEXT(texel_buffer_alignment::Bool; next = C_NULL)
 
 Arguments:
 - `texel_buffer_alignment::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceTexelBufferAlignmentFeaturesEXT
+_PhysicalDeviceTexelBufferAlignmentFeaturesEXT
 
 """
-    PhysicalDeviceSubgroupSizeControlFeaturesEXT(subgroup_size_control::Bool, compute_full_subgroups::Bool; next = C_NULL)
+    _PhysicalDeviceSubgroupSizeControlFeaturesEXT(subgroup_size_control::Bool, compute_full_subgroups::Bool; next = C_NULL)
 
 Arguments:
 - `subgroup_size_control::Bool`
@@ -10601,30 +10601,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceSubgroupSizeControlFeaturesEXT
+_PhysicalDeviceSubgroupSizeControlFeaturesEXT
 
 """
-    MemoryOpaqueCaptureAddressAllocateInfo(opaque_capture_address::Integer; next = C_NULL)
+    _MemoryOpaqueCaptureAddressAllocateInfo(opaque_capture_address::Integer; next = C_NULL)
 
 Arguments:
 - `opaque_capture_address::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-MemoryOpaqueCaptureAddressAllocateInfo
+_MemoryOpaqueCaptureAddressAllocateInfo
 
 """
-    DeviceMemoryOpaqueCaptureAddressInfo(memory::DeviceMemory; next = C_NULL)
+    _DeviceMemoryOpaqueCaptureAddressInfo(memory::DeviceMemory; next = C_NULL)
 
 Arguments:
 - `memory::DeviceMemory`
 - `next`: defaults to `C_NULL`
 
 """
-DeviceMemoryOpaqueCaptureAddressInfo
+_DeviceMemoryOpaqueCaptureAddressInfo
 
 """
-    PhysicalDeviceLineRasterizationFeaturesEXT(rectangular_lines::Bool, bresenham_lines::Bool, smooth_lines::Bool, stippled_rectangular_lines::Bool, stippled_bresenham_lines::Bool, stippled_smooth_lines::Bool; next = C_NULL)
+    _PhysicalDeviceLineRasterizationFeaturesEXT(rectangular_lines::Bool, bresenham_lines::Bool, smooth_lines::Bool, stippled_rectangular_lines::Bool, stippled_bresenham_lines::Bool, stippled_smooth_lines::Bool; next = C_NULL)
 
 Arguments:
 - `rectangular_lines::Bool`
@@ -10636,10 +10636,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceLineRasterizationFeaturesEXT
+_PhysicalDeviceLineRasterizationFeaturesEXT
 
 """
-    PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::VkLineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
+    _PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::VkLineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
 
 Arguments:
 - `line_rasterization_mode::VkLineRasterizationModeEXT`
@@ -10649,20 +10649,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PipelineRasterizationLineStateCreateInfoEXT
+_PipelineRasterizationLineStateCreateInfoEXT
 
 """
-    PhysicalDevicePipelineCreationCacheControlFeaturesEXT(pipeline_creation_cache_control::Bool; next = C_NULL)
+    _PhysicalDevicePipelineCreationCacheControlFeaturesEXT(pipeline_creation_cache_control::Bool; next = C_NULL)
 
 Arguments:
 - `pipeline_creation_cache_control::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevicePipelineCreationCacheControlFeaturesEXT
+_PhysicalDevicePipelineCreationCacheControlFeaturesEXT
 
 """
-    PhysicalDeviceVulkan11Features(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool, multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool, variable_pointers_storage_buffer::Bool, variable_pointers::Bool, protected_memory::Bool, sampler_ycbcr_conversion::Bool, shader_draw_parameters::Bool; next = C_NULL)
+    _PhysicalDeviceVulkan11Features(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool, multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool, variable_pointers_storage_buffer::Bool, variable_pointers::Bool, protected_memory::Bool, sampler_ycbcr_conversion::Bool, shader_draw_parameters::Bool; next = C_NULL)
 
 Arguments:
 - `storage_buffer_16_bit_access::Bool`
@@ -10680,10 +10680,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceVulkan11Features
+_PhysicalDeviceVulkan11Features
 
 """
-    PhysicalDeviceVulkan12Features(sampler_mirror_clamp_to_edge::Bool, draw_indirect_count::Bool, storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool, shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool, shader_float_16::Bool, shader_int_8::Bool, descriptor_indexing::Bool, shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool, sampler_filter_minmax::Bool, scalar_block_layout::Bool, imageless_framebuffer::Bool, uniform_buffer_standard_layout::Bool, shader_subgroup_extended_types::Bool, separate_depth_stencil_layouts::Bool, host_query_reset::Bool, timeline_semaphore::Bool, buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool, vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool, shader_output_viewport_index::Bool, shader_output_layer::Bool, subgroup_broadcast_dynamic_id::Bool; next = C_NULL)
+    _PhysicalDeviceVulkan12Features(sampler_mirror_clamp_to_edge::Bool, draw_indirect_count::Bool, storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool, shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool, shader_float_16::Bool, shader_int_8::Bool, descriptor_indexing::Bool, shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool, sampler_filter_minmax::Bool, scalar_block_layout::Bool, imageless_framebuffer::Bool, uniform_buffer_standard_layout::Bool, shader_subgroup_extended_types::Bool, separate_depth_stencil_layouts::Bool, host_query_reset::Bool, timeline_semaphore::Bool, buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool, vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool, shader_output_viewport_index::Bool, shader_output_layer::Bool, subgroup_broadcast_dynamic_id::Bool; next = C_NULL)
 
 Arguments:
 - `sampler_mirror_clamp_to_edge::Bool`
@@ -10736,30 +10736,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceVulkan12Features
+_PhysicalDeviceVulkan12Features
 
 """
-    PipelineCompilerControlCreateInfoAMD(; next = C_NULL, compiler_control_flags = 0)
+    _PipelineCompilerControlCreateInfoAMD(; next = C_NULL, compiler_control_flags = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `compiler_control_flags`: defaults to `0`
 
 """
-PipelineCompilerControlCreateInfoAMD
+_PipelineCompilerControlCreateInfoAMD
 
 """
-    PhysicalDeviceCoherentMemoryFeaturesAMD(device_coherent_memory::Bool; next = C_NULL)
+    _PhysicalDeviceCoherentMemoryFeaturesAMD(device_coherent_memory::Bool; next = C_NULL)
 
 Arguments:
 - `device_coherent_memory::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceCoherentMemoryFeaturesAMD
+_PhysicalDeviceCoherentMemoryFeaturesAMD
 
 """
-    SamplerCustomBorderColorCreateInfoEXT(custom_border_color::VkClearColorValue, format::VkFormat; next = C_NULL)
+    _SamplerCustomBorderColorCreateInfoEXT(custom_border_color::VkClearColorValue, format::VkFormat; next = C_NULL)
 
 Arguments:
 - `custom_border_color::VkClearColorValue`
@@ -10767,10 +10767,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-SamplerCustomBorderColorCreateInfoEXT
+_SamplerCustomBorderColorCreateInfoEXT
 
 """
-    PhysicalDeviceCustomBorderColorFeaturesEXT(custom_border_colors::Bool, custom_border_color_without_format::Bool; next = C_NULL)
+    _PhysicalDeviceCustomBorderColorFeaturesEXT(custom_border_colors::Bool, custom_border_color_without_format::Bool; next = C_NULL)
 
 Arguments:
 - `custom_border_colors::Bool`
@@ -10778,10 +10778,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceCustomBorderColorFeaturesEXT
+_PhysicalDeviceCustomBorderColorFeaturesEXT
 
 """
-    AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::VkIndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
+    _AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::VkIndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
 
 Arguments:
 - `vertex_format::VkFormat`
@@ -10794,10 +10794,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureGeometryTrianglesDataKHR
+_AccelerationStructureGeometryTrianglesDataKHR
 
 """
-    AccelerationStructureGeometryAabbsDataKHR(data::VkDeviceOrHostAddressConstKHR, stride::Integer; next = C_NULL)
+    _AccelerationStructureGeometryAabbsDataKHR(data::VkDeviceOrHostAddressConstKHR, stride::Integer; next = C_NULL)
 
 Arguments:
 - `data::VkDeviceOrHostAddressConstKHR`
@@ -10805,10 +10805,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureGeometryAabbsDataKHR
+_AccelerationStructureGeometryAabbsDataKHR
 
 """
-    AccelerationStructureGeometryInstancesDataKHR(array_of_pointers::Bool, data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
+    _AccelerationStructureGeometryInstancesDataKHR(array_of_pointers::Bool, data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
 
 Arguments:
 - `array_of_pointers::Bool`
@@ -10816,10 +10816,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureGeometryInstancesDataKHR
+_AccelerationStructureGeometryInstancesDataKHR
 
 """
-    AccelerationStructureGeometryKHR(geometry_type::VkGeometryTypeKHR, geometry::VkAccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
+    _AccelerationStructureGeometryKHR(geometry_type::VkGeometryTypeKHR, geometry::VkAccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
 
 Arguments:
 - `geometry_type::VkGeometryTypeKHR`
@@ -10828,10 +10828,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-AccelerationStructureGeometryKHR
+_AccelerationStructureGeometryKHR
 
 """
-    AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, mode::VkBuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
+    _AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, mode::VkBuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
 
 Arguments:
 - `type::VkAccelerationStructureTypeKHR`
@@ -10845,10 +10845,10 @@ Arguments:
 - `geometries_2`: defaults to `C_NULL`
 
 """
-AccelerationStructureBuildGeometryInfoKHR
+_AccelerationStructureBuildGeometryInfoKHR
 
 """
-    AccelerationStructureBuildRangeInfoKHR(primitive_count::Integer, primitive_offset::Integer, first_vertex::Integer, transform_offset::Integer)
+    _AccelerationStructureBuildRangeInfoKHR(primitive_count::Integer, primitive_offset::Integer, first_vertex::Integer, transform_offset::Integer)
 
 Arguments:
 - `primitive_count::Integer`
@@ -10857,10 +10857,10 @@ Arguments:
 - `transform_offset::Integer`
 
 """
-AccelerationStructureBuildRangeInfoKHR
+_AccelerationStructureBuildRangeInfoKHR
 
 """
-    AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
+    _AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
 
 Arguments:
 - `buffer::Buffer`
@@ -10872,10 +10872,10 @@ Arguments:
 - `device_address`: defaults to `0`
 
 """
-AccelerationStructureCreateInfoKHR
+_AccelerationStructureCreateInfoKHR
 
 """
-    AabbPositionsKHR(min_x::Real, min_y::Real, min_z::Real, max_x::Real, max_y::Real, max_z::Real)
+    _AabbPositionsKHR(min_x::Real, min_y::Real, min_z::Real, max_x::Real, max_y::Real, max_z::Real)
 
 Arguments:
 - `min_x::Real`
@@ -10886,22 +10886,22 @@ Arguments:
 - `max_z::Real`
 
 """
-AabbPositionsKHR
+_AabbPositionsKHR
 
 """
-    TransformMatrixKHR(matrix::NTuple{3, NTuple{4, Float32}})
+    _TransformMatrixKHR(matrix::NTuple{3, NTuple{4, Float32}})
 
 Arguments:
 - `matrix::NTuple{3, NTuple{4, Float32}}`
 
 """
-TransformMatrixKHR
+_TransformMatrixKHR
 
 """
-    AccelerationStructureInstanceKHR(transform::TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
+    _AccelerationStructureInstanceKHR(transform::_TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
 
 Arguments:
-- `transform::TransformMatrixKHR`
+- `transform::_TransformMatrixKHR`
 - `instance_custom_index::Integer`
 - `mask::Integer`
 - `instance_shader_binding_table_record_offset::Integer`
@@ -10909,30 +10909,30 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-AccelerationStructureInstanceKHR
+_AccelerationStructureInstanceKHR
 
 """
-    AccelerationStructureDeviceAddressInfoKHR(acceleration_structure::AccelerationStructureKHR; next = C_NULL)
+    _AccelerationStructureDeviceAddressInfoKHR(acceleration_structure::AccelerationStructureKHR; next = C_NULL)
 
 Arguments:
 - `acceleration_structure::AccelerationStructureKHR`
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureDeviceAddressInfoKHR
+_AccelerationStructureDeviceAddressInfoKHR
 
 """
-    AccelerationStructureVersionInfoKHR(version_data::AbstractArray{<:Integer}; next = C_NULL)
+    _AccelerationStructureVersionInfoKHR(version_data::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `version_data::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureVersionInfoKHR
+_AccelerationStructureVersionInfoKHR
 
 """
-    CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    _CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
 - `src::AccelerationStructureKHR`
@@ -10941,10 +10941,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-CopyAccelerationStructureInfoKHR
+_CopyAccelerationStructureInfoKHR
 
 """
-    CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::VkDeviceOrHostAddressKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    _CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::VkDeviceOrHostAddressKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
 - `src::AccelerationStructureKHR`
@@ -10953,10 +10953,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-CopyAccelerationStructureToMemoryInfoKHR
+_CopyAccelerationStructureToMemoryInfoKHR
 
 """
-    CopyMemoryToAccelerationStructureInfoKHR(src::VkDeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    _CopyMemoryToAccelerationStructureInfoKHR(src::VkDeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
 - `src::VkDeviceOrHostAddressConstKHR`
@@ -10965,10 +10965,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-CopyMemoryToAccelerationStructureInfoKHR
+_CopyMemoryToAccelerationStructureInfoKHR
 
 """
-    RayTracingPipelineInterfaceCreateInfoKHR(max_pipeline_ray_payload_size::Integer, max_pipeline_ray_hit_attribute_size::Integer; next = C_NULL)
+    _RayTracingPipelineInterfaceCreateInfoKHR(max_pipeline_ray_payload_size::Integer, max_pipeline_ray_hit_attribute_size::Integer; next = C_NULL)
 
 Arguments:
 - `max_pipeline_ray_payload_size::Integer`
@@ -10976,30 +10976,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-RayTracingPipelineInterfaceCreateInfoKHR
+_RayTracingPipelineInterfaceCreateInfoKHR
 
 """
-    PipelineLibraryCreateInfoKHR(libraries::AbstractArray{<:Pipeline}; next = C_NULL)
+    _PipelineLibraryCreateInfoKHR(libraries::AbstractArray{<:Pipeline}; next = C_NULL)
 
 Arguments:
 - `libraries::AbstractArray{<:Pipeline}`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineLibraryCreateInfoKHR
+_PipelineLibraryCreateInfoKHR
 
 """
-    PhysicalDeviceExtendedDynamicStateFeaturesEXT(extended_dynamic_state::Bool; next = C_NULL)
+    _PhysicalDeviceExtendedDynamicStateFeaturesEXT(extended_dynamic_state::Bool; next = C_NULL)
 
 Arguments:
 - `extended_dynamic_state::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceExtendedDynamicStateFeaturesEXT
+_PhysicalDeviceExtendedDynamicStateFeaturesEXT
 
 """
-    PhysicalDeviceExtendedDynamicState2FeaturesEXT(extended_dynamic_state_2::Bool, extended_dynamic_state_2_logic_op::Bool, extended_dynamic_state_2_patch_control_points::Bool; next = C_NULL)
+    _PhysicalDeviceExtendedDynamicState2FeaturesEXT(extended_dynamic_state_2::Bool, extended_dynamic_state_2_logic_op::Bool, extended_dynamic_state_2_patch_control_points::Bool; next = C_NULL)
 
 Arguments:
 - `extended_dynamic_state_2::Bool`
@@ -11008,71 +11008,71 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceExtendedDynamicState2FeaturesEXT
+_PhysicalDeviceExtendedDynamicState2FeaturesEXT
 
 """
-    RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
+    _RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
 Arguments:
 - `transform::SurfaceTransformFlagKHR`
 - `next`: defaults to `C_NULL`
 
 """
-RenderPassTransformBeginInfoQCOM
+_RenderPassTransformBeginInfoQCOM
 
 """
-    CopyCommandTransformInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
+    _CopyCommandTransformInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
 Arguments:
 - `transform::SurfaceTransformFlagKHR`
 - `next`: defaults to `C_NULL`
 
 """
-CopyCommandTransformInfoQCOM
+_CopyCommandTransformInfoQCOM
 
 """
-    CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::Rect2D; next = C_NULL)
+    _CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::_Rect2D; next = C_NULL)
 
 Arguments:
 - `transform::SurfaceTransformFlagKHR`
-- `render_area::Rect2D`
+- `render_area::_Rect2D`
 - `next`: defaults to `C_NULL`
 
 """
-CommandBufferInheritanceRenderPassTransformInfoQCOM
+_CommandBufferInheritanceRenderPassTransformInfoQCOM
 
 """
-    PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; next = C_NULL)
+    _PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; next = C_NULL)
 
 Arguments:
 - `diagnostics_config::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceDiagnosticsConfigFeaturesNV
+_PhysicalDeviceDiagnosticsConfigFeaturesNV
 
 """
-    DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
+    _DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-DeviceDiagnosticsConfigCreateInfoNV
+_DeviceDiagnosticsConfigCreateInfoNV
 
 """
-    PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(shader_zero_initialize_workgroup_memory::Bool; next = C_NULL)
+    _PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(shader_zero_initialize_workgroup_memory::Bool; next = C_NULL)
 
 Arguments:
 - `shader_zero_initialize_workgroup_memory::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
+_PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
 
 """
-    PhysicalDeviceRobustness2FeaturesEXT(robust_buffer_access_2::Bool, robust_image_access_2::Bool, null_descriptor::Bool; next = C_NULL)
+    _PhysicalDeviceRobustness2FeaturesEXT(robust_buffer_access_2::Bool, robust_image_access_2::Bool, null_descriptor::Bool; next = C_NULL)
 
 Arguments:
 - `robust_buffer_access_2::Bool`
@@ -11081,20 +11081,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceRobustness2FeaturesEXT
+_PhysicalDeviceRobustness2FeaturesEXT
 
 """
-    PhysicalDeviceImageRobustnessFeaturesEXT(robust_image_access::Bool; next = C_NULL)
+    _PhysicalDeviceImageRobustnessFeaturesEXT(robust_image_access::Bool; next = C_NULL)
 
 Arguments:
 - `robust_image_access::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceImageRobustnessFeaturesEXT
+_PhysicalDeviceImageRobustnessFeaturesEXT
 
 """
-    PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(workgroup_memory_explicit_layout::Bool, workgroup_memory_explicit_layout_scalar_block_layout::Bool, workgroup_memory_explicit_layout_8_bit_access::Bool, workgroup_memory_explicit_layout_16_bit_access::Bool; next = C_NULL)
+    _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(workgroup_memory_explicit_layout::Bool, workgroup_memory_explicit_layout_scalar_block_layout::Bool, workgroup_memory_explicit_layout_8_bit_access::Bool, workgroup_memory_explicit_layout_16_bit_access::Bool; next = C_NULL)
 
 Arguments:
 - `workgroup_memory_explicit_layout::Bool`
@@ -11104,10 +11104,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
+_PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
 
 """
-    PhysicalDevicePortabilitySubsetFeaturesKHR(constant_alpha_color_blend_factors::Bool, events::Bool, image_view_format_reinterpretation::Bool, image_view_format_swizzle::Bool, image_view_2_d_on_3_d_image::Bool, multisample_array_image::Bool, mutable_comparison_samplers::Bool, point_polygons::Bool, sampler_mip_lod_bias::Bool, separate_stencil_mask_ref::Bool, shader_sample_rate_interpolation_functions::Bool, tessellation_isolines::Bool, tessellation_point_mode::Bool, triangle_fans::Bool, vertex_attribute_access_beyond_stride::Bool; next = C_NULL)
+    _PhysicalDevicePortabilitySubsetFeaturesKHR(constant_alpha_color_blend_factors::Bool, events::Bool, image_view_format_reinterpretation::Bool, image_view_format_swizzle::Bool, image_view_2_d_on_3_d_image::Bool, multisample_array_image::Bool, mutable_comparison_samplers::Bool, point_polygons::Bool, sampler_mip_lod_bias::Bool, separate_stencil_mask_ref::Bool, shader_sample_rate_interpolation_functions::Bool, tessellation_isolines::Bool, tessellation_point_mode::Bool, triangle_fans::Bool, vertex_attribute_access_beyond_stride::Bool; next = C_NULL)
 
 Arguments:
 - `constant_alpha_color_blend_factors::Bool`
@@ -11128,20 +11128,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevicePortabilitySubsetFeaturesKHR
+_PhysicalDevicePortabilitySubsetFeaturesKHR
 
 """
-    PhysicalDevicePortabilitySubsetPropertiesKHR(min_vertex_input_binding_stride_alignment::Integer; next = C_NULL)
+    _PhysicalDevicePortabilitySubsetPropertiesKHR(min_vertex_input_binding_stride_alignment::Integer; next = C_NULL)
 
 Arguments:
 - `min_vertex_input_binding_stride_alignment::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevicePortabilitySubsetPropertiesKHR
+_PhysicalDevicePortabilitySubsetPropertiesKHR
 
 """
-    PhysicalDevice4444FormatsFeaturesEXT(format_a4r4g4b4::Bool, format_a4b4g4r4::Bool; next = C_NULL)
+    _PhysicalDevice4444FormatsFeaturesEXT(format_a4r4g4b4::Bool, format_a4b4g4r4::Bool; next = C_NULL)
 
 Arguments:
 - `format_a4r4g4b4::Bool`
@@ -11149,10 +11149,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDevice4444FormatsFeaturesEXT
+_PhysicalDevice4444FormatsFeaturesEXT
 
 """
-    BufferCopy2KHR(src_offset::Integer, dst_offset::Integer, size::Integer; next = C_NULL)
+    _BufferCopy2KHR(src_offset::Integer, dst_offset::Integer, size::Integer; next = C_NULL)
 
 Arguments:
 - `src_offset::Integer`
@@ -11161,147 +11161,147 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-BufferCopy2KHR
+_BufferCopy2KHR
 
 """
-    ImageCopy2KHR(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D; next = C_NULL)
+    _ImageCopy2KHR(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D; next = C_NULL)
 
 Arguments:
-- `src_subresource::ImageSubresourceLayers`
-- `src_offset::Offset3D`
-- `dst_subresource::ImageSubresourceLayers`
-- `dst_offset::Offset3D`
-- `extent::Extent3D`
+- `src_subresource::_ImageSubresourceLayers`
+- `src_offset::_Offset3D`
+- `dst_subresource::_ImageSubresourceLayers`
+- `dst_offset::_Offset3D`
+- `extent::_Extent3D`
 - `next`: defaults to `C_NULL`
 
 """
-ImageCopy2KHR
+_ImageCopy2KHR
 
 """
-    ImageBlit2KHR(src_subresource::ImageSubresourceLayers, src_offsets::NTuple{2, Offset3D}, dst_subresource::ImageSubresourceLayers, dst_offsets::NTuple{2, Offset3D}; next = C_NULL)
+    _ImageBlit2KHR(src_subresource::_ImageSubresourceLayers, src_offsets::NTuple{2, _Offset3D}, dst_subresource::_ImageSubresourceLayers, dst_offsets::NTuple{2, _Offset3D}; next = C_NULL)
 
 Arguments:
-- `src_subresource::ImageSubresourceLayers`
-- `src_offsets::NTuple{2, Offset3D}`
-- `dst_subresource::ImageSubresourceLayers`
-- `dst_offsets::NTuple{2, Offset3D}`
+- `src_subresource::_ImageSubresourceLayers`
+- `src_offsets::NTuple{2, _Offset3D}`
+- `dst_subresource::_ImageSubresourceLayers`
+- `dst_offsets::NTuple{2, _Offset3D}`
 - `next`: defaults to `C_NULL`
 
 """
-ImageBlit2KHR
+_ImageBlit2KHR
 
 """
-    BufferImageCopy2KHR(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::ImageSubresourceLayers, image_offset::Offset3D, image_extent::Extent3D; next = C_NULL)
+    _BufferImageCopy2KHR(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D; next = C_NULL)
 
 Arguments:
 - `buffer_offset::Integer`
 - `buffer_row_length::Integer`
 - `buffer_image_height::Integer`
-- `image_subresource::ImageSubresourceLayers`
-- `image_offset::Offset3D`
-- `image_extent::Extent3D`
+- `image_subresource::_ImageSubresourceLayers`
+- `image_offset::_Offset3D`
+- `image_extent::_Extent3D`
 - `next`: defaults to `C_NULL`
 
 """
-BufferImageCopy2KHR
+_BufferImageCopy2KHR
 
 """
-    ImageResolve2KHR(src_subresource::ImageSubresourceLayers, src_offset::Offset3D, dst_subresource::ImageSubresourceLayers, dst_offset::Offset3D, extent::Extent3D; next = C_NULL)
+    _ImageResolve2KHR(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D; next = C_NULL)
 
 Arguments:
-- `src_subresource::ImageSubresourceLayers`
-- `src_offset::Offset3D`
-- `dst_subresource::ImageSubresourceLayers`
-- `dst_offset::Offset3D`
-- `extent::Extent3D`
+- `src_subresource::_ImageSubresourceLayers`
+- `src_offset::_Offset3D`
+- `dst_subresource::_ImageSubresourceLayers`
+- `dst_offset::_Offset3D`
+- `extent::_Extent3D`
 - `next`: defaults to `C_NULL`
 
 """
-ImageResolve2KHR
+_ImageResolve2KHR
 
 """
-    CopyBufferInfo2KHR(src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy2KHR}; next = C_NULL)
+    _CopyBufferInfo2KHR(src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:_BufferCopy2KHR}; next = C_NULL)
 
 Arguments:
 - `src_buffer::Buffer`
 - `dst_buffer::Buffer`
-- `regions::AbstractArray{<:BufferCopy2KHR}`
+- `regions::AbstractArray{<:_BufferCopy2KHR}`
 - `next`: defaults to `C_NULL`
 
 """
-CopyBufferInfo2KHR
+_CopyBufferInfo2KHR
 
 """
-    CopyImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageCopy2KHR}; next = C_NULL)
+    _CopyImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageCopy2KHR}; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
 - `src_image_layout::VkImageLayout`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:ImageCopy2KHR}`
+- `regions::AbstractArray{<:_ImageCopy2KHR}`
 - `next`: defaults to `C_NULL`
 
 """
-CopyImageInfo2KHR
+_CopyImageInfo2KHR
 
 """
-    BlitImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageBlit2KHR}, filter::VkFilter; next = C_NULL)
+    _BlitImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageBlit2KHR}, filter::VkFilter; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
 - `src_image_layout::VkImageLayout`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:ImageBlit2KHR}`
+- `regions::AbstractArray{<:_ImageBlit2KHR}`
 - `filter::VkFilter`
 - `next`: defaults to `C_NULL`
 
 """
-BlitImageInfo2KHR
+_BlitImageInfo2KHR
 
 """
-    CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:BufferImageCopy2KHR}; next = C_NULL)
+    _CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
 Arguments:
 - `src_buffer::Buffer`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:BufferImageCopy2KHR}`
+- `regions::AbstractArray{<:_BufferImageCopy2KHR}`
 - `next`: defaults to `C_NULL`
 
 """
-CopyBufferToImageInfo2KHR
+_CopyBufferToImageInfo2KHR
 
 """
-    CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy2KHR}; next = C_NULL)
+    _CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
 - `src_image_layout::VkImageLayout`
 - `dst_buffer::Buffer`
-- `regions::AbstractArray{<:BufferImageCopy2KHR}`
+- `regions::AbstractArray{<:_BufferImageCopy2KHR}`
 - `next`: defaults to `C_NULL`
 
 """
-CopyImageToBufferInfo2KHR
+_CopyImageToBufferInfo2KHR
 
 """
-    ResolveImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:ImageResolve2KHR}; next = C_NULL)
+    _ResolveImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageResolve2KHR}; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
 - `src_image_layout::VkImageLayout`
 - `dst_image::Image`
 - `dst_image_layout::VkImageLayout`
-- `regions::AbstractArray{<:ImageResolve2KHR}`
+- `regions::AbstractArray{<:_ImageResolve2KHR}`
 - `next`: defaults to `C_NULL`
 
 """
-ResolveImageInfo2KHR
+_ResolveImageInfo2KHR
 
 """
-    PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(shader_image_int_64_atomics::Bool, sparse_image_int_64_atomics::Bool; next = C_NULL)
+    _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(shader_image_int_64_atomics::Bool, sparse_image_int_64_atomics::Bool; next = C_NULL)
 
 Arguments:
 - `shader_image_int_64_atomics::Bool`
@@ -11309,32 +11309,32 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
+_PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
 
 """
-    FragmentShadingRateAttachmentInfoKHR(fragment_shading_rate_attachment::AttachmentReference2, shading_rate_attachment_texel_size::Extent2D; next = C_NULL)
+    _FragmentShadingRateAttachmentInfoKHR(fragment_shading_rate_attachment::_AttachmentReference2, shading_rate_attachment_texel_size::_Extent2D; next = C_NULL)
 
 Arguments:
-- `fragment_shading_rate_attachment::AttachmentReference2`
-- `shading_rate_attachment_texel_size::Extent2D`
+- `fragment_shading_rate_attachment::_AttachmentReference2`
+- `shading_rate_attachment_texel_size::_Extent2D`
 - `next`: defaults to `C_NULL`
 
 """
-FragmentShadingRateAttachmentInfoKHR
+_FragmentShadingRateAttachmentInfoKHR
 
 """
-    PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+    _PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::_Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
 
 Arguments:
-- `fragment_size::Extent2D`
+- `fragment_size::_Extent2D`
 - `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineFragmentShadingRateStateCreateInfoKHR
+_PipelineFragmentShadingRateStateCreateInfoKHR
 
 """
-    PhysicalDeviceFragmentShadingRateFeaturesKHR(pipeline_fragment_shading_rate::Bool, primitive_fragment_shading_rate::Bool, attachment_fragment_shading_rate::Bool; next = C_NULL)
+    _PhysicalDeviceFragmentShadingRateFeaturesKHR(pipeline_fragment_shading_rate::Bool, primitive_fragment_shading_rate::Bool, attachment_fragment_shading_rate::Bool; next = C_NULL)
 
 Arguments:
 - `pipeline_fragment_shading_rate::Bool`
@@ -11343,20 +11343,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFragmentShadingRateFeaturesKHR
+_PhysicalDeviceFragmentShadingRateFeaturesKHR
 
 """
-    PhysicalDeviceShaderTerminateInvocationFeaturesKHR(shader_terminate_invocation::Bool; next = C_NULL)
+    _PhysicalDeviceShaderTerminateInvocationFeaturesKHR(shader_terminate_invocation::Bool; next = C_NULL)
 
 Arguments:
 - `shader_terminate_invocation::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceShaderTerminateInvocationFeaturesKHR
+_PhysicalDeviceShaderTerminateInvocationFeaturesKHR
 
 """
-    PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(fragment_shading_rate_enums::Bool, supersample_fragment_shading_rates::Bool, no_invocation_fragment_shading_rates::Bool; next = C_NULL)
+    _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(fragment_shading_rate_enums::Bool, supersample_fragment_shading_rates::Bool, no_invocation_fragment_shading_rates::Bool; next = C_NULL)
 
 Arguments:
 - `fragment_shading_rate_enums::Bool`
@@ -11365,20 +11365,20 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
+_PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
 
 """
-    PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(max_fragment_shading_rate_invocation_count::SampleCountFlag; next = C_NULL)
+    _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(max_fragment_shading_rate_invocation_count::SampleCountFlag; next = C_NULL)
 
 Arguments:
 - `max_fragment_shading_rate_invocation_count::SampleCountFlag`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
+_PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
 
 """
-    PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::VkFragmentShadingRateTypeNV, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+    _PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::VkFragmentShadingRateTypeNV, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
 
 Arguments:
 - `shading_rate_type::VkFragmentShadingRateTypeNV`
@@ -11387,10 +11387,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PipelineFragmentShadingRateEnumStateCreateInfoNV
+_PipelineFragmentShadingRateEnumStateCreateInfoNV
 
 """
-    AccelerationStructureBuildSizesInfoKHR(acceleration_structure_size::Integer, update_scratch_size::Integer, build_scratch_size::Integer; next = C_NULL)
+    _AccelerationStructureBuildSizesInfoKHR(acceleration_structure_size::Integer, update_scratch_size::Integer, build_scratch_size::Integer; next = C_NULL)
 
 Arguments:
 - `acceleration_structure_size::Integer`
@@ -11399,49 +11399,49 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-AccelerationStructureBuildSizesInfoKHR
+_AccelerationStructureBuildSizesInfoKHR
 
 """
-    PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(mutable_descriptor_type::Bool; next = C_NULL)
+    _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(mutable_descriptor_type::Bool; next = C_NULL)
 
 Arguments:
 - `mutable_descriptor_type::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
+_PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
 
 """
-    MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray{<:VkDescriptorType})
+    _MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray{<:VkDescriptorType})
 
 Arguments:
 - `descriptor_types::AbstractArray{<:VkDescriptorType}`
 
 """
-MutableDescriptorTypeListVALVE
+_MutableDescriptorTypeListVALVE
 
 """
-    MutableDescriptorTypeCreateInfoVALVE(mutable_descriptor_type_lists::AbstractArray{<:MutableDescriptorTypeListVALVE}; next = C_NULL)
+    _MutableDescriptorTypeCreateInfoVALVE(mutable_descriptor_type_lists::AbstractArray{<:_MutableDescriptorTypeListVALVE}; next = C_NULL)
 
 Arguments:
-- `mutable_descriptor_type_lists::AbstractArray{<:MutableDescriptorTypeListVALVE}`
+- `mutable_descriptor_type_lists::AbstractArray{<:_MutableDescriptorTypeListVALVE}`
 - `next`: defaults to `C_NULL`
 
 """
-MutableDescriptorTypeCreateInfoVALVE
+_MutableDescriptorTypeCreateInfoVALVE
 
 """
-    PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vertex_input_dynamic_state::Bool; next = C_NULL)
+    _PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vertex_input_dynamic_state::Bool; next = C_NULL)
 
 Arguments:
 - `vertex_input_dynamic_state::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceVertexInputDynamicStateFeaturesEXT
+_PhysicalDeviceVertexInputDynamicStateFeaturesEXT
 
 """
-    VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VkVertexInputRate, divisor::Integer; next = C_NULL)
+    _VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VkVertexInputRate, divisor::Integer; next = C_NULL)
 
 Arguments:
 - `binding::Integer`
@@ -11451,10 +11451,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VertexInputBindingDescription2EXT
+_VertexInputBindingDescription2EXT
 
 """
-    VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::VkFormat, offset::Integer; next = C_NULL)
+    _VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::VkFormat, offset::Integer; next = C_NULL)
 
 Arguments:
 - `location::Integer`
@@ -11464,30 +11464,30 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VertexInputAttributeDescription2EXT
+_VertexInputAttributeDescription2EXT
 
 """
-    PhysicalDeviceColorWriteEnableFeaturesEXT(color_write_enable::Bool; next = C_NULL)
+    _PhysicalDeviceColorWriteEnableFeaturesEXT(color_write_enable::Bool; next = C_NULL)
 
 Arguments:
 - `color_write_enable::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceColorWriteEnableFeaturesEXT
+_PhysicalDeviceColorWriteEnableFeaturesEXT
 
 """
-    PipelineColorWriteCreateInfoEXT(color_write_enables::AbstractArray{<:Bool}; next = C_NULL)
+    _PipelineColorWriteCreateInfoEXT(color_write_enables::AbstractArray{<:Bool}; next = C_NULL)
 
 Arguments:
 - `color_write_enables::AbstractArray{<:Bool}`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineColorWriteCreateInfoEXT
+_PipelineColorWriteCreateInfoEXT
 
 """
-    MemoryBarrier2KHR(; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+    _MemoryBarrier2KHR(; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -11497,10 +11497,10 @@ Arguments:
 - `dst_access_mask`: defaults to `0`
 
 """
-MemoryBarrier2KHR
+_MemoryBarrier2KHR
 
 """
-    ImageMemoryBarrier2KHR(old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+    _ImageMemoryBarrier2KHR(old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
 Arguments:
 - `old_layout::VkImageLayout`
@@ -11508,7 +11508,7 @@ Arguments:
 - `src_queue_family_index::Integer`
 - `dst_queue_family_index::Integer`
 - `image::Image`
-- `subresource_range::ImageSubresourceRange`
+- `subresource_range::_ImageSubresourceRange`
 - `next`: defaults to `C_NULL`
 - `src_stage_mask`: defaults to `0`
 - `src_access_mask`: defaults to `0`
@@ -11516,10 +11516,10 @@ Arguments:
 - `dst_access_mask`: defaults to `0`
 
 """
-ImageMemoryBarrier2KHR
+_ImageMemoryBarrier2KHR
 
 """
-    BufferMemoryBarrier2KHR(src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+    _BufferMemoryBarrier2KHR(src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
 Arguments:
 - `src_queue_family_index::Integer`
@@ -11534,23 +11534,23 @@ Arguments:
 - `dst_access_mask`: defaults to `0`
 
 """
-BufferMemoryBarrier2KHR
+_BufferMemoryBarrier2KHR
 
 """
-    DependencyInfoKHR(memory_barriers::AbstractArray{<:MemoryBarrier2KHR}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier2KHR}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier2KHR}; next = C_NULL, dependency_flags = 0)
+    _DependencyInfoKHR(memory_barriers::AbstractArray{<:_MemoryBarrier2KHR}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier2KHR}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier2KHR}; next = C_NULL, dependency_flags = 0)
 
 Arguments:
-- `memory_barriers::AbstractArray{<:MemoryBarrier2KHR}`
-- `buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier2KHR}`
-- `image_memory_barriers::AbstractArray{<:ImageMemoryBarrier2KHR}`
+- `memory_barriers::AbstractArray{<:_MemoryBarrier2KHR}`
+- `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier2KHR}`
+- `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier2KHR}`
 - `next`: defaults to `C_NULL`
 - `dependency_flags`: defaults to `0`
 
 """
-DependencyInfoKHR
+_DependencyInfoKHR
 
 """
-    SemaphoreSubmitInfoKHR(semaphore::Semaphore, value::Integer, device_index::Integer; next = C_NULL, stage_mask = 0)
+    _SemaphoreSubmitInfoKHR(semaphore::Semaphore, value::Integer, device_index::Integer; next = C_NULL, stage_mask = 0)
 
 Arguments:
 - `semaphore::Semaphore`
@@ -11560,10 +11560,10 @@ Arguments:
 - `stage_mask`: defaults to `0`
 
 """
-SemaphoreSubmitInfoKHR
+_SemaphoreSubmitInfoKHR
 
 """
-    CommandBufferSubmitInfoKHR(command_buffer::CommandBuffer, device_mask::Integer; next = C_NULL)
+    _CommandBufferSubmitInfoKHR(command_buffer::CommandBuffer, device_mask::Integer; next = C_NULL)
 
 Arguments:
 - `command_buffer::CommandBuffer`
@@ -11571,54 +11571,54 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-CommandBufferSubmitInfoKHR
+_CommandBufferSubmitInfoKHR
 
 """
-    SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{<:CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
+    _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
 
 Arguments:
-- `wait_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}`
-- `command_buffer_infos::AbstractArray{<:CommandBufferSubmitInfoKHR}`
-- `signal_semaphore_infos::AbstractArray{<:SemaphoreSubmitInfoKHR}`
+- `wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
+- `command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}`
+- `signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-SubmitInfo2KHR
+_SubmitInfo2KHR
 
 """
-    PhysicalDeviceSynchronization2FeaturesKHR(synchronization2::Bool; next = C_NULL)
+    _PhysicalDeviceSynchronization2FeaturesKHR(synchronization2::Bool; next = C_NULL)
 
 Arguments:
 - `synchronization2::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceSynchronization2FeaturesKHR
+_PhysicalDeviceSynchronization2FeaturesKHR
 
 """
-    VideoQueueFamilyProperties2KHR(video_codec_operations::VideoCodecOperationFlagKHR; next = C_NULL)
+    _VideoQueueFamilyProperties2KHR(video_codec_operations::VideoCodecOperationFlagKHR; next = C_NULL)
 
 Arguments:
 - `video_codec_operations::VideoCodecOperationFlagKHR`
 - `next`: defaults to `C_NULL`
 
 """
-VideoQueueFamilyProperties2KHR
+_VideoQueueFamilyProperties2KHR
 
 """
-    VideoProfilesKHR(profile_count::Integer, profiles::VideoProfileKHR; next = C_NULL)
+    _VideoProfilesKHR(profile_count::Integer, profiles::_VideoProfileKHR; next = C_NULL)
 
 Arguments:
 - `profile_count::Integer`
-- `profiles::VideoProfileKHR`
+- `profiles::_VideoProfileKHR`
 - `next`: defaults to `C_NULL`
 
 """
-VideoProfilesKHR
+_VideoProfilesKHR
 
 """
-    VideoProfileKHR(video_codec_operation::VideoCodecOperationFlagKHR, chroma_subsampling::VideoChromaSubsamplingFlagKHR, luma_bit_depth::VideoComponentBitDepthFlagKHR, chroma_bit_depth::VideoComponentBitDepthFlagKHR; next = C_NULL)
+    _VideoProfileKHR(video_codec_operation::VideoCodecOperationFlagKHR, chroma_subsampling::VideoChromaSubsamplingFlagKHR, luma_bit_depth::VideoComponentBitDepthFlagKHR, chroma_bit_depth::VideoComponentBitDepthFlagKHR; next = C_NULL)
 
 Arguments:
 - `video_codec_operation::VideoCodecOperationFlagKHR`
@@ -11628,10 +11628,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoProfileKHR
+_VideoProfileKHR
 
 """
-    VideoGetMemoryPropertiesKHR(memory_bind_index::Integer, memory_requirements::MemoryRequirements2; next = C_NULL)
+    _VideoGetMemoryPropertiesKHR(memory_bind_index::Integer, memory_requirements::MemoryRequirements2; next = C_NULL)
 
 Arguments:
 - `memory_bind_index::Integer`
@@ -11639,10 +11639,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoGetMemoryPropertiesKHR
+_VideoGetMemoryPropertiesKHR
 
 """
-    VideoBindMemoryKHR(memory_bind_index::Integer, memory::DeviceMemory, memory_offset::Integer, memory_size::Integer; next = C_NULL)
+    _VideoBindMemoryKHR(memory_bind_index::Integer, memory::DeviceMemory, memory_offset::Integer, memory_size::Integer; next = C_NULL)
 
 Arguments:
 - `memory_bind_index::Integer`
@@ -11652,52 +11652,52 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoBindMemoryKHR
+_VideoBindMemoryKHR
 
 """
-    VideoPictureResourceKHR(coded_offset::Offset2D, coded_extent::Extent2D, base_array_layer::Integer, image_view_binding::ImageView; next = C_NULL)
+    _VideoPictureResourceKHR(coded_offset::_Offset2D, coded_extent::_Extent2D, base_array_layer::Integer, image_view_binding::ImageView; next = C_NULL)
 
 Arguments:
-- `coded_offset::Offset2D`
-- `coded_extent::Extent2D`
+- `coded_offset::_Offset2D`
+- `coded_extent::_Extent2D`
 - `base_array_layer::Integer`
 - `image_view_binding::ImageView`
 - `next`: defaults to `C_NULL`
 
 """
-VideoPictureResourceKHR
+_VideoPictureResourceKHR
 
 """
-    VideoReferenceSlotKHR(slot_index::Integer, picture_resource::VideoPictureResourceKHR; next = C_NULL)
+    _VideoReferenceSlotKHR(slot_index::Integer, picture_resource::_VideoPictureResourceKHR; next = C_NULL)
 
 Arguments:
 - `slot_index::Integer`
-- `picture_resource::VideoPictureResourceKHR`
+- `picture_resource::_VideoPictureResourceKHR`
 - `next`: defaults to `C_NULL`
 
 """
-VideoReferenceSlotKHR
+_VideoReferenceSlotKHR
 
 """
-    VideoDecodeInfoKHR(coded_offset::Offset2D, coded_extent::Extent2D, src_buffer::Buffer, src_buffer_offset::Integer, src_buffer_range::Integer, dst_picture_resource::VideoPictureResourceKHR, setup_reference_slot::VideoReferenceSlotKHR, reference_slots::AbstractArray{<:VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
+    _VideoDecodeInfoKHR(coded_offset::_Offset2D, coded_extent::_Extent2D, src_buffer::Buffer, src_buffer_offset::Integer, src_buffer_range::Integer, dst_picture_resource::_VideoPictureResourceKHR, setup_reference_slot::_VideoReferenceSlotKHR, reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
 
 Arguments:
-- `coded_offset::Offset2D`
-- `coded_extent::Extent2D`
+- `coded_offset::_Offset2D`
+- `coded_extent::_Extent2D`
 - `src_buffer::Buffer`
 - `src_buffer_offset::Integer`
 - `src_buffer_range::Integer`
-- `dst_picture_resource::VideoPictureResourceKHR`
-- `setup_reference_slot::VideoReferenceSlotKHR`
-- `reference_slots::AbstractArray{<:VideoReferenceSlotKHR}`
+- `dst_picture_resource::_VideoPictureResourceKHR`
+- `setup_reference_slot::_VideoReferenceSlotKHR`
+- `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-VideoDecodeInfoKHR
+_VideoDecodeInfoKHR
 
 """
-    VideoDecodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc, field_layout::VideoDecodeH264FieldLayoutFlagEXT; next = C_NULL)
+    _VideoDecodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc, field_layout::VideoDecodeH264FieldLayoutFlagEXT; next = C_NULL)
 
 Arguments:
 - `std_profile_idc::StdVideoH264ProfileIdc`
@@ -11705,10 +11705,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH264ProfileEXT
+_VideoDecodeH264ProfileEXT
 
 """
-    VideoDecodeH264SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+    _VideoDecodeH264SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
 - `flags::Integer`
@@ -11716,10 +11716,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH264SessionCreateInfoEXT
+_VideoDecodeH264SessionCreateInfoEXT
 
 """
-    VideoDecodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+    _VideoDecodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -11727,10 +11727,10 @@ Arguments:
 - `pps_std`: defaults to `C_NULL`
 
 """
-VideoDecodeH264SessionParametersAddInfoEXT
+_VideoDecodeH264SessionParametersAddInfoEXT
 
 """
-    VideoDecodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+    _VideoDecodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
 
 Arguments:
 - `max_sps_std_count::Integer`
@@ -11739,10 +11739,10 @@ Arguments:
 - `parameters_add_info`: defaults to `C_NULL`
 
 """
-VideoDecodeH264SessionParametersCreateInfoEXT
+_VideoDecodeH264SessionParametersCreateInfoEXT
 
 """
-    VideoDecodeH264PictureInfoEXT(std_picture_info::StdVideoDecodeH264PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
+    _VideoDecodeH264PictureInfoEXT(std_picture_info::StdVideoDecodeH264PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `std_picture_info::StdVideoDecodeH264PictureInfo`
@@ -11750,40 +11750,40 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH264PictureInfoEXT
+_VideoDecodeH264PictureInfoEXT
 
 """
-    VideoDecodeH264DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH264ReferenceInfo; next = C_NULL)
+    _VideoDecodeH264DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH264ReferenceInfo; next = C_NULL)
 
 Arguments:
 - `std_reference_info::StdVideoDecodeH264ReferenceInfo`
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH264DpbSlotInfoEXT
+_VideoDecodeH264DpbSlotInfoEXT
 
 """
-    VideoDecodeH264MvcEXT(std_mvc::StdVideoDecodeH264Mvc; next = C_NULL)
+    _VideoDecodeH264MvcEXT(std_mvc::StdVideoDecodeH264Mvc; next = C_NULL)
 
 Arguments:
 - `std_mvc::StdVideoDecodeH264Mvc`
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH264MvcEXT
+_VideoDecodeH264MvcEXT
 
 """
-    VideoDecodeH265ProfileEXT(std_profile_idc::StdVideoH265ProfileIdc; next = C_NULL)
+    _VideoDecodeH265ProfileEXT(std_profile_idc::StdVideoH265ProfileIdc; next = C_NULL)
 
 Arguments:
 - `std_profile_idc::StdVideoH265ProfileIdc`
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH265ProfileEXT
+_VideoDecodeH265ProfileEXT
 
 """
-    VideoDecodeH265SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+    _VideoDecodeH265SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
 - `flags::Integer`
@@ -11791,10 +11791,10 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH265SessionCreateInfoEXT
+_VideoDecodeH265SessionCreateInfoEXT
 
 """
-    VideoDecodeH265SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+    _VideoDecodeH265SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -11802,10 +11802,10 @@ Arguments:
 - `pps_std`: defaults to `C_NULL`
 
 """
-VideoDecodeH265SessionParametersAddInfoEXT
+_VideoDecodeH265SessionParametersAddInfoEXT
 
 """
-    VideoDecodeH265SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+    _VideoDecodeH265SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
 
 Arguments:
 - `max_sps_std_count::Integer`
@@ -11814,10 +11814,10 @@ Arguments:
 - `parameters_add_info`: defaults to `C_NULL`
 
 """
-VideoDecodeH265SessionParametersCreateInfoEXT
+_VideoDecodeH265SessionParametersCreateInfoEXT
 
 """
-    VideoDecodeH265PictureInfoEXT(std_picture_info::StdVideoDecodeH265PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
+    _VideoDecodeH265PictureInfoEXT(std_picture_info::StdVideoDecodeH265PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `std_picture_info::StdVideoDecodeH265PictureInfo`
@@ -11825,26 +11825,26 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH265PictureInfoEXT
+_VideoDecodeH265PictureInfoEXT
 
 """
-    VideoDecodeH265DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH265ReferenceInfo; next = C_NULL)
+    _VideoDecodeH265DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH265ReferenceInfo; next = C_NULL)
 
 Arguments:
 - `std_reference_info::StdVideoDecodeH265ReferenceInfo`
 - `next`: defaults to `C_NULL`
 
 """
-VideoDecodeH265DpbSlotInfoEXT
+_VideoDecodeH265DpbSlotInfoEXT
 
 """
-    VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; next = C_NULL, flags = 0)
+    _VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::VkFormat, max_coded_extent::_Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `queue_family_index::Integer`
-- `video_profile::VideoProfileKHR`
+- `video_profile::_VideoProfileKHR`
 - `picture_format::VkFormat`
-- `max_coded_extent::Extent2D`
+- `max_coded_extent::_Extent2D`
 - `reference_pictures_format::VkFormat`
 - `max_reference_pictures_slots_count::Integer`
 - `max_reference_pictures_active_count::Integer`
@@ -11852,10 +11852,10 @@ Arguments:
 - `flags`: defaults to `0`
 
 """
-VideoSessionCreateInfoKHR
+_VideoSessionCreateInfoKHR
 
 """
-    VideoSessionParametersCreateInfoKHR(video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; next = C_NULL)
+    _VideoSessionParametersCreateInfoKHR(video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; next = C_NULL)
 
 Arguments:
 - `video_session_parameters_template::VideoSessionParametersKHR`
@@ -11863,72 +11863,72 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoSessionParametersCreateInfoKHR
+_VideoSessionParametersCreateInfoKHR
 
 """
-    VideoSessionParametersUpdateInfoKHR(update_sequence_count::Integer; next = C_NULL)
+    _VideoSessionParametersUpdateInfoKHR(update_sequence_count::Integer; next = C_NULL)
 
 Arguments:
 - `update_sequence_count::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-VideoSessionParametersUpdateInfoKHR
+_VideoSessionParametersUpdateInfoKHR
 
 """
-    VideoBeginCodingInfoKHR(codec_quality_preset::VideoCodingQualityPresetFlagKHR, video_session::VideoSessionKHR, reference_slots::AbstractArray{<:VideoReferenceSlotKHR}; next = C_NULL, flags = 0, video_session_parameters = C_NULL)
+    _VideoBeginCodingInfoKHR(codec_quality_preset::VideoCodingQualityPresetFlagKHR, video_session::VideoSessionKHR, reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}; next = C_NULL, flags = 0, video_session_parameters = C_NULL)
 
 Arguments:
 - `codec_quality_preset::VideoCodingQualityPresetFlagKHR`
 - `video_session::VideoSessionKHR`
-- `reference_slots::AbstractArray{<:VideoReferenceSlotKHR}`
+- `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 - `video_session_parameters`: defaults to `C_NULL`
 
 """
-VideoBeginCodingInfoKHR
+_VideoBeginCodingInfoKHR
 
 """
-    VideoEndCodingInfoKHR(; next = C_NULL, flags = 0)
+    _VideoEndCodingInfoKHR(; next = C_NULL, flags = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-VideoEndCodingInfoKHR
+_VideoEndCodingInfoKHR
 
 """
-    VideoCodingControlInfoKHR(; next = C_NULL, flags = 0)
+    _VideoCodingControlInfoKHR(; next = C_NULL, flags = 0)
 
 Arguments:
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-VideoCodingControlInfoKHR
+_VideoCodingControlInfoKHR
 
 """
-    VideoEncodeInfoKHR(quality_level::Integer, coded_extent::Extent2D, dst_bitstream_buffer::Buffer, dst_bitstream_buffer_offset::Integer, dst_bitstream_buffer_max_range::Integer, src_picture_resource::VideoPictureResourceKHR, setup_reference_slot::VideoReferenceSlotKHR, reference_slots::AbstractArray{<:VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
+    _VideoEncodeInfoKHR(quality_level::Integer, coded_extent::_Extent2D, dst_bitstream_buffer::Buffer, dst_bitstream_buffer_offset::Integer, dst_bitstream_buffer_max_range::Integer, src_picture_resource::_VideoPictureResourceKHR, setup_reference_slot::_VideoReferenceSlotKHR, reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
 
 Arguments:
 - `quality_level::Integer`
-- `coded_extent::Extent2D`
+- `coded_extent::_Extent2D`
 - `dst_bitstream_buffer::Buffer`
 - `dst_bitstream_buffer_offset::Integer`
 - `dst_bitstream_buffer_max_range::Integer`
-- `src_picture_resource::VideoPictureResourceKHR`
-- `setup_reference_slot::VideoReferenceSlotKHR`
-- `reference_slots::AbstractArray{<:VideoReferenceSlotKHR}`
+- `src_picture_resource::_VideoPictureResourceKHR`
+- `setup_reference_slot::_VideoReferenceSlotKHR`
+- `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
 """
-VideoEncodeInfoKHR
+_VideoEncodeInfoKHR
 
 """
-    VideoEncodeRateControlInfoKHR(flags::VideoEncodeRateControlFlagKHR, rate_control_mode::VideoEncodeRateControlModeFlagKHR, average_bitrate::Integer, peak_to_average_bitrate_ratio::Integer, frame_rate_numerator::Integer, frame_rate_denominator::Integer, virtual_buffer_size_in_ms::Integer; next = C_NULL)
+    _VideoEncodeRateControlInfoKHR(flags::VideoEncodeRateControlFlagKHR, rate_control_mode::VideoEncodeRateControlModeFlagKHR, average_bitrate::Integer, peak_to_average_bitrate_ratio::Integer, frame_rate_numerator::Integer, frame_rate_denominator::Integer, virtual_buffer_size_in_ms::Integer; next = C_NULL)
 
 Arguments:
 - `flags::VideoEncodeRateControlFlagKHR`
@@ -11941,18 +11941,18 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeRateControlInfoKHR
+_VideoEncodeRateControlInfoKHR
 
 """
-    VideoEncodeH264CapabilitiesEXT(flags::VideoEncodeH264CapabilitiesFlagEXT, input_mode_flags::VideoEncodeH264InputModeFlagEXT, output_mode_flags::VideoEncodeH264OutputModeFlagEXT, min_picture_size_in_mbs::Extent2D, max_picture_size_in_mbs::Extent2D, input_image_data_alignment::Extent2D, max_num_l_0_reference_for_p::Integer, max_num_l_0_reference_for_b::Integer, max_num_l_1_reference::Integer, quality_level_count::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
+    _VideoEncodeH264CapabilitiesEXT(flags::VideoEncodeH264CapabilitiesFlagEXT, input_mode_flags::VideoEncodeH264InputModeFlagEXT, output_mode_flags::VideoEncodeH264OutputModeFlagEXT, min_picture_size_in_mbs::_Extent2D, max_picture_size_in_mbs::_Extent2D, input_image_data_alignment::_Extent2D, max_num_l_0_reference_for_p::Integer, max_num_l_0_reference_for_b::Integer, max_num_l_1_reference::Integer, quality_level_count::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
 - `flags::VideoEncodeH264CapabilitiesFlagEXT`
 - `input_mode_flags::VideoEncodeH264InputModeFlagEXT`
 - `output_mode_flags::VideoEncodeH264OutputModeFlagEXT`
-- `min_picture_size_in_mbs::Extent2D`
-- `max_picture_size_in_mbs::Extent2D`
-- `input_image_data_alignment::Extent2D`
+- `min_picture_size_in_mbs::_Extent2D`
+- `max_picture_size_in_mbs::_Extent2D`
+- `input_image_data_alignment::_Extent2D`
 - `max_num_l_0_reference_for_p::Integer`
 - `max_num_l_0_reference_for_b::Integer`
 - `max_num_l_1_reference::Integer`
@@ -11961,22 +11961,22 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeH264CapabilitiesEXT
+_VideoEncodeH264CapabilitiesEXT
 
 """
-    VideoEncodeH264SessionCreateInfoEXT(flags::VideoEncodeH264CreateFlagEXT, max_picture_size_in_mbs::Extent2D, std_extension_version::ExtensionProperties; next = C_NULL)
+    _VideoEncodeH264SessionCreateInfoEXT(flags::VideoEncodeH264CreateFlagEXT, max_picture_size_in_mbs::_Extent2D, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
 - `flags::VideoEncodeH264CreateFlagEXT`
-- `max_picture_size_in_mbs::Extent2D`
+- `max_picture_size_in_mbs::_Extent2D`
 - `std_extension_version::ExtensionProperties`
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeH264SessionCreateInfoEXT
+_VideoEncodeH264SessionCreateInfoEXT
 
 """
-    VideoEncodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
+    _VideoEncodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
 
 Arguments:
 - `next`: defaults to `C_NULL`
@@ -11984,10 +11984,10 @@ Arguments:
 - `pps_std`: defaults to `C_NULL`
 
 """
-VideoEncodeH264SessionParametersAddInfoEXT
+_VideoEncodeH264SessionParametersAddInfoEXT
 
 """
-    VideoEncodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
+    _VideoEncodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
 
 Arguments:
 - `max_sps_std_count::Integer`
@@ -11996,10 +11996,10 @@ Arguments:
 - `parameters_add_info`: defaults to `C_NULL`
 
 """
-VideoEncodeH264SessionParametersCreateInfoEXT
+_VideoEncodeH264SessionParametersCreateInfoEXT
 
 """
-    VideoEncodeH264DpbSlotInfoEXT(slot_index::Integer, std_picture_info::StdVideoEncodeH264PictureInfo; next = C_NULL)
+    _VideoEncodeH264DpbSlotInfoEXT(slot_index::Integer, std_picture_info::StdVideoEncodeH264PictureInfo; next = C_NULL)
 
 Arguments:
 - `slot_index::Integer`
@@ -12007,23 +12007,23 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeH264DpbSlotInfoEXT
+_VideoEncodeH264DpbSlotInfoEXT
 
 """
-    VideoEncodeH264VclFrameInfoEXT(ref_default_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, nalu_slice_entries::AbstractArray{<:VideoEncodeH264NaluSliceEXT}, current_picture_info::VideoEncodeH264DpbSlotInfoEXT; next = C_NULL)
+    _VideoEncodeH264VclFrameInfoEXT(ref_default_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, nalu_slice_entries::AbstractArray{<:_VideoEncodeH264NaluSliceEXT}, current_picture_info::_VideoEncodeH264DpbSlotInfoEXT; next = C_NULL)
 
 Arguments:
-- `ref_default_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
-- `ref_default_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
-- `nalu_slice_entries::AbstractArray{<:VideoEncodeH264NaluSliceEXT}`
-- `current_picture_info::VideoEncodeH264DpbSlotInfoEXT`
+- `ref_default_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
+- `ref_default_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
+- `nalu_slice_entries::AbstractArray{<:_VideoEncodeH264NaluSliceEXT}`
+- `current_picture_info::_VideoEncodeH264DpbSlotInfoEXT`
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeH264VclFrameInfoEXT
+_VideoEncodeH264VclFrameInfoEXT
 
 """
-    VideoEncodeH264EmitPictureParametersEXT(sps_id::Integer, emit_sps_enable::Bool, pps_id_entries::AbstractArray{<:Integer}; next = C_NULL)
+    _VideoEncodeH264EmitPictureParametersEXT(sps_id::Integer, emit_sps_enable::Bool, pps_id_entries::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `sps_id::Integer`
@@ -12032,68 +12032,68 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeH264EmitPictureParametersEXT
+_VideoEncodeH264EmitPictureParametersEXT
 
 """
-    VideoEncodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc; next = C_NULL)
+    _VideoEncodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc; next = C_NULL)
 
 Arguments:
 - `std_profile_idc::StdVideoH264ProfileIdc`
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeH264ProfileEXT
+_VideoEncodeH264ProfileEXT
 
 """
-    VideoEncodeH264NaluSliceEXT(slice_header_std::StdVideoEncodeH264SliceHeader, mb_count::Integer, ref_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, ref_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}, preceding_nalu_bytes::Integer, min_qp::Integer, max_qp::Integer; next = C_NULL)
+    _VideoEncodeH264NaluSliceEXT(slice_header_std::StdVideoEncodeH264SliceHeader, mb_count::Integer, ref_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, ref_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, preceding_nalu_bytes::Integer, min_qp::Integer, max_qp::Integer; next = C_NULL)
 
 Arguments:
 - `slice_header_std::StdVideoEncodeH264SliceHeader`
 - `mb_count::Integer`
-- `ref_final_list_0_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
-- `ref_final_list_1_entries::AbstractArray{<:VideoEncodeH264DpbSlotInfoEXT}`
+- `ref_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
+- `ref_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
 - `preceding_nalu_bytes::Integer`
 - `min_qp::Integer`
 - `max_qp::Integer`
 - `next`: defaults to `C_NULL`
 
 """
-VideoEncodeH264NaluSliceEXT
+_VideoEncodeH264NaluSliceEXT
 
 """
-    PhysicalDeviceInheritedViewportScissorFeaturesNV(inherited_viewport_scissor_2_d::Bool; next = C_NULL)
+    _PhysicalDeviceInheritedViewportScissorFeaturesNV(inherited_viewport_scissor_2_d::Bool; next = C_NULL)
 
 Arguments:
 - `inherited_viewport_scissor_2_d::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceInheritedViewportScissorFeaturesNV
+_PhysicalDeviceInheritedViewportScissorFeaturesNV
 
 """
-    CommandBufferInheritanceViewportScissorInfoNV(viewport_scissor_2_d::Bool, viewport_depth_count::Integer, viewport_depths::Viewport; next = C_NULL)
+    _CommandBufferInheritanceViewportScissorInfoNV(viewport_scissor_2_d::Bool, viewport_depth_count::Integer, viewport_depths::_Viewport; next = C_NULL)
 
 Arguments:
 - `viewport_scissor_2_d::Bool`
 - `viewport_depth_count::Integer`
-- `viewport_depths::Viewport`
+- `viewport_depths::_Viewport`
 - `next`: defaults to `C_NULL`
 
 """
-CommandBufferInheritanceViewportScissorInfoNV
+_CommandBufferInheritanceViewportScissorInfoNV
 
 """
-    PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(ycbcr_444_formats::Bool; next = C_NULL)
+    _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(ycbcr_444_formats::Bool; next = C_NULL)
 
 Arguments:
 - `ycbcr_444_formats::Bool`
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
+_PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
 
 """
-    PhysicalDeviceProvokingVertexFeaturesEXT(provoking_vertex_last::Bool, transform_feedback_preserves_provoking_vertex::Bool; next = C_NULL)
+    _PhysicalDeviceProvokingVertexFeaturesEXT(provoking_vertex_last::Bool, transform_feedback_preserves_provoking_vertex::Bool; next = C_NULL)
 
 Arguments:
 - `provoking_vertex_last::Bool`
@@ -12101,17 +12101,17 @@ Arguments:
 - `next`: defaults to `C_NULL`
 
 """
-PhysicalDeviceProvokingVertexFeaturesEXT
+_PhysicalDeviceProvokingVertexFeaturesEXT
 
 """
-    PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::VkProvokingVertexModeEXT; next = C_NULL)
+    _PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::VkProvokingVertexModeEXT; next = C_NULL)
 
 Arguments:
 - `provoking_vertex_mode::VkProvokingVertexModeEXT`
 - `next`: defaults to `C_NULL`
 
 """
-PipelineRasterizationProvokingVertexStateCreateInfoEXT
+_PipelineRasterizationProvokingVertexStateCreateInfoEXT
 
 """
     Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL)
@@ -12121,11 +12121,11 @@ PipelineRasterizationProvokingVertexStateCreateInfoEXT
 Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL)
 
 """
-    Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL)
+    Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:_DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL)
 
 
 """
-Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL)
+Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:_DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL)
 
 """
     DeviceMemory(device::Device, allocation_size::Integer, memory_type_index::Integer; allocator = C_NULL, next = C_NULL)
@@ -12156,18 +12156,18 @@ Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::VkSh
 BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
+    Image(device::Device, image_type::VkImageType, format::VkFormat, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
+Image(device::Device, image_type::VkImageType, format::VkFormat, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
+    ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
+ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     ShaderModule(device::Device, code_size::Integer, code::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -12177,11 +12177,11 @@ ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFo
 ShaderModule(device::Device, code_size::Integer, code::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
+    PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
+PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     Sampler(device::Device, mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -12191,18 +12191,18 @@ PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}
 Sampler(device::Device, mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    DescriptorSetLayout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0)
+    DescriptorSetLayout(device::Device, bindings::AbstractArray{<:_DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-DescriptorSetLayout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0)
+DescriptorSetLayout(device::Device, bindings::AbstractArray{<:_DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}; allocator = C_NULL, next = C_NULL, flags = 0)
+    DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:_DescriptorPoolSize}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}; allocator = C_NULL, next = C_NULL, flags = 0)
+DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:_DescriptorPoolSize}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     Fence(device::Device; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -12240,18 +12240,18 @@ QueryPool(device::Device, query_type::VkQueryType, query_count::Integer; allocat
 Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}; allocator = C_NULL, next = C_NULL, flags = 0)
+    RenderPass(device::Device, attachments::AbstractArray{<:_AttachmentDescription}, subpasses::AbstractArray{<:_SubpassDescription}, dependencies::AbstractArray{<:_SubpassDependency}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}; allocator = C_NULL, next = C_NULL, flags = 0)
+RenderPass(device::Device, attachments::AbstractArray{<:_AttachmentDescription}, subpasses::AbstractArray{<:_SubpassDescription}, dependencies::AbstractArray{<:_SubpassDependency}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+    RenderPass(device::Device, attachments::AbstractArray{<:_AttachmentDescription2}, subpasses::AbstractArray{<:_SubpassDescription2}, dependencies::AbstractArray{<:_SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+RenderPass(device::Device, attachments::AbstractArray{<:_AttachmentDescription2}, subpasses::AbstractArray{<:_SubpassDescription2}, dependencies::AbstractArray{<:_SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
@@ -12261,25 +12261,25 @@ RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription2},
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
 
 """
-    IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+    IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
-
-
-"""
-DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
-
-"""
-    SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
+    DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
+DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+
+"""
+    SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
+
+
+"""
+SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
 
 """
     ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
@@ -12296,11 +12296,11 @@ ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL,
 AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0)
 
 """
-    AccelerationStructureNV(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
+    AccelerationStructureNV(device::Device, compacted_size::Integer, info::_AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
 
 
 """
-AccelerationStructureNV(device::Device, compacted_size::Integer, info::AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
+AccelerationStructureNV(device::Device, compacted_size::Integer, info::_AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
 
 """
     DeferredOperationKHR(device::Device; allocator = C_NULL)
@@ -12317,18 +12317,18 @@ DeferredOperationKHR(device::Device; allocator = C_NULL)
 PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocator = C_NULL, next = C_NULL)
 
 """
-    DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0)
+    DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::_DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0)
+DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::_DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
+    SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 
 """
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 """
     DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL)
@@ -12345,11 +12345,11 @@ DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator 
 DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL)
 
 """
-    VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+    VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::VkFormat, max_coded_extent::_Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::VideoProfileKHR, picture_format::VkFormat, max_coded_extent::Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::VkFormat, max_coded_extent::_Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     VideoSessionParametersKHR(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; allocator = C_NULL, next = C_NULL)
