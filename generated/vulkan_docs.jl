@@ -1,5 +1,5 @@
 """
-    create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::Result{Instance, VulkanError}
+    create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Instance, VulkanError}
 
 Return codes:
 - Error:
@@ -28,7 +28,7 @@ Arguments:
 destroy_instance
 
 """
-    enumerate_physical_devices(instance::Instance)::Result{Vector{PhysicalDevice}, VulkanError}
+    enumerate_physical_devices(instance::Instance)::ResultTypes.Result{Vector{PhysicalDevice}, VulkanError}
 
 Return codes:
 - Error:
@@ -99,17 +99,17 @@ Arguments:
 get_physical_device_features
 
 """
-    get_physical_device_format_properties(physical_device::PhysicalDevice, format::VkFormat)::FormatProperties
+    get_physical_device_format_properties(physical_device::PhysicalDevice, format::Format)::FormatProperties
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `format::VkFormat`
+- `format::Format`
 
 """
 get_physical_device_format_properties
 
 """
-    get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; flags = 0)::Result{ImageFormatProperties, VulkanError}
+    get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; flags = 0)::ResultTypes.Result{ImageFormatProperties, VulkanError}
 
 Return codes:
 - Error:
@@ -119,9 +119,9 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `format::VkFormat`
-- `type::VkImageType`
-- `tiling::VkImageTiling`
+- `format::Format`
+- `type::ImageType`
+- `tiling::ImageTiling`
 - `usage::ImageUsageFlag`
 - `flags`: defaults to `0`
 
@@ -129,7 +129,7 @@ Arguments:
 get_physical_device_image_format_properties
 
 """
-    create_device(physical_device::PhysicalDevice, create_info::_DeviceCreateInfo; allocator = C_NULL)::Result{Device, VulkanError}
+    create_device(physical_device::PhysicalDevice, create_info::_DeviceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Device, VulkanError}
 
 Return codes:
 - Error:
@@ -160,7 +160,7 @@ Arguments:
 destroy_device
 
 """
-    enumerate_instance_version()::Result{VersionNumber, VulkanError}
+    enumerate_instance_version()::ResultTypes.Result{VersionNumber, VulkanError}
 
 Return codes:
 - Error:
@@ -172,7 +172,7 @@ Arguments:
 enumerate_instance_version
 
 """
-    enumerate_instance_layer_properties()::Result{Vector{LayerProperties}, VulkanError}
+    enumerate_instance_layer_properties()::ResultTypes.Result{Vector{LayerProperties}, VulkanError}
 
 Return codes:
 - Error:
@@ -185,7 +185,7 @@ Arguments:
 enumerate_instance_layer_properties
 
 """
-    enumerate_instance_extension_properties(; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+    enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
 
 Return codes:
 - Error:
@@ -200,7 +200,7 @@ Arguments:
 enumerate_instance_extension_properties
 
 """
-    enumerate_device_layer_properties(physical_device::PhysicalDevice)::Result{Vector{LayerProperties}, VulkanError}
+    enumerate_device_layer_properties(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{LayerProperties}, VulkanError}
 
 Return codes:
 - Error:
@@ -214,7 +214,7 @@ Arguments:
 enumerate_device_layer_properties
 
 """
-    enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::Result{Vector{ExtensionProperties}, VulkanError}
+    enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
 
 Return codes:
 - Error:
@@ -241,7 +241,7 @@ Arguments:
 get_device_queue
 
 """
-    queue_submit(queue::Queue, submits::AbstractArray{<:_SubmitInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
+    queue_submit(queue::Queue, submits::AbstractArray{<:_SubmitInfo}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -258,7 +258,7 @@ Arguments:
 queue_submit
 
 """
-    queue_wait_idle(queue::Queue)::Result{VkResult, VulkanError}
+    queue_wait_idle(queue::Queue)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -273,7 +273,7 @@ Arguments:
 queue_wait_idle
 
 """
-    device_wait_idle(device::Device)::Result{VkResult, VulkanError}
+    device_wait_idle(device::Device)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -288,7 +288,7 @@ Arguments:
 device_wait_idle
 
 """
-    allocate_memory(device::Device, allocate_info::_MemoryAllocateInfo; allocator = C_NULL)::Result{DeviceMemory, VulkanError}
+    allocate_memory(device::Device, allocate_info::_MemoryAllocateInfo; allocator = C_NULL)::ResultTypes.Result{DeviceMemory, VulkanError}
 
 Return codes:
 - Error:
@@ -317,7 +317,7 @@ Arguments:
 free_memory
 
 """
-    map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)::Result{Ptr{Cvoid}, VulkanError}
+    map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)::ResultTypes.Result{Ptr{Cvoid}, VulkanError}
 
 Return codes:
 - Error:
@@ -346,7 +346,7 @@ Arguments:
 unmap_memory
 
 """
-    flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::Result{VkResult, VulkanError}
+    flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -361,7 +361,7 @@ Arguments:
 flush_mapped_memory_ranges
 
 """
-    invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::Result{VkResult, VulkanError}
+    invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -396,7 +396,7 @@ Arguments:
 get_buffer_memory_requirements
 
 """
-    bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError}
+    bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -424,7 +424,7 @@ Arguments:
 get_image_memory_requirements
 
 """
-    bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::Result{VkResult, VulkanError}
+    bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -451,21 +451,21 @@ Arguments:
 get_image_sparse_memory_requirements
 
 """
-    get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling)::Vector{SparseImageFormatProperties}
+    get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling)::Vector{SparseImageFormatProperties}
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `format::VkFormat`
-- `type::VkImageType`
+- `format::Format`
+- `type::ImageType`
 - `samples::SampleCountFlag`
 - `usage::ImageUsageFlag`
-- `tiling::VkImageTiling`
+- `tiling::ImageTiling`
 
 """
 get_physical_device_sparse_image_format_properties
 
 """
-    queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:_BindSparseInfo}; fence = C_NULL)::Result{VkResult, VulkanError}
+    queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:_BindSparseInfo}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -482,7 +482,7 @@ Arguments:
 queue_bind_sparse
 
 """
-    create_fence(device::Device, create_info::_FenceCreateInfo; allocator = C_NULL)::Result{Fence, VulkanError}
+    create_fence(device::Device, create_info::_FenceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
 
 Return codes:
 - Error:
@@ -509,7 +509,7 @@ Arguments:
 destroy_fence
 
 """
-    reset_fences(device::Device, fences::AbstractArray{<:Fence})::Result{VkResult, VulkanError}
+    reset_fences(device::Device, fences::AbstractArray{<:Fence})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -523,7 +523,7 @@ Arguments:
 reset_fences
 
 """
-    get_fence_status(device::Device, fence::Fence)::Result{VkResult, VulkanError}
+    get_fence_status(device::Device, fence::Fence)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -542,7 +542,7 @@ Arguments:
 get_fence_status
 
 """
-    wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::Result{VkResult, VulkanError}
+    wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -563,7 +563,7 @@ Arguments:
 wait_for_fences
 
 """
-    create_semaphore(device::Device, create_info::_SemaphoreCreateInfo; allocator = C_NULL)::Result{Semaphore, VulkanError}
+    create_semaphore(device::Device, create_info::_SemaphoreCreateInfo; allocator = C_NULL)::ResultTypes.Result{Semaphore, VulkanError}
 
 Return codes:
 - Error:
@@ -590,7 +590,7 @@ Arguments:
 destroy_semaphore
 
 """
-    create_event(device::Device, create_info::_EventCreateInfo; allocator = C_NULL)::Result{Event, VulkanError}
+    create_event(device::Device, create_info::_EventCreateInfo; allocator = C_NULL)::ResultTypes.Result{Event, VulkanError}
 
 Return codes:
 - Error:
@@ -617,7 +617,7 @@ Arguments:
 destroy_event
 
 """
-    get_event_status(device::Device, event::Event)::Result{VkResult, VulkanError}
+    get_event_status(device::Device, event::Event)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -636,7 +636,7 @@ Arguments:
 get_event_status
 
 """
-    set_event(device::Device, event::Event)::Result{VkResult, VulkanError}
+    set_event(device::Device, event::Event)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -651,7 +651,7 @@ Arguments:
 set_event
 
 """
-    reset_event(device::Device, event::Event)::Result{VkResult, VulkanError}
+    reset_event(device::Device, event::Event)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -665,7 +665,7 @@ Arguments:
 reset_event
 
 """
-    create_query_pool(device::Device, create_info::_QueryPoolCreateInfo; allocator = C_NULL)::Result{QueryPool, VulkanError}
+    create_query_pool(device::Device, create_info::_QueryPoolCreateInfo; allocator = C_NULL)::ResultTypes.Result{QueryPool, VulkanError}
 
 Return codes:
 - Error:
@@ -692,7 +692,7 @@ Arguments:
 destroy_query_pool
 
 """
-    get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::Result{VkResult, VulkanError}
+    get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -729,7 +729,7 @@ Arguments:
 reset_query_pool
 
 """
-    create_buffer(device::Device, create_info::_BufferCreateInfo; allocator = C_NULL)::Result{Buffer, VulkanError}
+    create_buffer(device::Device, create_info::_BufferCreateInfo; allocator = C_NULL)::ResultTypes.Result{Buffer, VulkanError}
 
 Return codes:
 - Error:
@@ -757,7 +757,7 @@ Arguments:
 destroy_buffer
 
 """
-    create_buffer_view(device::Device, create_info::_BufferViewCreateInfo; allocator = C_NULL)::Result{BufferView, VulkanError}
+    create_buffer_view(device::Device, create_info::_BufferViewCreateInfo; allocator = C_NULL)::ResultTypes.Result{BufferView, VulkanError}
 
 Return codes:
 - Error:
@@ -784,7 +784,7 @@ Arguments:
 destroy_buffer_view
 
 """
-    create_image(device::Device, create_info::_ImageCreateInfo; allocator = C_NULL)::Result{Image, VulkanError}
+    create_image(device::Device, create_info::_ImageCreateInfo; allocator = C_NULL)::ResultTypes.Result{Image, VulkanError}
 
 Return codes:
 - Error:
@@ -822,7 +822,7 @@ Arguments:
 get_image_subresource_layout
 
 """
-    create_image_view(device::Device, create_info::_ImageViewCreateInfo; allocator = C_NULL)::Result{ImageView, VulkanError}
+    create_image_view(device::Device, create_info::_ImageViewCreateInfo; allocator = C_NULL)::ResultTypes.Result{ImageView, VulkanError}
 
 Return codes:
 - Error:
@@ -849,7 +849,7 @@ Arguments:
 destroy_image_view
 
 """
-    create_shader_module(device::Device, create_info::_ShaderModuleCreateInfo; allocator = C_NULL)::Result{ShaderModule, VulkanError}
+    create_shader_module(device::Device, create_info::_ShaderModuleCreateInfo; allocator = C_NULL)::ResultTypes.Result{ShaderModule, VulkanError}
 
 Return codes:
 - Error:
@@ -877,7 +877,7 @@ Arguments:
 destroy_shader_module
 
 """
-    create_pipeline_cache(device::Device, create_info::_PipelineCacheCreateInfo; allocator = C_NULL)::Result{PipelineCache, VulkanError}
+    create_pipeline_cache(device::Device, create_info::_PipelineCacheCreateInfo; allocator = C_NULL)::ResultTypes.Result{PipelineCache, VulkanError}
 
 Return codes:
 - Error:
@@ -904,7 +904,7 @@ Arguments:
 destroy_pipeline_cache
 
 """
-    get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
 - Error:
@@ -922,7 +922,7 @@ Arguments:
 get_pipeline_cache_data
 
 """
-    merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::Result{VkResult, VulkanError}
+    merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -938,7 +938,7 @@ Arguments:
 merge_pipeline_caches
 
 """
-    create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
 - Success:
@@ -959,7 +959,7 @@ Arguments:
 create_graphics_pipelines
 
 """
-    create_compute_pipelines(device::Device, create_infos::AbstractArray{<:_ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_compute_pipelines(device::Device, create_infos::AbstractArray{<:_ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
 - Success:
@@ -991,7 +991,7 @@ Arguments:
 destroy_pipeline
 
 """
-    create_pipeline_layout(device::Device, create_info::_PipelineLayoutCreateInfo; allocator = C_NULL)::Result{PipelineLayout, VulkanError}
+    create_pipeline_layout(device::Device, create_info::_PipelineLayoutCreateInfo; allocator = C_NULL)::ResultTypes.Result{PipelineLayout, VulkanError}
 
 Return codes:
 - Error:
@@ -1018,7 +1018,7 @@ Arguments:
 destroy_pipeline_layout
 
 """
-    create_sampler(device::Device, create_info::_SamplerCreateInfo; allocator = C_NULL)::Result{Sampler, VulkanError}
+    create_sampler(device::Device, create_info::_SamplerCreateInfo; allocator = C_NULL)::ResultTypes.Result{Sampler, VulkanError}
 
 Return codes:
 - Error:
@@ -1045,7 +1045,7 @@ Arguments:
 destroy_sampler
 
 """
-    create_descriptor_set_layout(device::Device, create_info::_DescriptorSetLayoutCreateInfo; allocator = C_NULL)::Result{DescriptorSetLayout, VulkanError}
+    create_descriptor_set_layout(device::Device, create_info::_DescriptorSetLayoutCreateInfo; allocator = C_NULL)::ResultTypes.Result{DescriptorSetLayout, VulkanError}
 
 Return codes:
 - Error:
@@ -1072,7 +1072,7 @@ Arguments:
 destroy_descriptor_set_layout
 
 """
-    create_descriptor_pool(device::Device, create_info::_DescriptorPoolCreateInfo; allocator = C_NULL)::Result{DescriptorPool, VulkanError}
+    create_descriptor_pool(device::Device, create_info::_DescriptorPoolCreateInfo; allocator = C_NULL)::ResultTypes.Result{DescriptorPool, VulkanError}
 
 Return codes:
 - Error:
@@ -1100,7 +1100,7 @@ Arguments:
 destroy_descriptor_pool
 
 """
-    reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)::Result{VkResult, VulkanError}
+    reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 
@@ -1113,7 +1113,7 @@ Arguments:
 reset_descriptor_pool
 
 """
-    allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo)::Result{Vector{DescriptorSet}, VulkanError}
+    allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo)::ResultTypes.Result{Vector{DescriptorSet}, VulkanError}
 
 Return codes:
 - Error:
@@ -1130,7 +1130,7 @@ Arguments:
 allocate_descriptor_sets
 
 """
-    free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::Result{VkResult, VulkanError}
+    free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 
@@ -1154,7 +1154,7 @@ Arguments:
 update_descriptor_sets
 
 """
-    create_framebuffer(device::Device, create_info::_FramebufferCreateInfo; allocator = C_NULL)::Result{Framebuffer, VulkanError}
+    create_framebuffer(device::Device, create_info::_FramebufferCreateInfo; allocator = C_NULL)::ResultTypes.Result{Framebuffer, VulkanError}
 
 Return codes:
 - Error:
@@ -1181,7 +1181,7 @@ Arguments:
 destroy_framebuffer
 
 """
-    create_render_pass(device::Device, create_info::_RenderPassCreateInfo; allocator = C_NULL)::Result{RenderPass, VulkanError}
+    create_render_pass(device::Device, create_info::_RenderPassCreateInfo; allocator = C_NULL)::ResultTypes.Result{RenderPass, VulkanError}
 
 Return codes:
 - Error:
@@ -1218,7 +1218,7 @@ Arguments:
 get_render_area_granularity
 
 """
-    create_command_pool(device::Device, create_info::_CommandPoolCreateInfo; allocator = C_NULL)::Result{CommandPool, VulkanError}
+    create_command_pool(device::Device, create_info::_CommandPoolCreateInfo; allocator = C_NULL)::ResultTypes.Result{CommandPool, VulkanError}
 
 Return codes:
 - Error:
@@ -1245,7 +1245,7 @@ Arguments:
 destroy_command_pool
 
 """
-    reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Result{VkResult, VulkanError}
+    reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -1260,7 +1260,7 @@ Arguments:
 reset_command_pool
 
 """
-    allocate_command_buffers(device::Device, allocate_info::_CommandBufferAllocateInfo)::Result{Vector{CommandBuffer}, VulkanError}
+    allocate_command_buffers(device::Device, allocate_info::_CommandBufferAllocateInfo)::ResultTypes.Result{Vector{CommandBuffer}, VulkanError}
 
 Return codes:
 - Error:
@@ -1286,7 +1286,7 @@ Arguments:
 free_command_buffers
 
 """
-    begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo)::Result{VkResult, VulkanError}
+    begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -1301,7 +1301,7 @@ Arguments:
 begin_command_buffer
 
 """
-    end_command_buffer(command_buffer::CommandBuffer)::Result{VkResult, VulkanError}
+    end_command_buffer(command_buffer::CommandBuffer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -1315,7 +1315,7 @@ Arguments:
 end_command_buffer
 
 """
-    reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::Result{VkResult, VulkanError}
+    reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -1329,11 +1329,11 @@ Arguments:
 reset_command_buffer
 
 """
-    cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline)::Cvoid
+    cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `pipeline::Pipeline`
 
 """
@@ -1436,11 +1436,11 @@ Arguments:
 cmd_set_stencil_reference
 
 """
-    cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})::Cvoid
+    cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `layout::PipelineLayout`
 - `first_set::Integer`
 - `descriptor_sets::AbstractArray{<:DescriptorSet}`
@@ -1450,13 +1450,13 @@ Arguments:
 cmd_bind_descriptor_sets
 
 """
-    cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::VkIndexType)::Cvoid
+    cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `buffer::Buffer`
 - `offset::Integer`
-- `index_type::VkIndexType`
+- `index_type::IndexType`
 
 """
 cmd_bind_index_buffer
@@ -1561,54 +1561,54 @@ Arguments:
 cmd_copy_buffer
 
 """
-    cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageCopy})::Cvoid
+    cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_ImageCopy}`
 
 """
 cmd_copy_image
 
 """
-    cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageBlit}, filter::VkFilter)::Cvoid
+    cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageBlit}, filter::Filter)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_ImageBlit}`
-- `filter::VkFilter`
+- `filter::Filter`
 
 """
 cmd_blit_image
 
 """
-    cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
+    cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_buffer::Buffer`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_BufferImageCopy}`
 
 """
 cmd_copy_buffer_to_image
 
 """
-    cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
+    cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_buffer::Buffer`
 - `regions::AbstractArray{<:_BufferImageCopy}`
 
@@ -1642,12 +1642,12 @@ Arguments:
 cmd_fill_buffer
 
 """
-    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, color::VkClearColorValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
+    cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::VkClearColorValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `image::Image`
-- `image_layout::VkImageLayout`
+- `image_layout::ImageLayout`
 - `color::VkClearColorValue`
 - `ranges::AbstractArray{<:_ImageSubresourceRange}`
 
@@ -1655,12 +1655,12 @@ Arguments:
 cmd_clear_color_image
 
 """
-    cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::VkImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
+    cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `image::Image`
-- `image_layout::VkImageLayout`
+- `image_layout::ImageLayout`
 - `depth_stencil::_ClearDepthStencilValue`
 - `ranges::AbstractArray{<:_ImageSubresourceRange}`
 
@@ -1679,14 +1679,14 @@ Arguments:
 cmd_clear_attachments
 
 """
-    cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageResolve})::Cvoid
+    cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageResolve})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_ImageResolve}`
 
 """
@@ -1840,22 +1840,22 @@ Arguments:
 cmd_push_constants
 
 """
-    cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::VkSubpassContents)::Cvoid
+    cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::SubpassContents)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `render_pass_begin::_RenderPassBeginInfo`
-- `contents::VkSubpassContents`
+- `contents::SubpassContents`
 
 """
 cmd_begin_render_pass
 
 """
-    cmd_next_subpass(command_buffer::CommandBuffer, contents::VkSubpassContents)::Cvoid
+    cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `contents::VkSubpassContents`
+- `contents::SubpassContents`
 
 """
 cmd_next_subpass
@@ -1880,7 +1880,7 @@ Arguments:
 cmd_execute_commands
 
 """
-    create_android_surface_khr(instance::Instance, create_info::_AndroidSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_android_surface_khr(instance::Instance, create_info::_AndroidSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -1897,7 +1897,7 @@ Arguments:
 create_android_surface_khr
 
 """
-    get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPropertiesKHR}, VulkanError}
+    get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -1911,7 +1911,7 @@ Arguments:
 get_physical_device_display_properties_khr
 
 """
-    get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
+    get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -1925,7 +1925,7 @@ Arguments:
 get_physical_device_display_plane_properties_khr
 
 """
-    get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::Result{Vector{DisplayKHR}, VulkanError}
+    get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::ResultTypes.Result{Vector{DisplayKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -1940,7 +1940,7 @@ Arguments:
 get_display_plane_supported_displays_khr
 
 """
-    get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModePropertiesKHR}, VulkanError}
+    get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Vector{DisplayModePropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -1955,7 +1955,7 @@ Arguments:
 get_display_mode_properties_khr
 
 """
-    create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::_DisplayModeCreateInfoKHR; allocator = C_NULL)::Result{DisplayModeKHR, VulkanError}
+    create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::_DisplayModeCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{DisplayModeKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -1973,7 +1973,7 @@ Arguments:
 create_display_mode_khr
 
 """
-    get_display_plane_capabilities_khr(physical_device::PhysicalDevice, mode::DisplayModeKHR, plane_index::Integer)::Result{DisplayPlaneCapabilitiesKHR, VulkanError}
+    get_display_plane_capabilities_khr(physical_device::PhysicalDevice, mode::DisplayModeKHR, plane_index::Integer)::ResultTypes.Result{DisplayPlaneCapabilitiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -1989,7 +1989,7 @@ Arguments:
 get_display_plane_capabilities_khr
 
 """
-    create_display_plane_surface_khr(instance::Instance, create_info::_DisplaySurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_display_plane_surface_khr(instance::Instance, create_info::_DisplaySurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2005,7 +2005,7 @@ Arguments:
 create_display_plane_surface_khr
 
 """
-    create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}; allocator = C_NULL)::Result{Vector{SwapchainKHR}, VulkanError}
+    create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}; allocator = C_NULL)::ResultTypes.Result{Vector{SwapchainKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -2035,7 +2035,7 @@ Arguments:
 destroy_surface_khr
 
 """
-    get_physical_device_surface_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, surface::SurfaceKHR)::Result{Bool, VulkanError}
+    get_physical_device_surface_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, surface::SurfaceKHR)::ResultTypes.Result{Bool, VulkanError}
 
 Return codes:
 - Error:
@@ -2052,7 +2052,7 @@ Arguments:
 get_physical_device_surface_support_khr
 
 """
-    get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{SurfaceCapabilitiesKHR, VulkanError}
+    get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{SurfaceCapabilitiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2068,7 +2068,7 @@ Arguments:
 get_physical_device_surface_capabilities_khr
 
 """
-    get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{SurfaceFormatKHR}, VulkanError}
+    get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{SurfaceFormatKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -2084,7 +2084,7 @@ Arguments:
 get_physical_device_surface_formats_khr
 
 """
-    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
+    get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{PresentModeKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -2100,7 +2100,7 @@ Arguments:
 get_physical_device_surface_present_modes_khr
 
 """
-    create_swapchain_khr(device::Device, create_info::_SwapchainCreateInfoKHR; allocator = C_NULL)::Result{SwapchainKHR, VulkanError}
+    create_swapchain_khr(device::Device, create_info::_SwapchainCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SwapchainKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2131,7 +2131,7 @@ Arguments:
 destroy_swapchain_khr
 
 """
-    get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::Result{Vector{Image}, VulkanError}
+    get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Vector{Image}, VulkanError}
 
 Return codes:
 - Error:
@@ -2146,7 +2146,7 @@ Arguments:
 get_swapchain_images_khr
 
 """
-    acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::Result{Tuple{UInt32, VkResult}, VulkanError}
+    acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::ResultTypes.Result{Tuple{UInt32, Result}, VulkanError}
 
 Return codes:
 - Success:
@@ -2173,7 +2173,7 @@ Arguments:
 acquire_next_image_khr
 
 """
-    queue_present_khr(queue::Queue, present_info::_PresentInfoKHR)::Result{VkResult, VulkanError}
+    queue_present_khr(queue::Queue, present_info::_PresentInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -2195,7 +2195,7 @@ Arguments:
 queue_present_khr
 
 """
-    create_vi_surface_nn(instance::Instance, create_info::_ViSurfaceCreateInfoNN; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_vi_surface_nn(instance::Instance, create_info::_ViSurfaceCreateInfoNN; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2212,7 +2212,7 @@ Arguments:
 create_vi_surface_nn
 
 """
-    create_wayland_surface_khr(instance::Instance, create_info::_WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_wayland_surface_khr(instance::Instance, create_info::_WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2239,7 +2239,7 @@ Arguments:
 get_physical_device_wayland_presentation_support_khr
 
 """
-    create_win_32_surface_khr(instance::Instance, create_info::_Win32SurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_win_32_surface_khr(instance::Instance, create_info::_Win32SurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2265,7 +2265,7 @@ Arguments:
 get_physical_device_win_32_presentation_support_khr
 
 """
-    create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2293,7 +2293,7 @@ Arguments:
 get_physical_device_xlib_presentation_support_khr
 
 """
-    create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCreateInfoKHR; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2321,7 +2321,7 @@ Arguments:
 get_physical_device_xcb_presentation_support_khr
 
 """
-    create_direct_fb_surface_ext(instance::Instance, create_info::_DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_direct_fb_surface_ext(instance::Instance, create_info::_DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2348,7 +2348,7 @@ Arguments:
 get_physical_device_direct_fb_presentation_support_ext
 
 """
-    create_image_pipe_surface_fuchsia(instance::Instance, create_info::_ImagePipeSurfaceCreateInfoFUCHSIA; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_image_pipe_surface_fuchsia(instance::Instance, create_info::_ImagePipeSurfaceCreateInfoFUCHSIA; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2364,7 +2364,7 @@ Arguments:
 create_image_pipe_surface_fuchsia
 
 """
-    create_stream_descriptor_surface_ggp(instance::Instance, create_info::_StreamDescriptorSurfaceCreateInfoGGP; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_stream_descriptor_surface_ggp(instance::Instance, create_info::_StreamDescriptorSurfaceCreateInfoGGP; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2381,7 +2381,7 @@ Arguments:
 create_stream_descriptor_surface_ggp
 
 """
-    create_screen_surface_qnx(instance::Instance, create_info::_ScreenSurfaceCreateInfoQNX; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_screen_surface_qnx(instance::Instance, create_info::_ScreenSurfaceCreateInfoQNX; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2408,7 +2408,7 @@ Arguments:
 get_physical_device_screen_presentation_support_qnx
 
 """
-    create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::Result{DebugReportCallbackEXT, VulkanError}
+    create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -2434,12 +2434,12 @@ Arguments:
 destroy_debug_report_callback_ext
 
 """
-    debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::VkDebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)::Cvoid
+    debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::DebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)::Cvoid
 
 Arguments:
 - `instance::Instance`
 - `flags::DebugReportFlagEXT`
-- `object_type::VkDebugReportObjectTypeEXT`
+- `object_type::DebugReportObjectTypeEXT`
 - `object::Integer`
 - `location::Integer`
 - `message_code::Integer`
@@ -2450,7 +2450,7 @@ Arguments:
 debug_report_message_ext
 
 """
-    debug_marker_set_object_name_ext(device::Device, name_info::_DebugMarkerObjectNameInfoEXT)::Result{VkResult, VulkanError}
+    debug_marker_set_object_name_ext(device::Device, name_info::_DebugMarkerObjectNameInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2465,7 +2465,7 @@ Arguments:
 debug_marker_set_object_name_ext
 
 """
-    debug_marker_set_object_tag_ext(device::Device, tag_info::_DebugMarkerObjectTagInfoEXT)::Result{VkResult, VulkanError}
+    debug_marker_set_object_tag_ext(device::Device, tag_info::_DebugMarkerObjectTagInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2509,7 +2509,7 @@ Arguments:
 cmd_debug_marker_insert_ext
 
 """
-    get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)::Result{ExternalImageFormatPropertiesNV, VulkanError}
+    get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)::ResultTypes.Result{ExternalImageFormatPropertiesNV, VulkanError}
 
 Return codes:
 - Error:
@@ -2519,9 +2519,9 @@ Return codes:
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `format::VkFormat`
-- `type::VkImageType`
-- `tiling::VkImageTiling`
+- `format::Format`
+- `type::ImageType`
+- `tiling::ImageTiling`
 - `usage::ImageUsageFlag`
 - `flags`: defaults to `0`
 - `external_handle_type`: defaults to `0`
@@ -2530,7 +2530,7 @@ Arguments:
 get_physical_device_external_image_format_properties_nv
 
 """
-    get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::Result{VkResult, VulkanError}
+    get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2568,11 +2568,11 @@ Arguments:
 cmd_preprocess_generated_commands_nv
 
 """
-    cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, group_index::Integer)::Cvoid
+    cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, group_index::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `pipeline::Pipeline`
 - `group_index::Integer`
 
@@ -2590,7 +2590,7 @@ Arguments:
 get_generated_commands_memory_requirements_nv
 
 """
-    create_indirect_commands_layout_nv(device::Device, create_info::_IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::Result{IndirectCommandsLayoutNV, VulkanError}
+    create_indirect_commands_layout_nv(device::Device, create_info::_IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::ResultTypes.Result{IndirectCommandsLayoutNV, VulkanError}
 
 Return codes:
 - Error:
@@ -2635,17 +2635,17 @@ Arguments:
 get_physical_device_properties_2
 
 """
-    get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::VkFormat)::FormatProperties2
+    get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::Format)::FormatProperties2
 
 Arguments:
 - `physical_device::PhysicalDevice`
-- `format::VkFormat`
+- `format::Format`
 
 """
 get_physical_device_format_properties_2
 
 """
-    get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::_PhysicalDeviceImageFormatInfo2)::Result{ImageFormatProperties2, VulkanError}
+    get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::_PhysicalDeviceImageFormatInfo2)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
 
 Return codes:
 - Error:
@@ -2689,11 +2689,11 @@ Arguments:
 get_physical_device_sparse_image_format_properties_2
 
 """
-    cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::VkPipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:_WriteDescriptorSet})::Cvoid
+    cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:_WriteDescriptorSet})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `layout::PipelineLayout`
 - `set::Integer`
 - `descriptor_writes::AbstractArray{<:_WriteDescriptorSet}`
@@ -2723,7 +2723,7 @@ Arguments:
 get_physical_device_external_buffer_properties
 
 """
-    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
+    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2739,7 +2739,7 @@ Arguments:
 get_memory_win_32_handle_khr
 
 """
-    get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::Result{MemoryWin32HandlePropertiesKHR, VulkanError}
+    get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::ResultTypes.Result{MemoryWin32HandlePropertiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2755,7 +2755,7 @@ Arguments:
 get_memory_win_32_handle_properties_khr
 
 """
-    get_memory_fd_khr(device::Device, get_fd_info::_MemoryGetFdInfoKHR)::Result{Int, VulkanError}
+    get_memory_fd_khr(device::Device, get_fd_info::_MemoryGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
 Return codes:
 - Error:
@@ -2770,7 +2770,7 @@ Arguments:
 get_memory_fd_khr
 
 """
-    get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::Result{MemoryFdPropertiesKHR, VulkanError}
+    get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::ResultTypes.Result{MemoryFdPropertiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -2786,7 +2786,7 @@ Arguments:
 get_memory_fd_properties_khr
 
 """
-    get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
+    get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2802,7 +2802,7 @@ Arguments:
 get_memory_zircon_handle_fuchsia
 
 """
-    get_memory_zircon_handle_properties_fuchsia(device::Device, handle_type::ExternalMemoryHandleTypeFlag, zircon_handle::vk.zx_handle_t)::Result{MemoryZirconHandlePropertiesFUCHSIA, VulkanError}
+    get_memory_zircon_handle_properties_fuchsia(device::Device, handle_type::ExternalMemoryHandleTypeFlag, zircon_handle::vk.zx_handle_t)::ResultTypes.Result{MemoryZirconHandlePropertiesFUCHSIA, VulkanError}
 
 Return codes:
 - Error:
@@ -2827,7 +2827,7 @@ Arguments:
 get_physical_device_external_semaphore_properties
 
 """
-    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
+    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2843,7 +2843,7 @@ Arguments:
 get_semaphore_win_32_handle_khr
 
 """
-    import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR)::Result{VkResult, VulkanError}
+    import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2858,7 +2858,7 @@ Arguments:
 import_semaphore_win_32_handle_khr
 
 """
-    get_semaphore_fd_khr(device::Device, get_fd_info::_SemaphoreGetFdInfoKHR)::Result{Int, VulkanError}
+    get_semaphore_fd_khr(device::Device, get_fd_info::_SemaphoreGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
 Return codes:
 - Error:
@@ -2873,7 +2873,7 @@ Arguments:
 get_semaphore_fd_khr
 
 """
-    import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR)::Result{VkResult, VulkanError}
+    import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2888,7 +2888,7 @@ Arguments:
 import_semaphore_fd_khr
 
 """
-    get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::Result{VkResult, VulkanError}
+    get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2904,7 +2904,7 @@ Arguments:
 get_semaphore_zircon_handle_fuchsia
 
 """
-    import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::_ImportSemaphoreZirconHandleInfoFUCHSIA)::Result{VkResult, VulkanError}
+    import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::_ImportSemaphoreZirconHandleInfoFUCHSIA)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2929,7 +2929,7 @@ Arguments:
 get_physical_device_external_fence_properties
 
 """
-    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::Result{VkResult, VulkanError}
+    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2945,7 +2945,7 @@ Arguments:
 get_fence_win_32_handle_khr
 
 """
-    import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR)::Result{VkResult, VulkanError}
+    import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2960,7 +2960,7 @@ Arguments:
 import_fence_win_32_handle_khr
 
 """
-    get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)::Result{Int, VulkanError}
+    get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
 Return codes:
 - Error:
@@ -2975,7 +2975,7 @@ Arguments:
 get_fence_fd_khr
 
 """
-    import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR)::Result{VkResult, VulkanError}
+    import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -2990,7 +2990,7 @@ Arguments:
 import_fence_fd_khr
 
 """
-    release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::Result{VkResult, VulkanError}
+    release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 
@@ -3002,7 +3002,7 @@ Arguments:
 release_display_ext
 
 """
-    acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::Result{VkResult, VulkanError}
+    acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3018,7 +3018,7 @@ Arguments:
 acquire_xlib_display_ext
 
 """
-    get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::Result{DisplayKHR, VulkanError}
+    get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3033,7 +3033,7 @@ Arguments:
 get_rand_r_output_display_ext
 
 """
-    acquire_winrt_display_nv(physical_device::PhysicalDevice, display::DisplayKHR)::Result{VkResult, VulkanError}
+    acquire_winrt_display_nv(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3049,7 +3049,7 @@ Arguments:
 acquire_winrt_display_nv
 
 """
-    get_winrt_display_nv(physical_device::PhysicalDevice, device_relative_id::Integer)::Result{DisplayKHR, VulkanError}
+    get_winrt_display_nv(physical_device::PhysicalDevice, device_relative_id::Integer)::ResultTypes.Result{DisplayKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3065,7 +3065,7 @@ Arguments:
 get_winrt_display_nv
 
 """
-    display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::_DisplayPowerInfoEXT)::Result{VkResult, VulkanError}
+    display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::_DisplayPowerInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3080,7 +3080,7 @@ Arguments:
 display_power_control_ext
 
 """
-    register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
+    register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
 
 Return codes:
 - Error:
@@ -3095,7 +3095,7 @@ Arguments:
 register_device_event_ext
 
 """
-    register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::_DisplayEventInfoEXT; allocator = C_NULL)::Result{Fence, VulkanError}
+    register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::_DisplayEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
 
 Return codes:
 - Error:
@@ -3111,7 +3111,7 @@ Arguments:
 register_display_event_ext
 
 """
-    get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)::Result{UInt64, VulkanError}
+    get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)::ResultTypes.Result{UInt64, VulkanError}
 
 Return codes:
 - Error:
@@ -3128,7 +3128,7 @@ Arguments:
 get_swapchain_counter_ext
 
 """
-    get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{SurfaceCapabilities2EXT, VulkanError}
+    get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{SurfaceCapabilities2EXT, VulkanError}
 
 Return codes:
 - Error:
@@ -3144,7 +3144,7 @@ Arguments:
 get_physical_device_surface_capabilities_2_ext
 
 """
-    enumerate_physical_device_groups(instance::Instance)::Result{Vector{PhysicalDeviceGroupProperties}, VulkanError}
+    enumerate_physical_device_groups(instance::Instance)::ResultTypes.Result{Vector{PhysicalDeviceGroupProperties}, VulkanError}
 
 Return codes:
 - Error:
@@ -3171,7 +3171,7 @@ Arguments:
 get_device_group_peer_memory_features
 
 """
-    bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:_BindBufferMemoryInfo})::Result{VkResult, VulkanError}
+    bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:_BindBufferMemoryInfo})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3187,7 +3187,7 @@ Arguments:
 bind_buffer_memory_2
 
 """
-    bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:_BindImageMemoryInfo})::Result{VkResult, VulkanError}
+    bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:_BindImageMemoryInfo})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3212,7 +3212,7 @@ Arguments:
 cmd_set_device_mask
 
 """
-    get_device_group_present_capabilities_khr(device::Device)::Result{DeviceGroupPresentCapabilitiesKHR, VulkanError}
+    get_device_group_present_capabilities_khr(device::Device)::ResultTypes.Result{DeviceGroupPresentCapabilitiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3226,7 +3226,7 @@ Arguments:
 get_device_group_present_capabilities_khr
 
 """
-    get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
+    get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)::ResultTypes.Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3243,7 +3243,7 @@ Arguments:
 get_device_group_surface_present_modes_khr
 
 """
-    acquire_next_image_2_khr(device::Device, acquire_info::_AcquireNextImageInfoKHR)::Result{Tuple{UInt32, VkResult}, VulkanError}
+    acquire_next_image_2_khr(device::Device, acquire_info::_AcquireNextImageInfoKHR)::ResultTypes.Result{Tuple{UInt32, Result}, VulkanError}
 
 Return codes:
 - Success:
@@ -3282,7 +3282,7 @@ Arguments:
 cmd_dispatch_base
 
 """
-    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::Result{Vector{_Rect2D}, VulkanError}
+    get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{_Rect2D}, VulkanError}
 
 Return codes:
 - Error:
@@ -3297,7 +3297,7 @@ Arguments:
 get_physical_device_present_rectangles_khr
 
 """
-    create_descriptor_update_template(device::Device, create_info::_DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)::Result{DescriptorUpdateTemplate, VulkanError}
+    create_descriptor_update_template(device::Device, create_info::_DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)::ResultTypes.Result{DescriptorUpdateTemplate, VulkanError}
 
 Return codes:
 - Error:
@@ -3360,7 +3360,7 @@ Arguments:
 set_hdr_metadata_ext
 
 """
-    get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
+    get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -3382,7 +3382,7 @@ Arguments:
 get_swapchain_status_khr
 
 """
-    get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR)::Result{RefreshCycleDurationGOOGLE, VulkanError}
+    get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{RefreshCycleDurationGOOGLE, VulkanError}
 
 Return codes:
 - Error:
@@ -3398,7 +3398,7 @@ Arguments:
 get_refresh_cycle_duration_google
 
 """
-    get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
+    get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
 
 Return codes:
 - Error:
@@ -3415,7 +3415,7 @@ Arguments:
 get_past_presentation_timing_google
 
 """
-    create_ios_surface_mvk(instance::Instance, create_info::_IOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_ios_surface_mvk(instance::Instance, create_info::_IOSSurfaceCreateInfoMVK; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3432,7 +3432,7 @@ Arguments:
 create_ios_surface_mvk
 
 """
-    create_mac_os_surface_mvk(instance::Instance, create_info::_MacOSSurfaceCreateInfoMVK; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_mac_os_surface_mvk(instance::Instance, create_info::_MacOSSurfaceCreateInfoMVK; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3449,7 +3449,7 @@ Arguments:
 create_mac_os_surface_mvk
 
 """
-    create_metal_surface_ext(instance::Instance, create_info::_MetalSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_metal_surface_ext(instance::Instance, create_info::_MetalSurfaceCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3506,7 +3506,7 @@ Arguments:
 get_physical_device_multisample_properties_ext
 
 """
-    get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::Result{SurfaceCapabilities2KHR, VulkanError}
+    get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{SurfaceCapabilities2KHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3522,7 +3522,7 @@ Arguments:
 get_physical_device_surface_capabilities_2_khr
 
 """
-    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{SurfaceFormat2KHR}, VulkanError}
+    get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{Vector{SurfaceFormat2KHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -3538,7 +3538,7 @@ Arguments:
 get_physical_device_surface_formats_2_khr
 
 """
-    get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayProperties2KHR}, VulkanError}
+    get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayProperties2KHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -3552,7 +3552,7 @@ Arguments:
 get_physical_device_display_properties_2_khr
 
 """
-    get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
+    get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -3566,7 +3566,7 @@ Arguments:
 get_physical_device_display_plane_properties_2_khr
 
 """
-    get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::Result{Vector{DisplayModeProperties2KHR}, VulkanError}
+    get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Vector{DisplayModeProperties2KHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -3581,7 +3581,7 @@ Arguments:
 get_display_mode_properties_2_khr
 
 """
-    get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::_DisplayPlaneInfo2KHR)::Result{DisplayPlaneCapabilities2KHR, VulkanError}
+    get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::_DisplayPlaneInfo2KHR)::ResultTypes.Result{DisplayPlaneCapabilities2KHR, VulkanError}
 
 Return codes:
 - Error:
@@ -3626,7 +3626,7 @@ Arguments:
 get_image_sparse_memory_requirements_2
 
 """
-    create_sampler_ycbcr_conversion(device::Device, create_info::_SamplerYcbcrConversionCreateInfo; allocator = C_NULL)::Result{SamplerYcbcrConversion, VulkanError}
+    create_sampler_ycbcr_conversion(device::Device, create_info::_SamplerYcbcrConversionCreateInfo; allocator = C_NULL)::ResultTypes.Result{SamplerYcbcrConversion, VulkanError}
 
 Return codes:
 - Error:
@@ -3663,7 +3663,7 @@ Arguments:
 get_device_queue_2
 
 """
-    create_validation_cache_ext(device::Device, create_info::_ValidationCacheCreateInfoEXT; allocator = C_NULL)::Result{ValidationCacheEXT, VulkanError}
+    create_validation_cache_ext(device::Device, create_info::_ValidationCacheCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{ValidationCacheEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -3689,7 +3689,7 @@ Arguments:
 destroy_validation_cache_ext
 
 """
-    get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
 - Error:
@@ -3707,7 +3707,7 @@ Arguments:
 get_validation_cache_data_ext
 
 """
-    merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::Result{VkResult, VulkanError}
+    merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3733,7 +3733,7 @@ Arguments:
 get_descriptor_set_layout_support
 
 """
-    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::VkShaderInfoTypeAMD)::Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+    get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::ShaderInfoTypeAMD)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
 - Error:
@@ -3744,7 +3744,7 @@ Arguments:
 - `device::Device`
 - `pipeline::Pipeline`
 - `shader_stage::ShaderStageFlag`
-- `info_type::VkShaderInfoTypeAMD`
+- `info_type::ShaderInfoTypeAMD`
 
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
@@ -3764,7 +3764,7 @@ Arguments:
 set_local_dimming_amd
 
 """
-    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::Result{Vector{VkTimeDomainEXT}, VulkanError}
+    get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{TimeDomainEXT}, VulkanError}
 
 Return codes:
 - Error:
@@ -3778,7 +3778,7 @@ Arguments:
 get_physical_device_calibrateable_time_domains_ext
 
 """
-    get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT})::Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
+    get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT})::ResultTypes.Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
 
 Return codes:
 - Error:
@@ -3793,7 +3793,7 @@ Arguments:
 get_calibrated_timestamps_ext
 
 """
-    set_debug_utils_object_name_ext(device::Device, name_info::_DebugUtilsObjectNameInfoEXT)::Result{VkResult, VulkanError}
+    set_debug_utils_object_name_ext(device::Device, name_info::_DebugUtilsObjectNameInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3808,7 +3808,7 @@ Arguments:
 set_debug_utils_object_name_ext
 
 """
-    set_debug_utils_object_tag_ext(device::Device, tag_info::_DebugUtilsObjectTagInfoEXT)::Result{VkResult, VulkanError}
+    set_debug_utils_object_tag_ext(device::Device, tag_info::_DebugUtilsObjectTagInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -3881,7 +3881,7 @@ Arguments:
 cmd_insert_debug_utils_label_ext
 
 """
-    create_debug_utils_messenger_ext(instance::Instance, create_info::_DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::Result{DebugUtilsMessengerEXT, VulkanError}
+    create_debug_utils_messenger_ext(instance::Instance, create_info::_DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{DebugUtilsMessengerEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -3919,7 +3919,7 @@ Arguments:
 submit_debug_utils_message_ext
 
 """
-    get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::Result{MemoryHostPointerPropertiesEXT, VulkanError}
+    get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{MemoryHostPointerPropertiesEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -3948,7 +3948,7 @@ Arguments:
 cmd_write_buffer_marker_amd
 
 """
-    create_render_pass_2(device::Device, create_info::_RenderPassCreateInfo2; allocator = C_NULL)::Result{RenderPass, VulkanError}
+    create_render_pass_2(device::Device, create_info::_RenderPassCreateInfo2; allocator = C_NULL)::ResultTypes.Result{RenderPass, VulkanError}
 
 Return codes:
 - Error:
@@ -3996,7 +3996,7 @@ Arguments:
 cmd_end_render_pass_2
 
 """
-    get_semaphore_counter_value(device::Device, semaphore::Semaphore)::Result{UInt64, VulkanError}
+    get_semaphore_counter_value(device::Device, semaphore::Semaphore)::ResultTypes.Result{UInt64, VulkanError}
 
 Return codes:
 - Error:
@@ -4012,7 +4012,7 @@ Arguments:
 get_semaphore_counter_value
 
 """
-    wait_semaphores(device::Device, wait_info::_SemaphoreWaitInfo, timeout::Integer)::Result{VkResult, VulkanError}
+    wait_semaphores(device::Device, wait_info::_SemaphoreWaitInfo, timeout::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -4032,7 +4032,7 @@ Arguments:
 wait_semaphores
 
 """
-    signal_semaphore(device::Device, signal_info::_SemaphoreSignalInfo)::Result{VkResult, VulkanError}
+    signal_semaphore(device::Device, signal_info::_SemaphoreSignalInfo)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4047,7 +4047,7 @@ Arguments:
 signal_semaphore
 
 """
-    get_android_hardware_buffer_properties_android(device::Device, buffer::vk.AHardwareBuffer)::Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
+    get_android_hardware_buffer_properties_android(device::Device, buffer::vk.AHardwareBuffer)::ResultTypes.Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
 
 Return codes:
 - Error:
@@ -4062,7 +4062,7 @@ Arguments:
 get_android_hardware_buffer_properties_android
 
 """
-    get_memory_android_hardware_buffer_android(device::Device, info::_MemoryGetAndroidHardwareBufferInfoANDROID)::Result{vk.AHardwareBuffer, VulkanError}
+    get_memory_android_hardware_buffer_android(device::Device, info::_MemoryGetAndroidHardwareBufferInfoANDROID)::ResultTypes.Result{vk.AHardwareBuffer, VulkanError}
 
 Return codes:
 - Error:
@@ -4210,11 +4210,11 @@ Arguments:
 cmd_set_exclusive_scissor_nv
 
 """
-    cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::VkImageLayout; image_view = C_NULL)::Cvoid
+    cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::ImageLayout; image_view = C_NULL)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `image_layout::VkImageLayout`
+- `image_layout::ImageLayout`
 - `image_view`: defaults to `C_NULL`
 
 """
@@ -4231,11 +4231,11 @@ Arguments:
 cmd_set_viewport_shading_rate_palette_nv
 
 """
-    cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV})::Cvoid
+    cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `sample_order_type::VkCoarseSampleOrderTypeNV`
+- `sample_order_type::CoarseSampleOrderTypeNV`
 - `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
 
 """
@@ -4281,7 +4281,7 @@ Arguments:
 cmd_draw_mesh_tasks_indirect_count_nv
 
 """
-    compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::Result{VkResult, VulkanError}
+    compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4297,7 +4297,7 @@ Arguments:
 compile_deferred_nv
 
 """
-    create_acceleration_structure_nv(device::Device, create_info::_AccelerationStructureCreateInfoNV; allocator = C_NULL)::Result{AccelerationStructureNV, VulkanError}
+    create_acceleration_structure_nv(device::Device, create_info::_AccelerationStructureCreateInfoNV; allocator = C_NULL)::ResultTypes.Result{AccelerationStructureNV, VulkanError}
 
 Return codes:
 - Error:
@@ -4344,7 +4344,7 @@ Arguments:
 get_acceleration_structure_memory_requirements_nv
 
 """
-    bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV})::Result{VkResult, VulkanError}
+    bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4359,13 +4359,13 @@ Arguments:
 bind_acceleration_structure_memory_nv
 
 """
-    cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::VkCopyAccelerationStructureModeKHR)::Cvoid
+    cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::CopyAccelerationStructureModeKHR)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `dst::AccelerationStructureNV`
 - `src::AccelerationStructureNV`
-- `mode::VkCopyAccelerationStructureModeKHR`
+- `mode::CopyAccelerationStructureModeKHR`
 
 """
 cmd_copy_acceleration_structure_nv
@@ -4381,7 +4381,7 @@ Arguments:
 cmd_copy_acceleration_structure_khr
 
 """
-    copy_acceleration_structure_khr(device::Device, info::_CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    copy_acceleration_structure_khr(device::Device, info::_CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -4411,7 +4411,7 @@ Arguments:
 cmd_copy_acceleration_structure_to_memory_khr
 
 """
-    copy_acceleration_structure_to_memory_khr(device::Device, info::_CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    copy_acceleration_structure_to_memory_khr(device::Device, info::_CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -4441,7 +4441,7 @@ Arguments:
 cmd_copy_memory_to_acceleration_structure_khr
 
 """
-    copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -4461,12 +4461,12 @@ Arguments:
 copy_memory_to_acceleration_structure_khr
 
 """
-    cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
+    cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
-- `query_type::VkQueryType`
+- `query_type::QueryType`
 - `query_pool::QueryPool`
 - `first_query::Integer`
 
@@ -4474,12 +4474,12 @@ Arguments:
 cmd_write_acceleration_structures_properties_khr
 
 """
-    cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::VkQueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
+    cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
-- `query_type::VkQueryType`
+- `query_type::QueryType`
 - `query_pool::QueryPool`
 - `first_query::Integer`
 
@@ -4504,7 +4504,7 @@ Arguments:
 cmd_build_acceleration_structure_nv
 
 """
-    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::VkQueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::Result{VkResult, VulkanError}
+    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4514,7 +4514,7 @@ Return codes:
 Arguments:
 - `device::Device`
 - `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
-- `query_type::VkQueryType`
+- `query_type::QueryType`
 - `data_size::Integer`
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `stride::Integer`
@@ -4562,7 +4562,7 @@ Arguments:
 cmd_trace_rays_nv
 
 """
-    get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
+    get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4581,7 +4581,7 @@ Arguments:
 get_ray_tracing_shader_group_handles_khr
 
 """
-    get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
+    get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4600,7 +4600,7 @@ Arguments:
 get_ray_tracing_capture_replay_shader_group_handles_khr
 
 """
-    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})::Result{VkResult, VulkanError}
+    get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4617,7 +4617,7 @@ Arguments:
 get_acceleration_structure_handle_nv
 
 """
-    create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
 - Success:
@@ -4638,7 +4638,7 @@ Arguments:
 create_ray_tracing_pipelines_nv
 
 """
-    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::Result{Tuple{Vector{Pipeline}, VkResult}, VulkanError}
+    create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
 - Success:
@@ -4662,7 +4662,7 @@ Arguments:
 create_ray_tracing_pipelines_khr
 
 """
-    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::Result{Vector{_CooperativeMatrixPropertiesNV}, VulkanError}
+    get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{_CooperativeMatrixPropertiesNV}, VulkanError}
 
 Return codes:
 - Error:
@@ -4690,7 +4690,7 @@ Arguments:
 cmd_trace_rays_indirect_khr
 
 """
-    get_device_acceleration_structure_compatibility_khr(device::Device, version_info::_AccelerationStructureVersionInfoKHR)::VkAccelerationStructureCompatibilityKHR
+    get_device_acceleration_structure_compatibility_khr(device::Device, version_info::_AccelerationStructureVersionInfoKHR)::AccelerationStructureCompatibilityKHR
 
 Arguments:
 - `device::Device`
@@ -4700,13 +4700,13 @@ Arguments:
 get_device_acceleration_structure_compatibility_khr
 
 """
-    get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::VkShaderGroupShaderKHR)::UInt64
+    get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::ShaderGroupShaderKHR)::UInt64
 
 Arguments:
 - `device::Device`
 - `pipeline::Pipeline`
 - `group::Integer`
-- `group_shader::VkShaderGroupShaderKHR`
+- `group_shader::ShaderGroupShaderKHR`
 
 """
 get_ray_tracing_shader_group_stack_size_khr
@@ -4732,7 +4732,7 @@ Arguments:
 get_image_view_handle_nvx
 
 """
-    get_image_view_address_nvx(device::Device, image_view::ImageView)::Result{ImageViewAddressPropertiesNVX, VulkanError}
+    get_image_view_address_nvx(device::Device, image_view::ImageView)::ResultTypes.Result{ImageViewAddressPropertiesNVX, VulkanError}
 
 Return codes:
 - Error:
@@ -4747,7 +4747,7 @@ Arguments:
 get_image_view_address_nvx
 
 """
-    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::Result{Vector{VkPresentModeKHR}, VulkanError}
+    get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{Vector{PresentModeKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -4763,7 +4763,7 @@ Arguments:
 get_physical_device_surface_present_modes_2_ext
 
 """
-    get_device_group_surface_present_modes_2_ext(device::Device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::Result{DeviceGroupPresentModeFlagKHR, VulkanError}
+    get_device_group_surface_present_modes_2_ext(device::Device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::ResultTypes.Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -4780,7 +4780,7 @@ Arguments:
 get_device_group_surface_present_modes_2_ext
 
 """
-    acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
+    acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4797,7 +4797,7 @@ Arguments:
 acquire_full_screen_exclusive_mode_ext
 
 """
-    release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::Result{VkResult, VulkanError}
+    release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4813,7 +4813,7 @@ Arguments:
 release_full_screen_exclusive_mode_ext
 
 """
-    enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
+    enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::ResultTypes.Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
 
 Return codes:
 - Error:
@@ -4839,7 +4839,7 @@ Arguments:
 get_physical_device_queue_family_performance_query_passes_khr
 
 """
-    acquire_profiling_lock_khr(device::Device, info::_AcquireProfilingLockInfoKHR)::Result{VkResult, VulkanError}
+    acquire_profiling_lock_khr(device::Device, info::_AcquireProfilingLockInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4863,7 +4863,7 @@ Arguments:
 release_profiling_lock_khr
 
 """
-    get_image_drm_format_modifier_properties_ext(device::Device, image::Image)::Result{ImageDrmFormatModifierPropertiesEXT, VulkanError}
+    get_image_drm_format_modifier_properties_ext(device::Device, image::Image)::ResultTypes.Result{ImageDrmFormatModifierPropertiesEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -4897,7 +4897,7 @@ Arguments:
 get_buffer_device_address
 
 """
-    create_headless_surface_ext(instance::Instance, create_info::_HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::Result{SurfaceKHR, VulkanError}
+    create_headless_surface_ext(instance::Instance, create_info::_HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -4913,7 +4913,7 @@ Arguments:
 create_headless_surface_ext
 
 """
-    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
+    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
 
 Return codes:
 - Error:
@@ -4927,7 +4927,7 @@ Arguments:
 get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
 
 """
-    initialize_performance_api_intel(device::Device, initialize_info::_InitializePerformanceApiInfoINTEL)::Result{VkResult, VulkanError}
+    initialize_performance_api_intel(device::Device, initialize_info::_InitializePerformanceApiInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4951,7 +4951,7 @@ Arguments:
 uninitialize_performance_api_intel
 
 """
-    cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceMarkerInfoINTEL)::Result{VkResult, VulkanError}
+    cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceMarkerInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4966,7 +4966,7 @@ Arguments:
 cmd_set_performance_marker_intel
 
 """
-    cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceStreamMarkerInfoINTEL)::Result{VkResult, VulkanError}
+    cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceStreamMarkerInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4981,7 +4981,7 @@ Arguments:
 cmd_set_performance_stream_marker_intel
 
 """
-    cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::_PerformanceOverrideInfoINTEL)::Result{VkResult, VulkanError}
+    cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::_PerformanceOverrideInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -4996,7 +4996,7 @@ Arguments:
 cmd_set_performance_override_intel
 
 """
-    acquire_performance_configuration_intel(device::Device, acquire_info::_PerformanceConfigurationAcquireInfoINTEL)::Result{PerformanceConfigurationINTEL, VulkanError}
+    acquire_performance_configuration_intel(device::Device, acquire_info::_PerformanceConfigurationAcquireInfoINTEL)::ResultTypes.Result{PerformanceConfigurationINTEL, VulkanError}
 
 Return codes:
 - Error:
@@ -5011,7 +5011,7 @@ Arguments:
 acquire_performance_configuration_intel
 
 """
-    release_performance_configuration_intel(device::Device; configuration = C_NULL)::Result{VkResult, VulkanError}
+    release_performance_configuration_intel(device::Device; configuration = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -5026,7 +5026,7 @@ Arguments:
 release_performance_configuration_intel
 
 """
-    queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::Result{VkResult, VulkanError}
+    queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -5041,7 +5041,7 @@ Arguments:
 queue_set_performance_configuration_intel
 
 """
-    get_performance_parameter_intel(device::Device, parameter::VkPerformanceParameterTypeINTEL)::Result{_PerformanceValueINTEL, VulkanError}
+    get_performance_parameter_intel(device::Device, parameter::PerformanceParameterTypeINTEL)::ResultTypes.Result{_PerformanceValueINTEL, VulkanError}
 
 Return codes:
 - Error:
@@ -5050,7 +5050,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `parameter::VkPerformanceParameterTypeINTEL`
+- `parameter::PerformanceParameterTypeINTEL`
 
 """
 get_performance_parameter_intel
@@ -5066,7 +5066,7 @@ Arguments:
 get_device_memory_opaque_capture_address
 
 """
-    get_pipeline_executable_properties_khr(device::Device, pipeline_info::_PipelineInfoKHR)::Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
+    get_pipeline_executable_properties_khr(device::Device, pipeline_info::_PipelineInfoKHR)::ResultTypes.Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5081,7 +5081,7 @@ Arguments:
 get_pipeline_executable_properties_khr
 
 """
-    get_pipeline_executable_statistics_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
+    get_pipeline_executable_statistics_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::ResultTypes.Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5096,7 +5096,7 @@ Arguments:
 get_pipeline_executable_statistics_khr
 
 """
-    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
+    get_pipeline_executable_internal_representations_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::ResultTypes.Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5122,7 +5122,7 @@ Arguments:
 cmd_set_line_stipple_ext
 
 """
-    get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
+    get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
 
 Return codes:
 - Error:
@@ -5135,7 +5135,7 @@ Arguments:
 get_physical_device_tool_properties_ext
 
 """
-    create_acceleration_structure_khr(device::Device, create_info::_AccelerationStructureCreateInfoKHR; allocator = C_NULL)::Result{AccelerationStructureKHR, VulkanError}
+    create_acceleration_structure_khr(device::Device, create_info::_AccelerationStructureCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{AccelerationStructureKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5175,7 +5175,7 @@ Arguments:
 cmd_build_acceleration_structures_indirect_khr
 
 """
-    build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::Result{VkResult, VulkanError}
+    build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -5206,7 +5206,7 @@ Arguments:
 get_acceleration_structure_device_address_khr
 
 """
-    create_deferred_operation_khr(device::Device; allocator = C_NULL)::Result{DeferredOperationKHR, VulkanError}
+    create_deferred_operation_khr(device::Device; allocator = C_NULL)::ResultTypes.Result{DeferredOperationKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5241,7 +5241,7 @@ Arguments:
 get_deferred_operation_max_concurrency_khr
 
 """
-    get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::Result{VkResult, VulkanError}
+    get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -5256,7 +5256,7 @@ Arguments:
 get_deferred_operation_result_khr
 
 """
-    deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::Result{VkResult, VulkanError}
+    deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Success:
@@ -5285,21 +5285,21 @@ Arguments:
 cmd_set_cull_mode_ext
 
 """
-    cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::VkFrontFace)::Cvoid
+    cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::FrontFace)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `front_face::VkFrontFace`
+- `front_face::FrontFace`
 
 """
 cmd_set_front_face_ext
 
 """
-    cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::VkPrimitiveTopology)::Cvoid
+    cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::PrimitiveTopology)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `primitive_topology::VkPrimitiveTopology`
+- `primitive_topology::PrimitiveTopology`
 
 """
 cmd_set_primitive_topology_ext
@@ -5358,11 +5358,11 @@ Arguments:
 cmd_set_depth_write_enable_ext
 
 """
-    cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::VkCompareOp)::Cvoid
+    cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::CompareOp)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `depth_compare_op::VkCompareOp`
+- `depth_compare_op::CompareOp`
 
 """
 cmd_set_depth_compare_op_ext
@@ -5388,15 +5388,15 @@ Arguments:
 cmd_set_stencil_test_enable_ext
 
 """
-    cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp)::Cvoid
+    cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `face_mask::StencilFaceFlag`
-- `fail_op::VkStencilOp`
-- `pass_op::VkStencilOp`
-- `depth_fail_op::VkStencilOp`
-- `compare_op::VkCompareOp`
+- `fail_op::StencilOp`
+- `pass_op::StencilOp`
+- `depth_fail_op::StencilOp`
+- `compare_op::CompareOp`
 
 """
 cmd_set_stencil_op_ext
@@ -5432,11 +5432,11 @@ Arguments:
 cmd_set_depth_bias_enable_ext
 
 """
-    cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::VkLogicOp)::Cvoid
+    cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::LogicOp)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `logic_op::VkLogicOp`
+- `logic_op::LogicOp`
 
 """
 cmd_set_logic_op_ext
@@ -5452,7 +5452,7 @@ Arguments:
 cmd_set_primitive_restart_enable_ext
 
 """
-    create_private_data_slot_ext(device::Device, create_info::_PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::Result{PrivateDataSlotEXT, VulkanError}
+    create_private_data_slot_ext(device::Device, create_info::_PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{PrivateDataSlotEXT, VulkanError}
 
 Return codes:
 - Error:
@@ -5478,7 +5478,7 @@ Arguments:
 destroy_private_data_slot_ext
 
 """
-    set_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::Result{VkResult, VulkanError}
+    set_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -5486,7 +5486,7 @@ Return codes:
 
 Arguments:
 - `device::Device`
-- `object_type::VkObjectType`
+- `object_type::ObjectType`
 - `object_handle::Integer`
 - `private_data_slot::PrivateDataSlotEXT`
 - `data::Integer`
@@ -5495,11 +5495,11 @@ Arguments:
 set_private_data_ext
 
 """
-    get_private_data_ext(device::Device, object_type::VkObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)::UInt64
+    get_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)::UInt64
 
 Arguments:
 - `device::Device`
-- `object_type::VkObjectType`
+- `object_type::ObjectType`
 - `object_handle::Integer`
 - `private_data_slot::PrivateDataSlotEXT`
 
@@ -5567,18 +5567,18 @@ Arguments:
 cmd_resolve_image_2_khr
 
 """
-    cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::_Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid
+    cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `fragment_size::_Extent2D`
-- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 
 """
 cmd_set_fragment_shading_rate_khr
 
 """
-    get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice)::Result{Vector{PhysicalDeviceFragmentShadingRateKHR}, VulkanError}
+    get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{PhysicalDeviceFragmentShadingRateKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5591,22 +5591,22 @@ Arguments:
 get_physical_device_fragment_shading_rates_khr
 
 """
-    cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR})::Cvoid
+    cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
-- `shading_rate::VkFragmentShadingRateNV`
-- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+- `shading_rate::FragmentShadingRateNV`
+- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 
 """
 cmd_set_fragment_shading_rate_enum_nv
 
 """
-    get_acceleration_structure_build_sizes_khr(device::Device, build_type::VkAccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::_AccelerationStructureBuildSizesInfoKHR
+    get_acceleration_structure_build_sizes_khr(device::Device, build_type::AccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::_AccelerationStructureBuildSizesInfoKHR
 
 Arguments:
 - `device::Device`
-- `build_type::VkAccelerationStructureBuildTypeKHR`
+- `build_type::AccelerationStructureBuildTypeKHR`
 - `build_info::_AccelerationStructureBuildGeometryInfoKHR`
 - `max_primitive_counts`: defaults to `C_NULL`
 
@@ -5678,7 +5678,7 @@ Arguments:
 cmd_pipeline_barrier_2_khr
 
 """
-    queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:_SubmitInfo2KHR}; fence = C_NULL)::Result{VkResult, VulkanError}
+    queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:_SubmitInfo2KHR}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -5729,7 +5729,7 @@ Arguments:
 get_queue_checkpoint_data_2_nv
 
 """
-    get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::_VideoProfileKHR)::Result{VideoCapabilitiesKHR, VulkanError}
+    get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::_VideoProfileKHR)::ResultTypes.Result{VideoCapabilitiesKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5746,7 +5746,7 @@ Arguments:
 get_physical_device_video_capabilities_khr
 
 """
-    get_physical_device_video_format_properties_khr(physical_device::PhysicalDevice, video_format_info::PhysicalDeviceVideoFormatInfoKHR)::Result{Vector{VideoFormatPropertiesKHR}, VulkanError}
+    get_physical_device_video_format_properties_khr(physical_device::PhysicalDevice, video_format_info::PhysicalDeviceVideoFormatInfoKHR)::ResultTypes.Result{Vector{VideoFormatPropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5762,7 +5762,7 @@ Arguments:
 get_physical_device_video_format_properties_khr
 
 """
-    create_video_session_khr(device::Device, create_info::_VideoSessionCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionKHR, VulkanError}
+    create_video_session_khr(device::Device, create_info::_VideoSessionCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{VideoSessionKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5792,7 +5792,7 @@ Arguments:
 destroy_video_session_khr
 
 """
-    create_video_session_parameters_khr(device::Device, create_info::_VideoSessionParametersCreateInfoKHR; allocator = C_NULL)::Result{VideoSessionParametersKHR, VulkanError}
+    create_video_session_parameters_khr(device::Device, create_info::_VideoSessionParametersCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{VideoSessionParametersKHR, VulkanError}
 
 Return codes:
 - Error:
@@ -5809,7 +5809,7 @@ Arguments:
 create_video_session_parameters_khr
 
 """
-    update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::_VideoSessionParametersUpdateInfoKHR)::Result{VkResult, VulkanError}
+    update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::_VideoSessionParametersUpdateInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -5836,7 +5836,7 @@ Arguments:
 destroy_video_session_parameters_khr
 
 """
-    get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR)::Result{Vector{_VideoGetMemoryPropertiesKHR}, VulkanError}
+    get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR)::ResultTypes.Result{Vector{_VideoGetMemoryPropertiesKHR}, VulkanError}
 
 Return codes:
 - Error:
@@ -5850,7 +5850,7 @@ Arguments:
 get_video_session_memory_requirements_khr
 
 """
-    bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray{<:_VideoBindMemoryKHR})::Result{VkResult, VulkanError}
+    bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray{<:_VideoBindMemoryKHR})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 - Error:
@@ -6012,13 +6012,13 @@ Arguments:
 _ClearRect
 
 """
-    _ComponentMapping(r::VkComponentSwizzle, g::VkComponentSwizzle, b::VkComponentSwizzle, a::VkComponentSwizzle)
+    _ComponentMapping(r::ComponentSwizzle, g::ComponentSwizzle, b::ComponentSwizzle, a::ComponentSwizzle)
 
 Arguments:
-- `r::VkComponentSwizzle`
-- `g::VkComponentSwizzle`
-- `b::VkComponentSwizzle`
-- `a::VkComponentSwizzle`
+- `r::ComponentSwizzle`
+- `g::ComponentSwizzle`
+- `b::ComponentSwizzle`
+- `a::ComponentSwizzle`
 
 """
 _ComponentMapping
@@ -6125,24 +6125,24 @@ Arguments:
 _DescriptorBufferInfo
 
 """
-    _DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::VkImageLayout)
+    _DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::ImageLayout)
 
 Arguments:
 - `sampler::Sampler`
 - `image_view::ImageView`
-- `image_layout::VkImageLayout`
+- `image_layout::ImageLayout`
 
 """
 _DescriptorImageInfo
 
 """
-    _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::VkDescriptorType, image_info::AbstractArray{<:_DescriptorImageInfo}, buffer_info::AbstractArray{<:_DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
+    _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray{<:_DescriptorImageInfo}, buffer_info::AbstractArray{<:_DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
 
 Arguments:
 - `dst_set::DescriptorSet`
 - `dst_binding::Integer`
 - `dst_array_element::Integer`
-- `descriptor_type::VkDescriptorType`
+- `descriptor_type::DescriptorType`
 - `image_info::AbstractArray{<:_DescriptorImageInfo}`
 - `buffer_info::AbstractArray{<:_DescriptorBufferInfo}`
 - `texel_buffer_view::AbstractArray{<:BufferView}`
@@ -6169,12 +6169,12 @@ Arguments:
 _CopyDescriptorSet
 
 """
-    _BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
 - `size::Integer`
 - `usage::BufferUsageFlag`
-- `sharing_mode::VkSharingMode`
+- `sharing_mode::SharingMode`
 - `queue_family_indices::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -6183,11 +6183,11 @@ Arguments:
 _BufferCreateInfo
 
 """
-    _BufferViewCreateInfo(buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; next = C_NULL, flags = 0)
+    _BufferViewCreateInfo(buffer::Buffer, format::Format, offset::Integer, range::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `buffer::Buffer`
-- `format::VkFormat`
+- `format::Format`
 - `offset::Integer`
 - `range::Integer`
 - `next`: defaults to `C_NULL`
@@ -6260,13 +6260,13 @@ Arguments:
 _BufferMemoryBarrier
 
 """
-    _ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL)
+    _ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, old_layout::ImageLayout, new_layout::ImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL)
 
 Arguments:
 - `src_access_mask::AccessFlag`
 - `dst_access_mask::AccessFlag`
-- `old_layout::VkImageLayout`
-- `new_layout::VkImageLayout`
+- `old_layout::ImageLayout`
+- `new_layout::ImageLayout`
 - `src_queue_family_index::Integer`
 - `dst_queue_family_index::Integer`
 - `image::Image`
@@ -6277,20 +6277,20 @@ Arguments:
 _ImageMemoryBarrier
 
 """
-    _ImageCreateInfo(image_type::VkImageType, format::VkFormat, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; next = C_NULL, flags = 0)
+    _ImageCreateInfo(image_type::ImageType, format::Format, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
-- `image_type::VkImageType`
-- `format::VkFormat`
+- `image_type::ImageType`
+- `format::Format`
 - `extent::_Extent3D`
 - `mip_levels::Integer`
 - `array_layers::Integer`
 - `samples::SampleCountFlag`
-- `tiling::VkImageTiling`
+- `tiling::ImageTiling`
 - `usage::ImageUsageFlag`
-- `sharing_mode::VkSharingMode`
+- `sharing_mode::SharingMode`
 - `queue_family_indices::AbstractArray{<:Integer}`
-- `initial_layout::VkImageLayout`
+- `initial_layout::ImageLayout`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -6298,12 +6298,12 @@ Arguments:
 _ImageCreateInfo
 
 """
-    _ImageViewCreateInfo(image::Image, view_type::VkImageViewType, format::VkFormat, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; next = C_NULL, flags = 0)
+    _ImageViewCreateInfo(image::Image, view_type::ImageViewType, format::Format, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; next = C_NULL, flags = 0)
 
 Arguments:
 - `image::Image`
-- `view_type::VkImageViewType`
-- `format::VkFormat`
+- `view_type::ImageViewType`
+- `format::Format`
 - `components::_ComponentMapping`
 - `subresource_range::_ImageSubresourceRange`
 - `next`: defaults to `C_NULL`
@@ -6459,11 +6459,11 @@ Arguments:
 _ShaderModuleCreateInfo
 
 """
-    _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::VkDescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
+    _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::DescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
 
 Arguments:
 - `binding::Integer`
-- `descriptor_type::VkDescriptorType`
+- `descriptor_type::DescriptorType`
 - `stage_flags::ShaderStageFlag`
 - `descriptor_count`: defaults to `0`
 - `immutable_samplers`: defaults to `C_NULL`
@@ -6483,10 +6483,10 @@ Arguments:
 _DescriptorSetLayoutCreateInfo
 
 """
-    _DescriptorPoolSize(type::VkDescriptorType, descriptor_count::Integer)
+    _DescriptorPoolSize(type::DescriptorType, descriptor_count::Integer)
 
 Arguments:
-- `type::VkDescriptorType`
+- `type::DescriptorType`
 - `descriptor_count::Integer`
 
 """
@@ -6566,23 +6566,23 @@ Arguments:
 _ComputePipelineCreateInfo
 
 """
-    _VertexInputBindingDescription(binding::Integer, stride::Integer, input_rate::VkVertexInputRate)
+    _VertexInputBindingDescription(binding::Integer, stride::Integer, input_rate::VertexInputRate)
 
 Arguments:
 - `binding::Integer`
 - `stride::Integer`
-- `input_rate::VkVertexInputRate`
+- `input_rate::VertexInputRate`
 
 """
 _VertexInputBindingDescription
 
 """
-    _VertexInputAttributeDescription(location::Integer, binding::Integer, format::VkFormat, offset::Integer)
+    _VertexInputAttributeDescription(location::Integer, binding::Integer, format::Format, offset::Integer)
 
 Arguments:
 - `location::Integer`
 - `binding::Integer`
-- `format::VkFormat`
+- `format::Format`
 - `offset::Integer`
 
 """
@@ -6601,10 +6601,10 @@ Arguments:
 _PipelineVertexInputStateCreateInfo
 
 """
-    _PipelineInputAssemblyStateCreateInfo(topology::VkPrimitiveTopology, primitive_restart_enable::Bool; next = C_NULL, flags = 0)
+    _PipelineInputAssemblyStateCreateInfo(topology::PrimitiveTopology, primitive_restart_enable::Bool; next = C_NULL, flags = 0)
 
 Arguments:
-- `topology::VkPrimitiveTopology`
+- `topology::PrimitiveTopology`
 - `primitive_restart_enable::Bool`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -6636,13 +6636,13 @@ Arguments:
 _PipelineViewportStateCreateInfo
 
 """
-    _PipelineRasterizationStateCreateInfo(depth_clamp_enable::Bool, rasterizer_discard_enable::Bool, polygon_mode::VkPolygonMode, front_face::VkFrontFace, depth_bias_enable::Bool, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, line_width::Real; next = C_NULL, flags = 0, cull_mode = 0)
+    _PipelineRasterizationStateCreateInfo(depth_clamp_enable::Bool, rasterizer_discard_enable::Bool, polygon_mode::PolygonMode, front_face::FrontFace, depth_bias_enable::Bool, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, line_width::Real; next = C_NULL, flags = 0, cull_mode = 0)
 
 Arguments:
 - `depth_clamp_enable::Bool`
 - `rasterizer_discard_enable::Bool`
-- `polygon_mode::VkPolygonMode`
-- `front_face::VkFrontFace`
+- `polygon_mode::PolygonMode`
+- `front_face::FrontFace`
 - `depth_bias_enable::Bool`
 - `depth_bias_constant_factor::Real`
 - `depth_bias_clamp::Real`
@@ -6672,27 +6672,27 @@ Arguments:
 _PipelineMultisampleStateCreateInfo
 
 """
-    _PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_factor::VkBlendFactor, dst_color_blend_factor::VkBlendFactor, color_blend_op::VkBlendOp, src_alpha_blend_factor::VkBlendFactor, dst_alpha_blend_factor::VkBlendFactor, alpha_blend_op::VkBlendOp; color_write_mask = 0)
+    _PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_factor::BlendFactor, dst_color_blend_factor::BlendFactor, color_blend_op::BlendOp, src_alpha_blend_factor::BlendFactor, dst_alpha_blend_factor::BlendFactor, alpha_blend_op::BlendOp; color_write_mask = 0)
 
 Arguments:
 - `blend_enable::Bool`
-- `src_color_blend_factor::VkBlendFactor`
-- `dst_color_blend_factor::VkBlendFactor`
-- `color_blend_op::VkBlendOp`
-- `src_alpha_blend_factor::VkBlendFactor`
-- `dst_alpha_blend_factor::VkBlendFactor`
-- `alpha_blend_op::VkBlendOp`
+- `src_color_blend_factor::BlendFactor`
+- `dst_color_blend_factor::BlendFactor`
+- `color_blend_op::BlendOp`
+- `src_alpha_blend_factor::BlendFactor`
+- `dst_alpha_blend_factor::BlendFactor`
+- `alpha_blend_op::BlendOp`
 - `color_write_mask`: defaults to `0`
 
 """
 _PipelineColorBlendAttachmentState
 
 """
-    _PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::VkLogicOp, attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}, blend_constants::NTuple{4, Float32}; next = C_NULL, flags = 0)
+    _PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::LogicOp, attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}, blend_constants::NTuple{4, Float32}; next = C_NULL, flags = 0)
 
 Arguments:
 - `logic_op_enable::Bool`
-- `logic_op::VkLogicOp`
+- `logic_op::LogicOp`
 - `attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}`
 - `blend_constants::NTuple{4, Float32}`
 - `next`: defaults to `C_NULL`
@@ -6702,10 +6702,10 @@ Arguments:
 _PipelineColorBlendStateCreateInfo
 
 """
-    _PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray{<:VkDynamicState}; next = C_NULL, flags = 0)
+    _PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray{<:DynamicState}; next = C_NULL, flags = 0)
 
 Arguments:
-- `dynamic_states::AbstractArray{<:VkDynamicState}`
+- `dynamic_states::AbstractArray{<:DynamicState}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -6713,13 +6713,13 @@ Arguments:
 _PipelineDynamicStateCreateInfo
 
 """
-    _StencilOpState(fail_op::VkStencilOp, pass_op::VkStencilOp, depth_fail_op::VkStencilOp, compare_op::VkCompareOp, compare_mask::Integer, write_mask::Integer, reference::Integer)
+    _StencilOpState(fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp, compare_mask::Integer, write_mask::Integer, reference::Integer)
 
 Arguments:
-- `fail_op::VkStencilOp`
-- `pass_op::VkStencilOp`
-- `depth_fail_op::VkStencilOp`
-- `compare_op::VkCompareOp`
+- `fail_op::StencilOp`
+- `pass_op::StencilOp`
+- `depth_fail_op::StencilOp`
+- `compare_op::CompareOp`
 - `compare_mask::Integer`
 - `write_mask::Integer`
 - `reference::Integer`
@@ -6728,12 +6728,12 @@ Arguments:
 _StencilOpState
 
 """
-    _PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable::Bool, depth_compare_op::VkCompareOp, depth_bounds_test_enable::Bool, stencil_test_enable::Bool, front::_StencilOpState, back::_StencilOpState, min_depth_bounds::Real, max_depth_bounds::Real; next = C_NULL, flags = 0)
+    _PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable::Bool, depth_compare_op::CompareOp, depth_bounds_test_enable::Bool, stencil_test_enable::Bool, front::_StencilOpState, back::_StencilOpState, min_depth_bounds::Real, max_depth_bounds::Real; next = C_NULL, flags = 0)
 
 Arguments:
 - `depth_test_enable::Bool`
 - `depth_write_enable::Bool`
-- `depth_compare_op::VkCompareOp`
+- `depth_compare_op::CompareOp`
 - `depth_bounds_test_enable::Bool`
 - `stencil_test_enable::Bool`
 - `front::_StencilOpState`
@@ -6807,23 +6807,23 @@ Arguments:
 _PipelineLayoutCreateInfo
 
 """
-    _SamplerCreateInfo(mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; next = C_NULL, flags = 0)
+    _SamplerCreateInfo(mag_filter::Filter, min_filter::Filter, mipmap_mode::SamplerMipmapMode, address_mode_u::SamplerAddressMode, address_mode_v::SamplerAddressMode, address_mode_w::SamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::CompareOp, min_lod::Real, max_lod::Real, border_color::BorderColor, unnormalized_coordinates::Bool; next = C_NULL, flags = 0)
 
 Arguments:
-- `mag_filter::VkFilter`
-- `min_filter::VkFilter`
-- `mipmap_mode::VkSamplerMipmapMode`
-- `address_mode_u::VkSamplerAddressMode`
-- `address_mode_v::VkSamplerAddressMode`
-- `address_mode_w::VkSamplerAddressMode`
+- `mag_filter::Filter`
+- `min_filter::Filter`
+- `mipmap_mode::SamplerMipmapMode`
+- `address_mode_u::SamplerAddressMode`
+- `address_mode_v::SamplerAddressMode`
+- `address_mode_w::SamplerAddressMode`
 - `mip_lod_bias::Real`
 - `anisotropy_enable::Bool`
 - `max_anisotropy::Real`
 - `compare_enable::Bool`
-- `compare_op::VkCompareOp`
+- `compare_op::CompareOp`
 - `min_lod::Real`
 - `max_lod::Real`
-- `border_color::VkBorderColor`
+- `border_color::BorderColor`
 - `unnormalized_coordinates::Bool`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -6843,11 +6843,11 @@ Arguments:
 _CommandPoolCreateInfo
 
 """
-    _CommandBufferAllocateInfo(command_pool::CommandPool, level::VkCommandBufferLevel, command_buffer_count::Integer; next = C_NULL)
+    _CommandBufferAllocateInfo(command_pool::CommandPool, level::CommandBufferLevel, command_buffer_count::Integer; next = C_NULL)
 
 Arguments:
 - `command_pool::CommandPool`
-- `level::VkCommandBufferLevel`
+- `level::CommandBufferLevel`
 - `command_buffer_count::Integer`
 - `next`: defaults to `C_NULL`
 
@@ -6915,37 +6915,37 @@ Arguments:
 _ClearAttachment
 
 """
-    _AttachmentDescription(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; flags = 0)
+    _AttachmentDescription(format::Format, samples::SampleCountFlag, load_op::AttachmentLoadOp, store_op::AttachmentStoreOp, stencil_load_op::AttachmentLoadOp, stencil_store_op::AttachmentStoreOp, initial_layout::ImageLayout, final_layout::ImageLayout; flags = 0)
 
 Arguments:
-- `format::VkFormat`
+- `format::Format`
 - `samples::SampleCountFlag`
-- `load_op::VkAttachmentLoadOp`
-- `store_op::VkAttachmentStoreOp`
-- `stencil_load_op::VkAttachmentLoadOp`
-- `stencil_store_op::VkAttachmentStoreOp`
-- `initial_layout::VkImageLayout`
-- `final_layout::VkImageLayout`
+- `load_op::AttachmentLoadOp`
+- `store_op::AttachmentStoreOp`
+- `stencil_load_op::AttachmentLoadOp`
+- `stencil_store_op::AttachmentStoreOp`
+- `initial_layout::ImageLayout`
+- `final_layout::ImageLayout`
 - `flags`: defaults to `0`
 
 """
 _AttachmentDescription
 
 """
-    _AttachmentReference(attachment::Integer, layout::VkImageLayout)
+    _AttachmentReference(attachment::Integer, layout::ImageLayout)
 
 Arguments:
 - `attachment::Integer`
-- `layout::VkImageLayout`
+- `layout::ImageLayout`
 
 """
 _AttachmentReference
 
 """
-    _SubpassDescription(pipeline_bind_point::VkPipelineBindPoint, input_attachments::AbstractArray{<:_AttachmentReference}, color_attachments::AbstractArray{<:_AttachmentReference}, preserve_attachments::AbstractArray{<:Integer}; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
+    _SubpassDescription(pipeline_bind_point::PipelineBindPoint, input_attachments::AbstractArray{<:_AttachmentReference}, color_attachments::AbstractArray{<:_AttachmentReference}, preserve_attachments::AbstractArray{<:Integer}; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `input_attachments::AbstractArray{<:_AttachmentReference}`
 - `color_attachments::AbstractArray{<:_AttachmentReference}`
 - `preserve_attachments::AbstractArray{<:Integer}`
@@ -7078,10 +7078,10 @@ Arguments:
 _SemaphoreCreateInfo
 
 """
-    _QueryPoolCreateInfo(query_type::VkQueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
+    _QueryPoolCreateInfo(query_type::QueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
 
 Arguments:
-- `query_type::VkQueryType`
+- `query_type::QueryType`
 - `query_count::Integer`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -7321,21 +7321,21 @@ Arguments:
 _ScreenSurfaceCreateInfoQNX
 
 """
-    _SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+    _SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 Arguments:
 - `surface::SurfaceKHR`
 - `min_image_count::Integer`
-- `image_format::VkFormat`
-- `image_color_space::VkColorSpaceKHR`
+- `image_format::Format`
+- `image_color_space::ColorSpaceKHR`
 - `image_extent::_Extent2D`
 - `image_array_layers::Integer`
 - `image_usage::ImageUsageFlag`
-- `image_sharing_mode::VkSharingMode`
+- `image_sharing_mode::SharingMode`
 - `queue_family_indices::AbstractArray{<:Integer}`
 - `pre_transform::SurfaceTransformFlagKHR`
 - `composite_alpha::CompositeAlphaFlagKHR`
-- `present_mode::VkPresentModeKHR`
+- `present_mode::PresentModeKHR`
 - `clipped::Bool`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -7370,41 +7370,41 @@ Arguments:
 _DebugReportCallbackCreateInfoEXT
 
 """
-    _ValidationFlagsEXT(disabled_validation_checks::AbstractArray{<:VkValidationCheckEXT}; next = C_NULL)
+    _ValidationFlagsEXT(disabled_validation_checks::AbstractArray{<:ValidationCheckEXT}; next = C_NULL)
 
 Arguments:
-- `disabled_validation_checks::AbstractArray{<:VkValidationCheckEXT}`
+- `disabled_validation_checks::AbstractArray{<:ValidationCheckEXT}`
 - `next`: defaults to `C_NULL`
 
 """
 _ValidationFlagsEXT
 
 """
-    _ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:VkValidationFeatureEnableEXT}, disabled_validation_features::AbstractArray{<:VkValidationFeatureDisableEXT}; next = C_NULL)
+    _ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:ValidationFeatureEnableEXT}, disabled_validation_features::AbstractArray{<:ValidationFeatureDisableEXT}; next = C_NULL)
 
 Arguments:
-- `enabled_validation_features::AbstractArray{<:VkValidationFeatureEnableEXT}`
-- `disabled_validation_features::AbstractArray{<:VkValidationFeatureDisableEXT}`
+- `enabled_validation_features::AbstractArray{<:ValidationFeatureEnableEXT}`
+- `disabled_validation_features::AbstractArray{<:ValidationFeatureDisableEXT}`
 - `next`: defaults to `C_NULL`
 
 """
 _ValidationFeaturesEXT
 
 """
-    _PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::VkRasterizationOrderAMD; next = C_NULL)
+    _PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::RasterizationOrderAMD; next = C_NULL)
 
 Arguments:
-- `rasterization_order::VkRasterizationOrderAMD`
+- `rasterization_order::RasterizationOrderAMD`
 - `next`: defaults to `C_NULL`
 
 """
 _PipelineRasterizationStateRasterizationOrderAMD
 
 """
-    _DebugMarkerObjectNameInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL)
+    _DebugMarkerObjectNameInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL)
 
 Arguments:
-- `object_type::VkDebugReportObjectTypeEXT`
+- `object_type::DebugReportObjectTypeEXT`
 - `object::Integer`
 - `object_name::AbstractString`
 - `next`: defaults to `C_NULL`
@@ -7413,10 +7413,10 @@ Arguments:
 _DebugMarkerObjectNameInfoEXT
 
 """
-    _DebugMarkerObjectTagInfoEXT(object_type::VkDebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+    _DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `object_type::VkDebugReportObjectTypeEXT`
+- `object_type::DebugReportObjectTypeEXT`
 - `object::Integer`
 - `tag_name::Integer`
 - `tag_size::Integer`
@@ -7597,12 +7597,12 @@ Arguments:
 _BindShaderGroupIndirectCommandNV
 
 """
-    _BindIndexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, index_type::VkIndexType)
+    _BindIndexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, index_type::IndexType)
 
 Arguments:
 - `buffer_address::Integer`
 - `size::Integer`
-- `index_type::VkIndexType`
+- `index_type::IndexType`
 
 """
 _BindIndexBufferIndirectCommandNV
@@ -7638,17 +7638,17 @@ Arguments:
 _IndirectCommandsStreamNV
 
 """
-    _IndirectCommandsLayoutTokenNV(token_type::VkIndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray{<:VkIndexType}, index_type_values::AbstractArray{<:Integer}; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
+    _IndirectCommandsLayoutTokenNV(token_type::IndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray{<:IndexType}, index_type_values::AbstractArray{<:Integer}; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
 
 Arguments:
-- `token_type::VkIndirectCommandsTokenTypeNV`
+- `token_type::IndirectCommandsTokenTypeNV`
 - `stream::Integer`
 - `offset::Integer`
 - `vertex_binding_unit::Integer`
 - `vertex_dynamic_stride::Bool`
 - `pushconstant_offset::Integer`
 - `pushconstant_size::Integer`
-- `index_types::AbstractArray{<:VkIndexType}`
+- `index_types::AbstractArray{<:IndexType}`
 - `index_type_values::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 - `pushconstant_pipeline_layout`: defaults to `C_NULL`
@@ -7659,10 +7659,10 @@ Arguments:
 _IndirectCommandsLayoutTokenNV
 
 """
-    _IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}`
 - `stream_strides::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
@@ -7672,10 +7672,10 @@ Arguments:
 _IndirectCommandsLayoutCreateInfoNV
 
 """
-    _GeneratedCommandsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:_IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
+    _GeneratedCommandsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:_IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `pipeline::Pipeline`
 - `indirect_commands_layout::IndirectCommandsLayoutNV`
 - `streams::AbstractArray{<:_IndirectCommandsStreamNV}`
@@ -7693,10 +7693,10 @@ Arguments:
 _GeneratedCommandsInfoNV
 
 """
-    _GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::VkPipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, max_sequences_count::Integer; next = C_NULL)
+    _GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, max_sequences_count::Integer; next = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `pipeline::Pipeline`
 - `indirect_commands_layout::IndirectCommandsLayoutNV`
 - `max_sequences_count::Integer`
@@ -7716,12 +7716,12 @@ Arguments:
 _PhysicalDeviceFeatures2
 
 """
-    _PhysicalDeviceImageFormatInfo2(format::VkFormat, type::VkImageType, tiling::VkImageTiling, usage::ImageUsageFlag; next = C_NULL, flags = 0)
+    _PhysicalDeviceImageFormatInfo2(format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; next = C_NULL, flags = 0)
 
 Arguments:
-- `format::VkFormat`
-- `type::VkImageType`
-- `tiling::VkImageTiling`
+- `format::Format`
+- `type::ImageType`
+- `tiling::ImageTiling`
 - `usage::ImageUsageFlag`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -7730,14 +7730,14 @@ Arguments:
 _PhysicalDeviceImageFormatInfo2
 
 """
-    _PhysicalDeviceSparseImageFormatInfo2(format::VkFormat, type::VkImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::VkImageTiling; next = C_NULL)
+    _PhysicalDeviceSparseImageFormatInfo2(format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling; next = C_NULL)
 
 Arguments:
-- `format::VkFormat`
-- `type::VkImageType`
+- `format::Format`
+- `type::ImageType`
 - `samples::SampleCountFlag`
 - `usage::ImageUsageFlag`
-- `tiling::VkImageTiling`
+- `tiling::ImageTiling`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8163,30 +8163,30 @@ Arguments:
 _RenderPassMultiviewCreateInfo
 
 """
-    _DisplayPowerInfoEXT(power_state::VkDisplayPowerStateEXT; next = C_NULL)
+    _DisplayPowerInfoEXT(power_state::DisplayPowerStateEXT; next = C_NULL)
 
 Arguments:
-- `power_state::VkDisplayPowerStateEXT`
+- `power_state::DisplayPowerStateEXT`
 - `next`: defaults to `C_NULL`
 
 """
 _DisplayPowerInfoEXT
 
 """
-    _DeviceEventInfoEXT(device_event::VkDeviceEventTypeEXT; next = C_NULL)
+    _DeviceEventInfoEXT(device_event::DeviceEventTypeEXT; next = C_NULL)
 
 Arguments:
-- `device_event::VkDeviceEventTypeEXT`
+- `device_event::DeviceEventTypeEXT`
 - `next`: defaults to `C_NULL`
 
 """
 _DeviceEventInfoEXT
 
 """
-    _DisplayEventInfoEXT(display_event::VkDisplayEventTypeEXT; next = C_NULL)
+    _DisplayEventInfoEXT(display_event::DisplayEventTypeEXT; next = C_NULL)
 
 Arguments:
-- `display_event::VkDisplayEventTypeEXT`
+- `display_event::DisplayEventTypeEXT`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8369,13 +8369,13 @@ Arguments:
 _DeviceGroupSwapchainCreateInfoKHR
 
 """
-    _DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer, descriptor_type::VkDescriptorType, offset::Integer, stride::Integer)
+    _DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer, descriptor_type::DescriptorType, offset::Integer, stride::Integer)
 
 Arguments:
 - `dst_binding::Integer`
 - `dst_array_element::Integer`
 - `descriptor_count::Integer`
-- `descriptor_type::VkDescriptorType`
+- `descriptor_type::DescriptorType`
 - `offset::Integer`
 - `stride::Integer`
 
@@ -8383,13 +8383,13 @@ Arguments:
 _DescriptorUpdateTemplateEntry
 
 """
-    _DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; next = C_NULL, flags = 0)
+    _DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}`
-- `template_type::VkDescriptorUpdateTemplateType`
+- `template_type::DescriptorUpdateTemplateType`
 - `descriptor_set_layout::DescriptorSetLayout`
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `pipeline_layout::PipelineLayout`
 - `set::Integer`
 - `next`: defaults to `C_NULL`
@@ -8510,13 +8510,13 @@ Arguments:
 _PipelineViewportWScalingStateCreateInfoNV
 
 """
-    _ViewportSwizzleNV(x::VkViewportCoordinateSwizzleNV, y::VkViewportCoordinateSwizzleNV, z::VkViewportCoordinateSwizzleNV, w::VkViewportCoordinateSwizzleNV)
+    _ViewportSwizzleNV(x::ViewportCoordinateSwizzleNV, y::ViewportCoordinateSwizzleNV, z::ViewportCoordinateSwizzleNV, w::ViewportCoordinateSwizzleNV)
 
 Arguments:
-- `x::VkViewportCoordinateSwizzleNV`
-- `y::VkViewportCoordinateSwizzleNV`
-- `z::VkViewportCoordinateSwizzleNV`
-- `w::VkViewportCoordinateSwizzleNV`
+- `x::ViewportCoordinateSwizzleNV`
+- `y::ViewportCoordinateSwizzleNV`
+- `z::ViewportCoordinateSwizzleNV`
+- `w::ViewportCoordinateSwizzleNV`
 
 """
 _ViewportSwizzleNV
@@ -8533,10 +8533,10 @@ Arguments:
 _PipelineViewportSwizzleStateCreateInfoNV
 
 """
-    _PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::VkDiscardRectangleModeEXT, discard_rectangles::AbstractArray{<:_Rect2D}; next = C_NULL, flags = 0)
+    _PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::DiscardRectangleModeEXT, discard_rectangles::AbstractArray{<:_Rect2D}; next = C_NULL, flags = 0)
 
 Arguments:
-- `discard_rectangle_mode::VkDiscardRectangleModeEXT`
+- `discard_rectangle_mode::DiscardRectangleModeEXT`
 - `discard_rectangles::AbstractArray{<:_Rect2D}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -8661,10 +8661,10 @@ Arguments:
 _ImageViewUsageCreateInfo
 
 """
-    _PipelineTessellationDomainOriginStateCreateInfo(domain_origin::VkTessellationDomainOrigin; next = C_NULL)
+    _PipelineTessellationDomainOriginStateCreateInfo(domain_origin::TessellationDomainOrigin; next = C_NULL)
 
 Arguments:
-- `domain_origin::VkTessellationDomainOrigin`
+- `domain_origin::TessellationDomainOrigin`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8681,16 +8681,16 @@ Arguments:
 _SamplerYcbcrConversionInfo
 
 """
-    _SamplerYcbcrConversionCreateInfo(format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; next = C_NULL)
+    _SamplerYcbcrConversionCreateInfo(format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool; next = C_NULL)
 
 Arguments:
-- `format::VkFormat`
-- `ycbcr_model::VkSamplerYcbcrModelConversion`
-- `ycbcr_range::VkSamplerYcbcrRange`
+- `format::Format`
+- `ycbcr_model::SamplerYcbcrModelConversion`
+- `ycbcr_range::SamplerYcbcrRange`
 - `components::_ComponentMapping`
-- `x_chroma_offset::VkChromaLocation`
-- `y_chroma_offset::VkChromaLocation`
-- `chroma_filter::VkFilter`
+- `x_chroma_offset::ChromaLocation`
+- `y_chroma_offset::ChromaLocation`
+- `chroma_filter::Filter`
 - `force_explicit_reconstruction::Bool`
 - `next`: defaults to `C_NULL`
 
@@ -8848,10 +8848,10 @@ Arguments:
 _PipelineSampleLocationsStateCreateInfoEXT
 
 """
-    _SamplerReductionModeCreateInfo(reduction_mode::VkSamplerReductionMode; next = C_NULL)
+    _SamplerReductionModeCreateInfo(reduction_mode::SamplerReductionMode; next = C_NULL)
 
 Arguments:
-- `reduction_mode::VkSamplerReductionMode`
+- `reduction_mode::SamplerReductionMode`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8868,12 +8868,12 @@ Arguments:
 _PhysicalDeviceBlendOperationAdvancedFeaturesEXT
 
 """
-    _PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::VkBlendOverlapEXT; next = C_NULL)
+    _PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::BlendOverlapEXT; next = C_NULL)
 
 Arguments:
 - `src_premultiplied::Bool`
 - `dst_premultiplied::Bool`
-- `blend_overlap::VkBlendOverlapEXT`
+- `blend_overlap::BlendOverlapEXT`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8912,10 +8912,10 @@ Arguments:
 _DescriptorPoolInlineUniformBlockCreateInfoEXT
 
 """
-    _PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::VkCoverageModulationModeNV, coverage_modulation_table_enable::Bool; next = C_NULL, flags = 0, coverage_modulation_table = C_NULL)
+    _PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::CoverageModulationModeNV, coverage_modulation_table_enable::Bool; next = C_NULL, flags = 0, coverage_modulation_table = C_NULL)
 
 Arguments:
-- `coverage_modulation_mode::VkCoverageModulationModeNV`
+- `coverage_modulation_mode::CoverageModulationModeNV`
 - `coverage_modulation_table_enable::Bool`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -8925,10 +8925,10 @@ Arguments:
 _PipelineCoverageModulationStateCreateInfoNV
 
 """
-    _ImageFormatListCreateInfo(view_formats::AbstractArray{<:VkFormat}; next = C_NULL)
+    _ImageFormatListCreateInfo(view_formats::AbstractArray{<:Format}; next = C_NULL)
 
 Arguments:
-- `view_formats::AbstractArray{<:VkFormat}`
+- `view_formats::AbstractArray{<:Format}`
 - `next`: defaults to `C_NULL`
 
 """
@@ -8988,20 +8988,20 @@ Arguments:
 _PhysicalDeviceHostQueryResetFeatures
 
 """
-    _DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::VkQueueGlobalPriorityEXT; next = C_NULL)
+    _DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::QueueGlobalPriorityEXT; next = C_NULL)
 
 Arguments:
-- `global_priority::VkQueueGlobalPriorityEXT`
+- `global_priority::QueueGlobalPriorityEXT`
 - `next`: defaults to `C_NULL`
 
 """
 _DeviceQueueGlobalPriorityCreateInfoEXT
 
 """
-    _DebugUtilsObjectNameInfoEXT(object_type::VkObjectType, object_handle::Integer; next = C_NULL, object_name = C_NULL)
+    _DebugUtilsObjectNameInfoEXT(object_type::ObjectType, object_handle::Integer; next = C_NULL, object_name = C_NULL)
 
 Arguments:
-- `object_type::VkObjectType`
+- `object_type::ObjectType`
 - `object_handle::Integer`
 - `next`: defaults to `C_NULL`
 - `object_name`: defaults to `C_NULL`
@@ -9010,10 +9010,10 @@ Arguments:
 _DebugUtilsObjectNameInfoEXT
 
 """
-    _DebugUtilsObjectTagInfoEXT(object_type::VkObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+    _DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `object_type::VkObjectType`
+- `object_type::ObjectType`
 - `object_handle::Integer`
 - `tag_name::Integer`
 - `tag_size::Integer`
@@ -9098,20 +9098,20 @@ Arguments:
 _ImportMemoryHostPointerInfoEXT
 
 """
-    _CalibratedTimestampInfoEXT(time_domain::VkTimeDomainEXT; next = C_NULL)
+    _CalibratedTimestampInfoEXT(time_domain::TimeDomainEXT; next = C_NULL)
 
 Arguments:
-- `time_domain::VkTimeDomainEXT`
+- `time_domain::TimeDomainEXT`
 - `next`: defaults to `C_NULL`
 
 """
 _CalibratedTimestampInfoEXT
 
 """
-    _PipelineRasterizationConservativeStateCreateInfoEXT(conservative_rasterization_mode::VkConservativeRasterizationModeEXT, extra_primitive_overestimation_size::Real; next = C_NULL, flags = 0)
+    _PipelineRasterizationConservativeStateCreateInfoEXT(conservative_rasterization_mode::ConservativeRasterizationModeEXT, extra_primitive_overestimation_size::Real; next = C_NULL, flags = 0)
 
 Arguments:
-- `conservative_rasterization_mode::VkConservativeRasterizationModeEXT`
+- `conservative_rasterization_mode::ConservativeRasterizationModeEXT`
 - `extra_primitive_overestimation_size::Real`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -9169,17 +9169,17 @@ Arguments:
 _DescriptorSetVariableDescriptorCountAllocateInfo
 
 """
-    _AttachmentDescription2(format::VkFormat, samples::SampleCountFlag, load_op::VkAttachmentLoadOp, store_op::VkAttachmentStoreOp, stencil_load_op::VkAttachmentLoadOp, stencil_store_op::VkAttachmentStoreOp, initial_layout::VkImageLayout, final_layout::VkImageLayout; next = C_NULL, flags = 0)
+    _AttachmentDescription2(format::Format, samples::SampleCountFlag, load_op::AttachmentLoadOp, store_op::AttachmentStoreOp, stencil_load_op::AttachmentLoadOp, stencil_store_op::AttachmentStoreOp, initial_layout::ImageLayout, final_layout::ImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
-- `format::VkFormat`
+- `format::Format`
 - `samples::SampleCountFlag`
-- `load_op::VkAttachmentLoadOp`
-- `store_op::VkAttachmentStoreOp`
-- `stencil_load_op::VkAttachmentLoadOp`
-- `stencil_store_op::VkAttachmentStoreOp`
-- `initial_layout::VkImageLayout`
-- `final_layout::VkImageLayout`
+- `load_op::AttachmentLoadOp`
+- `store_op::AttachmentStoreOp`
+- `stencil_load_op::AttachmentLoadOp`
+- `stencil_store_op::AttachmentStoreOp`
+- `initial_layout::ImageLayout`
+- `final_layout::ImageLayout`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -9187,11 +9187,11 @@ Arguments:
 _AttachmentDescription2
 
 """
-    _AttachmentReference2(attachment::Integer, layout::VkImageLayout, aspect_mask::ImageAspectFlag; next = C_NULL)
+    _AttachmentReference2(attachment::Integer, layout::ImageLayout, aspect_mask::ImageAspectFlag; next = C_NULL)
 
 Arguments:
 - `attachment::Integer`
-- `layout::VkImageLayout`
+- `layout::ImageLayout`
 - `aspect_mask::ImageAspectFlag`
 - `next`: defaults to `C_NULL`
 
@@ -9199,10 +9199,10 @@ Arguments:
 _AttachmentReference2
 
 """
-    _SubpassDescription2(pipeline_bind_point::VkPipelineBindPoint, view_mask::Integer, input_attachments::AbstractArray{<:_AttachmentReference2}, color_attachments::AbstractArray{<:_AttachmentReference2}, preserve_attachments::AbstractArray{<:Integer}; next = C_NULL, flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
+    _SubpassDescription2(pipeline_bind_point::PipelineBindPoint, view_mask::Integer, input_attachments::AbstractArray{<:_AttachmentReference2}, color_attachments::AbstractArray{<:_AttachmentReference2}, preserve_attachments::AbstractArray{<:Integer}; next = C_NULL, flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::VkPipelineBindPoint`
+- `pipeline_bind_point::PipelineBindPoint`
 - `view_mask::Integer`
 - `input_attachments::AbstractArray{<:_AttachmentReference2}`
 - `color_attachments::AbstractArray{<:_AttachmentReference2}`
@@ -9247,10 +9247,10 @@ Arguments:
 _RenderPassCreateInfo2
 
 """
-    _SubpassBeginInfo(contents::VkSubpassContents; next = C_NULL)
+    _SubpassBeginInfo(contents::SubpassContents; next = C_NULL)
 
 Arguments:
-- `contents::VkSubpassContents`
+- `contents::SubpassContents`
 - `next`: defaults to `C_NULL`
 
 """
@@ -9276,10 +9276,10 @@ Arguments:
 _PhysicalDeviceTimelineSemaphoreFeatures
 
 """
-    _SemaphoreTypeCreateInfo(semaphore_type::VkSemaphoreType, initial_value::Integer; next = C_NULL)
+    _SemaphoreTypeCreateInfo(semaphore_type::SemaphoreType, initial_value::Integer; next = C_NULL)
 
 Arguments:
-- `semaphore_type::VkSemaphoreType`
+- `semaphore_type::SemaphoreType`
 - `initial_value::Integer`
 - `next`: defaults to `C_NULL`
 
@@ -9471,10 +9471,10 @@ Arguments:
 _SubpassDescriptionDepthStencilResolve
 
 """
-    _ImageViewASTCDecodeModeEXT(decode_mode::VkFormat; next = C_NULL)
+    _ImageViewASTCDecodeModeEXT(decode_mode::Format; next = C_NULL)
 
 Arguments:
-- `decode_mode::VkFormat`
+- `decode_mode::Format`
 - `next`: defaults to `C_NULL`
 
 """
@@ -9604,10 +9604,10 @@ Arguments:
 _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
 
 """
-    _ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray{<:VkShadingRatePaletteEntryNV})
+    _ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray{<:ShadingRatePaletteEntryNV})
 
 Arguments:
-- `shading_rate_palette_entries::AbstractArray{<:VkShadingRatePaletteEntryNV}`
+- `shading_rate_palette_entries::AbstractArray{<:ShadingRatePaletteEntryNV}`
 
 """
 _ShadingRatePaletteNV
@@ -9646,10 +9646,10 @@ Arguments:
 _CoarseSampleLocationNV
 
 """
-    _CoarseSampleOrderCustomNV(shading_rate::VkShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray{<:_CoarseSampleLocationNV})
+    _CoarseSampleOrderCustomNV(shading_rate::ShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray{<:_CoarseSampleLocationNV})
 
 Arguments:
-- `shading_rate::VkShadingRatePaletteEntryNV`
+- `shading_rate::ShadingRatePaletteEntryNV`
 - `sample_count::Integer`
 - `sample_locations::AbstractArray{<:_CoarseSampleLocationNV}`
 
@@ -9657,10 +9657,10 @@ Arguments:
 _CoarseSampleOrderCustomNV
 
 """
-    _PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::VkCoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}; next = C_NULL)
+    _PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}; next = C_NULL)
 
 Arguments:
-- `sample_order_type::VkCoarseSampleOrderTypeNV`
+- `sample_order_type::CoarseSampleOrderTypeNV`
 - `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
 - `next`: defaults to `C_NULL`
 
@@ -9689,10 +9689,10 @@ Arguments:
 _DrawMeshTasksIndirectCommandNV
 
 """
-    _RayTracingShaderGroupCreateInfoNV(type::VkRayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL)
+    _RayTracingShaderGroupCreateInfoNV(type::RayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL)
 
 Arguments:
-- `type::VkRayTracingShaderGroupTypeKHR`
+- `type::RayTracingShaderGroupTypeKHR`
 - `general_shader::Integer`
 - `closest_hit_shader::Integer`
 - `any_hit_shader::Integer`
@@ -9703,10 +9703,10 @@ Arguments:
 _RayTracingShaderGroupCreateInfoNV
 
 """
-    _RayTracingShaderGroupCreateInfoKHR(type::VkRayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL, shader_group_capture_replay_handle = C_NULL)
+    _RayTracingShaderGroupCreateInfoKHR(type::RayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL, shader_group_capture_replay_handle = C_NULL)
 
 Arguments:
-- `type::VkRayTracingShaderGroupTypeKHR`
+- `type::RayTracingShaderGroupTypeKHR`
 - `general_shader::Integer`
 - `closest_hit_shader::Integer`
 - `any_hit_shader::Integer`
@@ -9753,16 +9753,16 @@ Arguments:
 _RayTracingPipelineCreateInfoKHR
 
 """
-    _GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::VkFormat, index_offset::Integer, index_count::Integer, index_type::VkIndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
+    _GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::Format, index_offset::Integer, index_count::Integer, index_type::IndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
 
 Arguments:
 - `vertex_offset::Integer`
 - `vertex_count::Integer`
 - `vertex_stride::Integer`
-- `vertex_format::VkFormat`
+- `vertex_format::Format`
 - `index_offset::Integer`
 - `index_count::Integer`
-- `index_type::VkIndexType`
+- `index_type::IndexType`
 - `transform_offset::Integer`
 - `next`: defaults to `C_NULL`
 - `vertex_data`: defaults to `C_NULL`
@@ -9796,10 +9796,10 @@ Arguments:
 _GeometryDataNV
 
 """
-    _GeometryNV(geometry_type::VkGeometryTypeKHR, geometry::_GeometryDataNV; next = C_NULL, flags = 0)
+    _GeometryNV(geometry_type::GeometryTypeKHR, geometry::_GeometryDataNV; next = C_NULL, flags = 0)
 
 Arguments:
-- `geometry_type::VkGeometryTypeKHR`
+- `geometry_type::GeometryTypeKHR`
 - `geometry::_GeometryDataNV`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -9865,10 +9865,10 @@ Arguments:
 _WriteDescriptorSetAccelerationStructureNV
 
 """
-    _AccelerationStructureMemoryRequirementsInfoNV(type::VkAccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
+    _AccelerationStructureMemoryRequirementsInfoNV(type::AccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
 
 Arguments:
-- `type::VkAccelerationStructureMemoryRequirementsTypeNV`
+- `type::AccelerationStructureMemoryRequirementsTypeNV`
 - `acceleration_structure::AccelerationStructureNV`
 - `next`: defaults to `C_NULL`
 
@@ -9936,11 +9936,11 @@ Arguments:
 _TraceRaysIndirectCommandKHR
 
 """
-    _PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL)
+    _PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
 - `drm_format_modifier::Integer`
-- `sharing_mode::VkSharingMode`
+- `sharing_mode::SharingMode`
 - `queue_family_indices::AbstractArray{<:Integer}`
 - `next`: defaults to `C_NULL`
 
@@ -9979,10 +9979,10 @@ Arguments:
 _ImageStencilUsageCreateInfo
 
 """
-    _DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::VkMemoryOverallocationBehaviorAMD; next = C_NULL)
+    _DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::MemoryOverallocationBehaviorAMD; next = C_NULL)
 
 Arguments:
-- `overallocation_behavior::VkMemoryOverallocationBehaviorAMD`
+- `overallocation_behavior::MemoryOverallocationBehaviorAMD`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10146,10 +10146,10 @@ Arguments:
 _BufferDeviceAddressCreateInfoEXT
 
 """
-    _PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type::VkImageViewType; next = C_NULL)
+    _PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type::ImageViewType; next = C_NULL)
 
 Arguments:
-- `image_view_type::VkImageViewType`
+- `image_view_type::ImageViewType`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10176,14 +10176,14 @@ Arguments:
 _FramebufferAttachmentsCreateInfo
 
 """
-    _FramebufferAttachmentImageInfo(usage::ImageUsageFlag, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray{<:VkFormat}; next = C_NULL, flags = 0)
+    _FramebufferAttachmentImageInfo(usage::ImageUsageFlag, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray{<:Format}; next = C_NULL, flags = 0)
 
 Arguments:
 - `usage::ImageUsageFlag`
 - `width::Integer`
 - `height::Integer`
 - `layer_count::Integer`
-- `view_formats::AbstractArray{<:VkFormat}`
+- `view_formats::AbstractArray{<:Format}`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -10222,17 +10222,17 @@ Arguments:
 _PhysicalDeviceCooperativeMatrixFeaturesNV
 
 """
-    _CooperativeMatrixPropertiesNV(m_size::Integer, n_size::Integer, k_size::Integer, a_type::VkComponentTypeNV, b_type::VkComponentTypeNV, c_type::VkComponentTypeNV, d_type::VkComponentTypeNV, scope::VkScopeNV; next = C_NULL)
+    _CooperativeMatrixPropertiesNV(m_size::Integer, n_size::Integer, k_size::Integer, a_type::ComponentTypeNV, b_type::ComponentTypeNV, c_type::ComponentTypeNV, d_type::ComponentTypeNV, scope::ScopeNV; next = C_NULL)
 
 Arguments:
 - `m_size::Integer`
 - `n_size::Integer`
 - `k_size::Integer`
-- `a_type::VkComponentTypeNV`
-- `b_type::VkComponentTypeNV`
-- `c_type::VkComponentTypeNV`
-- `d_type::VkComponentTypeNV`
-- `scope::VkScopeNV`
+- `a_type::ComponentTypeNV`
+- `b_type::ComponentTypeNV`
+- `c_type::ComponentTypeNV`
+- `d_type::ComponentTypeNV`
+- `scope::ScopeNV`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10249,11 +10249,11 @@ Arguments:
 _PhysicalDeviceYcbcrImageArraysFeaturesEXT
 
 """
-    _ImageViewHandleInfoNVX(image_view::ImageView, descriptor_type::VkDescriptorType; next = C_NULL, sampler = C_NULL)
+    _ImageViewHandleInfoNVX(image_view::ImageView, descriptor_type::DescriptorType; next = C_NULL, sampler = C_NULL)
 
 Arguments:
 - `image_view::ImageView`
-- `descriptor_type::VkDescriptorType`
+- `descriptor_type::DescriptorType`
 - `next`: defaults to `C_NULL`
 - `sampler`: defaults to `C_NULL`
 
@@ -10282,10 +10282,10 @@ Arguments:
 _PipelineCreationFeedbackCreateInfoEXT
 
 """
-    _SurfaceFullScreenExclusiveInfoEXT(full_screen_exclusive::VkFullScreenExclusiveEXT; next = C_NULL)
+    _SurfaceFullScreenExclusiveInfoEXT(full_screen_exclusive::FullScreenExclusiveEXT; next = C_NULL)
 
 Arguments:
-- `full_screen_exclusive::VkFullScreenExclusiveEXT`
+- `full_screen_exclusive::FullScreenExclusiveEXT`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10375,10 +10375,10 @@ Arguments:
 _PhysicalDeviceCoverageReductionModeFeaturesNV
 
 """
-    _PipelineCoverageReductionStateCreateInfoNV(coverage_reduction_mode::VkCoverageReductionModeNV; next = C_NULL, flags = 0)
+    _PipelineCoverageReductionStateCreateInfoNV(coverage_reduction_mode::CoverageReductionModeNV; next = C_NULL, flags = 0)
 
 Arguments:
-- `coverage_reduction_mode::VkCoverageReductionModeNV`
+- `coverage_reduction_mode::CoverageReductionModeNV`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
 
@@ -10396,10 +10396,10 @@ Arguments:
 _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
 
 """
-    _PerformanceValueINTEL(type::VkPerformanceValueTypeINTEL, data::VkPerformanceValueDataINTEL)
+    _PerformanceValueINTEL(type::PerformanceValueTypeINTEL, data::VkPerformanceValueDataINTEL)
 
 Arguments:
-- `type::VkPerformanceValueTypeINTEL`
+- `type::PerformanceValueTypeINTEL`
 - `data::VkPerformanceValueDataINTEL`
 
 """
@@ -10416,10 +10416,10 @@ Arguments:
 _InitializePerformanceApiInfoINTEL
 
 """
-    _QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling::VkQueryPoolSamplingModeINTEL; next = C_NULL)
+    _QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling::QueryPoolSamplingModeINTEL; next = C_NULL)
 
 Arguments:
-- `performance_counters_sampling::VkQueryPoolSamplingModeINTEL`
+- `performance_counters_sampling::QueryPoolSamplingModeINTEL`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10446,10 +10446,10 @@ Arguments:
 _PerformanceStreamMarkerInfoINTEL
 
 """
-    _PerformanceOverrideInfoINTEL(type::VkPerformanceOverrideTypeINTEL, enable::Bool, parameter::Integer; next = C_NULL)
+    _PerformanceOverrideInfoINTEL(type::PerformanceOverrideTypeINTEL, enable::Bool, parameter::Integer; next = C_NULL)
 
 Arguments:
-- `type::VkPerformanceOverrideTypeINTEL`
+- `type::PerformanceOverrideTypeINTEL`
 - `enable::Bool`
 - `parameter::Integer`
 - `next`: defaults to `C_NULL`
@@ -10458,10 +10458,10 @@ Arguments:
 _PerformanceOverrideInfoINTEL
 
 """
-    _PerformanceConfigurationAcquireInfoINTEL(type::VkPerformanceConfigurationTypeINTEL; next = C_NULL)
+    _PerformanceConfigurationAcquireInfoINTEL(type::PerformanceConfigurationTypeINTEL; next = C_NULL)
 
 Arguments:
-- `type::VkPerformanceConfigurationTypeINTEL`
+- `type::PerformanceConfigurationTypeINTEL`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10521,21 +10521,21 @@ Arguments:
 _PhysicalDeviceSeparateDepthStencilLayoutsFeatures
 
 """
-    _AttachmentReferenceStencilLayout(stencil_layout::VkImageLayout; next = C_NULL)
+    _AttachmentReferenceStencilLayout(stencil_layout::ImageLayout; next = C_NULL)
 
 Arguments:
-- `stencil_layout::VkImageLayout`
+- `stencil_layout::ImageLayout`
 - `next`: defaults to `C_NULL`
 
 """
 _AttachmentReferenceStencilLayout
 
 """
-    _AttachmentDescriptionStencilLayout(stencil_initial_layout::VkImageLayout, stencil_final_layout::VkImageLayout; next = C_NULL)
+    _AttachmentDescriptionStencilLayout(stencil_initial_layout::ImageLayout, stencil_final_layout::ImageLayout; next = C_NULL)
 
 Arguments:
-- `stencil_initial_layout::VkImageLayout`
-- `stencil_final_layout::VkImageLayout`
+- `stencil_initial_layout::ImageLayout`
+- `stencil_final_layout::ImageLayout`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10639,10 +10639,10 @@ Arguments:
 _PhysicalDeviceLineRasterizationFeaturesEXT
 
 """
-    _PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::VkLineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
+    _PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::LineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
 
 Arguments:
-- `line_rasterization_mode::VkLineRasterizationModeEXT`
+- `line_rasterization_mode::LineRasterizationModeEXT`
 - `stippled_line_enable::Bool`
 - `line_stipple_factor::Integer`
 - `line_stipple_pattern::Integer`
@@ -10759,11 +10759,11 @@ Arguments:
 _PhysicalDeviceCoherentMemoryFeaturesAMD
 
 """
-    _SamplerCustomBorderColorCreateInfoEXT(custom_border_color::VkClearColorValue, format::VkFormat; next = C_NULL)
+    _SamplerCustomBorderColorCreateInfoEXT(custom_border_color::VkClearColorValue, format::Format; next = C_NULL)
 
 Arguments:
 - `custom_border_color::VkClearColorValue`
-- `format::VkFormat`
+- `format::Format`
 - `next`: defaults to `C_NULL`
 
 """
@@ -10781,14 +10781,14 @@ Arguments:
 _PhysicalDeviceCustomBorderColorFeaturesEXT
 
 """
-    _AccelerationStructureGeometryTrianglesDataKHR(vertex_format::VkFormat, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::VkIndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
+    _AccelerationStructureGeometryTrianglesDataKHR(vertex_format::Format, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::IndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
 
 Arguments:
-- `vertex_format::VkFormat`
+- `vertex_format::Format`
 - `vertex_data::VkDeviceOrHostAddressConstKHR`
 - `vertex_stride::Integer`
 - `max_vertex::Integer`
-- `index_type::VkIndexType`
+- `index_type::IndexType`
 - `index_data::VkDeviceOrHostAddressConstKHR`
 - `transform_data::VkDeviceOrHostAddressConstKHR`
 - `next`: defaults to `C_NULL`
@@ -10819,10 +10819,10 @@ Arguments:
 _AccelerationStructureGeometryInstancesDataKHR
 
 """
-    _AccelerationStructureGeometryKHR(geometry_type::VkGeometryTypeKHR, geometry::VkAccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
+    _AccelerationStructureGeometryKHR(geometry_type::GeometryTypeKHR, geometry::VkAccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
 
 Arguments:
-- `geometry_type::VkGeometryTypeKHR`
+- `geometry_type::GeometryTypeKHR`
 - `geometry::VkAccelerationStructureGeometryDataKHR`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -10831,11 +10831,11 @@ Arguments:
 _AccelerationStructureGeometryKHR
 
 """
-    _AccelerationStructureBuildGeometryInfoKHR(type::VkAccelerationStructureTypeKHR, mode::VkBuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
+    _AccelerationStructureBuildGeometryInfoKHR(type::AccelerationStructureTypeKHR, mode::BuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
 
 Arguments:
-- `type::VkAccelerationStructureTypeKHR`
-- `mode::VkBuildAccelerationStructureModeKHR`
+- `type::AccelerationStructureTypeKHR`
+- `mode::BuildAccelerationStructureModeKHR`
 - `scratch_data::VkDeviceOrHostAddressKHR`
 - `next`: defaults to `C_NULL`
 - `flags`: defaults to `0`
@@ -10860,13 +10860,13 @@ Arguments:
 _AccelerationStructureBuildRangeInfoKHR
 
 """
-    _AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
+    _AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::AccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
 
 Arguments:
 - `buffer::Buffer`
 - `offset::Integer`
 - `size::Integer`
-- `type::VkAccelerationStructureTypeKHR`
+- `type::AccelerationStructureTypeKHR`
 - `next`: defaults to `C_NULL`
 - `create_flags`: defaults to `0`
 - `device_address`: defaults to `0`
@@ -10932,36 +10932,36 @@ Arguments:
 _AccelerationStructureVersionInfoKHR
 
 """
-    _CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    _CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
 - `src::AccelerationStructureKHR`
 - `dst::AccelerationStructureKHR`
-- `mode::VkCopyAccelerationStructureModeKHR`
+- `mode::CopyAccelerationStructureModeKHR`
 - `next`: defaults to `C_NULL`
 
 """
 _CopyAccelerationStructureInfoKHR
 
 """
-    _CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::VkDeviceOrHostAddressKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    _CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::VkDeviceOrHostAddressKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
 - `src::AccelerationStructureKHR`
 - `dst::VkDeviceOrHostAddressKHR`
-- `mode::VkCopyAccelerationStructureModeKHR`
+- `mode::CopyAccelerationStructureModeKHR`
 - `next`: defaults to `C_NULL`
 
 """
 _CopyAccelerationStructureToMemoryInfoKHR
 
 """
-    _CopyMemoryToAccelerationStructureInfoKHR(src::VkDeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::VkCopyAccelerationStructureModeKHR; next = C_NULL)
+    _CopyMemoryToAccelerationStructureInfoKHR(src::VkDeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
 - `src::VkDeviceOrHostAddressConstKHR`
 - `dst::AccelerationStructureKHR`
-- `mode::VkCopyAccelerationStructureModeKHR`
+- `mode::CopyAccelerationStructureModeKHR`
 - `next`: defaults to `C_NULL`
 
 """
@@ -11232,13 +11232,13 @@ Arguments:
 _CopyBufferInfo2KHR
 
 """
-    _CopyImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageCopy2KHR}; next = C_NULL)
+    _CopyImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageCopy2KHR}; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_ImageCopy2KHR}`
 - `next`: defaults to `C_NULL`
 
@@ -11246,27 +11246,27 @@ Arguments:
 _CopyImageInfo2KHR
 
 """
-    _BlitImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageBlit2KHR}, filter::VkFilter; next = C_NULL)
+    _BlitImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageBlit2KHR}, filter::Filter; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_ImageBlit2KHR}`
-- `filter::VkFilter`
+- `filter::Filter`
 - `next`: defaults to `C_NULL`
 
 """
 _BlitImageInfo2KHR
 
 """
-    _CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
+    _CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
 Arguments:
 - `src_buffer::Buffer`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_BufferImageCopy2KHR}`
 - `next`: defaults to `C_NULL`
 
@@ -11274,11 +11274,11 @@ Arguments:
 _CopyBufferToImageInfo2KHR
 
 """
-    _CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
+    _CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_buffer::Buffer`
 - `regions::AbstractArray{<:_BufferImageCopy2KHR}`
 - `next`: defaults to `C_NULL`
@@ -11287,13 +11287,13 @@ Arguments:
 _CopyImageToBufferInfo2KHR
 
 """
-    _ResolveImageInfo2KHR(src_image::Image, src_image_layout::VkImageLayout, dst_image::Image, dst_image_layout::VkImageLayout, regions::AbstractArray{<:_ImageResolve2KHR}; next = C_NULL)
+    _ResolveImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageResolve2KHR}; next = C_NULL)
 
 Arguments:
 - `src_image::Image`
-- `src_image_layout::VkImageLayout`
+- `src_image_layout::ImageLayout`
 - `dst_image::Image`
-- `dst_image_layout::VkImageLayout`
+- `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{<:_ImageResolve2KHR}`
 - `next`: defaults to `C_NULL`
 
@@ -11323,11 +11323,11 @@ Arguments:
 _FragmentShadingRateAttachmentInfoKHR
 
 """
-    _PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::_Extent2D, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+    _PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}; next = C_NULL)
 
 Arguments:
 - `fragment_size::_Extent2D`
-- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 - `next`: defaults to `C_NULL`
 
 """
@@ -11378,12 +11378,12 @@ Arguments:
 _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
 
 """
-    _PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::VkFragmentShadingRateTypeNV, shading_rate::VkFragmentShadingRateNV, combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}; next = C_NULL)
+    _PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::FragmentShadingRateTypeNV, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}; next = C_NULL)
 
 Arguments:
-- `shading_rate_type::VkFragmentShadingRateTypeNV`
-- `shading_rate::VkFragmentShadingRateNV`
-- `combiner_ops::NTuple{2, VkFragmentShadingRateCombinerOpKHR}`
+- `shading_rate_type::FragmentShadingRateTypeNV`
+- `shading_rate::FragmentShadingRateNV`
+- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 - `next`: defaults to `C_NULL`
 
 """
@@ -11412,10 +11412,10 @@ Arguments:
 _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
 
 """
-    _MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray{<:VkDescriptorType})
+    _MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray{<:DescriptorType})
 
 Arguments:
-- `descriptor_types::AbstractArray{<:VkDescriptorType}`
+- `descriptor_types::AbstractArray{<:DescriptorType}`
 
 """
 _MutableDescriptorTypeListVALVE
@@ -11441,12 +11441,12 @@ Arguments:
 _PhysicalDeviceVertexInputDynamicStateFeaturesEXT
 
 """
-    _VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VkVertexInputRate, divisor::Integer; next = C_NULL)
+    _VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VertexInputRate, divisor::Integer; next = C_NULL)
 
 Arguments:
 - `binding::Integer`
 - `stride::Integer`
-- `input_rate::VkVertexInputRate`
+- `input_rate::VertexInputRate`
 - `divisor::Integer`
 - `next`: defaults to `C_NULL`
 
@@ -11454,12 +11454,12 @@ Arguments:
 _VertexInputBindingDescription2EXT
 
 """
-    _VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::VkFormat, offset::Integer; next = C_NULL)
+    _VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::Format, offset::Integer; next = C_NULL)
 
 Arguments:
 - `location::Integer`
 - `binding::Integer`
-- `format::VkFormat`
+- `format::Format`
 - `offset::Integer`
 - `next`: defaults to `C_NULL`
 
@@ -11500,11 +11500,11 @@ Arguments:
 _MemoryBarrier2KHR
 
 """
-    _ImageMemoryBarrier2KHR(old_layout::VkImageLayout, new_layout::VkImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+    _ImageMemoryBarrier2KHR(old_layout::ImageLayout, new_layout::ImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
 Arguments:
-- `old_layout::VkImageLayout`
-- `new_layout::VkImageLayout`
+- `old_layout::ImageLayout`
+- `new_layout::ImageLayout`
 - `src_queue_family_index::Integer`
 - `dst_queue_family_index::Integer`
 - `image::Image`
@@ -11838,14 +11838,14 @@ Arguments:
 _VideoDecodeH265DpbSlotInfoEXT
 
 """
-    _VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::VkFormat, max_coded_extent::_Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; next = C_NULL, flags = 0)
+    _VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::Format, max_coded_extent::_Extent2D, reference_pictures_format::Format, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 - `queue_family_index::Integer`
 - `video_profile::_VideoProfileKHR`
-- `picture_format::VkFormat`
+- `picture_format::Format`
 - `max_coded_extent::_Extent2D`
-- `reference_pictures_format::VkFormat`
+- `reference_pictures_format::Format`
 - `max_reference_pictures_slots_count::Integer`
 - `max_reference_pictures_active_count::Integer`
 - `next`: defaults to `C_NULL`
@@ -12104,10 +12104,10 @@ Arguments:
 _PhysicalDeviceProvokingVertexFeaturesEXT
 
 """
-    _PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::VkProvokingVertexModeEXT; next = C_NULL)
+    _PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::ProvokingVertexModeEXT; next = C_NULL)
 
 Arguments:
-- `provoking_vertex_mode::VkProvokingVertexModeEXT`
+- `provoking_vertex_mode::ProvokingVertexModeEXT`
 - `next`: defaults to `C_NULL`
 
 """
@@ -12142,32 +12142,32 @@ DeviceMemory(device::Device, allocation_size::Integer, memory_type_index::Intege
 CommandPool(device::Device, queue_family_index::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+    Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+Buffer(device::Device, size::Integer, usage::BufferUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
-
-
-"""
-BufferView(device::Device, buffer::Buffer, format::VkFormat, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
-
-"""
-    Image(device::Device, image_type::VkImageType, format::VkFormat, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
+    BufferView(device::Device, buffer::Buffer, format::Format, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-Image(device::Device, image_type::VkImageType, format::VkFormat, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::VkImageTiling, usage::ImageUsageFlag, sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::VkImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
+BufferView(device::Device, buffer::Buffer, format::Format, offset::Integer, range::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
+    Image(device::Device, image_type::ImageType, format::Format, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-ImageView(device::Device, image::Image, view_type::VkImageViewType, format::VkFormat, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
+Image(device::Device, image_type::ImageType, format::Format, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout; allocator = C_NULL, next = C_NULL, flags = 0)
+
+"""
+    ImageView(device::Device, image::Image, view_type::ImageViewType, format::Format, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
+
+
+"""
+ImageView(device::Device, image::Image, view_type::ImageViewType, format::Format, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     ShaderModule(device::Device, code_size::Integer, code::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -12184,11 +12184,11 @@ ShaderModule(device::Device, code_size::Integer, code::AbstractArray{<:Integer};
 PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    Sampler(device::Device, mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0)
+    Sampler(device::Device, mag_filter::Filter, min_filter::Filter, mipmap_mode::SamplerMipmapMode, address_mode_u::SamplerAddressMode, address_mode_v::SamplerAddressMode, address_mode_w::SamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::CompareOp, min_lod::Real, max_lod::Real, border_color::BorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-Sampler(device::Device, mag_filter::VkFilter, min_filter::VkFilter, mipmap_mode::VkSamplerMipmapMode, address_mode_u::VkSamplerAddressMode, address_mode_v::VkSamplerAddressMode, address_mode_w::VkSamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::VkCompareOp, min_lod::Real, max_lod::Real, border_color::VkBorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0)
+Sampler(device::Device, mag_filter::Filter, min_filter::Filter, mipmap_mode::SamplerMipmapMode, address_mode_u::SamplerAddressMode, address_mode_v::SamplerAddressMode, address_mode_w::SamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::CompareOp, min_lod::Real, max_lod::Real, border_color::BorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     DescriptorSetLayout(device::Device, bindings::AbstractArray{<:_DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -12226,11 +12226,11 @@ Semaphore(device::Device; allocator = C_NULL, next = C_NULL, flags = 0)
 Event(device::Device; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    QueryPool(device::Device, query_type::VkQueryType, query_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0, pipeline_statistics = 0)
+    QueryPool(device::Device, query_type::QueryType, query_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0, pipeline_statistics = 0)
 
 
 """
-QueryPool(device::Device, query_type::VkQueryType, query_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0, pipeline_statistics = 0)
+QueryPool(device::Device, query_type::QueryType, query_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0, pipeline_statistics = 0)
 
 """
     Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -12261,25 +12261,25 @@ RenderPass(device::Device, attachments::AbstractArray{<:_AttachmentDescription2}
 PipelineCache(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
 
 """
-    IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+    IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::VkPipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
+IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
-
-
-"""
-DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::VkDescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::VkPipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
-
-"""
-    SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
+    DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerYcbcrModelConversion, ycbcr_range::VkSamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::VkChromaLocation, y_chroma_offset::VkChromaLocation, chroma_filter::VkFilter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
+DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+
+"""
+    SamplerYcbcrConversion(device::Device, format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
+
+
+"""
+SamplerYcbcrConversion(device::Device, format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL)
 
 """
     ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
@@ -12289,11 +12289,11 @@ SamplerYcbcrConversion(device::Device, format::VkFormat, ycbcr_model::VkSamplerY
 ValidationCacheEXT(device::Device, initial_data::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0, initial_data_size = 0)
 
 """
-    AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0)
+    AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::AccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0)
 
 
 """
-AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::VkAccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0)
+AccelerationStructureKHR(device::Device, buffer::Buffer, offset::Integer, size::Integer, type::AccelerationStructureTypeKHR; allocator = C_NULL, next = C_NULL, create_flags = 0, device_address = 0)
 
 """
     AccelerationStructureNV(device::Device, compacted_size::Integer, info::_AccelerationStructureInfoNV; allocator = C_NULL, next = C_NULL)
@@ -12324,11 +12324,11 @@ PrivateDataSlotEXT(device::Device, flags::PrivateDataSlotCreateFlagEXT; allocato
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::_DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
+    SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 
 """
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::VkFormat, image_color_space::VkColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::VkSharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::VkPresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 """
     DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL)
@@ -12345,11 +12345,11 @@ DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr; allocator 
 DebugUtilsMessengerEXT(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL)
 
 """
-    VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::VkFormat, max_coded_extent::_Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+    VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::Format, max_coded_extent::_Extent2D, reference_pictures_format::Format, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::VkFormat, max_coded_extent::_Extent2D, reference_pictures_format::VkFormat, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+VideoSessionKHR(device::Device, queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::Format, max_coded_extent::_Extent2D, reference_pictures_format::Format, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     VideoSessionParametersKHR(device::Device, video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; allocator = C_NULL, next = C_NULL)
