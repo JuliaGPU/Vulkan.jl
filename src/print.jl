@@ -5,13 +5,13 @@ end
 Base.show(io::IO, x::PhysicalDeviceMemoryProperties) = print(io, "PhysicalDeviceMemoryProperties($(x.memory_types[1:x.memory_type_count]), $(x.memory_heaps[1:x.memory_heap_count]))")
 
 function Base.show(io::IO, features::T) where {T<:Union{PhysicalDeviceFeatures,PhysicalDeviceVulkan11Features,PhysicalDeviceVulkan12Features}}
-    fnames = fieldnames(typeof(features.vks))
-    fields = filter(!in((:sType, :pNext)), fnames)
-    vals = Bool.(getproperty.(Ref(features.vks), fields))
+    fnames = fieldnames(typeof(features))
+    fields = filter(!in((:s_type, :next)), fnames)
+    vals = Bool.(getproperty.(Ref(features), fields))
     print(io, nameof(T), '(')
     idxs = findall(vals)
     if features isa PhysicalDeviceVulkan11Features || features isa PhysicalDeviceVulkan12Features
-        print(io, "next=", features.vks.pNext)
+        print(io, "next=", features.next)
         !isempty(idxs) && print(io, ", ")
     end
     print(io, join(getindex(fields, idxs), ", "), ')')

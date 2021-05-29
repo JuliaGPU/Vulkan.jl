@@ -9,7 +9,7 @@ function bitmask_type(spec::SpecBitmask)
 end
 
 function wrap(spec::SpecBitmask)
-    name = bitmask_flag_type(spec.name)
+    name = bitmask_flag_type(spec)
     Dict(
         :category => :enum,
         :macro => Symbol("@bitmask_flag"),

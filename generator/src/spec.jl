@@ -80,6 +80,9 @@ export
     length_chain,
     is_fn_ptr,
     is_version,
+    is_default_count,
+    is_specific_count,
+    default_count,
     wrappable_constructors,
 
     ### Render passes

@@ -1,4 +1,43 @@
-function nice_julian_type(type, is_high_level = false)
+function hl_type(spec::SpecStructMember)
+    @match s = spec begin
+        if s.name == :pNext end => :Any
+        GuardBy(is_version) => :VersionNumber
+        GuardBy(is_arr) => begin
+            T = hl_type(ptr_type(s.type))
+            :(Vector{$T})
+        end
+        _ => hl_type(spec.type)
+    end
+end
+
+function hl_type(type)
+    @match t = type begin
+        :Cstring => :String
+        :VkBool32 => :Bool
+        :(NTuple{$N,$T}) => begin
+            @match T begin
+                :UInt8 => :String
+                # :(Ntuple{$M,$T}) => :(SMatrix{$N,$M,$T})
+                # _ => :(SVector{$N,$T})
+                _ => :(NTuple{$N,$(hl_type(T))})
+            end
+        end
+        GuardBy(in(spec_structs.name)) => struct_name(t, true)
+        GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
+        GuardBy(in(extension_types)) => :(vk.$t)
+        GuardBy(is_fn_ptr) => :FunctionPtr
+        :(Ptr{$T}) => hl_type(T)
+        GuardBy(is_flag_bitmask) => bitmask_flag_type(t)
+        GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(t).bitmask)
+        end => bitmask_flag_type(flag_by_name(t).bitmask)
+        GuardBy(in(spec_constants.name)) => follow_constant(t)
+        GuardBy(in(spec_enums.name)) => enum_type(t)
+        GuardBy(is_vulkan_type) => remove_vk_prefix(t)
+        _ => t
+    end
+end
+
+function nice_julian_type(type)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
         GuardBy(is_opaque_pointer) => t
@@ -14,33 +53,26 @@ function nice_julian_type(type, is_high_level = false)
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)
         GuardBy(in(extension_types)) => :(vk.$t)
-        GuardBy(is_vulkan_type) && GuardBy(in(spec_structs.name)) => struct_name(t, is_high_level)
-        GuardBy(is_vulkan_type) && GuardBy(!in(spec_enums.name)) => remove_vk_prefix(t)
-        _ => @match _t = innermost_type(t) begin
-            GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => begin
-                bitmask_types = getproperty.(filter(!isnothing, spec_flags.bitmask), :name)
-                i = findfirst(==(_t), bitmask_types)
-                bitmask_flag_type(bitmask_types[i])
-            end
-            GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(_t).bitmask)
-            end => bitmask_flag_type(flag_by_name(_t).bitmask)
-            _ => @match t begin
-                GuardBy(in(spec_constants.name)) => follow_constant(t)
-                _ => t
-            end
-        end
+        GuardBy(in(spec_structs.name)) => struct_name(t)
+        GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
+        GuardBy(in(spec_enums.name)) => enum_type(t)
+        GuardBy(is_flag_bitmask) => bitmask_flag_type(t)
+        GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(t).bitmask)
+        end => bitmask_flag_type(flag_by_name(t).bitmask)
+        GuardBy(in(spec_constants.name)) => follow_constant(t)
+        _ => t
     end
 end
 
 """
 Return a new type easier to deal with.
 """
-function nice_julian_type(spec::Spec, is_high_level = false)
+function nice_julian_type(spec::Spec)
     @match s = spec begin
         GuardBy(is_version) => :VersionNumber
-        GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type), is_high_level))})
+        GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
         GuardBy(is_data) => :(Ptr{Cvoid})
-        _ => nice_julian_type(s.type, is_high_level)
+        _ => nice_julian_type(s.type)
     end
 end
 

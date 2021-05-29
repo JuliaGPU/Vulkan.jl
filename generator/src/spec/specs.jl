@@ -540,13 +540,40 @@ const spec_handles_with_wrappable_constructors = filter(x -> !isempty(wrappable_
 
 is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
 
+function is_default_count(spec::Spec)
+    is_length(spec) && @match parent(spec) begin
+        # see `descriptorCount` at https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VkWriteDescriptorSet
+        :VkWriteDescriptorSet => true
+        _ => false
+    end
+end
+
+function default_count(spec::Spec)
+    @match parent(spec) begin
+        :VkWriteDescriptorSet => :(max($((:(pointer_length($(wrap_identifier(arg)))) for arg in arglen(spec))...)))
+    end
+end
+
+function is_specific_count(spec::Spec)
+    @match spec begin
+        GuardBy(is_length) => @match parent(spec) begin
+            :VkDescriptorSetLayoutBinding => true
+            _ => false
+        end
+        _ => false
+    end
+end
+
 default(::SpecHandle) = :C_NULL
-default(spec::Union{SpecStructMember,SpecFuncParam}) = @match spec.requirement begin
-    if spec.type ∈ spec_handles.name
-    end => default(handle_by_name(spec.type))
-    &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) || spec.type == :Cstring
-    end => :C_NULL
-    &OPTIONAL || &REQUIRED => 0
+function default(spec::Union{SpecStructMember,SpecFuncParam})
+    is_default_count(spec) && return default_count(spec)
+    @match spec.requirement begin
+        if spec.type ∈ spec_handles.name
+        end => default(handle_by_name(spec.type))
+        &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) || spec.type == :Cstring
+        end => :C_NULL
+        &OPTIONAL || &REQUIRED => 0
+    end
 end
 
 create_func(func::SpecFunc) = first(spec_by_field(spec_create_funcs, :func, func))

@@ -21,6 +21,7 @@ export
     nc_convert,
     remove_parts,
     remove_prefix,
+    struct_name,
 
     # Expr
     name,
@@ -43,5 +44,8 @@ export
     extend_from_vk,
     extend_handle_constructor,
     hl_wrap,
+    hl_convert,
+    hl_convert_overload,
+    hl_add_constructor,
     to_expr,
     document

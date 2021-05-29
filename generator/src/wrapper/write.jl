@@ -2,19 +2,23 @@
 Write the wrapper to `destdir`.
 """
 function Base.write(vw::VulkanWrapper, destdir)
-    exprs = vcat(vw.handles, vw.structs, vw.funcs, vw.enums, vw.hl_structs)
-    ordered_exprs = sort_expressions(exprs)
-    ll_exprs = filter(in(vw.hl_structs), ordered_exprs)
-    enums = filter(in(vw.enums), ordered_exprs)
-    structs = filter(x -> x in vw.structs || x in vw.handles, ordered_exprs)
-    funcs = filter(in(vw.funcs), ordered_exprs)
+    ordered_exprs = sort_expressions([vw.structs; vw.handles; vw.enums; vw.bitmasks; vw.hl_structs])
+    structs = filter(in(vw.structs), ordered_exprs)
+    hl_structs = filter(in(vw.hl_structs), ordered_exprs)
 
     open(joinpath(destdir, "vulkan_wrapper.jl"), "w+") do io
-        print_block(io, enums)
+        print_block(io, vw.enums)
+        print_block(io, vw.bitmasks)
+        print_block(io, filter(in(vw.handles), ordered_exprs))
         print_block(io, structs)
-        print_block(io, funcs)
+        print_block(io, vw.struct_constructors)
+        print_block(io, vw.handle_constructors)
+        print_block(io, vw.api_constructor_overloads)
+        print_block(io, vw.from_vk_overloads)
+        print_block(io, vw.enum_converts)
+        print_block(io, vw.api_funcs)
 
-        write_exports(io, exprs)
+        write_exports(io, [vw.enums; vw.bitmasks; vw.handles; vw.structs; vw.api_funcs])
     end
 
     open(joinpath(destdir, "vulkan_docs.jl"), "w+") do io
@@ -22,8 +26,16 @@ function Base.write(vw::VulkanWrapper, destdir)
     end
 
     open(joinpath(destdir, "vulkan_wrapper_hl.jl"), "w+") do io
-        print_block(io, ll_exprs)
-        write_exports(io, ll_exprs)
+        print_block(io, hl_structs)
+        print_block(io, vw.hl_struct_constructors)
+        print_block(io, vw.hl_struct_converts)
+        print_block(io, vw.hl_convert_overloads)
+        print_block(io, vw.hl_api_funcs_overloads)
+        write_exports(io, hl_structs)
+    end
+
+    open(joinpath(destdir, "vulkan_docs_hl.jl"), "w+") do io
+        print_block(io, vw.hl_docs)
     end
 end
 
@@ -35,16 +47,16 @@ function sort_expressions(exprs)
     ordered_exprs
 end
 
-is_category(cat) = x -> category(x) == cat
-
 function print_block(io::IO, exs)
-    print.(Ref(io), block.(exs))
+    foreach(exs) do ex
+        print(io, block(ex))
+    end
     println(io)
 end
 
 function block(ex::Expr)
     str = @match category(ex) begin
-        :doc => string('\"'^3, ex.args[3], '\"'^3, '\n', ex.args[4])
+        :doc => string('\"'^3, '\n', ex.args[3], '\n', '\"'^3, '\n', ex.args[4])
         :enum => string(ex)
         _ => string(prettify(ex))
     end
@@ -64,20 +76,14 @@ end
 function write_exports(io::IO, decls)
     println(io)
 
-    ignored_symbols = vcat(:(Base.convert), :Base)
+    ignored_symbols = [:(Base.convert), :Base]
 
-    candidates = unique(Iterators.flatten(exported_names.(decls)))
-    decl_symbols = collect(Iterators.flatten(sort(
-        filter!.(
-            [
-                !in(ignored_symbols),
-                !is_vulkan_type,
-            ],
-            Ref(candidates),
-        )
-    )))
+    candidates = unique([exported_names.(decls)...;])
+    exported_symbols = filter(candidates) do sym
+        sym ∉ ignored_symbols && !is_vulkan_type(sym)
+    end
 
-    exports = :(export $(decl_symbols...))
+    exports = :(export $(exported_symbols...))
 
     println(io, string(exports))
 end

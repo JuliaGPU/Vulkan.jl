@@ -33,8 +33,6 @@ function default_debug_callback(message_severity, message_type, callback_data_pt
     callback_data_ptr == C_NULL && return UInt32(0)
     callback_data = unsafe_load(callback_data_ptr)
     message = unsafe_string(callback_data.pMessage)
-    message_severity = DebugUtilsMessageSeverityFlagEXT(UInt32(message_severity))
-    message_type = DebugUtilsMessageTypeFlagEXT(UInt32(message_type))
     if !startswith(message, "Device Extension: VK")
         id_name = unsafe_string(callback_data.pMessageIdName)
         vk_log(message_severity, "$(uppercase(message_types_r[message_type])) ($id_name): $message")
@@ -49,7 +47,7 @@ A default function [`default_debug_callback`](@ref) can be converted to a functi
 
 !!! warning
     `callback` must be a function pointer of type `Ptr{Nothing}` obtained from a `callback_f` function as follows:  
-    `callback = @cfunction(callback_f, UInt32, (VkDebugUtilsMessageSeverityFlagBitsEXT, VkDebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`  
+    `callback = @cfunction(callback_f, UInt32, (DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`  
     with `callback_f` a Julia function with a signature matching the `@cfunction` call.
 """
 function DebugUtilsMessengerEXT(instance::Instance, callback::Ptr{Nothing}; severity = "info", types = ["general", "validation", "performance"])

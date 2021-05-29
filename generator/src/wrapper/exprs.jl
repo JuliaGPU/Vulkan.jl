@@ -206,6 +206,6 @@ function reconstruct(d::Dict)
 end
 
 function to_expr(p::Dict)
-    p[:category] == :function && relax_function_signature!(p)
+    p[:category] == :function && get(p, :relax_signature, false) && relax_function_signature!(p)
     reconstruct(p)
 end

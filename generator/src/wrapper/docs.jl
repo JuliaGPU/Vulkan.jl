@@ -1,8 +1,13 @@
 function document(spec, p)
-    @match p[:category] begin
+    doc = @match p[:category] begin
         :function => document_function(spec, p)
         :struct => document_struct(spec, p)
     end
+    sig = @match spec begin
+        ::SpecHandle => reconstruct_call(p)
+        _ => name(reconstruct(p))
+    end
+    docstring(sig, doc)
 end
 
 document(spec::SpecHandle) = document.(Ref(spec), add_constructors(spec))
@@ -15,10 +20,10 @@ function document_return_codes(spec::SpecFunc)
         res *= "Return codes:"
     end
     if !isempty(spec.success_codes) && must_return_success_code(spec)
-        res *= string("\n- Success:\n  - ", join(backquoted.(spec.success_codes), "\n  - "))
+        res *= string("\n- Success:\n  - ", join(backquoted.(remove_vk_prefix.(spec.success_codes)), "\n  - "))
     end
     if !isempty(spec.error_codes)
-        res *= string("\n- Error:\n  - ", join(backquoted.(spec.error_codes), "\n  - "))
+        res *= string("\n- Error:\n  - ", join(backquoted.(remove_vk_prefix.(spec.error_codes)), "\n  - "))
     end
 
     if !isempty(res)
@@ -32,7 +37,7 @@ document_return_codes(spec::SpecHandle) = document_return_codes(add_constructor(
 document_return_codes(spec::SpecStruct) = ""
 
 function document_function(spec::SpecHandle, p)
-    docstring(reconstruct_call(p), string(' '^4, reconstruct_call(p), '\n'^2))
+    string(' '^4, reconstruct_call(p), '\n'^2)
 end
 
 function append_to_argdoc!(argdocs, spec, str)
@@ -67,17 +72,14 @@ function document_function(spec, p)
         end
     end
 
-    docstring(
-        p[:name],
-        string(
-            ' '^4,
-            reconstruct_call(p),
-            '\n'^2,
-            document_return_codes(spec),
-            join(["Arguments:"; last.(argdocs)], "\n- "),
-            isempty(extra) ? "" : '\n'^2 * extra,
-            '\n',
-        ),
+    string(
+        ' '^4,
+        reconstruct_call(p),
+        '\n'^2,
+        document_return_codes(spec),
+        join(["Arguments:"; last.(argdocs)], "\n- "),
+        isempty(extra) ? "" : '\n'^2 * extra,
+        '\n',
     )
 end
 
@@ -96,13 +98,19 @@ function document_arguments(p)
 end
 
 function document_struct(spec::SpecStruct, p)
-    error("Not implemented")
+    "High-level wrapper for $(spec.name)"
 end
 
 function docstring(name, docstring)
-    p_with_docs = Dict(:category => :doc, :docstring => string('\n', docstring, '\n'), :ex => name)
+    Dict(
+        :category => :doc,
+        :ex => name,
+        :docstring => docstring,
+    )
+end
 
-    reconstruct(p_with_docs)
+function hl_document(spec::SpecStruct, p)
+    document(spec, p)
 end
 
 concat_right(pair::Pair, val) = pair.first => (pair.second * val)

@@ -27,27 +27,11 @@ is_implicit_return(spec::SpecFuncParam) =
     spec.type ∉ extension_types &&
     ptr_type(spec.type) ∉ extension_types
 has_implicit_return_parameters(spec::SpecFunc) = any(is_implicit_return, children(spec))
+is_flag(type) = type in spec_flags.name
+is_flag(spec::Union{SpecFuncParam,SpecStructMember}) = spec.type in spec_flags.name
+is_flag_bitmask(type) = type ∈ getproperty.(filter(!isnothing, spec_flags.bitmask), :name)
 
-function is_default_count(spec::Spec)
-    is_length(spec) && @match parent(spec) begin
-        # see `descriptorCount` at https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VkWriteDescriptorSet
-        :VkWriteDescriptorSet => true
-        _ => false
-    end
-end
-
-function default_count(spec::Spec)
-    @match parent(spec) begin
-        :VkWriteDescriptorSet => :(max($((:(pointer_length($(wrap_identifier(arg)))) for arg in arglen(spec))...)))
-    end
-end
-
-function is_specific_count(spec::Spec)
-    @match spec begin
-        GuardBy(is_length) => @match parent(spec) begin
-            :VkDescriptorSetLayoutBinding => true
-            _ => false
-        end
-        _ => false
-    end
+function is_hl(type)
+    vktype = Symbol(:Vk, type)
+    vktype in spec_structs.name && !struct_by_name(vktype).is_returnedonly
 end

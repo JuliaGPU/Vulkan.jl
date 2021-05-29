@@ -1,15 +1,12 @@
 init_wrapper_func(spec::SpecFunc) =
-    Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false)
-init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false)
-init_wrapper_func(spec::SpecStruct, is_high_level=false) = Dict(:category => :function, :name => struct_name(spec.name, is_high_level), :short => false)
+    Dict(:category => :function, :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)), :short => false, :relax_signature => true)
+init_wrapper_func(spec::Spec) = Dict(:category => :function, :name => remove_vk_prefix(spec.name), :short => false, :relax_signature => false)
+init_wrapper_func(spec::SpecStruct, is_high_level=false) = Dict(:category => :function, :name => struct_name(spec.name, is_high_level), :short => false, :relax_signature => true)
 
 arg_decl(x::Spec) = :($(wrap_identifier(x))::$(signature_type(nice_julian_type(x))))
 
 function kwarg_decl(x::Spec)
-    val = @match x begin
-        GuardBy(is_default_count) => default_count(x)
-        _ => default(x)
-    end
+    val = default(x)
     Expr(:kw, wrap_identifier(x), val)
 end
 

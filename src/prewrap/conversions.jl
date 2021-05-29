@@ -22,7 +22,7 @@ Convert a Vulkan type into its corresponding Julia type.
 
 ### Examples
 ```jldoctest
-julia> from_vk(VersionNumber, UInt32(VK_MAKE_VERSION(1, 2, 3)))
+julia> from_vk(VersionNumber, UInt32(vk.VK_MAKE_VERSION(1, 2, 3)))
 v"1.2.3"
 
 julia> from_vk(String, (0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x00))

@@ -16,7 +16,7 @@ end
 function from_vk_call(prop, jtype, t)
     @match t begin
         :Cstring => :(unsafe_string($prop))
-        GuardBy(in(spec_flags.name)) => prop
+        GuardBy(in(spec_flags.name)) || GuardBy(in(spec_enums.name)) => prop
         GuardBy(in(getproperty.(filter(!isnothing, spec_flags.bitmask), :name))) => :($jtype(UInt32($prop)))
         GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($prop))
         GuardBy(is_ntuple) && if ntuple_type(t) ∈ filter(x -> x.is_returnedonly, spec_structs).name
@@ -64,7 +64,7 @@ function vk_call(x::Spec)
             end => :($var == $(default(x)) ? $(default(x)) : Ref($var)) # allow optional pointers to be passed as C_NULL instead of a pointer to a 0-valued integer
             _ => :(Ref($var))
         end
-        if x.type ∈ spec_flags.name
+        if x.type ∈ [spec_flags.name; spec_enums.name]
         end => var
         if x.type ∈ getproperty.(filter(!isnothing, spec_flags.bitmask), :name)
         end => :($(x.type)($var.val))

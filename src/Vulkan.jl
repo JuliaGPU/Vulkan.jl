@@ -1,19 +1,15 @@
 module Vulkan
 
+using Reexport
 using DocStringExtensions
-using VulkanCore
-using VulkanCore.vk
+@reexport using VulkanCore: vk
+using .vk
 using Base: RefArray
 import Base: convert, cconvert, unsafe_convert, &, |, xor, isless, ==, typemax, in
 using MLStyle
 
-using Reexport
-@reexport using ResultTypes
-using ResultTypes: iserror
-
-Base.broadcastable(r::Result) = Ref(r)
-
-const core = vk
+@reexport using ResultTypes: unwrap, unwrap_error, iserror
+using ResultTypes: ResultTypes
 
 @template (FUNCTIONS, METHODS, MACROS) =
     """
@@ -40,6 +36,7 @@ using .CEnum
 
 include("../generated/vulkan_wrapper.jl")
 include("../generated/vulkan_docs.jl")
+include("../generated/vulkan_wrapper_hl.jl")
 
 include("utils.jl")
 include("driver.jl")
@@ -48,8 +45,6 @@ include("device.jl")
 include("print.jl")
 
 export
-        vk,
-
         # Wrapper
         VulkanStruct,
         ReturnedOnly,

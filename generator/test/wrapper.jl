@@ -1,3 +1,6 @@
+test_ex(x, y) = @test prettify(x) == prettify(y)
+test_ex(x::Dict, y) = @test prettify(to_expr(x)) == prettify(y)
+
 @testset "Wrapper" begin
     @testset "Wrapper utilities" begin
         include("utilities/exprs.jl")

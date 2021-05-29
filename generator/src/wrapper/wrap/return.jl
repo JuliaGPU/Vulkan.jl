@@ -85,11 +85,11 @@ end
 
 function wrap_return_type(spec::SpecFunc, ret_type)
     if must_return_success_code(spec) && has_implicit_return_parameters(spec)
-        ret_type = :(Tuple{$ret_type,VkResult})
+        ret_type = :(Tuple{$ret_type,$(enum_type(:VkResult))})
     end
 
     @match spec.return_type begin
-        :VkResult => :(Result{$ret_type,VulkanError})
+        :VkResult => :(ResultTypes.Result{$ret_type,VulkanError})
         _ => ret_type
     end
 end

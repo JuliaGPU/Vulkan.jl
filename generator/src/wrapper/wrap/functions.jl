@@ -114,7 +114,7 @@ function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
     kwargs = [p_func[:kwargs]; p_info[:kwargs]]
 
     info_expr = reconstruct_call(p_info; is_decl = false)
-    info_index = findfirst(==(p_info[:name]), innermost_type.(type.(p_func[:args])))
+    info_index = findfirst(==(spec.create_info_param), filter(!is_optional, children(spec.func)))
     deleteat!(args, info_index)
 
     func_call_args = Vector{Any}(name.(p_func[:args]))
@@ -134,5 +134,61 @@ function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
         :kwargs => kwargs,
         :short => true,
         :body => body,
+        :relax_signature => true,
+    )
+end
+
+struct_name_from_ll(name) = Symbol(string(name)[2:end]) # remove underscore prefix
+
+hl_api_funcs_overload(spec::SpecFunc, with_func_ptr) = hl_api_funcs_overload(wrap(spec; with_func_ptr))
+hl_api_funcs_overload(spec::CreateFunc, with_func_ptr) = hl_api_funcs_overload(extend_handle_constructor(spec; with_func_ptr))
+hl_api_funcs_overloads(spec::SpecHandle, with_func_ptr) = hl_api_funcs_overload.(add_constructors(spec; with_func_ptr))
+
+function hl_api_funcs_overload(p::AbstractDict)
+    api_structs = filter(x -> !x.is_returnedonly, spec_structs)
+    ll_api_structs = struct_name.(api_structs)
+    modified_args = Dict{ExprLike,ExprLike}()
+    args = map(p[:args]) do arg
+        id, type = @match arg begin
+            :($id::$t) => (id, t)
+            _ => return arg
+        end
+        type = postwalk(type) do ex
+            if ex isa Symbol && ex in ll_api_structs
+                struct_name_from_ll(ex)
+            else
+                ex
+            end
+        end
+        new_arg = :($id::$type)
+        if arg ≠ new_arg
+            modified_args[arg] = new_arg
+        end
+        new_arg
+    end
+    !isempty(modified_args) || return nothing
+    call_args = map(p[:args]) do arg
+        id, type = @match arg begin
+            :($id::$t) => (id, t)
+            id => (id, nothing)
+        end
+        if haskey(modified_args, arg)
+            T = @match type begin
+                :(AbstractArray{<:$t}) => :(Vector{$t})
+                t => t
+            end
+            :(convert($T, $id))
+        else
+            id
+        end
+    end
+    Dict(
+        :category => :function,
+        :name => p[:name],
+        :args => args,
+        :kwargs => p[:kwargs],
+        :body => reconstruct_call(Dict(:name => p[:name], :args => call_args, :kwargs => name.(p[:kwargs]))),
+        :short => true,
+        :relax_signature => false,
     )
 end

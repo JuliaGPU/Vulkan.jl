@@ -65,6 +65,7 @@ function add_constructors(spec::SpecHandle; with_func_ptr = false)
             :kwargs => kwargs,
             :short => true,
             :body => body,
+            :relax_signature => true,
         )
     end
 end
