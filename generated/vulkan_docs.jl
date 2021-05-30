@@ -3,12 +3,12 @@
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
-  - `VK_ERROR_LAYER_NOT_PRESENT`
-  - `VK_ERROR_EXTENSION_NOT_PRESENT`
-  - `VK_ERROR_INCOMPATIBLE_DRIVER`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
+  - `ERROR_LAYER_NOT_PRESENT`
+  - `ERROR_EXTENSION_NOT_PRESENT`
+  - `ERROR_INCOMPATIBLE_DRIVER`
 
 Arguments:
 - `create_info::_InstanceCreateInfo`
@@ -32,9 +32,9 @@ destroy_instance
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `instance::Instance`
@@ -113,9 +113,9 @@ get_physical_device_format_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -133,13 +133,13 @@ get_physical_device_image_format_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
-  - `VK_ERROR_EXTENSION_NOT_PRESENT`
-  - `VK_ERROR_FEATURE_NOT_PRESENT`
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
+  - `ERROR_EXTENSION_NOT_PRESENT`
+  - `ERROR_FEATURE_NOT_PRESENT`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -164,7 +164,7 @@ destroy_device
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 
@@ -176,8 +176,8 @@ enumerate_instance_version
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 
@@ -189,9 +189,9 @@ enumerate_instance_layer_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_LAYER_NOT_PRESENT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_LAYER_NOT_PRESENT`
 
 Arguments:
 - `layer_name`: defaults to `C_NULL`
@@ -204,8 +204,8 @@ enumerate_instance_extension_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -218,9 +218,9 @@ enumerate_device_layer_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_LAYER_NOT_PRESENT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_LAYER_NOT_PRESENT`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -245,9 +245,9 @@ get_device_queue
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `queue::Queue` (externsync)
@@ -262,9 +262,9 @@ queue_submit
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `queue::Queue` (externsync)
@@ -277,9 +277,9 @@ queue_wait_idle
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `device::Device`
@@ -292,10 +292,10 @@ device_wait_idle
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
 - `device::Device`
@@ -321,9 +321,9 @@ free_memory
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_MEMORY_MAP_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_MEMORY_MAP_FAILED`
 
 Arguments:
 - `device::Device`
@@ -350,8 +350,8 @@ unmap_memory
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -365,8 +365,8 @@ flush_mapped_memory_ranges
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -400,9 +400,9 @@ get_buffer_memory_requirements
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
 - `device::Device`
@@ -428,8 +428,8 @@ get_image_memory_requirements
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -469,9 +469,9 @@ get_physical_device_sparse_image_format_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `queue::Queue` (externsync)
@@ -486,8 +486,8 @@ queue_bind_sparse
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -513,7 +513,7 @@ destroy_fence
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -527,12 +527,12 @@ reset_fences
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_NOT_READY`
+  - `SUCCESS`
+  - `NOT_READY`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `device::Device`
@@ -546,12 +546,12 @@ get_fence_status
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_TIMEOUT`
+  - `SUCCESS`
+  - `TIMEOUT`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `device::Device`
@@ -567,8 +567,8 @@ wait_for_fences
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -594,8 +594,8 @@ destroy_semaphore
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -621,12 +621,12 @@ destroy_event
 
 Return codes:
 - Success:
-  - `VK_EVENT_SET`
-  - `VK_EVENT_RESET`
+  - `EVENT_SET`
+  - `EVENT_RESET`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `device::Device`
@@ -640,8 +640,8 @@ get_event_status
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -655,7 +655,7 @@ set_event
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -669,8 +669,8 @@ reset_event
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -696,12 +696,12 @@ destroy_query_pool
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_NOT_READY`
+  - `SUCCESS`
+  - `NOT_READY`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `device::Device`
@@ -733,9 +733,9 @@ reset_query_pool
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
 - `device::Device`
@@ -761,8 +761,8 @@ destroy_buffer
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -788,8 +788,8 @@ destroy_buffer_view
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -826,8 +826,8 @@ get_image_subresource_layout
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -853,9 +853,9 @@ destroy_image_view
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_SHADER_NV`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_SHADER_NV`
 
 Arguments:
 - `device::Device`
@@ -881,8 +881,8 @@ destroy_shader_module
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -908,8 +908,8 @@ destroy_pipeline_cache
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -926,8 +926,8 @@ get_pipeline_cache_data
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -942,12 +942,12 @@ merge_pipeline_caches
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_PIPELINE_COMPILE_REQUIRED_EXT`
+  - `SUCCESS`
+  - `PIPELINE_COMPILE_REQUIRED_EXT`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_SHADER_NV`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_SHADER_NV`
 
 Arguments:
 - `device::Device`
@@ -963,12 +963,12 @@ create_graphics_pipelines
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_PIPELINE_COMPILE_REQUIRED_EXT`
+  - `SUCCESS`
+  - `PIPELINE_COMPILE_REQUIRED_EXT`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_SHADER_NV`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_SHADER_NV`
 
 Arguments:
 - `device::Device`
@@ -995,8 +995,8 @@ destroy_pipeline
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1022,8 +1022,8 @@ destroy_pipeline_layout
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1049,8 +1049,8 @@ destroy_sampler
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1076,9 +1076,9 @@ destroy_descriptor_set_layout
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_FRAGMENTATION_EXT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_FRAGMENTATION_EXT`
 
 Arguments:
 - `device::Device`
@@ -1117,10 +1117,10 @@ reset_descriptor_pool
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_FRAGMENTED_POOL`
-  - `VK_ERROR_OUT_OF_POOL_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_FRAGMENTED_POOL`
+  - `ERROR_OUT_OF_POOL_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1158,8 +1158,8 @@ update_descriptor_sets
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1185,8 +1185,8 @@ destroy_framebuffer
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1222,8 +1222,8 @@ get_render_area_granularity
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1249,7 +1249,7 @@ destroy_command_pool
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1264,8 +1264,8 @@ reset_command_pool
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -1290,8 +1290,8 @@ free_command_buffers
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1305,8 +1305,8 @@ begin_command_buffer
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1319,7 +1319,7 @@ end_command_buffer
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -1884,9 +1884,9 @@ cmd_execute_commands
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
 - `instance::Instance`
@@ -1901,8 +1901,8 @@ create_android_surface_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -1915,8 +1915,8 @@ get_physical_device_display_properties_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -1929,8 +1929,8 @@ get_physical_device_display_plane_properties_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -1944,8 +1944,8 @@ get_display_plane_supported_displays_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -1959,9 +1959,9 @@ get_display_mode_properties_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -1977,8 +1977,8 @@ create_display_mode_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -1993,8 +1993,8 @@ get_display_plane_capabilities_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2009,11 +2009,11 @@ create_display_plane_surface_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INCOMPATIBLE_DISPLAY_KHR`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `device::Device`
@@ -2039,9 +2039,9 @@ destroy_surface_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2056,9 +2056,9 @@ get_physical_device_surface_support_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2072,9 +2072,9 @@ get_physical_device_surface_capabilities_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2088,9 +2088,9 @@ get_physical_device_surface_formats_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2104,12 +2104,12 @@ get_physical_device_surface_present_modes_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_SURFACE_LOST_KHR`
-  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_SURFACE_LOST_KHR`
+  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `device::Device`
@@ -2135,8 +2135,8 @@ destroy_swapchain_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2150,17 +2150,17 @@ get_swapchain_images_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_TIMEOUT`
-  - `VK_NOT_READY`
-  - `VK_SUBOPTIMAL_KHR`
+  - `SUCCESS`
+  - `TIMEOUT`
+  - `NOT_READY`
+  - `SUBOPTIMAL_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_OUT_OF_DATE_KHR`
-  - `VK_ERROR_SURFACE_LOST_KHR`
-  - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_DATE_KHR`
+  - `ERROR_SURFACE_LOST_KHR`
+  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
 - `device::Device`
@@ -2177,15 +2177,15 @@ acquire_next_image_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_SUBOPTIMAL_KHR`
+  - `SUCCESS`
+  - `SUBOPTIMAL_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_OUT_OF_DATE_KHR`
-  - `VK_ERROR_SURFACE_LOST_KHR`
-  - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_DATE_KHR`
+  - `ERROR_SURFACE_LOST_KHR`
+  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
 - `queue::Queue` (externsync)
@@ -2199,9 +2199,9 @@ queue_present_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
 - `instance::Instance`
@@ -2216,8 +2216,8 @@ create_vi_surface_nn
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2243,8 +2243,8 @@ get_physical_device_wayland_presentation_support_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2269,8 +2269,8 @@ get_physical_device_win_32_presentation_support_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2297,8 +2297,8 @@ get_physical_device_xlib_presentation_support_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2325,8 +2325,8 @@ get_physical_device_xcb_presentation_support_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2352,8 +2352,8 @@ get_physical_device_direct_fb_presentation_support_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2368,9 +2368,9 @@ create_image_pipe_surface_fuchsia
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
 - `instance::Instance`
@@ -2385,8 +2385,8 @@ create_stream_descriptor_surface_ggp
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2412,7 +2412,7 @@ get_physical_device_screen_presentation_support_qnx
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -2454,8 +2454,8 @@ debug_report_message_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2469,8 +2469,8 @@ debug_marker_set_object_name_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2513,9 +2513,9 @@ cmd_debug_marker_insert_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2534,8 +2534,8 @@ get_physical_device_external_image_format_properties_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2594,8 +2594,8 @@ get_generated_commands_memory_requirements_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2649,9 +2649,9 @@ get_physical_device_format_properties_2
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -2727,8 +2727,8 @@ get_physical_device_external_buffer_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2743,8 +2743,8 @@ get_memory_win_32_handle_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -2759,8 +2759,8 @@ get_memory_win_32_handle_properties_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2774,8 +2774,8 @@ get_memory_fd_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -2790,8 +2790,8 @@ get_memory_fd_properties_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2806,7 +2806,7 @@ get_memory_zircon_handle_fuchsia
 
 Return codes:
 - Error:
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -2831,8 +2831,8 @@ get_physical_device_external_semaphore_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2847,8 +2847,8 @@ get_semaphore_win_32_handle_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -2862,8 +2862,8 @@ import_semaphore_win_32_handle_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2877,8 +2877,8 @@ get_semaphore_fd_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -2892,8 +2892,8 @@ import_semaphore_fd_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2908,8 +2908,8 @@ get_semaphore_zircon_handle_fuchsia
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -2933,8 +2933,8 @@ get_physical_device_external_fence_properties
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2949,8 +2949,8 @@ get_fence_win_32_handle_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -2964,8 +2964,8 @@ import_fence_win_32_handle_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -2979,8 +2979,8 @@ get_fence_fd_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -3006,8 +3006,8 @@ release_display_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3022,7 +3022,7 @@ acquire_xlib_display_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3037,9 +3037,9 @@ get_rand_r_output_display_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3053,9 +3053,9 @@ acquire_winrt_display_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3069,7 +3069,7 @@ get_winrt_display_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3084,7 +3084,7 @@ display_power_control_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3099,7 +3099,7 @@ register_device_event_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3115,9 +3115,9 @@ register_display_event_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_OUT_OF_DATE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_DATE_KHR`
 
 Arguments:
 - `device::Device`
@@ -3132,9 +3132,9 @@ get_swapchain_counter_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3148,9 +3148,9 @@ get_physical_device_surface_capabilities_2_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `instance::Instance`
@@ -3175,9 +3175,9 @@ get_device_group_peer_memory_features
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
 - `device::Device`
@@ -3191,8 +3191,8 @@ bind_buffer_memory_2
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3216,8 +3216,8 @@ cmd_set_device_mask
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3230,9 +3230,9 @@ get_device_group_present_capabilities_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `device::Device`
@@ -3247,17 +3247,17 @@ get_device_group_surface_present_modes_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_TIMEOUT`
-  - `VK_NOT_READY`
-  - `VK_SUBOPTIMAL_KHR`
+  - `SUCCESS`
+  - `TIMEOUT`
+  - `NOT_READY`
+  - `SUBOPTIMAL_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_OUT_OF_DATE_KHR`
-  - `VK_ERROR_SURFACE_LOST_KHR`
-  - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_DATE_KHR`
+  - `ERROR_SURFACE_LOST_KHR`
+  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
 - `device::Device`
@@ -3286,8 +3286,8 @@ cmd_dispatch_base
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3301,8 +3301,8 @@ get_physical_device_present_rectangles_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3364,15 +3364,15 @@ set_hdr_metadata_ext
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_SUBOPTIMAL_KHR`
+  - `SUCCESS`
+  - `SUBOPTIMAL_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_OUT_OF_DATE_KHR`
-  - `VK_ERROR_SURFACE_LOST_KHR`
-  - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_DATE_KHR`
+  - `ERROR_SURFACE_LOST_KHR`
+  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
 - `device::Device`
@@ -3386,9 +3386,9 @@ get_swapchain_status_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `device::Device`
@@ -3402,10 +3402,10 @@ get_refresh_cycle_duration_google
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
-  - `VK_ERROR_OUT_OF_DATE_KHR`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_DATE_KHR`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `device::Device`
@@ -3419,9 +3419,9 @@ get_past_presentation_timing_google
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
 - `instance::Instance`
@@ -3436,9 +3436,9 @@ create_ios_surface_mvk
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
 - `instance::Instance`
@@ -3453,9 +3453,9 @@ create_mac_os_surface_mvk
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
 - `instance::Instance`
@@ -3510,9 +3510,9 @@ get_physical_device_multisample_properties_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3526,9 +3526,9 @@ get_physical_device_surface_capabilities_2_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3542,8 +3542,8 @@ get_physical_device_surface_formats_2_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3556,8 +3556,8 @@ get_physical_device_display_properties_2_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3570,8 +3570,8 @@ get_physical_device_display_plane_properties_2_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3585,8 +3585,8 @@ get_display_mode_properties_2_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3630,8 +3630,8 @@ get_image_sparse_memory_requirements_2
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3667,7 +3667,7 @@ get_device_queue_2
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3693,8 +3693,8 @@ destroy_validation_cache_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3711,8 +3711,8 @@ get_validation_cache_data_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3737,8 +3737,8 @@ get_descriptor_set_layout_support
 
 Return codes:
 - Error:
-  - `VK_ERROR_FEATURE_NOT_PRESENT`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_FEATURE_NOT_PRESENT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3768,8 +3768,8 @@ set_local_dimming_amd
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -3782,8 +3782,8 @@ get_physical_device_calibrateable_time_domains_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3797,8 +3797,8 @@ get_calibrated_timestamps_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3812,8 +3812,8 @@ set_debug_utils_object_name_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -3885,7 +3885,7 @@ cmd_insert_debug_utils_label_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -3923,8 +3923,8 @@ submit_debug_utils_message_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
 - `device::Device`
@@ -3952,8 +3952,8 @@ cmd_write_buffer_marker_amd
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4000,9 +4000,9 @@ cmd_end_render_pass_2
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `device::Device`
@@ -4016,12 +4016,12 @@ get_semaphore_counter_value
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_TIMEOUT`
+  - `SUCCESS`
+  - `TIMEOUT`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `device::Device`
@@ -4036,8 +4036,8 @@ wait_semaphores
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4051,8 +4051,8 @@ signal_semaphore
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_EXTERNAL_HANDLE_KHR`
 
 Arguments:
 - `device::Device`
@@ -4066,8 +4066,8 @@ get_android_hardware_buffer_properties_android
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4285,8 +4285,8 @@ cmd_draw_mesh_tasks_indirect_count_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4301,7 +4301,7 @@ compile_deferred_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4348,8 +4348,8 @@ get_acceleration_structure_memory_requirements_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4385,12 +4385,12 @@ cmd_copy_acceleration_structure_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_OPERATION_DEFERRED_KHR`
-  - `VK_OPERATION_NOT_DEFERRED_KHR`
+  - `SUCCESS`
+  - `OPERATION_DEFERRED_KHR`
+  - `OPERATION_NOT_DEFERRED_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4415,12 +4415,12 @@ cmd_copy_acceleration_structure_to_memory_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_OPERATION_DEFERRED_KHR`
-  - `VK_OPERATION_NOT_DEFERRED_KHR`
+  - `SUCCESS`
+  - `OPERATION_DEFERRED_KHR`
+  - `OPERATION_NOT_DEFERRED_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4445,12 +4445,12 @@ cmd_copy_memory_to_acceleration_structure_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_OPERATION_DEFERRED_KHR`
-  - `VK_OPERATION_NOT_DEFERRED_KHR`
+  - `SUCCESS`
+  - `OPERATION_DEFERRED_KHR`
+  - `OPERATION_NOT_DEFERRED_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4508,8 +4508,8 @@ cmd_build_acceleration_structure_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4566,8 +4566,8 @@ cmd_trace_rays_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4585,8 +4585,8 @@ get_ray_tracing_shader_group_handles_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4604,8 +4604,8 @@ get_ray_tracing_capture_replay_shader_group_handles_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4621,12 +4621,12 @@ get_acceleration_structure_handle_nv
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_PIPELINE_COMPILE_REQUIRED_EXT`
+  - `SUCCESS`
+  - `PIPELINE_COMPILE_REQUIRED_EXT`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_SHADER_NV`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_SHADER_NV`
 
 Arguments:
 - `device::Device`
@@ -4642,14 +4642,14 @@ create_ray_tracing_pipelines_nv
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_OPERATION_DEFERRED_KHR`
-  - `VK_OPERATION_NOT_DEFERRED_KHR`
-  - `VK_PIPELINE_COMPILE_REQUIRED_EXT`
+  - `SUCCESS`
+  - `OPERATION_DEFERRED_KHR`
+  - `OPERATION_NOT_DEFERRED_KHR`
+  - `PIPELINE_COMPILE_REQUIRED_EXT`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
 
 Arguments:
 - `device::Device`
@@ -4666,8 +4666,8 @@ create_ray_tracing_pipelines_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -4736,8 +4736,8 @@ get_image_view_handle_nvx
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_UNKNOWN`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_UNKNOWN`
 
 Arguments:
 - `device::Device`
@@ -4751,9 +4751,9 @@ get_image_view_address_nvx
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -4767,9 +4767,9 @@ get_physical_device_surface_present_modes_2_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `device::Device`
@@ -4784,10 +4784,10 @@ get_device_group_surface_present_modes_2_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `device::Device`
@@ -4801,9 +4801,9 @@ acquire_full_screen_exclusive_mode_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_SURFACE_LOST_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
 - `device::Device`
@@ -4817,9 +4817,9 @@ release_full_screen_exclusive_mode_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -4843,8 +4843,8 @@ get_physical_device_queue_family_performance_query_passes_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_TIMEOUT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `TIMEOUT`
 
 Arguments:
 - `device::Device`
@@ -4867,7 +4867,7 @@ release_profiling_lock_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4901,8 +4901,8 @@ get_buffer_device_address
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `instance::Instance`
@@ -4917,8 +4917,8 @@ create_headless_surface_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -4931,8 +4931,8 @@ get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -4955,8 +4955,8 @@ uninitialize_performance_api_intel
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4970,8 +4970,8 @@ cmd_set_performance_marker_intel
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -4985,8 +4985,8 @@ cmd_set_performance_stream_marker_intel
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
@@ -5000,8 +5000,8 @@ cmd_set_performance_override_intel
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5015,8 +5015,8 @@ acquire_performance_configuration_intel
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5030,8 +5030,8 @@ release_performance_configuration_intel
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `queue::Queue`
@@ -5045,8 +5045,8 @@ queue_set_performance_configuration_intel
 
 Return codes:
 - Error:
-  - `VK_ERROR_TOO_MANY_OBJECTS`
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5070,8 +5070,8 @@ get_device_memory_opaque_capture_address
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5085,8 +5085,8 @@ get_pipeline_executable_properties_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5100,8 +5100,8 @@ get_pipeline_executable_statistics_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5126,7 +5126,7 @@ cmd_set_line_stipple_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -5139,8 +5139,8 @@ get_physical_device_tool_properties_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
 - `device::Device`
@@ -5179,12 +5179,12 @@ cmd_build_acceleration_structures_indirect_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_OPERATION_DEFERRED_KHR`
-  - `VK_OPERATION_NOT_DEFERRED_KHR`
+  - `SUCCESS`
+  - `OPERATION_DEFERRED_KHR`
+  - `OPERATION_NOT_DEFERRED_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5210,7 +5210,7 @@ get_acceleration_structure_device_address_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5245,8 +5245,8 @@ get_deferred_operation_max_concurrency_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_NOT_READY`
+  - `SUCCESS`
+  - `NOT_READY`
 
 Arguments:
 - `device::Device`
@@ -5260,12 +5260,12 @@ get_deferred_operation_result_khr
 
 Return codes:
 - Success:
-  - `VK_SUCCESS`
-  - `VK_THREAD_DONE_KHR`
-  - `VK_THREAD_IDLE_KHR`
+  - `SUCCESS`
+  - `THREAD_DONE_KHR`
+  - `THREAD_IDLE_KHR`
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5456,7 +5456,7 @@ cmd_set_primitive_restart_enable_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5482,7 +5482,7 @@ destroy_private_data_slot_ext
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `device::Device`
@@ -5582,7 +5582,7 @@ cmd_set_fragment_shading_rate_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -5682,9 +5682,9 @@ cmd_pipeline_barrier_2_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_DEVICE_LOST`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_DEVICE_LOST`
 
 Arguments:
 - `queue::Queue` (externsync)
@@ -5733,10 +5733,10 @@ get_queue_checkpoint_data_2_nv
 
 Return codes:
 - Error:
-  - `VK_ERROR_EXTENSION_NOT_PRESENT`
-  - `VK_ERROR_INITIALIZATION_FAILED`
-  - `VK_ERROR_FEATURE_NOT_PRESENT`
-  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+  - `ERROR_EXTENSION_NOT_PRESENT`
+  - `ERROR_INITIALIZATION_FAILED`
+  - `ERROR_FEATURE_NOT_PRESENT`
+  - `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -5750,9 +5750,9 @@ get_physical_device_video_capabilities_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_EXTENSION_NOT_PRESENT`
-  - `VK_ERROR_INITIALIZATION_FAILED`
-  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+  - `ERROR_EXTENSION_NOT_PRESENT`
+  - `ERROR_INITIALIZATION_FAILED`
+  - `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
 - `physical_device::PhysicalDevice`
@@ -5766,11 +5766,11 @@ get_physical_device_video_format_properties_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
-  - `VK_ERROR_INCOMPATIBLE_DRIVER`
-  - `VK_ERROR_FEATURE_NOT_PRESENT`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
+  - `ERROR_INCOMPATIBLE_DRIVER`
+  - `ERROR_FEATURE_NOT_PRESENT`
 
 Arguments:
 - `device::Device`
@@ -5796,9 +5796,9 @@ destroy_video_session_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_TOO_MANY_OBJECTS`
 
 Arguments:
 - `device::Device`
@@ -5813,8 +5813,8 @@ create_video_session_parameters_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_INITIALIZATION_FAILED`
-  - `VK_ERROR_TOO_MANY_OBJECTS`
+  - `ERROR_INITIALIZATION_FAILED`
+  - `ERROR_TOO_MANY_OBJECTS`
 
 Arguments:
 - `device::Device`
@@ -5840,7 +5840,7 @@ destroy_video_session_parameters_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `device::Device`
@@ -5854,9 +5854,9 @@ get_video_session_memory_requirements_khr
 
 Return codes:
 - Error:
-  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-  - `VK_ERROR_INITIALIZATION_FAILED`
+  - `ERROR_OUT_OF_HOST_MEMORY`
+  - `ERROR_OUT_OF_DEVICE_MEMORY`
+  - `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
 - `device::Device`
