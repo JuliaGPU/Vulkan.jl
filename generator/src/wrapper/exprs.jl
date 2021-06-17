@@ -7,7 +7,7 @@ isline(x::LineNumberNode) = true
 
 function rmlines(ex)
     @match ex begin
-        Expr(:macrocall, m, _...) => Expr(:macrocall, m, nothing, filter(x -> !isline(x), ex.args[3:end])...)
+        Expr(:macrocall, m, _...) => Expr(:macrocall, m, nothing, filter(!isline, ex.args[3:end])...)
         ::Expr                    => Expr(ex.head, filter(!isline, ex.args)...)
         a                         => a
     end
