@@ -23,8 +23,9 @@ end
 macro check(expr, msg)
     esc(quote
         _return_code = $expr
-        if Int32(_return_code) < 0
-            return VulkanError($msg, _return_code)
+        _code_int = Int32(_return_code)
+        if _code_int < 0
+            return VulkanError($msg, Result(_code_int))
         end
         _return_code
     end)
