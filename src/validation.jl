@@ -74,5 +74,5 @@ function DebugUtilsMessengerEXT(
     )
     index = findfirst(==(min_severity), message_severities)
     severity_bits = message_severities[index:end]
-    DebugUtilsMessengerEXT(instance, |(severity_bits...), |(types...), callback, function_pointer(instance, "vkCreateDebugUtilsMessengerEXT"), function_pointer(instance, "vkDestroyDebugUtilsMessengerEXT"))
+    DebugUtilsMessengerEXT(instance, |(severity_bits...), types, callback, function_pointer(instance, "vkCreateDebugUtilsMessengerEXT"), function_pointer(instance, "vkDestroyDebugUtilsMessengerEXT"))
 end

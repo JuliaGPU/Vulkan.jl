@@ -7,7 +7,7 @@ const instance = Instance(INSTANCE_LAYERS, INSTANCE_EXTENSIONS;
 @info "Instance created: $instance."
 
 if WITH_VALIDATION[]
-    debug_messenger = DebugUtilsMessengerEXT(instance, debug_callback_c; severity="debug")
+    debug_messenger = DebugUtilsMessengerEXT(instance, debug_callback_c)
 end
 
 const device = let pdevices = unwrap(enumerate_physical_devices(instance))
