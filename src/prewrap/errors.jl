@@ -3,8 +3,8 @@ Exception type indicating that an API function
 returned a non-success code.
 """
 struct VulkanError <: Exception
-    msg::AbstractString
-    code::VkResult
+    msg::String
+    code
 end
 
 Base.showerror(io::IO, e::VulkanError) = print(io, e.code, ": ", e.msg)
