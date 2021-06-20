@@ -170,7 +170,7 @@ function SpecFlag(node::Node)
     typealias = Symbol(findfirst("./type", node).content)
     bitmask = if haskey(node, "requires")
         bitmask_name = Symbol(node["requires"])
-        if bitmask_name ∈ disabled_specs
+        if bitmask_name ∈ disabled_symbols
             nothing
         else
             spec_bitmasks[findfirst(==(bitmask_name), spec_bitmasks.name)]
@@ -271,6 +271,37 @@ function DestroyFunc(spec::SpecFunc)
     DestroyFunc(spec, handle, destroyed_param, is_arr(destroyed_param))
 end
 
+PlatformType(::Nothing) = PLATFORM_ALL
+PlatformType(type::String) = eval(Symbol("PLATFORM_", uppercase(type)))
+
+function SpecExtension(node::Node)
+    exttype = @match getattr(node, "type") begin
+        :instance => EXTENSION_TYPE_INSTANCE
+        :device => EXTENSION_TYPE_DEVICE
+        ::Nothing => EXTENSION_TYPE_ANY
+        t => error("Unknown extension type '$t'")
+    end
+    requires = getattr(node, "requires", default="", symbol=false)
+    requirements = isempty(requires) ? Symbol[] : Symbol.(split(requires, ','))
+    is_disabled = @match node["supported"] begin
+        "vulkan" => false
+        "disabled" => true
+        s => error("Unknown extension support value '$s'")
+    end
+    platform = PlatformType(getattr(node, "platform", symbol=false))
+    symbols = map(x -> Symbol(x["name"]), findall(".//*[@name]", node))
+    SpecExtension(
+        Symbol(node["name"]),
+        exttype,
+        requirements,
+        is_disabled,
+        getattr(node, "author", symbol=false),
+        symbols,
+        platform,
+        platform == PLATFORM_PROVISIONAL,
+    )
+end
+
 function queue_compatibility(node::Node)
     @when let _ = node, if haskey(node, "queues")
         end
@@ -363,12 +394,36 @@ function length_chain(spec::Union{SpecStructMember,SpecFuncParam}, chain)
     collect(FieldIterator(parent_spec(spec), parts))
 end
 
+SpecPlatform(node::Node) = SpecPlatform(PlatformType(node["name"]), node["comment"])
+AuthorTag(node::Node) = AuthorTag(node["name"], node["author"])
+
+const spec_platforms = StructVector(SpecPlatform.(findall("//platform", xroot)))
+
+const author_tags = StructVector(AuthorTag.(findall("//tag", xroot)))
+
+const spec_extensions = StructVector(SpecExtension.(findall("//extension", xroot)))
+
+const spec_extensions_supported = filter(x -> !x.is_disabled, spec_extensions)
+
+function extension(name::Symbol)
+    idx = findfirst(x -> name in x.symbols, spec_extensions)
+    !isnothing(idx) ? spec_extensions[idx] : nothing
+end
+extension(spec::Spec) = extension(spec.name)
+
+is_core(spec) = isnothing(extension(spec))
+
+function is_platform_specific(spec)
+    ext = extension(spec)
+    !isnothing(ext) && ext.platform ≠ PLATFORM_ALL
+end
+
 """
 Some specifications are disabled in the Vulkan headers (see https://github.com/KhronosGroup/Vulkan-Docs/issues/1225).
 """
-const disabled_specs = map(x -> Symbol(x["name"]), findall("//extension[@supported = 'disabled']//*[@name]", xroot))
+const disabled_symbols = [map(x -> x.symbols, setdiff(spec_extensions, spec_extensions_supported))...;]
 
-enabled_specs(specs) = filter(x -> x.name ∉ disabled_specs, specs)
+enabled_specs(specs) = filter(x -> is_core(x) || !(extension(x).is_disabled), specs)
 
 """
 Specification constants, usually defined in C with #define.
@@ -525,22 +580,12 @@ end
 const spec_create_funcs = StructVector(CreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
 const spec_destroy_funcs = StructVector(DestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
 
-function wrappable_constructors(handle::SpecHandle)::Vector{CreateFunc}
-    # don't wrap VkSurfaceKHR, almost all signatures conflict with one another with create info parameters exposed
-    handle.name == :VkSurfaceKHR && return []
-    all_constructors_nobatch = filter(x -> x.handle == handle && !x.batch, spec_create_funcs)
-    if length(unique(all_constructors_nobatch.create_info_struct)) == length(all_constructors_nobatch)
-        all_constructors_nobatch
-    else
-        []
-    end
-end
-
-const spec_handles_with_wrappable_constructors = filter(x -> !isempty(wrappable_constructors(x)), spec_handles)
-
 is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
 
-function is_default_count(spec::Spec)
+"""
+True if the argument behaves differently than other length parameters.
+"""
+function is_length_exception(spec::Spec)
     is_length(spec) && @match parent(spec) begin
         # see `descriptorCount` at https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VkWriteDescriptorSet
         :VkWriteDescriptorSet => true
@@ -548,31 +593,13 @@ function is_default_count(spec::Spec)
     end
 end
 
-function default_count(spec::Spec)
-    @match parent(spec) begin
-        :VkWriteDescriptorSet => :(max($((:(pointer_length($(wrap_identifier(arg)))) for arg in arglen(spec))...)))
-    end
-end
-
-function is_specific_count(spec::Spec)
-    @match spec begin
-        GuardBy(is_length) => @match parent(spec) begin
-            :VkDescriptorSetLayoutBinding => true
-            _ => false
-        end
-        _ => false
-    end
-end
-
-default(::SpecHandle) = :C_NULL
-function default(spec::Union{SpecStructMember,SpecFuncParam})
-    is_default_count(spec) && return default_count(spec)
-    @match spec.requirement begin
-        if spec.type ∈ spec_handles.name
-        end => default(handle_by_name(spec.type))
-        &POINTER_OPTIONAL || &POINTER_REQUIRED || if is_ptr(spec.type) || spec.type == :Cstring
-        end => :C_NULL
-        &OPTIONAL || &REQUIRED => 0
+"""
+True if the argument that can be inferred from other arguments.
+"""
+function is_inferable_length(spec::Spec)
+    is_length(spec) && @match parent(spec) begin
+        :VkDescriptorSetLayoutBinding => false
+        _ => true
     end
 end
 

@@ -45,7 +45,7 @@ function vk_call(x::Spec)
         GuardBy(is_length) => begin
             !x.autovalidity && @debug "Automatic validation was disabled for length parameter $x."
             @match x begin
-                GuardBy(is_specific_count) || GuardBy(is_default_count) => var
+                GuardBy(is_length_exception) || GuardBy(!is_inferable_length) => var
                 _ => :(pointer_length($(wrap_identifier(first(arglen(x)))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
             end
         end

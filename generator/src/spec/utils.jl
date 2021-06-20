@@ -76,8 +76,7 @@ function translate_c_type(ctype)
         end => Symbol(replace(string(x)[1:end-2], "uint" => "UInt"))
         x::Symbol && if startswith(string(x), "int") && endswith(string(x), "_t")
         end => Symbol(replace(string(x)[1:end-2], "int" => "Int"))
-        if is_ptr(ctype)
-        end => @match ptr_type(ctype) begin
+        :(Ptr{$t}) => @match t begin
             :char => :Cstring
             x => :(Ptr{$(translate_c_type(x))})
         end
@@ -89,3 +88,19 @@ function translate_c_type(ctype)
         x => x
     end
 end
+
+function innermost_type(t)
+    @match t begin
+        ::Symbol => t
+        :($T{$p}) => innermost_type(p)
+        _ => error("Cannot take innermost type of $t")
+    end
+end
+
+is_ptr_to_ptr(ex) = !isnothing(ptrtype(ptrtype(ex)))
+is_ptr(ex) = !isnothing(ptr_type(ex))
+
+ptr_type(ex) = @when :(Ptr{$T}) = ex T
+ntuple_type(ex) = @when :(NTuple{$N,$T}) = ex T
+
+is_ntuple(ex) = !isnothing(ntuple_type(ex))

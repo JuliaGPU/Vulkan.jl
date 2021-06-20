@@ -1,5 +1,27 @@
+module VulkanSpec
+
+using StructArrays: StructVector
+using LightGraphs
+using MLStyle
+using DocStringExtensions
 using EzXML: Node, readxml
 using Vulkan_Headers_jll: vk_xml
+
+@template (FUNCTIONS, METHODS, MACROS) = """
+                                         $(DOCSTRING)
+                                         $(TYPEDSIGNATURES)
+                                         """
+
+@template TYPES = """
+                  $(DOCSTRING)
+                  $(TYPEDEF)
+                  $(TYPEDSIGNATURES)
+                  $(TYPEDFIELDS)
+                  $(SIGNATURES)
+                  """
+
+const ExprLike = Union{Symbol,Expr}
+const Optional{T} = Union{Nothing,T}
 
 const xdoc = readxml(vk_xml)
 const xroot = xdoc.root
@@ -35,19 +57,57 @@ const extension_types = [
     :_screen_window,
 ]
 
-include("spec/utils.jl")
-include("spec/aliases.jl")
-include("spec/types.jl")
-include("spec/specs.jl")
-include("spec/structure_types.jl")
-
-for name ∈ names(@__MODULE__, all = true)
-    if any(startswith.(string(name), ["spec_", "Spec"]))
-        @eval export $name
-    end
-end
+include("utils.jl")
+include("aliases.jl")
+include("types.jl")
+include("specs.jl")
+include("structure_types.jl")
 
 export
+    # Types
+    Spec,
+    SpecAlias,
+    SpecBit,
+    SpecBitmask,
+    SpecConstant,
+    SpecEnum,
+    SpecExtension,
+    SpecFlag,
+    SpecFunc,
+    SpecFuncParam,
+    SpecStruct,
+    SpecStructMember,
+    SpecHandle,
+    SpecUnion,
+    CreateFunc,
+    DestroyFunc,
+    AuthorTag,
+    PlatformType,
+
+    # Classification
+    extension_types,
+    structure_types,
+
+    # Specification data structures
+    spec_extensions,
+    spec_extensions_supported,
+    spec_constants,
+    spec_flags,
+    spec_enums,
+    spec_bitmasks,
+    spec_unions,
+    spec_structs,
+    spec_struct_members,
+    spec_funcs,
+    spec_func_params,
+    spec_create_funcs,
+    spec_create_info_structs,
+    spec_destroy_funcs,
+    spec_handles,
+    spec_all_semantic_enums,
+    spec_all_noalias,
+    disabled_symbols,
+
     # Alias manipulation
     follow_alias,
     isalias,
@@ -72,18 +132,20 @@ export
     follow_constant,
     children,
     parent_spec,
+    len,
     has_length,
     has_computable_length,
+    arglen,
     is_length,
+    is_length_exception,
+    is_inferable_length,
+    length_chain,
     is_arr,
     is_size,
-    length_chain,
+    is_data,
     is_fn_ptr,
     is_version,
-    is_default_count,
-    is_specific_count,
-    default_count,
-    wrappable_constructors,
+    extension,
 
     ### Render passes
     RenderPassRequirement,
@@ -118,3 +180,5 @@ export
     COMMAND,
     QUERY,
     OTHER
+
+end # module

@@ -33,6 +33,7 @@ Base.show(io::IO, vw::VulkanWrapper) = print(
 
 include("wrap/classification.jl")
 include("wrap/identifiers.jl")
+include("wrap/defaults.jl")
 include("wrap/call.jl")
 include("wrap/return.jl")
 include("wrap/decl.jl")

@@ -1,3 +1,16 @@
+function wrappable_constructors(handle::SpecHandle)::Vector{CreateFunc}
+    # don't wrap VkSurfaceKHR, almost all signatures conflict with one another with create info parameters exposed
+    handle.name == :VkSurfaceKHR && return []
+    all_constructors_nobatch = filter(x -> x.handle == handle && !x.batch, spec_create_funcs)
+    if length(unique(all_constructors_nobatch.create_info_struct)) == length(all_constructors_nobatch)
+        all_constructors_nobatch
+    else
+        []
+    end
+end
+
+const spec_handles_with_wrappable_constructors = filter(x -> !isempty(wrappable_constructors(x)), spec_handles)
+
 function wrap(spec::SpecHandle)
     d = Dict(
         :category => :struct,

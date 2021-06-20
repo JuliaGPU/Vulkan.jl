@@ -1,10 +1,10 @@
 module VulkanGen
 
-using StructArrays
-using UnPack
+using StructArrays: StructVector
 using LightGraphs
 using MLStyle
 using DocStringExtensions
+using Reexport
 
 @template (FUNCTIONS, METHODS, MACROS) = """
                                          $(DOCSTRING)
@@ -20,7 +20,10 @@ using DocStringExtensions
                   """
 
 include("types.jl")
-include("spec.jl")
+
+include("spec/VulkanSpec.jl")
+@reexport using .VulkanSpec
+
 include("wrapper.jl")
 
 end # module VulkanGen

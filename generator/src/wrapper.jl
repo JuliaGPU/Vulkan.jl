@@ -39,10 +39,20 @@ export
     # Wrapping
     VulkanWrapper,
     wrap,
-    add_constructor,
+    
+    ### Low-level wrappers
+    ##### Handles
+    wrappable_constructors,
+    spec_handles_with_wrappable_constructors,
     add_constructors,
-    extend_from_vk,
     extend_handle_constructor,
+    default,
+
+    ##### Structs
+    add_constructor,
+    extend_from_vk,
+
+    ### High-level wrappers
     hl_wrap,
     hl_convert,
     hl_convert_overload,

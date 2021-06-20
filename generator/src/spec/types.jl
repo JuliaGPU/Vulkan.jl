@@ -277,3 +277,75 @@ struct DestroyFunc <: Spec
     destroyed_param::SpecFuncParam
     batch::Bool
 end
+
+@enum ExtensionType begin
+    EXTENSION_TYPE_INSTANCE
+    EXTENSION_TYPE_DEVICE
+    EXTENSION_TYPE_ANY
+end
+
+@enum PlatformType begin
+    PLATFORM_ALL
+    PLATFORM_XCB
+    PLATFORM_XLIB
+    PLATFORM_XLIB_XRANDR
+    PLATFORM_WAYLAND
+    PLATFORM_METAL
+    PLATFORM_MACOS
+    PLATFORM_IOS
+    PLATFORM_WIN32
+    PLATFORM_ANDROID
+    PLATFORM_GGP
+    PLATFORM_VI
+    PLATFORM_FUCHSIA
+    PLATFORM_DIRECTFB
+    PLATFORM_SCREEN
+    PLATFORM_PROVISIONAL
+end
+
+struct SpecPlatform <: Spec
+    type::PlatformType
+    description::String
+end
+
+struct SpecExtension <: Spec
+    name::Symbol
+    type::ExtensionType
+    requirements::Vector{Symbol}
+    is_disabled::Bool
+    author::Optional{String}
+    symbols::Vector{Symbol}
+    platform::PlatformType
+    is_provisional::Bool
+end
+
+function Base.show(io::IO, ::MIME"text/plain", ext::SpecExtension)
+    @match ext.type begin
+        &EXTENSION_TYPE_INSTANCE => print(io, "Instance extension ")
+        &EXTENSION_TYPE_DEVICE => print(io, "Device extension ")
+        &EXTENSION_TYPE_ANY => print(io, "Extension ")
+    end
+    print(io, ext.name)
+    inline_infos = String[]
+    ext.is_provisional && push!(inline_infos, "provisional")
+    ext.is_disabled && push!(inline_infos, "disabled")
+    !isempty(inline_infos) && print(io, " (", join(inline_infos, ", "), ')')
+    println(io)
+    ext.platform ∉ (PLATFORM_ALL, PLATFORM_PROVISIONAL) && println(io, "• Platform: ", replace(string(ext.platform), "PLATFORM_" => ""), " (", first(spec_by_field(spec_platforms, :type, ext.platform)).description, ')')
+    !isempty(ext.requirements) && println(io, "• Depends on: ", join(ext.requirements, ", "))
+    n = length(ext.symbols)
+    if n > 0
+        println(io, "• $n symbols: ")
+        limit = 8
+        foreach(enumerate(sort(ext.symbols))) do (i, symbol)
+            (i ≤ limit / 2 || i > n - limit ÷ 2) && (i == n ? print : println)(io, "  ∘ ", symbol)
+            i == limit ÷ 2 && println(io, "  ⋮")
+        end
+    end
+    !isnothing(ext.author) && print(io, "\n• From: ", ext.author, " (", first(spec_by_field(author_tags, :tag, ext.author)).author, ')')
+end
+
+struct AuthorTag
+    tag::String
+    author::String
+end
