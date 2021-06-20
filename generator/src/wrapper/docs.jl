@@ -20,14 +20,14 @@ function document_return_codes(spec::SpecFunc)
         res *= "Return codes:"
     end
     if !isempty(spec.success_codes) && must_return_success_code(spec)
-        res *= string("\n- Success:\n  - ", join(backquoted.(remove_vk_prefix.(spec.success_codes)), "\n  - "))
+        res *= string("\n• Success:\n  ∘ ", join(backquoted.(remove_vk_prefix.(spec.success_codes)), "\n  ∘ "))
     end
     if !isempty(spec.error_codes)
-        res *= string("\n- Error:\n  - ", join(backquoted.(remove_vk_prefix.(spec.error_codes)), "\n  - "))
+        res *= string("\n• Error:\n  ∘ ", join(backquoted.(remove_vk_prefix.(spec.error_codes)), "\n  ∘ "))
     end
 
     if !isempty(res)
-        res *= '\n'^2
+        res = '\n' * res * '\n'
     end
 
     res
@@ -58,8 +58,10 @@ function document_function(spec, p)
     if spec isa SpecFunc
         if any(is_data_with_retrievable_size, params)
             extra = """
+
             !!! warning
-                The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`)."""
+                The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+            """
         elseif any(is_opaque_data, params)
             opaque_params = params[findall(is_opaque_data, params)]
             map(opaque_params) do param
@@ -72,14 +74,22 @@ function document_function(spec, p)
         end
     end
 
+    extra *= """
+
+    API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+    """
+
     string(
-        ' '^4,
-        reconstruct_call(p),
-        '\n'^2,
+        """
+            $(reconstruct_call(p))
+        """,
         document_return_codes(spec),
-        join(["Arguments:"; last.(argdocs)], "\n- "),
-        isempty(extra) ? "" : '\n'^2 * extra,
-        '\n',
+        """
+
+        Arguments:
+        • $(join(last.(argdocs), "\n• "))
+        """,
+        extra,
     )
 end
 
@@ -98,7 +108,11 @@ function document_arguments(p)
 end
 
 function document_struct(spec::SpecStruct, p)
-    "High-level wrapper for $(spec.name)"
+    """
+    High-level wrapper for $(spec.name).
+
+    API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+    """
 end
 
 function docstring(name, docstring)

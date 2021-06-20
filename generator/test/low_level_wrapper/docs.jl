@@ -9,8 +9,10 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
             _Extent2D(width::Integer, height::Integer)
 
         Arguments:
-        - `width::Integer`
-        - `height::Integer`
+        • `width::Integer`
+        • `height::Integer`
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html
         """,
     )
 
@@ -20,11 +22,13 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
             _InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
 
         Arguments:
-        - `enabled_layer_names::AbstractArray{<:AbstractString}`
-        - `enabled_extension_names::AbstractArray{<:AbstractString}`
-        - `next`: defaults to `C_NULL`
-        - `flags`: defaults to `0`
-        - `application_info`: defaults to `C_NULL`
+        • `enabled_layer_names::AbstractArray{<:AbstractString}`
+        • `enabled_extension_names::AbstractArray{<:AbstractString}`
+        • `next`: defaults to `C_NULL`
+        • `flags`: defaults to `0`
+        • `application_info`: defaults to `C_NULL`
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
         """,
     )
 
@@ -34,13 +38,15 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
             enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
 
         Return codes:
-        - Error:
-          - `ERROR_OUT_OF_HOST_MEMORY`
-          - `ERROR_OUT_OF_DEVICE_MEMORY`
-          - `ERROR_LAYER_NOT_PRESENT`
+        • Error:
+          ∘ `ERROR_OUT_OF_HOST_MEMORY`
+          ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+          ∘ `ERROR_LAYER_NOT_PRESENT`
 
         Arguments:
-        - `layer_name`: defaults to `C_NULL`
+        • `layer_name`: defaults to `C_NULL`
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html
         """,
     )
 
@@ -50,8 +56,10 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
             destroy_device(device::Device; allocator = C_NULL)::Cvoid
 
         Arguments:
-        - `device::Device` (externsync)
-        - `allocator`: defaults to `C_NULL`
+        • `device::Device` (externsync)
+        • `allocator`: defaults to `C_NULL`
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html
         """,
     )
 
@@ -61,16 +69,18 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
             get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
         Return codes:
-        - Error:
-          - `ERROR_OUT_OF_HOST_MEMORY`
-          - `ERROR_OUT_OF_DEVICE_MEMORY`
+        • Error:
+          ∘ `ERROR_OUT_OF_HOST_MEMORY`
+          ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
         Arguments:
-        - `device::Device`
-        - `pipeline_cache::PipelineCache`
+        • `device::Device`
+        • `pipeline_cache::PipelineCache`
 
         !!! warning
             The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html
         """,
     )
 
@@ -80,17 +90,19 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
             write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
         Return codes:
-        - Error:
-          - `ERROR_OUT_OF_HOST_MEMORY`
-          - `ERROR_OUT_OF_DEVICE_MEMORY`
+        • Error:
+          ∘ `ERROR_OUT_OF_HOST_MEMORY`
+          ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
         Arguments:
-        - `device::Device`
-        - `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
-        - `query_type::QueryType`
-        - `data_size::Integer`
-        - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
-        - `stride::Integer`
+        • `device::Device`
+        • `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+        • `query_type::QueryType`
+        • `data_size::Integer`
+        • `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+        • `stride::Integer`
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html
         """,
     )
 end

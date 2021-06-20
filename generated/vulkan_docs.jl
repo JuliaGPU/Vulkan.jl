@@ -2,17 +2,19 @@
     create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Instance, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
-  - `ERROR_LAYER_NOT_PRESENT`
-  - `ERROR_EXTENSION_NOT_PRESENT`
-  - `ERROR_INCOMPATIBLE_DRIVER`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
+  ∘ `ERROR_LAYER_NOT_PRESENT`
+  ∘ `ERROR_EXTENSION_NOT_PRESENT`
+  ∘ `ERROR_INCOMPATIBLE_DRIVER`
 
 Arguments:
-- `create_info::_InstanceCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `create_info::_InstanceCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateInstance.html
 
 """
 create_instance
@@ -21,8 +23,10 @@ create_instance
     destroy_instance(instance::Instance; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `instance::Instance` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyInstance.html
 
 """
 destroy_instance
@@ -31,13 +35,15 @@ destroy_instance
     enumerate_physical_devices(instance::Instance)::ResultTypes.Result{Vector{PhysicalDevice}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `instance::Instance`
+• `instance::Instance`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDevices.html
 
 """
 enumerate_physical_devices
@@ -46,8 +52,10 @@ enumerate_physical_devices
     get_device_proc_addr(device::Device, name::AbstractString)::FunctionPtr
 
 Arguments:
-- `device::Device`
-- `name::AbstractString`
+• `device::Device`
+• `name::AbstractString`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceProcAddr.html
 
 """
 get_device_proc_addr
@@ -56,8 +64,10 @@ get_device_proc_addr
     get_instance_proc_addr(name::AbstractString; instance = C_NULL)::FunctionPtr
 
 Arguments:
-- `name::AbstractString`
-- `instance`: defaults to `C_NULL`
+• `name::AbstractString`
+• `instance`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetInstanceProcAddr.html
 
 """
 get_instance_proc_addr
@@ -66,7 +76,9 @@ get_instance_proc_addr
     get_physical_device_properties(physical_device::PhysicalDevice)::PhysicalDeviceProperties
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties.html
 
 """
 get_physical_device_properties
@@ -75,7 +87,9 @@ get_physical_device_properties
     get_physical_device_queue_family_properties(physical_device::PhysicalDevice)::Vector{QueueFamilyProperties}
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties.html
 
 """
 get_physical_device_queue_family_properties
@@ -84,7 +98,9 @@ get_physical_device_queue_family_properties
     get_physical_device_memory_properties(physical_device::PhysicalDevice)::PhysicalDeviceMemoryProperties
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties.html
 
 """
 get_physical_device_memory_properties
@@ -93,7 +109,9 @@ get_physical_device_memory_properties
     get_physical_device_features(physical_device::PhysicalDevice)::_PhysicalDeviceFeatures
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures.html
 
 """
 get_physical_device_features
@@ -102,8 +120,10 @@ get_physical_device_features
     get_physical_device_format_properties(physical_device::PhysicalDevice, format::Format)::FormatProperties
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `format::Format`
+• `physical_device::PhysicalDevice`
+• `format::Format`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties.html
 
 """
 get_physical_device_format_properties
@@ -112,18 +132,20 @@ get_physical_device_format_properties
     get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; flags = 0)::ResultTypes.Result{ImageFormatProperties, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_FORMAT_NOT_SUPPORTED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `format::Format`
-- `type::ImageType`
-- `tiling::ImageTiling`
-- `usage::ImageUsageFlag`
-- `flags`: defaults to `0`
+• `physical_device::PhysicalDevice`
+• `format::Format`
+• `type::ImageType`
+• `tiling::ImageTiling`
+• `usage::ImageUsageFlag`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties.html
 
 """
 get_physical_device_image_format_properties
@@ -132,19 +154,21 @@ get_physical_device_image_format_properties
     create_device(physical_device::PhysicalDevice, create_info::_DeviceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Device, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
-  - `ERROR_EXTENSION_NOT_PRESENT`
-  - `ERROR_FEATURE_NOT_PRESENT`
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_DEVICE_LOST`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
+  ∘ `ERROR_EXTENSION_NOT_PRESENT`
+  ∘ `ERROR_FEATURE_NOT_PRESENT`
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `create_info::_DeviceCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `physical_device::PhysicalDevice`
+• `create_info::_DeviceCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDevice.html
 
 """
 create_device
@@ -153,8 +177,10 @@ create_device
     destroy_device(device::Device; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html
 
 """
 destroy_device
@@ -163,10 +189,13 @@ destroy_device
     enumerate_instance_version()::ResultTypes.Result{VersionNumber, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
+• 
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceVersion.html
 
 """
 enumerate_instance_version
@@ -175,11 +204,14 @@ enumerate_instance_version
     enumerate_instance_layer_properties()::ResultTypes.Result{Vector{LayerProperties}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
+• 
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html
 
 """
 enumerate_instance_layer_properties
@@ -188,13 +220,15 @@ enumerate_instance_layer_properties
     enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_LAYER_NOT_PRESENT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_LAYER_NOT_PRESENT`
 
 Arguments:
-- `layer_name`: defaults to `C_NULL`
+• `layer_name`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html
 
 """
 enumerate_instance_extension_properties
@@ -203,12 +237,14 @@ enumerate_instance_extension_properties
     enumerate_device_layer_properties(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{LayerProperties}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceLayerProperties.html
 
 """
 enumerate_device_layer_properties
@@ -217,14 +253,16 @@ enumerate_device_layer_properties
     enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_LAYER_NOT_PRESENT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_LAYER_NOT_PRESENT`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `layer_name`: defaults to `C_NULL`
+• `physical_device::PhysicalDevice`
+• `layer_name`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceExtensionProperties.html
 
 """
 enumerate_device_extension_properties
@@ -233,9 +271,11 @@ enumerate_device_extension_properties
     get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer)::Queue
 
 Arguments:
-- `device::Device`
-- `queue_family_index::Integer`
-- `queue_index::Integer`
+• `device::Device`
+• `queue_family_index::Integer`
+• `queue_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue.html
 
 """
 get_device_queue
@@ -244,15 +284,17 @@ get_device_queue
     queue_submit(queue::Queue, submits::AbstractArray{<:_SubmitInfo}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `queue::Queue` (externsync)
-- `submits::AbstractArray{<:_SubmitInfo}`
-- `fence`: defaults to `C_NULL` (externsync)
+• `queue::Queue` (externsync)
+• `submits::AbstractArray{<:_SubmitInfo}`
+• `fence`: defaults to `C_NULL` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit.html
 
 """
 queue_submit
@@ -261,13 +303,15 @@ queue_submit
     queue_wait_idle(queue::Queue)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `queue::Queue` (externsync)
+• `queue::Queue` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueWaitIdle.html
 
 """
 queue_wait_idle
@@ -276,13 +320,15 @@ queue_wait_idle
     device_wait_idle(device::Device)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `device::Device`
+• `device::Device`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeviceWaitIdle.html
 
 """
 device_wait_idle
@@ -291,16 +337,18 @@ device_wait_idle
     allocate_memory(device::Device, allocate_info::_MemoryAllocateInfo; allocator = C_NULL)::ResultTypes.Result{DeviceMemory, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
-  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
+  ∘ `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
-- `device::Device`
-- `allocate_info::_MemoryAllocateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `allocate_info::_MemoryAllocateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateMemory.html
 
 """
 allocate_memory
@@ -309,9 +357,11 @@ allocate_memory
     free_memory(device::Device, memory::DeviceMemory; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `memory::DeviceMemory` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `memory::DeviceMemory` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeMemory.html
 
 """
 free_memory
@@ -320,17 +370,19 @@ free_memory
     map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)::ResultTypes.Result{Ptr{Cvoid}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_MEMORY_MAP_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_MEMORY_MAP_FAILED`
 
 Arguments:
-- `device::Device`
-- `memory::DeviceMemory` (externsync)
-- `offset::Integer`
-- `size::Integer`
-- `flags`: defaults to `0`
+• `device::Device`
+• `memory::DeviceMemory` (externsync)
+• `offset::Integer`
+• `size::Integer`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMapMemory.html
 
 """
 map_memory
@@ -339,8 +391,10 @@ map_memory
     unmap_memory(device::Device, memory::DeviceMemory)::Cvoid
 
 Arguments:
-- `device::Device`
-- `memory::DeviceMemory` (externsync)
+• `device::Device`
+• `memory::DeviceMemory` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUnmapMemory.html
 
 """
 unmap_memory
@@ -349,13 +403,15 @@ unmap_memory
     flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `memory_ranges::AbstractArray{<:_MappedMemoryRange}`
+• `device::Device`
+• `memory_ranges::AbstractArray{<:_MappedMemoryRange}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFlushMappedMemoryRanges.html
 
 """
 flush_mapped_memory_ranges
@@ -364,13 +420,15 @@ flush_mapped_memory_ranges
     invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `memory_ranges::AbstractArray{<:_MappedMemoryRange}`
+• `device::Device`
+• `memory_ranges::AbstractArray{<:_MappedMemoryRange}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInvalidateMappedMemoryRanges.html
 
 """
 invalidate_mapped_memory_ranges
@@ -379,8 +437,10 @@ invalidate_mapped_memory_ranges
     get_device_memory_commitment(device::Device, memory::DeviceMemory)::UInt64
 
 Arguments:
-- `device::Device`
-- `memory::DeviceMemory`
+• `device::Device`
+• `memory::DeviceMemory`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryCommitment.html
 
 """
 get_device_memory_commitment
@@ -389,8 +449,10 @@ get_device_memory_commitment
     get_buffer_memory_requirements(device::Device, buffer::Buffer)::MemoryRequirements
 
 Arguments:
-- `device::Device`
-- `buffer::Buffer`
+• `device::Device`
+• `buffer::Buffer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements.html
 
 """
 get_buffer_memory_requirements
@@ -399,16 +461,18 @@ get_buffer_memory_requirements
     bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
-- `device::Device`
-- `buffer::Buffer` (externsync)
-- `memory::DeviceMemory`
-- `memory_offset::Integer`
+• `device::Device`
+• `buffer::Buffer` (externsync)
+• `memory::DeviceMemory`
+• `memory_offset::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory.html
 
 """
 bind_buffer_memory
@@ -417,8 +481,10 @@ bind_buffer_memory
     get_image_memory_requirements(device::Device, image::Image)::MemoryRequirements
 
 Arguments:
-- `device::Device`
-- `image::Image`
+• `device::Device`
+• `image::Image`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements.html
 
 """
 get_image_memory_requirements
@@ -427,15 +493,17 @@ get_image_memory_requirements
     bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `image::Image` (externsync)
-- `memory::DeviceMemory`
-- `memory_offset::Integer`
+• `device::Device`
+• `image::Image` (externsync)
+• `memory::DeviceMemory`
+• `memory_offset::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory.html
 
 """
 bind_image_memory
@@ -444,8 +512,10 @@ bind_image_memory
     get_image_sparse_memory_requirements(device::Device, image::Image)::Vector{SparseImageMemoryRequirements}
 
 Arguments:
-- `device::Device`
-- `image::Image`
+• `device::Device`
+• `image::Image`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements.html
 
 """
 get_image_sparse_memory_requirements
@@ -454,12 +524,14 @@ get_image_sparse_memory_requirements
     get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling)::Vector{SparseImageFormatProperties}
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `format::Format`
-- `type::ImageType`
-- `samples::SampleCountFlag`
-- `usage::ImageUsageFlag`
-- `tiling::ImageTiling`
+• `physical_device::PhysicalDevice`
+• `format::Format`
+• `type::ImageType`
+• `samples::SampleCountFlag`
+• `usage::ImageUsageFlag`
+• `tiling::ImageTiling`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties.html
 
 """
 get_physical_device_sparse_image_format_properties
@@ -468,15 +540,17 @@ get_physical_device_sparse_image_format_properties
     queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:_BindSparseInfo}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `queue::Queue` (externsync)
-- `bind_info::AbstractArray{<:_BindSparseInfo}` (externsync)
-- `fence`: defaults to `C_NULL` (externsync)
+• `queue::Queue` (externsync)
+• `bind_info::AbstractArray{<:_BindSparseInfo}` (externsync)
+• `fence`: defaults to `C_NULL` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBindSparse.html
 
 """
 queue_bind_sparse
@@ -485,14 +559,16 @@ queue_bind_sparse
     create_fence(device::Device, create_info::_FenceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_FenceCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_FenceCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFence.html
 
 """
 create_fence
@@ -501,9 +577,11 @@ create_fence
     destroy_fence(device::Device, fence::Fence; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `fence::Fence` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `fence::Fence` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFence.html
 
 """
 destroy_fence
@@ -512,12 +590,14 @@ destroy_fence
     reset_fences(device::Device, fences::AbstractArray{<:Fence})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `fences::AbstractArray{<:Fence}` (externsync)
+• `device::Device`
+• `fences::AbstractArray{<:Fence}` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetFences.html
 
 """
 reset_fences
@@ -526,17 +606,19 @@ reset_fences
     get_fence_status(device::Device, fence::Fence)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `NOT_READY`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `NOT_READY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `device::Device`
-- `fence::Fence`
+• `device::Device`
+• `fence::Fence`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceStatus.html
 
 """
 get_fence_status
@@ -545,19 +627,21 @@ get_fence_status
     wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `TIMEOUT`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `TIMEOUT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `device::Device`
-- `fences::AbstractArray{<:Fence}`
-- `wait_all::Bool`
-- `timeout::Integer`
+• `device::Device`
+• `fences::AbstractArray{<:Fence}`
+• `wait_all::Bool`
+• `timeout::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitForFences.html
 
 """
 wait_for_fences
@@ -566,14 +650,16 @@ wait_for_fences
     create_semaphore(device::Device, create_info::_SemaphoreCreateInfo; allocator = C_NULL)::ResultTypes.Result{Semaphore, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_SemaphoreCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_SemaphoreCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSemaphore.html
 
 """
 create_semaphore
@@ -582,9 +668,11 @@ create_semaphore
     destroy_semaphore(device::Device, semaphore::Semaphore; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `semaphore::Semaphore` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `semaphore::Semaphore` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySemaphore.html
 
 """
 destroy_semaphore
@@ -593,14 +681,16 @@ destroy_semaphore
     create_event(device::Device, create_info::_EventCreateInfo; allocator = C_NULL)::ResultTypes.Result{Event, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_EventCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_EventCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateEvent.html
 
 """
 create_event
@@ -609,9 +699,11 @@ create_event
     destroy_event(device::Device, event::Event; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `event::Event` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `event::Event` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyEvent.html
 
 """
 destroy_event
@@ -620,17 +712,19 @@ destroy_event
     get_event_status(device::Device, event::Event)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `EVENT_SET`
-  - `EVENT_RESET`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Success:
+  ∘ `EVENT_SET`
+  ∘ `EVENT_RESET`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `device::Device`
-- `event::Event`
+• `device::Device`
+• `event::Event`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetEventStatus.html
 
 """
 get_event_status
@@ -639,13 +733,15 @@ get_event_status
     set_event(device::Device, event::Event)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `event::Event` (externsync)
+• `device::Device`
+• `event::Event` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetEvent.html
 
 """
 set_event
@@ -654,12 +750,14 @@ set_event
     reset_event(device::Device, event::Event)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `event::Event` (externsync)
+• `device::Device`
+• `event::Event` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetEvent.html
 
 """
 reset_event
@@ -668,14 +766,16 @@ reset_event
     create_query_pool(device::Device, create_info::_QueryPoolCreateInfo; allocator = C_NULL)::ResultTypes.Result{QueryPool, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_QueryPoolCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_QueryPoolCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateQueryPool.html
 
 """
 create_query_pool
@@ -684,9 +784,11 @@ create_query_pool
     destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `query_pool::QueryPool` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `query_pool::QueryPool` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyQueryPool.html
 
 """
 destroy_query_pool
@@ -695,23 +797,25 @@ destroy_query_pool
     get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `NOT_READY`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `NOT_READY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `device::Device`
-- `query_pool::QueryPool`
-- `first_query::Integer`
-- `query_count::Integer`
-- `data_size::Integer`
-- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
-- `stride::Integer`
-- `flags`: defaults to `0`
+• `device::Device`
+• `query_pool::QueryPool`
+• `first_query::Integer`
+• `query_count::Integer`
+• `data_size::Integer`
+• `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+• `stride::Integer`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueryPoolResults.html
 
 """
 get_query_pool_results
@@ -720,10 +824,12 @@ get_query_pool_results
     reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid
 
 Arguments:
-- `device::Device`
-- `query_pool::QueryPool`
-- `first_query::Integer`
-- `query_count::Integer`
+• `device::Device`
+• `query_pool::QueryPool`
+• `first_query::Integer`
+• `query_count::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetQueryPool.html
 
 """
 reset_query_pool
@@ -732,15 +838,17 @@ reset_query_pool
     create_buffer(device::Device, create_info::_BufferCreateInfo; allocator = C_NULL)::ResultTypes.Result{Buffer, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
-- `device::Device`
-- `create_info::_BufferCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_BufferCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBuffer.html
 
 """
 create_buffer
@@ -749,9 +857,11 @@ create_buffer
     destroy_buffer(device::Device, buffer::Buffer; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `buffer::Buffer` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `buffer::Buffer` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBuffer.html
 
 """
 destroy_buffer
@@ -760,14 +870,16 @@ destroy_buffer
     create_buffer_view(device::Device, create_info::_BufferViewCreateInfo; allocator = C_NULL)::ResultTypes.Result{BufferView, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_BufferViewCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_BufferViewCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBufferView.html
 
 """
 create_buffer_view
@@ -776,9 +888,11 @@ create_buffer_view
     destroy_buffer_view(device::Device, buffer_view::BufferView; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `buffer_view::BufferView` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `buffer_view::BufferView` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBufferView.html
 
 """
 destroy_buffer_view
@@ -787,14 +901,16 @@ destroy_buffer_view
     create_image(device::Device, create_info::_ImageCreateInfo; allocator = C_NULL)::ResultTypes.Result{Image, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_ImageCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_ImageCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImage.html
 
 """
 create_image
@@ -803,9 +919,11 @@ create_image
     destroy_image(device::Device, image::Image; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `image::Image` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `image::Image` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImage.html
 
 """
 destroy_image
@@ -814,9 +932,11 @@ destroy_image
     get_image_subresource_layout(device::Device, image::Image, subresource::_ImageSubresource)::SubresourceLayout
 
 Arguments:
-- `device::Device`
-- `image::Image`
-- `subresource::_ImageSubresource`
+• `device::Device`
+• `image::Image`
+• `subresource::_ImageSubresource`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSubresourceLayout.html
 
 """
 get_image_subresource_layout
@@ -825,14 +945,16 @@ get_image_subresource_layout
     create_image_view(device::Device, create_info::_ImageViewCreateInfo; allocator = C_NULL)::ResultTypes.Result{ImageView, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_ImageViewCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_ImageViewCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImageView.html
 
 """
 create_image_view
@@ -841,9 +963,11 @@ create_image_view
     destroy_image_view(device::Device, image_view::ImageView; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `image_view::ImageView` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `image_view::ImageView` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImageView.html
 
 """
 destroy_image_view
@@ -852,15 +976,17 @@ destroy_image_view
     create_shader_module(device::Device, create_info::_ShaderModuleCreateInfo; allocator = C_NULL)::ResultTypes.Result{ShaderModule, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_SHADER_NV`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_SHADER_NV`
 
 Arguments:
-- `device::Device`
-- `create_info::_ShaderModuleCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_ShaderModuleCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateShaderModule.html
 
 """
 create_shader_module
@@ -869,9 +995,11 @@ create_shader_module
     destroy_shader_module(device::Device, shader_module::ShaderModule; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `shader_module::ShaderModule` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `shader_module::ShaderModule` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyShaderModule.html
 
 """
 destroy_shader_module
@@ -880,14 +1008,16 @@ destroy_shader_module
     create_pipeline_cache(device::Device, create_info::_PipelineCacheCreateInfo; allocator = C_NULL)::ResultTypes.Result{PipelineCache, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_PipelineCacheCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_PipelineCacheCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineCache.html
 
 """
 create_pipeline_cache
@@ -896,9 +1026,11 @@ create_pipeline_cache
     destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `pipeline_cache::PipelineCache` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `pipeline_cache::PipelineCache` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineCache.html
 
 """
 destroy_pipeline_cache
@@ -907,16 +1039,18 @@ destroy_pipeline_cache
     get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `pipeline_cache::PipelineCache`
+• `device::Device`
+• `pipeline_cache::PipelineCache`
 
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html
 
 """
 get_pipeline_cache_data
@@ -925,14 +1059,16 @@ get_pipeline_cache_data
     merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `dst_cache::PipelineCache` (externsync)
-- `src_caches::AbstractArray{<:PipelineCache}`
+• `device::Device`
+• `dst_cache::PipelineCache` (externsync)
+• `src_caches::AbstractArray{<:PipelineCache}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergePipelineCaches.html
 
 """
 merge_pipeline_caches
@@ -941,19 +1077,21 @@ merge_pipeline_caches
     create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `PIPELINE_COMPILE_REQUIRED_EXT`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_SHADER_NV`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `PIPELINE_COMPILE_REQUIRED_EXT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_SHADER_NV`
 
 Arguments:
-- `device::Device`
-- `create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}`
-- `pipeline_cache`: defaults to `C_NULL`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}`
+• `pipeline_cache`: defaults to `C_NULL`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateGraphicsPipelines.html
 
 """
 create_graphics_pipelines
@@ -962,19 +1100,21 @@ create_graphics_pipelines
     create_compute_pipelines(device::Device, create_infos::AbstractArray{<:_ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `PIPELINE_COMPILE_REQUIRED_EXT`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_SHADER_NV`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `PIPELINE_COMPILE_REQUIRED_EXT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_SHADER_NV`
 
 Arguments:
-- `device::Device`
-- `create_infos::AbstractArray{<:_ComputePipelineCreateInfo}`
-- `pipeline_cache`: defaults to `C_NULL`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_infos::AbstractArray{<:_ComputePipelineCreateInfo}`
+• `pipeline_cache`: defaults to `C_NULL`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateComputePipelines.html
 
 """
 create_compute_pipelines
@@ -983,9 +1123,11 @@ create_compute_pipelines
     destroy_pipeline(device::Device, pipeline::Pipeline; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `pipeline::Pipeline` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `pipeline::Pipeline` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipeline.html
 
 """
 destroy_pipeline
@@ -994,14 +1136,16 @@ destroy_pipeline
     create_pipeline_layout(device::Device, create_info::_PipelineLayoutCreateInfo; allocator = C_NULL)::ResultTypes.Result{PipelineLayout, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_PipelineLayoutCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_PipelineLayoutCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineLayout.html
 
 """
 create_pipeline_layout
@@ -1010,9 +1154,11 @@ create_pipeline_layout
     destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `pipeline_layout::PipelineLayout` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `pipeline_layout::PipelineLayout` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineLayout.html
 
 """
 destroy_pipeline_layout
@@ -1021,14 +1167,16 @@ destroy_pipeline_layout
     create_sampler(device::Device, create_info::_SamplerCreateInfo; allocator = C_NULL)::ResultTypes.Result{Sampler, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_SamplerCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_SamplerCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSampler.html
 
 """
 create_sampler
@@ -1037,9 +1185,11 @@ create_sampler
     destroy_sampler(device::Device, sampler::Sampler; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `sampler::Sampler` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `sampler::Sampler` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySampler.html
 
 """
 destroy_sampler
@@ -1048,14 +1198,16 @@ destroy_sampler
     create_descriptor_set_layout(device::Device, create_info::_DescriptorSetLayoutCreateInfo; allocator = C_NULL)::ResultTypes.Result{DescriptorSetLayout, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_DescriptorSetLayoutCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_DescriptorSetLayoutCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorSetLayout.html
 
 """
 create_descriptor_set_layout
@@ -1064,9 +1216,11 @@ create_descriptor_set_layout
     destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `descriptor_set_layout::DescriptorSetLayout` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `descriptor_set_layout::DescriptorSetLayout` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorSetLayout.html
 
 """
 destroy_descriptor_set_layout
@@ -1075,15 +1229,17 @@ destroy_descriptor_set_layout
     create_descriptor_pool(device::Device, create_info::_DescriptorPoolCreateInfo; allocator = C_NULL)::ResultTypes.Result{DescriptorPool, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_FRAGMENTATION_EXT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_FRAGMENTATION_EXT`
 
 Arguments:
-- `device::Device`
-- `create_info::_DescriptorPoolCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_DescriptorPoolCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorPool.html
 
 """
 create_descriptor_pool
@@ -1092,9 +1248,11 @@ create_descriptor_pool
     destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `descriptor_pool::DescriptorPool` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `descriptor_pool::DescriptorPool` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorPool.html
 
 """
 destroy_descriptor_pool
@@ -1105,9 +1263,11 @@ destroy_descriptor_pool
 Return codes:
 
 Arguments:
-- `device::Device`
-- `descriptor_pool::DescriptorPool` (externsync)
-- `flags`: defaults to `0`
+• `device::Device`
+• `descriptor_pool::DescriptorPool` (externsync)
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetDescriptorPool.html
 
 """
 reset_descriptor_pool
@@ -1116,15 +1276,17 @@ reset_descriptor_pool
     allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo)::ResultTypes.Result{Vector{DescriptorSet}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_FRAGMENTED_POOL`
-  - `ERROR_OUT_OF_POOL_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_FRAGMENTED_POOL`
+  ∘ `ERROR_OUT_OF_POOL_MEMORY`
 
 Arguments:
-- `device::Device`
-- `allocate_info::_DescriptorSetAllocateInfo` (externsync)
+• `device::Device`
+• `allocate_info::_DescriptorSetAllocateInfo` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateDescriptorSets.html
 
 """
 allocate_descriptor_sets
@@ -1135,9 +1297,11 @@ allocate_descriptor_sets
 Return codes:
 
 Arguments:
-- `device::Device`
-- `descriptor_pool::DescriptorPool` (externsync)
-- `descriptor_sets::AbstractArray{<:DescriptorSet}` (externsync)
+• `device::Device`
+• `descriptor_pool::DescriptorPool` (externsync)
+• `descriptor_sets::AbstractArray{<:DescriptorSet}` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeDescriptorSets.html
 
 """
 free_descriptor_sets
@@ -1146,9 +1310,11 @@ free_descriptor_sets
     update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, descriptor_copies::AbstractArray{<:_CopyDescriptorSet})::Cvoid
 
 Arguments:
-- `device::Device`
-- `descriptor_writes::AbstractArray{<:_WriteDescriptorSet}` (externsync)
-- `descriptor_copies::AbstractArray{<:_CopyDescriptorSet}` (externsync)
+• `device::Device`
+• `descriptor_writes::AbstractArray{<:_WriteDescriptorSet}` (externsync)
+• `descriptor_copies::AbstractArray{<:_CopyDescriptorSet}` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSets.html
 
 """
 update_descriptor_sets
@@ -1157,14 +1323,16 @@ update_descriptor_sets
     create_framebuffer(device::Device, create_info::_FramebufferCreateInfo; allocator = C_NULL)::ResultTypes.Result{Framebuffer, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_FramebufferCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_FramebufferCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFramebuffer.html
 
 """
 create_framebuffer
@@ -1173,9 +1341,11 @@ create_framebuffer
     destroy_framebuffer(device::Device, framebuffer::Framebuffer; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `framebuffer::Framebuffer` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `framebuffer::Framebuffer` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFramebuffer.html
 
 """
 destroy_framebuffer
@@ -1184,14 +1354,16 @@ destroy_framebuffer
     create_render_pass(device::Device, create_info::_RenderPassCreateInfo; allocator = C_NULL)::ResultTypes.Result{RenderPass, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_RenderPassCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_RenderPassCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass.html
 
 """
 create_render_pass
@@ -1200,9 +1372,11 @@ create_render_pass
     destroy_render_pass(device::Device, render_pass::RenderPass; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `render_pass::RenderPass` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `render_pass::RenderPass` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyRenderPass.html
 
 """
 destroy_render_pass
@@ -1211,8 +1385,10 @@ destroy_render_pass
     get_render_area_granularity(device::Device, render_pass::RenderPass)::_Extent2D
 
 Arguments:
-- `device::Device`
-- `render_pass::RenderPass`
+• `device::Device`
+• `render_pass::RenderPass`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRenderAreaGranularity.html
 
 """
 get_render_area_granularity
@@ -1221,14 +1397,16 @@ get_render_area_granularity
     create_command_pool(device::Device, create_info::_CommandPoolCreateInfo; allocator = C_NULL)::ResultTypes.Result{CommandPool, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_CommandPoolCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_CommandPoolCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateCommandPool.html
 
 """
 create_command_pool
@@ -1237,9 +1415,11 @@ create_command_pool
     destroy_command_pool(device::Device, command_pool::CommandPool; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `command_pool::CommandPool` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `command_pool::CommandPool` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyCommandPool.html
 
 """
 destroy_command_pool
@@ -1248,13 +1428,15 @@ destroy_command_pool
     reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `command_pool::CommandPool` (externsync)
-- `flags`: defaults to `0`
+• `device::Device`
+• `command_pool::CommandPool` (externsync)
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandPool.html
 
 """
 reset_command_pool
@@ -1263,13 +1445,15 @@ reset_command_pool
     allocate_command_buffers(device::Device, allocate_info::_CommandBufferAllocateInfo)::ResultTypes.Result{Vector{CommandBuffer}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `allocate_info::_CommandBufferAllocateInfo` (externsync)
+• `device::Device`
+• `allocate_info::_CommandBufferAllocateInfo` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateCommandBuffers.html
 
 """
 allocate_command_buffers
@@ -1278,9 +1462,11 @@ allocate_command_buffers
     free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid
 
 Arguments:
-- `device::Device`
-- `command_pool::CommandPool` (externsync)
-- `command_buffers::AbstractArray{<:CommandBuffer}` (externsync)
+• `device::Device`
+• `command_pool::CommandPool` (externsync)
+• `command_buffers::AbstractArray{<:CommandBuffer}` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeCommandBuffers.html
 
 """
 free_command_buffers
@@ -1289,13 +1475,15 @@ free_command_buffers
     begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `begin_info::_CommandBufferBeginInfo`
+• `command_buffer::CommandBuffer` (externsync)
+• `begin_info::_CommandBufferBeginInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBeginCommandBuffer.html
 
 """
 begin_command_buffer
@@ -1304,12 +1492,14 @@ begin_command_buffer
     end_command_buffer(command_buffer::CommandBuffer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
+• `command_buffer::CommandBuffer` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEndCommandBuffer.html
 
 """
 end_command_buffer
@@ -1318,12 +1508,14 @@ end_command_buffer
     reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `flags`: defaults to `0`
+• `command_buffer::CommandBuffer` (externsync)
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandBuffer.html
 
 """
 reset_command_buffer
@@ -1332,9 +1524,11 @@ reset_command_buffer
     cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::PipelineBindPoint`
-- `pipeline::Pipeline`
+• `command_buffer::CommandBuffer` (externsync)
+• `pipeline_bind_point::PipelineBindPoint`
+• `pipeline::Pipeline`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipeline.html
 
 """
 cmd_bind_pipeline
@@ -1343,8 +1537,10 @@ cmd_bind_pipeline
     cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `viewports::AbstractArray{<:_Viewport}`
+• `command_buffer::CommandBuffer` (externsync)
+• `viewports::AbstractArray{<:_Viewport}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html
 
 """
 cmd_set_viewport
@@ -1353,8 +1549,10 @@ cmd_set_viewport
     cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `scissors::AbstractArray{<:_Rect2D}`
+• `command_buffer::CommandBuffer` (externsync)
+• `scissors::AbstractArray{<:_Rect2D}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissor.html
 
 """
 cmd_set_scissor
@@ -1363,8 +1561,10 @@ cmd_set_scissor
     cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `line_width::Real`
+• `command_buffer::CommandBuffer` (externsync)
+• `line_width::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineWidth.html
 
 """
 cmd_set_line_width
@@ -1373,10 +1573,12 @@ cmd_set_line_width
     cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `depth_bias_constant_factor::Real`
-- `depth_bias_clamp::Real`
-- `depth_bias_slope_factor::Real`
+• `command_buffer::CommandBuffer` (externsync)
+• `depth_bias_constant_factor::Real`
+• `depth_bias_clamp::Real`
+• `depth_bias_slope_factor::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBias.html
 
 """
 cmd_set_depth_bias
@@ -1385,8 +1587,10 @@ cmd_set_depth_bias
     cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `blend_constants::NTuple{4, Float32}`
+• `command_buffer::CommandBuffer` (externsync)
+• `blend_constants::NTuple{4, Float32}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetBlendConstants.html
 
 """
 cmd_set_blend_constants
@@ -1395,9 +1599,11 @@ cmd_set_blend_constants
     cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `min_depth_bounds::Real`
-- `max_depth_bounds::Real`
+• `command_buffer::CommandBuffer` (externsync)
+• `min_depth_bounds::Real`
+• `max_depth_bounds::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBounds.html
 
 """
 cmd_set_depth_bounds
@@ -1406,9 +1612,11 @@ cmd_set_depth_bounds
     cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `face_mask::StencilFaceFlag`
-- `compare_mask::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `face_mask::StencilFaceFlag`
+• `compare_mask::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilCompareMask.html
 
 """
 cmd_set_stencil_compare_mask
@@ -1417,9 +1625,11 @@ cmd_set_stencil_compare_mask
     cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `face_mask::StencilFaceFlag`
-- `write_mask::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `face_mask::StencilFaceFlag`
+• `write_mask::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilWriteMask.html
 
 """
 cmd_set_stencil_write_mask
@@ -1428,9 +1638,11 @@ cmd_set_stencil_write_mask
     cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `face_mask::StencilFaceFlag`
-- `reference::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `face_mask::StencilFaceFlag`
+• `reference::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilReference.html
 
 """
 cmd_set_stencil_reference
@@ -1439,12 +1651,14 @@ cmd_set_stencil_reference
     cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::PipelineBindPoint`
-- `layout::PipelineLayout`
-- `first_set::Integer`
-- `descriptor_sets::AbstractArray{<:DescriptorSet}`
-- `dynamic_offsets::AbstractArray{<:Integer}`
+• `command_buffer::CommandBuffer` (externsync)
+• `pipeline_bind_point::PipelineBindPoint`
+• `layout::PipelineLayout`
+• `first_set::Integer`
+• `descriptor_sets::AbstractArray{<:DescriptorSet}`
+• `dynamic_offsets::AbstractArray{<:Integer}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindDescriptorSets.html
 
 """
 cmd_bind_descriptor_sets
@@ -1453,10 +1667,12 @@ cmd_bind_descriptor_sets
     cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
-- `index_type::IndexType`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+• `index_type::IndexType`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindIndexBuffer.html
 
 """
 cmd_bind_index_buffer
@@ -1465,9 +1681,11 @@ cmd_bind_index_buffer
     cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffers::AbstractArray{<:Buffer}`
-- `offsets::AbstractArray{<:Integer}`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffers::AbstractArray{<:Buffer}`
+• `offsets::AbstractArray{<:Integer}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers.html
 
 """
 cmd_bind_vertex_buffers
@@ -1476,11 +1694,13 @@ cmd_bind_vertex_buffers
     cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `vertex_count::Integer`
-- `instance_count::Integer`
-- `first_vertex::Integer`
-- `first_instance::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `vertex_count::Integer`
+• `instance_count::Integer`
+• `first_vertex::Integer`
+• `first_instance::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDraw.html
 
 """
 cmd_draw
@@ -1489,12 +1709,14 @@ cmd_draw
     cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `index_count::Integer`
-- `instance_count::Integer`
-- `first_index::Integer`
-- `vertex_offset::Integer`
-- `first_instance::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `index_count::Integer`
+• `instance_count::Integer`
+• `first_index::Integer`
+• `vertex_offset::Integer`
+• `first_instance::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexed.html
 
 """
 cmd_draw_indexed
@@ -1503,11 +1725,13 @@ cmd_draw_indexed
     cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
-- `draw_count::Integer`
-- `stride::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+• `draw_count::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirect.html
 
 """
 cmd_draw_indirect
@@ -1516,11 +1740,13 @@ cmd_draw_indirect
     cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
-- `draw_count::Integer`
-- `stride::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+• `draw_count::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirect.html
 
 """
 cmd_draw_indexed_indirect
@@ -1529,10 +1755,12 @@ cmd_draw_indexed_indirect
     cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `group_count_x::Integer`
-- `group_count_y::Integer`
-- `group_count_z::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `group_count_x::Integer`
+• `group_count_y::Integer`
+• `group_count_z::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatch.html
 
 """
 cmd_dispatch
@@ -1541,9 +1769,11 @@ cmd_dispatch
     cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchIndirect.html
 
 """
 cmd_dispatch_indirect
@@ -1552,10 +1782,12 @@ cmd_dispatch_indirect
     cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:_BufferCopy})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `src_buffer::Buffer`
-- `dst_buffer::Buffer`
-- `regions::AbstractArray{<:_BufferCopy}`
+• `command_buffer::CommandBuffer` (externsync)
+• `src_buffer::Buffer`
+• `dst_buffer::Buffer`
+• `regions::AbstractArray{<:_BufferCopy}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer.html
 
 """
 cmd_copy_buffer
@@ -1564,12 +1796,14 @@ cmd_copy_buffer
     cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageCopy})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_ImageCopy}`
+• `command_buffer::CommandBuffer` (externsync)
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_ImageCopy}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage.html
 
 """
 cmd_copy_image
@@ -1578,13 +1812,15 @@ cmd_copy_image
     cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageBlit}, filter::Filter)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_ImageBlit}`
-- `filter::Filter`
+• `command_buffer::CommandBuffer` (externsync)
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_ImageBlit}`
+• `filter::Filter`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage.html
 
 """
 cmd_blit_image
@@ -1593,11 +1829,13 @@ cmd_blit_image
     cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `src_buffer::Buffer`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_BufferImageCopy}`
+• `command_buffer::CommandBuffer` (externsync)
+• `src_buffer::Buffer`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_BufferImageCopy}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage.html
 
 """
 cmd_copy_buffer_to_image
@@ -1606,11 +1844,13 @@ cmd_copy_buffer_to_image
     cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_buffer::Buffer`
-- `regions::AbstractArray{<:_BufferImageCopy}`
+• `command_buffer::CommandBuffer` (externsync)
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_buffer::Buffer`
+• `regions::AbstractArray{<:_BufferImageCopy}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer.html
 
 """
 cmd_copy_image_to_buffer
@@ -1619,11 +1859,13 @@ cmd_copy_image_to_buffer
     cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `dst_buffer::Buffer`
-- `dst_offset::Integer`
-- `data_size::Integer`
-- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+• `command_buffer::CommandBuffer` (externsync)
+• `dst_buffer::Buffer`
+• `dst_offset::Integer`
+• `data_size::Integer`
+• `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdUpdateBuffer.html
 
 """
 cmd_update_buffer
@@ -1632,11 +1874,13 @@ cmd_update_buffer
     cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `dst_buffer::Buffer`
-- `dst_offset::Integer`
-- `size::Integer`
-- `data::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `dst_buffer::Buffer`
+• `dst_offset::Integer`
+• `size::Integer`
+• `data::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdFillBuffer.html
 
 """
 cmd_fill_buffer
@@ -1645,11 +1889,13 @@ cmd_fill_buffer
     cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::VkClearColorValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `image::Image`
-- `image_layout::ImageLayout`
-- `color::VkClearColorValue`
-- `ranges::AbstractArray{<:_ImageSubresourceRange}`
+• `command_buffer::CommandBuffer` (externsync)
+• `image::Image`
+• `image_layout::ImageLayout`
+• `color::VkClearColorValue`
+• `ranges::AbstractArray{<:_ImageSubresourceRange}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearColorImage.html
 
 """
 cmd_clear_color_image
@@ -1658,11 +1904,13 @@ cmd_clear_color_image
     cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `image::Image`
-- `image_layout::ImageLayout`
-- `depth_stencil::_ClearDepthStencilValue`
-- `ranges::AbstractArray{<:_ImageSubresourceRange}`
+• `command_buffer::CommandBuffer` (externsync)
+• `image::Image`
+• `image_layout::ImageLayout`
+• `depth_stencil::_ClearDepthStencilValue`
+• `ranges::AbstractArray{<:_ImageSubresourceRange}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearDepthStencilImage.html
 
 """
 cmd_clear_depth_stencil_image
@@ -1671,9 +1919,11 @@ cmd_clear_depth_stencil_image
     cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:_ClearAttachment}, rects::AbstractArray{<:_ClearRect})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `attachments::AbstractArray{<:_ClearAttachment}`
-- `rects::AbstractArray{<:_ClearRect}`
+• `command_buffer::CommandBuffer` (externsync)
+• `attachments::AbstractArray{<:_ClearAttachment}`
+• `rects::AbstractArray{<:_ClearRect}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearAttachments.html
 
 """
 cmd_clear_attachments
@@ -1682,12 +1932,14 @@ cmd_clear_attachments
     cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageResolve})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_ImageResolve}`
+• `command_buffer::CommandBuffer` (externsync)
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_ImageResolve}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage.html
 
 """
 cmd_resolve_image
@@ -1696,9 +1948,11 @@ cmd_resolve_image
     cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `event::Event`
-- `stage_mask::PipelineStageFlag`
+• `command_buffer::CommandBuffer` (externsync)
+• `event::Event`
+• `stage_mask::PipelineStageFlag`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent.html
 
 """
 cmd_set_event
@@ -1707,9 +1961,11 @@ cmd_set_event
     cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `event::Event`
-- `stage_mask::PipelineStageFlag`
+• `command_buffer::CommandBuffer` (externsync)
+• `event::Event`
+• `stage_mask::PipelineStageFlag`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent.html
 
 """
 cmd_reset_event
@@ -1718,13 +1974,15 @@ cmd_reset_event
     cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `events::AbstractArray{<:Event}`
-- `memory_barriers::AbstractArray{<:_MemoryBarrier}`
-- `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}`
-- `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}`
-- `src_stage_mask`: defaults to `0`
-- `dst_stage_mask`: defaults to `0`
+• `command_buffer::CommandBuffer` (externsync)
+• `events::AbstractArray{<:Event}`
+• `memory_barriers::AbstractArray{<:_MemoryBarrier}`
+• `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}`
+• `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}`
+• `src_stage_mask`: defaults to `0`
+• `dst_stage_mask`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents.html
 
 """
 cmd_wait_events
@@ -1733,13 +1991,15 @@ cmd_wait_events
     cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; dependency_flags = 0)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `src_stage_mask::PipelineStageFlag`
-- `dst_stage_mask::PipelineStageFlag`
-- `memory_barriers::AbstractArray{<:_MemoryBarrier}`
-- `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}`
-- `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}`
-- `dependency_flags`: defaults to `0`
+• `command_buffer::CommandBuffer` (externsync)
+• `src_stage_mask::PipelineStageFlag`
+• `dst_stage_mask::PipelineStageFlag`
+• `memory_barriers::AbstractArray{<:_MemoryBarrier}`
+• `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}`
+• `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}`
+• `dependency_flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier.html
 
 """
 cmd_pipeline_barrier
@@ -1748,10 +2008,12 @@ cmd_pipeline_barrier
     cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `query_pool::QueryPool`
-- `query::Integer`
-- `flags`: defaults to `0`
+• `command_buffer::CommandBuffer` (externsync)
+• `query_pool::QueryPool`
+• `query::Integer`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQuery.html
 
 """
 cmd_begin_query
@@ -1760,9 +2022,11 @@ cmd_begin_query
     cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `query_pool::QueryPool`
-- `query::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `query_pool::QueryPool`
+• `query::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQuery.html
 
 """
 cmd_end_query
@@ -1771,8 +2035,10 @@ cmd_end_query
     cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT`
+• `command_buffer::CommandBuffer` (externsync)
+• `conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginConditionalRenderingEXT.html
 
 """
 cmd_begin_conditional_rendering_ext
@@ -1781,7 +2047,9 @@ cmd_begin_conditional_rendering_ext
     cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
+• `command_buffer::CommandBuffer` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndConditionalRenderingEXT.html
 
 """
 cmd_end_conditional_rendering_ext
@@ -1790,10 +2058,12 @@ cmd_end_conditional_rendering_ext
     cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `query_pool::QueryPool`
-- `first_query::Integer`
-- `query_count::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `query_pool::QueryPool`
+• `first_query::Integer`
+• `query_count::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetQueryPool.html
 
 """
 cmd_reset_query_pool
@@ -1802,10 +2072,12 @@ cmd_reset_query_pool
     cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `pipeline_stage::PipelineStageFlag`
-- `query_pool::QueryPool`
-- `query::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `pipeline_stage::PipelineStageFlag`
+• `query_pool::QueryPool`
+• `query::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp.html
 
 """
 cmd_write_timestamp
@@ -1814,14 +2086,16 @@ cmd_write_timestamp
     cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `query_pool::QueryPool`
-- `first_query::Integer`
-- `query_count::Integer`
-- `dst_buffer::Buffer`
-- `dst_offset::Integer`
-- `stride::Integer`
-- `flags`: defaults to `0`
+• `command_buffer::CommandBuffer` (externsync)
+• `query_pool::QueryPool`
+• `first_query::Integer`
+• `query_count::Integer`
+• `dst_buffer::Buffer`
+• `dst_offset::Integer`
+• `stride::Integer`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyQueryPoolResults.html
 
 """
 cmd_copy_query_pool_results
@@ -1830,11 +2104,13 @@ cmd_copy_query_pool_results
     cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `layout::PipelineLayout`
-- `stage_flags::ShaderStageFlag`
-- `offset::Integer`
-- `values::Ptr{Cvoid}` (must be a valid pointer with `size` bytes)
+• `command_buffer::CommandBuffer` (externsync)
+• `layout::PipelineLayout`
+• `stage_flags::ShaderStageFlag`
+• `offset::Integer`
+• `values::Ptr{Cvoid}` (must be a valid pointer with `size` bytes)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushConstants.html
 
 """
 cmd_push_constants
@@ -1843,9 +2119,11 @@ cmd_push_constants
     cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::SubpassContents)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `render_pass_begin::_RenderPassBeginInfo`
-- `contents::SubpassContents`
+• `command_buffer::CommandBuffer` (externsync)
+• `render_pass_begin::_RenderPassBeginInfo`
+• `contents::SubpassContents`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass.html
 
 """
 cmd_begin_render_pass
@@ -1854,8 +2132,10 @@ cmd_begin_render_pass
     cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `contents::SubpassContents`
+• `command_buffer::CommandBuffer` (externsync)
+• `contents::SubpassContents`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass.html
 
 """
 cmd_next_subpass
@@ -1864,7 +2144,9 @@ cmd_next_subpass
     cmd_end_render_pass(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
+• `command_buffer::CommandBuffer` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass.html
 
 """
 cmd_end_render_pass
@@ -1873,8 +2155,10 @@ cmd_end_render_pass
     cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `command_buffers::AbstractArray{<:CommandBuffer}`
+• `command_buffer::CommandBuffer` (externsync)
+• `command_buffers::AbstractArray{<:CommandBuffer}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteCommands.html
 
 """
 cmd_execute_commands
@@ -1883,15 +2167,17 @@ cmd_execute_commands
     create_android_surface_khr(instance::Instance, create_info::_AndroidSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_AndroidSurfaceCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_AndroidSurfaceCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAndroidSurfaceKHR.html
 
 """
 create_android_surface_khr
@@ -1900,12 +2186,14 @@ create_android_surface_khr
     get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPropertiesKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPropertiesKHR.html
 
 """
 get_physical_device_display_properties_khr
@@ -1914,12 +2202,14 @@ get_physical_device_display_properties_khr
     get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html
 
 """
 get_physical_device_display_plane_properties_khr
@@ -1928,13 +2218,15 @@ get_physical_device_display_plane_properties_khr
     get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::ResultTypes.Result{Vector{DisplayKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `plane_index::Integer`
+• `physical_device::PhysicalDevice`
+• `plane_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneSupportedDisplaysKHR.html
 
 """
 get_display_plane_supported_displays_khr
@@ -1943,13 +2235,15 @@ get_display_plane_supported_displays_khr
     get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Vector{DisplayModePropertiesKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `display::DisplayKHR`
+• `physical_device::PhysicalDevice`
+• `display::DisplayKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModePropertiesKHR.html
 
 """
 get_display_mode_properties_khr
@@ -1958,16 +2252,18 @@ get_display_mode_properties_khr
     create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::_DisplayModeCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{DisplayModeKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `display::DisplayKHR` (externsync)
-- `create_info::_DisplayModeCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `physical_device::PhysicalDevice`
+• `display::DisplayKHR` (externsync)
+• `create_info::_DisplayModeCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayModeKHR.html
 
 """
 create_display_mode_khr
@@ -1976,14 +2272,16 @@ create_display_mode_khr
     get_display_plane_capabilities_khr(physical_device::PhysicalDevice, mode::DisplayModeKHR, plane_index::Integer)::ResultTypes.Result{DisplayPlaneCapabilitiesKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `mode::DisplayModeKHR` (externsync)
-- `plane_index::Integer`
+• `physical_device::PhysicalDevice`
+• `mode::DisplayModeKHR` (externsync)
+• `plane_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilitiesKHR.html
 
 """
 get_display_plane_capabilities_khr
@@ -1992,14 +2290,16 @@ get_display_plane_capabilities_khr
     create_display_plane_surface_khr(instance::Instance, create_info::_DisplaySurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_DisplaySurfaceCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_DisplaySurfaceCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html
 
 """
 create_display_plane_surface_khr
@@ -2008,17 +2308,19 @@ create_display_plane_surface_khr
     create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}; allocator = C_NULL)::ResultTypes.Result{Vector{SwapchainKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INCOMPATIBLE_DISPLAY_KHR`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INCOMPATIBLE_DISPLAY_KHR`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `device::Device`
-- `create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSharedSwapchainsKHR.html
 
 """
 create_shared_swapchains_khr
@@ -2027,9 +2329,11 @@ create_shared_swapchains_khr
     destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `instance::Instance`
-- `surface::SurfaceKHR` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `surface::SurfaceKHR` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySurfaceKHR.html
 
 """
 destroy_surface_khr
@@ -2038,15 +2342,17 @@ destroy_surface_khr
     get_physical_device_surface_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, surface::SurfaceKHR)::ResultTypes.Result{Bool, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
-- `surface::SurfaceKHR`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+• `surface::SurfaceKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html
 
 """
 get_physical_device_surface_support_khr
@@ -2055,14 +2361,16 @@ get_physical_device_surface_support_khr
     get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{SurfaceCapabilitiesKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface::SurfaceKHR`
+• `physical_device::PhysicalDevice`
+• `surface::SurfaceKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html
 
 """
 get_physical_device_surface_capabilities_khr
@@ -2071,14 +2379,16 @@ get_physical_device_surface_capabilities_khr
     get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{SurfaceFormatKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface::SurfaceKHR`
+• `physical_device::PhysicalDevice`
+• `surface::SurfaceKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html
 
 """
 get_physical_device_surface_formats_khr
@@ -2087,14 +2397,16 @@ get_physical_device_surface_formats_khr
     get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{PresentModeKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface::SurfaceKHR`
+• `physical_device::PhysicalDevice`
+• `surface::SurfaceKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html
 
 """
 get_physical_device_surface_present_modes_khr
@@ -2103,18 +2415,20 @@ get_physical_device_surface_present_modes_khr
     create_swapchain_khr(device::Device, create_info::_SwapchainCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SwapchainKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_SURFACE_LOST_KHR`
-  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_SURFACE_LOST_KHR`
+  ∘ `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `device::Device`
-- `create_info::_SwapchainCreateInfoKHR` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_SwapchainCreateInfoKHR` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSwapchainKHR.html
 
 """
 create_swapchain_khr
@@ -2123,9 +2437,11 @@ create_swapchain_khr
     destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `swapchain::SwapchainKHR` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySwapchainKHR.html
 
 """
 destroy_swapchain_khr
@@ -2134,13 +2450,15 @@ destroy_swapchain_khr
     get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Vector{Image}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR`
+• `device::Device`
+• `swapchain::SwapchainKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainImagesKHR.html
 
 """
 get_swapchain_images_khr
@@ -2149,25 +2467,27 @@ get_swapchain_images_khr
     acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::ResultTypes.Result{Tuple{UInt32, Result}, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `TIMEOUT`
-  - `NOT_READY`
-  - `SUBOPTIMAL_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_OUT_OF_DATE_KHR`
-  - `ERROR_SURFACE_LOST_KHR`
-  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `TIMEOUT`
+  ∘ `NOT_READY`
+  ∘ `SUBOPTIMAL_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_OUT_OF_DATE_KHR`
+  ∘ `ERROR_SURFACE_LOST_KHR`
+  ∘ `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR` (externsync)
-- `timeout::Integer`
-- `semaphore`: defaults to `C_NULL` (externsync)
-- `fence`: defaults to `C_NULL` (externsync)
+• `device::Device`
+• `swapchain::SwapchainKHR` (externsync)
+• `timeout::Integer`
+• `semaphore`: defaults to `C_NULL` (externsync)
+• `fence`: defaults to `C_NULL` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImageKHR.html
 
 """
 acquire_next_image_khr
@@ -2176,20 +2496,22 @@ acquire_next_image_khr
     queue_present_khr(queue::Queue, present_info::_PresentInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `SUBOPTIMAL_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_OUT_OF_DATE_KHR`
-  - `ERROR_SURFACE_LOST_KHR`
-  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `SUBOPTIMAL_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_OUT_OF_DATE_KHR`
+  ∘ `ERROR_SURFACE_LOST_KHR`
+  ∘ `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
-- `queue::Queue` (externsync)
-- `present_info::_PresentInfoKHR` (externsync)
+• `queue::Queue` (externsync)
+• `present_info::_PresentInfoKHR` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueuePresentKHR.html
 
 """
 queue_present_khr
@@ -2198,15 +2520,17 @@ queue_present_khr
     create_vi_surface_nn(instance::Instance, create_info::_ViSurfaceCreateInfoNN; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_ViSurfaceCreateInfoNN`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_ViSurfaceCreateInfoNN`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateViSurfaceNN.html
 
 """
 create_vi_surface_nn
@@ -2215,14 +2539,16 @@ create_vi_surface_nn
     create_wayland_surface_khr(instance::Instance, create_info::_WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_WaylandSurfaceCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_WaylandSurfaceCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateWaylandSurfaceKHR.html
 
 """
 create_wayland_surface_khr
@@ -2231,9 +2557,11 @@ create_wayland_surface_khr
     get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display)::Bool
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
-- `display::vk.wl_display`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+• `display::vk.wl_display`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceWaylandPresentationSupportKHR.html
 
 """
 get_physical_device_wayland_presentation_support_khr
@@ -2242,14 +2570,16 @@ get_physical_device_wayland_presentation_support_khr
     create_win_32_surface_khr(instance::Instance, create_info::_Win32SurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_Win32SurfaceCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_Win32SurfaceCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateWin32SurfaceKHR.html
 
 """
 create_win_32_surface_khr
@@ -2258,8 +2588,10 @@ create_win_32_surface_khr
     get_physical_device_win_32_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::Bool
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceWin32PresentationSupportKHR.html
 
 """
 get_physical_device_win_32_presentation_support_khr
@@ -2268,14 +2600,16 @@ get_physical_device_win_32_presentation_support_khr
     create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_XlibSurfaceCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_XlibSurfaceCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateXlibSurfaceKHR.html
 
 """
 create_xlib_surface_khr
@@ -2284,10 +2618,12 @@ create_xlib_surface_khr
     get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID)::Bool
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
-- `dpy::vk.Display`
-- `visual_id::vk.VisualID`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+• `dpy::vk.Display`
+• `visual_id::vk.VisualID`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceXlibPresentationSupportKHR.html
 
 """
 get_physical_device_xlib_presentation_support_khr
@@ -2296,14 +2632,16 @@ get_physical_device_xlib_presentation_support_khr
     create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_XcbSurfaceCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_XcbSurfaceCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateXcbSurfaceKHR.html
 
 """
 create_xcb_surface_khr
@@ -2312,10 +2650,12 @@ create_xcb_surface_khr
     get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t)::Bool
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
-- `connection::vk.xcb_connection_t`
-- `visual_id::vk.xcb_visualid_t`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+• `connection::vk.xcb_connection_t`
+• `visual_id::vk.xcb_visualid_t`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceXcbPresentationSupportKHR.html
 
 """
 get_physical_device_xcb_presentation_support_khr
@@ -2324,14 +2664,16 @@ get_physical_device_xcb_presentation_support_khr
     create_direct_fb_surface_ext(instance::Instance, create_info::_DirectFBSurfaceCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_DirectFBSurfaceCreateInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_DirectFBSurfaceCreateInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDirectFBSurfaceEXT.html
 
 """
 create_direct_fb_surface_ext
@@ -2340,9 +2682,11 @@ create_direct_fb_surface_ext
     get_physical_device_direct_fb_presentation_support_ext(physical_device::PhysicalDevice, queue_family_index::Integer, dfb::vk.IDirectFB)::Bool
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
-- `dfb::vk.IDirectFB`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+• `dfb::vk.IDirectFB`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDirectFBPresentationSupportEXT.html
 
 """
 get_physical_device_direct_fb_presentation_support_ext
@@ -2351,14 +2695,16 @@ get_physical_device_direct_fb_presentation_support_ext
     create_image_pipe_surface_fuchsia(instance::Instance, create_info::_ImagePipeSurfaceCreateInfoFUCHSIA; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_ImagePipeSurfaceCreateInfoFUCHSIA`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_ImagePipeSurfaceCreateInfoFUCHSIA`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImagePipeSurfaceFUCHSIA.html
 
 """
 create_image_pipe_surface_fuchsia
@@ -2367,15 +2713,17 @@ create_image_pipe_surface_fuchsia
     create_stream_descriptor_surface_ggp(instance::Instance, create_info::_StreamDescriptorSurfaceCreateInfoGGP; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_StreamDescriptorSurfaceCreateInfoGGP`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_StreamDescriptorSurfaceCreateInfoGGP`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateStreamDescriptorSurfaceGGP.html
 
 """
 create_stream_descriptor_surface_ggp
@@ -2384,14 +2732,16 @@ create_stream_descriptor_surface_ggp
     create_screen_surface_qnx(instance::Instance, create_info::_ScreenSurfaceCreateInfoQNX; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_ScreenSurfaceCreateInfoQNX`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_ScreenSurfaceCreateInfoQNX`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateScreenSurfaceQNX.html
 
 """
 create_screen_surface_qnx
@@ -2400,9 +2750,11 @@ create_screen_surface_qnx
     get_physical_device_screen_presentation_support_qnx(physical_device::PhysicalDevice, queue_family_index::Integer, window::vk._screen_window)::Bool
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
-- `window::vk._screen_window`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+• `window::vk._screen_window`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceScreenPresentationSupportQNX.html
 
 """
 get_physical_device_screen_presentation_support_qnx
@@ -2411,13 +2763,15 @@ get_physical_device_screen_presentation_support_qnx
     create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_DebugReportCallbackCreateInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_DebugReportCallbackCreateInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugReportCallbackEXT.html
 
 """
 create_debug_report_callback_ext
@@ -2426,9 +2780,11 @@ create_debug_report_callback_ext
     destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `instance::Instance`
-- `callback::DebugReportCallbackEXT` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `callback::DebugReportCallbackEXT` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugReportCallbackEXT.html
 
 """
 destroy_debug_report_callback_ext
@@ -2437,14 +2793,16 @@ destroy_debug_report_callback_ext
     debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::DebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)::Cvoid
 
 Arguments:
-- `instance::Instance`
-- `flags::DebugReportFlagEXT`
-- `object_type::DebugReportObjectTypeEXT`
-- `object::Integer`
-- `location::Integer`
-- `message_code::Integer`
-- `layer_prefix::AbstractString`
-- `message::AbstractString`
+• `instance::Instance`
+• `flags::DebugReportFlagEXT`
+• `object_type::DebugReportObjectTypeEXT`
+• `object::Integer`
+• `location::Integer`
+• `message_code::Integer`
+• `layer_prefix::AbstractString`
+• `message::AbstractString`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugReportMessageEXT.html
 
 """
 debug_report_message_ext
@@ -2453,13 +2811,15 @@ debug_report_message_ext
     debug_marker_set_object_name_ext(device::Device, name_info::_DebugMarkerObjectNameInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `name_info::_DebugMarkerObjectNameInfoEXT` (externsync)
+• `device::Device`
+• `name_info::_DebugMarkerObjectNameInfoEXT` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectNameEXT.html
 
 """
 debug_marker_set_object_name_ext
@@ -2468,13 +2828,15 @@ debug_marker_set_object_name_ext
     debug_marker_set_object_tag_ext(device::Device, tag_info::_DebugMarkerObjectTagInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `tag_info::_DebugMarkerObjectTagInfoEXT` (externsync)
+• `device::Device`
+• `tag_info::_DebugMarkerObjectTagInfoEXT` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectTagEXT.html
 
 """
 debug_marker_set_object_tag_ext
@@ -2483,8 +2845,10 @@ debug_marker_set_object_tag_ext
     cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `marker_info::_DebugMarkerMarkerInfoEXT`
+• `command_buffer::CommandBuffer` (externsync)
+• `marker_info::_DebugMarkerMarkerInfoEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerBeginEXT.html
 
 """
 cmd_debug_marker_begin_ext
@@ -2493,7 +2857,9 @@ cmd_debug_marker_begin_ext
     cmd_debug_marker_end_ext(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
+• `command_buffer::CommandBuffer` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerEndEXT.html
 
 """
 cmd_debug_marker_end_ext
@@ -2502,8 +2868,10 @@ cmd_debug_marker_end_ext
     cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `marker_info::_DebugMarkerMarkerInfoEXT`
+• `command_buffer::CommandBuffer` (externsync)
+• `marker_info::_DebugMarkerMarkerInfoEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerInsertEXT.html
 
 """
 cmd_debug_marker_insert_ext
@@ -2512,19 +2880,21 @@ cmd_debug_marker_insert_ext
     get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)::ResultTypes.Result{ExternalImageFormatPropertiesNV, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_FORMAT_NOT_SUPPORTED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `format::Format`
-- `type::ImageType`
-- `tiling::ImageTiling`
-- `usage::ImageUsageFlag`
-- `flags`: defaults to `0`
-- `external_handle_type`: defaults to `0`
+• `physical_device::PhysicalDevice`
+• `format::Format`
+• `type::ImageType`
+• `tiling::ImageTiling`
+• `usage::ImageUsageFlag`
+• `flags`: defaults to `0`
+• `external_handle_type`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.html
 
 """
 get_physical_device_external_image_format_properties_nv
@@ -2533,15 +2903,17 @@ get_physical_device_external_image_format_properties_nv
     get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `memory::DeviceMemory`
-- `handle_type::ExternalMemoryHandleTypeFlagNV`
-- `handle::vk.HANDLE`
+• `device::Device`
+• `memory::DeviceMemory`
+• `handle_type::ExternalMemoryHandleTypeFlagNV`
+• `handle::vk.HANDLE`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryWin32HandleNV.html
 
 """
 get_memory_win_32_handle_nv
@@ -2550,9 +2922,11 @@ get_memory_win_32_handle_nv
     cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::_GeneratedCommandsInfoNV)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `is_preprocessed::Bool`
-- `generated_commands_info::_GeneratedCommandsInfoNV`
+• `command_buffer::CommandBuffer` (externsync)
+• `is_preprocessed::Bool`
+• `generated_commands_info::_GeneratedCommandsInfoNV`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteGeneratedCommandsNV.html
 
 """
 cmd_execute_generated_commands_nv
@@ -2561,8 +2935,10 @@ cmd_execute_generated_commands_nv
     cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::_GeneratedCommandsInfoNV)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `generated_commands_info::_GeneratedCommandsInfoNV`
+• `command_buffer::CommandBuffer` (externsync)
+• `generated_commands_info::_GeneratedCommandsInfoNV`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPreprocessGeneratedCommandsNV.html
 
 """
 cmd_preprocess_generated_commands_nv
@@ -2571,10 +2947,12 @@ cmd_preprocess_generated_commands_nv
     cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, group_index::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::PipelineBindPoint`
-- `pipeline::Pipeline`
-- `group_index::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `pipeline_bind_point::PipelineBindPoint`
+• `pipeline::Pipeline`
+• `group_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipelineShaderGroupNV.html
 
 """
 cmd_bind_pipeline_shader_group_nv
@@ -2583,8 +2961,10 @@ cmd_bind_pipeline_shader_group_nv
     get_generated_commands_memory_requirements_nv(device::Device, info::_GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
 
 Arguments:
-- `device::Device`
-- `info::_GeneratedCommandsMemoryRequirementsInfoNV`
+• `device::Device`
+• `info::_GeneratedCommandsMemoryRequirementsInfoNV`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html
 
 """
 get_generated_commands_memory_requirements_nv
@@ -2593,14 +2973,16 @@ get_generated_commands_memory_requirements_nv
     create_indirect_commands_layout_nv(device::Device, create_info::_IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::ResultTypes.Result{IndirectCommandsLayoutNV, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_IndirectCommandsLayoutCreateInfoNV`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_IndirectCommandsLayoutCreateInfoNV`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateIndirectCommandsLayoutNV.html
 
 """
 create_indirect_commands_layout_nv
@@ -2609,9 +2991,11 @@ create_indirect_commands_layout_nv
     destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `indirect_commands_layout::IndirectCommandsLayoutNV` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `indirect_commands_layout::IndirectCommandsLayoutNV` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyIndirectCommandsLayoutNV.html
 
 """
 destroy_indirect_commands_layout_nv
@@ -2620,7 +3004,9 @@ destroy_indirect_commands_layout_nv
     get_physical_device_features_2(physical_device::PhysicalDevice)::_PhysicalDeviceFeatures2
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures2.html
 
 """
 get_physical_device_features_2
@@ -2629,7 +3015,9 @@ get_physical_device_features_2
     get_physical_device_properties_2(physical_device::PhysicalDevice)::PhysicalDeviceProperties2
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties2.html
 
 """
 get_physical_device_properties_2
@@ -2638,8 +3026,10 @@ get_physical_device_properties_2
     get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::Format)::FormatProperties2
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `format::Format`
+• `physical_device::PhysicalDevice`
+• `format::Format`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties2.html
 
 """
 get_physical_device_format_properties_2
@@ -2648,14 +3038,16 @@ get_physical_device_format_properties_2
     get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::_PhysicalDeviceImageFormatInfo2)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_FORMAT_NOT_SUPPORTED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `image_format_info::_PhysicalDeviceImageFormatInfo2`
+• `physical_device::PhysicalDevice`
+• `image_format_info::_PhysicalDeviceImageFormatInfo2`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties2.html
 
 """
 get_physical_device_image_format_properties_2
@@ -2664,7 +3056,9 @@ get_physical_device_image_format_properties_2
     get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)::Vector{QueueFamilyProperties2}
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties2.html
 
 """
 get_physical_device_queue_family_properties_2
@@ -2673,7 +3067,9 @@ get_physical_device_queue_family_properties_2
     get_physical_device_memory_properties_2(physical_device::PhysicalDevice)::PhysicalDeviceMemoryProperties2
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties2.html
 
 """
 get_physical_device_memory_properties_2
@@ -2682,8 +3078,10 @@ get_physical_device_memory_properties_2
     get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::_PhysicalDeviceSparseImageFormatInfo2)::Vector{SparseImageFormatProperties2}
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `format_info::_PhysicalDeviceSparseImageFormatInfo2`
+• `physical_device::PhysicalDevice`
+• `format_info::_PhysicalDeviceSparseImageFormatInfo2`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties2.html
 
 """
 get_physical_device_sparse_image_format_properties_2
@@ -2692,11 +3090,13 @@ get_physical_device_sparse_image_format_properties_2
     cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:_WriteDescriptorSet})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `pipeline_bind_point::PipelineBindPoint`
-- `layout::PipelineLayout`
-- `set::Integer`
-- `descriptor_writes::AbstractArray{<:_WriteDescriptorSet}`
+• `command_buffer::CommandBuffer` (externsync)
+• `pipeline_bind_point::PipelineBindPoint`
+• `layout::PipelineLayout`
+• `set::Integer`
+• `descriptor_writes::AbstractArray{<:_WriteDescriptorSet}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetKHR.html
 
 """
 cmd_push_descriptor_set_khr
@@ -2705,9 +3105,11 @@ cmd_push_descriptor_set_khr
     trim_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Cvoid
 
 Arguments:
-- `device::Device`
-- `command_pool::CommandPool` (externsync)
-- `flags`: defaults to `0`
+• `device::Device`
+• `command_pool::CommandPool` (externsync)
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkTrimCommandPool.html
 
 """
 trim_command_pool
@@ -2716,8 +3118,10 @@ trim_command_pool
     get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::_PhysicalDeviceExternalBufferInfo)::ExternalBufferProperties
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `external_buffer_info::_PhysicalDeviceExternalBufferInfo`
+• `physical_device::PhysicalDevice`
+• `external_buffer_info::_PhysicalDeviceExternalBufferInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalBufferProperties.html
 
 """
 get_physical_device_external_buffer_properties
@@ -2726,14 +3130,16 @@ get_physical_device_external_buffer_properties
     get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR`
-- `handle::vk.HANDLE`
+• `device::Device`
+• `get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR`
+• `handle::vk.HANDLE`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryWin32HandleKHR.html
 
 """
 get_memory_win_32_handle_khr
@@ -2742,14 +3148,16 @@ get_memory_win_32_handle_khr
     get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::ResultTypes.Result{MemoryWin32HandlePropertiesKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `handle::vk.HANDLE`
+• `device::Device`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `handle::vk.HANDLE`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryWin32HandlePropertiesKHR.html
 
 """
 get_memory_win_32_handle_properties_khr
@@ -2758,13 +3166,15 @@ get_memory_win_32_handle_properties_khr
     get_memory_fd_khr(device::Device, get_fd_info::_MemoryGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_fd_info::_MemoryGetFdInfoKHR`
+• `device::Device`
+• `get_fd_info::_MemoryGetFdInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdKHR.html
 
 """
 get_memory_fd_khr
@@ -2773,14 +3183,16 @@ get_memory_fd_khr
     get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::ResultTypes.Result{MemoryFdPropertiesKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `fd::Integer`
+• `device::Device`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `fd::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdPropertiesKHR.html
 
 """
 get_memory_fd_properties_khr
@@ -2789,14 +3201,16 @@ get_memory_fd_properties_khr
     get_memory_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_MemoryGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_zircon_handle_info::_MemoryGetZirconHandleInfoFUCHSIA`
-- `zircon_handle::vk.zx_handle_t`
+• `device::Device`
+• `get_zircon_handle_info::_MemoryGetZirconHandleInfoFUCHSIA`
+• `zircon_handle::vk.zx_handle_t`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryZirconHandleFUCHSIA.html
 
 """
 get_memory_zircon_handle_fuchsia
@@ -2805,13 +3219,15 @@ get_memory_zircon_handle_fuchsia
     get_memory_zircon_handle_properties_fuchsia(device::Device, handle_type::ExternalMemoryHandleTypeFlag, zircon_handle::vk.zx_handle_t)::ResultTypes.Result{MemoryZirconHandlePropertiesFUCHSIA, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `zircon_handle::vk.zx_handle_t`
+• `device::Device`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `zircon_handle::vk.zx_handle_t`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryZirconHandlePropertiesFUCHSIA.html
 
 """
 get_memory_zircon_handle_properties_fuchsia
@@ -2820,8 +3236,10 @@ get_memory_zircon_handle_properties_fuchsia
     get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo)::ExternalSemaphoreProperties
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo`
+• `physical_device::PhysicalDevice`
+• `external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalSemaphoreProperties.html
 
 """
 get_physical_device_external_semaphore_properties
@@ -2830,14 +3248,16 @@ get_physical_device_external_semaphore_properties
     get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR`
-- `handle::vk.HANDLE`
+• `device::Device`
+• `get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR`
+• `handle::vk.HANDLE`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreWin32HandleKHR.html
 
 """
 get_semaphore_win_32_handle_khr
@@ -2846,13 +3266,15 @@ get_semaphore_win_32_handle_khr
     import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR`
+• `device::Device`
+• `import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportSemaphoreWin32HandleKHR.html
 
 """
 import_semaphore_win_32_handle_khr
@@ -2861,13 +3283,15 @@ import_semaphore_win_32_handle_khr
     get_semaphore_fd_khr(device::Device, get_fd_info::_SemaphoreGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_fd_info::_SemaphoreGetFdInfoKHR`
+• `device::Device`
+• `get_fd_info::_SemaphoreGetFdInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreFdKHR.html
 
 """
 get_semaphore_fd_khr
@@ -2876,13 +3300,15 @@ get_semaphore_fd_khr
     import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR`
+• `device::Device`
+• `import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportSemaphoreFdKHR.html
 
 """
 import_semaphore_fd_khr
@@ -2891,14 +3317,16 @@ import_semaphore_fd_khr
     get_semaphore_zircon_handle_fuchsia(device::Device, get_zircon_handle_info::_SemaphoreGetZirconHandleInfoFUCHSIA, zircon_handle::vk.zx_handle_t)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_zircon_handle_info::_SemaphoreGetZirconHandleInfoFUCHSIA`
-- `zircon_handle::vk.zx_handle_t`
+• `device::Device`
+• `get_zircon_handle_info::_SemaphoreGetZirconHandleInfoFUCHSIA`
+• `zircon_handle::vk.zx_handle_t`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreZirconHandleFUCHSIA.html
 
 """
 get_semaphore_zircon_handle_fuchsia
@@ -2907,13 +3335,15 @@ get_semaphore_zircon_handle_fuchsia
     import_semaphore_zircon_handle_fuchsia(device::Device, import_semaphore_zircon_handle_info::_ImportSemaphoreZirconHandleInfoFUCHSIA)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `import_semaphore_zircon_handle_info::_ImportSemaphoreZirconHandleInfoFUCHSIA`
+• `device::Device`
+• `import_semaphore_zircon_handle_info::_ImportSemaphoreZirconHandleInfoFUCHSIA`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportSemaphoreZirconHandleFUCHSIA.html
 
 """
 import_semaphore_zircon_handle_fuchsia
@@ -2922,8 +3352,10 @@ import_semaphore_zircon_handle_fuchsia
     get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::_PhysicalDeviceExternalFenceInfo)::ExternalFenceProperties
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `external_fence_info::_PhysicalDeviceExternalFenceInfo`
+• `physical_device::PhysicalDevice`
+• `external_fence_info::_PhysicalDeviceExternalFenceInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalFenceProperties.html
 
 """
 get_physical_device_external_fence_properties
@@ -2932,14 +3364,16 @@ get_physical_device_external_fence_properties
     get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_win_32_handle_info::_FenceGetWin32HandleInfoKHR`
-- `handle::vk.HANDLE`
+• `device::Device`
+• `get_win_32_handle_info::_FenceGetWin32HandleInfoKHR`
+• `handle::vk.HANDLE`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceWin32HandleKHR.html
 
 """
 get_fence_win_32_handle_khr
@@ -2948,13 +3382,15 @@ get_fence_win_32_handle_khr
     import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR`
+• `device::Device`
+• `import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportFenceWin32HandleKHR.html
 
 """
 import_fence_win_32_handle_khr
@@ -2963,13 +3399,15 @@ import_fence_win_32_handle_khr
     get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `get_fd_info::_FenceGetFdInfoKHR`
+• `device::Device`
+• `get_fd_info::_FenceGetFdInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceFdKHR.html
 
 """
 get_fence_fd_khr
@@ -2978,13 +3416,15 @@ get_fence_fd_khr
     import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `import_fence_fd_info::_ImportFenceFdInfoKHR`
+• `device::Device`
+• `import_fence_fd_info::_ImportFenceFdInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportFenceFdKHR.html
 
 """
 import_fence_fd_khr
@@ -2995,8 +3435,10 @@ import_fence_fd_khr
 Return codes:
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `display::DisplayKHR`
+• `physical_device::PhysicalDevice`
+• `display::DisplayKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseDisplayEXT.html
 
 """
 release_display_ext
@@ -3005,14 +3447,16 @@ release_display_ext
     acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `dpy::vk.Display`
-- `display::DisplayKHR`
+• `physical_device::PhysicalDevice`
+• `dpy::vk.Display`
+• `display::DisplayKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireXlibDisplayEXT.html
 
 """
 acquire_xlib_display_ext
@@ -3021,13 +3465,15 @@ acquire_xlib_display_ext
     get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `dpy::vk.Display`
-- `rr_output::vk.RROutput`
+• `physical_device::PhysicalDevice`
+• `dpy::vk.Display`
+• `rr_output::vk.RROutput`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRandROutputDisplayEXT.html
 
 """
 get_rand_r_output_display_ext
@@ -3036,14 +3482,16 @@ get_rand_r_output_display_ext
     acquire_winrt_display_nv(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `display::DisplayKHR`
+• `physical_device::PhysicalDevice`
+• `display::DisplayKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireWinrtDisplayNV.html
 
 """
 acquire_winrt_display_nv
@@ -3052,14 +3500,16 @@ acquire_winrt_display_nv
     get_winrt_display_nv(physical_device::PhysicalDevice, device_relative_id::Integer)::ResultTypes.Result{DisplayKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `device_relative_id::Integer`
+• `physical_device::PhysicalDevice`
+• `device_relative_id::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetWinrtDisplayNV.html
 
 """
 get_winrt_display_nv
@@ -3068,13 +3518,15 @@ get_winrt_display_nv
     display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::_DisplayPowerInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `display::DisplayKHR`
-- `display_power_info::_DisplayPowerInfoEXT`
+• `device::Device`
+• `display::DisplayKHR`
+• `display_power_info::_DisplayPowerInfoEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDisplayPowerControlEXT.html
 
 """
 display_power_control_ext
@@ -3083,13 +3535,15 @@ display_power_control_ext
     register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `device_event_info::_DeviceEventInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `device_event_info::_DeviceEventInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDeviceEventEXT.html
 
 """
 register_device_event_ext
@@ -3098,14 +3552,16 @@ register_device_event_ext
     register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::_DisplayEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `display::DisplayKHR`
-- `display_event_info::_DisplayEventInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `display::DisplayKHR`
+• `display_event_info::_DisplayEventInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDisplayEventEXT.html
 
 """
 register_display_event_ext
@@ -3114,15 +3570,17 @@ register_display_event_ext
     get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)::ResultTypes.Result{UInt64, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_OUT_OF_DATE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_OUT_OF_DATE_KHR`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR`
-- `counter::SurfaceCounterFlagEXT`
+• `device::Device`
+• `swapchain::SwapchainKHR`
+• `counter::SurfaceCounterFlagEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainCounterEXT.html
 
 """
 get_swapchain_counter_ext
@@ -3131,14 +3589,16 @@ get_swapchain_counter_ext
     get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{SurfaceCapabilities2EXT, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface::SurfaceKHR`
+• `physical_device::PhysicalDevice`
+• `surface::SurfaceKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html
 
 """
 get_physical_device_surface_capabilities_2_ext
@@ -3147,13 +3607,15 @@ get_physical_device_surface_capabilities_2_ext
     enumerate_physical_device_groups(instance::Instance)::ResultTypes.Result{Vector{PhysicalDeviceGroupProperties}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `instance::Instance`
+• `instance::Instance`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceGroups.html
 
 """
 enumerate_physical_device_groups
@@ -3162,10 +3624,12 @@ enumerate_physical_device_groups
     get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)::PeerMemoryFeatureFlag
 
 Arguments:
-- `device::Device`
-- `heap_index::Integer`
-- `local_device_index::Integer`
-- `remote_device_index::Integer`
+• `device::Device`
+• `heap_index::Integer`
+• `local_device_index::Integer`
+• `remote_device_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPeerMemoryFeatures.html
 
 """
 get_device_group_peer_memory_features
@@ -3174,14 +3638,16 @@ get_device_group_peer_memory_features
     bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:_BindBufferMemoryInfo})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
-- `device::Device`
-- `bind_infos::AbstractArray{<:_BindBufferMemoryInfo}`
+• `device::Device`
+• `bind_infos::AbstractArray{<:_BindBufferMemoryInfo}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory2.html
 
 """
 bind_buffer_memory_2
@@ -3190,13 +3656,15 @@ bind_buffer_memory_2
     bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:_BindImageMemoryInfo})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `bind_infos::AbstractArray{<:_BindImageMemoryInfo}`
+• `device::Device`
+• `bind_infos::AbstractArray{<:_BindImageMemoryInfo}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory2.html
 
 """
 bind_image_memory_2
@@ -3205,8 +3673,10 @@ bind_image_memory_2
     cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `device_mask::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `device_mask::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDeviceMask.html
 
 """
 cmd_set_device_mask
@@ -3215,12 +3685,14 @@ cmd_set_device_mask
     get_device_group_present_capabilities_khr(device::Device)::ResultTypes.Result{DeviceGroupPresentCapabilitiesKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
+• `device::Device`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPresentCapabilitiesKHR.html
 
 """
 get_device_group_present_capabilities_khr
@@ -3229,15 +3701,17 @@ get_device_group_present_capabilities_khr
     get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)::ResultTypes.Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `device::Device`
-- `surface::SurfaceKHR` (externsync)
-- `modes::DeviceGroupPresentModeFlagKHR`
+• `device::Device`
+• `surface::SurfaceKHR` (externsync)
+• `modes::DeviceGroupPresentModeFlagKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupSurfacePresentModesKHR.html
 
 """
 get_device_group_surface_present_modes_khr
@@ -3246,22 +3720,24 @@ get_device_group_surface_present_modes_khr
     acquire_next_image_2_khr(device::Device, acquire_info::_AcquireNextImageInfoKHR)::ResultTypes.Result{Tuple{UInt32, Result}, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `TIMEOUT`
-  - `NOT_READY`
-  - `SUBOPTIMAL_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_OUT_OF_DATE_KHR`
-  - `ERROR_SURFACE_LOST_KHR`
-  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `TIMEOUT`
+  ∘ `NOT_READY`
+  ∘ `SUBOPTIMAL_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_OUT_OF_DATE_KHR`
+  ∘ `ERROR_SURFACE_LOST_KHR`
+  ∘ `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
-- `device::Device`
-- `acquire_info::_AcquireNextImageInfoKHR`
+• `device::Device`
+• `acquire_info::_AcquireNextImageInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImage2KHR.html
 
 """
 acquire_next_image_2_khr
@@ -3270,13 +3746,15 @@ acquire_next_image_2_khr
     cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `base_group_x::Integer`
-- `base_group_y::Integer`
-- `base_group_z::Integer`
-- `group_count_x::Integer`
-- `group_count_y::Integer`
-- `group_count_z::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `base_group_x::Integer`
+• `base_group_y::Integer`
+• `base_group_z::Integer`
+• `group_count_x::Integer`
+• `group_count_y::Integer`
+• `group_count_z::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchBase.html
 
 """
 cmd_dispatch_base
@@ -3285,13 +3763,15 @@ cmd_dispatch_base
     get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{_Rect2D}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface::SurfaceKHR` (externsync)
+• `physical_device::PhysicalDevice`
+• `surface::SurfaceKHR` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDevicePresentRectanglesKHR.html
 
 """
 get_physical_device_present_rectangles_khr
@@ -3300,14 +3780,16 @@ get_physical_device_present_rectangles_khr
     create_descriptor_update_template(device::Device, create_info::_DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)::ResultTypes.Result{DescriptorUpdateTemplate, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_DescriptorUpdateTemplateCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_DescriptorUpdateTemplateCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorUpdateTemplate.html
 
 """
 create_descriptor_update_template
@@ -3316,9 +3798,11 @@ create_descriptor_update_template
     destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `descriptor_update_template::DescriptorUpdateTemplate` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `descriptor_update_template::DescriptorUpdateTemplate` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorUpdateTemplate.html
 
 """
 destroy_descriptor_update_template
@@ -3327,10 +3811,12 @@ destroy_descriptor_update_template
     update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})::Cvoid
 
 Arguments:
-- `device::Device`
-- `descriptor_set::DescriptorSet` (externsync)
-- `descriptor_update_template::DescriptorUpdateTemplate`
-- `data::Ptr{Cvoid}`
+• `device::Device`
+• `descriptor_set::DescriptorSet` (externsync)
+• `descriptor_update_template::DescriptorUpdateTemplate`
+• `data::Ptr{Cvoid}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSetWithTemplate.html
 
 """
 update_descriptor_set_with_template
@@ -3339,11 +3825,13 @@ update_descriptor_set_with_template
     cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `descriptor_update_template::DescriptorUpdateTemplate`
-- `layout::PipelineLayout`
-- `set::Integer`
-- `data::Ptr{Cvoid}`
+• `command_buffer::CommandBuffer` (externsync)
+• `descriptor_update_template::DescriptorUpdateTemplate`
+• `layout::PipelineLayout`
+• `set::Integer`
+• `data::Ptr{Cvoid}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetWithTemplateKHR.html
 
 """
 cmd_push_descriptor_set_with_template_khr
@@ -3352,9 +3840,11 @@ cmd_push_descriptor_set_with_template_khr
     set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid
 
 Arguments:
-- `device::Device`
-- `swapchains::AbstractArray{<:SwapchainKHR}`
-- `metadata::AbstractArray{<:_HdrMetadataEXT}`
+• `device::Device`
+• `swapchains::AbstractArray{<:SwapchainKHR}`
+• `metadata::AbstractArray{<:_HdrMetadataEXT}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetHdrMetadataEXT.html
 
 """
 set_hdr_metadata_ext
@@ -3363,20 +3853,22 @@ set_hdr_metadata_ext
     get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `SUBOPTIMAL_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_OUT_OF_DATE_KHR`
-  - `ERROR_SURFACE_LOST_KHR`
-  - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `SUBOPTIMAL_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_OUT_OF_DATE_KHR`
+  ∘ `ERROR_SURFACE_LOST_KHR`
+  ∘ `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR` (externsync)
+• `device::Device`
+• `swapchain::SwapchainKHR` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainStatusKHR.html
 
 """
 get_swapchain_status_khr
@@ -3385,14 +3877,16 @@ get_swapchain_status_khr
     get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{RefreshCycleDurationGOOGLE, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR` (externsync)
+• `device::Device`
+• `swapchain::SwapchainKHR` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRefreshCycleDurationGOOGLE.html
 
 """
 get_refresh_cycle_duration_google
@@ -3401,15 +3895,17 @@ get_refresh_cycle_duration_google
     get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_DEVICE_LOST`
-  - `ERROR_OUT_OF_DATE_KHR`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
+  ∘ `ERROR_OUT_OF_DATE_KHR`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR` (externsync)
+• `device::Device`
+• `swapchain::SwapchainKHR` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPastPresentationTimingGOOGLE.html
 
 """
 get_past_presentation_timing_google
@@ -3418,15 +3914,17 @@ get_past_presentation_timing_google
     create_ios_surface_mvk(instance::Instance, create_info::_IOSSurfaceCreateInfoMVK; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_IOSSurfaceCreateInfoMVK`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_IOSSurfaceCreateInfoMVK`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateIOSSurfaceMVK.html
 
 """
 create_ios_surface_mvk
@@ -3435,15 +3933,17 @@ create_ios_surface_mvk
     create_mac_os_surface_mvk(instance::Instance, create_info::_MacOSSurfaceCreateInfoMVK; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_MacOSSurfaceCreateInfoMVK`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_MacOSSurfaceCreateInfoMVK`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMacOSSurfaceMVK.html
 
 """
 create_mac_os_surface_mvk
@@ -3452,15 +3952,17 @@ create_mac_os_surface_mvk
     create_metal_surface_ext(instance::Instance, create_info::_MetalSurfaceCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_MetalSurfaceCreateInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_MetalSurfaceCreateInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMetalSurfaceEXT.html
 
 """
 create_metal_surface_ext
@@ -3469,8 +3971,10 @@ create_metal_surface_ext
     cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV}`
+• `command_buffer::CommandBuffer` (externsync)
+• `viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWScalingNV.html
 
 """
 cmd_set_viewport_w_scaling_nv
@@ -3479,8 +3983,10 @@ cmd_set_viewport_w_scaling_nv
     cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `discard_rectangles::AbstractArray{<:_Rect2D}`
+• `command_buffer::CommandBuffer` (externsync)
+• `discard_rectangles::AbstractArray{<:_Rect2D}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDiscardRectangleEXT.html
 
 """
 cmd_set_discard_rectangle_ext
@@ -3489,8 +3995,10 @@ cmd_set_discard_rectangle_ext
     cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::_SampleLocationsInfoEXT)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `sample_locations_info::_SampleLocationsInfoEXT`
+• `command_buffer::CommandBuffer` (externsync)
+• `sample_locations_info::_SampleLocationsInfoEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetSampleLocationsEXT.html
 
 """
 cmd_set_sample_locations_ext
@@ -3499,8 +4007,10 @@ cmd_set_sample_locations_ext
     get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag)::MultisamplePropertiesEXT
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `samples::SampleCountFlag`
+• `physical_device::PhysicalDevice`
+• `samples::SampleCountFlag`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMultisamplePropertiesEXT.html
 
 """
 get_physical_device_multisample_properties_ext
@@ -3509,14 +4019,16 @@ get_physical_device_multisample_properties_ext
     get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{SurfaceCapabilities2KHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
+• `physical_device::PhysicalDevice`
+• `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html
 
 """
 get_physical_device_surface_capabilities_2_khr
@@ -3525,14 +4037,16 @@ get_physical_device_surface_capabilities_2_khr
     get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{Vector{SurfaceFormat2KHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
+• `physical_device::PhysicalDevice`
+• `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormats2KHR.html
 
 """
 get_physical_device_surface_formats_2_khr
@@ -3541,12 +4055,14 @@ get_physical_device_surface_formats_2_khr
     get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayProperties2KHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayProperties2KHR.html
 
 """
 get_physical_device_display_properties_2_khr
@@ -3555,12 +4071,14 @@ get_physical_device_display_properties_2_khr
     get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlaneProperties2KHR.html
 
 """
 get_physical_device_display_plane_properties_2_khr
@@ -3569,13 +4087,15 @@ get_physical_device_display_plane_properties_2_khr
     get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Vector{DisplayModeProperties2KHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `display::DisplayKHR`
+• `physical_device::PhysicalDevice`
+• `display::DisplayKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModeProperties2KHR.html
 
 """
 get_display_mode_properties_2_khr
@@ -3584,13 +4104,15 @@ get_display_mode_properties_2_khr
     get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::_DisplayPlaneInfo2KHR)::ResultTypes.Result{DisplayPlaneCapabilities2KHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `display_plane_info::_DisplayPlaneInfo2KHR`
+• `physical_device::PhysicalDevice`
+• `display_plane_info::_DisplayPlaneInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilities2KHR.html
 
 """
 get_display_plane_capabilities_2_khr
@@ -3599,8 +4121,10 @@ get_display_plane_capabilities_2_khr
     get_buffer_memory_requirements_2(device::Device, info::_BufferMemoryRequirementsInfo2)::MemoryRequirements2
 
 Arguments:
-- `device::Device`
-- `info::_BufferMemoryRequirementsInfo2`
+• `device::Device`
+• `info::_BufferMemoryRequirementsInfo2`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements2.html
 
 """
 get_buffer_memory_requirements_2
@@ -3609,8 +4133,10 @@ get_buffer_memory_requirements_2
     get_image_memory_requirements_2(device::Device, info::_ImageMemoryRequirementsInfo2)::MemoryRequirements2
 
 Arguments:
-- `device::Device`
-- `info::_ImageMemoryRequirementsInfo2`
+• `device::Device`
+• `info::_ImageMemoryRequirementsInfo2`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements2.html
 
 """
 get_image_memory_requirements_2
@@ -3619,8 +4145,10 @@ get_image_memory_requirements_2
     get_image_sparse_memory_requirements_2(device::Device, info::_ImageSparseMemoryRequirementsInfo2)::Vector{SparseImageMemoryRequirements2}
 
 Arguments:
-- `device::Device`
-- `info::_ImageSparseMemoryRequirementsInfo2`
+• `device::Device`
+• `info::_ImageSparseMemoryRequirementsInfo2`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements2.html
 
 """
 get_image_sparse_memory_requirements_2
@@ -3629,14 +4157,16 @@ get_image_sparse_memory_requirements_2
     create_sampler_ycbcr_conversion(device::Device, create_info::_SamplerYcbcrConversionCreateInfo; allocator = C_NULL)::ResultTypes.Result{SamplerYcbcrConversion, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_SamplerYcbcrConversionCreateInfo`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_SamplerYcbcrConversionCreateInfo`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSamplerYcbcrConversion.html
 
 """
 create_sampler_ycbcr_conversion
@@ -3645,9 +4175,11 @@ create_sampler_ycbcr_conversion
     destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `ycbcr_conversion::SamplerYcbcrConversion` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `ycbcr_conversion::SamplerYcbcrConversion` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySamplerYcbcrConversion.html
 
 """
 destroy_sampler_ycbcr_conversion
@@ -3656,8 +4188,10 @@ destroy_sampler_ycbcr_conversion
     get_device_queue_2(device::Device, queue_info::_DeviceQueueInfo2)::Queue
 
 Arguments:
-- `device::Device`
-- `queue_info::_DeviceQueueInfo2`
+• `device::Device`
+• `queue_info::_DeviceQueueInfo2`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue2.html
 
 """
 get_device_queue_2
@@ -3666,13 +4200,15 @@ get_device_queue_2
     create_validation_cache_ext(device::Device, create_info::_ValidationCacheCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{ValidationCacheEXT, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_ValidationCacheCreateInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_ValidationCacheCreateInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateValidationCacheEXT.html
 
 """
 create_validation_cache_ext
@@ -3681,9 +4217,11 @@ create_validation_cache_ext
     destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `validation_cache::ValidationCacheEXT` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `validation_cache::ValidationCacheEXT` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyValidationCacheEXT.html
 
 """
 destroy_validation_cache_ext
@@ -3692,16 +4230,18 @@ destroy_validation_cache_ext
     get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `validation_cache::ValidationCacheEXT`
+• `device::Device`
+• `validation_cache::ValidationCacheEXT`
 
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetValidationCacheDataEXT.html
 
 """
 get_validation_cache_data_ext
@@ -3710,14 +4250,16 @@ get_validation_cache_data_ext
     merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `dst_cache::ValidationCacheEXT` (externsync)
-- `src_caches::AbstractArray{<:ValidationCacheEXT}`
+• `device::Device`
+• `dst_cache::ValidationCacheEXT` (externsync)
+• `src_caches::AbstractArray{<:ValidationCacheEXT}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergeValidationCachesEXT.html
 
 """
 merge_validation_caches_ext
@@ -3726,8 +4268,10 @@ merge_validation_caches_ext
     get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
 
 Arguments:
-- `device::Device`
-- `create_info::_DescriptorSetLayoutCreateInfo`
+• `device::Device`
+• `create_info::_DescriptorSetLayoutCreateInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDescriptorSetLayoutSupport.html
 
 """
 get_descriptor_set_layout_support
@@ -3736,18 +4280,20 @@ get_descriptor_set_layout_support
     get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::ShaderInfoTypeAMD)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_FEATURE_NOT_PRESENT`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_FEATURE_NOT_PRESENT`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `pipeline::Pipeline`
-- `shader_stage::ShaderStageFlag`
-- `info_type::ShaderInfoTypeAMD`
+• `device::Device`
+• `pipeline::Pipeline`
+• `shader_stage::ShaderStageFlag`
+• `info_type::ShaderInfoTypeAMD`
 
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetShaderInfoAMD.html
 
 """
 get_shader_info_amd
@@ -3756,9 +4302,11 @@ get_shader_info_amd
     set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)::Cvoid
 
 Arguments:
-- `device::Device`
-- `swap_chain::SwapchainKHR`
-- `local_dimming_enable::Bool`
+• `device::Device`
+• `swap_chain::SwapchainKHR`
+• `local_dimming_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetLocalDimmingAMD.html
 
 """
 set_local_dimming_amd
@@ -3767,12 +4315,14 @@ set_local_dimming_amd
     get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{TimeDomainEXT}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html
 
 """
 get_physical_device_calibrateable_time_domains_ext
@@ -3781,13 +4331,15 @@ get_physical_device_calibrateable_time_domains_ext
     get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT})::ResultTypes.Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT}`
+• `device::Device`
+• `timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetCalibratedTimestampsEXT.html
 
 """
 get_calibrated_timestamps_ext
@@ -3796,13 +4348,15 @@ get_calibrated_timestamps_ext
     set_debug_utils_object_name_ext(device::Device, name_info::_DebugUtilsObjectNameInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `name_info::_DebugUtilsObjectNameInfoEXT` (externsync)
+• `device::Device`
+• `name_info::_DebugUtilsObjectNameInfoEXT` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectNameEXT.html
 
 """
 set_debug_utils_object_name_ext
@@ -3811,13 +4365,15 @@ set_debug_utils_object_name_ext
     set_debug_utils_object_tag_ext(device::Device, tag_info::_DebugUtilsObjectTagInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `tag_info::_DebugUtilsObjectTagInfoEXT` (externsync)
+• `device::Device`
+• `tag_info::_DebugUtilsObjectTagInfoEXT` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectTagEXT.html
 
 """
 set_debug_utils_object_tag_ext
@@ -3826,8 +4382,10 @@ set_debug_utils_object_tag_ext
     queue_begin_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
-- `queue::Queue`
-- `label_info::_DebugUtilsLabelEXT`
+• `queue::Queue`
+• `label_info::_DebugUtilsLabelEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBeginDebugUtilsLabelEXT.html
 
 """
 queue_begin_debug_utils_label_ext
@@ -3836,7 +4394,9 @@ queue_begin_debug_utils_label_ext
     queue_end_debug_utils_label_ext(queue::Queue)::Cvoid
 
 Arguments:
-- `queue::Queue`
+• `queue::Queue`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueEndDebugUtilsLabelEXT.html
 
 """
 queue_end_debug_utils_label_ext
@@ -3845,8 +4405,10 @@ queue_end_debug_utils_label_ext
     queue_insert_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
-- `queue::Queue`
-- `label_info::_DebugUtilsLabelEXT`
+• `queue::Queue`
+• `label_info::_DebugUtilsLabelEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html
 
 """
 queue_insert_debug_utils_label_ext
@@ -3855,8 +4417,10 @@ queue_insert_debug_utils_label_ext
     cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `label_info::_DebugUtilsLabelEXT`
+• `command_buffer::CommandBuffer` (externsync)
+• `label_info::_DebugUtilsLabelEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginDebugUtilsLabelEXT.html
 
 """
 cmd_begin_debug_utils_label_ext
@@ -3865,7 +4429,9 @@ cmd_begin_debug_utils_label_ext
     cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
+• `command_buffer::CommandBuffer` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndDebugUtilsLabelEXT.html
 
 """
 cmd_end_debug_utils_label_ext
@@ -3874,8 +4440,10 @@ cmd_end_debug_utils_label_ext
     cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `label_info::_DebugUtilsLabelEXT`
+• `command_buffer::CommandBuffer` (externsync)
+• `label_info::_DebugUtilsLabelEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html
 
 """
 cmd_insert_debug_utils_label_ext
@@ -3884,13 +4452,15 @@ cmd_insert_debug_utils_label_ext
     create_debug_utils_messenger_ext(instance::Instance, create_info::_DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{DebugUtilsMessengerEXT, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_DebugUtilsMessengerCreateInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_DebugUtilsMessengerCreateInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugUtilsMessengerEXT.html
 
 """
 create_debug_utils_messenger_ext
@@ -3899,9 +4469,11 @@ create_debug_utils_messenger_ext
     destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `instance::Instance`
-- `messenger::DebugUtilsMessengerEXT` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `messenger::DebugUtilsMessengerEXT` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugUtilsMessengerEXT.html
 
 """
 destroy_debug_utils_messenger_ext
@@ -3910,10 +4482,12 @@ destroy_debug_utils_messenger_ext
     submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT)::Cvoid
 
 Arguments:
-- `instance::Instance`
-- `message_severity::DebugUtilsMessageSeverityFlagEXT`
-- `message_types::DebugUtilsMessageTypeFlagEXT`
-- `callback_data::_DebugUtilsMessengerCallbackDataEXT`
+• `instance::Instance`
+• `message_severity::DebugUtilsMessageSeverityFlagEXT`
+• `message_types::DebugUtilsMessageTypeFlagEXT`
+• `callback_data::_DebugUtilsMessengerCallbackDataEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html
 
 """
 submit_debug_utils_message_ext
@@ -3922,14 +4496,16 @@ submit_debug_utils_message_ext
     get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{MemoryHostPointerPropertiesEXT, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE`
 
 Arguments:
-- `device::Device`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `host_pointer::Ptr{Cvoid}`
+• `device::Device`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `host_pointer::Ptr{Cvoid}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryHostPointerPropertiesEXT.html
 
 """
 get_memory_host_pointer_properties_ext
@@ -3938,11 +4514,13 @@ get_memory_host_pointer_properties_ext
     cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `pipeline_stage::PipelineStageFlag`
-- `dst_buffer::Buffer`
-- `dst_offset::Integer`
-- `marker::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `pipeline_stage::PipelineStageFlag`
+• `dst_buffer::Buffer`
+• `dst_offset::Integer`
+• `marker::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarkerAMD.html
 
 """
 cmd_write_buffer_marker_amd
@@ -3951,14 +4529,16 @@ cmd_write_buffer_marker_amd
     create_render_pass_2(device::Device, create_info::_RenderPassCreateInfo2; allocator = C_NULL)::ResultTypes.Result{RenderPass, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_RenderPassCreateInfo2`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_RenderPassCreateInfo2`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass2.html
 
 """
 create_render_pass_2
@@ -3967,9 +4547,11 @@ create_render_pass_2
     cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, subpass_begin_info::_SubpassBeginInfo)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `render_pass_begin::_RenderPassBeginInfo`
-- `subpass_begin_info::_SubpassBeginInfo`
+• `command_buffer::CommandBuffer` (externsync)
+• `render_pass_begin::_RenderPassBeginInfo`
+• `subpass_begin_info::_SubpassBeginInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass2.html
 
 """
 cmd_begin_render_pass_2
@@ -3978,9 +4560,11 @@ cmd_begin_render_pass_2
     cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::_SubpassBeginInfo, subpass_end_info::_SubpassEndInfo)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `subpass_begin_info::_SubpassBeginInfo`
-- `subpass_end_info::_SubpassEndInfo`
+• `command_buffer::CommandBuffer` (externsync)
+• `subpass_begin_info::_SubpassBeginInfo`
+• `subpass_end_info::_SubpassEndInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass2.html
 
 """
 cmd_next_subpass_2
@@ -3989,8 +4573,10 @@ cmd_next_subpass_2
     cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::_SubpassEndInfo)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `subpass_end_info::_SubpassEndInfo`
+• `command_buffer::CommandBuffer` (externsync)
+• `subpass_end_info::_SubpassEndInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass2.html
 
 """
 cmd_end_render_pass_2
@@ -3999,14 +4585,16 @@ cmd_end_render_pass_2
     get_semaphore_counter_value(device::Device, semaphore::Semaphore)::ResultTypes.Result{UInt64, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `device::Device`
-- `semaphore::Semaphore`
+• `device::Device`
+• `semaphore::Semaphore`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreCounterValue.html
 
 """
 get_semaphore_counter_value
@@ -4015,18 +4603,20 @@ get_semaphore_counter_value
     wait_semaphores(device::Device, wait_info::_SemaphoreWaitInfo, timeout::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `TIMEOUT`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `TIMEOUT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `device::Device`
-- `wait_info::_SemaphoreWaitInfo`
-- `timeout::Integer`
+• `device::Device`
+• `wait_info::_SemaphoreWaitInfo`
+• `timeout::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitSemaphores.html
 
 """
 wait_semaphores
@@ -4035,13 +4625,15 @@ wait_semaphores
     signal_semaphore(device::Device, signal_info::_SemaphoreSignalInfo)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `signal_info::_SemaphoreSignalInfo`
+• `device::Device`
+• `signal_info::_SemaphoreSignalInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSignalSemaphore.html
 
 """
 signal_semaphore
@@ -4050,13 +4642,15 @@ signal_semaphore
     get_android_hardware_buffer_properties_android(device::Device, buffer::vk.AHardwareBuffer)::ResultTypes.Result{AndroidHardwareBufferPropertiesANDROID, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_EXTERNAL_HANDLE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_EXTERNAL_HANDLE_KHR`
 
 Arguments:
-- `device::Device`
-- `buffer::vk.AHardwareBuffer`
+• `device::Device`
+• `buffer::vk.AHardwareBuffer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAndroidHardwareBufferPropertiesANDROID.html
 
 """
 get_android_hardware_buffer_properties_android
@@ -4065,13 +4659,15 @@ get_android_hardware_buffer_properties_android
     get_memory_android_hardware_buffer_android(device::Device, info::_MemoryGetAndroidHardwareBufferInfoANDROID)::ResultTypes.Result{vk.AHardwareBuffer, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `info::_MemoryGetAndroidHardwareBufferInfoANDROID`
+• `device::Device`
+• `info::_MemoryGetAndroidHardwareBufferInfoANDROID`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryAndroidHardwareBufferANDROID.html
 
 """
 get_memory_android_hardware_buffer_android
@@ -4080,13 +4676,15 @@ get_memory_android_hardware_buffer_android
     cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
-- `count_buffer::Buffer`
-- `count_buffer_offset::Integer`
-- `max_draw_count::Integer`
-- `stride::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+• `count_buffer::Buffer`
+• `count_buffer_offset::Integer`
+• `max_draw_count::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectCount.html
 
 """
 cmd_draw_indirect_count
@@ -4095,13 +4693,15 @@ cmd_draw_indirect_count
     cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
-- `count_buffer::Buffer`
-- `count_buffer_offset::Integer`
-- `max_draw_count::Integer`
-- `stride::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+• `count_buffer::Buffer`
+• `count_buffer_offset::Integer`
+• `max_draw_count::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirectCount.html
 
 """
 cmd_draw_indexed_indirect_count
@@ -4110,8 +4710,10 @@ cmd_draw_indexed_indirect_count
     cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `checkpoint_marker::Ptr{Cvoid}`
+• `command_buffer::CommandBuffer` (externsync)
+• `checkpoint_marker::Ptr{Cvoid}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCheckpointNV.html
 
 """
 cmd_set_checkpoint_nv
@@ -4120,7 +4722,9 @@ cmd_set_checkpoint_nv
     get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
 
 Arguments:
-- `queue::Queue`
+• `queue::Queue`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointDataNV.html
 
 """
 get_queue_checkpoint_data_nv
@@ -4129,10 +4733,12 @@ get_queue_checkpoint_data_nv
     cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffers::AbstractArray{<:Buffer}`
-- `offsets::AbstractArray{<:Integer}`
-- `sizes`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffers::AbstractArray{<:Buffer}`
+• `offsets::AbstractArray{<:Integer}`
+• `sizes`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindTransformFeedbackBuffersEXT.html
 
 """
 cmd_bind_transform_feedback_buffers_ext
@@ -4141,9 +4747,11 @@ cmd_bind_transform_feedback_buffers_ext
     cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `counter_buffers::AbstractArray{<:Buffer}`
-- `counter_buffer_offsets`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer` (externsync)
+• `counter_buffers::AbstractArray{<:Buffer}`
+• `counter_buffer_offsets`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginTransformFeedbackEXT.html
 
 """
 cmd_begin_transform_feedback_ext
@@ -4152,9 +4760,11 @@ cmd_begin_transform_feedback_ext
     cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `counter_buffers::AbstractArray{<:Buffer}`
-- `counter_buffer_offsets`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer` (externsync)
+• `counter_buffers::AbstractArray{<:Buffer}`
+• `counter_buffer_offsets`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndTransformFeedbackEXT.html
 
 """
 cmd_end_transform_feedback_ext
@@ -4163,11 +4773,13 @@ cmd_end_transform_feedback_ext
     cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `query_pool::QueryPool`
-- `query::Integer`
-- `index::Integer`
-- `flags`: defaults to `0`
+• `command_buffer::CommandBuffer` (externsync)
+• `query_pool::QueryPool`
+• `query::Integer`
+• `index::Integer`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQueryIndexedEXT.html
 
 """
 cmd_begin_query_indexed_ext
@@ -4176,10 +4788,12 @@ cmd_begin_query_indexed_ext
     cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `query_pool::QueryPool`
-- `query::Integer`
-- `index::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `query_pool::QueryPool`
+• `query::Integer`
+• `index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQueryIndexedEXT.html
 
 """
 cmd_end_query_indexed_ext
@@ -4188,13 +4802,15 @@ cmd_end_query_indexed_ext
     cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `instance_count::Integer`
-- `first_instance::Integer`
-- `counter_buffer::Buffer`
-- `counter_buffer_offset::Integer`
-- `counter_offset::Integer`
-- `vertex_stride::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `instance_count::Integer`
+• `first_instance::Integer`
+• `counter_buffer::Buffer`
+• `counter_buffer_offset::Integer`
+• `counter_offset::Integer`
+• `vertex_stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectByteCountEXT.html
 
 """
 cmd_draw_indirect_byte_count_ext
@@ -4203,8 +4819,10 @@ cmd_draw_indirect_byte_count_ext
     cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `exclusive_scissors::AbstractArray{<:_Rect2D}`
+• `command_buffer::CommandBuffer` (externsync)
+• `exclusive_scissors::AbstractArray{<:_Rect2D}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetExclusiveScissorNV.html
 
 """
 cmd_set_exclusive_scissor_nv
@@ -4213,9 +4831,11 @@ cmd_set_exclusive_scissor_nv
     cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::ImageLayout; image_view = C_NULL)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `image_layout::ImageLayout`
-- `image_view`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer` (externsync)
+• `image_layout::ImageLayout`
+• `image_view`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindShadingRateImageNV.html
 
 """
 cmd_bind_shading_rate_image_nv
@@ -4224,8 +4844,10 @@ cmd_bind_shading_rate_image_nv
     cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}`
+• `command_buffer::CommandBuffer` (externsync)
+• `shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportShadingRatePaletteNV.html
 
 """
 cmd_set_viewport_shading_rate_palette_nv
@@ -4234,9 +4856,11 @@ cmd_set_viewport_shading_rate_palette_nv
     cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `sample_order_type::CoarseSampleOrderTypeNV`
-- `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
+• `command_buffer::CommandBuffer` (externsync)
+• `sample_order_type::CoarseSampleOrderTypeNV`
+• `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCoarseSampleOrderNV.html
 
 """
 cmd_set_coarse_sample_order_nv
@@ -4245,9 +4869,11 @@ cmd_set_coarse_sample_order_nv
     cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `task_count::Integer`
-- `first_task::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `task_count::Integer`
+• `first_task::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksNV.html
 
 """
 cmd_draw_mesh_tasks_nv
@@ -4256,11 +4882,13 @@ cmd_draw_mesh_tasks_nv
     cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
-- `draw_count::Integer`
-- `stride::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+• `draw_count::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectNV.html
 
 """
 cmd_draw_mesh_tasks_indirect_nv
@@ -4269,13 +4897,15 @@ cmd_draw_mesh_tasks_indirect_nv
     cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffer::Buffer`
-- `offset::Integer`
-- `count_buffer::Buffer`
-- `count_buffer_offset::Integer`
-- `max_draw_count::Integer`
-- `stride::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffer::Buffer`
+• `offset::Integer`
+• `count_buffer::Buffer`
+• `count_buffer_offset::Integer`
+• `max_draw_count::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectCountNV.html
 
 """
 cmd_draw_mesh_tasks_indirect_count_nv
@@ -4284,14 +4914,16 @@ cmd_draw_mesh_tasks_indirect_count_nv
     compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `pipeline::Pipeline`
-- `shader::Integer`
+• `device::Device`
+• `pipeline::Pipeline`
+• `shader::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCompileDeferredNV.html
 
 """
 compile_deferred_nv
@@ -4300,13 +4932,15 @@ compile_deferred_nv
     create_acceleration_structure_nv(device::Device, create_info::_AccelerationStructureCreateInfoNV; allocator = C_NULL)::ResultTypes.Result{AccelerationStructureNV, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_AccelerationStructureCreateInfoNV`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_AccelerationStructureCreateInfoNV`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureNV.html
 
 """
 create_acceleration_structure_nv
@@ -4315,9 +4949,11 @@ create_acceleration_structure_nv
     destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `acceleration_structure::AccelerationStructureKHR` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `acceleration_structure::AccelerationStructureKHR` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureKHR.html
 
 """
 destroy_acceleration_structure_khr
@@ -4326,9 +4962,11 @@ destroy_acceleration_structure_khr
     destroy_acceleration_structure_nv(device::Device, acceleration_structure::AccelerationStructureNV; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `acceleration_structure::AccelerationStructureNV` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `acceleration_structure::AccelerationStructureNV` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureNV.html
 
 """
 destroy_acceleration_structure_nv
@@ -4337,8 +4975,10 @@ destroy_acceleration_structure_nv
     get_acceleration_structure_memory_requirements_nv(device::Device, info::_AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
 
 Arguments:
-- `device::Device`
-- `info::_AccelerationStructureMemoryRequirementsInfoNV`
+• `device::Device`
+• `info::_AccelerationStructureMemoryRequirementsInfoNV`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html
 
 """
 get_acceleration_structure_memory_requirements_nv
@@ -4347,13 +4987,15 @@ get_acceleration_structure_memory_requirements_nv
     bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV}`
+• `device::Device`
+• `bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindAccelerationStructureMemoryNV.html
 
 """
 bind_acceleration_structure_memory_nv
@@ -4362,10 +5004,12 @@ bind_acceleration_structure_memory_nv
     cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::CopyAccelerationStructureModeKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `dst::AccelerationStructureNV`
-- `src::AccelerationStructureNV`
-- `mode::CopyAccelerationStructureModeKHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `dst::AccelerationStructureNV`
+• `src::AccelerationStructureNV`
+• `mode::CopyAccelerationStructureModeKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureNV.html
 
 """
 cmd_copy_acceleration_structure_nv
@@ -4374,8 +5018,10 @@ cmd_copy_acceleration_structure_nv
     cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `info::_CopyAccelerationStructureInfoKHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `info::_CopyAccelerationStructureInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureKHR.html
 
 """
 cmd_copy_acceleration_structure_khr
@@ -4384,18 +5030,20 @@ cmd_copy_acceleration_structure_khr
     copy_acceleration_structure_khr(device::Device, info::_CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `OPERATION_DEFERRED_KHR`
-  - `OPERATION_NOT_DEFERRED_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `OPERATION_DEFERRED_KHR`
+  ∘ `OPERATION_NOT_DEFERRED_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `info::_CopyAccelerationStructureInfoKHR`
-- `deferred_operation`: defaults to `C_NULL`
+• `device::Device`
+• `info::_CopyAccelerationStructureInfoKHR`
+• `deferred_operation`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureKHR.html
 
 """
 copy_acceleration_structure_khr
@@ -4404,8 +5052,10 @@ copy_acceleration_structure_khr
     cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureToMemoryInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `info::_CopyAccelerationStructureToMemoryInfoKHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `info::_CopyAccelerationStructureToMemoryInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureToMemoryKHR.html
 
 """
 cmd_copy_acceleration_structure_to_memory_khr
@@ -4414,18 +5064,20 @@ cmd_copy_acceleration_structure_to_memory_khr
     copy_acceleration_structure_to_memory_khr(device::Device, info::_CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `OPERATION_DEFERRED_KHR`
-  - `OPERATION_NOT_DEFERRED_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `OPERATION_DEFERRED_KHR`
+  ∘ `OPERATION_NOT_DEFERRED_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `info::_CopyAccelerationStructureToMemoryInfoKHR`
-- `deferred_operation`: defaults to `C_NULL`
+• `device::Device`
+• `info::_CopyAccelerationStructureToMemoryInfoKHR`
+• `deferred_operation`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureToMemoryKHR.html
 
 """
 copy_acceleration_structure_to_memory_khr
@@ -4434,8 +5086,10 @@ copy_acceleration_structure_to_memory_khr
     cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyMemoryToAccelerationStructureInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `info::_CopyMemoryToAccelerationStructureInfoKHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `info::_CopyMemoryToAccelerationStructureInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyMemoryToAccelerationStructureKHR.html
 
 """
 cmd_copy_memory_to_acceleration_structure_khr
@@ -4444,18 +5098,20 @@ cmd_copy_memory_to_acceleration_structure_khr
     copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `OPERATION_DEFERRED_KHR`
-  - `OPERATION_NOT_DEFERRED_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `OPERATION_DEFERRED_KHR`
+  ∘ `OPERATION_NOT_DEFERRED_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `info::_CopyMemoryToAccelerationStructureInfoKHR`
-- `deferred_operation`: defaults to `C_NULL`
+• `device::Device`
+• `info::_CopyMemoryToAccelerationStructureInfoKHR`
+• `deferred_operation`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyMemoryToAccelerationStructureKHR.html
 
 """
 copy_memory_to_acceleration_structure_khr
@@ -4464,11 +5120,13 @@ copy_memory_to_acceleration_structure_khr
     cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
-- `query_type::QueryType`
-- `query_pool::QueryPool`
-- `first_query::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+• `query_type::QueryType`
+• `query_pool::QueryPool`
+• `first_query::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesKHR.html
 
 """
 cmd_write_acceleration_structures_properties_khr
@@ -4477,11 +5135,13 @@ cmd_write_acceleration_structures_properties_khr
     cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
-- `query_type::QueryType`
-- `query_pool::QueryPool`
-- `first_query::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
+• `query_type::QueryType`
+• `query_pool::QueryPool`
+• `first_query::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesNV.html
 
 """
 cmd_write_acceleration_structures_properties_nv
@@ -4490,15 +5150,17 @@ cmd_write_acceleration_structures_properties_nv
     cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `info::_AccelerationStructureInfoNV`
-- `instance_offset::Integer`
-- `update::Bool`
-- `dst::AccelerationStructureNV`
-- `scratch::Buffer`
-- `scratch_offset::Integer`
-- `instance_data`: defaults to `C_NULL`
-- `src`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer` (externsync)
+• `info::_AccelerationStructureInfoNV`
+• `instance_offset::Integer`
+• `update::Bool`
+• `dst::AccelerationStructureNV`
+• `scratch::Buffer`
+• `scratch_offset::Integer`
+• `instance_data`: defaults to `C_NULL`
+• `src`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructureNV.html
 
 """
 cmd_build_acceleration_structure_nv
@@ -4507,17 +5169,19 @@ cmd_build_acceleration_structure_nv
     write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
-- `query_type::QueryType`
-- `data_size::Integer`
-- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
-- `stride::Integer`
+• `device::Device`
+• `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+• `query_type::QueryType`
+• `data_size::Integer`
+• `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html
 
 """
 write_acceleration_structures_properties_khr
@@ -4526,14 +5190,16 @@ write_acceleration_structures_properties_khr
     cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `raygen_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `miss_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `hit_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `callable_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `width::Integer`
-- `height::Integer`
-- `depth::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `raygen_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `miss_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `hit_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `callable_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `width::Integer`
+• `height::Integer`
+• `depth::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysKHR.html
 
 """
 cmd_trace_rays_khr
@@ -4542,21 +5208,23 @@ cmd_trace_rays_khr
     cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `raygen_shader_binding_table_buffer::Buffer`
-- `raygen_shader_binding_offset::Integer`
-- `miss_shader_binding_offset::Integer`
-- `miss_shader_binding_stride::Integer`
-- `hit_shader_binding_offset::Integer`
-- `hit_shader_binding_stride::Integer`
-- `callable_shader_binding_offset::Integer`
-- `callable_shader_binding_stride::Integer`
-- `width::Integer`
-- `height::Integer`
-- `depth::Integer`
-- `miss_shader_binding_table_buffer`: defaults to `C_NULL`
-- `hit_shader_binding_table_buffer`: defaults to `C_NULL`
-- `callable_shader_binding_table_buffer`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer` (externsync)
+• `raygen_shader_binding_table_buffer::Buffer`
+• `raygen_shader_binding_offset::Integer`
+• `miss_shader_binding_offset::Integer`
+• `miss_shader_binding_stride::Integer`
+• `hit_shader_binding_offset::Integer`
+• `hit_shader_binding_stride::Integer`
+• `callable_shader_binding_offset::Integer`
+• `callable_shader_binding_stride::Integer`
+• `width::Integer`
+• `height::Integer`
+• `depth::Integer`
+• `miss_shader_binding_table_buffer`: defaults to `C_NULL`
+• `hit_shader_binding_table_buffer`: defaults to `C_NULL`
+• `callable_shader_binding_table_buffer`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysNV.html
 
 """
 cmd_trace_rays_nv
@@ -4565,17 +5233,19 @@ cmd_trace_rays_nv
     get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `pipeline::Pipeline`
-- `first_group::Integer`
-- `group_count::Integer`
-- `data_size::Integer`
-- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+• `device::Device`
+• `pipeline::Pipeline`
+• `first_group::Integer`
+• `group_count::Integer`
+• `data_size::Integer`
+• `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupHandlesKHR.html
 
 """
 get_ray_tracing_shader_group_handles_khr
@@ -4584,17 +5254,19 @@ get_ray_tracing_shader_group_handles_khr
     get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `pipeline::Pipeline`
-- `first_group::Integer`
-- `group_count::Integer`
-- `data_size::Integer`
-- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+• `device::Device`
+• `pipeline::Pipeline`
+• `first_group::Integer`
+• `group_count::Integer`
+• `data_size::Integer`
+• `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html
 
 """
 get_ray_tracing_capture_replay_shader_group_handles_khr
@@ -4603,15 +5275,17 @@ get_ray_tracing_capture_replay_shader_group_handles_khr
     get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `acceleration_structure::AccelerationStructureNV`
-- `data_size::Integer`
-- `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+• `device::Device`
+• `acceleration_structure::AccelerationStructureNV`
+• `data_size::Integer`
+• `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureHandleNV.html
 
 """
 get_acceleration_structure_handle_nv
@@ -4620,19 +5294,21 @@ get_acceleration_structure_handle_nv
     create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `PIPELINE_COMPILE_REQUIRED_EXT`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_SHADER_NV`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `PIPELINE_COMPILE_REQUIRED_EXT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_SHADER_NV`
 
 Arguments:
-- `device::Device`
-- `create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}`
-- `pipeline_cache`: defaults to `C_NULL`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}`
+• `pipeline_cache`: defaults to `C_NULL`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesNV.html
 
 """
 create_ray_tracing_pipelines_nv
@@ -4641,22 +5317,24 @@ create_ray_tracing_pipelines_nv
     create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `OPERATION_DEFERRED_KHR`
-  - `OPERATION_NOT_DEFERRED_KHR`
-  - `PIPELINE_COMPILE_REQUIRED_EXT`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `OPERATION_DEFERRED_KHR`
+  ∘ `OPERATION_NOT_DEFERRED_KHR`
+  ∘ `PIPELINE_COMPILE_REQUIRED_EXT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
 
 Arguments:
-- `device::Device`
-- `create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}`
-- `deferred_operation`: defaults to `C_NULL`
-- `pipeline_cache`: defaults to `C_NULL`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}`
+• `deferred_operation`: defaults to `C_NULL`
+• `pipeline_cache`: defaults to `C_NULL`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesKHR.html
 
 """
 create_ray_tracing_pipelines_khr
@@ -4665,12 +5343,14 @@ create_ray_tracing_pipelines_khr
     get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{_CooperativeMatrixPropertiesNV}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.html
 
 """
 get_physical_device_cooperative_matrix_properties_nv
@@ -4679,12 +5359,14 @@ get_physical_device_cooperative_matrix_properties_nv
     cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, indirect_device_address::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `raygen_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `miss_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `hit_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `callable_shader_binding_table::_StridedDeviceAddressRegionKHR`
-- `indirect_device_address::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `raygen_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `miss_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `hit_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `callable_shader_binding_table::_StridedDeviceAddressRegionKHR`
+• `indirect_device_address::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysIndirectKHR.html
 
 """
 cmd_trace_rays_indirect_khr
@@ -4693,8 +5375,10 @@ cmd_trace_rays_indirect_khr
     get_device_acceleration_structure_compatibility_khr(device::Device, version_info::_AccelerationStructureVersionInfoKHR)::AccelerationStructureCompatibilityKHR
 
 Arguments:
-- `device::Device`
-- `version_info::_AccelerationStructureVersionInfoKHR`
+• `device::Device`
+• `version_info::_AccelerationStructureVersionInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceAccelerationStructureCompatibilityKHR.html
 
 """
 get_device_acceleration_structure_compatibility_khr
@@ -4703,10 +5387,12 @@ get_device_acceleration_structure_compatibility_khr
     get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::ShaderGroupShaderKHR)::UInt64
 
 Arguments:
-- `device::Device`
-- `pipeline::Pipeline`
-- `group::Integer`
-- `group_shader::ShaderGroupShaderKHR`
+• `device::Device`
+• `pipeline::Pipeline`
+• `group::Integer`
+• `group_shader::ShaderGroupShaderKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupStackSizeKHR.html
 
 """
 get_ray_tracing_shader_group_stack_size_khr
@@ -4715,8 +5401,10 @@ get_ray_tracing_shader_group_stack_size_khr
     cmd_set_ray_tracing_pipeline_stack_size_khr(command_buffer::CommandBuffer, pipeline_stack_size::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `pipeline_stack_size::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `pipeline_stack_size::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRayTracingPipelineStackSizeKHR.html
 
 """
 cmd_set_ray_tracing_pipeline_stack_size_khr
@@ -4725,8 +5413,10 @@ cmd_set_ray_tracing_pipeline_stack_size_khr
     get_image_view_handle_nvx(device::Device, info::_ImageViewHandleInfoNVX)::UInt32
 
 Arguments:
-- `device::Device`
-- `info::_ImageViewHandleInfoNVX`
+• `device::Device`
+• `info::_ImageViewHandleInfoNVX`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewHandleNVX.html
 
 """
 get_image_view_handle_nvx
@@ -4735,13 +5425,15 @@ get_image_view_handle_nvx
     get_image_view_address_nvx(device::Device, image_view::ImageView)::ResultTypes.Result{ImageViewAddressPropertiesNVX, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_UNKNOWN`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_UNKNOWN`
 
 Arguments:
-- `device::Device`
-- `image_view::ImageView`
+• `device::Device`
+• `image_view::ImageView`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewAddressNVX.html
 
 """
 get_image_view_address_nvx
@@ -4750,14 +5442,16 @@ get_image_view_address_nvx
     get_physical_device_surface_present_modes_2_ext(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{Vector{PresentModeKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
+• `physical_device::PhysicalDevice`
+• `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModes2EXT.html
 
 """
 get_physical_device_surface_present_modes_2_ext
@@ -4766,15 +5460,17 @@ get_physical_device_surface_present_modes_2_ext
     get_device_group_surface_present_modes_2_ext(device::Device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, modes::DeviceGroupPresentModeFlagKHR)::ResultTypes.Result{DeviceGroupPresentModeFlagKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `device::Device`
-- `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
-- `modes::DeviceGroupPresentModeFlagKHR`
+• `device::Device`
+• `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
+• `modes::DeviceGroupPresentModeFlagKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupSurfacePresentModes2EXT.html
 
 """
 get_device_group_surface_present_modes_2_ext
@@ -4783,15 +5479,17 @@ get_device_group_surface_present_modes_2_ext
     acquire_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR`
+• `device::Device`
+• `swapchain::SwapchainKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireFullScreenExclusiveModeEXT.html
 
 """
 acquire_full_screen_exclusive_mode_ext
@@ -4800,14 +5498,16 @@ acquire_full_screen_exclusive_mode_ext
     release_full_screen_exclusive_mode_ext(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_SURFACE_LOST_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_SURFACE_LOST_KHR`
 
 Arguments:
-- `device::Device`
-- `swapchain::SwapchainKHR`
+• `device::Device`
+• `swapchain::SwapchainKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseFullScreenExclusiveModeEXT.html
 
 """
 release_full_screen_exclusive_mode_ext
@@ -4816,14 +5516,16 @@ release_full_screen_exclusive_mode_ext
     enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::ResultTypes.Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `queue_family_index::Integer`
+• `physical_device::PhysicalDevice`
+• `queue_family_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html
 
 """
 enumerate_physical_device_queue_family_performance_query_counters_khr
@@ -4832,8 +5534,10 @@ enumerate_physical_device_queue_family_performance_query_counters_khr
     get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR)::UInt32
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR`
+• `physical_device::PhysicalDevice`
+• `performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html
 
 """
 get_physical_device_queue_family_performance_query_passes_khr
@@ -4842,13 +5546,15 @@ get_physical_device_queue_family_performance_query_passes_khr
     acquire_profiling_lock_khr(device::Device, info::_AcquireProfilingLockInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `TIMEOUT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `TIMEOUT`
 
 Arguments:
-- `device::Device`
-- `info::_AcquireProfilingLockInfoKHR`
+• `device::Device`
+• `info::_AcquireProfilingLockInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireProfilingLockKHR.html
 
 """
 acquire_profiling_lock_khr
@@ -4857,7 +5563,9 @@ acquire_profiling_lock_khr
     release_profiling_lock_khr(device::Device)::Cvoid
 
 Arguments:
-- `device::Device`
+• `device::Device`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseProfilingLockKHR.html
 
 """
 release_profiling_lock_khr
@@ -4866,12 +5574,14 @@ release_profiling_lock_khr
     get_image_drm_format_modifier_properties_ext(device::Device, image::Image)::ResultTypes.Result{ImageDrmFormatModifierPropertiesEXT, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `image::Image`
+• `device::Device`
+• `image::Image`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html
 
 """
 get_image_drm_format_modifier_properties_ext
@@ -4880,8 +5590,10 @@ get_image_drm_format_modifier_properties_ext
     get_buffer_opaque_capture_address(device::Device, info::_BufferDeviceAddressInfo)::UInt64
 
 Arguments:
-- `device::Device`
-- `info::_BufferDeviceAddressInfo`
+• `device::Device`
+• `info::_BufferDeviceAddressInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferOpaqueCaptureAddress.html
 
 """
 get_buffer_opaque_capture_address
@@ -4890,8 +5602,10 @@ get_buffer_opaque_capture_address
     get_buffer_device_address(device::Device, info::_BufferDeviceAddressInfo)::UInt64
 
 Arguments:
-- `device::Device`
-- `info::_BufferDeviceAddressInfo`
+• `device::Device`
+• `info::_BufferDeviceAddressInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferDeviceAddress.html
 
 """
 get_buffer_device_address
@@ -4900,14 +5614,16 @@ get_buffer_device_address
     create_headless_surface_ext(instance::Instance, create_info::_HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `instance::Instance`
-- `create_info::_HeadlessSurfaceCreateInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `instance::Instance`
+• `create_info::_HeadlessSurfaceCreateInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateHeadlessSurfaceEXT.html
 
 """
 create_headless_surface_ext
@@ -4916,12 +5632,14 @@ create_headless_surface_ext
     get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.html
 
 """
 get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
@@ -4930,13 +5648,15 @@ get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
     initialize_performance_api_intel(device::Device, initialize_info::_InitializePerformanceApiInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `initialize_info::_InitializePerformanceApiInfoINTEL`
+• `device::Device`
+• `initialize_info::_InitializePerformanceApiInfoINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInitializePerformanceApiINTEL.html
 
 """
 initialize_performance_api_intel
@@ -4945,7 +5665,9 @@ initialize_performance_api_intel
     uninitialize_performance_api_intel(device::Device)::Cvoid
 
 Arguments:
-- `device::Device`
+• `device::Device`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUninitializePerformanceApiINTEL.html
 
 """
 uninitialize_performance_api_intel
@@ -4954,13 +5676,15 @@ uninitialize_performance_api_intel
     cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceMarkerInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `marker_info::_PerformanceMarkerInfoINTEL`
+• `command_buffer::CommandBuffer` (externsync)
+• `marker_info::_PerformanceMarkerInfoINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceMarkerINTEL.html
 
 """
 cmd_set_performance_marker_intel
@@ -4969,13 +5693,15 @@ cmd_set_performance_marker_intel
     cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceStreamMarkerInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `marker_info::_PerformanceStreamMarkerInfoINTEL`
+• `command_buffer::CommandBuffer` (externsync)
+• `marker_info::_PerformanceStreamMarkerInfoINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceStreamMarkerINTEL.html
 
 """
 cmd_set_performance_stream_marker_intel
@@ -4984,13 +5710,15 @@ cmd_set_performance_stream_marker_intel
     cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::_PerformanceOverrideInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `override_info::_PerformanceOverrideInfoINTEL`
+• `command_buffer::CommandBuffer` (externsync)
+• `override_info::_PerformanceOverrideInfoINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceOverrideINTEL.html
 
 """
 cmd_set_performance_override_intel
@@ -4999,13 +5727,15 @@ cmd_set_performance_override_intel
     acquire_performance_configuration_intel(device::Device, acquire_info::_PerformanceConfigurationAcquireInfoINTEL)::ResultTypes.Result{PerformanceConfigurationINTEL, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `acquire_info::_PerformanceConfigurationAcquireInfoINTEL`
+• `device::Device`
+• `acquire_info::_PerformanceConfigurationAcquireInfoINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquirePerformanceConfigurationINTEL.html
 
 """
 acquire_performance_configuration_intel
@@ -5014,13 +5744,15 @@ acquire_performance_configuration_intel
     release_performance_configuration_intel(device::Device; configuration = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `configuration`: defaults to `C_NULL` (externsync)
+• `device::Device`
+• `configuration`: defaults to `C_NULL` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleasePerformanceConfigurationINTEL.html
 
 """
 release_performance_configuration_intel
@@ -5029,13 +5761,15 @@ release_performance_configuration_intel
     queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `queue::Queue`
-- `configuration::PerformanceConfigurationINTEL`
+• `queue::Queue`
+• `configuration::PerformanceConfigurationINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSetPerformanceConfigurationINTEL.html
 
 """
 queue_set_performance_configuration_intel
@@ -5044,13 +5778,15 @@ queue_set_performance_configuration_intel
     get_performance_parameter_intel(device::Device, parameter::PerformanceParameterTypeINTEL)::ResultTypes.Result{_PerformanceValueINTEL, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_TOO_MANY_OBJECTS`
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_TOO_MANY_OBJECTS`
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `parameter::PerformanceParameterTypeINTEL`
+• `device::Device`
+• `parameter::PerformanceParameterTypeINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPerformanceParameterINTEL.html
 
 """
 get_performance_parameter_intel
@@ -5059,8 +5795,10 @@ get_performance_parameter_intel
     get_device_memory_opaque_capture_address(device::Device, info::_DeviceMemoryOpaqueCaptureAddressInfo)::UInt64
 
 Arguments:
-- `device::Device`
-- `info::_DeviceMemoryOpaqueCaptureAddressInfo`
+• `device::Device`
+• `info::_DeviceMemoryOpaqueCaptureAddressInfo`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryOpaqueCaptureAddress.html
 
 """
 get_device_memory_opaque_capture_address
@@ -5069,13 +5807,15 @@ get_device_memory_opaque_capture_address
     get_pipeline_executable_properties_khr(device::Device, pipeline_info::_PipelineInfoKHR)::ResultTypes.Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `pipeline_info::_PipelineInfoKHR`
+• `device::Device`
+• `pipeline_info::_PipelineInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutablePropertiesKHR.html
 
 """
 get_pipeline_executable_properties_khr
@@ -5084,13 +5824,15 @@ get_pipeline_executable_properties_khr
     get_pipeline_executable_statistics_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::ResultTypes.Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `executable_info::_PipelineExecutableInfoKHR`
+• `device::Device`
+• `executable_info::_PipelineExecutableInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableStatisticsKHR.html
 
 """
 get_pipeline_executable_statistics_khr
@@ -5099,13 +5841,15 @@ get_pipeline_executable_statistics_khr
     get_pipeline_executable_internal_representations_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::ResultTypes.Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `executable_info::_PipelineExecutableInfoKHR`
+• `device::Device`
+• `executable_info::_PipelineExecutableInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableInternalRepresentationsKHR.html
 
 """
 get_pipeline_executable_internal_representations_khr
@@ -5114,9 +5858,11 @@ get_pipeline_executable_internal_representations_khr
     cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `line_stipple_factor::Integer`
-- `line_stipple_pattern::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `line_stipple_factor::Integer`
+• `line_stipple_pattern::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineStippleEXT.html
 
 """
 cmd_set_line_stipple_ext
@@ -5125,11 +5871,13 @@ cmd_set_line_stipple_ext
     get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceToolPropertiesEXT.html
 
 """
 get_physical_device_tool_properties_ext
@@ -5138,14 +5886,16 @@ get_physical_device_tool_properties_ext
     create_acceleration_structure_khr(device::Device, create_info::_AccelerationStructureCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{AccelerationStructureKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 Arguments:
-- `device::Device`
-- `create_info::_AccelerationStructureCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_AccelerationStructureCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureKHR.html
 
 """
 create_acceleration_structure_khr
@@ -5154,9 +5904,11 @@ create_acceleration_structure_khr
     cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
-- `build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}`
+• `command_buffer::CommandBuffer` (externsync)
+• `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
+• `build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresKHR.html
 
 """
 cmd_build_acceleration_structures_khr
@@ -5165,11 +5917,13 @@ cmd_build_acceleration_structures_khr
     cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
-- `indirect_device_addresses::AbstractArray{<:Integer}`
-- `indirect_strides::AbstractArray{<:Integer}`
-- `max_primitive_counts::AbstractArray{<:Integer}`
+• `command_buffer::CommandBuffer` (externsync)
+• `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
+• `indirect_device_addresses::AbstractArray{<:Integer}`
+• `indirect_strides::AbstractArray{<:Integer}`
+• `max_primitive_counts::AbstractArray{<:Integer}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresIndirectKHR.html
 
 """
 cmd_build_acceleration_structures_indirect_khr
@@ -5178,19 +5932,21 @@ cmd_build_acceleration_structures_indirect_khr
     build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `OPERATION_DEFERRED_KHR`
-  - `OPERATION_NOT_DEFERRED_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `OPERATION_DEFERRED_KHR`
+  ∘ `OPERATION_NOT_DEFERRED_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
-- `build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}`
-- `deferred_operation`: defaults to `C_NULL`
+• `device::Device`
+• `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
+• `build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}`
+• `deferred_operation`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBuildAccelerationStructuresKHR.html
 
 """
 build_acceleration_structures_khr
@@ -5199,8 +5955,10 @@ build_acceleration_structures_khr
     get_acceleration_structure_device_address_khr(device::Device, info::_AccelerationStructureDeviceAddressInfoKHR)::UInt64
 
 Arguments:
-- `device::Device`
-- `info::_AccelerationStructureDeviceAddressInfoKHR`
+• `device::Device`
+• `info::_AccelerationStructureDeviceAddressInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureDeviceAddressKHR.html
 
 """
 get_acceleration_structure_device_address_khr
@@ -5209,12 +5967,14 @@ get_acceleration_structure_device_address_khr
     create_deferred_operation_khr(device::Device; allocator = C_NULL)::ResultTypes.Result{DeferredOperationKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDeferredOperationKHR.html
 
 """
 create_deferred_operation_khr
@@ -5223,9 +5983,11 @@ create_deferred_operation_khr
     destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `operation::DeferredOperationKHR` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `operation::DeferredOperationKHR` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDeferredOperationKHR.html
 
 """
 destroy_deferred_operation_khr
@@ -5234,8 +5996,10 @@ destroy_deferred_operation_khr
     get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR)::UInt32
 
 Arguments:
-- `device::Device`
-- `operation::DeferredOperationKHR`
+• `device::Device`
+• `operation::DeferredOperationKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationMaxConcurrencyKHR.html
 
 """
 get_deferred_operation_max_concurrency_khr
@@ -5244,13 +6008,15 @@ get_deferred_operation_max_concurrency_khr
     get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `NOT_READY`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `NOT_READY`
 
 Arguments:
-- `device::Device`
-- `operation::DeferredOperationKHR`
+• `device::Device`
+• `operation::DeferredOperationKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationResultKHR.html
 
 """
 get_deferred_operation_result_khr
@@ -5259,17 +6025,19 @@ get_deferred_operation_result_khr
     deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Success:
-  - `SUCCESS`
-  - `THREAD_DONE_KHR`
-  - `THREAD_IDLE_KHR`
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
+• Success:
+  ∘ `SUCCESS`
+  ∘ `THREAD_DONE_KHR`
+  ∘ `THREAD_IDLE_KHR`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
 
 Arguments:
-- `device::Device`
-- `operation::DeferredOperationKHR`
+• `device::Device`
+• `operation::DeferredOperationKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeferredOperationJoinKHR.html
 
 """
 deferred_operation_join_khr
@@ -5278,8 +6046,10 @@ deferred_operation_join_khr
     cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `cull_mode`: defaults to `0`
+• `command_buffer::CommandBuffer` (externsync)
+• `cull_mode`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCullModeEXT.html
 
 """
 cmd_set_cull_mode_ext
@@ -5288,8 +6058,10 @@ cmd_set_cull_mode_ext
     cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::FrontFace)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `front_face::FrontFace`
+• `command_buffer::CommandBuffer` (externsync)
+• `front_face::FrontFace`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFrontFaceEXT.html
 
 """
 cmd_set_front_face_ext
@@ -5298,8 +6070,10 @@ cmd_set_front_face_ext
     cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::PrimitiveTopology)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `primitive_topology::PrimitiveTopology`
+• `command_buffer::CommandBuffer` (externsync)
+• `primitive_topology::PrimitiveTopology`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveTopologyEXT.html
 
 """
 cmd_set_primitive_topology_ext
@@ -5308,8 +6082,10 @@ cmd_set_primitive_topology_ext
     cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `viewports::AbstractArray{<:_Viewport}`
+• `command_buffer::CommandBuffer` (externsync)
+• `viewports::AbstractArray{<:_Viewport}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWithCountEXT.html
 
 """
 cmd_set_viewport_with_count_ext
@@ -5318,8 +6094,10 @@ cmd_set_viewport_with_count_ext
     cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `scissors::AbstractArray{<:_Rect2D}`
+• `command_buffer::CommandBuffer` (externsync)
+• `scissors::AbstractArray{<:_Rect2D}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissorWithCountEXT.html
 
 """
 cmd_set_scissor_with_count_ext
@@ -5328,11 +6106,13 @@ cmd_set_scissor_with_count_ext
     cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `buffers::AbstractArray{<:Buffer}`
-- `offsets::AbstractArray{<:Integer}`
-- `sizes`: defaults to `C_NULL`
-- `strides`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer` (externsync)
+• `buffers::AbstractArray{<:Buffer}`
+• `offsets::AbstractArray{<:Integer}`
+• `sizes`: defaults to `C_NULL`
+• `strides`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers2EXT.html
 
 """
 cmd_bind_vertex_buffers_2_ext
@@ -5341,8 +6121,10 @@ cmd_bind_vertex_buffers_2_ext
     cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `depth_test_enable::Bool`
+• `command_buffer::CommandBuffer` (externsync)
+• `depth_test_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthTestEnableEXT.html
 
 """
 cmd_set_depth_test_enable_ext
@@ -5351,8 +6133,10 @@ cmd_set_depth_test_enable_ext
     cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `depth_write_enable::Bool`
+• `command_buffer::CommandBuffer` (externsync)
+• `depth_write_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthWriteEnableEXT.html
 
 """
 cmd_set_depth_write_enable_ext
@@ -5361,8 +6145,10 @@ cmd_set_depth_write_enable_ext
     cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::CompareOp)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `depth_compare_op::CompareOp`
+• `command_buffer::CommandBuffer` (externsync)
+• `depth_compare_op::CompareOp`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthCompareOpEXT.html
 
 """
 cmd_set_depth_compare_op_ext
@@ -5371,8 +6157,10 @@ cmd_set_depth_compare_op_ext
     cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `depth_bounds_test_enable::Bool`
+• `command_buffer::CommandBuffer` (externsync)
+• `depth_bounds_test_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBoundsTestEnableEXT.html
 
 """
 cmd_set_depth_bounds_test_enable_ext
@@ -5381,8 +6169,10 @@ cmd_set_depth_bounds_test_enable_ext
     cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `stencil_test_enable::Bool`
+• `command_buffer::CommandBuffer` (externsync)
+• `stencil_test_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilTestEnableEXT.html
 
 """
 cmd_set_stencil_test_enable_ext
@@ -5391,12 +6181,14 @@ cmd_set_stencil_test_enable_ext
     cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `face_mask::StencilFaceFlag`
-- `fail_op::StencilOp`
-- `pass_op::StencilOp`
-- `depth_fail_op::StencilOp`
-- `compare_op::CompareOp`
+• `command_buffer::CommandBuffer` (externsync)
+• `face_mask::StencilFaceFlag`
+• `fail_op::StencilOp`
+• `pass_op::StencilOp`
+• `depth_fail_op::StencilOp`
+• `compare_op::CompareOp`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilOpEXT.html
 
 """
 cmd_set_stencil_op_ext
@@ -5405,8 +6197,10 @@ cmd_set_stencil_op_ext
     cmd_set_patch_control_points_ext(command_buffer::CommandBuffer, patch_control_points::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `patch_control_points::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `patch_control_points::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPatchControlPointsEXT.html
 
 """
 cmd_set_patch_control_points_ext
@@ -5415,8 +6209,10 @@ cmd_set_patch_control_points_ext
     cmd_set_rasterizer_discard_enable_ext(command_buffer::CommandBuffer, rasterizer_discard_enable::Bool)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `rasterizer_discard_enable::Bool`
+• `command_buffer::CommandBuffer` (externsync)
+• `rasterizer_discard_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRasterizerDiscardEnableEXT.html
 
 """
 cmd_set_rasterizer_discard_enable_ext
@@ -5425,8 +6221,10 @@ cmd_set_rasterizer_discard_enable_ext
     cmd_set_depth_bias_enable_ext(command_buffer::CommandBuffer, depth_bias_enable::Bool)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `depth_bias_enable::Bool`
+• `command_buffer::CommandBuffer` (externsync)
+• `depth_bias_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBiasEnableEXT.html
 
 """
 cmd_set_depth_bias_enable_ext
@@ -5435,8 +6233,10 @@ cmd_set_depth_bias_enable_ext
     cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::LogicOp)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `logic_op::LogicOp`
+• `command_buffer::CommandBuffer` (externsync)
+• `logic_op::LogicOp`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLogicOpEXT.html
 
 """
 cmd_set_logic_op_ext
@@ -5445,8 +6245,10 @@ cmd_set_logic_op_ext
     cmd_set_primitive_restart_enable_ext(command_buffer::CommandBuffer, primitive_restart_enable::Bool)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `primitive_restart_enable::Bool`
+• `command_buffer::CommandBuffer` (externsync)
+• `primitive_restart_enable::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveRestartEnableEXT.html
 
 """
 cmd_set_primitive_restart_enable_ext
@@ -5455,13 +6257,15 @@ cmd_set_primitive_restart_enable_ext
     create_private_data_slot_ext(device::Device, create_info::_PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{PrivateDataSlotEXT, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `create_info::_PrivateDataSlotCreateInfoEXT`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_PrivateDataSlotCreateInfoEXT`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePrivateDataSlotEXT.html
 
 """
 create_private_data_slot_ext
@@ -5470,9 +6274,11 @@ create_private_data_slot_ext
     destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `private_data_slot::PrivateDataSlotEXT` (externsync)
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `private_data_slot::PrivateDataSlotEXT` (externsync)
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPrivateDataSlotEXT.html
 
 """
 destroy_private_data_slot_ext
@@ -5481,15 +6287,17 @@ destroy_private_data_slot_ext
     set_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `device::Device`
-- `object_type::ObjectType`
-- `object_handle::Integer`
-- `private_data_slot::PrivateDataSlotEXT`
-- `data::Integer`
+• `device::Device`
+• `object_type::ObjectType`
+• `object_handle::Integer`
+• `private_data_slot::PrivateDataSlotEXT`
+• `data::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetPrivateDataEXT.html
 
 """
 set_private_data_ext
@@ -5498,10 +6306,12 @@ set_private_data_ext
     get_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)::UInt64
 
 Arguments:
-- `device::Device`
-- `object_type::ObjectType`
-- `object_handle::Integer`
-- `private_data_slot::PrivateDataSlotEXT`
+• `device::Device`
+• `object_type::ObjectType`
+• `object_handle::Integer`
+• `private_data_slot::PrivateDataSlotEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPrivateDataEXT.html
 
 """
 get_private_data_ext
@@ -5510,8 +6320,10 @@ get_private_data_ext
     cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::_CopyBufferInfo2KHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `copy_buffer_info::_CopyBufferInfo2KHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `copy_buffer_info::_CopyBufferInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer2KHR.html
 
 """
 cmd_copy_buffer_2_khr
@@ -5520,8 +6332,10 @@ cmd_copy_buffer_2_khr
     cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::_CopyImageInfo2KHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `copy_image_info::_CopyImageInfo2KHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `copy_image_info::_CopyImageInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage2KHR.html
 
 """
 cmd_copy_image_2_khr
@@ -5530,8 +6344,10 @@ cmd_copy_image_2_khr
     cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::_BlitImageInfo2KHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `blit_image_info::_BlitImageInfo2KHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `blit_image_info::_BlitImageInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage2KHR.html
 
 """
 cmd_blit_image_2_khr
@@ -5540,8 +6356,10 @@ cmd_blit_image_2_khr
     cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage2KHR.html
 
 """
 cmd_copy_buffer_to_image_2_khr
@@ -5550,8 +6368,10 @@ cmd_copy_buffer_to_image_2_khr
     cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer2KHR.html
 
 """
 cmd_copy_image_to_buffer_2_khr
@@ -5560,8 +6380,10 @@ cmd_copy_image_to_buffer_2_khr
     cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::_ResolveImageInfo2KHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `resolve_image_info::_ResolveImageInfo2KHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `resolve_image_info::_ResolveImageInfo2KHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage2KHR.html
 
 """
 cmd_resolve_image_2_khr
@@ -5570,9 +6392,11 @@ cmd_resolve_image_2_khr
     cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `fragment_size::_Extent2D`
-- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
+• `command_buffer::CommandBuffer` (externsync)
+• `fragment_size::_Extent2D`
+• `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateKHR.html
 
 """
 cmd_set_fragment_shading_rate_khr
@@ -5581,11 +6405,13 @@ cmd_set_fragment_shading_rate_khr
     get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{PhysicalDeviceFragmentShadingRateKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
 
 Arguments:
-- `physical_device::PhysicalDevice`
+• `physical_device::PhysicalDevice`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFragmentShadingRatesKHR.html
 
 """
 get_physical_device_fragment_shading_rates_khr
@@ -5594,9 +6420,11 @@ get_physical_device_fragment_shading_rates_khr
     cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `shading_rate::FragmentShadingRateNV`
-- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
+• `command_buffer::CommandBuffer` (externsync)
+• `shading_rate::FragmentShadingRateNV`
+• `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateEnumNV.html
 
 """
 cmd_set_fragment_shading_rate_enum_nv
@@ -5605,10 +6433,12 @@ cmd_set_fragment_shading_rate_enum_nv
     get_acceleration_structure_build_sizes_khr(device::Device, build_type::AccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::_AccelerationStructureBuildSizesInfoKHR
 
 Arguments:
-- `device::Device`
-- `build_type::AccelerationStructureBuildTypeKHR`
-- `build_info::_AccelerationStructureBuildGeometryInfoKHR`
-- `max_primitive_counts`: defaults to `C_NULL`
+• `device::Device`
+• `build_type::AccelerationStructureBuildTypeKHR`
+• `build_info::_AccelerationStructureBuildGeometryInfoKHR`
+• `max_primitive_counts`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureBuildSizesKHR.html
 
 """
 get_acceleration_structure_build_sizes_khr
@@ -5617,9 +6447,11 @@ get_acceleration_structure_build_sizes_khr
     cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}`
-- `vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT}`
+• `command_buffer::CommandBuffer` (externsync)
+• `vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}`
+• `vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetVertexInputEXT.html
 
 """
 cmd_set_vertex_input_ext
@@ -5628,8 +6460,10 @@ cmd_set_vertex_input_ext
     cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray{<:Bool})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `color_write_enables::AbstractArray{<:Bool}`
+• `command_buffer::CommandBuffer` (externsync)
+• `color_write_enables::AbstractArray{<:Bool}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetColorWriteEnableEXT.html
 
 """
 cmd_set_color_write_enable_ext
@@ -5638,9 +6472,11 @@ cmd_set_color_write_enable_ext
     cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::_DependencyInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `event::Event`
-- `dependency_info::_DependencyInfoKHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `event::Event`
+• `dependency_info::_DependencyInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent2KHR.html
 
 """
 cmd_set_event_2_khr
@@ -5649,9 +6485,11 @@ cmd_set_event_2_khr
     cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `event::Event`
-- `stage_mask::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `event::Event`
+• `stage_mask::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent2KHR.html
 
 """
 cmd_reset_event_2_khr
@@ -5660,9 +6498,11 @@ cmd_reset_event_2_khr
     cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `events::AbstractArray{<:Event}`
-- `dependency_infos::AbstractArray{<:_DependencyInfoKHR}`
+• `command_buffer::CommandBuffer` (externsync)
+• `events::AbstractArray{<:Event}`
+• `dependency_infos::AbstractArray{<:_DependencyInfoKHR}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents2KHR.html
 
 """
 cmd_wait_events_2_khr
@@ -5671,8 +6511,10 @@ cmd_wait_events_2_khr
     cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `dependency_info::_DependencyInfoKHR`
+• `command_buffer::CommandBuffer` (externsync)
+• `dependency_info::_DependencyInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier2KHR.html
 
 """
 cmd_pipeline_barrier_2_khr
@@ -5681,15 +6523,17 @@ cmd_pipeline_barrier_2_khr
     queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:_SubmitInfo2KHR}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_DEVICE_LOST`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_DEVICE_LOST`
 
 Arguments:
-- `queue::Queue` (externsync)
-- `submits::AbstractArray{<:_SubmitInfo2KHR}`
-- `fence`: defaults to `C_NULL` (externsync)
+• `queue::Queue` (externsync)
+• `submits::AbstractArray{<:_SubmitInfo2KHR}`
+• `fence`: defaults to `C_NULL` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit2KHR.html
 
 """
 queue_submit_2_khr
@@ -5698,10 +6542,12 @@ queue_submit_2_khr
     cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `stage::Integer`
-- `query_pool::QueryPool`
-- `query::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `stage::Integer`
+• `query_pool::QueryPool`
+• `query::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp2KHR.html
 
 """
 cmd_write_timestamp_2_khr
@@ -5710,11 +6556,13 @@ cmd_write_timestamp_2_khr
     cmd_write_buffer_marker_2_amd(command_buffer::CommandBuffer, stage::Integer, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer` (externsync)
-- `stage::Integer`
-- `dst_buffer::Buffer`
-- `dst_offset::Integer`
-- `marker::Integer`
+• `command_buffer::CommandBuffer` (externsync)
+• `stage::Integer`
+• `dst_buffer::Buffer`
+• `dst_offset::Integer`
+• `marker::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarker2AMD.html
 
 """
 cmd_write_buffer_marker_2_amd
@@ -5723,7 +6571,9 @@ cmd_write_buffer_marker_2_amd
     get_queue_checkpoint_data_2_nv(queue::Queue)::Vector{CheckpointData2NV}
 
 Arguments:
-- `queue::Queue`
+• `queue::Queue`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointData2NV.html
 
 """
 get_queue_checkpoint_data_2_nv
@@ -5732,15 +6582,17 @@ get_queue_checkpoint_data_2_nv
     get_physical_device_video_capabilities_khr(physical_device::PhysicalDevice, video_profile::_VideoProfileKHR)::ResultTypes.Result{VideoCapabilitiesKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_EXTENSION_NOT_PRESENT`
-  - `ERROR_INITIALIZATION_FAILED`
-  - `ERROR_FEATURE_NOT_PRESENT`
-  - `ERROR_FORMAT_NOT_SUPPORTED`
+• Error:
+  ∘ `ERROR_EXTENSION_NOT_PRESENT`
+  ∘ `ERROR_INITIALIZATION_FAILED`
+  ∘ `ERROR_FEATURE_NOT_PRESENT`
+  ∘ `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `video_profile::_VideoProfileKHR`
+• `physical_device::PhysicalDevice`
+• `video_profile::_VideoProfileKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceVideoCapabilitiesKHR.html
 
 """
 get_physical_device_video_capabilities_khr
@@ -5749,14 +6601,16 @@ get_physical_device_video_capabilities_khr
     get_physical_device_video_format_properties_khr(physical_device::PhysicalDevice, video_format_info::PhysicalDeviceVideoFormatInfoKHR)::ResultTypes.Result{Vector{VideoFormatPropertiesKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_EXTENSION_NOT_PRESENT`
-  - `ERROR_INITIALIZATION_FAILED`
-  - `ERROR_FORMAT_NOT_SUPPORTED`
+• Error:
+  ∘ `ERROR_EXTENSION_NOT_PRESENT`
+  ∘ `ERROR_INITIALIZATION_FAILED`
+  ∘ `ERROR_FORMAT_NOT_SUPPORTED`
 
 Arguments:
-- `physical_device::PhysicalDevice`
-- `video_format_info::PhysicalDeviceVideoFormatInfoKHR`
+• `physical_device::PhysicalDevice`
+• `video_format_info::PhysicalDeviceVideoFormatInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceVideoFormatPropertiesKHR.html
 
 """
 get_physical_device_video_format_properties_khr
@@ -5765,17 +6619,19 @@ get_physical_device_video_format_properties_khr
     create_video_session_khr(device::Device, create_info::_VideoSessionCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{VideoSessionKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
-  - `ERROR_INCOMPATIBLE_DRIVER`
-  - `ERROR_FEATURE_NOT_PRESENT`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
+  ∘ `ERROR_INCOMPATIBLE_DRIVER`
+  ∘ `ERROR_FEATURE_NOT_PRESENT`
 
 Arguments:
-- `device::Device`
-- `create_info::_VideoSessionCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_VideoSessionCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateVideoSessionKHR.html
 
 """
 create_video_session_khr
@@ -5784,9 +6640,11 @@ create_video_session_khr
     destroy_video_session_khr(device::Device, video_session::VideoSessionKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `video_session::VideoSessionKHR`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `video_session::VideoSessionKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyVideoSessionKHR.html
 
 """
 destroy_video_session_khr
@@ -5795,15 +6653,17 @@ destroy_video_session_khr
     create_video_session_parameters_khr(device::Device, create_info::_VideoSessionParametersCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{VideoSessionParametersKHR, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_TOO_MANY_OBJECTS`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_TOO_MANY_OBJECTS`
 
 Arguments:
-- `device::Device`
-- `create_info::_VideoSessionParametersCreateInfoKHR`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `create_info::_VideoSessionParametersCreateInfoKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateVideoSessionParametersKHR.html
 
 """
 create_video_session_parameters_khr
@@ -5812,14 +6672,16 @@ create_video_session_parameters_khr
     update_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR, update_info::_VideoSessionParametersUpdateInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_INITIALIZATION_FAILED`
-  - `ERROR_TOO_MANY_OBJECTS`
+• Error:
+  ∘ `ERROR_INITIALIZATION_FAILED`
+  ∘ `ERROR_TOO_MANY_OBJECTS`
 
 Arguments:
-- `device::Device`
-- `video_session_parameters::VideoSessionParametersKHR`
-- `update_info::_VideoSessionParametersUpdateInfoKHR`
+• `device::Device`
+• `video_session_parameters::VideoSessionParametersKHR`
+• `update_info::_VideoSessionParametersUpdateInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateVideoSessionParametersKHR.html
 
 """
 update_video_session_parameters_khr
@@ -5828,9 +6690,11 @@ update_video_session_parameters_khr
     destroy_video_session_parameters_khr(device::Device, video_session_parameters::VideoSessionParametersKHR; allocator = C_NULL)::Cvoid
 
 Arguments:
-- `device::Device`
-- `video_session_parameters::VideoSessionParametersKHR`
-- `allocator`: defaults to `C_NULL`
+• `device::Device`
+• `video_session_parameters::VideoSessionParametersKHR`
+• `allocator`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyVideoSessionParametersKHR.html
 
 """
 destroy_video_session_parameters_khr
@@ -5839,12 +6703,14 @@ destroy_video_session_parameters_khr
     get_video_session_memory_requirements_khr(device::Device, video_session::VideoSessionKHR)::ResultTypes.Result{Vector{_VideoGetMemoryPropertiesKHR}, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `device::Device`
-- `video_session::VideoSessionKHR`
+• `device::Device`
+• `video_session::VideoSessionKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetVideoSessionMemoryRequirementsKHR.html
 
 """
 get_video_session_memory_requirements_khr
@@ -5853,15 +6719,17 @@ get_video_session_memory_requirements_khr
     bind_video_session_memory_khr(device::Device, video_session::VideoSessionKHR, video_session_bind_memories::AbstractArray{<:_VideoBindMemoryKHR})::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
-- Error:
-  - `ERROR_OUT_OF_HOST_MEMORY`
-  - `ERROR_OUT_OF_DEVICE_MEMORY`
-  - `ERROR_INITIALIZATION_FAILED`
+• Error:
+  ∘ `ERROR_OUT_OF_HOST_MEMORY`
+  ∘ `ERROR_OUT_OF_DEVICE_MEMORY`
+  ∘ `ERROR_INITIALIZATION_FAILED`
 
 Arguments:
-- `device::Device`
-- `video_session::VideoSessionKHR`
-- `video_session_bind_memories::AbstractArray{<:_VideoBindMemoryKHR}`
+• `device::Device`
+• `video_session::VideoSessionKHR`
+• `video_session_bind_memories::AbstractArray{<:_VideoBindMemoryKHR}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindVideoSessionMemoryKHR.html
 
 """
 bind_video_session_memory_khr
@@ -5870,8 +6738,10 @@ bind_video_session_memory_khr
     cmd_decode_video_khr(command_buffer::CommandBuffer, frame_info::_VideoDecodeInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer`
-- `frame_info::_VideoDecodeInfoKHR`
+• `command_buffer::CommandBuffer`
+• `frame_info::_VideoDecodeInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDecodeVideoKHR.html
 
 """
 cmd_decode_video_khr
@@ -5880,8 +6750,10 @@ cmd_decode_video_khr
     cmd_begin_video_coding_khr(command_buffer::CommandBuffer, begin_info::_VideoBeginCodingInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer`
-- `begin_info::_VideoBeginCodingInfoKHR`
+• `command_buffer::CommandBuffer`
+• `begin_info::_VideoBeginCodingInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginVideoCodingKHR.html
 
 """
 cmd_begin_video_coding_khr
@@ -5890,8 +6762,10 @@ cmd_begin_video_coding_khr
     cmd_control_video_coding_khr(command_buffer::CommandBuffer, coding_control_info::_VideoCodingControlInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer`
-- `coding_control_info::_VideoCodingControlInfoKHR`
+• `command_buffer::CommandBuffer`
+• `coding_control_info::_VideoCodingControlInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdControlVideoCodingKHR.html
 
 """
 cmd_control_video_coding_khr
@@ -5900,8 +6774,10 @@ cmd_control_video_coding_khr
     cmd_end_video_coding_khr(command_buffer::CommandBuffer, end_coding_info::_VideoEndCodingInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer`
-- `end_coding_info::_VideoEndCodingInfoKHR`
+• `command_buffer::CommandBuffer`
+• `end_coding_info::_VideoEndCodingInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndVideoCodingKHR.html
 
 """
 cmd_end_video_coding_khr
@@ -5910,8 +6786,10 @@ cmd_end_video_coding_khr
     cmd_encode_video_khr(command_buffer::CommandBuffer, encode_info::_VideoEncodeInfoKHR)::Cvoid
 
 Arguments:
-- `command_buffer::CommandBuffer`
-- `encode_info::_VideoEncodeInfoKHR`
+• `command_buffer::CommandBuffer`
+• `encode_info::_VideoEncodeInfoKHR`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEncodeVideoKHR.html
 
 """
 cmd_encode_video_khr
@@ -5920,7 +6798,9 @@ cmd_encode_video_khr
     _BaseOutStructure(; next = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseOutStructure.html
 
 """
 _BaseOutStructure
@@ -5929,7 +6809,9 @@ _BaseOutStructure
     _BaseInStructure(; next = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseInStructure.html
 
 """
 _BaseInStructure
@@ -5938,8 +6820,10 @@ _BaseInStructure
     _Offset2D(x::Integer, y::Integer)
 
 Arguments:
-- `x::Integer`
-- `y::Integer`
+• `x::Integer`
+• `y::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset2D.html
 
 """
 _Offset2D
@@ -5948,9 +6832,11 @@ _Offset2D
     _Offset3D(x::Integer, y::Integer, z::Integer)
 
 Arguments:
-- `x::Integer`
-- `y::Integer`
-- `z::Integer`
+• `x::Integer`
+• `y::Integer`
+• `z::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset3D.html
 
 """
 _Offset3D
@@ -5959,8 +6845,10 @@ _Offset3D
     _Extent2D(width::Integer, height::Integer)
 
 Arguments:
-- `width::Integer`
-- `height::Integer`
+• `width::Integer`
+• `height::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html
 
 """
 _Extent2D
@@ -5969,9 +6857,11 @@ _Extent2D
     _Extent3D(width::Integer, height::Integer, depth::Integer)
 
 Arguments:
-- `width::Integer`
-- `height::Integer`
-- `depth::Integer`
+• `width::Integer`
+• `height::Integer`
+• `depth::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent3D.html
 
 """
 _Extent3D
@@ -5980,12 +6870,14 @@ _Extent3D
     _Viewport(x::Real, y::Real, width::Real, height::Real, min_depth::Real, max_depth::Real)
 
 Arguments:
-- `x::Real`
-- `y::Real`
-- `width::Real`
-- `height::Real`
-- `min_depth::Real`
-- `max_depth::Real`
+• `x::Real`
+• `y::Real`
+• `width::Real`
+• `height::Real`
+• `min_depth::Real`
+• `max_depth::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewport.html
 
 """
 _Viewport
@@ -5994,8 +6886,10 @@ _Viewport
     _Rect2D(offset::_Offset2D, extent::_Extent2D)
 
 Arguments:
-- `offset::_Offset2D`
-- `extent::_Extent2D`
+• `offset::_Offset2D`
+• `extent::_Extent2D`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRect2D.html
 
 """
 _Rect2D
@@ -6004,9 +6898,11 @@ _Rect2D
     _ClearRect(rect::_Rect2D, base_array_layer::Integer, layer_count::Integer)
 
 Arguments:
-- `rect::_Rect2D`
-- `base_array_layer::Integer`
-- `layer_count::Integer`
+• `rect::_Rect2D`
+• `base_array_layer::Integer`
+• `layer_count::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearRect.html
 
 """
 _ClearRect
@@ -6015,10 +6911,12 @@ _ClearRect
     _ComponentMapping(r::ComponentSwizzle, g::ComponentSwizzle, b::ComponentSwizzle, a::ComponentSwizzle)
 
 Arguments:
-- `r::ComponentSwizzle`
-- `g::ComponentSwizzle`
-- `b::ComponentSwizzle`
-- `a::ComponentSwizzle`
+• `r::ComponentSwizzle`
+• `g::ComponentSwizzle`
+• `b::ComponentSwizzle`
+• `a::ComponentSwizzle`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComponentMapping.html
 
 """
 _ComponentMapping
@@ -6027,12 +6925,14 @@ _ComponentMapping
     _ApplicationInfo(application_version::VersionNumber, engine_version::VersionNumber, api_version::VersionNumber; next = C_NULL, application_name = C_NULL, engine_name = C_NULL)
 
 Arguments:
-- `application_version::VersionNumber`
-- `engine_version::VersionNumber`
-- `api_version::VersionNumber`
-- `next`: defaults to `C_NULL`
-- `application_name`: defaults to `C_NULL`
-- `engine_name`: defaults to `C_NULL`
+• `application_version::VersionNumber`
+• `engine_version::VersionNumber`
+• `api_version::VersionNumber`
+• `next`: defaults to `C_NULL`
+• `application_name`: defaults to `C_NULL`
+• `engine_name`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkApplicationInfo.html
 
 """
 _ApplicationInfo
@@ -6041,12 +6941,14 @@ _ApplicationInfo
     _AllocationCallbacks(pfn_allocation::FunctionPtr, pfn_reallocation::FunctionPtr, pfn_free::FunctionPtr; user_data = C_NULL, pfn_internal_allocation = 0, pfn_internal_free = 0)
 
 Arguments:
-- `pfn_allocation::FunctionPtr`
-- `pfn_reallocation::FunctionPtr`
-- `pfn_free::FunctionPtr`
-- `user_data`: defaults to `C_NULL`
-- `pfn_internal_allocation`: defaults to `0`
-- `pfn_internal_free`: defaults to `0`
+• `pfn_allocation::FunctionPtr`
+• `pfn_reallocation::FunctionPtr`
+• `pfn_free::FunctionPtr`
+• `user_data`: defaults to `C_NULL`
+• `pfn_internal_allocation`: defaults to `0`
+• `pfn_internal_free`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAllocationCallbacks.html
 
 """
 _AllocationCallbacks
@@ -6055,10 +6957,12 @@ _AllocationCallbacks
     _DeviceQueueCreateInfo(queue_family_index::Integer, queue_priorities::AbstractArray{<:Real}; next = C_NULL, flags = 0)
 
 Arguments:
-- `queue_family_index::Integer`
-- `queue_priorities::AbstractArray{<:Real}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `queue_family_index::Integer`
+• `queue_priorities::AbstractArray{<:Real}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueCreateInfo.html
 
 """
 _DeviceQueueCreateInfo
@@ -6067,12 +6971,14 @@ _DeviceQueueCreateInfo
     _DeviceCreateInfo(queue_create_infos::AbstractArray{<:_DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, enabled_features = C_NULL)
 
 Arguments:
-- `queue_create_infos::AbstractArray{<:_DeviceQueueCreateInfo}`
-- `enabled_layer_names::AbstractArray{<:AbstractString}`
-- `enabled_extension_names::AbstractArray{<:AbstractString}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `enabled_features`: defaults to `C_NULL`
+• `queue_create_infos::AbstractArray{<:_DeviceQueueCreateInfo}`
+• `enabled_layer_names::AbstractArray{<:AbstractString}`
+• `enabled_extension_names::AbstractArray{<:AbstractString}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `enabled_features`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceCreateInfo.html
 
 """
 _DeviceCreateInfo
@@ -6081,11 +6987,13 @@ _DeviceCreateInfo
     _InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
 
 Arguments:
-- `enabled_layer_names::AbstractArray{<:AbstractString}`
-- `enabled_extension_names::AbstractArray{<:AbstractString}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `application_info`: defaults to `C_NULL`
+• `enabled_layer_names::AbstractArray{<:AbstractString}`
+• `enabled_extension_names::AbstractArray{<:AbstractString}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `application_info`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
 
 """
 _InstanceCreateInfo
@@ -6094,9 +7002,11 @@ _InstanceCreateInfo
     _MemoryAllocateInfo(allocation_size::Integer, memory_type_index::Integer; next = C_NULL)
 
 Arguments:
-- `allocation_size::Integer`
-- `memory_type_index::Integer`
-- `next`: defaults to `C_NULL`
+• `allocation_size::Integer`
+• `memory_type_index::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateInfo.html
 
 """
 _MemoryAllocateInfo
@@ -6105,10 +7015,12 @@ _MemoryAllocateInfo
     _MappedMemoryRange(memory::DeviceMemory, offset::Integer, size::Integer; next = C_NULL)
 
 Arguments:
-- `memory::DeviceMemory`
-- `offset::Integer`
-- `size::Integer`
-- `next`: defaults to `C_NULL`
+• `memory::DeviceMemory`
+• `offset::Integer`
+• `size::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMappedMemoryRange.html
 
 """
 _MappedMemoryRange
@@ -6117,9 +7029,11 @@ _MappedMemoryRange
     _DescriptorBufferInfo(offset::Integer, range::Integer; buffer = C_NULL)
 
 Arguments:
-- `offset::Integer`
-- `range::Integer`
-- `buffer`: defaults to `C_NULL`
+• `offset::Integer`
+• `range::Integer`
+• `buffer`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorBufferInfo.html
 
 """
 _DescriptorBufferInfo
@@ -6128,9 +7042,11 @@ _DescriptorBufferInfo
     _DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::ImageLayout)
 
 Arguments:
-- `sampler::Sampler`
-- `image_view::ImageView`
-- `image_layout::ImageLayout`
+• `sampler::Sampler`
+• `image_view::ImageView`
+• `image_layout::ImageLayout`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorImageInfo.html
 
 """
 _DescriptorImageInfo
@@ -6139,15 +7055,17 @@ _DescriptorImageInfo
     _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray{<:_DescriptorImageInfo}, buffer_info::AbstractArray{<:_DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
 
 Arguments:
-- `dst_set::DescriptorSet`
-- `dst_binding::Integer`
-- `dst_array_element::Integer`
-- `descriptor_type::DescriptorType`
-- `image_info::AbstractArray{<:_DescriptorImageInfo}`
-- `buffer_info::AbstractArray{<:_DescriptorBufferInfo}`
-- `texel_buffer_view::AbstractArray{<:BufferView}`
-- `next`: defaults to `C_NULL`
-- `descriptor_count`: defaults to `max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view))`
+• `dst_set::DescriptorSet`
+• `dst_binding::Integer`
+• `dst_array_element::Integer`
+• `descriptor_type::DescriptorType`
+• `image_info::AbstractArray{<:_DescriptorImageInfo}`
+• `buffer_info::AbstractArray{<:_DescriptorBufferInfo}`
+• `texel_buffer_view::AbstractArray{<:BufferView}`
+• `next`: defaults to `C_NULL`
+• `descriptor_count`: defaults to `max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view))`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSet.html
 
 """
 _WriteDescriptorSet
@@ -6156,14 +7074,16 @@ _WriteDescriptorSet
     _CopyDescriptorSet(src_set::DescriptorSet, src_binding::Integer, src_array_element::Integer, dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer; next = C_NULL)
 
 Arguments:
-- `src_set::DescriptorSet`
-- `src_binding::Integer`
-- `src_array_element::Integer`
-- `dst_set::DescriptorSet`
-- `dst_binding::Integer`
-- `dst_array_element::Integer`
-- `descriptor_count::Integer`
-- `next`: defaults to `C_NULL`
+• `src_set::DescriptorSet`
+• `src_binding::Integer`
+• `src_array_element::Integer`
+• `dst_set::DescriptorSet`
+• `dst_binding::Integer`
+• `dst_array_element::Integer`
+• `descriptor_count::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyDescriptorSet.html
 
 """
 _CopyDescriptorSet
@@ -6172,12 +7092,14 @@ _CopyDescriptorSet
     _BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `size::Integer`
-- `usage::BufferUsageFlag`
-- `sharing_mode::SharingMode`
-- `queue_family_indices::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `size::Integer`
+• `usage::BufferUsageFlag`
+• `sharing_mode::SharingMode`
+• `queue_family_indices::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCreateInfo.html
 
 """
 _BufferCreateInfo
@@ -6186,12 +7108,14 @@ _BufferCreateInfo
     _BufferViewCreateInfo(buffer::Buffer, format::Format, offset::Integer, range::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `buffer::Buffer`
-- `format::Format`
-- `offset::Integer`
-- `range::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `buffer::Buffer`
+• `format::Format`
+• `offset::Integer`
+• `range::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferViewCreateInfo.html
 
 """
 _BufferViewCreateInfo
@@ -6200,9 +7124,11 @@ _BufferViewCreateInfo
     _ImageSubresource(aspect_mask::ImageAspectFlag, mip_level::Integer, array_layer::Integer)
 
 Arguments:
-- `aspect_mask::ImageAspectFlag`
-- `mip_level::Integer`
-- `array_layer::Integer`
+• `aspect_mask::ImageAspectFlag`
+• `mip_level::Integer`
+• `array_layer::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresource.html
 
 """
 _ImageSubresource
@@ -6211,10 +7137,12 @@ _ImageSubresource
     _ImageSubresourceLayers(aspect_mask::ImageAspectFlag, mip_level::Integer, base_array_layer::Integer, layer_count::Integer)
 
 Arguments:
-- `aspect_mask::ImageAspectFlag`
-- `mip_level::Integer`
-- `base_array_layer::Integer`
-- `layer_count::Integer`
+• `aspect_mask::ImageAspectFlag`
+• `mip_level::Integer`
+• `base_array_layer::Integer`
+• `layer_count::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceLayers.html
 
 """
 _ImageSubresourceLayers
@@ -6223,11 +7151,13 @@ _ImageSubresourceLayers
     _ImageSubresourceRange(aspect_mask::ImageAspectFlag, base_mip_level::Integer, level_count::Integer, base_array_layer::Integer, layer_count::Integer)
 
 Arguments:
-- `aspect_mask::ImageAspectFlag`
-- `base_mip_level::Integer`
-- `level_count::Integer`
-- `base_array_layer::Integer`
-- `layer_count::Integer`
+• `aspect_mask::ImageAspectFlag`
+• `base_mip_level::Integer`
+• `level_count::Integer`
+• `base_array_layer::Integer`
+• `layer_count::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceRange.html
 
 """
 _ImageSubresourceRange
@@ -6236,9 +7166,11 @@ _ImageSubresourceRange
     _MemoryBarrier(; next = C_NULL, src_access_mask = 0, dst_access_mask = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `src_access_mask`: defaults to `0`
-- `dst_access_mask`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `src_access_mask`: defaults to `0`
+• `dst_access_mask`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier.html
 
 """
 _MemoryBarrier
@@ -6247,14 +7179,16 @@ _MemoryBarrier
     _BufferMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL)
 
 Arguments:
-- `src_access_mask::AccessFlag`
-- `dst_access_mask::AccessFlag`
-- `src_queue_family_index::Integer`
-- `dst_queue_family_index::Integer`
-- `buffer::Buffer`
-- `offset::Integer`
-- `size::Integer`
-- `next`: defaults to `C_NULL`
+• `src_access_mask::AccessFlag`
+• `dst_access_mask::AccessFlag`
+• `src_queue_family_index::Integer`
+• `dst_queue_family_index::Integer`
+• `buffer::Buffer`
+• `offset::Integer`
+• `size::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier.html
 
 """
 _BufferMemoryBarrier
@@ -6263,15 +7197,17 @@ _BufferMemoryBarrier
     _ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, old_layout::ImageLayout, new_layout::ImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL)
 
 Arguments:
-- `src_access_mask::AccessFlag`
-- `dst_access_mask::AccessFlag`
-- `old_layout::ImageLayout`
-- `new_layout::ImageLayout`
-- `src_queue_family_index::Integer`
-- `dst_queue_family_index::Integer`
-- `image::Image`
-- `subresource_range::_ImageSubresourceRange`
-- `next`: defaults to `C_NULL`
+• `src_access_mask::AccessFlag`
+• `dst_access_mask::AccessFlag`
+• `old_layout::ImageLayout`
+• `new_layout::ImageLayout`
+• `src_queue_family_index::Integer`
+• `dst_queue_family_index::Integer`
+• `image::Image`
+• `subresource_range::_ImageSubresourceRange`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier.html
 
 """
 _ImageMemoryBarrier
@@ -6280,19 +7216,21 @@ _ImageMemoryBarrier
     _ImageCreateInfo(image_type::ImageType, format::Format, extent::_Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
-- `image_type::ImageType`
-- `format::Format`
-- `extent::_Extent3D`
-- `mip_levels::Integer`
-- `array_layers::Integer`
-- `samples::SampleCountFlag`
-- `tiling::ImageTiling`
-- `usage::ImageUsageFlag`
-- `sharing_mode::SharingMode`
-- `queue_family_indices::AbstractArray{<:Integer}`
-- `initial_layout::ImageLayout`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `image_type::ImageType`
+• `format::Format`
+• `extent::_Extent3D`
+• `mip_levels::Integer`
+• `array_layers::Integer`
+• `samples::SampleCountFlag`
+• `tiling::ImageTiling`
+• `usage::ImageUsageFlag`
+• `sharing_mode::SharingMode`
+• `queue_family_indices::AbstractArray{<:Integer}`
+• `initial_layout::ImageLayout`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCreateInfo.html
 
 """
 _ImageCreateInfo
@@ -6301,13 +7239,15 @@ _ImageCreateInfo
     _ImageViewCreateInfo(image::Image, view_type::ImageViewType, format::Format, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; next = C_NULL, flags = 0)
 
 Arguments:
-- `image::Image`
-- `view_type::ImageViewType`
-- `format::Format`
-- `components::_ComponentMapping`
-- `subresource_range::_ImageSubresourceRange`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `image::Image`
+• `view_type::ImageViewType`
+• `format::Format`
+• `components::_ComponentMapping`
+• `subresource_range::_ImageSubresourceRange`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewCreateInfo.html
 
 """
 _ImageViewCreateInfo
@@ -6316,9 +7256,11 @@ _ImageViewCreateInfo
     _BufferCopy(src_offset::Integer, dst_offset::Integer, size::Integer)
 
 Arguments:
-- `src_offset::Integer`
-- `dst_offset::Integer`
-- `size::Integer`
+• `src_offset::Integer`
+• `dst_offset::Integer`
+• `size::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy.html
 
 """
 _BufferCopy
@@ -6327,11 +7269,13 @@ _BufferCopy
     _SparseMemoryBind(resource_offset::Integer, size::Integer, memory_offset::Integer; memory = C_NULL, flags = 0)
 
 Arguments:
-- `resource_offset::Integer`
-- `size::Integer`
-- `memory_offset::Integer`
-- `memory`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `resource_offset::Integer`
+• `size::Integer`
+• `memory_offset::Integer`
+• `memory`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseMemoryBind.html
 
 """
 _SparseMemoryBind
@@ -6340,12 +7284,14 @@ _SparseMemoryBind
     _SparseImageMemoryBind(subresource::_ImageSubresource, offset::_Offset3D, extent::_Extent3D, memory_offset::Integer; memory = C_NULL, flags = 0)
 
 Arguments:
-- `subresource::_ImageSubresource`
-- `offset::_Offset3D`
-- `extent::_Extent3D`
-- `memory_offset::Integer`
-- `memory`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `subresource::_ImageSubresource`
+• `offset::_Offset3D`
+• `extent::_Extent3D`
+• `memory_offset::Integer`
+• `memory`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBind.html
 
 """
 _SparseImageMemoryBind
@@ -6354,8 +7300,10 @@ _SparseImageMemoryBind
     _SparseBufferMemoryBindInfo(buffer::Buffer, binds::AbstractArray{<:_SparseMemoryBind})
 
 Arguments:
-- `buffer::Buffer`
-- `binds::AbstractArray{<:_SparseMemoryBind}`
+• `buffer::Buffer`
+• `binds::AbstractArray{<:_SparseMemoryBind}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseBufferMemoryBindInfo.html
 
 """
 _SparseBufferMemoryBindInfo
@@ -6364,8 +7312,10 @@ _SparseBufferMemoryBindInfo
     _SparseImageOpaqueMemoryBindInfo(image::Image, binds::AbstractArray{<:_SparseMemoryBind})
 
 Arguments:
-- `image::Image`
-- `binds::AbstractArray{<:_SparseMemoryBind}`
+• `image::Image`
+• `binds::AbstractArray{<:_SparseMemoryBind}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html
 
 """
 _SparseImageOpaqueMemoryBindInfo
@@ -6374,8 +7324,10 @@ _SparseImageOpaqueMemoryBindInfo
     _SparseImageMemoryBindInfo(image::Image, binds::AbstractArray{<:_SparseImageMemoryBind})
 
 Arguments:
-- `image::Image`
-- `binds::AbstractArray{<:_SparseImageMemoryBind}`
+• `image::Image`
+• `binds::AbstractArray{<:_SparseImageMemoryBind}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBindInfo.html
 
 """
 _SparseImageMemoryBindInfo
@@ -6384,12 +7336,14 @@ _SparseImageMemoryBindInfo
     _BindSparseInfo(wait_semaphores::AbstractArray{<:Semaphore}, buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}, image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}, image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
 
 Arguments:
-- `wait_semaphores::AbstractArray{<:Semaphore}`
-- `buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}`
-- `image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}`
-- `image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}`
-- `signal_semaphores::AbstractArray{<:Semaphore}`
-- `next`: defaults to `C_NULL`
+• `wait_semaphores::AbstractArray{<:Semaphore}`
+• `buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}`
+• `image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}`
+• `image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}`
+• `signal_semaphores::AbstractArray{<:Semaphore}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindSparseInfo.html
 
 """
 _BindSparseInfo
@@ -6398,11 +7352,13 @@ _BindSparseInfo
     _ImageCopy(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D)
 
 Arguments:
-- `src_subresource::_ImageSubresourceLayers`
-- `src_offset::_Offset3D`
-- `dst_subresource::_ImageSubresourceLayers`
-- `dst_offset::_Offset3D`
-- `extent::_Extent3D`
+• `src_subresource::_ImageSubresourceLayers`
+• `src_offset::_Offset3D`
+• `dst_subresource::_ImageSubresourceLayers`
+• `dst_offset::_Offset3D`
+• `extent::_Extent3D`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy.html
 
 """
 _ImageCopy
@@ -6411,10 +7367,12 @@ _ImageCopy
     _ImageBlit(src_subresource::_ImageSubresourceLayers, src_offsets::NTuple{2, _Offset3D}, dst_subresource::_ImageSubresourceLayers, dst_offsets::NTuple{2, _Offset3D})
 
 Arguments:
-- `src_subresource::_ImageSubresourceLayers`
-- `src_offsets::NTuple{2, _Offset3D}`
-- `dst_subresource::_ImageSubresourceLayers`
-- `dst_offsets::NTuple{2, _Offset3D}`
+• `src_subresource::_ImageSubresourceLayers`
+• `src_offsets::NTuple{2, _Offset3D}`
+• `dst_subresource::_ImageSubresourceLayers`
+• `dst_offsets::NTuple{2, _Offset3D}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit.html
 
 """
 _ImageBlit
@@ -6423,12 +7381,14 @@ _ImageBlit
     _BufferImageCopy(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D)
 
 Arguments:
-- `buffer_offset::Integer`
-- `buffer_row_length::Integer`
-- `buffer_image_height::Integer`
-- `image_subresource::_ImageSubresourceLayers`
-- `image_offset::_Offset3D`
-- `image_extent::_Extent3D`
+• `buffer_offset::Integer`
+• `buffer_row_length::Integer`
+• `buffer_image_height::Integer`
+• `image_subresource::_ImageSubresourceLayers`
+• `image_offset::_Offset3D`
+• `image_extent::_Extent3D`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy.html
 
 """
 _BufferImageCopy
@@ -6437,11 +7397,13 @@ _BufferImageCopy
     _ImageResolve(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D)
 
 Arguments:
-- `src_subresource::_ImageSubresourceLayers`
-- `src_offset::_Offset3D`
-- `dst_subresource::_ImageSubresourceLayers`
-- `dst_offset::_Offset3D`
-- `extent::_Extent3D`
+• `src_subresource::_ImageSubresourceLayers`
+• `src_offset::_Offset3D`
+• `dst_subresource::_ImageSubresourceLayers`
+• `dst_offset::_Offset3D`
+• `extent::_Extent3D`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve.html
 
 """
 _ImageResolve
@@ -6450,10 +7412,12 @@ _ImageResolve
     _ShaderModuleCreateInfo(code_size::Integer, code::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `code_size::Integer`
-- `code::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `code_size::Integer`
+• `code::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleCreateInfo.html
 
 """
 _ShaderModuleCreateInfo
@@ -6462,11 +7426,13 @@ _ShaderModuleCreateInfo
     _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::DescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
 
 Arguments:
-- `binding::Integer`
-- `descriptor_type::DescriptorType`
-- `stage_flags::ShaderStageFlag`
-- `descriptor_count`: defaults to `0`
-- `immutable_samplers`: defaults to `C_NULL`
+• `binding::Integer`
+• `descriptor_type::DescriptorType`
+• `stage_flags::ShaderStageFlag`
+• `descriptor_count`: defaults to `0`
+• `immutable_samplers`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBinding.html
 
 """
 _DescriptorSetLayoutBinding
@@ -6475,9 +7441,11 @@ _DescriptorSetLayoutBinding
     _DescriptorSetLayoutCreateInfo(bindings::AbstractArray{<:_DescriptorSetLayoutBinding}; next = C_NULL, flags = 0)
 
 Arguments:
-- `bindings::AbstractArray{<:_DescriptorSetLayoutBinding}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `bindings::AbstractArray{<:_DescriptorSetLayoutBinding}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutCreateInfo.html
 
 """
 _DescriptorSetLayoutCreateInfo
@@ -6486,8 +7454,10 @@ _DescriptorSetLayoutCreateInfo
     _DescriptorPoolSize(type::DescriptorType, descriptor_count::Integer)
 
 Arguments:
-- `type::DescriptorType`
-- `descriptor_count::Integer`
+• `type::DescriptorType`
+• `descriptor_count::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolSize.html
 
 """
 _DescriptorPoolSize
@@ -6496,10 +7466,12 @@ _DescriptorPoolSize
     _DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray{<:_DescriptorPoolSize}; next = C_NULL, flags = 0)
 
 Arguments:
-- `max_sets::Integer`
-- `pool_sizes::AbstractArray{<:_DescriptorPoolSize}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `max_sets::Integer`
+• `pool_sizes::AbstractArray{<:_DescriptorPoolSize}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolCreateInfo.html
 
 """
 _DescriptorPoolCreateInfo
@@ -6508,9 +7480,11 @@ _DescriptorPoolCreateInfo
     _DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray{<:DescriptorSetLayout}; next = C_NULL)
 
 Arguments:
-- `descriptor_pool::DescriptorPool`
-- `set_layouts::AbstractArray{<:DescriptorSetLayout}`
-- `next`: defaults to `C_NULL`
+• `descriptor_pool::DescriptorPool`
+• `set_layouts::AbstractArray{<:DescriptorSetLayout}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetAllocateInfo.html
 
 """
 _DescriptorSetAllocateInfo
@@ -6519,9 +7493,11 @@ _DescriptorSetAllocateInfo
     _SpecializationMapEntry(constant_id::Integer, offset::Integer, size::Integer)
 
 Arguments:
-- `constant_id::Integer`
-- `offset::Integer`
-- `size::Integer`
+• `constant_id::Integer`
+• `offset::Integer`
+• `size::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationMapEntry.html
 
 """
 _SpecializationMapEntry
@@ -6530,9 +7506,11 @@ _SpecializationMapEntry
     _SpecializationInfo(map_entries::AbstractArray{<:_SpecializationMapEntry}, data::Ptr{Cvoid}; data_size = 0)
 
 Arguments:
-- `map_entries::AbstractArray{<:_SpecializationMapEntry}`
-- `data::Ptr{Cvoid}`
-- `data_size`: defaults to `0`
+• `map_entries::AbstractArray{<:_SpecializationMapEntry}`
+• `data::Ptr{Cvoid}`
+• `data_size`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationInfo.html
 
 """
 _SpecializationInfo
@@ -6541,12 +7519,14 @@ _SpecializationInfo
     _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
 
 Arguments:
-- `stage::ShaderStageFlag`
-- `_module::ShaderModule`
-- `name::AbstractString`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `specialization_info`: defaults to `C_NULL`
+• `stage::ShaderStageFlag`
+• `_module::ShaderModule`
+• `name::AbstractString`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `specialization_info`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineShaderStageCreateInfo.html
 
 """
 _PipelineShaderStageCreateInfo
@@ -6555,12 +7535,14 @@ _PipelineShaderStageCreateInfo
     _ComputePipelineCreateInfo(stage::_PipelineShaderStageCreateInfo, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stage::_PipelineShaderStageCreateInfo`
-- `layout::PipelineLayout`
-- `base_pipeline_index::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `base_pipeline_handle`: defaults to `C_NULL`
+• `stage::_PipelineShaderStageCreateInfo`
+• `layout::PipelineLayout`
+• `base_pipeline_index::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `base_pipeline_handle`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComputePipelineCreateInfo.html
 
 """
 _ComputePipelineCreateInfo
@@ -6569,9 +7551,11 @@ _ComputePipelineCreateInfo
     _VertexInputBindingDescription(binding::Integer, stride::Integer, input_rate::VertexInputRate)
 
 Arguments:
-- `binding::Integer`
-- `stride::Integer`
-- `input_rate::VertexInputRate`
+• `binding::Integer`
+• `stride::Integer`
+• `input_rate::VertexInputRate`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription.html
 
 """
 _VertexInputBindingDescription
@@ -6580,10 +7564,12 @@ _VertexInputBindingDescription
     _VertexInputAttributeDescription(location::Integer, binding::Integer, format::Format, offset::Integer)
 
 Arguments:
-- `location::Integer`
-- `binding::Integer`
-- `format::Format`
-- `offset::Integer`
+• `location::Integer`
+• `binding::Integer`
+• `format::Format`
+• `offset::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription.html
 
 """
 _VertexInputAttributeDescription
@@ -6592,10 +7578,12 @@ _VertexInputAttributeDescription
     _PipelineVertexInputStateCreateInfo(vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription}, vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription}; next = C_NULL, flags = 0)
 
 Arguments:
-- `vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription}`
-- `vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription}`
+• `vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html
 
 """
 _PipelineVertexInputStateCreateInfo
@@ -6604,10 +7592,12 @@ _PipelineVertexInputStateCreateInfo
     _PipelineInputAssemblyStateCreateInfo(topology::PrimitiveTopology, primitive_restart_enable::Bool; next = C_NULL, flags = 0)
 
 Arguments:
-- `topology::PrimitiveTopology`
-- `primitive_restart_enable::Bool`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `topology::PrimitiveTopology`
+• `primitive_restart_enable::Bool`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html
 
 """
 _PipelineInputAssemblyStateCreateInfo
@@ -6616,9 +7606,11 @@ _PipelineInputAssemblyStateCreateInfo
     _PipelineTessellationStateCreateInfo(patch_control_points::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `patch_control_points::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `patch_control_points::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationStateCreateInfo.html
 
 """
 _PipelineTessellationStateCreateInfo
@@ -6627,10 +7619,12 @@ _PipelineTessellationStateCreateInfo
     _PipelineViewportStateCreateInfo(; next = C_NULL, flags = 0, viewports = C_NULL, scissors = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `viewports`: defaults to `C_NULL`
-- `scissors`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `viewports`: defaults to `C_NULL`
+• `scissors`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportStateCreateInfo.html
 
 """
 _PipelineViewportStateCreateInfo
@@ -6639,18 +7633,20 @@ _PipelineViewportStateCreateInfo
     _PipelineRasterizationStateCreateInfo(depth_clamp_enable::Bool, rasterizer_discard_enable::Bool, polygon_mode::PolygonMode, front_face::FrontFace, depth_bias_enable::Bool, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, line_width::Real; next = C_NULL, flags = 0, cull_mode = 0)
 
 Arguments:
-- `depth_clamp_enable::Bool`
-- `rasterizer_discard_enable::Bool`
-- `polygon_mode::PolygonMode`
-- `front_face::FrontFace`
-- `depth_bias_enable::Bool`
-- `depth_bias_constant_factor::Real`
-- `depth_bias_clamp::Real`
-- `depth_bias_slope_factor::Real`
-- `line_width::Real`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `cull_mode`: defaults to `0`
+• `depth_clamp_enable::Bool`
+• `rasterizer_discard_enable::Bool`
+• `polygon_mode::PolygonMode`
+• `front_face::FrontFace`
+• `depth_bias_enable::Bool`
+• `depth_bias_constant_factor::Real`
+• `depth_bias_clamp::Real`
+• `depth_bias_slope_factor::Real`
+• `line_width::Real`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `cull_mode`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html
 
 """
 _PipelineRasterizationStateCreateInfo
@@ -6659,14 +7655,16 @@ _PipelineRasterizationStateCreateInfo
     _PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountFlag, sample_shading_enable::Bool, min_sample_shading::Real, alpha_to_coverage_enable::Bool, alpha_to_one_enable::Bool; next = C_NULL, flags = 0, sample_mask = C_NULL)
 
 Arguments:
-- `rasterization_samples::SampleCountFlag`
-- `sample_shading_enable::Bool`
-- `min_sample_shading::Real`
-- `alpha_to_coverage_enable::Bool`
-- `alpha_to_one_enable::Bool`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `sample_mask`: defaults to `C_NULL`
+• `rasterization_samples::SampleCountFlag`
+• `sample_shading_enable::Bool`
+• `min_sample_shading::Real`
+• `alpha_to_coverage_enable::Bool`
+• `alpha_to_one_enable::Bool`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `sample_mask`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html
 
 """
 _PipelineMultisampleStateCreateInfo
@@ -6675,14 +7673,16 @@ _PipelineMultisampleStateCreateInfo
     _PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_factor::BlendFactor, dst_color_blend_factor::BlendFactor, color_blend_op::BlendOp, src_alpha_blend_factor::BlendFactor, dst_alpha_blend_factor::BlendFactor, alpha_blend_op::BlendOp; color_write_mask = 0)
 
 Arguments:
-- `blend_enable::Bool`
-- `src_color_blend_factor::BlendFactor`
-- `dst_color_blend_factor::BlendFactor`
-- `color_blend_op::BlendOp`
-- `src_alpha_blend_factor::BlendFactor`
-- `dst_alpha_blend_factor::BlendFactor`
-- `alpha_blend_op::BlendOp`
-- `color_write_mask`: defaults to `0`
+• `blend_enable::Bool`
+• `src_color_blend_factor::BlendFactor`
+• `dst_color_blend_factor::BlendFactor`
+• `color_blend_op::BlendOp`
+• `src_alpha_blend_factor::BlendFactor`
+• `dst_alpha_blend_factor::BlendFactor`
+• `alpha_blend_op::BlendOp`
+• `color_write_mask`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAttachmentState.html
 
 """
 _PipelineColorBlendAttachmentState
@@ -6691,12 +7691,14 @@ _PipelineColorBlendAttachmentState
     _PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::LogicOp, attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}, blend_constants::NTuple{4, Float32}; next = C_NULL, flags = 0)
 
 Arguments:
-- `logic_op_enable::Bool`
-- `logic_op::LogicOp`
-- `attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}`
-- `blend_constants::NTuple{4, Float32}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `logic_op_enable::Bool`
+• `logic_op::LogicOp`
+• `attachments::AbstractArray{<:_PipelineColorBlendAttachmentState}`
+• `blend_constants::NTuple{4, Float32}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendStateCreateInfo.html
 
 """
 _PipelineColorBlendStateCreateInfo
@@ -6705,9 +7707,11 @@ _PipelineColorBlendStateCreateInfo
     _PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray{<:DynamicState}; next = C_NULL, flags = 0)
 
 Arguments:
-- `dynamic_states::AbstractArray{<:DynamicState}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `dynamic_states::AbstractArray{<:DynamicState}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDynamicStateCreateInfo.html
 
 """
 _PipelineDynamicStateCreateInfo
@@ -6716,13 +7720,15 @@ _PipelineDynamicStateCreateInfo
     _StencilOpState(fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp, compare_mask::Integer, write_mask::Integer, reference::Integer)
 
 Arguments:
-- `fail_op::StencilOp`
-- `pass_op::StencilOp`
-- `depth_fail_op::StencilOp`
-- `compare_op::CompareOp`
-- `compare_mask::Integer`
-- `write_mask::Integer`
-- `reference::Integer`
+• `fail_op::StencilOp`
+• `pass_op::StencilOp`
+• `depth_fail_op::StencilOp`
+• `compare_op::CompareOp`
+• `compare_mask::Integer`
+• `write_mask::Integer`
+• `reference::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStencilOpState.html
 
 """
 _StencilOpState
@@ -6731,17 +7737,19 @@ _StencilOpState
     _PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable::Bool, depth_compare_op::CompareOp, depth_bounds_test_enable::Bool, stencil_test_enable::Bool, front::_StencilOpState, back::_StencilOpState, min_depth_bounds::Real, max_depth_bounds::Real; next = C_NULL, flags = 0)
 
 Arguments:
-- `depth_test_enable::Bool`
-- `depth_write_enable::Bool`
-- `depth_compare_op::CompareOp`
-- `depth_bounds_test_enable::Bool`
-- `stencil_test_enable::Bool`
-- `front::_StencilOpState`
-- `back::_StencilOpState`
-- `min_depth_bounds::Real`
-- `max_depth_bounds::Real`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `depth_test_enable::Bool`
+• `depth_write_enable::Bool`
+• `depth_compare_op::CompareOp`
+• `depth_bounds_test_enable::Bool`
+• `stencil_test_enable::Bool`
+• `front::_StencilOpState`
+• `back::_StencilOpState`
+• `min_depth_bounds::Real`
+• `max_depth_bounds::Real`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html
 
 """
 _PipelineDepthStencilStateCreateInfo
@@ -6750,23 +7758,25 @@ _PipelineDepthStencilStateCreateInfo
     _GraphicsPipelineCreateInfo(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, rasterization_state::_PipelineRasterizationStateCreateInfo, layout::PipelineLayout, render_pass::RenderPass, subpass::Integer, base_pipeline_index::Integer; next = C_NULL, flags = 0, vertex_input_state = C_NULL, input_assembly_state = C_NULL, tessellation_state = C_NULL, viewport_state = C_NULL, multisample_state = C_NULL, depth_stencil_state = C_NULL, color_blend_state = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
-- `rasterization_state::_PipelineRasterizationStateCreateInfo`
-- `layout::PipelineLayout`
-- `render_pass::RenderPass`
-- `subpass::Integer`
-- `base_pipeline_index::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `vertex_input_state`: defaults to `C_NULL`
-- `input_assembly_state`: defaults to `C_NULL`
-- `tessellation_state`: defaults to `C_NULL`
-- `viewport_state`: defaults to `C_NULL`
-- `multisample_state`: defaults to `C_NULL`
-- `depth_stencil_state`: defaults to `C_NULL`
-- `color_blend_state`: defaults to `C_NULL`
-- `dynamic_state`: defaults to `C_NULL`
-- `base_pipeline_handle`: defaults to `C_NULL`
+• `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
+• `rasterization_state::_PipelineRasterizationStateCreateInfo`
+• `layout::PipelineLayout`
+• `render_pass::RenderPass`
+• `subpass::Integer`
+• `base_pipeline_index::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `vertex_input_state`: defaults to `C_NULL`
+• `input_assembly_state`: defaults to `C_NULL`
+• `tessellation_state`: defaults to `C_NULL`
+• `viewport_state`: defaults to `C_NULL`
+• `multisample_state`: defaults to `C_NULL`
+• `depth_stencil_state`: defaults to `C_NULL`
+• `color_blend_state`: defaults to `C_NULL`
+• `dynamic_state`: defaults to `C_NULL`
+• `base_pipeline_handle`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineCreateInfo.html
 
 """
 _GraphicsPipelineCreateInfo
@@ -6775,10 +7785,12 @@ _GraphicsPipelineCreateInfo
     _PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
 
 Arguments:
-- `initial_data::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `initial_data_size`: defaults to `0`
+• `initial_data::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `initial_data_size`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCacheCreateInfo.html
 
 """
 _PipelineCacheCreateInfo
@@ -6787,9 +7799,11 @@ _PipelineCacheCreateInfo
     _PushConstantRange(stage_flags::ShaderStageFlag, offset::Integer, size::Integer)
 
 Arguments:
-- `stage_flags::ShaderStageFlag`
-- `offset::Integer`
-- `size::Integer`
+• `stage_flags::ShaderStageFlag`
+• `offset::Integer`
+• `size::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPushConstantRange.html
 
 """
 _PushConstantRange
@@ -6798,10 +7812,12 @@ _PushConstantRange
     _PipelineLayoutCreateInfo(set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; next = C_NULL, flags = 0)
 
 Arguments:
-- `set_layouts::AbstractArray{<:DescriptorSetLayout}`
-- `push_constant_ranges::AbstractArray{<:_PushConstantRange}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `set_layouts::AbstractArray{<:DescriptorSetLayout}`
+• `push_constant_ranges::AbstractArray{<:_PushConstantRange}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLayoutCreateInfo.html
 
 """
 _PipelineLayoutCreateInfo
@@ -6810,23 +7826,25 @@ _PipelineLayoutCreateInfo
     _SamplerCreateInfo(mag_filter::Filter, min_filter::Filter, mipmap_mode::SamplerMipmapMode, address_mode_u::SamplerAddressMode, address_mode_v::SamplerAddressMode, address_mode_w::SamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::CompareOp, min_lod::Real, max_lod::Real, border_color::BorderColor, unnormalized_coordinates::Bool; next = C_NULL, flags = 0)
 
 Arguments:
-- `mag_filter::Filter`
-- `min_filter::Filter`
-- `mipmap_mode::SamplerMipmapMode`
-- `address_mode_u::SamplerAddressMode`
-- `address_mode_v::SamplerAddressMode`
-- `address_mode_w::SamplerAddressMode`
-- `mip_lod_bias::Real`
-- `anisotropy_enable::Bool`
-- `max_anisotropy::Real`
-- `compare_enable::Bool`
-- `compare_op::CompareOp`
-- `min_lod::Real`
-- `max_lod::Real`
-- `border_color::BorderColor`
-- `unnormalized_coordinates::Bool`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `mag_filter::Filter`
+• `min_filter::Filter`
+• `mipmap_mode::SamplerMipmapMode`
+• `address_mode_u::SamplerAddressMode`
+• `address_mode_v::SamplerAddressMode`
+• `address_mode_w::SamplerAddressMode`
+• `mip_lod_bias::Real`
+• `anisotropy_enable::Bool`
+• `max_anisotropy::Real`
+• `compare_enable::Bool`
+• `compare_op::CompareOp`
+• `min_lod::Real`
+• `max_lod::Real`
+• `border_color::BorderColor`
+• `unnormalized_coordinates::Bool`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCreateInfo.html
 
 """
 _SamplerCreateInfo
@@ -6835,9 +7853,11 @@ _SamplerCreateInfo
     _CommandPoolCreateInfo(queue_family_index::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `queue_family_index::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `queue_family_index::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandPoolCreateInfo.html
 
 """
 _CommandPoolCreateInfo
@@ -6846,10 +7866,12 @@ _CommandPoolCreateInfo
     _CommandBufferAllocateInfo(command_pool::CommandPool, level::CommandBufferLevel, command_buffer_count::Integer; next = C_NULL)
 
 Arguments:
-- `command_pool::CommandPool`
-- `level::CommandBufferLevel`
-- `command_buffer_count::Integer`
-- `next`: defaults to `C_NULL`
+• `command_pool::CommandPool`
+• `level::CommandBufferLevel`
+• `command_buffer_count::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferAllocateInfo.html
 
 """
 _CommandBufferAllocateInfo
@@ -6858,13 +7880,15 @@ _CommandBufferAllocateInfo
     _CommandBufferInheritanceInfo(subpass::Integer, occlusion_query_enable::Bool; next = C_NULL, render_pass = C_NULL, framebuffer = C_NULL, query_flags = 0, pipeline_statistics = 0)
 
 Arguments:
-- `subpass::Integer`
-- `occlusion_query_enable::Bool`
-- `next`: defaults to `C_NULL`
-- `render_pass`: defaults to `C_NULL`
-- `framebuffer`: defaults to `C_NULL`
-- `query_flags`: defaults to `0`
-- `pipeline_statistics`: defaults to `0`
+• `subpass::Integer`
+• `occlusion_query_enable::Bool`
+• `next`: defaults to `C_NULL`
+• `render_pass`: defaults to `C_NULL`
+• `framebuffer`: defaults to `C_NULL`
+• `query_flags`: defaults to `0`
+• `pipeline_statistics`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceInfo.html
 
 """
 _CommandBufferInheritanceInfo
@@ -6873,9 +7897,11 @@ _CommandBufferInheritanceInfo
     _CommandBufferBeginInfo(; next = C_NULL, flags = 0, inheritance_info = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `inheritance_info`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `inheritance_info`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferBeginInfo.html
 
 """
 _CommandBufferBeginInfo
@@ -6884,11 +7910,13 @@ _CommandBufferBeginInfo
     _RenderPassBeginInfo(render_pass::RenderPass, framebuffer::Framebuffer, render_area::_Rect2D, clear_values::AbstractArray{<:VkClearValue}; next = C_NULL)
 
 Arguments:
-- `render_pass::RenderPass`
-- `framebuffer::Framebuffer`
-- `render_area::_Rect2D`
-- `clear_values::AbstractArray{<:VkClearValue}`
-- `next`: defaults to `C_NULL`
+• `render_pass::RenderPass`
+• `framebuffer::Framebuffer`
+• `render_area::_Rect2D`
+• `clear_values::AbstractArray{<:VkClearValue}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassBeginInfo.html
 
 """
 _RenderPassBeginInfo
@@ -6897,8 +7925,10 @@ _RenderPassBeginInfo
     _ClearDepthStencilValue(depth::Real, stencil::Integer)
 
 Arguments:
-- `depth::Real`
-- `stencil::Integer`
+• `depth::Real`
+• `stencil::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearDepthStencilValue.html
 
 """
 _ClearDepthStencilValue
@@ -6907,9 +7937,11 @@ _ClearDepthStencilValue
     _ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::VkClearValue)
 
 Arguments:
-- `aspect_mask::ImageAspectFlag`
-- `color_attachment::Integer`
-- `clear_value::VkClearValue`
+• `aspect_mask::ImageAspectFlag`
+• `color_attachment::Integer`
+• `clear_value::VkClearValue`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearAttachment.html
 
 """
 _ClearAttachment
@@ -6918,15 +7950,17 @@ _ClearAttachment
     _AttachmentDescription(format::Format, samples::SampleCountFlag, load_op::AttachmentLoadOp, store_op::AttachmentStoreOp, stencil_load_op::AttachmentLoadOp, stencil_store_op::AttachmentStoreOp, initial_layout::ImageLayout, final_layout::ImageLayout; flags = 0)
 
 Arguments:
-- `format::Format`
-- `samples::SampleCountFlag`
-- `load_op::AttachmentLoadOp`
-- `store_op::AttachmentStoreOp`
-- `stencil_load_op::AttachmentLoadOp`
-- `stencil_store_op::AttachmentStoreOp`
-- `initial_layout::ImageLayout`
-- `final_layout::ImageLayout`
-- `flags`: defaults to `0`
+• `format::Format`
+• `samples::SampleCountFlag`
+• `load_op::AttachmentLoadOp`
+• `store_op::AttachmentStoreOp`
+• `stencil_load_op::AttachmentLoadOp`
+• `stencil_store_op::AttachmentStoreOp`
+• `initial_layout::ImageLayout`
+• `final_layout::ImageLayout`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html
 
 """
 _AttachmentDescription
@@ -6935,8 +7969,10 @@ _AttachmentDescription
     _AttachmentReference(attachment::Integer, layout::ImageLayout)
 
 Arguments:
-- `attachment::Integer`
-- `layout::ImageLayout`
+• `attachment::Integer`
+• `layout::ImageLayout`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference.html
 
 """
 _AttachmentReference
@@ -6945,13 +7981,15 @@ _AttachmentReference
     _SubpassDescription(pipeline_bind_point::PipelineBindPoint, input_attachments::AbstractArray{<:_AttachmentReference}, color_attachments::AbstractArray{<:_AttachmentReference}, preserve_attachments::AbstractArray{<:Integer}; flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::PipelineBindPoint`
-- `input_attachments::AbstractArray{<:_AttachmentReference}`
-- `color_attachments::AbstractArray{<:_AttachmentReference}`
-- `preserve_attachments::AbstractArray{<:Integer}`
-- `flags`: defaults to `0`
-- `resolve_attachments`: defaults to `C_NULL`
-- `depth_stencil_attachment`: defaults to `C_NULL`
+• `pipeline_bind_point::PipelineBindPoint`
+• `input_attachments::AbstractArray{<:_AttachmentReference}`
+• `color_attachments::AbstractArray{<:_AttachmentReference}`
+• `preserve_attachments::AbstractArray{<:Integer}`
+• `flags`: defaults to `0`
+• `resolve_attachments`: defaults to `C_NULL`
+• `depth_stencil_attachment`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription.html
 
 """
 _SubpassDescription
@@ -6960,13 +7998,15 @@ _SubpassDescription
     _SubpassDependency(src_subpass::Integer, dst_subpass::Integer; src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
 
 Arguments:
-- `src_subpass::Integer`
-- `dst_subpass::Integer`
-- `src_stage_mask`: defaults to `0`
-- `dst_stage_mask`: defaults to `0`
-- `src_access_mask`: defaults to `0`
-- `dst_access_mask`: defaults to `0`
-- `dependency_flags`: defaults to `0`
+• `src_subpass::Integer`
+• `dst_subpass::Integer`
+• `src_stage_mask`: defaults to `0`
+• `dst_stage_mask`: defaults to `0`
+• `src_access_mask`: defaults to `0`
+• `dst_access_mask`: defaults to `0`
+• `dependency_flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency.html
 
 """
 _SubpassDependency
@@ -6975,11 +8015,13 @@ _SubpassDependency
     _RenderPassCreateInfo(attachments::AbstractArray{<:_AttachmentDescription}, subpasses::AbstractArray{<:_SubpassDescription}, dependencies::AbstractArray{<:_SubpassDependency}; next = C_NULL, flags = 0)
 
 Arguments:
-- `attachments::AbstractArray{<:_AttachmentDescription}`
-- `subpasses::AbstractArray{<:_SubpassDescription}`
-- `dependencies::AbstractArray{<:_SubpassDependency}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `attachments::AbstractArray{<:_AttachmentDescription}`
+• `subpasses::AbstractArray{<:_SubpassDescription}`
+• `dependencies::AbstractArray{<:_SubpassDependency}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo.html
 
 """
 _RenderPassCreateInfo
@@ -6988,8 +8030,10 @@ _RenderPassCreateInfo
     _EventCreateInfo(; next = C_NULL, flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkEventCreateInfo.html
 
 """
 _EventCreateInfo
@@ -6998,8 +8042,10 @@ _EventCreateInfo
     _FenceCreateInfo(; next = C_NULL, flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceCreateInfo.html
 
 """
 _FenceCreateInfo
@@ -7008,61 +8054,63 @@ _FenceCreateInfo
     _PhysicalDeviceFeatures(robust_buffer_access::Bool, full_draw_index_uint_32::Bool, image_cube_array::Bool, independent_blend::Bool, geometry_shader::Bool, tessellation_shader::Bool, sample_rate_shading::Bool, dual_src_blend::Bool, logic_op::Bool, multi_draw_indirect::Bool, draw_indirect_first_instance::Bool, depth_clamp::Bool, depth_bias_clamp::Bool, fill_mode_non_solid::Bool, depth_bounds::Bool, wide_lines::Bool, large_points::Bool, alpha_to_one::Bool, multi_viewport::Bool, sampler_anisotropy::Bool, texture_compression_etc_2::Bool, texture_compression_astc_ldr::Bool, texture_compression_bc::Bool, occlusion_query_precise::Bool, pipeline_statistics_query::Bool, vertex_pipeline_stores_and_atomics::Bool, fragment_stores_and_atomics::Bool, shader_tessellation_and_geometry_point_size::Bool, shader_image_gather_extended::Bool, shader_storage_image_extended_formats::Bool, shader_storage_image_multisample::Bool, shader_storage_image_read_without_format::Bool, shader_storage_image_write_without_format::Bool, shader_uniform_buffer_array_dynamic_indexing::Bool, shader_sampled_image_array_dynamic_indexing::Bool, shader_storage_buffer_array_dynamic_indexing::Bool, shader_storage_image_array_dynamic_indexing::Bool, shader_clip_distance::Bool, shader_cull_distance::Bool, shader_float_64::Bool, shader_int_64::Bool, shader_int_16::Bool, shader_resource_residency::Bool, shader_resource_min_lod::Bool, sparse_binding::Bool, sparse_residency_buffer::Bool, sparse_residency_image_2_d::Bool, sparse_residency_image_3_d::Bool, sparse_residency_2_samples::Bool, sparse_residency_4_samples::Bool, sparse_residency_8_samples::Bool, sparse_residency_16_samples::Bool, sparse_residency_aliased::Bool, variable_multisample_rate::Bool, inherited_queries::Bool)
 
 Arguments:
-- `robust_buffer_access::Bool`
-- `full_draw_index_uint_32::Bool`
-- `image_cube_array::Bool`
-- `independent_blend::Bool`
-- `geometry_shader::Bool`
-- `tessellation_shader::Bool`
-- `sample_rate_shading::Bool`
-- `dual_src_blend::Bool`
-- `logic_op::Bool`
-- `multi_draw_indirect::Bool`
-- `draw_indirect_first_instance::Bool`
-- `depth_clamp::Bool`
-- `depth_bias_clamp::Bool`
-- `fill_mode_non_solid::Bool`
-- `depth_bounds::Bool`
-- `wide_lines::Bool`
-- `large_points::Bool`
-- `alpha_to_one::Bool`
-- `multi_viewport::Bool`
-- `sampler_anisotropy::Bool`
-- `texture_compression_etc_2::Bool`
-- `texture_compression_astc_ldr::Bool`
-- `texture_compression_bc::Bool`
-- `occlusion_query_precise::Bool`
-- `pipeline_statistics_query::Bool`
-- `vertex_pipeline_stores_and_atomics::Bool`
-- `fragment_stores_and_atomics::Bool`
-- `shader_tessellation_and_geometry_point_size::Bool`
-- `shader_image_gather_extended::Bool`
-- `shader_storage_image_extended_formats::Bool`
-- `shader_storage_image_multisample::Bool`
-- `shader_storage_image_read_without_format::Bool`
-- `shader_storage_image_write_without_format::Bool`
-- `shader_uniform_buffer_array_dynamic_indexing::Bool`
-- `shader_sampled_image_array_dynamic_indexing::Bool`
-- `shader_storage_buffer_array_dynamic_indexing::Bool`
-- `shader_storage_image_array_dynamic_indexing::Bool`
-- `shader_clip_distance::Bool`
-- `shader_cull_distance::Bool`
-- `shader_float_64::Bool`
-- `shader_int_64::Bool`
-- `shader_int_16::Bool`
-- `shader_resource_residency::Bool`
-- `shader_resource_min_lod::Bool`
-- `sparse_binding::Bool`
-- `sparse_residency_buffer::Bool`
-- `sparse_residency_image_2_d::Bool`
-- `sparse_residency_image_3_d::Bool`
-- `sparse_residency_2_samples::Bool`
-- `sparse_residency_4_samples::Bool`
-- `sparse_residency_8_samples::Bool`
-- `sparse_residency_16_samples::Bool`
-- `sparse_residency_aliased::Bool`
-- `variable_multisample_rate::Bool`
-- `inherited_queries::Bool`
+• `robust_buffer_access::Bool`
+• `full_draw_index_uint_32::Bool`
+• `image_cube_array::Bool`
+• `independent_blend::Bool`
+• `geometry_shader::Bool`
+• `tessellation_shader::Bool`
+• `sample_rate_shading::Bool`
+• `dual_src_blend::Bool`
+• `logic_op::Bool`
+• `multi_draw_indirect::Bool`
+• `draw_indirect_first_instance::Bool`
+• `depth_clamp::Bool`
+• `depth_bias_clamp::Bool`
+• `fill_mode_non_solid::Bool`
+• `depth_bounds::Bool`
+• `wide_lines::Bool`
+• `large_points::Bool`
+• `alpha_to_one::Bool`
+• `multi_viewport::Bool`
+• `sampler_anisotropy::Bool`
+• `texture_compression_etc_2::Bool`
+• `texture_compression_astc_ldr::Bool`
+• `texture_compression_bc::Bool`
+• `occlusion_query_precise::Bool`
+• `pipeline_statistics_query::Bool`
+• `vertex_pipeline_stores_and_atomics::Bool`
+• `fragment_stores_and_atomics::Bool`
+• `shader_tessellation_and_geometry_point_size::Bool`
+• `shader_image_gather_extended::Bool`
+• `shader_storage_image_extended_formats::Bool`
+• `shader_storage_image_multisample::Bool`
+• `shader_storage_image_read_without_format::Bool`
+• `shader_storage_image_write_without_format::Bool`
+• `shader_uniform_buffer_array_dynamic_indexing::Bool`
+• `shader_sampled_image_array_dynamic_indexing::Bool`
+• `shader_storage_buffer_array_dynamic_indexing::Bool`
+• `shader_storage_image_array_dynamic_indexing::Bool`
+• `shader_clip_distance::Bool`
+• `shader_cull_distance::Bool`
+• `shader_float_64::Bool`
+• `shader_int_64::Bool`
+• `shader_int_16::Bool`
+• `shader_resource_residency::Bool`
+• `shader_resource_min_lod::Bool`
+• `sparse_binding::Bool`
+• `sparse_residency_buffer::Bool`
+• `sparse_residency_image_2_d::Bool`
+• `sparse_residency_image_3_d::Bool`
+• `sparse_residency_2_samples::Bool`
+• `sparse_residency_4_samples::Bool`
+• `sparse_residency_8_samples::Bool`
+• `sparse_residency_16_samples::Bool`
+• `sparse_residency_aliased::Bool`
+• `variable_multisample_rate::Bool`
+• `inherited_queries::Bool`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures.html
 
 """
 _PhysicalDeviceFeatures
@@ -7071,8 +8119,10 @@ _PhysicalDeviceFeatures
     _SemaphoreCreateInfo(; next = C_NULL, flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreCreateInfo.html
 
 """
 _SemaphoreCreateInfo
@@ -7081,11 +8131,13 @@ _SemaphoreCreateInfo
     _QueryPoolCreateInfo(query_type::QueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
 
 Arguments:
-- `query_type::QueryType`
-- `query_count::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `pipeline_statistics`: defaults to `0`
+• `query_type::QueryType`
+• `query_count::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `pipeline_statistics`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolCreateInfo.html
 
 """
 _QueryPoolCreateInfo
@@ -7094,13 +8146,15 @@ _QueryPoolCreateInfo
     _FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `render_pass::RenderPass`
-- `attachments::AbstractArray{<:ImageView}`
-- `width::Integer`
-- `height::Integer`
-- `layers::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `render_pass::RenderPass`
+• `attachments::AbstractArray{<:ImageView}`
+• `width::Integer`
+• `height::Integer`
+• `layers::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferCreateInfo.html
 
 """
 _FramebufferCreateInfo
@@ -7109,10 +8163,12 @@ _FramebufferCreateInfo
     _DrawIndirectCommand(vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)
 
 Arguments:
-- `vertex_count::Integer`
-- `instance_count::Integer`
-- `first_vertex::Integer`
-- `first_instance::Integer`
+• `vertex_count::Integer`
+• `instance_count::Integer`
+• `first_vertex::Integer`
+• `first_instance::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndirectCommand.html
 
 """
 _DrawIndirectCommand
@@ -7121,11 +8177,13 @@ _DrawIndirectCommand
     _DrawIndexedIndirectCommand(index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)
 
 Arguments:
-- `index_count::Integer`
-- `instance_count::Integer`
-- `first_index::Integer`
-- `vertex_offset::Integer`
-- `first_instance::Integer`
+• `index_count::Integer`
+• `instance_count::Integer`
+• `first_index::Integer`
+• `vertex_offset::Integer`
+• `first_instance::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndexedIndirectCommand.html
 
 """
 _DrawIndexedIndirectCommand
@@ -7134,9 +8192,11 @@ _DrawIndexedIndirectCommand
     _DispatchIndirectCommand(x::Integer, y::Integer, z::Integer)
 
 Arguments:
-- `x::Integer`
-- `y::Integer`
-- `z::Integer`
+• `x::Integer`
+• `y::Integer`
+• `z::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDispatchIndirectCommand.html
 
 """
 _DispatchIndirectCommand
@@ -7145,11 +8205,13 @@ _DispatchIndirectCommand
     _SubmitInfo(wait_semaphores::AbstractArray{<:Semaphore}, wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}, command_buffers::AbstractArray{<:CommandBuffer}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
 
 Arguments:
-- `wait_semaphores::AbstractArray{<:Semaphore}`
-- `wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}`
-- `command_buffers::AbstractArray{<:CommandBuffer}`
-- `signal_semaphores::AbstractArray{<:Semaphore}`
-- `next`: defaults to `C_NULL`
+• `wait_semaphores::AbstractArray{<:Semaphore}`
+• `wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}`
+• `command_buffers::AbstractArray{<:CommandBuffer}`
+• `signal_semaphores::AbstractArray{<:Semaphore}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo.html
 
 """
 _SubmitInfo
@@ -7158,8 +8220,10 @@ _SubmitInfo
     _DisplayModeParametersKHR(visible_region::_Extent2D, refresh_rate::Integer)
 
 Arguments:
-- `visible_region::_Extent2D`
-- `refresh_rate::Integer`
+• `visible_region::_Extent2D`
+• `refresh_rate::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeParametersKHR.html
 
 """
 _DisplayModeParametersKHR
@@ -7168,9 +8232,11 @@ _DisplayModeParametersKHR
     _DisplayModeCreateInfoKHR(parameters::_DisplayModeParametersKHR; next = C_NULL, flags = 0)
 
 Arguments:
-- `parameters::_DisplayModeParametersKHR`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `parameters::_DisplayModeParametersKHR`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeCreateInfoKHR.html
 
 """
 _DisplayModeCreateInfoKHR
@@ -7179,15 +8245,17 @@ _DisplayModeCreateInfoKHR
     _DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D; next = C_NULL, flags = 0)
 
 Arguments:
-- `display_mode::DisplayModeKHR`
-- `plane_index::Integer`
-- `plane_stack_index::Integer`
-- `transform::SurfaceTransformFlagKHR`
-- `global_alpha::Real`
-- `alpha_mode::DisplayPlaneAlphaFlagKHR`
-- `image_extent::_Extent2D`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `display_mode::DisplayModeKHR`
+• `plane_index::Integer`
+• `plane_stack_index::Integer`
+• `transform::SurfaceTransformFlagKHR`
+• `global_alpha::Real`
+• `alpha_mode::DisplayPlaneAlphaFlagKHR`
+• `image_extent::_Extent2D`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html
 
 """
 _DisplaySurfaceCreateInfoKHR
@@ -7196,10 +8264,12 @@ _DisplaySurfaceCreateInfoKHR
     _DisplayPresentInfoKHR(src_rect::_Rect2D, dst_rect::_Rect2D, persistent::Bool; next = C_NULL)
 
 Arguments:
-- `src_rect::_Rect2D`
-- `dst_rect::_Rect2D`
-- `persistent::Bool`
-- `next`: defaults to `C_NULL`
+• `src_rect::_Rect2D`
+• `dst_rect::_Rect2D`
+• `persistent::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPresentInfoKHR.html
 
 """
 _DisplayPresentInfoKHR
@@ -7208,9 +8278,11 @@ _DisplayPresentInfoKHR
     _AndroidSurfaceCreateInfoKHR(window::vk.ANativeWindow; next = C_NULL, flags = 0)
 
 Arguments:
-- `window::vk.ANativeWindow`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `window::vk.ANativeWindow`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAndroidSurfaceCreateInfoKHR.html
 
 """
 _AndroidSurfaceCreateInfoKHR
@@ -7219,9 +8291,11 @@ _AndroidSurfaceCreateInfoKHR
     _ViSurfaceCreateInfoNN(window::Ptr{Cvoid}; next = C_NULL, flags = 0)
 
 Arguments:
-- `window::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `window::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViSurfaceCreateInfoNN.html
 
 """
 _ViSurfaceCreateInfoNN
@@ -7230,10 +8304,12 @@ _ViSurfaceCreateInfoNN
     _WaylandSurfaceCreateInfoKHR(display::vk.wl_display, surface::vk.wl_surface; next = C_NULL, flags = 0)
 
 Arguments:
-- `display::vk.wl_display`
-- `surface::vk.wl_surface`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `display::vk.wl_display`
+• `surface::vk.wl_surface`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWaylandSurfaceCreateInfoKHR.html
 
 """
 _WaylandSurfaceCreateInfoKHR
@@ -7242,10 +8318,12 @@ _WaylandSurfaceCreateInfoKHR
     _Win32SurfaceCreateInfoKHR(hinstance::vk.HINSTANCE, hwnd::vk.HWND; next = C_NULL, flags = 0)
 
 Arguments:
-- `hinstance::vk.HINSTANCE`
-- `hwnd::vk.HWND`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `hinstance::vk.HINSTANCE`
+• `hwnd::vk.HWND`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWin32SurfaceCreateInfoKHR.html
 
 """
 _Win32SurfaceCreateInfoKHR
@@ -7254,10 +8332,12 @@ _Win32SurfaceCreateInfoKHR
     _XlibSurfaceCreateInfoKHR(dpy::vk.Display, window::vk.Window; next = C_NULL, flags = 0)
 
 Arguments:
-- `dpy::vk.Display`
-- `window::vk.Window`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `dpy::vk.Display`
+• `window::vk.Window`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXlibSurfaceCreateInfoKHR.html
 
 """
 _XlibSurfaceCreateInfoKHR
@@ -7266,10 +8346,12 @@ _XlibSurfaceCreateInfoKHR
     _XcbSurfaceCreateInfoKHR(connection::vk.xcb_connection_t, window::vk.xcb_window_t; next = C_NULL, flags = 0)
 
 Arguments:
-- `connection::vk.xcb_connection_t`
-- `window::vk.xcb_window_t`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `connection::vk.xcb_connection_t`
+• `window::vk.xcb_window_t`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXcbSurfaceCreateInfoKHR.html
 
 """
 _XcbSurfaceCreateInfoKHR
@@ -7278,10 +8360,12 @@ _XcbSurfaceCreateInfoKHR
     _DirectFBSurfaceCreateInfoEXT(dfb::vk.IDirectFB, surface::vk.IDirectFBSurface; next = C_NULL, flags = 0)
 
 Arguments:
-- `dfb::vk.IDirectFB`
-- `surface::vk.IDirectFBSurface`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `dfb::vk.IDirectFB`
+• `surface::vk.IDirectFBSurface`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDirectFBSurfaceCreateInfoEXT.html
 
 """
 _DirectFBSurfaceCreateInfoEXT
@@ -7290,9 +8374,11 @@ _DirectFBSurfaceCreateInfoEXT
     _ImagePipeSurfaceCreateInfoFUCHSIA(image_pipe_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
 
 Arguments:
-- `image_pipe_handle::vk.zx_handle_t`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `image_pipe_handle::vk.zx_handle_t`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImagePipeSurfaceCreateInfoFUCHSIA.html
 
 """
 _ImagePipeSurfaceCreateInfoFUCHSIA
@@ -7301,9 +8387,11 @@ _ImagePipeSurfaceCreateInfoFUCHSIA
     _StreamDescriptorSurfaceCreateInfoGGP(stream_descriptor::vk.GgpStreamDescriptor; next = C_NULL, flags = 0)
 
 Arguments:
-- `stream_descriptor::vk.GgpStreamDescriptor`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `stream_descriptor::vk.GgpStreamDescriptor`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStreamDescriptorSurfaceCreateInfoGGP.html
 
 """
 _StreamDescriptorSurfaceCreateInfoGGP
@@ -7312,10 +8400,12 @@ _StreamDescriptorSurfaceCreateInfoGGP
     _ScreenSurfaceCreateInfoQNX(context::vk._screen_context, window::vk._screen_window; next = C_NULL, flags = 0)
 
 Arguments:
-- `context::vk._screen_context`
-- `window::vk._screen_window`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `context::vk._screen_context`
+• `window::vk._screen_window`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkScreenSurfaceCreateInfoQNX.html
 
 """
 _ScreenSurfaceCreateInfoQNX
@@ -7324,22 +8414,24 @@ _ScreenSurfaceCreateInfoQNX
     _SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
 
 Arguments:
-- `surface::SurfaceKHR`
-- `min_image_count::Integer`
-- `image_format::Format`
-- `image_color_space::ColorSpaceKHR`
-- `image_extent::_Extent2D`
-- `image_array_layers::Integer`
-- `image_usage::ImageUsageFlag`
-- `image_sharing_mode::SharingMode`
-- `queue_family_indices::AbstractArray{<:Integer}`
-- `pre_transform::SurfaceTransformFlagKHR`
-- `composite_alpha::CompositeAlphaFlagKHR`
-- `present_mode::PresentModeKHR`
-- `clipped::Bool`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `old_swapchain`: defaults to `C_NULL`
+• `surface::SurfaceKHR`
+• `min_image_count::Integer`
+• `image_format::Format`
+• `image_color_space::ColorSpaceKHR`
+• `image_extent::_Extent2D`
+• `image_array_layers::Integer`
+• `image_usage::ImageUsageFlag`
+• `image_sharing_mode::SharingMode`
+• `queue_family_indices::AbstractArray{<:Integer}`
+• `pre_transform::SurfaceTransformFlagKHR`
+• `composite_alpha::CompositeAlphaFlagKHR`
+• `present_mode::PresentModeKHR`
+• `clipped::Bool`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `old_swapchain`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCreateInfoKHR.html
 
 """
 _SwapchainCreateInfoKHR
@@ -7348,11 +8440,13 @@ _SwapchainCreateInfoKHR
     _PresentInfoKHR(wait_semaphores::AbstractArray{<:Semaphore}, swapchains::AbstractArray{<:SwapchainKHR}, image_indices::AbstractArray{<:Integer}; next = C_NULL, results = C_NULL)
 
 Arguments:
-- `wait_semaphores::AbstractArray{<:Semaphore}`
-- `swapchains::AbstractArray{<:SwapchainKHR}`
-- `image_indices::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `results`: defaults to `C_NULL`
+• `wait_semaphores::AbstractArray{<:Semaphore}`
+• `swapchains::AbstractArray{<:SwapchainKHR}`
+• `image_indices::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `results`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentInfoKHR.html
 
 """
 _PresentInfoKHR
@@ -7361,10 +8455,12 @@ _PresentInfoKHR
     _DebugReportCallbackCreateInfoEXT(pfn_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
 
 Arguments:
-- `pfn_callback::FunctionPtr`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `user_data`: defaults to `C_NULL`
+• `pfn_callback::FunctionPtr`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `user_data`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugReportCallbackCreateInfoEXT.html
 
 """
 _DebugReportCallbackCreateInfoEXT
@@ -7373,8 +8469,10 @@ _DebugReportCallbackCreateInfoEXT
     _ValidationFlagsEXT(disabled_validation_checks::AbstractArray{<:ValidationCheckEXT}; next = C_NULL)
 
 Arguments:
-- `disabled_validation_checks::AbstractArray{<:ValidationCheckEXT}`
-- `next`: defaults to `C_NULL`
+• `disabled_validation_checks::AbstractArray{<:ValidationCheckEXT}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFlagsEXT.html
 
 """
 _ValidationFlagsEXT
@@ -7383,9 +8481,11 @@ _ValidationFlagsEXT
     _ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:ValidationFeatureEnableEXT}, disabled_validation_features::AbstractArray{<:ValidationFeatureDisableEXT}; next = C_NULL)
 
 Arguments:
-- `enabled_validation_features::AbstractArray{<:ValidationFeatureEnableEXT}`
-- `disabled_validation_features::AbstractArray{<:ValidationFeatureDisableEXT}`
-- `next`: defaults to `C_NULL`
+• `enabled_validation_features::AbstractArray{<:ValidationFeatureEnableEXT}`
+• `disabled_validation_features::AbstractArray{<:ValidationFeatureDisableEXT}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFeaturesEXT.html
 
 """
 _ValidationFeaturesEXT
@@ -7394,8 +8494,10 @@ _ValidationFeaturesEXT
     _PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::RasterizationOrderAMD; next = C_NULL)
 
 Arguments:
-- `rasterization_order::RasterizationOrderAMD`
-- `next`: defaults to `C_NULL`
+• `rasterization_order::RasterizationOrderAMD`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html
 
 """
 _PipelineRasterizationStateRasterizationOrderAMD
@@ -7404,10 +8506,12 @@ _PipelineRasterizationStateRasterizationOrderAMD
     _DebugMarkerObjectNameInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL)
 
 Arguments:
-- `object_type::DebugReportObjectTypeEXT`
-- `object::Integer`
-- `object_name::AbstractString`
-- `next`: defaults to `C_NULL`
+• `object_type::DebugReportObjectTypeEXT`
+• `object::Integer`
+• `object_name::AbstractString`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html
 
 """
 _DebugMarkerObjectNameInfoEXT
@@ -7416,12 +8520,14 @@ _DebugMarkerObjectNameInfoEXT
     _DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `object_type::DebugReportObjectTypeEXT`
-- `object::Integer`
-- `tag_name::Integer`
-- `tag_size::Integer`
-- `tag::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
+• `object_type::DebugReportObjectTypeEXT`
+• `object::Integer`
+• `tag_name::Integer`
+• `tag_size::Integer`
+• `tag::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html
 
 """
 _DebugMarkerObjectTagInfoEXT
@@ -7430,9 +8536,11 @@ _DebugMarkerObjectTagInfoEXT
     _DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
 Arguments:
-- `marker_name::AbstractString`
-- `color::NTuple{4, Float32}`
-- `next`: defaults to `C_NULL`
+• `marker_name::AbstractString`
+• `color::NTuple{4, Float32}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html
 
 """
 _DebugMarkerMarkerInfoEXT
@@ -7441,8 +8549,10 @@ _DebugMarkerMarkerInfoEXT
     _DedicatedAllocationImageCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
 
 Arguments:
-- `dedicated_allocation::Bool`
-- `next`: defaults to `C_NULL`
+• `dedicated_allocation::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationImageCreateInfoNV.html
 
 """
 _DedicatedAllocationImageCreateInfoNV
@@ -7451,8 +8561,10 @@ _DedicatedAllocationImageCreateInfoNV
     _DedicatedAllocationBufferCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
 
 Arguments:
-- `dedicated_allocation::Bool`
-- `next`: defaults to `C_NULL`
+• `dedicated_allocation::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationBufferCreateInfoNV.html
 
 """
 _DedicatedAllocationBufferCreateInfoNV
@@ -7461,9 +8573,11 @@ _DedicatedAllocationBufferCreateInfoNV
     _DedicatedAllocationMemoryAllocateInfoNV(; next = C_NULL, image = C_NULL, buffer = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `image`: defaults to `C_NULL`
-- `buffer`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `image`: defaults to `C_NULL`
+• `buffer`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html
 
 """
 _DedicatedAllocationMemoryAllocateInfoNV
@@ -7472,8 +8586,10 @@ _DedicatedAllocationMemoryAllocateInfoNV
     _ExternalMemoryImageCreateInfoNV(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_types`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_types`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html
 
 """
 _ExternalMemoryImageCreateInfoNV
@@ -7482,8 +8598,10 @@ _ExternalMemoryImageCreateInfoNV
     _ExportMemoryAllocateInfoNV(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_types`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_types`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfoNV.html
 
 """
 _ExportMemoryAllocateInfoNV
@@ -7492,9 +8610,11 @@ _ExportMemoryAllocateInfoNV
     _ImportMemoryWin32HandleInfoNV(; next = C_NULL, handle_type = 0, handle = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_type`: defaults to `0`
-- `handle`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_type`: defaults to `0`
+• `handle`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryWin32HandleInfoNV.html
 
 """
 _ImportMemoryWin32HandleInfoNV
@@ -7503,9 +8623,11 @@ _ImportMemoryWin32HandleInfoNV
     _ExportMemoryWin32HandleInfoNV(; next = C_NULL, attributes = C_NULL, dw_access = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `attributes`: defaults to `C_NULL`
-- `dw_access`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `attributes`: defaults to `C_NULL`
+• `dw_access`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryWin32HandleInfoNV.html
 
 """
 _ExportMemoryWin32HandleInfoNV
@@ -7514,12 +8636,14 @@ _ExportMemoryWin32HandleInfoNV
     _Win32KeyedMutexAcquireReleaseInfoNV(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeout_milliseconds::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `acquire_syncs::AbstractArray{<:DeviceMemory}`
-- `acquire_keys::AbstractArray{<:Integer}`
-- `acquire_timeout_milliseconds::AbstractArray{<:Integer}`
-- `release_syncs::AbstractArray{<:DeviceMemory}`
-- `release_keys::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `acquire_syncs::AbstractArray{<:DeviceMemory}`
+• `acquire_keys::AbstractArray{<:Integer}`
+• `acquire_timeout_milliseconds::AbstractArray{<:Integer}`
+• `release_syncs::AbstractArray{<:DeviceMemory}`
+• `release_keys::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoNV.html
 
 """
 _Win32KeyedMutexAcquireReleaseInfoNV
@@ -7528,8 +8652,10 @@ _Win32KeyedMutexAcquireReleaseInfoNV
     _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(device_generated_commands::Bool; next = C_NULL)
 
 Arguments:
-- `device_generated_commands::Bool`
-- `next`: defaults to `C_NULL`
+• `device_generated_commands::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.html
 
 """
 _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
@@ -7538,8 +8664,10 @@ _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
     _DevicePrivateDataCreateInfoEXT(private_data_slot_request_count::Integer; next = C_NULL)
 
 Arguments:
-- `private_data_slot_request_count::Integer`
-- `next`: defaults to `C_NULL`
+• `private_data_slot_request_count::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDevicePrivateDataCreateInfoEXT.html
 
 """
 _DevicePrivateDataCreateInfoEXT
@@ -7548,8 +8676,10 @@ _DevicePrivateDataCreateInfoEXT
     _PrivateDataSlotCreateInfoEXT(flags::PrivateDataSlotCreateFlagEXT; next = C_NULL)
 
 Arguments:
-- `flags::PrivateDataSlotCreateFlagEXT`
-- `next`: defaults to `C_NULL`
+• `flags::PrivateDataSlotCreateFlagEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPrivateDataSlotCreateInfoEXT.html
 
 """
 _PrivateDataSlotCreateInfoEXT
@@ -7558,8 +8688,10 @@ _PrivateDataSlotCreateInfoEXT
     _PhysicalDevicePrivateDataFeaturesEXT(private_data::Bool; next = C_NULL)
 
 Arguments:
-- `private_data::Bool`
-- `next`: defaults to `C_NULL`
+• `private_data::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePrivateDataFeaturesEXT.html
 
 """
 _PhysicalDevicePrivateDataFeaturesEXT
@@ -7568,10 +8700,12 @@ _PhysicalDevicePrivateDataFeaturesEXT
     _GraphicsShaderGroupCreateInfoNV(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}; next = C_NULL, vertex_input_state = C_NULL, tessellation_state = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
-- `next`: defaults to `C_NULL`
-- `vertex_input_state`: defaults to `C_NULL`
-- `tessellation_state`: defaults to `C_NULL`
+• `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
+• `next`: defaults to `C_NULL`
+• `vertex_input_state`: defaults to `C_NULL`
+• `tessellation_state`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsShaderGroupCreateInfoNV.html
 
 """
 _GraphicsShaderGroupCreateInfoNV
@@ -7580,9 +8714,11 @@ _GraphicsShaderGroupCreateInfoNV
     _GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}, pipelines::AbstractArray{<:Pipeline}; next = C_NULL)
 
 Arguments:
-- `groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}`
-- `pipelines::AbstractArray{<:Pipeline}`
-- `next`: defaults to `C_NULL`
+• `groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}`
+• `pipelines::AbstractArray{<:Pipeline}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html
 
 """
 _GraphicsPipelineShaderGroupsCreateInfoNV
@@ -7591,7 +8727,9 @@ _GraphicsPipelineShaderGroupsCreateInfoNV
     _BindShaderGroupIndirectCommandNV(group_index::Integer)
 
 Arguments:
-- `group_index::Integer`
+• `group_index::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindShaderGroupIndirectCommandNV.html
 
 """
 _BindShaderGroupIndirectCommandNV
@@ -7600,9 +8738,11 @@ _BindShaderGroupIndirectCommandNV
     _BindIndexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, index_type::IndexType)
 
 Arguments:
-- `buffer_address::Integer`
-- `size::Integer`
-- `index_type::IndexType`
+• `buffer_address::Integer`
+• `size::Integer`
+• `index_type::IndexType`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html
 
 """
 _BindIndexBufferIndirectCommandNV
@@ -7611,9 +8751,11 @@ _BindIndexBufferIndirectCommandNV
     _BindVertexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, stride::Integer)
 
 Arguments:
-- `buffer_address::Integer`
-- `size::Integer`
-- `stride::Integer`
+• `buffer_address::Integer`
+• `size::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindVertexBufferIndirectCommandNV.html
 
 """
 _BindVertexBufferIndirectCommandNV
@@ -7622,7 +8764,9 @@ _BindVertexBufferIndirectCommandNV
     _SetStateFlagsIndirectCommandNV(data::Integer)
 
 Arguments:
-- `data::Integer`
+• `data::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSetStateFlagsIndirectCommandNV.html
 
 """
 _SetStateFlagsIndirectCommandNV
@@ -7631,8 +8775,10 @@ _SetStateFlagsIndirectCommandNV
     _IndirectCommandsStreamNV(buffer::Buffer, offset::Integer)
 
 Arguments:
-- `buffer::Buffer`
-- `offset::Integer`
+• `buffer::Buffer`
+• `offset::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsStreamNV.html
 
 """
 _IndirectCommandsStreamNV
@@ -7641,19 +8787,21 @@ _IndirectCommandsStreamNV
     _IndirectCommandsLayoutTokenNV(token_type::IndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray{<:IndexType}, index_type_values::AbstractArray{<:Integer}; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
 
 Arguments:
-- `token_type::IndirectCommandsTokenTypeNV`
-- `stream::Integer`
-- `offset::Integer`
-- `vertex_binding_unit::Integer`
-- `vertex_dynamic_stride::Bool`
-- `pushconstant_offset::Integer`
-- `pushconstant_size::Integer`
-- `index_types::AbstractArray{<:IndexType}`
-- `index_type_values::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `pushconstant_pipeline_layout`: defaults to `C_NULL`
-- `pushconstant_shader_stage_flags`: defaults to `0`
-- `indirect_state_flags`: defaults to `0`
+• `token_type::IndirectCommandsTokenTypeNV`
+• `stream::Integer`
+• `offset::Integer`
+• `vertex_binding_unit::Integer`
+• `vertex_dynamic_stride::Bool`
+• `pushconstant_offset::Integer`
+• `pushconstant_size::Integer`
+• `index_types::AbstractArray{<:IndexType}`
+• `index_type_values::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `pushconstant_pipeline_layout`: defaults to `C_NULL`
+• `pushconstant_shader_stage_flags`: defaults to `0`
+• `indirect_state_flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html
 
 """
 _IndirectCommandsLayoutTokenNV
@@ -7662,11 +8810,13 @@ _IndirectCommandsLayoutTokenNV
     _IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `pipeline_bind_point::PipelineBindPoint`
-- `tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}`
-- `stream_strides::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `pipeline_bind_point::PipelineBindPoint`
+• `tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}`
+• `stream_strides::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html
 
 """
 _IndirectCommandsLayoutCreateInfoNV
@@ -7675,19 +8825,21 @@ _IndirectCommandsLayoutCreateInfoNV
     _GeneratedCommandsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:_IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::PipelineBindPoint`
-- `pipeline::Pipeline`
-- `indirect_commands_layout::IndirectCommandsLayoutNV`
-- `streams::AbstractArray{<:_IndirectCommandsStreamNV}`
-- `sequences_count::Integer`
-- `preprocess_buffer::Buffer`
-- `preprocess_offset::Integer`
-- `preprocess_size::Integer`
-- `sequences_count_offset::Integer`
-- `sequences_index_offset::Integer`
-- `next`: defaults to `C_NULL`
-- `sequences_count_buffer`: defaults to `C_NULL`
-- `sequences_index_buffer`: defaults to `C_NULL`
+• `pipeline_bind_point::PipelineBindPoint`
+• `pipeline::Pipeline`
+• `indirect_commands_layout::IndirectCommandsLayoutNV`
+• `streams::AbstractArray{<:_IndirectCommandsStreamNV}`
+• `sequences_count::Integer`
+• `preprocess_buffer::Buffer`
+• `preprocess_offset::Integer`
+• `preprocess_size::Integer`
+• `sequences_count_offset::Integer`
+• `sequences_index_offset::Integer`
+• `next`: defaults to `C_NULL`
+• `sequences_count_buffer`: defaults to `C_NULL`
+• `sequences_index_buffer`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsInfoNV.html
 
 """
 _GeneratedCommandsInfoNV
@@ -7696,11 +8848,13 @@ _GeneratedCommandsInfoNV
     _GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, max_sequences_count::Integer; next = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::PipelineBindPoint`
-- `pipeline::Pipeline`
-- `indirect_commands_layout::IndirectCommandsLayoutNV`
-- `max_sequences_count::Integer`
-- `next`: defaults to `C_NULL`
+• `pipeline_bind_point::PipelineBindPoint`
+• `pipeline::Pipeline`
+• `indirect_commands_layout::IndirectCommandsLayoutNV`
+• `max_sequences_count::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html
 
 """
 _GeneratedCommandsMemoryRequirementsInfoNV
@@ -7709,8 +8863,10 @@ _GeneratedCommandsMemoryRequirementsInfoNV
     _PhysicalDeviceFeatures2(features::_PhysicalDeviceFeatures; next = C_NULL)
 
 Arguments:
-- `features::_PhysicalDeviceFeatures`
-- `next`: defaults to `C_NULL`
+• `features::_PhysicalDeviceFeatures`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures2.html
 
 """
 _PhysicalDeviceFeatures2
@@ -7719,12 +8875,14 @@ _PhysicalDeviceFeatures2
     _PhysicalDeviceImageFormatInfo2(format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; next = C_NULL, flags = 0)
 
 Arguments:
-- `format::Format`
-- `type::ImageType`
-- `tiling::ImageTiling`
-- `usage::ImageUsageFlag`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `format::Format`
+• `type::ImageType`
+• `tiling::ImageTiling`
+• `usage::ImageUsageFlag`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html
 
 """
 _PhysicalDeviceImageFormatInfo2
@@ -7733,12 +8891,14 @@ _PhysicalDeviceImageFormatInfo2
     _PhysicalDeviceSparseImageFormatInfo2(format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling; next = C_NULL)
 
 Arguments:
-- `format::Format`
-- `type::ImageType`
-- `samples::SampleCountFlag`
-- `usage::ImageUsageFlag`
-- `tiling::ImageTiling`
-- `next`: defaults to `C_NULL`
+• `format::Format`
+• `type::ImageType`
+• `samples::SampleCountFlag`
+• `usage::ImageUsageFlag`
+• `tiling::ImageTiling`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html
 
 """
 _PhysicalDeviceSparseImageFormatInfo2
@@ -7747,10 +8907,12 @@ _PhysicalDeviceSparseImageFormatInfo2
     _ConformanceVersion(major::Integer, minor::Integer, subminor::Integer, patch::Integer)
 
 Arguments:
-- `major::Integer`
-- `minor::Integer`
-- `subminor::Integer`
-- `patch::Integer`
+• `major::Integer`
+• `minor::Integer`
+• `subminor::Integer`
+• `patch::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConformanceVersion.html
 
 """
 _ConformanceVersion
@@ -7759,8 +8921,10 @@ _ConformanceVersion
     _PresentRegionsKHR(; next = C_NULL, regions = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `regions`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `regions`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionsKHR.html
 
 """
 _PresentRegionsKHR
@@ -7769,7 +8933,9 @@ _PresentRegionsKHR
     _PresentRegionKHR(; rectangles = C_NULL)
 
 Arguments:
-- `rectangles`: defaults to `C_NULL`
+• `rectangles`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionKHR.html
 
 """
 _PresentRegionKHR
@@ -7778,9 +8944,11 @@ _PresentRegionKHR
     _RectLayerKHR(offset::_Offset2D, extent::_Extent2D, layer::Integer)
 
 Arguments:
-- `offset::_Offset2D`
-- `extent::_Extent2D`
-- `layer::Integer`
+• `offset::_Offset2D`
+• `extent::_Extent2D`
+• `layer::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRectLayerKHR.html
 
 """
 _RectLayerKHR
@@ -7789,9 +8957,11 @@ _RectLayerKHR
     _PhysicalDeviceVariablePointersFeatures(variable_pointers_storage_buffer::Bool, variable_pointers::Bool; next = C_NULL)
 
 Arguments:
-- `variable_pointers_storage_buffer::Bool`
-- `variable_pointers::Bool`
-- `next`: defaults to `C_NULL`
+• `variable_pointers_storage_buffer::Bool`
+• `variable_pointers::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVariablePointersFeatures.html
 
 """
 _PhysicalDeviceVariablePointersFeatures
@@ -7800,8 +8970,10 @@ _PhysicalDeviceVariablePointersFeatures
     _PhysicalDeviceExternalImageFormatInfo(; next = C_NULL, handle_type = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_type`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_type`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html
 
 """
 _PhysicalDeviceExternalImageFormatInfo
@@ -7810,10 +8982,12 @@ _PhysicalDeviceExternalImageFormatInfo
     _PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
 
 Arguments:
-- `usage::BufferUsageFlag`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `usage::BufferUsageFlag`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalBufferInfo.html
 
 """
 _PhysicalDeviceExternalBufferInfo
@@ -7822,8 +8996,10 @@ _PhysicalDeviceExternalBufferInfo
     _ExternalMemoryImageCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_types`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_types`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfo.html
 
 """
 _ExternalMemoryImageCreateInfo
@@ -7832,8 +9008,10 @@ _ExternalMemoryImageCreateInfo
     _ExternalMemoryBufferCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_types`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_types`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryBufferCreateInfo.html
 
 """
 _ExternalMemoryBufferCreateInfo
@@ -7842,8 +9020,10 @@ _ExternalMemoryBufferCreateInfo
     _ExportMemoryAllocateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_types`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_types`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfo.html
 
 """
 _ExportMemoryAllocateInfo
@@ -7852,10 +9032,12 @@ _ExportMemoryAllocateInfo
     _ImportMemoryWin32HandleInfoKHR(; next = C_NULL, handle_type = 0, handle = 0, name = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_type`: defaults to `0`
-- `handle`: defaults to `0`
-- `name`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_type`: defaults to `0`
+• `handle`: defaults to `0`
+• `name`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryWin32HandleInfoKHR.html
 
 """
 _ImportMemoryWin32HandleInfoKHR
@@ -7864,10 +9046,12 @@ _ImportMemoryWin32HandleInfoKHR
     _ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
-- `dw_access::vk.DWORD`
-- `name::vk.LPCWSTR`
-- `next`: defaults to `C_NULL`
-- `attributes`: defaults to `C_NULL`
+• `dw_access::vk.DWORD`
+• `name::vk.LPCWSTR`
+• `next`: defaults to `C_NULL`
+• `attributes`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryWin32HandleInfoKHR.html
 
 """
 _ExportMemoryWin32HandleInfoKHR
@@ -7876,9 +9060,11 @@ _ExportMemoryWin32HandleInfoKHR
     _ImportMemoryZirconHandleInfoFUCHSIA(; next = C_NULL, handle_type = 0, handle = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_type`: defaults to `0`
-- `handle`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_type`: defaults to `0`
+• `handle`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryZirconHandleInfoFUCHSIA.html
 
 """
 _ImportMemoryZirconHandleInfoFUCHSIA
@@ -7887,9 +9073,11 @@ _ImportMemoryZirconHandleInfoFUCHSIA
     _MemoryGetZirconHandleInfoFUCHSIA(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `memory::DeviceMemory`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `memory::DeviceMemory`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetZirconHandleInfoFUCHSIA.html
 
 """
 _MemoryGetZirconHandleInfoFUCHSIA
@@ -7898,9 +9086,11 @@ _MemoryGetZirconHandleInfoFUCHSIA
     _MemoryGetWin32HandleInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `memory::DeviceMemory`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `memory::DeviceMemory`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetWin32HandleInfoKHR.html
 
 """
 _MemoryGetWin32HandleInfoKHR
@@ -7909,9 +9099,11 @@ _MemoryGetWin32HandleInfoKHR
     _ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
 
 Arguments:
-- `fd::Integer`
-- `next`: defaults to `C_NULL`
-- `handle_type`: defaults to `0`
+• `fd::Integer`
+• `next`: defaults to `C_NULL`
+• `handle_type`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryFdInfoKHR.html
 
 """
 _ImportMemoryFdInfoKHR
@@ -7920,9 +9112,11 @@ _ImportMemoryFdInfoKHR
     _MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `memory::DeviceMemory`
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `memory::DeviceMemory`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetFdInfoKHR.html
 
 """
 _MemoryGetFdInfoKHR
@@ -7931,12 +9125,14 @@ _MemoryGetFdInfoKHR
     _Win32KeyedMutexAcquireReleaseInfoKHR(acquire_syncs::AbstractArray{<:DeviceMemory}, acquire_keys::AbstractArray{<:Integer}, acquire_timeouts::AbstractArray{<:Integer}, release_syncs::AbstractArray{<:DeviceMemory}, release_keys::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `acquire_syncs::AbstractArray{<:DeviceMemory}`
-- `acquire_keys::AbstractArray{<:Integer}`
-- `acquire_timeouts::AbstractArray{<:Integer}`
-- `release_syncs::AbstractArray{<:DeviceMemory}`
-- `release_keys::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `acquire_syncs::AbstractArray{<:DeviceMemory}`
+• `acquire_keys::AbstractArray{<:Integer}`
+• `acquire_timeouts::AbstractArray{<:Integer}`
+• `release_syncs::AbstractArray{<:DeviceMemory}`
+• `release_keys::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoKHR.html
 
 """
 _Win32KeyedMutexAcquireReleaseInfoKHR
@@ -7945,8 +9141,10 @@ _Win32KeyedMutexAcquireReleaseInfoKHR
     _PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `handle_type::ExternalSemaphoreHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `handle_type::ExternalSemaphoreHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html
 
 """
 _PhysicalDeviceExternalSemaphoreInfo
@@ -7955,8 +9153,10 @@ _PhysicalDeviceExternalSemaphoreInfo
     _ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_types`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_types`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportSemaphoreCreateInfo.html
 
 """
 _ExportSemaphoreCreateInfo
@@ -7965,12 +9165,14 @@ _ExportSemaphoreCreateInfo
     _ImportSemaphoreWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
 
 Arguments:
-- `semaphore::Semaphore` (externsync)
-- `handle_type::ExternalSemaphoreHandleTypeFlag`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `handle`: defaults to `0`
-- `name`: defaults to `0`
+• `semaphore::Semaphore` (externsync)
+• `handle_type::ExternalSemaphoreHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `handle`: defaults to `0`
+• `name`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreWin32HandleInfoKHR.html
 
 """
 _ImportSemaphoreWin32HandleInfoKHR
@@ -7979,10 +9181,12 @@ _ImportSemaphoreWin32HandleInfoKHR
     _ExportSemaphoreWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
-- `dw_access::vk.DWORD`
-- `name::vk.LPCWSTR`
-- `next`: defaults to `C_NULL`
-- `attributes`: defaults to `C_NULL`
+• `dw_access::vk.DWORD`
+• `name::vk.LPCWSTR`
+• `next`: defaults to `C_NULL`
+• `attributes`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportSemaphoreWin32HandleInfoKHR.html
 
 """
 _ExportSemaphoreWin32HandleInfoKHR
@@ -7991,9 +9195,11 @@ _ExportSemaphoreWin32HandleInfoKHR
     _D3D12FenceSubmitInfoKHR(; next = C_NULL, wait_semaphore_values = C_NULL, signal_semaphore_values = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `wait_semaphore_values`: defaults to `C_NULL`
-- `signal_semaphore_values`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `wait_semaphore_values`: defaults to `C_NULL`
+• `signal_semaphore_values`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkD3D12FenceSubmitInfoKHR.html
 
 """
 _D3D12FenceSubmitInfoKHR
@@ -8002,9 +9208,11 @@ _D3D12FenceSubmitInfoKHR
     _SemaphoreGetWin32HandleInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `semaphore::Semaphore`
-- `handle_type::ExternalSemaphoreHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `semaphore::Semaphore`
+• `handle_type::ExternalSemaphoreHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetWin32HandleInfoKHR.html
 
 """
 _SemaphoreGetWin32HandleInfoKHR
@@ -8013,11 +9221,13 @@ _SemaphoreGetWin32HandleInfoKHR
     _ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `semaphore::Semaphore` (externsync)
-- `handle_type::ExternalSemaphoreHandleTypeFlag`
-- `fd::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `semaphore::Semaphore` (externsync)
+• `handle_type::ExternalSemaphoreHandleTypeFlag`
+• `fd::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreFdInfoKHR.html
 
 """
 _ImportSemaphoreFdInfoKHR
@@ -8026,9 +9236,11 @@ _ImportSemaphoreFdInfoKHR
     _SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `semaphore::Semaphore`
-- `handle_type::ExternalSemaphoreHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `semaphore::Semaphore`
+• `handle_type::ExternalSemaphoreHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetFdInfoKHR.html
 
 """
 _SemaphoreGetFdInfoKHR
@@ -8037,11 +9249,13 @@ _SemaphoreGetFdInfoKHR
     _ImportSemaphoreZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, zircon_handle::vk.zx_handle_t; next = C_NULL, flags = 0)
 
 Arguments:
-- `semaphore::Semaphore` (externsync)
-- `handle_type::ExternalSemaphoreHandleTypeFlag`
-- `zircon_handle::vk.zx_handle_t`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `semaphore::Semaphore` (externsync)
+• `handle_type::ExternalSemaphoreHandleTypeFlag`
+• `zircon_handle::vk.zx_handle_t`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreZirconHandleInfoFUCHSIA.html
 
 """
 _ImportSemaphoreZirconHandleInfoFUCHSIA
@@ -8050,9 +9264,11 @@ _ImportSemaphoreZirconHandleInfoFUCHSIA
     _SemaphoreGetZirconHandleInfoFUCHSIA(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `semaphore::Semaphore`
-- `handle_type::ExternalSemaphoreHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `semaphore::Semaphore`
+• `handle_type::ExternalSemaphoreHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetZirconHandleInfoFUCHSIA.html
 
 """
 _SemaphoreGetZirconHandleInfoFUCHSIA
@@ -8061,8 +9277,10 @@ _SemaphoreGetZirconHandleInfoFUCHSIA
     _PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `handle_type::ExternalFenceHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `handle_type::ExternalFenceHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html
 
 """
 _PhysicalDeviceExternalFenceInfo
@@ -8071,8 +9289,10 @@ _PhysicalDeviceExternalFenceInfo
     _ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `handle_types`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `handle_types`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportFenceCreateInfo.html
 
 """
 _ExportFenceCreateInfo
@@ -8081,12 +9301,14 @@ _ExportFenceCreateInfo
     _ImportFenceWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL, flags = 0, handle = 0, name = 0)
 
 Arguments:
-- `fence::Fence` (externsync)
-- `handle_type::ExternalFenceHandleTypeFlag`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `handle`: defaults to `0`
-- `name`: defaults to `0`
+• `fence::Fence` (externsync)
+• `handle_type::ExternalFenceHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `handle`: defaults to `0`
+• `name`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportFenceWin32HandleInfoKHR.html
 
 """
 _ImportFenceWin32HandleInfoKHR
@@ -8095,10 +9317,12 @@ _ImportFenceWin32HandleInfoKHR
     _ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
-- `dw_access::vk.DWORD`
-- `name::vk.LPCWSTR`
-- `next`: defaults to `C_NULL`
-- `attributes`: defaults to `C_NULL`
+• `dw_access::vk.DWORD`
+• `name::vk.LPCWSTR`
+• `next`: defaults to `C_NULL`
+• `attributes`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportFenceWin32HandleInfoKHR.html
 
 """
 _ExportFenceWin32HandleInfoKHR
@@ -8107,9 +9331,11 @@ _ExportFenceWin32HandleInfoKHR
     _FenceGetWin32HandleInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `fence::Fence`
-- `handle_type::ExternalFenceHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `fence::Fence`
+• `handle_type::ExternalFenceHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceGetWin32HandleInfoKHR.html
 
 """
 _FenceGetWin32HandleInfoKHR
@@ -8118,11 +9344,13 @@ _FenceGetWin32HandleInfoKHR
     _ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `fence::Fence` (externsync)
-- `handle_type::ExternalFenceHandleTypeFlag`
-- `fd::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `fence::Fence` (externsync)
+• `handle_type::ExternalFenceHandleTypeFlag`
+• `fd::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportFenceFdInfoKHR.html
 
 """
 _ImportFenceFdInfoKHR
@@ -8131,9 +9359,11 @@ _ImportFenceFdInfoKHR
     _FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
 
 Arguments:
-- `fence::Fence`
-- `handle_type::ExternalFenceHandleTypeFlag`
-- `next`: defaults to `C_NULL`
+• `fence::Fence`
+• `handle_type::ExternalFenceHandleTypeFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceGetFdInfoKHR.html
 
 """
 _FenceGetFdInfoKHR
@@ -8142,10 +9372,12 @@ _FenceGetFdInfoKHR
     _PhysicalDeviceMultiviewFeatures(multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool; next = C_NULL)
 
 Arguments:
-- `multiview::Bool`
-- `multiview_geometry_shader::Bool`
-- `multiview_tessellation_shader::Bool`
-- `next`: defaults to `C_NULL`
+• `multiview::Bool`
+• `multiview_geometry_shader::Bool`
+• `multiview_tessellation_shader::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMultiviewFeatures.html
 
 """
 _PhysicalDeviceMultiviewFeatures
@@ -8154,10 +9386,12 @@ _PhysicalDeviceMultiviewFeatures
     _RenderPassMultiviewCreateInfo(view_masks::AbstractArray{<:Integer}, view_offsets::AbstractArray{<:Integer}, correlation_masks::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `view_masks::AbstractArray{<:Integer}`
-- `view_offsets::AbstractArray{<:Integer}`
-- `correlation_masks::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `view_masks::AbstractArray{<:Integer}`
+• `view_offsets::AbstractArray{<:Integer}`
+• `correlation_masks::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassMultiviewCreateInfo.html
 
 """
 _RenderPassMultiviewCreateInfo
@@ -8166,8 +9400,10 @@ _RenderPassMultiviewCreateInfo
     _DisplayPowerInfoEXT(power_state::DisplayPowerStateEXT; next = C_NULL)
 
 Arguments:
-- `power_state::DisplayPowerStateEXT`
-- `next`: defaults to `C_NULL`
+• `power_state::DisplayPowerStateEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPowerInfoEXT.html
 
 """
 _DisplayPowerInfoEXT
@@ -8176,8 +9412,10 @@ _DisplayPowerInfoEXT
     _DeviceEventInfoEXT(device_event::DeviceEventTypeEXT; next = C_NULL)
 
 Arguments:
-- `device_event::DeviceEventTypeEXT`
-- `next`: defaults to `C_NULL`
+• `device_event::DeviceEventTypeEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceEventInfoEXT.html
 
 """
 _DeviceEventInfoEXT
@@ -8186,8 +9424,10 @@ _DeviceEventInfoEXT
     _DisplayEventInfoEXT(display_event::DisplayEventTypeEXT; next = C_NULL)
 
 Arguments:
-- `display_event::DisplayEventTypeEXT`
-- `next`: defaults to `C_NULL`
+• `display_event::DisplayEventTypeEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayEventInfoEXT.html
 
 """
 _DisplayEventInfoEXT
@@ -8196,8 +9436,10 @@ _DisplayEventInfoEXT
     _SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `surface_counters`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `surface_counters`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCounterCreateInfoEXT.html
 
 """
 _SwapchainCounterCreateInfoEXT
@@ -8206,9 +9448,11 @@ _SwapchainCounterCreateInfoEXT
     _MemoryAllocateFlagsInfo(device_mask::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `device_mask::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `device_mask::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateFlagsInfo.html
 
 """
 _MemoryAllocateFlagsInfo
@@ -8217,10 +9461,12 @@ _MemoryAllocateFlagsInfo
     _BindBufferMemoryInfo(buffer::Buffer, memory::DeviceMemory, memory_offset::Integer; next = C_NULL)
 
 Arguments:
-- `buffer::Buffer`
-- `memory::DeviceMemory`
-- `memory_offset::Integer`
-- `next`: defaults to `C_NULL`
+• `buffer::Buffer`
+• `memory::DeviceMemory`
+• `memory_offset::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryInfo.html
 
 """
 _BindBufferMemoryInfo
@@ -8229,8 +9475,10 @@ _BindBufferMemoryInfo
     _BindBufferMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `device_indices::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `device_indices::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html
 
 """
 _BindBufferMemoryDeviceGroupInfo
@@ -8239,10 +9487,12 @@ _BindBufferMemoryDeviceGroupInfo
     _BindImageMemoryInfo(image::Image, memory::DeviceMemory, memory_offset::Integer; next = C_NULL)
 
 Arguments:
-- `image::Image`
-- `memory::DeviceMemory`
-- `memory_offset::Integer`
-- `next`: defaults to `C_NULL`
+• `image::Image`
+• `memory::DeviceMemory`
+• `memory_offset::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryInfo.html
 
 """
 _BindImageMemoryInfo
@@ -8251,9 +9501,11 @@ _BindImageMemoryInfo
     _BindImageMemoryDeviceGroupInfo(device_indices::AbstractArray{<:Integer}, split_instance_bind_regions::AbstractArray{<:_Rect2D}; next = C_NULL)
 
 Arguments:
-- `device_indices::AbstractArray{<:Integer}`
-- `split_instance_bind_regions::AbstractArray{<:_Rect2D}`
-- `next`: defaults to `C_NULL`
+• `device_indices::AbstractArray{<:Integer}`
+• `split_instance_bind_regions::AbstractArray{<:_Rect2D}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html
 
 """
 _BindImageMemoryDeviceGroupInfo
@@ -8262,9 +9514,11 @@ _BindImageMemoryDeviceGroupInfo
     _DeviceGroupRenderPassBeginInfo(device_mask::Integer, device_render_areas::AbstractArray{<:_Rect2D}; next = C_NULL)
 
 Arguments:
-- `device_mask::Integer`
-- `device_render_areas::AbstractArray{<:_Rect2D}`
-- `next`: defaults to `C_NULL`
+• `device_mask::Integer`
+• `device_render_areas::AbstractArray{<:_Rect2D}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html
 
 """
 _DeviceGroupRenderPassBeginInfo
@@ -8273,8 +9527,10 @@ _DeviceGroupRenderPassBeginInfo
     _DeviceGroupCommandBufferBeginInfo(device_mask::Integer; next = C_NULL)
 
 Arguments:
-- `device_mask::Integer`
-- `next`: defaults to `C_NULL`
+• `device_mask::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupCommandBufferBeginInfo.html
 
 """
 _DeviceGroupCommandBufferBeginInfo
@@ -8283,10 +9539,12 @@ _DeviceGroupCommandBufferBeginInfo
     _DeviceGroupSubmitInfo(wait_semaphore_device_indices::AbstractArray{<:Integer}, command_buffer_device_masks::AbstractArray{<:Integer}, signal_semaphore_device_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `wait_semaphore_device_indices::AbstractArray{<:Integer}`
-- `command_buffer_device_masks::AbstractArray{<:Integer}`
-- `signal_semaphore_device_indices::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `wait_semaphore_device_indices::AbstractArray{<:Integer}`
+• `command_buffer_device_masks::AbstractArray{<:Integer}`
+• `signal_semaphore_device_indices::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSubmitInfo.html
 
 """
 _DeviceGroupSubmitInfo
@@ -8295,9 +9553,11 @@ _DeviceGroupSubmitInfo
     _DeviceGroupBindSparseInfo(resource_device_index::Integer, memory_device_index::Integer; next = C_NULL)
 
 Arguments:
-- `resource_device_index::Integer`
-- `memory_device_index::Integer`
-- `next`: defaults to `C_NULL`
+• `resource_device_index::Integer`
+• `memory_device_index::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupBindSparseInfo.html
 
 """
 _DeviceGroupBindSparseInfo
@@ -8306,8 +9566,10 @@ _DeviceGroupBindSparseInfo
     _ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `swapchain`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `swapchain`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSwapchainCreateInfoKHR.html
 
 """
 _ImageSwapchainCreateInfoKHR
@@ -8316,9 +9578,11 @@ _ImageSwapchainCreateInfoKHR
     _BindImageMemorySwapchainInfoKHR(swapchain::SwapchainKHR, image_index::Integer; next = C_NULL)
 
 Arguments:
-- `swapchain::SwapchainKHR` (externsync)
-- `image_index::Integer`
-- `next`: defaults to `C_NULL`
+• `swapchain::SwapchainKHR` (externsync)
+• `image_index::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html
 
 """
 _BindImageMemorySwapchainInfoKHR
@@ -8327,12 +9591,14 @@ _BindImageMemorySwapchainInfoKHR
     _AcquireNextImageInfoKHR(swapchain::SwapchainKHR, timeout::Integer, device_mask::Integer; next = C_NULL, semaphore = C_NULL, fence = C_NULL)
 
 Arguments:
-- `swapchain::SwapchainKHR` (externsync)
-- `timeout::Integer`
-- `device_mask::Integer`
-- `next`: defaults to `C_NULL`
-- `semaphore`: defaults to `C_NULL` (externsync)
-- `fence`: defaults to `C_NULL` (externsync)
+• `swapchain::SwapchainKHR` (externsync)
+• `timeout::Integer`
+• `device_mask::Integer`
+• `next`: defaults to `C_NULL`
+• `semaphore`: defaults to `C_NULL` (externsync)
+• `fence`: defaults to `C_NULL` (externsync)
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireNextImageInfoKHR.html
 
 """
 _AcquireNextImageInfoKHR
@@ -8341,9 +9607,11 @@ _AcquireNextImageInfoKHR
     _DeviceGroupPresentInfoKHR(device_masks::AbstractArray{<:Integer}, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
 
 Arguments:
-- `device_masks::AbstractArray{<:Integer}`
-- `mode::DeviceGroupPresentModeFlagKHR`
-- `next`: defaults to `C_NULL`
+• `device_masks::AbstractArray{<:Integer}`
+• `mode::DeviceGroupPresentModeFlagKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupPresentInfoKHR.html
 
 """
 _DeviceGroupPresentInfoKHR
@@ -8352,8 +9620,10 @@ _DeviceGroupPresentInfoKHR
     _DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray{<:PhysicalDevice}; next = C_NULL)
 
 Arguments:
-- `physical_devices::AbstractArray{<:PhysicalDevice}`
-- `next`: defaults to `C_NULL`
+• `physical_devices::AbstractArray{<:PhysicalDevice}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html
 
 """
 _DeviceGroupDeviceCreateInfo
@@ -8362,8 +9632,10 @@ _DeviceGroupDeviceCreateInfo
     _DeviceGroupSwapchainCreateInfoKHR(modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
 
 Arguments:
-- `modes::DeviceGroupPresentModeFlagKHR`
-- `next`: defaults to `C_NULL`
+• `modes::DeviceGroupPresentModeFlagKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html
 
 """
 _DeviceGroupSwapchainCreateInfoKHR
@@ -8372,12 +9644,14 @@ _DeviceGroupSwapchainCreateInfoKHR
     _DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer, descriptor_type::DescriptorType, offset::Integer, stride::Integer)
 
 Arguments:
-- `dst_binding::Integer`
-- `dst_array_element::Integer`
-- `descriptor_count::Integer`
-- `descriptor_type::DescriptorType`
-- `offset::Integer`
-- `stride::Integer`
+• `dst_binding::Integer`
+• `dst_array_element::Integer`
+• `descriptor_count::Integer`
+• `descriptor_type::DescriptorType`
+• `offset::Integer`
+• `stride::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateEntry.html
 
 """
 _DescriptorUpdateTemplateEntry
@@ -8386,14 +9660,16 @@ _DescriptorUpdateTemplateEntry
     _DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}`
-- `template_type::DescriptorUpdateTemplateType`
-- `descriptor_set_layout::DescriptorSetLayout`
-- `pipeline_bind_point::PipelineBindPoint`
-- `pipeline_layout::PipelineLayout`
-- `set::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `descriptor_update_entries::AbstractArray{<:_DescriptorUpdateTemplateEntry}`
+• `template_type::DescriptorUpdateTemplateType`
+• `descriptor_set_layout::DescriptorSetLayout`
+• `pipeline_bind_point::PipelineBindPoint`
+• `pipeline_layout::PipelineLayout`
+• `set::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html
 
 """
 _DescriptorUpdateTemplateCreateInfo
@@ -8402,8 +9678,10 @@ _DescriptorUpdateTemplateCreateInfo
     _XYColorEXT(x::Real, y::Real)
 
 Arguments:
-- `x::Real`
-- `y::Real`
+• `x::Real`
+• `y::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXYColorEXT.html
 
 """
 _XYColorEXT
@@ -8412,15 +9690,17 @@ _XYColorEXT
     _HdrMetadataEXT(display_primary_red::_XYColorEXT, display_primary_green::_XYColorEXT, display_primary_blue::_XYColorEXT, white_point::_XYColorEXT, max_luminance::Real, min_luminance::Real, max_content_light_level::Real, max_frame_average_light_level::Real; next = C_NULL)
 
 Arguments:
-- `display_primary_red::_XYColorEXT`
-- `display_primary_green::_XYColorEXT`
-- `display_primary_blue::_XYColorEXT`
-- `white_point::_XYColorEXT`
-- `max_luminance::Real`
-- `min_luminance::Real`
-- `max_content_light_level::Real`
-- `max_frame_average_light_level::Real`
-- `next`: defaults to `C_NULL`
+• `display_primary_red::_XYColorEXT`
+• `display_primary_green::_XYColorEXT`
+• `display_primary_blue::_XYColorEXT`
+• `white_point::_XYColorEXT`
+• `max_luminance::Real`
+• `min_luminance::Real`
+• `max_content_light_level::Real`
+• `max_frame_average_light_level::Real`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHdrMetadataEXT.html
 
 """
 _HdrMetadataEXT
@@ -8429,8 +9709,10 @@ _HdrMetadataEXT
     _SwapchainDisplayNativeHdrCreateInfoAMD(local_dimming_enable::Bool; next = C_NULL)
 
 Arguments:
-- `local_dimming_enable::Bool`
-- `next`: defaults to `C_NULL`
+• `local_dimming_enable::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainDisplayNativeHdrCreateInfoAMD.html
 
 """
 _SwapchainDisplayNativeHdrCreateInfoAMD
@@ -8439,8 +9721,10 @@ _SwapchainDisplayNativeHdrCreateInfoAMD
     _PresentTimesInfoGOOGLE(; next = C_NULL, times = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `times`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `times`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimesInfoGOOGLE.html
 
 """
 _PresentTimesInfoGOOGLE
@@ -8449,8 +9733,10 @@ _PresentTimesInfoGOOGLE
     _PresentTimeGOOGLE(present_id::Integer, desired_present_time::Integer)
 
 Arguments:
-- `present_id::Integer`
-- `desired_present_time::Integer`
+• `present_id::Integer`
+• `desired_present_time::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimeGOOGLE.html
 
 """
 _PresentTimeGOOGLE
@@ -8459,9 +9745,11 @@ _PresentTimeGOOGLE
     _IOSSurfaceCreateInfoMVK(view::Ptr{Cvoid}; next = C_NULL, flags = 0)
 
 Arguments:
-- `view::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `view::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIOSSurfaceCreateInfoMVK.html
 
 """
 _IOSSurfaceCreateInfoMVK
@@ -8470,9 +9758,11 @@ _IOSSurfaceCreateInfoMVK
     _MacOSSurfaceCreateInfoMVK(view::Ptr{Cvoid}; next = C_NULL, flags = 0)
 
 Arguments:
-- `view::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `view::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMacOSSurfaceCreateInfoMVK.html
 
 """
 _MacOSSurfaceCreateInfoMVK
@@ -8481,9 +9771,11 @@ _MacOSSurfaceCreateInfoMVK
     _MetalSurfaceCreateInfoEXT(layer::vk.CAMetalLayer; next = C_NULL, flags = 0)
 
 Arguments:
-- `layer::vk.CAMetalLayer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `layer::vk.CAMetalLayer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMetalSurfaceCreateInfoEXT.html
 
 """
 _MetalSurfaceCreateInfoEXT
@@ -8492,8 +9784,10 @@ _MetalSurfaceCreateInfoEXT
     _ViewportWScalingNV(xcoeff::Real, ycoeff::Real)
 
 Arguments:
-- `xcoeff::Real`
-- `ycoeff::Real`
+• `xcoeff::Real`
+• `ycoeff::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportWScalingNV.html
 
 """
 _ViewportWScalingNV
@@ -8502,9 +9796,11 @@ _ViewportWScalingNV
     _PipelineViewportWScalingStateCreateInfoNV(viewport_w_scaling_enable::Bool; next = C_NULL, viewport_w_scalings = C_NULL)
 
 Arguments:
-- `viewport_w_scaling_enable::Bool`
-- `next`: defaults to `C_NULL`
-- `viewport_w_scalings`: defaults to `C_NULL`
+• `viewport_w_scaling_enable::Bool`
+• `next`: defaults to `C_NULL`
+• `viewport_w_scalings`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportWScalingStateCreateInfoNV.html
 
 """
 _PipelineViewportWScalingStateCreateInfoNV
@@ -8513,10 +9809,12 @@ _PipelineViewportWScalingStateCreateInfoNV
     _ViewportSwizzleNV(x::ViewportCoordinateSwizzleNV, y::ViewportCoordinateSwizzleNV, z::ViewportCoordinateSwizzleNV, w::ViewportCoordinateSwizzleNV)
 
 Arguments:
-- `x::ViewportCoordinateSwizzleNV`
-- `y::ViewportCoordinateSwizzleNV`
-- `z::ViewportCoordinateSwizzleNV`
-- `w::ViewportCoordinateSwizzleNV`
+• `x::ViewportCoordinateSwizzleNV`
+• `y::ViewportCoordinateSwizzleNV`
+• `z::ViewportCoordinateSwizzleNV`
+• `w::ViewportCoordinateSwizzleNV`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportSwizzleNV.html
 
 """
 _ViewportSwizzleNV
@@ -8525,9 +9823,11 @@ _ViewportSwizzleNV
     _PipelineViewportSwizzleStateCreateInfoNV(viewport_swizzles::AbstractArray{<:_ViewportSwizzleNV}; next = C_NULL, flags = 0)
 
 Arguments:
-- `viewport_swizzles::AbstractArray{<:_ViewportSwizzleNV}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `viewport_swizzles::AbstractArray{<:_ViewportSwizzleNV}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html
 
 """
 _PipelineViewportSwizzleStateCreateInfoNV
@@ -8536,10 +9836,12 @@ _PipelineViewportSwizzleStateCreateInfoNV
     _PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::DiscardRectangleModeEXT, discard_rectangles::AbstractArray{<:_Rect2D}; next = C_NULL, flags = 0)
 
 Arguments:
-- `discard_rectangle_mode::DiscardRectangleModeEXT`
-- `discard_rectangles::AbstractArray{<:_Rect2D}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `discard_rectangle_mode::DiscardRectangleModeEXT`
+• `discard_rectangles::AbstractArray{<:_Rect2D}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDiscardRectangleStateCreateInfoEXT.html
 
 """
 _PipelineDiscardRectangleStateCreateInfoEXT
@@ -8548,9 +9850,11 @@ _PipelineDiscardRectangleStateCreateInfoEXT
     _InputAttachmentAspectReference(subpass::Integer, input_attachment_index::Integer, aspect_mask::ImageAspectFlag)
 
 Arguments:
-- `subpass::Integer`
-- `input_attachment_index::Integer`
-- `aspect_mask::ImageAspectFlag`
+• `subpass::Integer`
+• `input_attachment_index::Integer`
+• `aspect_mask::ImageAspectFlag`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInputAttachmentAspectReference.html
 
 """
 _InputAttachmentAspectReference
@@ -8559,8 +9863,10 @@ _InputAttachmentAspectReference
     _RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractArray{<:_InputAttachmentAspectReference}; next = C_NULL)
 
 Arguments:
-- `aspect_references::AbstractArray{<:_InputAttachmentAspectReference}`
-- `next`: defaults to `C_NULL`
+• `aspect_references::AbstractArray{<:_InputAttachmentAspectReference}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html
 
 """
 _RenderPassInputAttachmentAspectCreateInfo
@@ -8569,8 +9875,10 @@ _RenderPassInputAttachmentAspectCreateInfo
     _PhysicalDeviceSurfaceInfo2KHR(surface::SurfaceKHR; next = C_NULL)
 
 Arguments:
-- `surface::SurfaceKHR`
-- `next`: defaults to `C_NULL`
+• `surface::SurfaceKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html
 
 """
 _PhysicalDeviceSurfaceInfo2KHR
@@ -8579,9 +9887,11 @@ _PhysicalDeviceSurfaceInfo2KHR
     _DisplayPlaneInfo2KHR(mode::DisplayModeKHR, plane_index::Integer; next = C_NULL)
 
 Arguments:
-- `mode::DisplayModeKHR` (externsync)
-- `plane_index::Integer`
-- `next`: defaults to `C_NULL`
+• `mode::DisplayModeKHR` (externsync)
+• `plane_index::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneInfo2KHR.html
 
 """
 _DisplayPlaneInfo2KHR
@@ -8590,11 +9900,13 @@ _DisplayPlaneInfo2KHR
     _PhysicalDevice16BitStorageFeatures(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool; next = C_NULL)
 
 Arguments:
-- `storage_buffer_16_bit_access::Bool`
-- `uniform_and_storage_buffer_16_bit_access::Bool`
-- `storage_push_constant_16::Bool`
-- `storage_input_output_16::Bool`
-- `next`: defaults to `C_NULL`
+• `storage_buffer_16_bit_access::Bool`
+• `uniform_and_storage_buffer_16_bit_access::Bool`
+• `storage_push_constant_16::Bool`
+• `storage_input_output_16::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice16BitStorageFeatures.html
 
 """
 _PhysicalDevice16BitStorageFeatures
@@ -8603,8 +9915,10 @@ _PhysicalDevice16BitStorageFeatures
     _PhysicalDeviceShaderSubgroupExtendedTypesFeatures(shader_subgroup_extended_types::Bool; next = C_NULL)
 
 Arguments:
-- `shader_subgroup_extended_types::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_subgroup_extended_types::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.html
 
 """
 _PhysicalDeviceShaderSubgroupExtendedTypesFeatures
@@ -8613,8 +9927,10 @@ _PhysicalDeviceShaderSubgroupExtendedTypesFeatures
     _BufferMemoryRequirementsInfo2(buffer::Buffer; next = C_NULL)
 
 Arguments:
-- `buffer::Buffer`
-- `next`: defaults to `C_NULL`
+• `buffer::Buffer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryRequirementsInfo2.html
 
 """
 _BufferMemoryRequirementsInfo2
@@ -8623,8 +9939,10 @@ _BufferMemoryRequirementsInfo2
     _ImageMemoryRequirementsInfo2(image::Image; next = C_NULL)
 
 Arguments:
-- `image::Image`
-- `next`: defaults to `C_NULL`
+• `image::Image`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryRequirementsInfo2.html
 
 """
 _ImageMemoryRequirementsInfo2
@@ -8633,8 +9951,10 @@ _ImageMemoryRequirementsInfo2
     _ImageSparseMemoryRequirementsInfo2(image::Image; next = C_NULL)
 
 Arguments:
-- `image::Image`
-- `next`: defaults to `C_NULL`
+• `image::Image`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html
 
 """
 _ImageSparseMemoryRequirementsInfo2
@@ -8643,9 +9963,11 @@ _ImageSparseMemoryRequirementsInfo2
     _MemoryDedicatedAllocateInfo(; next = C_NULL, image = C_NULL, buffer = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `image`: defaults to `C_NULL`
-- `buffer`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `image`: defaults to `C_NULL`
+• `buffer`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryDedicatedAllocateInfo.html
 
 """
 _MemoryDedicatedAllocateInfo
@@ -8654,8 +9976,10 @@ _MemoryDedicatedAllocateInfo
     _ImageViewUsageCreateInfo(usage::ImageUsageFlag; next = C_NULL)
 
 Arguments:
-- `usage::ImageUsageFlag`
-- `next`: defaults to `C_NULL`
+• `usage::ImageUsageFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewUsageCreateInfo.html
 
 """
 _ImageViewUsageCreateInfo
@@ -8664,8 +9988,10 @@ _ImageViewUsageCreateInfo
     _PipelineTessellationDomainOriginStateCreateInfo(domain_origin::TessellationDomainOrigin; next = C_NULL)
 
 Arguments:
-- `domain_origin::TessellationDomainOrigin`
-- `next`: defaults to `C_NULL`
+• `domain_origin::TessellationDomainOrigin`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationDomainOriginStateCreateInfo.html
 
 """
 _PipelineTessellationDomainOriginStateCreateInfo
@@ -8674,8 +10000,10 @@ _PipelineTessellationDomainOriginStateCreateInfo
     _SamplerYcbcrConversionInfo(conversion::SamplerYcbcrConversion; next = C_NULL)
 
 Arguments:
-- `conversion::SamplerYcbcrConversion`
-- `next`: defaults to `C_NULL`
+• `conversion::SamplerYcbcrConversion`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionInfo.html
 
 """
 _SamplerYcbcrConversionInfo
@@ -8684,15 +10012,17 @@ _SamplerYcbcrConversionInfo
     _SamplerYcbcrConversionCreateInfo(format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool; next = C_NULL)
 
 Arguments:
-- `format::Format`
-- `ycbcr_model::SamplerYcbcrModelConversion`
-- `ycbcr_range::SamplerYcbcrRange`
-- `components::_ComponentMapping`
-- `x_chroma_offset::ChromaLocation`
-- `y_chroma_offset::ChromaLocation`
-- `chroma_filter::Filter`
-- `force_explicit_reconstruction::Bool`
-- `next`: defaults to `C_NULL`
+• `format::Format`
+• `ycbcr_model::SamplerYcbcrModelConversion`
+• `ycbcr_range::SamplerYcbcrRange`
+• `components::_ComponentMapping`
+• `x_chroma_offset::ChromaLocation`
+• `y_chroma_offset::ChromaLocation`
+• `chroma_filter::Filter`
+• `force_explicit_reconstruction::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionCreateInfo.html
 
 """
 _SamplerYcbcrConversionCreateInfo
@@ -8701,8 +10031,10 @@ _SamplerYcbcrConversionCreateInfo
     _BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
 
 Arguments:
-- `plane_aspect::ImageAspectFlag`
-- `next`: defaults to `C_NULL`
+• `plane_aspect::ImageAspectFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImagePlaneMemoryInfo.html
 
 """
 _BindImagePlaneMemoryInfo
@@ -8711,8 +10043,10 @@ _BindImagePlaneMemoryInfo
     _ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
 
 Arguments:
-- `plane_aspect::ImageAspectFlag`
-- `next`: defaults to `C_NULL`
+• `plane_aspect::ImageAspectFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html
 
 """
 _ImagePlaneMemoryRequirementsInfo
@@ -8721,8 +10055,10 @@ _ImagePlaneMemoryRequirementsInfo
     _PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::Bool; next = C_NULL)
 
 Arguments:
-- `sampler_ycbcr_conversion::Bool`
-- `next`: defaults to `C_NULL`
+• `sampler_ycbcr_conversion::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSamplerYcbcrConversionFeatures.html
 
 """
 _PhysicalDeviceSamplerYcbcrConversionFeatures
@@ -8731,10 +10067,12 @@ _PhysicalDeviceSamplerYcbcrConversionFeatures
     _ConditionalRenderingBeginInfoEXT(buffer::Buffer, offset::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `buffer::Buffer`
-- `offset::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `buffer::Buffer`
+• `offset::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html
 
 """
 _ConditionalRenderingBeginInfoEXT
@@ -8743,8 +10081,10 @@ _ConditionalRenderingBeginInfoEXT
     _ProtectedSubmitInfo(protected_submit::Bool; next = C_NULL)
 
 Arguments:
-- `protected_submit::Bool`
-- `next`: defaults to `C_NULL`
+• `protected_submit::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkProtectedSubmitInfo.html
 
 """
 _ProtectedSubmitInfo
@@ -8753,8 +10093,10 @@ _ProtectedSubmitInfo
     _PhysicalDeviceProtectedMemoryFeatures(protected_memory::Bool; next = C_NULL)
 
 Arguments:
-- `protected_memory::Bool`
-- `next`: defaults to `C_NULL`
+• `protected_memory::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProtectedMemoryFeatures.html
 
 """
 _PhysicalDeviceProtectedMemoryFeatures
@@ -8763,10 +10105,12 @@ _PhysicalDeviceProtectedMemoryFeatures
     _DeviceQueueInfo2(queue_family_index::Integer, queue_index::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `queue_family_index::Integer`
-- `queue_index::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `queue_family_index::Integer`
+• `queue_index::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueInfo2.html
 
 """
 _DeviceQueueInfo2
@@ -8775,10 +10119,12 @@ _DeviceQueueInfo2
     _PipelineCoverageToColorStateCreateInfoNV(coverage_to_color_enable::Bool; next = C_NULL, flags = 0, coverage_to_color_location = 0)
 
 Arguments:
-- `coverage_to_color_enable::Bool`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `coverage_to_color_location`: defaults to `0`
+• `coverage_to_color_enable::Bool`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `coverage_to_color_location`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html
 
 """
 _PipelineCoverageToColorStateCreateInfoNV
@@ -8787,8 +10133,10 @@ _PipelineCoverageToColorStateCreateInfoNV
     _SampleLocationEXT(x::Real, y::Real)
 
 Arguments:
-- `x::Real`
-- `y::Real`
+• `x::Real`
+• `y::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationEXT.html
 
 """
 _SampleLocationEXT
@@ -8797,10 +10145,12 @@ _SampleLocationEXT
     _SampleLocationsInfoEXT(sample_locations_per_pixel::SampleCountFlag, sample_location_grid_size::_Extent2D, sample_locations::AbstractArray{<:_SampleLocationEXT}; next = C_NULL)
 
 Arguments:
-- `sample_locations_per_pixel::SampleCountFlag`
-- `sample_location_grid_size::_Extent2D`
-- `sample_locations::AbstractArray{<:_SampleLocationEXT}`
-- `next`: defaults to `C_NULL`
+• `sample_locations_per_pixel::SampleCountFlag`
+• `sample_location_grid_size::_Extent2D`
+• `sample_locations::AbstractArray{<:_SampleLocationEXT}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationsInfoEXT.html
 
 """
 _SampleLocationsInfoEXT
@@ -8809,8 +10159,10 @@ _SampleLocationsInfoEXT
     _AttachmentSampleLocationsEXT(attachment_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
 
 Arguments:
-- `attachment_index::Integer`
-- `sample_locations_info::_SampleLocationsInfoEXT`
+• `attachment_index::Integer`
+• `sample_locations_info::_SampleLocationsInfoEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentSampleLocationsEXT.html
 
 """
 _AttachmentSampleLocationsEXT
@@ -8819,8 +10171,10 @@ _AttachmentSampleLocationsEXT
     _SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
 
 Arguments:
-- `subpass_index::Integer`
-- `sample_locations_info::_SampleLocationsInfoEXT`
+• `subpass_index::Integer`
+• `sample_locations_info::_SampleLocationsInfoEXT`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassSampleLocationsEXT.html
 
 """
 _SubpassSampleLocationsEXT
@@ -8829,9 +10183,11 @@ _SubpassSampleLocationsEXT
     _RenderPassSampleLocationsBeginInfoEXT(attachment_initial_sample_locations::AbstractArray{<:_AttachmentSampleLocationsEXT}, post_subpass_sample_locations::AbstractArray{<:_SubpassSampleLocationsEXT}; next = C_NULL)
 
 Arguments:
-- `attachment_initial_sample_locations::AbstractArray{<:_AttachmentSampleLocationsEXT}`
-- `post_subpass_sample_locations::AbstractArray{<:_SubpassSampleLocationsEXT}`
-- `next`: defaults to `C_NULL`
+• `attachment_initial_sample_locations::AbstractArray{<:_AttachmentSampleLocationsEXT}`
+• `post_subpass_sample_locations::AbstractArray{<:_SubpassSampleLocationsEXT}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html
 
 """
 _RenderPassSampleLocationsBeginInfoEXT
@@ -8840,9 +10196,11 @@ _RenderPassSampleLocationsBeginInfoEXT
     _PipelineSampleLocationsStateCreateInfoEXT(sample_locations_enable::Bool, sample_locations_info::_SampleLocationsInfoEXT; next = C_NULL)
 
 Arguments:
-- `sample_locations_enable::Bool`
-- `sample_locations_info::_SampleLocationsInfoEXT`
-- `next`: defaults to `C_NULL`
+• `sample_locations_enable::Bool`
+• `sample_locations_info::_SampleLocationsInfoEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html
 
 """
 _PipelineSampleLocationsStateCreateInfoEXT
@@ -8851,8 +10209,10 @@ _PipelineSampleLocationsStateCreateInfoEXT
     _SamplerReductionModeCreateInfo(reduction_mode::SamplerReductionMode; next = C_NULL)
 
 Arguments:
-- `reduction_mode::SamplerReductionMode`
-- `next`: defaults to `C_NULL`
+• `reduction_mode::SamplerReductionMode`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerReductionModeCreateInfo.html
 
 """
 _SamplerReductionModeCreateInfo
@@ -8861,8 +10221,10 @@ _SamplerReductionModeCreateInfo
     _PhysicalDeviceBlendOperationAdvancedFeaturesEXT(advanced_blend_coherent_operations::Bool; next = C_NULL)
 
 Arguments:
-- `advanced_blend_coherent_operations::Bool`
-- `next`: defaults to `C_NULL`
+• `advanced_blend_coherent_operations::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html
 
 """
 _PhysicalDeviceBlendOperationAdvancedFeaturesEXT
@@ -8871,10 +10233,12 @@ _PhysicalDeviceBlendOperationAdvancedFeaturesEXT
     _PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::BlendOverlapEXT; next = C_NULL)
 
 Arguments:
-- `src_premultiplied::Bool`
-- `dst_premultiplied::Bool`
-- `blend_overlap::BlendOverlapEXT`
-- `next`: defaults to `C_NULL`
+• `src_premultiplied::Bool`
+• `dst_premultiplied::Bool`
+• `blend_overlap::BlendOverlapEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAdvancedStateCreateInfoEXT.html
 
 """
 _PipelineColorBlendAdvancedStateCreateInfoEXT
@@ -8883,9 +10247,11 @@ _PipelineColorBlendAdvancedStateCreateInfoEXT
     _PhysicalDeviceInlineUniformBlockFeaturesEXT(inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool; next = C_NULL)
 
 Arguments:
-- `inline_uniform_block::Bool`
-- `descriptor_binding_inline_uniform_block_update_after_bind::Bool`
-- `next`: defaults to `C_NULL`
+• `inline_uniform_block::Bool`
+• `descriptor_binding_inline_uniform_block_update_after_bind::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInlineUniformBlockFeaturesEXT.html
 
 """
 _PhysicalDeviceInlineUniformBlockFeaturesEXT
@@ -8894,9 +10260,11 @@ _PhysicalDeviceInlineUniformBlockFeaturesEXT
     _WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `data_size::Integer`
-- `data::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
+• `data_size::Integer`
+• `data::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetInlineUniformBlockEXT.html
 
 """
 _WriteDescriptorSetInlineUniformBlockEXT
@@ -8905,8 +10273,10 @@ _WriteDescriptorSetInlineUniformBlockEXT
     _DescriptorPoolInlineUniformBlockCreateInfoEXT(max_inline_uniform_block_bindings::Integer; next = C_NULL)
 
 Arguments:
-- `max_inline_uniform_block_bindings::Integer`
-- `next`: defaults to `C_NULL`
+• `max_inline_uniform_block_bindings::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.html
 
 """
 _DescriptorPoolInlineUniformBlockCreateInfoEXT
@@ -8915,11 +10285,13 @@ _DescriptorPoolInlineUniformBlockCreateInfoEXT
     _PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::CoverageModulationModeNV, coverage_modulation_table_enable::Bool; next = C_NULL, flags = 0, coverage_modulation_table = C_NULL)
 
 Arguments:
-- `coverage_modulation_mode::CoverageModulationModeNV`
-- `coverage_modulation_table_enable::Bool`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `coverage_modulation_table`: defaults to `C_NULL`
+• `coverage_modulation_mode::CoverageModulationModeNV`
+• `coverage_modulation_table_enable::Bool`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `coverage_modulation_table`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html
 
 """
 _PipelineCoverageModulationStateCreateInfoNV
@@ -8928,8 +10300,10 @@ _PipelineCoverageModulationStateCreateInfoNV
     _ImageFormatListCreateInfo(view_formats::AbstractArray{<:Format}; next = C_NULL)
 
 Arguments:
-- `view_formats::AbstractArray{<:Format}`
-- `next`: defaults to `C_NULL`
+• `view_formats::AbstractArray{<:Format}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageFormatListCreateInfo.html
 
 """
 _ImageFormatListCreateInfo
@@ -8938,10 +10312,12 @@ _ImageFormatListCreateInfo
     _ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
 
 Arguments:
-- `initial_data::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `initial_data_size`: defaults to `0`
+• `initial_data::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `initial_data_size`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationCacheCreateInfoEXT.html
 
 """
 _ValidationCacheCreateInfoEXT
@@ -8950,8 +10326,10 @@ _ValidationCacheCreateInfoEXT
     _ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCacheEXT; next = C_NULL)
 
 Arguments:
-- `validation_cache::ValidationCacheEXT`
-- `next`: defaults to `C_NULL`
+• `validation_cache::ValidationCacheEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html
 
 """
 _ShaderModuleValidationCacheCreateInfoEXT
@@ -8960,8 +10338,10 @@ _ShaderModuleValidationCacheCreateInfoEXT
     _PhysicalDeviceShaderDrawParametersFeatures(shader_draw_parameters::Bool; next = C_NULL)
 
 Arguments:
-- `shader_draw_parameters::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_draw_parameters::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html
 
 """
 _PhysicalDeviceShaderDrawParametersFeatures
@@ -8970,9 +10350,11 @@ _PhysicalDeviceShaderDrawParametersFeatures
     _PhysicalDeviceShaderFloat16Int8Features(shader_float_16::Bool, shader_int_8::Bool; next = C_NULL)
 
 Arguments:
-- `shader_float_16::Bool`
-- `shader_int_8::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_float_16::Bool`
+• `shader_int_8::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderFloat16Int8Features.html
 
 """
 _PhysicalDeviceShaderFloat16Int8Features
@@ -8981,8 +10363,10 @@ _PhysicalDeviceShaderFloat16Int8Features
     _PhysicalDeviceHostQueryResetFeatures(host_query_reset::Bool; next = C_NULL)
 
 Arguments:
-- `host_query_reset::Bool`
-- `next`: defaults to `C_NULL`
+• `host_query_reset::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceHostQueryResetFeatures.html
 
 """
 _PhysicalDeviceHostQueryResetFeatures
@@ -8991,8 +10375,10 @@ _PhysicalDeviceHostQueryResetFeatures
     _DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::QueueGlobalPriorityEXT; next = C_NULL)
 
 Arguments:
-- `global_priority::QueueGlobalPriorityEXT`
-- `next`: defaults to `C_NULL`
+• `global_priority::QueueGlobalPriorityEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoEXT.html
 
 """
 _DeviceQueueGlobalPriorityCreateInfoEXT
@@ -9001,10 +10387,12 @@ _DeviceQueueGlobalPriorityCreateInfoEXT
     _DebugUtilsObjectNameInfoEXT(object_type::ObjectType, object_handle::Integer; next = C_NULL, object_name = C_NULL)
 
 Arguments:
-- `object_type::ObjectType`
-- `object_handle::Integer`
-- `next`: defaults to `C_NULL`
-- `object_name`: defaults to `C_NULL`
+• `object_type::ObjectType`
+• `object_handle::Integer`
+• `next`: defaults to `C_NULL`
+• `object_name`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html
 
 """
 _DebugUtilsObjectNameInfoEXT
@@ -9013,12 +10401,14 @@ _DebugUtilsObjectNameInfoEXT
     _DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `object_type::ObjectType`
-- `object_handle::Integer`
-- `tag_name::Integer`
-- `tag_size::Integer`
-- `tag::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
+• `object_type::ObjectType`
+• `object_handle::Integer`
+• `tag_name::Integer`
+• `tag_size::Integer`
+• `tag::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html
 
 """
 _DebugUtilsObjectTagInfoEXT
@@ -9027,9 +10417,11 @@ _DebugUtilsObjectTagInfoEXT
     _DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
 Arguments:
-- `label_name::AbstractString`
-- `color::NTuple{4, Float32}`
-- `next`: defaults to `C_NULL`
+• `label_name::AbstractString`
+• `color::NTuple{4, Float32}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsLabelEXT.html
 
 """
 _DebugUtilsLabelEXT
@@ -9038,12 +10430,14 @@ _DebugUtilsLabelEXT
     _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
 
 Arguments:
-- `message_severity::DebugUtilsMessageSeverityFlagEXT`
-- `message_type::DebugUtilsMessageTypeFlagEXT`
-- `pfn_user_callback::FunctionPtr`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `user_data`: defaults to `C_NULL`
+• `message_severity::DebugUtilsMessageSeverityFlagEXT`
+• `message_type::DebugUtilsMessageTypeFlagEXT`
+• `pfn_user_callback::FunctionPtr`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `user_data`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCreateInfoEXT.html
 
 """
 _DebugUtilsMessengerCreateInfoEXT
@@ -9052,14 +10446,16 @@ _DebugUtilsMessengerCreateInfoEXT
     _DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::AbstractString, queue_labels::AbstractArray{<:_DebugUtilsLabelEXT}, cmd_buf_labels::AbstractArray{<:_DebugUtilsLabelEXT}, objects::AbstractArray{<:_DebugUtilsObjectNameInfoEXT}; next = C_NULL, flags = 0, message_id_name = C_NULL)
 
 Arguments:
-- `message_id_number::Integer`
-- `message::AbstractString`
-- `queue_labels::AbstractArray{<:_DebugUtilsLabelEXT}`
-- `cmd_buf_labels::AbstractArray{<:_DebugUtilsLabelEXT}`
-- `objects::AbstractArray{<:_DebugUtilsObjectNameInfoEXT}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `message_id_name`: defaults to `C_NULL`
+• `message_id_number::Integer`
+• `message::AbstractString`
+• `queue_labels::AbstractArray{<:_DebugUtilsLabelEXT}`
+• `cmd_buf_labels::AbstractArray{<:_DebugUtilsLabelEXT}`
+• `objects::AbstractArray{<:_DebugUtilsObjectNameInfoEXT}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `message_id_name`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCallbackDataEXT.html
 
 """
 _DebugUtilsMessengerCallbackDataEXT
@@ -9068,8 +10464,10 @@ _DebugUtilsMessengerCallbackDataEXT
     _PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL)
 
 Arguments:
-- `device_memory_report::Bool`
-- `next`: defaults to `C_NULL`
+• `device_memory_report::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.html
 
 """
 _PhysicalDeviceDeviceMemoryReportFeaturesEXT
@@ -9078,10 +10476,12 @@ _PhysicalDeviceDeviceMemoryReportFeaturesEXT
     _DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `flags::Integer`
-- `pfn_user_callback::FunctionPtr`
-- `user_data::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
+• `flags::Integer`
+• `pfn_user_callback::FunctionPtr`
+• `user_data::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDeviceMemoryReportCreateInfoEXT.html
 
 """
 _DeviceDeviceMemoryReportCreateInfoEXT
@@ -9090,9 +10490,11 @@ _DeviceDeviceMemoryReportCreateInfoEXT
     _ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
 
 Arguments:
-- `handle_type::ExternalMemoryHandleTypeFlag`
-- `host_pointer::Ptr{Cvoid}`
-- `next`: defaults to `C_NULL`
+• `handle_type::ExternalMemoryHandleTypeFlag`
+• `host_pointer::Ptr{Cvoid}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html
 
 """
 _ImportMemoryHostPointerInfoEXT
@@ -9101,8 +10503,10 @@ _ImportMemoryHostPointerInfoEXT
     _CalibratedTimestampInfoEXT(time_domain::TimeDomainEXT; next = C_NULL)
 
 Arguments:
-- `time_domain::TimeDomainEXT`
-- `next`: defaults to `C_NULL`
+• `time_domain::TimeDomainEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCalibratedTimestampInfoEXT.html
 
 """
 _CalibratedTimestampInfoEXT
@@ -9111,10 +10515,12 @@ _CalibratedTimestampInfoEXT
     _PipelineRasterizationConservativeStateCreateInfoEXT(conservative_rasterization_mode::ConservativeRasterizationModeEXT, extra_primitive_overestimation_size::Real; next = C_NULL, flags = 0)
 
 Arguments:
-- `conservative_rasterization_mode::ConservativeRasterizationModeEXT`
-- `extra_primitive_overestimation_size::Real`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `conservative_rasterization_mode::ConservativeRasterizationModeEXT`
+• `extra_primitive_overestimation_size::Real`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html
 
 """
 _PipelineRasterizationConservativeStateCreateInfoEXT
@@ -9123,27 +10529,29 @@ _PipelineRasterizationConservativeStateCreateInfoEXT
     _PhysicalDeviceDescriptorIndexingFeatures(shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool; next = C_NULL)
 
 Arguments:
-- `shader_input_attachment_array_dynamic_indexing::Bool`
-- `shader_uniform_texel_buffer_array_dynamic_indexing::Bool`
-- `shader_storage_texel_buffer_array_dynamic_indexing::Bool`
-- `shader_uniform_buffer_array_non_uniform_indexing::Bool`
-- `shader_sampled_image_array_non_uniform_indexing::Bool`
-- `shader_storage_buffer_array_non_uniform_indexing::Bool`
-- `shader_storage_image_array_non_uniform_indexing::Bool`
-- `shader_input_attachment_array_non_uniform_indexing::Bool`
-- `shader_uniform_texel_buffer_array_non_uniform_indexing::Bool`
-- `shader_storage_texel_buffer_array_non_uniform_indexing::Bool`
-- `descriptor_binding_uniform_buffer_update_after_bind::Bool`
-- `descriptor_binding_sampled_image_update_after_bind::Bool`
-- `descriptor_binding_storage_image_update_after_bind::Bool`
-- `descriptor_binding_storage_buffer_update_after_bind::Bool`
-- `descriptor_binding_uniform_texel_buffer_update_after_bind::Bool`
-- `descriptor_binding_storage_texel_buffer_update_after_bind::Bool`
-- `descriptor_binding_update_unused_while_pending::Bool`
-- `descriptor_binding_partially_bound::Bool`
-- `descriptor_binding_variable_descriptor_count::Bool`
-- `runtime_descriptor_array::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_input_attachment_array_dynamic_indexing::Bool`
+• `shader_uniform_texel_buffer_array_dynamic_indexing::Bool`
+• `shader_storage_texel_buffer_array_dynamic_indexing::Bool`
+• `shader_uniform_buffer_array_non_uniform_indexing::Bool`
+• `shader_sampled_image_array_non_uniform_indexing::Bool`
+• `shader_storage_buffer_array_non_uniform_indexing::Bool`
+• `shader_storage_image_array_non_uniform_indexing::Bool`
+• `shader_input_attachment_array_non_uniform_indexing::Bool`
+• `shader_uniform_texel_buffer_array_non_uniform_indexing::Bool`
+• `shader_storage_texel_buffer_array_non_uniform_indexing::Bool`
+• `descriptor_binding_uniform_buffer_update_after_bind::Bool`
+• `descriptor_binding_sampled_image_update_after_bind::Bool`
+• `descriptor_binding_storage_image_update_after_bind::Bool`
+• `descriptor_binding_storage_buffer_update_after_bind::Bool`
+• `descriptor_binding_uniform_texel_buffer_update_after_bind::Bool`
+• `descriptor_binding_storage_texel_buffer_update_after_bind::Bool`
+• `descriptor_binding_update_unused_while_pending::Bool`
+• `descriptor_binding_partially_bound::Bool`
+• `descriptor_binding_variable_descriptor_count::Bool`
+• `runtime_descriptor_array::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDescriptorIndexingFeatures.html
 
 """
 _PhysicalDeviceDescriptorIndexingFeatures
@@ -9152,8 +10560,10 @@ _PhysicalDeviceDescriptorIndexingFeatures
     _DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray{<:DescriptorBindingFlag}; next = C_NULL)
 
 Arguments:
-- `binding_flags::AbstractArray{<:DescriptorBindingFlag}`
-- `next`: defaults to `C_NULL`
+• `binding_flags::AbstractArray{<:DescriptorBindingFlag}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBindingFlagsCreateInfo.html
 
 """
 _DescriptorSetLayoutBindingFlagsCreateInfo
@@ -9162,8 +10572,10 @@ _DescriptorSetLayoutBindingFlagsCreateInfo
     _DescriptorSetVariableDescriptorCountAllocateInfo(descriptor_counts::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `descriptor_counts::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `descriptor_counts::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetVariableDescriptorCountAllocateInfo.html
 
 """
 _DescriptorSetVariableDescriptorCountAllocateInfo
@@ -9172,16 +10584,18 @@ _DescriptorSetVariableDescriptorCountAllocateInfo
     _AttachmentDescription2(format::Format, samples::SampleCountFlag, load_op::AttachmentLoadOp, store_op::AttachmentStoreOp, stencil_load_op::AttachmentLoadOp, stencil_store_op::AttachmentStoreOp, initial_layout::ImageLayout, final_layout::ImageLayout; next = C_NULL, flags = 0)
 
 Arguments:
-- `format::Format`
-- `samples::SampleCountFlag`
-- `load_op::AttachmentLoadOp`
-- `store_op::AttachmentStoreOp`
-- `stencil_load_op::AttachmentLoadOp`
-- `stencil_store_op::AttachmentStoreOp`
-- `initial_layout::ImageLayout`
-- `final_layout::ImageLayout`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `format::Format`
+• `samples::SampleCountFlag`
+• `load_op::AttachmentLoadOp`
+• `store_op::AttachmentStoreOp`
+• `stencil_load_op::AttachmentLoadOp`
+• `stencil_store_op::AttachmentStoreOp`
+• `initial_layout::ImageLayout`
+• `final_layout::ImageLayout`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription2.html
 
 """
 _AttachmentDescription2
@@ -9190,10 +10604,12 @@ _AttachmentDescription2
     _AttachmentReference2(attachment::Integer, layout::ImageLayout, aspect_mask::ImageAspectFlag; next = C_NULL)
 
 Arguments:
-- `attachment::Integer`
-- `layout::ImageLayout`
-- `aspect_mask::ImageAspectFlag`
-- `next`: defaults to `C_NULL`
+• `attachment::Integer`
+• `layout::ImageLayout`
+• `aspect_mask::ImageAspectFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference2.html
 
 """
 _AttachmentReference2
@@ -9202,15 +10618,17 @@ _AttachmentReference2
     _SubpassDescription2(pipeline_bind_point::PipelineBindPoint, view_mask::Integer, input_attachments::AbstractArray{<:_AttachmentReference2}, color_attachments::AbstractArray{<:_AttachmentReference2}, preserve_attachments::AbstractArray{<:Integer}; next = C_NULL, flags = 0, resolve_attachments = C_NULL, depth_stencil_attachment = C_NULL)
 
 Arguments:
-- `pipeline_bind_point::PipelineBindPoint`
-- `view_mask::Integer`
-- `input_attachments::AbstractArray{<:_AttachmentReference2}`
-- `color_attachments::AbstractArray{<:_AttachmentReference2}`
-- `preserve_attachments::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `resolve_attachments`: defaults to `C_NULL`
-- `depth_stencil_attachment`: defaults to `C_NULL`
+• `pipeline_bind_point::PipelineBindPoint`
+• `view_mask::Integer`
+• `input_attachments::AbstractArray{<:_AttachmentReference2}`
+• `color_attachments::AbstractArray{<:_AttachmentReference2}`
+• `preserve_attachments::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `resolve_attachments`: defaults to `C_NULL`
+• `depth_stencil_attachment`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription2.html
 
 """
 _SubpassDescription2
@@ -9219,15 +10637,17 @@ _SubpassDescription2
     _SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, view_offset::Integer; next = C_NULL, src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
 
 Arguments:
-- `src_subpass::Integer`
-- `dst_subpass::Integer`
-- `view_offset::Integer`
-- `next`: defaults to `C_NULL`
-- `src_stage_mask`: defaults to `0`
-- `dst_stage_mask`: defaults to `0`
-- `src_access_mask`: defaults to `0`
-- `dst_access_mask`: defaults to `0`
-- `dependency_flags`: defaults to `0`
+• `src_subpass::Integer`
+• `dst_subpass::Integer`
+• `view_offset::Integer`
+• `next`: defaults to `C_NULL`
+• `src_stage_mask`: defaults to `0`
+• `dst_stage_mask`: defaults to `0`
+• `src_access_mask`: defaults to `0`
+• `dst_access_mask`: defaults to `0`
+• `dependency_flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency2.html
 
 """
 _SubpassDependency2
@@ -9236,12 +10656,14 @@ _SubpassDependency2
     _RenderPassCreateInfo2(attachments::AbstractArray{<:_AttachmentDescription2}, subpasses::AbstractArray{<:_SubpassDescription2}, dependencies::AbstractArray{<:_SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `attachments::AbstractArray{<:_AttachmentDescription2}`
-- `subpasses::AbstractArray{<:_SubpassDescription2}`
-- `dependencies::AbstractArray{<:_SubpassDependency2}`
-- `correlated_view_masks::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `attachments::AbstractArray{<:_AttachmentDescription2}`
+• `subpasses::AbstractArray{<:_SubpassDescription2}`
+• `dependencies::AbstractArray{<:_SubpassDependency2}`
+• `correlated_view_masks::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo2.html
 
 """
 _RenderPassCreateInfo2
@@ -9250,8 +10672,10 @@ _RenderPassCreateInfo2
     _SubpassBeginInfo(contents::SubpassContents; next = C_NULL)
 
 Arguments:
-- `contents::SubpassContents`
-- `next`: defaults to `C_NULL`
+• `contents::SubpassContents`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassBeginInfo.html
 
 """
 _SubpassBeginInfo
@@ -9260,7 +10684,9 @@ _SubpassBeginInfo
     _SubpassEndInfo(; next = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassEndInfo.html
 
 """
 _SubpassEndInfo
@@ -9269,8 +10695,10 @@ _SubpassEndInfo
     _PhysicalDeviceTimelineSemaphoreFeatures(timeline_semaphore::Bool; next = C_NULL)
 
 Arguments:
-- `timeline_semaphore::Bool`
-- `next`: defaults to `C_NULL`
+• `timeline_semaphore::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreFeatures.html
 
 """
 _PhysicalDeviceTimelineSemaphoreFeatures
@@ -9279,9 +10707,11 @@ _PhysicalDeviceTimelineSemaphoreFeatures
     _SemaphoreTypeCreateInfo(semaphore_type::SemaphoreType, initial_value::Integer; next = C_NULL)
 
 Arguments:
-- `semaphore_type::SemaphoreType`
-- `initial_value::Integer`
-- `next`: defaults to `C_NULL`
+• `semaphore_type::SemaphoreType`
+• `initial_value::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreTypeCreateInfo.html
 
 """
 _SemaphoreTypeCreateInfo
@@ -9290,9 +10720,11 @@ _SemaphoreTypeCreateInfo
     _TimelineSemaphoreSubmitInfo(; next = C_NULL, wait_semaphore_values = C_NULL, signal_semaphore_values = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `wait_semaphore_values`: defaults to `C_NULL`
-- `signal_semaphore_values`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `wait_semaphore_values`: defaults to `C_NULL`
+• `signal_semaphore_values`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTimelineSemaphoreSubmitInfo.html
 
 """
 _TimelineSemaphoreSubmitInfo
@@ -9301,10 +10733,12 @@ _TimelineSemaphoreSubmitInfo
     _SemaphoreWaitInfo(semaphores::AbstractArray{<:Semaphore}, values::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-- `semaphores::AbstractArray{<:Semaphore}`
-- `values::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `semaphores::AbstractArray{<:Semaphore}`
+• `values::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreWaitInfo.html
 
 """
 _SemaphoreWaitInfo
@@ -9313,9 +10747,11 @@ _SemaphoreWaitInfo
     _SemaphoreSignalInfo(semaphore::Semaphore, value::Integer; next = C_NULL)
 
 Arguments:
-- `semaphore::Semaphore`
-- `value::Integer`
-- `next`: defaults to `C_NULL`
+• `semaphore::Semaphore`
+• `value::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSignalInfo.html
 
 """
 _SemaphoreSignalInfo
@@ -9324,8 +10760,10 @@ _SemaphoreSignalInfo
     _VertexInputBindingDivisorDescriptionEXT(binding::Integer, divisor::Integer)
 
 Arguments:
-- `binding::Integer`
-- `divisor::Integer`
+• `binding::Integer`
+• `divisor::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDivisorDescriptionEXT.html
 
 """
 _VertexInputBindingDivisorDescriptionEXT
@@ -9334,8 +10772,10 @@ _VertexInputBindingDivisorDescriptionEXT
     _PipelineVertexInputDivisorStateCreateInfoEXT(vertex_binding_divisors::AbstractArray{<:_VertexInputBindingDivisorDescriptionEXT}; next = C_NULL)
 
 Arguments:
-- `vertex_binding_divisors::AbstractArray{<:_VertexInputBindingDivisorDescriptionEXT}`
-- `next`: defaults to `C_NULL`
+• `vertex_binding_divisors::AbstractArray{<:_VertexInputBindingDivisorDescriptionEXT}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputDivisorStateCreateInfoEXT.html
 
 """
 _PipelineVertexInputDivisorStateCreateInfoEXT
@@ -9344,8 +10784,10 @@ _PipelineVertexInputDivisorStateCreateInfoEXT
     _ImportAndroidHardwareBufferInfoANDROID(buffer::vk.AHardwareBuffer; next = C_NULL)
 
 Arguments:
-- `buffer::vk.AHardwareBuffer`
-- `next`: defaults to `C_NULL`
+• `buffer::vk.AHardwareBuffer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportAndroidHardwareBufferInfoANDROID.html
 
 """
 _ImportAndroidHardwareBufferInfoANDROID
@@ -9354,8 +10796,10 @@ _ImportAndroidHardwareBufferInfoANDROID
     _MemoryGetAndroidHardwareBufferInfoANDROID(memory::DeviceMemory; next = C_NULL)
 
 Arguments:
-- `memory::DeviceMemory`
-- `next`: defaults to `C_NULL`
+• `memory::DeviceMemory`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetAndroidHardwareBufferInfoANDROID.html
 
 """
 _MemoryGetAndroidHardwareBufferInfoANDROID
@@ -9364,8 +10808,10 @@ _MemoryGetAndroidHardwareBufferInfoANDROID
     _CommandBufferInheritanceConditionalRenderingInfoEXT(conditional_rendering_enable::Bool; next = C_NULL)
 
 Arguments:
-- `conditional_rendering_enable::Bool`
-- `next`: defaults to `C_NULL`
+• `conditional_rendering_enable::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html
 
 """
 _CommandBufferInheritanceConditionalRenderingInfoEXT
@@ -9374,8 +10820,10 @@ _CommandBufferInheritanceConditionalRenderingInfoEXT
     _ExternalFormatANDROID(external_format::Integer; next = C_NULL)
 
 Arguments:
-- `external_format::Integer`
-- `next`: defaults to `C_NULL`
+• `external_format::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalFormatANDROID.html
 
 """
 _ExternalFormatANDROID
@@ -9384,10 +10832,12 @@ _ExternalFormatANDROID
     _PhysicalDevice8BitStorageFeatures(storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool; next = C_NULL)
 
 Arguments:
-- `storage_buffer_8_bit_access::Bool`
-- `uniform_and_storage_buffer_8_bit_access::Bool`
-- `storage_push_constant_8::Bool`
-- `next`: defaults to `C_NULL`
+• `storage_buffer_8_bit_access::Bool`
+• `uniform_and_storage_buffer_8_bit_access::Bool`
+• `storage_push_constant_8::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice8BitStorageFeatures.html
 
 """
 _PhysicalDevice8BitStorageFeatures
@@ -9396,9 +10846,11 @@ _PhysicalDevice8BitStorageFeatures
     _PhysicalDeviceConditionalRenderingFeaturesEXT(conditional_rendering::Bool, inherited_conditional_rendering::Bool; next = C_NULL)
 
 Arguments:
-- `conditional_rendering::Bool`
-- `inherited_conditional_rendering::Bool`
-- `next`: defaults to `C_NULL`
+• `conditional_rendering::Bool`
+• `inherited_conditional_rendering::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html
 
 """
 _PhysicalDeviceConditionalRenderingFeaturesEXT
@@ -9407,10 +10859,12 @@ _PhysicalDeviceConditionalRenderingFeaturesEXT
     _PhysicalDeviceVulkanMemoryModelFeatures(vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool; next = C_NULL)
 
 Arguments:
-- `vulkan_memory_model::Bool`
-- `vulkan_memory_model_device_scope::Bool`
-- `vulkan_memory_model_availability_visibility_chains::Bool`
-- `next`: defaults to `C_NULL`
+• `vulkan_memory_model::Bool`
+• `vulkan_memory_model_device_scope::Bool`
+• `vulkan_memory_model_availability_visibility_chains::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkanMemoryModelFeatures.html
 
 """
 _PhysicalDeviceVulkanMemoryModelFeatures
@@ -9419,9 +10873,11 @@ _PhysicalDeviceVulkanMemoryModelFeatures
     _PhysicalDeviceShaderAtomicInt64Features(shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool; next = C_NULL)
 
 Arguments:
-- `shader_buffer_int_64_atomics::Bool`
-- `shader_shared_int_64_atomics::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_buffer_int_64_atomics::Bool`
+• `shader_shared_int_64_atomics::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicInt64Features.html
 
 """
 _PhysicalDeviceShaderAtomicInt64Features
@@ -9430,19 +10886,21 @@ _PhysicalDeviceShaderAtomicInt64Features
     _PhysicalDeviceShaderAtomicFloatFeaturesEXT(shader_buffer_float_32_atomics::Bool, shader_buffer_float_32_atomic_add::Bool, shader_buffer_float_64_atomics::Bool, shader_buffer_float_64_atomic_add::Bool, shader_shared_float_32_atomics::Bool, shader_shared_float_32_atomic_add::Bool, shader_shared_float_64_atomics::Bool, shader_shared_float_64_atomic_add::Bool, shader_image_float_32_atomics::Bool, shader_image_float_32_atomic_add::Bool, sparse_image_float_32_atomics::Bool, sparse_image_float_32_atomic_add::Bool; next = C_NULL)
 
 Arguments:
-- `shader_buffer_float_32_atomics::Bool`
-- `shader_buffer_float_32_atomic_add::Bool`
-- `shader_buffer_float_64_atomics::Bool`
-- `shader_buffer_float_64_atomic_add::Bool`
-- `shader_shared_float_32_atomics::Bool`
-- `shader_shared_float_32_atomic_add::Bool`
-- `shader_shared_float_64_atomics::Bool`
-- `shader_shared_float_64_atomic_add::Bool`
-- `shader_image_float_32_atomics::Bool`
-- `shader_image_float_32_atomic_add::Bool`
-- `sparse_image_float_32_atomics::Bool`
-- `sparse_image_float_32_atomic_add::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_buffer_float_32_atomics::Bool`
+• `shader_buffer_float_32_atomic_add::Bool`
+• `shader_buffer_float_64_atomics::Bool`
+• `shader_buffer_float_64_atomic_add::Bool`
+• `shader_shared_float_32_atomics::Bool`
+• `shader_shared_float_32_atomic_add::Bool`
+• `shader_shared_float_64_atomics::Bool`
+• `shader_shared_float_64_atomic_add::Bool`
+• `shader_image_float_32_atomics::Bool`
+• `shader_image_float_32_atomic_add::Bool`
+• `sparse_image_float_32_atomics::Bool`
+• `sparse_image_float_32_atomic_add::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html
 
 """
 _PhysicalDeviceShaderAtomicFloatFeaturesEXT
@@ -9451,9 +10909,11 @@ _PhysicalDeviceShaderAtomicFloatFeaturesEXT
     _PhysicalDeviceVertexAttributeDivisorFeaturesEXT(vertex_attribute_instance_rate_divisor::Bool, vertex_attribute_instance_rate_zero_divisor::Bool; next = C_NULL)
 
 Arguments:
-- `vertex_attribute_instance_rate_divisor::Bool`
-- `vertex_attribute_instance_rate_zero_divisor::Bool`
-- `next`: defaults to `C_NULL`
+• `vertex_attribute_instance_rate_divisor::Bool`
+• `vertex_attribute_instance_rate_zero_divisor::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.html
 
 """
 _PhysicalDeviceVertexAttributeDivisorFeaturesEXT
@@ -9462,10 +10922,12 @@ _PhysicalDeviceVertexAttributeDivisorFeaturesEXT
     _SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeFlag, stencil_resolve_mode::ResolveModeFlag; next = C_NULL, depth_stencil_resolve_attachment = C_NULL)
 
 Arguments:
-- `depth_resolve_mode::ResolveModeFlag`
-- `stencil_resolve_mode::ResolveModeFlag`
-- `next`: defaults to `C_NULL`
-- `depth_stencil_resolve_attachment`: defaults to `C_NULL`
+• `depth_resolve_mode::ResolveModeFlag`
+• `stencil_resolve_mode::ResolveModeFlag`
+• `next`: defaults to `C_NULL`
+• `depth_stencil_resolve_attachment`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescriptionDepthStencilResolve.html
 
 """
 _SubpassDescriptionDepthStencilResolve
@@ -9474,8 +10936,10 @@ _SubpassDescriptionDepthStencilResolve
     _ImageViewASTCDecodeModeEXT(decode_mode::Format; next = C_NULL)
 
 Arguments:
-- `decode_mode::Format`
-- `next`: defaults to `C_NULL`
+• `decode_mode::Format`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewASTCDecodeModeEXT.html
 
 """
 _ImageViewASTCDecodeModeEXT
@@ -9484,8 +10948,10 @@ _ImageViewASTCDecodeModeEXT
     _PhysicalDeviceASTCDecodeFeaturesEXT(decode_mode_shared_exponent::Bool; next = C_NULL)
 
 Arguments:
-- `decode_mode_shared_exponent::Bool`
-- `next`: defaults to `C_NULL`
+• `decode_mode_shared_exponent::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceASTCDecodeFeaturesEXT.html
 
 """
 _PhysicalDeviceASTCDecodeFeaturesEXT
@@ -9494,9 +10960,11 @@ _PhysicalDeviceASTCDecodeFeaturesEXT
     _PhysicalDeviceTransformFeedbackFeaturesEXT(transform_feedback::Bool, geometry_streams::Bool; next = C_NULL)
 
 Arguments:
-- `transform_feedback::Bool`
-- `geometry_streams::Bool`
-- `next`: defaults to `C_NULL`
+• `transform_feedback::Bool`
+• `geometry_streams::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html
 
 """
 _PhysicalDeviceTransformFeedbackFeaturesEXT
@@ -9505,9 +10973,11 @@ _PhysicalDeviceTransformFeedbackFeaturesEXT
     _PipelineRasterizationStateStreamCreateInfoEXT(rasterization_stream::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `rasterization_stream::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `rasterization_stream::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html
 
 """
 _PipelineRasterizationStateStreamCreateInfoEXT
@@ -9516,8 +10986,10 @@ _PipelineRasterizationStateStreamCreateInfoEXT
     _PhysicalDeviceRepresentativeFragmentTestFeaturesNV(representative_fragment_test::Bool; next = C_NULL)
 
 Arguments:
-- `representative_fragment_test::Bool`
-- `next`: defaults to `C_NULL`
+• `representative_fragment_test::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.html
 
 """
 _PhysicalDeviceRepresentativeFragmentTestFeaturesNV
@@ -9526,8 +10998,10 @@ _PhysicalDeviceRepresentativeFragmentTestFeaturesNV
     _PipelineRepresentativeFragmentTestStateCreateInfoNV(representative_fragment_test_enable::Bool; next = C_NULL)
 
 Arguments:
-- `representative_fragment_test_enable::Bool`
-- `next`: defaults to `C_NULL`
+• `representative_fragment_test_enable::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.html
 
 """
 _PipelineRepresentativeFragmentTestStateCreateInfoNV
@@ -9536,8 +11010,10 @@ _PipelineRepresentativeFragmentTestStateCreateInfoNV
     _PhysicalDeviceExclusiveScissorFeaturesNV(exclusive_scissor::Bool; next = C_NULL)
 
 Arguments:
-- `exclusive_scissor::Bool`
-- `next`: defaults to `C_NULL`
+• `exclusive_scissor::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExclusiveScissorFeaturesNV.html
 
 """
 _PhysicalDeviceExclusiveScissorFeaturesNV
@@ -9546,8 +11022,10 @@ _PhysicalDeviceExclusiveScissorFeaturesNV
     _PipelineViewportExclusiveScissorStateCreateInfoNV(exclusive_scissors::AbstractArray{<:_Rect2D}; next = C_NULL)
 
 Arguments:
-- `exclusive_scissors::AbstractArray{<:_Rect2D}`
-- `next`: defaults to `C_NULL`
+• `exclusive_scissors::AbstractArray{<:_Rect2D}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html
 
 """
 _PipelineViewportExclusiveScissorStateCreateInfoNV
@@ -9556,8 +11034,10 @@ _PipelineViewportExclusiveScissorStateCreateInfoNV
     _PhysicalDeviceCornerSampledImageFeaturesNV(corner_sampled_image::Bool; next = C_NULL)
 
 Arguments:
-- `corner_sampled_image::Bool`
-- `next`: defaults to `C_NULL`
+• `corner_sampled_image::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCornerSampledImageFeaturesNV.html
 
 """
 _PhysicalDeviceCornerSampledImageFeaturesNV
@@ -9566,9 +11046,11 @@ _PhysicalDeviceCornerSampledImageFeaturesNV
     _PhysicalDeviceComputeShaderDerivativesFeaturesNV(compute_derivative_group_quads::Bool, compute_derivative_group_linear::Bool; next = C_NULL)
 
 Arguments:
-- `compute_derivative_group_quads::Bool`
-- `compute_derivative_group_linear::Bool`
-- `next`: defaults to `C_NULL`
+• `compute_derivative_group_quads::Bool`
+• `compute_derivative_group_linear::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.html
 
 """
 _PhysicalDeviceComputeShaderDerivativesFeaturesNV
@@ -9577,8 +11059,10 @@ _PhysicalDeviceComputeShaderDerivativesFeaturesNV
     _PhysicalDeviceFragmentShaderBarycentricFeaturesNV(fragment_shader_barycentric::Bool; next = C_NULL)
 
 Arguments:
-- `fragment_shader_barycentric::Bool`
-- `next`: defaults to `C_NULL`
+• `fragment_shader_barycentric::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.html
 
 """
 _PhysicalDeviceFragmentShaderBarycentricFeaturesNV
@@ -9587,8 +11071,10 @@ _PhysicalDeviceFragmentShaderBarycentricFeaturesNV
     _PhysicalDeviceShaderImageFootprintFeaturesNV(image_footprint::Bool; next = C_NULL)
 
 Arguments:
-- `image_footprint::Bool`
-- `next`: defaults to `C_NULL`
+• `image_footprint::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageFootprintFeaturesNV.html
 
 """
 _PhysicalDeviceShaderImageFootprintFeaturesNV
@@ -9597,8 +11083,10 @@ _PhysicalDeviceShaderImageFootprintFeaturesNV
     _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(dedicated_allocation_image_aliasing::Bool; next = C_NULL)
 
 Arguments:
-- `dedicated_allocation_image_aliasing::Bool`
-- `next`: defaults to `C_NULL`
+• `dedicated_allocation_image_aliasing::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.html
 
 """
 _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
@@ -9607,7 +11095,9 @@ _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
     _ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray{<:ShadingRatePaletteEntryNV})
 
 Arguments:
-- `shading_rate_palette_entries::AbstractArray{<:ShadingRatePaletteEntryNV}`
+• `shading_rate_palette_entries::AbstractArray{<:ShadingRatePaletteEntryNV}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShadingRatePaletteNV.html
 
 """
 _ShadingRatePaletteNV
@@ -9616,9 +11106,11 @@ _ShadingRatePaletteNV
     _PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_enable::Bool, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}; next = C_NULL)
 
 Arguments:
-- `shading_rate_image_enable::Bool`
-- `shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}`
-- `next`: defaults to `C_NULL`
+• `shading_rate_image_enable::Bool`
+• `shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html
 
 """
 _PipelineViewportShadingRateImageStateCreateInfoNV
@@ -9627,9 +11119,11 @@ _PipelineViewportShadingRateImageStateCreateInfoNV
     _PhysicalDeviceShadingRateImageFeaturesNV(shading_rate_image::Bool, shading_rate_coarse_sample_order::Bool; next = C_NULL)
 
 Arguments:
-- `shading_rate_image::Bool`
-- `shading_rate_coarse_sample_order::Bool`
-- `next`: defaults to `C_NULL`
+• `shading_rate_image::Bool`
+• `shading_rate_coarse_sample_order::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html
 
 """
 _PhysicalDeviceShadingRateImageFeaturesNV
@@ -9638,9 +11132,11 @@ _PhysicalDeviceShadingRateImageFeaturesNV
     _CoarseSampleLocationNV(pixel_x::Integer, pixel_y::Integer, sample::Integer)
 
 Arguments:
-- `pixel_x::Integer`
-- `pixel_y::Integer`
-- `sample::Integer`
+• `pixel_x::Integer`
+• `pixel_y::Integer`
+• `sample::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleLocationNV.html
 
 """
 _CoarseSampleLocationNV
@@ -9649,9 +11145,11 @@ _CoarseSampleLocationNV
     _CoarseSampleOrderCustomNV(shading_rate::ShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray{<:_CoarseSampleLocationNV})
 
 Arguments:
-- `shading_rate::ShadingRatePaletteEntryNV`
-- `sample_count::Integer`
-- `sample_locations::AbstractArray{<:_CoarseSampleLocationNV}`
+• `shading_rate::ShadingRatePaletteEntryNV`
+• `sample_count::Integer`
+• `sample_locations::AbstractArray{<:_CoarseSampleLocationNV}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleOrderCustomNV.html
 
 """
 _CoarseSampleOrderCustomNV
@@ -9660,9 +11158,11 @@ _CoarseSampleOrderCustomNV
     _PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}; next = C_NULL)
 
 Arguments:
-- `sample_order_type::CoarseSampleOrderTypeNV`
-- `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
-- `next`: defaults to `C_NULL`
+• `sample_order_type::CoarseSampleOrderTypeNV`
+• `custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html
 
 """
 _PipelineViewportCoarseSampleOrderStateCreateInfoNV
@@ -9671,9 +11171,11 @@ _PipelineViewportCoarseSampleOrderStateCreateInfoNV
     _PhysicalDeviceMeshShaderFeaturesNV(task_shader::Bool, mesh_shader::Bool; next = C_NULL)
 
 Arguments:
-- `task_shader::Bool`
-- `mesh_shader::Bool`
-- `next`: defaults to `C_NULL`
+• `task_shader::Bool`
+• `mesh_shader::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMeshShaderFeaturesNV.html
 
 """
 _PhysicalDeviceMeshShaderFeaturesNV
@@ -9682,8 +11184,10 @@ _PhysicalDeviceMeshShaderFeaturesNV
     _DrawMeshTasksIndirectCommandNV(task_count::Integer, first_task::Integer)
 
 Arguments:
-- `task_count::Integer`
-- `first_task::Integer`
+• `task_count::Integer`
+• `first_task::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html
 
 """
 _DrawMeshTasksIndirectCommandNV
@@ -9692,12 +11196,14 @@ _DrawMeshTasksIndirectCommandNV
     _RayTracingShaderGroupCreateInfoNV(type::RayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL)
 
 Arguments:
-- `type::RayTracingShaderGroupTypeKHR`
-- `general_shader::Integer`
-- `closest_hit_shader::Integer`
-- `any_hit_shader::Integer`
-- `intersection_shader::Integer`
-- `next`: defaults to `C_NULL`
+• `type::RayTracingShaderGroupTypeKHR`
+• `general_shader::Integer`
+• `closest_hit_shader::Integer`
+• `any_hit_shader::Integer`
+• `intersection_shader::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html
 
 """
 _RayTracingShaderGroupCreateInfoNV
@@ -9706,13 +11212,15 @@ _RayTracingShaderGroupCreateInfoNV
     _RayTracingShaderGroupCreateInfoKHR(type::RayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL, shader_group_capture_replay_handle = C_NULL)
 
 Arguments:
-- `type::RayTracingShaderGroupTypeKHR`
-- `general_shader::Integer`
-- `closest_hit_shader::Integer`
-- `any_hit_shader::Integer`
-- `intersection_shader::Integer`
-- `next`: defaults to `C_NULL`
-- `shader_group_capture_replay_handle`: defaults to `C_NULL`
+• `type::RayTracingShaderGroupTypeKHR`
+• `general_shader::Integer`
+• `closest_hit_shader::Integer`
+• `any_hit_shader::Integer`
+• `intersection_shader::Integer`
+• `next`: defaults to `C_NULL`
+• `shader_group_capture_replay_handle`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html
 
 """
 _RayTracingShaderGroupCreateInfoKHR
@@ -9721,14 +11229,16 @@ _RayTracingShaderGroupCreateInfoKHR
     _RayTracingPipelineCreateInfoNV(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoNV}, max_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
-- `groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoNV}`
-- `max_recursion_depth::Integer`
-- `layout::PipelineLayout`
-- `base_pipeline_index::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `base_pipeline_handle`: defaults to `C_NULL`
+• `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
+• `groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoNV}`
+• `max_recursion_depth::Integer`
+• `layout::PipelineLayout`
+• `base_pipeline_index::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `base_pipeline_handle`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html
 
 """
 _RayTracingPipelineCreateInfoNV
@@ -9737,17 +11247,19 @@ _RayTracingPipelineCreateInfoNV
     _RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoKHR}, max_pipeline_ray_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_info = C_NULL, library_interface = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
 
 Arguments:
-- `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
-- `groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoKHR}`
-- `max_pipeline_ray_recursion_depth::Integer`
-- `layout::PipelineLayout`
-- `base_pipeline_index::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `library_info`: defaults to `C_NULL`
-- `library_interface`: defaults to `C_NULL`
-- `dynamic_state`: defaults to `C_NULL`
-- `base_pipeline_handle`: defaults to `C_NULL`
+• `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
+• `groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoKHR}`
+• `max_pipeline_ray_recursion_depth::Integer`
+• `layout::PipelineLayout`
+• `base_pipeline_index::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `library_info`: defaults to `C_NULL`
+• `library_interface`: defaults to `C_NULL`
+• `dynamic_state`: defaults to `C_NULL`
+• `base_pipeline_handle`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html
 
 """
 _RayTracingPipelineCreateInfoKHR
@@ -9756,18 +11268,20 @@ _RayTracingPipelineCreateInfoKHR
     _GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::Format, index_offset::Integer, index_count::Integer, index_type::IndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
 
 Arguments:
-- `vertex_offset::Integer`
-- `vertex_count::Integer`
-- `vertex_stride::Integer`
-- `vertex_format::Format`
-- `index_offset::Integer`
-- `index_count::Integer`
-- `index_type::IndexType`
-- `transform_offset::Integer`
-- `next`: defaults to `C_NULL`
-- `vertex_data`: defaults to `C_NULL`
-- `index_data`: defaults to `C_NULL`
-- `transform_data`: defaults to `C_NULL`
+• `vertex_offset::Integer`
+• `vertex_count::Integer`
+• `vertex_stride::Integer`
+• `vertex_format::Format`
+• `index_offset::Integer`
+• `index_count::Integer`
+• `index_type::IndexType`
+• `transform_offset::Integer`
+• `next`: defaults to `C_NULL`
+• `vertex_data`: defaults to `C_NULL`
+• `index_data`: defaults to `C_NULL`
+• `transform_data`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryTrianglesNV.html
 
 """
 _GeometryTrianglesNV
@@ -9776,11 +11290,13 @@ _GeometryTrianglesNV
     _GeometryAABBNV(num_aab_bs::Integer, stride::Integer, offset::Integer; next = C_NULL, aabb_data = C_NULL)
 
 Arguments:
-- `num_aab_bs::Integer`
-- `stride::Integer`
-- `offset::Integer`
-- `next`: defaults to `C_NULL`
-- `aabb_data`: defaults to `C_NULL`
+• `num_aab_bs::Integer`
+• `stride::Integer`
+• `offset::Integer`
+• `next`: defaults to `C_NULL`
+• `aabb_data`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryAABBNV.html
 
 """
 _GeometryAABBNV
@@ -9789,8 +11305,10 @@ _GeometryAABBNV
     _GeometryDataNV(triangles::_GeometryTrianglesNV, aabbs::_GeometryAABBNV)
 
 Arguments:
-- `triangles::_GeometryTrianglesNV`
-- `aabbs::_GeometryAABBNV`
+• `triangles::_GeometryTrianglesNV`
+• `aabbs::_GeometryAABBNV`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryDataNV.html
 
 """
 _GeometryDataNV
@@ -9799,10 +11317,12 @@ _GeometryDataNV
     _GeometryNV(geometry_type::GeometryTypeKHR, geometry::_GeometryDataNV; next = C_NULL, flags = 0)
 
 Arguments:
-- `geometry_type::GeometryTypeKHR`
-- `geometry::_GeometryDataNV`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `geometry_type::GeometryTypeKHR`
+• `geometry::_GeometryDataNV`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryNV.html
 
 """
 _GeometryNV
@@ -9811,11 +11331,13 @@ _GeometryNV
     _AccelerationStructureInfoNV(type::VkAccelerationStructureTypeNV, geometries::AbstractArray{<:_GeometryNV}; next = C_NULL, flags = 0, instance_count = 0)
 
 Arguments:
-- `type::VkAccelerationStructureTypeNV`
-- `geometries::AbstractArray{<:_GeometryNV}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `instance_count`: defaults to `0`
+• `type::VkAccelerationStructureTypeNV`
+• `geometries::AbstractArray{<:_GeometryNV}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `instance_count`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInfoNV.html
 
 """
 _AccelerationStructureInfoNV
@@ -9824,9 +11346,11 @@ _AccelerationStructureInfoNV
     _AccelerationStructureCreateInfoNV(compacted_size::Integer, info::_AccelerationStructureInfoNV; next = C_NULL)
 
 Arguments:
-- `compacted_size::Integer`
-- `info::_AccelerationStructureInfoNV`
-- `next`: defaults to `C_NULL`
+• `compacted_size::Integer`
+• `info::_AccelerationStructureInfoNV`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoNV.html
 
 """
 _AccelerationStructureCreateInfoNV
@@ -9835,11 +11359,13 @@ _AccelerationStructureCreateInfoNV
     _BindAccelerationStructureMemoryInfoNV(acceleration_structure::AccelerationStructureNV, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `acceleration_structure::AccelerationStructureNV`
-- `memory::DeviceMemory`
-- `memory_offset::Integer`
-- `device_indices::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `acceleration_structure::AccelerationStructureNV`
+• `memory::DeviceMemory`
+• `memory_offset::Integer`
+• `device_indices::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html
 
 """
 _BindAccelerationStructureMemoryInfoNV
@@ -9848,8 +11374,10 @@ _BindAccelerationStructureMemoryInfoNV
     _WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray{<:AccelerationStructureKHR}; next = C_NULL)
 
 Arguments:
-- `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
-- `next`: defaults to `C_NULL`
+• `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html
 
 """
 _WriteDescriptorSetAccelerationStructureKHR
@@ -9858,8 +11386,10 @@ _WriteDescriptorSetAccelerationStructureKHR
     _WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray{<:AccelerationStructureNV}; next = C_NULL)
 
 Arguments:
-- `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
-- `next`: defaults to `C_NULL`
+• `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html
 
 """
 _WriteDescriptorSetAccelerationStructureNV
@@ -9868,9 +11398,11 @@ _WriteDescriptorSetAccelerationStructureNV
     _AccelerationStructureMemoryRequirementsInfoNV(type::AccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
 
 Arguments:
-- `type::AccelerationStructureMemoryRequirementsTypeNV`
-- `acceleration_structure::AccelerationStructureNV`
-- `next`: defaults to `C_NULL`
+• `type::AccelerationStructureMemoryRequirementsTypeNV`
+• `acceleration_structure::AccelerationStructureNV`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html
 
 """
 _AccelerationStructureMemoryRequirementsInfoNV
@@ -9879,12 +11411,14 @@ _AccelerationStructureMemoryRequirementsInfoNV
     _PhysicalDeviceAccelerationStructureFeaturesKHR(acceleration_structure::Bool, acceleration_structure_capture_replay::Bool, acceleration_structure_indirect_build::Bool, acceleration_structure_host_commands::Bool, descriptor_binding_acceleration_structure_update_after_bind::Bool; next = C_NULL)
 
 Arguments:
-- `acceleration_structure::Bool`
-- `acceleration_structure_capture_replay::Bool`
-- `acceleration_structure_indirect_build::Bool`
-- `acceleration_structure_host_commands::Bool`
-- `descriptor_binding_acceleration_structure_update_after_bind::Bool`
-- `next`: defaults to `C_NULL`
+• `acceleration_structure::Bool`
+• `acceleration_structure_capture_replay::Bool`
+• `acceleration_structure_indirect_build::Bool`
+• `acceleration_structure_host_commands::Bool`
+• `descriptor_binding_acceleration_structure_update_after_bind::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceAccelerationStructureFeaturesKHR.html
 
 """
 _PhysicalDeviceAccelerationStructureFeaturesKHR
@@ -9893,12 +11427,14 @@ _PhysicalDeviceAccelerationStructureFeaturesKHR
     _PhysicalDeviceRayTracingPipelineFeaturesKHR(ray_tracing_pipeline::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_pipeline_trace_rays_indirect::Bool, ray_traversal_primitive_culling::Bool; next = C_NULL)
 
 Arguments:
-- `ray_tracing_pipeline::Bool`
-- `ray_tracing_pipeline_shader_group_handle_capture_replay::Bool`
-- `ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool`
-- `ray_tracing_pipeline_trace_rays_indirect::Bool`
-- `ray_traversal_primitive_culling::Bool`
-- `next`: defaults to `C_NULL`
+• `ray_tracing_pipeline::Bool`
+• `ray_tracing_pipeline_shader_group_handle_capture_replay::Bool`
+• `ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool`
+• `ray_tracing_pipeline_trace_rays_indirect::Bool`
+• `ray_traversal_primitive_culling::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html
 
 """
 _PhysicalDeviceRayTracingPipelineFeaturesKHR
@@ -9907,8 +11443,10 @@ _PhysicalDeviceRayTracingPipelineFeaturesKHR
     _PhysicalDeviceRayQueryFeaturesKHR(ray_query::Bool; next = C_NULL)
 
 Arguments:
-- `ray_query::Bool`
-- `next`: defaults to `C_NULL`
+• `ray_query::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayQueryFeaturesKHR.html
 
 """
 _PhysicalDeviceRayQueryFeaturesKHR
@@ -9917,9 +11455,11 @@ _PhysicalDeviceRayQueryFeaturesKHR
     _StridedDeviceAddressRegionKHR(stride::Integer, size::Integer; device_address = 0)
 
 Arguments:
-- `stride::Integer`
-- `size::Integer`
-- `device_address`: defaults to `0`
+• `stride::Integer`
+• `size::Integer`
+• `device_address`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStridedDeviceAddressRegionKHR.html
 
 """
 _StridedDeviceAddressRegionKHR
@@ -9928,9 +11468,11 @@ _StridedDeviceAddressRegionKHR
     _TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Integer)
 
 Arguments:
-- `width::Integer`
-- `height::Integer`
-- `depth::Integer`
+• `width::Integer`
+• `height::Integer`
+• `depth::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTraceRaysIndirectCommandKHR.html
 
 """
 _TraceRaysIndirectCommandKHR
@@ -9939,10 +11481,12 @@ _TraceRaysIndirectCommandKHR
     _PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `drm_format_modifier::Integer`
-- `sharing_mode::SharingMode`
-- `queue_family_indices::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `drm_format_modifier::Integer`
+• `sharing_mode::SharingMode`
+• `queue_family_indices::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html
 
 """
 _PhysicalDeviceImageDrmFormatModifierInfoEXT
@@ -9951,8 +11495,10 @@ _PhysicalDeviceImageDrmFormatModifierInfoEXT
     _ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `drm_format_modifiers::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `drm_format_modifiers::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierListCreateInfoEXT.html
 
 """
 _ImageDrmFormatModifierListCreateInfoEXT
@@ -9961,9 +11507,11 @@ _ImageDrmFormatModifierListCreateInfoEXT
     _ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Integer, plane_layouts::AbstractArray{<:SubresourceLayout}; next = C_NULL)
 
 Arguments:
-- `drm_format_modifier::Integer`
-- `plane_layouts::AbstractArray{<:SubresourceLayout}`
-- `next`: defaults to `C_NULL`
+• `drm_format_modifier::Integer`
+• `plane_layouts::AbstractArray{<:SubresourceLayout}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierExplicitCreateInfoEXT.html
 
 """
 _ImageDrmFormatModifierExplicitCreateInfoEXT
@@ -9972,8 +11520,10 @@ _ImageDrmFormatModifierExplicitCreateInfoEXT
     _ImageStencilUsageCreateInfo(stencil_usage::ImageUsageFlag; next = C_NULL)
 
 Arguments:
-- `stencil_usage::ImageUsageFlag`
-- `next`: defaults to `C_NULL`
+• `stencil_usage::ImageUsageFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageStencilUsageCreateInfo.html
 
 """
 _ImageStencilUsageCreateInfo
@@ -9982,8 +11532,10 @@ _ImageStencilUsageCreateInfo
     _DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::MemoryOverallocationBehaviorAMD; next = C_NULL)
 
 Arguments:
-- `overallocation_behavior::MemoryOverallocationBehaviorAMD`
-- `next`: defaults to `C_NULL`
+• `overallocation_behavior::MemoryOverallocationBehaviorAMD`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html
 
 """
 _DeviceMemoryOverallocationCreateInfoAMD
@@ -9992,10 +11544,12 @@ _DeviceMemoryOverallocationCreateInfoAMD
     _PhysicalDeviceFragmentDensityMapFeaturesEXT(fragment_density_map::Bool, fragment_density_map_dynamic::Bool, fragment_density_map_non_subsampled_images::Bool; next = C_NULL)
 
 Arguments:
-- `fragment_density_map::Bool`
-- `fragment_density_map_dynamic::Bool`
-- `fragment_density_map_non_subsampled_images::Bool`
-- `next`: defaults to `C_NULL`
+• `fragment_density_map::Bool`
+• `fragment_density_map_dynamic::Bool`
+• `fragment_density_map_non_subsampled_images::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMapFeaturesEXT.html
 
 """
 _PhysicalDeviceFragmentDensityMapFeaturesEXT
@@ -10004,8 +11558,10 @@ _PhysicalDeviceFragmentDensityMapFeaturesEXT
     _PhysicalDeviceFragmentDensityMap2FeaturesEXT(fragment_density_map_deferred::Bool; next = C_NULL)
 
 Arguments:
-- `fragment_density_map_deferred::Bool`
-- `next`: defaults to `C_NULL`
+• `fragment_density_map_deferred::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.html
 
 """
 _PhysicalDeviceFragmentDensityMap2FeaturesEXT
@@ -10014,8 +11570,10 @@ _PhysicalDeviceFragmentDensityMap2FeaturesEXT
     _RenderPassFragmentDensityMapCreateInfoEXT(fragment_density_map_attachment::_AttachmentReference; next = C_NULL)
 
 Arguments:
-- `fragment_density_map_attachment::_AttachmentReference`
-- `next`: defaults to `C_NULL`
+• `fragment_density_map_attachment::_AttachmentReference`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html
 
 """
 _RenderPassFragmentDensityMapCreateInfoEXT
@@ -10024,8 +11582,10 @@ _RenderPassFragmentDensityMapCreateInfoEXT
     _PhysicalDeviceScalarBlockLayoutFeatures(scalar_block_layout::Bool; next = C_NULL)
 
 Arguments:
-- `scalar_block_layout::Bool`
-- `next`: defaults to `C_NULL`
+• `scalar_block_layout::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceScalarBlockLayoutFeatures.html
 
 """
 _PhysicalDeviceScalarBlockLayoutFeatures
@@ -10034,8 +11594,10 @@ _PhysicalDeviceScalarBlockLayoutFeatures
     _SurfaceProtectedCapabilitiesKHR(supports_protected::Bool; next = C_NULL)
 
 Arguments:
-- `supports_protected::Bool`
-- `next`: defaults to `C_NULL`
+• `supports_protected::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceProtectedCapabilitiesKHR.html
 
 """
 _SurfaceProtectedCapabilitiesKHR
@@ -10044,8 +11606,10 @@ _SurfaceProtectedCapabilitiesKHR
     _PhysicalDeviceUniformBufferStandardLayoutFeatures(uniform_buffer_standard_layout::Bool; next = C_NULL)
 
 Arguments:
-- `uniform_buffer_standard_layout::Bool`
-- `next`: defaults to `C_NULL`
+• `uniform_buffer_standard_layout::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceUniformBufferStandardLayoutFeatures.html
 
 """
 _PhysicalDeviceUniformBufferStandardLayoutFeatures
@@ -10054,8 +11618,10 @@ _PhysicalDeviceUniformBufferStandardLayoutFeatures
     _PhysicalDeviceDepthClipEnableFeaturesEXT(depth_clip_enable::Bool; next = C_NULL)
 
 Arguments:
-- `depth_clip_enable::Bool`
-- `next`: defaults to `C_NULL`
+• `depth_clip_enable::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDepthClipEnableFeaturesEXT.html
 
 """
 _PhysicalDeviceDepthClipEnableFeaturesEXT
@@ -10064,9 +11630,11 @@ _PhysicalDeviceDepthClipEnableFeaturesEXT
     _PipelineRasterizationDepthClipStateCreateInfoEXT(depth_clip_enable::Bool; next = C_NULL, flags = 0)
 
 Arguments:
-- `depth_clip_enable::Bool`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `depth_clip_enable::Bool`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationDepthClipStateCreateInfoEXT.html
 
 """
 _PipelineRasterizationDepthClipStateCreateInfoEXT
@@ -10075,8 +11643,10 @@ _PipelineRasterizationDepthClipStateCreateInfoEXT
     _PhysicalDeviceMemoryPriorityFeaturesEXT(memory_priority::Bool; next = C_NULL)
 
 Arguments:
-- `memory_priority::Bool`
-- `next`: defaults to `C_NULL`
+• `memory_priority::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryPriorityFeaturesEXT.html
 
 """
 _PhysicalDeviceMemoryPriorityFeaturesEXT
@@ -10085,8 +11655,10 @@ _PhysicalDeviceMemoryPriorityFeaturesEXT
     _MemoryPriorityAllocateInfoEXT(priority::Real; next = C_NULL)
 
 Arguments:
-- `priority::Real`
-- `next`: defaults to `C_NULL`
+• `priority::Real`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryPriorityAllocateInfoEXT.html
 
 """
 _MemoryPriorityAllocateInfoEXT
@@ -10095,10 +11667,12 @@ _MemoryPriorityAllocateInfoEXT
     _PhysicalDeviceBufferDeviceAddressFeatures(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
 
 Arguments:
-- `buffer_device_address::Bool`
-- `buffer_device_address_capture_replay::Bool`
-- `buffer_device_address_multi_device::Bool`
-- `next`: defaults to `C_NULL`
+• `buffer_device_address::Bool`
+• `buffer_device_address_capture_replay::Bool`
+• `buffer_device_address_multi_device::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeatures.html
 
 """
 _PhysicalDeviceBufferDeviceAddressFeatures
@@ -10107,10 +11681,12 @@ _PhysicalDeviceBufferDeviceAddressFeatures
     _PhysicalDeviceBufferDeviceAddressFeaturesEXT(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
 
 Arguments:
-- `buffer_device_address::Bool`
-- `buffer_device_address_capture_replay::Bool`
-- `buffer_device_address_multi_device::Bool`
-- `next`: defaults to `C_NULL`
+• `buffer_device_address::Bool`
+• `buffer_device_address_capture_replay::Bool`
+• `buffer_device_address_multi_device::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html
 
 """
 _PhysicalDeviceBufferDeviceAddressFeaturesEXT
@@ -10119,8 +11695,10 @@ _PhysicalDeviceBufferDeviceAddressFeaturesEXT
     _BufferDeviceAddressInfo(buffer::Buffer; next = C_NULL)
 
 Arguments:
-- `buffer::Buffer`
-- `next`: defaults to `C_NULL`
+• `buffer::Buffer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressInfo.html
 
 """
 _BufferDeviceAddressInfo
@@ -10129,8 +11707,10 @@ _BufferDeviceAddressInfo
     _BufferOpaqueCaptureAddressCreateInfo(opaque_capture_address::Integer; next = C_NULL)
 
 Arguments:
-- `opaque_capture_address::Integer`
-- `next`: defaults to `C_NULL`
+• `opaque_capture_address::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferOpaqueCaptureAddressCreateInfo.html
 
 """
 _BufferOpaqueCaptureAddressCreateInfo
@@ -10139,8 +11719,10 @@ _BufferOpaqueCaptureAddressCreateInfo
     _BufferDeviceAddressCreateInfoEXT(device_address::Integer; next = C_NULL)
 
 Arguments:
-- `device_address::Integer`
-- `next`: defaults to `C_NULL`
+• `device_address::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html
 
 """
 _BufferDeviceAddressCreateInfoEXT
@@ -10149,8 +11731,10 @@ _BufferDeviceAddressCreateInfoEXT
     _PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type::ImageViewType; next = C_NULL)
 
 Arguments:
-- `image_view_type::ImageViewType`
-- `next`: defaults to `C_NULL`
+• `image_view_type::ImageViewType`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html
 
 """
 _PhysicalDeviceImageViewImageFormatInfoEXT
@@ -10159,8 +11743,10 @@ _PhysicalDeviceImageViewImageFormatInfoEXT
     _PhysicalDeviceImagelessFramebufferFeatures(imageless_framebuffer::Bool; next = C_NULL)
 
 Arguments:
-- `imageless_framebuffer::Bool`
-- `next`: defaults to `C_NULL`
+• `imageless_framebuffer::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImagelessFramebufferFeatures.html
 
 """
 _PhysicalDeviceImagelessFramebufferFeatures
@@ -10169,8 +11755,10 @@ _PhysicalDeviceImagelessFramebufferFeatures
     _FramebufferAttachmentsCreateInfo(attachment_image_infos::AbstractArray{<:_FramebufferAttachmentImageInfo}; next = C_NULL)
 
 Arguments:
-- `attachment_image_infos::AbstractArray{<:_FramebufferAttachmentImageInfo}`
-- `next`: defaults to `C_NULL`
+• `attachment_image_infos::AbstractArray{<:_FramebufferAttachmentImageInfo}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentsCreateInfo.html
 
 """
 _FramebufferAttachmentsCreateInfo
@@ -10179,13 +11767,15 @@ _FramebufferAttachmentsCreateInfo
     _FramebufferAttachmentImageInfo(usage::ImageUsageFlag, width::Integer, height::Integer, layer_count::Integer, view_formats::AbstractArray{<:Format}; next = C_NULL, flags = 0)
 
 Arguments:
-- `usage::ImageUsageFlag`
-- `width::Integer`
-- `height::Integer`
-- `layer_count::Integer`
-- `view_formats::AbstractArray{<:Format}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `usage::ImageUsageFlag`
+• `width::Integer`
+• `height::Integer`
+• `layer_count::Integer`
+• `view_formats::AbstractArray{<:Format}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentImageInfo.html
 
 """
 _FramebufferAttachmentImageInfo
@@ -10194,8 +11784,10 @@ _FramebufferAttachmentImageInfo
     _RenderPassAttachmentBeginInfo(attachments::AbstractArray{<:ImageView}; next = C_NULL)
 
 Arguments:
-- `attachments::AbstractArray{<:ImageView}`
-- `next`: defaults to `C_NULL`
+• `attachments::AbstractArray{<:ImageView}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassAttachmentBeginInfo.html
 
 """
 _RenderPassAttachmentBeginInfo
@@ -10204,8 +11796,10 @@ _RenderPassAttachmentBeginInfo
     _PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(texture_compression_astc_hdr::Bool; next = C_NULL)
 
 Arguments:
-- `texture_compression_astc_hdr::Bool`
-- `next`: defaults to `C_NULL`
+• `texture_compression_astc_hdr::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.html
 
 """
 _PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
@@ -10214,9 +11808,11 @@ _PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
     _PhysicalDeviceCooperativeMatrixFeaturesNV(cooperative_matrix::Bool, cooperative_matrix_robust_buffer_access::Bool; next = C_NULL)
 
 Arguments:
-- `cooperative_matrix::Bool`
-- `cooperative_matrix_robust_buffer_access::Bool`
-- `next`: defaults to `C_NULL`
+• `cooperative_matrix::Bool`
+• `cooperative_matrix_robust_buffer_access::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html
 
 """
 _PhysicalDeviceCooperativeMatrixFeaturesNV
@@ -10225,15 +11821,17 @@ _PhysicalDeviceCooperativeMatrixFeaturesNV
     _CooperativeMatrixPropertiesNV(m_size::Integer, n_size::Integer, k_size::Integer, a_type::ComponentTypeNV, b_type::ComponentTypeNV, c_type::ComponentTypeNV, d_type::ComponentTypeNV, scope::ScopeNV; next = C_NULL)
 
 Arguments:
-- `m_size::Integer`
-- `n_size::Integer`
-- `k_size::Integer`
-- `a_type::ComponentTypeNV`
-- `b_type::ComponentTypeNV`
-- `c_type::ComponentTypeNV`
-- `d_type::ComponentTypeNV`
-- `scope::ScopeNV`
-- `next`: defaults to `C_NULL`
+• `m_size::Integer`
+• `n_size::Integer`
+• `k_size::Integer`
+• `a_type::ComponentTypeNV`
+• `b_type::ComponentTypeNV`
+• `c_type::ComponentTypeNV`
+• `d_type::ComponentTypeNV`
+• `scope::ScopeNV`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCooperativeMatrixPropertiesNV.html
 
 """
 _CooperativeMatrixPropertiesNV
@@ -10242,8 +11840,10 @@ _CooperativeMatrixPropertiesNV
     _PhysicalDeviceYcbcrImageArraysFeaturesEXT(ycbcr_image_arrays::Bool; next = C_NULL)
 
 Arguments:
-- `ycbcr_image_arrays::Bool`
-- `next`: defaults to `C_NULL`
+• `ycbcr_image_arrays::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.html
 
 """
 _PhysicalDeviceYcbcrImageArraysFeaturesEXT
@@ -10252,10 +11852,12 @@ _PhysicalDeviceYcbcrImageArraysFeaturesEXT
     _ImageViewHandleInfoNVX(image_view::ImageView, descriptor_type::DescriptorType; next = C_NULL, sampler = C_NULL)
 
 Arguments:
-- `image_view::ImageView`
-- `descriptor_type::DescriptorType`
-- `next`: defaults to `C_NULL`
-- `sampler`: defaults to `C_NULL`
+• `image_view::ImageView`
+• `descriptor_type::DescriptorType`
+• `next`: defaults to `C_NULL`
+• `sampler`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewHandleInfoNVX.html
 
 """
 _ImageViewHandleInfoNVX
@@ -10264,8 +11866,10 @@ _ImageViewHandleInfoNVX
     _PresentFrameTokenGGP(frame_token::vk.GgpFrameToken; next = C_NULL)
 
 Arguments:
-- `frame_token::vk.GgpFrameToken`
-- `next`: defaults to `C_NULL`
+• `frame_token::vk.GgpFrameToken`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentFrameTokenGGP.html
 
 """
 _PresentFrameTokenGGP
@@ -10274,9 +11878,11 @@ _PresentFrameTokenGGP
     _PipelineCreationFeedbackCreateInfoEXT(pipeline_creation_feedback::PipelineCreationFeedbackEXT, pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}; next = C_NULL)
 
 Arguments:
-- `pipeline_creation_feedback::PipelineCreationFeedbackEXT`
-- `pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}`
-- `next`: defaults to `C_NULL`
+• `pipeline_creation_feedback::PipelineCreationFeedbackEXT`
+• `pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCreationFeedbackCreateInfoEXT.html
 
 """
 _PipelineCreationFeedbackCreateInfoEXT
@@ -10285,8 +11891,10 @@ _PipelineCreationFeedbackCreateInfoEXT
     _SurfaceFullScreenExclusiveInfoEXT(full_screen_exclusive::FullScreenExclusiveEXT; next = C_NULL)
 
 Arguments:
-- `full_screen_exclusive::FullScreenExclusiveEXT`
-- `next`: defaults to `C_NULL`
+• `full_screen_exclusive::FullScreenExclusiveEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceFullScreenExclusiveInfoEXT.html
 
 """
 _SurfaceFullScreenExclusiveInfoEXT
@@ -10295,8 +11903,10 @@ _SurfaceFullScreenExclusiveInfoEXT
     _SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor::vk.HMONITOR; next = C_NULL)
 
 Arguments:
-- `hmonitor::vk.HMONITOR`
-- `next`: defaults to `C_NULL`
+• `hmonitor::vk.HMONITOR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceFullScreenExclusiveWin32InfoEXT.html
 
 """
 _SurfaceFullScreenExclusiveWin32InfoEXT
@@ -10305,8 +11915,10 @@ _SurfaceFullScreenExclusiveWin32InfoEXT
     _SurfaceCapabilitiesFullScreenExclusiveEXT(full_screen_exclusive_supported::Bool; next = C_NULL)
 
 Arguments:
-- `full_screen_exclusive_supported::Bool`
-- `next`: defaults to `C_NULL`
+• `full_screen_exclusive_supported::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceCapabilitiesFullScreenExclusiveEXT.html
 
 """
 _SurfaceCapabilitiesFullScreenExclusiveEXT
@@ -10315,9 +11927,11 @@ _SurfaceCapabilitiesFullScreenExclusiveEXT
     _PhysicalDevicePerformanceQueryFeaturesKHR(performance_counter_query_pools::Bool, performance_counter_multiple_query_pools::Bool; next = C_NULL)
 
 Arguments:
-- `performance_counter_query_pools::Bool`
-- `performance_counter_multiple_query_pools::Bool`
-- `next`: defaults to `C_NULL`
+• `performance_counter_query_pools::Bool`
+• `performance_counter_multiple_query_pools::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html
 
 """
 _PhysicalDevicePerformanceQueryFeaturesKHR
@@ -10326,9 +11940,11 @@ _PhysicalDevicePerformanceQueryFeaturesKHR
     _QueryPoolPerformanceCreateInfoKHR(queue_family_index::Integer, counter_indices::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `queue_family_index::Integer`
-- `counter_indices::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `queue_family_index::Integer`
+• `counter_indices::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html
 
 """
 _QueryPoolPerformanceCreateInfoKHR
@@ -10337,9 +11953,11 @@ _QueryPoolPerformanceCreateInfoKHR
     _AcquireProfilingLockInfoKHR(timeout::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `timeout::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `timeout::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireProfilingLockInfoKHR.html
 
 """
 _AcquireProfilingLockInfoKHR
@@ -10348,8 +11966,10 @@ _AcquireProfilingLockInfoKHR
     _PerformanceQuerySubmitInfoKHR(counter_pass_index::Integer; next = C_NULL)
 
 Arguments:
-- `counter_pass_index::Integer`
-- `next`: defaults to `C_NULL`
+• `counter_pass_index::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html
 
 """
 _PerformanceQuerySubmitInfoKHR
@@ -10358,8 +11978,10 @@ _PerformanceQuerySubmitInfoKHR
     _HeadlessSurfaceCreateInfoEXT(; next = C_NULL, flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHeadlessSurfaceCreateInfoEXT.html
 
 """
 _HeadlessSurfaceCreateInfoEXT
@@ -10368,8 +11990,10 @@ _HeadlessSurfaceCreateInfoEXT
     _PhysicalDeviceCoverageReductionModeFeaturesNV(coverage_reduction_mode::Bool; next = C_NULL)
 
 Arguments:
-- `coverage_reduction_mode::Bool`
-- `next`: defaults to `C_NULL`
+• `coverage_reduction_mode::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html
 
 """
 _PhysicalDeviceCoverageReductionModeFeaturesNV
@@ -10378,9 +12002,11 @@ _PhysicalDeviceCoverageReductionModeFeaturesNV
     _PipelineCoverageReductionStateCreateInfoNV(coverage_reduction_mode::CoverageReductionModeNV; next = C_NULL, flags = 0)
 
 Arguments:
-- `coverage_reduction_mode::CoverageReductionModeNV`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `coverage_reduction_mode::CoverageReductionModeNV`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html
 
 """
 _PipelineCoverageReductionStateCreateInfoNV
@@ -10389,8 +12015,10 @@ _PipelineCoverageReductionStateCreateInfoNV
     _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(shader_integer_functions_2::Bool; next = C_NULL)
 
 Arguments:
-- `shader_integer_functions_2::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_integer_functions_2::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.html
 
 """
 _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
@@ -10399,8 +12027,10 @@ _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
     _PerformanceValueINTEL(type::PerformanceValueTypeINTEL, data::VkPerformanceValueDataINTEL)
 
 Arguments:
-- `type::PerformanceValueTypeINTEL`
-- `data::VkPerformanceValueDataINTEL`
+• `type::PerformanceValueTypeINTEL`
+• `data::VkPerformanceValueDataINTEL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueINTEL.html
 
 """
 _PerformanceValueINTEL
@@ -10409,8 +12039,10 @@ _PerformanceValueINTEL
     _InitializePerformanceApiInfoINTEL(; next = C_NULL, user_data = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `user_data`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `user_data`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html
 
 """
 _InitializePerformanceApiInfoINTEL
@@ -10419,8 +12051,10 @@ _InitializePerformanceApiInfoINTEL
     _QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling::QueryPoolSamplingModeINTEL; next = C_NULL)
 
 Arguments:
-- `performance_counters_sampling::QueryPoolSamplingModeINTEL`
-- `next`: defaults to `C_NULL`
+• `performance_counters_sampling::QueryPoolSamplingModeINTEL`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html
 
 """
 _QueryPoolPerformanceQueryCreateInfoINTEL
@@ -10429,8 +12063,10 @@ _QueryPoolPerformanceQueryCreateInfoINTEL
     _PerformanceMarkerInfoINTEL(marker::Integer; next = C_NULL)
 
 Arguments:
-- `marker::Integer`
-- `next`: defaults to `C_NULL`
+• `marker::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceMarkerInfoINTEL.html
 
 """
 _PerformanceMarkerInfoINTEL
@@ -10439,8 +12075,10 @@ _PerformanceMarkerInfoINTEL
     _PerformanceStreamMarkerInfoINTEL(marker::Integer; next = C_NULL)
 
 Arguments:
-- `marker::Integer`
-- `next`: defaults to `C_NULL`
+• `marker::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html
 
 """
 _PerformanceStreamMarkerInfoINTEL
@@ -10449,10 +12087,12 @@ _PerformanceStreamMarkerInfoINTEL
     _PerformanceOverrideInfoINTEL(type::PerformanceOverrideTypeINTEL, enable::Bool, parameter::Integer; next = C_NULL)
 
 Arguments:
-- `type::PerformanceOverrideTypeINTEL`
-- `enable::Bool`
-- `parameter::Integer`
-- `next`: defaults to `C_NULL`
+• `type::PerformanceOverrideTypeINTEL`
+• `enable::Bool`
+• `parameter::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceOverrideInfoINTEL.html
 
 """
 _PerformanceOverrideInfoINTEL
@@ -10461,8 +12101,10 @@ _PerformanceOverrideInfoINTEL
     _PerformanceConfigurationAcquireInfoINTEL(type::PerformanceConfigurationTypeINTEL; next = C_NULL)
 
 Arguments:
-- `type::PerformanceConfigurationTypeINTEL`
-- `next`: defaults to `C_NULL`
+• `type::PerformanceConfigurationTypeINTEL`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html
 
 """
 _PerformanceConfigurationAcquireInfoINTEL
@@ -10471,9 +12113,11 @@ _PerformanceConfigurationAcquireInfoINTEL
     _PhysicalDeviceShaderClockFeaturesKHR(shader_subgroup_clock::Bool, shader_device_clock::Bool; next = C_NULL)
 
 Arguments:
-- `shader_subgroup_clock::Bool`
-- `shader_device_clock::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_subgroup_clock::Bool`
+• `shader_device_clock::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderClockFeaturesKHR.html
 
 """
 _PhysicalDeviceShaderClockFeaturesKHR
@@ -10482,8 +12126,10 @@ _PhysicalDeviceShaderClockFeaturesKHR
     _PhysicalDeviceIndexTypeUint8FeaturesEXT(index_type_uint_8::Bool; next = C_NULL)
 
 Arguments:
-- `index_type_uint_8::Bool`
-- `next`: defaults to `C_NULL`
+• `index_type_uint_8::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.html
 
 """
 _PhysicalDeviceIndexTypeUint8FeaturesEXT
@@ -10492,8 +12138,10 @@ _PhysicalDeviceIndexTypeUint8FeaturesEXT
     _PhysicalDeviceShaderSMBuiltinsFeaturesNV(shader_sm_builtins::Bool; next = C_NULL)
 
 Arguments:
-- `shader_sm_builtins::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_sm_builtins::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html
 
 """
 _PhysicalDeviceShaderSMBuiltinsFeaturesNV
@@ -10502,10 +12150,12 @@ _PhysicalDeviceShaderSMBuiltinsFeaturesNV
     _PhysicalDeviceFragmentShaderInterlockFeaturesEXT(fragment_shader_sample_interlock::Bool, fragment_shader_pixel_interlock::Bool, fragment_shader_shading_rate_interlock::Bool; next = C_NULL)
 
 Arguments:
-- `fragment_shader_sample_interlock::Bool`
-- `fragment_shader_pixel_interlock::Bool`
-- `fragment_shader_shading_rate_interlock::Bool`
-- `next`: defaults to `C_NULL`
+• `fragment_shader_sample_interlock::Bool`
+• `fragment_shader_pixel_interlock::Bool`
+• `fragment_shader_shading_rate_interlock::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.html
 
 """
 _PhysicalDeviceFragmentShaderInterlockFeaturesEXT
@@ -10514,8 +12164,10 @@ _PhysicalDeviceFragmentShaderInterlockFeaturesEXT
     _PhysicalDeviceSeparateDepthStencilLayoutsFeatures(separate_depth_stencil_layouts::Bool; next = C_NULL)
 
 Arguments:
-- `separate_depth_stencil_layouts::Bool`
-- `next`: defaults to `C_NULL`
+• `separate_depth_stencil_layouts::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.html
 
 """
 _PhysicalDeviceSeparateDepthStencilLayoutsFeatures
@@ -10524,8 +12176,10 @@ _PhysicalDeviceSeparateDepthStencilLayoutsFeatures
     _AttachmentReferenceStencilLayout(stencil_layout::ImageLayout; next = C_NULL)
 
 Arguments:
-- `stencil_layout::ImageLayout`
-- `next`: defaults to `C_NULL`
+• `stencil_layout::ImageLayout`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReferenceStencilLayout.html
 
 """
 _AttachmentReferenceStencilLayout
@@ -10534,9 +12188,11 @@ _AttachmentReferenceStencilLayout
     _AttachmentDescriptionStencilLayout(stencil_initial_layout::ImageLayout, stencil_final_layout::ImageLayout; next = C_NULL)
 
 Arguments:
-- `stencil_initial_layout::ImageLayout`
-- `stencil_final_layout::ImageLayout`
-- `next`: defaults to `C_NULL`
+• `stencil_initial_layout::ImageLayout`
+• `stencil_final_layout::ImageLayout`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescriptionStencilLayout.html
 
 """
 _AttachmentDescriptionStencilLayout
@@ -10545,8 +12201,10 @@ _AttachmentDescriptionStencilLayout
     _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(pipeline_executable_info::Bool; next = C_NULL)
 
 Arguments:
-- `pipeline_executable_info::Bool`
-- `next`: defaults to `C_NULL`
+• `pipeline_executable_info::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html
 
 """
 _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
@@ -10555,8 +12213,10 @@ _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
     _PipelineInfoKHR(pipeline::Pipeline; next = C_NULL)
 
 Arguments:
-- `pipeline::Pipeline`
-- `next`: defaults to `C_NULL`
+• `pipeline::Pipeline`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInfoKHR.html
 
 """
 _PipelineInfoKHR
@@ -10565,9 +12225,11 @@ _PipelineInfoKHR
     _PipelineExecutableInfoKHR(pipeline::Pipeline, executable_index::Integer; next = C_NULL)
 
 Arguments:
-- `pipeline::Pipeline`
-- `executable_index::Integer`
-- `next`: defaults to `C_NULL`
+• `pipeline::Pipeline`
+• `executable_index::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableInfoKHR.html
 
 """
 _PipelineExecutableInfoKHR
@@ -10576,8 +12238,10 @@ _PipelineExecutableInfoKHR
     _PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(shader_demote_to_helper_invocation::Bool; next = C_NULL)
 
 Arguments:
-- `shader_demote_to_helper_invocation::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_demote_to_helper_invocation::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.html
 
 """
 _PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
@@ -10586,8 +12250,10 @@ _PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
     _PhysicalDeviceTexelBufferAlignmentFeaturesEXT(texel_buffer_alignment::Bool; next = C_NULL)
 
 Arguments:
-- `texel_buffer_alignment::Bool`
-- `next`: defaults to `C_NULL`
+• `texel_buffer_alignment::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.html
 
 """
 _PhysicalDeviceTexelBufferAlignmentFeaturesEXT
@@ -10596,9 +12262,11 @@ _PhysicalDeviceTexelBufferAlignmentFeaturesEXT
     _PhysicalDeviceSubgroupSizeControlFeaturesEXT(subgroup_size_control::Bool, compute_full_subgroups::Bool; next = C_NULL)
 
 Arguments:
-- `subgroup_size_control::Bool`
-- `compute_full_subgroups::Bool`
-- `next`: defaults to `C_NULL`
+• `subgroup_size_control::Bool`
+• `compute_full_subgroups::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.html
 
 """
 _PhysicalDeviceSubgroupSizeControlFeaturesEXT
@@ -10607,8 +12275,10 @@ _PhysicalDeviceSubgroupSizeControlFeaturesEXT
     _MemoryOpaqueCaptureAddressAllocateInfo(opaque_capture_address::Integer; next = C_NULL)
 
 Arguments:
-- `opaque_capture_address::Integer`
-- `next`: defaults to `C_NULL`
+• `opaque_capture_address::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryOpaqueCaptureAddressAllocateInfo.html
 
 """
 _MemoryOpaqueCaptureAddressAllocateInfo
@@ -10617,8 +12287,10 @@ _MemoryOpaqueCaptureAddressAllocateInfo
     _DeviceMemoryOpaqueCaptureAddressInfo(memory::DeviceMemory; next = C_NULL)
 
 Arguments:
-- `memory::DeviceMemory`
-- `next`: defaults to `C_NULL`
+• `memory::DeviceMemory`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html
 
 """
 _DeviceMemoryOpaqueCaptureAddressInfo
@@ -10627,13 +12299,15 @@ _DeviceMemoryOpaqueCaptureAddressInfo
     _PhysicalDeviceLineRasterizationFeaturesEXT(rectangular_lines::Bool, bresenham_lines::Bool, smooth_lines::Bool, stippled_rectangular_lines::Bool, stippled_bresenham_lines::Bool, stippled_smooth_lines::Bool; next = C_NULL)
 
 Arguments:
-- `rectangular_lines::Bool`
-- `bresenham_lines::Bool`
-- `smooth_lines::Bool`
-- `stippled_rectangular_lines::Bool`
-- `stippled_bresenham_lines::Bool`
-- `stippled_smooth_lines::Bool`
-- `next`: defaults to `C_NULL`
+• `rectangular_lines::Bool`
+• `bresenham_lines::Bool`
+• `smooth_lines::Bool`
+• `stippled_rectangular_lines::Bool`
+• `stippled_bresenham_lines::Bool`
+• `stippled_smooth_lines::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html
 
 """
 _PhysicalDeviceLineRasterizationFeaturesEXT
@@ -10642,11 +12316,13 @@ _PhysicalDeviceLineRasterizationFeaturesEXT
     _PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::LineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
 
 Arguments:
-- `line_rasterization_mode::LineRasterizationModeEXT`
-- `stippled_line_enable::Bool`
-- `line_stipple_factor::Integer`
-- `line_stipple_pattern::Integer`
-- `next`: defaults to `C_NULL`
+• `line_rasterization_mode::LineRasterizationModeEXT`
+• `stippled_line_enable::Bool`
+• `line_stipple_factor::Integer`
+• `line_stipple_pattern::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html
 
 """
 _PipelineRasterizationLineStateCreateInfoEXT
@@ -10655,8 +12331,10 @@ _PipelineRasterizationLineStateCreateInfoEXT
     _PhysicalDevicePipelineCreationCacheControlFeaturesEXT(pipeline_creation_cache_control::Bool; next = C_NULL)
 
 Arguments:
-- `pipeline_creation_cache_control::Bool`
-- `next`: defaults to `C_NULL`
+• `pipeline_creation_cache_control::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.html
 
 """
 _PhysicalDevicePipelineCreationCacheControlFeaturesEXT
@@ -10665,19 +12343,21 @@ _PhysicalDevicePipelineCreationCacheControlFeaturesEXT
     _PhysicalDeviceVulkan11Features(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool, multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool, variable_pointers_storage_buffer::Bool, variable_pointers::Bool, protected_memory::Bool, sampler_ycbcr_conversion::Bool, shader_draw_parameters::Bool; next = C_NULL)
 
 Arguments:
-- `storage_buffer_16_bit_access::Bool`
-- `uniform_and_storage_buffer_16_bit_access::Bool`
-- `storage_push_constant_16::Bool`
-- `storage_input_output_16::Bool`
-- `multiview::Bool`
-- `multiview_geometry_shader::Bool`
-- `multiview_tessellation_shader::Bool`
-- `variable_pointers_storage_buffer::Bool`
-- `variable_pointers::Bool`
-- `protected_memory::Bool`
-- `sampler_ycbcr_conversion::Bool`
-- `shader_draw_parameters::Bool`
-- `next`: defaults to `C_NULL`
+• `storage_buffer_16_bit_access::Bool`
+• `uniform_and_storage_buffer_16_bit_access::Bool`
+• `storage_push_constant_16::Bool`
+• `storage_input_output_16::Bool`
+• `multiview::Bool`
+• `multiview_geometry_shader::Bool`
+• `multiview_tessellation_shader::Bool`
+• `variable_pointers_storage_buffer::Bool`
+• `variable_pointers::Bool`
+• `protected_memory::Bool`
+• `sampler_ycbcr_conversion::Bool`
+• `shader_draw_parameters::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan11Features.html
 
 """
 _PhysicalDeviceVulkan11Features
@@ -10686,54 +12366,56 @@ _PhysicalDeviceVulkan11Features
     _PhysicalDeviceVulkan12Features(sampler_mirror_clamp_to_edge::Bool, draw_indirect_count::Bool, storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool, shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool, shader_float_16::Bool, shader_int_8::Bool, descriptor_indexing::Bool, shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool, sampler_filter_minmax::Bool, scalar_block_layout::Bool, imageless_framebuffer::Bool, uniform_buffer_standard_layout::Bool, shader_subgroup_extended_types::Bool, separate_depth_stencil_layouts::Bool, host_query_reset::Bool, timeline_semaphore::Bool, buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool, vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool, shader_output_viewport_index::Bool, shader_output_layer::Bool, subgroup_broadcast_dynamic_id::Bool; next = C_NULL)
 
 Arguments:
-- `sampler_mirror_clamp_to_edge::Bool`
-- `draw_indirect_count::Bool`
-- `storage_buffer_8_bit_access::Bool`
-- `uniform_and_storage_buffer_8_bit_access::Bool`
-- `storage_push_constant_8::Bool`
-- `shader_buffer_int_64_atomics::Bool`
-- `shader_shared_int_64_atomics::Bool`
-- `shader_float_16::Bool`
-- `shader_int_8::Bool`
-- `descriptor_indexing::Bool`
-- `shader_input_attachment_array_dynamic_indexing::Bool`
-- `shader_uniform_texel_buffer_array_dynamic_indexing::Bool`
-- `shader_storage_texel_buffer_array_dynamic_indexing::Bool`
-- `shader_uniform_buffer_array_non_uniform_indexing::Bool`
-- `shader_sampled_image_array_non_uniform_indexing::Bool`
-- `shader_storage_buffer_array_non_uniform_indexing::Bool`
-- `shader_storage_image_array_non_uniform_indexing::Bool`
-- `shader_input_attachment_array_non_uniform_indexing::Bool`
-- `shader_uniform_texel_buffer_array_non_uniform_indexing::Bool`
-- `shader_storage_texel_buffer_array_non_uniform_indexing::Bool`
-- `descriptor_binding_uniform_buffer_update_after_bind::Bool`
-- `descriptor_binding_sampled_image_update_after_bind::Bool`
-- `descriptor_binding_storage_image_update_after_bind::Bool`
-- `descriptor_binding_storage_buffer_update_after_bind::Bool`
-- `descriptor_binding_uniform_texel_buffer_update_after_bind::Bool`
-- `descriptor_binding_storage_texel_buffer_update_after_bind::Bool`
-- `descriptor_binding_update_unused_while_pending::Bool`
-- `descriptor_binding_partially_bound::Bool`
-- `descriptor_binding_variable_descriptor_count::Bool`
-- `runtime_descriptor_array::Bool`
-- `sampler_filter_minmax::Bool`
-- `scalar_block_layout::Bool`
-- `imageless_framebuffer::Bool`
-- `uniform_buffer_standard_layout::Bool`
-- `shader_subgroup_extended_types::Bool`
-- `separate_depth_stencil_layouts::Bool`
-- `host_query_reset::Bool`
-- `timeline_semaphore::Bool`
-- `buffer_device_address::Bool`
-- `buffer_device_address_capture_replay::Bool`
-- `buffer_device_address_multi_device::Bool`
-- `vulkan_memory_model::Bool`
-- `vulkan_memory_model_device_scope::Bool`
-- `vulkan_memory_model_availability_visibility_chains::Bool`
-- `shader_output_viewport_index::Bool`
-- `shader_output_layer::Bool`
-- `subgroup_broadcast_dynamic_id::Bool`
-- `next`: defaults to `C_NULL`
+• `sampler_mirror_clamp_to_edge::Bool`
+• `draw_indirect_count::Bool`
+• `storage_buffer_8_bit_access::Bool`
+• `uniform_and_storage_buffer_8_bit_access::Bool`
+• `storage_push_constant_8::Bool`
+• `shader_buffer_int_64_atomics::Bool`
+• `shader_shared_int_64_atomics::Bool`
+• `shader_float_16::Bool`
+• `shader_int_8::Bool`
+• `descriptor_indexing::Bool`
+• `shader_input_attachment_array_dynamic_indexing::Bool`
+• `shader_uniform_texel_buffer_array_dynamic_indexing::Bool`
+• `shader_storage_texel_buffer_array_dynamic_indexing::Bool`
+• `shader_uniform_buffer_array_non_uniform_indexing::Bool`
+• `shader_sampled_image_array_non_uniform_indexing::Bool`
+• `shader_storage_buffer_array_non_uniform_indexing::Bool`
+• `shader_storage_image_array_non_uniform_indexing::Bool`
+• `shader_input_attachment_array_non_uniform_indexing::Bool`
+• `shader_uniform_texel_buffer_array_non_uniform_indexing::Bool`
+• `shader_storage_texel_buffer_array_non_uniform_indexing::Bool`
+• `descriptor_binding_uniform_buffer_update_after_bind::Bool`
+• `descriptor_binding_sampled_image_update_after_bind::Bool`
+• `descriptor_binding_storage_image_update_after_bind::Bool`
+• `descriptor_binding_storage_buffer_update_after_bind::Bool`
+• `descriptor_binding_uniform_texel_buffer_update_after_bind::Bool`
+• `descriptor_binding_storage_texel_buffer_update_after_bind::Bool`
+• `descriptor_binding_update_unused_while_pending::Bool`
+• `descriptor_binding_partially_bound::Bool`
+• `descriptor_binding_variable_descriptor_count::Bool`
+• `runtime_descriptor_array::Bool`
+• `sampler_filter_minmax::Bool`
+• `scalar_block_layout::Bool`
+• `imageless_framebuffer::Bool`
+• `uniform_buffer_standard_layout::Bool`
+• `shader_subgroup_extended_types::Bool`
+• `separate_depth_stencil_layouts::Bool`
+• `host_query_reset::Bool`
+• `timeline_semaphore::Bool`
+• `buffer_device_address::Bool`
+• `buffer_device_address_capture_replay::Bool`
+• `buffer_device_address_multi_device::Bool`
+• `vulkan_memory_model::Bool`
+• `vulkan_memory_model_device_scope::Bool`
+• `vulkan_memory_model_availability_visibility_chains::Bool`
+• `shader_output_viewport_index::Bool`
+• `shader_output_layer::Bool`
+• `subgroup_broadcast_dynamic_id::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan12Features.html
 
 """
 _PhysicalDeviceVulkan12Features
@@ -10742,8 +12424,10 @@ _PhysicalDeviceVulkan12Features
     _PipelineCompilerControlCreateInfoAMD(; next = C_NULL, compiler_control_flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `compiler_control_flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `compiler_control_flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html
 
 """
 _PipelineCompilerControlCreateInfoAMD
@@ -10752,8 +12436,10 @@ _PipelineCompilerControlCreateInfoAMD
     _PhysicalDeviceCoherentMemoryFeaturesAMD(device_coherent_memory::Bool; next = C_NULL)
 
 Arguments:
-- `device_coherent_memory::Bool`
-- `next`: defaults to `C_NULL`
+• `device_coherent_memory::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoherentMemoryFeaturesAMD.html
 
 """
 _PhysicalDeviceCoherentMemoryFeaturesAMD
@@ -10762,9 +12448,11 @@ _PhysicalDeviceCoherentMemoryFeaturesAMD
     _SamplerCustomBorderColorCreateInfoEXT(custom_border_color::VkClearColorValue, format::Format; next = C_NULL)
 
 Arguments:
-- `custom_border_color::VkClearColorValue`
-- `format::Format`
-- `next`: defaults to `C_NULL`
+• `custom_border_color::VkClearColorValue`
+• `format::Format`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html
 
 """
 _SamplerCustomBorderColorCreateInfoEXT
@@ -10773,9 +12461,11 @@ _SamplerCustomBorderColorCreateInfoEXT
     _PhysicalDeviceCustomBorderColorFeaturesEXT(custom_border_colors::Bool, custom_border_color_without_format::Bool; next = C_NULL)
 
 Arguments:
-- `custom_border_colors::Bool`
-- `custom_border_color_without_format::Bool`
-- `next`: defaults to `C_NULL`
+• `custom_border_colors::Bool`
+• `custom_border_color_without_format::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html
 
 """
 _PhysicalDeviceCustomBorderColorFeaturesEXT
@@ -10784,14 +12474,16 @@ _PhysicalDeviceCustomBorderColorFeaturesEXT
     _AccelerationStructureGeometryTrianglesDataKHR(vertex_format::Format, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::IndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
 
 Arguments:
-- `vertex_format::Format`
-- `vertex_data::VkDeviceOrHostAddressConstKHR`
-- `vertex_stride::Integer`
-- `max_vertex::Integer`
-- `index_type::IndexType`
-- `index_data::VkDeviceOrHostAddressConstKHR`
-- `transform_data::VkDeviceOrHostAddressConstKHR`
-- `next`: defaults to `C_NULL`
+• `vertex_format::Format`
+• `vertex_data::VkDeviceOrHostAddressConstKHR`
+• `vertex_stride::Integer`
+• `max_vertex::Integer`
+• `index_type::IndexType`
+• `index_data::VkDeviceOrHostAddressConstKHR`
+• `transform_data::VkDeviceOrHostAddressConstKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html
 
 """
 _AccelerationStructureGeometryTrianglesDataKHR
@@ -10800,9 +12492,11 @@ _AccelerationStructureGeometryTrianglesDataKHR
     _AccelerationStructureGeometryAabbsDataKHR(data::VkDeviceOrHostAddressConstKHR, stride::Integer; next = C_NULL)
 
 Arguments:
-- `data::VkDeviceOrHostAddressConstKHR`
-- `stride::Integer`
-- `next`: defaults to `C_NULL`
+• `data::VkDeviceOrHostAddressConstKHR`
+• `stride::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html
 
 """
 _AccelerationStructureGeometryAabbsDataKHR
@@ -10811,9 +12505,11 @@ _AccelerationStructureGeometryAabbsDataKHR
     _AccelerationStructureGeometryInstancesDataKHR(array_of_pointers::Bool, data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
 
 Arguments:
-- `array_of_pointers::Bool`
-- `data::VkDeviceOrHostAddressConstKHR`
-- `next`: defaults to `C_NULL`
+• `array_of_pointers::Bool`
+• `data::VkDeviceOrHostAddressConstKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryInstancesDataKHR.html
 
 """
 _AccelerationStructureGeometryInstancesDataKHR
@@ -10822,10 +12518,12 @@ _AccelerationStructureGeometryInstancesDataKHR
     _AccelerationStructureGeometryKHR(geometry_type::GeometryTypeKHR, geometry::VkAccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
 
 Arguments:
-- `geometry_type::GeometryTypeKHR`
-- `geometry::VkAccelerationStructureGeometryDataKHR`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `geometry_type::GeometryTypeKHR`
+• `geometry::VkAccelerationStructureGeometryDataKHR`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryKHR.html
 
 """
 _AccelerationStructureGeometryKHR
@@ -10834,15 +12532,17 @@ _AccelerationStructureGeometryKHR
     _AccelerationStructureBuildGeometryInfoKHR(type::AccelerationStructureTypeKHR, mode::BuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
 
 Arguments:
-- `type::AccelerationStructureTypeKHR`
-- `mode::BuildAccelerationStructureModeKHR`
-- `scratch_data::VkDeviceOrHostAddressKHR`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `src_acceleration_structure`: defaults to `C_NULL`
-- `dst_acceleration_structure`: defaults to `C_NULL`
-- `geometries`: defaults to `C_NULL`
-- `geometries_2`: defaults to `C_NULL`
+• `type::AccelerationStructureTypeKHR`
+• `mode::BuildAccelerationStructureModeKHR`
+• `scratch_data::VkDeviceOrHostAddressKHR`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `src_acceleration_structure`: defaults to `C_NULL`
+• `dst_acceleration_structure`: defaults to `C_NULL`
+• `geometries`: defaults to `C_NULL`
+• `geometries_2`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html
 
 """
 _AccelerationStructureBuildGeometryInfoKHR
@@ -10851,10 +12551,12 @@ _AccelerationStructureBuildGeometryInfoKHR
     _AccelerationStructureBuildRangeInfoKHR(primitive_count::Integer, primitive_offset::Integer, first_vertex::Integer, transform_offset::Integer)
 
 Arguments:
-- `primitive_count::Integer`
-- `primitive_offset::Integer`
-- `first_vertex::Integer`
-- `transform_offset::Integer`
+• `primitive_count::Integer`
+• `primitive_offset::Integer`
+• `first_vertex::Integer`
+• `transform_offset::Integer`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildRangeInfoKHR.html
 
 """
 _AccelerationStructureBuildRangeInfoKHR
@@ -10863,13 +12565,15 @@ _AccelerationStructureBuildRangeInfoKHR
     _AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::AccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
 
 Arguments:
-- `buffer::Buffer`
-- `offset::Integer`
-- `size::Integer`
-- `type::AccelerationStructureTypeKHR`
-- `next`: defaults to `C_NULL`
-- `create_flags`: defaults to `0`
-- `device_address`: defaults to `0`
+• `buffer::Buffer`
+• `offset::Integer`
+• `size::Integer`
+• `type::AccelerationStructureTypeKHR`
+• `next`: defaults to `C_NULL`
+• `create_flags`: defaults to `0`
+• `device_address`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html
 
 """
 _AccelerationStructureCreateInfoKHR
@@ -10878,12 +12582,14 @@ _AccelerationStructureCreateInfoKHR
     _AabbPositionsKHR(min_x::Real, min_y::Real, min_z::Real, max_x::Real, max_y::Real, max_z::Real)
 
 Arguments:
-- `min_x::Real`
-- `min_y::Real`
-- `min_z::Real`
-- `max_x::Real`
-- `max_y::Real`
-- `max_z::Real`
+• `min_x::Real`
+• `min_y::Real`
+• `min_z::Real`
+• `max_x::Real`
+• `max_y::Real`
+• `max_z::Real`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAabbPositionsKHR.html
 
 """
 _AabbPositionsKHR
@@ -10892,7 +12598,9 @@ _AabbPositionsKHR
     _TransformMatrixKHR(matrix::NTuple{3, NTuple{4, Float32}})
 
 Arguments:
-- `matrix::NTuple{3, NTuple{4, Float32}}`
+• `matrix::NTuple{3, NTuple{4, Float32}}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTransformMatrixKHR.html
 
 """
 _TransformMatrixKHR
@@ -10901,12 +12609,14 @@ _TransformMatrixKHR
     _AccelerationStructureInstanceKHR(transform::_TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
 
 Arguments:
-- `transform::_TransformMatrixKHR`
-- `instance_custom_index::Integer`
-- `mask::Integer`
-- `instance_shader_binding_table_record_offset::Integer`
-- `acceleration_structure_reference::Integer`
-- `flags`: defaults to `0`
+• `transform::_TransformMatrixKHR`
+• `instance_custom_index::Integer`
+• `mask::Integer`
+• `instance_shader_binding_table_record_offset::Integer`
+• `acceleration_structure_reference::Integer`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInstanceKHR.html
 
 """
 _AccelerationStructureInstanceKHR
@@ -10915,8 +12625,10 @@ _AccelerationStructureInstanceKHR
     _AccelerationStructureDeviceAddressInfoKHR(acceleration_structure::AccelerationStructureKHR; next = C_NULL)
 
 Arguments:
-- `acceleration_structure::AccelerationStructureKHR`
-- `next`: defaults to `C_NULL`
+• `acceleration_structure::AccelerationStructureKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html
 
 """
 _AccelerationStructureDeviceAddressInfoKHR
@@ -10925,8 +12637,10 @@ _AccelerationStructureDeviceAddressInfoKHR
     _AccelerationStructureVersionInfoKHR(version_data::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `version_data::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `version_data::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureVersionInfoKHR.html
 
 """
 _AccelerationStructureVersionInfoKHR
@@ -10935,10 +12649,12 @@ _AccelerationStructureVersionInfoKHR
     _CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
-- `src::AccelerationStructureKHR`
-- `dst::AccelerationStructureKHR`
-- `mode::CopyAccelerationStructureModeKHR`
-- `next`: defaults to `C_NULL`
+• `src::AccelerationStructureKHR`
+• `dst::AccelerationStructureKHR`
+• `mode::CopyAccelerationStructureModeKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html
 
 """
 _CopyAccelerationStructureInfoKHR
@@ -10947,10 +12663,12 @@ _CopyAccelerationStructureInfoKHR
     _CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::VkDeviceOrHostAddressKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
-- `src::AccelerationStructureKHR`
-- `dst::VkDeviceOrHostAddressKHR`
-- `mode::CopyAccelerationStructureModeKHR`
-- `next`: defaults to `C_NULL`
+• `src::AccelerationStructureKHR`
+• `dst::VkDeviceOrHostAddressKHR`
+• `mode::CopyAccelerationStructureModeKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html
 
 """
 _CopyAccelerationStructureToMemoryInfoKHR
@@ -10959,10 +12677,12 @@ _CopyAccelerationStructureToMemoryInfoKHR
     _CopyMemoryToAccelerationStructureInfoKHR(src::VkDeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
 
 Arguments:
-- `src::VkDeviceOrHostAddressConstKHR`
-- `dst::AccelerationStructureKHR`
-- `mode::CopyAccelerationStructureModeKHR`
-- `next`: defaults to `C_NULL`
+• `src::VkDeviceOrHostAddressConstKHR`
+• `dst::AccelerationStructureKHR`
+• `mode::CopyAccelerationStructureModeKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html
 
 """
 _CopyMemoryToAccelerationStructureInfoKHR
@@ -10971,9 +12691,11 @@ _CopyMemoryToAccelerationStructureInfoKHR
     _RayTracingPipelineInterfaceCreateInfoKHR(max_pipeline_ray_payload_size::Integer, max_pipeline_ray_hit_attribute_size::Integer; next = C_NULL)
 
 Arguments:
-- `max_pipeline_ray_payload_size::Integer`
-- `max_pipeline_ray_hit_attribute_size::Integer`
-- `next`: defaults to `C_NULL`
+• `max_pipeline_ray_payload_size::Integer`
+• `max_pipeline_ray_hit_attribute_size::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineInterfaceCreateInfoKHR.html
 
 """
 _RayTracingPipelineInterfaceCreateInfoKHR
@@ -10982,8 +12704,10 @@ _RayTracingPipelineInterfaceCreateInfoKHR
     _PipelineLibraryCreateInfoKHR(libraries::AbstractArray{<:Pipeline}; next = C_NULL)
 
 Arguments:
-- `libraries::AbstractArray{<:Pipeline}`
-- `next`: defaults to `C_NULL`
+• `libraries::AbstractArray{<:Pipeline}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html
 
 """
 _PipelineLibraryCreateInfoKHR
@@ -10992,8 +12716,10 @@ _PipelineLibraryCreateInfoKHR
     _PhysicalDeviceExtendedDynamicStateFeaturesEXT(extended_dynamic_state::Bool; next = C_NULL)
 
 Arguments:
-- `extended_dynamic_state::Bool`
-- `next`: defaults to `C_NULL`
+• `extended_dynamic_state::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html
 
 """
 _PhysicalDeviceExtendedDynamicStateFeaturesEXT
@@ -11002,10 +12728,12 @@ _PhysicalDeviceExtendedDynamicStateFeaturesEXT
     _PhysicalDeviceExtendedDynamicState2FeaturesEXT(extended_dynamic_state_2::Bool, extended_dynamic_state_2_logic_op::Bool, extended_dynamic_state_2_patch_control_points::Bool; next = C_NULL)
 
 Arguments:
-- `extended_dynamic_state_2::Bool`
-- `extended_dynamic_state_2_logic_op::Bool`
-- `extended_dynamic_state_2_patch_control_points::Bool`
-- `next`: defaults to `C_NULL`
+• `extended_dynamic_state_2::Bool`
+• `extended_dynamic_state_2_logic_op::Bool`
+• `extended_dynamic_state_2_patch_control_points::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html
 
 """
 _PhysicalDeviceExtendedDynamicState2FeaturesEXT
@@ -11014,8 +12742,10 @@ _PhysicalDeviceExtendedDynamicState2FeaturesEXT
     _RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
 Arguments:
-- `transform::SurfaceTransformFlagKHR`
-- `next`: defaults to `C_NULL`
+• `transform::SurfaceTransformFlagKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html
 
 """
 _RenderPassTransformBeginInfoQCOM
@@ -11024,8 +12754,10 @@ _RenderPassTransformBeginInfoQCOM
     _CopyCommandTransformInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
 Arguments:
-- `transform::SurfaceTransformFlagKHR`
-- `next`: defaults to `C_NULL`
+• `transform::SurfaceTransformFlagKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyCommandTransformInfoQCOM.html
 
 """
 _CopyCommandTransformInfoQCOM
@@ -11034,9 +12766,11 @@ _CopyCommandTransformInfoQCOM
     _CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::_Rect2D; next = C_NULL)
 
 Arguments:
-- `transform::SurfaceTransformFlagKHR`
-- `render_area::_Rect2D`
-- `next`: defaults to `C_NULL`
+• `transform::SurfaceTransformFlagKHR`
+• `render_area::_Rect2D`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html
 
 """
 _CommandBufferInheritanceRenderPassTransformInfoQCOM
@@ -11045,8 +12779,10 @@ _CommandBufferInheritanceRenderPassTransformInfoQCOM
     _PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; next = C_NULL)
 
 Arguments:
-- `diagnostics_config::Bool`
-- `next`: defaults to `C_NULL`
+• `diagnostics_config::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html
 
 """
 _PhysicalDeviceDiagnosticsConfigFeaturesNV
@@ -11055,8 +12791,10 @@ _PhysicalDeviceDiagnosticsConfigFeaturesNV
     _DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDiagnosticsConfigCreateInfoNV.html
 
 """
 _DeviceDiagnosticsConfigCreateInfoNV
@@ -11065,8 +12803,10 @@ _DeviceDiagnosticsConfigCreateInfoNV
     _PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(shader_zero_initialize_workgroup_memory::Bool; next = C_NULL)
 
 Arguments:
-- `shader_zero_initialize_workgroup_memory::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_zero_initialize_workgroup_memory::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.html
 
 """
 _PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
@@ -11075,10 +12815,12 @@ _PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
     _PhysicalDeviceRobustness2FeaturesEXT(robust_buffer_access_2::Bool, robust_image_access_2::Bool, null_descriptor::Bool; next = C_NULL)
 
 Arguments:
-- `robust_buffer_access_2::Bool`
-- `robust_image_access_2::Bool`
-- `null_descriptor::Bool`
-- `next`: defaults to `C_NULL`
+• `robust_buffer_access_2::Bool`
+• `robust_image_access_2::Bool`
+• `null_descriptor::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRobustness2FeaturesEXT.html
 
 """
 _PhysicalDeviceRobustness2FeaturesEXT
@@ -11087,8 +12829,10 @@ _PhysicalDeviceRobustness2FeaturesEXT
     _PhysicalDeviceImageRobustnessFeaturesEXT(robust_image_access::Bool; next = C_NULL)
 
 Arguments:
-- `robust_image_access::Bool`
-- `next`: defaults to `C_NULL`
+• `robust_image_access::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageRobustnessFeaturesEXT.html
 
 """
 _PhysicalDeviceImageRobustnessFeaturesEXT
@@ -11097,11 +12841,13 @@ _PhysicalDeviceImageRobustnessFeaturesEXT
     _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(workgroup_memory_explicit_layout::Bool, workgroup_memory_explicit_layout_scalar_block_layout::Bool, workgroup_memory_explicit_layout_8_bit_access::Bool, workgroup_memory_explicit_layout_16_bit_access::Bool; next = C_NULL)
 
 Arguments:
-- `workgroup_memory_explicit_layout::Bool`
-- `workgroup_memory_explicit_layout_scalar_block_layout::Bool`
-- `workgroup_memory_explicit_layout_8_bit_access::Bool`
-- `workgroup_memory_explicit_layout_16_bit_access::Bool`
-- `next`: defaults to `C_NULL`
+• `workgroup_memory_explicit_layout::Bool`
+• `workgroup_memory_explicit_layout_scalar_block_layout::Bool`
+• `workgroup_memory_explicit_layout_8_bit_access::Bool`
+• `workgroup_memory_explicit_layout_16_bit_access::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.html
 
 """
 _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
@@ -11110,22 +12856,24 @@ _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
     _PhysicalDevicePortabilitySubsetFeaturesKHR(constant_alpha_color_blend_factors::Bool, events::Bool, image_view_format_reinterpretation::Bool, image_view_format_swizzle::Bool, image_view_2_d_on_3_d_image::Bool, multisample_array_image::Bool, mutable_comparison_samplers::Bool, point_polygons::Bool, sampler_mip_lod_bias::Bool, separate_stencil_mask_ref::Bool, shader_sample_rate_interpolation_functions::Bool, tessellation_isolines::Bool, tessellation_point_mode::Bool, triangle_fans::Bool, vertex_attribute_access_beyond_stride::Bool; next = C_NULL)
 
 Arguments:
-- `constant_alpha_color_blend_factors::Bool`
-- `events::Bool`
-- `image_view_format_reinterpretation::Bool`
-- `image_view_format_swizzle::Bool`
-- `image_view_2_d_on_3_d_image::Bool`
-- `multisample_array_image::Bool`
-- `mutable_comparison_samplers::Bool`
-- `point_polygons::Bool`
-- `sampler_mip_lod_bias::Bool`
-- `separate_stencil_mask_ref::Bool`
-- `shader_sample_rate_interpolation_functions::Bool`
-- `tessellation_isolines::Bool`
-- `tessellation_point_mode::Bool`
-- `triangle_fans::Bool`
-- `vertex_attribute_access_beyond_stride::Bool`
-- `next`: defaults to `C_NULL`
+• `constant_alpha_color_blend_factors::Bool`
+• `events::Bool`
+• `image_view_format_reinterpretation::Bool`
+• `image_view_format_swizzle::Bool`
+• `image_view_2_d_on_3_d_image::Bool`
+• `multisample_array_image::Bool`
+• `mutable_comparison_samplers::Bool`
+• `point_polygons::Bool`
+• `sampler_mip_lod_bias::Bool`
+• `separate_stencil_mask_ref::Bool`
+• `shader_sample_rate_interpolation_functions::Bool`
+• `tessellation_isolines::Bool`
+• `tessellation_point_mode::Bool`
+• `triangle_fans::Bool`
+• `vertex_attribute_access_beyond_stride::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePortabilitySubsetFeaturesKHR.html
 
 """
 _PhysicalDevicePortabilitySubsetFeaturesKHR
@@ -11134,8 +12882,10 @@ _PhysicalDevicePortabilitySubsetFeaturesKHR
     _PhysicalDevicePortabilitySubsetPropertiesKHR(min_vertex_input_binding_stride_alignment::Integer; next = C_NULL)
 
 Arguments:
-- `min_vertex_input_binding_stride_alignment::Integer`
-- `next`: defaults to `C_NULL`
+• `min_vertex_input_binding_stride_alignment::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePortabilitySubsetPropertiesKHR.html
 
 """
 _PhysicalDevicePortabilitySubsetPropertiesKHR
@@ -11144,9 +12894,11 @@ _PhysicalDevicePortabilitySubsetPropertiesKHR
     _PhysicalDevice4444FormatsFeaturesEXT(format_a4r4g4b4::Bool, format_a4b4g4r4::Bool; next = C_NULL)
 
 Arguments:
-- `format_a4r4g4b4::Bool`
-- `format_a4b4g4r4::Bool`
-- `next`: defaults to `C_NULL`
+• `format_a4r4g4b4::Bool`
+• `format_a4b4g4r4::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice4444FormatsFeaturesEXT.html
 
 """
 _PhysicalDevice4444FormatsFeaturesEXT
@@ -11155,10 +12907,12 @@ _PhysicalDevice4444FormatsFeaturesEXT
     _BufferCopy2KHR(src_offset::Integer, dst_offset::Integer, size::Integer; next = C_NULL)
 
 Arguments:
-- `src_offset::Integer`
-- `dst_offset::Integer`
-- `size::Integer`
-- `next`: defaults to `C_NULL`
+• `src_offset::Integer`
+• `dst_offset::Integer`
+• `size::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy2KHR.html
 
 """
 _BufferCopy2KHR
@@ -11167,12 +12921,14 @@ _BufferCopy2KHR
     _ImageCopy2KHR(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D; next = C_NULL)
 
 Arguments:
-- `src_subresource::_ImageSubresourceLayers`
-- `src_offset::_Offset3D`
-- `dst_subresource::_ImageSubresourceLayers`
-- `dst_offset::_Offset3D`
-- `extent::_Extent3D`
-- `next`: defaults to `C_NULL`
+• `src_subresource::_ImageSubresourceLayers`
+• `src_offset::_Offset3D`
+• `dst_subresource::_ImageSubresourceLayers`
+• `dst_offset::_Offset3D`
+• `extent::_Extent3D`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy2KHR.html
 
 """
 _ImageCopy2KHR
@@ -11181,11 +12937,13 @@ _ImageCopy2KHR
     _ImageBlit2KHR(src_subresource::_ImageSubresourceLayers, src_offsets::NTuple{2, _Offset3D}, dst_subresource::_ImageSubresourceLayers, dst_offsets::NTuple{2, _Offset3D}; next = C_NULL)
 
 Arguments:
-- `src_subresource::_ImageSubresourceLayers`
-- `src_offsets::NTuple{2, _Offset3D}`
-- `dst_subresource::_ImageSubresourceLayers`
-- `dst_offsets::NTuple{2, _Offset3D}`
-- `next`: defaults to `C_NULL`
+• `src_subresource::_ImageSubresourceLayers`
+• `src_offsets::NTuple{2, _Offset3D}`
+• `dst_subresource::_ImageSubresourceLayers`
+• `dst_offsets::NTuple{2, _Offset3D}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit2KHR.html
 
 """
 _ImageBlit2KHR
@@ -11194,13 +12952,15 @@ _ImageBlit2KHR
     _BufferImageCopy2KHR(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D; next = C_NULL)
 
 Arguments:
-- `buffer_offset::Integer`
-- `buffer_row_length::Integer`
-- `buffer_image_height::Integer`
-- `image_subresource::_ImageSubresourceLayers`
-- `image_offset::_Offset3D`
-- `image_extent::_Extent3D`
-- `next`: defaults to `C_NULL`
+• `buffer_offset::Integer`
+• `buffer_row_length::Integer`
+• `buffer_image_height::Integer`
+• `image_subresource::_ImageSubresourceLayers`
+• `image_offset::_Offset3D`
+• `image_extent::_Extent3D`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy2KHR.html
 
 """
 _BufferImageCopy2KHR
@@ -11209,12 +12969,14 @@ _BufferImageCopy2KHR
     _ImageResolve2KHR(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D; next = C_NULL)
 
 Arguments:
-- `src_subresource::_ImageSubresourceLayers`
-- `src_offset::_Offset3D`
-- `dst_subresource::_ImageSubresourceLayers`
-- `dst_offset::_Offset3D`
-- `extent::_Extent3D`
-- `next`: defaults to `C_NULL`
+• `src_subresource::_ImageSubresourceLayers`
+• `src_offset::_Offset3D`
+• `dst_subresource::_ImageSubresourceLayers`
+• `dst_offset::_Offset3D`
+• `extent::_Extent3D`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve2KHR.html
 
 """
 _ImageResolve2KHR
@@ -11223,10 +12985,12 @@ _ImageResolve2KHR
     _CopyBufferInfo2KHR(src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:_BufferCopy2KHR}; next = C_NULL)
 
 Arguments:
-- `src_buffer::Buffer`
-- `dst_buffer::Buffer`
-- `regions::AbstractArray{<:_BufferCopy2KHR}`
-- `next`: defaults to `C_NULL`
+• `src_buffer::Buffer`
+• `dst_buffer::Buffer`
+• `regions::AbstractArray{<:_BufferCopy2KHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferInfo2KHR.html
 
 """
 _CopyBufferInfo2KHR
@@ -11235,12 +12999,14 @@ _CopyBufferInfo2KHR
     _CopyImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageCopy2KHR}; next = C_NULL)
 
 Arguments:
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_ImageCopy2KHR}`
-- `next`: defaults to `C_NULL`
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_ImageCopy2KHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageInfo2KHR.html
 
 """
 _CopyImageInfo2KHR
@@ -11249,13 +13015,15 @@ _CopyImageInfo2KHR
     _BlitImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageBlit2KHR}, filter::Filter; next = C_NULL)
 
 Arguments:
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_ImageBlit2KHR}`
-- `filter::Filter`
-- `next`: defaults to `C_NULL`
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_ImageBlit2KHR}`
+• `filter::Filter`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBlitImageInfo2KHR.html
 
 """
 _BlitImageInfo2KHR
@@ -11264,11 +13032,13 @@ _BlitImageInfo2KHR
     _CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
 Arguments:
-- `src_buffer::Buffer`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_BufferImageCopy2KHR}`
-- `next`: defaults to `C_NULL`
+• `src_buffer::Buffer`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_BufferImageCopy2KHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferToImageInfo2KHR.html
 
 """
 _CopyBufferToImageInfo2KHR
@@ -11277,11 +13047,13 @@ _CopyBufferToImageInfo2KHR
     _CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
 Arguments:
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_buffer::Buffer`
-- `regions::AbstractArray{<:_BufferImageCopy2KHR}`
-- `next`: defaults to `C_NULL`
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_buffer::Buffer`
+• `regions::AbstractArray{<:_BufferImageCopy2KHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageToBufferInfo2KHR.html
 
 """
 _CopyImageToBufferInfo2KHR
@@ -11290,12 +13062,14 @@ _CopyImageToBufferInfo2KHR
     _ResolveImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageResolve2KHR}; next = C_NULL)
 
 Arguments:
-- `src_image::Image`
-- `src_image_layout::ImageLayout`
-- `dst_image::Image`
-- `dst_image_layout::ImageLayout`
-- `regions::AbstractArray{<:_ImageResolve2KHR}`
-- `next`: defaults to `C_NULL`
+• `src_image::Image`
+• `src_image_layout::ImageLayout`
+• `dst_image::Image`
+• `dst_image_layout::ImageLayout`
+• `regions::AbstractArray{<:_ImageResolve2KHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkResolveImageInfo2KHR.html
 
 """
 _ResolveImageInfo2KHR
@@ -11304,9 +13078,11 @@ _ResolveImageInfo2KHR
     _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(shader_image_int_64_atomics::Bool, sparse_image_int_64_atomics::Bool; next = C_NULL)
 
 Arguments:
-- `shader_image_int_64_atomics::Bool`
-- `sparse_image_int_64_atomics::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_image_int_64_atomics::Bool`
+• `sparse_image_int_64_atomics::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.html
 
 """
 _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
@@ -11315,9 +13091,11 @@ _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
     _FragmentShadingRateAttachmentInfoKHR(fragment_shading_rate_attachment::_AttachmentReference2, shading_rate_attachment_texel_size::_Extent2D; next = C_NULL)
 
 Arguments:
-- `fragment_shading_rate_attachment::_AttachmentReference2`
-- `shading_rate_attachment_texel_size::_Extent2D`
-- `next`: defaults to `C_NULL`
+• `fragment_shading_rate_attachment::_AttachmentReference2`
+• `shading_rate_attachment_texel_size::_Extent2D`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html
 
 """
 _FragmentShadingRateAttachmentInfoKHR
@@ -11326,9 +13104,11 @@ _FragmentShadingRateAttachmentInfoKHR
     _PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}; next = C_NULL)
 
 Arguments:
-- `fragment_size::_Extent2D`
-- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
-- `next`: defaults to `C_NULL`
+• `fragment_size::_Extent2D`
+• `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html
 
 """
 _PipelineFragmentShadingRateStateCreateInfoKHR
@@ -11337,10 +13117,12 @@ _PipelineFragmentShadingRateStateCreateInfoKHR
     _PhysicalDeviceFragmentShadingRateFeaturesKHR(pipeline_fragment_shading_rate::Bool, primitive_fragment_shading_rate::Bool, attachment_fragment_shading_rate::Bool; next = C_NULL)
 
 Arguments:
-- `pipeline_fragment_shading_rate::Bool`
-- `primitive_fragment_shading_rate::Bool`
-- `attachment_fragment_shading_rate::Bool`
-- `next`: defaults to `C_NULL`
+• `pipeline_fragment_shading_rate::Bool`
+• `primitive_fragment_shading_rate::Bool`
+• `attachment_fragment_shading_rate::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html
 
 """
 _PhysicalDeviceFragmentShadingRateFeaturesKHR
@@ -11349,8 +13131,10 @@ _PhysicalDeviceFragmentShadingRateFeaturesKHR
     _PhysicalDeviceShaderTerminateInvocationFeaturesKHR(shader_terminate_invocation::Bool; next = C_NULL)
 
 Arguments:
-- `shader_terminate_invocation::Bool`
-- `next`: defaults to `C_NULL`
+• `shader_terminate_invocation::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.html
 
 """
 _PhysicalDeviceShaderTerminateInvocationFeaturesKHR
@@ -11359,10 +13143,12 @@ _PhysicalDeviceShaderTerminateInvocationFeaturesKHR
     _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(fragment_shading_rate_enums::Bool, supersample_fragment_shading_rates::Bool, no_invocation_fragment_shading_rates::Bool; next = C_NULL)
 
 Arguments:
-- `fragment_shading_rate_enums::Bool`
-- `supersample_fragment_shading_rates::Bool`
-- `no_invocation_fragment_shading_rates::Bool`
-- `next`: defaults to `C_NULL`
+• `fragment_shading_rate_enums::Bool`
+• `supersample_fragment_shading_rates::Bool`
+• `no_invocation_fragment_shading_rates::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html
 
 """
 _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
@@ -11371,8 +13157,10 @@ _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
     _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(max_fragment_shading_rate_invocation_count::SampleCountFlag; next = C_NULL)
 
 Arguments:
-- `max_fragment_shading_rate_invocation_count::SampleCountFlag`
-- `next`: defaults to `C_NULL`
+• `max_fragment_shading_rate_invocation_count::SampleCountFlag`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html
 
 """
 _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
@@ -11381,10 +13169,12 @@ _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
     _PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::FragmentShadingRateTypeNV, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}; next = C_NULL)
 
 Arguments:
-- `shading_rate_type::FragmentShadingRateTypeNV`
-- `shading_rate::FragmentShadingRateNV`
-- `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
-- `next`: defaults to `C_NULL`
+• `shading_rate_type::FragmentShadingRateTypeNV`
+• `shading_rate::FragmentShadingRateNV`
+• `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html
 
 """
 _PipelineFragmentShadingRateEnumStateCreateInfoNV
@@ -11393,10 +13183,12 @@ _PipelineFragmentShadingRateEnumStateCreateInfoNV
     _AccelerationStructureBuildSizesInfoKHR(acceleration_structure_size::Integer, update_scratch_size::Integer, build_scratch_size::Integer; next = C_NULL)
 
 Arguments:
-- `acceleration_structure_size::Integer`
-- `update_scratch_size::Integer`
-- `build_scratch_size::Integer`
-- `next`: defaults to `C_NULL`
+• `acceleration_structure_size::Integer`
+• `update_scratch_size::Integer`
+• `build_scratch_size::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildSizesInfoKHR.html
 
 """
 _AccelerationStructureBuildSizesInfoKHR
@@ -11405,8 +13197,10 @@ _AccelerationStructureBuildSizesInfoKHR
     _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(mutable_descriptor_type::Bool; next = C_NULL)
 
 Arguments:
-- `mutable_descriptor_type::Bool`
-- `next`: defaults to `C_NULL`
+• `mutable_descriptor_type::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.html
 
 """
 _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
@@ -11415,7 +13209,9 @@ _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
     _MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray{<:DescriptorType})
 
 Arguments:
-- `descriptor_types::AbstractArray{<:DescriptorType}`
+• `descriptor_types::AbstractArray{<:DescriptorType}`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeListVALVE.html
 
 """
 _MutableDescriptorTypeListVALVE
@@ -11424,8 +13220,10 @@ _MutableDescriptorTypeListVALVE
     _MutableDescriptorTypeCreateInfoVALVE(mutable_descriptor_type_lists::AbstractArray{<:_MutableDescriptorTypeListVALVE}; next = C_NULL)
 
 Arguments:
-- `mutable_descriptor_type_lists::AbstractArray{<:_MutableDescriptorTypeListVALVE}`
-- `next`: defaults to `C_NULL`
+• `mutable_descriptor_type_lists::AbstractArray{<:_MutableDescriptorTypeListVALVE}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html
 
 """
 _MutableDescriptorTypeCreateInfoVALVE
@@ -11434,8 +13232,10 @@ _MutableDescriptorTypeCreateInfoVALVE
     _PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vertex_input_dynamic_state::Bool; next = C_NULL)
 
 Arguments:
-- `vertex_input_dynamic_state::Bool`
-- `next`: defaults to `C_NULL`
+• `vertex_input_dynamic_state::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.html
 
 """
 _PhysicalDeviceVertexInputDynamicStateFeaturesEXT
@@ -11444,11 +13244,13 @@ _PhysicalDeviceVertexInputDynamicStateFeaturesEXT
     _VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VertexInputRate, divisor::Integer; next = C_NULL)
 
 Arguments:
-- `binding::Integer`
-- `stride::Integer`
-- `input_rate::VertexInputRate`
-- `divisor::Integer`
-- `next`: defaults to `C_NULL`
+• `binding::Integer`
+• `stride::Integer`
+• `input_rate::VertexInputRate`
+• `divisor::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription2EXT.html
 
 """
 _VertexInputBindingDescription2EXT
@@ -11457,11 +13259,13 @@ _VertexInputBindingDescription2EXT
     _VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::Format, offset::Integer; next = C_NULL)
 
 Arguments:
-- `location::Integer`
-- `binding::Integer`
-- `format::Format`
-- `offset::Integer`
-- `next`: defaults to `C_NULL`
+• `location::Integer`
+• `binding::Integer`
+• `format::Format`
+• `offset::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription2EXT.html
 
 """
 _VertexInputAttributeDescription2EXT
@@ -11470,8 +13274,10 @@ _VertexInputAttributeDescription2EXT
     _PhysicalDeviceColorWriteEnableFeaturesEXT(color_write_enable::Bool; next = C_NULL)
 
 Arguments:
-- `color_write_enable::Bool`
-- `next`: defaults to `C_NULL`
+• `color_write_enable::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceColorWriteEnableFeaturesEXT.html
 
 """
 _PhysicalDeviceColorWriteEnableFeaturesEXT
@@ -11480,8 +13286,10 @@ _PhysicalDeviceColorWriteEnableFeaturesEXT
     _PipelineColorWriteCreateInfoEXT(color_write_enables::AbstractArray{<:Bool}; next = C_NULL)
 
 Arguments:
-- `color_write_enables::AbstractArray{<:Bool}`
-- `next`: defaults to `C_NULL`
+• `color_write_enables::AbstractArray{<:Bool}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorWriteCreateInfoEXT.html
 
 """
 _PipelineColorWriteCreateInfoEXT
@@ -11490,11 +13298,13 @@ _PipelineColorWriteCreateInfoEXT
     _MemoryBarrier2KHR(; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `src_stage_mask`: defaults to `0`
-- `src_access_mask`: defaults to `0`
-- `dst_stage_mask`: defaults to `0`
-- `dst_access_mask`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `src_stage_mask`: defaults to `0`
+• `src_access_mask`: defaults to `0`
+• `dst_stage_mask`: defaults to `0`
+• `dst_access_mask`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier2KHR.html
 
 """
 _MemoryBarrier2KHR
@@ -11503,17 +13313,19 @@ _MemoryBarrier2KHR
     _ImageMemoryBarrier2KHR(old_layout::ImageLayout, new_layout::ImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
 Arguments:
-- `old_layout::ImageLayout`
-- `new_layout::ImageLayout`
-- `src_queue_family_index::Integer`
-- `dst_queue_family_index::Integer`
-- `image::Image`
-- `subresource_range::_ImageSubresourceRange`
-- `next`: defaults to `C_NULL`
-- `src_stage_mask`: defaults to `0`
-- `src_access_mask`: defaults to `0`
-- `dst_stage_mask`: defaults to `0`
-- `dst_access_mask`: defaults to `0`
+• `old_layout::ImageLayout`
+• `new_layout::ImageLayout`
+• `src_queue_family_index::Integer`
+• `dst_queue_family_index::Integer`
+• `image::Image`
+• `subresource_range::_ImageSubresourceRange`
+• `next`: defaults to `C_NULL`
+• `src_stage_mask`: defaults to `0`
+• `src_access_mask`: defaults to `0`
+• `dst_stage_mask`: defaults to `0`
+• `dst_access_mask`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier2KHR.html
 
 """
 _ImageMemoryBarrier2KHR
@@ -11522,16 +13334,18 @@ _ImageMemoryBarrier2KHR
     _BufferMemoryBarrier2KHR(src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
 Arguments:
-- `src_queue_family_index::Integer`
-- `dst_queue_family_index::Integer`
-- `buffer::Buffer`
-- `offset::Integer`
-- `size::Integer`
-- `next`: defaults to `C_NULL`
-- `src_stage_mask`: defaults to `0`
-- `src_access_mask`: defaults to `0`
-- `dst_stage_mask`: defaults to `0`
-- `dst_access_mask`: defaults to `0`
+• `src_queue_family_index::Integer`
+• `dst_queue_family_index::Integer`
+• `buffer::Buffer`
+• `offset::Integer`
+• `size::Integer`
+• `next`: defaults to `C_NULL`
+• `src_stage_mask`: defaults to `0`
+• `src_access_mask`: defaults to `0`
+• `dst_stage_mask`: defaults to `0`
+• `dst_access_mask`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier2KHR.html
 
 """
 _BufferMemoryBarrier2KHR
@@ -11540,11 +13354,13 @@ _BufferMemoryBarrier2KHR
     _DependencyInfoKHR(memory_barriers::AbstractArray{<:_MemoryBarrier2KHR}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier2KHR}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier2KHR}; next = C_NULL, dependency_flags = 0)
 
 Arguments:
-- `memory_barriers::AbstractArray{<:_MemoryBarrier2KHR}`
-- `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier2KHR}`
-- `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier2KHR}`
-- `next`: defaults to `C_NULL`
-- `dependency_flags`: defaults to `0`
+• `memory_barriers::AbstractArray{<:_MemoryBarrier2KHR}`
+• `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier2KHR}`
+• `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier2KHR}`
+• `next`: defaults to `C_NULL`
+• `dependency_flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDependencyInfoKHR.html
 
 """
 _DependencyInfoKHR
@@ -11553,11 +13369,13 @@ _DependencyInfoKHR
     _SemaphoreSubmitInfoKHR(semaphore::Semaphore, value::Integer, device_index::Integer; next = C_NULL, stage_mask = 0)
 
 Arguments:
-- `semaphore::Semaphore`
-- `value::Integer`
-- `device_index::Integer`
-- `next`: defaults to `C_NULL`
-- `stage_mask`: defaults to `0`
+• `semaphore::Semaphore`
+• `value::Integer`
+• `device_index::Integer`
+• `next`: defaults to `C_NULL`
+• `stage_mask`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSubmitInfoKHR.html
 
 """
 _SemaphoreSubmitInfoKHR
@@ -11566,9 +13384,11 @@ _SemaphoreSubmitInfoKHR
     _CommandBufferSubmitInfoKHR(command_buffer::CommandBuffer, device_mask::Integer; next = C_NULL)
 
 Arguments:
-- `command_buffer::CommandBuffer`
-- `device_mask::Integer`
-- `next`: defaults to `C_NULL`
+• `command_buffer::CommandBuffer`
+• `device_mask::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferSubmitInfoKHR.html
 
 """
 _CommandBufferSubmitInfoKHR
@@ -11577,11 +13397,13 @@ _CommandBufferSubmitInfoKHR
     _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
 
 Arguments:
-- `wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
-- `command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}`
-- `signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
+• `command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}`
+• `signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
 
 """
 _SubmitInfo2KHR
@@ -11590,8 +13412,10 @@ _SubmitInfo2KHR
     _PhysicalDeviceSynchronization2FeaturesKHR(synchronization2::Bool; next = C_NULL)
 
 Arguments:
-- `synchronization2::Bool`
-- `next`: defaults to `C_NULL`
+• `synchronization2::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSynchronization2FeaturesKHR.html
 
 """
 _PhysicalDeviceSynchronization2FeaturesKHR
@@ -11600,8 +13424,10 @@ _PhysicalDeviceSynchronization2FeaturesKHR
     _VideoQueueFamilyProperties2KHR(video_codec_operations::VideoCodecOperationFlagKHR; next = C_NULL)
 
 Arguments:
-- `video_codec_operations::VideoCodecOperationFlagKHR`
-- `next`: defaults to `C_NULL`
+• `video_codec_operations::VideoCodecOperationFlagKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoQueueFamilyProperties2KHR.html
 
 """
 _VideoQueueFamilyProperties2KHR
@@ -11610,9 +13436,11 @@ _VideoQueueFamilyProperties2KHR
     _VideoProfilesKHR(profile_count::Integer, profiles::_VideoProfileKHR; next = C_NULL)
 
 Arguments:
-- `profile_count::Integer`
-- `profiles::_VideoProfileKHR`
-- `next`: defaults to `C_NULL`
+• `profile_count::Integer`
+• `profiles::_VideoProfileKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoProfilesKHR.html
 
 """
 _VideoProfilesKHR
@@ -11621,11 +13449,13 @@ _VideoProfilesKHR
     _VideoProfileKHR(video_codec_operation::VideoCodecOperationFlagKHR, chroma_subsampling::VideoChromaSubsamplingFlagKHR, luma_bit_depth::VideoComponentBitDepthFlagKHR, chroma_bit_depth::VideoComponentBitDepthFlagKHR; next = C_NULL)
 
 Arguments:
-- `video_codec_operation::VideoCodecOperationFlagKHR`
-- `chroma_subsampling::VideoChromaSubsamplingFlagKHR`
-- `luma_bit_depth::VideoComponentBitDepthFlagKHR`
-- `chroma_bit_depth::VideoComponentBitDepthFlagKHR`
-- `next`: defaults to `C_NULL`
+• `video_codec_operation::VideoCodecOperationFlagKHR`
+• `chroma_subsampling::VideoChromaSubsamplingFlagKHR`
+• `luma_bit_depth::VideoComponentBitDepthFlagKHR`
+• `chroma_bit_depth::VideoComponentBitDepthFlagKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoProfileKHR.html
 
 """
 _VideoProfileKHR
@@ -11634,9 +13464,11 @@ _VideoProfileKHR
     _VideoGetMemoryPropertiesKHR(memory_bind_index::Integer, memory_requirements::MemoryRequirements2; next = C_NULL)
 
 Arguments:
-- `memory_bind_index::Integer`
-- `memory_requirements::MemoryRequirements2`
-- `next`: defaults to `C_NULL`
+• `memory_bind_index::Integer`
+• `memory_requirements::MemoryRequirements2`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoGetMemoryPropertiesKHR.html
 
 """
 _VideoGetMemoryPropertiesKHR
@@ -11645,11 +13477,13 @@ _VideoGetMemoryPropertiesKHR
     _VideoBindMemoryKHR(memory_bind_index::Integer, memory::DeviceMemory, memory_offset::Integer, memory_size::Integer; next = C_NULL)
 
 Arguments:
-- `memory_bind_index::Integer`
-- `memory::DeviceMemory`
-- `memory_offset::Integer`
-- `memory_size::Integer`
-- `next`: defaults to `C_NULL`
+• `memory_bind_index::Integer`
+• `memory::DeviceMemory`
+• `memory_offset::Integer`
+• `memory_size::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoBindMemoryKHR.html
 
 """
 _VideoBindMemoryKHR
@@ -11658,11 +13492,13 @@ _VideoBindMemoryKHR
     _VideoPictureResourceKHR(coded_offset::_Offset2D, coded_extent::_Extent2D, base_array_layer::Integer, image_view_binding::ImageView; next = C_NULL)
 
 Arguments:
-- `coded_offset::_Offset2D`
-- `coded_extent::_Extent2D`
-- `base_array_layer::Integer`
-- `image_view_binding::ImageView`
-- `next`: defaults to `C_NULL`
+• `coded_offset::_Offset2D`
+• `coded_extent::_Extent2D`
+• `base_array_layer::Integer`
+• `image_view_binding::ImageView`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoPictureResourceKHR.html
 
 """
 _VideoPictureResourceKHR
@@ -11671,9 +13507,11 @@ _VideoPictureResourceKHR
     _VideoReferenceSlotKHR(slot_index::Integer, picture_resource::_VideoPictureResourceKHR; next = C_NULL)
 
 Arguments:
-- `slot_index::Integer`
-- `picture_resource::_VideoPictureResourceKHR`
-- `next`: defaults to `C_NULL`
+• `slot_index::Integer`
+• `picture_resource::_VideoPictureResourceKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoReferenceSlotKHR.html
 
 """
 _VideoReferenceSlotKHR
@@ -11682,16 +13520,18 @@ _VideoReferenceSlotKHR
     _VideoDecodeInfoKHR(coded_offset::_Offset2D, coded_extent::_Extent2D, src_buffer::Buffer, src_buffer_offset::Integer, src_buffer_range::Integer, dst_picture_resource::_VideoPictureResourceKHR, setup_reference_slot::_VideoReferenceSlotKHR, reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
 
 Arguments:
-- `coded_offset::_Offset2D`
-- `coded_extent::_Extent2D`
-- `src_buffer::Buffer`
-- `src_buffer_offset::Integer`
-- `src_buffer_range::Integer`
-- `dst_picture_resource::_VideoPictureResourceKHR`
-- `setup_reference_slot::_VideoReferenceSlotKHR`
-- `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `coded_offset::_Offset2D`
+• `coded_extent::_Extent2D`
+• `src_buffer::Buffer`
+• `src_buffer_offset::Integer`
+• `src_buffer_range::Integer`
+• `dst_picture_resource::_VideoPictureResourceKHR`
+• `setup_reference_slot::_VideoReferenceSlotKHR`
+• `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeInfoKHR.html
 
 """
 _VideoDecodeInfoKHR
@@ -11700,9 +13540,11 @@ _VideoDecodeInfoKHR
     _VideoDecodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc, field_layout::VideoDecodeH264FieldLayoutFlagEXT; next = C_NULL)
 
 Arguments:
-- `std_profile_idc::StdVideoH264ProfileIdc`
-- `field_layout::VideoDecodeH264FieldLayoutFlagEXT`
-- `next`: defaults to `C_NULL`
+• `std_profile_idc::StdVideoH264ProfileIdc`
+• `field_layout::VideoDecodeH264FieldLayoutFlagEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH264ProfileEXT.html
 
 """
 _VideoDecodeH264ProfileEXT
@@ -11711,9 +13553,11 @@ _VideoDecodeH264ProfileEXT
     _VideoDecodeH264SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
-- `flags::Integer`
-- `std_extension_version::ExtensionProperties`
-- `next`: defaults to `C_NULL`
+• `flags::Integer`
+• `std_extension_version::ExtensionProperties`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH264SessionCreateInfoEXT.html
 
 """
 _VideoDecodeH264SessionCreateInfoEXT
@@ -11722,9 +13566,11 @@ _VideoDecodeH264SessionCreateInfoEXT
     _VideoDecodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `sps_std`: defaults to `C_NULL`
-- `pps_std`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `sps_std`: defaults to `C_NULL`
+• `pps_std`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH264SessionParametersAddInfoEXT.html
 
 """
 _VideoDecodeH264SessionParametersAddInfoEXT
@@ -11733,10 +13579,12 @@ _VideoDecodeH264SessionParametersAddInfoEXT
     _VideoDecodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
 
 Arguments:
-- `max_sps_std_count::Integer`
-- `max_pps_std_count::Integer`
-- `next`: defaults to `C_NULL`
-- `parameters_add_info`: defaults to `C_NULL`
+• `max_sps_std_count::Integer`
+• `max_pps_std_count::Integer`
+• `next`: defaults to `C_NULL`
+• `parameters_add_info`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH264SessionParametersCreateInfoEXT.html
 
 """
 _VideoDecodeH264SessionParametersCreateInfoEXT
@@ -11745,9 +13593,11 @@ _VideoDecodeH264SessionParametersCreateInfoEXT
     _VideoDecodeH264PictureInfoEXT(std_picture_info::StdVideoDecodeH264PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `std_picture_info::StdVideoDecodeH264PictureInfo`
-- `slices_data_offsets::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `std_picture_info::StdVideoDecodeH264PictureInfo`
+• `slices_data_offsets::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH264PictureInfoEXT.html
 
 """
 _VideoDecodeH264PictureInfoEXT
@@ -11756,8 +13606,10 @@ _VideoDecodeH264PictureInfoEXT
     _VideoDecodeH264DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH264ReferenceInfo; next = C_NULL)
 
 Arguments:
-- `std_reference_info::StdVideoDecodeH264ReferenceInfo`
-- `next`: defaults to `C_NULL`
+• `std_reference_info::StdVideoDecodeH264ReferenceInfo`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH264DpbSlotInfoEXT.html
 
 """
 _VideoDecodeH264DpbSlotInfoEXT
@@ -11766,8 +13618,10 @@ _VideoDecodeH264DpbSlotInfoEXT
     _VideoDecodeH264MvcEXT(std_mvc::StdVideoDecodeH264Mvc; next = C_NULL)
 
 Arguments:
-- `std_mvc::StdVideoDecodeH264Mvc`
-- `next`: defaults to `C_NULL`
+• `std_mvc::StdVideoDecodeH264Mvc`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH264MvcEXT.html
 
 """
 _VideoDecodeH264MvcEXT
@@ -11776,8 +13630,10 @@ _VideoDecodeH264MvcEXT
     _VideoDecodeH265ProfileEXT(std_profile_idc::StdVideoH265ProfileIdc; next = C_NULL)
 
 Arguments:
-- `std_profile_idc::StdVideoH265ProfileIdc`
-- `next`: defaults to `C_NULL`
+• `std_profile_idc::StdVideoH265ProfileIdc`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH265ProfileEXT.html
 
 """
 _VideoDecodeH265ProfileEXT
@@ -11786,9 +13642,11 @@ _VideoDecodeH265ProfileEXT
     _VideoDecodeH265SessionCreateInfoEXT(flags::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
-- `flags::Integer`
-- `std_extension_version::ExtensionProperties`
-- `next`: defaults to `C_NULL`
+• `flags::Integer`
+• `std_extension_version::ExtensionProperties`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH265SessionCreateInfoEXT.html
 
 """
 _VideoDecodeH265SessionCreateInfoEXT
@@ -11797,9 +13655,11 @@ _VideoDecodeH265SessionCreateInfoEXT
     _VideoDecodeH265SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `sps_std`: defaults to `C_NULL`
-- `pps_std`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `sps_std`: defaults to `C_NULL`
+• `pps_std`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH265SessionParametersAddInfoEXT.html
 
 """
 _VideoDecodeH265SessionParametersAddInfoEXT
@@ -11808,10 +13668,12 @@ _VideoDecodeH265SessionParametersAddInfoEXT
     _VideoDecodeH265SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
 
 Arguments:
-- `max_sps_std_count::Integer`
-- `max_pps_std_count::Integer`
-- `next`: defaults to `C_NULL`
-- `parameters_add_info`: defaults to `C_NULL`
+• `max_sps_std_count::Integer`
+• `max_pps_std_count::Integer`
+• `next`: defaults to `C_NULL`
+• `parameters_add_info`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH265SessionParametersCreateInfoEXT.html
 
 """
 _VideoDecodeH265SessionParametersCreateInfoEXT
@@ -11820,9 +13682,11 @@ _VideoDecodeH265SessionParametersCreateInfoEXT
     _VideoDecodeH265PictureInfoEXT(std_picture_info::StdVideoDecodeH265PictureInfo, slices_data_offsets::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `std_picture_info::StdVideoDecodeH265PictureInfo`
-- `slices_data_offsets::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `std_picture_info::StdVideoDecodeH265PictureInfo`
+• `slices_data_offsets::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH265PictureInfoEXT.html
 
 """
 _VideoDecodeH265PictureInfoEXT
@@ -11831,8 +13695,10 @@ _VideoDecodeH265PictureInfoEXT
     _VideoDecodeH265DpbSlotInfoEXT(std_reference_info::StdVideoDecodeH265ReferenceInfo; next = C_NULL)
 
 Arguments:
-- `std_reference_info::StdVideoDecodeH265ReferenceInfo`
-- `next`: defaults to `C_NULL`
+• `std_reference_info::StdVideoDecodeH265ReferenceInfo`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoDecodeH265DpbSlotInfoEXT.html
 
 """
 _VideoDecodeH265DpbSlotInfoEXT
@@ -11841,15 +13707,17 @@ _VideoDecodeH265DpbSlotInfoEXT
     _VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::_VideoProfileKHR, picture_format::Format, max_coded_extent::_Extent2D, reference_pictures_format::Format, max_reference_pictures_slots_count::Integer, max_reference_pictures_active_count::Integer; next = C_NULL, flags = 0)
 
 Arguments:
-- `queue_family_index::Integer`
-- `video_profile::_VideoProfileKHR`
-- `picture_format::Format`
-- `max_coded_extent::_Extent2D`
-- `reference_pictures_format::Format`
-- `max_reference_pictures_slots_count::Integer`
-- `max_reference_pictures_active_count::Integer`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `queue_family_index::Integer`
+• `video_profile::_VideoProfileKHR`
+• `picture_format::Format`
+• `max_coded_extent::_Extent2D`
+• `reference_pictures_format::Format`
+• `max_reference_pictures_slots_count::Integer`
+• `max_reference_pictures_active_count::Integer`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoSessionCreateInfoKHR.html
 
 """
 _VideoSessionCreateInfoKHR
@@ -11858,9 +13726,11 @@ _VideoSessionCreateInfoKHR
     _VideoSessionParametersCreateInfoKHR(video_session_parameters_template::VideoSessionParametersKHR, video_session::VideoSessionKHR; next = C_NULL)
 
 Arguments:
-- `video_session_parameters_template::VideoSessionParametersKHR`
-- `video_session::VideoSessionKHR`
-- `next`: defaults to `C_NULL`
+• `video_session_parameters_template::VideoSessionParametersKHR`
+• `video_session::VideoSessionKHR`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoSessionParametersCreateInfoKHR.html
 
 """
 _VideoSessionParametersCreateInfoKHR
@@ -11869,8 +13739,10 @@ _VideoSessionParametersCreateInfoKHR
     _VideoSessionParametersUpdateInfoKHR(update_sequence_count::Integer; next = C_NULL)
 
 Arguments:
-- `update_sequence_count::Integer`
-- `next`: defaults to `C_NULL`
+• `update_sequence_count::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoSessionParametersUpdateInfoKHR.html
 
 """
 _VideoSessionParametersUpdateInfoKHR
@@ -11879,12 +13751,14 @@ _VideoSessionParametersUpdateInfoKHR
     _VideoBeginCodingInfoKHR(codec_quality_preset::VideoCodingQualityPresetFlagKHR, video_session::VideoSessionKHR, reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}; next = C_NULL, flags = 0, video_session_parameters = C_NULL)
 
 Arguments:
-- `codec_quality_preset::VideoCodingQualityPresetFlagKHR`
-- `video_session::VideoSessionKHR`
-- `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
-- `video_session_parameters`: defaults to `C_NULL`
+• `codec_quality_preset::VideoCodingQualityPresetFlagKHR`
+• `video_session::VideoSessionKHR`
+• `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+• `video_session_parameters`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoBeginCodingInfoKHR.html
 
 """
 _VideoBeginCodingInfoKHR
@@ -11893,8 +13767,10 @@ _VideoBeginCodingInfoKHR
     _VideoEndCodingInfoKHR(; next = C_NULL, flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEndCodingInfoKHR.html
 
 """
 _VideoEndCodingInfoKHR
@@ -11903,8 +13779,10 @@ _VideoEndCodingInfoKHR
     _VideoCodingControlInfoKHR(; next = C_NULL, flags = 0)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoCodingControlInfoKHR.html
 
 """
 _VideoCodingControlInfoKHR
@@ -11913,16 +13791,18 @@ _VideoCodingControlInfoKHR
     _VideoEncodeInfoKHR(quality_level::Integer, coded_extent::_Extent2D, dst_bitstream_buffer::Buffer, dst_bitstream_buffer_offset::Integer, dst_bitstream_buffer_max_range::Integer, src_picture_resource::_VideoPictureResourceKHR, setup_reference_slot::_VideoReferenceSlotKHR, reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}; next = C_NULL, flags = 0)
 
 Arguments:
-- `quality_level::Integer`
-- `coded_extent::_Extent2D`
-- `dst_bitstream_buffer::Buffer`
-- `dst_bitstream_buffer_offset::Integer`
-- `dst_bitstream_buffer_max_range::Integer`
-- `src_picture_resource::_VideoPictureResourceKHR`
-- `setup_reference_slot::_VideoReferenceSlotKHR`
-- `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
-- `next`: defaults to `C_NULL`
-- `flags`: defaults to `0`
+• `quality_level::Integer`
+• `coded_extent::_Extent2D`
+• `dst_bitstream_buffer::Buffer`
+• `dst_bitstream_buffer_offset::Integer`
+• `dst_bitstream_buffer_max_range::Integer`
+• `src_picture_resource::_VideoPictureResourceKHR`
+• `setup_reference_slot::_VideoReferenceSlotKHR`
+• `reference_slots::AbstractArray{<:_VideoReferenceSlotKHR}`
+• `next`: defaults to `C_NULL`
+• `flags`: defaults to `0`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeInfoKHR.html
 
 """
 _VideoEncodeInfoKHR
@@ -11931,14 +13811,16 @@ _VideoEncodeInfoKHR
     _VideoEncodeRateControlInfoKHR(flags::VideoEncodeRateControlFlagKHR, rate_control_mode::VideoEncodeRateControlModeFlagKHR, average_bitrate::Integer, peak_to_average_bitrate_ratio::Integer, frame_rate_numerator::Integer, frame_rate_denominator::Integer, virtual_buffer_size_in_ms::Integer; next = C_NULL)
 
 Arguments:
-- `flags::VideoEncodeRateControlFlagKHR`
-- `rate_control_mode::VideoEncodeRateControlModeFlagKHR`
-- `average_bitrate::Integer`
-- `peak_to_average_bitrate_ratio::Integer`
-- `frame_rate_numerator::Integer`
-- `frame_rate_denominator::Integer`
-- `virtual_buffer_size_in_ms::Integer`
-- `next`: defaults to `C_NULL`
+• `flags::VideoEncodeRateControlFlagKHR`
+• `rate_control_mode::VideoEncodeRateControlModeFlagKHR`
+• `average_bitrate::Integer`
+• `peak_to_average_bitrate_ratio::Integer`
+• `frame_rate_numerator::Integer`
+• `frame_rate_denominator::Integer`
+• `virtual_buffer_size_in_ms::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeRateControlInfoKHR.html
 
 """
 _VideoEncodeRateControlInfoKHR
@@ -11947,18 +13829,20 @@ _VideoEncodeRateControlInfoKHR
     _VideoEncodeH264CapabilitiesEXT(flags::VideoEncodeH264CapabilitiesFlagEXT, input_mode_flags::VideoEncodeH264InputModeFlagEXT, output_mode_flags::VideoEncodeH264OutputModeFlagEXT, min_picture_size_in_mbs::_Extent2D, max_picture_size_in_mbs::_Extent2D, input_image_data_alignment::_Extent2D, max_num_l_0_reference_for_p::Integer, max_num_l_0_reference_for_b::Integer, max_num_l_1_reference::Integer, quality_level_count::Integer, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
-- `flags::VideoEncodeH264CapabilitiesFlagEXT`
-- `input_mode_flags::VideoEncodeH264InputModeFlagEXT`
-- `output_mode_flags::VideoEncodeH264OutputModeFlagEXT`
-- `min_picture_size_in_mbs::_Extent2D`
-- `max_picture_size_in_mbs::_Extent2D`
-- `input_image_data_alignment::_Extent2D`
-- `max_num_l_0_reference_for_p::Integer`
-- `max_num_l_0_reference_for_b::Integer`
-- `max_num_l_1_reference::Integer`
-- `quality_level_count::Integer`
-- `std_extension_version::ExtensionProperties`
-- `next`: defaults to `C_NULL`
+• `flags::VideoEncodeH264CapabilitiesFlagEXT`
+• `input_mode_flags::VideoEncodeH264InputModeFlagEXT`
+• `output_mode_flags::VideoEncodeH264OutputModeFlagEXT`
+• `min_picture_size_in_mbs::_Extent2D`
+• `max_picture_size_in_mbs::_Extent2D`
+• `input_image_data_alignment::_Extent2D`
+• `max_num_l_0_reference_for_p::Integer`
+• `max_num_l_0_reference_for_b::Integer`
+• `max_num_l_1_reference::Integer`
+• `quality_level_count::Integer`
+• `std_extension_version::ExtensionProperties`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264CapabilitiesEXT.html
 
 """
 _VideoEncodeH264CapabilitiesEXT
@@ -11967,10 +13851,12 @@ _VideoEncodeH264CapabilitiesEXT
     _VideoEncodeH264SessionCreateInfoEXT(flags::VideoEncodeH264CreateFlagEXT, max_picture_size_in_mbs::_Extent2D, std_extension_version::ExtensionProperties; next = C_NULL)
 
 Arguments:
-- `flags::VideoEncodeH264CreateFlagEXT`
-- `max_picture_size_in_mbs::_Extent2D`
-- `std_extension_version::ExtensionProperties`
-- `next`: defaults to `C_NULL`
+• `flags::VideoEncodeH264CreateFlagEXT`
+• `max_picture_size_in_mbs::_Extent2D`
+• `std_extension_version::ExtensionProperties`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264SessionCreateInfoEXT.html
 
 """
 _VideoEncodeH264SessionCreateInfoEXT
@@ -11979,9 +13865,11 @@ _VideoEncodeH264SessionCreateInfoEXT
     _VideoEncodeH264SessionParametersAddInfoEXT(; next = C_NULL, sps_std = C_NULL, pps_std = C_NULL)
 
 Arguments:
-- `next`: defaults to `C_NULL`
-- `sps_std`: defaults to `C_NULL`
-- `pps_std`: defaults to `C_NULL`
+• `next`: defaults to `C_NULL`
+• `sps_std`: defaults to `C_NULL`
+• `pps_std`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264SessionParametersAddInfoEXT.html
 
 """
 _VideoEncodeH264SessionParametersAddInfoEXT
@@ -11990,10 +13878,12 @@ _VideoEncodeH264SessionParametersAddInfoEXT
     _VideoEncodeH264SessionParametersCreateInfoEXT(max_sps_std_count::Integer, max_pps_std_count::Integer; next = C_NULL, parameters_add_info = C_NULL)
 
 Arguments:
-- `max_sps_std_count::Integer`
-- `max_pps_std_count::Integer`
-- `next`: defaults to `C_NULL`
-- `parameters_add_info`: defaults to `C_NULL`
+• `max_sps_std_count::Integer`
+• `max_pps_std_count::Integer`
+• `next`: defaults to `C_NULL`
+• `parameters_add_info`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264SessionParametersCreateInfoEXT.html
 
 """
 _VideoEncodeH264SessionParametersCreateInfoEXT
@@ -12002,9 +13892,11 @@ _VideoEncodeH264SessionParametersCreateInfoEXT
     _VideoEncodeH264DpbSlotInfoEXT(slot_index::Integer, std_picture_info::StdVideoEncodeH264PictureInfo; next = C_NULL)
 
 Arguments:
-- `slot_index::Integer`
-- `std_picture_info::StdVideoEncodeH264PictureInfo`
-- `next`: defaults to `C_NULL`
+• `slot_index::Integer`
+• `std_picture_info::StdVideoEncodeH264PictureInfo`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264DpbSlotInfoEXT.html
 
 """
 _VideoEncodeH264DpbSlotInfoEXT
@@ -12013,11 +13905,13 @@ _VideoEncodeH264DpbSlotInfoEXT
     _VideoEncodeH264VclFrameInfoEXT(ref_default_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, ref_default_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, nalu_slice_entries::AbstractArray{<:_VideoEncodeH264NaluSliceEXT}, current_picture_info::_VideoEncodeH264DpbSlotInfoEXT; next = C_NULL)
 
 Arguments:
-- `ref_default_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
-- `ref_default_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
-- `nalu_slice_entries::AbstractArray{<:_VideoEncodeH264NaluSliceEXT}`
-- `current_picture_info::_VideoEncodeH264DpbSlotInfoEXT`
-- `next`: defaults to `C_NULL`
+• `ref_default_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
+• `ref_default_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
+• `nalu_slice_entries::AbstractArray{<:_VideoEncodeH264NaluSliceEXT}`
+• `current_picture_info::_VideoEncodeH264DpbSlotInfoEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264VclFrameInfoEXT.html
 
 """
 _VideoEncodeH264VclFrameInfoEXT
@@ -12026,10 +13920,12 @@ _VideoEncodeH264VclFrameInfoEXT
     _VideoEncodeH264EmitPictureParametersEXT(sps_id::Integer, emit_sps_enable::Bool, pps_id_entries::AbstractArray{<:Integer}; next = C_NULL)
 
 Arguments:
-- `sps_id::Integer`
-- `emit_sps_enable::Bool`
-- `pps_id_entries::AbstractArray{<:Integer}`
-- `next`: defaults to `C_NULL`
+• `sps_id::Integer`
+• `emit_sps_enable::Bool`
+• `pps_id_entries::AbstractArray{<:Integer}`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264EmitPictureParametersEXT.html
 
 """
 _VideoEncodeH264EmitPictureParametersEXT
@@ -12038,8 +13934,10 @@ _VideoEncodeH264EmitPictureParametersEXT
     _VideoEncodeH264ProfileEXT(std_profile_idc::StdVideoH264ProfileIdc; next = C_NULL)
 
 Arguments:
-- `std_profile_idc::StdVideoH264ProfileIdc`
-- `next`: defaults to `C_NULL`
+• `std_profile_idc::StdVideoH264ProfileIdc`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264ProfileEXT.html
 
 """
 _VideoEncodeH264ProfileEXT
@@ -12048,14 +13946,16 @@ _VideoEncodeH264ProfileEXT
     _VideoEncodeH264NaluSliceEXT(slice_header_std::StdVideoEncodeH264SliceHeader, mb_count::Integer, ref_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, ref_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}, preceding_nalu_bytes::Integer, min_qp::Integer, max_qp::Integer; next = C_NULL)
 
 Arguments:
-- `slice_header_std::StdVideoEncodeH264SliceHeader`
-- `mb_count::Integer`
-- `ref_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
-- `ref_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
-- `preceding_nalu_bytes::Integer`
-- `min_qp::Integer`
-- `max_qp::Integer`
-- `next`: defaults to `C_NULL`
+• `slice_header_std::StdVideoEncodeH264SliceHeader`
+• `mb_count::Integer`
+• `ref_final_list_0_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
+• `ref_final_list_1_entries::AbstractArray{<:_VideoEncodeH264DpbSlotInfoEXT}`
+• `preceding_nalu_bytes::Integer`
+• `min_qp::Integer`
+• `max_qp::Integer`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVideoEncodeH264NaluSliceEXT.html
 
 """
 _VideoEncodeH264NaluSliceEXT
@@ -12064,8 +13964,10 @@ _VideoEncodeH264NaluSliceEXT
     _PhysicalDeviceInheritedViewportScissorFeaturesNV(inherited_viewport_scissor_2_d::Bool; next = C_NULL)
 
 Arguments:
-- `inherited_viewport_scissor_2_d::Bool`
-- `next`: defaults to `C_NULL`
+• `inherited_viewport_scissor_2_d::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html
 
 """
 _PhysicalDeviceInheritedViewportScissorFeaturesNV
@@ -12074,10 +13976,12 @@ _PhysicalDeviceInheritedViewportScissorFeaturesNV
     _CommandBufferInheritanceViewportScissorInfoNV(viewport_scissor_2_d::Bool, viewport_depth_count::Integer, viewport_depths::_Viewport; next = C_NULL)
 
 Arguments:
-- `viewport_scissor_2_d::Bool`
-- `viewport_depth_count::Integer`
-- `viewport_depths::_Viewport`
-- `next`: defaults to `C_NULL`
+• `viewport_scissor_2_d::Bool`
+• `viewport_depth_count::Integer`
+• `viewport_depths::_Viewport`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html
 
 """
 _CommandBufferInheritanceViewportScissorInfoNV
@@ -12086,8 +13990,10 @@ _CommandBufferInheritanceViewportScissorInfoNV
     _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(ycbcr_444_formats::Bool; next = C_NULL)
 
 Arguments:
-- `ycbcr_444_formats::Bool`
-- `next`: defaults to `C_NULL`
+• `ycbcr_444_formats::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.html
 
 """
 _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
@@ -12096,9 +14002,11 @@ _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
     _PhysicalDeviceProvokingVertexFeaturesEXT(provoking_vertex_last::Bool, transform_feedback_preserves_provoking_vertex::Bool; next = C_NULL)
 
 Arguments:
-- `provoking_vertex_last::Bool`
-- `transform_feedback_preserves_provoking_vertex::Bool`
-- `next`: defaults to `C_NULL`
+• `provoking_vertex_last::Bool`
+• `transform_feedback_preserves_provoking_vertex::Bool`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html
 
 """
 _PhysicalDeviceProvokingVertexFeaturesEXT
@@ -12107,8 +14015,10 @@ _PhysicalDeviceProvokingVertexFeaturesEXT
     _PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::ProvokingVertexModeEXT; next = C_NULL)
 
 Arguments:
-- `provoking_vertex_mode::ProvokingVertexModeEXT`
-- `next`: defaults to `C_NULL`
+• `provoking_vertex_mode::ProvokingVertexModeEXT`
+• `next`: defaults to `C_NULL`
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.html
 
 """
 _PipelineRasterizationProvokingVertexStateCreateInfoEXT
