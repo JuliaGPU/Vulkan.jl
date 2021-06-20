@@ -1,6 +1,6 @@
-using Documenter, Pkg, Vulkan
+using Documenter, Vulkan
 
-Pkg.develop(path="generator")
+push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
 
 using VulkanGen
 
@@ -15,7 +15,11 @@ makedocs(;
         "API" => "api.md",
         "Utility" => "utility.md",
         "Troubleshooting" => "troubleshooting.md",
-        "Developer documentation" => "dev.md",
+        "Developer documentation" => [
+            "Overview" => "dev/overview.md",
+            "Vulkan specification" => "dev/spec.md",
+            "Generator" => "dev/gen.md",
+        ],
     ],
     repo="https://github.com/JuliaGPU/Vulkan.jl/blob/{commit}{path}#L{line}",
     sitename="Vulkan.jl",

@@ -13,14 +13,3 @@ Note that VulkanGen, the generator module, contains tests which should be run fi
 ```
 julia --color=yes --project=generator -e 'include(\"generator/test/runtests.jl\"); include(\"generator/scripts/generate_wrapper.jl\"); using Pkg; Pkg.activate(\".\"); Pkg.test()'
 ```
-
-## VulkanGen API
-
-
-```@index
-Modules = [VulkanGen]
-```
-
-```@autodocs
-Modules = [VulkanGen]
-```
