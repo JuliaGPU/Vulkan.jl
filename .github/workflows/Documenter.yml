@@ -5,6 +5,9 @@ on:
     tags: [v*]
   pull_request:
 
+env:
+  JULIA_DOCUMENTER_CI: ON
+
 jobs:
   build:
     runs-on: ubuntu-latest

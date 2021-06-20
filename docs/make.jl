@@ -1,6 +1,11 @@
 using Documenter, Vulkan
 
-push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
+if get(ENV, "JULIA_DOCUMENTER_CI", "OFF") == "ON"
+    using Pkg
+    Pkg.develop(path=joinpath(dirname(@__DIR__), "generator", "VulkanGen.jl"))
+else
+    push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
+end
 
 using VulkanGen
 
