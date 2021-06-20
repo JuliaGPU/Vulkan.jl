@@ -2,7 +2,7 @@ using Documenter, Vulkan
 
 if get(ENV, "JULIA_DOCUMENTER_CI", "OFF") == "ON"
     using Pkg
-    Pkg.develop(path=joinpath(dirname(@__DIR__), "generator", "src", "VulkanGen.jl"))
+    Pkg.develop(path=joinpath(dirname(@__DIR__), "generator"))
 else
     push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
 end
