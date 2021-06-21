@@ -56,7 +56,7 @@ function vk_call(x::Spec)
         # constant pointer to a unique object
         if is_ptr(x.type) &&
            !is_arr(x) &&
-           (x.is_constant || (func = func_by_name(x.func); func.type == QUERY && x ≠ last(children(func))))
+           (x.is_constant || (func = func_by_name(x.func); func.type == FTYPE_QUERY && x ≠ last(children(func))))
         end => @match x begin
             if ptr_type(x.type) ∈ spec_structs.name
             end => var # handled by cconvert and unsafe_convert in ccall

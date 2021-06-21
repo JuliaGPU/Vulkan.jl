@@ -71,11 +71,11 @@ function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, destroy::Bool
 end
 
 function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Expr, with_func_ptr)
-    destroy = spec.type ≠ QUERY
+    destroy = spec.type ≠ FTYPE_QUERY
     args = @match parent_spec(handle) begin
         ::Nothing => (handle, ex)
         p::SpecHandle => @match spec.type begin
-            &CREATE || &ALLOCATE => (handle, ex, p, retrieve_parent_ex(p, create_func(spec)))
+            &FTYPE_CREATE || &FTYPE_ALLOCATE => (handle, ex, p, retrieve_parent_ex(p, create_func(spec)))
             _ => (handle, ex, p, retrieve_parent_ex(p, spec)::Symbol)
         end
     end

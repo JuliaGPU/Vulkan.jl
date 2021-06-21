@@ -3,6 +3,7 @@ include("wrapper/type_conversions.jl")
 include("wrapper/naming_conventions.jl")
 include("wrapper/conventions.jl")
 include("wrapper/docs.jl")
+include("wrapper/config.jl")
 include("wrapper/wrap.jl")
 
 include("wrapper/dependency_resolution.jl")
@@ -37,6 +38,9 @@ export
     is_broadcast,
 
     # Wrapping
+    WrapperConfig,
+    extensions,
+    filter_specs,
     VulkanWrapper,
     wrap,
     

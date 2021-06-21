@@ -79,14 +79,14 @@ function SpecStruct(node::Node)
     name_str = node["name"]
     returnedonly = haskey(node, "returnedonly")
     type = @match returnedonly begin
-        true => PROPERTY
+        true => STYPE_PROPERTY
         _ && if occursin("CreateInfo", name_str)
-        end => CREATE_INFO
+        end => STYPE_CREATE_INFO
         _ && if occursin("AllocateInfo", name_str)
-        end => ALLOCATE_INFO
+        end => STYPE_ALLOCATE_INFO
         _ && if occursin("Info", name_str)
-        end => GENERIC_INFO
-        _ => DATA
+        end => STYPE_GENERIC_INFO
+        _ => STYPE_DATA
     end
     extends = @match struct_csv = getattr(node, "structextends", symbol = false) begin
         ::String => Symbol.(split(struct_csv, ','))
@@ -135,10 +135,10 @@ function SpecFunc(node::Node)
         ::Nothing => []
     end
     ctype = @match findfirst(startswith.(string(name), ["vkCreate", "vkDestroy", "vkAllocate", "vkFree", "vkCmd"])) begin
-        i::Integer => FUNC_TYPE(i)
+        i::Integer => FunctionType(i)
         if any(startswith.(string(name), ["vkGet", "vkEnumerate"]))
-        end => QUERY
-        _ => OTHER
+        end => FTYPE_QUERY
+        _ => FTYPE_OTHER
     end
     return_type = extract_type(findfirst("./proto", node))
     codes(type) = Symbol.(filter(!isempty, split(getattr(node, type; default = "", symbol = false), ',')))
@@ -271,7 +271,7 @@ function DestroyFunc(spec::SpecFunc)
     DestroyFunc(spec, handle, destroyed_param, is_arr(destroyed_param))
 end
 
-PlatformType(::Nothing) = PLATFORM_ALL
+PlatformType(::Nothing) = PLATFORM_NONE
 PlatformType(type::String) = eval(Symbol("PLATFORM_", uppercase(type)))
 
 function SpecExtension(node::Node)
@@ -415,7 +415,7 @@ is_core(spec) = isnothing(extension(spec))
 
 function is_platform_specific(spec)
     ext = extension(spec)
-    !isnothing(ext) && ext.platform ≠ PLATFORM_ALL
+    !isnothing(ext) && ext.platform ≠ PLATFORM_NONE
 end
 
 """
@@ -527,7 +527,7 @@ const spec_aliases = StructVector(
 )
 const spec_func_params = collect(Iterators.flatten(spec_funcs.params))
 const spec_struct_members = collect(Iterators.flatten(spec_structs.members))
-const spec_create_info_structs = filter(x -> x.type ∈ [CREATE_INFO, ALLOCATE_INFO], spec_structs)
+const spec_create_info_structs = filter(x -> x.type ∈ [STYPE_CREATE_INFO, STYPE_ALLOCATE_INFO], spec_structs)
 
 function spec_by_field(specs, field, value)
     specs[findall(==(value), getproperty(specs, field))]
@@ -577,8 +577,8 @@ function arglen(spec::Union{SpecFuncParam,SpecStructMember})
     params[findall(x -> x.name ∈ spec.arglen, params)]
 end
 
-const spec_create_funcs = StructVector(CreateFunc.(filter(x -> x.type ∈ [CREATE, ALLOCATE], spec_funcs)))
-const spec_destroy_funcs = StructVector(DestroyFunc.(filter(x -> x.type ∈ [DESTROY, FREE], spec_funcs)))
+const spec_create_funcs = StructVector(CreateFunc.(filter(x -> x.type ∈ [FTYPE_CREATE, FTYPE_ALLOCATE], spec_funcs)))
+const spec_destroy_funcs = StructVector(DestroyFunc.(filter(x -> x.type ∈ [FTYPE_DESTROY, FTYPE_FREE], spec_funcs)))
 
 is_destructible(spec::SpecHandle) = spec ∈ spec_destroy_funcs.handle
 

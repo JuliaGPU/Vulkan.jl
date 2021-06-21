@@ -29,27 +29,27 @@ struct RenderPassOutside <: RenderPassRequirement end
 Function type classification.
 
 Types:
-- `CREATE`: constructor (functions that begin with `vkCreate`).
-- `DESTROY`: destructor (functions that begin with `vkDestroy`).
-- `ALLOCATE`: allocator (functions that begin with `vkAllocate`).
-- `FREE`: deallocator (functions that begin with `vkFree`).
-- `COMMAND`: Vulkan command (functions that begin with `vkCmd`).
-- `QUERY`: used to query parameters, returned directly or indirectly through pointer mutation (typically, functions that begin with `vkEnumerate` and `vkGet`, but not all of them and possibly others).
-- `OTHER`: no identified type.
+- `FTYPE_CREATE`: constructor (functions that begin with `vkCreate`).
+- `FTYPE_DESTROY`: destructor (functions that begin with `vkDestroy`).
+- `FTYPE_ALLOCATE`: allocator (functions that begin with `vkAllocate`).
+- `FTYPE_FREE`: deallocator (functions that begin with `vkFree`).
+- `FTYPE_COMMAND`: Vulkan command (functions that begin with `vkCmd`).
+- `FTYPE_QUERY`: used to query parameters, returned directly or indirectly through pointer mutation (typically, functions that begin with `vkEnumerate` and `vkGet`, but not all of them and possibly others).
+- `FTYPE_OTHER`: no identified type.
 """
-@enum FUNC_TYPE CREATE = 1 DESTROY ALLOCATE FREE COMMAND QUERY OTHER
+@enum FunctionType FTYPE_CREATE = 1 FTYPE_DESTROY FTYPE_ALLOCATE FTYPE_FREE FTYPE_COMMAND FTYPE_QUERY FTYPE_OTHER
 
 """
 Structure type classification.
 
 Types:
-- `CREATE_INFO`: holds constructor parameters (structures that end with `CreateInfo`).
-- `ALLOCATE_INFO`: holds allocator parameters (structures that end with `AllocateInfo`).
-- `GENERIC_INFO`: holds parameters for another function or structure (structures that end with `Info`, excluding those falling into the previous types).
-- `DATA`: usually represents user or Vulkan data.
-- `PROPERTY`: is a property returned by Vulkan in a `returnedonly` structure, usually done through `QUERY` type functions.
+- `STYPE_CREATE_INFO`: holds constructor parameters (structures that end with `CreateInfo`).
+- `STYPE_ALLOCATE_INFO`: holds allocator parameters (structures that end with `AllocateInfo`).
+- `STYPE_GENERIC_INFO`: holds parameters for another function or structure (structures that end with `Info`, excluding those falling into the previous types).
+- `STYPE_DATA`: usually represents user or Vulkan data.
+- `STYPE_PROPERTY`: is a property returned by Vulkan in a `returnedonly` structure, usually done through `FTYPE_QUERY` type functions.
 """
-@enum STRUCT_TYPE CREATE_INFO = 1 ALLOCATE_INFO GENERIC_INFO DATA PROPERTY
+@enum StructType STYPE_CREATE_INFO = 1 STYPE_ALLOCATE_INFO STYPE_GENERIC_INFO STYPE_DATA STYPE_PROPERTY
 
 """
 Parameter requirement. Applies both to struct members and function parameters.
@@ -103,8 +103,8 @@ Specification for a function.
 struct SpecFunc <: Spec
     "Name of the function."
     name::Symbol
-    "[`FUNC_TYPE`](@ref) classification."
-    type::FUNC_TYPE
+    "[`FunctionType`](@ref) classification."
+    type::FunctionType
     "Return type (void if `Nothing`)."
     return_type::Optional{ExprLike}
     "Whether the function can be executed inside a render pass, outside, or both. Empty if not specified, in which case it is equivalent to both inside and outside."
@@ -147,8 +147,8 @@ Specification for a structure.
 struct SpecStruct <: Spec
     "Name of the structure."
     name::Symbol
-    "[`STRUCT_TYPE`](@ref) classification."
-    type::STRUCT_TYPE
+    "[`StructType`](@ref) classification."
+    type::StructType
     "Whether the structure is only returned by Vulkan functions (and never requested as input)."
     is_returnedonly::Bool
     "Name of the structures it extends, usually done through the original structures' `pNext` argument."
@@ -284,23 +284,23 @@ end
     EXTENSION_TYPE_ANY
 end
 
-@enum PlatformType begin
-    PLATFORM_ALL
-    PLATFORM_XCB
-    PLATFORM_XLIB
-    PLATFORM_XLIB_XRANDR
-    PLATFORM_WAYLAND
-    PLATFORM_METAL
-    PLATFORM_MACOS
-    PLATFORM_IOS
-    PLATFORM_WIN32
-    PLATFORM_ANDROID
-    PLATFORM_GGP
-    PLATFORM_VI
-    PLATFORM_FUCHSIA
-    PLATFORM_DIRECTFB
-    PLATFORM_SCREEN
-    PLATFORM_PROVISIONAL
+@enum PlatformType::UInt32 begin
+    PLATFORM_NONE        = 0
+    PLATFORM_XCB         = 1
+    PLATFORM_XLIB        = 2
+    PLATFORM_XLIB_XRANDR = 4
+    PLATFORM_WAYLAND     = 8
+    PLATFORM_METAL       = 16
+    PLATFORM_MACOS       = 32
+    PLATFORM_IOS         = 64
+    PLATFORM_WIN32       = 128
+    PLATFORM_ANDROID     = 256
+    PLATFORM_GGP         = 512
+    PLATFORM_VI          = 1024
+    PLATFORM_FUCHSIA     = 2048
+    PLATFORM_DIRECTFB    = 4096
+    PLATFORM_SCREEN      = 8192
+    PLATFORM_PROVISIONAL = 16384
 end
 
 struct SpecPlatform <: Spec
@@ -331,7 +331,7 @@ function Base.show(io::IO, ::MIME"text/plain", ext::SpecExtension)
     ext.is_disabled && push!(inline_infos, "disabled")
     !isempty(inline_infos) && print(io, " (", join(inline_infos, ", "), ')')
     println(io)
-    ext.platform ∉ (PLATFORM_ALL, PLATFORM_PROVISIONAL) && println(io, "• Platform: ", replace(string(ext.platform), "PLATFORM_" => ""), " (", first(spec_by_field(spec_platforms, :type, ext.platform)).description, ')')
+    ext.platform ∉ (PLATFORM_NONE, PLATFORM_PROVISIONAL) && println(io, "• Platform: ", replace(string(ext.platform), "PLATFORM_" => ""), " (", first(spec_by_field(spec_platforms, :type, ext.platform)).description, ')')
     !isempty(ext.requirements) && println(io, "• Depends on: ", join(ext.requirements, ", "))
     n = length(ext.symbols)
     if n > 0
@@ -342,7 +342,14 @@ function Base.show(io::IO, ::MIME"text/plain", ext::SpecExtension)
             i == limit ÷ 2 && println(io, "  ⋮")
         end
     end
-    !isnothing(ext.author) && print(io, "\n• From: ", ext.author, " (", first(spec_by_field(author_tags, :tag, ext.author)).author, ')')
+    if !isnothing(ext.author)
+        print(io, "\n• From: ", ext.author)
+        authors = spec_by_field(author_tags, :tag, ext.author)
+        if !isempty(authors)
+            @assert length(authors) == 1
+            print(io, " (", first(authors).author, ')')
+        end
+    end
 end
 
 struct AuthorTag

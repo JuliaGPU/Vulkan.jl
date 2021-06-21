@@ -30,7 +30,7 @@ Takes the function pointers arguments of the underlying handle if it is a Vulkan
 or a unique `fun_ptr` if that's just a normal Vulkan function.
 """
 function func_ptr_args(spec::SpecFunc)
-    if spec.type ∈ [CREATE, ALLOCATE]
+    if spec.type ∈ [FTYPE_CREATE, FTYPE_ALLOCATE]
         func_ptr_args(create_func(spec).handle)
     else
         [:(fun_ptr::FunctionPtr)]
@@ -44,7 +44,7 @@ func_ptrs(spec::Spec) = name.(func_ptr_args(spec))
 
 function add_func_args!(p::Dict, spec, params; with_func_ptr = false)
     params = filter(!drop_arg, params)
-    arg_filter = if spec.type ∈ [DESTROY, FREE]
+    arg_filter = if spec.type ∈ [FTYPE_DESTROY, FTYPE_FREE]
         destroyed_type = destroy_func(spec).handle.name
         x -> !is_optional(x) || x.type == destroyed_type
     else

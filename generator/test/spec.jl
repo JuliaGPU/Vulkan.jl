@@ -114,7 +114,7 @@ end
     @testset "Structs" begin
         test_struct(
             :VkApplicationInfo,
-            GENERIC_INFO,
+            STYPE_GENERIC_INFO,
             false,
             [],
             [
@@ -129,7 +129,7 @@ end
         )
         test_struct(
             :VkPipelineViewportCoarseSampleOrderStateCreateInfoNV,
-            CREATE_INFO,
+            STYPE_CREATE_INFO,
             false,
             [:VkPipelineViewportStateCreateInfo],
             [
@@ -151,7 +151,7 @@ end
         )
         test_struct(
             :VkPhysicalDeviceShadingRateImageFeaturesNV,
-            DATA,
+            STYPE_DATA,
             false,
             [:VkPhysicalDeviceFeatures2, :VkDeviceCreateInfo],
             [
@@ -163,7 +163,7 @@ end
         )
         test_struct(
             :VkDescriptorSetLayoutBindingFlagsCreateInfo,
-            CREATE_INFO,
+            STYPE_CREATE_INFO,
             false,
             [:VkDescriptorSetLayoutCreateInfo],
             [
@@ -175,7 +175,7 @@ end
         ),
         test_struct(
             :VkInstanceCreateInfo,
-            CREATE_INFO,
+            STYPE_CREATE_INFO,
             false,
             [],
             [
@@ -191,7 +191,7 @@ end
         )
         test_struct(
             :VkDisplayPlaneInfo2KHR,
-            GENERIC_INFO,
+            STYPE_GENERIC_INFO,
             false,
             [],
             [
@@ -203,7 +203,7 @@ end
         )
         test_struct(
             :VkTransformMatrixKHR,
-            DATA,
+            STYPE_DATA,
             false,
             [],
             [(:matrix, :(NTuple{3,NTuple{4,Float32}}), false, false, REQUIRED, nothing, [], true)],
@@ -230,7 +230,7 @@ end
     @testset "Functions" begin
         test_func(
             :vkCreateInstance,
-            CREATE,
+            FTYPE_CREATE,
             :VkResult,
             [],
             [],
@@ -251,7 +251,7 @@ end
         )
         test_func(
             :vkCmdBindPipeline,
-            COMMAND,
+            FTYPE_COMMAND,
             :Cvoid,
             [RenderPassInside(), RenderPassOutside()],
             [QueueGraphics(), QueueCompute()],

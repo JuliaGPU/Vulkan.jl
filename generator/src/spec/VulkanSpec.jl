@@ -63,6 +63,12 @@ include("types.jl")
 include("specs.jl")
 include("structure_types.jl")
 
+for sym in names(@__MODULE__, all=true)
+    if any(startswith(string(sym), prefix) for prefix in ["PLATFORM_", "FTYPE_", "STYPE_"])
+        @eval export $sym
+    end
+end
+
 export
     # Types
     Spec,
@@ -166,19 +172,7 @@ export
     REQUIRED,
     POINTER_OPTIONAL,
     POINTER_REQUIRED,
-    STRUCT_TYPE,
-    CREATE_INFO,
-    ALLOCATE_INFO,
-    GENERIC_INFO,
-    DATA,
-    PROPERTY,
-    FUNC_TYPE,
-    CREATE,
-    DESTROY,
-    ALLOCATE,
-    FREE,
-    COMMAND,
-    QUERY,
-    OTHER
+    StructType,
+    FunctionType
 
 end # module

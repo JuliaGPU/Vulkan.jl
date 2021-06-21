@@ -3,17 +3,21 @@ test_ex(x::Dict, y) = @test prettify(to_expr(x)) == prettify(y)
 
 @testset "Wrapper" begin
     @testset "Wrapper utilities" begin
-        include("utilities/exprs.jl")
-        include("utilities/naming_conventions.jl")
+        include("wrapper/utilities/exprs.jl")
+        include("wrapper/utilities/naming_conventions.jl")
+    end
+
+    @testset "Wrapper generation" begin
+        include("wrapper/generation/config.jl")
     end
 
     @testset "Low-level wrapper" begin
-        include("low_level_wrapper/wrapper.jl")
-        include("low_level_wrapper/docs.jl")
+        include("wrapper/low_level/wrapper.jl")
+        include("wrapper/low_level/docs.jl")
     end
 
     @testset "High-level wrapper" begin
-        include("high_level_wrapper/wrapper.jl")
-        include("high_level_wrapper/docs.jl")
+        include("wrapper/high_level/wrapper.jl")
+        include("wrapper/high_level/docs.jl")
     end
 end
