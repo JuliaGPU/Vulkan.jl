@@ -21708,6 +21708,8 @@ cmd_end_query
 """
     cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT)::Cvoid
 
+Extension: VK_EXT_conditional_rendering
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT`
@@ -21719,6 +21721,8 @@ cmd_begin_conditional_rendering_ext
 
 """
     cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer)::Cvoid
+
+Extension: VK_EXT_conditional_rendering
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -21840,6 +21844,8 @@ cmd_execute_commands
 """
     get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPropertiesKHR}, VulkanError}
 
+Extension: VK_KHR_display
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -21856,6 +21862,8 @@ get_physical_device_display_properties_khr
 """
     get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPlanePropertiesKHR}, VulkanError}
 
+Extension: VK_KHR_display
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -21871,6 +21879,8 @@ get_physical_device_display_plane_properties_khr
 
 """
     get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)::ResultTypes.Result{Vector{DisplayKHR}, VulkanError}
+
+Extension: VK_KHR_display
 
 Return codes:
 • Error:
@@ -21889,6 +21899,8 @@ get_display_plane_supported_displays_khr
 """
     get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Vector{DisplayModePropertiesKHR}, VulkanError}
 
+Extension: VK_KHR_display
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -21905,6 +21917,8 @@ get_display_mode_properties_khr
 
 """
     create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::_DisplayModeCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{DisplayModeKHR, VulkanError}
+
+Extension: VK_KHR_display
 
 Return codes:
 • Error:
@@ -21926,6 +21940,8 @@ create_display_mode_khr
 """
     get_display_plane_capabilities_khr(physical_device::PhysicalDevice, mode::DisplayModeKHR, plane_index::Integer)::ResultTypes.Result{DisplayPlaneCapabilitiesKHR, VulkanError}
 
+Extension: VK_KHR_display
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -21944,6 +21960,8 @@ get_display_plane_capabilities_khr
 """
     create_display_plane_surface_khr(instance::Instance, create_info::_DisplaySurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
+Extension: VK_KHR_display
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -21961,6 +21979,8 @@ create_display_plane_surface_khr
 
 """
     create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}; allocator = C_NULL)::ResultTypes.Result{Vector{SwapchainKHR}, VulkanError}
+
+Extension: VK_KHR_display_swapchain
 
 Return codes:
 • Error:
@@ -21983,6 +22003,8 @@ create_shared_swapchains_khr
 """
     destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL)::Cvoid
 
+Extension: VK_KHR_surface
+
 Arguments:
 • `instance::Instance`
 • `surface::SurfaceKHR` (externsync)
@@ -21995,6 +22017,8 @@ destroy_surface_khr
 
 """
     get_physical_device_surface_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, surface::SurfaceKHR)::ResultTypes.Result{Bool, VulkanError}
+
+Extension: VK_KHR_surface
 
 Return codes:
 • Error:
@@ -22015,6 +22039,8 @@ get_physical_device_surface_support_khr
 """
     get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{SurfaceCapabilitiesKHR, VulkanError}
 
+Extension: VK_KHR_surface
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22032,6 +22058,8 @@ get_physical_device_surface_capabilities_khr
 
 """
     get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{SurfaceFormatKHR}, VulkanError}
+
+Extension: VK_KHR_surface
 
 Return codes:
 • Error:
@@ -22051,6 +22079,8 @@ get_physical_device_surface_formats_khr
 """
     get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{PresentModeKHR}, VulkanError}
 
+Extension: VK_KHR_surface
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22068,6 +22098,8 @@ get_physical_device_surface_present_modes_khr
 
 """
     create_swapchain_khr(device::Device, create_info::_SwapchainCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SwapchainKHR, VulkanError}
+
+Extension: VK_KHR_swapchain
 
 Return codes:
 • Error:
@@ -22091,6 +22123,8 @@ create_swapchain_khr
 """
     destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL)::Cvoid
 
+Extension: VK_KHR_swapchain
+
 Arguments:
 • `device::Device`
 • `swapchain::SwapchainKHR` (externsync)
@@ -22103,6 +22137,8 @@ destroy_swapchain_khr
 
 """
     get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Vector{Image}, VulkanError}
+
+Extension: VK_KHR_swapchain
 
 Return codes:
 • Error:
@@ -22120,6 +22156,8 @@ get_swapchain_images_khr
 
 """
     acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)::ResultTypes.Result{Tuple{UInt32, Result}, VulkanError}
+
+Extension: VK_KHR_swapchain
 
 Return codes:
 • Success:
@@ -22150,6 +22188,8 @@ acquire_next_image_khr
 """
     queue_present_khr(queue::Queue, present_info::_PresentInfoKHR)::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_KHR_swapchain
+
 Return codes:
 • Success:
   ∘ `SUCCESS`
@@ -22174,6 +22214,8 @@ queue_present_khr
 """
     create_wayland_surface_khr(instance::Instance, create_info::_WaylandSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
+Extension: VK_KHR_wayland_surface
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22192,6 +22234,8 @@ create_wayland_surface_khr
 """
     get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::Ptr{wl_display})::Bool
 
+Extension: VK_KHR_wayland_surface
+
 Arguments:
 • `physical_device::PhysicalDevice`
 • `queue_family_index::Integer`
@@ -22204,6 +22248,8 @@ get_physical_device_wayland_presentation_support_khr
 
 """
     create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
+
+Extension: VK_KHR_xlib_surface
 
 Return codes:
 • Error:
@@ -22223,6 +22269,8 @@ create_xlib_surface_khr
 """
     get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::Ptr{Display}, visual_id::VisualID)::Bool
 
+Extension: VK_KHR_xlib_surface
+
 Arguments:
 • `physical_device::PhysicalDevice`
 • `queue_family_index::Integer`
@@ -22236,6 +22284,8 @@ get_physical_device_xlib_presentation_support_khr
 
 """
     create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
+
+Extension: VK_KHR_xcb_surface
 
 Return codes:
 • Error:
@@ -22255,6 +22305,8 @@ create_xcb_surface_khr
 """
     get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::Ptr{xcb_connection_t}, visual_id::xcb_visualid_t)::Bool
 
+Extension: VK_KHR_xcb_surface
+
 Arguments:
 • `physical_device::PhysicalDevice`
 • `queue_family_index::Integer`
@@ -22268,6 +22320,8 @@ get_physical_device_xcb_presentation_support_khr
 
 """
     create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT, VulkanError}
+
+Extension: VK_EXT_debug_report
 
 Return codes:
 • Error:
@@ -22286,6 +22340,8 @@ create_debug_report_callback_ext
 """
     destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL)::Cvoid
 
+Extension: VK_EXT_debug_report
+
 Arguments:
 • `instance::Instance`
 • `callback::DebugReportCallbackEXT` (externsync)
@@ -22298,6 +22354,8 @@ destroy_debug_report_callback_ext
 
 """
     debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::DebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)::Cvoid
+
+Extension: VK_EXT_debug_report
 
 Arguments:
 • `instance::Instance`
@@ -22317,6 +22375,8 @@ debug_report_message_ext
 """
     debug_marker_set_object_name_ext(device::Device, name_info::_DebugMarkerObjectNameInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_EXT_debug_marker
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22333,6 +22393,8 @@ debug_marker_set_object_name_ext
 
 """
     debug_marker_set_object_tag_ext(device::Device, tag_info::_DebugMarkerObjectTagInfoEXT)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_EXT_debug_marker
 
 Return codes:
 • Error:
@@ -22351,6 +22413,8 @@ debug_marker_set_object_tag_ext
 """
     cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)::Cvoid
 
+Extension: VK_EXT_debug_marker
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `marker_info::_DebugMarkerMarkerInfoEXT`
@@ -22363,6 +22427,8 @@ cmd_debug_marker_begin_ext
 """
     cmd_debug_marker_end_ext(command_buffer::CommandBuffer)::Cvoid
 
+Extension: VK_EXT_debug_marker
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 
@@ -22373,6 +22439,8 @@ cmd_debug_marker_end_ext
 
 """
     cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)::Cvoid
+
+Extension: VK_EXT_debug_marker
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -22385,6 +22453,8 @@ cmd_debug_marker_insert_ext
 
 """
     get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)::ResultTypes.Result{ExternalImageFormatPropertiesNV, VulkanError}
+
+Extension: VK_NV_external_memory_capabilities
 
 Return codes:
 • Error:
@@ -22409,6 +22479,8 @@ get_physical_device_external_image_format_properties_nv
 """
     cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::_GeneratedCommandsInfoNV)::Cvoid
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `is_preprocessed::Bool`
@@ -22422,6 +22494,8 @@ cmd_execute_generated_commands_nv
 """
     cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::_GeneratedCommandsInfoNV)::Cvoid
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `generated_commands_info::_GeneratedCommandsInfoNV`
@@ -22433,6 +22507,8 @@ cmd_preprocess_generated_commands_nv
 
 """
     cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, group_index::Integer)::Cvoid
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -22448,6 +22524,8 @@ cmd_bind_pipeline_shader_group_nv
 """
     get_generated_commands_memory_requirements_nv(device::Device, info::_GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `device::Device`
 • `info::_GeneratedCommandsMemoryRequirementsInfoNV`
@@ -22459,6 +22537,8 @@ get_generated_commands_memory_requirements_nv
 
 """
     create_indirect_commands_layout_nv(device::Device, create_info::_IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)::ResultTypes.Result{IndirectCommandsLayoutNV, VulkanError}
+
+Extension: VK_NV_device_generated_commands
 
 Return codes:
 • Error:
@@ -22477,6 +22557,8 @@ create_indirect_commands_layout_nv
 
 """
     destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV; allocator = C_NULL)::Cvoid
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `device::Device`
@@ -22577,6 +22659,8 @@ get_physical_device_sparse_image_format_properties_2
 """
     cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:_WriteDescriptorSet})::Cvoid
 
+Extension: VK_KHR_push_descriptor
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `pipeline_bind_point::PipelineBindPoint`
@@ -22617,6 +22701,8 @@ get_physical_device_external_buffer_properties
 """
     get_memory_fd_khr(device::Device, get_fd_info::_MemoryGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
+Extension: VK_KHR_external_memory_fd
+
 Return codes:
 • Error:
   ∘ `ERROR_TOO_MANY_OBJECTS`
@@ -22633,6 +22719,8 @@ get_memory_fd_khr
 
 """
     get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::ResultTypes.Result{MemoryFdPropertiesKHR, VulkanError}
+
+Extension: VK_KHR_external_memory_fd
 
 Return codes:
 • Error:
@@ -22664,6 +22752,8 @@ get_physical_device_external_semaphore_properties
 """
     get_semaphore_fd_khr(device::Device, get_fd_info::_SemaphoreGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
+Extension: VK_KHR_external_semaphore_fd
+
 Return codes:
 • Error:
   ∘ `ERROR_TOO_MANY_OBJECTS`
@@ -22680,6 +22770,8 @@ get_semaphore_fd_khr
 
 """
     import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_external_semaphore_fd
 
 Return codes:
 • Error:
@@ -22710,6 +22802,8 @@ get_physical_device_external_fence_properties
 """
     get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
 
+Extension: VK_KHR_external_fence_fd
+
 Return codes:
 • Error:
   ∘ `ERROR_TOO_MANY_OBJECTS`
@@ -22726,6 +22820,8 @@ get_fence_fd_khr
 
 """
     import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_external_fence_fd
 
 Return codes:
 • Error:
@@ -22744,6 +22840,8 @@ import_fence_fd_khr
 """
     release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_EXT_direct_mode_display
+
 Return codes:
 
 Arguments:
@@ -22757,6 +22855,8 @@ release_display_ext
 
 """
     acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::Ptr{Display}, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_EXT_acquire_xlib_display
 
 Return codes:
 • Error:
@@ -22776,6 +22876,8 @@ acquire_xlib_display_ext
 """
     get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::Ptr{Display}, rr_output::RROutput)::ResultTypes.Result{DisplayKHR, VulkanError}
 
+Extension: VK_EXT_acquire_xlib_display
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22792,6 +22894,8 @@ get_rand_r_output_display_ext
 
 """
     display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::_DisplayPowerInfoEXT)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_EXT_display_control
 
 Return codes:
 • Error:
@@ -22810,6 +22914,8 @@ display_power_control_ext
 """
     register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
 
+Extension: VK_EXT_display_control
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22826,6 +22932,8 @@ register_device_event_ext
 
 """
     register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::_DisplayEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
+
+Extension: VK_EXT_display_control
 
 Return codes:
 • Error:
@@ -22845,6 +22953,8 @@ register_display_event_ext
 """
     get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)::ResultTypes.Result{UInt64, VulkanError}
 
+Extension: VK_EXT_display_control
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22863,6 +22973,8 @@ get_swapchain_counter_ext
 
 """
     get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{SurfaceCapabilities2EXT, VulkanError}
+
+Extension: VK_EXT_display_surface_counter
 
 Return codes:
 • Error:
@@ -22960,6 +23072,8 @@ cmd_set_device_mask
 """
     get_device_group_present_capabilities_khr(device::Device)::ResultTypes.Result{DeviceGroupPresentCapabilitiesKHR, VulkanError}
 
+Extension: VK_KHR_swapchain
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -22975,6 +23089,8 @@ get_device_group_present_capabilities_khr
 
 """
     get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)::ResultTypes.Result{DeviceGroupPresentModeFlagKHR, VulkanError}
+
+Extension: VK_KHR_swapchain
 
 Return codes:
 • Error:
@@ -22994,6 +23110,8 @@ get_device_group_surface_present_modes_khr
 
 """
     acquire_next_image_2_khr(device::Device, acquire_info::_AcquireNextImageInfoKHR)::ResultTypes.Result{Tuple{UInt32, Result}, VulkanError}
+
+Extension: VK_KHR_swapchain
 
 Return codes:
 • Success:
@@ -23037,6 +23155,8 @@ cmd_dispatch_base
 
 """
     get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{_Rect2D}, VulkanError}
+
+Extension: VK_KHR_swapchain
 
 Return codes:
 • Error:
@@ -23100,6 +23220,8 @@ update_descriptor_set_with_template
 """
     cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid
 
+Extension: VK_KHR_push_descriptor
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `descriptor_update_template::DescriptorUpdateTemplate`
@@ -23115,6 +23237,8 @@ cmd_push_descriptor_set_with_template_khr
 """
     set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid
 
+Extension: VK_EXT_hdr_metadata
+
 Arguments:
 • `device::Device`
 • `swapchains::AbstractArray{<:SwapchainKHR}`
@@ -23127,6 +23251,8 @@ set_hdr_metadata_ext
 
 """
     get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_shared_presentable_image
 
 Return codes:
 • Success:
@@ -23152,6 +23278,8 @@ get_swapchain_status_khr
 """
     get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{RefreshCycleDurationGOOGLE, VulkanError}
 
+Extension: VK_GOOGLE_display_timing
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -23169,6 +23297,8 @@ get_refresh_cycle_duration_google
 
 """
     get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Vector{PastPresentationTimingGOOGLE}, VulkanError}
+
+Extension: VK_GOOGLE_display_timing
 
 Return codes:
 • Error:
@@ -23189,6 +23319,8 @@ get_past_presentation_timing_google
 """
     cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV})::Cvoid
 
+Extension: VK_NV_clip_space_w_scaling
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV}`
@@ -23200,6 +23332,8 @@ cmd_set_viewport_w_scaling_nv
 
 """
     cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:_Rect2D})::Cvoid
+
+Extension: VK_EXT_discard_rectangles
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -23213,6 +23347,8 @@ cmd_set_discard_rectangle_ext
 """
     cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::_SampleLocationsInfoEXT)::Cvoid
 
+Extension: VK_EXT_sample_locations
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `sample_locations_info::_SampleLocationsInfoEXT`
@@ -23225,6 +23361,8 @@ cmd_set_sample_locations_ext
 """
     get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag)::MultisamplePropertiesEXT
 
+Extension: VK_EXT_sample_locations
+
 Arguments:
 • `physical_device::PhysicalDevice`
 • `samples::SampleCountFlag`
@@ -23236,6 +23374,8 @@ get_physical_device_multisample_properties_ext
 
 """
     get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{SurfaceCapabilities2KHR, VulkanError}
+
+Extension: VK_KHR_get_surface_capabilities2
 
 Return codes:
 • Error:
@@ -23255,6 +23395,8 @@ get_physical_device_surface_capabilities_2_khr
 """
     get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)::ResultTypes.Result{Vector{SurfaceFormat2KHR}, VulkanError}
 
+Extension: VK_KHR_get_surface_capabilities2
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -23273,6 +23415,8 @@ get_physical_device_surface_formats_2_khr
 """
     get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayProperties2KHR}, VulkanError}
 
+Extension: VK_KHR_get_display_properties2
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -23288,6 +23432,8 @@ get_physical_device_display_properties_2_khr
 
 """
     get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPlaneProperties2KHR}, VulkanError}
+
+Extension: VK_KHR_get_display_properties2
 
 Return codes:
 • Error:
@@ -23305,6 +23451,8 @@ get_physical_device_display_plane_properties_2_khr
 """
     get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Vector{DisplayModeProperties2KHR}, VulkanError}
 
+Extension: VK_KHR_get_display_properties2
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -23321,6 +23469,8 @@ get_display_mode_properties_2_khr
 
 """
     get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::_DisplayPlaneInfo2KHR)::ResultTypes.Result{DisplayPlaneCapabilities2KHR, VulkanError}
+
+Extension: VK_KHR_get_display_properties2
 
 Return codes:
 • Error:
@@ -23418,6 +23568,8 @@ get_device_queue_2
 """
     create_validation_cache_ext(device::Device, create_info::_ValidationCacheCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{ValidationCacheEXT, VulkanError}
 
+Extension: VK_EXT_validation_cache
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -23435,6 +23587,8 @@ create_validation_cache_ext
 """
     destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL)::Cvoid
 
+Extension: VK_EXT_validation_cache
+
 Arguments:
 • `device::Device`
 • `validation_cache::ValidationCacheEXT` (externsync)
@@ -23447,6 +23601,8 @@ destroy_validation_cache_ext
 
 """
     get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+
+Extension: VK_EXT_validation_cache
 
 Return codes:
 • Error:
@@ -23467,6 +23623,8 @@ get_validation_cache_data_ext
 
 """
     merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_EXT_validation_cache
 
 Return codes:
 • Error:
@@ -23498,6 +23656,8 @@ get_descriptor_set_layout_support
 """
     get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::ShaderInfoTypeAMD)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
+Extension: VK_AMD_shader_info
+
 Return codes:
 • Error:
   ∘ `ERROR_FEATURE_NOT_PRESENT`
@@ -23520,6 +23680,8 @@ get_shader_info_amd
 """
     set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)::Cvoid
 
+Extension: VK_AMD_display_native_hdr
+
 Arguments:
 • `device::Device`
 • `swap_chain::SwapchainKHR`
@@ -23532,6 +23694,8 @@ set_local_dimming_amd
 
 """
     get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{TimeDomainEXT}, VulkanError}
+
+Extension: VK_EXT_calibrated_timestamps
 
 Return codes:
 • Error:
@@ -23548,6 +23712,8 @@ get_physical_device_calibrateable_time_domains_ext
 
 """
     get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT})::ResultTypes.Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
+
+Extension: VK_EXT_calibrated_timestamps
 
 Return codes:
 • Error:
@@ -23566,6 +23732,8 @@ get_calibrated_timestamps_ext
 """
     set_debug_utils_object_name_ext(device::Device, name_info::_DebugUtilsObjectNameInfoEXT)::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_EXT_debug_utils
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -23582,6 +23750,8 @@ set_debug_utils_object_name_ext
 
 """
     set_debug_utils_object_tag_ext(device::Device, tag_info::_DebugUtilsObjectTagInfoEXT)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_EXT_debug_utils
 
 Return codes:
 • Error:
@@ -23600,6 +23770,8 @@ set_debug_utils_object_tag_ext
 """
     queue_begin_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)::Cvoid
 
+Extension: VK_EXT_debug_utils
+
 Arguments:
 • `queue::Queue`
 • `label_info::_DebugUtilsLabelEXT`
@@ -23612,6 +23784,8 @@ queue_begin_debug_utils_label_ext
 """
     queue_end_debug_utils_label_ext(queue::Queue)::Cvoid
 
+Extension: VK_EXT_debug_utils
+
 Arguments:
 • `queue::Queue`
 
@@ -23622,6 +23796,8 @@ queue_end_debug_utils_label_ext
 
 """
     queue_insert_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)::Cvoid
+
+Extension: VK_EXT_debug_utils
 
 Arguments:
 • `queue::Queue`
@@ -23635,6 +23811,8 @@ queue_insert_debug_utils_label_ext
 """
     cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)::Cvoid
 
+Extension: VK_EXT_debug_utils
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `label_info::_DebugUtilsLabelEXT`
@@ -23647,6 +23825,8 @@ cmd_begin_debug_utils_label_ext
 """
     cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer)::Cvoid
 
+Extension: VK_EXT_debug_utils
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 
@@ -23657,6 +23837,8 @@ cmd_end_debug_utils_label_ext
 
 """
     cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)::Cvoid
+
+Extension: VK_EXT_debug_utils
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -23669,6 +23851,8 @@ cmd_insert_debug_utils_label_ext
 
 """
     create_debug_utils_messenger_ext(instance::Instance, create_info::_DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{DebugUtilsMessengerEXT, VulkanError}
+
+Extension: VK_EXT_debug_utils
 
 Return codes:
 • Error:
@@ -23687,6 +23871,8 @@ create_debug_utils_messenger_ext
 """
     destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL)::Cvoid
 
+Extension: VK_EXT_debug_utils
+
 Arguments:
 • `instance::Instance`
 • `messenger::DebugUtilsMessengerEXT` (externsync)
@@ -23699,6 +23885,8 @@ destroy_debug_utils_messenger_ext
 
 """
     submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT)::Cvoid
+
+Extension: VK_EXT_debug_utils
 
 Arguments:
 • `instance::Instance`
@@ -23713,6 +23901,8 @@ submit_debug_utils_message_ext
 
 """
     get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{MemoryHostPointerPropertiesEXT, VulkanError}
+
+Extension: VK_EXT_external_memory_host
 
 Return codes:
 • Error:
@@ -23731,6 +23921,8 @@ get_memory_host_pointer_properties_ext
 
 """
     cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
+
+Extension: VK_AMD_buffer_marker
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -23894,6 +24086,8 @@ cmd_draw_indexed_indirect_count
 """
     cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid
 
+Extension: VK_NV_device_diagnostic_checkpoints
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `checkpoint_marker::Ptr{Cvoid}`
@@ -23906,6 +24100,8 @@ cmd_set_checkpoint_nv
 """
     get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
 
+Extension: VK_NV_device_diagnostic_checkpoints
+
 Arguments:
 • `queue::Queue`
 
@@ -23916,6 +24112,8 @@ get_queue_checkpoint_data_nv
 
 """
     cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid
+
+Extension: VK_EXT_transform_feedback
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -23931,6 +24129,8 @@ cmd_bind_transform_feedback_buffers_ext
 """
     cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
 
+Extension: VK_EXT_transform_feedback
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `counter_buffers::AbstractArray{<:Buffer}`
@@ -23944,6 +24144,8 @@ cmd_begin_transform_feedback_ext
 """
     cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
 
+Extension: VK_EXT_transform_feedback
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `counter_buffers::AbstractArray{<:Buffer}`
@@ -23956,6 +24158,8 @@ cmd_end_transform_feedback_ext
 
 """
     cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)::Cvoid
+
+Extension: VK_EXT_transform_feedback
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -23972,6 +24176,8 @@ cmd_begin_query_indexed_ext
 """
     cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer)::Cvoid
 
+Extension: VK_EXT_transform_feedback
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `query_pool::QueryPool`
@@ -23985,6 +24191,8 @@ cmd_end_query_indexed_ext
 
 """
     cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer)::Cvoid
+
+Extension: VK_EXT_transform_feedback
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24003,6 +24211,8 @@ cmd_draw_indirect_byte_count_ext
 """
     cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:_Rect2D})::Cvoid
 
+Extension: VK_NV_scissor_exclusive
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `exclusive_scissors::AbstractArray{<:_Rect2D}`
@@ -24014,6 +24224,8 @@ cmd_set_exclusive_scissor_nv
 
 """
     cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::ImageLayout; image_view = C_NULL)::Cvoid
+
+Extension: VK_NV_shading_rate_image
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24028,6 +24240,8 @@ cmd_bind_shading_rate_image_nv
 """
     cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV})::Cvoid
 
+Extension: VK_NV_shading_rate_image
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}`
@@ -24039,6 +24253,8 @@ cmd_set_viewport_shading_rate_palette_nv
 
 """
     cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV})::Cvoid
+
+Extension: VK_NV_shading_rate_image
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24053,6 +24269,8 @@ cmd_set_coarse_sample_order_nv
 """
     cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer)::Cvoid
 
+Extension: VK_NV_mesh_shader
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `task_count::Integer`
@@ -24065,6 +24283,8 @@ cmd_draw_mesh_tasks_nv
 
 """
     cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)::Cvoid
+
+Extension: VK_NV_mesh_shader
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24080,6 +24300,8 @@ cmd_draw_mesh_tasks_indirect_nv
 
 """
     cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid
+
+Extension: VK_NV_mesh_shader
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24097,6 +24319,8 @@ cmd_draw_mesh_tasks_indirect_count_nv
 
 """
     compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_NV_ray_tracing
 
 Return codes:
 • Error:
@@ -24116,6 +24340,8 @@ compile_deferred_nv
 """
     create_acceleration_structure_nv(device::Device, create_info::_AccelerationStructureCreateInfoNV; allocator = C_NULL)::ResultTypes.Result{AccelerationStructureNV, VulkanError}
 
+Extension: VK_NV_ray_tracing
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24133,6 +24359,8 @@ create_acceleration_structure_nv
 """
     destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL)::Cvoid
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `device::Device`
 • `acceleration_structure::AccelerationStructureKHR` (externsync)
@@ -24145,6 +24373,8 @@ destroy_acceleration_structure_khr
 
 """
     destroy_acceleration_structure_nv(device::Device, acceleration_structure::AccelerationStructureNV; allocator = C_NULL)::Cvoid
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `device::Device`
@@ -24159,6 +24389,8 @@ destroy_acceleration_structure_nv
 """
     get_acceleration_structure_memory_requirements_nv(device::Device, info::_AccelerationStructureMemoryRequirementsInfoNV)::VkMemoryRequirements2KHR
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `device::Device`
 • `info::_AccelerationStructureMemoryRequirementsInfoNV`
@@ -24170,6 +24402,8 @@ get_acceleration_structure_memory_requirements_nv
 
 """
     bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV})::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_NV_ray_tracing
 
 Return codes:
 • Error:
@@ -24188,6 +24422,8 @@ bind_acceleration_structure_memory_nv
 """
     cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::CopyAccelerationStructureModeKHR)::Cvoid
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `dst::AccelerationStructureNV`
@@ -24202,6 +24438,8 @@ cmd_copy_acceleration_structure_nv
 """
     cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureInfoKHR)::Cvoid
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `info::_CopyAccelerationStructureInfoKHR`
@@ -24213,6 +24451,8 @@ cmd_copy_acceleration_structure_khr
 
 """
     copy_acceleration_structure_khr(device::Device, info::_CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_acceleration_structure
 
 Return codes:
 • Success:
@@ -24236,6 +24476,8 @@ copy_acceleration_structure_khr
 """
     cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureToMemoryInfoKHR)::Cvoid
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `info::_CopyAccelerationStructureToMemoryInfoKHR`
@@ -24247,6 +24489,8 @@ cmd_copy_acceleration_structure_to_memory_khr
 
 """
     copy_acceleration_structure_to_memory_khr(device::Device, info::_CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_acceleration_structure
 
 Return codes:
 • Success:
@@ -24270,6 +24514,8 @@ copy_acceleration_structure_to_memory_khr
 """
     cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyMemoryToAccelerationStructureInfoKHR)::Cvoid
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `info::_CopyMemoryToAccelerationStructureInfoKHR`
@@ -24281,6 +24527,8 @@ cmd_copy_memory_to_acceleration_structure_khr
 
 """
     copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_acceleration_structure
 
 Return codes:
 • Success:
@@ -24304,6 +24552,8 @@ copy_memory_to_acceleration_structure_khr
 """
     cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
@@ -24319,6 +24569,8 @@ cmd_write_acceleration_structures_properties_khr
 """
     cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
@@ -24333,6 +24585,8 @@ cmd_write_acceleration_structures_properties_nv
 
 """
     cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24352,6 +24606,8 @@ cmd_build_acceleration_structure_nv
 
 """
     write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_acceleration_structure
 
 Return codes:
 • Error:
@@ -24374,6 +24630,8 @@ write_acceleration_structures_properties_khr
 """
     cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `raygen_shader_binding_table::_StridedDeviceAddressRegionKHR`
@@ -24391,6 +24649,8 @@ cmd_trace_rays_khr
 
 """
     cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)::Cvoid
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24417,6 +24677,8 @@ cmd_trace_rays_nv
 """
     get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24437,6 +24699,8 @@ get_ray_tracing_shader_group_handles_khr
 
 """
     get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 Return codes:
 • Error:
@@ -24459,6 +24723,8 @@ get_ray_tracing_capture_replay_shader_group_handles_khr
 """
     get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_NV_ray_tracing
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24477,6 +24743,8 @@ get_acceleration_structure_handle_nv
 
 """
     create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+
+Extension: VK_NV_ray_tracing
 
 Return codes:
 • Success:
@@ -24500,6 +24768,8 @@ create_ray_tracing_pipelines_nv
 
 """
     create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 Return codes:
 • Success:
@@ -24527,6 +24797,8 @@ create_ray_tracing_pipelines_khr
 """
     get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{_CooperativeMatrixPropertiesNV}, VulkanError}
 
+Extension: VK_NV_cooperative_matrix
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24542,6 +24814,8 @@ get_physical_device_cooperative_matrix_properties_nv
 
 """
     cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, indirect_device_address::Integer)::Cvoid
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -24559,6 +24833,8 @@ cmd_trace_rays_indirect_khr
 """
     get_device_acceleration_structure_compatibility_khr(device::Device, version_info::_AccelerationStructureVersionInfoKHR)::AccelerationStructureCompatibilityKHR
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `device::Device`
 • `version_info::_AccelerationStructureVersionInfoKHR`
@@ -24570,6 +24846,8 @@ get_device_acceleration_structure_compatibility_khr
 
 """
     get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::ShaderGroupShaderKHR)::UInt64
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 Arguments:
 • `device::Device`
@@ -24585,6 +24863,8 @@ get_ray_tracing_shader_group_stack_size_khr
 """
     cmd_set_ray_tracing_pipeline_stack_size_khr(command_buffer::CommandBuffer, pipeline_stack_size::Integer)::Cvoid
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `pipeline_stack_size::Integer`
@@ -24597,6 +24877,8 @@ cmd_set_ray_tracing_pipeline_stack_size_khr
 """
     get_image_view_handle_nvx(device::Device, info::_ImageViewHandleInfoNVX)::UInt32
 
+Extension: VK_NVX_image_view_handle
+
 Arguments:
 • `device::Device`
 • `info::_ImageViewHandleInfoNVX`
@@ -24608,6 +24890,8 @@ get_image_view_handle_nvx
 
 """
     get_image_view_address_nvx(device::Device, image_view::ImageView)::ResultTypes.Result{ImageViewAddressPropertiesNVX, VulkanError}
+
+Extension: VK_NVX_image_view_handle
 
 Return codes:
 • Error:
@@ -24625,6 +24909,8 @@ get_image_view_address_nvx
 
 """
     enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::ResultTypes.Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}}, VulkanError}
+
+Extension: VK_KHR_performance_query
 
 Return codes:
 • Error:
@@ -24644,6 +24930,8 @@ enumerate_physical_device_queue_family_performance_query_counters_khr
 """
     get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR)::UInt32
 
+Extension: VK_KHR_performance_query
+
 Arguments:
 • `physical_device::PhysicalDevice`
 • `performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR`
@@ -24655,6 +24943,8 @@ get_physical_device_queue_family_performance_query_passes_khr
 
 """
     acquire_profiling_lock_khr(device::Device, info::_AcquireProfilingLockInfoKHR)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_performance_query
 
 Return codes:
 • Error:
@@ -24673,6 +24963,8 @@ acquire_profiling_lock_khr
 """
     release_profiling_lock_khr(device::Device)::Cvoid
 
+Extension: VK_KHR_performance_query
+
 Arguments:
 • `device::Device`
 
@@ -24683,6 +24975,8 @@ release_profiling_lock_khr
 
 """
     get_image_drm_format_modifier_properties_ext(device::Device, image::Image)::ResultTypes.Result{ImageDrmFormatModifierPropertiesEXT, VulkanError}
+
+Extension: VK_EXT_image_drm_format_modifier
 
 Return codes:
 • Error:
@@ -24724,6 +25018,8 @@ get_buffer_device_address
 """
     create_headless_surface_ext(instance::Instance, create_info::_HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
 
+Extension: VK_EXT_headless_surface
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24742,6 +25038,8 @@ create_headless_surface_ext
 """
     get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{FramebufferMixedSamplesCombinationNV}, VulkanError}
 
+Extension: VK_NV_coverage_reduction_mode
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24757,6 +25055,8 @@ get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
 
 """
     initialize_performance_api_intel(device::Device, initialize_info::_InitializePerformanceApiInfoINTEL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_INTEL_performance_query
 
 Return codes:
 • Error:
@@ -24775,6 +25075,8 @@ initialize_performance_api_intel
 """
     uninitialize_performance_api_intel(device::Device)::Cvoid
 
+Extension: VK_INTEL_performance_query
+
 Arguments:
 • `device::Device`
 
@@ -24785,6 +25087,8 @@ uninitialize_performance_api_intel
 
 """
     cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceMarkerInfoINTEL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_INTEL_performance_query
 
 Return codes:
 • Error:
@@ -24803,6 +25107,8 @@ cmd_set_performance_marker_intel
 """
     cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceStreamMarkerInfoINTEL)::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_INTEL_performance_query
+
 Return codes:
 • Error:
   ∘ `ERROR_TOO_MANY_OBJECTS`
@@ -24819,6 +25125,8 @@ cmd_set_performance_stream_marker_intel
 
 """
     cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::_PerformanceOverrideInfoINTEL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_INTEL_performance_query
 
 Return codes:
 • Error:
@@ -24837,6 +25145,8 @@ cmd_set_performance_override_intel
 """
     acquire_performance_configuration_intel(device::Device, acquire_info::_PerformanceConfigurationAcquireInfoINTEL)::ResultTypes.Result{PerformanceConfigurationINTEL, VulkanError}
 
+Extension: VK_INTEL_performance_query
+
 Return codes:
 • Error:
   ∘ `ERROR_TOO_MANY_OBJECTS`
@@ -24853,6 +25163,8 @@ acquire_performance_configuration_intel
 
 """
     release_performance_configuration_intel(device::Device; configuration = C_NULL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_INTEL_performance_query
 
 Return codes:
 • Error:
@@ -24871,6 +25183,8 @@ release_performance_configuration_intel
 """
     queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)::ResultTypes.Result{Result, VulkanError}
 
+Extension: VK_INTEL_performance_query
+
 Return codes:
 • Error:
   ∘ `ERROR_TOO_MANY_OBJECTS`
@@ -24887,6 +25201,8 @@ queue_set_performance_configuration_intel
 
 """
     get_performance_parameter_intel(device::Device, parameter::PerformanceParameterTypeINTEL)::ResultTypes.Result{_PerformanceValueINTEL, VulkanError}
+
+Extension: VK_INTEL_performance_query
 
 Return codes:
 • Error:
@@ -24917,6 +25233,8 @@ get_device_memory_opaque_capture_address
 """
     get_pipeline_executable_properties_khr(device::Device, pipeline_info::_PipelineInfoKHR)::ResultTypes.Result{Vector{PipelineExecutablePropertiesKHR}, VulkanError}
 
+Extension: VK_KHR_pipeline_executable_properties
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24933,6 +25251,8 @@ get_pipeline_executable_properties_khr
 
 """
     get_pipeline_executable_statistics_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::ResultTypes.Result{Vector{PipelineExecutableStatisticKHR}, VulkanError}
+
+Extension: VK_KHR_pipeline_executable_properties
 
 Return codes:
 • Error:
@@ -24951,6 +25271,8 @@ get_pipeline_executable_statistics_khr
 """
     get_pipeline_executable_internal_representations_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)::ResultTypes.Result{Vector{PipelineExecutableInternalRepresentationKHR}, VulkanError}
 
+Extension: VK_KHR_pipeline_executable_properties
+
 Return codes:
 • Error:
   ∘ `ERROR_OUT_OF_HOST_MEMORY`
@@ -24968,6 +25290,8 @@ get_pipeline_executable_internal_representations_khr
 """
     cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer)::Cvoid
 
+Extension: VK_EXT_line_rasterization
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `line_stipple_factor::Integer`
@@ -24980,6 +25304,8 @@ cmd_set_line_stipple_ext
 
 """
     get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{PhysicalDeviceToolPropertiesEXT}, VulkanError}
+
+Extension: VK_EXT_tooling_info
 
 Return codes:
 • Error:
@@ -24995,6 +25321,8 @@ get_physical_device_tool_properties_ext
 
 """
     create_acceleration_structure_khr(device::Device, create_info::_AccelerationStructureCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{AccelerationStructureKHR, VulkanError}
+
+Extension: VK_KHR_acceleration_structure
 
 Return codes:
 • Error:
@@ -25014,6 +25342,8 @@ create_acceleration_structure_khr
 """
     cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR})::Cvoid
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}`
@@ -25026,6 +25356,8 @@ cmd_build_acceleration_structures_khr
 
 """
     cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer})::Cvoid
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25041,6 +25373,8 @@ cmd_build_acceleration_structures_indirect_khr
 
 """
     build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_acceleration_structure
 
 Return codes:
 • Success:
@@ -25065,6 +25399,8 @@ build_acceleration_structures_khr
 """
     get_acceleration_structure_device_address_khr(device::Device, info::_AccelerationStructureDeviceAddressInfoKHR)::UInt64
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `device::Device`
 • `info::_AccelerationStructureDeviceAddressInfoKHR`
@@ -25076,6 +25412,8 @@ get_acceleration_structure_device_address_khr
 
 """
     create_deferred_operation_khr(device::Device; allocator = C_NULL)::ResultTypes.Result{DeferredOperationKHR, VulkanError}
+
+Extension: VK_KHR_deferred_host_operations
 
 Return codes:
 • Error:
@@ -25093,6 +25431,8 @@ create_deferred_operation_khr
 """
     destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR; allocator = C_NULL)::Cvoid
 
+Extension: VK_KHR_deferred_host_operations
+
 Arguments:
 • `device::Device`
 • `operation::DeferredOperationKHR` (externsync)
@@ -25106,6 +25446,8 @@ destroy_deferred_operation_khr
 """
     get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR)::UInt32
 
+Extension: VK_KHR_deferred_host_operations
+
 Arguments:
 • `device::Device`
 • `operation::DeferredOperationKHR`
@@ -25117,6 +25459,8 @@ get_deferred_operation_max_concurrency_khr
 
 """
     get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_deferred_host_operations
 
 Return codes:
 • Success:
@@ -25134,6 +25478,8 @@ get_deferred_operation_result_khr
 
 """
     deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_deferred_host_operations
 
 Return codes:
 • Success:
@@ -25156,6 +25502,8 @@ deferred_operation_join_khr
 """
     cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `cull_mode`: defaults to `0`
@@ -25167,6 +25515,8 @@ cmd_set_cull_mode_ext
 
 """
     cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::FrontFace)::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25180,6 +25530,8 @@ cmd_set_front_face_ext
 """
     cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::PrimitiveTopology)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `primitive_topology::PrimitiveTopology`
@@ -25191,6 +25543,8 @@ cmd_set_primitive_topology_ext
 
 """
     cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25204,6 +25558,8 @@ cmd_set_viewport_with_count_ext
 """
     cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `scissors::AbstractArray{<:_Rect2D}`
@@ -25215,6 +25571,8 @@ cmd_set_scissor_with_count_ext
 
 """
     cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25231,6 +25589,8 @@ cmd_bind_vertex_buffers_2_ext
 """
     cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `depth_test_enable::Bool`
@@ -25242,6 +25602,8 @@ cmd_set_depth_test_enable_ext
 
 """
     cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool)::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25255,6 +25617,8 @@ cmd_set_depth_write_enable_ext
 """
     cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::CompareOp)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `depth_compare_op::CompareOp`
@@ -25266,6 +25630,8 @@ cmd_set_depth_compare_op_ext
 
 """
     cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool)::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25279,6 +25645,8 @@ cmd_set_depth_bounds_test_enable_ext
 """
     cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `stencil_test_enable::Bool`
@@ -25290,6 +25658,8 @@ cmd_set_stencil_test_enable_ext
 
 """
     cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp)::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25307,6 +25677,8 @@ cmd_set_stencil_op_ext
 """
     cmd_set_patch_control_points_ext(command_buffer::CommandBuffer, patch_control_points::Integer)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `patch_control_points::Integer`
@@ -25318,6 +25690,8 @@ cmd_set_patch_control_points_ext
 
 """
     cmd_set_rasterizer_discard_enable_ext(command_buffer::CommandBuffer, rasterizer_discard_enable::Bool)::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25331,6 +25705,8 @@ cmd_set_rasterizer_discard_enable_ext
 """
     cmd_set_depth_bias_enable_ext(command_buffer::CommandBuffer, depth_bias_enable::Bool)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `depth_bias_enable::Bool`
@@ -25342,6 +25718,8 @@ cmd_set_depth_bias_enable_ext
 
 """
     cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::LogicOp)::Cvoid
+
+Extension: VK_EXT_extended_dynamic_state2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25355,6 +25733,8 @@ cmd_set_logic_op_ext
 """
     cmd_set_primitive_restart_enable_ext(command_buffer::CommandBuffer, primitive_restart_enable::Bool)::Cvoid
 
+Extension: VK_EXT_extended_dynamic_state2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `primitive_restart_enable::Bool`
@@ -25366,6 +25746,8 @@ cmd_set_primitive_restart_enable_ext
 
 """
     create_private_data_slot_ext(device::Device, create_info::_PrivateDataSlotCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{PrivateDataSlotEXT, VulkanError}
+
+Extension: VK_EXT_private_data
 
 Return codes:
 • Error:
@@ -25384,6 +25766,8 @@ create_private_data_slot_ext
 """
     destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT; allocator = C_NULL)::Cvoid
 
+Extension: VK_EXT_private_data
+
 Arguments:
 • `device::Device`
 • `private_data_slot::PrivateDataSlotEXT` (externsync)
@@ -25396,6 +25780,8 @@ destroy_private_data_slot_ext
 
 """
     set_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_EXT_private_data
 
 Return codes:
 • Error:
@@ -25416,6 +25802,8 @@ set_private_data_ext
 """
     get_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)::UInt64
 
+Extension: VK_EXT_private_data
+
 Arguments:
 • `device::Device`
 • `object_type::ObjectType`
@@ -25430,6 +25818,8 @@ get_private_data_ext
 """
     cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::_CopyBufferInfo2KHR)::Cvoid
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `copy_buffer_info::_CopyBufferInfo2KHR`
@@ -25441,6 +25831,8 @@ cmd_copy_buffer_2_khr
 
 """
     cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::_CopyImageInfo2KHR)::Cvoid
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25454,6 +25846,8 @@ cmd_copy_image_2_khr
 """
     cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::_BlitImageInfo2KHR)::Cvoid
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `blit_image_info::_BlitImageInfo2KHR`
@@ -25465,6 +25859,8 @@ cmd_blit_image_2_khr
 
 """
     cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR)::Cvoid
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25478,6 +25874,8 @@ cmd_copy_buffer_to_image_2_khr
 """
     cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR)::Cvoid
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR`
@@ -25489,6 +25887,8 @@ cmd_copy_image_to_buffer_2_khr
 
 """
     cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::_ResolveImageInfo2KHR)::Cvoid
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25502,6 +25902,8 @@ cmd_resolve_image_2_khr
 """
     cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})::Cvoid
 
+Extension: VK_KHR_fragment_shading_rate
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `fragment_size::_Extent2D`
@@ -25514,6 +25916,8 @@ cmd_set_fragment_shading_rate_khr
 
 """
     get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{PhysicalDeviceFragmentShadingRateKHR}, VulkanError}
+
+Extension: VK_KHR_fragment_shading_rate
 
 Return codes:
 • Error:
@@ -25530,6 +25934,8 @@ get_physical_device_fragment_shading_rates_khr
 """
     cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})::Cvoid
 
+Extension: VK_NV_fragment_shading_rate_enums
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `shading_rate::FragmentShadingRateNV`
@@ -25542,6 +25948,8 @@ cmd_set_fragment_shading_rate_enum_nv
 
 """
     get_acceleration_structure_build_sizes_khr(device::Device, build_type::AccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::_AccelerationStructureBuildSizesInfoKHR
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `device::Device`
@@ -25557,6 +25965,8 @@ get_acceleration_structure_build_sizes_khr
 """
     cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT})::Cvoid
 
+Extension: VK_EXT_vertex_input_dynamic_state
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}`
@@ -25570,6 +25980,8 @@ cmd_set_vertex_input_ext
 """
     cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray{<:Bool})::Cvoid
 
+Extension: VK_EXT_color_write_enable
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `color_write_enables::AbstractArray{<:Bool}`
@@ -25581,6 +25993,8 @@ cmd_set_color_write_enable_ext
 
 """
     cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::_DependencyInfoKHR)::Cvoid
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25595,6 +26009,8 @@ cmd_set_event_2_khr
 """
     cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer)::Cvoid
 
+Extension: VK_KHR_synchronization2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `event::Event`
@@ -25607,6 +26023,8 @@ cmd_reset_event_2_khr
 
 """
     cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25621,6 +26039,8 @@ cmd_wait_events_2_khr
 """
     cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR)::Cvoid
 
+Extension: VK_KHR_synchronization2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `dependency_info::_DependencyInfoKHR`
@@ -25632,6 +26052,8 @@ cmd_pipeline_barrier_2_khr
 
 """
     queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:_SubmitInfo2KHR}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError}
+
+Extension: VK_KHR_synchronization2
 
 Return codes:
 • Error:
@@ -25652,6 +26074,8 @@ queue_submit_2_khr
 """
     cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer)::Cvoid
 
+Extension: VK_KHR_synchronization2
+
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `stage::Integer`
@@ -25665,6 +26089,8 @@ cmd_write_timestamp_2_khr
 
 """
     cmd_write_buffer_marker_2_amd(command_buffer::CommandBuffer, stage::Integer, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)::Cvoid
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
@@ -25680,6 +26106,8 @@ cmd_write_buffer_marker_2_amd
 
 """
     get_queue_checkpoint_data_2_nv(queue::Queue)::Vector{CheckpointData2NV}
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `queue::Queue`
@@ -27114,6 +27542,8 @@ _SubmitInfo
 """
     _DisplayModeParametersKHR(visible_region::_Extent2D, refresh_rate::Integer)
 
+Extension: VK_KHR_display
+
 Arguments:
 • `visible_region::_Extent2D`
 • `refresh_rate::Integer`
@@ -27125,6 +27555,8 @@ _DisplayModeParametersKHR
 
 """
     _DisplayModeCreateInfoKHR(parameters::_DisplayModeParametersKHR; next = C_NULL, flags = 0)
+
+Extension: VK_KHR_display
 
 Arguments:
 • `parameters::_DisplayModeParametersKHR`
@@ -27138,6 +27570,8 @@ _DisplayModeCreateInfoKHR
 
 """
     _DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D; next = C_NULL, flags = 0)
+
+Extension: VK_KHR_display
 
 Arguments:
 • `display_mode::DisplayModeKHR`
@@ -27158,6 +27592,8 @@ _DisplaySurfaceCreateInfoKHR
 """
     _DisplayPresentInfoKHR(src_rect::_Rect2D, dst_rect::_Rect2D, persistent::Bool; next = C_NULL)
 
+Extension: VK_KHR_display_swapchain
+
 Arguments:
 • `src_rect::_Rect2D`
 • `dst_rect::_Rect2D`
@@ -27171,6 +27607,8 @@ _DisplayPresentInfoKHR
 
 """
     _WaylandSurfaceCreateInfoKHR(display::Ptr{wl_display}, surface::Ptr{wl_surface}; next = C_NULL, flags = 0)
+
+Extension: VK_KHR_wayland_surface
 
 Arguments:
 • `display::Ptr{wl_display}`
@@ -27186,6 +27624,8 @@ _WaylandSurfaceCreateInfoKHR
 """
     _XlibSurfaceCreateInfoKHR(dpy::Ptr{Display}, window::Window; next = C_NULL, flags = 0)
 
+Extension: VK_KHR_xlib_surface
+
 Arguments:
 • `dpy::Ptr{Display}`
 • `window::Window`
@@ -27200,6 +27640,8 @@ _XlibSurfaceCreateInfoKHR
 """
     _XcbSurfaceCreateInfoKHR(connection::Ptr{xcb_connection_t}, window::xcb_window_t; next = C_NULL, flags = 0)
 
+Extension: VK_KHR_xcb_surface
+
 Arguments:
 • `connection::Ptr{xcb_connection_t}`
 • `window::xcb_window_t`
@@ -27213,6 +27655,8 @@ _XcbSurfaceCreateInfoKHR
 
 """
     _SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL)
+
+Extension: VK_KHR_swapchain
 
 Arguments:
 • `surface::SurfaceKHR`
@@ -27240,6 +27684,8 @@ _SwapchainCreateInfoKHR
 """
     _PresentInfoKHR(wait_semaphores::AbstractArray{<:Semaphore}, swapchains::AbstractArray{<:SwapchainKHR}, image_indices::AbstractArray{<:Integer}; next = C_NULL, results = C_NULL)
 
+Extension: VK_KHR_swapchain
+
 Arguments:
 • `wait_semaphores::AbstractArray{<:Semaphore}`
 • `swapchains::AbstractArray{<:SwapchainKHR}`
@@ -27255,6 +27701,8 @@ _PresentInfoKHR
 """
     _DebugReportCallbackCreateInfoEXT(pfn_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
 
+Extension: VK_EXT_debug_report
+
 Arguments:
 • `pfn_callback::FunctionPtr`
 • `next`: defaults to `C_NULL`
@@ -27269,6 +27717,8 @@ _DebugReportCallbackCreateInfoEXT
 """
     _ValidationFlagsEXT(disabled_validation_checks::AbstractArray{<:ValidationCheckEXT}; next = C_NULL)
 
+Extension: VK_EXT_validation_flags
+
 Arguments:
 • `disabled_validation_checks::AbstractArray{<:ValidationCheckEXT}`
 • `next`: defaults to `C_NULL`
@@ -27280,6 +27730,8 @@ _ValidationFlagsEXT
 
 """
     _ValidationFeaturesEXT(enabled_validation_features::AbstractArray{<:ValidationFeatureEnableEXT}, disabled_validation_features::AbstractArray{<:ValidationFeatureDisableEXT}; next = C_NULL)
+
+Extension: VK_EXT_validation_features
 
 Arguments:
 • `enabled_validation_features::AbstractArray{<:ValidationFeatureEnableEXT}`
@@ -27294,6 +27746,8 @@ _ValidationFeaturesEXT
 """
     _PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::RasterizationOrderAMD; next = C_NULL)
 
+Extension: VK_AMD_rasterization_order
+
 Arguments:
 • `rasterization_order::RasterizationOrderAMD`
 • `next`: defaults to `C_NULL`
@@ -27305,6 +27759,8 @@ _PipelineRasterizationStateRasterizationOrderAMD
 
 """
     _DebugMarkerObjectNameInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL)
+
+Extension: VK_EXT_debug_marker
 
 Arguments:
 • `object_type::DebugReportObjectTypeEXT`
@@ -27319,6 +27775,8 @@ _DebugMarkerObjectNameInfoEXT
 
 """
     _DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+
+Extension: VK_EXT_debug_marker
 
 Arguments:
 • `object_type::DebugReportObjectTypeEXT`
@@ -27336,6 +27794,8 @@ _DebugMarkerObjectTagInfoEXT
 """
     _DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
+Extension: VK_EXT_debug_marker
+
 Arguments:
 • `marker_name::AbstractString`
 • `color::NTuple{4, Float32}`
@@ -27349,6 +27809,8 @@ _DebugMarkerMarkerInfoEXT
 """
     _DedicatedAllocationImageCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
 
+Extension: VK_NV_dedicated_allocation
+
 Arguments:
 • `dedicated_allocation::Bool`
 • `next`: defaults to `C_NULL`
@@ -27361,6 +27823,8 @@ _DedicatedAllocationImageCreateInfoNV
 """
     _DedicatedAllocationBufferCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
 
+Extension: VK_NV_dedicated_allocation
+
 Arguments:
 • `dedicated_allocation::Bool`
 • `next`: defaults to `C_NULL`
@@ -27372,6 +27836,8 @@ _DedicatedAllocationBufferCreateInfoNV
 
 """
     _DedicatedAllocationMemoryAllocateInfoNV(; next = C_NULL, image = C_NULL, buffer = C_NULL)
+
+Extension: VK_NV_dedicated_allocation
 
 Arguments:
 • `next`: defaults to `C_NULL`
@@ -27386,6 +27852,8 @@ _DedicatedAllocationMemoryAllocateInfoNV
 """
     _ExternalMemoryImageCreateInfoNV(; next = C_NULL, handle_types = 0)
 
+Extension: VK_NV_external_memory
+
 Arguments:
 • `next`: defaults to `C_NULL`
 • `handle_types`: defaults to `0`
@@ -27397,6 +27865,8 @@ _ExternalMemoryImageCreateInfoNV
 
 """
     _ExportMemoryAllocateInfoNV(; next = C_NULL, handle_types = 0)
+
+Extension: VK_NV_external_memory
 
 Arguments:
 • `next`: defaults to `C_NULL`
@@ -27410,6 +27880,8 @@ _ExportMemoryAllocateInfoNV
 """
     _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(device_generated_commands::Bool; next = C_NULL)
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `device_generated_commands::Bool`
 • `next`: defaults to `C_NULL`
@@ -27421,6 +27893,8 @@ _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
 
 """
     _DevicePrivateDataCreateInfoEXT(private_data_slot_request_count::Integer; next = C_NULL)
+
+Extension: VK_EXT_private_data
 
 Arguments:
 • `private_data_slot_request_count::Integer`
@@ -27434,6 +27908,8 @@ _DevicePrivateDataCreateInfoEXT
 """
     _PrivateDataSlotCreateInfoEXT(flags::PrivateDataSlotCreateFlagEXT; next = C_NULL)
 
+Extension: VK_EXT_private_data
+
 Arguments:
 • `flags::PrivateDataSlotCreateFlagEXT`
 • `next`: defaults to `C_NULL`
@@ -27446,6 +27922,8 @@ _PrivateDataSlotCreateInfoEXT
 """
     _PhysicalDevicePrivateDataFeaturesEXT(private_data::Bool; next = C_NULL)
 
+Extension: VK_EXT_private_data
+
 Arguments:
 • `private_data::Bool`
 • `next`: defaults to `C_NULL`
@@ -27457,6 +27935,8 @@ _PhysicalDevicePrivateDataFeaturesEXT
 
 """
     _GraphicsShaderGroupCreateInfoNV(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}; next = C_NULL, vertex_input_state = C_NULL, tessellation_state = C_NULL)
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
@@ -27472,6 +27952,8 @@ _GraphicsShaderGroupCreateInfoNV
 """
     _GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}, pipelines::AbstractArray{<:Pipeline}; next = C_NULL)
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}`
 • `pipelines::AbstractArray{<:Pipeline}`
@@ -27485,6 +27967,8 @@ _GraphicsPipelineShaderGroupsCreateInfoNV
 """
     _BindShaderGroupIndirectCommandNV(group_index::Integer)
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `group_index::Integer`
 
@@ -27495,6 +27979,8 @@ _BindShaderGroupIndirectCommandNV
 
 """
     _BindIndexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, index_type::IndexType)
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `buffer_address::Integer`
@@ -27509,6 +27995,8 @@ _BindIndexBufferIndirectCommandNV
 """
     _BindVertexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, stride::Integer)
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `buffer_address::Integer`
 • `size::Integer`
@@ -27522,6 +28010,8 @@ _BindVertexBufferIndirectCommandNV
 """
     _SetStateFlagsIndirectCommandNV(data::Integer)
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `data::Integer`
 
@@ -27532,6 +28022,8 @@ _SetStateFlagsIndirectCommandNV
 
 """
     _IndirectCommandsStreamNV(buffer::Buffer, offset::Integer)
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `buffer::Buffer`
@@ -27544,6 +28036,8 @@ _IndirectCommandsStreamNV
 
 """
     _IndirectCommandsLayoutTokenNV(token_type::IndirectCommandsTokenTypeNV, stream::Integer, offset::Integer, vertex_binding_unit::Integer, vertex_dynamic_stride::Bool, pushconstant_offset::Integer, pushconstant_size::Integer, index_types::AbstractArray{<:IndexType}, index_type_values::AbstractArray{<:Integer}; next = C_NULL, pushconstant_pipeline_layout = C_NULL, pushconstant_shader_stage_flags = 0, indirect_state_flags = 0)
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `token_type::IndirectCommandsTokenTypeNV`
@@ -27568,6 +28062,8 @@ _IndirectCommandsLayoutTokenNV
 """
     _IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
+Extension: VK_NV_device_generated_commands
+
 Arguments:
 • `pipeline_bind_point::PipelineBindPoint`
 • `tokens::AbstractArray{<:_IndirectCommandsLayoutTokenNV}`
@@ -27582,6 +28078,8 @@ _IndirectCommandsLayoutCreateInfoNV
 
 """
     _GeneratedCommandsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, streams::AbstractArray{<:_IndirectCommandsStreamNV}, sequences_count::Integer, preprocess_buffer::Buffer, preprocess_offset::Integer, preprocess_size::Integer, sequences_count_offset::Integer, sequences_index_offset::Integer; next = C_NULL, sequences_count_buffer = C_NULL, sequences_index_buffer = C_NULL)
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `pipeline_bind_point::PipelineBindPoint`
@@ -27605,6 +28103,8 @@ _GeneratedCommandsInfoNV
 
 """
     _GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, indirect_commands_layout::IndirectCommandsLayoutNV, max_sequences_count::Integer; next = C_NULL)
+
+Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `pipeline_bind_point::PipelineBindPoint`
@@ -27679,6 +28179,8 @@ _ConformanceVersion
 """
     _PresentRegionsKHR(; next = C_NULL, regions = C_NULL)
 
+Extension: VK_KHR_incremental_present
+
 Arguments:
 • `next`: defaults to `C_NULL`
 • `regions`: defaults to `C_NULL`
@@ -27691,6 +28193,8 @@ _PresentRegionsKHR
 """
     _PresentRegionKHR(; rectangles = C_NULL)
 
+Extension: VK_KHR_incremental_present
+
 Arguments:
 • `rectangles`: defaults to `C_NULL`
 
@@ -27701,6 +28205,8 @@ _PresentRegionKHR
 
 """
     _RectLayerKHR(offset::_Offset2D, extent::_Extent2D, layer::Integer)
+
+Extension: VK_KHR_incremental_present
 
 Arguments:
 • `offset::_Offset2D`
@@ -27790,6 +28296,8 @@ _ExportMemoryAllocateInfo
 """
     _ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
 
+Extension: VK_KHR_external_memory_fd
+
 Arguments:
 • `fd::Integer`
 • `next`: defaults to `C_NULL`
@@ -27802,6 +28310,8 @@ _ImportMemoryFdInfoKHR
 
 """
     _MemoryGetFdInfoKHR(memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
+
+Extension: VK_KHR_external_memory_fd
 
 Arguments:
 • `memory::DeviceMemory`
@@ -27840,6 +28350,8 @@ _ExportSemaphoreCreateInfo
 """
     _ImportSemaphoreFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
+Extension: VK_KHR_external_semaphore_fd
+
 Arguments:
 • `semaphore::Semaphore` (externsync)
 • `handle_type::ExternalSemaphoreHandleTypeFlag`
@@ -27854,6 +28366,8 @@ _ImportSemaphoreFdInfoKHR
 
 """
     _SemaphoreGetFdInfoKHR(semaphore::Semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
+
+Extension: VK_KHR_external_semaphore_fd
 
 Arguments:
 • `semaphore::Semaphore`
@@ -27892,6 +28406,8 @@ _ExportFenceCreateInfo
 """
     _ImportFenceFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
 
+Extension: VK_KHR_external_fence_fd
+
 Arguments:
 • `fence::Fence` (externsync)
 • `handle_type::ExternalFenceHandleTypeFlag`
@@ -27906,6 +28422,8 @@ _ImportFenceFdInfoKHR
 
 """
     _FenceGetFdInfoKHR(fence::Fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
+
+Extension: VK_KHR_external_fence_fd
 
 Arguments:
 • `fence::Fence`
@@ -27948,6 +28466,8 @@ _RenderPassMultiviewCreateInfo
 """
     _DisplayPowerInfoEXT(power_state::DisplayPowerStateEXT; next = C_NULL)
 
+Extension: VK_EXT_display_control
+
 Arguments:
 • `power_state::DisplayPowerStateEXT`
 • `next`: defaults to `C_NULL`
@@ -27959,6 +28479,8 @@ _DisplayPowerInfoEXT
 
 """
     _DeviceEventInfoEXT(device_event::DeviceEventTypeEXT; next = C_NULL)
+
+Extension: VK_EXT_display_control
 
 Arguments:
 • `device_event::DeviceEventTypeEXT`
@@ -27972,6 +28494,8 @@ _DeviceEventInfoEXT
 """
     _DisplayEventInfoEXT(display_event::DisplayEventTypeEXT; next = C_NULL)
 
+Extension: VK_EXT_display_control
+
 Arguments:
 • `display_event::DisplayEventTypeEXT`
 • `next`: defaults to `C_NULL`
@@ -27983,6 +28507,8 @@ _DisplayEventInfoEXT
 
 """
     _SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0)
+
+Extension: VK_EXT_display_control
 
 Arguments:
 • `next`: defaults to `C_NULL`
@@ -28114,6 +28640,8 @@ _DeviceGroupBindSparseInfo
 """
     _ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
 
+Extension: VK_KHR_swapchain
+
 Arguments:
 • `next`: defaults to `C_NULL`
 • `swapchain`: defaults to `C_NULL`
@@ -28125,6 +28653,8 @@ _ImageSwapchainCreateInfoKHR
 
 """
     _BindImageMemorySwapchainInfoKHR(swapchain::SwapchainKHR, image_index::Integer; next = C_NULL)
+
+Extension: VK_KHR_swapchain
 
 Arguments:
 • `swapchain::SwapchainKHR` (externsync)
@@ -28138,6 +28668,8 @@ _BindImageMemorySwapchainInfoKHR
 
 """
     _AcquireNextImageInfoKHR(swapchain::SwapchainKHR, timeout::Integer, device_mask::Integer; next = C_NULL, semaphore = C_NULL, fence = C_NULL)
+
+Extension: VK_KHR_swapchain
 
 Arguments:
 • `swapchain::SwapchainKHR` (externsync)
@@ -28154,6 +28686,8 @@ _AcquireNextImageInfoKHR
 
 """
     _DeviceGroupPresentInfoKHR(device_masks::AbstractArray{<:Integer}, mode::DeviceGroupPresentModeFlagKHR; next = C_NULL)
+
+Extension: VK_KHR_swapchain
 
 Arguments:
 • `device_masks::AbstractArray{<:Integer}`
@@ -28179,6 +28713,8 @@ _DeviceGroupDeviceCreateInfo
 
 """
     _DeviceGroupSwapchainCreateInfoKHR(modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
+
+Extension: VK_KHR_swapchain
 
 Arguments:
 • `modes::DeviceGroupPresentModeFlagKHR`
@@ -28226,6 +28762,8 @@ _DescriptorUpdateTemplateCreateInfo
 """
     _XYColorEXT(x::Real, y::Real)
 
+Extension: VK_EXT_hdr_metadata
+
 Arguments:
 • `x::Real`
 • `y::Real`
@@ -28237,6 +28775,8 @@ _XYColorEXT
 
 """
     _HdrMetadataEXT(display_primary_red::_XYColorEXT, display_primary_green::_XYColorEXT, display_primary_blue::_XYColorEXT, white_point::_XYColorEXT, max_luminance::Real, min_luminance::Real, max_content_light_level::Real, max_frame_average_light_level::Real; next = C_NULL)
+
+Extension: VK_EXT_hdr_metadata
 
 Arguments:
 • `display_primary_red::_XYColorEXT`
@@ -28257,6 +28797,8 @@ _HdrMetadataEXT
 """
     _SwapchainDisplayNativeHdrCreateInfoAMD(local_dimming_enable::Bool; next = C_NULL)
 
+Extension: VK_AMD_display_native_hdr
+
 Arguments:
 • `local_dimming_enable::Bool`
 • `next`: defaults to `C_NULL`
@@ -28268,6 +28810,8 @@ _SwapchainDisplayNativeHdrCreateInfoAMD
 
 """
     _PresentTimesInfoGOOGLE(; next = C_NULL, times = C_NULL)
+
+Extension: VK_GOOGLE_display_timing
 
 Arguments:
 • `next`: defaults to `C_NULL`
@@ -28281,6 +28825,8 @@ _PresentTimesInfoGOOGLE
 """
     _PresentTimeGOOGLE(present_id::Integer, desired_present_time::Integer)
 
+Extension: VK_GOOGLE_display_timing
+
 Arguments:
 • `present_id::Integer`
 • `desired_present_time::Integer`
@@ -28292,6 +28838,8 @@ _PresentTimeGOOGLE
 
 """
     _ViewportWScalingNV(xcoeff::Real, ycoeff::Real)
+
+Extension: VK_NV_clip_space_w_scaling
 
 Arguments:
 • `xcoeff::Real`
@@ -28305,6 +28853,8 @@ _ViewportWScalingNV
 """
     _PipelineViewportWScalingStateCreateInfoNV(viewport_w_scaling_enable::Bool; next = C_NULL, viewport_w_scalings = C_NULL)
 
+Extension: VK_NV_clip_space_w_scaling
+
 Arguments:
 • `viewport_w_scaling_enable::Bool`
 • `next`: defaults to `C_NULL`
@@ -28317,6 +28867,8 @@ _PipelineViewportWScalingStateCreateInfoNV
 
 """
     _ViewportSwizzleNV(x::ViewportCoordinateSwizzleNV, y::ViewportCoordinateSwizzleNV, z::ViewportCoordinateSwizzleNV, w::ViewportCoordinateSwizzleNV)
+
+Extension: VK_NV_viewport_swizzle
 
 Arguments:
 • `x::ViewportCoordinateSwizzleNV`
@@ -28332,6 +28884,8 @@ _ViewportSwizzleNV
 """
     _PipelineViewportSwizzleStateCreateInfoNV(viewport_swizzles::AbstractArray{<:_ViewportSwizzleNV}; next = C_NULL, flags = 0)
 
+Extension: VK_NV_viewport_swizzle
+
 Arguments:
 • `viewport_swizzles::AbstractArray{<:_ViewportSwizzleNV}`
 • `next`: defaults to `C_NULL`
@@ -28344,6 +28898,8 @@ _PipelineViewportSwizzleStateCreateInfoNV
 
 """
     _PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::DiscardRectangleModeEXT, discard_rectangles::AbstractArray{<:_Rect2D}; next = C_NULL, flags = 0)
+
+Extension: VK_EXT_discard_rectangles
 
 Arguments:
 • `discard_rectangle_mode::DiscardRectangleModeEXT`
@@ -28384,6 +28940,8 @@ _RenderPassInputAttachmentAspectCreateInfo
 """
     _PhysicalDeviceSurfaceInfo2KHR(surface::SurfaceKHR; next = C_NULL)
 
+Extension: VK_KHR_get_surface_capabilities2
+
 Arguments:
 • `surface::SurfaceKHR`
 • `next`: defaults to `C_NULL`
@@ -28395,6 +28953,8 @@ _PhysicalDeviceSurfaceInfo2KHR
 
 """
     _DisplayPlaneInfo2KHR(mode::DisplayModeKHR, plane_index::Integer; next = C_NULL)
+
+Extension: VK_KHR_get_display_properties2
 
 Arguments:
 • `mode::DisplayModeKHR` (externsync)
@@ -28576,6 +29136,8 @@ _PhysicalDeviceSamplerYcbcrConversionFeatures
 """
     _ConditionalRenderingBeginInfoEXT(buffer::Buffer, offset::Integer; next = C_NULL, flags = 0)
 
+Extension: VK_EXT_conditional_rendering
+
 Arguments:
 • `buffer::Buffer`
 • `offset::Integer`
@@ -28628,6 +29190,8 @@ _DeviceQueueInfo2
 """
     _PipelineCoverageToColorStateCreateInfoNV(coverage_to_color_enable::Bool; next = C_NULL, flags = 0, coverage_to_color_location = 0)
 
+Extension: VK_NV_fragment_coverage_to_color
+
 Arguments:
 • `coverage_to_color_enable::Bool`
 • `next`: defaults to `C_NULL`
@@ -28642,6 +29206,8 @@ _PipelineCoverageToColorStateCreateInfoNV
 """
     _SampleLocationEXT(x::Real, y::Real)
 
+Extension: VK_EXT_sample_locations
+
 Arguments:
 • `x::Real`
 • `y::Real`
@@ -28653,6 +29219,8 @@ _SampleLocationEXT
 
 """
     _SampleLocationsInfoEXT(sample_locations_per_pixel::SampleCountFlag, sample_location_grid_size::_Extent2D, sample_locations::AbstractArray{<:_SampleLocationEXT}; next = C_NULL)
+
+Extension: VK_EXT_sample_locations
 
 Arguments:
 • `sample_locations_per_pixel::SampleCountFlag`
@@ -28668,6 +29236,8 @@ _SampleLocationsInfoEXT
 """
     _AttachmentSampleLocationsEXT(attachment_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
 
+Extension: VK_EXT_sample_locations
+
 Arguments:
 • `attachment_index::Integer`
 • `sample_locations_info::_SampleLocationsInfoEXT`
@@ -28679,6 +29249,8 @@ _AttachmentSampleLocationsEXT
 
 """
     _SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
+
+Extension: VK_EXT_sample_locations
 
 Arguments:
 • `subpass_index::Integer`
@@ -28692,6 +29264,8 @@ _SubpassSampleLocationsEXT
 """
     _RenderPassSampleLocationsBeginInfoEXT(attachment_initial_sample_locations::AbstractArray{<:_AttachmentSampleLocationsEXT}, post_subpass_sample_locations::AbstractArray{<:_SubpassSampleLocationsEXT}; next = C_NULL)
 
+Extension: VK_EXT_sample_locations
+
 Arguments:
 • `attachment_initial_sample_locations::AbstractArray{<:_AttachmentSampleLocationsEXT}`
 • `post_subpass_sample_locations::AbstractArray{<:_SubpassSampleLocationsEXT}`
@@ -28704,6 +29278,8 @@ _RenderPassSampleLocationsBeginInfoEXT
 
 """
     _PipelineSampleLocationsStateCreateInfoEXT(sample_locations_enable::Bool, sample_locations_info::_SampleLocationsInfoEXT; next = C_NULL)
+
+Extension: VK_EXT_sample_locations
 
 Arguments:
 • `sample_locations_enable::Bool`
@@ -28730,6 +29306,8 @@ _SamplerReductionModeCreateInfo
 """
     _PhysicalDeviceBlendOperationAdvancedFeaturesEXT(advanced_blend_coherent_operations::Bool; next = C_NULL)
 
+Extension: VK_EXT_blend_operation_advanced
+
 Arguments:
 • `advanced_blend_coherent_operations::Bool`
 • `next`: defaults to `C_NULL`
@@ -28741,6 +29319,8 @@ _PhysicalDeviceBlendOperationAdvancedFeaturesEXT
 
 """
     _PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::BlendOverlapEXT; next = C_NULL)
+
+Extension: VK_EXT_blend_operation_advanced
 
 Arguments:
 • `src_premultiplied::Bool`
@@ -28756,6 +29336,8 @@ _PipelineColorBlendAdvancedStateCreateInfoEXT
 """
     _PhysicalDeviceInlineUniformBlockFeaturesEXT(inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool; next = C_NULL)
 
+Extension: VK_EXT_inline_uniform_block
+
 Arguments:
 • `inline_uniform_block::Bool`
 • `descriptor_binding_inline_uniform_block_update_after_bind::Bool`
@@ -28768,6 +29350,8 @@ _PhysicalDeviceInlineUniformBlockFeaturesEXT
 
 """
     _WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Ptr{Cvoid}; next = C_NULL)
+
+Extension: VK_EXT_inline_uniform_block
 
 Arguments:
 • `data_size::Integer`
@@ -28782,6 +29366,8 @@ _WriteDescriptorSetInlineUniformBlockEXT
 """
     _DescriptorPoolInlineUniformBlockCreateInfoEXT(max_inline_uniform_block_bindings::Integer; next = C_NULL)
 
+Extension: VK_EXT_inline_uniform_block
+
 Arguments:
 • `max_inline_uniform_block_bindings::Integer`
 • `next`: defaults to `C_NULL`
@@ -28793,6 +29379,8 @@ _DescriptorPoolInlineUniformBlockCreateInfoEXT
 
 """
     _PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::CoverageModulationModeNV, coverage_modulation_table_enable::Bool; next = C_NULL, flags = 0, coverage_modulation_table = C_NULL)
+
+Extension: VK_NV_framebuffer_mixed_samples
 
 Arguments:
 • `coverage_modulation_mode::CoverageModulationModeNV`
@@ -28821,6 +29409,8 @@ _ImageFormatListCreateInfo
 """
     _ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = 0)
 
+Extension: VK_EXT_validation_cache
+
 Arguments:
 • `initial_data::Ptr{Cvoid}`
 • `next`: defaults to `C_NULL`
@@ -28834,6 +29424,8 @@ _ValidationCacheCreateInfoEXT
 
 """
     _ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCacheEXT; next = C_NULL)
+
+Extension: VK_EXT_validation_cache
 
 Arguments:
 • `validation_cache::ValidationCacheEXT`
@@ -28884,6 +29476,8 @@ _PhysicalDeviceHostQueryResetFeatures
 """
     _DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::QueueGlobalPriorityEXT; next = C_NULL)
 
+Extension: VK_EXT_global_priority
+
 Arguments:
 • `global_priority::QueueGlobalPriorityEXT`
 • `next`: defaults to `C_NULL`
@@ -28895,6 +29489,8 @@ _DeviceQueueGlobalPriorityCreateInfoEXT
 
 """
     _DebugUtilsObjectNameInfoEXT(object_type::ObjectType, object_handle::Integer; next = C_NULL, object_name = C_NULL)
+
+Extension: VK_EXT_debug_utils
 
 Arguments:
 • `object_type::ObjectType`
@@ -28909,6 +29505,8 @@ _DebugUtilsObjectNameInfoEXT
 
 """
     _DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL)
+
+Extension: VK_EXT_debug_utils
 
 Arguments:
 • `object_type::ObjectType`
@@ -28926,6 +29524,8 @@ _DebugUtilsObjectTagInfoEXT
 """
     _DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL)
 
+Extension: VK_EXT_debug_utils
+
 Arguments:
 • `label_name::AbstractString`
 • `color::NTuple{4, Float32}`
@@ -28938,6 +29538,8 @@ _DebugUtilsLabelEXT
 
 """
     _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
+
+Extension: VK_EXT_debug_utils
 
 Arguments:
 • `message_severity::DebugUtilsMessageSeverityFlagEXT`
@@ -28954,6 +29556,8 @@ _DebugUtilsMessengerCreateInfoEXT
 
 """
     _DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::AbstractString, queue_labels::AbstractArray{<:_DebugUtilsLabelEXT}, cmd_buf_labels::AbstractArray{<:_DebugUtilsLabelEXT}, objects::AbstractArray{<:_DebugUtilsObjectNameInfoEXT}; next = C_NULL, flags = 0, message_id_name = C_NULL)
+
+Extension: VK_EXT_debug_utils
 
 Arguments:
 • `message_id_number::Integer`
@@ -28973,6 +29577,8 @@ _DebugUtilsMessengerCallbackDataEXT
 """
     _PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL)
 
+Extension: VK_EXT_device_memory_report
+
 Arguments:
 • `device_memory_report::Bool`
 • `next`: defaults to `C_NULL`
@@ -28984,6 +29590,8 @@ _PhysicalDeviceDeviceMemoryReportFeaturesEXT
 
 """
     _DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL)
+
+Extension: VK_EXT_device_memory_report
 
 Arguments:
 • `flags::Integer`
@@ -28999,6 +29607,8 @@ _DeviceDeviceMemoryReportCreateInfoEXT
 """
     _ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL)
 
+Extension: VK_EXT_external_memory_host
+
 Arguments:
 • `handle_type::ExternalMemoryHandleTypeFlag`
 • `host_pointer::Ptr{Cvoid}`
@@ -29012,6 +29622,8 @@ _ImportMemoryHostPointerInfoEXT
 """
     _CalibratedTimestampInfoEXT(time_domain::TimeDomainEXT; next = C_NULL)
 
+Extension: VK_EXT_calibrated_timestamps
+
 Arguments:
 • `time_domain::TimeDomainEXT`
 • `next`: defaults to `C_NULL`
@@ -29023,6 +29635,8 @@ _CalibratedTimestampInfoEXT
 
 """
     _PipelineRasterizationConservativeStateCreateInfoEXT(conservative_rasterization_mode::ConservativeRasterizationModeEXT, extra_primitive_overestimation_size::Real; next = C_NULL, flags = 0)
+
+Extension: VK_EXT_conservative_rasterization
 
 Arguments:
 • `conservative_rasterization_mode::ConservativeRasterizationModeEXT`
@@ -29269,6 +29883,8 @@ _SemaphoreSignalInfo
 """
     _VertexInputBindingDivisorDescriptionEXT(binding::Integer, divisor::Integer)
 
+Extension: VK_EXT_vertex_attribute_divisor
+
 Arguments:
 • `binding::Integer`
 • `divisor::Integer`
@@ -29281,6 +29897,8 @@ _VertexInputBindingDivisorDescriptionEXT
 """
     _PipelineVertexInputDivisorStateCreateInfoEXT(vertex_binding_divisors::AbstractArray{<:_VertexInputBindingDivisorDescriptionEXT}; next = C_NULL)
 
+Extension: VK_EXT_vertex_attribute_divisor
+
 Arguments:
 • `vertex_binding_divisors::AbstractArray{<:_VertexInputBindingDivisorDescriptionEXT}`
 • `next`: defaults to `C_NULL`
@@ -29292,6 +29910,8 @@ _PipelineVertexInputDivisorStateCreateInfoEXT
 
 """
     _CommandBufferInheritanceConditionalRenderingInfoEXT(conditional_rendering_enable::Bool; next = C_NULL)
+
+Extension: VK_EXT_conditional_rendering
 
 Arguments:
 • `conditional_rendering_enable::Bool`
@@ -29318,6 +29938,8 @@ _PhysicalDevice8BitStorageFeatures
 
 """
     _PhysicalDeviceConditionalRenderingFeaturesEXT(conditional_rendering::Bool, inherited_conditional_rendering::Bool; next = C_NULL)
+
+Extension: VK_EXT_conditional_rendering
 
 Arguments:
 • `conditional_rendering::Bool`
@@ -29359,6 +29981,8 @@ _PhysicalDeviceShaderAtomicInt64Features
 """
     _PhysicalDeviceShaderAtomicFloatFeaturesEXT(shader_buffer_float_32_atomics::Bool, shader_buffer_float_32_atomic_add::Bool, shader_buffer_float_64_atomics::Bool, shader_buffer_float_64_atomic_add::Bool, shader_shared_float_32_atomics::Bool, shader_shared_float_32_atomic_add::Bool, shader_shared_float_64_atomics::Bool, shader_shared_float_64_atomic_add::Bool, shader_image_float_32_atomics::Bool, shader_image_float_32_atomic_add::Bool, sparse_image_float_32_atomics::Bool, sparse_image_float_32_atomic_add::Bool; next = C_NULL)
 
+Extension: VK_EXT_shader_atomic_float
+
 Arguments:
 • `shader_buffer_float_32_atomics::Bool`
 • `shader_buffer_float_32_atomic_add::Bool`
@@ -29381,6 +30005,8 @@ _PhysicalDeviceShaderAtomicFloatFeaturesEXT
 
 """
     _PhysicalDeviceVertexAttributeDivisorFeaturesEXT(vertex_attribute_instance_rate_divisor::Bool, vertex_attribute_instance_rate_zero_divisor::Bool; next = C_NULL)
+
+Extension: VK_EXT_vertex_attribute_divisor
 
 Arguments:
 • `vertex_attribute_instance_rate_divisor::Bool`
@@ -29409,6 +30035,8 @@ _SubpassDescriptionDepthStencilResolve
 """
     _ImageViewASTCDecodeModeEXT(decode_mode::Format; next = C_NULL)
 
+Extension: VK_EXT_astc_decode_mode
+
 Arguments:
 • `decode_mode::Format`
 • `next`: defaults to `C_NULL`
@@ -29421,6 +30049,8 @@ _ImageViewASTCDecodeModeEXT
 """
     _PhysicalDeviceASTCDecodeFeaturesEXT(decode_mode_shared_exponent::Bool; next = C_NULL)
 
+Extension: VK_EXT_astc_decode_mode
+
 Arguments:
 • `decode_mode_shared_exponent::Bool`
 • `next`: defaults to `C_NULL`
@@ -29432,6 +30062,8 @@ _PhysicalDeviceASTCDecodeFeaturesEXT
 
 """
     _PhysicalDeviceTransformFeedbackFeaturesEXT(transform_feedback::Bool, geometry_streams::Bool; next = C_NULL)
+
+Extension: VK_EXT_transform_feedback
 
 Arguments:
 • `transform_feedback::Bool`
@@ -29446,6 +30078,8 @@ _PhysicalDeviceTransformFeedbackFeaturesEXT
 """
     _PipelineRasterizationStateStreamCreateInfoEXT(rasterization_stream::Integer; next = C_NULL, flags = 0)
 
+Extension: VK_EXT_transform_feedback
+
 Arguments:
 • `rasterization_stream::Integer`
 • `next`: defaults to `C_NULL`
@@ -29459,6 +30093,8 @@ _PipelineRasterizationStateStreamCreateInfoEXT
 """
     _PhysicalDeviceRepresentativeFragmentTestFeaturesNV(representative_fragment_test::Bool; next = C_NULL)
 
+Extension: VK_NV_representative_fragment_test
+
 Arguments:
 • `representative_fragment_test::Bool`
 • `next`: defaults to `C_NULL`
@@ -29470,6 +30106,8 @@ _PhysicalDeviceRepresentativeFragmentTestFeaturesNV
 
 """
     _PipelineRepresentativeFragmentTestStateCreateInfoNV(representative_fragment_test_enable::Bool; next = C_NULL)
+
+Extension: VK_NV_representative_fragment_test
 
 Arguments:
 • `representative_fragment_test_enable::Bool`
@@ -29483,6 +30121,8 @@ _PipelineRepresentativeFragmentTestStateCreateInfoNV
 """
     _PhysicalDeviceExclusiveScissorFeaturesNV(exclusive_scissor::Bool; next = C_NULL)
 
+Extension: VK_NV_scissor_exclusive
+
 Arguments:
 • `exclusive_scissor::Bool`
 • `next`: defaults to `C_NULL`
@@ -29494,6 +30134,8 @@ _PhysicalDeviceExclusiveScissorFeaturesNV
 
 """
     _PipelineViewportExclusiveScissorStateCreateInfoNV(exclusive_scissors::AbstractArray{<:_Rect2D}; next = C_NULL)
+
+Extension: VK_NV_scissor_exclusive
 
 Arguments:
 • `exclusive_scissors::AbstractArray{<:_Rect2D}`
@@ -29507,6 +30149,8 @@ _PipelineViewportExclusiveScissorStateCreateInfoNV
 """
     _PhysicalDeviceCornerSampledImageFeaturesNV(corner_sampled_image::Bool; next = C_NULL)
 
+Extension: VK_NV_corner_sampled_image
+
 Arguments:
 • `corner_sampled_image::Bool`
 • `next`: defaults to `C_NULL`
@@ -29518,6 +30162,8 @@ _PhysicalDeviceCornerSampledImageFeaturesNV
 
 """
     _PhysicalDeviceComputeShaderDerivativesFeaturesNV(compute_derivative_group_quads::Bool, compute_derivative_group_linear::Bool; next = C_NULL)
+
+Extension: VK_NV_compute_shader_derivatives
 
 Arguments:
 • `compute_derivative_group_quads::Bool`
@@ -29532,6 +30178,8 @@ _PhysicalDeviceComputeShaderDerivativesFeaturesNV
 """
     _PhysicalDeviceFragmentShaderBarycentricFeaturesNV(fragment_shader_barycentric::Bool; next = C_NULL)
 
+Extension: VK_NV_fragment_shader_barycentric
+
 Arguments:
 • `fragment_shader_barycentric::Bool`
 • `next`: defaults to `C_NULL`
@@ -29543,6 +30191,8 @@ _PhysicalDeviceFragmentShaderBarycentricFeaturesNV
 
 """
     _PhysicalDeviceShaderImageFootprintFeaturesNV(image_footprint::Bool; next = C_NULL)
+
+Extension: VK_NV_shader_image_footprint
 
 Arguments:
 • `image_footprint::Bool`
@@ -29556,6 +30206,8 @@ _PhysicalDeviceShaderImageFootprintFeaturesNV
 """
     _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(dedicated_allocation_image_aliasing::Bool; next = C_NULL)
 
+Extension: VK_NV_dedicated_allocation_image_aliasing
+
 Arguments:
 • `dedicated_allocation_image_aliasing::Bool`
 • `next`: defaults to `C_NULL`
@@ -29568,6 +30220,8 @@ _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
 """
     _ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray{<:ShadingRatePaletteEntryNV})
 
+Extension: VK_NV_shading_rate_image
+
 Arguments:
 • `shading_rate_palette_entries::AbstractArray{<:ShadingRatePaletteEntryNV}`
 
@@ -29578,6 +30232,8 @@ _ShadingRatePaletteNV
 
 """
     _PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_enable::Bool, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}; next = C_NULL)
+
+Extension: VK_NV_shading_rate_image
 
 Arguments:
 • `shading_rate_image_enable::Bool`
@@ -29592,6 +30248,8 @@ _PipelineViewportShadingRateImageStateCreateInfoNV
 """
     _PhysicalDeviceShadingRateImageFeaturesNV(shading_rate_image::Bool, shading_rate_coarse_sample_order::Bool; next = C_NULL)
 
+Extension: VK_NV_shading_rate_image
+
 Arguments:
 • `shading_rate_image::Bool`
 • `shading_rate_coarse_sample_order::Bool`
@@ -29604,6 +30262,8 @@ _PhysicalDeviceShadingRateImageFeaturesNV
 
 """
     _CoarseSampleLocationNV(pixel_x::Integer, pixel_y::Integer, sample::Integer)
+
+Extension: VK_NV_shading_rate_image
 
 Arguments:
 • `pixel_x::Integer`
@@ -29618,6 +30278,8 @@ _CoarseSampleLocationNV
 """
     _CoarseSampleOrderCustomNV(shading_rate::ShadingRatePaletteEntryNV, sample_count::Integer, sample_locations::AbstractArray{<:_CoarseSampleLocationNV})
 
+Extension: VK_NV_shading_rate_image
+
 Arguments:
 • `shading_rate::ShadingRatePaletteEntryNV`
 • `sample_count::Integer`
@@ -29630,6 +30292,8 @@ _CoarseSampleOrderCustomNV
 
 """
     _PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}; next = C_NULL)
+
+Extension: VK_NV_shading_rate_image
 
 Arguments:
 • `sample_order_type::CoarseSampleOrderTypeNV`
@@ -29644,6 +30308,8 @@ _PipelineViewportCoarseSampleOrderStateCreateInfoNV
 """
     _PhysicalDeviceMeshShaderFeaturesNV(task_shader::Bool, mesh_shader::Bool; next = C_NULL)
 
+Extension: VK_NV_mesh_shader
+
 Arguments:
 • `task_shader::Bool`
 • `mesh_shader::Bool`
@@ -29657,6 +30323,8 @@ _PhysicalDeviceMeshShaderFeaturesNV
 """
     _DrawMeshTasksIndirectCommandNV(task_count::Integer, first_task::Integer)
 
+Extension: VK_NV_mesh_shader
+
 Arguments:
 • `task_count::Integer`
 • `first_task::Integer`
@@ -29668,6 +30336,8 @@ _DrawMeshTasksIndirectCommandNV
 
 """
     _RayTracingShaderGroupCreateInfoNV(type::RayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL)
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `type::RayTracingShaderGroupTypeKHR`
@@ -29684,6 +30354,8 @@ _RayTracingShaderGroupCreateInfoNV
 
 """
     _RayTracingShaderGroupCreateInfoKHR(type::RayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL, shader_group_capture_replay_handle = C_NULL)
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 Arguments:
 • `type::RayTracingShaderGroupTypeKHR`
@@ -29702,6 +30374,8 @@ _RayTracingShaderGroupCreateInfoKHR
 """
     _RayTracingPipelineCreateInfoNV(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoNV}, max_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
 • `groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoNV}`
@@ -29719,6 +30393,8 @@ _RayTracingPipelineCreateInfoNV
 
 """
     _RayTracingPipelineCreateInfoKHR(stages::AbstractArray{<:_PipelineShaderStageCreateInfo}, groups::AbstractArray{<:_RayTracingShaderGroupCreateInfoKHR}, max_pipeline_ray_recursion_depth::Integer, layout::PipelineLayout, base_pipeline_index::Integer; next = C_NULL, flags = 0, library_info = C_NULL, library_interface = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL)
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 Arguments:
 • `stages::AbstractArray{<:_PipelineShaderStageCreateInfo}`
@@ -29740,6 +30416,8 @@ _RayTracingPipelineCreateInfoKHR
 
 """
     _GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::Format, index_offset::Integer, index_count::Integer, index_type::IndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `vertex_offset::Integer`
@@ -29763,6 +30441,8 @@ _GeometryTrianglesNV
 """
     _GeometryAABBNV(num_aab_bs::Integer, stride::Integer, offset::Integer; next = C_NULL, aabb_data = C_NULL)
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `num_aab_bs::Integer`
 • `stride::Integer`
@@ -29778,6 +30458,8 @@ _GeometryAABBNV
 """
     _GeometryDataNV(triangles::_GeometryTrianglesNV, aabbs::_GeometryAABBNV)
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `triangles::_GeometryTrianglesNV`
 • `aabbs::_GeometryAABBNV`
@@ -29789,6 +30471,8 @@ _GeometryDataNV
 
 """
     _GeometryNV(geometry_type::GeometryTypeKHR, geometry::_GeometryDataNV; next = C_NULL, flags = 0)
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `geometry_type::GeometryTypeKHR`
@@ -29803,6 +30487,8 @@ _GeometryNV
 
 """
     _AccelerationStructureInfoNV(type::VkAccelerationStructureTypeNV, geometries::AbstractArray{<:_GeometryNV}; next = C_NULL, flags = 0, instance_count = 0)
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `type::VkAccelerationStructureTypeNV`
@@ -29819,6 +30505,8 @@ _AccelerationStructureInfoNV
 """
     _AccelerationStructureCreateInfoNV(compacted_size::Integer, info::_AccelerationStructureInfoNV; next = C_NULL)
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `compacted_size::Integer`
 • `info::_AccelerationStructureInfoNV`
@@ -29831,6 +30519,8 @@ _AccelerationStructureCreateInfoNV
 
 """
     _BindAccelerationStructureMemoryInfoNV(acceleration_structure::AccelerationStructureNV, memory::DeviceMemory, memory_offset::Integer, device_indices::AbstractArray{<:Integer}; next = C_NULL)
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `acceleration_structure::AccelerationStructureNV`
@@ -29847,6 +30537,8 @@ _BindAccelerationStructureMemoryInfoNV
 """
     _WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray{<:AccelerationStructureKHR}; next = C_NULL)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
 • `next`: defaults to `C_NULL`
@@ -29858,6 +30550,8 @@ _WriteDescriptorSetAccelerationStructureKHR
 
 """
     _WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray{<:AccelerationStructureNV}; next = C_NULL)
+
+Extension: VK_NV_ray_tracing
 
 Arguments:
 • `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
@@ -29871,6 +30565,8 @@ _WriteDescriptorSetAccelerationStructureNV
 """
     _AccelerationStructureMemoryRequirementsInfoNV(type::AccelerationStructureMemoryRequirementsTypeNV, acceleration_structure::AccelerationStructureNV; next = C_NULL)
 
+Extension: VK_NV_ray_tracing
+
 Arguments:
 • `type::AccelerationStructureMemoryRequirementsTypeNV`
 • `acceleration_structure::AccelerationStructureNV`
@@ -29883,6 +30579,8 @@ _AccelerationStructureMemoryRequirementsInfoNV
 
 """
     _PhysicalDeviceAccelerationStructureFeaturesKHR(acceleration_structure::Bool, acceleration_structure_capture_replay::Bool, acceleration_structure_indirect_build::Bool, acceleration_structure_host_commands::Bool, descriptor_binding_acceleration_structure_update_after_bind::Bool; next = C_NULL)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `acceleration_structure::Bool`
@@ -29900,6 +30598,8 @@ _PhysicalDeviceAccelerationStructureFeaturesKHR
 """
     _PhysicalDeviceRayTracingPipelineFeaturesKHR(ray_tracing_pipeline::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_pipeline_trace_rays_indirect::Bool, ray_traversal_primitive_culling::Bool; next = C_NULL)
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 Arguments:
 • `ray_tracing_pipeline::Bool`
 • `ray_tracing_pipeline_shader_group_handle_capture_replay::Bool`
@@ -29916,6 +30616,8 @@ _PhysicalDeviceRayTracingPipelineFeaturesKHR
 """
     _PhysicalDeviceRayQueryFeaturesKHR(ray_query::Bool; next = C_NULL)
 
+Extension: VK_KHR_ray_query
+
 Arguments:
 • `ray_query::Bool`
 • `next`: defaults to `C_NULL`
@@ -29927,6 +30629,8 @@ _PhysicalDeviceRayQueryFeaturesKHR
 
 """
     _StridedDeviceAddressRegionKHR(stride::Integer, size::Integer; device_address = 0)
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 Arguments:
 • `stride::Integer`
@@ -29941,6 +30645,8 @@ _StridedDeviceAddressRegionKHR
 """
     _TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Integer)
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 Arguments:
 • `width::Integer`
 • `height::Integer`
@@ -29953,6 +30659,8 @@ _TraceRaysIndirectCommandKHR
 
 """
     _PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integer, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}; next = C_NULL)
+
+Extension: VK_EXT_image_drm_format_modifier
 
 Arguments:
 • `drm_format_modifier::Integer`
@@ -29968,6 +30676,8 @@ _PhysicalDeviceImageDrmFormatModifierInfoEXT
 """
     _ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::AbstractArray{<:Integer}; next = C_NULL)
 
+Extension: VK_EXT_image_drm_format_modifier
+
 Arguments:
 • `drm_format_modifiers::AbstractArray{<:Integer}`
 • `next`: defaults to `C_NULL`
@@ -29979,6 +30689,8 @@ _ImageDrmFormatModifierListCreateInfoEXT
 
 """
     _ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Integer, plane_layouts::AbstractArray{<:SubresourceLayout}; next = C_NULL)
+
+Extension: VK_EXT_image_drm_format_modifier
 
 Arguments:
 • `drm_format_modifier::Integer`
@@ -30005,6 +30717,8 @@ _ImageStencilUsageCreateInfo
 """
     _DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::MemoryOverallocationBehaviorAMD; next = C_NULL)
 
+Extension: VK_AMD_memory_overallocation_behavior
+
 Arguments:
 • `overallocation_behavior::MemoryOverallocationBehaviorAMD`
 • `next`: defaults to `C_NULL`
@@ -30016,6 +30730,8 @@ _DeviceMemoryOverallocationCreateInfoAMD
 
 """
     _PhysicalDeviceFragmentDensityMapFeaturesEXT(fragment_density_map::Bool, fragment_density_map_dynamic::Bool, fragment_density_map_non_subsampled_images::Bool; next = C_NULL)
+
+Extension: VK_EXT_fragment_density_map
 
 Arguments:
 • `fragment_density_map::Bool`
@@ -30031,6 +30747,8 @@ _PhysicalDeviceFragmentDensityMapFeaturesEXT
 """
     _PhysicalDeviceFragmentDensityMap2FeaturesEXT(fragment_density_map_deferred::Bool; next = C_NULL)
 
+Extension: VK_EXT_fragment_density_map2
+
 Arguments:
 • `fragment_density_map_deferred::Bool`
 • `next`: defaults to `C_NULL`
@@ -30042,6 +30760,8 @@ _PhysicalDeviceFragmentDensityMap2FeaturesEXT
 
 """
     _RenderPassFragmentDensityMapCreateInfoEXT(fragment_density_map_attachment::_AttachmentReference; next = C_NULL)
+
+Extension: VK_EXT_fragment_density_map
 
 Arguments:
 • `fragment_density_map_attachment::_AttachmentReference`
@@ -30067,6 +30787,8 @@ _PhysicalDeviceScalarBlockLayoutFeatures
 """
     _SurfaceProtectedCapabilitiesKHR(supports_protected::Bool; next = C_NULL)
 
+Extension: VK_KHR_surface_protected_capabilities
+
 Arguments:
 • `supports_protected::Bool`
 • `next`: defaults to `C_NULL`
@@ -30091,6 +30813,8 @@ _PhysicalDeviceUniformBufferStandardLayoutFeatures
 """
     _PhysicalDeviceDepthClipEnableFeaturesEXT(depth_clip_enable::Bool; next = C_NULL)
 
+Extension: VK_EXT_depth_clip_enable
+
 Arguments:
 • `depth_clip_enable::Bool`
 • `next`: defaults to `C_NULL`
@@ -30102,6 +30826,8 @@ _PhysicalDeviceDepthClipEnableFeaturesEXT
 
 """
     _PipelineRasterizationDepthClipStateCreateInfoEXT(depth_clip_enable::Bool; next = C_NULL, flags = 0)
+
+Extension: VK_EXT_depth_clip_enable
 
 Arguments:
 • `depth_clip_enable::Bool`
@@ -30116,6 +30842,8 @@ _PipelineRasterizationDepthClipStateCreateInfoEXT
 """
     _PhysicalDeviceMemoryPriorityFeaturesEXT(memory_priority::Bool; next = C_NULL)
 
+Extension: VK_EXT_memory_priority
+
 Arguments:
 • `memory_priority::Bool`
 • `next`: defaults to `C_NULL`
@@ -30127,6 +30855,8 @@ _PhysicalDeviceMemoryPriorityFeaturesEXT
 
 """
     _MemoryPriorityAllocateInfoEXT(priority::Real; next = C_NULL)
+
+Extension: VK_EXT_memory_priority
 
 Arguments:
 • `priority::Real`
@@ -30153,6 +30883,8 @@ _PhysicalDeviceBufferDeviceAddressFeatures
 
 """
     _PhysicalDeviceBufferDeviceAddressFeaturesEXT(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
+
+Extension: VK_EXT_buffer_device_address
 
 Arguments:
 • `buffer_device_address::Bool`
@@ -30192,6 +30924,8 @@ _BufferOpaqueCaptureAddressCreateInfo
 """
     _BufferDeviceAddressCreateInfoEXT(device_address::Integer; next = C_NULL)
 
+Extension: VK_EXT_buffer_device_address
+
 Arguments:
 • `device_address::Integer`
 • `next`: defaults to `C_NULL`
@@ -30203,6 +30937,8 @@ _BufferDeviceAddressCreateInfoEXT
 
 """
     _PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type::ImageViewType; next = C_NULL)
+
+Extension: VK_EXT_filter_cubic
 
 Arguments:
 • `image_view_type::ImageViewType`
@@ -30269,6 +31005,8 @@ _RenderPassAttachmentBeginInfo
 """
     _PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(texture_compression_astc_hdr::Bool; next = C_NULL)
 
+Extension: VK_EXT_texture_compression_astc_hdr
+
 Arguments:
 • `texture_compression_astc_hdr::Bool`
 • `next`: defaults to `C_NULL`
@@ -30280,6 +31018,8 @@ _PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
 
 """
     _PhysicalDeviceCooperativeMatrixFeaturesNV(cooperative_matrix::Bool, cooperative_matrix_robust_buffer_access::Bool; next = C_NULL)
+
+Extension: VK_NV_cooperative_matrix
 
 Arguments:
 • `cooperative_matrix::Bool`
@@ -30293,6 +31033,8 @@ _PhysicalDeviceCooperativeMatrixFeaturesNV
 
 """
     _CooperativeMatrixPropertiesNV(m_size::Integer, n_size::Integer, k_size::Integer, a_type::ComponentTypeNV, b_type::ComponentTypeNV, c_type::ComponentTypeNV, d_type::ComponentTypeNV, scope::ScopeNV; next = C_NULL)
+
+Extension: VK_NV_cooperative_matrix
 
 Arguments:
 • `m_size::Integer`
@@ -30313,6 +31055,8 @@ _CooperativeMatrixPropertiesNV
 """
     _PhysicalDeviceYcbcrImageArraysFeaturesEXT(ycbcr_image_arrays::Bool; next = C_NULL)
 
+Extension: VK_EXT_ycbcr_image_arrays
+
 Arguments:
 • `ycbcr_image_arrays::Bool`
 • `next`: defaults to `C_NULL`
@@ -30324,6 +31068,8 @@ _PhysicalDeviceYcbcrImageArraysFeaturesEXT
 
 """
     _ImageViewHandleInfoNVX(image_view::ImageView, descriptor_type::DescriptorType; next = C_NULL, sampler = C_NULL)
+
+Extension: VK_NVX_image_view_handle
 
 Arguments:
 • `image_view::ImageView`
@@ -30339,6 +31085,8 @@ _ImageViewHandleInfoNVX
 """
     _PipelineCreationFeedbackCreateInfoEXT(pipeline_creation_feedback::PipelineCreationFeedbackEXT, pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}; next = C_NULL)
 
+Extension: VK_EXT_pipeline_creation_feedback
+
 Arguments:
 • `pipeline_creation_feedback::PipelineCreationFeedbackEXT`
 • `pipeline_stage_creation_feedbacks::AbstractArray{<:PipelineCreationFeedbackEXT}`
@@ -30351,6 +31099,8 @@ _PipelineCreationFeedbackCreateInfoEXT
 
 """
     _PhysicalDevicePerformanceQueryFeaturesKHR(performance_counter_query_pools::Bool, performance_counter_multiple_query_pools::Bool; next = C_NULL)
+
+Extension: VK_KHR_performance_query
 
 Arguments:
 • `performance_counter_query_pools::Bool`
@@ -30365,6 +31115,8 @@ _PhysicalDevicePerformanceQueryFeaturesKHR
 """
     _QueryPoolPerformanceCreateInfoKHR(queue_family_index::Integer, counter_indices::AbstractArray{<:Integer}; next = C_NULL)
 
+Extension: VK_KHR_performance_query
+
 Arguments:
 • `queue_family_index::Integer`
 • `counter_indices::AbstractArray{<:Integer}`
@@ -30377,6 +31129,8 @@ _QueryPoolPerformanceCreateInfoKHR
 
 """
     _AcquireProfilingLockInfoKHR(timeout::Integer; next = C_NULL, flags = 0)
+
+Extension: VK_KHR_performance_query
 
 Arguments:
 • `timeout::Integer`
@@ -30391,6 +31145,8 @@ _AcquireProfilingLockInfoKHR
 """
     _PerformanceQuerySubmitInfoKHR(counter_pass_index::Integer; next = C_NULL)
 
+Extension: VK_KHR_performance_query
+
 Arguments:
 • `counter_pass_index::Integer`
 • `next`: defaults to `C_NULL`
@@ -30402,6 +31158,8 @@ _PerformanceQuerySubmitInfoKHR
 
 """
     _HeadlessSurfaceCreateInfoEXT(; next = C_NULL, flags = 0)
+
+Extension: VK_EXT_headless_surface
 
 Arguments:
 • `next`: defaults to `C_NULL`
@@ -30415,6 +31173,8 @@ _HeadlessSurfaceCreateInfoEXT
 """
     _PhysicalDeviceCoverageReductionModeFeaturesNV(coverage_reduction_mode::Bool; next = C_NULL)
 
+Extension: VK_NV_coverage_reduction_mode
+
 Arguments:
 • `coverage_reduction_mode::Bool`
 • `next`: defaults to `C_NULL`
@@ -30426,6 +31186,8 @@ _PhysicalDeviceCoverageReductionModeFeaturesNV
 
 """
     _PipelineCoverageReductionStateCreateInfoNV(coverage_reduction_mode::CoverageReductionModeNV; next = C_NULL, flags = 0)
+
+Extension: VK_NV_coverage_reduction_mode
 
 Arguments:
 • `coverage_reduction_mode::CoverageReductionModeNV`
@@ -30440,6 +31202,8 @@ _PipelineCoverageReductionStateCreateInfoNV
 """
     _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(shader_integer_functions_2::Bool; next = C_NULL)
 
+Extension: VK_INTEL_shader_integer_functions2
+
 Arguments:
 • `shader_integer_functions_2::Bool`
 • `next`: defaults to `C_NULL`
@@ -30451,6 +31215,8 @@ _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
 
 """
     _PerformanceValueINTEL(type::PerformanceValueTypeINTEL, data::VkPerformanceValueDataINTEL)
+
+Extension: VK_INTEL_performance_query
 
 Arguments:
 • `type::PerformanceValueTypeINTEL`
@@ -30464,6 +31230,8 @@ _PerformanceValueINTEL
 """
     _InitializePerformanceApiInfoINTEL(; next = C_NULL, user_data = C_NULL)
 
+Extension: VK_INTEL_performance_query
+
 Arguments:
 • `next`: defaults to `C_NULL`
 • `user_data`: defaults to `C_NULL`
@@ -30475,6 +31243,8 @@ _InitializePerformanceApiInfoINTEL
 
 """
     _QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling::QueryPoolSamplingModeINTEL; next = C_NULL)
+
+Extension: VK_INTEL_performance_query
 
 Arguments:
 • `performance_counters_sampling::QueryPoolSamplingModeINTEL`
@@ -30488,6 +31258,8 @@ _QueryPoolPerformanceQueryCreateInfoINTEL
 """
     _PerformanceMarkerInfoINTEL(marker::Integer; next = C_NULL)
 
+Extension: VK_INTEL_performance_query
+
 Arguments:
 • `marker::Integer`
 • `next`: defaults to `C_NULL`
@@ -30500,6 +31272,8 @@ _PerformanceMarkerInfoINTEL
 """
     _PerformanceStreamMarkerInfoINTEL(marker::Integer; next = C_NULL)
 
+Extension: VK_INTEL_performance_query
+
 Arguments:
 • `marker::Integer`
 • `next`: defaults to `C_NULL`
@@ -30511,6 +31285,8 @@ _PerformanceStreamMarkerInfoINTEL
 
 """
     _PerformanceOverrideInfoINTEL(type::PerformanceOverrideTypeINTEL, enable::Bool, parameter::Integer; next = C_NULL)
+
+Extension: VK_INTEL_performance_query
 
 Arguments:
 • `type::PerformanceOverrideTypeINTEL`
@@ -30526,6 +31302,8 @@ _PerformanceOverrideInfoINTEL
 """
     _PerformanceConfigurationAcquireInfoINTEL(type::PerformanceConfigurationTypeINTEL; next = C_NULL)
 
+Extension: VK_INTEL_performance_query
+
 Arguments:
 • `type::PerformanceConfigurationTypeINTEL`
 • `next`: defaults to `C_NULL`
@@ -30537,6 +31315,8 @@ _PerformanceConfigurationAcquireInfoINTEL
 
 """
     _PhysicalDeviceShaderClockFeaturesKHR(shader_subgroup_clock::Bool, shader_device_clock::Bool; next = C_NULL)
+
+Extension: VK_KHR_shader_clock
 
 Arguments:
 • `shader_subgroup_clock::Bool`
@@ -30551,6 +31331,8 @@ _PhysicalDeviceShaderClockFeaturesKHR
 """
     _PhysicalDeviceIndexTypeUint8FeaturesEXT(index_type_uint_8::Bool; next = C_NULL)
 
+Extension: VK_EXT_index_type_uint8
+
 Arguments:
 • `index_type_uint_8::Bool`
 • `next`: defaults to `C_NULL`
@@ -30563,6 +31345,8 @@ _PhysicalDeviceIndexTypeUint8FeaturesEXT
 """
     _PhysicalDeviceShaderSMBuiltinsFeaturesNV(shader_sm_builtins::Bool; next = C_NULL)
 
+Extension: VK_NV_shader_sm_builtins
+
 Arguments:
 • `shader_sm_builtins::Bool`
 • `next`: defaults to `C_NULL`
@@ -30574,6 +31358,8 @@ _PhysicalDeviceShaderSMBuiltinsFeaturesNV
 
 """
     _PhysicalDeviceFragmentShaderInterlockFeaturesEXT(fragment_shader_sample_interlock::Bool, fragment_shader_pixel_interlock::Bool, fragment_shader_shading_rate_interlock::Bool; next = C_NULL)
+
+Extension: VK_EXT_fragment_shader_interlock
 
 Arguments:
 • `fragment_shader_sample_interlock::Bool`
@@ -30626,6 +31412,8 @@ _AttachmentDescriptionStencilLayout
 """
     _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(pipeline_executable_info::Bool; next = C_NULL)
 
+Extension: VK_KHR_pipeline_executable_properties
+
 Arguments:
 • `pipeline_executable_info::Bool`
 • `next`: defaults to `C_NULL`
@@ -30638,6 +31426,8 @@ _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
 """
     _PipelineInfoKHR(pipeline::Pipeline; next = C_NULL)
 
+Extension: VK_KHR_pipeline_executable_properties
+
 Arguments:
 • `pipeline::Pipeline`
 • `next`: defaults to `C_NULL`
@@ -30649,6 +31439,8 @@ _PipelineInfoKHR
 
 """
     _PipelineExecutableInfoKHR(pipeline::Pipeline, executable_index::Integer; next = C_NULL)
+
+Extension: VK_KHR_pipeline_executable_properties
 
 Arguments:
 • `pipeline::Pipeline`
@@ -30663,6 +31455,8 @@ _PipelineExecutableInfoKHR
 """
     _PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(shader_demote_to_helper_invocation::Bool; next = C_NULL)
 
+Extension: VK_EXT_shader_demote_to_helper_invocation
+
 Arguments:
 • `shader_demote_to_helper_invocation::Bool`
 • `next`: defaults to `C_NULL`
@@ -30675,6 +31469,8 @@ _PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
 """
     _PhysicalDeviceTexelBufferAlignmentFeaturesEXT(texel_buffer_alignment::Bool; next = C_NULL)
 
+Extension: VK_EXT_texel_buffer_alignment
+
 Arguments:
 • `texel_buffer_alignment::Bool`
 • `next`: defaults to `C_NULL`
@@ -30686,6 +31482,8 @@ _PhysicalDeviceTexelBufferAlignmentFeaturesEXT
 
 """
     _PhysicalDeviceSubgroupSizeControlFeaturesEXT(subgroup_size_control::Bool, compute_full_subgroups::Bool; next = C_NULL)
+
+Extension: VK_EXT_subgroup_size_control
 
 Arguments:
 • `subgroup_size_control::Bool`
@@ -30724,6 +31522,8 @@ _DeviceMemoryOpaqueCaptureAddressInfo
 """
     _PhysicalDeviceLineRasterizationFeaturesEXT(rectangular_lines::Bool, bresenham_lines::Bool, smooth_lines::Bool, stippled_rectangular_lines::Bool, stippled_bresenham_lines::Bool, stippled_smooth_lines::Bool; next = C_NULL)
 
+Extension: VK_EXT_line_rasterization
+
 Arguments:
 • `rectangular_lines::Bool`
 • `bresenham_lines::Bool`
@@ -30741,6 +31541,8 @@ _PhysicalDeviceLineRasterizationFeaturesEXT
 """
     _PipelineRasterizationLineStateCreateInfoEXT(line_rasterization_mode::LineRasterizationModeEXT, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
 
+Extension: VK_EXT_line_rasterization
+
 Arguments:
 • `line_rasterization_mode::LineRasterizationModeEXT`
 • `stippled_line_enable::Bool`
@@ -30755,6 +31557,8 @@ _PipelineRasterizationLineStateCreateInfoEXT
 
 """
     _PhysicalDevicePipelineCreationCacheControlFeaturesEXT(pipeline_creation_cache_control::Bool; next = C_NULL)
+
+Extension: VK_EXT_pipeline_creation_cache_control
 
 Arguments:
 • `pipeline_creation_cache_control::Bool`
@@ -30849,6 +31653,8 @@ _PhysicalDeviceVulkan12Features
 """
     _PipelineCompilerControlCreateInfoAMD(; next = C_NULL, compiler_control_flags = 0)
 
+Extension: VK_AMD_pipeline_compiler_control
+
 Arguments:
 • `next`: defaults to `C_NULL`
 • `compiler_control_flags`: defaults to `0`
@@ -30861,6 +31667,8 @@ _PipelineCompilerControlCreateInfoAMD
 """
     _PhysicalDeviceCoherentMemoryFeaturesAMD(device_coherent_memory::Bool; next = C_NULL)
 
+Extension: VK_AMD_device_coherent_memory
+
 Arguments:
 • `device_coherent_memory::Bool`
 • `next`: defaults to `C_NULL`
@@ -30872,6 +31680,8 @@ _PhysicalDeviceCoherentMemoryFeaturesAMD
 
 """
     _SamplerCustomBorderColorCreateInfoEXT(custom_border_color::VkClearColorValue, format::Format; next = C_NULL)
+
+Extension: VK_EXT_custom_border_color
 
 Arguments:
 • `custom_border_color::VkClearColorValue`
@@ -30886,6 +31696,8 @@ _SamplerCustomBorderColorCreateInfoEXT
 """
     _PhysicalDeviceCustomBorderColorFeaturesEXT(custom_border_colors::Bool, custom_border_color_without_format::Bool; next = C_NULL)
 
+Extension: VK_EXT_custom_border_color
+
 Arguments:
 • `custom_border_colors::Bool`
 • `custom_border_color_without_format::Bool`
@@ -30898,6 +31710,8 @@ _PhysicalDeviceCustomBorderColorFeaturesEXT
 
 """
     _AccelerationStructureGeometryTrianglesDataKHR(vertex_format::Format, vertex_data::VkDeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::IndexType, index_data::VkDeviceOrHostAddressConstKHR, transform_data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `vertex_format::Format`
@@ -30917,6 +31731,8 @@ _AccelerationStructureGeometryTrianglesDataKHR
 """
     _AccelerationStructureGeometryAabbsDataKHR(data::VkDeviceOrHostAddressConstKHR, stride::Integer; next = C_NULL)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `data::VkDeviceOrHostAddressConstKHR`
 • `stride::Integer`
@@ -30929,6 +31745,8 @@ _AccelerationStructureGeometryAabbsDataKHR
 
 """
     _AccelerationStructureGeometryInstancesDataKHR(array_of_pointers::Bool, data::VkDeviceOrHostAddressConstKHR; next = C_NULL)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `array_of_pointers::Bool`
@@ -30943,6 +31761,8 @@ _AccelerationStructureGeometryInstancesDataKHR
 """
     _AccelerationStructureGeometryKHR(geometry_type::GeometryTypeKHR, geometry::VkAccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `geometry_type::GeometryTypeKHR`
 • `geometry::VkAccelerationStructureGeometryDataKHR`
@@ -30956,6 +31776,8 @@ _AccelerationStructureGeometryKHR
 
 """
     _AccelerationStructureBuildGeometryInfoKHR(type::AccelerationStructureTypeKHR, mode::BuildAccelerationStructureModeKHR, scratch_data::VkDeviceOrHostAddressKHR; next = C_NULL, flags = 0, src_acceleration_structure = C_NULL, dst_acceleration_structure = C_NULL, geometries = C_NULL, geometries_2 = C_NULL)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `type::AccelerationStructureTypeKHR`
@@ -30976,6 +31798,8 @@ _AccelerationStructureBuildGeometryInfoKHR
 """
     _AccelerationStructureBuildRangeInfoKHR(primitive_count::Integer, primitive_offset::Integer, first_vertex::Integer, transform_offset::Integer)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `primitive_count::Integer`
 • `primitive_offset::Integer`
@@ -30989,6 +31813,8 @@ _AccelerationStructureBuildRangeInfoKHR
 
 """
     _AccelerationStructureCreateInfoKHR(buffer::Buffer, offset::Integer, size::Integer, type::AccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `buffer::Buffer`
@@ -31007,6 +31833,8 @@ _AccelerationStructureCreateInfoKHR
 """
     _AabbPositionsKHR(min_x::Real, min_y::Real, min_z::Real, max_x::Real, max_y::Real, max_z::Real)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `min_x::Real`
 • `min_y::Real`
@@ -31023,6 +31851,8 @@ _AabbPositionsKHR
 """
     _TransformMatrixKHR(matrix::NTuple{3, NTuple{4, Float32}})
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `matrix::NTuple{3, NTuple{4, Float32}}`
 
@@ -31033,6 +31863,8 @@ _TransformMatrixKHR
 
 """
     _AccelerationStructureInstanceKHR(transform::_TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `transform::_TransformMatrixKHR`
@@ -31050,6 +31882,8 @@ _AccelerationStructureInstanceKHR
 """
     _AccelerationStructureDeviceAddressInfoKHR(acceleration_structure::AccelerationStructureKHR; next = C_NULL)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `acceleration_structure::AccelerationStructureKHR`
 • `next`: defaults to `C_NULL`
@@ -31062,6 +31896,8 @@ _AccelerationStructureDeviceAddressInfoKHR
 """
     _AccelerationStructureVersionInfoKHR(version_data::AbstractArray{<:Integer}; next = C_NULL)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `version_data::AbstractArray{<:Integer}`
 • `next`: defaults to `C_NULL`
@@ -31073,6 +31909,8 @@ _AccelerationStructureVersionInfoKHR
 
 """
     _CopyAccelerationStructureInfoKHR(src::AccelerationStructureKHR, dst::AccelerationStructureKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `src::AccelerationStructureKHR`
@@ -31088,6 +31926,8 @@ _CopyAccelerationStructureInfoKHR
 """
     _CopyAccelerationStructureToMemoryInfoKHR(src::AccelerationStructureKHR, dst::VkDeviceOrHostAddressKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `src::AccelerationStructureKHR`
 • `dst::VkDeviceOrHostAddressKHR`
@@ -31101,6 +31941,8 @@ _CopyAccelerationStructureToMemoryInfoKHR
 
 """
     _CopyMemoryToAccelerationStructureInfoKHR(src::VkDeviceOrHostAddressConstKHR, dst::AccelerationStructureKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
+
+Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `src::VkDeviceOrHostAddressConstKHR`
@@ -31116,6 +31958,8 @@ _CopyMemoryToAccelerationStructureInfoKHR
 """
     _RayTracingPipelineInterfaceCreateInfoKHR(max_pipeline_ray_payload_size::Integer, max_pipeline_ray_hit_attribute_size::Integer; next = C_NULL)
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 Arguments:
 • `max_pipeline_ray_payload_size::Integer`
 • `max_pipeline_ray_hit_attribute_size::Integer`
@@ -31129,6 +31973,8 @@ _RayTracingPipelineInterfaceCreateInfoKHR
 """
     _PipelineLibraryCreateInfoKHR(libraries::AbstractArray{<:Pipeline}; next = C_NULL)
 
+Extension: VK_KHR_pipeline_library
+
 Arguments:
 • `libraries::AbstractArray{<:Pipeline}`
 • `next`: defaults to `C_NULL`
@@ -31141,6 +31987,8 @@ _PipelineLibraryCreateInfoKHR
 """
     _PhysicalDeviceExtendedDynamicStateFeaturesEXT(extended_dynamic_state::Bool; next = C_NULL)
 
+Extension: VK_EXT_extended_dynamic_state
+
 Arguments:
 • `extended_dynamic_state::Bool`
 • `next`: defaults to `C_NULL`
@@ -31152,6 +32000,8 @@ _PhysicalDeviceExtendedDynamicStateFeaturesEXT
 
 """
     _PhysicalDeviceExtendedDynamicState2FeaturesEXT(extended_dynamic_state_2::Bool, extended_dynamic_state_2_logic_op::Bool, extended_dynamic_state_2_patch_control_points::Bool; next = C_NULL)
+
+Extension: VK_EXT_extended_dynamic_state2
 
 Arguments:
 • `extended_dynamic_state_2::Bool`
@@ -31167,6 +32017,8 @@ _PhysicalDeviceExtendedDynamicState2FeaturesEXT
 """
     _RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
+Extension: VK_QCOM_render_pass_transform
+
 Arguments:
 • `transform::SurfaceTransformFlagKHR`
 • `next`: defaults to `C_NULL`
@@ -31179,6 +32031,8 @@ _RenderPassTransformBeginInfoQCOM
 """
     _CopyCommandTransformInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
 
+Extension: VK_QCOM_rotated_copy_commands
+
 Arguments:
 • `transform::SurfaceTransformFlagKHR`
 • `next`: defaults to `C_NULL`
@@ -31190,6 +32044,8 @@ _CopyCommandTransformInfoQCOM
 
 """
     _CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::_Rect2D; next = C_NULL)
+
+Extension: VK_QCOM_render_pass_transform
 
 Arguments:
 • `transform::SurfaceTransformFlagKHR`
@@ -31204,6 +32060,8 @@ _CommandBufferInheritanceRenderPassTransformInfoQCOM
 """
     _PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; next = C_NULL)
 
+Extension: VK_NV_device_diagnostics_config
+
 Arguments:
 • `diagnostics_config::Bool`
 • `next`: defaults to `C_NULL`
@@ -31215,6 +32073,8 @@ _PhysicalDeviceDiagnosticsConfigFeaturesNV
 
 """
     _DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
+
+Extension: VK_NV_device_diagnostics_config
 
 Arguments:
 • `next`: defaults to `C_NULL`
@@ -31228,6 +32088,8 @@ _DeviceDiagnosticsConfigCreateInfoNV
 """
     _PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(shader_zero_initialize_workgroup_memory::Bool; next = C_NULL)
 
+Extension: VK_KHR_zero_initialize_workgroup_memory
+
 Arguments:
 • `shader_zero_initialize_workgroup_memory::Bool`
 • `next`: defaults to `C_NULL`
@@ -31239,6 +32101,8 @@ _PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
 
 """
     _PhysicalDeviceRobustness2FeaturesEXT(robust_buffer_access_2::Bool, robust_image_access_2::Bool, null_descriptor::Bool; next = C_NULL)
+
+Extension: VK_EXT_robustness2
 
 Arguments:
 • `robust_buffer_access_2::Bool`
@@ -31254,6 +32118,8 @@ _PhysicalDeviceRobustness2FeaturesEXT
 """
     _PhysicalDeviceImageRobustnessFeaturesEXT(robust_image_access::Bool; next = C_NULL)
 
+Extension: VK_EXT_image_robustness
+
 Arguments:
 • `robust_image_access::Bool`
 • `next`: defaults to `C_NULL`
@@ -31265,6 +32131,8 @@ _PhysicalDeviceImageRobustnessFeaturesEXT
 
 """
     _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(workgroup_memory_explicit_layout::Bool, workgroup_memory_explicit_layout_scalar_block_layout::Bool, workgroup_memory_explicit_layout_8_bit_access::Bool, workgroup_memory_explicit_layout_16_bit_access::Bool; next = C_NULL)
+
+Extension: VK_KHR_workgroup_memory_explicit_layout
 
 Arguments:
 • `workgroup_memory_explicit_layout::Bool`
@@ -31281,6 +32149,8 @@ _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
 """
     _PhysicalDevice4444FormatsFeaturesEXT(format_a4r4g4b4::Bool, format_a4b4g4r4::Bool; next = C_NULL)
 
+Extension: VK_EXT_4444_formats
+
 Arguments:
 • `format_a4r4g4b4::Bool`
 • `format_a4b4g4r4::Bool`
@@ -31293,6 +32163,8 @@ _PhysicalDevice4444FormatsFeaturesEXT
 
 """
     _BufferCopy2KHR(src_offset::Integer, dst_offset::Integer, size::Integer; next = C_NULL)
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `src_offset::Integer`
@@ -31307,6 +32179,8 @@ _BufferCopy2KHR
 
 """
     _ImageCopy2KHR(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D; next = C_NULL)
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `src_subresource::_ImageSubresourceLayers`
@@ -31324,6 +32198,8 @@ _ImageCopy2KHR
 """
     _ImageBlit2KHR(src_subresource::_ImageSubresourceLayers, src_offsets::NTuple{2, _Offset3D}, dst_subresource::_ImageSubresourceLayers, dst_offsets::NTuple{2, _Offset3D}; next = C_NULL)
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `src_subresource::_ImageSubresourceLayers`
 • `src_offsets::NTuple{2, _Offset3D}`
@@ -31338,6 +32214,8 @@ _ImageBlit2KHR
 
 """
     _BufferImageCopy2KHR(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D; next = C_NULL)
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `buffer_offset::Integer`
@@ -31356,6 +32234,8 @@ _BufferImageCopy2KHR
 """
     _ImageResolve2KHR(src_subresource::_ImageSubresourceLayers, src_offset::_Offset3D, dst_subresource::_ImageSubresourceLayers, dst_offset::_Offset3D, extent::_Extent3D; next = C_NULL)
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `src_subresource::_ImageSubresourceLayers`
 • `src_offset::_Offset3D`
@@ -31372,6 +32252,8 @@ _ImageResolve2KHR
 """
     _CopyBufferInfo2KHR(src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:_BufferCopy2KHR}; next = C_NULL)
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `src_buffer::Buffer`
 • `dst_buffer::Buffer`
@@ -31385,6 +32267,8 @@ _CopyBufferInfo2KHR
 
 """
     _CopyImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageCopy2KHR}; next = C_NULL)
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `src_image::Image`
@@ -31401,6 +32285,8 @@ _CopyImageInfo2KHR
 
 """
     _BlitImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageBlit2KHR}, filter::Filter; next = C_NULL)
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `src_image::Image`
@@ -31419,6 +32305,8 @@ _BlitImageInfo2KHR
 """
     _CopyBufferToImageInfo2KHR(src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `src_buffer::Buffer`
 • `dst_image::Image`
@@ -31434,6 +32322,8 @@ _CopyBufferToImageInfo2KHR
 """
     _CopyImageToBufferInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy2KHR}; next = C_NULL)
 
+Extension: VK_KHR_copy_commands2
+
 Arguments:
 • `src_image::Image`
 • `src_image_layout::ImageLayout`
@@ -31448,6 +32338,8 @@ _CopyImageToBufferInfo2KHR
 
 """
     _ResolveImageInfo2KHR(src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageResolve2KHR}; next = C_NULL)
+
+Extension: VK_KHR_copy_commands2
 
 Arguments:
 • `src_image::Image`
@@ -31465,6 +32357,8 @@ _ResolveImageInfo2KHR
 """
     _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(shader_image_int_64_atomics::Bool, sparse_image_int_64_atomics::Bool; next = C_NULL)
 
+Extension: VK_EXT_shader_image_atomic_int64
+
 Arguments:
 • `shader_image_int_64_atomics::Bool`
 • `sparse_image_int_64_atomics::Bool`
@@ -31477,6 +32371,8 @@ _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
 
 """
     _FragmentShadingRateAttachmentInfoKHR(fragment_shading_rate_attachment::_AttachmentReference2, shading_rate_attachment_texel_size::_Extent2D; next = C_NULL)
+
+Extension: VK_KHR_fragment_shading_rate
 
 Arguments:
 • `fragment_shading_rate_attachment::_AttachmentReference2`
@@ -31491,6 +32387,8 @@ _FragmentShadingRateAttachmentInfoKHR
 """
     _PipelineFragmentShadingRateStateCreateInfoKHR(fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}; next = C_NULL)
 
+Extension: VK_KHR_fragment_shading_rate
+
 Arguments:
 • `fragment_size::_Extent2D`
 • `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
@@ -31503,6 +32401,8 @@ _PipelineFragmentShadingRateStateCreateInfoKHR
 
 """
     _PhysicalDeviceFragmentShadingRateFeaturesKHR(pipeline_fragment_shading_rate::Bool, primitive_fragment_shading_rate::Bool, attachment_fragment_shading_rate::Bool; next = C_NULL)
+
+Extension: VK_KHR_fragment_shading_rate
 
 Arguments:
 • `pipeline_fragment_shading_rate::Bool`
@@ -31518,6 +32418,8 @@ _PhysicalDeviceFragmentShadingRateFeaturesKHR
 """
     _PhysicalDeviceShaderTerminateInvocationFeaturesKHR(shader_terminate_invocation::Bool; next = C_NULL)
 
+Extension: VK_KHR_shader_terminate_invocation
+
 Arguments:
 • `shader_terminate_invocation::Bool`
 • `next`: defaults to `C_NULL`
@@ -31529,6 +32431,8 @@ _PhysicalDeviceShaderTerminateInvocationFeaturesKHR
 
 """
     _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(fragment_shading_rate_enums::Bool, supersample_fragment_shading_rates::Bool, no_invocation_fragment_shading_rates::Bool; next = C_NULL)
+
+Extension: VK_NV_fragment_shading_rate_enums
 
 Arguments:
 • `fragment_shading_rate_enums::Bool`
@@ -31544,6 +32448,8 @@ _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
 """
     _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(max_fragment_shading_rate_invocation_count::SampleCountFlag; next = C_NULL)
 
+Extension: VK_NV_fragment_shading_rate_enums
+
 Arguments:
 • `max_fragment_shading_rate_invocation_count::SampleCountFlag`
 • `next`: defaults to `C_NULL`
@@ -31555,6 +32461,8 @@ _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
 
 """
     _PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::FragmentShadingRateTypeNV, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}; next = C_NULL)
+
+Extension: VK_NV_fragment_shading_rate_enums
 
 Arguments:
 • `shading_rate_type::FragmentShadingRateTypeNV`
@@ -31570,6 +32478,8 @@ _PipelineFragmentShadingRateEnumStateCreateInfoNV
 """
     _AccelerationStructureBuildSizesInfoKHR(acceleration_structure_size::Integer, update_scratch_size::Integer, build_scratch_size::Integer; next = C_NULL)
 
+Extension: VK_KHR_acceleration_structure
+
 Arguments:
 • `acceleration_structure_size::Integer`
 • `update_scratch_size::Integer`
@@ -31584,6 +32494,8 @@ _AccelerationStructureBuildSizesInfoKHR
 """
     _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(mutable_descriptor_type::Bool; next = C_NULL)
 
+Extension: VK_VALVE_mutable_descriptor_type
+
 Arguments:
 • `mutable_descriptor_type::Bool`
 • `next`: defaults to `C_NULL`
@@ -31596,6 +32508,8 @@ _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
 """
     _MutableDescriptorTypeListVALVE(descriptor_types::AbstractArray{<:DescriptorType})
 
+Extension: VK_VALVE_mutable_descriptor_type
+
 Arguments:
 • `descriptor_types::AbstractArray{<:DescriptorType}`
 
@@ -31606,6 +32520,8 @@ _MutableDescriptorTypeListVALVE
 
 """
     _MutableDescriptorTypeCreateInfoVALVE(mutable_descriptor_type_lists::AbstractArray{<:_MutableDescriptorTypeListVALVE}; next = C_NULL)
+
+Extension: VK_VALVE_mutable_descriptor_type
 
 Arguments:
 • `mutable_descriptor_type_lists::AbstractArray{<:_MutableDescriptorTypeListVALVE}`
@@ -31619,6 +32535,8 @@ _MutableDescriptorTypeCreateInfoVALVE
 """
     _PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vertex_input_dynamic_state::Bool; next = C_NULL)
 
+Extension: VK_EXT_vertex_input_dynamic_state
+
 Arguments:
 • `vertex_input_dynamic_state::Bool`
 • `next`: defaults to `C_NULL`
@@ -31630,6 +32548,8 @@ _PhysicalDeviceVertexInputDynamicStateFeaturesEXT
 
 """
     _VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VertexInputRate, divisor::Integer; next = C_NULL)
+
+Extension: VK_EXT_vertex_input_dynamic_state
 
 Arguments:
 • `binding::Integer`
@@ -31646,6 +32566,8 @@ _VertexInputBindingDescription2EXT
 """
     _VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::Format, offset::Integer; next = C_NULL)
 
+Extension: VK_EXT_vertex_input_dynamic_state
+
 Arguments:
 • `location::Integer`
 • `binding::Integer`
@@ -31661,6 +32583,8 @@ _VertexInputAttributeDescription2EXT
 """
     _PhysicalDeviceColorWriteEnableFeaturesEXT(color_write_enable::Bool; next = C_NULL)
 
+Extension: VK_EXT_color_write_enable
+
 Arguments:
 • `color_write_enable::Bool`
 • `next`: defaults to `C_NULL`
@@ -31673,6 +32597,8 @@ _PhysicalDeviceColorWriteEnableFeaturesEXT
 """
     _PipelineColorWriteCreateInfoEXT(color_write_enables::AbstractArray{<:Bool}; next = C_NULL)
 
+Extension: VK_EXT_color_write_enable
+
 Arguments:
 • `color_write_enables::AbstractArray{<:Bool}`
 • `next`: defaults to `C_NULL`
@@ -31684,6 +32610,8 @@ _PipelineColorWriteCreateInfoEXT
 
 """
     _MemoryBarrier2KHR(; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `next`: defaults to `C_NULL`
@@ -31699,6 +32627,8 @@ _MemoryBarrier2KHR
 
 """
     _ImageMemoryBarrier2KHR(old_layout::ImageLayout, new_layout::ImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image::Image, subresource_range::_ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `old_layout::ImageLayout`
@@ -31721,6 +32651,8 @@ _ImageMemoryBarrier2KHR
 """
     _BufferMemoryBarrier2KHR(src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer::Buffer, offset::Integer, size::Integer; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
 
+Extension: VK_KHR_synchronization2
+
 Arguments:
 • `src_queue_family_index::Integer`
 • `dst_queue_family_index::Integer`
@@ -31741,6 +32673,8 @@ _BufferMemoryBarrier2KHR
 """
     _DependencyInfoKHR(memory_barriers::AbstractArray{<:_MemoryBarrier2KHR}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier2KHR}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier2KHR}; next = C_NULL, dependency_flags = 0)
 
+Extension: VK_KHR_synchronization2
+
 Arguments:
 • `memory_barriers::AbstractArray{<:_MemoryBarrier2KHR}`
 • `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier2KHR}`
@@ -31755,6 +32689,8 @@ _DependencyInfoKHR
 
 """
     _SemaphoreSubmitInfoKHR(semaphore::Semaphore, value::Integer, device_index::Integer; next = C_NULL, stage_mask = 0)
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `semaphore::Semaphore`
@@ -31771,6 +32707,8 @@ _SemaphoreSubmitInfoKHR
 """
     _CommandBufferSubmitInfoKHR(command_buffer::CommandBuffer, device_mask::Integer; next = C_NULL)
 
+Extension: VK_KHR_synchronization2
+
 Arguments:
 • `command_buffer::CommandBuffer`
 • `device_mask::Integer`
@@ -31783,6 +32721,8 @@ _CommandBufferSubmitInfoKHR
 
 """
     _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
+
+Extension: VK_KHR_synchronization2
 
 Arguments:
 • `wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
@@ -31799,6 +32739,8 @@ _SubmitInfo2KHR
 """
     _PhysicalDeviceSynchronization2FeaturesKHR(synchronization2::Bool; next = C_NULL)
 
+Extension: VK_KHR_synchronization2
+
 Arguments:
 • `synchronization2::Bool`
 • `next`: defaults to `C_NULL`
@@ -31811,6 +32753,8 @@ _PhysicalDeviceSynchronization2FeaturesKHR
 """
     _PhysicalDeviceInheritedViewportScissorFeaturesNV(inherited_viewport_scissor_2_d::Bool; next = C_NULL)
 
+Extension: VK_NV_inherited_viewport_scissor
+
 Arguments:
 • `inherited_viewport_scissor_2_d::Bool`
 • `next`: defaults to `C_NULL`
@@ -31822,6 +32766,8 @@ _PhysicalDeviceInheritedViewportScissorFeaturesNV
 
 """
     _CommandBufferInheritanceViewportScissorInfoNV(viewport_scissor_2_d::Bool, viewport_depth_count::Integer, viewport_depths::_Viewport; next = C_NULL)
+
+Extension: VK_NV_inherited_viewport_scissor
 
 Arguments:
 • `viewport_scissor_2_d::Bool`
@@ -31837,6 +32783,8 @@ _CommandBufferInheritanceViewportScissorInfoNV
 """
     _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(ycbcr_444_formats::Bool; next = C_NULL)
 
+Extension: VK_EXT_ycbcr_2plane_444_formats
+
 Arguments:
 • `ycbcr_444_formats::Bool`
 • `next`: defaults to `C_NULL`
@@ -31848,6 +32796,8 @@ _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
 
 """
     _PhysicalDeviceProvokingVertexFeaturesEXT(provoking_vertex_last::Bool, transform_feedback_preserves_provoking_vertex::Bool; next = C_NULL)
+
+Extension: VK_EXT_provoking_vertex
 
 Arguments:
 • `provoking_vertex_last::Bool`
@@ -31861,6 +32811,8 @@ _PhysicalDeviceProvokingVertexFeaturesEXT
 
 """
     _PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::ProvokingVertexModeEXT; next = C_NULL)
+
+Extension: VK_EXT_provoking_vertex
 
 Arguments:
 • `provoking_vertex_mode::ProvokingVertexModeEXT`
@@ -32842,6 +33794,8 @@ SubmitInfo
 """
 High-level wrapper for VkDisplayModeParametersKHR.
 
+Extension: VK_KHR_display
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeParametersKHR.html
 
 """
@@ -32849,6 +33803,8 @@ DisplayModeParametersKHR
 
 """
 High-level wrapper for VkDisplayModeCreateInfoKHR.
+
+Extension: VK_KHR_display
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeCreateInfoKHR.html
 
@@ -32858,6 +33814,8 @@ DisplayModeCreateInfoKHR
 """
 High-level wrapper for VkDisplaySurfaceCreateInfoKHR.
 
+Extension: VK_KHR_display
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html
 
 """
@@ -32865,6 +33823,8 @@ DisplaySurfaceCreateInfoKHR
 
 """
 High-level wrapper for VkDisplayPresentInfoKHR.
+
+Extension: VK_KHR_display_swapchain
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPresentInfoKHR.html
 
@@ -32874,6 +33834,8 @@ DisplayPresentInfoKHR
 """
 High-level wrapper for VkWaylandSurfaceCreateInfoKHR.
 
+Extension: VK_KHR_wayland_surface
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWaylandSurfaceCreateInfoKHR.html
 
 """
@@ -32881,6 +33843,8 @@ WaylandSurfaceCreateInfoKHR
 
 """
 High-level wrapper for VkXlibSurfaceCreateInfoKHR.
+
+Extension: VK_KHR_xlib_surface
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXlibSurfaceCreateInfoKHR.html
 
@@ -32890,6 +33854,8 @@ XlibSurfaceCreateInfoKHR
 """
 High-level wrapper for VkXcbSurfaceCreateInfoKHR.
 
+Extension: VK_KHR_xcb_surface
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXcbSurfaceCreateInfoKHR.html
 
 """
@@ -32897,6 +33863,8 @@ XcbSurfaceCreateInfoKHR
 
 """
 High-level wrapper for VkSwapchainCreateInfoKHR.
+
+Extension: VK_KHR_swapchain
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCreateInfoKHR.html
 
@@ -32906,6 +33874,8 @@ SwapchainCreateInfoKHR
 """
 High-level wrapper for VkPresentInfoKHR.
 
+Extension: VK_KHR_swapchain
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentInfoKHR.html
 
 """
@@ -32913,6 +33883,8 @@ PresentInfoKHR
 
 """
 High-level wrapper for VkDebugReportCallbackCreateInfoEXT.
+
+Extension: VK_EXT_debug_report
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugReportCallbackCreateInfoEXT.html
 
@@ -32922,6 +33894,8 @@ DebugReportCallbackCreateInfoEXT
 """
 High-level wrapper for VkValidationFlagsEXT.
 
+Extension: VK_EXT_validation_flags
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFlagsEXT.html
 
 """
@@ -32929,6 +33903,8 @@ ValidationFlagsEXT
 
 """
 High-level wrapper for VkValidationFeaturesEXT.
+
+Extension: VK_EXT_validation_features
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFeaturesEXT.html
 
@@ -32938,6 +33914,8 @@ ValidationFeaturesEXT
 """
 High-level wrapper for VkPipelineRasterizationStateRasterizationOrderAMD.
 
+Extension: VK_AMD_rasterization_order
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html
 
 """
@@ -32945,6 +33923,8 @@ PipelineRasterizationStateRasterizationOrderAMD
 
 """
 High-level wrapper for VkDebugMarkerObjectNameInfoEXT.
+
+Extension: VK_EXT_debug_marker
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html
 
@@ -32954,6 +33934,8 @@ DebugMarkerObjectNameInfoEXT
 """
 High-level wrapper for VkDebugMarkerObjectTagInfoEXT.
 
+Extension: VK_EXT_debug_marker
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html
 
 """
@@ -32961,6 +33943,8 @@ DebugMarkerObjectTagInfoEXT
 
 """
 High-level wrapper for VkDebugMarkerMarkerInfoEXT.
+
+Extension: VK_EXT_debug_marker
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html
 
@@ -32970,6 +33954,8 @@ DebugMarkerMarkerInfoEXT
 """
 High-level wrapper for VkDedicatedAllocationImageCreateInfoNV.
 
+Extension: VK_NV_dedicated_allocation
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationImageCreateInfoNV.html
 
 """
@@ -32977,6 +33963,8 @@ DedicatedAllocationImageCreateInfoNV
 
 """
 High-level wrapper for VkDedicatedAllocationBufferCreateInfoNV.
+
+Extension: VK_NV_dedicated_allocation
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationBufferCreateInfoNV.html
 
@@ -32986,6 +33974,8 @@ DedicatedAllocationBufferCreateInfoNV
 """
 High-level wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
 
+Extension: VK_NV_dedicated_allocation
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html
 
 """
@@ -32993,6 +33983,8 @@ DedicatedAllocationMemoryAllocateInfoNV
 
 """
 High-level wrapper for VkExternalMemoryImageCreateInfoNV.
+
+Extension: VK_NV_external_memory
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html
 
@@ -33002,6 +33994,8 @@ ExternalMemoryImageCreateInfoNV
 """
 High-level wrapper for VkExportMemoryAllocateInfoNV.
 
+Extension: VK_NV_external_memory
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfoNV.html
 
 """
@@ -33009,6 +34003,8 @@ ExportMemoryAllocateInfoNV
 
 """
 High-level wrapper for VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.
+
+Extension: VK_NV_device_generated_commands
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.html
 
@@ -33018,6 +34014,8 @@ PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
 """
 High-level wrapper for VkDevicePrivateDataCreateInfoEXT.
 
+Extension: VK_EXT_private_data
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDevicePrivateDataCreateInfoEXT.html
 
 """
@@ -33025,6 +34023,8 @@ DevicePrivateDataCreateInfoEXT
 
 """
 High-level wrapper for VkPrivateDataSlotCreateInfoEXT.
+
+Extension: VK_EXT_private_data
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPrivateDataSlotCreateInfoEXT.html
 
@@ -33034,6 +34034,8 @@ PrivateDataSlotCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDevicePrivateDataFeaturesEXT.
 
+Extension: VK_EXT_private_data
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePrivateDataFeaturesEXT.html
 
 """
@@ -33041,6 +34043,8 @@ PhysicalDevicePrivateDataFeaturesEXT
 
 """
 High-level wrapper for VkGraphicsShaderGroupCreateInfoNV.
+
+Extension: VK_NV_device_generated_commands
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsShaderGroupCreateInfoNV.html
 
@@ -33050,6 +34054,8 @@ GraphicsShaderGroupCreateInfoNV
 """
 High-level wrapper for VkGraphicsPipelineShaderGroupsCreateInfoNV.
 
+Extension: VK_NV_device_generated_commands
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html
 
 """
@@ -33057,6 +34063,8 @@ GraphicsPipelineShaderGroupsCreateInfoNV
 
 """
 High-level wrapper for VkBindShaderGroupIndirectCommandNV.
+
+Extension: VK_NV_device_generated_commands
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindShaderGroupIndirectCommandNV.html
 
@@ -33066,6 +34074,8 @@ BindShaderGroupIndirectCommandNV
 """
 High-level wrapper for VkBindIndexBufferIndirectCommandNV.
 
+Extension: VK_NV_device_generated_commands
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html
 
 """
@@ -33073,6 +34083,8 @@ BindIndexBufferIndirectCommandNV
 
 """
 High-level wrapper for VkBindVertexBufferIndirectCommandNV.
+
+Extension: VK_NV_device_generated_commands
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindVertexBufferIndirectCommandNV.html
 
@@ -33082,6 +34094,8 @@ BindVertexBufferIndirectCommandNV
 """
 High-level wrapper for VkSetStateFlagsIndirectCommandNV.
 
+Extension: VK_NV_device_generated_commands
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSetStateFlagsIndirectCommandNV.html
 
 """
@@ -33089,6 +34103,8 @@ SetStateFlagsIndirectCommandNV
 
 """
 High-level wrapper for VkIndirectCommandsStreamNV.
+
+Extension: VK_NV_device_generated_commands
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsStreamNV.html
 
@@ -33098,6 +34114,8 @@ IndirectCommandsStreamNV
 """
 High-level wrapper for VkIndirectCommandsLayoutTokenNV.
 
+Extension: VK_NV_device_generated_commands
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html
 
 """
@@ -33105,6 +34123,8 @@ IndirectCommandsLayoutTokenNV
 
 """
 High-level wrapper for VkIndirectCommandsLayoutCreateInfoNV.
+
+Extension: VK_NV_device_generated_commands
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html
 
@@ -33114,6 +34134,8 @@ IndirectCommandsLayoutCreateInfoNV
 """
 High-level wrapper for VkGeneratedCommandsInfoNV.
 
+Extension: VK_NV_device_generated_commands
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsInfoNV.html
 
 """
@@ -33121,6 +34143,8 @@ GeneratedCommandsInfoNV
 
 """
 High-level wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
+
+Extension: VK_NV_device_generated_commands
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html
 
@@ -33162,6 +34186,8 @@ ConformanceVersion
 """
 High-level wrapper for VkPresentRegionsKHR.
 
+Extension: VK_KHR_incremental_present
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionsKHR.html
 
 """
@@ -33170,6 +34196,8 @@ PresentRegionsKHR
 """
 High-level wrapper for VkPresentRegionKHR.
 
+Extension: VK_KHR_incremental_present
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionKHR.html
 
 """
@@ -33177,6 +34205,8 @@ PresentRegionKHR
 
 """
 High-level wrapper for VkRectLayerKHR.
+
+Extension: VK_KHR_incremental_present
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRectLayerKHR.html
 
@@ -33234,6 +34264,8 @@ ExportMemoryAllocateInfo
 """
 High-level wrapper for VkImportMemoryFdInfoKHR.
 
+Extension: VK_KHR_external_memory_fd
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryFdInfoKHR.html
 
 """
@@ -33241,6 +34273,8 @@ ImportMemoryFdInfoKHR
 
 """
 High-level wrapper for VkMemoryGetFdInfoKHR.
+
+Extension: VK_KHR_external_memory_fd
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetFdInfoKHR.html
 
@@ -33266,6 +34300,8 @@ ExportSemaphoreCreateInfo
 """
 High-level wrapper for VkImportSemaphoreFdInfoKHR.
 
+Extension: VK_KHR_external_semaphore_fd
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreFdInfoKHR.html
 
 """
@@ -33273,6 +34309,8 @@ ImportSemaphoreFdInfoKHR
 
 """
 High-level wrapper for VkSemaphoreGetFdInfoKHR.
+
+Extension: VK_KHR_external_semaphore_fd
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetFdInfoKHR.html
 
@@ -33298,6 +34336,8 @@ ExportFenceCreateInfo
 """
 High-level wrapper for VkImportFenceFdInfoKHR.
 
+Extension: VK_KHR_external_fence_fd
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportFenceFdInfoKHR.html
 
 """
@@ -33305,6 +34345,8 @@ ImportFenceFdInfoKHR
 
 """
 High-level wrapper for VkFenceGetFdInfoKHR.
+
+Extension: VK_KHR_external_fence_fd
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceGetFdInfoKHR.html
 
@@ -33330,6 +34372,8 @@ RenderPassMultiviewCreateInfo
 """
 High-level wrapper for VkDisplayPowerInfoEXT.
 
+Extension: VK_EXT_display_control
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPowerInfoEXT.html
 
 """
@@ -33337,6 +34381,8 @@ DisplayPowerInfoEXT
 
 """
 High-level wrapper for VkDeviceEventInfoEXT.
+
+Extension: VK_EXT_display_control
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceEventInfoEXT.html
 
@@ -33346,6 +34392,8 @@ DeviceEventInfoEXT
 """
 High-level wrapper for VkDisplayEventInfoEXT.
 
+Extension: VK_EXT_display_control
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayEventInfoEXT.html
 
 """
@@ -33353,6 +34401,8 @@ DisplayEventInfoEXT
 
 """
 High-level wrapper for VkSwapchainCounterCreateInfoEXT.
+
+Extension: VK_EXT_display_control
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCounterCreateInfoEXT.html
 
@@ -33434,6 +34484,8 @@ DeviceGroupBindSparseInfo
 """
 High-level wrapper for VkImageSwapchainCreateInfoKHR.
 
+Extension: VK_KHR_swapchain
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSwapchainCreateInfoKHR.html
 
 """
@@ -33441,6 +34493,8 @@ ImageSwapchainCreateInfoKHR
 
 """
 High-level wrapper for VkBindImageMemorySwapchainInfoKHR.
+
+Extension: VK_KHR_swapchain
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html
 
@@ -33450,6 +34504,8 @@ BindImageMemorySwapchainInfoKHR
 """
 High-level wrapper for VkAcquireNextImageInfoKHR.
 
+Extension: VK_KHR_swapchain
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireNextImageInfoKHR.html
 
 """
@@ -33457,6 +34513,8 @@ AcquireNextImageInfoKHR
 
 """
 High-level wrapper for VkDeviceGroupPresentInfoKHR.
+
+Extension: VK_KHR_swapchain
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupPresentInfoKHR.html
 
@@ -33473,6 +34531,8 @@ DeviceGroupDeviceCreateInfo
 
 """
 High-level wrapper for VkDeviceGroupSwapchainCreateInfoKHR.
+
+Extension: VK_KHR_swapchain
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html
 
@@ -33498,6 +34558,8 @@ DescriptorUpdateTemplateCreateInfo
 """
 High-level wrapper for VkXYColorEXT.
 
+Extension: VK_EXT_hdr_metadata
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXYColorEXT.html
 
 """
@@ -33505,6 +34567,8 @@ XYColorEXT
 
 """
 High-level wrapper for VkHdrMetadataEXT.
+
+Extension: VK_EXT_hdr_metadata
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHdrMetadataEXT.html
 
@@ -33514,6 +34578,8 @@ HdrMetadataEXT
 """
 High-level wrapper for VkSwapchainDisplayNativeHdrCreateInfoAMD.
 
+Extension: VK_AMD_display_native_hdr
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainDisplayNativeHdrCreateInfoAMD.html
 
 """
@@ -33521,6 +34587,8 @@ SwapchainDisplayNativeHdrCreateInfoAMD
 
 """
 High-level wrapper for VkPresentTimesInfoGOOGLE.
+
+Extension: VK_GOOGLE_display_timing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimesInfoGOOGLE.html
 
@@ -33530,6 +34598,8 @@ PresentTimesInfoGOOGLE
 """
 High-level wrapper for VkPresentTimeGOOGLE.
 
+Extension: VK_GOOGLE_display_timing
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimeGOOGLE.html
 
 """
@@ -33537,6 +34607,8 @@ PresentTimeGOOGLE
 
 """
 High-level wrapper for VkViewportWScalingNV.
+
+Extension: VK_NV_clip_space_w_scaling
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportWScalingNV.html
 
@@ -33546,6 +34618,8 @@ ViewportWScalingNV
 """
 High-level wrapper for VkPipelineViewportWScalingStateCreateInfoNV.
 
+Extension: VK_NV_clip_space_w_scaling
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportWScalingStateCreateInfoNV.html
 
 """
@@ -33553,6 +34627,8 @@ PipelineViewportWScalingStateCreateInfoNV
 
 """
 High-level wrapper for VkViewportSwizzleNV.
+
+Extension: VK_NV_viewport_swizzle
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportSwizzleNV.html
 
@@ -33562,6 +34638,8 @@ ViewportSwizzleNV
 """
 High-level wrapper for VkPipelineViewportSwizzleStateCreateInfoNV.
 
+Extension: VK_NV_viewport_swizzle
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html
 
 """
@@ -33569,6 +34647,8 @@ PipelineViewportSwizzleStateCreateInfoNV
 
 """
 High-level wrapper for VkPipelineDiscardRectangleStateCreateInfoEXT.
+
+Extension: VK_EXT_discard_rectangles
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDiscardRectangleStateCreateInfoEXT.html
 
@@ -33594,6 +34674,8 @@ RenderPassInputAttachmentAspectCreateInfo
 """
 High-level wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
 
+Extension: VK_KHR_get_surface_capabilities2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html
 
 """
@@ -33601,6 +34683,8 @@ PhysicalDeviceSurfaceInfo2KHR
 
 """
 High-level wrapper for VkDisplayPlaneInfo2KHR.
+
+Extension: VK_KHR_get_display_properties2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneInfo2KHR.html
 
@@ -33714,6 +34798,8 @@ PhysicalDeviceSamplerYcbcrConversionFeatures
 """
 High-level wrapper for VkConditionalRenderingBeginInfoEXT.
 
+Extension: VK_EXT_conditional_rendering
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html
 
 """
@@ -33746,6 +34832,8 @@ DeviceQueueInfo2
 """
 High-level wrapper for VkPipelineCoverageToColorStateCreateInfoNV.
 
+Extension: VK_NV_fragment_coverage_to_color
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html
 
 """
@@ -33753,6 +34841,8 @@ PipelineCoverageToColorStateCreateInfoNV
 
 """
 High-level wrapper for VkSampleLocationEXT.
+
+Extension: VK_EXT_sample_locations
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationEXT.html
 
@@ -33762,6 +34852,8 @@ SampleLocationEXT
 """
 High-level wrapper for VkSampleLocationsInfoEXT.
 
+Extension: VK_EXT_sample_locations
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationsInfoEXT.html
 
 """
@@ -33769,6 +34861,8 @@ SampleLocationsInfoEXT
 
 """
 High-level wrapper for VkAttachmentSampleLocationsEXT.
+
+Extension: VK_EXT_sample_locations
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentSampleLocationsEXT.html
 
@@ -33778,6 +34872,8 @@ AttachmentSampleLocationsEXT
 """
 High-level wrapper for VkSubpassSampleLocationsEXT.
 
+Extension: VK_EXT_sample_locations
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassSampleLocationsEXT.html
 
 """
@@ -33786,6 +34882,8 @@ SubpassSampleLocationsEXT
 """
 High-level wrapper for VkRenderPassSampleLocationsBeginInfoEXT.
 
+Extension: VK_EXT_sample_locations
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html
 
 """
@@ -33793,6 +34891,8 @@ RenderPassSampleLocationsBeginInfoEXT
 
 """
 High-level wrapper for VkPipelineSampleLocationsStateCreateInfoEXT.
+
+Extension: VK_EXT_sample_locations
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html
 
@@ -33810,6 +34910,8 @@ SamplerReductionModeCreateInfo
 """
 High-level wrapper for VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.
 
+Extension: VK_EXT_blend_operation_advanced
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html
 
 """
@@ -33817,6 +34919,8 @@ PhysicalDeviceBlendOperationAdvancedFeaturesEXT
 
 """
 High-level wrapper for VkPipelineColorBlendAdvancedStateCreateInfoEXT.
+
+Extension: VK_EXT_blend_operation_advanced
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAdvancedStateCreateInfoEXT.html
 
@@ -33826,6 +34930,8 @@ PipelineColorBlendAdvancedStateCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceInlineUniformBlockFeaturesEXT.
 
+Extension: VK_EXT_inline_uniform_block
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInlineUniformBlockFeaturesEXT.html
 
 """
@@ -33833,6 +34939,8 @@ PhysicalDeviceInlineUniformBlockFeaturesEXT
 
 """
 High-level wrapper for VkWriteDescriptorSetInlineUniformBlockEXT.
+
+Extension: VK_EXT_inline_uniform_block
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetInlineUniformBlockEXT.html
 
@@ -33842,6 +34950,8 @@ WriteDescriptorSetInlineUniformBlockEXT
 """
 High-level wrapper for VkDescriptorPoolInlineUniformBlockCreateInfoEXT.
 
+Extension: VK_EXT_inline_uniform_block
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.html
 
 """
@@ -33849,6 +34959,8 @@ DescriptorPoolInlineUniformBlockCreateInfoEXT
 
 """
 High-level wrapper for VkPipelineCoverageModulationStateCreateInfoNV.
+
+Extension: VK_NV_framebuffer_mixed_samples
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html
 
@@ -33866,6 +34978,8 @@ ImageFormatListCreateInfo
 """
 High-level wrapper for VkValidationCacheCreateInfoEXT.
 
+Extension: VK_EXT_validation_cache
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationCacheCreateInfoEXT.html
 
 """
@@ -33873,6 +34987,8 @@ ValidationCacheCreateInfoEXT
 
 """
 High-level wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
+
+Extension: VK_EXT_validation_cache
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html
 
@@ -33906,6 +35022,8 @@ PhysicalDeviceHostQueryResetFeatures
 """
 High-level wrapper for VkDeviceQueueGlobalPriorityCreateInfoEXT.
 
+Extension: VK_EXT_global_priority
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoEXT.html
 
 """
@@ -33913,6 +35031,8 @@ DeviceQueueGlobalPriorityCreateInfoEXT
 
 """
 High-level wrapper for VkDebugUtilsObjectNameInfoEXT.
+
+Extension: VK_EXT_debug_utils
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html
 
@@ -33922,6 +35042,8 @@ DebugUtilsObjectNameInfoEXT
 """
 High-level wrapper for VkDebugUtilsObjectTagInfoEXT.
 
+Extension: VK_EXT_debug_utils
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html
 
 """
@@ -33929,6 +35051,8 @@ DebugUtilsObjectTagInfoEXT
 
 """
 High-level wrapper for VkDebugUtilsLabelEXT.
+
+Extension: VK_EXT_debug_utils
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsLabelEXT.html
 
@@ -33938,6 +35062,8 @@ DebugUtilsLabelEXT
 """
 High-level wrapper for VkDebugUtilsMessengerCreateInfoEXT.
 
+Extension: VK_EXT_debug_utils
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCreateInfoEXT.html
 
 """
@@ -33945,6 +35071,8 @@ DebugUtilsMessengerCreateInfoEXT
 
 """
 High-level wrapper for VkDebugUtilsMessengerCallbackDataEXT.
+
+Extension: VK_EXT_debug_utils
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCallbackDataEXT.html
 
@@ -33954,6 +35082,8 @@ DebugUtilsMessengerCallbackDataEXT
 """
 High-level wrapper for VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.
 
+Extension: VK_EXT_device_memory_report
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.html
 
 """
@@ -33961,6 +35091,8 @@ PhysicalDeviceDeviceMemoryReportFeaturesEXT
 
 """
 High-level wrapper for VkDeviceDeviceMemoryReportCreateInfoEXT.
+
+Extension: VK_EXT_device_memory_report
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDeviceMemoryReportCreateInfoEXT.html
 
@@ -33970,6 +35102,8 @@ DeviceDeviceMemoryReportCreateInfoEXT
 """
 High-level wrapper for VkImportMemoryHostPointerInfoEXT.
 
+Extension: VK_EXT_external_memory_host
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html
 
 """
@@ -33978,6 +35112,8 @@ ImportMemoryHostPointerInfoEXT
 """
 High-level wrapper for VkCalibratedTimestampInfoEXT.
 
+Extension: VK_EXT_calibrated_timestamps
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCalibratedTimestampInfoEXT.html
 
 """
@@ -33985,6 +35121,8 @@ CalibratedTimestampInfoEXT
 
 """
 High-level wrapper for VkPipelineRasterizationConservativeStateCreateInfoEXT.
+
+Extension: VK_EXT_conservative_rasterization
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html
 
@@ -34114,6 +35252,8 @@ SemaphoreSignalInfo
 """
 High-level wrapper for VkVertexInputBindingDivisorDescriptionEXT.
 
+Extension: VK_EXT_vertex_attribute_divisor
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDivisorDescriptionEXT.html
 
 """
@@ -34122,6 +35262,8 @@ VertexInputBindingDivisorDescriptionEXT
 """
 High-level wrapper for VkPipelineVertexInputDivisorStateCreateInfoEXT.
 
+Extension: VK_EXT_vertex_attribute_divisor
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputDivisorStateCreateInfoEXT.html
 
 """
@@ -34129,6 +35271,8 @@ PipelineVertexInputDivisorStateCreateInfoEXT
 
 """
 High-level wrapper for VkCommandBufferInheritanceConditionalRenderingInfoEXT.
+
+Extension: VK_EXT_conditional_rendering
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html
 
@@ -34145,6 +35289,8 @@ PhysicalDevice8BitStorageFeatures
 
 """
 High-level wrapper for VkPhysicalDeviceConditionalRenderingFeaturesEXT.
+
+Extension: VK_EXT_conditional_rendering
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html
 
@@ -34170,6 +35316,8 @@ PhysicalDeviceShaderAtomicInt64Features
 """
 High-level wrapper for VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.
 
+Extension: VK_EXT_shader_atomic_float
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html
 
 """
@@ -34177,6 +35325,8 @@ PhysicalDeviceShaderAtomicFloatFeaturesEXT
 
 """
 High-level wrapper for VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.
+
+Extension: VK_EXT_vertex_attribute_divisor
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.html
 
@@ -34194,6 +35344,8 @@ SubpassDescriptionDepthStencilResolve
 """
 High-level wrapper for VkImageViewASTCDecodeModeEXT.
 
+Extension: VK_EXT_astc_decode_mode
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewASTCDecodeModeEXT.html
 
 """
@@ -34201,6 +35353,8 @@ ImageViewASTCDecodeModeEXT
 
 """
 High-level wrapper for VkPhysicalDeviceASTCDecodeFeaturesEXT.
+
+Extension: VK_EXT_astc_decode_mode
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceASTCDecodeFeaturesEXT.html
 
@@ -34210,6 +35364,8 @@ PhysicalDeviceASTCDecodeFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceTransformFeedbackFeaturesEXT.
 
+Extension: VK_EXT_transform_feedback
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html
 
 """
@@ -34217,6 +35373,8 @@ PhysicalDeviceTransformFeedbackFeaturesEXT
 
 """
 High-level wrapper for VkPipelineRasterizationStateStreamCreateInfoEXT.
+
+Extension: VK_EXT_transform_feedback
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html
 
@@ -34226,6 +35384,8 @@ PipelineRasterizationStateStreamCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.
 
+Extension: VK_NV_representative_fragment_test
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.html
 
 """
@@ -34233,6 +35393,8 @@ PhysicalDeviceRepresentativeFragmentTestFeaturesNV
 
 """
 High-level wrapper for VkPipelineRepresentativeFragmentTestStateCreateInfoNV.
+
+Extension: VK_NV_representative_fragment_test
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.html
 
@@ -34242,6 +35404,8 @@ PipelineRepresentativeFragmentTestStateCreateInfoNV
 """
 High-level wrapper for VkPhysicalDeviceExclusiveScissorFeaturesNV.
 
+Extension: VK_NV_scissor_exclusive
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExclusiveScissorFeaturesNV.html
 
 """
@@ -34249,6 +35413,8 @@ PhysicalDeviceExclusiveScissorFeaturesNV
 
 """
 High-level wrapper for VkPipelineViewportExclusiveScissorStateCreateInfoNV.
+
+Extension: VK_NV_scissor_exclusive
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html
 
@@ -34258,6 +35424,8 @@ PipelineViewportExclusiveScissorStateCreateInfoNV
 """
 High-level wrapper for VkPhysicalDeviceCornerSampledImageFeaturesNV.
 
+Extension: VK_NV_corner_sampled_image
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCornerSampledImageFeaturesNV.html
 
 """
@@ -34265,6 +35433,8 @@ PhysicalDeviceCornerSampledImageFeaturesNV
 
 """
 High-level wrapper for VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.
+
+Extension: VK_NV_compute_shader_derivatives
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.html
 
@@ -34274,6 +35444,8 @@ PhysicalDeviceComputeShaderDerivativesFeaturesNV
 """
 High-level wrapper for VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.
 
+Extension: VK_NV_fragment_shader_barycentric
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.html
 
 """
@@ -34281,6 +35453,8 @@ PhysicalDeviceFragmentShaderBarycentricFeaturesNV
 
 """
 High-level wrapper for VkPhysicalDeviceShaderImageFootprintFeaturesNV.
+
+Extension: VK_NV_shader_image_footprint
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageFootprintFeaturesNV.html
 
@@ -34290,6 +35464,8 @@ PhysicalDeviceShaderImageFootprintFeaturesNV
 """
 High-level wrapper for VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.
 
+Extension: VK_NV_dedicated_allocation_image_aliasing
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.html
 
 """
@@ -34297,6 +35473,8 @@ PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
 
 """
 High-level wrapper for VkShadingRatePaletteNV.
+
+Extension: VK_NV_shading_rate_image
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShadingRatePaletteNV.html
 
@@ -34306,6 +35484,8 @@ ShadingRatePaletteNV
 """
 High-level wrapper for VkPipelineViewportShadingRateImageStateCreateInfoNV.
 
+Extension: VK_NV_shading_rate_image
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html
 
 """
@@ -34313,6 +35493,8 @@ PipelineViewportShadingRateImageStateCreateInfoNV
 
 """
 High-level wrapper for VkPhysicalDeviceShadingRateImageFeaturesNV.
+
+Extension: VK_NV_shading_rate_image
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html
 
@@ -34322,6 +35504,8 @@ PhysicalDeviceShadingRateImageFeaturesNV
 """
 High-level wrapper for VkCoarseSampleLocationNV.
 
+Extension: VK_NV_shading_rate_image
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleLocationNV.html
 
 """
@@ -34329,6 +35513,8 @@ CoarseSampleLocationNV
 
 """
 High-level wrapper for VkCoarseSampleOrderCustomNV.
+
+Extension: VK_NV_shading_rate_image
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleOrderCustomNV.html
 
@@ -34338,6 +35524,8 @@ CoarseSampleOrderCustomNV
 """
 High-level wrapper for VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.
 
+Extension: VK_NV_shading_rate_image
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html
 
 """
@@ -34345,6 +35533,8 @@ PipelineViewportCoarseSampleOrderStateCreateInfoNV
 
 """
 High-level wrapper for VkPhysicalDeviceMeshShaderFeaturesNV.
+
+Extension: VK_NV_mesh_shader
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMeshShaderFeaturesNV.html
 
@@ -34354,6 +35544,8 @@ PhysicalDeviceMeshShaderFeaturesNV
 """
 High-level wrapper for VkDrawMeshTasksIndirectCommandNV.
 
+Extension: VK_NV_mesh_shader
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html
 
 """
@@ -34361,6 +35553,8 @@ DrawMeshTasksIndirectCommandNV
 
 """
 High-level wrapper for VkRayTracingShaderGroupCreateInfoNV.
+
+Extension: VK_NV_ray_tracing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html
 
@@ -34370,6 +35564,8 @@ RayTracingShaderGroupCreateInfoNV
 """
 High-level wrapper for VkRayTracingShaderGroupCreateInfoKHR.
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html
 
 """
@@ -34377,6 +35573,8 @@ RayTracingShaderGroupCreateInfoKHR
 
 """
 High-level wrapper for VkRayTracingPipelineCreateInfoNV.
+
+Extension: VK_NV_ray_tracing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html
 
@@ -34386,6 +35584,8 @@ RayTracingPipelineCreateInfoNV
 """
 High-level wrapper for VkRayTracingPipelineCreateInfoKHR.
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html
 
 """
@@ -34393,6 +35593,8 @@ RayTracingPipelineCreateInfoKHR
 
 """
 High-level wrapper for VkGeometryTrianglesNV.
+
+Extension: VK_NV_ray_tracing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryTrianglesNV.html
 
@@ -34402,6 +35604,8 @@ GeometryTrianglesNV
 """
 High-level wrapper for VkGeometryAABBNV.
 
+Extension: VK_NV_ray_tracing
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryAABBNV.html
 
 """
@@ -34409,6 +35613,8 @@ GeometryAABBNV
 
 """
 High-level wrapper for VkGeometryDataNV.
+
+Extension: VK_NV_ray_tracing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryDataNV.html
 
@@ -34418,6 +35624,8 @@ GeometryDataNV
 """
 High-level wrapper for VkGeometryNV.
 
+Extension: VK_NV_ray_tracing
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryNV.html
 
 """
@@ -34425,6 +35633,8 @@ GeometryNV
 
 """
 High-level wrapper for VkAccelerationStructureInfoNV.
+
+Extension: VK_NV_ray_tracing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInfoNV.html
 
@@ -34434,6 +35644,8 @@ AccelerationStructureInfoNV
 """
 High-level wrapper for VkAccelerationStructureCreateInfoNV.
 
+Extension: VK_NV_ray_tracing
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoNV.html
 
 """
@@ -34441,6 +35653,8 @@ AccelerationStructureCreateInfoNV
 
 """
 High-level wrapper for VkBindAccelerationStructureMemoryInfoNV.
+
+Extension: VK_NV_ray_tracing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html
 
@@ -34450,6 +35664,8 @@ BindAccelerationStructureMemoryInfoNV
 """
 High-level wrapper for VkWriteDescriptorSetAccelerationStructureKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html
 
 """
@@ -34457,6 +35673,8 @@ WriteDescriptorSetAccelerationStructureKHR
 
 """
 High-level wrapper for VkWriteDescriptorSetAccelerationStructureNV.
+
+Extension: VK_NV_ray_tracing
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html
 
@@ -34466,6 +35684,8 @@ WriteDescriptorSetAccelerationStructureNV
 """
 High-level wrapper for VkAccelerationStructureMemoryRequirementsInfoNV.
 
+Extension: VK_NV_ray_tracing
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html
 
 """
@@ -34473,6 +35693,8 @@ AccelerationStructureMemoryRequirementsInfoNV
 
 """
 High-level wrapper for VkPhysicalDeviceAccelerationStructureFeaturesKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceAccelerationStructureFeaturesKHR.html
 
@@ -34482,6 +35704,8 @@ PhysicalDeviceAccelerationStructureFeaturesKHR
 """
 High-level wrapper for VkPhysicalDeviceRayTracingPipelineFeaturesKHR.
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html
 
 """
@@ -34489,6 +35713,8 @@ PhysicalDeviceRayTracingPipelineFeaturesKHR
 
 """
 High-level wrapper for VkPhysicalDeviceRayQueryFeaturesKHR.
+
+Extension: VK_KHR_ray_query
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayQueryFeaturesKHR.html
 
@@ -34498,6 +35724,8 @@ PhysicalDeviceRayQueryFeaturesKHR
 """
 High-level wrapper for VkStridedDeviceAddressRegionKHR.
 
+Extension: VK_KHR_ray_tracing_pipeline
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStridedDeviceAddressRegionKHR.html
 
 """
@@ -34505,6 +35733,8 @@ StridedDeviceAddressRegionKHR
 
 """
 High-level wrapper for VkTraceRaysIndirectCommandKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTraceRaysIndirectCommandKHR.html
 
@@ -34514,6 +35744,8 @@ TraceRaysIndirectCommandKHR
 """
 High-level wrapper for VkPhysicalDeviceImageDrmFormatModifierInfoEXT.
 
+Extension: VK_EXT_image_drm_format_modifier
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html
 
 """
@@ -34522,6 +35754,8 @@ PhysicalDeviceImageDrmFormatModifierInfoEXT
 """
 High-level wrapper for VkImageDrmFormatModifierListCreateInfoEXT.
 
+Extension: VK_EXT_image_drm_format_modifier
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierListCreateInfoEXT.html
 
 """
@@ -34529,6 +35763,8 @@ ImageDrmFormatModifierListCreateInfoEXT
 
 """
 High-level wrapper for VkImageDrmFormatModifierExplicitCreateInfoEXT.
+
+Extension: VK_EXT_image_drm_format_modifier
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierExplicitCreateInfoEXT.html
 
@@ -34546,6 +35782,8 @@ ImageStencilUsageCreateInfo
 """
 High-level wrapper for VkDeviceMemoryOverallocationCreateInfoAMD.
 
+Extension: VK_AMD_memory_overallocation_behavior
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html
 
 """
@@ -34553,6 +35791,8 @@ DeviceMemoryOverallocationCreateInfoAMD
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentDensityMapFeaturesEXT.
+
+Extension: VK_EXT_fragment_density_map
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMapFeaturesEXT.html
 
@@ -34562,6 +35802,8 @@ PhysicalDeviceFragmentDensityMapFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.
 
+Extension: VK_EXT_fragment_density_map2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.html
 
 """
@@ -34569,6 +35811,8 @@ PhysicalDeviceFragmentDensityMap2FeaturesEXT
 
 """
 High-level wrapper for VkRenderPassFragmentDensityMapCreateInfoEXT.
+
+Extension: VK_EXT_fragment_density_map
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html
 
@@ -34586,6 +35830,8 @@ PhysicalDeviceScalarBlockLayoutFeatures
 """
 High-level wrapper for VkSurfaceProtectedCapabilitiesKHR.
 
+Extension: VK_KHR_surface_protected_capabilities
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceProtectedCapabilitiesKHR.html
 
 """
@@ -34602,6 +35848,8 @@ PhysicalDeviceUniformBufferStandardLayoutFeatures
 """
 High-level wrapper for VkPhysicalDeviceDepthClipEnableFeaturesEXT.
 
+Extension: VK_EXT_depth_clip_enable
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDepthClipEnableFeaturesEXT.html
 
 """
@@ -34609,6 +35857,8 @@ PhysicalDeviceDepthClipEnableFeaturesEXT
 
 """
 High-level wrapper for VkPipelineRasterizationDepthClipStateCreateInfoEXT.
+
+Extension: VK_EXT_depth_clip_enable
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationDepthClipStateCreateInfoEXT.html
 
@@ -34618,6 +35868,8 @@ PipelineRasterizationDepthClipStateCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceMemoryPriorityFeaturesEXT.
 
+Extension: VK_EXT_memory_priority
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryPriorityFeaturesEXT.html
 
 """
@@ -34625,6 +35877,8 @@ PhysicalDeviceMemoryPriorityFeaturesEXT
 
 """
 High-level wrapper for VkMemoryPriorityAllocateInfoEXT.
+
+Extension: VK_EXT_memory_priority
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryPriorityAllocateInfoEXT.html
 
@@ -34641,6 +35895,8 @@ PhysicalDeviceBufferDeviceAddressFeatures
 
 """
 High-level wrapper for VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.
+
+Extension: VK_EXT_buffer_device_address
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html
 
@@ -34666,6 +35922,8 @@ BufferOpaqueCaptureAddressCreateInfo
 """
 High-level wrapper for VkBufferDeviceAddressCreateInfoEXT.
 
+Extension: VK_EXT_buffer_device_address
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html
 
 """
@@ -34673,6 +35931,8 @@ BufferDeviceAddressCreateInfoEXT
 
 """
 High-level wrapper for VkPhysicalDeviceImageViewImageFormatInfoEXT.
+
+Extension: VK_EXT_filter_cubic
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html
 
@@ -34714,6 +35974,8 @@ RenderPassAttachmentBeginInfo
 """
 High-level wrapper for VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.
 
+Extension: VK_EXT_texture_compression_astc_hdr
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.html
 
 """
@@ -34721,6 +35983,8 @@ PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
 
 """
 High-level wrapper for VkPhysicalDeviceCooperativeMatrixFeaturesNV.
+
+Extension: VK_NV_cooperative_matrix
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html
 
@@ -34730,6 +35994,8 @@ PhysicalDeviceCooperativeMatrixFeaturesNV
 """
 High-level wrapper for VkCooperativeMatrixPropertiesNV.
 
+Extension: VK_NV_cooperative_matrix
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCooperativeMatrixPropertiesNV.html
 
 """
@@ -34737,6 +36003,8 @@ CooperativeMatrixPropertiesNV
 
 """
 High-level wrapper for VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.
+
+Extension: VK_EXT_ycbcr_image_arrays
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.html
 
@@ -34746,6 +36014,8 @@ PhysicalDeviceYcbcrImageArraysFeaturesEXT
 """
 High-level wrapper for VkImageViewHandleInfoNVX.
 
+Extension: VK_NVX_image_view_handle
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewHandleInfoNVX.html
 
 """
@@ -34753,6 +36023,8 @@ ImageViewHandleInfoNVX
 
 """
 High-level wrapper for VkPipelineCreationFeedbackCreateInfoEXT.
+
+Extension: VK_EXT_pipeline_creation_feedback
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCreationFeedbackCreateInfoEXT.html
 
@@ -34762,6 +36034,8 @@ PipelineCreationFeedbackCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDevicePerformanceQueryFeaturesKHR.
 
+Extension: VK_KHR_performance_query
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html
 
 """
@@ -34769,6 +36043,8 @@ PhysicalDevicePerformanceQueryFeaturesKHR
 
 """
 High-level wrapper for VkQueryPoolPerformanceCreateInfoKHR.
+
+Extension: VK_KHR_performance_query
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html
 
@@ -34778,6 +36054,8 @@ QueryPoolPerformanceCreateInfoKHR
 """
 High-level wrapper for VkAcquireProfilingLockInfoKHR.
 
+Extension: VK_KHR_performance_query
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireProfilingLockInfoKHR.html
 
 """
@@ -34785,6 +36063,8 @@ AcquireProfilingLockInfoKHR
 
 """
 High-level wrapper for VkPerformanceQuerySubmitInfoKHR.
+
+Extension: VK_KHR_performance_query
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html
 
@@ -34794,6 +36074,8 @@ PerformanceQuerySubmitInfoKHR
 """
 High-level wrapper for VkHeadlessSurfaceCreateInfoEXT.
 
+Extension: VK_EXT_headless_surface
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHeadlessSurfaceCreateInfoEXT.html
 
 """
@@ -34801,6 +36083,8 @@ HeadlessSurfaceCreateInfoEXT
 
 """
 High-level wrapper for VkPhysicalDeviceCoverageReductionModeFeaturesNV.
+
+Extension: VK_NV_coverage_reduction_mode
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html
 
@@ -34810,6 +36094,8 @@ PhysicalDeviceCoverageReductionModeFeaturesNV
 """
 High-level wrapper for VkPipelineCoverageReductionStateCreateInfoNV.
 
+Extension: VK_NV_coverage_reduction_mode
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html
 
 """
@@ -34817,6 +36103,8 @@ PipelineCoverageReductionStateCreateInfoNV
 
 """
 High-level wrapper for VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.
+
+Extension: VK_INTEL_shader_integer_functions2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.html
 
@@ -34826,6 +36114,8 @@ PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
 """
 High-level wrapper for VkPerformanceValueINTEL.
 
+Extension: VK_INTEL_performance_query
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueINTEL.html
 
 """
@@ -34833,6 +36123,8 @@ PerformanceValueINTEL
 
 """
 High-level wrapper for VkInitializePerformanceApiInfoINTEL.
+
+Extension: VK_INTEL_performance_query
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html
 
@@ -34842,6 +36134,8 @@ InitializePerformanceApiInfoINTEL
 """
 High-level wrapper for VkQueryPoolPerformanceQueryCreateInfoINTEL.
 
+Extension: VK_INTEL_performance_query
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html
 
 """
@@ -34849,6 +36143,8 @@ QueryPoolPerformanceQueryCreateInfoINTEL
 
 """
 High-level wrapper for VkPerformanceMarkerInfoINTEL.
+
+Extension: VK_INTEL_performance_query
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceMarkerInfoINTEL.html
 
@@ -34858,6 +36154,8 @@ PerformanceMarkerInfoINTEL
 """
 High-level wrapper for VkPerformanceStreamMarkerInfoINTEL.
 
+Extension: VK_INTEL_performance_query
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html
 
 """
@@ -34865,6 +36163,8 @@ PerformanceStreamMarkerInfoINTEL
 
 """
 High-level wrapper for VkPerformanceOverrideInfoINTEL.
+
+Extension: VK_INTEL_performance_query
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceOverrideInfoINTEL.html
 
@@ -34874,6 +36174,8 @@ PerformanceOverrideInfoINTEL
 """
 High-level wrapper for VkPerformanceConfigurationAcquireInfoINTEL.
 
+Extension: VK_INTEL_performance_query
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html
 
 """
@@ -34881,6 +36183,8 @@ PerformanceConfigurationAcquireInfoINTEL
 
 """
 High-level wrapper for VkPhysicalDeviceShaderClockFeaturesKHR.
+
+Extension: VK_KHR_shader_clock
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderClockFeaturesKHR.html
 
@@ -34890,6 +36194,8 @@ PhysicalDeviceShaderClockFeaturesKHR
 """
 High-level wrapper for VkPhysicalDeviceIndexTypeUint8FeaturesEXT.
 
+Extension: VK_EXT_index_type_uint8
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.html
 
 """
@@ -34898,6 +36204,8 @@ PhysicalDeviceIndexTypeUint8FeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.
 
+Extension: VK_NV_shader_sm_builtins
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html
 
 """
@@ -34905,6 +36213,8 @@ PhysicalDeviceShaderSMBuiltinsFeaturesNV
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.
+
+Extension: VK_EXT_fragment_shader_interlock
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.html
 
@@ -34938,6 +36248,8 @@ AttachmentDescriptionStencilLayout
 """
 High-level wrapper for VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.
 
+Extension: VK_KHR_pipeline_executable_properties
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html
 
 """
@@ -34945,6 +36257,8 @@ PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
 
 """
 High-level wrapper for VkPipelineInfoKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInfoKHR.html
 
@@ -34954,6 +36268,8 @@ PipelineInfoKHR
 """
 High-level wrapper for VkPipelineExecutableInfoKHR.
 
+Extension: VK_KHR_pipeline_executable_properties
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableInfoKHR.html
 
 """
@@ -34961,6 +36277,8 @@ PipelineExecutableInfoKHR
 
 """
 High-level wrapper for VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.
+
+Extension: VK_EXT_shader_demote_to_helper_invocation
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.html
 
@@ -34970,6 +36288,8 @@ PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.
 
+Extension: VK_EXT_texel_buffer_alignment
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.html
 
 """
@@ -34977,6 +36297,8 @@ PhysicalDeviceTexelBufferAlignmentFeaturesEXT
 
 """
 High-level wrapper for VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.
+
+Extension: VK_EXT_subgroup_size_control
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.html
 
@@ -35002,6 +36324,8 @@ DeviceMemoryOpaqueCaptureAddressInfo
 """
 High-level wrapper for VkPhysicalDeviceLineRasterizationFeaturesEXT.
 
+Extension: VK_EXT_line_rasterization
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html
 
 """
@@ -35010,6 +36334,8 @@ PhysicalDeviceLineRasterizationFeaturesEXT
 """
 High-level wrapper for VkPipelineRasterizationLineStateCreateInfoEXT.
 
+Extension: VK_EXT_line_rasterization
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html
 
 """
@@ -35017,6 +36343,8 @@ PipelineRasterizationLineStateCreateInfoEXT
 
 """
 High-level wrapper for VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.
+
+Extension: VK_EXT_pipeline_creation_cache_control
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.html
 
@@ -35042,6 +36370,8 @@ PhysicalDeviceVulkan12Features
 """
 High-level wrapper for VkPipelineCompilerControlCreateInfoAMD.
 
+Extension: VK_AMD_pipeline_compiler_control
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html
 
 """
@@ -35049,6 +36379,8 @@ PipelineCompilerControlCreateInfoAMD
 
 """
 High-level wrapper for VkPhysicalDeviceCoherentMemoryFeaturesAMD.
+
+Extension: VK_AMD_device_coherent_memory
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoherentMemoryFeaturesAMD.html
 
@@ -35058,6 +36390,8 @@ PhysicalDeviceCoherentMemoryFeaturesAMD
 """
 High-level wrapper for VkSamplerCustomBorderColorCreateInfoEXT.
 
+Extension: VK_EXT_custom_border_color
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html
 
 """
@@ -35065,6 +36399,8 @@ SamplerCustomBorderColorCreateInfoEXT
 
 """
 High-level wrapper for VkPhysicalDeviceCustomBorderColorFeaturesEXT.
+
+Extension: VK_EXT_custom_border_color
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html
 
@@ -35074,6 +36410,8 @@ PhysicalDeviceCustomBorderColorFeaturesEXT
 """
 High-level wrapper for VkAccelerationStructureGeometryTrianglesDataKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html
 
 """
@@ -35081,6 +36419,8 @@ AccelerationStructureGeometryTrianglesDataKHR
 
 """
 High-level wrapper for VkAccelerationStructureGeometryAabbsDataKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html
 
@@ -35090,6 +36430,8 @@ AccelerationStructureGeometryAabbsDataKHR
 """
 High-level wrapper for VkAccelerationStructureGeometryInstancesDataKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryInstancesDataKHR.html
 
 """
@@ -35097,6 +36439,8 @@ AccelerationStructureGeometryInstancesDataKHR
 
 """
 High-level wrapper for VkAccelerationStructureGeometryKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryKHR.html
 
@@ -35106,6 +36450,8 @@ AccelerationStructureGeometryKHR
 """
 High-level wrapper for VkAccelerationStructureBuildGeometryInfoKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html
 
 """
@@ -35113,6 +36459,8 @@ AccelerationStructureBuildGeometryInfoKHR
 
 """
 High-level wrapper for VkAccelerationStructureBuildRangeInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildRangeInfoKHR.html
 
@@ -35122,6 +36470,8 @@ AccelerationStructureBuildRangeInfoKHR
 """
 High-level wrapper for VkAccelerationStructureCreateInfoKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html
 
 """
@@ -35129,6 +36479,8 @@ AccelerationStructureCreateInfoKHR
 
 """
 High-level wrapper for VkAabbPositionsKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAabbPositionsKHR.html
 
@@ -35138,6 +36490,8 @@ AabbPositionsKHR
 """
 High-level wrapper for VkTransformMatrixKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTransformMatrixKHR.html
 
 """
@@ -35145,6 +36499,8 @@ TransformMatrixKHR
 
 """
 High-level wrapper for VkAccelerationStructureInstanceKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInstanceKHR.html
 
@@ -35154,6 +36510,8 @@ AccelerationStructureInstanceKHR
 """
 High-level wrapper for VkAccelerationStructureDeviceAddressInfoKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html
 
 """
@@ -35161,6 +36519,8 @@ AccelerationStructureDeviceAddressInfoKHR
 
 """
 High-level wrapper for VkAccelerationStructureVersionInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureVersionInfoKHR.html
 
@@ -35170,6 +36530,8 @@ AccelerationStructureVersionInfoKHR
 """
 High-level wrapper for VkCopyAccelerationStructureInfoKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html
 
 """
@@ -35177,6 +36539,8 @@ CopyAccelerationStructureInfoKHR
 
 """
 High-level wrapper for VkCopyAccelerationStructureToMemoryInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html
 
@@ -35186,6 +36550,8 @@ CopyAccelerationStructureToMemoryInfoKHR
 """
 High-level wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html
 
 """
@@ -35193,6 +36559,8 @@ CopyMemoryToAccelerationStructureInfoKHR
 
 """
 High-level wrapper for VkRayTracingPipelineInterfaceCreateInfoKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineInterfaceCreateInfoKHR.html
 
@@ -35202,6 +36570,8 @@ RayTracingPipelineInterfaceCreateInfoKHR
 """
 High-level wrapper for VkPipelineLibraryCreateInfoKHR.
 
+Extension: VK_KHR_pipeline_library
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html
 
 """
@@ -35209,6 +36579,8 @@ PipelineLibraryCreateInfoKHR
 
 """
 High-level wrapper for VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.
+
+Extension: VK_EXT_extended_dynamic_state
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html
 
@@ -35218,6 +36590,8 @@ PhysicalDeviceExtendedDynamicStateFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.
 
+Extension: VK_EXT_extended_dynamic_state2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html
 
 """
@@ -35225,6 +36599,8 @@ PhysicalDeviceExtendedDynamicState2FeaturesEXT
 
 """
 High-level wrapper for VkRenderPassTransformBeginInfoQCOM.
+
+Extension: VK_QCOM_render_pass_transform
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html
 
@@ -35234,6 +36610,8 @@ RenderPassTransformBeginInfoQCOM
 """
 High-level wrapper for VkCopyCommandTransformInfoQCOM.
 
+Extension: VK_QCOM_rotated_copy_commands
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyCommandTransformInfoQCOM.html
 
 """
@@ -35241,6 +36619,8 @@ CopyCommandTransformInfoQCOM
 
 """
 High-level wrapper for VkCommandBufferInheritanceRenderPassTransformInfoQCOM.
+
+Extension: VK_QCOM_render_pass_transform
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html
 
@@ -35250,6 +36630,8 @@ CommandBufferInheritanceRenderPassTransformInfoQCOM
 """
 High-level wrapper for VkPhysicalDeviceDiagnosticsConfigFeaturesNV.
 
+Extension: VK_NV_device_diagnostics_config
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html
 
 """
@@ -35257,6 +36639,8 @@ PhysicalDeviceDiagnosticsConfigFeaturesNV
 
 """
 High-level wrapper for VkDeviceDiagnosticsConfigCreateInfoNV.
+
+Extension: VK_NV_device_diagnostics_config
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDiagnosticsConfigCreateInfoNV.html
 
@@ -35266,6 +36650,8 @@ DeviceDiagnosticsConfigCreateInfoNV
 """
 High-level wrapper for VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.
 
+Extension: VK_KHR_zero_initialize_workgroup_memory
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.html
 
 """
@@ -35273,6 +36659,8 @@ PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
 
 """
 High-level wrapper for VkPhysicalDeviceRobustness2FeaturesEXT.
+
+Extension: VK_EXT_robustness2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRobustness2FeaturesEXT.html
 
@@ -35282,6 +36670,8 @@ PhysicalDeviceRobustness2FeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceImageRobustnessFeaturesEXT.
 
+Extension: VK_EXT_image_robustness
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageRobustnessFeaturesEXT.html
 
 """
@@ -35289,6 +36679,8 @@ PhysicalDeviceImageRobustnessFeaturesEXT
 
 """
 High-level wrapper for VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.
+
+Extension: VK_KHR_workgroup_memory_explicit_layout
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.html
 
@@ -35298,6 +36690,8 @@ PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
 """
 High-level wrapper for VkPhysicalDevice4444FormatsFeaturesEXT.
 
+Extension: VK_EXT_4444_formats
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice4444FormatsFeaturesEXT.html
 
 """
@@ -35305,6 +36699,8 @@ PhysicalDevice4444FormatsFeaturesEXT
 
 """
 High-level wrapper for VkBufferCopy2KHR.
+
+Extension: VK_KHR_copy_commands2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy2KHR.html
 
@@ -35314,6 +36710,8 @@ BufferCopy2KHR
 """
 High-level wrapper for VkImageCopy2KHR.
 
+Extension: VK_KHR_copy_commands2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy2KHR.html
 
 """
@@ -35321,6 +36719,8 @@ ImageCopy2KHR
 
 """
 High-level wrapper for VkImageBlit2KHR.
+
+Extension: VK_KHR_copy_commands2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit2KHR.html
 
@@ -35330,6 +36730,8 @@ ImageBlit2KHR
 """
 High-level wrapper for VkBufferImageCopy2KHR.
 
+Extension: VK_KHR_copy_commands2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy2KHR.html
 
 """
@@ -35337,6 +36739,8 @@ BufferImageCopy2KHR
 
 """
 High-level wrapper for VkImageResolve2KHR.
+
+Extension: VK_KHR_copy_commands2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve2KHR.html
 
@@ -35346,6 +36750,8 @@ ImageResolve2KHR
 """
 High-level wrapper for VkCopyBufferInfo2KHR.
 
+Extension: VK_KHR_copy_commands2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferInfo2KHR.html
 
 """
@@ -35353,6 +36759,8 @@ CopyBufferInfo2KHR
 
 """
 High-level wrapper for VkCopyImageInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageInfo2KHR.html
 
@@ -35362,6 +36770,8 @@ CopyImageInfo2KHR
 """
 High-level wrapper for VkBlitImageInfo2KHR.
 
+Extension: VK_KHR_copy_commands2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBlitImageInfo2KHR.html
 
 """
@@ -35369,6 +36779,8 @@ BlitImageInfo2KHR
 
 """
 High-level wrapper for VkCopyBufferToImageInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferToImageInfo2KHR.html
 
@@ -35378,6 +36790,8 @@ CopyBufferToImageInfo2KHR
 """
 High-level wrapper for VkCopyImageToBufferInfo2KHR.
 
+Extension: VK_KHR_copy_commands2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageToBufferInfo2KHR.html
 
 """
@@ -35385,6 +36799,8 @@ CopyImageToBufferInfo2KHR
 
 """
 High-level wrapper for VkResolveImageInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkResolveImageInfo2KHR.html
 
@@ -35394,6 +36810,8 @@ ResolveImageInfo2KHR
 """
 High-level wrapper for VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.
 
+Extension: VK_EXT_shader_image_atomic_int64
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.html
 
 """
@@ -35401,6 +36819,8 @@ PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
 
 """
 High-level wrapper for VkFragmentShadingRateAttachmentInfoKHR.
+
+Extension: VK_KHR_fragment_shading_rate
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html
 
@@ -35410,6 +36830,8 @@ FragmentShadingRateAttachmentInfoKHR
 """
 High-level wrapper for VkPipelineFragmentShadingRateStateCreateInfoKHR.
 
+Extension: VK_KHR_fragment_shading_rate
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html
 
 """
@@ -35417,6 +36839,8 @@ PipelineFragmentShadingRateStateCreateInfoKHR
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShadingRateFeaturesKHR.
+
+Extension: VK_KHR_fragment_shading_rate
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html
 
@@ -35426,6 +36850,8 @@ PhysicalDeviceFragmentShadingRateFeaturesKHR
 """
 High-level wrapper for VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.
 
+Extension: VK_KHR_shader_terminate_invocation
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.html
 
 """
@@ -35433,6 +36859,8 @@ PhysicalDeviceShaderTerminateInvocationFeaturesKHR
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.
+
+Extension: VK_NV_fragment_shading_rate_enums
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html
 
@@ -35442,6 +36870,8 @@ PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
 """
 High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.
 
+Extension: VK_NV_fragment_shading_rate_enums
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html
 
 """
@@ -35449,6 +36879,8 @@ PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
 
 """
 High-level wrapper for VkPipelineFragmentShadingRateEnumStateCreateInfoNV.
+
+Extension: VK_NV_fragment_shading_rate_enums
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html
 
@@ -35458,6 +36890,8 @@ PipelineFragmentShadingRateEnumStateCreateInfoNV
 """
 High-level wrapper for VkAccelerationStructureBuildSizesInfoKHR.
 
+Extension: VK_KHR_acceleration_structure
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildSizesInfoKHR.html
 
 """
@@ -35465,6 +36899,8 @@ AccelerationStructureBuildSizesInfoKHR
 
 """
 High-level wrapper for VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.
+
+Extension: VK_VALVE_mutable_descriptor_type
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.html
 
@@ -35474,6 +36910,8 @@ PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
 """
 High-level wrapper for VkMutableDescriptorTypeListVALVE.
 
+Extension: VK_VALVE_mutable_descriptor_type
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeListVALVE.html
 
 """
@@ -35481,6 +36919,8 @@ MutableDescriptorTypeListVALVE
 
 """
 High-level wrapper for VkMutableDescriptorTypeCreateInfoVALVE.
+
+Extension: VK_VALVE_mutable_descriptor_type
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html
 
@@ -35490,6 +36930,8 @@ MutableDescriptorTypeCreateInfoVALVE
 """
 High-level wrapper for VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.
 
+Extension: VK_EXT_vertex_input_dynamic_state
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.html
 
 """
@@ -35497,6 +36939,8 @@ PhysicalDeviceVertexInputDynamicStateFeaturesEXT
 
 """
 High-level wrapper for VkVertexInputBindingDescription2EXT.
+
+Extension: VK_EXT_vertex_input_dynamic_state
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription2EXT.html
 
@@ -35506,6 +36950,8 @@ VertexInputBindingDescription2EXT
 """
 High-level wrapper for VkVertexInputAttributeDescription2EXT.
 
+Extension: VK_EXT_vertex_input_dynamic_state
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription2EXT.html
 
 """
@@ -35513,6 +36959,8 @@ VertexInputAttributeDescription2EXT
 
 """
 High-level wrapper for VkPhysicalDeviceColorWriteEnableFeaturesEXT.
+
+Extension: VK_EXT_color_write_enable
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceColorWriteEnableFeaturesEXT.html
 
@@ -35522,6 +36970,8 @@ PhysicalDeviceColorWriteEnableFeaturesEXT
 """
 High-level wrapper for VkPipelineColorWriteCreateInfoEXT.
 
+Extension: VK_EXT_color_write_enable
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorWriteCreateInfoEXT.html
 
 """
@@ -35529,6 +36979,8 @@ PipelineColorWriteCreateInfoEXT
 
 """
 High-level wrapper for VkMemoryBarrier2KHR.
+
+Extension: VK_KHR_synchronization2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier2KHR.html
 
@@ -35538,6 +36990,8 @@ MemoryBarrier2KHR
 """
 High-level wrapper for VkImageMemoryBarrier2KHR.
 
+Extension: VK_KHR_synchronization2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier2KHR.html
 
 """
@@ -35545,6 +36999,8 @@ ImageMemoryBarrier2KHR
 
 """
 High-level wrapper for VkBufferMemoryBarrier2KHR.
+
+Extension: VK_KHR_synchronization2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier2KHR.html
 
@@ -35554,6 +37010,8 @@ BufferMemoryBarrier2KHR
 """
 High-level wrapper for VkDependencyInfoKHR.
 
+Extension: VK_KHR_synchronization2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDependencyInfoKHR.html
 
 """
@@ -35561,6 +37019,8 @@ DependencyInfoKHR
 
 """
 High-level wrapper for VkSemaphoreSubmitInfoKHR.
+
+Extension: VK_KHR_synchronization2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSubmitInfoKHR.html
 
@@ -35570,6 +37030,8 @@ SemaphoreSubmitInfoKHR
 """
 High-level wrapper for VkCommandBufferSubmitInfoKHR.
 
+Extension: VK_KHR_synchronization2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferSubmitInfoKHR.html
 
 """
@@ -35577,6 +37039,8 @@ CommandBufferSubmitInfoKHR
 
 """
 High-level wrapper for VkSubmitInfo2KHR.
+
+Extension: VK_KHR_synchronization2
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
 
@@ -35586,6 +37050,8 @@ SubmitInfo2KHR
 """
 High-level wrapper for VkPhysicalDeviceSynchronization2FeaturesKHR.
 
+Extension: VK_KHR_synchronization2
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSynchronization2FeaturesKHR.html
 
 """
@@ -35593,6 +37059,8 @@ PhysicalDeviceSynchronization2FeaturesKHR
 
 """
 High-level wrapper for VkPhysicalDeviceInheritedViewportScissorFeaturesNV.
+
+Extension: VK_NV_inherited_viewport_scissor
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html
 
@@ -35602,6 +37070,8 @@ PhysicalDeviceInheritedViewportScissorFeaturesNV
 """
 High-level wrapper for VkCommandBufferInheritanceViewportScissorInfoNV.
 
+Extension: VK_NV_inherited_viewport_scissor
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html
 
 """
@@ -35609,6 +37079,8 @@ CommandBufferInheritanceViewportScissorInfoNV
 
 """
 High-level wrapper for VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.
+
+Extension: VK_EXT_ycbcr_2plane_444_formats
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.html
 
@@ -35618,6 +37090,8 @@ PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceProvokingVertexFeaturesEXT.
 
+Extension: VK_EXT_provoking_vertex
+
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html
 
 """
@@ -35625,6 +37099,8 @@ PhysicalDeviceProvokingVertexFeaturesEXT
 
 """
 High-level wrapper for VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.
+
+Extension: VK_EXT_provoking_vertex
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.html
 

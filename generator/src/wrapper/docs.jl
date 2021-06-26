@@ -114,11 +114,20 @@ function document_arguments(p)
 end
 
 function document_struct(spec::SpecStruct, p)
-    """
-    High-level wrapper for $(spec.name).
+    ext = extension(spec)
+    string(
+        """
+        High-level wrapper for $(spec.name).
+        """,
+        !isnothing(ext) ? """
 
-    API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
-    """
+        Extension: $(ext.name)
+        """ : "",
+        """
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+        """,
+    )
 end
 
 function docstring(name, docstring)
