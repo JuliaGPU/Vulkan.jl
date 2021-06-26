@@ -7118,9 +7118,9 @@ end
 
 function _ExportMemoryWin32HandleInfoNV(; next = C_NULL, attributes = C_NULL, dw_access = 0)
     next = cconvert(Ptr{Cvoid}, next)
-    attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
+    attributes = cconvert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes)
     deps = [next, attributes]
-    vks = VkExportMemoryWin32HandleInfoNV(VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{SECURITY_ATTRIBUTES}, attributes), dw_access)
+    vks = VkExportMemoryWin32HandleInfoNV(VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes), dw_access)
     _ExportMemoryWin32HandleInfoNV(vks, deps)
 end
 
@@ -7331,9 +7331,9 @@ end
 
 function _ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
-    attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
+    attributes = cconvert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes)
     deps = [next, attributes]
-    vks = VkExportMemoryWin32HandleInfoKHR(VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{SECURITY_ATTRIBUTES}, attributes), dw_access, name)
+    vks = VkExportMemoryWin32HandleInfoKHR(VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes), dw_access, name)
     _ExportMemoryWin32HandleInfoKHR(vks, deps)
 end
 
@@ -7393,9 +7393,9 @@ end
 
 function _ExportSemaphoreWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
-    attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
+    attributes = cconvert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes)
     deps = [next, attributes]
-    vks = VkExportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{SECURITY_ATTRIBUTES}, attributes), dw_access, name)
+    vks = VkExportSemaphoreWin32HandleInfoKHR(VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes), dw_access, name)
     _ExportSemaphoreWin32HandleInfoKHR(vks, deps)
 end
 
@@ -7452,9 +7452,9 @@ end
 
 function _ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
-    attributes = cconvert(Ptr{SECURITY_ATTRIBUTES}, attributes)
+    attributes = cconvert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes)
     deps = [next, attributes]
-    vks = VkExportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{SECURITY_ATTRIBUTES}, attributes), dw_access, name)
+    vks = VkExportFenceWin32HandleInfoKHR(VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{vk.SECURITY_ATTRIBUTES}, attributes), dw_access, name)
     _ExportFenceWin32HandleInfoKHR(vks, deps)
 end
 
@@ -11132,7 +11132,7 @@ function get_physical_device_external_image_format_properties_nv(physical_device
     from_vk(ExternalImageFormatPropertiesNV, pExternalImageFormatProperties[])
 end
 
-get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle)))
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{vk.HANDLE}, handle)))
 
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::_GeneratedCommandsInfoNV)::Cvoid = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info)
 
@@ -11210,7 +11210,7 @@ function get_physical_device_external_buffer_properties(physical_device::Physica
     from_vk(ExternalBufferProperties, pExternalBufferProperties[])
 end
 
-get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
+get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{vk.HANDLE}, handle)))
 
 function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::ResultTypes.Result{MemoryWin32HandlePropertiesKHR, VulkanError}
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
@@ -11236,7 +11236,7 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
+get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{vk.HANDLE}, handle)))
 
 import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR)::ResultTypes.Result{Result, VulkanError} = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info))
 
@@ -11254,7 +11254,7 @@ function get_physical_device_external_fence_properties(physical_device::Physical
     from_vk(ExternalFenceProperties, pExternalFenceProperties[])
 end
 
-get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle)))
+get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{vk.HANDLE}, handle)))
 
 import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR)::ResultTypes.Result{Result, VulkanError} = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info))
 
@@ -11362,9 +11362,9 @@ end
 
 destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL)::Cvoid = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator)
 
-update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data))
+update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, data)
 
-cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data))
+cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data)
 
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
 
@@ -11573,7 +11573,7 @@ submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsM
 
 function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), Ref(host_pointer), pMemoryHostPointerProperties)
+    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), host_pointer, pMemoryHostPointerProperties)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
@@ -11605,7 +11605,7 @@ cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::I
 
 cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
 
-cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker))
+cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid = vkCmdSetCheckpointNV(command_buffer, checkpoint_marker)
 
 function get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
@@ -12665,7 +12665,7 @@ function get_physical_device_external_image_format_properties_nv(physical_device
     from_vk(ExternalImageFormatPropertiesNV, pExternalImageFormatProperties[])
 end
 
-get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleNV(device, memory, handle_type, to_vk(Ptr{vk.HANDLE}, handle), fun_ptr))
 
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::_GeneratedCommandsInfoNV, fun_ptr::FunctionPtr)::Cvoid = vkCmdExecuteGeneratedCommandsNV(command_buffer, is_preprocessed, generated_commands_info, fun_ptr)
 
@@ -12743,7 +12743,7 @@ function get_physical_device_external_buffer_properties(physical_device::Physica
     from_vk(ExternalBufferProperties, pExternalBufferProperties[])
 end
 
-get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{vk.HANDLE}, handle), fun_ptr))
 
 function get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{MemoryWin32HandlePropertiesKHR, VulkanError}
     pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
@@ -12769,7 +12769,7 @@ function get_physical_device_external_semaphore_properties(physical_device::Phys
     from_vk(ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
 
-get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSemaphoreWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{vk.HANDLE}, handle), fun_ptr))
 
 import_semaphore_win_32_handle_khr(device::Device, import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info, fun_ptr))
 
@@ -12787,7 +12787,7 @@ function get_physical_device_external_fence_properties(physical_device::Physical
     from_vk(ExternalFenceProperties, pExternalFenceProperties[])
 end
 
-get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{HANDLE}, handle), fun_ptr))
+get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{vk.HANDLE}, handle), fun_ptr))
 
 import_fence_win_32_handle_khr(device::Device, import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info, fun_ptr))
 
@@ -12895,9 +12895,9 @@ end
 
 destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator, fun_ptr)
 
-update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data), fun_ptr)
+update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, data, fun_ptr)
 
-cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data), fun_ptr)
+cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data, fun_ptr)
 
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
 
@@ -13106,7 +13106,7 @@ submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsM
 
 function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)::ResultTypes.Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), Ref(host_pointer), pMemoryHostPointerProperties, fun_ptr)
+    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), host_pointer, pMemoryHostPointerProperties, fun_ptr)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
@@ -13138,7 +13138,7 @@ cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::I
 
 cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
 
-cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker), fun_ptr)
+cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCheckpointNV(command_buffer, checkpoint_marker, fun_ptr)
 
 function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)::Vector{CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
@@ -13880,7 +13880,7 @@ end
 
 struct InitializePerformanceApiInfoINTEL <: HighLevelStruct
     next::Any
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL <: HighLevelStruct
@@ -14250,7 +14250,7 @@ struct DeviceDeviceMemoryReportCreateInfoEXT <: HighLevelStruct
     next::Any
     flags::UInt32
     pfn_user_callback::FunctionPtr
-    user_data::Cvoid
+    user_data::Ptr{Cvoid}
 end
 
 struct PhysicalDeviceDeviceMemoryReportFeaturesEXT <: HighLevelStruct
@@ -14284,7 +14284,7 @@ struct ValidationCacheCreateInfoEXT <: HighLevelStruct
     next::Any
     flags::UInt32
     initial_data_size::OptionalPtr{UInt}
-    initial_data::Cvoid
+    initial_data::Ptr{Cvoid}
 end
 
 struct DescriptorPoolInlineUniformBlockCreateInfoEXT <: HighLevelStruct
@@ -14295,7 +14295,7 @@ end
 struct WriteDescriptorSetInlineUniformBlockEXT <: HighLevelStruct
     next::Any
     data_size::UInt32
-    data::Cvoid
+    data::Ptr{Cvoid}
 end
 
 struct PhysicalDeviceInlineUniformBlockFeaturesEXT <: HighLevelStruct
@@ -14636,7 +14636,7 @@ end
 struct SpecializationInfo <: HighLevelStruct
     map_entries::Vector{SpecializationMapEntry}
     data_size::OptionalPtr{UInt}
-    data::Cvoid
+    data::Ptr{Cvoid}
 end
 
 struct BufferCopy <: HighLevelStruct
@@ -14652,7 +14652,7 @@ struct MemoryAllocateInfo <: HighLevelStruct
 end
 
 struct AllocationCallbacks <: HighLevelStruct
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
     pfn_allocation::FunctionPtr
     pfn_reallocation::FunctionPtr
     pfn_free::FunctionPtr
@@ -14839,7 +14839,7 @@ struct DebugUtilsMessengerCreateInfoEXT <: HighLevelStruct
     message_severity::DebugUtilsMessageSeverityFlagEXT
     message_type::DebugUtilsMessageTypeFlagEXT
     pfn_user_callback::FunctionPtr
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct DeviceGroupSwapchainCreateInfoKHR <: HighLevelStruct
@@ -14887,7 +14887,7 @@ end
 struct ImportMemoryHostPointerInfoEXT <: HighLevelStruct
     next::Any
     handle_type::ExternalMemoryHandleTypeFlag
-    host_pointer::Cvoid
+    host_pointer::Ptr{Cvoid}
 end
 
 struct ImportMemoryFdInfoKHR <: HighLevelStruct
@@ -14948,7 +14948,7 @@ struct DebugReportCallbackCreateInfoEXT <: HighLevelStruct
     next::Any
     flags::DebugReportFlagEXT
     pfn_callback::FunctionPtr
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: HighLevelStruct
@@ -15217,7 +15217,7 @@ struct PipelineCacheCreateInfo <: HighLevelStruct
     next::Any
     flags::PipelineCacheCreateFlag
     initial_data_size::OptionalPtr{UInt}
-    initial_data::Cvoid
+    initial_data::Ptr{Cvoid}
 end
 
 struct PipelineRasterizationProvokingVertexStateCreateInfoEXT <: HighLevelStruct
@@ -15297,7 +15297,7 @@ struct RayTracingShaderGroupCreateInfoKHR <: HighLevelStruct
     closest_hit_shader::UInt32
     any_hit_shader::UInt32
     intersection_shader::UInt32
-    shader_group_capture_replay_handle::OptionalPtr{Cvoid}
+    shader_group_capture_replay_handle::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct RayTracingShaderGroupCreateInfoNV <: HighLevelStruct
@@ -15438,7 +15438,7 @@ struct DebugMarkerObjectTagInfoEXT <: HighLevelStruct
     object::UInt64
     tag_name::UInt64
     tag_size::UInt
-    tag::Cvoid
+    tag::Ptr{Cvoid}
 end
 
 struct DebugMarkerObjectNameInfoEXT <: HighLevelStruct
@@ -15465,7 +15465,7 @@ struct DebugUtilsObjectTagInfoEXT <: HighLevelStruct
     object_handle::UInt64
     tag_name::UInt64
     tag_size::UInt
-    tag::Cvoid
+    tag::Ptr{Cvoid}
 end
 
 struct DebugUtilsObjectNameInfoEXT <: HighLevelStruct
@@ -16793,7 +16793,7 @@ DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray; next = C_
 
 DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL) = DescriptorSetAllocateInfo(next, descriptor_pool, set_layouts)
 
-SpecializationInfo(map_entries::AbstractArray, data::Cvoid; data_size = C_NULL) = SpecializationInfo(map_entries, data_size, data)
+SpecializationInfo(map_entries::AbstractArray, data::Ptr{Cvoid}; data_size = C_NULL) = SpecializationInfo(map_entries, data_size, data)
 
 PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL) = PipelineShaderStageCreateInfo(next, flags, stage, _module, name, specialization_info)
 
@@ -16821,7 +16821,7 @@ PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable:
 
 GraphicsPipelineCreateInfo(stages::AbstractArray, rasterization_state::PipelineRasterizationStateCreateInfo, layout::PipelineLayout, render_pass::RenderPass, subpass::Integer, base_pipeline_index::Integer; next = C_NULL, flags = 0, vertex_input_state = C_NULL, input_assembly_state = C_NULL, tessellation_state = C_NULL, viewport_state = C_NULL, multisample_state = C_NULL, depth_stencil_state = C_NULL, color_blend_state = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL) = GraphicsPipelineCreateInfo(next, flags, stages, vertex_input_state, input_assembly_state, tessellation_state, viewport_state, rasterization_state, multisample_state, depth_stencil_state, color_blend_state, dynamic_state, layout, render_pass, subpass, base_pipeline_handle, base_pipeline_index)
 
-PipelineCacheCreateInfo(initial_data::Cvoid; next = C_NULL, flags = 0, initial_data_size = C_NULL) = PipelineCacheCreateInfo(next, flags, initial_data_size, initial_data)
+PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = C_NULL) = PipelineCacheCreateInfo(next, flags, initial_data_size, initial_data)
 
 PipelineLayoutCreateInfo(set_layouts::AbstractArray, push_constant_ranges::AbstractArray; next = C_NULL, flags = 0) = PipelineLayoutCreateInfo(next, flags, set_layouts, push_constant_ranges)
 
@@ -16879,7 +16879,7 @@ PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::Rasterizati
 
 DebugMarkerObjectNameInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL) = DebugMarkerObjectNameInfoEXT(next, object_type, object, object_name)
 
-DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Cvoid; next = C_NULL) = DebugMarkerObjectTagInfoEXT(next, object_type, object, tag_name, tag_size, tag)
+DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL) = DebugMarkerObjectTagInfoEXT(next, object_type, object, tag_name, tag_size, tag)
 
 DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL) = DebugMarkerMarkerInfoEXT(next, marker_name, color)
 
@@ -17095,7 +17095,7 @@ PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premul
 
 PhysicalDeviceInlineUniformBlockFeaturesEXT(inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool; next = C_NULL) = PhysicalDeviceInlineUniformBlockFeaturesEXT(next, inline_uniform_block, descriptor_binding_inline_uniform_block_update_after_bind)
 
-WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Cvoid; next = C_NULL) = WriteDescriptorSetInlineUniformBlockEXT(next, data_size, data)
+WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Ptr{Cvoid}; next = C_NULL) = WriteDescriptorSetInlineUniformBlockEXT(next, data_size, data)
 
 DescriptorPoolInlineUniformBlockCreateInfoEXT(max_inline_uniform_block_bindings::Integer; next = C_NULL) = DescriptorPoolInlineUniformBlockCreateInfoEXT(next, max_inline_uniform_block_bindings)
 
@@ -17103,7 +17103,7 @@ PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::CoverageMo
 
 ImageFormatListCreateInfo(view_formats::AbstractArray; next = C_NULL) = ImageFormatListCreateInfo(next, view_formats)
 
-ValidationCacheCreateInfoEXT(initial_data::Cvoid; next = C_NULL, flags = 0, initial_data_size = C_NULL) = ValidationCacheCreateInfoEXT(next, flags, initial_data_size, initial_data)
+ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = C_NULL) = ValidationCacheCreateInfoEXT(next, flags, initial_data_size, initial_data)
 
 ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCacheEXT; next = C_NULL) = ShaderModuleValidationCacheCreateInfoEXT(next, validation_cache)
 
@@ -17117,7 +17117,7 @@ DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::QueueGlobalPriorityEXT; 
 
 DebugUtilsObjectNameInfoEXT(object_type::ObjectType, object_handle::Integer; next = C_NULL, object_name = "") = DebugUtilsObjectNameInfoEXT(next, object_type, object_handle, object_name)
 
-DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Cvoid; next = C_NULL) = DebugUtilsObjectTagInfoEXT(next, object_type, object_handle, tag_name, tag_size, tag)
+DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL) = DebugUtilsObjectTagInfoEXT(next, object_type, object_handle, tag_name, tag_size, tag)
 
 DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL) = DebugUtilsLabelEXT(next, label_name, color)
 
@@ -17127,9 +17127,9 @@ DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::Abstract
 
 PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL) = PhysicalDeviceDeviceMemoryReportFeaturesEXT(next, device_memory_report)
 
-DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Cvoid; next = C_NULL) = DeviceDeviceMemoryReportCreateInfoEXT(next, flags, pfn_user_callback, user_data)
+DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL) = DeviceDeviceMemoryReportCreateInfoEXT(next, flags, pfn_user_callback, user_data)
 
-ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Cvoid; next = C_NULL) = ImportMemoryHostPointerInfoEXT(next, handle_type, host_pointer)
+ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL) = ImportMemoryHostPointerInfoEXT(next, handle_type, host_pointer)
 
 CalibratedTimestampInfoEXT(time_domain::TimeDomainEXT; next = C_NULL) = CalibratedTimestampInfoEXT(next, time_domain)
 
@@ -22813,7 +22813,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_physical_device_external_image_format_properties_nv
 
 """
-    get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
+    get_memory_win_32_handle_nv(device::Device, memory::DeviceMemory, handle_type::ExternalMemoryHandleTypeFlagNV, handle::HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Error:
@@ -22824,7 +22824,7 @@ Arguments:
 • `device::Device`
 • `memory::DeviceMemory`
 • `handle_type::ExternalMemoryHandleTypeFlagNV`
-• `handle::vk.HANDLE`
+• `handle::HANDLE`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryWin32HandleNV.html
 
@@ -23040,7 +23040,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_physical_device_external_buffer_properties
 
 """
-    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
+    get_memory_win_32_handle_khr(device::Device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Error:
@@ -23050,7 +23050,7 @@ Return codes:
 Arguments:
 • `device::Device`
 • `get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR`
-• `handle::vk.HANDLE`
+• `handle::HANDLE`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryWin32HandleKHR.html
 
@@ -23058,7 +23058,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_memory_win_32_handle_khr
 
 """
-    get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::ResultTypes.Result{MemoryWin32HandlePropertiesKHR, VulkanError}
+    get_memory_win_32_handle_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, handle::HANDLE)::ResultTypes.Result{MemoryWin32HandlePropertiesKHR, VulkanError}
 
 Return codes:
 • Error:
@@ -23068,7 +23068,7 @@ Return codes:
 Arguments:
 • `device::Device`
 • `handle_type::ExternalMemoryHandleTypeFlag`
-• `handle::vk.HANDLE`
+• `handle::HANDLE`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryWin32HandlePropertiesKHR.html
 
@@ -23123,7 +23123,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_physical_device_external_semaphore_properties
 
 """
-    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
+    get_semaphore_win_32_handle_khr(device::Device, get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR, handle::HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Error:
@@ -23133,7 +23133,7 @@ Return codes:
 Arguments:
 • `device::Device`
 • `get_win_32_handle_info::_SemaphoreGetWin32HandleInfoKHR`
-• `handle::vk.HANDLE`
+• `handle::HANDLE`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreWin32HandleKHR.html
 
@@ -23204,7 +23204,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_physical_device_external_fence_properties
 
 """
-    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::vk.HANDLE)::ResultTypes.Result{Result, VulkanError}
+    get_fence_win_32_handle_khr(device::Device, get_win_32_handle_info::_FenceGetWin32HandleInfoKHR, handle::HANDLE)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Error:
@@ -23214,7 +23214,7 @@ Return codes:
 Arguments:
 • `device::Device`
 • `get_win_32_handle_info::_FenceGetWin32HandleInfoKHR`
-• `handle::vk.HANDLE`
+• `handle::HANDLE`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceWin32HandleKHR.html
 
@@ -27776,11 +27776,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _DisplayPresentInfoKHR
 
 """
-    _Win32SurfaceCreateInfoKHR(hinstance::vk.HINSTANCE, hwnd::vk.HWND; next = C_NULL, flags = 0)
+    _Win32SurfaceCreateInfoKHR(hinstance::HINSTANCE, hwnd::HWND; next = C_NULL, flags = 0)
 
 Arguments:
-• `hinstance::vk.HINSTANCE`
-• `hwnd::vk.HWND`
+• `hinstance::HINSTANCE`
+• `hwnd::HWND`
 • `next`: defaults to `C_NULL`
 • `flags`: defaults to `0`
 
@@ -28422,11 +28422,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _ImportMemoryWin32HandleInfoKHR
 
 """
-    _ExportMemoryWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+    _ExportMemoryWin32HandleInfoKHR(dw_access::DWORD, name::LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
-• `dw_access::vk.DWORD`
-• `name::vk.LPCWSTR`
+• `dw_access::DWORD`
+• `name::LPCWSTR`
 • `next`: defaults to `C_NULL`
 • `attributes`: defaults to `C_NULL`
 
@@ -28531,11 +28531,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _ImportSemaphoreWin32HandleInfoKHR
 
 """
-    _ExportSemaphoreWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+    _ExportSemaphoreWin32HandleInfoKHR(dw_access::DWORD, name::LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
-• `dw_access::vk.DWORD`
-• `name::vk.LPCWSTR`
+• `dw_access::DWORD`
+• `name::LPCWSTR`
 • `next`: defaults to `C_NULL`
 • `attributes`: defaults to `C_NULL`
 
@@ -28639,11 +28639,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _ImportFenceWin32HandleInfoKHR
 
 """
-    _ExportFenceWin32HandleInfoKHR(dw_access::vk.DWORD, name::vk.LPCWSTR; next = C_NULL, attributes = C_NULL)
+    _ExportFenceWin32HandleInfoKHR(dw_access::DWORD, name::LPCWSTR; next = C_NULL, attributes = C_NULL)
 
 Arguments:
-• `dw_access::vk.DWORD`
-• `name::vk.LPCWSTR`
+• `dw_access::DWORD`
+• `name::LPCWSTR`
 • `next`: defaults to `C_NULL`
 • `attributes`: defaults to `C_NULL`
 
@@ -31138,10 +31138,10 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _SurfaceFullScreenExclusiveInfoEXT
 
 """
-    _SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor::vk.HMONITOR; next = C_NULL)
+    _SurfaceFullScreenExclusiveWin32InfoEXT(hmonitor::HMONITOR; next = C_NULL)
 
 Arguments:
-• `hmonitor::vk.HMONITOR`
+• `hmonitor::HMONITOR`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceFullScreenExclusiveWin32InfoEXT.html

@@ -1,5 +1,17 @@
 const known_dependencies = [:FunctionPtr, :RefCounter]
 
+function resolve_type(type)
+    if type isa Symbol
+        type in extension_types ? :(vk.$type) : type
+    else
+        postwalk(type) do ex
+            ex isa Symbol ? resolve_type(ex) : ex
+        end
+    end
+end
+
+resolve_types(ex) = postwalk(resolve_type, ex)
+
 function field_deps(ex)
     @match ex begin
         :($_::$T) => innermost_type(T)

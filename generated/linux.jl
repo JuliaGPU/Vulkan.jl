@@ -6899,28 +6899,28 @@ function _DisplayPresentInfoKHR(src_rect::_Rect2D, dst_rect::_Rect2D, persistent
     _DisplayPresentInfoKHR(vks, deps)
 end
 
-function _WaylandSurfaceCreateInfoKHR(display::vk.wl_display, surface::vk.wl_surface; next = C_NULL, flags = 0)
+function _WaylandSurfaceCreateInfoKHR(display::Ptr{vk.wl_display}, surface::Ptr{vk.wl_surface}; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
-    display = cconvert(Ptr{wl_display}, display)
-    surface = cconvert(Ptr{wl_surface}, surface)
+    display = cconvert(Ptr{vk.wl_display}, display)
+    surface = cconvert(Ptr{vk.wl_surface}, surface)
     deps = [next, display, surface]
-    vks = VkWaylandSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{wl_display}, display), unsafe_convert(Ptr{wl_surface}, surface))
+    vks = VkWaylandSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{vk.wl_display}, display), unsafe_convert(Ptr{vk.wl_surface}, surface))
     _WaylandSurfaceCreateInfoKHR(vks, deps)
 end
 
-function _XlibSurfaceCreateInfoKHR(dpy::vk.Display, window::vk.Window; next = C_NULL, flags = 0)
+function _XlibSurfaceCreateInfoKHR(dpy::Ptr{vk.Display}, window::vk.Window; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
-    dpy = cconvert(Ptr{Display}, dpy)
+    dpy = cconvert(Ptr{vk.Display}, dpy)
     deps = [next, dpy]
-    vks = VkXlibSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{Display}, dpy), window)
+    vks = VkXlibSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{vk.Display}, dpy), window)
     _XlibSurfaceCreateInfoKHR(vks, deps)
 end
 
-function _XcbSurfaceCreateInfoKHR(connection::vk.xcb_connection_t, window::vk.xcb_window_t; next = C_NULL, flags = 0)
+function _XcbSurfaceCreateInfoKHR(connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
-    connection = cconvert(Ptr{xcb_connection_t}, connection)
+    connection = cconvert(Ptr{vk.xcb_connection_t}, connection)
     deps = [next, connection]
-    vks = VkXcbSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{xcb_connection_t}, connection), window)
+    vks = VkXcbSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{vk.xcb_connection_t}, connection), window)
     _XcbSurfaceCreateInfoKHR(vks, deps)
 end
 
@@ -10888,7 +10888,7 @@ function create_wayland_surface_khr(instance::Instance, create_info::_WaylandSur
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display)::Bool = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display)))
+get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::Ptr{vk.wl_display})::Bool = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, display))
 
 function create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -10896,7 +10896,7 @@ function create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCr
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID)::Bool = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id))
+get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::Ptr{vk.Display}, visual_id::vk.VisualID)::Bool = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, dpy, visual_id))
 
 function create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -10904,7 +10904,7 @@ function create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCrea
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t)::Bool = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id))
+get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::Ptr{vk.xcb_connection_t}, visual_id::vk.xcb_visualid_t)::Bool = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, connection, visual_id))
 
 function create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT, VulkanError}
     pCallback = Ref{VkDebugReportCallbackEXT}()
@@ -11050,11 +11050,11 @@ import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR)
 
 release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError} = @check(vkReleaseDisplayEXT(physical_device, display))
 
-acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display))
+acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::Ptr{vk.Display}, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, dpy, display))
 
-function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR, VulkanError}
+function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::Ptr{vk.Display}, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR, VulkanError}
     pDisplay = Ref{VkDisplayKHR}()
-    @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
+    @check vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, pDisplay)
     DisplayKHR(pDisplay[], identity, physical_device)
 end
 
@@ -11144,9 +11144,9 @@ end
 
 destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL)::Cvoid = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator)
 
-update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data))
+update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, data)
 
-cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data))
+cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data)
 
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
 
@@ -11355,7 +11355,7 @@ submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsM
 
 function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), Ref(host_pointer), pMemoryHostPointerProperties)
+    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), host_pointer, pMemoryHostPointerProperties)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
@@ -11387,7 +11387,7 @@ cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::I
 
 cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)::Cvoid = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride)
 
-cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker))
+cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})::Cvoid = vkCmdSetCheckpointNV(command_buffer, checkpoint_marker)
 
 function get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
@@ -12399,7 +12399,7 @@ function create_wayland_surface_khr(instance::Instance, create_info::_WaylandSur
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, to_vk(Ptr{wl_display}, display), fun_ptr))
+get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::Ptr{vk.wl_display}, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceWaylandPresentationSupportKHR(physical_device, queue_family_index, display, fun_ptr))
 
 function create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -12407,7 +12407,7 @@ function create_xlib_surface_khr(instance::Instance, create_info::_XlibSurfaceCr
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, Ref(dpy), visual_id, fun_ptr))
+get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::Ptr{vk.Display}, visual_id::vk.VisualID, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceXlibPresentationSupportKHR(physical_device, queue_family_index, dpy, visual_id, fun_ptr))
 
 function create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{SurfaceKHR, VulkanError}
     pSurface = Ref{VkSurfaceKHR}()
@@ -12415,7 +12415,7 @@ function create_xcb_surface_khr(instance::Instance, create_info::_XcbSurfaceCrea
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, Ref(connection), visual_id, fun_ptr))
+get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::Ptr{vk.xcb_connection_t}, visual_id::vk.xcb_visualid_t, fun_ptr::FunctionPtr)::Bool = from_vk(Bool, vkGetPhysicalDeviceXcbPresentationSupportKHR(physical_device, queue_family_index, connection, visual_id, fun_ptr))
 
 function create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT, VulkanError}
     pCallback = Ref{VkDebugReportCallbackEXT}()
@@ -12561,11 +12561,11 @@ import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR,
 
 release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkReleaseDisplayEXT(physical_device, display, fun_ptr))
 
-acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, to_vk(Ptr{Display}, dpy), display, fun_ptr))
+acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::Ptr{vk.Display}, display::DisplayKHR, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkAcquireXlibDisplayEXT(physical_device, dpy, display, fun_ptr))
 
-function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput, fun_ptr::FunctionPtr)::ResultTypes.Result{DisplayKHR, VulkanError}
+function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::Ptr{vk.Display}, rr_output::vk.RROutput, fun_ptr::FunctionPtr)::ResultTypes.Result{DisplayKHR, VulkanError}
     pDisplay = Ref{VkDisplayKHR}()
-    @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay, fun_ptr)
+    @check vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, pDisplay, fun_ptr)
     DisplayKHR(pDisplay[], identity, physical_device)
 end
 
@@ -12655,9 +12655,9 @@ end
 
 destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDescriptorUpdateTemplate(device, descriptor_update_template, allocator, fun_ptr)
 
-update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, Ref(data), fun_ptr)
+update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSetWithTemplate(device, descriptor_set, descriptor_update_template, data, fun_ptr)
 
-cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, Ref(data), fun_ptr)
+cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data, fun_ptr)
 
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
 
@@ -12866,7 +12866,7 @@ submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsM
 
 function get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fun_ptr::FunctionPtr)::ResultTypes.Result{MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), Ref(host_pointer), pMemoryHostPointerProperties, fun_ptr)
+    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), host_pointer, pMemoryHostPointerProperties, fun_ptr)
     from_vk(MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
@@ -12898,7 +12898,7 @@ cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::I
 
 cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndexedIndirectCount(command_buffer, buffer, offset, count_buffer, count_buffer_offset, max_draw_count, stride, fun_ptr)
 
-cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCheckpointNV(command_buffer, Ref(checkpoint_marker), fun_ptr)
+cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCheckpointNV(command_buffer, checkpoint_marker, fun_ptr)
 
 function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)::Vector{CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
@@ -13620,7 +13620,7 @@ end
 
 struct InitializePerformanceApiInfoINTEL <: HighLevelStruct
     next::Any
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL <: HighLevelStruct
@@ -13980,7 +13980,7 @@ struct DeviceDeviceMemoryReportCreateInfoEXT <: HighLevelStruct
     next::Any
     flags::UInt32
     pfn_user_callback::FunctionPtr
-    user_data::Cvoid
+    user_data::Ptr{Cvoid}
 end
 
 struct PhysicalDeviceDeviceMemoryReportFeaturesEXT <: HighLevelStruct
@@ -14014,7 +14014,7 @@ struct ValidationCacheCreateInfoEXT <: HighLevelStruct
     next::Any
     flags::UInt32
     initial_data_size::OptionalPtr{UInt}
-    initial_data::Cvoid
+    initial_data::Ptr{Cvoid}
 end
 
 struct DescriptorPoolInlineUniformBlockCreateInfoEXT <: HighLevelStruct
@@ -14025,7 +14025,7 @@ end
 struct WriteDescriptorSetInlineUniformBlockEXT <: HighLevelStruct
     next::Any
     data_size::UInt32
-    data::Cvoid
+    data::Ptr{Cvoid}
 end
 
 struct PhysicalDeviceInlineUniformBlockFeaturesEXT <: HighLevelStruct
@@ -14220,22 +14220,22 @@ end
 struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
     next::Any
     flags::UInt32
-    connection::vk.xcb_connection_t
+    connection::Ptr{vk.xcb_connection_t}
     window::vk.xcb_window_t
 end
 
 struct XlibSurfaceCreateInfoKHR <: HighLevelStruct
     next::Any
     flags::UInt32
-    dpy::vk.Display
+    dpy::Ptr{vk.Display}
     window::vk.Window
 end
 
 struct WaylandSurfaceCreateInfoKHR <: HighLevelStruct
     next::Any
     flags::UInt32
-    display::vk.wl_display
-    surface::vk.wl_surface
+    display::Ptr{vk.wl_display}
+    surface::Ptr{vk.wl_surface}
 end
 
 struct DispatchIndirectCommand <: HighLevelStruct
@@ -14347,7 +14347,7 @@ end
 struct SpecializationInfo <: HighLevelStruct
     map_entries::Vector{SpecializationMapEntry}
     data_size::OptionalPtr{UInt}
-    data::Cvoid
+    data::Ptr{Cvoid}
 end
 
 struct BufferCopy <: HighLevelStruct
@@ -14363,7 +14363,7 @@ struct MemoryAllocateInfo <: HighLevelStruct
 end
 
 struct AllocationCallbacks <: HighLevelStruct
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
     pfn_allocation::FunctionPtr
     pfn_reallocation::FunctionPtr
     pfn_free::FunctionPtr
@@ -14550,7 +14550,7 @@ struct DebugUtilsMessengerCreateInfoEXT <: HighLevelStruct
     message_severity::DebugUtilsMessageSeverityFlagEXT
     message_type::DebugUtilsMessageTypeFlagEXT
     pfn_user_callback::FunctionPtr
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct DeviceGroupSwapchainCreateInfoKHR <: HighLevelStruct
@@ -14598,7 +14598,7 @@ end
 struct ImportMemoryHostPointerInfoEXT <: HighLevelStruct
     next::Any
     handle_type::ExternalMemoryHandleTypeFlag
-    host_pointer::Cvoid
+    host_pointer::Ptr{Cvoid}
 end
 
 struct ImportMemoryFdInfoKHR <: HighLevelStruct
@@ -14646,7 +14646,7 @@ struct DebugReportCallbackCreateInfoEXT <: HighLevelStruct
     next::Any
     flags::DebugReportFlagEXT
     pfn_callback::FunctionPtr
-    user_data::OptionalPtr{Cvoid}
+    user_data::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: HighLevelStruct
@@ -14915,7 +14915,7 @@ struct PipelineCacheCreateInfo <: HighLevelStruct
     next::Any
     flags::PipelineCacheCreateFlag
     initial_data_size::OptionalPtr{UInt}
-    initial_data::Cvoid
+    initial_data::Ptr{Cvoid}
 end
 
 struct PipelineRasterizationProvokingVertexStateCreateInfoEXT <: HighLevelStruct
@@ -14990,7 +14990,7 @@ struct RayTracingShaderGroupCreateInfoKHR <: HighLevelStruct
     closest_hit_shader::UInt32
     any_hit_shader::UInt32
     intersection_shader::UInt32
-    shader_group_capture_replay_handle::OptionalPtr{Cvoid}
+    shader_group_capture_replay_handle::OptionalPtr{Ptr{Cvoid}}
 end
 
 struct RayTracingShaderGroupCreateInfoNV <: HighLevelStruct
@@ -15131,7 +15131,7 @@ struct DebugMarkerObjectTagInfoEXT <: HighLevelStruct
     object::UInt64
     tag_name::UInt64
     tag_size::UInt
-    tag::Cvoid
+    tag::Ptr{Cvoid}
 end
 
 struct DebugMarkerObjectNameInfoEXT <: HighLevelStruct
@@ -15158,7 +15158,7 @@ struct DebugUtilsObjectTagInfoEXT <: HighLevelStruct
     object_handle::UInt64
     tag_name::UInt64
     tag_size::UInt
-    tag::Cvoid
+    tag::Ptr{Cvoid}
 end
 
 struct DebugUtilsObjectNameInfoEXT <: HighLevelStruct
@@ -16432,7 +16432,7 @@ DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray; next = C_
 
 DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL) = DescriptorSetAllocateInfo(next, descriptor_pool, set_layouts)
 
-SpecializationInfo(map_entries::AbstractArray, data::Cvoid; data_size = C_NULL) = SpecializationInfo(map_entries, data_size, data)
+SpecializationInfo(map_entries::AbstractArray, data::Ptr{Cvoid}; data_size = C_NULL) = SpecializationInfo(map_entries, data_size, data)
 
 PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL) = PipelineShaderStageCreateInfo(next, flags, stage, _module, name, specialization_info)
 
@@ -16460,7 +16460,7 @@ PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable:
 
 GraphicsPipelineCreateInfo(stages::AbstractArray, rasterization_state::PipelineRasterizationStateCreateInfo, layout::PipelineLayout, render_pass::RenderPass, subpass::Integer, base_pipeline_index::Integer; next = C_NULL, flags = 0, vertex_input_state = C_NULL, input_assembly_state = C_NULL, tessellation_state = C_NULL, viewport_state = C_NULL, multisample_state = C_NULL, depth_stencil_state = C_NULL, color_blend_state = C_NULL, dynamic_state = C_NULL, base_pipeline_handle = C_NULL) = GraphicsPipelineCreateInfo(next, flags, stages, vertex_input_state, input_assembly_state, tessellation_state, viewport_state, rasterization_state, multisample_state, depth_stencil_state, color_blend_state, dynamic_state, layout, render_pass, subpass, base_pipeline_handle, base_pipeline_index)
 
-PipelineCacheCreateInfo(initial_data::Cvoid; next = C_NULL, flags = 0, initial_data_size = C_NULL) = PipelineCacheCreateInfo(next, flags, initial_data_size, initial_data)
+PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = C_NULL) = PipelineCacheCreateInfo(next, flags, initial_data_size, initial_data)
 
 PipelineLayoutCreateInfo(set_layouts::AbstractArray, push_constant_ranges::AbstractArray; next = C_NULL, flags = 0) = PipelineLayoutCreateInfo(next, flags, set_layouts, push_constant_ranges)
 
@@ -16502,11 +16502,11 @@ DisplaySurfaceCreateInfoKHR(display_mode::DisplayModeKHR, plane_index::Integer, 
 
 DisplayPresentInfoKHR(src_rect::Rect2D, dst_rect::Rect2D, persistent::Bool; next = C_NULL) = DisplayPresentInfoKHR(next, src_rect, dst_rect, persistent)
 
-WaylandSurfaceCreateInfoKHR(display::vk.wl_display, surface::vk.wl_surface; next = C_NULL, flags = 0) = WaylandSurfaceCreateInfoKHR(next, flags, display, surface)
+WaylandSurfaceCreateInfoKHR(display::Ptr{vk.wl_display}, surface::Ptr{vk.wl_surface}; next = C_NULL, flags = 0) = WaylandSurfaceCreateInfoKHR(next, flags, display, surface)
 
-XlibSurfaceCreateInfoKHR(dpy::vk.Display, window::vk.Window; next = C_NULL, flags = 0) = XlibSurfaceCreateInfoKHR(next, flags, dpy, window)
+XlibSurfaceCreateInfoKHR(dpy::Ptr{vk.Display}, window::vk.Window; next = C_NULL, flags = 0) = XlibSurfaceCreateInfoKHR(next, flags, dpy, window)
 
-XcbSurfaceCreateInfoKHR(connection::vk.xcb_connection_t, window::vk.xcb_window_t; next = C_NULL, flags = 0) = XcbSurfaceCreateInfoKHR(next, flags, connection, window)
+XcbSurfaceCreateInfoKHR(connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; next = C_NULL, flags = 0) = XcbSurfaceCreateInfoKHR(next, flags, connection, window)
 
 SwapchainCreateInfoKHR(surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; next = C_NULL, flags = 0, old_swapchain = C_NULL) = SwapchainCreateInfoKHR(next, flags, surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped, old_swapchain)
 
@@ -16522,7 +16522,7 @@ PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::Rasterizati
 
 DebugMarkerObjectNameInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, object_name::AbstractString; next = C_NULL) = DebugMarkerObjectNameInfoEXT(next, object_type, object, object_name)
 
-DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Cvoid; next = C_NULL) = DebugMarkerObjectTagInfoEXT(next, object_type, object, tag_name, tag_size, tag)
+DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, object::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL) = DebugMarkerObjectTagInfoEXT(next, object_type, object, tag_name, tag_size, tag)
 
 DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL) = DebugMarkerMarkerInfoEXT(next, marker_name, color)
 
@@ -16710,7 +16710,7 @@ PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premul
 
 PhysicalDeviceInlineUniformBlockFeaturesEXT(inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool; next = C_NULL) = PhysicalDeviceInlineUniformBlockFeaturesEXT(next, inline_uniform_block, descriptor_binding_inline_uniform_block_update_after_bind)
 
-WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Cvoid; next = C_NULL) = WriteDescriptorSetInlineUniformBlockEXT(next, data_size, data)
+WriteDescriptorSetInlineUniformBlockEXT(data_size::Integer, data::Ptr{Cvoid}; next = C_NULL) = WriteDescriptorSetInlineUniformBlockEXT(next, data_size, data)
 
 DescriptorPoolInlineUniformBlockCreateInfoEXT(max_inline_uniform_block_bindings::Integer; next = C_NULL) = DescriptorPoolInlineUniformBlockCreateInfoEXT(next, max_inline_uniform_block_bindings)
 
@@ -16718,7 +16718,7 @@ PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::CoverageMo
 
 ImageFormatListCreateInfo(view_formats::AbstractArray; next = C_NULL) = ImageFormatListCreateInfo(next, view_formats)
 
-ValidationCacheCreateInfoEXT(initial_data::Cvoid; next = C_NULL, flags = 0, initial_data_size = C_NULL) = ValidationCacheCreateInfoEXT(next, flags, initial_data_size, initial_data)
+ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, flags = 0, initial_data_size = C_NULL) = ValidationCacheCreateInfoEXT(next, flags, initial_data_size, initial_data)
 
 ShaderModuleValidationCacheCreateInfoEXT(validation_cache::ValidationCacheEXT; next = C_NULL) = ShaderModuleValidationCacheCreateInfoEXT(next, validation_cache)
 
@@ -16732,7 +16732,7 @@ DeviceQueueGlobalPriorityCreateInfoEXT(global_priority::QueueGlobalPriorityEXT; 
 
 DebugUtilsObjectNameInfoEXT(object_type::ObjectType, object_handle::Integer; next = C_NULL, object_name = "") = DebugUtilsObjectNameInfoEXT(next, object_type, object_handle, object_name)
 
-DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Cvoid; next = C_NULL) = DebugUtilsObjectTagInfoEXT(next, object_type, object_handle, tag_name, tag_size, tag)
+DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Integer, tag_name::Integer, tag_size::Integer, tag::Ptr{Cvoid}; next = C_NULL) = DebugUtilsObjectTagInfoEXT(next, object_type, object_handle, tag_name, tag_size, tag)
 
 DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float32}; next = C_NULL) = DebugUtilsLabelEXT(next, label_name, color)
 
@@ -16742,9 +16742,9 @@ DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message::Abstract
 
 PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL) = PhysicalDeviceDeviceMemoryReportFeaturesEXT(next, device_memory_report)
 
-DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Cvoid; next = C_NULL) = DeviceDeviceMemoryReportCreateInfoEXT(next, flags, pfn_user_callback, user_data)
+DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callback::FunctionPtr, user_data::Ptr{Cvoid}; next = C_NULL) = DeviceDeviceMemoryReportCreateInfoEXT(next, flags, pfn_user_callback, user_data)
 
-ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Cvoid; next = C_NULL) = ImportMemoryHostPointerInfoEXT(next, handle_type, host_pointer)
+ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}; next = C_NULL) = ImportMemoryHostPointerInfoEXT(next, handle_type, host_pointer)
 
 CalibratedTimestampInfoEXT(time_domain::TimeDomainEXT; next = C_NULL) = CalibratedTimestampInfoEXT(next, time_domain)
 
@@ -22190,12 +22190,12 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 create_wayland_surface_khr
 
 """
-    get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::vk.wl_display)::Bool
+    get_physical_device_wayland_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, display::Ptr{wl_display})::Bool
 
 Arguments:
 • `physical_device::PhysicalDevice`
 • `queue_family_index::Integer`
-• `display::vk.wl_display`
+• `display::Ptr{wl_display}`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceWaylandPresentationSupportKHR.html
 
@@ -22221,13 +22221,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 create_xlib_surface_khr
 
 """
-    get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::vk.Display, visual_id::vk.VisualID)::Bool
+    get_physical_device_xlib_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, dpy::Ptr{Display}, visual_id::VisualID)::Bool
 
 Arguments:
 • `physical_device::PhysicalDevice`
 • `queue_family_index::Integer`
-• `dpy::vk.Display`
-• `visual_id::vk.VisualID`
+• `dpy::Ptr{Display}`
+• `visual_id::VisualID`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceXlibPresentationSupportKHR.html
 
@@ -22253,13 +22253,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 create_xcb_surface_khr
 
 """
-    get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::vk.xcb_connection_t, visual_id::vk.xcb_visualid_t)::Bool
+    get_physical_device_xcb_presentation_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, connection::Ptr{xcb_connection_t}, visual_id::xcb_visualid_t)::Bool
 
 Arguments:
 • `physical_device::PhysicalDevice`
 • `queue_family_index::Integer`
-• `connection::vk.xcb_connection_t`
-• `visual_id::vk.xcb_visualid_t`
+• `connection::Ptr{xcb_connection_t}`
+• `visual_id::xcb_visualid_t`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceXcbPresentationSupportKHR.html
 
@@ -22756,7 +22756,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 release_display_ext
 
 """
-    acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
+    acquire_xlib_display_ext(physical_device::PhysicalDevice, dpy::Ptr{Display}, display::DisplayKHR)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Error:
@@ -22765,7 +22765,7 @@ Return codes:
 
 Arguments:
 • `physical_device::PhysicalDevice`
-• `dpy::vk.Display`
+• `dpy::Ptr{Display}`
 • `display::DisplayKHR`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireXlibDisplayEXT.html
@@ -22774,7 +22774,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 acquire_xlib_display_ext
 
 """
-    get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR, VulkanError}
+    get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::Ptr{Display}, rr_output::RROutput)::ResultTypes.Result{DisplayKHR, VulkanError}
 
 Return codes:
 • Error:
@@ -22782,8 +22782,8 @@ Return codes:
 
 Arguments:
 • `physical_device::PhysicalDevice`
-• `dpy::vk.Display`
-• `rr_output::vk.RROutput`
+• `dpy::Ptr{Display}`
+• `rr_output::RROutput`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRandROutputDisplayEXT.html
 
@@ -27170,11 +27170,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _DisplayPresentInfoKHR
 
 """
-    _WaylandSurfaceCreateInfoKHR(display::vk.wl_display, surface::vk.wl_surface; next = C_NULL, flags = 0)
+    _WaylandSurfaceCreateInfoKHR(display::Ptr{wl_display}, surface::Ptr{wl_surface}; next = C_NULL, flags = 0)
 
 Arguments:
-• `display::vk.wl_display`
-• `surface::vk.wl_surface`
+• `display::Ptr{wl_display}`
+• `surface::Ptr{wl_surface}`
 • `next`: defaults to `C_NULL`
 • `flags`: defaults to `0`
 
@@ -27184,11 +27184,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _WaylandSurfaceCreateInfoKHR
 
 """
-    _XlibSurfaceCreateInfoKHR(dpy::vk.Display, window::vk.Window; next = C_NULL, flags = 0)
+    _XlibSurfaceCreateInfoKHR(dpy::Ptr{Display}, window::Window; next = C_NULL, flags = 0)
 
 Arguments:
-• `dpy::vk.Display`
-• `window::vk.Window`
+• `dpy::Ptr{Display}`
+• `window::Window`
 • `next`: defaults to `C_NULL`
 • `flags`: defaults to `0`
 
@@ -27198,11 +27198,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _XlibSurfaceCreateInfoKHR
 
 """
-    _XcbSurfaceCreateInfoKHR(connection::vk.xcb_connection_t, window::vk.xcb_window_t; next = C_NULL, flags = 0)
+    _XcbSurfaceCreateInfoKHR(connection::Ptr{xcb_connection_t}, window::xcb_window_t; next = C_NULL, flags = 0)
 
 Arguments:
-• `connection::vk.xcb_connection_t`
-• `window::vk.xcb_window_t`
+• `connection::Ptr{xcb_connection_t}`
+• `window::xcb_window_t`
 • `next`: defaults to `C_NULL`
 • `flags`: defaults to `0`
 

@@ -24,6 +24,15 @@ test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(na
                 enabled_extension_names::Vector{String}
             end
         ))
+
+        test_generated_struct(:VkXcbSurfaceCreateInfoKHR, :(
+            struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
+                next::Any
+                flags::UInt32
+                connection::Ptr{vk.xcb_connection_t}
+                window::vk.xcb_window_t
+            end
+        ))
     end
 
     @testset "Conversion to low-level structs" begin

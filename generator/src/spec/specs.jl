@@ -350,6 +350,14 @@ is_version(spec::Union{SpecStructMember,SpecFuncParam}) =
         follow_constant(spec.type) == :UInt32 ||
         is_ptr(spec.type) && !is_arr(spec) && !spec.is_constant && follow_constant(ptr_type(spec.type)) == :UInt32
     )
+is_void(t) = t == :Cvoid || t in [
+    :xcb_connection_t,
+    :_XDisplay,
+    :Display,
+    :wl_surface,
+    :wl_display,
+    :CAMetalLayer,
+]
 
 """
 Iterate through function or struct specification fields from a list of fields.

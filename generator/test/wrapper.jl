@@ -1,5 +1,5 @@
-test_ex(x, y) = @test prettify(x) == prettify(y)
-test_ex(x::Dict, y) = @test prettify(to_expr(x)) == prettify(y)
+test_ex(x, y) = @test resolve_types(prettify(x)) == prettify(y)
+test_ex(x::Dict, y) = @test resolve_types(prettify(to_expr(x))) == prettify(y)
 
 @testset "Wrapper" begin
     @testset "Wrapper utilities" begin

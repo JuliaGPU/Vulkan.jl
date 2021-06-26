@@ -172,9 +172,9 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkGetRandROutputDisplayEXT, :(
-            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::vk.Display, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR,VulkanError}
+            function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::Ptr{vk.Display}, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR,VulkanError}
                 pDisplay = Ref{VkDisplayKHR}()
-                @check vkGetRandROutputDisplayEXT(physical_device, Ref(dpy), rr_output, pDisplay)
+                @check vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, pDisplay)
                 DisplayKHR(pDisplay[], identity, physical_device)
             end
         ))
@@ -395,6 +395,15 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
             end
         ))
 
+        test_struct_add_constructor(:VkXcbSurfaceCreateInfoKHR, :(
+            function _XcbSurfaceCreateInfoKHR(connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; next = C_NULL, flags = 0)
+                next = cconvert(Ptr{Cvoid}, next)
+                connection = cconvert(Ptr{vk.xcb_connection_t}, connection)
+                deps = [next, connection]
+                vks = VkXcbSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{vk.xcb_connection_t}, connection), window)
+                _XcbSurfaceCreateInfoKHR(vks, deps)
+            end
+        ))
         end
 
         @testset "Handle constructors" begin

@@ -48,6 +48,8 @@ export
     filter_specs,
     VulkanWrapper,
     wrap,
+    resolve_types,
+    resolve_dependencies,
     
     ### Low-level wrappers
     ##### Handles

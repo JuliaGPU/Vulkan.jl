@@ -151,6 +151,7 @@ export
     is_data,
     is_fn_ptr,
     is_version,
+    is_void,
     extension,
 
     ### Render passes

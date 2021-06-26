@@ -14,6 +14,7 @@ function hl_type(type)
     @match t = type begin
         :Cstring => :String
         :VkBool32 => :Bool
+        GuardBy(is_opaque_pointer) => t
         :(NTuple{$N,$T}) => begin
             @match T begin
                 :UInt8 => :String
@@ -24,7 +25,6 @@ function hl_type(type)
         end
         GuardBy(in(spec_structs.name)) => struct_name(t, true)
         GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
-        GuardBy(in(extension_types)) => :(vk.$t)
         GuardBy(is_fn_ptr) => :FunctionPtr
         :(Ptr{$T}) => hl_type(T)
         GuardBy(is_flag_bitmask) => bitmask_flag_type(t)
@@ -52,7 +52,6 @@ function nice_julian_type(type)
         :Cstring => :String
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)
-        GuardBy(in(extension_types)) => :(vk.$t)
         GuardBy(in(spec_structs.name)) => struct_name(t)
         GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
         GuardBy(in(spec_enums.name)) => enum_type(t)
@@ -109,6 +108,3 @@ end
 
 bitmask_flag_type(type) = Symbol(replace(remove_vk_prefix(string(type)), "Bits" => ""))
 bitmask_flag_type(spec::SpecBitmask) = bitmask_flag_type(spec.name)
-
-is_fn_ptr(type) = startswith(string(type), "PFN")
-is_opaque_pointer(type) = type == :(Ptr{Cvoid})

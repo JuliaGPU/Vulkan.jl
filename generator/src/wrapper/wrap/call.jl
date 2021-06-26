@@ -41,7 +41,7 @@ function vk_call(x::Spec)
         end => var
         GuardBy(is_size) && if x.requirement == POINTER_REQUIRED
         end => x.name # parameter converted to a Ref already
-        GuardBy(is_opaque_data) => var
+        GuardBy(is_opaque) => var
         GuardBy(is_length) => begin
             !x.autovalidity && @debug "Automatic validation was disabled for length parameter $x."
             @match x begin

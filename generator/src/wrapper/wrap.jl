@@ -19,8 +19,8 @@ struct VulkanWrapper
 end
 
 function VulkanWrapper(ds::Vector...)
-    exs::NTuple{17,Vector{Expr}} = map(ds) do d
-        map(to_expr, d)
+    exs::NTuple{length(fieldtypes(VulkanWrapper)),Vector{Expr}} = map(ds) do d
+        map(resolve_types ∘ to_expr, d)
     end
 
     VulkanWrapper(exs...)
