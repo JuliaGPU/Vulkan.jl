@@ -34,9 +34,15 @@ include("prewrap.jl")
 include("CEnum/CEnum.jl")
 using .CEnum
 
-include("../generated/vulkan_wrapper.jl")
-include("../generated/vulkan_docs.jl")
-include("../generated/vulkan_wrapper_hl.jl")
+@static if Sys.islinux()
+    include("../generated/linux.jl")
+elseif Sys.isapple()
+    include("../generated/macos.jl")
+elseif Sys.isbsd()
+    include("../generated/bsd.jl")
+elseif Sys.iswindows()
+    include("../generated/windows.jl")
+end
 
 include("utils.jl")
 include("driver.jl")

@@ -39,6 +39,11 @@ export
 
     # Wrapping
     WrapperConfig,
+    Platform,
+    Linux,
+    Windows,
+    MacOS,
+    BSD,
     extensions,
     filter_specs,
     VulkanWrapper,

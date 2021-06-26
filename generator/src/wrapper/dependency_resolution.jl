@@ -82,4 +82,5 @@ function check_dependencies(decls)
         end
         push!(encountered_deps, name(decl))
     end
+    decls
 end

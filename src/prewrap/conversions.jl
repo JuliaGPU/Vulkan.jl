@@ -40,11 +40,10 @@ from_vk(T, x) = convert(T, x)
 from_vk(T::Type{<:NTuple}, x) = from_vk.(eltype(T), x)
 from_vk(T::Type{VersionNumber}, version::UInt32) = T(VK_VERSION_MAJOR(version), VK_VERSION_MINOR(version), VK_VERSION_PATCH(version))
 
-function from_vk(T::Type{S}, str::NTuple{N,UInt8}) where {N,S <: AbstractString}
+function from_vk(T::Type{S}, str::NTuple{N}) where {N,S <: AbstractString}
     nullchar = findfirst(iszero, str)
-    if isnothing(nullchar)
-        T(collect(str))
-    else
-        T(collect(str[1:nullchar - 1]))
+    if !isnothing(nullchar)
+        str = str[1:nullchar - 1]
     end
+    T(reinterpret(UInt8, collect(str)))
 end
