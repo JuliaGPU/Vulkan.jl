@@ -79,10 +79,16 @@ function document_function(spec, p)
     API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
     """
 
+    ext = extension(spec)
+
     string(
         """
             $(reconstruct_call(p))
         """,
+        !isnothing(ext) ? """
+
+        Extension: $(ext.name)
+        """ : "",
         document_return_codes(spec),
         """
 

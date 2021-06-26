@@ -33,6 +33,24 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
     )
 
     test_doc(
+        struct_by_name(:VkSubmitInfo2KHR),
+        """
+            _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
+
+        Extension: VK_KHR_synchronization2
+
+        Arguments:
+        • `wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
+        • `command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}`
+        • `signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
+        • `next`: defaults to `C_NULL`
+        • `flags`: defaults to `0`
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
+        """
+    )
+
+    test_doc(
         func_by_name(:vkEnumerateInstanceExtensionProperties),
         """
             enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
@@ -88,6 +106,8 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
         func_by_name(:vkWriteAccelerationStructuresPropertiesKHR),
         """
             write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
+
+        Extension: VK_KHR_acceleration_structure
 
         Return codes:
         • Error:
