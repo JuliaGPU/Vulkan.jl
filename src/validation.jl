@@ -9,10 +9,10 @@ for level in [:debug, :info, :warn, :error]
             # NOTE: `@placeholder` in order to avoid hard-coding @__LINE__ etc
             macrocall.args[1] = Symbol($"@$level")
             quote
-                old_logger = global_logger()
-                global_logger(Logging.ConsoleLogger(Core.stderr, old_logger.min_level))
-                ret = $(esc(macrocall))
-                global_logger(old_logger)
+                ret = nothing
+                with_logger(Logging.ConsoleLogger(Core.stderr, global_logger().min_level)) do
+                    ret = $(esc(macrocall))
+                end
                 ret
             end
         end
