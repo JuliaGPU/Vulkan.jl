@@ -13,6 +13,6 @@ configs = [
 
 foreach(configs) do config
     vw = VulkanWrapper(config)
-    @info "Vulkan successfully wrapped at $(config.destfile)"
     write(vw, config)
+    @info "Vulkan successfully wrapped at $(config.destfile)"
 end
