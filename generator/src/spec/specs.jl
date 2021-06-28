@@ -107,6 +107,7 @@ function SpecUnion(node::Node)
     SpecUnion(
         getattr(node, "name"),
         extract_type.(members),
+        extract_identifier.(members),
         filter(!isnothing, selectors),
         haskey(node, "returnedonly"),
     )

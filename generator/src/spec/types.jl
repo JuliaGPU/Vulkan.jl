@@ -165,6 +165,8 @@ struct SpecUnion <: Spec
     name::Symbol
     "Possible types for the union."
     types::Vector{ExprLike}
+    "Fields which cast the struct into the union types"
+    fields::Vector{Symbol}
     "Selector values, if any, to determine the type of the union in a given context (function call for example)."
     selectors::Vector{Symbol}
     "Whether the type is only returned by Vulkan functions (and never requested as input)."
