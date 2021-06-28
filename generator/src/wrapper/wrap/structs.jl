@@ -2,7 +2,7 @@ function wrap(spec::SpecStruct)
     p = Dict(
         :category => :struct,
         :decl => :(
-            $(struct_name(spec.name)) <:
+            $(struct_name(spec)) <:
             $(spec.is_returnedonly ? :ReturnedOnly : :(VulkanStruct{$(needs_deps(spec))}))
         ),
     )
@@ -52,7 +52,7 @@ function hl_wrap(spec::SpecStruct)
     p = Dict(
         :category => :struct,
         :decl => :(
-            $(struct_name(spec.name, true)) <: HighLevelStruct
+            $(struct_name(spec, true)) <: HighLevelStruct
         ),
         :fields => Expr[],
     )

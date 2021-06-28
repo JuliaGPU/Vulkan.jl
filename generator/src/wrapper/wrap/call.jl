@@ -73,7 +73,7 @@ function vk_call(x::Spec)
         _ => @match jtype begin
             :String || :Bool || :(Vector{$et}) || if jtype == follow_constant(x.type)
             end => var # conversions are already defined
-            if x.type ∈ spec_structs.name && jtype == struct_name(x.type)
+            if x.type in [spec_structs.name; spec_unions.name] && jtype == struct_name(x.type)
             end => :($var.vks)
             _ => :(to_vk($(x.type), $var)) # fall back to the to_vk function for conversion
         end

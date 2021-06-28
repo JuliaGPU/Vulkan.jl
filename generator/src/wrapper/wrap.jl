@@ -15,6 +15,7 @@ struct VulkanWrapper
     hl_struct_converts       ::Vector{Expr}
     hl_convert_overloads     ::Vector{Expr}
     hl_api_funcs_overloads   ::Vector{Expr}
+    hl_union_getproperty     ::Vector{Expr}
     hl_docs                  ::Vector{Expr}
 end
 
@@ -35,6 +36,7 @@ Base.show(io::IO, vw::VulkanWrapper) = print(
 
 include("wrap/classification.jl")
 include("wrap/identifiers.jl")
+include("wrap/unions.jl")
 include("wrap/defaults.jl")
 include("wrap/call.jl")
 include("wrap/return.jl")
@@ -59,8 +61,10 @@ function VulkanWrapper(config::WrapperConfig)
     _spec_handles_with_wrappable_constructors = f(spec_handles_with_wrappable_constructors)
     _spec_enums = f(spec_enums)
     _spec_bitmasks = f(spec_bitmasks)
+    _spec_unions = f(spec_unions)
 
     api_structs = filter(x -> !x.is_returnedonly, _spec_structs)
+    api_unions = filter(x -> !x.is_returnedonly, _spec_unions)
     extendable_api_constructors = collect(filter([create_funcs.(_spec_handles_with_wrappable_constructors)...;]) do func
         !isnothing(func.create_info_param) && !func.batch
     end)
@@ -84,8 +88,8 @@ function VulkanWrapper(config::WrapperConfig)
     VulkanWrapper(
         wrap.(_spec_handles),
         [add_constructors.(_spec_handles_with_wrappable_constructors)...; add_constructors.(_spec_handles_with_wrappable_constructors; with_func_ptr=true)...],
-        wrap.(_spec_structs),
-        add_constructor.(api_structs),
+        [wrap.(_spec_structs); wrap.(_spec_unions, false)],
+        [add_constructor.(api_structs); add_constructors.(_spec_unions, false)...;],
         [wrap.(_spec_funcs); wrap.(_spec_funcs; with_func_ptr=true)],
         [extend_handle_constructor.(extendable_api_constructors); extend_handle_constructor.(extendable_api_constructors; with_func_ptr=true)],
         wrap.(_spec_enums),
@@ -93,11 +97,15 @@ function VulkanWrapper(config::WrapperConfig)
         wrap.(_spec_bitmasks),
         extend_from_vk.(filter(x -> x.is_returnedonly, _spec_structs)),
         docs,
-        hl_wrap.(api_structs),
-        filter(p -> !isempty(p[:kwargs]), hl_add_constructor.(api_structs)), # do not overwrite the default constructor (leads to infinite recursion)
-        hl_convert.(api_structs),
+        [hl_wrap.(api_structs); wrap.(api_unions, true)],
+        [
+            filter(p -> !isempty(p[:kwargs]), hl_add_constructor.(api_structs)); # do not overwrite the default constructor (leads to infinite recursion)
+            add_constructors.(api_unions, true)...;
+        ],
+        [hl_convert.(api_structs); hl_convert.(api_unions)],
         hl_convert_overload.(api_structs),
         filter(!isnothing, hl_api_funcs),
+        hl_getproperty.(_spec_unions),
         hl_docs,
     )
 end

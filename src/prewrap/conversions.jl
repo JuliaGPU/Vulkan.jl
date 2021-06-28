@@ -13,6 +13,7 @@ julia> to_vk(NTuple{6, UInt8}, "hello")
 function to_vk end
 
 to_vk(T, x) = convert(T, x)
+to_vk(::Type, x::VulkanStruct) = x.vks
 to_vk(T::Type{<:NTuple}, x) = to_vk.(eltype(T), x)
 to_vk(T::Type{UInt32}, version::VersionNumber) = VK_MAKE_VERSION(version.major, version.minor, version.patch)
 to_vk(T::Type{NTuple{N,UInt8}}, s::AbstractString) where {N} = T(s * '\0' ^ (N - length(s)))

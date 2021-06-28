@@ -23,7 +23,7 @@ function hl_type(type)
                 _ => :(NTuple{$N,$(hl_type(T))})
             end
         end
-        GuardBy(in(spec_structs.name)) => struct_name(t, true)
+        GuardBy(in([spec_structs.name; spec_unions.name])) => struct_name(t, true)
         GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
         GuardBy(is_fn_ptr) => :FunctionPtr
         :(Ptr{$T}) => hl_type(T)
@@ -52,7 +52,7 @@ function nice_julian_type(type)
         :Cstring => :String
         :VkBool32 => :Bool
         :(Ptr{$pt}) => nice_julian_type(pt)
-        GuardBy(in(spec_structs.name)) => struct_name(t)
+        GuardBy(in([spec_structs.name; spec_unions.name])) => struct_name(t)
         GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
         GuardBy(in(spec_enums.name)) => enum_type(t)
         GuardBy(is_flag_bitmask) => bitmask_flag_type(t)

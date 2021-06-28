@@ -58,9 +58,18 @@ function _wrap_identifier(spec::SpecHandle, func::SpecFunc)
     nothing
 end
 
-struct_name(sym::Symbol, is_high_level = false) = struct_name(struct_by_name(sym), is_high_level)
+function struct_name(sym::Symbol, is_high_level = false)
+    spec = struct_by_name(sym)
+    if isnothing(spec)
+        spec = union_by_name(sym)
+    elseif isnothing(spec)
+        spec = handle_by_name(sym)
+    end
+    @assert !isnothing(spec)
+    struct_name(spec, is_high_level)
+end
 
-function struct_name(spec::SpecStruct, is_high_level = false)
+function struct_name(spec::Spec, is_high_level = false)
     sym = remove_vk_prefix(spec.name)
-    is_high_level || spec.is_returnedonly ? sym : Symbol(:_, sym)
+    is_high_level || spec isa SpecHandle || spec.is_returnedonly ? sym : Symbol(:_, sym)
 end

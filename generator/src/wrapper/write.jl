@@ -21,6 +21,7 @@ function Base.write(vw::VulkanWrapper, config::WrapperConfig)
         print_block(io, vw.hl_struct_converts)
         print_block(io, vw.hl_convert_overloads)
         print_block(io, vw.hl_api_funcs_overloads)
+        print_block(io, vw.hl_union_getproperty)
 
         print_block(io, vw.docs)
         print_block(io, vw.hl_docs)
