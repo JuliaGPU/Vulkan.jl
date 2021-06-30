@@ -101,7 +101,7 @@ function hl_convert(spec::SpecStruct)
     p
 end
 
-function hl_convert_overload(spec::SpecStruct)
+function hl_convert_overload(spec)
     p = Dict(
         :category => :function,
         :name => :convert,

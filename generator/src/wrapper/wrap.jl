@@ -103,7 +103,7 @@ function VulkanWrapper(config::WrapperConfig)
             add_constructors.(api_unions, true)...;
         ],
         [hl_convert.(api_structs); hl_convert.(api_unions)],
-        hl_convert_overload.(api_structs),
+        [hl_convert_overload.(api_structs); hl_convert_overload.(api_unions)],
         filter(!isnothing, hl_api_funcs),
         hl_getproperty.(_spec_unions),
         hl_docs,

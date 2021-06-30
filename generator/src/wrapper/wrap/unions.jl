@@ -27,12 +27,13 @@ function add_constructors(spec::SpecUnion, is_high_level)
 
     map(zip(spec.types, sig_types, spec.fields)) do (type, sig_type, field)
         var = wrap_identifier(field)
+        call = type in spec_unions.name ? :($var.data) : var
         Dict(
             :category => :function,
             :name => name,
             :args => [:($var::$sig_type)],
             :body => :(
-                $name($(spec.name)(to_vk($type, $var)))
+                $name($(spec.name)(($call)))
             ),
             :short => true,
         )
