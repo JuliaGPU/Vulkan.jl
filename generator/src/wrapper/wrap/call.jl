@@ -58,7 +58,7 @@ function vk_call(x::Spec)
            !is_arr(x) &&
            (x.is_constant || (func = func_by_name(x.func); func.type == FTYPE_QUERY && x ≠ last(children(func))))
         end => @match x begin
-            if ptr_type(x.type) ∈ spec_structs.name
+            if ptr_type(x.type) ∈ [spec_structs.name; spec_unions.name]
             end => var # handled by cconvert and unsafe_convert in ccall
             if x.requirement == OPTIONAL
             end => :($var == $(default(x)) ? $(default(x)) : Ref($var)) # allow optional pointers to be passed as C_NULL instead of a pointer to a 0-valued integer
