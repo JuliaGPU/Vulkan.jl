@@ -117,6 +117,23 @@ function document_struct(spec::SpecStruct, p)
     ext = extension(spec)
     string(
         """
+        Minimalistic wrapper for $(spec.name).
+        """,
+        !isnothing(ext) ? """
+
+        Extension: $(ext.name)
+        """ : "",
+        """
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+        """,
+    )
+end
+
+function hl_document_struct(spec::SpecStruct, p)
+    ext = extension(spec)
+    string(
+        """
         High-level wrapper for $(spec.name).
         """,
         !isnothing(ext) ? """
@@ -139,7 +156,7 @@ function docstring(name, docstring)
 end
 
 function hl_document(spec::SpecStruct, p)
-    document(spec, p)
+    docstring(name(reconstruct(p)), hl_document_struct(spec, p))
 end
 
 concat_right(pair::Pair, val) = pair.first => (pair.second * val)

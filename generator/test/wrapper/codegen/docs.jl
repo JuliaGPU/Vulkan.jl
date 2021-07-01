@@ -1,6 +1,12 @@
-test_doc(generated, docstring) = @test generated[:docstring] == docstring
-test_doc(spec::SpecFunc, docstring) = test_doc(document(spec, wrap(spec)), docstring)
-test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(spec)), docstring)
+test_doc(generated::Dict, docstring) = @test generated[:docstring] == docstring
+
+docstring(spec::SpecFunc, _) = document(spec, wrap(spec))
+docstring(spec::SpecStruct, type::Symbol) = document(spec, type == :constructor ? add_constructor(spec) : wrap(spec))
+
+test_doc(spec, doc, type) = test_doc(docstring(spec, type), doc)
+
+hl_docstring(spec) = hl_document(spec, hl_wrap(spec))
+test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
 
 @testset "Generated documentation" begin
     @testset "Low-level structs" begin
@@ -15,6 +21,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
 
             API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html
             """,
+            :constructor,
         )
 
         test_doc(
@@ -31,6 +38,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
 
             API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
             """,
+            :constructor,
         )
 
         test_doc(
@@ -48,9 +56,22 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
             • `flags`: defaults to `0`
 
             API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
-            """
+            """,
+            :constructor,
         )
+    end
 
+    @testset "High-level structs" begin
+        test_hl_doc(struct_by_name(:VkInstanceCreateInfo),
+            """
+            High-level wrapper for VkInstanceCreateInfo.
+
+            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
+            """,
+        )
+    end
+
+    @testset "API functions" begin
         test_doc(
             func_by_name(:vkEnumerateInstanceExtensionProperties),
             """

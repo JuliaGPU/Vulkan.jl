@@ -36,6 +36,7 @@ export
     concat_exs,
     broadcast_ex,
     is_broadcast,
+    to_expr,
 
     # Wrapping
     WrapperConfig,
@@ -61,6 +62,7 @@ export
     add_constructors,
     extend_handle_constructor,
     default,
+    document,
 
     ##### Structs
     add_constructor,
@@ -71,5 +73,4 @@ export
     hl_convert,
     hl_convert_overload,
     hl_add_constructor,
-    to_expr,
-    document
+    hl_document
