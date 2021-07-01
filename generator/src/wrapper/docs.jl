@@ -109,7 +109,7 @@ function document_arguments(p)
             identifier, value = kwarg.args
             identifier => string(backquoted(identifier), ": defaults to ", backquoted(value))
         end
-        vcat(backquoted_args, documented_kwargs)
+        [backquoted_args; documented_kwargs]
     end
 end
 

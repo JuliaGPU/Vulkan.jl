@@ -15,7 +15,7 @@ test_struct(name, type, is_returnedonly, extends, members) = test_spec(
     extends,
     StructVector(map(x -> SpecStructMember(name, x...), members)),
 )
-test_union(name, types, selectors, is_returnedonly) = test_spec(union_by_name, name, types, selectors, is_returnedonly)
+test_union(name, types, fields, selectors, is_returnedonly) = test_spec(union_by_name, name, types, fields, selectors, is_returnedonly)
 test_func(name, type, return_type, render_pass_compatibility, queue_compatibility, params, success_codes, error_codes) =
     test_spec(
         func_by_name,
@@ -211,11 +211,12 @@ end
     end
 
     @testset "Unions" begin
-        test_union(:VkClearColorValue, [:(NTuple{4,Float32}), :(NTuple{4,Int32}), :(NTuple{4,UInt32})], [], false)
+        test_union(:VkClearColorValue, [:(NTuple{4,Float32}), :(NTuple{4,Int32}), :(NTuple{4,UInt32})], [:float32, :int32, :uint32], [], false)
 
         test_union(
             :VkPerformanceValueDataINTEL,
             [:UInt32, :UInt64, :Float32, :VkBool32, :Cstring],
+            [:value32, :value64, :valueFloat, :valueBool, :valueString],
             [
                 :VK_PERFORMANCE_VALUE_TYPE_UINT32_INTEL,
                 :VK_PERFORMANCE_VALUE_TYPE_UINT64_INTEL,

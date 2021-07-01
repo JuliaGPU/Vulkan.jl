@@ -204,7 +204,7 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ); with_func_ptr=true)
 
         test_wrap_func(:vkCreateGraphicsPipelines, :(
-            function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+            function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
                 pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
                 @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
                 (Pipeline.(pPipelines, x -> destroy_pipeline(device, x; allocator), device), _return_code)
@@ -240,11 +240,11 @@ test_extend_handle_constructor(name, ex; kwargs...) = test_ex(extend_handle_cons
         ))
 
         test_wrap_func(:vkUpdateDescriptorSets, :(
-            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
+            update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, descriptor_copies::AbstractArray{<:_CopyDescriptorSet})::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
         ))
 
         test_wrap_func(:vkCmdSetViewport, :(
-            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray)::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
+            cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
         ))
 
         test_wrap_func(:vkCmdSetLineWidth, :(

@@ -105,7 +105,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
     test_doc(
         func_by_name(:vkWriteAccelerationStructuresPropertiesKHR),
         """
-            write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
+            write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
         Extension: VK_KHR_acceleration_structure
 
@@ -116,7 +116,7 @@ test_doc(spec::SpecStruct, docstring) = test_doc(document(spec, add_constructor(
 
         Arguments:
         • `device::Device`
-        • `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+        • `acceleration_structures::AbstractArray`
         • `query_type::QueryType`
         • `data_size::Integer`
         • `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
