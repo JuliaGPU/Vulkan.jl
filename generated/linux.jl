@@ -10559,11 +10559,11 @@ end
 
 destroy_fence(device::Device, fence::Fence; allocator = C_NULL)::Cvoid = vkDestroyFence(device, fence, allocator)
 
-reset_fences(device::Device, fences::AbstractArray{<:Fence})::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences))
+reset_fences(device::Device, fences::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences))
 
 get_fence_status(device::Device, fence::Fence)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceStatus(device, fence))
 
-wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
 
 function create_semaphore(device::Device, create_info::_SemaphoreCreateInfo; allocator = C_NULL)::ResultTypes.Result{Semaphore, VulkanError}
     pSemaphore = Ref{VkSemaphore}()
@@ -10666,7 +10666,7 @@ function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache):
     (pDataSize[], pData)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
 
 function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
@@ -10722,7 +10722,7 @@ function allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetA
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
 
 update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, descriptor_copies::AbstractArray{<:_CopyDescriptorSet})::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
 
@@ -10764,7 +10764,7 @@ function allocate_command_buffers(device::Device, allocate_info::_CommandBufferA
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo)::ResultTypes.Result{Result, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info))
 
@@ -10792,11 +10792,11 @@ cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFace
 
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer)::Cvoid = vkCmdSetStencilReference(command_buffer, face_mask, reference)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray{<:Integer})::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
 
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType)::Cvoid = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer})::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer})::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
 
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)::Cvoid = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance)
 
@@ -10836,7 +10836,7 @@ cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineS
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
 cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
@@ -10862,7 +10862,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents)::Cvoi
 
 cmd_end_render_pass(command_buffer::CommandBuffer)::Cvoid = vkCmdEndRenderPass(command_buffer)
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
 
 function get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPropertiesKHR}, VulkanError}
     pPropertyCount = Ref{UInt32}()
@@ -11254,7 +11254,7 @@ update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSe
 
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data)
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
 
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain))
 
@@ -11393,7 +11393,7 @@ function get_validation_cache_data_ext(device::Device, validation_cache::Validat
     (pDataSize[], pData)
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
 
 function get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
     pSupport = Ref{VkDescriptorSetLayoutSupport}()
@@ -11503,11 +11503,11 @@ function get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
     from_vk.(CheckpointDataNV, pCheckpointData)
 end
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)::Cvoid = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index)
 
@@ -11563,13 +11563,13 @@ cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, inf
 
 copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, deferred_operation, info))
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
-cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
+cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
 
-write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride))
+write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride))
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
 
@@ -11778,7 +11778,7 @@ cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::Abstra
 
 cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
 
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)::Cvoid = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable)
 
@@ -11858,7 +11858,7 @@ cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info
 
 cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer)::Cvoid = vkCmdResetEvent2KHR(command_buffer, event, stage_mask)
 
-cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos)
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos)
 
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR)::Cvoid = vkCmdPipelineBarrier2KHR(command_buffer, dependency_info)
 
@@ -12070,11 +12070,11 @@ end
 
 destroy_fence(device::Device, fence::Fence, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyFence(device, fence, allocator, fun_ptr)
 
-reset_fences(device::Device, fences::AbstractArray{<:Fence}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
+reset_fences(device::Device, fences::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
 
 get_fence_status(device::Device, fence::Fence, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceStatus(device, fence, fun_ptr))
 
-wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
+wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
 
 function create_semaphore(device::Device, create_info::_SemaphoreCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Semaphore, VulkanError}
     pSemaphore = Ref{VkSemaphore}()
@@ -12177,7 +12177,7 @@ function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, 
     (pDataSize[], pData)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
 function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
@@ -12233,7 +12233,7 @@ function allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetA
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
 
 update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, descriptor_copies::AbstractArray{<:_CopyDescriptorSet}, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies, fun_ptr)
 
@@ -12275,7 +12275,7 @@ function allocate_command_buffers(device::Device, allocate_info::_CommandBufferA
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer}, fun_ptr::FunctionPtr)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info, fun_ptr))
 
@@ -12303,11 +12303,11 @@ cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFace
 
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilReference(command_buffer, face_mask, reference, fun_ptr)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
 
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type, fun_ptr)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
 
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance, fun_ptr)
 
@@ -12347,7 +12347,7 @@ cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineS
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask, fun_ptr)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}, fun_ptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}, fun_ptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
 cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}, fun_ptr::FunctionPtr; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
@@ -12373,7 +12373,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents, fun_p
 
 cmd_end_render_pass(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndRenderPass(command_buffer, fun_ptr)
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
 
 function get_physical_device_display_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::ResultTypes.Result{Vector{DisplayPropertiesKHR}, VulkanError}
     pPropertyCount = Ref{UInt32}()
@@ -12765,7 +12765,7 @@ update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSe
 
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data, fun_ptr)
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT}, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray{<:_HdrMetadataEXT}, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
 
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain, fun_ptr))
 
@@ -12904,7 +12904,7 @@ function get_validation_cache_data_ext(device::Device, validation_cache::Validat
     (pDataSize[], pData)
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
 function get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr)::DescriptorSetLayoutSupport
     pSupport = Ref{VkDescriptorSetLayoutSupport}()
@@ -13014,11 +13014,11 @@ function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)::Vecto
     from_vk.(CheckpointDataNV, pCheckpointData)
 end
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index, fun_ptr)
 
@@ -13074,13 +13074,13 @@ cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, inf
 
 copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, deferred_operation, info, fun_ptr))
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
-cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
+cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
 
-write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride, fun_ptr))
+write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride, fun_ptr))
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
 
@@ -13289,7 +13289,7 @@ cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::Abstra
 
 cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors, fun_ptr)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
 
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable, fun_ptr)
 
@@ -13369,7 +13369,7 @@ cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info
 
 cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetEvent2KHR(command_buffer, event, stage_mask, fun_ptr)
 
-cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR}, fun_ptr::FunctionPtr)::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos, fun_ptr)
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray{<:_DependencyInfoKHR}, fun_ptr::FunctionPtr)::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos, fun_ptr)
 
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdPipelineBarrier2KHR(command_buffer, dependency_info, fun_ptr)
 
@@ -20572,7 +20572,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 destroy_fence
 
 """
-    reset_fences(device::Device, fences::AbstractArray{<:Fence})::ResultTypes.Result{Result, VulkanError}
+    reset_fences(device::Device, fences::AbstractArray)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Error:
@@ -20580,7 +20580,7 @@ Return codes:
 
 Arguments:
 • `device::Device`
-• `fences::AbstractArray{<:Fence}` (externsync)
+• `fences::AbstractArray` (externsync)
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetFences.html
 
@@ -20609,7 +20609,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_fence_status
 
 """
-    wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError}
+    wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Success:
@@ -20622,7 +20622,7 @@ Return codes:
 
 Arguments:
 • `device::Device`
-• `fences::AbstractArray{<:Fence}`
+• `fences::AbstractArray`
 • `wait_all::Bool`
 • `timeout::Integer`
 
@@ -21041,7 +21041,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_pipeline_cache_data
 
 """
-    merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::ResultTypes.Result{Result, VulkanError}
+    merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 • Error:
@@ -21051,7 +21051,7 @@ Return codes:
 Arguments:
 • `device::Device`
 • `dst_cache::PipelineCache` (externsync)
-• `src_caches::AbstractArray{<:PipelineCache}`
+• `src_caches::AbstractArray`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergePipelineCaches.html
 
@@ -21277,14 +21277,14 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 allocate_descriptor_sets
 
 """
-    free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::ResultTypes.Result{Result, VulkanError}
+    free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray)::ResultTypes.Result{Result, VulkanError}
 
 Return codes:
 
 Arguments:
 • `device::Device`
 • `descriptor_pool::DescriptorPool` (externsync)
-• `descriptor_sets::AbstractArray{<:DescriptorSet}` (externsync)
+• `descriptor_sets::AbstractArray` (externsync)
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeDescriptorSets.html
 
@@ -21444,12 +21444,12 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 allocate_command_buffers
 
 """
-    free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid
+    free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray)::Cvoid
 
 Arguments:
 • `device::Device`
 • `command_pool::CommandPool` (externsync)
-• `command_buffers::AbstractArray{<:CommandBuffer}` (externsync)
+• `command_buffers::AbstractArray` (externsync)
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeCommandBuffers.html
 
@@ -21633,14 +21633,14 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_set_stencil_reference
 
 """
-    cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})::Cvoid
+    cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
 • `pipeline_bind_point::PipelineBindPoint`
 • `layout::PipelineLayout`
 • `first_set::Integer`
-• `descriptor_sets::AbstractArray{<:DescriptorSet}`
+• `descriptor_sets::AbstractArray`
 • `dynamic_offsets::AbstractArray{<:Integer}`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindDescriptorSets.html
@@ -21663,11 +21663,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_bind_index_buffer
 
 """
-    cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer})::Cvoid
+    cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer})::Cvoid
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `buffers::AbstractArray{<:Buffer}`
+• `buffers::AbstractArray`
 • `offsets::AbstractArray{<:Integer}`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers.html
@@ -21956,11 +21956,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_reset_event
 
 """
-    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid
+    cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `events::AbstractArray{<:Event}`
+• `events::AbstractArray`
 • `memory_barriers::AbstractArray{<:_MemoryBarrier}`
 • `buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}`
 • `image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}`
@@ -22141,11 +22141,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_end_render_pass
 
 """
-    cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid
+    cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray)::Cvoid
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `command_buffers::AbstractArray{<:CommandBuffer}`
+• `command_buffers::AbstractArray`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteCommands.html
 
@@ -23546,13 +23546,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_push_descriptor_set_with_template_khr
 
 """
-    set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid
+    set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid
 
 Extension: VK_EXT_hdr_metadata
 
 Arguments:
 • `device::Device`
-• `swapchains::AbstractArray{<:SwapchainKHR}`
+• `swapchains::AbstractArray`
 • `metadata::AbstractArray{<:_HdrMetadataEXT}`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetHdrMetadataEXT.html
@@ -23933,7 +23933,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_validation_cache_data_ext
 
 """
-    merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::ResultTypes.Result{Result, VulkanError}
+    merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray)::ResultTypes.Result{Result, VulkanError}
 
 Extension: VK_EXT_validation_cache
 
@@ -23945,7 +23945,7 @@ Return codes:
 Arguments:
 • `device::Device`
 • `dst_cache::ValidationCacheEXT` (externsync)
-• `src_caches::AbstractArray{<:ValidationCacheEXT}`
+• `src_caches::AbstractArray`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergeValidationCachesEXT.html
 
@@ -24422,13 +24422,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 get_queue_checkpoint_data_nv
 
 """
-    cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid
+    cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid
 
 Extension: VK_EXT_transform_feedback
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `buffers::AbstractArray{<:Buffer}`
+• `buffers::AbstractArray`
 • `offsets::AbstractArray{<:Integer}`
 • `sizes`: defaults to `C_NULL`
 
@@ -24438,13 +24438,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_bind_transform_feedback_buffers_ext
 
 """
-    cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
+    cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid
 
 Extension: VK_EXT_transform_feedback
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `counter_buffers::AbstractArray{<:Buffer}`
+• `counter_buffers::AbstractArray`
 • `counter_buffer_offsets`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginTransformFeedbackEXT.html
@@ -24453,13 +24453,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_begin_transform_feedback_ext
 
 """
-    cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid
+    cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid
 
 Extension: VK_EXT_transform_feedback
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `counter_buffers::AbstractArray{<:Buffer}`
+• `counter_buffers::AbstractArray`
 • `counter_buffer_offsets`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndTransformFeedbackEXT.html
@@ -24861,13 +24861,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 copy_memory_to_acceleration_structure_khr
 
 """
-    cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
+    cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
 Extension: VK_KHR_acceleration_structure
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+• `acceleration_structures::AbstractArray`
 • `query_type::QueryType`
 • `query_pool::QueryPool`
 • `first_query::Integer`
@@ -24878,13 +24878,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_write_acceleration_structures_properties_khr
 
 """
-    cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
+    cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid
 
 Extension: VK_NV_ray_tracing
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
+• `acceleration_structures::AbstractArray`
 • `query_type::QueryType`
 • `query_pool::QueryPool`
 • `first_query::Integer`
@@ -24916,7 +24916,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_build_acceleration_structure_nv
 
 """
-    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
+    write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
 Extension: VK_KHR_acceleration_structure
 
@@ -24927,7 +24927,7 @@ Return codes:
 
 Arguments:
 • `device::Device`
-• `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+• `acceleration_structures::AbstractArray`
 • `query_type::QueryType`
 • `data_size::Integer`
 • `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
@@ -25881,13 +25881,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_set_scissor_with_count_ext
 
 """
-    cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid
+    cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid
 
 Extension: VK_EXT_extended_dynamic_state
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `buffers::AbstractArray{<:Buffer}`
+• `buffers::AbstractArray`
 • `offsets::AbstractArray{<:Integer}`
 • `sizes`: defaults to `C_NULL`
 • `strides`: defaults to `C_NULL`
@@ -26333,13 +26333,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 cmd_reset_event_2_khr
 
 """
-    cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid
+    cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid
 
 Extension: VK_KHR_synchronization2
 
 Arguments:
 • `command_buffer::CommandBuffer` (externsync)
-• `events::AbstractArray{<:Event}`
+• `events::AbstractArray`
 • `dependency_infos::AbstractArray{<:_DependencyInfoKHR}`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents2KHR.html
@@ -26686,7 +26686,7 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _DescriptorImageInfo
 
 """
-    _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray{<:_DescriptorImageInfo}, buffer_info::AbstractArray{<:_DescriptorBufferInfo}, texel_buffer_view::AbstractArray{<:BufferView}; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
+    _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray{<:_DescriptorImageInfo}, buffer_info::AbstractArray{<:_DescriptorBufferInfo}, texel_buffer_view::AbstractArray; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
 
 Arguments:
 • `dst_set::DescriptorSet`
@@ -26695,7 +26695,7 @@ Arguments:
 • `descriptor_type::DescriptorType`
 • `image_info::AbstractArray{<:_DescriptorImageInfo}`
 • `buffer_info::AbstractArray{<:_DescriptorBufferInfo}`
-• `texel_buffer_view::AbstractArray{<:BufferView}`
+• `texel_buffer_view::AbstractArray`
 • `next`: defaults to `C_NULL`
 • `descriptor_count`: defaults to `max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view))`
 
@@ -26967,14 +26967,14 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _SparseImageMemoryBindInfo
 
 """
-    _BindSparseInfo(wait_semaphores::AbstractArray{<:Semaphore}, buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}, image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}, image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
+    _BindSparseInfo(wait_semaphores::AbstractArray, buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}, image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}, image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}, signal_semaphores::AbstractArray; next = C_NULL)
 
 Arguments:
-• `wait_semaphores::AbstractArray{<:Semaphore}`
+• `wait_semaphores::AbstractArray`
 • `buffer_binds::AbstractArray{<:_SparseBufferMemoryBindInfo}`
 • `image_opaque_binds::AbstractArray{<:_SparseImageOpaqueMemoryBindInfo}`
 • `image_binds::AbstractArray{<:_SparseImageMemoryBindInfo}`
-• `signal_semaphores::AbstractArray{<:Semaphore}`
+• `signal_semaphores::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindSparseInfo.html
@@ -27111,11 +27111,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _DescriptorPoolCreateInfo
 
 """
-    _DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray{<:DescriptorSetLayout}; next = C_NULL)
+    _DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL)
 
 Arguments:
 • `descriptor_pool::DescriptorPool`
-• `set_layouts::AbstractArray{<:DescriptorSetLayout}`
+• `set_layouts::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetAllocateInfo.html
@@ -27443,10 +27443,10 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _PushConstantRange
 
 """
-    _PipelineLayoutCreateInfo(set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; next = C_NULL, flags = 0)
+    _PipelineLayoutCreateInfo(set_layouts::AbstractArray, push_constant_ranges::AbstractArray{<:_PushConstantRange}; next = C_NULL, flags = 0)
 
 Arguments:
-• `set_layouts::AbstractArray{<:DescriptorSetLayout}`
+• `set_layouts::AbstractArray`
 • `push_constant_ranges::AbstractArray{<:_PushConstantRange}`
 • `next`: defaults to `C_NULL`
 • `flags`: defaults to `0`
@@ -27777,11 +27777,11 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _QueryPoolCreateInfo
 
 """
-    _FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; next = C_NULL, flags = 0)
+    _FramebufferCreateInfo(render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer; next = C_NULL, flags = 0)
 
 Arguments:
 • `render_pass::RenderPass`
-• `attachments::AbstractArray{<:ImageView}`
+• `attachments::AbstractArray`
 • `width::Integer`
 • `height::Integer`
 • `layers::Integer`
@@ -27836,13 +27836,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _DispatchIndirectCommand
 
 """
-    _SubmitInfo(wait_semaphores::AbstractArray{<:Semaphore}, wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}, command_buffers::AbstractArray{<:CommandBuffer}, signal_semaphores::AbstractArray{<:Semaphore}; next = C_NULL)
+    _SubmitInfo(wait_semaphores::AbstractArray, wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}, command_buffers::AbstractArray, signal_semaphores::AbstractArray; next = C_NULL)
 
 Arguments:
-• `wait_semaphores::AbstractArray{<:Semaphore}`
+• `wait_semaphores::AbstractArray`
 • `wait_dst_stage_mask::AbstractArray{<:PipelineStageFlag}`
-• `command_buffers::AbstractArray{<:CommandBuffer}`
-• `signal_semaphores::AbstractArray{<:Semaphore}`
+• `command_buffers::AbstractArray`
+• `signal_semaphores::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo.html
@@ -27993,13 +27993,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _SwapchainCreateInfoKHR
 
 """
-    _PresentInfoKHR(wait_semaphores::AbstractArray{<:Semaphore}, swapchains::AbstractArray{<:SwapchainKHR}, image_indices::AbstractArray{<:Integer}; next = C_NULL, results = C_NULL)
+    _PresentInfoKHR(wait_semaphores::AbstractArray, swapchains::AbstractArray, image_indices::AbstractArray{<:Integer}; next = C_NULL, results = C_NULL)
 
 Extension: VK_KHR_swapchain
 
 Arguments:
-• `wait_semaphores::AbstractArray{<:Semaphore}`
-• `swapchains::AbstractArray{<:SwapchainKHR}`
+• `wait_semaphores::AbstractArray`
+• `swapchains::AbstractArray`
 • `image_indices::AbstractArray{<:Integer}`
 • `next`: defaults to `C_NULL`
 • `results`: defaults to `C_NULL`
@@ -28261,13 +28261,13 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _GraphicsShaderGroupCreateInfoNV
 
 """
-    _GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}, pipelines::AbstractArray{<:Pipeline}; next = C_NULL)
+    _GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}, pipelines::AbstractArray; next = C_NULL)
 
 Extension: VK_NV_device_generated_commands
 
 Arguments:
 • `groups::AbstractArray{<:_GraphicsShaderGroupCreateInfoNV}`
-• `pipelines::AbstractArray{<:Pipeline}`
+• `pipelines::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html
@@ -29011,10 +29011,10 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _DeviceGroupPresentInfoKHR
 
 """
-    _DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray{<:PhysicalDevice}; next = C_NULL)
+    _DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray; next = C_NULL)
 
 Arguments:
-• `physical_devices::AbstractArray{<:PhysicalDevice}`
+• `physical_devices::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html
@@ -30165,10 +30165,10 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _TimelineSemaphoreSubmitInfo
 
 """
-    _SemaphoreWaitInfo(semaphores::AbstractArray{<:Semaphore}, values::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
+    _SemaphoreWaitInfo(semaphores::AbstractArray, values::AbstractArray{<:Integer}; next = C_NULL, flags = 0)
 
 Arguments:
-• `semaphores::AbstractArray{<:Semaphore}`
+• `semaphores::AbstractArray`
 • `values::AbstractArray{<:Integer}`
 • `next`: defaults to `C_NULL`
 • `flags`: defaults to `0`
@@ -30846,12 +30846,12 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _BindAccelerationStructureMemoryInfoNV
 
 """
-    _WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray{<:AccelerationStructureKHR}; next = C_NULL)
+    _WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::AbstractArray; next = C_NULL)
 
 Extension: VK_KHR_acceleration_structure
 
 Arguments:
-• `acceleration_structures::AbstractArray{<:AccelerationStructureKHR}`
+• `acceleration_structures::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html
@@ -30860,12 +30860,12 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _WriteDescriptorSetAccelerationStructureKHR
 
 """
-    _WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray{<:AccelerationStructureNV}; next = C_NULL)
+    _WriteDescriptorSetAccelerationStructureNV(acceleration_structures::AbstractArray; next = C_NULL)
 
 Extension: VK_NV_ray_tracing
 
 Arguments:
-• `acceleration_structures::AbstractArray{<:AccelerationStructureNV}`
+• `acceleration_structures::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html
@@ -31302,10 +31302,10 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _FramebufferAttachmentImageInfo
 
 """
-    _RenderPassAttachmentBeginInfo(attachments::AbstractArray{<:ImageView}; next = C_NULL)
+    _RenderPassAttachmentBeginInfo(attachments::AbstractArray; next = C_NULL)
 
 Arguments:
-• `attachments::AbstractArray{<:ImageView}`
+• `attachments::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassAttachmentBeginInfo.html
@@ -32282,12 +32282,12 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _RayTracingPipelineInterfaceCreateInfoKHR
 
 """
-    _PipelineLibraryCreateInfoKHR(libraries::AbstractArray{<:Pipeline}; next = C_NULL)
+    _PipelineLibraryCreateInfoKHR(libraries::AbstractArray; next = C_NULL)
 
 Extension: VK_KHR_pipeline_library
 
 Arguments:
-• `libraries::AbstractArray{<:Pipeline}`
+• `libraries::AbstractArray`
 • `next`: defaults to `C_NULL`
 
 API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html
@@ -33198,11 +33198,11 @@ ImageView(device::Device, image::Image, view_type::ImageViewType, format::Format
 ShaderModule(device::Device, code_size::Integer, code::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
-    PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
+    PipelineLayout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray{<:_PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:_PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
+PipelineLayout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray{<:_PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     Sampler(device::Device, mag_filter::Filter, min_filter::Filter, mipmap_mode::SamplerMipmapMode, address_mode_u::SamplerAddressMode, address_mode_v::SamplerAddressMode, address_mode_w::SamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::CompareOp, min_lod::Real, max_lod::Real, border_color::BorderColor, unnormalized_coordinates::Bool; allocator = C_NULL, next = C_NULL, flags = 0)
@@ -33254,11 +33254,11 @@ Event(device::Device; allocator = C_NULL, next = C_NULL, flags = 0)
 QueryPool(device::Device, query_type::QueryType, query_count::Integer; allocator = C_NULL, next = C_NULL, flags = 0, pipeline_statistics = 0)
 
 """
-    Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+    Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 
 """
-Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray{<:ImageView}, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
+Framebuffer(device::Device, render_pass::RenderPass, attachments::AbstractArray, width::Integer, height::Integer, layers::Integer; allocator = C_NULL, next = C_NULL, flags = 0)
 
 """
     RenderPass(device::Device, attachments::AbstractArray{<:_AttachmentDescription}, subpasses::AbstractArray{<:_SubpassDescription}, dependencies::AbstractArray{<:_SubpassDependency}; allocator = C_NULL, next = C_NULL, flags = 0)

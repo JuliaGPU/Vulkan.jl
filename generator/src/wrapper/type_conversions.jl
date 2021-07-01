@@ -80,7 +80,10 @@ function signature_type(type)
         :UInt || :UInt8 || :UInt16 || :UInt32 || :UInt64 || :Int || :Int8 || :Int16 || :Int32 || :Int64 => :Integer
         :Float16 || :Float32 || :Float64 => :Real
         :String => :AbstractString
-        :(Vector{$et}) => :(AbstractArray{<:$(signature_type(et))})
+        :(Vector{$et}) => @match et begin
+            GuardBy(in(remove_vk_prefix.(spec_handles.name))) => :AbstractArray
+            _ => :(AbstractArray{<:$(signature_type(et))})
+        end
         t => t
     end
 end
