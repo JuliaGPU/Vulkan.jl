@@ -7,6 +7,7 @@ struct VulkanWrapper
     api_constructor_overloads::Vector{Expr}
     enums                    ::Vector{Expr}
     enum_converts            ::Vector{Expr}
+    constants                ::Vector{Expr}
     bitmasks                 ::Vector{Expr}
     from_vk_overloads        ::Vector{Expr}
     docs                     ::Vector{Expr}
@@ -46,6 +47,7 @@ include("wrap/parent.jl")
 
 include("wrap/bitmasks.jl")
 include("wrap/enums.jl")
+include("wrap/constants.jl")
 include("wrap/overloads.jl")
 include("wrap/structs.jl")
 include("wrap/functions.jl")
@@ -59,6 +61,7 @@ function VulkanWrapper(config::WrapperConfig)
     _spec_structs = f(spec_structs)
     _spec_handles = f(spec_handles)
     _spec_handles_with_wrappable_constructors = f(spec_handles_with_wrappable_constructors)
+    _spec_constants = f(spec_constants)
     _spec_enums = f(spec_enums)
     _spec_bitmasks = f(spec_bitmasks)
     _spec_unions = f(spec_unions)
@@ -94,6 +97,7 @@ function VulkanWrapper(config::WrapperConfig)
         [extend_handle_constructor.(extendable_api_constructors); extend_handle_constructor.(extendable_api_constructors; with_func_ptr=true)],
         wrap.(_spec_enums),
         [convert_overload.(_spec_enums); convert_back_overload.(_spec_enums)],
+        wrap.(filter(include_constant, _spec_constants)),
         wrap.(_spec_bitmasks),
         extend_from_vk.(filter(x -> x.is_returnedonly, _spec_structs)),
         docs,

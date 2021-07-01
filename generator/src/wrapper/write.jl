@@ -5,6 +5,7 @@ function Base.write(vw::VulkanWrapper, config::WrapperConfig)
 
     mkpath(dirname(config.destfile))
     open(config.destfile, "w+") do io
+        print_block(io, vw.constants)
         print_block(io, vw.enums)
         print_block(io, vw.bitmasks)
         print_block(io, filter(in(vw.handles), ordered_exprs))
@@ -26,7 +27,7 @@ function Base.write(vw::VulkanWrapper, config::WrapperConfig)
         print_block(io, vw.docs)
         print_block(io, vw.hl_docs)
 
-        write_exports(io, [vw.enums; vw.bitmasks; vw.handles; vw.structs; vw.api_funcs; hl_structs])
+        write_exports(io, [vw.constants; vw.enums; vw.bitmasks; vw.handles; vw.structs; vw.api_funcs; hl_structs])
     end
 end
 

@@ -50,7 +50,10 @@ export
     wrap,
     resolve_types,
     resolve_dependencies,
-    
+
+    ### Utility
+    is_flag,
+
     ### Low-level wrappers
     ##### Handles
     wrappable_constructors,
