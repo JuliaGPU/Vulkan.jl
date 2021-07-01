@@ -1,0 +1,25 @@
+test_wrap_bitmask(name, ex) = test_wrap(bitmask_by_name, name, ex)
+
+@testset "Bitmask flags" begin
+    test_wrap_bitmask(:VkQueryPipelineStatisticFlagBits, :(
+        @bitmask_flag QueryPipelineStatisticFlag::UInt32 begin
+            QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 1
+            QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 2
+            QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 4
+            QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = 8
+            QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = 16
+            QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = 32
+            QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = 64
+            QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = 128
+            QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = 256
+            QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = 512
+            QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = 1024
+        end
+    ))
+
+    test_wrap_bitmask(:VkSparseMemoryBindFlagBits, :(
+        @bitmask_flag SparseMemoryBindFlag::UInt32 begin
+            SPARSE_MEMORY_BIND_METADATA_BIT = 1
+        end
+    ))
+end
