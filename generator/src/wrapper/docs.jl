@@ -113,7 +113,7 @@ function document_arguments(p)
     end
 end
 
-function document_struct(spec::SpecStruct, p)
+function document_struct(spec, p)
     ext = extension(spec)
     string(
         """
@@ -130,7 +130,7 @@ function document_struct(spec::SpecStruct, p)
     )
 end
 
-function hl_document_struct(spec::SpecStruct, p)
+function hl_document_struct(spec, p)
     ext = extension(spec)
     string(
         """
@@ -155,7 +155,7 @@ function docstring(name, docstring)
     )
 end
 
-function hl_document(spec::SpecStruct, p)
+function hl_document(spec::Union{SpecStruct, SpecUnion}, p)
     docstring(name(reconstruct(p)), hl_document_struct(spec, p))
 end
 

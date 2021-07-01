@@ -33135,6 +33135,5280 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 _PipelineRasterizationProvokingVertexStateCreateInfoEXT
 
 """
+Minimalistic wrapper for VkBaseOutStructure.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseOutStructure.html
+
+"""
+_BaseOutStructure
+
+"""
+Minimalistic wrapper for VkBaseInStructure.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseInStructure.html
+
+"""
+_BaseInStructure
+
+"""
+Minimalistic wrapper for VkOffset2D.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset2D.html
+
+"""
+_Offset2D
+
+"""
+Minimalistic wrapper for VkOffset3D.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset3D.html
+
+"""
+_Offset3D
+
+"""
+Minimalistic wrapper for VkExtent2D.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html
+
+"""
+_Extent2D
+
+"""
+Minimalistic wrapper for VkExtent3D.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent3D.html
+
+"""
+_Extent3D
+
+"""
+Minimalistic wrapper for VkViewport.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewport.html
+
+"""
+_Viewport
+
+"""
+Minimalistic wrapper for VkRect2D.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRect2D.html
+
+"""
+_Rect2D
+
+"""
+Minimalistic wrapper for VkClearRect.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearRect.html
+
+"""
+_ClearRect
+
+"""
+Minimalistic wrapper for VkComponentMapping.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComponentMapping.html
+
+"""
+_ComponentMapping
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProperties.html
+
+"""
+PhysicalDeviceProperties
+
+"""
+Minimalistic wrapper for VkExtensionProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtensionProperties.html
+
+"""
+ExtensionProperties
+
+"""
+Minimalistic wrapper for VkLayerProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkLayerProperties.html
+
+"""
+LayerProperties
+
+"""
+Minimalistic wrapper for VkApplicationInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkApplicationInfo.html
+
+"""
+_ApplicationInfo
+
+"""
+Minimalistic wrapper for VkAllocationCallbacks.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAllocationCallbacks.html
+
+"""
+_AllocationCallbacks
+
+"""
+Minimalistic wrapper for VkDeviceQueueCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueCreateInfo.html
+
+"""
+_DeviceQueueCreateInfo
+
+"""
+Minimalistic wrapper for VkDeviceCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceCreateInfo.html
+
+"""
+_DeviceCreateInfo
+
+"""
+Minimalistic wrapper for VkInstanceCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
+
+"""
+_InstanceCreateInfo
+
+"""
+Minimalistic wrapper for VkQueueFamilyProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueueFamilyProperties.html
+
+"""
+QueueFamilyProperties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMemoryProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryProperties.html
+
+"""
+PhysicalDeviceMemoryProperties
+
+"""
+Minimalistic wrapper for VkMemoryAllocateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateInfo.html
+
+"""
+_MemoryAllocateInfo
+
+"""
+Minimalistic wrapper for VkMemoryRequirements.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryRequirements.html
+
+"""
+MemoryRequirements
+
+"""
+Minimalistic wrapper for VkSparseImageFormatProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageFormatProperties.html
+
+"""
+SparseImageFormatProperties
+
+"""
+Minimalistic wrapper for VkSparseImageMemoryRequirements.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryRequirements.html
+
+"""
+SparseImageMemoryRequirements
+
+"""
+Minimalistic wrapper for VkMemoryType.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryType.html
+
+"""
+MemoryType
+
+"""
+Minimalistic wrapper for VkMemoryHeap.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryHeap.html
+
+"""
+MemoryHeap
+
+"""
+Minimalistic wrapper for VkMappedMemoryRange.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMappedMemoryRange.html
+
+"""
+_MappedMemoryRange
+
+"""
+Minimalistic wrapper for VkFormatProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFormatProperties.html
+
+"""
+FormatProperties
+
+"""
+Minimalistic wrapper for VkImageFormatProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageFormatProperties.html
+
+"""
+ImageFormatProperties
+
+"""
+Minimalistic wrapper for VkDescriptorBufferInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorBufferInfo.html
+
+"""
+_DescriptorBufferInfo
+
+"""
+Minimalistic wrapper for VkDescriptorImageInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorImageInfo.html
+
+"""
+_DescriptorImageInfo
+
+"""
+Minimalistic wrapper for VkWriteDescriptorSet.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSet.html
+
+"""
+_WriteDescriptorSet
+
+"""
+Minimalistic wrapper for VkCopyDescriptorSet.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyDescriptorSet.html
+
+"""
+_CopyDescriptorSet
+
+"""
+Minimalistic wrapper for VkBufferCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCreateInfo.html
+
+"""
+_BufferCreateInfo
+
+"""
+Minimalistic wrapper for VkBufferViewCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferViewCreateInfo.html
+
+"""
+_BufferViewCreateInfo
+
+"""
+Minimalistic wrapper for VkImageSubresource.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresource.html
+
+"""
+_ImageSubresource
+
+"""
+Minimalistic wrapper for VkImageSubresourceLayers.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceLayers.html
+
+"""
+_ImageSubresourceLayers
+
+"""
+Minimalistic wrapper for VkImageSubresourceRange.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceRange.html
+
+"""
+_ImageSubresourceRange
+
+"""
+Minimalistic wrapper for VkMemoryBarrier.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier.html
+
+"""
+_MemoryBarrier
+
+"""
+Minimalistic wrapper for VkBufferMemoryBarrier.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier.html
+
+"""
+_BufferMemoryBarrier
+
+"""
+Minimalistic wrapper for VkImageMemoryBarrier.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier.html
+
+"""
+_ImageMemoryBarrier
+
+"""
+Minimalistic wrapper for VkImageCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCreateInfo.html
+
+"""
+_ImageCreateInfo
+
+"""
+Minimalistic wrapper for VkSubresourceLayout.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubresourceLayout.html
+
+"""
+SubresourceLayout
+
+"""
+Minimalistic wrapper for VkImageViewCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewCreateInfo.html
+
+"""
+_ImageViewCreateInfo
+
+"""
+Minimalistic wrapper for VkBufferCopy.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy.html
+
+"""
+_BufferCopy
+
+"""
+Minimalistic wrapper for VkSparseMemoryBind.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseMemoryBind.html
+
+"""
+_SparseMemoryBind
+
+"""
+Minimalistic wrapper for VkSparseImageMemoryBind.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBind.html
+
+"""
+_SparseImageMemoryBind
+
+"""
+Minimalistic wrapper for VkSparseBufferMemoryBindInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseBufferMemoryBindInfo.html
+
+"""
+_SparseBufferMemoryBindInfo
+
+"""
+Minimalistic wrapper for VkSparseImageOpaqueMemoryBindInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html
+
+"""
+_SparseImageOpaqueMemoryBindInfo
+
+"""
+Minimalistic wrapper for VkSparseImageMemoryBindInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBindInfo.html
+
+"""
+_SparseImageMemoryBindInfo
+
+"""
+Minimalistic wrapper for VkBindSparseInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindSparseInfo.html
+
+"""
+_BindSparseInfo
+
+"""
+Minimalistic wrapper for VkImageCopy.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy.html
+
+"""
+_ImageCopy
+
+"""
+Minimalistic wrapper for VkImageBlit.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit.html
+
+"""
+_ImageBlit
+
+"""
+Minimalistic wrapper for VkBufferImageCopy.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy.html
+
+"""
+_BufferImageCopy
+
+"""
+Minimalistic wrapper for VkImageResolve.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve.html
+
+"""
+_ImageResolve
+
+"""
+Minimalistic wrapper for VkShaderModuleCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleCreateInfo.html
+
+"""
+_ShaderModuleCreateInfo
+
+"""
+Minimalistic wrapper for VkDescriptorSetLayoutBinding.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBinding.html
+
+"""
+_DescriptorSetLayoutBinding
+
+"""
+Minimalistic wrapper for VkDescriptorSetLayoutCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutCreateInfo.html
+
+"""
+_DescriptorSetLayoutCreateInfo
+
+"""
+Minimalistic wrapper for VkDescriptorPoolSize.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolSize.html
+
+"""
+_DescriptorPoolSize
+
+"""
+Minimalistic wrapper for VkDescriptorPoolCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolCreateInfo.html
+
+"""
+_DescriptorPoolCreateInfo
+
+"""
+Minimalistic wrapper for VkDescriptorSetAllocateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetAllocateInfo.html
+
+"""
+_DescriptorSetAllocateInfo
+
+"""
+Minimalistic wrapper for VkSpecializationMapEntry.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationMapEntry.html
+
+"""
+_SpecializationMapEntry
+
+"""
+Minimalistic wrapper for VkSpecializationInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationInfo.html
+
+"""
+_SpecializationInfo
+
+"""
+Minimalistic wrapper for VkPipelineShaderStageCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineShaderStageCreateInfo.html
+
+"""
+_PipelineShaderStageCreateInfo
+
+"""
+Minimalistic wrapper for VkComputePipelineCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComputePipelineCreateInfo.html
+
+"""
+_ComputePipelineCreateInfo
+
+"""
+Minimalistic wrapper for VkVertexInputBindingDescription.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription.html
+
+"""
+_VertexInputBindingDescription
+
+"""
+Minimalistic wrapper for VkVertexInputAttributeDescription.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription.html
+
+"""
+_VertexInputAttributeDescription
+
+"""
+Minimalistic wrapper for VkPipelineVertexInputStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html
+
+"""
+_PipelineVertexInputStateCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineInputAssemblyStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html
+
+"""
+_PipelineInputAssemblyStateCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineTessellationStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationStateCreateInfo.html
+
+"""
+_PipelineTessellationStateCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineViewportStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportStateCreateInfo.html
+
+"""
+_PipelineViewportStateCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineRasterizationStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html
+
+"""
+_PipelineRasterizationStateCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineMultisampleStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html
+
+"""
+_PipelineMultisampleStateCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineColorBlendAttachmentState.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAttachmentState.html
+
+"""
+_PipelineColorBlendAttachmentState
+
+"""
+Minimalistic wrapper for VkPipelineColorBlendStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendStateCreateInfo.html
+
+"""
+_PipelineColorBlendStateCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineDynamicStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDynamicStateCreateInfo.html
+
+"""
+_PipelineDynamicStateCreateInfo
+
+"""
+Minimalistic wrapper for VkStencilOpState.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStencilOpState.html
+
+"""
+_StencilOpState
+
+"""
+Minimalistic wrapper for VkPipelineDepthStencilStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html
+
+"""
+_PipelineDepthStencilStateCreateInfo
+
+"""
+Minimalistic wrapper for VkGraphicsPipelineCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineCreateInfo.html
+
+"""
+_GraphicsPipelineCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineCacheCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCacheCreateInfo.html
+
+"""
+_PipelineCacheCreateInfo
+
+"""
+Minimalistic wrapper for VkPushConstantRange.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPushConstantRange.html
+
+"""
+_PushConstantRange
+
+"""
+Minimalistic wrapper for VkPipelineLayoutCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLayoutCreateInfo.html
+
+"""
+_PipelineLayoutCreateInfo
+
+"""
+Minimalistic wrapper for VkSamplerCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCreateInfo.html
+
+"""
+_SamplerCreateInfo
+
+"""
+Minimalistic wrapper for VkCommandPoolCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandPoolCreateInfo.html
+
+"""
+_CommandPoolCreateInfo
+
+"""
+Minimalistic wrapper for VkCommandBufferAllocateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferAllocateInfo.html
+
+"""
+_CommandBufferAllocateInfo
+
+"""
+Minimalistic wrapper for VkCommandBufferInheritanceInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceInfo.html
+
+"""
+_CommandBufferInheritanceInfo
+
+"""
+Minimalistic wrapper for VkCommandBufferBeginInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferBeginInfo.html
+
+"""
+_CommandBufferBeginInfo
+
+"""
+Minimalistic wrapper for VkRenderPassBeginInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassBeginInfo.html
+
+"""
+_RenderPassBeginInfo
+
+"""
+Minimalistic wrapper for VkClearDepthStencilValue.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearDepthStencilValue.html
+
+"""
+_ClearDepthStencilValue
+
+"""
+Minimalistic wrapper for VkClearAttachment.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearAttachment.html
+
+"""
+_ClearAttachment
+
+"""
+Minimalistic wrapper for VkAttachmentDescription.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html
+
+"""
+_AttachmentDescription
+
+"""
+Minimalistic wrapper for VkAttachmentReference.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference.html
+
+"""
+_AttachmentReference
+
+"""
+Minimalistic wrapper for VkSubpassDescription.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription.html
+
+"""
+_SubpassDescription
+
+"""
+Minimalistic wrapper for VkSubpassDependency.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency.html
+
+"""
+_SubpassDependency
+
+"""
+Minimalistic wrapper for VkRenderPassCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo.html
+
+"""
+_RenderPassCreateInfo
+
+"""
+Minimalistic wrapper for VkEventCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkEventCreateInfo.html
+
+"""
+_EventCreateInfo
+
+"""
+Minimalistic wrapper for VkFenceCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceCreateInfo.html
+
+"""
+_FenceCreateInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures.html
+
+"""
+_PhysicalDeviceFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSparseProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSparseProperties.html
+
+"""
+PhysicalDeviceSparseProperties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceLimits.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLimits.html
+
+"""
+PhysicalDeviceLimits
+
+"""
+Minimalistic wrapper for VkSemaphoreCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreCreateInfo.html
+
+"""
+_SemaphoreCreateInfo
+
+"""
+Minimalistic wrapper for VkQueryPoolCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolCreateInfo.html
+
+"""
+_QueryPoolCreateInfo
+
+"""
+Minimalistic wrapper for VkFramebufferCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferCreateInfo.html
+
+"""
+_FramebufferCreateInfo
+
+"""
+Minimalistic wrapper for VkDrawIndirectCommand.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndirectCommand.html
+
+"""
+_DrawIndirectCommand
+
+"""
+Minimalistic wrapper for VkDrawIndexedIndirectCommand.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndexedIndirectCommand.html
+
+"""
+_DrawIndexedIndirectCommand
+
+"""
+Minimalistic wrapper for VkDispatchIndirectCommand.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDispatchIndirectCommand.html
+
+"""
+_DispatchIndirectCommand
+
+"""
+Minimalistic wrapper for VkSubmitInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo.html
+
+"""
+_SubmitInfo
+
+"""
+Minimalistic wrapper for VkDisplayPropertiesKHR.
+
+Extension: VK_KHR_display
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPropertiesKHR.html
+
+"""
+DisplayPropertiesKHR
+
+"""
+Minimalistic wrapper for VkDisplayPlanePropertiesKHR.
+
+Extension: VK_KHR_display
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlanePropertiesKHR.html
+
+"""
+DisplayPlanePropertiesKHR
+
+"""
+Minimalistic wrapper for VkDisplayModeParametersKHR.
+
+Extension: VK_KHR_display
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeParametersKHR.html
+
+"""
+_DisplayModeParametersKHR
+
+"""
+Minimalistic wrapper for VkDisplayModePropertiesKHR.
+
+Extension: VK_KHR_display
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModePropertiesKHR.html
+
+"""
+DisplayModePropertiesKHR
+
+"""
+Minimalistic wrapper for VkDisplayModeCreateInfoKHR.
+
+Extension: VK_KHR_display
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeCreateInfoKHR.html
+
+"""
+_DisplayModeCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkDisplayPlaneCapabilitiesKHR.
+
+Extension: VK_KHR_display
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneCapabilitiesKHR.html
+
+"""
+DisplayPlaneCapabilitiesKHR
+
+"""
+Minimalistic wrapper for VkDisplaySurfaceCreateInfoKHR.
+
+Extension: VK_KHR_display
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html
+
+"""
+_DisplaySurfaceCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkDisplayPresentInfoKHR.
+
+Extension: VK_KHR_display_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPresentInfoKHR.html
+
+"""
+_DisplayPresentInfoKHR
+
+"""
+Minimalistic wrapper for VkSurfaceCapabilitiesKHR.
+
+Extension: VK_KHR_surface
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceCapabilitiesKHR.html
+
+"""
+SurfaceCapabilitiesKHR
+
+"""
+Minimalistic wrapper for VkWaylandSurfaceCreateInfoKHR.
+
+Extension: VK_KHR_wayland_surface
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWaylandSurfaceCreateInfoKHR.html
+
+"""
+_WaylandSurfaceCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkXlibSurfaceCreateInfoKHR.
+
+Extension: VK_KHR_xlib_surface
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXlibSurfaceCreateInfoKHR.html
+
+"""
+_XlibSurfaceCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkXcbSurfaceCreateInfoKHR.
+
+Extension: VK_KHR_xcb_surface
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXcbSurfaceCreateInfoKHR.html
+
+"""
+_XcbSurfaceCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkSurfaceFormatKHR.
+
+Extension: VK_KHR_surface
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceFormatKHR.html
+
+"""
+SurfaceFormatKHR
+
+"""
+Minimalistic wrapper for VkSwapchainCreateInfoKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCreateInfoKHR.html
+
+"""
+_SwapchainCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkPresentInfoKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentInfoKHR.html
+
+"""
+_PresentInfoKHR
+
+"""
+Minimalistic wrapper for VkDebugReportCallbackCreateInfoEXT.
+
+Extension: VK_EXT_debug_report
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugReportCallbackCreateInfoEXT.html
+
+"""
+_DebugReportCallbackCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkValidationFlagsEXT.
+
+Extension: VK_EXT_validation_flags
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFlagsEXT.html
+
+"""
+_ValidationFlagsEXT
+
+"""
+Minimalistic wrapper for VkValidationFeaturesEXT.
+
+Extension: VK_EXT_validation_features
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFeaturesEXT.html
+
+"""
+_ValidationFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPipelineRasterizationStateRasterizationOrderAMD.
+
+Extension: VK_AMD_rasterization_order
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html
+
+"""
+_PipelineRasterizationStateRasterizationOrderAMD
+
+"""
+Minimalistic wrapper for VkDebugMarkerObjectNameInfoEXT.
+
+Extension: VK_EXT_debug_marker
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html
+
+"""
+_DebugMarkerObjectNameInfoEXT
+
+"""
+Minimalistic wrapper for VkDebugMarkerObjectTagInfoEXT.
+
+Extension: VK_EXT_debug_marker
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html
+
+"""
+_DebugMarkerObjectTagInfoEXT
+
+"""
+Minimalistic wrapper for VkDebugMarkerMarkerInfoEXT.
+
+Extension: VK_EXT_debug_marker
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html
+
+"""
+_DebugMarkerMarkerInfoEXT
+
+"""
+Minimalistic wrapper for VkDedicatedAllocationImageCreateInfoNV.
+
+Extension: VK_NV_dedicated_allocation
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationImageCreateInfoNV.html
+
+"""
+_DedicatedAllocationImageCreateInfoNV
+
+"""
+Minimalistic wrapper for VkDedicatedAllocationBufferCreateInfoNV.
+
+Extension: VK_NV_dedicated_allocation
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationBufferCreateInfoNV.html
+
+"""
+_DedicatedAllocationBufferCreateInfoNV
+
+"""
+Minimalistic wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
+
+Extension: VK_NV_dedicated_allocation
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html
+
+"""
+_DedicatedAllocationMemoryAllocateInfoNV
+
+"""
+Minimalistic wrapper for VkExternalImageFormatPropertiesNV.
+
+Extension: VK_NV_external_memory_capabilities
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalImageFormatPropertiesNV.html
+
+"""
+ExternalImageFormatPropertiesNV
+
+"""
+Minimalistic wrapper for VkExternalMemoryImageCreateInfoNV.
+
+Extension: VK_NV_external_memory
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html
+
+"""
+_ExternalMemoryImageCreateInfoNV
+
+"""
+Minimalistic wrapper for VkExportMemoryAllocateInfoNV.
+
+Extension: VK_NV_external_memory
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfoNV.html
+
+"""
+_ExportMemoryAllocateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.html
+
+"""
+_PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
+
+"""
+Minimalistic wrapper for VkDevicePrivateDataCreateInfoEXT.
+
+Extension: VK_EXT_private_data
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDevicePrivateDataCreateInfoEXT.html
+
+"""
+_DevicePrivateDataCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPrivateDataSlotCreateInfoEXT.
+
+Extension: VK_EXT_private_data
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPrivateDataSlotCreateInfoEXT.html
+
+"""
+_PrivateDataSlotCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePrivateDataFeaturesEXT.
+
+Extension: VK_EXT_private_data
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePrivateDataFeaturesEXT.html
+
+"""
+_PhysicalDevicePrivateDataFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV.html
+
+"""
+PhysicalDeviceDeviceGeneratedCommandsPropertiesNV
+
+"""
+Minimalistic wrapper for VkGraphicsShaderGroupCreateInfoNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsShaderGroupCreateInfoNV.html
+
+"""
+_GraphicsShaderGroupCreateInfoNV
+
+"""
+Minimalistic wrapper for VkGraphicsPipelineShaderGroupsCreateInfoNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html
+
+"""
+_GraphicsPipelineShaderGroupsCreateInfoNV
+
+"""
+Minimalistic wrapper for VkBindShaderGroupIndirectCommandNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindShaderGroupIndirectCommandNV.html
+
+"""
+_BindShaderGroupIndirectCommandNV
+
+"""
+Minimalistic wrapper for VkBindIndexBufferIndirectCommandNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html
+
+"""
+_BindIndexBufferIndirectCommandNV
+
+"""
+Minimalistic wrapper for VkBindVertexBufferIndirectCommandNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindVertexBufferIndirectCommandNV.html
+
+"""
+_BindVertexBufferIndirectCommandNV
+
+"""
+Minimalistic wrapper for VkSetStateFlagsIndirectCommandNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSetStateFlagsIndirectCommandNV.html
+
+"""
+_SetStateFlagsIndirectCommandNV
+
+"""
+Minimalistic wrapper for VkIndirectCommandsStreamNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsStreamNV.html
+
+"""
+_IndirectCommandsStreamNV
+
+"""
+Minimalistic wrapper for VkIndirectCommandsLayoutTokenNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html
+
+"""
+_IndirectCommandsLayoutTokenNV
+
+"""
+Minimalistic wrapper for VkIndirectCommandsLayoutCreateInfoNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html
+
+"""
+_IndirectCommandsLayoutCreateInfoNV
+
+"""
+Minimalistic wrapper for VkGeneratedCommandsInfoNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsInfoNV.html
+
+"""
+_GeneratedCommandsInfoNV
+
+"""
+Minimalistic wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
+
+Extension: VK_NV_device_generated_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html
+
+"""
+_GeneratedCommandsMemoryRequirementsInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFeatures2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures2.html
+
+"""
+_PhysicalDeviceFeatures2
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceProperties2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProperties2.html
+
+"""
+PhysicalDeviceProperties2
+
+"""
+Minimalistic wrapper for VkFormatProperties2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFormatProperties2.html
+
+"""
+FormatProperties2
+
+"""
+Minimalistic wrapper for VkImageFormatProperties2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageFormatProperties2.html
+
+"""
+ImageFormatProperties2
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceImageFormatInfo2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html
+
+"""
+_PhysicalDeviceImageFormatInfo2
+
+"""
+Minimalistic wrapper for VkQueueFamilyProperties2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueueFamilyProperties2.html
+
+"""
+QueueFamilyProperties2
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMemoryProperties2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryProperties2.html
+
+"""
+PhysicalDeviceMemoryProperties2
+
+"""
+Minimalistic wrapper for VkSparseImageFormatProperties2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageFormatProperties2.html
+
+"""
+SparseImageFormatProperties2
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSparseImageFormatInfo2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html
+
+"""
+_PhysicalDeviceSparseImageFormatInfo2
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePushDescriptorPropertiesKHR.
+
+Extension: VK_KHR_push_descriptor
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePushDescriptorPropertiesKHR.html
+
+"""
+PhysicalDevicePushDescriptorPropertiesKHR
+
+"""
+Minimalistic wrapper for VkConformanceVersion.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConformanceVersion.html
+
+"""
+_ConformanceVersion
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDriverProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDriverProperties.html
+
+"""
+PhysicalDeviceDriverProperties
+
+"""
+Minimalistic wrapper for VkPresentRegionsKHR.
+
+Extension: VK_KHR_incremental_present
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionsKHR.html
+
+"""
+_PresentRegionsKHR
+
+"""
+Minimalistic wrapper for VkPresentRegionKHR.
+
+Extension: VK_KHR_incremental_present
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionKHR.html
+
+"""
+_PresentRegionKHR
+
+"""
+Minimalistic wrapper for VkRectLayerKHR.
+
+Extension: VK_KHR_incremental_present
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRectLayerKHR.html
+
+"""
+_RectLayerKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVariablePointersFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVariablePointersFeatures.html
+
+"""
+_PhysicalDeviceVariablePointersFeatures
+
+"""
+Minimalistic wrapper for VkExternalMemoryProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryProperties.html
+
+"""
+ExternalMemoryProperties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExternalImageFormatInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html
+
+"""
+_PhysicalDeviceExternalImageFormatInfo
+
+"""
+Minimalistic wrapper for VkExternalImageFormatProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalImageFormatProperties.html
+
+"""
+ExternalImageFormatProperties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExternalBufferInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalBufferInfo.html
+
+"""
+_PhysicalDeviceExternalBufferInfo
+
+"""
+Minimalistic wrapper for VkExternalBufferProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalBufferProperties.html
+
+"""
+ExternalBufferProperties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceIDProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceIDProperties.html
+
+"""
+PhysicalDeviceIDProperties
+
+"""
+Minimalistic wrapper for VkExternalMemoryImageCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfo.html
+
+"""
+_ExternalMemoryImageCreateInfo
+
+"""
+Minimalistic wrapper for VkExternalMemoryBufferCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryBufferCreateInfo.html
+
+"""
+_ExternalMemoryBufferCreateInfo
+
+"""
+Minimalistic wrapper for VkExportMemoryAllocateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfo.html
+
+"""
+_ExportMemoryAllocateInfo
+
+"""
+Minimalistic wrapper for VkImportMemoryFdInfoKHR.
+
+Extension: VK_KHR_external_memory_fd
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryFdInfoKHR.html
+
+"""
+_ImportMemoryFdInfoKHR
+
+"""
+Minimalistic wrapper for VkMemoryFdPropertiesKHR.
+
+Extension: VK_KHR_external_memory_fd
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryFdPropertiesKHR.html
+
+"""
+MemoryFdPropertiesKHR
+
+"""
+Minimalistic wrapper for VkMemoryGetFdInfoKHR.
+
+Extension: VK_KHR_external_memory_fd
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetFdInfoKHR.html
+
+"""
+_MemoryGetFdInfoKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExternalSemaphoreInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html
+
+"""
+_PhysicalDeviceExternalSemaphoreInfo
+
+"""
+Minimalistic wrapper for VkExternalSemaphoreProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalSemaphoreProperties.html
+
+"""
+ExternalSemaphoreProperties
+
+"""
+Minimalistic wrapper for VkExportSemaphoreCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportSemaphoreCreateInfo.html
+
+"""
+_ExportSemaphoreCreateInfo
+
+"""
+Minimalistic wrapper for VkImportSemaphoreFdInfoKHR.
+
+Extension: VK_KHR_external_semaphore_fd
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreFdInfoKHR.html
+
+"""
+_ImportSemaphoreFdInfoKHR
+
+"""
+Minimalistic wrapper for VkSemaphoreGetFdInfoKHR.
+
+Extension: VK_KHR_external_semaphore_fd
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetFdInfoKHR.html
+
+"""
+_SemaphoreGetFdInfoKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExternalFenceInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html
+
+"""
+_PhysicalDeviceExternalFenceInfo
+
+"""
+Minimalistic wrapper for VkExternalFenceProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalFenceProperties.html
+
+"""
+ExternalFenceProperties
+
+"""
+Minimalistic wrapper for VkExportFenceCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportFenceCreateInfo.html
+
+"""
+_ExportFenceCreateInfo
+
+"""
+Minimalistic wrapper for VkImportFenceFdInfoKHR.
+
+Extension: VK_KHR_external_fence_fd
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportFenceFdInfoKHR.html
+
+"""
+_ImportFenceFdInfoKHR
+
+"""
+Minimalistic wrapper for VkFenceGetFdInfoKHR.
+
+Extension: VK_KHR_external_fence_fd
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceGetFdInfoKHR.html
+
+"""
+_FenceGetFdInfoKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMultiviewFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMultiviewFeatures.html
+
+"""
+_PhysicalDeviceMultiviewFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMultiviewProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMultiviewProperties.html
+
+"""
+PhysicalDeviceMultiviewProperties
+
+"""
+Minimalistic wrapper for VkRenderPassMultiviewCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassMultiviewCreateInfo.html
+
+"""
+_RenderPassMultiviewCreateInfo
+
+"""
+Minimalistic wrapper for VkSurfaceCapabilities2EXT.
+
+Extension: VK_EXT_display_surface_counter
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceCapabilities2EXT.html
+
+"""
+SurfaceCapabilities2EXT
+
+"""
+Minimalistic wrapper for VkDisplayPowerInfoEXT.
+
+Extension: VK_EXT_display_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPowerInfoEXT.html
+
+"""
+_DisplayPowerInfoEXT
+
+"""
+Minimalistic wrapper for VkDeviceEventInfoEXT.
+
+Extension: VK_EXT_display_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceEventInfoEXT.html
+
+"""
+_DeviceEventInfoEXT
+
+"""
+Minimalistic wrapper for VkDisplayEventInfoEXT.
+
+Extension: VK_EXT_display_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayEventInfoEXT.html
+
+"""
+_DisplayEventInfoEXT
+
+"""
+Minimalistic wrapper for VkSwapchainCounterCreateInfoEXT.
+
+Extension: VK_EXT_display_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCounterCreateInfoEXT.html
+
+"""
+_SwapchainCounterCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceGroupProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceGroupProperties.html
+
+"""
+PhysicalDeviceGroupProperties
+
+"""
+Minimalistic wrapper for VkMemoryAllocateFlagsInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateFlagsInfo.html
+
+"""
+_MemoryAllocateFlagsInfo
+
+"""
+Minimalistic wrapper for VkBindBufferMemoryInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryInfo.html
+
+"""
+_BindBufferMemoryInfo
+
+"""
+Minimalistic wrapper for VkBindBufferMemoryDeviceGroupInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html
+
+"""
+_BindBufferMemoryDeviceGroupInfo
+
+"""
+Minimalistic wrapper for VkBindImageMemoryInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryInfo.html
+
+"""
+_BindImageMemoryInfo
+
+"""
+Minimalistic wrapper for VkBindImageMemoryDeviceGroupInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html
+
+"""
+_BindImageMemoryDeviceGroupInfo
+
+"""
+Minimalistic wrapper for VkDeviceGroupRenderPassBeginInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html
+
+"""
+_DeviceGroupRenderPassBeginInfo
+
+"""
+Minimalistic wrapper for VkDeviceGroupCommandBufferBeginInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupCommandBufferBeginInfo.html
+
+"""
+_DeviceGroupCommandBufferBeginInfo
+
+"""
+Minimalistic wrapper for VkDeviceGroupSubmitInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSubmitInfo.html
+
+"""
+_DeviceGroupSubmitInfo
+
+"""
+Minimalistic wrapper for VkDeviceGroupBindSparseInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupBindSparseInfo.html
+
+"""
+_DeviceGroupBindSparseInfo
+
+"""
+Minimalistic wrapper for VkDeviceGroupPresentCapabilitiesKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupPresentCapabilitiesKHR.html
+
+"""
+DeviceGroupPresentCapabilitiesKHR
+
+"""
+Minimalistic wrapper for VkImageSwapchainCreateInfoKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSwapchainCreateInfoKHR.html
+
+"""
+_ImageSwapchainCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkBindImageMemorySwapchainInfoKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html
+
+"""
+_BindImageMemorySwapchainInfoKHR
+
+"""
+Minimalistic wrapper for VkAcquireNextImageInfoKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireNextImageInfoKHR.html
+
+"""
+_AcquireNextImageInfoKHR
+
+"""
+Minimalistic wrapper for VkDeviceGroupPresentInfoKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupPresentInfoKHR.html
+
+"""
+_DeviceGroupPresentInfoKHR
+
+"""
+Minimalistic wrapper for VkDeviceGroupDeviceCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html
+
+"""
+_DeviceGroupDeviceCreateInfo
+
+"""
+Minimalistic wrapper for VkDeviceGroupSwapchainCreateInfoKHR.
+
+Extension: VK_KHR_swapchain
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html
+
+"""
+_DeviceGroupSwapchainCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkDescriptorUpdateTemplateEntry.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateEntry.html
+
+"""
+_DescriptorUpdateTemplateEntry
+
+"""
+Minimalistic wrapper for VkDescriptorUpdateTemplateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html
+
+"""
+_DescriptorUpdateTemplateCreateInfo
+
+"""
+Minimalistic wrapper for VkXYColorEXT.
+
+Extension: VK_EXT_hdr_metadata
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXYColorEXT.html
+
+"""
+_XYColorEXT
+
+"""
+Minimalistic wrapper for VkHdrMetadataEXT.
+
+Extension: VK_EXT_hdr_metadata
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHdrMetadataEXT.html
+
+"""
+_HdrMetadataEXT
+
+"""
+Minimalistic wrapper for VkDisplayNativeHdrSurfaceCapabilitiesAMD.
+
+Extension: VK_AMD_display_native_hdr
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayNativeHdrSurfaceCapabilitiesAMD.html
+
+"""
+DisplayNativeHdrSurfaceCapabilitiesAMD
+
+"""
+Minimalistic wrapper for VkSwapchainDisplayNativeHdrCreateInfoAMD.
+
+Extension: VK_AMD_display_native_hdr
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainDisplayNativeHdrCreateInfoAMD.html
+
+"""
+_SwapchainDisplayNativeHdrCreateInfoAMD
+
+"""
+Minimalistic wrapper for VkRefreshCycleDurationGOOGLE.
+
+Extension: VK_GOOGLE_display_timing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRefreshCycleDurationGOOGLE.html
+
+"""
+RefreshCycleDurationGOOGLE
+
+"""
+Minimalistic wrapper for VkPastPresentationTimingGOOGLE.
+
+Extension: VK_GOOGLE_display_timing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPastPresentationTimingGOOGLE.html
+
+"""
+PastPresentationTimingGOOGLE
+
+"""
+Minimalistic wrapper for VkPresentTimesInfoGOOGLE.
+
+Extension: VK_GOOGLE_display_timing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimesInfoGOOGLE.html
+
+"""
+_PresentTimesInfoGOOGLE
+
+"""
+Minimalistic wrapper for VkPresentTimeGOOGLE.
+
+Extension: VK_GOOGLE_display_timing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimeGOOGLE.html
+
+"""
+_PresentTimeGOOGLE
+
+"""
+Minimalistic wrapper for VkViewportWScalingNV.
+
+Extension: VK_NV_clip_space_w_scaling
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportWScalingNV.html
+
+"""
+_ViewportWScalingNV
+
+"""
+Minimalistic wrapper for VkPipelineViewportWScalingStateCreateInfoNV.
+
+Extension: VK_NV_clip_space_w_scaling
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportWScalingStateCreateInfoNV.html
+
+"""
+_PipelineViewportWScalingStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkViewportSwizzleNV.
+
+Extension: VK_NV_viewport_swizzle
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportSwizzleNV.html
+
+"""
+_ViewportSwizzleNV
+
+"""
+Minimalistic wrapper for VkPipelineViewportSwizzleStateCreateInfoNV.
+
+Extension: VK_NV_viewport_swizzle
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html
+
+"""
+_PipelineViewportSwizzleStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDiscardRectanglePropertiesEXT.
+
+Extension: VK_EXT_discard_rectangles
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDiscardRectanglePropertiesEXT.html
+
+"""
+PhysicalDeviceDiscardRectanglePropertiesEXT
+
+"""
+Minimalistic wrapper for VkPipelineDiscardRectangleStateCreateInfoEXT.
+
+Extension: VK_EXT_discard_rectangles
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDiscardRectangleStateCreateInfoEXT.html
+
+"""
+_PipelineDiscardRectangleStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX.
+
+Extension: VK_NVX_multiview_per_view_attributes
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX.html
+
+"""
+PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX
+
+"""
+Minimalistic wrapper for VkInputAttachmentAspectReference.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInputAttachmentAspectReference.html
+
+"""
+_InputAttachmentAspectReference
+
+"""
+Minimalistic wrapper for VkRenderPassInputAttachmentAspectCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html
+
+"""
+_RenderPassInputAttachmentAspectCreateInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
+
+Extension: VK_KHR_get_surface_capabilities2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html
+
+"""
+_PhysicalDeviceSurfaceInfo2KHR
+
+"""
+Minimalistic wrapper for VkSurfaceCapabilities2KHR.
+
+Extension: VK_KHR_get_surface_capabilities2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceCapabilities2KHR.html
+
+"""
+SurfaceCapabilities2KHR
+
+"""
+Minimalistic wrapper for VkSurfaceFormat2KHR.
+
+Extension: VK_KHR_get_surface_capabilities2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceFormat2KHR.html
+
+"""
+SurfaceFormat2KHR
+
+"""
+Minimalistic wrapper for VkDisplayProperties2KHR.
+
+Extension: VK_KHR_get_display_properties2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayProperties2KHR.html
+
+"""
+DisplayProperties2KHR
+
+"""
+Minimalistic wrapper for VkDisplayPlaneProperties2KHR.
+
+Extension: VK_KHR_get_display_properties2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneProperties2KHR.html
+
+"""
+DisplayPlaneProperties2KHR
+
+"""
+Minimalistic wrapper for VkDisplayModeProperties2KHR.
+
+Extension: VK_KHR_get_display_properties2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeProperties2KHR.html
+
+"""
+DisplayModeProperties2KHR
+
+"""
+Minimalistic wrapper for VkDisplayPlaneInfo2KHR.
+
+Extension: VK_KHR_get_display_properties2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneInfo2KHR.html
+
+"""
+_DisplayPlaneInfo2KHR
+
+"""
+Minimalistic wrapper for VkDisplayPlaneCapabilities2KHR.
+
+Extension: VK_KHR_get_display_properties2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneCapabilities2KHR.html
+
+"""
+DisplayPlaneCapabilities2KHR
+
+"""
+Minimalistic wrapper for VkSharedPresentSurfaceCapabilitiesKHR.
+
+Extension: VK_KHR_shared_presentable_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSharedPresentSurfaceCapabilitiesKHR.html
+
+"""
+SharedPresentSurfaceCapabilitiesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDevice16BitStorageFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice16BitStorageFeatures.html
+
+"""
+_PhysicalDevice16BitStorageFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSubgroupProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupProperties.html
+
+"""
+PhysicalDeviceSubgroupProperties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.html
+
+"""
+_PhysicalDeviceShaderSubgroupExtendedTypesFeatures
+
+"""
+Minimalistic wrapper for VkBufferMemoryRequirementsInfo2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryRequirementsInfo2.html
+
+"""
+_BufferMemoryRequirementsInfo2
+
+"""
+Minimalistic wrapper for VkImageMemoryRequirementsInfo2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryRequirementsInfo2.html
+
+"""
+_ImageMemoryRequirementsInfo2
+
+"""
+Minimalistic wrapper for VkImageSparseMemoryRequirementsInfo2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html
+
+"""
+_ImageSparseMemoryRequirementsInfo2
+
+"""
+Minimalistic wrapper for VkMemoryRequirements2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryRequirements2.html
+
+"""
+MemoryRequirements2
+
+"""
+Minimalistic wrapper for VkSparseImageMemoryRequirements2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryRequirements2.html
+
+"""
+SparseImageMemoryRequirements2
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePointClippingProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePointClippingProperties.html
+
+"""
+PhysicalDevicePointClippingProperties
+
+"""
+Minimalistic wrapper for VkMemoryDedicatedRequirements.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryDedicatedRequirements.html
+
+"""
+MemoryDedicatedRequirements
+
+"""
+Minimalistic wrapper for VkMemoryDedicatedAllocateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryDedicatedAllocateInfo.html
+
+"""
+_MemoryDedicatedAllocateInfo
+
+"""
+Minimalistic wrapper for VkImageViewUsageCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewUsageCreateInfo.html
+
+"""
+_ImageViewUsageCreateInfo
+
+"""
+Minimalistic wrapper for VkPipelineTessellationDomainOriginStateCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationDomainOriginStateCreateInfo.html
+
+"""
+_PipelineTessellationDomainOriginStateCreateInfo
+
+"""
+Minimalistic wrapper for VkSamplerYcbcrConversionInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionInfo.html
+
+"""
+_SamplerYcbcrConversionInfo
+
+"""
+Minimalistic wrapper for VkSamplerYcbcrConversionCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionCreateInfo.html
+
+"""
+_SamplerYcbcrConversionCreateInfo
+
+"""
+Minimalistic wrapper for VkBindImagePlaneMemoryInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImagePlaneMemoryInfo.html
+
+"""
+_BindImagePlaneMemoryInfo
+
+"""
+Minimalistic wrapper for VkImagePlaneMemoryRequirementsInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html
+
+"""
+_ImagePlaneMemoryRequirementsInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSamplerYcbcrConversionFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSamplerYcbcrConversionFeatures.html
+
+"""
+_PhysicalDeviceSamplerYcbcrConversionFeatures
+
+"""
+Minimalistic wrapper for VkSamplerYcbcrConversionImageFormatProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionImageFormatProperties.html
+
+"""
+SamplerYcbcrConversionImageFormatProperties
+
+"""
+Minimalistic wrapper for VkTextureLODGatherFormatPropertiesAMD.
+
+Extension: VK_AMD_texture_gather_bias_lod
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTextureLODGatherFormatPropertiesAMD.html
+
+"""
+TextureLODGatherFormatPropertiesAMD
+
+"""
+Minimalistic wrapper for VkConditionalRenderingBeginInfoEXT.
+
+Extension: VK_EXT_conditional_rendering
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html
+
+"""
+_ConditionalRenderingBeginInfoEXT
+
+"""
+Minimalistic wrapper for VkProtectedSubmitInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkProtectedSubmitInfo.html
+
+"""
+_ProtectedSubmitInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceProtectedMemoryFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProtectedMemoryFeatures.html
+
+"""
+_PhysicalDeviceProtectedMemoryFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceProtectedMemoryProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProtectedMemoryProperties.html
+
+"""
+PhysicalDeviceProtectedMemoryProperties
+
+"""
+Minimalistic wrapper for VkDeviceQueueInfo2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueInfo2.html
+
+"""
+_DeviceQueueInfo2
+
+"""
+Minimalistic wrapper for VkPipelineCoverageToColorStateCreateInfoNV.
+
+Extension: VK_NV_fragment_coverage_to_color
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html
+
+"""
+_PipelineCoverageToColorStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSamplerFilterMinmaxProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSamplerFilterMinmaxProperties.html
+
+"""
+PhysicalDeviceSamplerFilterMinmaxProperties
+
+"""
+Minimalistic wrapper for VkSampleLocationEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationEXT.html
+
+"""
+_SampleLocationEXT
+
+"""
+Minimalistic wrapper for VkSampleLocationsInfoEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationsInfoEXT.html
+
+"""
+_SampleLocationsInfoEXT
+
+"""
+Minimalistic wrapper for VkAttachmentSampleLocationsEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentSampleLocationsEXT.html
+
+"""
+_AttachmentSampleLocationsEXT
+
+"""
+Minimalistic wrapper for VkSubpassSampleLocationsEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassSampleLocationsEXT.html
+
+"""
+_SubpassSampleLocationsEXT
+
+"""
+Minimalistic wrapper for VkRenderPassSampleLocationsBeginInfoEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html
+
+"""
+_RenderPassSampleLocationsBeginInfoEXT
+
+"""
+Minimalistic wrapper for VkPipelineSampleLocationsStateCreateInfoEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html
+
+"""
+_PipelineSampleLocationsStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSampleLocationsPropertiesEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSampleLocationsPropertiesEXT.html
+
+"""
+PhysicalDeviceSampleLocationsPropertiesEXT
+
+"""
+Minimalistic wrapper for VkMultisamplePropertiesEXT.
+
+Extension: VK_EXT_sample_locations
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMultisamplePropertiesEXT.html
+
+"""
+MultisamplePropertiesEXT
+
+"""
+Minimalistic wrapper for VkSamplerReductionModeCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerReductionModeCreateInfo.html
+
+"""
+_SamplerReductionModeCreateInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.
+
+Extension: VK_EXT_blend_operation_advanced
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html
+
+"""
+_PhysicalDeviceBlendOperationAdvancedFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT.
+
+Extension: VK_EXT_blend_operation_advanced
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT.html
+
+"""
+PhysicalDeviceBlendOperationAdvancedPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPipelineColorBlendAdvancedStateCreateInfoEXT.
+
+Extension: VK_EXT_blend_operation_advanced
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAdvancedStateCreateInfoEXT.html
+
+"""
+_PipelineColorBlendAdvancedStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceInlineUniformBlockFeaturesEXT.
+
+Extension: VK_EXT_inline_uniform_block
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInlineUniformBlockFeaturesEXT.html
+
+"""
+_PhysicalDeviceInlineUniformBlockFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceInlineUniformBlockPropertiesEXT.
+
+Extension: VK_EXT_inline_uniform_block
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInlineUniformBlockPropertiesEXT.html
+
+"""
+PhysicalDeviceInlineUniformBlockPropertiesEXT
+
+"""
+Minimalistic wrapper for VkWriteDescriptorSetInlineUniformBlockEXT.
+
+Extension: VK_EXT_inline_uniform_block
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetInlineUniformBlockEXT.html
+
+"""
+_WriteDescriptorSetInlineUniformBlockEXT
+
+"""
+Minimalistic wrapper for VkDescriptorPoolInlineUniformBlockCreateInfoEXT.
+
+Extension: VK_EXT_inline_uniform_block
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.html
+
+"""
+_DescriptorPoolInlineUniformBlockCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPipelineCoverageModulationStateCreateInfoNV.
+
+Extension: VK_NV_framebuffer_mixed_samples
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html
+
+"""
+_PipelineCoverageModulationStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkImageFormatListCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageFormatListCreateInfo.html
+
+"""
+_ImageFormatListCreateInfo
+
+"""
+Minimalistic wrapper for VkValidationCacheCreateInfoEXT.
+
+Extension: VK_EXT_validation_cache
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationCacheCreateInfoEXT.html
+
+"""
+_ValidationCacheCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
+
+Extension: VK_EXT_validation_cache
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html
+
+"""
+_ShaderModuleValidationCacheCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMaintenance3Properties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMaintenance3Properties.html
+
+"""
+PhysicalDeviceMaintenance3Properties
+
+"""
+Minimalistic wrapper for VkDescriptorSetLayoutSupport.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutSupport.html
+
+"""
+DescriptorSetLayoutSupport
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderDrawParametersFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html
+
+"""
+_PhysicalDeviceShaderDrawParametersFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderFloat16Int8Features.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderFloat16Int8Features.html
+
+"""
+_PhysicalDeviceShaderFloat16Int8Features
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFloatControlsProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFloatControlsProperties.html
+
+"""
+PhysicalDeviceFloatControlsProperties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceHostQueryResetFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceHostQueryResetFeatures.html
+
+"""
+_PhysicalDeviceHostQueryResetFeatures
+
+"""
+Minimalistic wrapper for VkShaderResourceUsageAMD.
+
+Extension: VK_AMD_shader_info
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderResourceUsageAMD.html
+
+"""
+ShaderResourceUsageAMD
+
+"""
+Minimalistic wrapper for VkShaderStatisticsInfoAMD.
+
+Extension: VK_AMD_shader_info
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderStatisticsInfoAMD.html
+
+"""
+ShaderStatisticsInfoAMD
+
+"""
+Minimalistic wrapper for VkDeviceQueueGlobalPriorityCreateInfoEXT.
+
+Extension: VK_EXT_global_priority
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoEXT.html
+
+"""
+_DeviceQueueGlobalPriorityCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkDebugUtilsObjectNameInfoEXT.
+
+Extension: VK_EXT_debug_utils
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html
+
+"""
+_DebugUtilsObjectNameInfoEXT
+
+"""
+Minimalistic wrapper for VkDebugUtilsObjectTagInfoEXT.
+
+Extension: VK_EXT_debug_utils
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html
+
+"""
+_DebugUtilsObjectTagInfoEXT
+
+"""
+Minimalistic wrapper for VkDebugUtilsLabelEXT.
+
+Extension: VK_EXT_debug_utils
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsLabelEXT.html
+
+"""
+_DebugUtilsLabelEXT
+
+"""
+Minimalistic wrapper for VkDebugUtilsMessengerCreateInfoEXT.
+
+Extension: VK_EXT_debug_utils
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCreateInfoEXT.html
+
+"""
+_DebugUtilsMessengerCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkDebugUtilsMessengerCallbackDataEXT.
+
+Extension: VK_EXT_debug_utils
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCallbackDataEXT.html
+
+"""
+_DebugUtilsMessengerCallbackDataEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.
+
+Extension: VK_EXT_device_memory_report
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.html
+
+"""
+_PhysicalDeviceDeviceMemoryReportFeaturesEXT
+
+"""
+Minimalistic wrapper for VkDeviceDeviceMemoryReportCreateInfoEXT.
+
+Extension: VK_EXT_device_memory_report
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDeviceMemoryReportCreateInfoEXT.html
+
+"""
+_DeviceDeviceMemoryReportCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkDeviceMemoryReportCallbackDataEXT.
+
+Extension: VK_EXT_device_memory_report
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryReportCallbackDataEXT.html
+
+"""
+DeviceMemoryReportCallbackDataEXT
+
+"""
+Minimalistic wrapper for VkImportMemoryHostPointerInfoEXT.
+
+Extension: VK_EXT_external_memory_host
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html
+
+"""
+_ImportMemoryHostPointerInfoEXT
+
+"""
+Minimalistic wrapper for VkMemoryHostPointerPropertiesEXT.
+
+Extension: VK_EXT_external_memory_host
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryHostPointerPropertiesEXT.html
+
+"""
+MemoryHostPointerPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExternalMemoryHostPropertiesEXT.
+
+Extension: VK_EXT_external_memory_host
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalMemoryHostPropertiesEXT.html
+
+"""
+PhysicalDeviceExternalMemoryHostPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceConservativeRasterizationPropertiesEXT.
+
+Extension: VK_EXT_conservative_rasterization
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceConservativeRasterizationPropertiesEXT.html
+
+"""
+PhysicalDeviceConservativeRasterizationPropertiesEXT
+
+"""
+Minimalistic wrapper for VkCalibratedTimestampInfoEXT.
+
+Extension: VK_EXT_calibrated_timestamps
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCalibratedTimestampInfoEXT.html
+
+"""
+_CalibratedTimestampInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderCorePropertiesAMD.
+
+Extension: VK_AMD_shader_core_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderCorePropertiesAMD.html
+
+"""
+PhysicalDeviceShaderCorePropertiesAMD
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderCoreProperties2AMD.
+
+Extension: VK_AMD_shader_core_properties2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderCoreProperties2AMD.html
+
+"""
+PhysicalDeviceShaderCoreProperties2AMD
+
+"""
+Minimalistic wrapper for VkPipelineRasterizationConservativeStateCreateInfoEXT.
+
+Extension: VK_EXT_conservative_rasterization
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html
+
+"""
+_PipelineRasterizationConservativeStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDescriptorIndexingFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDescriptorIndexingFeatures.html
+
+"""
+_PhysicalDeviceDescriptorIndexingFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDescriptorIndexingProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDescriptorIndexingProperties.html
+
+"""
+PhysicalDeviceDescriptorIndexingProperties
+
+"""
+Minimalistic wrapper for VkDescriptorSetLayoutBindingFlagsCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBindingFlagsCreateInfo.html
+
+"""
+_DescriptorSetLayoutBindingFlagsCreateInfo
+
+"""
+Minimalistic wrapper for VkDescriptorSetVariableDescriptorCountAllocateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetVariableDescriptorCountAllocateInfo.html
+
+"""
+_DescriptorSetVariableDescriptorCountAllocateInfo
+
+"""
+Minimalistic wrapper for VkDescriptorSetVariableDescriptorCountLayoutSupport.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetVariableDescriptorCountLayoutSupport.html
+
+"""
+DescriptorSetVariableDescriptorCountLayoutSupport
+
+"""
+Minimalistic wrapper for VkAttachmentDescription2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription2.html
+
+"""
+_AttachmentDescription2
+
+"""
+Minimalistic wrapper for VkAttachmentReference2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference2.html
+
+"""
+_AttachmentReference2
+
+"""
+Minimalistic wrapper for VkSubpassDescription2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription2.html
+
+"""
+_SubpassDescription2
+
+"""
+Minimalistic wrapper for VkSubpassDependency2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency2.html
+
+"""
+_SubpassDependency2
+
+"""
+Minimalistic wrapper for VkRenderPassCreateInfo2.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo2.html
+
+"""
+_RenderPassCreateInfo2
+
+"""
+Minimalistic wrapper for VkSubpassBeginInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassBeginInfo.html
+
+"""
+_SubpassBeginInfo
+
+"""
+Minimalistic wrapper for VkSubpassEndInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassEndInfo.html
+
+"""
+_SubpassEndInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceTimelineSemaphoreFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreFeatures.html
+
+"""
+_PhysicalDeviceTimelineSemaphoreFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceTimelineSemaphoreProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreProperties.html
+
+"""
+PhysicalDeviceTimelineSemaphoreProperties
+
+"""
+Minimalistic wrapper for VkSemaphoreTypeCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreTypeCreateInfo.html
+
+"""
+_SemaphoreTypeCreateInfo
+
+"""
+Minimalistic wrapper for VkTimelineSemaphoreSubmitInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTimelineSemaphoreSubmitInfo.html
+
+"""
+_TimelineSemaphoreSubmitInfo
+
+"""
+Minimalistic wrapper for VkSemaphoreWaitInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreWaitInfo.html
+
+"""
+_SemaphoreWaitInfo
+
+"""
+Minimalistic wrapper for VkSemaphoreSignalInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSignalInfo.html
+
+"""
+_SemaphoreSignalInfo
+
+"""
+Minimalistic wrapper for VkVertexInputBindingDivisorDescriptionEXT.
+
+Extension: VK_EXT_vertex_attribute_divisor
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDivisorDescriptionEXT.html
+
+"""
+_VertexInputBindingDivisorDescriptionEXT
+
+"""
+Minimalistic wrapper for VkPipelineVertexInputDivisorStateCreateInfoEXT.
+
+Extension: VK_EXT_vertex_attribute_divisor
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputDivisorStateCreateInfoEXT.html
+
+"""
+_PipelineVertexInputDivisorStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT.
+
+Extension: VK_EXT_vertex_attribute_divisor
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT.html
+
+"""
+PhysicalDeviceVertexAttributeDivisorPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePCIBusInfoPropertiesEXT.
+
+Extension: VK_EXT_pci_bus_info
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePCIBusInfoPropertiesEXT.html
+
+"""
+PhysicalDevicePCIBusInfoPropertiesEXT
+
+"""
+Minimalistic wrapper for VkCommandBufferInheritanceConditionalRenderingInfoEXT.
+
+Extension: VK_EXT_conditional_rendering
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html
+
+"""
+_CommandBufferInheritanceConditionalRenderingInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDevice8BitStorageFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice8BitStorageFeatures.html
+
+"""
+_PhysicalDevice8BitStorageFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceConditionalRenderingFeaturesEXT.
+
+Extension: VK_EXT_conditional_rendering
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html
+
+"""
+_PhysicalDeviceConditionalRenderingFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVulkanMemoryModelFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkanMemoryModelFeatures.html
+
+"""
+_PhysicalDeviceVulkanMemoryModelFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderAtomicInt64Features.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicInt64Features.html
+
+"""
+_PhysicalDeviceShaderAtomicInt64Features
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.
+
+Extension: VK_EXT_shader_atomic_float
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html
+
+"""
+_PhysicalDeviceShaderAtomicFloatFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.
+
+Extension: VK_EXT_vertex_attribute_divisor
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.html
+
+"""
+_PhysicalDeviceVertexAttributeDivisorFeaturesEXT
+
+"""
+Minimalistic wrapper for VkQueueFamilyCheckpointPropertiesNV.
+
+Extension: VK_NV_device_diagnostic_checkpoints
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueueFamilyCheckpointPropertiesNV.html
+
+"""
+QueueFamilyCheckpointPropertiesNV
+
+"""
+Minimalistic wrapper for VkCheckpointDataNV.
+
+Extension: VK_NV_device_diagnostic_checkpoints
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCheckpointDataNV.html
+
+"""
+CheckpointDataNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDepthStencilResolveProperties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDepthStencilResolveProperties.html
+
+"""
+PhysicalDeviceDepthStencilResolveProperties
+
+"""
+Minimalistic wrapper for VkSubpassDescriptionDepthStencilResolve.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescriptionDepthStencilResolve.html
+
+"""
+_SubpassDescriptionDepthStencilResolve
+
+"""
+Minimalistic wrapper for VkImageViewASTCDecodeModeEXT.
+
+Extension: VK_EXT_astc_decode_mode
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewASTCDecodeModeEXT.html
+
+"""
+_ImageViewASTCDecodeModeEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceASTCDecodeFeaturesEXT.
+
+Extension: VK_EXT_astc_decode_mode
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceASTCDecodeFeaturesEXT.html
+
+"""
+_PhysicalDeviceASTCDecodeFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceTransformFeedbackFeaturesEXT.
+
+Extension: VK_EXT_transform_feedback
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html
+
+"""
+_PhysicalDeviceTransformFeedbackFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceTransformFeedbackPropertiesEXT.
+
+Extension: VK_EXT_transform_feedback
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTransformFeedbackPropertiesEXT.html
+
+"""
+PhysicalDeviceTransformFeedbackPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPipelineRasterizationStateStreamCreateInfoEXT.
+
+Extension: VK_EXT_transform_feedback
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html
+
+"""
+_PipelineRasterizationStateStreamCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.
+
+Extension: VK_NV_representative_fragment_test
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.html
+
+"""
+_PhysicalDeviceRepresentativeFragmentTestFeaturesNV
+
+"""
+Minimalistic wrapper for VkPipelineRepresentativeFragmentTestStateCreateInfoNV.
+
+Extension: VK_NV_representative_fragment_test
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.html
+
+"""
+_PipelineRepresentativeFragmentTestStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExclusiveScissorFeaturesNV.
+
+Extension: VK_NV_scissor_exclusive
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExclusiveScissorFeaturesNV.html
+
+"""
+_PhysicalDeviceExclusiveScissorFeaturesNV
+
+"""
+Minimalistic wrapper for VkPipelineViewportExclusiveScissorStateCreateInfoNV.
+
+Extension: VK_NV_scissor_exclusive
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html
+
+"""
+_PipelineViewportExclusiveScissorStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceCornerSampledImageFeaturesNV.
+
+Extension: VK_NV_corner_sampled_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCornerSampledImageFeaturesNV.html
+
+"""
+_PhysicalDeviceCornerSampledImageFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.
+
+Extension: VK_NV_compute_shader_derivatives
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.html
+
+"""
+_PhysicalDeviceComputeShaderDerivativesFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.
+
+Extension: VK_NV_fragment_shader_barycentric
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.html
+
+"""
+_PhysicalDeviceFragmentShaderBarycentricFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderImageFootprintFeaturesNV.
+
+Extension: VK_NV_shader_image_footprint
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageFootprintFeaturesNV.html
+
+"""
+_PhysicalDeviceShaderImageFootprintFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.
+
+Extension: VK_NV_dedicated_allocation_image_aliasing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.html
+
+"""
+_PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
+
+"""
+Minimalistic wrapper for VkShadingRatePaletteNV.
+
+Extension: VK_NV_shading_rate_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShadingRatePaletteNV.html
+
+"""
+_ShadingRatePaletteNV
+
+"""
+Minimalistic wrapper for VkPipelineViewportShadingRateImageStateCreateInfoNV.
+
+Extension: VK_NV_shading_rate_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html
+
+"""
+_PipelineViewportShadingRateImageStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShadingRateImageFeaturesNV.
+
+Extension: VK_NV_shading_rate_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html
+
+"""
+_PhysicalDeviceShadingRateImageFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShadingRateImagePropertiesNV.
+
+Extension: VK_NV_shading_rate_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShadingRateImagePropertiesNV.html
+
+"""
+PhysicalDeviceShadingRateImagePropertiesNV
+
+"""
+Minimalistic wrapper for VkCoarseSampleLocationNV.
+
+Extension: VK_NV_shading_rate_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleLocationNV.html
+
+"""
+_CoarseSampleLocationNV
+
+"""
+Minimalistic wrapper for VkCoarseSampleOrderCustomNV.
+
+Extension: VK_NV_shading_rate_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleOrderCustomNV.html
+
+"""
+_CoarseSampleOrderCustomNV
+
+"""
+Minimalistic wrapper for VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.
+
+Extension: VK_NV_shading_rate_image
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html
+
+"""
+_PipelineViewportCoarseSampleOrderStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMeshShaderFeaturesNV.
+
+Extension: VK_NV_mesh_shader
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMeshShaderFeaturesNV.html
+
+"""
+_PhysicalDeviceMeshShaderFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMeshShaderPropertiesNV.
+
+Extension: VK_NV_mesh_shader
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMeshShaderPropertiesNV.html
+
+"""
+PhysicalDeviceMeshShaderPropertiesNV
+
+"""
+Minimalistic wrapper for VkDrawMeshTasksIndirectCommandNV.
+
+Extension: VK_NV_mesh_shader
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html
+
+"""
+_DrawMeshTasksIndirectCommandNV
+
+"""
+Minimalistic wrapper for VkRayTracingShaderGroupCreateInfoNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html
+
+"""
+_RayTracingShaderGroupCreateInfoNV
+
+"""
+Minimalistic wrapper for VkRayTracingShaderGroupCreateInfoKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html
+
+"""
+_RayTracingShaderGroupCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkRayTracingPipelineCreateInfoNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html
+
+"""
+_RayTracingPipelineCreateInfoNV
+
+"""
+Minimalistic wrapper for VkRayTracingPipelineCreateInfoKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html
+
+"""
+_RayTracingPipelineCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkGeometryTrianglesNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryTrianglesNV.html
+
+"""
+_GeometryTrianglesNV
+
+"""
+Minimalistic wrapper for VkGeometryAABBNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryAABBNV.html
+
+"""
+_GeometryAABBNV
+
+"""
+Minimalistic wrapper for VkGeometryDataNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryDataNV.html
+
+"""
+_GeometryDataNV
+
+"""
+Minimalistic wrapper for VkGeometryNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryNV.html
+
+"""
+_GeometryNV
+
+"""
+Minimalistic wrapper for VkAccelerationStructureInfoNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInfoNV.html
+
+"""
+_AccelerationStructureInfoNV
+
+"""
+Minimalistic wrapper for VkAccelerationStructureCreateInfoNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoNV.html
+
+"""
+_AccelerationStructureCreateInfoNV
+
+"""
+Minimalistic wrapper for VkBindAccelerationStructureMemoryInfoNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html
+
+"""
+_BindAccelerationStructureMemoryInfoNV
+
+"""
+Minimalistic wrapper for VkWriteDescriptorSetAccelerationStructureKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html
+
+"""
+_WriteDescriptorSetAccelerationStructureKHR
+
+"""
+Minimalistic wrapper for VkWriteDescriptorSetAccelerationStructureNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html
+
+"""
+_WriteDescriptorSetAccelerationStructureNV
+
+"""
+Minimalistic wrapper for VkAccelerationStructureMemoryRequirementsInfoNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html
+
+"""
+_AccelerationStructureMemoryRequirementsInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceAccelerationStructureFeaturesKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceAccelerationStructureFeaturesKHR.html
+
+"""
+_PhysicalDeviceAccelerationStructureFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceRayTracingPipelineFeaturesKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html
+
+"""
+_PhysicalDeviceRayTracingPipelineFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceRayQueryFeaturesKHR.
+
+Extension: VK_KHR_ray_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayQueryFeaturesKHR.html
+
+"""
+_PhysicalDeviceRayQueryFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceAccelerationStructurePropertiesKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceAccelerationStructurePropertiesKHR.html
+
+"""
+PhysicalDeviceAccelerationStructurePropertiesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceRayTracingPipelinePropertiesKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPipelinePropertiesKHR.html
+
+"""
+PhysicalDeviceRayTracingPipelinePropertiesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceRayTracingPropertiesNV.
+
+Extension: VK_NV_ray_tracing
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPropertiesNV.html
+
+"""
+PhysicalDeviceRayTracingPropertiesNV
+
+"""
+Minimalistic wrapper for VkStridedDeviceAddressRegionKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStridedDeviceAddressRegionKHR.html
+
+"""
+_StridedDeviceAddressRegionKHR
+
+"""
+Minimalistic wrapper for VkTraceRaysIndirectCommandKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTraceRaysIndirectCommandKHR.html
+
+"""
+_TraceRaysIndirectCommandKHR
+
+"""
+Minimalistic wrapper for VkDrmFormatModifierPropertiesListEXT.
+
+Extension: VK_EXT_image_drm_format_modifier
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrmFormatModifierPropertiesListEXT.html
+
+"""
+DrmFormatModifierPropertiesListEXT
+
+"""
+Minimalistic wrapper for VkDrmFormatModifierPropertiesEXT.
+
+Extension: VK_EXT_image_drm_format_modifier
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrmFormatModifierPropertiesEXT.html
+
+"""
+DrmFormatModifierPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceImageDrmFormatModifierInfoEXT.
+
+Extension: VK_EXT_image_drm_format_modifier
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html
+
+"""
+_PhysicalDeviceImageDrmFormatModifierInfoEXT
+
+"""
+Minimalistic wrapper for VkImageDrmFormatModifierListCreateInfoEXT.
+
+Extension: VK_EXT_image_drm_format_modifier
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierListCreateInfoEXT.html
+
+"""
+_ImageDrmFormatModifierListCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkImageDrmFormatModifierExplicitCreateInfoEXT.
+
+Extension: VK_EXT_image_drm_format_modifier
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierExplicitCreateInfoEXT.html
+
+"""
+_ImageDrmFormatModifierExplicitCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkImageDrmFormatModifierPropertiesEXT.
+
+Extension: VK_EXT_image_drm_format_modifier
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierPropertiesEXT.html
+
+"""
+ImageDrmFormatModifierPropertiesEXT
+
+"""
+Minimalistic wrapper for VkImageStencilUsageCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageStencilUsageCreateInfo.html
+
+"""
+_ImageStencilUsageCreateInfo
+
+"""
+Minimalistic wrapper for VkDeviceMemoryOverallocationCreateInfoAMD.
+
+Extension: VK_AMD_memory_overallocation_behavior
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html
+
+"""
+_DeviceMemoryOverallocationCreateInfoAMD
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentDensityMapFeaturesEXT.
+
+Extension: VK_EXT_fragment_density_map
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMapFeaturesEXT.html
+
+"""
+_PhysicalDeviceFragmentDensityMapFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.
+
+Extension: VK_EXT_fragment_density_map2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.html
+
+"""
+_PhysicalDeviceFragmentDensityMap2FeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentDensityMapPropertiesEXT.
+
+Extension: VK_EXT_fragment_density_map
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMapPropertiesEXT.html
+
+"""
+PhysicalDeviceFragmentDensityMapPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentDensityMap2PropertiesEXT.
+
+Extension: VK_EXT_fragment_density_map2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2PropertiesEXT.html
+
+"""
+PhysicalDeviceFragmentDensityMap2PropertiesEXT
+
+"""
+Minimalistic wrapper for VkRenderPassFragmentDensityMapCreateInfoEXT.
+
+Extension: VK_EXT_fragment_density_map
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html
+
+"""
+_RenderPassFragmentDensityMapCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceScalarBlockLayoutFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceScalarBlockLayoutFeatures.html
+
+"""
+_PhysicalDeviceScalarBlockLayoutFeatures
+
+"""
+Minimalistic wrapper for VkSurfaceProtectedCapabilitiesKHR.
+
+Extension: VK_KHR_surface_protected_capabilities
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceProtectedCapabilitiesKHR.html
+
+"""
+_SurfaceProtectedCapabilitiesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceUniformBufferStandardLayoutFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceUniformBufferStandardLayoutFeatures.html
+
+"""
+_PhysicalDeviceUniformBufferStandardLayoutFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDepthClipEnableFeaturesEXT.
+
+Extension: VK_EXT_depth_clip_enable
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDepthClipEnableFeaturesEXT.html
+
+"""
+_PhysicalDeviceDepthClipEnableFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPipelineRasterizationDepthClipStateCreateInfoEXT.
+
+Extension: VK_EXT_depth_clip_enable
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationDepthClipStateCreateInfoEXT.html
+
+"""
+_PipelineRasterizationDepthClipStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMemoryBudgetPropertiesEXT.
+
+Extension: VK_EXT_memory_budget
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryBudgetPropertiesEXT.html
+
+"""
+PhysicalDeviceMemoryBudgetPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMemoryPriorityFeaturesEXT.
+
+Extension: VK_EXT_memory_priority
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryPriorityFeaturesEXT.html
+
+"""
+_PhysicalDeviceMemoryPriorityFeaturesEXT
+
+"""
+Minimalistic wrapper for VkMemoryPriorityAllocateInfoEXT.
+
+Extension: VK_EXT_memory_priority
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryPriorityAllocateInfoEXT.html
+
+"""
+_MemoryPriorityAllocateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceBufferDeviceAddressFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeatures.html
+
+"""
+_PhysicalDeviceBufferDeviceAddressFeatures
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.
+
+Extension: VK_EXT_buffer_device_address
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html
+
+"""
+_PhysicalDeviceBufferDeviceAddressFeaturesEXT
+
+"""
+Minimalistic wrapper for VkBufferDeviceAddressInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressInfo.html
+
+"""
+_BufferDeviceAddressInfo
+
+"""
+Minimalistic wrapper for VkBufferOpaqueCaptureAddressCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferOpaqueCaptureAddressCreateInfo.html
+
+"""
+_BufferOpaqueCaptureAddressCreateInfo
+
+"""
+Minimalistic wrapper for VkBufferDeviceAddressCreateInfoEXT.
+
+Extension: VK_EXT_buffer_device_address
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html
+
+"""
+_BufferDeviceAddressCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceImageViewImageFormatInfoEXT.
+
+Extension: VK_EXT_filter_cubic
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html
+
+"""
+_PhysicalDeviceImageViewImageFormatInfoEXT
+
+"""
+Minimalistic wrapper for VkFilterCubicImageViewImageFormatPropertiesEXT.
+
+Extension: VK_EXT_filter_cubic
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFilterCubicImageViewImageFormatPropertiesEXT.html
+
+"""
+FilterCubicImageViewImageFormatPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceImagelessFramebufferFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImagelessFramebufferFeatures.html
+
+"""
+_PhysicalDeviceImagelessFramebufferFeatures
+
+"""
+Minimalistic wrapper for VkFramebufferAttachmentsCreateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentsCreateInfo.html
+
+"""
+_FramebufferAttachmentsCreateInfo
+
+"""
+Minimalistic wrapper for VkFramebufferAttachmentImageInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentImageInfo.html
+
+"""
+_FramebufferAttachmentImageInfo
+
+"""
+Minimalistic wrapper for VkRenderPassAttachmentBeginInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassAttachmentBeginInfo.html
+
+"""
+_RenderPassAttachmentBeginInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.
+
+Extension: VK_EXT_texture_compression_astc_hdr
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.html
+
+"""
+_PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceCooperativeMatrixFeaturesNV.
+
+Extension: VK_NV_cooperative_matrix
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html
+
+"""
+_PhysicalDeviceCooperativeMatrixFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceCooperativeMatrixPropertiesNV.
+
+Extension: VK_NV_cooperative_matrix
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCooperativeMatrixPropertiesNV.html
+
+"""
+PhysicalDeviceCooperativeMatrixPropertiesNV
+
+"""
+Minimalistic wrapper for VkCooperativeMatrixPropertiesNV.
+
+Extension: VK_NV_cooperative_matrix
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCooperativeMatrixPropertiesNV.html
+
+"""
+_CooperativeMatrixPropertiesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.
+
+Extension: VK_EXT_ycbcr_image_arrays
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.html
+
+"""
+_PhysicalDeviceYcbcrImageArraysFeaturesEXT
+
+"""
+Minimalistic wrapper for VkImageViewHandleInfoNVX.
+
+Extension: VK_NVX_image_view_handle
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewHandleInfoNVX.html
+
+"""
+_ImageViewHandleInfoNVX
+
+"""
+Minimalistic wrapper for VkImageViewAddressPropertiesNVX.
+
+Extension: VK_NVX_image_view_handle
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewAddressPropertiesNVX.html
+
+"""
+ImageViewAddressPropertiesNVX
+
+"""
+Minimalistic wrapper for VkPipelineCreationFeedbackEXT.
+
+Extension: VK_EXT_pipeline_creation_feedback
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCreationFeedbackEXT.html
+
+"""
+PipelineCreationFeedbackEXT
+
+"""
+Minimalistic wrapper for VkPipelineCreationFeedbackCreateInfoEXT.
+
+Extension: VK_EXT_pipeline_creation_feedback
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCreationFeedbackCreateInfoEXT.html
+
+"""
+_PipelineCreationFeedbackCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePerformanceQueryFeaturesKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html
+
+"""
+_PhysicalDevicePerformanceQueryFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePerformanceQueryPropertiesKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePerformanceQueryPropertiesKHR.html
+
+"""
+PhysicalDevicePerformanceQueryPropertiesKHR
+
+"""
+Minimalistic wrapper for VkPerformanceCounterKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceCounterKHR.html
+
+"""
+PerformanceCounterKHR
+
+"""
+Minimalistic wrapper for VkPerformanceCounterDescriptionKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceCounterDescriptionKHR.html
+
+"""
+PerformanceCounterDescriptionKHR
+
+"""
+Minimalistic wrapper for VkQueryPoolPerformanceCreateInfoKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html
+
+"""
+_QueryPoolPerformanceCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkAcquireProfilingLockInfoKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireProfilingLockInfoKHR.html
+
+"""
+_AcquireProfilingLockInfoKHR
+
+"""
+Minimalistic wrapper for VkPerformanceQuerySubmitInfoKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html
+
+"""
+_PerformanceQuerySubmitInfoKHR
+
+"""
+Minimalistic wrapper for VkHeadlessSurfaceCreateInfoEXT.
+
+Extension: VK_EXT_headless_surface
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHeadlessSurfaceCreateInfoEXT.html
+
+"""
+_HeadlessSurfaceCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceCoverageReductionModeFeaturesNV.
+
+Extension: VK_NV_coverage_reduction_mode
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html
+
+"""
+_PhysicalDeviceCoverageReductionModeFeaturesNV
+
+"""
+Minimalistic wrapper for VkPipelineCoverageReductionStateCreateInfoNV.
+
+Extension: VK_NV_coverage_reduction_mode
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html
+
+"""
+_PipelineCoverageReductionStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkFramebufferMixedSamplesCombinationNV.
+
+Extension: VK_NV_coverage_reduction_mode
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferMixedSamplesCombinationNV.html
+
+"""
+FramebufferMixedSamplesCombinationNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.
+
+Extension: VK_INTEL_shader_integer_functions2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.html
+
+"""
+_PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
+
+"""
+Minimalistic wrapper for VkPerformanceValueINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueINTEL.html
+
+"""
+_PerformanceValueINTEL
+
+"""
+Minimalistic wrapper for VkInitializePerformanceApiInfoINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html
+
+"""
+_InitializePerformanceApiInfoINTEL
+
+"""
+Minimalistic wrapper for VkQueryPoolPerformanceQueryCreateInfoINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html
+
+"""
+_QueryPoolPerformanceQueryCreateInfoINTEL
+
+"""
+Minimalistic wrapper for VkPerformanceMarkerInfoINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceMarkerInfoINTEL.html
+
+"""
+_PerformanceMarkerInfoINTEL
+
+"""
+Minimalistic wrapper for VkPerformanceStreamMarkerInfoINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html
+
+"""
+_PerformanceStreamMarkerInfoINTEL
+
+"""
+Minimalistic wrapper for VkPerformanceOverrideInfoINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceOverrideInfoINTEL.html
+
+"""
+_PerformanceOverrideInfoINTEL
+
+"""
+Minimalistic wrapper for VkPerformanceConfigurationAcquireInfoINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html
+
+"""
+_PerformanceConfigurationAcquireInfoINTEL
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderClockFeaturesKHR.
+
+Extension: VK_KHR_shader_clock
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderClockFeaturesKHR.html
+
+"""
+_PhysicalDeviceShaderClockFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceIndexTypeUint8FeaturesEXT.
+
+Extension: VK_EXT_index_type_uint8
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.html
+
+"""
+_PhysicalDeviceIndexTypeUint8FeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderSMBuiltinsPropertiesNV.
+
+Extension: VK_NV_shader_sm_builtins
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsPropertiesNV.html
+
+"""
+PhysicalDeviceShaderSMBuiltinsPropertiesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.
+
+Extension: VK_NV_shader_sm_builtins
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html
+
+"""
+_PhysicalDeviceShaderSMBuiltinsFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.
+
+Extension: VK_EXT_fragment_shader_interlock
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.html
+
+"""
+_PhysicalDeviceFragmentShaderInterlockFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.html
+
+"""
+_PhysicalDeviceSeparateDepthStencilLayoutsFeatures
+
+"""
+Minimalistic wrapper for VkAttachmentReferenceStencilLayout.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReferenceStencilLayout.html
+
+"""
+_AttachmentReferenceStencilLayout
+
+"""
+Minimalistic wrapper for VkAttachmentDescriptionStencilLayout.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescriptionStencilLayout.html
+
+"""
+_AttachmentDescriptionStencilLayout
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html
+
+"""
+_PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPipelineInfoKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInfoKHR.html
+
+"""
+_PipelineInfoKHR
+
+"""
+Minimalistic wrapper for VkPipelineExecutablePropertiesKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutablePropertiesKHR.html
+
+"""
+PipelineExecutablePropertiesKHR
+
+"""
+Minimalistic wrapper for VkPipelineExecutableInfoKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableInfoKHR.html
+
+"""
+_PipelineExecutableInfoKHR
+
+"""
+Minimalistic wrapper for VkPipelineExecutableStatisticKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableStatisticKHR.html
+
+"""
+PipelineExecutableStatisticKHR
+
+"""
+Minimalistic wrapper for VkPipelineExecutableInternalRepresentationKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableInternalRepresentationKHR.html
+
+"""
+PipelineExecutableInternalRepresentationKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.
+
+Extension: VK_EXT_shader_demote_to_helper_invocation
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.html
+
+"""
+_PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.
+
+Extension: VK_EXT_texel_buffer_alignment
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.html
+
+"""
+_PhysicalDeviceTexelBufferAlignmentFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT.
+
+Extension: VK_EXT_texel_buffer_alignment
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT.html
+
+"""
+PhysicalDeviceTexelBufferAlignmentPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.
+
+Extension: VK_EXT_subgroup_size_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.html
+
+"""
+_PhysicalDeviceSubgroupSizeControlFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSubgroupSizeControlPropertiesEXT.
+
+Extension: VK_EXT_subgroup_size_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlPropertiesEXT.html
+
+"""
+PhysicalDeviceSubgroupSizeControlPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT.
+
+Extension: VK_EXT_subgroup_size_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT.html
+
+"""
+PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkMemoryOpaqueCaptureAddressAllocateInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryOpaqueCaptureAddressAllocateInfo.html
+
+"""
+_MemoryOpaqueCaptureAddressAllocateInfo
+
+"""
+Minimalistic wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html
+
+"""
+_DeviceMemoryOpaqueCaptureAddressInfo
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceLineRasterizationFeaturesEXT.
+
+Extension: VK_EXT_line_rasterization
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html
+
+"""
+_PhysicalDeviceLineRasterizationFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceLineRasterizationPropertiesEXT.
+
+Extension: VK_EXT_line_rasterization
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLineRasterizationPropertiesEXT.html
+
+"""
+PhysicalDeviceLineRasterizationPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPipelineRasterizationLineStateCreateInfoEXT.
+
+Extension: VK_EXT_line_rasterization
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html
+
+"""
+_PipelineRasterizationLineStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.
+
+Extension: VK_EXT_pipeline_creation_cache_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.html
+
+"""
+_PhysicalDevicePipelineCreationCacheControlFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVulkan11Features.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan11Features.html
+
+"""
+_PhysicalDeviceVulkan11Features
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVulkan11Properties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan11Properties.html
+
+"""
+PhysicalDeviceVulkan11Properties
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVulkan12Features.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan12Features.html
+
+"""
+_PhysicalDeviceVulkan12Features
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVulkan12Properties.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan12Properties.html
+
+"""
+PhysicalDeviceVulkan12Properties
+
+"""
+Minimalistic wrapper for VkPipelineCompilerControlCreateInfoAMD.
+
+Extension: VK_AMD_pipeline_compiler_control
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html
+
+"""
+_PipelineCompilerControlCreateInfoAMD
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceCoherentMemoryFeaturesAMD.
+
+Extension: VK_AMD_device_coherent_memory
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoherentMemoryFeaturesAMD.html
+
+"""
+_PhysicalDeviceCoherentMemoryFeaturesAMD
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceToolPropertiesEXT.
+
+Extension: VK_EXT_tooling_info
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceToolPropertiesEXT.html
+
+"""
+PhysicalDeviceToolPropertiesEXT
+
+"""
+Minimalistic wrapper for VkSamplerCustomBorderColorCreateInfoEXT.
+
+Extension: VK_EXT_custom_border_color
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html
+
+"""
+_SamplerCustomBorderColorCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceCustomBorderColorPropertiesEXT.
+
+Extension: VK_EXT_custom_border_color
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCustomBorderColorPropertiesEXT.html
+
+"""
+PhysicalDeviceCustomBorderColorPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceCustomBorderColorFeaturesEXT.
+
+Extension: VK_EXT_custom_border_color
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html
+
+"""
+_PhysicalDeviceCustomBorderColorFeaturesEXT
+
+"""
+Minimalistic wrapper for VkAccelerationStructureGeometryTrianglesDataKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html
+
+"""
+_AccelerationStructureGeometryTrianglesDataKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureGeometryAabbsDataKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html
+
+"""
+_AccelerationStructureGeometryAabbsDataKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureGeometryInstancesDataKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryInstancesDataKHR.html
+
+"""
+_AccelerationStructureGeometryInstancesDataKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureGeometryKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryKHR.html
+
+"""
+_AccelerationStructureGeometryKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureBuildGeometryInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html
+
+"""
+_AccelerationStructureBuildGeometryInfoKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureBuildRangeInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildRangeInfoKHR.html
+
+"""
+_AccelerationStructureBuildRangeInfoKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureCreateInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html
+
+"""
+_AccelerationStructureCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkAabbPositionsKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAabbPositionsKHR.html
+
+"""
+_AabbPositionsKHR
+
+"""
+Minimalistic wrapper for VkTransformMatrixKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTransformMatrixKHR.html
+
+"""
+_TransformMatrixKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureInstanceKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInstanceKHR.html
+
+"""
+_AccelerationStructureInstanceKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureDeviceAddressInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html
+
+"""
+_AccelerationStructureDeviceAddressInfoKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureVersionInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureVersionInfoKHR.html
+
+"""
+_AccelerationStructureVersionInfoKHR
+
+"""
+Minimalistic wrapper for VkCopyAccelerationStructureInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html
+
+"""
+_CopyAccelerationStructureInfoKHR
+
+"""
+Minimalistic wrapper for VkCopyAccelerationStructureToMemoryInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html
+
+"""
+_CopyAccelerationStructureToMemoryInfoKHR
+
+"""
+Minimalistic wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html
+
+"""
+_CopyMemoryToAccelerationStructureInfoKHR
+
+"""
+Minimalistic wrapper for VkRayTracingPipelineInterfaceCreateInfoKHR.
+
+Extension: VK_KHR_ray_tracing_pipeline
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineInterfaceCreateInfoKHR.html
+
+"""
+_RayTracingPipelineInterfaceCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkPipelineLibraryCreateInfoKHR.
+
+Extension: VK_KHR_pipeline_library
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html
+
+"""
+_PipelineLibraryCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.
+
+Extension: VK_EXT_extended_dynamic_state
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html
+
+"""
+_PhysicalDeviceExtendedDynamicStateFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.
+
+Extension: VK_EXT_extended_dynamic_state2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html
+
+"""
+_PhysicalDeviceExtendedDynamicState2FeaturesEXT
+
+"""
+Minimalistic wrapper for VkRenderPassTransformBeginInfoQCOM.
+
+Extension: VK_QCOM_render_pass_transform
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html
+
+"""
+_RenderPassTransformBeginInfoQCOM
+
+"""
+Minimalistic wrapper for VkCopyCommandTransformInfoQCOM.
+
+Extension: VK_QCOM_rotated_copy_commands
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyCommandTransformInfoQCOM.html
+
+"""
+_CopyCommandTransformInfoQCOM
+
+"""
+Minimalistic wrapper for VkCommandBufferInheritanceRenderPassTransformInfoQCOM.
+
+Extension: VK_QCOM_render_pass_transform
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html
+
+"""
+_CommandBufferInheritanceRenderPassTransformInfoQCOM
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceDiagnosticsConfigFeaturesNV.
+
+Extension: VK_NV_device_diagnostics_config
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html
+
+"""
+_PhysicalDeviceDiagnosticsConfigFeaturesNV
+
+"""
+Minimalistic wrapper for VkDeviceDiagnosticsConfigCreateInfoNV.
+
+Extension: VK_NV_device_diagnostics_config
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDiagnosticsConfigCreateInfoNV.html
+
+"""
+_DeviceDiagnosticsConfigCreateInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.
+
+Extension: VK_KHR_zero_initialize_workgroup_memory
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.html
+
+"""
+_PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceRobustness2FeaturesEXT.
+
+Extension: VK_EXT_robustness2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRobustness2FeaturesEXT.html
+
+"""
+_PhysicalDeviceRobustness2FeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceRobustness2PropertiesEXT.
+
+Extension: VK_EXT_robustness2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRobustness2PropertiesEXT.html
+
+"""
+PhysicalDeviceRobustness2PropertiesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceImageRobustnessFeaturesEXT.
+
+Extension: VK_EXT_image_robustness
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageRobustnessFeaturesEXT.html
+
+"""
+_PhysicalDeviceImageRobustnessFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.
+
+Extension: VK_KHR_workgroup_memory_explicit_layout
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.html
+
+"""
+_PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDevice4444FormatsFeaturesEXT.
+
+Extension: VK_EXT_4444_formats
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice4444FormatsFeaturesEXT.html
+
+"""
+_PhysicalDevice4444FormatsFeaturesEXT
+
+"""
+Minimalistic wrapper for VkBufferCopy2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy2KHR.html
+
+"""
+_BufferCopy2KHR
+
+"""
+Minimalistic wrapper for VkImageCopy2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy2KHR.html
+
+"""
+_ImageCopy2KHR
+
+"""
+Minimalistic wrapper for VkImageBlit2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit2KHR.html
+
+"""
+_ImageBlit2KHR
+
+"""
+Minimalistic wrapper for VkBufferImageCopy2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy2KHR.html
+
+"""
+_BufferImageCopy2KHR
+
+"""
+Minimalistic wrapper for VkImageResolve2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve2KHR.html
+
+"""
+_ImageResolve2KHR
+
+"""
+Minimalistic wrapper for VkCopyBufferInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferInfo2KHR.html
+
+"""
+_CopyBufferInfo2KHR
+
+"""
+Minimalistic wrapper for VkCopyImageInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageInfo2KHR.html
+
+"""
+_CopyImageInfo2KHR
+
+"""
+Minimalistic wrapper for VkBlitImageInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBlitImageInfo2KHR.html
+
+"""
+_BlitImageInfo2KHR
+
+"""
+Minimalistic wrapper for VkCopyBufferToImageInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferToImageInfo2KHR.html
+
+"""
+_CopyBufferToImageInfo2KHR
+
+"""
+Minimalistic wrapper for VkCopyImageToBufferInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageToBufferInfo2KHR.html
+
+"""
+_CopyImageToBufferInfo2KHR
+
+"""
+Minimalistic wrapper for VkResolveImageInfo2KHR.
+
+Extension: VK_KHR_copy_commands2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkResolveImageInfo2KHR.html
+
+"""
+_ResolveImageInfo2KHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.
+
+Extension: VK_EXT_shader_image_atomic_int64
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.html
+
+"""
+_PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
+
+"""
+Minimalistic wrapper for VkFragmentShadingRateAttachmentInfoKHR.
+
+Extension: VK_KHR_fragment_shading_rate
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html
+
+"""
+_FragmentShadingRateAttachmentInfoKHR
+
+"""
+Minimalistic wrapper for VkPipelineFragmentShadingRateStateCreateInfoKHR.
+
+Extension: VK_KHR_fragment_shading_rate
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html
+
+"""
+_PipelineFragmentShadingRateStateCreateInfoKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentShadingRateFeaturesKHR.
+
+Extension: VK_KHR_fragment_shading_rate
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html
+
+"""
+_PhysicalDeviceFragmentShadingRateFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentShadingRatePropertiesKHR.
+
+Extension: VK_KHR_fragment_shading_rate
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRatePropertiesKHR.html
+
+"""
+PhysicalDeviceFragmentShadingRatePropertiesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentShadingRateKHR.
+
+Extension: VK_KHR_fragment_shading_rate
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateKHR.html
+
+"""
+PhysicalDeviceFragmentShadingRateKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.
+
+Extension: VK_KHR_shader_terminate_invocation
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.html
+
+"""
+_PhysicalDeviceShaderTerminateInvocationFeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.
+
+Extension: VK_NV_fragment_shading_rate_enums
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html
+
+"""
+_PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.
+
+Extension: VK_NV_fragment_shading_rate_enums
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html
+
+"""
+_PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
+
+"""
+Minimalistic wrapper for VkPipelineFragmentShadingRateEnumStateCreateInfoNV.
+
+Extension: VK_NV_fragment_shading_rate_enums
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html
+
+"""
+_PipelineFragmentShadingRateEnumStateCreateInfoNV
+
+"""
+Minimalistic wrapper for VkAccelerationStructureBuildSizesInfoKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildSizesInfoKHR.html
+
+"""
+_AccelerationStructureBuildSizesInfoKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.
+
+Extension: VK_VALVE_mutable_descriptor_type
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.html
+
+"""
+_PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
+
+"""
+Minimalistic wrapper for VkMutableDescriptorTypeListVALVE.
+
+Extension: VK_VALVE_mutable_descriptor_type
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeListVALVE.html
+
+"""
+_MutableDescriptorTypeListVALVE
+
+"""
+Minimalistic wrapper for VkMutableDescriptorTypeCreateInfoVALVE.
+
+Extension: VK_VALVE_mutable_descriptor_type
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html
+
+"""
+_MutableDescriptorTypeCreateInfoVALVE
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.
+
+Extension: VK_EXT_vertex_input_dynamic_state
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.html
+
+"""
+_PhysicalDeviceVertexInputDynamicStateFeaturesEXT
+
+"""
+Minimalistic wrapper for VkVertexInputBindingDescription2EXT.
+
+Extension: VK_EXT_vertex_input_dynamic_state
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription2EXT.html
+
+"""
+_VertexInputBindingDescription2EXT
+
+"""
+Minimalistic wrapper for VkVertexInputAttributeDescription2EXT.
+
+Extension: VK_EXT_vertex_input_dynamic_state
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription2EXT.html
+
+"""
+_VertexInputAttributeDescription2EXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceColorWriteEnableFeaturesEXT.
+
+Extension: VK_EXT_color_write_enable
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceColorWriteEnableFeaturesEXT.html
+
+"""
+_PhysicalDeviceColorWriteEnableFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPipelineColorWriteCreateInfoEXT.
+
+Extension: VK_EXT_color_write_enable
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorWriteCreateInfoEXT.html
+
+"""
+_PipelineColorWriteCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkMemoryBarrier2KHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier2KHR.html
+
+"""
+_MemoryBarrier2KHR
+
+"""
+Minimalistic wrapper for VkImageMemoryBarrier2KHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier2KHR.html
+
+"""
+_ImageMemoryBarrier2KHR
+
+"""
+Minimalistic wrapper for VkBufferMemoryBarrier2KHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier2KHR.html
+
+"""
+_BufferMemoryBarrier2KHR
+
+"""
+Minimalistic wrapper for VkDependencyInfoKHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDependencyInfoKHR.html
+
+"""
+_DependencyInfoKHR
+
+"""
+Minimalistic wrapper for VkSemaphoreSubmitInfoKHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSubmitInfoKHR.html
+
+"""
+_SemaphoreSubmitInfoKHR
+
+"""
+Minimalistic wrapper for VkCommandBufferSubmitInfoKHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferSubmitInfoKHR.html
+
+"""
+_CommandBufferSubmitInfoKHR
+
+"""
+Minimalistic wrapper for VkSubmitInfo2KHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
+
+"""
+_SubmitInfo2KHR
+
+"""
+Minimalistic wrapper for VkQueueFamilyCheckpointProperties2NV.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueueFamilyCheckpointProperties2NV.html
+
+"""
+QueueFamilyCheckpointProperties2NV
+
+"""
+Minimalistic wrapper for VkCheckpointData2NV.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCheckpointData2NV.html
+
+"""
+CheckpointData2NV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceSynchronization2FeaturesKHR.
+
+Extension: VK_KHR_synchronization2
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSynchronization2FeaturesKHR.html
+
+"""
+_PhysicalDeviceSynchronization2FeaturesKHR
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceInheritedViewportScissorFeaturesNV.
+
+Extension: VK_NV_inherited_viewport_scissor
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html
+
+"""
+_PhysicalDeviceInheritedViewportScissorFeaturesNV
+
+"""
+Minimalistic wrapper for VkCommandBufferInheritanceViewportScissorInfoNV.
+
+Extension: VK_NV_inherited_viewport_scissor
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html
+
+"""
+_CommandBufferInheritanceViewportScissorInfoNV
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.
+
+Extension: VK_EXT_ycbcr_2plane_444_formats
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.html
+
+"""
+_PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceProvokingVertexFeaturesEXT.
+
+Extension: VK_EXT_provoking_vertex
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html
+
+"""
+_PhysicalDeviceProvokingVertexFeaturesEXT
+
+"""
+Minimalistic wrapper for VkPhysicalDeviceProvokingVertexPropertiesEXT.
+
+Extension: VK_EXT_provoking_vertex
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProvokingVertexPropertiesEXT.html
+
+"""
+PhysicalDeviceProvokingVertexPropertiesEXT
+
+"""
+Minimalistic wrapper for VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.
+
+Extension: VK_EXT_provoking_vertex
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.html
+
+"""
+_PipelineRasterizationProvokingVertexStateCreateInfoEXT
+
+"""
+Minimalistic wrapper for VkClearColorValue.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearColorValue.html
+
+"""
+_ClearColorValue
+
+"""
+Minimalistic wrapper for VkClearValue.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearValue.html
+
+"""
+_ClearValue
+
+"""
+Minimalistic wrapper for VkPerformanceCounterResultKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceCounterResultKHR.html
+
+"""
+_PerformanceCounterResultKHR
+
+"""
+Minimalistic wrapper for VkPerformanceValueDataINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueDataINTEL.html
+
+"""
+_PerformanceValueDataINTEL
+
+"""
+Minimalistic wrapper for VkPipelineExecutableStatisticValueKHR.
+
+Extension: VK_KHR_pipeline_executable_properties
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableStatisticValueKHR.html
+
+"""
+PipelineExecutableStatisticValueKHR
+
+"""
+Minimalistic wrapper for VkDeviceOrHostAddressKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceOrHostAddressKHR.html
+
+"""
+_DeviceOrHostAddressKHR
+
+"""
+Minimalistic wrapper for VkDeviceOrHostAddressConstKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceOrHostAddressConstKHR.html
+
+"""
+_DeviceOrHostAddressConstKHR
+
+"""
+Minimalistic wrapper for VkAccelerationStructureGeometryDataKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryDataKHR.html
+
+"""
+_AccelerationStructureGeometryDataKHR
+
+"""
     Instance(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL)
 
 
@@ -37417,6 +42691,72 @@ API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/
 
 """
 PipelineRasterizationProvokingVertexStateCreateInfoEXT
+
+"""
+High-level wrapper for VkClearColorValue.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearColorValue.html
+
+"""
+ClearColorValue
+
+"""
+High-level wrapper for VkClearValue.
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearValue.html
+
+"""
+ClearValue
+
+"""
+High-level wrapper for VkPerformanceCounterResultKHR.
+
+Extension: VK_KHR_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceCounterResultKHR.html
+
+"""
+PerformanceCounterResultKHR
+
+"""
+High-level wrapper for VkPerformanceValueDataINTEL.
+
+Extension: VK_INTEL_performance_query
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueDataINTEL.html
+
+"""
+PerformanceValueDataINTEL
+
+"""
+High-level wrapper for VkDeviceOrHostAddressKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceOrHostAddressKHR.html
+
+"""
+DeviceOrHostAddressKHR
+
+"""
+High-level wrapper for VkDeviceOrHostAddressConstKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceOrHostAddressConstKHR.html
+
+"""
+DeviceOrHostAddressConstKHR
+
+"""
+High-level wrapper for VkAccelerationStructureGeometryDataKHR.
+
+Extension: VK_KHR_acceleration_structure
+
+API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryDataKHR.html
+
+"""
+AccelerationStructureGeometryDataKHR
 
 
 

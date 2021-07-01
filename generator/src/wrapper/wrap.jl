@@ -75,10 +75,16 @@ function VulkanWrapper(config::WrapperConfig)
     docs = [
         document.(_spec_funcs, wrap.(_spec_funcs));
         document.(api_structs, add_constructor.(api_structs));
+        document.(_spec_structs, wrap.(_spec_structs));
+        document.(_spec_unions, wrap.(_spec_unions));
         document.(_spec_handles_with_wrappable_constructors)...;
     ]
 
-    hl_docs = hl_document.(api_structs, hl_wrap.(api_structs))
+    hl_docs = [
+        hl_document.(api_structs, hl_wrap.(api_structs));
+        hl_document.(api_unions, hl_wrap.(api_unions));
+    ]
+
     hl_api_funcs = [
         hl_api_funcs_overload.(_spec_funcs, false);
         hl_api_funcs_overload.(extendable_api_constructors, false);
