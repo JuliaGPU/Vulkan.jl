@@ -189,6 +189,6 @@ function hl_api_funcs_overload(p::AbstractDict)
         :kwargs => p[:kwargs],
         :body => reconstruct_call(Dict(:name => p[:name], :args => call_args, :kwargs => name.(p[:kwargs]))),
         :short => true,
-        :relax_signature => false,
+        :relax_signature => true,
     )
 end

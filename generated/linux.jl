@@ -10465,7 +10465,7 @@ function get_device_queue(device::Device, queue_family_index::Integer, queue_ind
     Queue(pQueue[], identity, device)
 end
 
-queue_submit(queue::Queue, submits::AbstractArray; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence))
+queue_submit(queue::Queue, submits::AbstractArray{<:_SubmitInfo}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence))
 
 queue_wait_idle(queue::Queue)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueWaitIdle(queue))
 
@@ -10487,9 +10487,9 @@ end
 
 unmap_memory(device::Device, memory::DeviceMemory)::Cvoid = vkUnmapMemory(device, memory)
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::ResultTypes.Result{Result, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange})::ResultTypes.Result{Result, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges))
 
 function get_device_memory_commitment(device::Device, memory::DeviceMemory)::UInt64
     pCommittedMemoryInBytes = Ref{VkDeviceSize}()
@@ -10529,7 +10529,7 @@ function get_physical_device_sparse_image_format_properties(physical_device::Phy
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:_BindSparseInfo}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence))
 
 function create_fence(device::Device, create_info::_FenceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
     pFence = Ref{VkFence}()
@@ -10539,11 +10539,11 @@ end
 
 destroy_fence(device::Device, fence::Fence; allocator = C_NULL)::Cvoid = vkDestroyFence(device, fence, allocator)
 
-reset_fences(device::Device, fences::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences))
+reset_fences(device::Device, fences::AbstractArray{<:Fence})::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences))
 
 get_fence_status(device::Device, fence::Fence)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceStatus(device, fence))
 
-wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
+wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout))
 
 function create_semaphore(device::Device, create_info::_SemaphoreCreateInfo; allocator = C_NULL)::ResultTypes.Result{Semaphore, VulkanError}
     pSemaphore = Ref{VkSemaphore}()
@@ -10646,15 +10646,15 @@ function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache):
     (pDataSize[], pData)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache})::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
 
-function create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
-function create_compute_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_compute_pipelines(device::Device, create_infos::AbstractArray{<:_ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateComputePipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
@@ -10702,9 +10702,9 @@ function allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetA
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet})::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, descriptor_copies::AbstractArray{<:_CopyDescriptorSet})::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
 
 function create_framebuffer(device::Device, create_info::_FramebufferCreateInfo; allocator = C_NULL)::ResultTypes.Result{Framebuffer, VulkanError}
     pFramebuffer = Ref{VkFramebuffer}()
@@ -10744,7 +10744,7 @@ function allocate_command_buffers(device::Device, allocate_info::_CommandBufferA
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers)
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo)::ResultTypes.Result{Result, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info))
 
@@ -10754,9 +10754,9 @@ reset_command_buffer(command_buffer::CommandBuffer; flags = 0)::ResultTypes.Resu
 
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline)::Cvoid = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline)
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray)::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray)::Cvoid = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors)
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors)
 
 cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)::Cvoid = vkCmdSetLineWidth(command_buffer, line_width)
 
@@ -10772,11 +10772,11 @@ cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFace
 
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer)::Cvoid = vkCmdSetStencilReference(command_buffer, face_mask, reference)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray)::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer})::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets)
 
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType)::Cvoid = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray)::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer})::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets)
 
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)::Cvoid = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance)
 
@@ -10790,35 +10790,35 @@ cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_
 
 cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer)::Cvoid = vkCmdDispatchIndirect(command_buffer, buffer, offset)
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray)::Cvoid = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions)
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:_BufferCopy})::Cvoid = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions)
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray)::Cvoid = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageCopy})::Cvoid = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, filter::Filter)::Cvoid = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageBlit}, filter::Filter)::Cvoid = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray)::Cvoid = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_BufferImageCopy})::Cvoid = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions)
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray)::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy})::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions)
 
 cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, data)
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer)::Cvoid = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data)
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray)::Cvoid = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges)
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges)
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray)::Cvoid = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges)
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{<:_ImageSubresourceRange})::Cvoid = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges)
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray)::Cvoid = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects)
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:_ClearAttachment}, rects::AbstractArray{<:_ClearRect})::Cvoid = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects)
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray)::Cvoid = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageResolve})::Cvoid = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions)
 
 cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid = vkCmdSetEvent(command_buffer, event, stage_mask)
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers)
 
 cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0)::Cvoid = vkCmdBeginQuery(command_buffer, query_pool, query, flags)
 
@@ -10842,7 +10842,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents)::Cvoi
 
 cmd_end_render_pass(command_buffer::CommandBuffer)::Cvoid = vkCmdEndRenderPass(command_buffer)
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer})::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers)
 
 function get_physical_device_display_properties_khr(physical_device::PhysicalDevice)::ResultTypes.Result{Vector{DisplayPropertiesKHR}, VulkanError}
     pPropertyCount = Ref{UInt32}()
@@ -10902,7 +10902,7 @@ function create_display_plane_surface_khr(instance::Instance, create_info::_Disp
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x; allocator)), instance)
 end
 
-function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray; allocator = C_NULL)::ResultTypes.Result{Vector{SwapchainKHR}, VulkanError}
+function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}; allocator = C_NULL)::ResultTypes.Result{Vector{SwapchainKHR}, VulkanError}
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
     @check vkCreateSharedSwapchainsKHR(device, pointer_length(create_infos), create_infos, allocator, pSwapchains)
     SwapchainKHR.(pSwapchains, (x->destroy_swapchain_khr(device, x; allocator)), getproperty(create_infos, :surface))
@@ -11084,7 +11084,7 @@ function get_physical_device_sparse_image_format_properties_2(physical_device::P
     from_vk.(SparseImageFormatProperties2, pProperties)
 end
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray)::Cvoid = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes)
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:_WriteDescriptorSet})::Cvoid = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes)
 
 trim_command_pool(device::Device, command_pool::CommandPool; flags = 0)::Cvoid = vkTrimCommandPool(device, command_pool, flags)
 
@@ -11186,9 +11186,9 @@ function get_device_group_peer_memory_features(device::Device, heap_index::Integ
     pPeerMemoryFeatures[]
 end
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos))
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:_BindBufferMemoryInfo})::ResultTypes.Result{Result, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos))
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos))
+bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:_BindImageMemoryInfo})::ResultTypes.Result{Result, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos))
 
 cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer)::Cvoid = vkCmdSetDeviceMask(command_buffer, device_mask)
 
@@ -11234,7 +11234,7 @@ update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSe
 
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data)
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT})::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata)
 
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain))
 
@@ -11254,9 +11254,9 @@ function get_past_presentation_timing_google(device::Device, swapchain::Swapchai
     from_vk.(PastPresentationTimingGOOGLE, pPresentationTimings)
 end
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray)::Cvoid = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings)
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV})::Cvoid = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings)
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray)::Cvoid = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles)
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:_Rect2D})::Cvoid = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles)
 
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::_SampleLocationsInfoEXT)::Cvoid = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info)
 
@@ -11373,7 +11373,7 @@ function get_validation_cache_data_ext(device::Device, validation_cache::Validat
     (pDataSize[], pData)
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT})::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches))
 
 function get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo)::DescriptorSetLayoutSupport
     pSupport = Ref{VkDescriptorSetLayoutSupport}()
@@ -11406,7 +11406,7 @@ function get_physical_device_calibrateable_time_domains_ext(physical_device::Phy
     pTimeDomains
 end
 
-function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray)::ResultTypes.Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
+function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT})::ResultTypes.Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
     pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
     pMaxDeviation = Ref{UInt64}()
     @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, pTimestamps, pMaxDeviation)
@@ -11483,11 +11483,11 @@ function get_queue_checkpoint_data_nv(queue::Queue)::Vector{CheckpointDataNV}
     from_vk.(CheckpointDataNV, pCheckpointData)
 end
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets)
 
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)::Cvoid = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index)
 
@@ -11495,13 +11495,13 @@ cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, 
 
 cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer)::Cvoid = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride)
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray)::Cvoid = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors)
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:_Rect2D})::Cvoid = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors)
 
 cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::ImageLayout; image_view = C_NULL)::Cvoid = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout)
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray)::Cvoid = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes)
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV})::Cvoid = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes)
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray)::Cvoid = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders)
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV})::Cvoid = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders)
 
 cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer)::Cvoid = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task)
 
@@ -11527,7 +11527,7 @@ function get_acceleration_structure_memory_requirements_nv(device::Device, info:
     from_vk(VkMemoryRequirements2KHR, pMemoryRequirements[])
 end
 
-bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(vkBindAccelerationStructureMemoryNV(device, pointer_length(bind_infos), bind_infos))
+bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV})::ResultTypes.Result{Result, VulkanError} = @check(vkBindAccelerationStructureMemoryNV(device, pointer_length(bind_infos), bind_infos))
 
 cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::CopyAccelerationStructureModeKHR)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode)
 
@@ -11543,13 +11543,13 @@ cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, inf
 
 copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, deferred_operation, info))
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
-cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
+cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query)
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset)
 
-write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride))
+write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride))
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth)
 
@@ -11561,13 +11561,13 @@ get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline
 
 get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})::ResultTypes.Result{Result, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data))
 
-function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesNV(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesKHR(device, deferred_operation, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x; allocator)), device), _return_code)
@@ -11726,11 +11726,11 @@ function create_acceleration_structure_khr(device::Device, create_info::_Acceler
     AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x; allocator)), device)
 end
 
-cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray, build_range_infos::AbstractArray)::Cvoid = vkCmdBuildAccelerationStructuresKHR(command_buffer, pointer_length(infos), infos, build_range_infos)
+cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR})::Cvoid = vkCmdBuildAccelerationStructuresKHR(command_buffer, pointer_length(infos), infos, build_range_infos)
 
-cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray)::Cvoid = vkCmdBuildAccelerationStructuresIndirectKHR(command_buffer, pointer_length(infos), infos, indirect_device_addresses, indirect_strides, max_primitive_counts)
+cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer})::Cvoid = vkCmdBuildAccelerationStructuresIndirectKHR(command_buffer, pointer_length(infos), infos, indirect_device_addresses, indirect_strides, max_primitive_counts)
 
-build_acceleration_structures_khr(device::Device, infos::AbstractArray, build_range_infos::AbstractArray; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkBuildAccelerationStructuresKHR(device, deferred_operation, pointer_length(infos), infos, build_range_infos))
+build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkBuildAccelerationStructuresKHR(device, deferred_operation, pointer_length(infos), infos, build_range_infos))
 
 get_acceleration_structure_device_address_khr(device::Device, info::_AccelerationStructureDeviceAddressInfoKHR)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info)
 
@@ -11754,11 +11754,11 @@ cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::FrontFace)::Cv
 
 cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::PrimitiveTopology)::Cvoid = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology)
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray)::Cvoid = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports)
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport})::Cvoid = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports)
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray)::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors)
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D})::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides)
 
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)::Cvoid = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable)
 
@@ -11830,19 +11830,19 @@ function get_acceleration_structure_build_sizes_khr(device::Device, build_type::
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
 
-cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray, vertex_attribute_descriptions::AbstractArray)::Cvoid = vkCmdSetVertexInputEXT(command_buffer, pointer_length(vertex_binding_descriptions), vertex_binding_descriptions, pointer_length(vertex_attribute_descriptions), vertex_attribute_descriptions)
+cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT})::Cvoid = vkCmdSetVertexInputEXT(command_buffer, pointer_length(vertex_binding_descriptions), vertex_binding_descriptions, pointer_length(vertex_attribute_descriptions), vertex_attribute_descriptions)
 
-cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray)::Cvoid = vkCmdSetColorWriteEnableEXT(command_buffer, pointer_length(color_write_enables), color_write_enables)
+cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray{<:Bool})::Cvoid = vkCmdSetColorWriteEnableEXT(command_buffer, pointer_length(color_write_enables), color_write_enables)
 
 cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::_DependencyInfoKHR)::Cvoid = vkCmdSetEvent2KHR(command_buffer, event, dependency_info)
 
 cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer)::Cvoid = vkCmdResetEvent2KHR(command_buffer, event, stage_mask)
 
-cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray)::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos)
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR})::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos)
 
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR)::Cvoid = vkCmdPipelineBarrier2KHR(command_buffer, dependency_info)
 
-queue_submit_2_khr(queue::Queue, submits::AbstractArray; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit2KHR(queue, pointer_length(submits), submits, fence))
+queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:_SubmitInfo2KHR}; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit2KHR(queue, pointer_length(submits), submits, fence))
 
 cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer)::Cvoid = vkCmdWriteTimestamp2KHR(command_buffer, stage, query_pool, query)
 
@@ -11976,7 +11976,7 @@ function get_device_queue(device::Device, queue_family_index::Integer, queue_ind
     Queue(pQueue[], identity, device)
 end
 
-queue_submit(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence, fun_ptr))
+queue_submit(queue::Queue, submits::AbstractArray{<:_SubmitInfo}, fun_ptr::FunctionPtr; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit(queue, pointer_length(submits), submits, fence, fun_ptr))
 
 queue_wait_idle(queue::Queue, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueWaitIdle(queue, fun_ptr))
 
@@ -11998,9 +11998,9 @@ end
 
 unmap_memory(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr)::Cvoid = vkUnmapMemory(device, memory, fun_ptr)
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkFlushMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:_MappedMemoryRange}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkInvalidateMappedMemoryRanges(device, pointer_length(memory_ranges), memory_ranges, fun_ptr))
 
 function get_device_memory_commitment(device::Device, memory::DeviceMemory, fun_ptr::FunctionPtr)::UInt64
     pCommittedMemoryInBytes = Ref{VkDeviceSize}()
@@ -12040,7 +12040,7 @@ function get_physical_device_sparse_image_format_properties(physical_device::Phy
     from_vk.(SparseImageFormatProperties, pProperties)
 end
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:_BindSparseInfo}, fun_ptr::FunctionPtr; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueBindSparse(queue, pointer_length(bind_info), bind_info, fence, fun_ptr))
 
 function create_fence(device::Device, create_info::_FenceCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Fence, VulkanError}
     pFence = Ref{VkFence}()
@@ -12050,11 +12050,11 @@ end
 
 destroy_fence(device::Device, fence::Fence, fun_ptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyFence(device, fence, allocator, fun_ptr)
 
-reset_fences(device::Device, fences::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
+reset_fences(device::Device, fences::AbstractArray{<:Fence}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkResetFences(device, pointer_length(fences), fences, fun_ptr))
 
 get_fence_status(device::Device, fence::Fence, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceStatus(device, fence, fun_ptr))
 
-wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
+wait_for_fences(device::Device, fences::AbstractArray{<:Fence}, wait_all::Bool, timeout::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWaitForFences(device, pointer_length(fences), fences, wait_all, timeout, fun_ptr))
 
 function create_semaphore(device::Device, create_info::_SemaphoreCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Semaphore, VulkanError}
     pSemaphore = Ref{VkSemaphore}()
@@ -12157,15 +12157,15 @@ function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, 
     (pDataSize[], pData)
 end
 
-merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray{<:PipelineCache}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
-function create_graphics_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:_GraphicsPipelineCreateInfo}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-function create_compute_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_compute_pipelines(device::Device, create_infos::AbstractArray{<:_ComputePipelineCreateInfo}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateComputePipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
@@ -12213,9 +12213,9 @@ function allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetA
     DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
 end
 
-free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
+free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray{<:DescriptorSet}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets, fun_ptr))
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies, fun_ptr)
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, descriptor_copies::AbstractArray{<:_CopyDescriptorSet}, fun_ptr::FunctionPtr)::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies, fun_ptr)
 
 function create_framebuffer(device::Device, create_info::_FramebufferCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Framebuffer, VulkanError}
     pFramebuffer = Ref{VkFramebuffer}()
@@ -12255,7 +12255,7 @@ function allocate_command_buffers(device::Device, allocate_info::_CommandBufferA
     CommandBuffer.(pCommandBuffers, identity, getproperty(allocate_info, :command_pool))
 end
 
-free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
+free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray{<:CommandBuffer}, fun_ptr::FunctionPtr)::Cvoid = vkFreeCommandBuffers(device, command_pool, pointer_length(command_buffers), command_buffers, fun_ptr)
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBeginCommandBuffer(command_buffer, begin_info, fun_ptr))
 
@@ -12265,9 +12265,9 @@ reset_command_buffer(command_buffer::CommandBuffer, fun_ptr::FunctionPtr; flags 
 
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindPipeline(command_buffer, pipeline_bind_point, pipeline, fun_ptr)
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports, fun_ptr)
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports, fun_ptr)
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors, fun_ptr)
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetScissor(command_buffer, 0, pointer_length(scissors), scissors, fun_ptr)
 
 cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetLineWidth(command_buffer, line_width, fun_ptr)
 
@@ -12283,11 +12283,11 @@ cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFace
 
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetStencilReference(command_buffer, face_mask, reference, fun_ptr)
 
-cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
+cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray{<:DescriptorSet}, dynamic_offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindDescriptorSets(command_buffer, pipeline_bind_point, layout, first_set, pointer_length(descriptor_sets), descriptor_sets, pointer_length(dynamic_offsets), dynamic_offsets, fun_ptr)
 
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindIndexBuffer(command_buffer, buffer, offset, index_type, fun_ptr)
 
-cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
+cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBindVertexBuffers(command_buffer, 0, pointer_length(buffers), buffers, offsets, fun_ptr)
 
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDraw(command_buffer, vertex_count, instance_count, first_vertex, first_instance, fun_ptr)
 
@@ -12301,35 +12301,35 @@ cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_
 
 cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDispatchIndirect(command_buffer, buffer, offset, fun_ptr)
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions, fun_ptr)
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:_BufferCopy}, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBuffer(command_buffer, src_buffer, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageCopy}, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, filter::Filter, fun_ptr::FunctionPtr)::Cvoid = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter, fun_ptr)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageBlit}, filter::Filter, fun_ptr::FunctionPtr)::Cvoid = vkCmdBlitImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, filter, fun_ptr)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_BufferImageCopy}, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyBufferToImage(command_buffer, src_buffer, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:_BufferImageCopy}, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyImageToBuffer(command_buffer, src_image, src_image_layout, dst_buffer, pointer_length(regions), regions, fun_ptr)
 
 cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdUpdateBuffer(command_buffer, dst_buffer, dst_offset, data_size, data, fun_ptr)
 
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdFillBuffer(command_buffer, dst_buffer, dst_offset, size, data, fun_ptr)
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges, fun_ptr)
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray{<:_ImageSubresourceRange}, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearColorImage(command_buffer, image, image_layout, color, pointer_length(ranges), ranges, fun_ptr)
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges, fun_ptr)
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{<:_ImageSubresourceRange}, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearDepthStencilImage(command_buffer, image, image_layout, depth_stencil, pointer_length(ranges), ranges, fun_ptr)
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects, fun_ptr)
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:_ClearAttachment}, rects::AbstractArray{<:_ClearRect}, fun_ptr::FunctionPtr)::Cvoid = vkCmdClearAttachments(command_buffer, pointer_length(attachments), attachments, pointer_length(rects), rects, fun_ptr)
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:_ImageResolve}, fun_ptr::FunctionPtr)::Cvoid = vkCmdResolveImage(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, pointer_length(regions), regions, fun_ptr)
 
 cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetEvent(command_buffer, event, stage_mask, fun_ptr)
 
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetEvent(command_buffer, event, stage_mask, fun_ptr)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}, fun_ptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0)::Cvoid = vkCmdWaitEvents(command_buffer, pointer_length(events), events, src_stage_mask, dst_stage_mask, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:_MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:_ImageMemoryBarrier}, fun_ptr::FunctionPtr; dependency_flags = 0)::Cvoid = vkCmdPipelineBarrier(command_buffer, src_stage_mask, dst_stage_mask, dependency_flags, pointer_length(memory_barriers), memory_barriers, pointer_length(buffer_memory_barriers), buffer_memory_barriers, pointer_length(image_memory_barriers), image_memory_barriers, fun_ptr)
 
 cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdBeginQuery(command_buffer, query_pool, query, flags, fun_ptr)
 
@@ -12353,7 +12353,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents, fun_p
 
 cmd_end_render_pass(command_buffer::CommandBuffer, fun_ptr::FunctionPtr)::Cvoid = vkCmdEndRenderPass(command_buffer, fun_ptr)
 
-cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
+cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray{<:CommandBuffer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdExecuteCommands(command_buffer, pointer_length(command_buffers), command_buffers, fun_ptr)
 
 function get_physical_device_display_properties_khr(physical_device::PhysicalDevice, fun_ptr::FunctionPtr)::ResultTypes.Result{Vector{DisplayPropertiesKHR}, VulkanError}
     pPropertyCount = Ref{UInt32}()
@@ -12413,7 +12413,7 @@ function create_display_plane_surface_khr(instance::Instance, create_info::_Disp
     SurfaceKHR(pSurface[], (x->destroy_surface_khr(instance, x, fun_ptr_destroy; allocator)), instance)
 end
 
-function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Vector{SwapchainKHR}, VulkanError}
+function create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:_SwapchainCreateInfoKHR}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Vector{SwapchainKHR}, VulkanError}
     pSwapchains = Vector{VkSwapchainKHR}(undef, pointer_length(create_infos))
     @check vkCreateSharedSwapchainsKHR(device, pointer_length(create_infos), create_infos, allocator, pSwapchains, fun_ptr_create)
     SwapchainKHR.(pSwapchains, (x->destroy_swapchain_khr(device, x, fun_ptr_destroy; allocator)), getproperty(create_infos, :surface))
@@ -12595,7 +12595,7 @@ function get_physical_device_sparse_image_format_properties_2(physical_device::P
     from_vk.(SparseImageFormatProperties2, pProperties)
 end
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes, fun_ptr)
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:_WriteDescriptorSet}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetKHR(command_buffer, pipeline_bind_point, layout, set, pointer_length(descriptor_writes), descriptor_writes, fun_ptr)
 
 trim_command_pool(device::Device, command_pool::CommandPool, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkTrimCommandPool(device, command_pool, flags, fun_ptr)
 
@@ -12697,9 +12697,9 @@ function get_device_group_peer_memory_features(device::Device, heap_index::Integ
     pPeerMemoryFeatures[]
 end
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:_BindBufferMemoryInfo}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBindBufferMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:_BindImageMemoryInfo}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBindImageMemory2(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
 cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDeviceMask(command_buffer, device_mask, fun_ptr)
 
@@ -12745,7 +12745,7 @@ update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSe
 
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::Cvoid = vkCmdPushDescriptorSetWithTemplateKHR(command_buffer, descriptor_update_template, layout, set, data, fun_ptr)
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:_HdrMetadataEXT}, fun_ptr::FunctionPtr)::Cvoid = vkSetHdrMetadataEXT(device, pointer_length(swapchains), swapchains, metadata, fun_ptr)
 
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetSwapchainStatusKHR(device, swapchain, fun_ptr))
 
@@ -12765,9 +12765,9 @@ function get_past_presentation_timing_google(device::Device, swapchain::Swapchai
     from_vk.(PastPresentationTimingGOOGLE, pPresentationTimings)
 end
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings, fun_ptr)
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:_ViewportWScalingNV}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportWScalingNV(command_buffer, 0, pointer_length(viewport_w_scalings), viewport_w_scalings, fun_ptr)
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles, fun_ptr)
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:_Rect2D}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDiscardRectangleEXT(command_buffer, 0, pointer_length(discard_rectangles), discard_rectangles, fun_ptr)
 
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::_SampleLocationsInfoEXT, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info, fun_ptr)
 
@@ -12884,7 +12884,7 @@ function get_validation_cache_data_ext(device::Device, validation_cache::Validat
     (pDataSize[], pData)
 end
 
-merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
+merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray{<:ValidationCacheEXT}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fun_ptr))
 
 function get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr)::DescriptorSetLayoutSupport
     pSupport = Ref{VkDescriptorSetLayoutSupport}()
@@ -12917,7 +12917,7 @@ function get_physical_device_calibrateable_time_domains_ext(physical_device::Phy
     pTimeDomains
 end
 
-function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
+function get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:_CalibratedTimestampInfoEXT}, fun_ptr::FunctionPtr)::ResultTypes.Result{Tuple{Vector{UInt64}, UInt64}, VulkanError}
     pTimestamps = Vector{UInt64}(undef, pointer_length(timestamp_infos))
     pMaxDeviation = Ref{UInt64}()
     @check vkGetCalibratedTimestampsEXT(device, pointer_length(timestamp_infos), timestamp_infos, pTimestamps, pMaxDeviation, fun_ptr)
@@ -12994,11 +12994,11 @@ function get_queue_checkpoint_data_nv(queue::Queue, fun_ptr::FunctionPtr)::Vecto
     from_vk.(CheckpointDataNV, pCheckpointData)
 end
 
-cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
+cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL)::Cvoid = vkCmdBindTransformFeedbackBuffersEXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, fun_ptr)
 
-cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdBeginTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
-cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
+cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray{<:Buffer}, fun_ptr::FunctionPtr; counter_buffer_offsets = C_NULL)::Cvoid = vkCmdEndTransformFeedbackEXT(command_buffer, 0, pointer_length(counter_buffers), counter_buffers, counter_buffer_offsets, fun_ptr)
 
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fun_ptr::FunctionPtr; flags = 0)::Cvoid = vkCmdBeginQueryIndexedEXT(command_buffer, query_pool, query, flags, index, fun_ptr)
 
@@ -13006,13 +13006,13 @@ cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, 
 
 cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawIndirectByteCountEXT(command_buffer, instance_count, first_instance, counter_buffer, counter_buffer_offset, counter_offset, vertex_stride, fun_ptr)
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors, fun_ptr)
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:_Rect2D}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetExclusiveScissorNV(command_buffer, 0, pointer_length(exclusive_scissors), exclusive_scissors, fun_ptr)
 
 cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::ImageLayout, fun_ptr::FunctionPtr; image_view = C_NULL)::Cvoid = vkCmdBindShadingRateImageNV(command_buffer, image_view, image_layout, fun_ptr)
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes, fun_ptr)
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:_ShadingRatePaletteNV}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportShadingRatePaletteNV(command_buffer, 0, pointer_length(shading_rate_palettes), shading_rate_palettes, fun_ptr)
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders, fun_ptr)
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:_CoarseSampleOrderCustomNV}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetCoarseSampleOrderNV(command_buffer, sample_order_type, pointer_length(custom_sample_orders), custom_sample_orders, fun_ptr)
 
 cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdDrawMeshTasksNV(command_buffer, task_count, first_task, fun_ptr)
 
@@ -13038,7 +13038,7 @@ function get_acceleration_structure_memory_requirements_nv(device::Device, info:
     from_vk(VkMemoryRequirements2KHR, pMemoryRequirements[])
 end
 
-bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBindAccelerationStructureMemoryNV(device, pointer_length(bind_infos), bind_infos, fun_ptr))
+bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:_BindAccelerationStructureMemoryInfoNV}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkBindAccelerationStructureMemoryNV(device, pointer_length(bind_infos), bind_infos, fun_ptr))
 
 cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::CopyAccelerationStructureModeKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdCopyAccelerationStructureNV(command_buffer, dst, src, mode, fun_ptr)
 
@@ -13054,13 +13054,13 @@ cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, inf
 
 copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkCopyMemoryToAccelerationStructureKHR(device, deferred_operation, info, fun_ptr))
 
-cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
+cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesKHR(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
-cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
+cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray{<:AccelerationStructureNV}, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteAccelerationStructuresPropertiesNV(command_buffer, pointer_length(acceleration_structures), acceleration_structures, query_type, query_pool, first_query, fun_ptr)
 
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer, fun_ptr::FunctionPtr; instance_data = C_NULL, src = C_NULL)::Cvoid = vkCmdBuildAccelerationStructureNV(command_buffer, info, instance_data, instance_offset, update, dst, src, scratch, scratch_offset, fun_ptr)
 
-write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride, fun_ptr))
+write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{<:AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride, fun_ptr))
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdTraceRaysKHR(command_buffer, raygen_shader_binding_table, miss_shader_binding_table, hit_shader_binding_table, callable_shader_binding_table, width, height, depth, fun_ptr)
 
@@ -13072,13 +13072,13 @@ get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline
 
 get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid}, fun_ptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetAccelerationStructureHandleNV(device, acceleration_structure, data_size, data, fun_ptr))
 
-function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoNV}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesNV(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
 end
 
-function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+function create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:_RayTracingPipelineCreateInfoKHR}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
     pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
     @check vkCreateRayTracingPipelinesKHR(device, deferred_operation, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines, fun_ptr_create)
     (Pipeline.(pPipelines, (x->destroy_pipeline(device, x, fun_ptr_destroy; allocator)), device), _return_code)
@@ -13237,11 +13237,11 @@ function create_acceleration_structure_khr(device::Device, create_info::_Acceler
     AccelerationStructureKHR(pAccelerationStructure[], (x->destroy_acceleration_structure_khr(device, x, fun_ptr_destroy; allocator)), device)
 end
 
-cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray, build_range_infos::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructuresKHR(command_buffer, pointer_length(infos), infos, build_range_infos, fun_ptr)
+cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructuresKHR(command_buffer, pointer_length(infos), infos, build_range_infos, fun_ptr)
 
-cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructuresIndirectKHR(command_buffer, pointer_length(infos), infos, indirect_device_addresses, indirect_strides, max_primitive_counts, fun_ptr)
+cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer}, fun_ptr::FunctionPtr)::Cvoid = vkCmdBuildAccelerationStructuresIndirectKHR(command_buffer, pointer_length(infos), infos, indirect_device_addresses, indirect_strides, max_primitive_counts, fun_ptr)
 
-build_acceleration_structures_khr(device::Device, infos::AbstractArray, build_range_infos::AbstractArray, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkBuildAccelerationStructuresKHR(device, deferred_operation, pointer_length(infos), infos, build_range_infos, fun_ptr))
+build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:_AccelerationStructureBuildRangeInfoKHR}, fun_ptr::FunctionPtr; deferred_operation = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkBuildAccelerationStructuresKHR(device, deferred_operation, pointer_length(infos), infos, build_range_infos, fun_ptr))
 
 get_acceleration_structure_device_address_khr(device::Device, info::_AccelerationStructureDeviceAddressInfoKHR, fun_ptr::FunctionPtr)::UInt64 = vkGetAccelerationStructureDeviceAddressKHR(device, info, fun_ptr)
 
@@ -13265,11 +13265,11 @@ cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::FrontFace, fun
 
 cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::PrimitiveTopology, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetPrimitiveTopologyEXT(command_buffer, primitive_topology, fun_ptr)
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports, fun_ptr)
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:_Viewport}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetViewportWithCountEXT(command_buffer, pointer_length(viewports), viewports, fun_ptr)
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors, fun_ptr)
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:_Rect2D}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetScissorWithCountEXT(command_buffer, pointer_length(scissors), scissors, fun_ptr)
 
-cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
+cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray{<:Buffer}, offsets::AbstractArray{<:Integer}, fun_ptr::FunctionPtr; sizes = C_NULL, strides = C_NULL)::Cvoid = vkCmdBindVertexBuffers2EXT(command_buffer, 0, pointer_length(buffers), buffers, offsets, sizes, strides, fun_ptr)
 
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetDepthTestEnableEXT(command_buffer, depth_test_enable, fun_ptr)
 
@@ -13341,19 +13341,19 @@ function get_acceleration_structure_build_sizes_khr(device::Device, build_type::
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
 
-cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray, vertex_attribute_descriptions::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetVertexInputEXT(command_buffer, pointer_length(vertex_binding_descriptions), vertex_binding_descriptions, pointer_length(vertex_attribute_descriptions), vertex_attribute_descriptions, fun_ptr)
+cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:_VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:_VertexInputAttributeDescription2EXT}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetVertexInputEXT(command_buffer, pointer_length(vertex_binding_descriptions), vertex_binding_descriptions, pointer_length(vertex_attribute_descriptions), vertex_attribute_descriptions, fun_ptr)
 
-cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetColorWriteEnableEXT(command_buffer, pointer_length(color_write_enables), color_write_enables, fun_ptr)
+cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray{<:Bool}, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetColorWriteEnableEXT(command_buffer, pointer_length(color_write_enables), color_write_enables, fun_ptr)
 
 cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::_DependencyInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdSetEvent2KHR(command_buffer, event, dependency_info, fun_ptr)
 
 cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdResetEvent2KHR(command_buffer, event, stage_mask, fun_ptr)
 
-cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray, fun_ptr::FunctionPtr)::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos, fun_ptr)
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:_DependencyInfoKHR}, fun_ptr::FunctionPtr)::Cvoid = vkCmdWaitEvents2KHR(command_buffer, pointer_length(events), events, dependency_infos, fun_ptr)
 
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR, fun_ptr::FunctionPtr)::Cvoid = vkCmdPipelineBarrier2KHR(command_buffer, dependency_info, fun_ptr)
 
-queue_submit_2_khr(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit2KHR(queue, pointer_length(submits), submits, fence, fun_ptr))
+queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:_SubmitInfo2KHR}, fun_ptr::FunctionPtr; fence = C_NULL)::ResultTypes.Result{Result, VulkanError} = @check(vkQueueSubmit2KHR(queue, pointer_length(submits), submits, fence, fun_ptr))
 
 cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer, fun_ptr::FunctionPtr)::Cvoid = vkCmdWriteTimestamp2KHR(command_buffer, stage, query_pool, query, fun_ptr)
 
@@ -19095,15 +19095,15 @@ create_instance(create_info::InstanceCreateInfo; allocator = C_NULL) = create_in
 
 create_device(physical_device::PhysicalDevice, create_info::DeviceCreateInfo; allocator = C_NULL) = create_device(physical_device, convert(_DeviceCreateInfo, create_info); allocator)
 
-queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}; fence = C_NULL) = queue_submit(queue, convert(Vector{_SubmitInfo}, submits); fence)
+queue_submit(queue::Queue, submits::AbstractArray; fence = C_NULL) = queue_submit(queue, convert(Vector{_SubmitInfo}, submits); fence)
 
 allocate_memory(device::Device, allocate_info::MemoryAllocateInfo; allocator = C_NULL) = allocate_memory(device, convert(_MemoryAllocateInfo, allocate_info); allocator)
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}) = flush_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges))
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray) = flush_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges))
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}) = invalidate_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges))
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray) = invalidate_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges))
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}; fence = C_NULL) = queue_bind_sparse(queue, convert(Vector{_BindSparseInfo}, bind_info); fence)
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray; fence = C_NULL) = queue_bind_sparse(queue, convert(Vector{_BindSparseInfo}, bind_info); fence)
 
 create_fence(device::Device, create_info::FenceCreateInfo; allocator = C_NULL) = create_fence(device, convert(_FenceCreateInfo, create_info); allocator)
 
@@ -19127,9 +19127,9 @@ create_shader_module(device::Device, create_info::ShaderModuleCreateInfo; alloca
 
 create_pipeline_cache(device::Device, create_info::PipelineCacheCreateInfo; allocator = C_NULL) = create_pipeline_cache(device, convert(_PipelineCacheCreateInfo, create_info); allocator)
 
-create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL) = create_graphics_pipelines(device, convert(Vector{_GraphicsPipelineCreateInfo}, create_infos); pipeline_cache, allocator)
+create_graphics_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL) = create_graphics_pipelines(device, convert(Vector{_GraphicsPipelineCreateInfo}, create_infos); pipeline_cache, allocator)
 
-create_compute_pipelines(device::Device, create_infos::AbstractArray{<:ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL) = create_compute_pipelines(device, convert(Vector{_ComputePipelineCreateInfo}, create_infos); pipeline_cache, allocator)
+create_compute_pipelines(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL) = create_compute_pipelines(device, convert(Vector{_ComputePipelineCreateInfo}, create_infos); pipeline_cache, allocator)
 
 create_pipeline_layout(device::Device, create_info::PipelineLayoutCreateInfo; allocator = C_NULL) = create_pipeline_layout(device, convert(_PipelineLayoutCreateInfo, create_info); allocator)
 
@@ -19141,7 +19141,7 @@ create_descriptor_pool(device::Device, create_info::DescriptorPoolCreateInfo; al
 
 allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo) = allocate_descriptor_sets(device, convert(_DescriptorSetAllocateInfo, allocate_info))
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}) = update_descriptor_sets(device, convert(Vector{_WriteDescriptorSet}, descriptor_writes), convert(Vector{_CopyDescriptorSet}, descriptor_copies))
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray) = update_descriptor_sets(device, convert(Vector{_WriteDescriptorSet}, descriptor_writes), convert(Vector{_CopyDescriptorSet}, descriptor_copies))
 
 create_framebuffer(device::Device, create_info::FramebufferCreateInfo; allocator = C_NULL) = create_framebuffer(device, convert(_FramebufferCreateInfo, create_info); allocator)
 
@@ -19153,31 +19153,31 @@ allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInf
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo) = begin_command_buffer(command_buffer, convert(_CommandBufferBeginInfo, begin_info))
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = cmd_set_viewport(command_buffer, convert(Vector{_Viewport}, viewports))
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray) = cmd_set_viewport(command_buffer, convert(Vector{_Viewport}, viewports))
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}) = cmd_set_scissor(command_buffer, convert(Vector{_Rect2D}, scissors))
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray) = cmd_set_scissor(command_buffer, convert(Vector{_Rect2D}, scissors))
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy}) = cmd_copy_buffer(command_buffer, src_buffer, dst_buffer, convert(Vector{_BufferCopy}, regions))
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray) = cmd_copy_buffer(command_buffer, src_buffer, dst_buffer, convert(Vector{_BufferCopy}, regions))
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:ImageCopy}) = cmd_copy_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageCopy}, regions))
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray) = cmd_copy_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageCopy}, regions))
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:ImageBlit}, filter::Filter) = cmd_blit_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageBlit}, regions), filter)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, filter::Filter) = cmd_blit_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageBlit}, regions), filter)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:BufferImageCopy}) = cmd_copy_buffer_to_image(command_buffer, src_buffer, dst_image, dst_image_layout, convert(Vector{_BufferImageCopy}, regions))
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray) = cmd_copy_buffer_to_image(command_buffer, src_buffer, dst_image, dst_image_layout, convert(Vector{_BufferImageCopy}, regions))
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy}) = cmd_copy_image_to_buffer(command_buffer, src_image, src_image_layout, dst_buffer, convert(Vector{_BufferImageCopy}, regions))
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray) = cmd_copy_image_to_buffer(command_buffer, src_image, src_image_layout, dst_buffer, convert(Vector{_BufferImageCopy}, regions))
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange}) = cmd_clear_color_image(command_buffer, image, image_layout, color, convert(Vector{_ImageSubresourceRange}, ranges))
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray) = cmd_clear_color_image(command_buffer, image, image_layout, color, convert(Vector{_ImageSubresourceRange}, ranges))
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray{<:ImageSubresourceRange}) = cmd_clear_depth_stencil_image(command_buffer, image, image_layout, convert(_ClearDepthStencilValue, depth_stencil), convert(Vector{_ImageSubresourceRange}, ranges))
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray) = cmd_clear_depth_stencil_image(command_buffer, image, image_layout, convert(_ClearDepthStencilValue, depth_stencil), convert(Vector{_ImageSubresourceRange}, ranges))
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:ClearAttachment}, rects::AbstractArray{<:ClearRect}) = cmd_clear_attachments(command_buffer, convert(Vector{_ClearAttachment}, attachments), convert(Vector{_ClearRect}, rects))
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray) = cmd_clear_attachments(command_buffer, convert(Vector{_ClearAttachment}, attachments), convert(Vector{_ClearRect}, rects))
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:ImageResolve}) = cmd_resolve_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageResolve}, regions))
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray) = cmd_resolve_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageResolve}, regions))
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0) = cmd_wait_events(command_buffer, events, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers); src_stage_mask, dst_stage_mask)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; src_stage_mask = 0, dst_stage_mask = 0) = cmd_wait_events(command_buffer, events, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers); src_stage_mask, dst_stage_mask)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}; dependency_flags = 0) = cmd_pipeline_barrier(command_buffer, src_stage_mask, dst_stage_mask, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers); dependency_flags)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray; dependency_flags = 0) = cmd_pipeline_barrier(command_buffer, src_stage_mask, dst_stage_mask, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers); dependency_flags)
 
 cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT) = cmd_begin_conditional_rendering_ext(command_buffer, convert(_ConditionalRenderingBeginInfoEXT, conditional_rendering_begin))
 
@@ -19187,7 +19187,7 @@ create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, cr
 
 create_display_plane_surface_khr(instance::Instance, create_info::DisplaySurfaceCreateInfoKHR; allocator = C_NULL) = create_display_plane_surface_khr(instance, convert(_DisplaySurfaceCreateInfoKHR, create_info); allocator)
 
-create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:SwapchainCreateInfoKHR}; allocator = C_NULL) = create_shared_swapchains_khr(device, convert(Vector{_SwapchainCreateInfoKHR}, create_infos); allocator)
+create_shared_swapchains_khr(device::Device, create_infos::AbstractArray; allocator = C_NULL) = create_shared_swapchains_khr(device, convert(Vector{_SwapchainCreateInfoKHR}, create_infos); allocator)
 
 create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR; allocator = C_NULL) = create_swapchain_khr(device, convert(_SwapchainCreateInfoKHR, create_info); allocator)
 
@@ -19221,7 +19221,7 @@ get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, i
 
 get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2) = get_physical_device_sparse_image_format_properties_2(physical_device, convert(_PhysicalDeviceSparseImageFormatInfo2, format_info))
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet}) = cmd_push_descriptor_set_khr(command_buffer, pipeline_bind_point, layout, set, convert(Vector{_WriteDescriptorSet}, descriptor_writes))
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray) = cmd_push_descriptor_set_khr(command_buffer, pipeline_bind_point, layout, set, convert(Vector{_WriteDescriptorSet}, descriptor_writes))
 
 get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo) = get_physical_device_external_buffer_properties(physical_device, convert(_PhysicalDeviceExternalBufferInfo, external_buffer_info))
 
@@ -19245,19 +19245,19 @@ register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT;
 
 register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::DisplayEventInfoEXT; allocator = C_NULL) = register_display_event_ext(device, display, convert(_DisplayEventInfoEXT, display_event_info); allocator)
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo}) = bind_buffer_memory_2(device, convert(Vector{_BindBufferMemoryInfo}, bind_infos))
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray) = bind_buffer_memory_2(device, convert(Vector{_BindBufferMemoryInfo}, bind_infos))
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo}) = bind_image_memory_2(device, convert(Vector{_BindImageMemoryInfo}, bind_infos))
+bind_image_memory_2(device::Device, bind_infos::AbstractArray) = bind_image_memory_2(device, convert(Vector{_BindImageMemoryInfo}, bind_infos))
 
 acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR) = acquire_next_image_2_khr(device, convert(_AcquireNextImageInfoKHR, acquire_info))
 
 create_descriptor_update_template(device::Device, create_info::DescriptorUpdateTemplateCreateInfo; allocator = C_NULL) = create_descriptor_update_template(device, convert(_DescriptorUpdateTemplateCreateInfo, create_info); allocator)
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:HdrMetadataEXT}) = set_hdr_metadata_ext(device, swapchains, convert(Vector{_HdrMetadataEXT}, metadata))
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray) = set_hdr_metadata_ext(device, swapchains, convert(Vector{_HdrMetadataEXT}, metadata))
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:ViewportWScalingNV}) = cmd_set_viewport_w_scaling_nv(command_buffer, convert(Vector{_ViewportWScalingNV}, viewport_w_scalings))
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray) = cmd_set_viewport_w_scaling_nv(command_buffer, convert(Vector{_ViewportWScalingNV}, viewport_w_scalings))
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:Rect2D}) = cmd_set_discard_rectangle_ext(command_buffer, convert(Vector{_Rect2D}, discard_rectangles))
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray) = cmd_set_discard_rectangle_ext(command_buffer, convert(Vector{_Rect2D}, discard_rectangles))
 
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT) = cmd_set_sample_locations_ext(command_buffer, convert(_SampleLocationsInfoEXT, sample_locations_info))
 
@@ -19281,7 +19281,7 @@ create_validation_cache_ext(device::Device, create_info::ValidationCacheCreateIn
 
 get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo) = get_descriptor_set_layout_support(device, convert(_DescriptorSetLayoutCreateInfo, create_info))
 
-get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT}) = get_calibrated_timestamps_ext(device, convert(Vector{_CalibratedTimestampInfoEXT}, timestamp_infos))
+get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray) = get_calibrated_timestamps_ext(device, convert(Vector{_CalibratedTimestampInfoEXT}, timestamp_infos))
 
 set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT) = set_debug_utils_object_name_ext(device, convert(_DebugUtilsObjectNameInfoEXT, name_info))
 
@@ -19311,17 +19311,17 @@ wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer) 
 
 signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo) = signal_semaphore(device, convert(_SemaphoreSignalInfo, signal_info))
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:Rect2D}) = cmd_set_exclusive_scissor_nv(command_buffer, convert(Vector{_Rect2D}, exclusive_scissors))
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray) = cmd_set_exclusive_scissor_nv(command_buffer, convert(Vector{_Rect2D}, exclusive_scissors))
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}) = cmd_set_viewport_shading_rate_palette_nv(command_buffer, convert(Vector{_ShadingRatePaletteNV}, shading_rate_palettes))
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray) = cmd_set_viewport_shading_rate_palette_nv(command_buffer, convert(Vector{_ShadingRatePaletteNV}, shading_rate_palettes))
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}) = cmd_set_coarse_sample_order_nv(command_buffer, sample_order_type, convert(Vector{_CoarseSampleOrderCustomNV}, custom_sample_orders))
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray) = cmd_set_coarse_sample_order_nv(command_buffer, sample_order_type, convert(Vector{_CoarseSampleOrderCustomNV}, custom_sample_orders))
 
 create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV; allocator = C_NULL) = create_acceleration_structure_nv(device, convert(_AccelerationStructureCreateInfoNV, create_info); allocator)
 
 get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV) = get_acceleration_structure_memory_requirements_nv(device, convert(_AccelerationStructureMemoryRequirementsInfoNV, info))
 
-bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoNV}) = bind_acceleration_structure_memory_nv(device, convert(Vector{_BindAccelerationStructureMemoryInfoNV}, bind_infos))
+bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray) = bind_acceleration_structure_memory_nv(device, convert(Vector{_BindAccelerationStructureMemoryInfoNV}, bind_infos))
 
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR) = cmd_copy_acceleration_structure_khr(command_buffer, convert(_CopyAccelerationStructureInfoKHR, info))
 
@@ -19339,9 +19339,9 @@ cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::Acceler
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer) = cmd_trace_rays_khr(command_buffer, convert(_StridedDeviceAddressRegionKHR, raygen_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, miss_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, hit_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, callable_shader_binding_table), width, height, depth)
 
-create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_nv(device, convert(Vector{_RayTracingPipelineCreateInfoNV}, create_infos); pipeline_cache, allocator)
+create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_nv(device, convert(Vector{_RayTracingPipelineCreateInfoNV}, create_infos); pipeline_cache, allocator)
 
-create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_khr(device, convert(Vector{_RayTracingPipelineCreateInfoKHR}, create_infos); deferred_operation, pipeline_cache, allocator)
+create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_khr(device, convert(Vector{_RayTracingPipelineCreateInfoKHR}, create_infos); deferred_operation, pipeline_cache, allocator)
 
 cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, indirect_device_address::Integer) = cmd_trace_rays_indirect_khr(command_buffer, convert(_StridedDeviceAddressRegionKHR, raygen_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, miss_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, hit_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, callable_shader_binding_table), indirect_device_address)
 
@@ -19379,17 +19379,17 @@ get_pipeline_executable_internal_representations_khr(device::Device, executable_
 
 create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR; allocator = C_NULL) = create_acceleration_structure_khr(device, convert(_AccelerationStructureCreateInfoKHR, create_info); allocator)
 
-cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}) = cmd_build_acceleration_structures_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos))
+cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray, build_range_infos::AbstractArray) = cmd_build_acceleration_structures_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos))
 
-cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer}) = cmd_build_acceleration_structures_indirect_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), indirect_device_addresses, indirect_strides, max_primitive_counts)
+cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray) = cmd_build_acceleration_structures_indirect_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), indirect_device_addresses, indirect_strides, max_primitive_counts)
 
-build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL) = build_acceleration_structures_khr(device, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos); deferred_operation)
+build_acceleration_structures_khr(device::Device, infos::AbstractArray, build_range_infos::AbstractArray; deferred_operation = C_NULL) = build_acceleration_structures_khr(device, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos); deferred_operation)
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR) = get_acceleration_structure_device_address_khr(device, convert(_AccelerationStructureDeviceAddressInfoKHR, info))
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}) = cmd_set_viewport_with_count_ext(command_buffer, convert(Vector{_Viewport}, viewports))
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray) = cmd_set_viewport_with_count_ext(command_buffer, convert(Vector{_Viewport}, viewports))
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}) = cmd_set_scissor_with_count_ext(command_buffer, convert(Vector{_Rect2D}, scissors))
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray) = cmd_set_scissor_with_count_ext(command_buffer, convert(Vector{_Rect2D}, scissors))
 
 create_private_data_slot_ext(device::Device, create_info::PrivateDataSlotCreateInfoEXT; allocator = C_NULL) = create_private_data_slot_ext(device, convert(_PrivateDataSlotCreateInfoEXT, create_info); allocator)
 
@@ -19409,35 +19409,35 @@ cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::
 
 get_acceleration_structure_build_sizes_khr(device::Device, build_type::AccelerationStructureBuildTypeKHR, build_info::AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL) = get_acceleration_structure_build_sizes_khr(device, build_type, convert(_AccelerationStructureBuildGeometryInfoKHR, build_info); max_primitive_counts)
 
-cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription2EXT}) = cmd_set_vertex_input_ext(command_buffer, convert(Vector{_VertexInputBindingDescription2EXT}, vertex_binding_descriptions), convert(Vector{_VertexInputAttributeDescription2EXT}, vertex_attribute_descriptions))
+cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray, vertex_attribute_descriptions::AbstractArray) = cmd_set_vertex_input_ext(command_buffer, convert(Vector{_VertexInputBindingDescription2EXT}, vertex_binding_descriptions), convert(Vector{_VertexInputAttributeDescription2EXT}, vertex_attribute_descriptions))
 
 cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::DependencyInfoKHR) = cmd_set_event_2_khr(command_buffer, event, convert(_DependencyInfoKHR, dependency_info))
 
-cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:DependencyInfoKHR}) = cmd_wait_events_2_khr(command_buffer, events, convert(Vector{_DependencyInfoKHR}, dependency_infos))
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray) = cmd_wait_events_2_khr(command_buffer, events, convert(Vector{_DependencyInfoKHR}, dependency_infos))
 
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::DependencyInfoKHR) = cmd_pipeline_barrier_2_khr(command_buffer, convert(_DependencyInfoKHR, dependency_info))
 
-queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:SubmitInfo2KHR}; fence = C_NULL) = queue_submit_2_khr(queue, convert(Vector{_SubmitInfo2KHR}, submits); fence)
+queue_submit_2_khr(queue::Queue, submits::AbstractArray; fence = C_NULL) = queue_submit_2_khr(queue, convert(Vector{_SubmitInfo2KHR}, submits); fence)
 
-create_device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names; allocator, next, flags, enabled_features)
+create_device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names; allocator, next, flags, enabled_features)
 
-create_image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; allocator, next, flags)
+create_image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray, initial_layout::ImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; allocator, next, flags)
 
 create_image_view(device::Device, image::Image, view_type::ImageViewType, format::Format, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, image, view_type, format, convert(_ComponentMapping, components), convert(_ImageSubresourceRange, subresource_range); allocator, next, flags)
 
-create_pipeline_layout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges); allocator, next, flags)
+create_pipeline_layout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges); allocator, next, flags)
 
-create_descriptor_set_layout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings); allocator, next, flags)
+create_descriptor_set_layout(device::Device, bindings::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings); allocator, next, flags)
 
-create_descriptor_pool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes); allocator, next, flags)
+create_descriptor_pool(device::Device, max_sets::Integer, pool_sizes::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes); allocator, next, flags)
 
-create_render_pass(device::Device, attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies); allocator, next, flags)
+create_render_pass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies); allocator, next, flags)
 
-create_render_pass_2(device::Device, attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass_2(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks; allocator, next, flags)
+create_render_pass_2(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass_2(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks; allocator, next, flags)
 
-create_indirect_commands_layout_nv(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0) = create_indirect_commands_layout_nv(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides; allocator, next, flags)
+create_indirect_commands_layout_nv(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = create_indirect_commands_layout_nv(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides; allocator, next, flags)
 
-create_descriptor_update_template(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; allocator, next, flags)
+create_descriptor_update_template(device::Device, descriptor_update_entries::AbstractArray, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; allocator, next, flags)
 
 create_sampler_ycbcr_conversion(device::Device, format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL) = create_sampler_ycbcr_conversion(device, format, ycbcr_model, ycbcr_range, convert(_ComponentMapping, components), x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction; allocator, next)
 
@@ -19445,27 +19445,27 @@ create_acceleration_structure_nv(device::Device, compacted_size::Integer, info::
 
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, convert(_DisplayModeParametersKHR, parameters); allocator, next, flags)
 
-create_swapchain_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; allocator, next, flags, old_swapchain)
+create_swapchain_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; allocator, next, flags, old_swapchain)
 
-Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = Device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names; allocator, next, flags, enabled_features)
+Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = Device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names; allocator, next, flags, enabled_features)
 
-Image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = Image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; allocator, next, flags)
+Image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray, initial_layout::ImageLayout; allocator = C_NULL, next = C_NULL, flags = 0) = Image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout; allocator, next, flags)
 
 ImageView(device::Device, image::Image, view_type::ImageViewType, format::Format, components::ComponentMapping, subresource_range::ImageSubresourceRange; allocator = C_NULL, next = C_NULL, flags = 0) = ImageView(device, image, view_type, format, convert(_ComponentMapping, components), convert(_ImageSubresourceRange, subresource_range); allocator, next, flags)
 
-PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}; allocator = C_NULL, next = C_NULL, flags = 0) = PipelineLayout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges); allocator, next, flags)
+PipelineLayout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = PipelineLayout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges); allocator, next, flags)
 
-DescriptorSetLayout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorSetLayout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings); allocator, next, flags)
+DescriptorSetLayout(device::Device, bindings::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorSetLayout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings); allocator, next, flags)
 
-DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorPool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes); allocator, next, flags)
+DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorPool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes); allocator, next, flags)
 
-RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies); allocator, next, flags)
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies); allocator, next, flags)
 
-RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks; allocator, next, flags)
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks; allocator, next, flags)
 
-IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}; allocator = C_NULL, next = C_NULL, flags = 0) = IndirectCommandsLayoutNV(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides; allocator, next, flags)
+IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = IndirectCommandsLayoutNV(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides; allocator, next, flags)
 
-DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorUpdateTemplate(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; allocator, next, flags)
+DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorUpdateTemplate(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set; allocator, next, flags)
 
 SamplerYcbcrConversion(device::Device, format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool; allocator = C_NULL, next = C_NULL) = SamplerYcbcrConversion(device, format, ycbcr_model, ycbcr_range, convert(_ComponentMapping, components), x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction; allocator, next)
 
@@ -19473,21 +19473,21 @@ AccelerationStructureNV(device::Device, compacted_size::Integer, info::Accelerat
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = DisplayModeKHR(physical_device, display, convert(_DisplayModeParametersKHR, parameters); allocator, next, flags)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = SwapchainKHR(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; allocator, next, flags, old_swapchain)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = SwapchainKHR(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; allocator, next, flags, old_swapchain)
 
 create_instance(create_info::InstanceCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_instance(convert(_InstanceCreateInfo, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_device(physical_device::PhysicalDevice, create_info::DeviceCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_device(physical_device, convert(_DeviceCreateInfo, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
-queue_submit(queue::Queue, submits::AbstractArray{<:SubmitInfo}, fun_ptr::FunctionPtr; fence = C_NULL) = queue_submit(queue, convert(Vector{_SubmitInfo}, submits), fun_ptr; fence)
+queue_submit(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL) = queue_submit(queue, convert(Vector{_SubmitInfo}, submits), fun_ptr; fence)
 
 allocate_memory(device::Device, allocate_info::MemoryAllocateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = allocate_memory(device, convert(_MemoryAllocateInfo, allocate_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
-flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}, fun_ptr::FunctionPtr) = flush_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges), fun_ptr)
+flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr) = flush_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges), fun_ptr)
 
-invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{<:MappedMemoryRange}, fun_ptr::FunctionPtr) = invalidate_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges), fun_ptr)
+invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray, fun_ptr::FunctionPtr) = invalidate_mapped_memory_ranges(device, convert(Vector{_MappedMemoryRange}, memory_ranges), fun_ptr)
 
-queue_bind_sparse(queue::Queue, bind_info::AbstractArray{<:BindSparseInfo}, fun_ptr::FunctionPtr; fence = C_NULL) = queue_bind_sparse(queue, convert(Vector{_BindSparseInfo}, bind_info), fun_ptr; fence)
+queue_bind_sparse(queue::Queue, bind_info::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL) = queue_bind_sparse(queue, convert(Vector{_BindSparseInfo}, bind_info), fun_ptr; fence)
 
 create_fence(device::Device, create_info::FenceCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_fence(device, convert(_FenceCreateInfo, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -19511,9 +19511,9 @@ create_shader_module(device::Device, create_info::ShaderModuleCreateInfo, fun_pt
 
 create_pipeline_cache(device::Device, create_info::PipelineCacheCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_pipeline_cache(device, convert(_PipelineCacheCreateInfo, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
-create_graphics_pipelines(device::Device, create_infos::AbstractArray{<:GraphicsPipelineCreateInfo}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL) = create_graphics_pipelines(device, convert(Vector{_GraphicsPipelineCreateInfo}, create_infos), fun_ptr_create, fun_ptr_destroy; pipeline_cache, allocator)
+create_graphics_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL) = create_graphics_pipelines(device, convert(Vector{_GraphicsPipelineCreateInfo}, create_infos), fun_ptr_create, fun_ptr_destroy; pipeline_cache, allocator)
 
-create_compute_pipelines(device::Device, create_infos::AbstractArray{<:ComputePipelineCreateInfo}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL) = create_compute_pipelines(device, convert(Vector{_ComputePipelineCreateInfo}, create_infos), fun_ptr_create, fun_ptr_destroy; pipeline_cache, allocator)
+create_compute_pipelines(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL) = create_compute_pipelines(device, convert(Vector{_ComputePipelineCreateInfo}, create_infos), fun_ptr_create, fun_ptr_destroy; pipeline_cache, allocator)
 
 create_pipeline_layout(device::Device, create_info::PipelineLayoutCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_pipeline_layout(device, convert(_PipelineLayoutCreateInfo, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -19525,7 +19525,7 @@ create_descriptor_pool(device::Device, create_info::DescriptorPoolCreateInfo, fu
 
 allocate_descriptor_sets(device::Device, allocate_info::DescriptorSetAllocateInfo, fun_ptr_create::FunctionPtr) = allocate_descriptor_sets(device, convert(_DescriptorSetAllocateInfo, allocate_info), fun_ptr_create)
 
-update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, descriptor_copies::AbstractArray{<:CopyDescriptorSet}, fun_ptr::FunctionPtr) = update_descriptor_sets(device, convert(Vector{_WriteDescriptorSet}, descriptor_writes), convert(Vector{_CopyDescriptorSet}, descriptor_copies), fun_ptr)
+update_descriptor_sets(device::Device, descriptor_writes::AbstractArray, descriptor_copies::AbstractArray, fun_ptr::FunctionPtr) = update_descriptor_sets(device, convert(Vector{_WriteDescriptorSet}, descriptor_writes), convert(Vector{_CopyDescriptorSet}, descriptor_copies), fun_ptr)
 
 create_framebuffer(device::Device, create_info::FramebufferCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_framebuffer(device, convert(_FramebufferCreateInfo, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -19537,31 +19537,31 @@ allocate_command_buffers(device::Device, allocate_info::CommandBufferAllocateInf
 
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::CommandBufferBeginInfo, fun_ptr::FunctionPtr) = begin_command_buffer(command_buffer, convert(_CommandBufferBeginInfo, begin_info), fun_ptr)
 
-cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}, fun_ptr::FunctionPtr) = cmd_set_viewport(command_buffer, convert(Vector{_Viewport}, viewports), fun_ptr)
+cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_viewport(command_buffer, convert(Vector{_Viewport}, viewports), fun_ptr)
 
-cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = cmd_set_scissor(command_buffer, convert(Vector{_Rect2D}, scissors), fun_ptr)
+cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_scissor(command_buffer, convert(Vector{_Rect2D}, scissors), fun_ptr)
 
-cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{<:BufferCopy}, fun_ptr::FunctionPtr) = cmd_copy_buffer(command_buffer, src_buffer, dst_buffer, convert(Vector{_BufferCopy}, regions), fun_ptr)
+cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr) = cmd_copy_buffer(command_buffer, src_buffer, dst_buffer, convert(Vector{_BufferCopy}, regions), fun_ptr)
 
-cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:ImageCopy}, fun_ptr::FunctionPtr) = cmd_copy_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageCopy}, regions), fun_ptr)
+cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = cmd_copy_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageCopy}, regions), fun_ptr)
 
-cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:ImageBlit}, filter::Filter, fun_ptr::FunctionPtr) = cmd_blit_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageBlit}, regions), filter, fun_ptr)
+cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, filter::Filter, fun_ptr::FunctionPtr) = cmd_blit_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageBlit}, regions), filter, fun_ptr)
 
-cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:BufferImageCopy}, fun_ptr::FunctionPtr) = cmd_copy_buffer_to_image(command_buffer, src_buffer, dst_image, dst_image_layout, convert(Vector{_BufferImageCopy}, regions), fun_ptr)
+cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = cmd_copy_buffer_to_image(command_buffer, src_buffer, dst_image, dst_image_layout, convert(Vector{_BufferImageCopy}, regions), fun_ptr)
 
-cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{<:BufferImageCopy}, fun_ptr::FunctionPtr) = cmd_copy_image_to_buffer(command_buffer, src_image, src_image_layout, dst_buffer, convert(Vector{_BufferImageCopy}, regions), fun_ptr)
+cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray, fun_ptr::FunctionPtr) = cmd_copy_image_to_buffer(command_buffer, src_image, src_image_layout, dst_buffer, convert(Vector{_BufferImageCopy}, regions), fun_ptr)
 
-cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray{<:ImageSubresourceRange}, fun_ptr::FunctionPtr) = cmd_clear_color_image(command_buffer, image, image_layout, color, convert(Vector{_ImageSubresourceRange}, ranges), fun_ptr)
+cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray, fun_ptr::FunctionPtr) = cmd_clear_color_image(command_buffer, image, image_layout, color, convert(Vector{_ImageSubresourceRange}, ranges), fun_ptr)
 
-cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray{<:ImageSubresourceRange}, fun_ptr::FunctionPtr) = cmd_clear_depth_stencil_image(command_buffer, image, image_layout, convert(_ClearDepthStencilValue, depth_stencil), convert(Vector{_ImageSubresourceRange}, ranges), fun_ptr)
+cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::ClearDepthStencilValue, ranges::AbstractArray, fun_ptr::FunctionPtr) = cmd_clear_depth_stencil_image(command_buffer, image, image_layout, convert(_ClearDepthStencilValue, depth_stencil), convert(Vector{_ImageSubresourceRange}, ranges), fun_ptr)
 
-cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{<:ClearAttachment}, rects::AbstractArray{<:ClearRect}, fun_ptr::FunctionPtr) = cmd_clear_attachments(command_buffer, convert(Vector{_ClearAttachment}, attachments), convert(Vector{_ClearRect}, rects), fun_ptr)
+cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray, rects::AbstractArray, fun_ptr::FunctionPtr) = cmd_clear_attachments(command_buffer, convert(Vector{_ClearAttachment}, attachments), convert(Vector{_ClearRect}, rects), fun_ptr)
 
-cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{<:ImageResolve}, fun_ptr::FunctionPtr) = cmd_resolve_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageResolve}, regions), fun_ptr)
+cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray, fun_ptr::FunctionPtr) = cmd_resolve_image(command_buffer, src_image, src_image_layout, dst_image, dst_image_layout, convert(Vector{_ImageResolve}, regions), fun_ptr)
 
-cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}, fun_ptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0) = cmd_wait_events(command_buffer, events, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers), fun_ptr; src_stage_mask, dst_stage_mask)
+cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0) = cmd_wait_events(command_buffer, events, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers), fun_ptr; src_stage_mask, dst_stage_mask)
 
-cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{<:MemoryBarrier}, buffer_memory_barriers::AbstractArray{<:BufferMemoryBarrier}, image_memory_barriers::AbstractArray{<:ImageMemoryBarrier}, fun_ptr::FunctionPtr; dependency_flags = 0) = cmd_pipeline_barrier(command_buffer, src_stage_mask, dst_stage_mask, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers), fun_ptr; dependency_flags)
+cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray, buffer_memory_barriers::AbstractArray, image_memory_barriers::AbstractArray, fun_ptr::FunctionPtr; dependency_flags = 0) = cmd_pipeline_barrier(command_buffer, src_stage_mask, dst_stage_mask, convert(Vector{_MemoryBarrier}, memory_barriers), convert(Vector{_BufferMemoryBarrier}, buffer_memory_barriers), convert(Vector{_ImageMemoryBarrier}, image_memory_barriers), fun_ptr; dependency_flags)
 
 cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::ConditionalRenderingBeginInfoEXT, fun_ptr::FunctionPtr) = cmd_begin_conditional_rendering_ext(command_buffer, convert(_ConditionalRenderingBeginInfoEXT, conditional_rendering_begin), fun_ptr)
 
@@ -19571,7 +19571,7 @@ create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, cr
 
 create_display_plane_surface_khr(instance::Instance, create_info::DisplaySurfaceCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_display_plane_surface_khr(instance, convert(_DisplaySurfaceCreateInfoKHR, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
-create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{<:SwapchainCreateInfoKHR}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_shared_swapchains_khr(device, convert(Vector{_SwapchainCreateInfoKHR}, create_infos), fun_ptr_create, fun_ptr_destroy; allocator)
+create_shared_swapchains_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_shared_swapchains_khr(device, convert(Vector{_SwapchainCreateInfoKHR}, create_infos), fun_ptr_create, fun_ptr_destroy; allocator)
 
 create_swapchain_khr(device::Device, create_info::SwapchainCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_swapchain_khr(device, convert(_SwapchainCreateInfoKHR, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -19605,7 +19605,7 @@ get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, i
 
 get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::PhysicalDeviceSparseImageFormatInfo2, fun_ptr::FunctionPtr) = get_physical_device_sparse_image_format_properties_2(physical_device, convert(_PhysicalDeviceSparseImageFormatInfo2, format_info), fun_ptr)
 
-cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{<:WriteDescriptorSet}, fun_ptr::FunctionPtr) = cmd_push_descriptor_set_khr(command_buffer, pipeline_bind_point, layout, set, convert(Vector{_WriteDescriptorSet}, descriptor_writes), fun_ptr)
+cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray, fun_ptr::FunctionPtr) = cmd_push_descriptor_set_khr(command_buffer, pipeline_bind_point, layout, set, convert(Vector{_WriteDescriptorSet}, descriptor_writes), fun_ptr)
 
 get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::PhysicalDeviceExternalBufferInfo, fun_ptr::FunctionPtr) = get_physical_device_external_buffer_properties(physical_device, convert(_PhysicalDeviceExternalBufferInfo, external_buffer_info), fun_ptr)
 
@@ -19629,19 +19629,19 @@ register_device_event_ext(device::Device, device_event_info::DeviceEventInfoEXT,
 
 register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::DisplayEventInfoEXT, fun_ptr::FunctionPtr; allocator = C_NULL) = register_display_event_ext(device, display, convert(_DisplayEventInfoEXT, display_event_info), fun_ptr; allocator)
 
-bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{<:BindBufferMemoryInfo}, fun_ptr::FunctionPtr) = bind_buffer_memory_2(device, convert(Vector{_BindBufferMemoryInfo}, bind_infos), fun_ptr)
+bind_buffer_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr) = bind_buffer_memory_2(device, convert(Vector{_BindBufferMemoryInfo}, bind_infos), fun_ptr)
 
-bind_image_memory_2(device::Device, bind_infos::AbstractArray{<:BindImageMemoryInfo}, fun_ptr::FunctionPtr) = bind_image_memory_2(device, convert(Vector{_BindImageMemoryInfo}, bind_infos), fun_ptr)
+bind_image_memory_2(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr) = bind_image_memory_2(device, convert(Vector{_BindImageMemoryInfo}, bind_infos), fun_ptr)
 
 acquire_next_image_2_khr(device::Device, acquire_info::AcquireNextImageInfoKHR, fun_ptr::FunctionPtr) = acquire_next_image_2_khr(device, convert(_AcquireNextImageInfoKHR, acquire_info), fun_ptr)
 
 create_descriptor_update_template(device::Device, create_info::DescriptorUpdateTemplateCreateInfo, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_descriptor_update_template(device, convert(_DescriptorUpdateTemplateCreateInfo, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
-set_hdr_metadata_ext(device::Device, swapchains::AbstractArray{<:SwapchainKHR}, metadata::AbstractArray{<:HdrMetadataEXT}, fun_ptr::FunctionPtr) = set_hdr_metadata_ext(device, swapchains, convert(Vector{_HdrMetadataEXT}, metadata), fun_ptr)
+set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray, fun_ptr::FunctionPtr) = set_hdr_metadata_ext(device, swapchains, convert(Vector{_HdrMetadataEXT}, metadata), fun_ptr)
 
-cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{<:ViewportWScalingNV}, fun_ptr::FunctionPtr) = cmd_set_viewport_w_scaling_nv(command_buffer, convert(Vector{_ViewportWScalingNV}, viewport_w_scalings), fun_ptr)
+cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_viewport_w_scaling_nv(command_buffer, convert(Vector{_ViewportWScalingNV}, viewport_w_scalings), fun_ptr)
 
-cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = cmd_set_discard_rectangle_ext(command_buffer, convert(Vector{_Rect2D}, discard_rectangles), fun_ptr)
+cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_discard_rectangle_ext(command_buffer, convert(Vector{_Rect2D}, discard_rectangles), fun_ptr)
 
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::SampleLocationsInfoEXT, fun_ptr::FunctionPtr) = cmd_set_sample_locations_ext(command_buffer, convert(_SampleLocationsInfoEXT, sample_locations_info), fun_ptr)
 
@@ -19665,7 +19665,7 @@ create_validation_cache_ext(device::Device, create_info::ValidationCacheCreateIn
 
 get_descriptor_set_layout_support(device::Device, create_info::DescriptorSetLayoutCreateInfo, fun_ptr::FunctionPtr) = get_descriptor_set_layout_support(device, convert(_DescriptorSetLayoutCreateInfo, create_info), fun_ptr)
 
-get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{<:CalibratedTimestampInfoEXT}, fun_ptr::FunctionPtr) = get_calibrated_timestamps_ext(device, convert(Vector{_CalibratedTimestampInfoEXT}, timestamp_infos), fun_ptr)
+get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray, fun_ptr::FunctionPtr) = get_calibrated_timestamps_ext(device, convert(Vector{_CalibratedTimestampInfoEXT}, timestamp_infos), fun_ptr)
 
 set_debug_utils_object_name_ext(device::Device, name_info::DebugUtilsObjectNameInfoEXT, fun_ptr::FunctionPtr) = set_debug_utils_object_name_ext(device, convert(_DebugUtilsObjectNameInfoEXT, name_info), fun_ptr)
 
@@ -19695,17 +19695,17 @@ wait_semaphores(device::Device, wait_info::SemaphoreWaitInfo, timeout::Integer, 
 
 signal_semaphore(device::Device, signal_info::SemaphoreSignalInfo, fun_ptr::FunctionPtr) = signal_semaphore(device, convert(_SemaphoreSignalInfo, signal_info), fun_ptr)
 
-cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = cmd_set_exclusive_scissor_nv(command_buffer, convert(Vector{_Rect2D}, exclusive_scissors), fun_ptr)
+cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_exclusive_scissor_nv(command_buffer, convert(Vector{_Rect2D}, exclusive_scissors), fun_ptr)
 
-cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{<:ShadingRatePaletteNV}, fun_ptr::FunctionPtr) = cmd_set_viewport_shading_rate_palette_nv(command_buffer, convert(Vector{_ShadingRatePaletteNV}, shading_rate_palettes), fun_ptr)
+cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_viewport_shading_rate_palette_nv(command_buffer, convert(Vector{_ShadingRatePaletteNV}, shading_rate_palettes), fun_ptr)
 
-cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{<:CoarseSampleOrderCustomNV}, fun_ptr::FunctionPtr) = cmd_set_coarse_sample_order_nv(command_buffer, sample_order_type, convert(Vector{_CoarseSampleOrderCustomNV}, custom_sample_orders), fun_ptr)
+cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_coarse_sample_order_nv(command_buffer, sample_order_type, convert(Vector{_CoarseSampleOrderCustomNV}, custom_sample_orders), fun_ptr)
 
 create_acceleration_structure_nv(device::Device, create_info::AccelerationStructureCreateInfoNV, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_acceleration_structure_nv(device, convert(_AccelerationStructureCreateInfoNV, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
 get_acceleration_structure_memory_requirements_nv(device::Device, info::AccelerationStructureMemoryRequirementsInfoNV, fun_ptr::FunctionPtr) = get_acceleration_structure_memory_requirements_nv(device, convert(_AccelerationStructureMemoryRequirementsInfoNV, info), fun_ptr)
 
-bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{<:BindAccelerationStructureMemoryInfoNV}, fun_ptr::FunctionPtr) = bind_acceleration_structure_memory_nv(device, convert(Vector{_BindAccelerationStructureMemoryInfoNV}, bind_infos), fun_ptr)
+bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray, fun_ptr::FunctionPtr) = bind_acceleration_structure_memory_nv(device, convert(Vector{_BindAccelerationStructureMemoryInfoNV}, bind_infos), fun_ptr)
 
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::CopyAccelerationStructureInfoKHR, fun_ptr::FunctionPtr) = cmd_copy_acceleration_structure_khr(command_buffer, convert(_CopyAccelerationStructureInfoKHR, info), fun_ptr)
 
@@ -19723,9 +19723,9 @@ cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::Acceler
 
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer, fun_ptr::FunctionPtr) = cmd_trace_rays_khr(command_buffer, convert(_StridedDeviceAddressRegionKHR, raygen_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, miss_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, hit_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, callable_shader_binding_table), width, height, depth, fun_ptr)
 
-create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoNV}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_nv(device, convert(Vector{_RayTracingPipelineCreateInfoNV}, create_infos), fun_ptr_create, fun_ptr_destroy; pipeline_cache, allocator)
+create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_nv(device, convert(Vector{_RayTracingPipelineCreateInfoNV}, create_infos), fun_ptr_create, fun_ptr_destroy; pipeline_cache, allocator)
 
-create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{<:RayTracingPipelineCreateInfoKHR}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_khr(device, convert(Vector{_RayTracingPipelineCreateInfoKHR}, create_infos), fun_ptr_create, fun_ptr_destroy; deferred_operation, pipeline_cache, allocator)
+create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL) = create_ray_tracing_pipelines_khr(device, convert(Vector{_RayTracingPipelineCreateInfoKHR}, create_infos), fun_ptr_create, fun_ptr_destroy; deferred_operation, pipeline_cache, allocator)
 
 cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::StridedDeviceAddressRegionKHR, miss_shader_binding_table::StridedDeviceAddressRegionKHR, hit_shader_binding_table::StridedDeviceAddressRegionKHR, callable_shader_binding_table::StridedDeviceAddressRegionKHR, indirect_device_address::Integer, fun_ptr::FunctionPtr) = cmd_trace_rays_indirect_khr(command_buffer, convert(_StridedDeviceAddressRegionKHR, raygen_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, miss_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, hit_shader_binding_table), convert(_StridedDeviceAddressRegionKHR, callable_shader_binding_table), indirect_device_address, fun_ptr)
 
@@ -19763,17 +19763,17 @@ get_pipeline_executable_internal_representations_khr(device::Device, executable_
 
 create_acceleration_structure_khr(device::Device, create_info::AccelerationStructureCreateInfoKHR, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_acceleration_structure_khr(device, convert(_AccelerationStructureCreateInfoKHR, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
-cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}, fun_ptr::FunctionPtr) = cmd_build_acceleration_structures_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos), fun_ptr)
+cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray, build_range_infos::AbstractArray, fun_ptr::FunctionPtr) = cmd_build_acceleration_structures_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos), fun_ptr)
 
-cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray{<:Integer}, indirect_strides::AbstractArray{<:Integer}, max_primitive_counts::AbstractArray{<:Integer}, fun_ptr::FunctionPtr) = cmd_build_acceleration_structures_indirect_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), indirect_device_addresses, indirect_strides, max_primitive_counts, fun_ptr)
+cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray, fun_ptr::FunctionPtr) = cmd_build_acceleration_structures_indirect_khr(command_buffer, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), indirect_device_addresses, indirect_strides, max_primitive_counts, fun_ptr)
 
-build_acceleration_structures_khr(device::Device, infos::AbstractArray{<:AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{<:AccelerationStructureBuildRangeInfoKHR}, fun_ptr::FunctionPtr; deferred_operation = C_NULL) = build_acceleration_structures_khr(device, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos), fun_ptr; deferred_operation)
+build_acceleration_structures_khr(device::Device, infos::AbstractArray, build_range_infos::AbstractArray, fun_ptr::FunctionPtr; deferred_operation = C_NULL) = build_acceleration_structures_khr(device, convert(Vector{_AccelerationStructureBuildGeometryInfoKHR}, infos), convert(Vector{_AccelerationStructureBuildRangeInfoKHR}, build_range_infos), fun_ptr; deferred_operation)
 
 get_acceleration_structure_device_address_khr(device::Device, info::AccelerationStructureDeviceAddressInfoKHR, fun_ptr::FunctionPtr) = get_acceleration_structure_device_address_khr(device, convert(_AccelerationStructureDeviceAddressInfoKHR, info), fun_ptr)
 
-cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{<:Viewport}, fun_ptr::FunctionPtr) = cmd_set_viewport_with_count_ext(command_buffer, convert(Vector{_Viewport}, viewports), fun_ptr)
+cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_viewport_with_count_ext(command_buffer, convert(Vector{_Viewport}, viewports), fun_ptr)
 
-cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{<:Rect2D}, fun_ptr::FunctionPtr) = cmd_set_scissor_with_count_ext(command_buffer, convert(Vector{_Rect2D}, scissors), fun_ptr)
+cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_scissor_with_count_ext(command_buffer, convert(Vector{_Rect2D}, scissors), fun_ptr)
 
 create_private_data_slot_ext(device::Device, create_info::PrivateDataSlotCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL) = create_private_data_slot_ext(device, convert(_PrivateDataSlotCreateInfoEXT, create_info), fun_ptr_create, fun_ptr_destroy; allocator)
 
@@ -19793,35 +19793,35 @@ cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::
 
 get_acceleration_structure_build_sizes_khr(device::Device, build_type::AccelerationStructureBuildTypeKHR, build_info::AccelerationStructureBuildGeometryInfoKHR, fun_ptr::FunctionPtr; max_primitive_counts = C_NULL) = get_acceleration_structure_build_sizes_khr(device, build_type, convert(_AccelerationStructureBuildGeometryInfoKHR, build_info), fun_ptr; max_primitive_counts)
 
-cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{<:VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{<:VertexInputAttributeDescription2EXT}, fun_ptr::FunctionPtr) = cmd_set_vertex_input_ext(command_buffer, convert(Vector{_VertexInputBindingDescription2EXT}, vertex_binding_descriptions), convert(Vector{_VertexInputAttributeDescription2EXT}, vertex_attribute_descriptions), fun_ptr)
+cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray, vertex_attribute_descriptions::AbstractArray, fun_ptr::FunctionPtr) = cmd_set_vertex_input_ext(command_buffer, convert(Vector{_VertexInputBindingDescription2EXT}, vertex_binding_descriptions), convert(Vector{_VertexInputAttributeDescription2EXT}, vertex_attribute_descriptions), fun_ptr)
 
 cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::DependencyInfoKHR, fun_ptr::FunctionPtr) = cmd_set_event_2_khr(command_buffer, event, convert(_DependencyInfoKHR, dependency_info), fun_ptr)
 
-cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray{<:Event}, dependency_infos::AbstractArray{<:DependencyInfoKHR}, fun_ptr::FunctionPtr) = cmd_wait_events_2_khr(command_buffer, events, convert(Vector{_DependencyInfoKHR}, dependency_infos), fun_ptr)
+cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray, fun_ptr::FunctionPtr) = cmd_wait_events_2_khr(command_buffer, events, convert(Vector{_DependencyInfoKHR}, dependency_infos), fun_ptr)
 
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::DependencyInfoKHR, fun_ptr::FunctionPtr) = cmd_pipeline_barrier_2_khr(command_buffer, convert(_DependencyInfoKHR, dependency_info), fun_ptr)
 
-queue_submit_2_khr(queue::Queue, submits::AbstractArray{<:SubmitInfo2KHR}, fun_ptr::FunctionPtr; fence = C_NULL) = queue_submit_2_khr(queue, convert(Vector{_SubmitInfo2KHR}, submits), fun_ptr; fence)
+queue_submit_2_khr(queue::Queue, submits::AbstractArray, fun_ptr::FunctionPtr; fence = C_NULL) = queue_submit_2_khr(queue, convert(Vector{_SubmitInfo2KHR}, submits), fun_ptr; fence)
 
-create_device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, enabled_features)
+create_device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = create_device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, enabled_features)
 
-create_image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray, initial_layout::ImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
 create_image_view(device::Device, image::Image, view_type::ImageViewType, format::Format, components::ComponentMapping, subresource_range::ImageSubresourceRange, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_image_view(device, image, view_type, format, convert(_ComponentMapping, components), convert(_ImageSubresourceRange, subresource_range), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-create_pipeline_layout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_pipeline_layout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_pipeline_layout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-create_descriptor_set_layout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_descriptor_set_layout(device::Device, bindings::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_set_layout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-create_descriptor_pool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_descriptor_pool(device::Device, max_sets::Integer, pool_sizes::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_pool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-create_render_pass(device::Device, attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_render_pass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-create_render_pass_2(device::Device, attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass_2(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_render_pass_2(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_render_pass_2(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-create_indirect_commands_layout_nv(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_indirect_commands_layout_nv(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_indirect_commands_layout_nv(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_indirect_commands_layout_nv(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-create_descriptor_update_template(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+create_descriptor_update_template(device::Device, descriptor_update_entries::AbstractArray, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_descriptor_update_template(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
 create_sampler_ycbcr_conversion(device::Device, format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = create_sampler_ycbcr_conversion(device, format, ycbcr_model, ycbcr_range, convert(_ComponentMapping, components), x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction, fun_ptr_create, fun_ptr_destroy; allocator, next)
 
@@ -19829,27 +19829,27 @@ create_acceleration_structure_nv(device::Device, compacted_size::Integer, info::
 
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = create_display_mode_khr(physical_device, display, convert(_DisplayModeParametersKHR, parameters), fun_ptr_create; allocator, next, flags)
 
-create_swapchain_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, old_swapchain)
+create_swapchain_khr(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = create_swapchain_khr(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, old_swapchain)
 
-Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray{<:DeviceQueueCreateInfo}, enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = Device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, enabled_features)
+Device(physical_device::PhysicalDevice, queue_create_infos::AbstractArray, enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, enabled_features = C_NULL) = Device(physical_device, convert(Vector{_DeviceQueueCreateInfo}, queue_create_infos), enabled_layer_names, enabled_extension_names, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, enabled_features)
 
-Image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, initial_layout::ImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = Image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+Image(device::Device, image_type::ImageType, format::Format, extent::Extent3D, mip_levels::Integer, array_layers::Integer, samples::SampleCountFlag, tiling::ImageTiling, usage::ImageUsageFlag, sharing_mode::SharingMode, queue_family_indices::AbstractArray, initial_layout::ImageLayout, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = Image(device, image_type, format, convert(_Extent3D, extent), mip_levels, array_layers, samples, tiling, usage, sharing_mode, queue_family_indices, initial_layout, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
 ImageView(device::Device, image::Image, view_type::ImageViewType, format::Format, components::ComponentMapping, subresource_range::ImageSubresourceRange, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = ImageView(device, image, view_type, format, convert(_ComponentMapping, components), convert(_ImageSubresourceRange, subresource_range), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-PipelineLayout(device::Device, set_layouts::AbstractArray{<:DescriptorSetLayout}, push_constant_ranges::AbstractArray{<:PushConstantRange}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = PipelineLayout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+PipelineLayout(device::Device, set_layouts::AbstractArray, push_constant_ranges::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = PipelineLayout(device, set_layouts, convert(Vector{_PushConstantRange}, push_constant_ranges), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-DescriptorSetLayout(device::Device, bindings::AbstractArray{<:DescriptorSetLayoutBinding}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorSetLayout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+DescriptorSetLayout(device::Device, bindings::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorSetLayout(device, convert(Vector{_DescriptorSetLayoutBinding}, bindings), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray{<:DescriptorPoolSize}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorPool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+DescriptorPool(device::Device, max_sets::Integer, pool_sizes::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorPool(device, max_sets, convert(Vector{_DescriptorPoolSize}, pool_sizes), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription}, subpasses::AbstractArray{<:SubpassDescription}, dependencies::AbstractArray{<:SubpassDependency}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription}, attachments), convert(Vector{_SubpassDescription}, subpasses), convert(Vector{_SubpassDependency}, dependencies), fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-RenderPass(device::Device, attachments::AbstractArray{<:AttachmentDescription2}, subpasses::AbstractArray{<:SubpassDescription2}, dependencies::AbstractArray{<:SubpassDependency2}, correlated_view_masks::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = RenderPass(device, convert(Vector{_AttachmentDescription2}, attachments), convert(Vector{_SubpassDescription2}, subpasses), convert(Vector{_SubpassDependency2}, dependencies), correlated_view_masks, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray{<:IndirectCommandsLayoutTokenNV}, stream_strides::AbstractArray{<:Integer}, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = IndirectCommandsLayoutNV(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+IndirectCommandsLayoutNV(device::Device, pipeline_bind_point::PipelineBindPoint, tokens::AbstractArray, stream_strides::AbstractArray, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = IndirectCommandsLayoutNV(device, pipeline_bind_point, convert(Vector{_IndirectCommandsLayoutTokenNV}, tokens), stream_strides, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
-DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray{<:DescriptorUpdateTemplateEntry}, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorUpdateTemplate(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
+DescriptorUpdateTemplate(device::Device, descriptor_update_entries::AbstractArray, template_type::DescriptorUpdateTemplateType, descriptor_set_layout::DescriptorSetLayout, pipeline_bind_point::PipelineBindPoint, pipeline_layout::PipelineLayout, set::Integer, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = DescriptorUpdateTemplate(device, convert(Vector{_DescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set, fun_ptr_create, fun_ptr_destroy; allocator, next, flags)
 
 SamplerYcbcrConversion(device::Device, format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = SamplerYcbcrConversion(device, format, ycbcr_model, ycbcr_range, convert(_ComponentMapping, components), x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction, fun_ptr_create, fun_ptr_destroy; allocator, next)
 
@@ -19857,7 +19857,7 @@ AccelerationStructureNV(device::Device, compacted_size::Integer, info::Accelerat
 
 DisplayModeKHR(physical_device::PhysicalDevice, display::DisplayKHR, parameters::DisplayModeParametersKHR, fun_ptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = DisplayModeKHR(physical_device, display, convert(_DisplayModeParametersKHR, parameters), fun_ptr_create; allocator, next, flags)
 
-SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray{<:Integer}, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = SwapchainKHR(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, old_swapchain)
+SwapchainKHR(device::Device, surface::SurfaceKHR, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = SwapchainKHR(device, surface, min_image_count, image_format, image_color_space, convert(_Extent2D, image_extent), image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, old_swapchain)
 
 
 function Base.getproperty(x::ClearColorValue, sym::Symbol)
