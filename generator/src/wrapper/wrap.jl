@@ -91,7 +91,7 @@ function VulkanWrapper(config::WrapperConfig)
     VulkanWrapper(
         wrap.(_spec_handles),
         [add_constructors.(_spec_handles_with_wrappable_constructors)...; add_constructors.(_spec_handles_with_wrappable_constructors; with_func_ptr=true)...],
-        [wrap.(_spec_structs); wrap.(_spec_unions, false)],
+        [wrap.(_spec_structs); wrap.(_spec_unions)],
         [add_constructor.(api_structs); add_constructors.(_spec_unions, false)...;],
         [wrap.(_spec_funcs); wrap.(_spec_funcs; with_func_ptr=true)],
         [extend_handle_constructor.(extendable_api_constructors); extend_handle_constructor.(extendable_api_constructors; with_func_ptr=true)],
@@ -101,7 +101,7 @@ function VulkanWrapper(config::WrapperConfig)
         wrap.(_spec_bitmasks),
         extend_from_vk.(filter(x -> x.is_returnedonly, _spec_structs)),
         docs,
-        [hl_wrap.(api_structs); wrap.(api_unions, true)],
+        [hl_wrap.(api_structs); hl_wrap.(api_unions)],
         [
             filter(p -> !isempty(p[:kwargs]), hl_add_constructor.(api_structs)); # do not overwrite the default constructor (leads to infinite recursion)
             add_constructors.(api_unions, true)...;

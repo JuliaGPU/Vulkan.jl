@@ -1,11 +1,21 @@
-function wrap(spec::SpecUnion, is_high_level)
-    _is_high_level = is_high_level || spec.is_returnedonly
-    name = struct_name(spec, _is_high_level)
+function wrap(spec::SpecUnion)
+    name = struct_name(spec, spec.is_returnedonly)
     Dict(
         :category => :struct,
-        :decl => :($name <: $(spec.is_returnedonly ? :ReturnedOnly : is_high_level ? :HighLevelStruct : :(VulkanStruct{false}))),
+        :decl => :($name <: $(spec.is_returnedonly ? :ReturnedOnly : :(VulkanStruct{false}))),
         :fields => [
-            :($(_is_high_level ? :data : :vks)::$(spec.name)),
+            :($(spec.is_returnedonly ? :data : :vks)::$(spec.name)),
+        ],
+    )
+end
+
+function hl_wrap(spec::SpecUnion)
+    name = struct_name(spec, true)
+    Dict(
+        :category => :struct,
+        :decl => :($name <: HighLevelStruct),
+        :fields => [
+            :(data::$(spec.name)),
         ],
     )
 end

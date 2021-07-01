@@ -1,10 +1,10 @@
-test_generated_struct(name, ex) = test_ex(hl_wrap(struct_by_name(name)), ex)
+test_hl_wrap_struct(name, ex; kwargs...) = test_hl_wrap(struct_by_name, name, ex; kwargs...)
 test_convert(name, ex) = test_ex(hl_convert(struct_by_name(name)), :($(struct_name(name))(x::$(struct_name(name, true))) = $ex))
 test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(name)), ex)
 
 @testset "High-level wrapper" begin
     @testset "Generated structs" begin
-        test_generated_struct(:VkApplicationInfo, :(
+        test_hl_wrap_struct(:VkApplicationInfo, :(
             struct ApplicationInfo <: HighLevelStruct
                 next::Any
                 application_name::String
@@ -15,7 +15,7 @@ test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(na
             end
         ))
 
-        test_generated_struct(:VkInstanceCreateInfo, :(
+        test_hl_wrap_struct(:VkInstanceCreateInfo, :(
             struct InstanceCreateInfo <: HighLevelStruct
                 next::Any
                 flags::UInt32
@@ -25,7 +25,7 @@ test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(na
             end
         ))
 
-        test_generated_struct(:VkXcbSurfaceCreateInfoKHR, :(
+        test_hl_wrap_struct(:VkXcbSurfaceCreateInfoKHR, :(
             struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
                 next::Any
                 flags::UInt32
