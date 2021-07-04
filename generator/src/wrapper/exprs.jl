@@ -80,6 +80,7 @@ function name(ex::Expr)
 end
 
 function name(p::Dict)
+    !haskey(p, :category) && return p[:name]
     @match p[:category] begin
         :struct || :enum => name(p[:decl])
         _ => p[:name]
@@ -173,8 +174,8 @@ function reconstruct_call(d::Dict; is_decl = true, with_typeassert=true)
     end
 
     call = @match (args, kwargs) begin
-        (args, []) => Expr(:call, d[:name], args...)
-        (args, kwargs) => Expr(:call, d[:name], Expr(:parameters, kwargs...), args...)
+        (args, []) => Expr(:call, name(d), args...)
+        (args, kwargs) => Expr(:call, name(d), Expr(:parameters, kwargs...), args...)
     end
     rt = get(d, :return_type, nothing)
     if isnothing(rt) || !is_decl || !with_typeassert
@@ -213,6 +214,15 @@ function reconstruct(d::Dict)
 end
 
 function to_expr(p::Dict)
-    p[:category] == :function && get(p, :relax_signature, false) && relax_function_signature!(p)
+    if p[:category] == :function
+        if haskey(p, :relax_signature)
+            val = p[:relax_signature]
+            if val isa Bool
+                val && relax_function_signature!(_ -> true, p)
+            else
+                relax_function_signature!(p[:relax_signature], p)
+            end
+        end
+    end
     reconstruct(p)
 end

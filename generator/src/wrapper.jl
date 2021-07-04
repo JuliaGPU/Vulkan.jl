@@ -53,23 +53,25 @@ export
 
     ### Utility
     is_flag,
+    is_returnedonly,
+    contains_api_structs,
+    promote_hl,
 
-    ### Low-level wrappers
-    ##### Handles
-    wrappable_constructors,
-    spec_handles_with_wrappable_constructors,
-    add_constructors,
-    extend_handle_constructor,
-    default,
-    document,
+    ### Wrapper types
+    WrapperNode,
+    Definition,
+    ConstantDefinition,
+    EnumDefinition,
+    BitmaskDefinition,
+    StructDefinition,
+    HandleDefinition,
+    Constructor,
+    Docstring,
+    MethodDefinition,
+    FromVk,
+    Convert,
+    GetProperty,
+    APIFunction,
+    exports
 
-    ##### Structs
-    add_constructor,
-    extend_from_vk,
 
-    ### High-level wrappers
-    hl_wrap,
-    hl_convert,
-    hl_convert_overload,
-    hl_add_constructor,
-    hl_document

@@ -1,4 +1,4 @@
-test_extend_from_vk(name, ex) = test_ex(extend_from_vk(struct_by_name(name)), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
+test_extend_from_vk(name, ex) = test_ex(FromVk(StructDefinition{false}(struct_by_name(name))), :(from_vk(T::Type{$(VulkanGen.remove_vk_prefix(name))}, x::$name) = $ex))
 
 @testset "Overloads" begin
     @testset "`from_vk`" begin

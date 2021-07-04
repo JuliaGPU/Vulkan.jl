@@ -1,10 +1,6 @@
-test_hl_wrap_struct(name, ex; kwargs...) = test_hl_wrap(struct_by_name, name, ex; kwargs...)
-test_convert(name, ex) = test_ex(hl_convert(struct_by_name(name)), :($(struct_name(name))(x::$(struct_name(name, true))) = $ex))
-test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(name)), ex)
-
 @testset "High-level wrapper" begin
     @testset "Generated structs" begin
-        test_hl_wrap_struct(:VkApplicationInfo, :(
+        test(StructDefinition{true}, struct_by_name, :VkApplicationInfo, :(
             struct ApplicationInfo <: HighLevelStruct
                 next::Any
                 application_name::String
@@ -15,7 +11,7 @@ test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(na
             end
         ))
 
-        test_hl_wrap_struct(:VkInstanceCreateInfo, :(
+        test(StructDefinition{true}, struct_by_name, :VkInstanceCreateInfo, :(
             struct InstanceCreateInfo <: HighLevelStruct
                 next::Any
                 flags::UInt32
@@ -25,7 +21,7 @@ test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(na
             end
         ))
 
-        test_hl_wrap_struct(:VkXcbSurfaceCreateInfoKHR, :(
+        test(StructDefinition{true}, struct_by_name, :VkXcbSurfaceCreateInfoKHR, :(
             struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
                 next::Any
                 flags::UInt32
@@ -36,12 +32,28 @@ test_hl_add_constructor(name, ex) = test_ex(hl_add_constructor(struct_by_name(na
     end
 
     @testset "Conversion to low-level structs" begin
-        test_convert(:VkApplicationInfo, :(_ApplicationInfo(x.application_version, x.engine_version, x.api_version; x.next, x.application_name, x.engine_name)))
-        test_convert(:VkInstanceCreateInfo, :(_InstanceCreateInfo(x.enabled_layer_names, x.enabled_extension_names; x.next, x.flags, application_info = convert_nonnull(_ApplicationInfo, x.application_info))))
+        test_ex(
+            Constructor(
+                StructDefinition{false}(struct_by_name(:VkApplicationInfo)),
+                StructDefinition{true}(struct_by_name(:VkApplicationInfo)),
+            ),
+            :(
+                _ApplicationInfo(x::ApplicationInfo) = _ApplicationInfo(x.application_version, x.engine_version, x.api_version; x.next, x.application_name, x.engine_name)
+            ),
+        )
+        test_ex(
+            Constructor(
+                StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo)),
+                StructDefinition{true}(struct_by_name(:VkInstanceCreateInfo)),
+            ),
+            :(
+                _InstanceCreateInfo(x::InstanceCreateInfo) = _InstanceCreateInfo(x.enabled_layer_names, x.enabled_extension_names; x.next, x.flags, application_info = convert_nonnull(_ApplicationInfo, x.application_info))
+            ),
+        )
     end
 
     @testset "Additional constructor" begin
-        test_hl_add_constructor(:VkApplicationInfo, :(
+        test(Constructor, StructDefinition{true}(StructDefinition{false}(struct_by_name(:VkApplicationInfo))), :(
             ApplicationInfo(application_version::VersionNumber, engine_version::VersionNumber, api_version::VersionNumber; next = C_NULL, application_name = "", engine_name = "") = ApplicationInfo(next, application_name, application_version, engine_name, engine_version, api_version)
         ))
     end

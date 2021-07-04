@@ -22,7 +22,11 @@ function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free = [])
 end
 
 function APIFunction(spec::SpecFunc, with_func_ptr)
-    p = init_wrapper_func(spec)
+    p = Dict(
+        :category => :function,
+        :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)),
+        :relax_signature => is_promoted,
+    )
 
     count_ptr_index = findfirst(x -> (is_length(x) || is_size(x)) && x.requirement == POINTER_REQUIRED, children(spec))
     queried_params = getindex(children(spec), findall(is_implicit_return, children(spec)))
@@ -134,7 +138,7 @@ function APIFunction(spec::CreateFunc, with_func_ptr)
         :kwargs => kwargs,
         :short => true,
         :body => body,
-        :relax_signature => false,
+        :relax_signature => is_promoted,
     )
     APIFunction(spec, with_func_ptr, p)
 end
@@ -142,6 +146,8 @@ end
 function contains_api_structs(def::Union{APIFunction,Constructor})
     any(x -> x ≠ promote_hl(x), def.p[:args])
 end
+
+is_promoted(ex) = ex == promote_hl(ex)
 
 function promote_hl(def::APIFunction)
     APIFunction(def, def.with_func_ptr, promote_hl(def.p))
@@ -158,12 +164,12 @@ function promote_hl(arg::ExprLike)
     end
     type = postwalk(type) do ex
         if ex isa Symbol && startswith(string(ex), '_')
-            Symbol(string(type)[2:end]) # remove underscore prefix
+            Symbol(string(ex)[2:end]) # remove underscore prefix
         else
             ex
         end
     end
-    new_arg = :($id::$type)
+    :($id::$type)
 end
 
 function promote_hl(p::Dict)

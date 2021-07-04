@@ -27,7 +27,11 @@ function Constructor(def::StructDefinition{false})
     spec = def.spec
     cconverted_members = getindex(children(spec), findall(is_semantic_ptr, children(spec).type))
     cconverted_ids = map(wrap_identifier, cconverted_members)
-    p = init_wrapper_func(spec)
+    p = Dict(
+        :category => :function,
+        :name => name(def),
+        :relax_signature => true,
+    )
     if needs_deps(spec)
         p[:body] = quote
             $(
@@ -45,8 +49,10 @@ function Constructor(def::StructDefinition{false})
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, children(spec))
     add_func_args!(p, spec, potential_args)
-    Constructor(spec, p)
+    Constructor(def, p)
 end
+
+StructDefinition{true}(spec::Spec) = StructDefinition{true}(StructDefinition{false}(spec))
 
 function StructDefinition{true}(def::StructDefinition{false})
     spec = def.spec

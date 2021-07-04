@@ -1,7 +1,5 @@
-test_wrap_bitmask(name, ex) = test_wrap(bitmask_by_name, name, ex)
-
 @testset "Bitmask flags" begin
-    test_wrap_bitmask(:VkQueryPipelineStatisticFlagBits, :(
+    test(BitmaskDefinition, bitmask_by_name, :VkQueryPipelineStatisticFlagBits, :(
         @bitmask_flag QueryPipelineStatisticFlag::UInt32 begin
             QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 1
             QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 2
@@ -17,7 +15,7 @@ test_wrap_bitmask(name, ex) = test_wrap(bitmask_by_name, name, ex)
         end
     ))
 
-    test_wrap_bitmask(:VkSparseMemoryBindFlagBits, :(
+    test(BitmaskDefinition, bitmask_by_name, :VkSparseMemoryBindFlagBits, :(
         @bitmask_flag SparseMemoryBindFlag::UInt32 begin
             SPARSE_MEMORY_BIND_METADATA_BIT = 1
         end

@@ -1,15 +1,3 @@
-function document(spec, p)
-    doc = @match p[:category] begin
-        :function => document_function(spec, p)
-        :struct => document_struct(spec, p)
-    end
-    sig = @match spec begin
-        ::SpecHandle => reconstruct_call(p)
-        _ => name(reconstruct(p))
-    end
-    docstring(sig, doc)
-end
-
 function Docstring(def::StructDefinition{false})
     spec = def.spec
     ext = extension(spec)
@@ -53,8 +41,6 @@ function Docstring(def::Constructor{HandleDefinition})
     Docstring(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
 end
 
-document(spec::SpecHandle) = document.(Ref(spec), add_constructors(spec))
-
 backquoted(arg) = string('`', arg, '`')
 
 function document_return_codes(spec::SpecFunc)
@@ -84,8 +70,13 @@ function append_to_argdoc!(argdocs, spec, str)
     argdocs[i] = concat_right(argdocs[i], str)
 end
 
-function Docstring(def::APIFunction)
-    p = def.p
+function Docstring(def)
+    if def isa Constructor
+        p = def.p
+        def = def.def
+    else
+        p = def.p
+    end
     spec = def.spec
     params = children(spec)
     externsync_params = filter(x -> x.is_externsync, params)
@@ -163,4 +154,4 @@ function docstring(ex, docstring)
     )
 end
 
-concat_right(pair::Pair, val) = pair.first => (pair.second * val)
+concat_right(pair, val) = pair.first => (pair.second * val)

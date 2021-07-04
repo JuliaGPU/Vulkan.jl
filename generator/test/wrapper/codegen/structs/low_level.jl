@@ -1,9 +1,6 @@
-test_wrap_struct(name, ex) = test_wrap(struct_by_name, name, ex)
-test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args...)
-
 @testset "Low-level" begin
     @testset "Definitions" begin
-        test_wrap_struct(:VkPhysicalDeviceProperties, :(
+        test(StructDefinition{false}, struct_by_name, :VkPhysicalDeviceProperties, :(
             struct PhysicalDeviceProperties <: ReturnedOnly
                 api_version::VersionNumber
                 driver_version::VersionNumber
@@ -16,18 +13,18 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
                 sparse_properties::PhysicalDeviceSparseProperties
             end))
 
-        test_wrap_struct(:VkApplicationInfo, :(
+        test(StructDefinition{false}, struct_by_name, :VkApplicationInfo, :(
             struct _ApplicationInfo <: VulkanStruct{true}
                 vks::VkApplicationInfo
                 deps::Vector{Any}
             end))
 
-        test_wrap_struct(:VkExtent2D, :(
+        test(StructDefinition{false}, struct_by_name, :VkExtent2D, :(
             struct _Extent2D <: VulkanStruct{false}
                 vks::VkExtent2D
             end))
 
-        test_wrap_struct(:VkExternalBufferProperties, :(
+        test(StructDefinition{false}, struct_by_name, :VkExternalBufferProperties, :(
             struct ExternalBufferProperties <: ReturnedOnly
                 s_type::StructureType
                 next::Ptr{Cvoid}
@@ -35,7 +32,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_wrap_struct(:VkPipelineExecutableInternalRepresentationKHR, :(
+        test(StructDefinition{false}, struct_by_name, :VkPipelineExecutableInternalRepresentationKHR, :(
             struct PipelineExecutableInternalRepresentationKHR <: ReturnedOnly
                 s_type::StructureType
                 next::Ptr{Cvoid}
@@ -47,7 +44,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_wrap_struct(:VkDescriptorSetAllocateInfo, :(
+        test(StructDefinition{false}, struct_by_name, :VkDescriptorSetAllocateInfo, :(
             struct _DescriptorSetAllocateInfo <: VulkanStruct{true}
                 vks::VkDescriptorSetAllocateInfo
                 deps::Vector{Any}
@@ -55,7 +52,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_wrap_struct(:VkAccelerationStructureBuildGeometryInfoKHR, :(
+        test(StructDefinition{false}, struct_by_name, :VkAccelerationStructureBuildGeometryInfoKHR, :(
             struct _AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
                 vks::VkAccelerationStructureBuildGeometryInfoKHR
                 deps::Vector{Any}
@@ -66,7 +63,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
     end
 
     @testset "Friendly constructors" begin
-        test_struct_add_constructor(:VkInstanceCreateInfo, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo)), :(
             function _InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
@@ -91,13 +88,13 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_struct_add_constructor(:VkSubpassSampleLocationsEXT, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkSubpassSampleLocationsEXT)), :(
             function _SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
                 _SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
             end
         ))
 
-        test_struct_add_constructor(:VkDebugUtilsMessengerCreateInfoEXT, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkDebugUtilsMessengerCreateInfoEXT)), :(
             function _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 user_data = cconvert(Ptr{Cvoid}, user_data)
@@ -107,7 +104,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_struct_add_constructor(:VkDescriptorSetAllocateInfo, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorSetAllocateInfo)), :(
             function _DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
@@ -117,7 +114,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_struct_add_constructor(:VkPipelineShaderStageCreateInfo, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkPipelineShaderStageCreateInfo)), :(
             function _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 name = cconvert(Cstring, name)
@@ -128,13 +125,13 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_struct_add_constructor(:VkDescriptorImageInfo, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorImageInfo)), :(
             function _DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::ImageLayout)
                 _DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
             end
         ))
 
-        test_struct_add_constructor(:VkDescriptorSetLayoutBinding, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorSetLayoutBinding)), :(
             function _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::DescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
                 immutable_samplers = cconvert(Ptr{VkSampler}, immutable_samplers)
                 deps = [immutable_samplers]
@@ -143,7 +140,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
             end
         ))
 
-        test_struct_add_constructor(:VkXcbSurfaceCreateInfoKHR, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkXcbSurfaceCreateInfoKHR)), :(
             function _XcbSurfaceCreateInfoKHR(connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; next = C_NULL, flags = 0)
                 next = cconvert(Ptr{Cvoid}, next)
                 connection = cconvert(Ptr{vk.xcb_connection_t}, connection)
@@ -155,7 +152,7 @@ test_struct_add_constructor(args...) = test_add_constructor(struct_by_name, args
     end
 
     @testset "Manual tweaks" begin
-        test_struct_add_constructor(:VkWriteDescriptorSet, :(
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkWriteDescriptorSet)), :(
             function _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
                 next = cconvert(Ptr{Cvoid}, next)
                 image_info = cconvert(Ptr{VkDescriptorImageInfo}, image_info)

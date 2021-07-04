@@ -80,32 +80,38 @@ function signature_type(type)
         :UInt || :UInt8 || :UInt16 || :UInt32 || :UInt64 || :Int || :Int8 || :Int16 || :Int32 || :Int64 => :Integer
         :Float16 || :Float32 || :Float64 => :Real
         :String => :AbstractString
-        :(Vector{$et}) => @match et begin
-            GuardBy(in(struct_name.([spec_structs.name; spec_unions.name]))) => :(AbstractArray{<:$(signature_type(et))})
-            _ => :AbstractArray
-        end
+        :(Vector{$et}) => begin
+            @match st = signature_type(et) begin
+                :AbstractString || :Integer || :Real => :(AbstractArray{<:$st})
+                _ => :(AbstractArray{$st})
+            end
+        end 
         t => t
     end
 end
 
 function relax_signature_type(type)
     @match type begin
-        :(AbstractArray{<:$_}) => :AbstractArray
+        :(AbstractArray{$_}) || :(AbstractArray{<:$_}) => :AbstractArray
         t => t
     end
 end
 
-function relax_function_signature!(p::Dict)
-    p[:args] = relax_function_signature(p[:args])
-    p
+function relax_function_signature!(f, p::Dict)
+    args = map(p[:args]) do arg
+        if f(arg)
+            relax_function_signature(arg)
+        else
+            arg
+        end
+    end
+    p[:args] = args
 end
 
-function relax_function_signature(args::AbstractVector)
-    map(args) do arg
-        @match arg begin
-            :($identifier::$type) => :($identifier::$(relax_signature_type(type)))
-            _ => arg
-        end
+function relax_function_signature(arg)
+    @match arg begin
+        :($identifier::$type) => :($identifier::$(relax_signature_type(type)))
+        _ => arg
     end
 end
 

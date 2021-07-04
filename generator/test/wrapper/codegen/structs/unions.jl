@@ -1,15 +1,12 @@
-test_wrap_union(name, ex) = test_wrap(union_by_name, name, ex)
-test_hl_wrap_union(name, ex) = test_hl_wrap(union_by_name, name, ex)
-
 @testset "Unions" begin
     @testset "Low-level" begin
-        test_wrap_union(:VkClearColorValue, :(
+        test(StructDefinition{false}, union_by_name, :VkClearColorValue, :(
             struct _ClearColorValue <: VulkanStruct{false}
                 vks::VkClearColorValue
             end
         ))
 
-        test_wrap_union(:VkClearValue, :(
+        test(StructDefinition{false}, union_by_name, :VkClearValue, :(
             struct _ClearValue <: VulkanStruct{false}
                 vks::VkClearValue
             end
@@ -17,13 +14,13 @@ test_hl_wrap_union(name, ex) = test_hl_wrap(union_by_name, name, ex)
     end
 
     @testset "High-level" begin
-        test_hl_wrap_union(:VkClearColorValue, :(
+        test(StructDefinition{true}, union_by_name, :VkClearColorValue, :(
             struct ClearColorValue <: HighLevelStruct
                 data::VkClearColorValue
             end
         ))
 
-        test_hl_wrap_union(:VkClearValue, :(
+        test(StructDefinition{true}, union_by_name, :VkClearValue, :(
             struct ClearValue <: HighLevelStruct
                 data::VkClearValue
             end

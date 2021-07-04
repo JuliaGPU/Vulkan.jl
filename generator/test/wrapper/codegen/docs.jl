@@ -1,17 +1,9 @@
-test_doc(generated::Dict, docstring) = @test generated[:docstring] == docstring
-
-docstring(spec::SpecFunc, _) = document(spec, wrap(spec))
-docstring(spec::SpecStruct, type::Symbol) = document(spec, type == :constructor ? add_constructor(spec) : wrap(spec))
-
-test_doc(spec, doc, type) = test_doc(docstring(spec, type), doc)
-
-hl_docstring(spec) = hl_document(spec, hl_wrap(spec))
-test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
+test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
 
 @testset "Generated documentation" begin
     @testset "Low-level structs" begin
         test_doc(
-            struct_by_name(:VkExtent2D),
+            Constructor(StructDefinition{false}(struct_by_name(:VkExtent2D))),
             """
                 _Extent2D(width::Integer, height::Integer)
 
@@ -21,11 +13,10 @@ test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
 
             API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html
             """,
-            :constructor,
         )
 
         test_doc(
-            struct_by_name(:VkInstanceCreateInfo),
+            Constructor(StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo))),
             """
                 _InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
 
@@ -38,31 +29,29 @@ test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
 
             API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
             """,
-            :constructor,
         )
 
         test_doc(
-            struct_by_name(:VkSubmitInfo2KHR),
+            Constructor(StructDefinition{false}(struct_by_name(:VkSubmitInfo2KHR))),
             """
-                _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
+                _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
 
             Extension: VK_KHR_synchronization2
 
             Arguments:
-            • `wait_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
-            • `command_buffer_infos::AbstractArray{<:_CommandBufferSubmitInfoKHR}`
-            • `signal_semaphore_infos::AbstractArray{<:_SemaphoreSubmitInfoKHR}`
+            • `wait_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}`
+            • `command_buffer_infos::AbstractArray{_CommandBufferSubmitInfoKHR}`
+            • `signal_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}`
             • `next`: defaults to `C_NULL`
             • `flags`: defaults to `0`
 
             API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
             """,
-            :constructor,
         )
     end
 
     @testset "High-level structs" begin
-        test_hl_doc(struct_by_name(:VkInstanceCreateInfo),
+        test_doc(StructDefinition{true}(struct_by_name(:VkInstanceCreateInfo)),
             """
             High-level wrapper for VkInstanceCreateInfo.
 
@@ -73,7 +62,7 @@ test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
 
     @testset "API functions" begin
         test_doc(
-            func_by_name(:vkEnumerateInstanceExtensionProperties),
+            APIFunction(func_by_name(:vkEnumerateInstanceExtensionProperties), false),
             """
                 enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
 
@@ -91,7 +80,7 @@ test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
         )
 
         test_doc(
-            func_by_name(:vkDestroyDevice),
+            APIFunction(func_by_name(:vkDestroyDevice), false),
             """
                 destroy_device(device::Device; allocator = C_NULL)::Cvoid
 
@@ -104,7 +93,7 @@ test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
         )
 
         test_doc(
-            func_by_name(:vkGetPipelineCacheData),
+            APIFunction(func_by_name(:vkGetPipelineCacheData), false),
             """
                 get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
@@ -125,9 +114,9 @@ test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
         )
 
         test_doc(
-            func_by_name(:vkWriteAccelerationStructuresPropertiesKHR),
+            APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false),
             """
-                write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
+                write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
             Extension: VK_KHR_acceleration_structure
 
@@ -138,7 +127,7 @@ test_hl_doc(spec, doc) = test_doc(hl_docstring(spec), doc)
 
             Arguments:
             • `device::Device`
-            • `acceleration_structures::AbstractArray`
+            • `acceleration_structures::AbstractArray{AccelerationStructureKHR}`
             • `query_type::QueryType`
             • `data_size::Integer`
             • `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)

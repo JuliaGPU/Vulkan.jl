@@ -71,7 +71,7 @@ function Constructor(handle::HandleDefinition, def::APIFunction)
         :kwargs => kwargs,
         :short => true,
         :body => body,
-        :relax_signature => false,
+        :relax_signature => is_promoted,
     )
     Constructor(handle, p)
 end
