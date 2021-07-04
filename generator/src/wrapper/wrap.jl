@@ -133,6 +133,8 @@ function VulkanWrapper(config::WrapperConfig)
 
     enum_converts_to_integer = [Convert(enum, enum_val_type(enum)) for enum in enums]
     enum_converts_to_enum = [Convert(enum_val_type(enum), enum) for enum in enums]
+    enum_converts_from_spec = [Convert(enum, spec_enum.name) for (enum, spec_enum) in zip(enums, f(spec_enums))]
+    enum_converts_to_spec = [Convert(spec_enum.name, enum) for (enum, spec_enum) in zip(enums, f(spec_enums))]
     struct_converts_to_ll = [Convert(T, x) for (T, x) in zip(api_structs, structs_hl)]
     union_converts_to_ll = [Convert(T, x) for (T, x) in zip(api_unions, unions_hl)]
 
@@ -154,10 +156,11 @@ function VulkanWrapper(config::WrapperConfig)
 
     api_constructor_wrappers_hl = promote_hl.(filter(contains_api_structs, api_constructor_wrappers))
     handle_constructors_hl = promote_hl.(filter(contains_api_structs, handle_constructors))
+    funcs_hl = promote_hl.(filter(contains_api_structs, funcs))
 
     VulkanWrapper(
         [
-            to_expr.(constants); to_expr.(enums); to_expr.(enum_converts_to_enum); to_expr.(enum_converts_to_integer); to_expr.(bitmasks);
+            to_expr.(constants); to_expr.(enums); to_expr.(enum_converts_to_enum); to_expr.(enum_converts_to_integer); to_expr.(enum_converts_from_spec); to_expr.(enum_converts_to_spec); to_expr.(bitmasks);
             to_expr.(unions); to_expr.(unions_hl);
         ],
         [
@@ -174,6 +177,7 @@ function VulkanWrapper(config::WrapperConfig)
             to_expr.(struct_constructors_from_hl);
             to_expr.(struct_converts_to_ll);
             to_expr.(funcs);
+            to_expr.(funcs_hl);
             to_expr.(api_constructor_wrappers);
             to_expr.(api_constructor_wrappers_hl);
             to_expr.(handle_constructors);
