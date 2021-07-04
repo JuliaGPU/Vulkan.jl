@@ -1,29 +1,33 @@
-function wrap(spec::SpecUnion)
+function StructDefinition{false}(spec::SpecUnion)
     name = struct_name(spec, spec.is_returnedonly)
-    Dict(
+    p = Dict(
         :category => :struct,
         :decl => :($name <: $(spec.is_returnedonly ? :ReturnedOnly : :(VulkanStruct{false}))),
         :fields => [
             :($(spec.is_returnedonly ? :data : :vks)::$(spec.name)),
         ],
     )
+    StructDefinition{false}(spec, p)
 end
 
-function hl_wrap(spec::SpecUnion)
+function StructDefinition{true}(def::StructDefinition{false,SpecUnion})
+    spec = def.spec
     name = struct_name(spec, true)
-    Dict(
+    p = Dict(
         :category => :struct,
         :decl => :($name <: HighLevelStruct),
         :fields => [
             :(data::$(spec.name)),
         ],
     )
+    StructDefinition{true}(spec, p)
 end
 
-function add_constructors(spec::SpecUnion, is_high_level)
-    _is_high_level = is_high_level || spec.is_returnedonly
-    name = struct_name(spec, _is_high_level)
-    supertypes = supertype_union.(spec.types, _is_high_level)
+function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
+    spec = def.spec
+    is_high_level = HL || spec.is_returnedonly
+    name = struct_name(spec, is_high_level)
+    supertypes = supertype_union.(spec.types, is_high_level)
     sig_types = map(zip(spec.types, supertypes)) do (type, supertype)
         if count(==(supertype), supertypes) > 1
             type
@@ -38,7 +42,7 @@ function add_constructors(spec::SpecUnion, is_high_level)
     map(zip(spec.types, sig_types, spec.fields)) do (type, sig_type, field)
         var = wrap_identifier(field)
         call = type in spec_unions.name ? :($var.data) : var
-        Dict(
+        p = Dict(
             :category => :function,
             :name => name,
             :args => [:($var::$sig_type)],
@@ -47,24 +51,23 @@ function add_constructors(spec::SpecUnion, is_high_level)
             ),
             :short => true,
         )
+        Constructor(def, p)
     end
 end
 
-function hl_convert(spec::SpecUnion)
-    name = struct_name(spec, false)
-    hl_name = struct_name(spec, true)
-    Dict(
+function Constructor(T::StructDefinition{false, SpecUnion}, x::StructDefinition{true, SpecUnion})
+    p = Dict(
         :category => :function,
-        :name => name,
-        :args => [:(x::$hl_name)],
-        :body => :($name(getfield(x, :data))),
+        :name => name(T),
+        :args => [:(x::$(name(x)))],
+        :body => :($(name(T))(getfield(x, :data))),
         :short => true,
     )
+    Constructor(T, p)
 end
 
-function hl_getproperty(spec::SpecUnion)
-    name = struct_name(spec, true)
-
+function GetProperty(def::StructDefinition{true, SpecUnion})
+    spec = def.spec
     itr = map(spec.fields) do field
         newfield = wrap_identifier(field)
         (:(sym === $(QuoteNode(newfield))), :(x.data.$field))
@@ -85,7 +88,7 @@ function hl_getproperty(spec::SpecUnion)
         :category => :function,
         :name => :(Base.getproperty),
         :args => [
-            :(x::$name),
+            :(x::$(name(def))),
             :(sym::Symbol),
         ],
         :body => body,

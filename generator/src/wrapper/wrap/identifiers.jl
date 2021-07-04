@@ -62,6 +62,7 @@ function struct_name(sym::Symbol, is_high_level = false)
     spec = struct_by_name(sym)
     if isnothing(spec)
         spec = union_by_name(sym)
+        is_high_level |= spec.is_returnedonly
     elseif isnothing(spec)
         spec = handle_by_name(sym)
     end

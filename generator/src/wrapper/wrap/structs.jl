@@ -1,4 +1,4 @@
-function wrap(spec::SpecStruct)
+function StructDefinition{false}(spec::SpecStruct)
     p = Dict(
         :category => :struct,
         :decl => :(
@@ -20,10 +20,11 @@ function wrap(spec::SpecStruct)
         end
     end
 
-    p
+    StructDefinition{false}(spec, p)
 end
 
-function add_constructor(spec::SpecStruct)
+function Constructor(def::StructDefinition{false})
+    spec = def.spec
     cconverted_members = getindex(children(spec), findall(is_semantic_ptr, children(spec).type))
     cconverted_ids = map(wrap_identifier, cconverted_members)
     p = init_wrapper_func(spec)
@@ -44,10 +45,11 @@ function add_constructor(spec::SpecStruct)
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, children(spec))
     add_func_args!(p, spec, potential_args)
-    p
+    Constructor(spec, p)
 end
 
-function hl_wrap(spec::SpecStruct)
+function StructDefinition{true}(def::StructDefinition{false})
+    spec = def.spec
     @assert !spec.is_returnedonly
     p = Dict(
         :category => :struct,
@@ -63,16 +65,17 @@ function hl_wrap(spec::SpecStruct)
         end
         push!(p[:fields], :($(wrap_identifier(member))::$T))
     end
-    p
+    StructDefinition{true}(spec, p)
 end
 
 drop_field(x::Spec) = drop_arg(x) || x.name == :sType
 
-function hl_convert(spec::SpecStruct)
+function Constructor(T::StructDefinition{false}, x::StructDefinition{true})
+    spec = T.spec
     p = Dict(
         :category => :function,
-        :name => struct_name(spec),
-        :args => [:(x::$(struct_name(spec, true)))],
+        :name => name(T),
+        :args => [:(x::$(name(x)))],
         :short => true,
     )
     args = Expr[]
@@ -80,17 +83,17 @@ function hl_convert(spec::SpecStruct)
     for member in filter(!drop_field, children(spec))
         id = wrap_identifier(member)
         id_deref = :(x.$id)
-        T = hl_type(member)
-        _T = @match innermost_type(T) begin
-            GuardBy(is_hl) => @match T begin
+        Tsym = hl_type(member)
+        _Tsym = @match innermost_type(Tsym) begin
+            GuardBy(is_hl) => @match Tsym begin
                 :(Vector{$T}) => :(Vector{$(Symbol(:_, T))})
                 :(NTuple{$N,$T}) => :(NTuple{$N,$(Symbol(:_, T))})
-                ::Symbol => Symbol(:_, T)
-                _ => error("Unhandled conversion for type $T")
+                ::Symbol => Symbol(:_, Tsym)
+                _ => error("Unhandled conversion for type $Tsym")
             end
             _ => nothing
         end
-        ex = isnothing(_T) ? id_deref : :(convert_nonnull($_T, $id_deref))
+        ex = isnothing(_Tsym) ? id_deref : :(convert_nonnull($_Tsym, $id_deref))
         if is_optional(member)
             push!(kwargs, ex == id_deref ? ex : Expr(:kw, id, ex))
         else
@@ -98,24 +101,25 @@ function hl_convert(spec::SpecStruct)
         end
     end
     p[:body] = reconstruct_call(Dict(:name => p[:name], :args => args, :kwargs => kwargs))
-    p
+    Constructor(T, p)
 end
 
-function hl_convert_overload(spec)
+function Convert(T::StructDefinition{false}, x::StructDefinition{true})
     p = Dict(
         :category => :function,
         :name => :convert,
-        :args => [:(T::Type{$(struct_name(spec))}), :(x::$(struct_name(spec, true)))],
+        :args => [:(T::Type{$(name(T))}), :(x::$(name(x)))],
         :body => :(T(x)),
         :short => true,
     )
+    Convert(T, x, p)
 end
 
-function hl_add_constructor(spec::SpecStruct)
-    name = struct_name(spec, true)
+function Constructor(def::StructDefinition{true})
+    spec = def.spec
     p = Dict(
         :category => :function,
-        :name => name,
+        :name => name(def),
         :args => [],
         :kwargs => [],
         :short => true,
@@ -131,8 +135,8 @@ function hl_add_constructor(spec::SpecStruct)
         end
         push!(args, id)
     end
-    p[:body] = reconstruct_call(Dict(:name => name, :args => args))
-    p
+    p[:body] = reconstruct_call(Dict(:name => p[:name], :args => args))
+    Constructor(def, p)
 end
 
 function hl_default(member::SpecStructMember)

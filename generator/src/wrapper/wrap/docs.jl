@@ -10,6 +10,49 @@ function document(spec, p)
     docstring(sig, doc)
 end
 
+function Docstring(def::StructDefinition{false})
+    spec = def.spec
+    ext = extension(spec)
+    doc = string(
+        """
+        Minimalistic wrapper for $(spec.name).
+        """,
+        !isnothing(ext) ? """
+
+        Extension: $(ext.name)
+        """ : "",
+        """
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+        """,
+    )
+    Docstring(def, docstring(name(def), doc))
+end
+
+function Docstring(def::StructDefinition{true})
+    spec = def.spec
+    ext = extension(spec)
+    doc = string(
+        """
+        High-level wrapper for $(spec.name).
+        """,
+        !isnothing(ext) ? """
+
+        Extension: $(ext.name)
+        """ : "",
+        """
+
+        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+        """,
+    )
+    Docstring(def, docstring(name(def), doc))
+end
+
+function Docstring(def::Constructor{HandleDefinition})
+    doc = string(' '^4, reconstruct_call(def.p), '\n'^2)
+    Docstring(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
+end
+
 document(spec::SpecHandle) = document.(Ref(spec), add_constructors(spec))
 
 backquoted(arg) = string('`', arg, '`')
@@ -36,16 +79,14 @@ end
 document_return_codes(spec::SpecHandle) = document_return_codes(add_constructor(spec))
 document_return_codes(spec::SpecStruct) = ""
 
-function document_function(spec::SpecHandle, p)
-    string(' '^4, reconstruct_call(p), '\n'^2)
-end
-
 function append_to_argdoc!(argdocs, spec, str)
     i = findfirst(==(wrap_identifier(spec)), first.(argdocs))
     argdocs[i] = concat_right(argdocs[i], str)
 end
 
-function document_function(spec, p)
+function Docstring(def::APIFunction)
+    p = def.p
+    spec = def.spec
     params = children(spec)
     externsync_params = filter(x -> x.is_externsync, params)
     argdocs = document_arguments(p)
@@ -81,7 +122,7 @@ function document_function(spec, p)
 
     ext = extension(spec)
 
-    string(
+    doc = string(
         """
             $(reconstruct_call(p))
         """,
@@ -97,6 +138,7 @@ function document_function(spec, p)
         """,
         extra,
     )
+    Docstring(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
 end
 
 function document_arguments(p)
@@ -113,50 +155,12 @@ function document_arguments(p)
     end
 end
 
-function document_struct(spec, p)
-    ext = extension(spec)
-    string(
-        """
-        Minimalistic wrapper for $(spec.name).
-        """,
-        !isnothing(ext) ? """
-
-        Extension: $(ext.name)
-        """ : "",
-        """
-
-        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
-        """,
-    )
-end
-
-function hl_document_struct(spec, p)
-    ext = extension(spec)
-    string(
-        """
-        High-level wrapper for $(spec.name).
-        """,
-        !isnothing(ext) ? """
-
-        Extension: $(ext.name)
-        """ : "",
-        """
-
-        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
-        """,
-    )
-end
-
-function docstring(name, docstring)
+function docstring(ex, docstring)
     Dict(
         :category => :doc,
-        :ex => name,
+        :ex => resolve_types(ex),
         :docstring => docstring,
     )
-end
-
-function hl_document(spec::Union{SpecStruct, SpecUnion}, p)
-    docstring(name(reconstruct(p)), hl_document_struct(spec, p))
 end
 
 concat_right(pair::Pair, val) = pair.first => (pair.second * val)

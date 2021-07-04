@@ -418,7 +418,10 @@ function extension(name::Symbol)
     idx = findfirst(x -> name in x.symbols, spec_extensions)
     !isnothing(idx) ? spec_extensions[idx] : nothing
 end
+
 extension(spec::Spec) = extension(spec.name)
+extension(spec::CreateFunc) = extension(spec.func)
+extension(spec::DestroyFunc) = extension(spec.func)
 
 is_core(spec) = isnothing(extension(spec))
 

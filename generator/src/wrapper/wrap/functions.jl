@@ -21,7 +21,7 @@ function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free = [])
     end
 end
 
-function wrap(spec::SpecFunc; with_func_ptr = false)
+function APIFunction(spec::SpecFunc, with_func_ptr)
     p = init_wrapper_func(spec)
 
     count_ptr_index = findfirst(x -> (is_length(x) || is_size(x)) && x.requirement == POINTER_REQUIRED, children(spec))
@@ -97,7 +97,7 @@ function wrap(spec::SpecFunc; with_func_ptr = false)
 
     add_func_args!(p, spec, args; with_func_ptr)
     p[:return_type] = wrap_return_type(spec, ret_type)
-    p
+    APIFunction(spec, with_func_ptr, p)
 end
 
 """
@@ -105,10 +105,10 @@ Extend functions that create (or allocate) one or several handles,
 by exposing the parameters of the associated CreateInfo structures.
 `spec` must have one or several CreateInfo arguments.
 """
-function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
-    p_func = wrap(spec.func)
+function APIFunction(spec::CreateFunc, with_func_ptr)
+    p_func = APIFunction(spec.func, false).p
     @assert !isnothing(spec.create_info_param) "Cannot extend handle constructor with no create info parameter."
-    p_info = add_constructor(spec.create_info_struct)
+    p_info = Constructor(StructDefinition{false}(spec.create_info_struct)).p
 
     args = [p_func[:args]; p_info[:args]]
     kwargs = [p_func[:kwargs]; p_info[:kwargs]]
@@ -117,7 +117,7 @@ function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
     info_index = findfirst(==(spec.create_info_param), filter(!is_optional, children(spec.func)))
     deleteat!(args, info_index)
 
-    func_call_args = Vector{Any}(name.(p_func[:args]))
+    func_call_args::Vector{ExprLike} = name.(p_func[:args])
     func_call_args[info_index] = info_expr
 
     if with_func_ptr
@@ -127,52 +127,55 @@ function extend_handle_constructor(spec::CreateFunc; with_func_ptr = false)
 
     body = reconstruct_call(Dict(:name => p_func[:name], :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
 
-    Dict(
+    p = Dict(
         :category => :function,
         :name => p_func[:name],
         :args => args,
         :kwargs => kwargs,
         :short => true,
         :body => body,
-        :relax_signature => true,
+        :relax_signature => false,
     )
+    APIFunction(spec, with_func_ptr, p)
 end
 
-struct_name_from_ll(name) = Symbol(string(name)[2:end]) # remove underscore prefix
+function contains_api_structs(def::Union{APIFunction,Constructor})
+    any(x -> x ≠ promote_hl(x), def.p[:args])
+end
 
-hl_api_funcs_overload(spec::SpecFunc, with_func_ptr) = hl_api_funcs_overload(wrap(spec; with_func_ptr))
-hl_api_funcs_overload(spec::CreateFunc, with_func_ptr) = hl_api_funcs_overload(extend_handle_constructor(spec; with_func_ptr))
-hl_api_funcs_overloads(spec::SpecHandle, with_func_ptr) = hl_api_funcs_overload.(add_constructors(spec; with_func_ptr))
+function promote_hl(def::APIFunction)
+    APIFunction(def, def.with_func_ptr, promote_hl(def.p))
+end
 
-function hl_api_funcs_overload(p::AbstractDict)
-    api_structs = filter(x -> !x.is_returnedonly, spec_structs)
-    ll_api_structs = struct_name.(api_structs)
-    modified_args = Dict{ExprLike,ExprLike}()
-    args = map(p[:args]) do arg
-        id, type = @match arg begin
-            :($id::$t) => (id, t)
-            _ => return arg
-        end
-        type = postwalk(type) do ex
-            if ex isa Symbol && ex in ll_api_structs
-                struct_name_from_ll(ex)
-            else
-                ex
-            end
-        end
-        new_arg = :($id::$type)
-        if arg ≠ new_arg
-            modified_args[arg] = new_arg
-        end
-        new_arg
+function promote_hl(def::Constructor)
+    Constructor(def, promote_hl(def.p))
+end
+
+function promote_hl(arg::ExprLike)
+    id, type = @match arg begin
+        :($id::$t) => (id, t)
+        _ => return arg
     end
-    !isempty(modified_args) || return nothing
+    type = postwalk(type) do ex
+        if ex isa Symbol && startswith(string(ex), '_')
+            Symbol(string(type)[2:end]) # remove underscore prefix
+        else
+            ex
+        end
+    end
+    new_arg = :($id::$type)
+end
+
+function promote_hl(p::Dict)
+    args = promote_hl.(p[:args])
+    modified_args = [arg for (arg, new_arg) in zip(p[:args], args) if arg ≠ new_arg]
+    !isempty(modified_args) || error("Cannot define high-level function for $(reconstruct_call(p)): there are no arguments to adjust, so the low-level function is enough.")
     call_args = map(p[:args]) do arg
         id, type = @match arg begin
             :($id::$t) => (id, t)
             id => (id, nothing)
         end
-        if haskey(modified_args, arg)
+        if arg in modified_args
             T = @match type begin
                 :(AbstractArray{<:$t}) => :(Vector{$t})
                 t => t
@@ -182,7 +185,7 @@ function hl_api_funcs_overload(p::AbstractDict)
             id
         end
     end
-    Dict(
+    p = Dict(
         :category => :function,
         :name => p[:name],
         :args => args,

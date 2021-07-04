@@ -58,15 +58,15 @@ end
 
 function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, parent_handle::SpecHandle, parent_ex, destroy::Bool, with_func_ptr)
     @match ex begin
-        :($f($v[])) => :($f($v[], $(!destroy ? :identity : destructor(handle; with_func_ptr)), $parent_ex))
-        :($f.($v)) => :($f.($v, $(!destroy ? :identity : destructor(handle; with_func_ptr)), $parent_ex))
+        :($f($v[])) => :($f($v[], $(!destroy ? :identity : destructor(handle, with_func_ptr)), $parent_ex))
+        :($f.($v)) => :($f.($v, $(!destroy ? :identity : destructor(handle, with_func_ptr)), $parent_ex))
     end
 end
 
 function wrap_implicit_handle_return(handle::SpecHandle, ex::Expr, destroy::Bool, with_func_ptr)
     @match ex begin
-        :($f($v[])) => :($f($v[], $(!destroy ? :identity : destructor(handle; with_func_ptr))))
-        :($f.($v)) => :($f.($v, $(!destroy ? :identity : destructor(handle; with_func_ptr))))
+        :($f($v[])) => :($f($v[], $(!destroy ? :identity : destructor(handle, with_func_ptr))))
+        :($f.($v)) => :($f.($v, $(!destroy ? :identity : destructor(handle, with_func_ptr))))
     end
 end
 

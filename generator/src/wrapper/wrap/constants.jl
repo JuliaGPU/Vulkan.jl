@@ -3,12 +3,13 @@ const excluded_constants = [
     "VK_FALSE",
 ]
 
-function wrap(spec::SpecConstant)
-    Dict(
+function ConstantDefinition(spec::SpecConstant)
+    p = Dict(
         :category => :const,
         :name => remove_vk_prefix(spec.name),
         :value => spec.name,
     )
+    ConstantDefinition(spec, p)
 end
 
 function include_constant(spec::SpecConstant)

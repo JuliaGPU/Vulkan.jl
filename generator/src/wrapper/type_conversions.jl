@@ -81,8 +81,8 @@ function signature_type(type)
         :Float16 || :Float32 || :Float64 => :Real
         :String => :AbstractString
         :(Vector{$et}) => @match et begin
-            GuardBy(in(remove_vk_prefix.(spec_handles.name))) => :AbstractArray
-            _ => :(AbstractArray{<:$(signature_type(et))})
+            GuardBy(in(struct_name.([spec_structs.name; spec_unions.name]))) => :(AbstractArray{<:$(signature_type(et))})
+            _ => :AbstractArray
         end
         t => t
     end

@@ -1,43 +1,89 @@
-struct VulkanWrapper
-    handles                  ::Vector{Expr}
-    handle_constructors      ::Vector{Expr}
-    structs                  ::Vector{Expr}
-    struct_constructors      ::Vector{Expr}
-    api_funcs                ::Vector{Expr}
-    api_constructor_overloads::Vector{Expr}
-    enums                    ::Vector{Expr}
-    enum_converts            ::Vector{Expr}
-    constants                ::Vector{Expr}
-    bitmasks                 ::Vector{Expr}
-    from_vk_overloads        ::Vector{Expr}
-    docs                     ::Vector{Expr}
-    hl_structs               ::Vector{Expr}
-    hl_struct_constructors   ::Vector{Expr}
-    hl_struct_converts       ::Vector{Expr}
-    hl_convert_overloads     ::Vector{Expr}
-    hl_api_funcs_overloads   ::Vector{Expr}
-    hl_union_getproperty     ::Vector{Expr}
-    hl_docs                  ::Vector{Expr}
+abstract type WrapperNode end
+
+struct Definition{S<:Spec} <: WrapperNode
+    spec::S
+    p::Dict
 end
 
-function VulkanWrapper(ds::Vector...)
-    exs::NTuple{length(fieldtypes(VulkanWrapper)),Vector{Expr}} = map(ds) do d
-        map(resolve_types ∘ to_expr, d)
+const EnumDefinition = Definition{SpecEnum}
+const BitmaskDefinition = Definition{SpecBitmask}
+const ConstantDefinition = Definition{SpecConstant}
+
+struct StructDefinition{HL,S<:Union{SpecStruct,SpecUnion}} <: WrapperNode
+    spec::S
+    p::Dict
+end
+
+StructDefinition{T}(spec, p) where {T} = StructDefinition{T,typeof(spec)}(spec, p)
+
+is_returnedonly(spec::Spec) = spec.is_returnedonly
+is_returnedonly(def::WrapperNode) = is_returnedonly(def.spec)
+
+struct HandleDefinition <: WrapperNode
+    spec::SpecHandle
+    p::Dict
+end
+
+struct Constructor{S} <: WrapperNode
+    def::S
+    p::Dict
+end
+
+struct Docstring{W<:WrapperNode} <: WrapperNode
+    def::W
+    p::Dict
+end
+
+abstract type MethodDefinition <: WrapperNode end
+
+struct FromVk{S} <: MethodDefinition
+    spec::S
+    p::Dict
+end
+
+struct Convert{A,B} <: MethodDefinition
+    T::A
+    x::B
+    p::Dict
+end
+
+struct GetProperty{D} <: MethodDefinition
+    def::D
+    p::Dict
+end
+
+struct APIFunction{S} <: MethodDefinition
+    spec::S
+    with_func_ptr::Bool
+    p::Dict
+end
+
+to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
+to_expr(def::Union{Docstring, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
+
+name(def::WrapperNode) = name(def.p)
+
+function exports(def::WrapperNode)
+    @match n = name(def) begin
+        ::Symbol => n
+        :($_.$n) => n
     end
-
-    VulkanWrapper(exs...)
 end
 
-Base.show(io::IO, vw::VulkanWrapper) = print(
-    io,
-    "VulkanWrapper(#defs=",
-    sum(map(length, (getproperty(vw, prop) for prop in fieldnames(typeof(vw))))),
-    ')',
-)
+exports(def::Union{EnumDefinition, BitmaskDefinition}) = [name(def); name.(def.p[:values])]
+
+struct VulkanWrapper
+    independent::Vector{Expr}
+    interdependent::Vector{Expr}
+    dependent::Vector{Expr}
+    exports::Vector{Symbol}
+    function VulkanWrapper(independent::Vector{Expr}, interdependent::Vector{Expr}, dependent::Vector{Expr}, exports::Vector{Symbol})
+        new(independent, interdependent, dependent, unique(exports))
+    end
+end
 
 include("wrap/classification.jl")
 include("wrap/identifiers.jl")
-include("wrap/unions.jl")
 include("wrap/defaults.jl")
 include("wrap/call.jl")
 include("wrap/return.jl")
@@ -45,77 +91,101 @@ include("wrap/decl.jl")
 include("wrap/initialization.jl")
 include("wrap/parent.jl")
 
-include("wrap/bitmasks.jl")
-include("wrap/enums.jl")
 include("wrap/constants.jl")
-include("wrap/overloads.jl")
-include("wrap/structs.jl")
-include("wrap/functions.jl")
+include("wrap/enums.jl")
+include("wrap/bitmasks.jl")
 include("wrap/handles.jl")
+include("wrap/structs.jl")
+include("wrap/unions.jl")
+include("wrap/functions.jl")
+include("wrap/overloads.jl")
+include("wrap/docs.jl")
 
 function VulkanWrapper(config::WrapperConfig)
-
-    # filter out specification elements
     f = filter_specs(config)
-    _spec_funcs = f(spec_funcs)
-    _spec_structs = f(spec_structs)
-    _spec_handles = f(spec_handles)
-    _spec_handles_with_wrappable_constructors = f(spec_handles_with_wrappable_constructors)
-    _spec_constants = f(spec_constants)
-    _spec_enums = f(spec_enums)
-    _spec_bitmasks = f(spec_bitmasks)
-    _spec_unions = f(spec_unions)
 
-    api_structs = filter(x -> !x.is_returnedonly, _spec_structs)
-    api_unions = filter(x -> !x.is_returnedonly, _spec_unions)
-    extendable_api_constructors = collect(filter([create_funcs.(_spec_handles_with_wrappable_constructors)...;]) do func
-        !isnothing(func.create_info_param) && !func.batch
-    end)
+    constants = ConstantDefinition.(filter(include_constant, f(spec_constants)))
+    enums = EnumDefinition.(f(spec_enums))
+    bitmasks = BitmaskDefinition.(f(spec_bitmasks))
+    handles = HandleDefinition.(f(spec_handles))
+    structs = StructDefinition{false}.(f(spec_structs))
+    api_structs = filter(!is_returnedonly, structs)
+    unions = StructDefinition{false}.(f(spec_unions))
+    api_unions = filter(!is_returnedonly, unions)
+    structs_hl = StructDefinition{true}.(api_structs)
+    unions_hl = StructDefinition{true}.(api_unions)
 
-    docs = [
-        document.(_spec_funcs, wrap.(_spec_funcs));
-        document.(api_structs, add_constructor.(api_structs));
-        document.(_spec_structs, wrap.(_spec_structs));
-        document.(_spec_unions, wrap.(_spec_unions));
-        document.(_spec_handles_with_wrappable_constructors)...;
-    ]
+    struct_constructors = Constructor.(api_structs)
+    struct_constructors_from_hl = [Constructor(T, x) for (T, x) in zip(api_structs, structs_hl)]
+    struct_constructors_hl = Constructor.(structs_hl)
 
-    hl_docs = [
-        hl_document.(api_structs, hl_wrap.(api_structs));
-        hl_document.(api_unions, hl_wrap.(api_unions));
-    ]
+    # do not overwrite the default constructor (leads to infinite recursion)
+    filter!(struct_constructors_hl) do def
+        !isempty(def.p[:kwargs])
+    end
 
-    hl_api_funcs = [
-        hl_api_funcs_overload.(_spec_funcs, false);
-        hl_api_funcs_overload.(extendable_api_constructors, false);
-        hl_api_funcs_overloads.(_spec_handles_with_wrappable_constructors, false)...;
-        hl_api_funcs_overload.(_spec_funcs, true);
-        hl_api_funcs_overload.(extendable_api_constructors, true);
-        hl_api_funcs_overloads.(_spec_handles_with_wrappable_constructors, true)...;
-    ]
+    union_constructors = [constructors.(unions)...;]
+    union_constructors_from_hl = [Constructor(T, x) for (T, x) in zip(api_unions, unions_hl)]
+    union_constructors_hl = [constructors.(unions_hl)...;]
+
+    union_getproperty_hl = GetProperty.(unions_hl)
+    from_vk = FromVk.(filter(is_returnedonly, structs))
+
+    enum_converts_to_integer = [Convert(enum, enum_val_type(enum)) for enum in enums]
+    enum_converts_to_enum = [Convert(enum_val_type(enum), enum) for enum in enums]
+    struct_converts_to_ll = [Convert(T, x) for (T, x) in zip(api_structs, structs_hl)]
+    union_converts_to_ll = [Convert(T, x) for (T, x) in zip(api_unions, unions_hl)]
+
+    funcs = [APIFunction.(f(spec_funcs), false); APIFunction.(f(spec_funcs), true)]
+
+    api_constructor_wrappers = APIFunction{CreateFunc}[]
+    handle_constructors = Constructor{HandleDefinition}[]
+    for handle in handles
+        for api_constructor in f(wrappable_constructors(handle.spec))
+            if !isnothing(api_constructor.create_info_param)
+                defs = [APIFunction(api_constructor, false); APIFunction(api_constructor, true)]
+                append!(api_constructor_wrappers, defs)
+            else
+                defs = [APIFunction(api_constructor.func, false); APIFunction(api_constructor.func, true)]
+            end
+            append!(handle_constructors, Constructor(handle, def) for def in defs)
+        end
+    end
+
+    api_constructor_wrappers_hl = promote_hl.(filter(contains_api_structs, api_constructor_wrappers))
+    handle_constructors_hl = promote_hl.(filter(contains_api_structs, handle_constructors))
 
     VulkanWrapper(
-        wrap.(_spec_handles),
-        [add_constructors.(_spec_handles_with_wrappable_constructors)...; add_constructors.(_spec_handles_with_wrappable_constructors; with_func_ptr=true)...],
-        [wrap.(_spec_structs); wrap.(_spec_unions)],
-        [add_constructor.(api_structs); add_constructors.(_spec_unions, false)...;],
-        [wrap.(_spec_funcs); wrap.(_spec_funcs; with_func_ptr=true)],
-        [extend_handle_constructor.(extendable_api_constructors); extend_handle_constructor.(extendable_api_constructors; with_func_ptr=true)],
-        wrap.(_spec_enums),
-        [convert_overload.(_spec_enums); convert_back_overload.(_spec_enums)],
-        wrap.(filter(include_constant, _spec_constants)),
-        wrap.(_spec_bitmasks),
-        extend_from_vk.(filter(x -> x.is_returnedonly, _spec_structs)),
-        docs,
-        [hl_wrap.(api_structs); hl_wrap.(api_unions)],
         [
-            filter(p -> !isempty(p[:kwargs]), hl_add_constructor.(api_structs)); # do not overwrite the default constructor (leads to infinite recursion)
-            add_constructors.(api_unions, true)...;
+            to_expr.(constants); to_expr.(enums); to_expr.(enum_converts_to_enum); to_expr.(enum_converts_to_integer); to_expr.(bitmasks);
+            to_expr.(unions); to_expr.(unions_hl);
         ],
-        [hl_convert.(api_structs); hl_convert.(api_unions)],
-        [hl_convert_overload.(api_structs); hl_convert_overload.(api_unions)],
-        filter(!isnothing, hl_api_funcs),
-        hl_getproperty.(_spec_unions),
-        hl_docs,
+        [
+            to_expr.(handles); to_expr.(structs); to_expr.(structs_hl);
+        ],
+        [
+            to_expr.(union_constructors);
+            to_expr.(union_constructors_hl);
+            to_expr.(union_constructors_from_hl);
+            to_expr.(union_converts_to_ll);
+            to_expr.(union_getproperty_hl);
+            to_expr.(struct_constructors);
+            to_expr.(struct_constructors_hl);
+            to_expr.(struct_constructors_from_hl);
+            to_expr.(struct_converts_to_ll);
+            to_expr.(funcs);
+            to_expr.(api_constructor_wrappers);
+            to_expr.(api_constructor_wrappers_hl);
+            to_expr.(handle_constructors);
+            to_expr.(handle_constructors_hl);
+            to_expr.(from_vk);
+            to_expr.(Docstring.(structs));
+            to_expr.(Docstring.(structs_hl));
+            to_expr.(Docstring.(handle_constructors));
+            to_expr.(Docstring.(funcs));
+        ],
+        Symbol[
+            exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs);
+        ]
     )
 end

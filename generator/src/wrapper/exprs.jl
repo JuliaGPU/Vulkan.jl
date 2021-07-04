@@ -79,6 +79,13 @@ function name(ex::Expr)
     end
 end
 
+function name(p::Dict)
+    @match p[:category] begin
+        :struct || :enum => name(p[:decl])
+        _ => p[:name]
+    end
+end
+
 type(ex::Expr) = @match ex begin
     :($_ <: $T) || :($_::$T) || :(::$T) => T
     _ => nothing
@@ -156,7 +163,7 @@ function deconstruct(ex::Expr)
     dict
 end
 
-function reconstruct_call(d::Dict; is_decl = true)
+function reconstruct_call(d::Dict; is_decl = true, with_typeassert=true)
     args = get(d, :args, [])
     kwargs = get(d, :kwargs, [])
 
@@ -170,7 +177,7 @@ function reconstruct_call(d::Dict; is_decl = true)
         (args, kwargs) => Expr(:call, d[:name], Expr(:parameters, kwargs...), args...)
     end
     rt = get(d, :return_type, nothing)
-    if isnothing(rt) || !is_decl
+    if isnothing(rt) || !is_decl || !with_typeassert
         call
     else
         :($call::$rt)

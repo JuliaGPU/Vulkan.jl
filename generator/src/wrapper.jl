@@ -2,7 +2,6 @@ include("wrapper/exprs.jl")
 include("wrapper/type_conversions.jl")
 include("wrapper/naming_conventions.jl")
 include("wrapper/conventions.jl")
-include("wrapper/docs.jl")
 include("wrapper/config.jl")
 include("wrapper/wrap.jl")
 

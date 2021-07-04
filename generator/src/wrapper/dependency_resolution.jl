@@ -30,6 +30,7 @@ function raw_dependencies(ex)
         end)), [p[:args], p[:kwargs]])...)
         :const => isalias(p[:name]) ? p[:value] : p[:value] isa Symbol ? p[:value] : []
         :enum => p[:type]
+        :doc => nothing
     end
     deps isa Vector ? deps : [deps]
 end

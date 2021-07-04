@@ -1,33 +1,13 @@
 function Base.write(vw::VulkanWrapper, config::WrapperConfig)
-    ordered_exprs = sort_expressions([vw.structs; vw.handles; vw.enums; vw.bitmasks; vw.hl_structs])
-    structs = filter(in(vw.structs), ordered_exprs)
-    hl_structs = filter(in(vw.hl_structs), ordered_exprs)
+    ordered_exprs = sort_expressions([vw.independent; vw.interdependent; vw.dependent])
 
     mkpath(dirname(config.destfile))
     open(config.destfile, "w+") do io
-        print_block(io, vw.constants)
-        print_block(io, vw.enums)
-        print_block(io, vw.bitmasks)
-        print_block(io, filter(in(vw.handles), ordered_exprs))
-        print_block(io, structs)
-        print_block(io, vw.struct_constructors)
-        print_block(io, vw.handle_constructors)
-        print_block(io, vw.api_constructor_overloads)
-        print_block(io, vw.from_vk_overloads)
-        print_block(io, vw.enum_converts)
-        print_block(io, vw.api_funcs)
+        print_block(io, vw.independent)
+        print_block(io, filter(in(vw.interdependent), ordered_exprs))
+        print_block(io, vw.dependent)
 
-        print_block(io, hl_structs)
-        print_block(io, vw.hl_struct_constructors)
-        print_block(io, vw.hl_struct_converts)
-        print_block(io, vw.hl_convert_overloads)
-        print_block(io, vw.hl_api_funcs_overloads)
-        print_block(io, vw.hl_union_getproperty)
-
-        print_block(io, vw.docs)
-        print_block(io, vw.hl_docs)
-
-        write_exports(io, [vw.constants; vw.enums; vw.bitmasks; vw.handles; vw.structs; vw.api_funcs; hl_structs])
+        write_exports(io, vw.exports)
     end
 end
 
@@ -63,25 +43,7 @@ spacing(cat::Symbol) = @match cat begin
     :doc => '\n'^2
 end
 
-function write_exports(io::IO, decls)
-    ignored_symbols = [:(Base.convert), :Base]
-
-    candidates = unique([exported_names.(decls)...;])
-    exported_symbols = filter(candidates) do sym
-        sym ∉ ignored_symbols && !is_vulkan_type(sym)
-    end
-
-    exports = :(export $(exported_symbols...))
-
+function write_exports(io::IO, exports)
+    exports = :(export $(exports...))
     println(io, '\n', exports)
-end
-
-function exported_names(decl)
-    @match category(decl) begin
-        :enum => begin
-            p = deconstruct(decl)
-            [p[:name]; name.(p[:values])]
-        end
-        _ => [name(decl)]
-    end
 end
