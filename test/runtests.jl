@@ -1,27 +1,38 @@
-# set libname for the loader (must be done before importing Vulkan)
-# this is mandatory in cases where the default libname used by VulkanCore does not point to a valid Vulkan library
-if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
-    import SwiftShader_jll
-    ENV["JULIA_VULKAN_LIBNAME"] = basename(SwiftShader_jll.libvulkan)
+using SafeTestsets
+
+@safetestset "Vulkan.jl" begin
+    include("base.jl")
 end
 
-using Test
-using Documenter
-using Vulkan
+# Integration tests on unregistered packages.
+# It is advised not to try to install them because
+# they have also unregistered dependencies which makes
+# it very painful to setup.
 
-# use SwiftShader for testing
-if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
-    @set_driver :SwiftShader
+const DEV_PATH = joinpath(homedir(), ".julia", "dev")
+
+if "Givre" in readdir(DEV_PATH)
+    @safetestset "Givre" begin
+        using Pkg
+        DEV_PATH = joinpath(homedir(), ".julia", "dev")
+        Pkg.activate(joinpath(DEV_PATH, "Givre"))
+        include(joinpath(DEV_PATH, "Givre", "test", "runtests.jl"))
+        GC.gc()
+        ENV["JULIA_DEBUG"] = ""
+    end
 end
 
-DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
-    using Vulkan
-    instance = unwrap(Instance([], []))
-    physical_device = first(unwrap(enumerate_physical_devices(instance)))
-end)
+# VulkanExamples and Givre both do type piracy on Vulkan.jl
+# which is incompatible with each other, affecting Givre specifically.
 
-@testset "Vulkan.jl" begin
-    include("bitmasks.jl")
-    include("api.jl")
-    doctest(Vulkan)
+if "VulkanExamples" in readdir(DEV_PATH)
+    @safetestset "VulkanExamples" begin
+        using Pkg
+        DEV_PATH = joinpath(homedir(), ".julia", "dev")
+        Pkg.activate(joinpath(DEV_PATH, "VulkanExamples"))
+        include(joinpath(DEV_PATH, "VulkanExamples", "examples", "headless", "headless.jl"))
+        GC.gc()
+        include(joinpath(DEV_PATH, "VulkanExamples", "examples", "texture", "texture_2d.jl"))
+        GC.gc()
+    end
 end

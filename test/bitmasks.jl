@@ -25,7 +25,7 @@ end
     @test BIT_A ∉ BIT_B
     @test 2 in BIT_C
     @test BIT_B in 3
-    @test_throws ErrorException("Bitwise operation not allowed between incompatible bitmasks 'FlagBits', 'FlagBits2'") BIT_A & BIT_A_2
-    @test_throws ErrorException("Operation not allowed between incompatible bitmasks 'FlagBits', 'FlagBits2'") BIT_A == BIT_A_2
-    @test_throws ErrorException("Operation not allowed between incompatible bitmasks 'FlagBits', 'FlagBits2'") BIT_A in BIT_A_2
+    @test_throws ErrorException BIT_A & BIT_A_2
+    @test_throws ErrorException BIT_A == BIT_A_2
+    @test_throws ErrorException BIT_A in BIT_A_2
 end
