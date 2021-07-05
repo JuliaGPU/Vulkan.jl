@@ -42,10 +42,10 @@ function Constructor(def::StructDefinition{false})
             )
             deps = [$((cconverted_ids)...)]
             vks = $(spec.name)($(map(vk_call, children(spec))...))
-            $(p[:name])(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
+            $(name(def))(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end
     else
-        p[:body] = :($(p[:name])($(spec.name)($(map(vk_call, children(spec))...)), $(wrap_identifier.(parent_handles(spec))...)))
+        p[:body] = :($(name(def))($(spec.name)($(map(vk_call, children(spec))...)), $(wrap_identifier.(parent_handles(spec))...)))
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, children(spec))
     add_func_args!(p, spec, potential_args)

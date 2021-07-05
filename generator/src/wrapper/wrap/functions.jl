@@ -110,8 +110,9 @@ by exposing the parameters of the associated CreateInfo structures.
 `spec` must have one or several CreateInfo arguments.
 """
 function APIFunction(spec::CreateFunc, with_func_ptr)
-    p_func = APIFunction(spec.func, false).p
     @assert !isnothing(spec.create_info_param) "Cannot extend handle constructor with no create info parameter."
+    def = APIFunction(spec.func, false)
+    p_func = def.p
     p_info = Constructor(StructDefinition{false}(spec.create_info_struct)).p
 
     args = [p_func[:args]; p_info[:args]]
@@ -126,10 +127,10 @@ function APIFunction(spec::CreateFunc, with_func_ptr)
 
     if with_func_ptr
         append!(args, func_ptr_args(spec.func))
-        append!(func_call_args, name.(func_ptrs(spec.func)))
+        append!(func_call_args, func_ptrs(spec.func))
     end
 
-    body = reconstruct_call(Dict(:name => p_func[:name], :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
+    body = reconstruct_call(Dict(:name => name(def), :args => func_call_args, :kwargs => name.(p_func[:kwargs])))
 
     p = Dict(
         :category => :function,

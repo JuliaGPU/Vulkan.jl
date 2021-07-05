@@ -32,7 +32,6 @@ function Convert(T, def::EnumDefinition)
     Convert(T, def, p)
 end
 
-enum_type(def::EnumDefinition) = enum_type(def.spec)
 enum_type(spec::Spec) = enum_type(spec.name)
 enum_type(type) = remove_vk_prefix(type)
 

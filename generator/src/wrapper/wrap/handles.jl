@@ -12,29 +12,30 @@ function wrappable_constructors(handle::SpecHandle)::Vector{CreateFunc}
     end
 end
 
-const spec_handles_with_wrappable_constructors = filter(x -> !isempty(wrappable_constructors(x)), spec_handles)
+handle_type(spec::SpecHandle) = handle_type(spec.name)
+handle_type(type) = remove_vk_prefix(type)
 
 function HandleDefinition(spec::SpecHandle)
     d = Dict(
         :category => :struct,
-        :decl => :($(remove_vk_prefix(spec.name)) <: Handle),
+        :decl => :($(handle_type(spec)) <: Handle),
         :is_mutable => true,
         :fields => [:(vks::$(spec.name)), :(refcount::RefCounter), :destructor],
     )
 
     if !isnothing(spec.parent)
         id = wrap_identifier(handle_by_name(spec.parent))
-        pdecl = :($id::$(remove_vk_prefix(spec.parent)))
+        pdecl = :($id::$(handle_type(spec.parent)))
         insert!(d[:fields], 2, pdecl)
         d[:constructors] = [
             :(
-                $(remove_vk_prefix(spec.name))(vks::$(spec.name), $pdecl, refcount::RefCounter) =
+                $(handle_type(spec))(vks::$(spec.name), $pdecl, refcount::RefCounter) =
                     new(vks, $id, refcount, undef)
             ),
         ]
     else
         d[:constructors] =
-            [:($(remove_vk_prefix(spec.name))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef))]
+            [:($(handle_type(spec))(vks::$(spec.name), refcount::RefCounter) = new(vks, refcount, undef))]
     end
 
     HandleDefinition(spec, d)
@@ -61,14 +62,13 @@ function destructor(handle::SpecHandle, with_func_ptr = false)
 end
 
 function Constructor(handle::HandleDefinition, def::APIFunction)
-    args, kwargs = def.p[:args], def.p[:kwargs]
     body = :(unwrap($(reconstruct_call(def.p; is_decl = false))))
 
     p = Dict(
         :category => :function,
         :name => name(handle),
-        :args => args,
-        :kwargs => kwargs,
+        :args => def.p[:args],
+        :kwargs => def.p[:kwargs],
         :short => true,
         :body => body,
         :relax_signature => is_promoted,
