@@ -10211,6 +10211,84 @@ struct WriteDescriptorSet <: HighLevelStruct
 end
 
 
+parent(physical_device::PhysicalDevice) = physical_device.instance
+
+parent(device::Device) = device.physical_device
+
+parent(queue::Queue) = queue.device
+
+parent(command_buffer::CommandBuffer) = command_buffer.command_pool
+
+parent(memory::DeviceMemory) = memory.device
+
+parent(command_pool::CommandPool) = command_pool.device
+
+parent(buffer::Buffer) = buffer.device
+
+parent(buffer_view::BufferView) = buffer_view.device
+
+parent(image::Image) = image.device
+
+parent(image_view::ImageView) = image_view.device
+
+parent(shader_module::ShaderModule) = shader_module.device
+
+parent(pipeline::Pipeline) = pipeline.device
+
+parent(pipeline_layout::PipelineLayout) = pipeline_layout.device
+
+parent(sampler::Sampler) = sampler.device
+
+parent(descriptor_set::DescriptorSet) = descriptor_set.descriptor_pool
+
+parent(descriptor_set_layout::DescriptorSetLayout) = descriptor_set_layout.device
+
+parent(descriptor_pool::DescriptorPool) = descriptor_pool.device
+
+parent(fence::Fence) = fence.device
+
+parent(semaphore::Semaphore) = semaphore.device
+
+parent(event::Event) = event.device
+
+parent(query_pool::QueryPool) = query_pool.device
+
+parent(framebuffer::Framebuffer) = framebuffer.device
+
+parent(render_pass::RenderPass) = render_pass.device
+
+parent(pipeline_cache::PipelineCache) = pipeline_cache.device
+
+parent(indirect_commands_layout::IndirectCommandsLayoutNV) = indirect_commands_layout.device
+
+parent(descriptor_update_template::DescriptorUpdateTemplate) = descriptor_update_template.device
+
+parent(ycbcr_conversion::SamplerYcbcrConversion) = ycbcr_conversion.device
+
+parent(validation_cache::ValidationCacheEXT) = validation_cache.device
+
+parent(acceleration_structure::AccelerationStructureKHR) = acceleration_structure.device
+
+parent(acceleration_structure::AccelerationStructureNV) = acceleration_structure.device
+
+parent(configuration::PerformanceConfigurationINTEL) = configuration.device
+
+parent(deferred_operation::DeferredOperationKHR) = deferred_operation.device
+
+parent(private_data_slot::PrivateDataSlotEXT) = private_data_slot.device
+
+parent(display::DisplayKHR) = display.physical_device
+
+parent(mode::DisplayModeKHR) = mode.display
+
+parent(surface::SurfaceKHR) = surface.instance
+
+parent(swapchain::SwapchainKHR) = swapchain.surface
+
+parent(callback::DebugReportCallbackEXT) = callback.instance
+
+parent(messenger::DebugUtilsMessengerEXT) = messenger.instance
+
 _ClearColorValue(float32::NTuple{4, Float32}) = _ClearColorValue(VkClearColorValue(float32))
 
 _ClearColorValue(int32::NTuple{4, Int32}) = _ClearColorValue(VkClearColorValue(int32))

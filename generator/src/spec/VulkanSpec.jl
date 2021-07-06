@@ -138,6 +138,7 @@ export
     follow_constant,
     children,
     parent_spec,
+    has_parent,
     len,
     has_length,
     has_computable_length,

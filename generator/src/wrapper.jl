@@ -72,6 +72,7 @@ export
     Convert,
     GetProperty,
     APIFunction,
+    Parent,
     exports
 
 

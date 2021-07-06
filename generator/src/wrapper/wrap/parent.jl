@@ -51,3 +51,14 @@ const consumed_handles = handle_by_name.([:VkShaderModule, :VkPipelineCache, :Vk
 is_consumed(spec::SpecHandle) = spec ∈ consumed_handles
 is_consumed(name::Symbol) = is_consumed(handle_by_name(name))
 is_consumed(spec::Union{SpecFuncParam,SpecStructMember}) = is_consumed(spec.type)
+
+function Parent(def::HandleDefinition)
+    p = Dict(
+        :category => :function,
+        :name => :parent,
+        :short => true,
+        :args => [:($(wrap_identifier(def.spec))::$(name(def)))],
+        :body => :($(wrap_identifier(def.spec)).$(wrap_identifier(parent_spec(def.spec)))),
+    )
+    Parent(def, p)
+end

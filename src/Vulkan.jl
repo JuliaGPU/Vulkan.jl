@@ -5,7 +5,7 @@ using DocStringExtensions
 @reexport using VulkanCore: vk
 using .vk
 using Base: RefArray
-import Base: convert, cconvert, unsafe_convert, &, |, xor, isless, ==, typemax, in
+import Base: convert, cconvert, unsafe_convert, &, |, xor, isless, ==, typemax, in, parent
 using MLStyle
 
 @reexport using ResultTypes: unwrap, unwrap_error, iserror

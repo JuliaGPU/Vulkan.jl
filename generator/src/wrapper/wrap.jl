@@ -58,6 +58,13 @@ struct APIFunction{S} <: MethodDefinition
     p::Dict
 end
 
+struct Parent <: MethodDefinition
+    def::HandleDefinition
+    p::Dict
+end
+
+VulkanSpec.has_parent(def::HandleDefinition) = has_parent(def.spec)
+
 to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
 to_expr(def::Union{Docstring, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
 
@@ -158,6 +165,8 @@ function VulkanWrapper(config::WrapperConfig)
     handle_constructors_hl = promote_hl.(filter(contains_api_structs, handle_constructors))
     funcs_hl = promote_hl.(filter(contains_api_structs, funcs))
 
+    parent_overloads = Parent.(filter(has_parent, handles))
+
     VulkanWrapper(
         [
             to_expr.(constants); to_expr.(enums); to_expr.(enum_converts_to_enum); to_expr.(enum_converts_to_integer); to_expr.(enum_converts_from_spec); to_expr.(enum_converts_to_spec); to_expr.(bitmasks);
@@ -167,6 +176,7 @@ function VulkanWrapper(config::WrapperConfig)
             to_expr.(handles); to_expr.(structs); to_expr.(structs_hl);
         ],
         [
+            to_expr.(parent_overloads);
             to_expr.(union_constructors);
             to_expr.(union_constructors_hl);
             to_expr.(union_constructors_from_hl);
