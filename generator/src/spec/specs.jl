@@ -581,6 +581,8 @@ parent_spec(spec::SpecFuncParam) = func_by_name(parent(spec))
 parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))
 parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))
 
+parent_hierarchy(spec::SpecHandle) = isnothing(spec.parent) ? [spec.name] : [parent_hierarchy(parent_spec(spec)); spec.name]
+
 function len(spec::Union{SpecFuncParam,SpecStructMember})
     params = children(parent_spec(spec))
     params[findfirst(x -> x.name == spec.len, params)]

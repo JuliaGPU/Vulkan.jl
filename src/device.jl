@@ -68,3 +68,6 @@ function find_queue_family(physical_device::PhysicalDevice, queue_capabilities::
     end
     index - 1
 end
+
+device(device::Device)::Device = device
+device(handle::Handle)::Device = device(parent(handle))

@@ -4,6 +4,9 @@ Finalizer registration is taken care of by constructors.
 """
 abstract type Handle <: VulkanStruct{false} end
 
+Base.:(==)(x::H, y::H) where {H<:Handle} = x.vks == y.vks
+Base.hash(handle::Handle, h::UInt) = hash(handle.vks, h)
+
 Base.show(io::IO, h::Handle) = print(io, typeof(h), '(', h.vks, ')')
 
 const RefCounter = Threads.Atomic{UInt}
@@ -33,4 +36,20 @@ end
 function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent::Handle)
     increment_refcount!(parent)
     init_handle!(T(ptr, parent, RefCounter(UInt(1))), destructor, parent)
+end
+
+macro dispatch(handle, expr)
+    if @load_preference("USE_DISPATCH_TABLE", "true") == "true"
+        @match expr begin
+            :($f($(args...))) => begin
+                quote
+                    fptr = get_fptr(global_dispatcher, $(esc(handle)), $(QuoteNode(f)))
+                    $f($(esc.(args)...), fptr)
+                end
+            end
+            _ => error("Expected a function call, got $expr")
+        end
+    else
+        esc(expr)
+    end
 end

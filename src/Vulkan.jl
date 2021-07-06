@@ -47,8 +47,12 @@ end
 include("utils.jl")
 include("driver.jl")
 include("validation.jl")
+include("instance.jl")
 include("device.jl")
+include("dispatch.jl")
 include("print.jl")
+
+const global_dispatcher = APIDispatcher()
 
 export
         # Wrapper

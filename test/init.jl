@@ -1,6 +1,6 @@
-@test_throws VulkanError("failed to execute vkCreateInstance(create_info, allocator, pInstance)", ERROR_LAYER_NOT_PRESENT) Instance(["nonexistent_layer"], [])
-@test_throws VulkanError("failed to execute vkCreateInstance(create_info, allocator, pInstance)", ERROR_EXTENSION_NOT_PRESENT) Instance([], ["nonexistent_extension"])
-@test unwrap_error(create_instance([], ["nonexistent_extension"])) == VulkanError("failed to execute vkCreateInstance(create_info, allocator, pInstance)", ERROR_EXTENSION_NOT_PRESENT)
+@test_throws VulkanError Instance(["nonexistent_layer"], [])
+@test_throws VulkanError Instance([], ["nonexistent_extension"])
+@test unwrap_error(create_instance([], ["nonexistent_extension"])).code == ERROR_EXTENSION_NOT_PRESENT
 
 const instance = Instance(INSTANCE_LAYERS, INSTANCE_EXTENSIONS;
     application_info = ApplicationInfo(v"0.0.1", v"0.0.1", API_VERSION; application_name="Test", engine_name="Experimental engine"))

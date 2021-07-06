@@ -3,9 +3,9 @@
         function enumerate_physical_devices(instance::Instance)::ResultTypes.Result{Vector{PhysicalDevice},VulkanError}
             pPhysicalDeviceCount = Ref{UInt32}()
             @repeat_while_incomplete begin
-                @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
+                @check @dispatch instance vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
                 pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
-                @check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
+                @check @dispatch instance vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
             end
             PhysicalDevice.(pPhysicalDevices, identity, instance)
         end
@@ -14,7 +14,7 @@
     test_ex(APIFunction(func_by_name(:vkGetPhysicalDeviceProperties), false), :(
         function get_physical_device_properties(physical_device::PhysicalDevice)::PhysicalDeviceProperties
             pProperties = Ref{VkPhysicalDeviceProperties}()
-            vkGetPhysicalDeviceProperties(physical_device, pProperties)
+            @dispatch instance(physical_device) vkGetPhysicalDeviceProperties(physical_device, pProperties)
             from_vk(PhysicalDeviceProperties, pProperties[])
         end
     ))
@@ -22,7 +22,7 @@
     test_ex(APIFunction(func_by_name(:vkEnumerateInstanceVersion), false), :(
         function enumerate_instance_version()::ResultTypes.Result{VersionNumber,VulkanError}
             pApiVersion = Ref{UInt32}()
-            @check vkEnumerateInstanceVersion(pApiVersion)
+            @check @dispatch nothing vkEnumerateInstanceVersion(pApiVersion)
             from_vk(VersionNumber, pApiVersion[])
         end
     ))
@@ -31,9 +31,9 @@
         function enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties},VulkanError}
             pPropertyCount = Ref{UInt32}()
             @repeat_while_incomplete begin
-                @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
+                @check @dispatch nothing vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, C_NULL)
                 pProperties = Vector{VkExtensionProperties}(undef, pPropertyCount[])
-                @check vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
+                @check @dispatch nothing vkEnumerateInstanceExtensionProperties(layer_name, pPropertyCount, pProperties)
             end
             from_vk.(ExtensionProperties, pProperties)
         end
@@ -42,7 +42,7 @@
     test_ex(APIFunction(func_by_name(:vkGetGeneratedCommandsMemoryRequirementsNV), false), :(
         function get_generated_commands_memory_requirements_nv(device::Device, info::_GeneratedCommandsMemoryRequirementsInfoNV)::MemoryRequirements2
             pMemoryRequirements = Ref{VkMemoryRequirements2}()
-            vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements)
+            @dispatch device vkGetGeneratedCommandsMemoryRequirementsNV(device, info, pMemoryRequirements)
             from_vk(MemoryRequirements2, pMemoryRequirements[])
         end
     ))
@@ -54,9 +54,9 @@
         function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{PresentModeKHR},VulkanError}
             pPresentModeCount = Ref{UInt32}()
             @repeat_while_incomplete begin
-                @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
+                @check @dispatch instance(physical_device) vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
                 pPresentModes = Vector{VkPresentModeKHR}(undef, pPresentModeCount[])
-                @check vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
+                @check @dispatch instance(physical_device) vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, pPresentModes)
             end
             pPresentModes
         end
@@ -65,7 +65,7 @@
     test_ex(APIFunction(func_by_name(:vkGetRandROutputDisplayEXT), false), :(
         function get_rand_r_output_display_ext(physical_device::PhysicalDevice, dpy::Ptr{vk.Display}, rr_output::vk.RROutput)::ResultTypes.Result{DisplayKHR,VulkanError}
             pDisplay = Ref{VkDisplayKHR}()
-            @check vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, pDisplay)
+            @check @dispatch instance(physical_device) vkGetRandROutputDisplayEXT(physical_device, dpy, rr_output, pDisplay)
             DisplayKHR(pDisplay[], identity, physical_device)
         end
     ))
@@ -73,7 +73,7 @@
     test_ex(APIFunction(func_by_name(:vkRegisterDeviceEventEXT), false), :(
         function register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence,VulkanError}
             pFence = Ref{VkFence}()
-            @check vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
+            @check @dispatch device vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
             Fence(pFence[], (x->destroy_fence(device, x; allocator)), device)
         end
     ))
@@ -81,7 +81,7 @@
     test_ex(APIFunction(func_by_name(:vkCreateInstance), false), :(
         function create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Instance,VulkanError}
             pInstance = Ref{VkInstance}()
-            @check vkCreateInstance(create_info, allocator, pInstance)
+            @check @dispatch nothing vkCreateInstance(create_info, allocator, pInstance)
             Instance(pInstance[], x -> destroy_instance(x; allocator))
         end
     ))
@@ -97,7 +97,7 @@
     test_ex(APIFunction(func_by_name(:vkCreateGraphicsPipelines), false), :(
         function create_graphics_pipelines(device::Device, create_infos::AbstractArray{_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
             pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
-            @check vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
+            @check @dispatch device vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
             (Pipeline.(pPipelines, x -> destroy_pipeline(device, x; allocator), device), _return_code)
         end
     ))
@@ -105,19 +105,19 @@
     test_ex(APIFunction(func_by_name(:vkAllocateDescriptorSets), false), :(
         function allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo)::ResultTypes.Result{Vector{DescriptorSet},VulkanError}
             pDescriptorSets = Vector{VkDescriptorSet}(undef, allocate_info.vks.descriptorSetCount)
-            @check vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
+            @check @dispatch device vkAllocateDescriptorSets(device, allocate_info, pDescriptorSets)
             DescriptorSet.(pDescriptorSets, identity, getproperty(allocate_info, :descriptor_pool))
         end
     ))
 
     test_ex(APIFunction(func_by_name(:vkMergePipelineCaches), false), :(
-        merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::ResultTypes.Result{Result,VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches))
+        merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)::ResultTypes.Result{Result,VulkanError} = @check(@dispatch(device, vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches)))
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetFenceFdKHR), false), :(
         function get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int,VulkanError}
             pFd = Ref{Int}()
-            @check vkGetFenceFdKHR(device, get_fd_info, pFd)
+            @check @dispatch device vkGetFenceFdKHR(device, get_fd_info, pFd)
             pFd[]
         end
     ))
@@ -125,31 +125,31 @@
     test_ex(APIFunction(func_by_name(:vkGetDeviceGroupPeerMemoryFeatures), false), :(
         function get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)::PeerMemoryFeatureFlag
             pPeerMemoryFeatures = Ref{VkPeerMemoryFeatureFlags}()
-            vkGetDeviceGroupPeerMemoryFeatures(device, heap_index, local_device_index, remote_device_index, pPeerMemoryFeatures)
+            @dispatch device vkGetDeviceGroupPeerMemoryFeatures(device, heap_index, local_device_index, remote_device_index, pPeerMemoryFeatures)
             pPeerMemoryFeatures[]
         end
     ))
 
     test_ex(APIFunction(func_by_name(:vkUpdateDescriptorSets), false), :(
-        update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{_WriteDescriptorSet}, descriptor_copies::AbstractArray{_CopyDescriptorSet})::Cvoid = vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
+        update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{_WriteDescriptorSet}, descriptor_copies::AbstractArray{_CopyDescriptorSet})::Cvoid = @dispatch device vkUpdateDescriptorSets(device, pointer_length(descriptor_writes), descriptor_writes, pointer_length(descriptor_copies), descriptor_copies)
     ))
 
     test_ex(APIFunction(func_by_name(:vkCmdSetViewport), false), :(
-        cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{_Viewport})::Cvoid = vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
+        cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{_Viewport})::Cvoid = @dispatch device(command_buffer) vkCmdSetViewport(command_buffer, 0, pointer_length(viewports), viewports)
     ))
 
     test_ex(APIFunction(func_by_name(:vkCmdSetLineWidth), false), :(
-        cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)::Cvoid = vkCmdSetLineWidth(command_buffer, line_width)
+        cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)::Cvoid = @dispatch device(command_buffer) vkCmdSetLineWidth(command_buffer, line_width)
     ))
 
     test_ex(APIFunction(func_by_name(:vkDestroyInstance), false), :(
-        destroy_instance(instance::Instance; allocator = C_NULL)::Cvoid = vkDestroyInstance(instance, allocator)
+        destroy_instance(instance::Instance; allocator = C_NULL)::Cvoid = @dispatch instance vkDestroyInstance(instance, allocator)
     ))
 
     test_ex(APIFunction(func_by_name(:vkMapMemory), false), :(
         function map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)::ResultTypes.Result{Ptr{Cvoid},VulkanError}
             ppData = Ref{Ptr{Cvoid}}()
-            @check vkMapMemory(device, memory, offset, size, flags, ppData)
+            @check @dispatch device vkMapMemory(device, memory, offset, size, flags, ppData)
             ppData[]
         end
     ))
@@ -158,10 +158,10 @@
         function enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)::ResultTypes.Result{Tuple{Vector{PerformanceCounterKHR}, Vector{PerformanceCounterDescriptionKHR}},VulkanError}
             pCounterCount = Ref{UInt32}()
             @repeat_while_incomplete begin
-                @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
+                @check @dispatch instance(physical_device) vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
                 pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
                 pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
-                @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
+                @check @dispatch instance(physical_device) vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
             end
             (from_vk.(PerformanceCounterKHR, pCounters), from_vk.(PerformanceCounterDescriptionKHR, pCounterDescriptions))
         end
@@ -171,9 +171,9 @@
         function get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::ResultTypes.Result{Tuple{UInt,Ptr{Cvoid}},VulkanError}
             pDataSize = Ref{UInt}()
             @repeat_while_incomplete begin
-                @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, C_NULL)
+                @check @dispatch device vkGetPipelineCacheData(device, pipeline_cache, pDataSize, C_NULL)
                 pData = Libc.malloc(pDataSize[])
-                @check vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
+                @check @dispatch device vkGetPipelineCacheData(device, pipeline_cache, pDataSize, pData)
                 if _return_code == VK_INCOMPLETE
                     Libc.free(pData)
                 end
@@ -183,24 +183,24 @@
     ))
 
     test_ex(APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false), :(
-        write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError} = @check vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride)
+        write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError} = @check @dispatch device vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride)
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetQueryPoolResults), false), :(
-        get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::ResultTypes.Result{Result, VulkanError} = @check vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags)
+        get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::ResultTypes.Result{Result, VulkanError} = @check @dispatch device vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags)
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetFenceStatus), false), :(
-        get_fence_status(device::Device, fence::Fence)::ResultTypes.Result{Result, VulkanError} = @check(vkGetFenceStatus(device, fence))
+        get_fence_status(device::Device, fence::Fence)::ResultTypes.Result{Result, VulkanError} = @check(@dispatch(device, vkGetFenceStatus(device, fence)))
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetSwapchainImagesKHR), false), :(
         function get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)::ResultTypes.Result{Vector{Image}, VulkanError}
             pSwapchainImageCount = Ref{UInt32}()
             @repeat_while_incomplete begin
-                    @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL)
+                    @check @dispatch device vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL)
                     pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
-                    @check vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
+                    @check @dispatch device vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
                 end
             Image.(pSwapchainImages, identity, device)
         end

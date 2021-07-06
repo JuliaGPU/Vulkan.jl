@@ -139,6 +139,7 @@ export
     children,
     parent_spec,
     has_parent,
+    parent_hierarchy,
     len,
     has_length,
     has_computable_length,

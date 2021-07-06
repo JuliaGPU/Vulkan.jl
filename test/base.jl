@@ -5,16 +5,18 @@ if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
     ENV["JULIA_VULKAN_LIBNAME"] = basename(SwiftShader_jll.libvulkan)
 end
 
+using Test
 using Vulkan
+using Documenter
 
 # use SwiftShader for testing
 if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
     @set_driver :SwiftShader
 end
 
-using Documenter
 include("bitmasks.jl")
 include("api.jl")
+include("dispatch.jl")
 
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan

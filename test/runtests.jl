@@ -25,6 +25,7 @@ if isdir(DEV_PATH)
 
     # VulkanExamples and Givre both do type piracy on Vulkan.jl
     # which is incompatible with each other, affecting Givre specifically.
+    # Therefore Givre must run first, and can't be re-run after VulkanExamples.
 
     if "VulkanExamples" in readdir(DEV_PATH)
         @safetestset "VulkanExamples" begin

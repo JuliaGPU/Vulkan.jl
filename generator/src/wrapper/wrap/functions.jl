@@ -1,8 +1,37 @@
-wrap_api_call(spec::SpecFunc, args; with_func_ptr = false) = wrap_return(
-    :($(spec.name)($((with_func_ptr ? [args; first(func_ptrs(spec))] : args)...))),
-    spec.return_type,
-    nice_julian_type(spec.return_type),
-)
+function wrap_api_call(spec::SpecFunc, args; with_func_ptr = false)
+    ex = :($(spec.name)($((with_func_ptr ? [args; first(func_ptrs(spec))] : args)...)))
+    ex = if with_func_ptr
+        ex
+    else
+        maybe_dispatch(spec, ex)
+    end
+    wrap_return(
+        ex,
+        spec.return_type,
+        nice_julian_type(spec.return_type),
+    )
+end
+
+function maybe_dispatch(spec::SpecFunc, ex)
+    maybe_handle = !isempty(children(spec)) ? innermost_type(first(children(spec)).type) : nothing
+    use_dispatch_macro = spec.name ∉ (:vkGetInstanceProcAddr, :vkGetDeviceProcAddr)
+    use_dispatch_macro || return ex
+    if maybe_handle in spec_handles.name
+        handle = handle_by_name(maybe_handle)
+        handle_id = wrap_identifier(handle)
+        hierarchy = parent_hierarchy(handle)
+        if handle.name == :VkDevice || handle.name == :VkInstance
+            # to avoid name conflicts
+            :(@dispatch $handle_id $ex)
+        elseif :VkDevice in hierarchy
+            :(@dispatch device($handle_id) $ex)
+        elseif :VkInstance in hierarchy
+            :(@dispatch instance($handle_id) $ex)
+        end
+    else
+        :(@dispatch nothing $ex)
+    end
+end
 
 function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free = [])
     if must_repeat_while_incomplete(spec)

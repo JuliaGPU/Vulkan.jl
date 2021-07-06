@@ -3,7 +3,7 @@
         esc(default)
     end
 else
-    using Preferences:@load_preference
+    using Preferences: @load_preference
 end
 
 macro pref_log_destruction(expr)
