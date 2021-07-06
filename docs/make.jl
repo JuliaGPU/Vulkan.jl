@@ -16,7 +16,12 @@ makedocs(;
         "Home" => "index.md",
         "Introduction" => "intro.md",
         "Design" => "design.md",
-        "Features" => "features.md",
+        "Features" => [
+            "Overview" => "features/overview.md",
+            "Vulkan functions" => "features/functions.md",
+            "Handles" => "features/handles.md",
+            "Types" => "features/types.md",
+        ],
         "API" => "api.md",
         "Utility" => "utility.md",
         "Troubleshooting" => "troubleshooting.md",

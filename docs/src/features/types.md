@@ -4,69 +4,9 @@ using Vulkan
 @set_driver :SwiftShader
 ```
 
-# Features
+# Types
 
-This wrapper exposes several features aimed at simplifying the use of the Vulkan API from Julia. Some features are configurable through the recent [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl) package, see [the corresponding section](@ref preferences) for a list of available options.
-
-## Functions
-
-### Implicit return values
-
-Functions almost never directly return a value in Vulkan, and usually return either a return code or nothing. This is a limitation of C where only one value can be returned. Instead, they fill pointers with data, and it is your responsibility to initialize them before the call and dereference them afterwards. In Julia, it can be repetitive, requiring a special handling such as
-
-```julia
-pDisplay = Ref{VkDisplayKHR}()
-code = vkGetRandROutputDisplayEXT(physical_device, dpy_ref, rr_output, pDisplay) # just leave the return code
-pDisplay[]
-
-# or, showing what is actually done by the wrapper instead
-DisplayKHR(pDisplay[], identity, physical_device)
-```
-
-This particular setup is taken care of by the wrapper, so that you only need to do:
-
-```julia
-# returns a Result{DisplayKHR,VulkanError}
-display = get_rand_r_output_display_ext(physical_device, dpy_ref, rr_output)
-```
-
-The `display` variable here is a `Result` type, so you would need to `unwrap` it to get the actual `DisplayKHR` type. To know more about `unwrap` and the `Result` type see the [error handling](@ref error-handling) section.
-When there are multiple implicit return values (i.e. multiple pointers being written to), they are returned as a tuple:
-
-```julia
-# returns a Result{Tuple{UInt, Ptr{Cvoid}},VulkanError}
-actual_data_size, data = get_pipeline_cache_data(device, pipeline_cache, data_size)
-```
-
-### Enumerated arrays
-
-Sometimes, when enumerating objects or properties for example, a function may need to be called twice: a first time for returning the number of elements to be enumerated, then a second time with an initialized array of the right length to be filled with Vulkan objects:
-
-```julia
-pPhysicalDeviceCount = Ref{UInt32}(0)
-
-# get the length in pPhysicalDeviceCount
-@check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
-
-# initialize the array with the returned length
-pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
-
-@check vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
-
-# optional
-PhysicalDevices.(pPhysicalDevices, identity, instance)
-```
-
-The relevant enumeration functions are wrapped with this, so that only one call needs to be made, without worrying about creating intermediate arrays:
-
-```julia
-# returns a Result{Vector{PhysicalDevice},VulkanError}
-physical_devices = enumerate_physical_devices(instance)
-```
-
-## Types
-
-### Structures
+## Structures
 
 As the API is written in C, there are a lot of pointers to deal with and handling them is not always an easy task. With a little practice, one can figure out how to wrap function calls with `cconvert` and `unsafe_convert` provided by Julia. Those functions provide automatic conversions and `ccall` GC-roots `cconvert`ed variables to ensure that pointers will point to valid memory (by explicitly telling the compiler not to garbage-collect nor optimize away the original variable).
 
@@ -201,83 +141,6 @@ However, note that exceptions are thrown whenever the result is an error with th
 
 For more details on the `Result` type and how to handle it, please consult the [ResultTypes documentation](https://iamed2.github.io/ResultTypes.jl/stable/).
 
-## Handles
-
-### Automatic finalization
-
-Handles can be created with the API functions `vkCreate*` and `vkAllocate*`, and most of them must be destroyed after use with a `vkDestroy*` or `vkFree*`. More importantly, they must be destroyed with the same allocator and parent handle that created them. To facilitate this, new mutable handle types were defined to allow for the registration of a finalizer. Instead of having to manually specify the finalizer for each handle instance, the `create_*` and `allocate_*` wrappers automatically register the corresponding destructor.
-
-However, finalizers can be run in arbitrary order, and some handles require to be destroyed only after all their children (such as `VkDevice`s). To avoid crashes related to bad finalization execution order, a simple thread-safe reference counting system is used to make sure that a handle is destroyed **only after all its children are destroyed**.
-
-!!! note
-    If you need to construct a handle from an opaque pointer (obtained, for example, via an external library such as a `VkSurfaceKHR` from GLFW), you can use the constructor `(::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor[, parent])` as in
-
-    ```julia
-    surface_ptr = GLFW.CreateWindowSurface(instance, window)
-    SurfaceKHR(surface_ptr, x -> destroy_surface_khr(instance, x), instance)
-    ```
-
-    If you don't need to destroy the surface (for example, if the external library does it for you), then you can just pass in the `identity` function as a destructor.
-
-
-This introduces a small overhead, since the parent handle and allocator are stored in an anonymous function for each handle at creation. However, it should be minor compared to the execution time of the API destructors.
-
-There are exceptions to the described above. `CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations. Please note also that, except for these two handle types, you should **never** explicitly call the destructors, otherwise they will be destroyed twice, likely resulting in a crash.
-
-Because finalization order is the source of many Vulkan bugs, particularly when objects implicitly depend on other objects being alive, there is a [preference](@ref preferences) `LOG_DESTRUCTION` that allows you to log all destructions if set to `"true"`.
-
-### [Expose \*\[Create/Allocate\]Info arguments](@id expose-create-info-args)
-
-Handles that can only be created with a single API constructor possess an additional constructor that wraps around the generated create/allocate\* functions, building the required \*\[Create/Allocate\]Info from exposed arguments. That way, you do not have to explicitly construct this intermediate structure, which reduces boilerplate code.
-
-For example
-
-```julia
-fence = unwrap(create_fence(device, FenceCreateInfo()))
-fence_signaled = unwrap(create_fence(device, FenceCreateInfo(flags=VK_FENCE_CREATE_SIGNALED_BIT);
-                       allocator=my_allocator))
-```
-
-can be replaced with
-
-```julia
-fence = unwrap(create_fence(device))
-fence_signaled = unwrap(create_fence(device; flags=VK_FENCE_CREATE_SIGNALED_BIT, allocator=my_allocator))
-```
-
-Note that we `unwrap` the result every time, assuming that the `create_fence` function did not return any error. See the [error handling](@ref error-handling) section for more information.
-
-Furthermore, handle types have a generated constructor that exposes the same arguments as the create/allocate\* functions, but automatically unwrapping the result so you don't have to call it manually. The above can then be further reduced into
-
-```julia
-fence = Fence(device)
-fence_signaled = Fence(device, flags=VK_FENCE_CREATE_SIGNALED_BIT; allocator=my_allocator)
-```
-
-When multiple info structures are requested, only the main one is exposed
-
-```julia
-# the ApplicationInfo has to be provided manually
-instance = Instance([], []; application_info = ApplicationInfo(...))
-...
-# the array of DeviceQueueCreateInfo has to be provided manually
-device = Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
-```
-
-When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the create_\* function manually
-
-```julia
-pipelines = unwrap(create_graphics_pipelines(device, [GraphicsPipelineCreateInfo(...)]))
-command_buffers = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(
-                                           command_pool, VK_COMMAND_BUFFER_LEVEL_PRIMARY, 3)))
-```
-
-### Parent handle access
-
-Handles store their parent handle if they have one. This removes the need to have giant structures or global variables to store your handles. You can, e.g., just carry a `Pipeline` around and access its `device` field whenever you like, and the `physical_device` field of this device and so on until you reach the instance that has no parent. Therefore, you won't need to pass around all the other parent handles.
-
-It facilitates composability of Vulkan code, that is traditionally very hard because of these giant structures that are often found in applications.
-
 ## Bitmask flags
 
 In Vulkan, the value of some flags carry meaning through a bitmask structure. Bitmasks define bit values which they can be a composition of (using bitwise _and_, _or_, and _xor_ operations). However, the associated flag type is defined as a `UInt32`, which allows any value to be passed in as a flag. This opens up the door to incorrect usage that may be hard to debug. To circumvent that, every bitmask flag now has one associated type which prevents combinations with flags of other bitmask types.
@@ -306,15 +169,3 @@ UInt32(typemax(SampleCountFlag)) === UInt32(vk.VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENU
 ```
 
 All functions that were expecting a `VkSampleCountFlags` (`UInt32`) value will have their wrapped versions expect a value of type `SampleCountFlag`. Note also that the `*FLAG_BITS_MAX_ENUM` fields are removed. This value is the same for all enums and can be accessed via `typemax(T)` where `T` is a `BitMask` (e.g. `SampleCountFlag`).
-
-# [Preferences](@id preferences)
-
-Some of the above features may have configurable options that can be set via [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl).
-
-!!! warning
-    Preferences require running at least Julia 1.6. For earlier versions, these options are not customizable, and will have their default values.
-
-|    Preference     |              Description              |  Default  |
-|:-----------------:|:-------------------------------------:|:---------:|
-| `LOG_DESTRUCTION` | Log the destruction of Vulkan handles | `"false"` |
-
