@@ -9,26 +9,26 @@ drop_arg(x::Spec) = is_length(x) && !is_length_exception(x) && is_inferable_leng
 
 """
 Function pointer arguments for a handle.
-Includes one `fun_ptr_create` for the constructor (if applicable),
-and one `fun_ptr_destroy` for the destructor (if applicable).
+Includes one `fptr_create` for the constructor (if applicable),
+and one `fptr_destroy` for the destructor (if applicable).
 """
 function func_ptr_args(spec::SpecHandle)
     args = Expr[]
-    spec ∈ spec_create_funcs.handle && push!(args, :(fun_ptr_create::FunctionPtr))
-    destructor(spec) ≠ :identity && push!(args, :(fun_ptr_destroy::FunctionPtr))
+    spec ∈ spec_create_funcs.handle && push!(args, :(fptr_create::FunctionPtr))
+    destructor(spec) ≠ :identity && push!(args, :(fptr_destroy::FunctionPtr))
     args
 end
 
 """
 Function pointer arguments for a function.
 Takes the function pointers arguments of the underlying handle if it is a Vulkan constructor,
-or a unique `fun_ptr` if that's just a normal Vulkan function.
+or a unique `fptr` if that's just a normal Vulkan function.
 """
 function func_ptr_args(spec::SpecFunc)
     if spec.type ∈ [FTYPE_CREATE, FTYPE_ALLOCATE]
         func_ptr_args(create_func(spec).handle)
     else
-        [:(fun_ptr::FunctionPtr)]
+        [:(fptr::FunctionPtr)]
     end
 end
 

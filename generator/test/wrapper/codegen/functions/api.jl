@@ -48,7 +48,7 @@
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetInstanceProcAddr), false), :(get_instance_proc_addr(name::AbstractString; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name)))
-    test_ex(APIFunction(func_by_name(:vkGetInstanceProcAddr), true), :(get_instance_proc_addr(name::AbstractString, fun_ptr::FunctionPtr; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name, fun_ptr)))
+    test_ex(APIFunction(func_by_name(:vkGetInstanceProcAddr), true), :(get_instance_proc_addr(name::AbstractString, fptr::FunctionPtr; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name, fptr)))
 
     test_ex(APIFunction(func_by_name(:vkGetPhysicalDeviceSurfacePresentModesKHR), false), :(
         function get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)::ResultTypes.Result{Vector{PresentModeKHR},VulkanError}
@@ -87,10 +87,10 @@
     ))
 
     test_ex(APIFunction(func_by_name(:vkCreateDebugReportCallbackEXT), true), :(
-        function create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT,VulkanError}
+        function create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT,VulkanError}
             pCallback = Ref{VkDebugReportCallbackEXT}()
-            @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fun_ptr_create)
-            DebugReportCallbackEXT(pCallback[], (x->destroy_debug_report_callback_ext(instance, x, fun_ptr_destroy; allocator)), instance)
+            @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fptr_create)
+            DebugReportCallbackEXT(pCallback[], (x->destroy_debug_report_callback_ext(instance, x, fptr_destroy; allocator)), instance)
         end
     ))
 
@@ -212,7 +212,7 @@
         ))
 
         test_ex(APIFunction(create_func(:vkCreateDebugReportCallbackEXT), true), :(
-            create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, _DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fun_ptr_create, fun_ptr_destroy; allocator)
+            create_debug_report_callback_ext(instance::Instance, pfn_callback::FunctionPtr, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = create_debug_report_callback_ext(instance, _DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fptr_create, fptr_destroy; allocator)
             ),
         )
     end

@@ -47,7 +47,7 @@
                 APIFunction(create_func(:vkCreateDebugReportCallbackEXT), true),
             ),
             :(
-                DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fun_ptr_create::FunctionPtr, fun_ptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fun_ptr_create, fun_ptr_destroy; allocator, next, flags, user_data))
+                DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fptr_create, fptr_destroy; allocator, next, flags, user_data))
             )
         )
 

@@ -26,7 +26,7 @@ function Docstring(def::StructDefinition{true})
         """,
         !isnothing(ext) ? """
 
-        Extension: $(ext.name)
+        Extension: $(replace(string(ext.name), '_' => "\\\\_"))
         """ : "",
         """
 
@@ -119,7 +119,7 @@ function Docstring(def)
         """,
         !isnothing(ext) ? """
 
-        Extension: $(ext.name)
+        Extension: $(replace(string(ext.name), '_' => "\\\\_"))
         """ : "",
         document_return_codes(spec),
         """

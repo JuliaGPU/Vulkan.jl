@@ -50,7 +50,7 @@ function destructor(handle::SpecHandle, with_func_ptr = false)
         if isnothing(df.destroyed_param.len)
             p = APIFunction(df.func, false).p
             p_call = Dict(:name => p[:name], :args => Any[name.(p[:args])...], :kwargs => name.(p[:kwargs]))
-            with_func_ptr && push!(p_call[:args], :fun_ptr_destroy)
+            with_func_ptr && push!(p_call[:args], :fptr_destroy)
             p_call[:args][findfirst(==(remove_vk_prefix(handle.name)), type.(p[:args]))] = :x
             :(x -> $(reconstruct_call(p_call)))
         else
