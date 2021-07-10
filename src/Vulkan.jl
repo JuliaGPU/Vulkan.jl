@@ -2,8 +2,12 @@ module Vulkan
 
 using Reexport
 using DocStringExtensions
-@reexport using VulkanCore: vk
+
+using VulkanCore: vk
 using .vk
+const core = vk
+export vk, core
+
 using Base: RefArray
 import Base: convert, cconvert, unsafe_convert, &, |, xor, isless, ==, typemax, in, parent
 using MLStyle
