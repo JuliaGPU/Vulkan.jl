@@ -1,25 +1,23 @@
 using Documenter
 using Literate
-using SafeTestsets
 
 julia_files(dir) = sort(filter(endswith(".jl"), readdir(dir, join=true)))
 
-const TUTORIAL_DIR = joinpath(@__DIR__, "src", "tutorial")
-
-function generate_tutorials_md(dir)
-    for files in julia_files(dir)
-        @safetestset "$(filename)" begin
-            include(filename)
-        end
+function generate_markdowns(dir)
+    for file in julia_files(dir)
+        _file = joinpath(splitpath(file)[1:end-1]..., string('_', basename(file)))
         Literate.markdown(
-            filename,
+            file,
             dir;
             documenter = true,
         )
+        mv(file, _file)
     end
 end
 
-generate_tutorials_md(TUTORIAL_DIR)
+generate_markdowns(joinpath(@__DIR__, "src", "about"))
+generate_markdowns(joinpath(@__DIR__, "src", "tutorial"))
+generate_markdowns(joinpath(@__DIR__, "src", "howto"))
 
 if get(ENV, "JULIA_DOCUMENTER_CI", "OFF") == "ON"
     using Pkg
@@ -39,14 +37,19 @@ makedocs(;
         "Introduction" => "intro.md",
         "About" => [
             "Motivations" => "about/motivations.md",
-            "Interfacing with the C API" => "about/interfacing.md",
+            "Interfacing with the C API" => "about/_interfacing.md",
         ],
         "Tutorial" => [
             "Getting started" => "tutorial/getting_started.md",
-            "Types" => "tutorial/types.md",
-            "Vulkan functions" => "tutorial/functions.md",
-            "Error handling" => "tutorial/error_handling.md",
-            "In-depth tutorial" => "tutorial/indepth.md",
+            "Vulkan types" => "tutorial/_types.md",
+            "Vulkan functions" => "tutorial/_functions.md",
+            "Error handling" => "tutorial/_error_handling.md",
+            "Resource management" => "tutorial/_resource_management.md",
+            "In-depth tutorial" => "tutorial/_indepth.md",
+        ],
+        "How to" => [
+            "howto/preferences.md",
+            "howto/debugging.md",
         ],
         "API" => "api.md",
         "Utility" => "utility.md",

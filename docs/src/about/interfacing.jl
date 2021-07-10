@@ -1,6 +1,4 @@
-```@meta
-EditURL = "<unknown>/docs/src/about/interfacing.jl"
-```
+#=
 
 # Interfacing with the C API
 
@@ -10,7 +8,8 @@ As the API is written in C, there are a lot of pointers to deal with and handlin
 
 However, the situation gets a lot more complicated when you deal with pointers as type fields. We will look at a naive example that show how difficult it can get for a Julia developer not used to calling C code. If we wanted to create a `VkInstance`, we might be tempted to do:
 
-````@example interfacing
+=#
+
 using Vulkan.core
 
 function create_instance(app_name, engine_name)
@@ -46,8 +45,9 @@ function create_instance(app_name, engine_name)
     p_instance[]
 end
 
-# instance = create_instance("AppName", "NoEngine") # very likely to segfault
-````
+## instance = create_instance("AppName", "NoEngine") # very likely to segfault
+
+#=
 
 which will probably result in a segmentation fault. Why?
 
@@ -65,14 +65,16 @@ There are several possibilities for preserving what we may call "pointer depende
 
 Therefore, every API structure is wrapped inside another one (without the "Vk" prefix), as follows:
 
-````@example interfacing
+=#
+
 abstract type VulkanStruct{has_deps} end
 
 struct InstanceCreateInfo <: VulkanStruct{true}
     vks::VkInstanceCreateInfo # API struct
     deps::Vector{Any}         # contains all required dependencies
 end
-````
+
+#=
 
 and every structure exposes a convenient constructor that works perfectly with `String`s and mutable `AbstractArray`s. No manual `Ref`s/`cconvert`/`unsafe_convert` needed.
 
@@ -85,7 +87,4 @@ We hope that the additional `Vector{Any}` will not introduce too much overhead. 
 
 Version numbers are encoded in unsigned integers (often `UInt32`) in C. Most APIs have a specific encoding (and decoding) scheme. Ideally we want to use version numbers from Julia without having to look for this encoding or decoding function, and this has been automated for the Vulkan API.
 
----
-
-*This page was generated using [Literate.jl](https://github.com/fredrikekre/Literate.jl).*
-
+=#

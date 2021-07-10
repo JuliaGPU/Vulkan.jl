@@ -1,6 +1,4 @@
-```@meta
-EditURL = "<unknown>/docs/src/tutorial/types.jl"
-```
+#=
 
 # Vulkan types
 
@@ -44,7 +42,8 @@ Handles that can only be created with a single API constructor possess an additi
 
 For example
 
-````@example types
+=#
+
 using SwiftShader_jll # hide
 using Vulkan
 @set_driver :SwiftShader # hide
@@ -64,11 +63,9 @@ fence_signaled = unwrap(
                      FenceCreateInfo(flags=FENCE_CREATE_SIGNALED_BIT);
                    )
                  )
-````
 
-can be replaced with
+# can be replaced with
 
-````@example types
 fence = unwrap(create_fence(device))
 fence_signaled = unwrap(
                    create_fence(
@@ -76,37 +73,33 @@ fence_signaled = unwrap(
                      flags=FENCE_CREATE_SIGNALED_BIT,
                      )
                    )
-````
+
+#=
 
 Note that we `unwrap` the result every time, assuming that the `create_fence` function did not return any error. See the [error handling](@ref error-handling) section for more information.
 
 Furthermore, handle types have a generated constructor that exposes the same arguments as the create/allocate\* functions, but automatically unwrapping the result so you don't have to call it manually. The above can then be further reduced into
 
-````@example types
+=#
+
 fence = Fence(device)
 fence_signaled = Fence(
                    device,
                    flags=FENCE_CREATE_SIGNALED_BIT;
                  )
-````
 
-When multiple info structures are requested, only the main one has its fields exposed as function arguments:
+# When multiple info structures are requested, only the main one has its fields exposed as function arguments:
 
-````@example types
-# the ApplicationInfo has to be provided manually
+## the ApplicationInfo has to be provided manually
 Instance([], []; application_info = ApplicationInfo(v"0.1", v"0.1", v"1.2"))
-````
 
-Or, if an array of create infos is expected, then you will have to provide it yourself:
+# Or, if an array of create infos is expected, then you will have to provide it yourself:
 
-````@example types
-# the array of DeviceQueueCreateInfo has to be provided manually
+## the array of DeviceQueueCreateInfo has to be provided manually
 Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
-````
 
-When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the `create_*` function manually
+# When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the `create_*` function manually
 
-````@example types
 command_pool = CommandPool(device, 0)
 command_buffers = unwrap(
                     allocate_command_buffers(
@@ -118,7 +111,8 @@ command_buffers = unwrap(
                       )
                     )
                   )
-````
+
+#=
 
 ### Parent handle access
 
@@ -223,7 +217,4 @@ UInt32(typemax(SampleCountFlag)) === UInt32(core.VK_SAMPLE_COUNT_FLAG_BITS_MAX_E
 
 All functions that were expecting a `VkSampleCountFlags` (`UInt32`) value will have their wrapped versions expect a value of type `SampleCountFlag`. Furthermore, the `*FLAG_BITS_MAX_ENUM` values are removed. This value is the same for all enums and can be accessed via `typemax(T)` where `T` is a `BitMask` (e.g. `SampleCountFlag`).
 
----
-
-*This page was generated using [Literate.jl](https://github.com/fredrikekre/Literate.jl).*
-
+=#

@@ -1,12 +1,11 @@
-```@meta
-EditURL = "<unknown>/docs/src/tutorial/error_handling.jl"
-```
+#=
 
 # [Error handling](@id error-handling)
 
 Error handling is achieved via [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to avoid the large overhead introduced with `try`/`catch` blocks. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `ResultTypes.Result` (distinct from `Vulkan.Result` which is the wrapped version of `VkResult`), which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
 
-````@example error_handling
+=#
+
 using Vulkan
 
 res = create_instance([], [])
@@ -28,19 +27,16 @@ if iserror(res) # handle the error
 else # get the instance
     unwrap(res)
 end
-````
 
-Note that calling `unwrap` directly on the result will throw any contained `VulkanError` if there is one. So, if you just want to throw an exception when encountering an error, you can do
+# Note that calling `unwrap` directly on the result will throw any contained `VulkanError` if there is one. So, if you just want to throw an exception when encountering an error, you can do
 
-````@example error_handling
 unwrap(create_instance([], []))
-````
 
-Because it may be tedious to unwrap everything by hand and explicitly set the create info structures, [convenience constructors](@ref expose-create-info-args) are defined for handle types so that you can just do
+# Because it may be tedious to unwrap everything by hand and explicitly set the create info structures, [convenience constructors](@ref expose-create-info-args) are defined for handle types so that you can just do
 
-````@example error_handling
 Instance([], [])
-````
+
+#=
 
 However, note that exceptions are thrown whenever the result is an error with this shorter approach.
 
@@ -48,7 +44,4 @@ Furthermore, all functions that may return non-success (but non-error) codes ret
 
 For more details on the `ResultTypes.Result` type and how to handle it, please consult the [ResultTypes.jl documentation](https://iamed2.github.io/ResultTypes.jl/stable/).
 
----
-
-*This page was generated using [Literate.jl](https://github.com/fredrikekre/Literate.jl).*
-
+=#

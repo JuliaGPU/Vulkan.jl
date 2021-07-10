@@ -1,6 +1,4 @@
-```@meta
-EditURL = "<unknown>/docs/src/tutorial/dispatch.jl"
-```
+#=
 
 # Dispatch
 
@@ -28,24 +26,21 @@ It is essentially a wrapper around `get_instance_proc_addr` and `get_device_proc
 
 Every wrapper function or handle constructor has a signature which accepts the standard function arguments plus a function pointer to call into. For example, instead of doing
 
-````@example dispatch
+=#
+
 using SwiftShader_jll # hide
 using Vulkan
 @set_driver :SwiftShader # hide
 
 foreach(display, unwrap(enumerate_instance_layer_properties()))
-````
 
-you can do
+# you can do
 
-````@example dispatch
 fptr = function_pointer("vkEnumerateInstanceLayerProperties")
 foreach(display, unwrap(enumerate_instance_layer_properties(fptr)))
-````
 
-In the case of a handle constructor which calls both a creation and a destruction function, there is an argument for each corresponding function pointer:
+# In the case of a handle constructor which calls both a creation and a destruction function, there is an argument for each corresponding function pointer:
 
-````@example dispatch
 const instance = Instance([], [])
 const device = Device(
     first(unwrap(enumerate_physical_devices(instance))), [DeviceQueueCreateInfo(0, [1.])],
@@ -56,7 +51,8 @@ const device = Device(
 fptr_create = function_pointer(device, "vkCreateFence")
 fptr_destroy = function_pointer(device, "vkDestroyFence")
 Fence(device, fptr_create, fptr_destroy)
-````
+
+#=
 
 ## Automatic dispatch
 
@@ -64,7 +60,4 @@ Querying and retrieving function pointers every time results in a lot of boilerp
 
 This feature can be disabled by setting the [preference](@ref Preferences) `USE_DISPATCH_TABLE` to `"false"`.
 
----
-
-*This page was generated using [Literate.jl](https://github.com/fredrikekre/Literate.jl).*
-
+=#

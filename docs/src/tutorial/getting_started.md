@@ -1,18 +1,12 @@
-```@setup main
-using SwiftShader_jll
-using Vulkan
-@set_driver :SwiftShader
-```
-
 # Getting started
 
 ## Overview
 
 Several features are exposed which aim at simplifying the use of the Vulkan API from Julia. Some features are configurable through [Preferences.jl](https://github.com/JuliaPackaging/Preferences.jl); see [the corresponding section](@ref Preferences) for the list of available options.
 
-This library offers [types](@ref Types) and [functions](@ref Functions) that are intended as a replacement for their C-like counterparts. There are [two levels of wrapping](@ref Structures) for structures, although the minimalistic wrappers should be used only where there is a noticable performance impact. Functions have methods defined for both. [Error handling](@ref error-handling) is exposed through [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to provide a more robust and user-friendly way of managing error return codes.
+This library offers [types](@ref Vulkan-types) and [functions](@ref Vulkan-functions) that are intended as a replacement for their C-like counterparts. There are [two levels of wrapping](@ref Structures) for structures, although the minimalistic wrappers should be used only where there is a noticable performance impact. Functions have methods defined for both. [Error handling](@ref error-handling) is exposed through [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to provide a more robust and user-friendly way of managing error return codes.
 
-Finally, functions and structures have docstrings with information extracted from the XML specification, with links to the original Vulkan documentation, information on required extensions, return codes and more. You can access them easily through the built-in help in the REPL: for example, `?InstanceCreateInfo` will print you information regarding the `InstanceCreateInfo` structure. See the full documentation [here](@ref API).
+Finally, functions and structures have docstrings with information extracted from the XML specification, with links to the original Vulkan documentation, information on required extensions, return codes and more. You can access them easily through the built-in help in the REPL: for example, `?InstanceCreateInfo` will print you information regarding the `InstanceCreateInfo` structure. See the full documentation [here](@ref Vulkan.jl-API).
 
 ## Installation
 

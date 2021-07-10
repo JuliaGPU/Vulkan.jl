@@ -4,10 +4,6 @@ Here we describe some tools that can assist the development of Vulkan applicatio
 
 Feel free to check out the official [Vulkan website](https://www.vulkan.org/) for a more complete list of resources.
 
-## Validation
-
-The activation of debugging messages is done via the creation of a [`DebugUtilsMessengerEXT`](@ref). We provide an additional high-level constructor along with a default constructor function [`default_debug_callback`](@ref).
-
 ## External tools
 
 ### NVIDIA Nsight Systems
@@ -24,11 +20,17 @@ The activation of debugging messages is done via the creation of a [`DebugUtilsM
 
 ### CPU implementation of Vulkan
 
-[SwiftShader](https://github.com/google/swiftshader) is a CPU implementation of Vulkan primarily designed to extend the portability of Vulkan applications. It can be used wherever there is a lack of proper driver support, including public continuous integration services.
+[SwiftShader](https://github.com/google/swiftshader) is a CPU implementation of Vulkan primarily designed to extend the portability of Vulkan applications. It can be used wherever there is a lack of proper driver support, including public continuous integration services. This allows for example to evaluate code when generating a documentation in CI with [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl), like this one.
+
+SwiftShader is available as a JLL package. You can add it with
+
+```julia
+julia> ]add SwiftShader_jll
+```
 
 A convenience macro is implemented in Vulkan, so you can quickly use SwiftShader with
 
-```julia
+```@example
 using SwiftShader_jll
 using Vulkan
 @set_driver :SwiftShader
