@@ -49,10 +49,10 @@ function document_return_codes(spec::SpecFunc)
         res *= "Return codes:"
     end
     if !isempty(spec.success_codes) && must_return_success_code(spec)
-        res *= string("\n• Success:\n  ∘ ", join(backquoted.(remove_vk_prefix.(spec.success_codes)), "\n  ∘ "))
+        res *= string("\n- Success:\n  - ", join(backquoted.(remove_vk_prefix.(spec.success_codes)), "\n  - "))
     end
     if !isempty(spec.error_codes)
-        res *= string("\n• Error:\n  ∘ ", join(backquoted.(remove_vk_prefix.(spec.error_codes)), "\n  ∘ "))
+        res *= string("\n- Error:\n  - ", join(backquoted.(remove_vk_prefix.(spec.error_codes)), "\n  - "))
     end
 
     if !isempty(res)
@@ -122,10 +122,10 @@ function Docstring(def)
         Extension: $(replace(string(ext.name), '_' => "\\\\_"))
         """ : "",
         document_return_codes(spec),
-        """
+        isempty(argdocs) ? "" : """
 
         Arguments:
-        • $(join(last.(argdocs), "\n• "))
+        - $(join(last.(argdocs), "\n- "))
         """,
         extra,
     )
