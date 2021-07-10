@@ -36,7 +36,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             """
                 _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
 
-            Extension: VK\\_KHR\\_synchronization2
+            Extension: VK\\\\_KHR\\\\_synchronization2
 
             Arguments:
             • `wait_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}`
@@ -118,7 +118,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             """
                 write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
-            Extension: VK\\_KHR\\_acceleration\\_structure
+            Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
 
             Return codes:
             • Error:
