@@ -6,6 +6,16 @@ It builds upon the core API provided by [VulkanCore.jl](https://github.com/Julia
 
 This is a very similar approach to that taken by [VulkanHpp](https://github.com/KhronosGroup/Vulkan-Hpp), except that the target language is Julia and not C++.
 
+```@setup main
+using SwiftShader_jll
+using Vulkan
+@set_driver :SwiftShader
+
+instance = Instance([], [])
+physical_device = first(unwrap(enumerate_physical_devices(instance)))
+device = Device(physical_device, [], [], [])
+```
+
 ```@contents
 Pages = ["intro.md", "features.md", "api.md", "utility.md", "troubleshooting.md"]
 ```

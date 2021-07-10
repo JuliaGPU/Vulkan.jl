@@ -1,4 +1,4 @@
-# API
+# Vulkan.jl API
 
 ```@index
 Modules = [Vulkan]
