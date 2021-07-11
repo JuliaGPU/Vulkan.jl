@@ -5,13 +5,11 @@ julia_files(dir) = sort(filter(endswith(".jl"), readdir(dir, join=true)))
 
 function generate_markdowns(dir)
     for file in julia_files(dir)
-        md = Literate.markdown(
+        Literate.markdown(
             file,
             dir;
             documenter = true,
         )
-        _md = joinpath(splitpath(md)[1:end-1]..., string('_', basename(md)))
-        mv(md, _md, force=true)
     end
 end
 
@@ -37,19 +35,19 @@ makedocs(;
         "Introduction" => "intro.md",
         "About" => [
             "Motivations" => "about/motivations.md",
-            "Interfacing with the C API" => "about/_interfacing.md",
+            "Interfacing with the C API" => "about/interfacing.md",
         ],
         "Tutorial" => [
             "Getting started" => "tutorial/getting_started.md",
-            "Vulkan types" => "tutorial/_types.md",
-            "Vulkan functions" => "tutorial/_functions.md",
-            "Error handling" => "tutorial/_error_handling.md",
-            "Resource management" => "tutorial/_resource_management.md",
-            "In-depth tutorial" => "tutorial/_indepth.md",
+            "Vulkan types" => "tutorial/types.md",
+            "Vulkan functions" => "tutorial/functions.md",
+            "Error handling" => "tutorial/error_handling.md",
+            "Resource management" => "tutorial/resource_management.md",
+            "In-depth tutorial" => "tutorial/indepth.md",
         ],
         "How to" => [
-            "howto/_preferences.md",
-            "howto/_debugging.md",
+            "howto/preferences.md",
+            "howto/debugging.md",
         ],
         "API" => "api.md",
         "Utility" => "utility.md",
