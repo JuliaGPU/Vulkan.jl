@@ -1,6 +1,6 @@
 #=
 
-# [Error handling](@id error-handling)
+# Error handling
 
 Error handling is achieved via [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to avoid the large overhead introduced with `try`/`catch` blocks. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `ResultTypes.Result` (distinct from `Vulkan.Result` which is the wrapped version of `VkResult`), which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
 
