@@ -26,7 +26,7 @@ end
 
 function block(ex::Expr)
     str = @match category(ex) begin
-        :doc => string('\"'^3, '\n', ex.args[3], '\n', '\"'^3, '\n', ex.args[4])
+        :doc => string('\"'^3, '\n', ex.args[3], '\n', '\"'^3, '\n', block(ex.args[4]))
         :enum => string(ex)
         _ => string(prettify(ex))
     end
@@ -40,7 +40,7 @@ spacing(cat::Symbol) = @match cat begin
     :function => '\n'^2
     :const => '\n'
     :enum => '\n'^2
-    :doc => '\n'^2
+    :doc => ""
 end
 
 function write_exports(io::IO, exports)

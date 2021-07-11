@@ -14,7 +14,7 @@ function Documented(def::StructDefinition{false})
         API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
         """,
     )
-    Documented(def, docstring(name(def), doc))
+    Documented(def, doc)
 end
 
 function Documented(def::StructDefinition{true})
@@ -33,12 +33,12 @@ function Documented(def::StructDefinition{true})
         [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html)
         """,
     )
-    Documented(def, docstring(name(def), doc))
+    Documented(def, doc)
 end
 
 function Documented(def::Constructor{HandleDefinition})
     doc = string(' '^4, reconstruct_call(def.p), '\n'^2)
-    Documented(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
+    Documented(def, doc)
 end
 
 backquoted(arg) = string('`', arg, '`')
@@ -70,13 +70,8 @@ function append_to_argdoc!(argdocs, spec, str)
     argdocs[i] = concat_right(argdocs[i], str)
 end
 
-function Documented(def::Union{<:Constructor,<:APIFunction})
-    if def isa Constructor
-        p = def.p
-        def = def.def
-    else
-        p = def.p
-    end
+function Documented(def::APIFunction{SpecFunc})
+    p = def.p
     spec = def.spec
     params = children(spec)
     externsync_params = filter(x -> x.is_externsync, params)
@@ -129,7 +124,7 @@ function Documented(def::Union{<:Constructor,<:APIFunction})
         """,
         extra,
     )
-    Documented(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
+    Documented(def, doc)
 end
 
 function document_arguments(p)
@@ -149,7 +144,7 @@ end
 function docstring(ex, docstring)
     Dict(
         :category => :doc,
-        :ex => resolve_types(ex),
+        :ex => ex,
         :docstring => docstring,
     )
 end

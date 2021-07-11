@@ -84,7 +84,7 @@ function GetProperty(def::StructDefinition{true, SpecUnion})
     end
     push!(ex.args, :(getfield(x, sym)))
 
-    Dict(
+    p = Dict(
         :category => :function,
         :name => :(Base.getproperty),
         :args => [
@@ -94,6 +94,7 @@ function GetProperty(def::StructDefinition{true, SpecUnion})
         :body => body,
         :short => false,
     )
+    GetProperty(def, p)
 end
 
 function supertype_union(type, is_high_level)

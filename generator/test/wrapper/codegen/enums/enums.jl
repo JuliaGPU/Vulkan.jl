@@ -49,4 +49,10 @@
             PIPELINE_COMPILE_REQUIRED_EXT = 1000297000
         end
     ))
+
+    test(EnumDefinition, enum_by_name, :VkPipelineCacheHeaderVersion, :(
+        @cenum PipelineCacheHeaderVersion::UInt32 begin
+            PIPELINE_CACHE_HEADER_VERSION_ONE = 1
+    end
+    ))
 end

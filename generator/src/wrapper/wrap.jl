@@ -71,6 +71,8 @@ VulkanSpec.has_parent(def::HandleDefinition) = has_parent(def.spec)
 to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
 to_expr(def::Union{Documented, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
 
+documented(def::WrapperNode) = to_expr(Documented(def))
+
 name(def::WrapperNode) = name(def.p)
 
 function exports(def::WrapperNode)
@@ -171,35 +173,31 @@ function VulkanWrapper(config::WrapperConfig)
     parent_overloads = Parent.(filter(has_parent, handles))
 
     VulkanWrapper(
-        [
-            to_expr.(constants); to_expr.(enums); to_expr.(enum_converts_to_enum); to_expr.(enum_converts_to_integer); to_expr.(enum_converts_from_spec); to_expr.(enum_converts_to_spec); to_expr.(bitmasks);
-            to_expr.(unions); to_expr.(unions_hl);
+        Expr[
+            documented.(constants); documented.(enums); documented.(enum_converts_to_enum); documented.(enum_converts_to_integer); documented.(enum_converts_from_spec); documented.(enum_converts_to_spec); documented.(bitmasks);
+            documented.(unions); documented.(unions_hl);
         ],
-        [
-            to_expr.(handles); to_expr.(structs); to_expr.(structs_hl);
+        Expr[
+            documented.(handles); documented.(structs); documented.(structs_hl);
         ],
-        [
-            to_expr.(parent_overloads);
-            to_expr.(union_constructors);
-            to_expr.(union_constructors_hl);
-            to_expr.(union_constructors_from_hl);
-            to_expr.(union_converts_to_ll);
-            to_expr.(union_getproperty_hl);
-            to_expr.(struct_constructors);
-            to_expr.(struct_constructors_hl);
-            to_expr.(struct_constructors_from_hl);
-            to_expr.(struct_converts_to_ll);
-            to_expr.(funcs);
-            to_expr.(funcs_hl);
-            to_expr.(api_constructor_wrappers);
-            to_expr.(api_constructor_wrappers_hl);
-            to_expr.(handle_constructors);
-            to_expr.(handle_constructors_hl);
-            to_expr.(from_vk);
-            to_expr.(Documented.(structs));
-            to_expr.(Documented.(structs_hl));
-            to_expr.(Documented.(handle_constructors));
-            to_expr.(Documented.(funcs));
+        Expr[
+            documented.(parent_overloads);
+            documented.(union_constructors);
+            documented.(union_constructors_hl);
+            documented.(union_constructors_from_hl);
+            documented.(union_converts_to_ll);
+            documented.(union_getproperty_hl);
+            documented.(struct_constructors);
+            documented.(struct_constructors_hl);
+            documented.(struct_constructors_from_hl);
+            documented.(struct_converts_to_ll);
+            documented.(funcs);
+            documented.(funcs_hl);
+            documented.(api_constructor_wrappers);
+            documented.(api_constructor_wrappers_hl);
+            documented.(handle_constructors);
+            documented.(handle_constructors_hl);
+            documented.(from_vk);
         ],
         Symbol[
             exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs);
