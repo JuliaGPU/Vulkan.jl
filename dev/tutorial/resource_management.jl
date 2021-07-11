@@ -2,7 +2,9 @@
 
 # Let's see how resources get freed automatically, and when they aren't. First let's set the preference `"LOG_DESTRUCTION"` to `"true"` to see what's going on:
 
+using SwiftShader_jll # hide
 using Vulkan
+@set_driver :SwiftShader # hide
 
 Vulkan.set_preferences!("LOG_DESTRUCTION" => "true")
 
