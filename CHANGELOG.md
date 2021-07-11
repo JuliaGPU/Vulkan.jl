@@ -1,6 +1,6 @@
 # Changelog for Vulkan.jl
 
-## Version `v0.4`
+## Version `v0.3`
 
 * ![BREAKING][badge-breaking] ![Enhancement][badge-enhancement] The beta extensions are not wrapped anymore, following their removal from VulkanCore (see [this issue](https://github.com/JuliaGPU/VulkanCore.jl/issues/43) to know why they were removed). This will allow for a more stable library.
 
