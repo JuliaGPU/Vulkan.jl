@@ -25538,7 +25538,7 @@ _PipelineRasterizationProvokingVertexStateCreateInfoEXT
 """
 High-level wrapper for VkBaseOutStructure.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseOutStructure.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseOutStructure.html)
 
 """
 BaseOutStructure
@@ -25546,7 +25546,7 @@ BaseOutStructure
 """
 High-level wrapper for VkBaseInStructure.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseInStructure.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseInStructure.html)
 
 """
 BaseInStructure
@@ -25554,7 +25554,7 @@ BaseInStructure
 """
 High-level wrapper for VkOffset2D.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset2D.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset2D.html)
 
 """
 Offset2D
@@ -25562,7 +25562,7 @@ Offset2D
 """
 High-level wrapper for VkOffset3D.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset3D.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset3D.html)
 
 """
 Offset3D
@@ -25570,7 +25570,7 @@ Offset3D
 """
 High-level wrapper for VkExtent2D.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html)
 
 """
 Extent2D
@@ -25578,7 +25578,7 @@ Extent2D
 """
 High-level wrapper for VkExtent3D.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent3D.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent3D.html)
 
 """
 Extent3D
@@ -25586,7 +25586,7 @@ Extent3D
 """
 High-level wrapper for VkViewport.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewport.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewport.html)
 
 """
 Viewport
@@ -25594,7 +25594,7 @@ Viewport
 """
 High-level wrapper for VkRect2D.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRect2D.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRect2D.html)
 
 """
 Rect2D
@@ -25602,7 +25602,7 @@ Rect2D
 """
 High-level wrapper for VkClearRect.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearRect.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearRect.html)
 
 """
 ClearRect
@@ -25610,7 +25610,7 @@ ClearRect
 """
 High-level wrapper for VkComponentMapping.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComponentMapping.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComponentMapping.html)
 
 """
 ComponentMapping
@@ -25618,7 +25618,7 @@ ComponentMapping
 """
 High-level wrapper for VkApplicationInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkApplicationInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkApplicationInfo.html)
 
 """
 ApplicationInfo
@@ -25626,7 +25626,7 @@ ApplicationInfo
 """
 High-level wrapper for VkAllocationCallbacks.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAllocationCallbacks.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAllocationCallbacks.html)
 
 """
 AllocationCallbacks
@@ -25634,7 +25634,7 @@ AllocationCallbacks
 """
 High-level wrapper for VkDeviceQueueCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueCreateInfo.html)
 
 """
 DeviceQueueCreateInfo
@@ -25642,7 +25642,7 @@ DeviceQueueCreateInfo
 """
 High-level wrapper for VkDeviceCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceCreateInfo.html)
 
 """
 DeviceCreateInfo
@@ -25650,7 +25650,7 @@ DeviceCreateInfo
 """
 High-level wrapper for VkInstanceCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html)
 
 """
 InstanceCreateInfo
@@ -25658,7 +25658,7 @@ InstanceCreateInfo
 """
 High-level wrapper for VkMemoryAllocateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateInfo.html)
 
 """
 MemoryAllocateInfo
@@ -25666,7 +25666,7 @@ MemoryAllocateInfo
 """
 High-level wrapper for VkMappedMemoryRange.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMappedMemoryRange.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMappedMemoryRange.html)
 
 """
 MappedMemoryRange
@@ -25674,7 +25674,7 @@ MappedMemoryRange
 """
 High-level wrapper for VkDescriptorBufferInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorBufferInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorBufferInfo.html)
 
 """
 DescriptorBufferInfo
@@ -25682,7 +25682,7 @@ DescriptorBufferInfo
 """
 High-level wrapper for VkDescriptorImageInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorImageInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorImageInfo.html)
 
 """
 DescriptorImageInfo
@@ -25690,7 +25690,7 @@ DescriptorImageInfo
 """
 High-level wrapper for VkWriteDescriptorSet.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSet.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSet.html)
 
 """
 WriteDescriptorSet
@@ -25698,7 +25698,7 @@ WriteDescriptorSet
 """
 High-level wrapper for VkCopyDescriptorSet.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyDescriptorSet.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyDescriptorSet.html)
 
 """
 CopyDescriptorSet
@@ -25706,7 +25706,7 @@ CopyDescriptorSet
 """
 High-level wrapper for VkBufferCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCreateInfo.html)
 
 """
 BufferCreateInfo
@@ -25714,7 +25714,7 @@ BufferCreateInfo
 """
 High-level wrapper for VkBufferViewCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferViewCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferViewCreateInfo.html)
 
 """
 BufferViewCreateInfo
@@ -25722,7 +25722,7 @@ BufferViewCreateInfo
 """
 High-level wrapper for VkImageSubresource.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresource.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresource.html)
 
 """
 ImageSubresource
@@ -25730,7 +25730,7 @@ ImageSubresource
 """
 High-level wrapper for VkImageSubresourceLayers.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceLayers.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceLayers.html)
 
 """
 ImageSubresourceLayers
@@ -25738,7 +25738,7 @@ ImageSubresourceLayers
 """
 High-level wrapper for VkImageSubresourceRange.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceRange.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceRange.html)
 
 """
 ImageSubresourceRange
@@ -25746,7 +25746,7 @@ ImageSubresourceRange
 """
 High-level wrapper for VkMemoryBarrier.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier.html)
 
 """
 MemoryBarrier
@@ -25754,7 +25754,7 @@ MemoryBarrier
 """
 High-level wrapper for VkBufferMemoryBarrier.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier.html)
 
 """
 BufferMemoryBarrier
@@ -25762,7 +25762,7 @@ BufferMemoryBarrier
 """
 High-level wrapper for VkImageMemoryBarrier.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier.html)
 
 """
 ImageMemoryBarrier
@@ -25770,7 +25770,7 @@ ImageMemoryBarrier
 """
 High-level wrapper for VkImageCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCreateInfo.html)
 
 """
 ImageCreateInfo
@@ -25778,7 +25778,7 @@ ImageCreateInfo
 """
 High-level wrapper for VkImageViewCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewCreateInfo.html)
 
 """
 ImageViewCreateInfo
@@ -25786,7 +25786,7 @@ ImageViewCreateInfo
 """
 High-level wrapper for VkBufferCopy.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy.html)
 
 """
 BufferCopy
@@ -25794,7 +25794,7 @@ BufferCopy
 """
 High-level wrapper for VkSparseMemoryBind.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseMemoryBind.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseMemoryBind.html)
 
 """
 SparseMemoryBind
@@ -25802,7 +25802,7 @@ SparseMemoryBind
 """
 High-level wrapper for VkSparseImageMemoryBind.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBind.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBind.html)
 
 """
 SparseImageMemoryBind
@@ -25810,7 +25810,7 @@ SparseImageMemoryBind
 """
 High-level wrapper for VkSparseBufferMemoryBindInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseBufferMemoryBindInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseBufferMemoryBindInfo.html)
 
 """
 SparseBufferMemoryBindInfo
@@ -25818,7 +25818,7 @@ SparseBufferMemoryBindInfo
 """
 High-level wrapper for VkSparseImageOpaqueMemoryBindInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html)
 
 """
 SparseImageOpaqueMemoryBindInfo
@@ -25826,7 +25826,7 @@ SparseImageOpaqueMemoryBindInfo
 """
 High-level wrapper for VkSparseImageMemoryBindInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBindInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBindInfo.html)
 
 """
 SparseImageMemoryBindInfo
@@ -25834,7 +25834,7 @@ SparseImageMemoryBindInfo
 """
 High-level wrapper for VkBindSparseInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindSparseInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindSparseInfo.html)
 
 """
 BindSparseInfo
@@ -25842,7 +25842,7 @@ BindSparseInfo
 """
 High-level wrapper for VkImageCopy.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy.html)
 
 """
 ImageCopy
@@ -25850,7 +25850,7 @@ ImageCopy
 """
 High-level wrapper for VkImageBlit.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit.html)
 
 """
 ImageBlit
@@ -25858,7 +25858,7 @@ ImageBlit
 """
 High-level wrapper for VkBufferImageCopy.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy.html)
 
 """
 BufferImageCopy
@@ -25866,7 +25866,7 @@ BufferImageCopy
 """
 High-level wrapper for VkImageResolve.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve.html)
 
 """
 ImageResolve
@@ -25874,7 +25874,7 @@ ImageResolve
 """
 High-level wrapper for VkShaderModuleCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleCreateInfo.html)
 
 """
 ShaderModuleCreateInfo
@@ -25882,7 +25882,7 @@ ShaderModuleCreateInfo
 """
 High-level wrapper for VkDescriptorSetLayoutBinding.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBinding.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBinding.html)
 
 """
 DescriptorSetLayoutBinding
@@ -25890,7 +25890,7 @@ DescriptorSetLayoutBinding
 """
 High-level wrapper for VkDescriptorSetLayoutCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutCreateInfo.html)
 
 """
 DescriptorSetLayoutCreateInfo
@@ -25898,7 +25898,7 @@ DescriptorSetLayoutCreateInfo
 """
 High-level wrapper for VkDescriptorPoolSize.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolSize.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolSize.html)
 
 """
 DescriptorPoolSize
@@ -25906,7 +25906,7 @@ DescriptorPoolSize
 """
 High-level wrapper for VkDescriptorPoolCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolCreateInfo.html)
 
 """
 DescriptorPoolCreateInfo
@@ -25914,7 +25914,7 @@ DescriptorPoolCreateInfo
 """
 High-level wrapper for VkDescriptorSetAllocateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetAllocateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetAllocateInfo.html)
 
 """
 DescriptorSetAllocateInfo
@@ -25922,7 +25922,7 @@ DescriptorSetAllocateInfo
 """
 High-level wrapper for VkSpecializationMapEntry.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationMapEntry.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationMapEntry.html)
 
 """
 SpecializationMapEntry
@@ -25930,7 +25930,7 @@ SpecializationMapEntry
 """
 High-level wrapper for VkSpecializationInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationInfo.html)
 
 """
 SpecializationInfo
@@ -25938,7 +25938,7 @@ SpecializationInfo
 """
 High-level wrapper for VkPipelineShaderStageCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineShaderStageCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineShaderStageCreateInfo.html)
 
 """
 PipelineShaderStageCreateInfo
@@ -25946,7 +25946,7 @@ PipelineShaderStageCreateInfo
 """
 High-level wrapper for VkComputePipelineCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComputePipelineCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComputePipelineCreateInfo.html)
 
 """
 ComputePipelineCreateInfo
@@ -25954,7 +25954,7 @@ ComputePipelineCreateInfo
 """
 High-level wrapper for VkVertexInputBindingDescription.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription.html)
 
 """
 VertexInputBindingDescription
@@ -25962,7 +25962,7 @@ VertexInputBindingDescription
 """
 High-level wrapper for VkVertexInputAttributeDescription.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription.html)
 
 """
 VertexInputAttributeDescription
@@ -25970,7 +25970,7 @@ VertexInputAttributeDescription
 """
 High-level wrapper for VkPipelineVertexInputStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html)
 
 """
 PipelineVertexInputStateCreateInfo
@@ -25978,7 +25978,7 @@ PipelineVertexInputStateCreateInfo
 """
 High-level wrapper for VkPipelineInputAssemblyStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html)
 
 """
 PipelineInputAssemblyStateCreateInfo
@@ -25986,7 +25986,7 @@ PipelineInputAssemblyStateCreateInfo
 """
 High-level wrapper for VkPipelineTessellationStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationStateCreateInfo.html)
 
 """
 PipelineTessellationStateCreateInfo
@@ -25994,7 +25994,7 @@ PipelineTessellationStateCreateInfo
 """
 High-level wrapper for VkPipelineViewportStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportStateCreateInfo.html)
 
 """
 PipelineViewportStateCreateInfo
@@ -26002,7 +26002,7 @@ PipelineViewportStateCreateInfo
 """
 High-level wrapper for VkPipelineRasterizationStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html)
 
 """
 PipelineRasterizationStateCreateInfo
@@ -26010,7 +26010,7 @@ PipelineRasterizationStateCreateInfo
 """
 High-level wrapper for VkPipelineMultisampleStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html)
 
 """
 PipelineMultisampleStateCreateInfo
@@ -26018,7 +26018,7 @@ PipelineMultisampleStateCreateInfo
 """
 High-level wrapper for VkPipelineColorBlendAttachmentState.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAttachmentState.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAttachmentState.html)
 
 """
 PipelineColorBlendAttachmentState
@@ -26026,7 +26026,7 @@ PipelineColorBlendAttachmentState
 """
 High-level wrapper for VkPipelineColorBlendStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendStateCreateInfo.html)
 
 """
 PipelineColorBlendStateCreateInfo
@@ -26034,7 +26034,7 @@ PipelineColorBlendStateCreateInfo
 """
 High-level wrapper for VkPipelineDynamicStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDynamicStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDynamicStateCreateInfo.html)
 
 """
 PipelineDynamicStateCreateInfo
@@ -26042,7 +26042,7 @@ PipelineDynamicStateCreateInfo
 """
 High-level wrapper for VkStencilOpState.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStencilOpState.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStencilOpState.html)
 
 """
 StencilOpState
@@ -26050,7 +26050,7 @@ StencilOpState
 """
 High-level wrapper for VkPipelineDepthStencilStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html)
 
 """
 PipelineDepthStencilStateCreateInfo
@@ -26058,7 +26058,7 @@ PipelineDepthStencilStateCreateInfo
 """
 High-level wrapper for VkGraphicsPipelineCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineCreateInfo.html)
 
 """
 GraphicsPipelineCreateInfo
@@ -26066,7 +26066,7 @@ GraphicsPipelineCreateInfo
 """
 High-level wrapper for VkPipelineCacheCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCacheCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCacheCreateInfo.html)
 
 """
 PipelineCacheCreateInfo
@@ -26074,7 +26074,7 @@ PipelineCacheCreateInfo
 """
 High-level wrapper for VkPushConstantRange.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPushConstantRange.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPushConstantRange.html)
 
 """
 PushConstantRange
@@ -26082,7 +26082,7 @@ PushConstantRange
 """
 High-level wrapper for VkPipelineLayoutCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLayoutCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLayoutCreateInfo.html)
 
 """
 PipelineLayoutCreateInfo
@@ -26090,7 +26090,7 @@ PipelineLayoutCreateInfo
 """
 High-level wrapper for VkSamplerCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCreateInfo.html)
 
 """
 SamplerCreateInfo
@@ -26098,7 +26098,7 @@ SamplerCreateInfo
 """
 High-level wrapper for VkCommandPoolCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandPoolCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandPoolCreateInfo.html)
 
 """
 CommandPoolCreateInfo
@@ -26106,7 +26106,7 @@ CommandPoolCreateInfo
 """
 High-level wrapper for VkCommandBufferAllocateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferAllocateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferAllocateInfo.html)
 
 """
 CommandBufferAllocateInfo
@@ -26114,7 +26114,7 @@ CommandBufferAllocateInfo
 """
 High-level wrapper for VkCommandBufferInheritanceInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceInfo.html)
 
 """
 CommandBufferInheritanceInfo
@@ -26122,7 +26122,7 @@ CommandBufferInheritanceInfo
 """
 High-level wrapper for VkCommandBufferBeginInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferBeginInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferBeginInfo.html)
 
 """
 CommandBufferBeginInfo
@@ -26130,7 +26130,7 @@ CommandBufferBeginInfo
 """
 High-level wrapper for VkRenderPassBeginInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassBeginInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassBeginInfo.html)
 
 """
 RenderPassBeginInfo
@@ -26138,7 +26138,7 @@ RenderPassBeginInfo
 """
 High-level wrapper for VkClearDepthStencilValue.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearDepthStencilValue.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearDepthStencilValue.html)
 
 """
 ClearDepthStencilValue
@@ -26146,7 +26146,7 @@ ClearDepthStencilValue
 """
 High-level wrapper for VkClearAttachment.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearAttachment.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearAttachment.html)
 
 """
 ClearAttachment
@@ -26154,7 +26154,7 @@ ClearAttachment
 """
 High-level wrapper for VkAttachmentDescription.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html)
 
 """
 AttachmentDescription
@@ -26162,7 +26162,7 @@ AttachmentDescription
 """
 High-level wrapper for VkAttachmentReference.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference.html)
 
 """
 AttachmentReference
@@ -26170,7 +26170,7 @@ AttachmentReference
 """
 High-level wrapper for VkSubpassDescription.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription.html)
 
 """
 SubpassDescription
@@ -26178,7 +26178,7 @@ SubpassDescription
 """
 High-level wrapper for VkSubpassDependency.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency.html)
 
 """
 SubpassDependency
@@ -26186,7 +26186,7 @@ SubpassDependency
 """
 High-level wrapper for VkRenderPassCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo.html)
 
 """
 RenderPassCreateInfo
@@ -26194,7 +26194,7 @@ RenderPassCreateInfo
 """
 High-level wrapper for VkEventCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkEventCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkEventCreateInfo.html)
 
 """
 EventCreateInfo
@@ -26202,7 +26202,7 @@ EventCreateInfo
 """
 High-level wrapper for VkFenceCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceCreateInfo.html)
 
 """
 FenceCreateInfo
@@ -26210,7 +26210,7 @@ FenceCreateInfo
 """
 High-level wrapper for VkPhysicalDeviceFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures.html)
 
 """
 PhysicalDeviceFeatures
@@ -26218,7 +26218,7 @@ PhysicalDeviceFeatures
 """
 High-level wrapper for VkSemaphoreCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreCreateInfo.html)
 
 """
 SemaphoreCreateInfo
@@ -26226,7 +26226,7 @@ SemaphoreCreateInfo
 """
 High-level wrapper for VkQueryPoolCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolCreateInfo.html)
 
 """
 QueryPoolCreateInfo
@@ -26234,7 +26234,7 @@ QueryPoolCreateInfo
 """
 High-level wrapper for VkFramebufferCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferCreateInfo.html)
 
 """
 FramebufferCreateInfo
@@ -26242,7 +26242,7 @@ FramebufferCreateInfo
 """
 High-level wrapper for VkDrawIndirectCommand.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndirectCommand.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndirectCommand.html)
 
 """
 DrawIndirectCommand
@@ -26250,7 +26250,7 @@ DrawIndirectCommand
 """
 High-level wrapper for VkDrawIndexedIndirectCommand.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndexedIndirectCommand.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndexedIndirectCommand.html)
 
 """
 DrawIndexedIndirectCommand
@@ -26258,7 +26258,7 @@ DrawIndexedIndirectCommand
 """
 High-level wrapper for VkDispatchIndirectCommand.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDispatchIndirectCommand.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDispatchIndirectCommand.html)
 
 """
 DispatchIndirectCommand
@@ -26266,7 +26266,7 @@ DispatchIndirectCommand
 """
 High-level wrapper for VkSubmitInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo.html)
 
 """
 SubmitInfo
@@ -26276,7 +26276,7 @@ High-level wrapper for VkDisplayModeParametersKHR.
 
 Extension: VK\\_KHR\\_display
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeParametersKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeParametersKHR.html)
 
 """
 DisplayModeParametersKHR
@@ -26286,7 +26286,7 @@ High-level wrapper for VkDisplayModeCreateInfoKHR.
 
 Extension: VK\\_KHR\\_display
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeCreateInfoKHR.html)
 
 """
 DisplayModeCreateInfoKHR
@@ -26296,7 +26296,7 @@ High-level wrapper for VkDisplaySurfaceCreateInfoKHR.
 
 Extension: VK\\_KHR\\_display
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html)
 
 """
 DisplaySurfaceCreateInfoKHR
@@ -26306,7 +26306,7 @@ High-level wrapper for VkDisplayPresentInfoKHR.
 
 Extension: VK\\_KHR\\_display\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPresentInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPresentInfoKHR.html)
 
 """
 DisplayPresentInfoKHR
@@ -26316,7 +26316,7 @@ High-level wrapper for VkSwapchainCreateInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCreateInfoKHR.html)
 
 """
 SwapchainCreateInfoKHR
@@ -26326,7 +26326,7 @@ High-level wrapper for VkPresentInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentInfoKHR.html)
 
 """
 PresentInfoKHR
@@ -26336,7 +26336,7 @@ High-level wrapper for VkDebugReportCallbackCreateInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_report
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugReportCallbackCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugReportCallbackCreateInfoEXT.html)
 
 """
 DebugReportCallbackCreateInfoEXT
@@ -26346,7 +26346,7 @@ High-level wrapper for VkValidationFlagsEXT.
 
 Extension: VK\\_EXT\\_validation\\_flags
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFlagsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFlagsEXT.html)
 
 """
 ValidationFlagsEXT
@@ -26356,7 +26356,7 @@ High-level wrapper for VkValidationFeaturesEXT.
 
 Extension: VK\\_EXT\\_validation\\_features
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFeaturesEXT.html)
 
 """
 ValidationFeaturesEXT
@@ -26366,7 +26366,7 @@ High-level wrapper for VkPipelineRasterizationStateRasterizationOrderAMD.
 
 Extension: VK\\_AMD\\_rasterization\\_order
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html)
 
 """
 PipelineRasterizationStateRasterizationOrderAMD
@@ -26376,7 +26376,7 @@ High-level wrapper for VkDebugMarkerObjectNameInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_marker
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html)
 
 """
 DebugMarkerObjectNameInfoEXT
@@ -26386,7 +26386,7 @@ High-level wrapper for VkDebugMarkerObjectTagInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_marker
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html)
 
 """
 DebugMarkerObjectTagInfoEXT
@@ -26396,7 +26396,7 @@ High-level wrapper for VkDebugMarkerMarkerInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_marker
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html)
 
 """
 DebugMarkerMarkerInfoEXT
@@ -26406,7 +26406,7 @@ High-level wrapper for VkDedicatedAllocationImageCreateInfoNV.
 
 Extension: VK\\_NV\\_dedicated\\_allocation
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationImageCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationImageCreateInfoNV.html)
 
 """
 DedicatedAllocationImageCreateInfoNV
@@ -26416,7 +26416,7 @@ High-level wrapper for VkDedicatedAllocationBufferCreateInfoNV.
 
 Extension: VK\\_NV\\_dedicated\\_allocation
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationBufferCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationBufferCreateInfoNV.html)
 
 """
 DedicatedAllocationBufferCreateInfoNV
@@ -26426,7 +26426,7 @@ High-level wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
 
 Extension: VK\\_NV\\_dedicated\\_allocation
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html)
 
 """
 DedicatedAllocationMemoryAllocateInfoNV
@@ -26436,7 +26436,7 @@ High-level wrapper for VkExternalMemoryImageCreateInfoNV.
 
 Extension: VK\\_NV\\_external\\_memory
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html)
 
 """
 ExternalMemoryImageCreateInfoNV
@@ -26446,7 +26446,7 @@ High-level wrapper for VkExportMemoryAllocateInfoNV.
 
 Extension: VK\\_NV\\_external\\_memory
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfoNV.html)
 
 """
 ExportMemoryAllocateInfoNV
@@ -26456,7 +26456,7 @@ High-level wrapper for VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.html)
 
 """
 PhysicalDeviceDeviceGeneratedCommandsFeaturesNV
@@ -26466,7 +26466,7 @@ High-level wrapper for VkDevicePrivateDataCreateInfoEXT.
 
 Extension: VK\\_EXT\\_private\\_data
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDevicePrivateDataCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDevicePrivateDataCreateInfoEXT.html)
 
 """
 DevicePrivateDataCreateInfoEXT
@@ -26476,7 +26476,7 @@ High-level wrapper for VkPrivateDataSlotCreateInfoEXT.
 
 Extension: VK\\_EXT\\_private\\_data
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPrivateDataSlotCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPrivateDataSlotCreateInfoEXT.html)
 
 """
 PrivateDataSlotCreateInfoEXT
@@ -26486,7 +26486,7 @@ High-level wrapper for VkPhysicalDevicePrivateDataFeaturesEXT.
 
 Extension: VK\\_EXT\\_private\\_data
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePrivateDataFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePrivateDataFeaturesEXT.html)
 
 """
 PhysicalDevicePrivateDataFeaturesEXT
@@ -26496,7 +26496,7 @@ High-level wrapper for VkGraphicsShaderGroupCreateInfoNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsShaderGroupCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsShaderGroupCreateInfoNV.html)
 
 """
 GraphicsShaderGroupCreateInfoNV
@@ -26506,7 +26506,7 @@ High-level wrapper for VkGraphicsPipelineShaderGroupsCreateInfoNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html)
 
 """
 GraphicsPipelineShaderGroupsCreateInfoNV
@@ -26516,7 +26516,7 @@ High-level wrapper for VkBindShaderGroupIndirectCommandNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindShaderGroupIndirectCommandNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindShaderGroupIndirectCommandNV.html)
 
 """
 BindShaderGroupIndirectCommandNV
@@ -26526,7 +26526,7 @@ High-level wrapper for VkBindIndexBufferIndirectCommandNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html)
 
 """
 BindIndexBufferIndirectCommandNV
@@ -26536,7 +26536,7 @@ High-level wrapper for VkBindVertexBufferIndirectCommandNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindVertexBufferIndirectCommandNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindVertexBufferIndirectCommandNV.html)
 
 """
 BindVertexBufferIndirectCommandNV
@@ -26546,7 +26546,7 @@ High-level wrapper for VkSetStateFlagsIndirectCommandNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSetStateFlagsIndirectCommandNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSetStateFlagsIndirectCommandNV.html)
 
 """
 SetStateFlagsIndirectCommandNV
@@ -26556,7 +26556,7 @@ High-level wrapper for VkIndirectCommandsStreamNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsStreamNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsStreamNV.html)
 
 """
 IndirectCommandsStreamNV
@@ -26566,7 +26566,7 @@ High-level wrapper for VkIndirectCommandsLayoutTokenNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html)
 
 """
 IndirectCommandsLayoutTokenNV
@@ -26576,7 +26576,7 @@ High-level wrapper for VkIndirectCommandsLayoutCreateInfoNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html)
 
 """
 IndirectCommandsLayoutCreateInfoNV
@@ -26586,7 +26586,7 @@ High-level wrapper for VkGeneratedCommandsInfoNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsInfoNV.html)
 
 """
 GeneratedCommandsInfoNV
@@ -26596,7 +26596,7 @@ High-level wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html)
 
 """
 GeneratedCommandsMemoryRequirementsInfoNV
@@ -26604,7 +26604,7 @@ GeneratedCommandsMemoryRequirementsInfoNV
 """
 High-level wrapper for VkPhysicalDeviceFeatures2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures2.html)
 
 """
 PhysicalDeviceFeatures2
@@ -26612,7 +26612,7 @@ PhysicalDeviceFeatures2
 """
 High-level wrapper for VkPhysicalDeviceImageFormatInfo2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html)
 
 """
 PhysicalDeviceImageFormatInfo2
@@ -26620,7 +26620,7 @@ PhysicalDeviceImageFormatInfo2
 """
 High-level wrapper for VkPhysicalDeviceSparseImageFormatInfo2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html)
 
 """
 PhysicalDeviceSparseImageFormatInfo2
@@ -26628,7 +26628,7 @@ PhysicalDeviceSparseImageFormatInfo2
 """
 High-level wrapper for VkConformanceVersion.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConformanceVersion.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConformanceVersion.html)
 
 """
 ConformanceVersion
@@ -26638,7 +26638,7 @@ High-level wrapper for VkPresentRegionsKHR.
 
 Extension: VK\\_KHR\\_incremental\\_present
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionsKHR.html)
 
 """
 PresentRegionsKHR
@@ -26648,7 +26648,7 @@ High-level wrapper for VkPresentRegionKHR.
 
 Extension: VK\\_KHR\\_incremental\\_present
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionKHR.html)
 
 """
 PresentRegionKHR
@@ -26658,7 +26658,7 @@ High-level wrapper for VkRectLayerKHR.
 
 Extension: VK\\_KHR\\_incremental\\_present
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRectLayerKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRectLayerKHR.html)
 
 """
 RectLayerKHR
@@ -26666,7 +26666,7 @@ RectLayerKHR
 """
 High-level wrapper for VkPhysicalDeviceVariablePointersFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVariablePointersFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVariablePointersFeatures.html)
 
 """
 PhysicalDeviceVariablePointersFeatures
@@ -26674,7 +26674,7 @@ PhysicalDeviceVariablePointersFeatures
 """
 High-level wrapper for VkPhysicalDeviceExternalImageFormatInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html)
 
 """
 PhysicalDeviceExternalImageFormatInfo
@@ -26682,7 +26682,7 @@ PhysicalDeviceExternalImageFormatInfo
 """
 High-level wrapper for VkPhysicalDeviceExternalBufferInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalBufferInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalBufferInfo.html)
 
 """
 PhysicalDeviceExternalBufferInfo
@@ -26690,7 +26690,7 @@ PhysicalDeviceExternalBufferInfo
 """
 High-level wrapper for VkExternalMemoryImageCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfo.html)
 
 """
 ExternalMemoryImageCreateInfo
@@ -26698,7 +26698,7 @@ ExternalMemoryImageCreateInfo
 """
 High-level wrapper for VkExternalMemoryBufferCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryBufferCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryBufferCreateInfo.html)
 
 """
 ExternalMemoryBufferCreateInfo
@@ -26706,7 +26706,7 @@ ExternalMemoryBufferCreateInfo
 """
 High-level wrapper for VkExportMemoryAllocateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfo.html)
 
 """
 ExportMemoryAllocateInfo
@@ -26716,7 +26716,7 @@ High-level wrapper for VkImportMemoryFdInfoKHR.
 
 Extension: VK\\_KHR\\_external\\_memory\\_fd
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryFdInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryFdInfoKHR.html)
 
 """
 ImportMemoryFdInfoKHR
@@ -26726,7 +26726,7 @@ High-level wrapper for VkMemoryGetFdInfoKHR.
 
 Extension: VK\\_KHR\\_external\\_memory\\_fd
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetFdInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetFdInfoKHR.html)
 
 """
 MemoryGetFdInfoKHR
@@ -26734,7 +26734,7 @@ MemoryGetFdInfoKHR
 """
 High-level wrapper for VkPhysicalDeviceExternalSemaphoreInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html)
 
 """
 PhysicalDeviceExternalSemaphoreInfo
@@ -26742,7 +26742,7 @@ PhysicalDeviceExternalSemaphoreInfo
 """
 High-level wrapper for VkExportSemaphoreCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportSemaphoreCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportSemaphoreCreateInfo.html)
 
 """
 ExportSemaphoreCreateInfo
@@ -26752,7 +26752,7 @@ High-level wrapper for VkImportSemaphoreFdInfoKHR.
 
 Extension: VK\\_KHR\\_external\\_semaphore\\_fd
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreFdInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreFdInfoKHR.html)
 
 """
 ImportSemaphoreFdInfoKHR
@@ -26762,7 +26762,7 @@ High-level wrapper for VkSemaphoreGetFdInfoKHR.
 
 Extension: VK\\_KHR\\_external\\_semaphore\\_fd
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetFdInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetFdInfoKHR.html)
 
 """
 SemaphoreGetFdInfoKHR
@@ -26770,7 +26770,7 @@ SemaphoreGetFdInfoKHR
 """
 High-level wrapper for VkPhysicalDeviceExternalFenceInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html)
 
 """
 PhysicalDeviceExternalFenceInfo
@@ -26778,7 +26778,7 @@ PhysicalDeviceExternalFenceInfo
 """
 High-level wrapper for VkExportFenceCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportFenceCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportFenceCreateInfo.html)
 
 """
 ExportFenceCreateInfo
@@ -26788,7 +26788,7 @@ High-level wrapper for VkImportFenceFdInfoKHR.
 
 Extension: VK\\_KHR\\_external\\_fence\\_fd
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportFenceFdInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportFenceFdInfoKHR.html)
 
 """
 ImportFenceFdInfoKHR
@@ -26798,7 +26798,7 @@ High-level wrapper for VkFenceGetFdInfoKHR.
 
 Extension: VK\\_KHR\\_external\\_fence\\_fd
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceGetFdInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceGetFdInfoKHR.html)
 
 """
 FenceGetFdInfoKHR
@@ -26806,7 +26806,7 @@ FenceGetFdInfoKHR
 """
 High-level wrapper for VkPhysicalDeviceMultiviewFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMultiviewFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMultiviewFeatures.html)
 
 """
 PhysicalDeviceMultiviewFeatures
@@ -26814,7 +26814,7 @@ PhysicalDeviceMultiviewFeatures
 """
 High-level wrapper for VkRenderPassMultiviewCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassMultiviewCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassMultiviewCreateInfo.html)
 
 """
 RenderPassMultiviewCreateInfo
@@ -26824,7 +26824,7 @@ High-level wrapper for VkDisplayPowerInfoEXT.
 
 Extension: VK\\_EXT\\_display\\_control
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPowerInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPowerInfoEXT.html)
 
 """
 DisplayPowerInfoEXT
@@ -26834,7 +26834,7 @@ High-level wrapper for VkDeviceEventInfoEXT.
 
 Extension: VK\\_EXT\\_display\\_control
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceEventInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceEventInfoEXT.html)
 
 """
 DeviceEventInfoEXT
@@ -26844,7 +26844,7 @@ High-level wrapper for VkDisplayEventInfoEXT.
 
 Extension: VK\\_EXT\\_display\\_control
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayEventInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayEventInfoEXT.html)
 
 """
 DisplayEventInfoEXT
@@ -26854,7 +26854,7 @@ High-level wrapper for VkSwapchainCounterCreateInfoEXT.
 
 Extension: VK\\_EXT\\_display\\_control
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCounterCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCounterCreateInfoEXT.html)
 
 """
 SwapchainCounterCreateInfoEXT
@@ -26862,7 +26862,7 @@ SwapchainCounterCreateInfoEXT
 """
 High-level wrapper for VkMemoryAllocateFlagsInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateFlagsInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateFlagsInfo.html)
 
 """
 MemoryAllocateFlagsInfo
@@ -26870,7 +26870,7 @@ MemoryAllocateFlagsInfo
 """
 High-level wrapper for VkBindBufferMemoryInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryInfo.html)
 
 """
 BindBufferMemoryInfo
@@ -26878,7 +26878,7 @@ BindBufferMemoryInfo
 """
 High-level wrapper for VkBindBufferMemoryDeviceGroupInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html)
 
 """
 BindBufferMemoryDeviceGroupInfo
@@ -26886,7 +26886,7 @@ BindBufferMemoryDeviceGroupInfo
 """
 High-level wrapper for VkBindImageMemoryInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryInfo.html)
 
 """
 BindImageMemoryInfo
@@ -26894,7 +26894,7 @@ BindImageMemoryInfo
 """
 High-level wrapper for VkBindImageMemoryDeviceGroupInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html)
 
 """
 BindImageMemoryDeviceGroupInfo
@@ -26902,7 +26902,7 @@ BindImageMemoryDeviceGroupInfo
 """
 High-level wrapper for VkDeviceGroupRenderPassBeginInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html)
 
 """
 DeviceGroupRenderPassBeginInfo
@@ -26910,7 +26910,7 @@ DeviceGroupRenderPassBeginInfo
 """
 High-level wrapper for VkDeviceGroupCommandBufferBeginInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupCommandBufferBeginInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupCommandBufferBeginInfo.html)
 
 """
 DeviceGroupCommandBufferBeginInfo
@@ -26918,7 +26918,7 @@ DeviceGroupCommandBufferBeginInfo
 """
 High-level wrapper for VkDeviceGroupSubmitInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSubmitInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSubmitInfo.html)
 
 """
 DeviceGroupSubmitInfo
@@ -26926,7 +26926,7 @@ DeviceGroupSubmitInfo
 """
 High-level wrapper for VkDeviceGroupBindSparseInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupBindSparseInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupBindSparseInfo.html)
 
 """
 DeviceGroupBindSparseInfo
@@ -26936,7 +26936,7 @@ High-level wrapper for VkImageSwapchainCreateInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSwapchainCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSwapchainCreateInfoKHR.html)
 
 """
 ImageSwapchainCreateInfoKHR
@@ -26946,7 +26946,7 @@ High-level wrapper for VkBindImageMemorySwapchainInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html)
 
 """
 BindImageMemorySwapchainInfoKHR
@@ -26956,7 +26956,7 @@ High-level wrapper for VkAcquireNextImageInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireNextImageInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireNextImageInfoKHR.html)
 
 """
 AcquireNextImageInfoKHR
@@ -26966,7 +26966,7 @@ High-level wrapper for VkDeviceGroupPresentInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupPresentInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupPresentInfoKHR.html)
 
 """
 DeviceGroupPresentInfoKHR
@@ -26974,7 +26974,7 @@ DeviceGroupPresentInfoKHR
 """
 High-level wrapper for VkDeviceGroupDeviceCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html)
 
 """
 DeviceGroupDeviceCreateInfo
@@ -26984,7 +26984,7 @@ High-level wrapper for VkDeviceGroupSwapchainCreateInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html)
 
 """
 DeviceGroupSwapchainCreateInfoKHR
@@ -26992,7 +26992,7 @@ DeviceGroupSwapchainCreateInfoKHR
 """
 High-level wrapper for VkDescriptorUpdateTemplateEntry.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateEntry.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateEntry.html)
 
 """
 DescriptorUpdateTemplateEntry
@@ -27000,7 +27000,7 @@ DescriptorUpdateTemplateEntry
 """
 High-level wrapper for VkDescriptorUpdateTemplateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html)
 
 """
 DescriptorUpdateTemplateCreateInfo
@@ -27010,7 +27010,7 @@ High-level wrapper for VkXYColorEXT.
 
 Extension: VK\\_EXT\\_hdr\\_metadata
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXYColorEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXYColorEXT.html)
 
 """
 XYColorEXT
@@ -27020,7 +27020,7 @@ High-level wrapper for VkHdrMetadataEXT.
 
 Extension: VK\\_EXT\\_hdr\\_metadata
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHdrMetadataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHdrMetadataEXT.html)
 
 """
 HdrMetadataEXT
@@ -27030,7 +27030,7 @@ High-level wrapper for VkSwapchainDisplayNativeHdrCreateInfoAMD.
 
 Extension: VK\\_AMD\\_display\\_native\\_hdr
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainDisplayNativeHdrCreateInfoAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainDisplayNativeHdrCreateInfoAMD.html)
 
 """
 SwapchainDisplayNativeHdrCreateInfoAMD
@@ -27040,7 +27040,7 @@ High-level wrapper for VkPresentTimesInfoGOOGLE.
 
 Extension: VK\\_GOOGLE\\_display\\_timing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimesInfoGOOGLE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimesInfoGOOGLE.html)
 
 """
 PresentTimesInfoGOOGLE
@@ -27050,7 +27050,7 @@ High-level wrapper for VkPresentTimeGOOGLE.
 
 Extension: VK\\_GOOGLE\\_display\\_timing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimeGOOGLE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimeGOOGLE.html)
 
 """
 PresentTimeGOOGLE
@@ -27060,7 +27060,7 @@ High-level wrapper for VkMacOSSurfaceCreateInfoMVK.
 
 Extension: VK\\_MVK\\_macos\\_surface
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMacOSSurfaceCreateInfoMVK.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMacOSSurfaceCreateInfoMVK.html)
 
 """
 MacOSSurfaceCreateInfoMVK
@@ -27070,7 +27070,7 @@ High-level wrapper for VkMetalSurfaceCreateInfoEXT.
 
 Extension: VK\\_EXT\\_metal\\_surface
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMetalSurfaceCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMetalSurfaceCreateInfoEXT.html)
 
 """
 MetalSurfaceCreateInfoEXT
@@ -27080,7 +27080,7 @@ High-level wrapper for VkViewportWScalingNV.
 
 Extension: VK\\_NV\\_clip\\_space\\_w\\_scaling
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportWScalingNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportWScalingNV.html)
 
 """
 ViewportWScalingNV
@@ -27090,7 +27090,7 @@ High-level wrapper for VkPipelineViewportWScalingStateCreateInfoNV.
 
 Extension: VK\\_NV\\_clip\\_space\\_w\\_scaling
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportWScalingStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportWScalingStateCreateInfoNV.html)
 
 """
 PipelineViewportWScalingStateCreateInfoNV
@@ -27100,7 +27100,7 @@ High-level wrapper for VkViewportSwizzleNV.
 
 Extension: VK\\_NV\\_viewport\\_swizzle
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportSwizzleNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportSwizzleNV.html)
 
 """
 ViewportSwizzleNV
@@ -27110,7 +27110,7 @@ High-level wrapper for VkPipelineViewportSwizzleStateCreateInfoNV.
 
 Extension: VK\\_NV\\_viewport\\_swizzle
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html)
 
 """
 PipelineViewportSwizzleStateCreateInfoNV
@@ -27120,7 +27120,7 @@ High-level wrapper for VkPipelineDiscardRectangleStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_discard\\_rectangles
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDiscardRectangleStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDiscardRectangleStateCreateInfoEXT.html)
 
 """
 PipelineDiscardRectangleStateCreateInfoEXT
@@ -27128,7 +27128,7 @@ PipelineDiscardRectangleStateCreateInfoEXT
 """
 High-level wrapper for VkInputAttachmentAspectReference.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInputAttachmentAspectReference.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInputAttachmentAspectReference.html)
 
 """
 InputAttachmentAspectReference
@@ -27136,7 +27136,7 @@ InputAttachmentAspectReference
 """
 High-level wrapper for VkRenderPassInputAttachmentAspectCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html)
 
 """
 RenderPassInputAttachmentAspectCreateInfo
@@ -27146,7 +27146,7 @@ High-level wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
 
 Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html)
 
 """
 PhysicalDeviceSurfaceInfo2KHR
@@ -27156,7 +27156,7 @@ High-level wrapper for VkDisplayPlaneInfo2KHR.
 
 Extension: VK\\_KHR\\_get\\_display\\_properties2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneInfo2KHR.html)
 
 """
 DisplayPlaneInfo2KHR
@@ -27164,7 +27164,7 @@ DisplayPlaneInfo2KHR
 """
 High-level wrapper for VkPhysicalDevice16BitStorageFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice16BitStorageFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice16BitStorageFeatures.html)
 
 """
 PhysicalDevice16BitStorageFeatures
@@ -27172,7 +27172,7 @@ PhysicalDevice16BitStorageFeatures
 """
 High-level wrapper for VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.html)
 
 """
 PhysicalDeviceShaderSubgroupExtendedTypesFeatures
@@ -27180,7 +27180,7 @@ PhysicalDeviceShaderSubgroupExtendedTypesFeatures
 """
 High-level wrapper for VkBufferMemoryRequirementsInfo2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryRequirementsInfo2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryRequirementsInfo2.html)
 
 """
 BufferMemoryRequirementsInfo2
@@ -27188,7 +27188,7 @@ BufferMemoryRequirementsInfo2
 """
 High-level wrapper for VkImageMemoryRequirementsInfo2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryRequirementsInfo2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryRequirementsInfo2.html)
 
 """
 ImageMemoryRequirementsInfo2
@@ -27196,7 +27196,7 @@ ImageMemoryRequirementsInfo2
 """
 High-level wrapper for VkImageSparseMemoryRequirementsInfo2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html)
 
 """
 ImageSparseMemoryRequirementsInfo2
@@ -27204,7 +27204,7 @@ ImageSparseMemoryRequirementsInfo2
 """
 High-level wrapper for VkMemoryDedicatedAllocateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryDedicatedAllocateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryDedicatedAllocateInfo.html)
 
 """
 MemoryDedicatedAllocateInfo
@@ -27212,7 +27212,7 @@ MemoryDedicatedAllocateInfo
 """
 High-level wrapper for VkImageViewUsageCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewUsageCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewUsageCreateInfo.html)
 
 """
 ImageViewUsageCreateInfo
@@ -27220,7 +27220,7 @@ ImageViewUsageCreateInfo
 """
 High-level wrapper for VkPipelineTessellationDomainOriginStateCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationDomainOriginStateCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationDomainOriginStateCreateInfo.html)
 
 """
 PipelineTessellationDomainOriginStateCreateInfo
@@ -27228,7 +27228,7 @@ PipelineTessellationDomainOriginStateCreateInfo
 """
 High-level wrapper for VkSamplerYcbcrConversionInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionInfo.html)
 
 """
 SamplerYcbcrConversionInfo
@@ -27236,7 +27236,7 @@ SamplerYcbcrConversionInfo
 """
 High-level wrapper for VkSamplerYcbcrConversionCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionCreateInfo.html)
 
 """
 SamplerYcbcrConversionCreateInfo
@@ -27244,7 +27244,7 @@ SamplerYcbcrConversionCreateInfo
 """
 High-level wrapper for VkBindImagePlaneMemoryInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImagePlaneMemoryInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImagePlaneMemoryInfo.html)
 
 """
 BindImagePlaneMemoryInfo
@@ -27252,7 +27252,7 @@ BindImagePlaneMemoryInfo
 """
 High-level wrapper for VkImagePlaneMemoryRequirementsInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html)
 
 """
 ImagePlaneMemoryRequirementsInfo
@@ -27260,7 +27260,7 @@ ImagePlaneMemoryRequirementsInfo
 """
 High-level wrapper for VkPhysicalDeviceSamplerYcbcrConversionFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSamplerYcbcrConversionFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSamplerYcbcrConversionFeatures.html)
 
 """
 PhysicalDeviceSamplerYcbcrConversionFeatures
@@ -27270,7 +27270,7 @@ High-level wrapper for VkConditionalRenderingBeginInfoEXT.
 
 Extension: VK\\_EXT\\_conditional\\_rendering
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html)
 
 """
 ConditionalRenderingBeginInfoEXT
@@ -27278,7 +27278,7 @@ ConditionalRenderingBeginInfoEXT
 """
 High-level wrapper for VkProtectedSubmitInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkProtectedSubmitInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkProtectedSubmitInfo.html)
 
 """
 ProtectedSubmitInfo
@@ -27286,7 +27286,7 @@ ProtectedSubmitInfo
 """
 High-level wrapper for VkPhysicalDeviceProtectedMemoryFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProtectedMemoryFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProtectedMemoryFeatures.html)
 
 """
 PhysicalDeviceProtectedMemoryFeatures
@@ -27294,7 +27294,7 @@ PhysicalDeviceProtectedMemoryFeatures
 """
 High-level wrapper for VkDeviceQueueInfo2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueInfo2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueInfo2.html)
 
 """
 DeviceQueueInfo2
@@ -27304,7 +27304,7 @@ High-level wrapper for VkPipelineCoverageToColorStateCreateInfoNV.
 
 Extension: VK\\_NV\\_fragment\\_coverage\\_to\\_color
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html)
 
 """
 PipelineCoverageToColorStateCreateInfoNV
@@ -27314,7 +27314,7 @@ High-level wrapper for VkSampleLocationEXT.
 
 Extension: VK\\_EXT\\_sample\\_locations
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationEXT.html)
 
 """
 SampleLocationEXT
@@ -27324,7 +27324,7 @@ High-level wrapper for VkSampleLocationsInfoEXT.
 
 Extension: VK\\_EXT\\_sample\\_locations
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationsInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationsInfoEXT.html)
 
 """
 SampleLocationsInfoEXT
@@ -27334,7 +27334,7 @@ High-level wrapper for VkAttachmentSampleLocationsEXT.
 
 Extension: VK\\_EXT\\_sample\\_locations
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentSampleLocationsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentSampleLocationsEXT.html)
 
 """
 AttachmentSampleLocationsEXT
@@ -27344,7 +27344,7 @@ High-level wrapper for VkSubpassSampleLocationsEXT.
 
 Extension: VK\\_EXT\\_sample\\_locations
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassSampleLocationsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassSampleLocationsEXT.html)
 
 """
 SubpassSampleLocationsEXT
@@ -27354,7 +27354,7 @@ High-level wrapper for VkRenderPassSampleLocationsBeginInfoEXT.
 
 Extension: VK\\_EXT\\_sample\\_locations
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html)
 
 """
 RenderPassSampleLocationsBeginInfoEXT
@@ -27364,7 +27364,7 @@ High-level wrapper for VkPipelineSampleLocationsStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_sample\\_locations
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html)
 
 """
 PipelineSampleLocationsStateCreateInfoEXT
@@ -27372,7 +27372,7 @@ PipelineSampleLocationsStateCreateInfoEXT
 """
 High-level wrapper for VkSamplerReductionModeCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerReductionModeCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerReductionModeCreateInfo.html)
 
 """
 SamplerReductionModeCreateInfo
@@ -27382,7 +27382,7 @@ High-level wrapper for VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.
 
 Extension: VK\\_EXT\\_blend\\_operation\\_advanced
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html)
 
 """
 PhysicalDeviceBlendOperationAdvancedFeaturesEXT
@@ -27392,7 +27392,7 @@ High-level wrapper for VkPipelineColorBlendAdvancedStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_blend\\_operation\\_advanced
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAdvancedStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAdvancedStateCreateInfoEXT.html)
 
 """
 PipelineColorBlendAdvancedStateCreateInfoEXT
@@ -27402,7 +27402,7 @@ High-level wrapper for VkPhysicalDeviceInlineUniformBlockFeaturesEXT.
 
 Extension: VK\\_EXT\\_inline\\_uniform\\_block
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInlineUniformBlockFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInlineUniformBlockFeaturesEXT.html)
 
 """
 PhysicalDeviceInlineUniformBlockFeaturesEXT
@@ -27412,7 +27412,7 @@ High-level wrapper for VkWriteDescriptorSetInlineUniformBlockEXT.
 
 Extension: VK\\_EXT\\_inline\\_uniform\\_block
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetInlineUniformBlockEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetInlineUniformBlockEXT.html)
 
 """
 WriteDescriptorSetInlineUniformBlockEXT
@@ -27422,7 +27422,7 @@ High-level wrapper for VkDescriptorPoolInlineUniformBlockCreateInfoEXT.
 
 Extension: VK\\_EXT\\_inline\\_uniform\\_block
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.html)
 
 """
 DescriptorPoolInlineUniformBlockCreateInfoEXT
@@ -27432,7 +27432,7 @@ High-level wrapper for VkPipelineCoverageModulationStateCreateInfoNV.
 
 Extension: VK\\_NV\\_framebuffer\\_mixed\\_samples
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html)
 
 """
 PipelineCoverageModulationStateCreateInfoNV
@@ -27440,7 +27440,7 @@ PipelineCoverageModulationStateCreateInfoNV
 """
 High-level wrapper for VkImageFormatListCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageFormatListCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageFormatListCreateInfo.html)
 
 """
 ImageFormatListCreateInfo
@@ -27450,7 +27450,7 @@ High-level wrapper for VkValidationCacheCreateInfoEXT.
 
 Extension: VK\\_EXT\\_validation\\_cache
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationCacheCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationCacheCreateInfoEXT.html)
 
 """
 ValidationCacheCreateInfoEXT
@@ -27460,7 +27460,7 @@ High-level wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
 
 Extension: VK\\_EXT\\_validation\\_cache
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html)
 
 """
 ShaderModuleValidationCacheCreateInfoEXT
@@ -27468,7 +27468,7 @@ ShaderModuleValidationCacheCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceShaderDrawParametersFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html)
 
 """
 PhysicalDeviceShaderDrawParametersFeatures
@@ -27476,7 +27476,7 @@ PhysicalDeviceShaderDrawParametersFeatures
 """
 High-level wrapper for VkPhysicalDeviceShaderFloat16Int8Features.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderFloat16Int8Features.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderFloat16Int8Features.html)
 
 """
 PhysicalDeviceShaderFloat16Int8Features
@@ -27484,7 +27484,7 @@ PhysicalDeviceShaderFloat16Int8Features
 """
 High-level wrapper for VkPhysicalDeviceHostQueryResetFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceHostQueryResetFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceHostQueryResetFeatures.html)
 
 """
 PhysicalDeviceHostQueryResetFeatures
@@ -27494,7 +27494,7 @@ High-level wrapper for VkDeviceQueueGlobalPriorityCreateInfoEXT.
 
 Extension: VK\\_EXT\\_global\\_priority
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoEXT.html)
 
 """
 DeviceQueueGlobalPriorityCreateInfoEXT
@@ -27504,7 +27504,7 @@ High-level wrapper for VkDebugUtilsObjectNameInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_utils
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html)
 
 """
 DebugUtilsObjectNameInfoEXT
@@ -27514,7 +27514,7 @@ High-level wrapper for VkDebugUtilsObjectTagInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_utils
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html)
 
 """
 DebugUtilsObjectTagInfoEXT
@@ -27524,7 +27524,7 @@ High-level wrapper for VkDebugUtilsLabelEXT.
 
 Extension: VK\\_EXT\\_debug\\_utils
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsLabelEXT.html)
 
 """
 DebugUtilsLabelEXT
@@ -27534,7 +27534,7 @@ High-level wrapper for VkDebugUtilsMessengerCreateInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_utils
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCreateInfoEXT.html)
 
 """
 DebugUtilsMessengerCreateInfoEXT
@@ -27544,7 +27544,7 @@ High-level wrapper for VkDebugUtilsMessengerCallbackDataEXT.
 
 Extension: VK\\_EXT\\_debug\\_utils
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCallbackDataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCallbackDataEXT.html)
 
 """
 DebugUtilsMessengerCallbackDataEXT
@@ -27554,7 +27554,7 @@ High-level wrapper for VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.
 
 Extension: VK\\_EXT\\_device\\_memory\\_report
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.html)
 
 """
 PhysicalDeviceDeviceMemoryReportFeaturesEXT
@@ -27564,7 +27564,7 @@ High-level wrapper for VkDeviceDeviceMemoryReportCreateInfoEXT.
 
 Extension: VK\\_EXT\\_device\\_memory\\_report
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDeviceMemoryReportCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDeviceMemoryReportCreateInfoEXT.html)
 
 """
 DeviceDeviceMemoryReportCreateInfoEXT
@@ -27574,7 +27574,7 @@ High-level wrapper for VkImportMemoryHostPointerInfoEXT.
 
 Extension: VK\\_EXT\\_external\\_memory\\_host
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html)
 
 """
 ImportMemoryHostPointerInfoEXT
@@ -27584,7 +27584,7 @@ High-level wrapper for VkCalibratedTimestampInfoEXT.
 
 Extension: VK\\_EXT\\_calibrated\\_timestamps
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCalibratedTimestampInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCalibratedTimestampInfoEXT.html)
 
 """
 CalibratedTimestampInfoEXT
@@ -27594,7 +27594,7 @@ High-level wrapper for VkPipelineRasterizationConservativeStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_conservative\\_rasterization
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html)
 
 """
 PipelineRasterizationConservativeStateCreateInfoEXT
@@ -27602,7 +27602,7 @@ PipelineRasterizationConservativeStateCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceDescriptorIndexingFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDescriptorIndexingFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDescriptorIndexingFeatures.html)
 
 """
 PhysicalDeviceDescriptorIndexingFeatures
@@ -27610,7 +27610,7 @@ PhysicalDeviceDescriptorIndexingFeatures
 """
 High-level wrapper for VkDescriptorSetLayoutBindingFlagsCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBindingFlagsCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBindingFlagsCreateInfo.html)
 
 """
 DescriptorSetLayoutBindingFlagsCreateInfo
@@ -27618,7 +27618,7 @@ DescriptorSetLayoutBindingFlagsCreateInfo
 """
 High-level wrapper for VkDescriptorSetVariableDescriptorCountAllocateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetVariableDescriptorCountAllocateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetVariableDescriptorCountAllocateInfo.html)
 
 """
 DescriptorSetVariableDescriptorCountAllocateInfo
@@ -27626,7 +27626,7 @@ DescriptorSetVariableDescriptorCountAllocateInfo
 """
 High-level wrapper for VkAttachmentDescription2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription2.html)
 
 """
 AttachmentDescription2
@@ -27634,7 +27634,7 @@ AttachmentDescription2
 """
 High-level wrapper for VkAttachmentReference2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference2.html)
 
 """
 AttachmentReference2
@@ -27642,7 +27642,7 @@ AttachmentReference2
 """
 High-level wrapper for VkSubpassDescription2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription2.html)
 
 """
 SubpassDescription2
@@ -27650,7 +27650,7 @@ SubpassDescription2
 """
 High-level wrapper for VkSubpassDependency2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency2.html)
 
 """
 SubpassDependency2
@@ -27658,7 +27658,7 @@ SubpassDependency2
 """
 High-level wrapper for VkRenderPassCreateInfo2.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo2.html)
 
 """
 RenderPassCreateInfo2
@@ -27666,7 +27666,7 @@ RenderPassCreateInfo2
 """
 High-level wrapper for VkSubpassBeginInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassBeginInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassBeginInfo.html)
 
 """
 SubpassBeginInfo
@@ -27674,7 +27674,7 @@ SubpassBeginInfo
 """
 High-level wrapper for VkSubpassEndInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassEndInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassEndInfo.html)
 
 """
 SubpassEndInfo
@@ -27682,7 +27682,7 @@ SubpassEndInfo
 """
 High-level wrapper for VkPhysicalDeviceTimelineSemaphoreFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreFeatures.html)
 
 """
 PhysicalDeviceTimelineSemaphoreFeatures
@@ -27690,7 +27690,7 @@ PhysicalDeviceTimelineSemaphoreFeatures
 """
 High-level wrapper for VkSemaphoreTypeCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreTypeCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreTypeCreateInfo.html)
 
 """
 SemaphoreTypeCreateInfo
@@ -27698,7 +27698,7 @@ SemaphoreTypeCreateInfo
 """
 High-level wrapper for VkTimelineSemaphoreSubmitInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTimelineSemaphoreSubmitInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTimelineSemaphoreSubmitInfo.html)
 
 """
 TimelineSemaphoreSubmitInfo
@@ -27706,7 +27706,7 @@ TimelineSemaphoreSubmitInfo
 """
 High-level wrapper for VkSemaphoreWaitInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreWaitInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreWaitInfo.html)
 
 """
 SemaphoreWaitInfo
@@ -27714,7 +27714,7 @@ SemaphoreWaitInfo
 """
 High-level wrapper for VkSemaphoreSignalInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSignalInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSignalInfo.html)
 
 """
 SemaphoreSignalInfo
@@ -27724,7 +27724,7 @@ High-level wrapper for VkVertexInputBindingDivisorDescriptionEXT.
 
 Extension: VK\\_EXT\\_vertex\\_attribute\\_divisor
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDivisorDescriptionEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDivisorDescriptionEXT.html)
 
 """
 VertexInputBindingDivisorDescriptionEXT
@@ -27734,7 +27734,7 @@ High-level wrapper for VkPipelineVertexInputDivisorStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_vertex\\_attribute\\_divisor
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputDivisorStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputDivisorStateCreateInfoEXT.html)
 
 """
 PipelineVertexInputDivisorStateCreateInfoEXT
@@ -27744,7 +27744,7 @@ High-level wrapper for VkCommandBufferInheritanceConditionalRenderingInfoEXT.
 
 Extension: VK\\_EXT\\_conditional\\_rendering
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html)
 
 """
 CommandBufferInheritanceConditionalRenderingInfoEXT
@@ -27752,7 +27752,7 @@ CommandBufferInheritanceConditionalRenderingInfoEXT
 """
 High-level wrapper for VkPhysicalDevice8BitStorageFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice8BitStorageFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice8BitStorageFeatures.html)
 
 """
 PhysicalDevice8BitStorageFeatures
@@ -27762,7 +27762,7 @@ High-level wrapper for VkPhysicalDeviceConditionalRenderingFeaturesEXT.
 
 Extension: VK\\_EXT\\_conditional\\_rendering
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html)
 
 """
 PhysicalDeviceConditionalRenderingFeaturesEXT
@@ -27770,7 +27770,7 @@ PhysicalDeviceConditionalRenderingFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceVulkanMemoryModelFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkanMemoryModelFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkanMemoryModelFeatures.html)
 
 """
 PhysicalDeviceVulkanMemoryModelFeatures
@@ -27778,7 +27778,7 @@ PhysicalDeviceVulkanMemoryModelFeatures
 """
 High-level wrapper for VkPhysicalDeviceShaderAtomicInt64Features.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicInt64Features.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicInt64Features.html)
 
 """
 PhysicalDeviceShaderAtomicInt64Features
@@ -27788,7 +27788,7 @@ High-level wrapper for VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.
 
 Extension: VK\\_EXT\\_shader\\_atomic\\_float
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html)
 
 """
 PhysicalDeviceShaderAtomicFloatFeaturesEXT
@@ -27798,7 +27798,7 @@ High-level wrapper for VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.
 
 Extension: VK\\_EXT\\_vertex\\_attribute\\_divisor
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.html)
 
 """
 PhysicalDeviceVertexAttributeDivisorFeaturesEXT
@@ -27806,7 +27806,7 @@ PhysicalDeviceVertexAttributeDivisorFeaturesEXT
 """
 High-level wrapper for VkSubpassDescriptionDepthStencilResolve.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescriptionDepthStencilResolve.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescriptionDepthStencilResolve.html)
 
 """
 SubpassDescriptionDepthStencilResolve
@@ -27816,7 +27816,7 @@ High-level wrapper for VkImageViewASTCDecodeModeEXT.
 
 Extension: VK\\_EXT\\_astc\\_decode\\_mode
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewASTCDecodeModeEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewASTCDecodeModeEXT.html)
 
 """
 ImageViewASTCDecodeModeEXT
@@ -27826,7 +27826,7 @@ High-level wrapper for VkPhysicalDeviceASTCDecodeFeaturesEXT.
 
 Extension: VK\\_EXT\\_astc\\_decode\\_mode
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceASTCDecodeFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceASTCDecodeFeaturesEXT.html)
 
 """
 PhysicalDeviceASTCDecodeFeaturesEXT
@@ -27836,7 +27836,7 @@ High-level wrapper for VkPhysicalDeviceTransformFeedbackFeaturesEXT.
 
 Extension: VK\\_EXT\\_transform\\_feedback
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html)
 
 """
 PhysicalDeviceTransformFeedbackFeaturesEXT
@@ -27846,7 +27846,7 @@ High-level wrapper for VkPipelineRasterizationStateStreamCreateInfoEXT.
 
 Extension: VK\\_EXT\\_transform\\_feedback
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html)
 
 """
 PipelineRasterizationStateStreamCreateInfoEXT
@@ -27856,7 +27856,7 @@ High-level wrapper for VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.
 
 Extension: VK\\_NV\\_representative\\_fragment\\_test
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.html)
 
 """
 PhysicalDeviceRepresentativeFragmentTestFeaturesNV
@@ -27866,7 +27866,7 @@ High-level wrapper for VkPipelineRepresentativeFragmentTestStateCreateInfoNV.
 
 Extension: VK\\_NV\\_representative\\_fragment\\_test
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.html)
 
 """
 PipelineRepresentativeFragmentTestStateCreateInfoNV
@@ -27876,7 +27876,7 @@ High-level wrapper for VkPhysicalDeviceExclusiveScissorFeaturesNV.
 
 Extension: VK\\_NV\\_scissor\\_exclusive
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExclusiveScissorFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExclusiveScissorFeaturesNV.html)
 
 """
 PhysicalDeviceExclusiveScissorFeaturesNV
@@ -27886,7 +27886,7 @@ High-level wrapper for VkPipelineViewportExclusiveScissorStateCreateInfoNV.
 
 Extension: VK\\_NV\\_scissor\\_exclusive
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html)
 
 """
 PipelineViewportExclusiveScissorStateCreateInfoNV
@@ -27896,7 +27896,7 @@ High-level wrapper for VkPhysicalDeviceCornerSampledImageFeaturesNV.
 
 Extension: VK\\_NV\\_corner\\_sampled\\_image
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCornerSampledImageFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCornerSampledImageFeaturesNV.html)
 
 """
 PhysicalDeviceCornerSampledImageFeaturesNV
@@ -27906,7 +27906,7 @@ High-level wrapper for VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.
 
 Extension: VK\\_NV\\_compute\\_shader\\_derivatives
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.html)
 
 """
 PhysicalDeviceComputeShaderDerivativesFeaturesNV
@@ -27916,7 +27916,7 @@ High-level wrapper for VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.
 
 Extension: VK\\_NV\\_fragment\\_shader\\_barycentric
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.html)
 
 """
 PhysicalDeviceFragmentShaderBarycentricFeaturesNV
@@ -27926,7 +27926,7 @@ High-level wrapper for VkPhysicalDeviceShaderImageFootprintFeaturesNV.
 
 Extension: VK\\_NV\\_shader\\_image\\_footprint
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageFootprintFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageFootprintFeaturesNV.html)
 
 """
 PhysicalDeviceShaderImageFootprintFeaturesNV
@@ -27936,7 +27936,7 @@ High-level wrapper for VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesN
 
 Extension: VK\\_NV\\_dedicated\\_allocation\\_image\\_aliasing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.html)
 
 """
 PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV
@@ -27946,7 +27946,7 @@ High-level wrapper for VkShadingRatePaletteNV.
 
 Extension: VK\\_NV\\_shading\\_rate\\_image
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShadingRatePaletteNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShadingRatePaletteNV.html)
 
 """
 ShadingRatePaletteNV
@@ -27956,7 +27956,7 @@ High-level wrapper for VkPipelineViewportShadingRateImageStateCreateInfoNV.
 
 Extension: VK\\_NV\\_shading\\_rate\\_image
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html)
 
 """
 PipelineViewportShadingRateImageStateCreateInfoNV
@@ -27966,7 +27966,7 @@ High-level wrapper for VkPhysicalDeviceShadingRateImageFeaturesNV.
 
 Extension: VK\\_NV\\_shading\\_rate\\_image
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html)
 
 """
 PhysicalDeviceShadingRateImageFeaturesNV
@@ -27976,7 +27976,7 @@ High-level wrapper for VkCoarseSampleLocationNV.
 
 Extension: VK\\_NV\\_shading\\_rate\\_image
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleLocationNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleLocationNV.html)
 
 """
 CoarseSampleLocationNV
@@ -27986,7 +27986,7 @@ High-level wrapper for VkCoarseSampleOrderCustomNV.
 
 Extension: VK\\_NV\\_shading\\_rate\\_image
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleOrderCustomNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleOrderCustomNV.html)
 
 """
 CoarseSampleOrderCustomNV
@@ -27996,7 +27996,7 @@ High-level wrapper for VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.
 
 Extension: VK\\_NV\\_shading\\_rate\\_image
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html)
 
 """
 PipelineViewportCoarseSampleOrderStateCreateInfoNV
@@ -28006,7 +28006,7 @@ High-level wrapper for VkPhysicalDeviceMeshShaderFeaturesNV.
 
 Extension: VK\\_NV\\_mesh\\_shader
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMeshShaderFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMeshShaderFeaturesNV.html)
 
 """
 PhysicalDeviceMeshShaderFeaturesNV
@@ -28016,7 +28016,7 @@ High-level wrapper for VkDrawMeshTasksIndirectCommandNV.
 
 Extension: VK\\_NV\\_mesh\\_shader
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html)
 
 """
 DrawMeshTasksIndirectCommandNV
@@ -28026,7 +28026,7 @@ High-level wrapper for VkRayTracingShaderGroupCreateInfoNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html)
 
 """
 RayTracingShaderGroupCreateInfoNV
@@ -28036,7 +28036,7 @@ High-level wrapper for VkRayTracingShaderGroupCreateInfoKHR.
 
 Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html)
 
 """
 RayTracingShaderGroupCreateInfoKHR
@@ -28046,7 +28046,7 @@ High-level wrapper for VkRayTracingPipelineCreateInfoNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html)
 
 """
 RayTracingPipelineCreateInfoNV
@@ -28056,7 +28056,7 @@ High-level wrapper for VkRayTracingPipelineCreateInfoKHR.
 
 Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html)
 
 """
 RayTracingPipelineCreateInfoKHR
@@ -28066,7 +28066,7 @@ High-level wrapper for VkGeometryTrianglesNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryTrianglesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryTrianglesNV.html)
 
 """
 GeometryTrianglesNV
@@ -28076,7 +28076,7 @@ High-level wrapper for VkGeometryAABBNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryAABBNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryAABBNV.html)
 
 """
 GeometryAABBNV
@@ -28086,7 +28086,7 @@ High-level wrapper for VkGeometryDataNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryDataNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryDataNV.html)
 
 """
 GeometryDataNV
@@ -28096,7 +28096,7 @@ High-level wrapper for VkGeometryNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryNV.html)
 
 """
 GeometryNV
@@ -28106,7 +28106,7 @@ High-level wrapper for VkAccelerationStructureInfoNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInfoNV.html)
 
 """
 AccelerationStructureInfoNV
@@ -28116,7 +28116,7 @@ High-level wrapper for VkAccelerationStructureCreateInfoNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoNV.html)
 
 """
 AccelerationStructureCreateInfoNV
@@ -28126,7 +28126,7 @@ High-level wrapper for VkBindAccelerationStructureMemoryInfoNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
 
 """
 BindAccelerationStructureMemoryInfoNV
@@ -28136,7 +28136,7 @@ High-level wrapper for VkWriteDescriptorSetAccelerationStructureKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html)
 
 """
 WriteDescriptorSetAccelerationStructureKHR
@@ -28146,7 +28146,7 @@ High-level wrapper for VkWriteDescriptorSetAccelerationStructureNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html)
 
 """
 WriteDescriptorSetAccelerationStructureNV
@@ -28156,7 +28156,7 @@ High-level wrapper for VkAccelerationStructureMemoryRequirementsInfoNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html)
 
 """
 AccelerationStructureMemoryRequirementsInfoNV
@@ -28166,7 +28166,7 @@ High-level wrapper for VkPhysicalDeviceAccelerationStructureFeaturesKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceAccelerationStructureFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceAccelerationStructureFeaturesKHR.html)
 
 """
 PhysicalDeviceAccelerationStructureFeaturesKHR
@@ -28176,7 +28176,7 @@ High-level wrapper for VkPhysicalDeviceRayTracingPipelineFeaturesKHR.
 
 Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html)
 
 """
 PhysicalDeviceRayTracingPipelineFeaturesKHR
@@ -28186,7 +28186,7 @@ High-level wrapper for VkPhysicalDeviceRayQueryFeaturesKHR.
 
 Extension: VK\\_KHR\\_ray\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayQueryFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayQueryFeaturesKHR.html)
 
 """
 PhysicalDeviceRayQueryFeaturesKHR
@@ -28196,7 +28196,7 @@ High-level wrapper for VkStridedDeviceAddressRegionKHR.
 
 Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStridedDeviceAddressRegionKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStridedDeviceAddressRegionKHR.html)
 
 """
 StridedDeviceAddressRegionKHR
@@ -28206,7 +28206,7 @@ High-level wrapper for VkTraceRaysIndirectCommandKHR.
 
 Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTraceRaysIndirectCommandKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTraceRaysIndirectCommandKHR.html)
 
 """
 TraceRaysIndirectCommandKHR
@@ -28216,7 +28216,7 @@ High-level wrapper for VkPhysicalDeviceImageDrmFormatModifierInfoEXT.
 
 Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html)
 
 """
 PhysicalDeviceImageDrmFormatModifierInfoEXT
@@ -28226,7 +28226,7 @@ High-level wrapper for VkImageDrmFormatModifierListCreateInfoEXT.
 
 Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierListCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierListCreateInfoEXT.html)
 
 """
 ImageDrmFormatModifierListCreateInfoEXT
@@ -28236,7 +28236,7 @@ High-level wrapper for VkImageDrmFormatModifierExplicitCreateInfoEXT.
 
 Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierExplicitCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierExplicitCreateInfoEXT.html)
 
 """
 ImageDrmFormatModifierExplicitCreateInfoEXT
@@ -28244,7 +28244,7 @@ ImageDrmFormatModifierExplicitCreateInfoEXT
 """
 High-level wrapper for VkImageStencilUsageCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageStencilUsageCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageStencilUsageCreateInfo.html)
 
 """
 ImageStencilUsageCreateInfo
@@ -28254,7 +28254,7 @@ High-level wrapper for VkDeviceMemoryOverallocationCreateInfoAMD.
 
 Extension: VK\\_AMD\\_memory\\_overallocation\\_behavior
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html)
 
 """
 DeviceMemoryOverallocationCreateInfoAMD
@@ -28264,7 +28264,7 @@ High-level wrapper for VkPhysicalDeviceFragmentDensityMapFeaturesEXT.
 
 Extension: VK\\_EXT\\_fragment\\_density\\_map
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMapFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMapFeaturesEXT.html)
 
 """
 PhysicalDeviceFragmentDensityMapFeaturesEXT
@@ -28274,7 +28274,7 @@ High-level wrapper for VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.
 
 Extension: VK\\_EXT\\_fragment\\_density\\_map2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.html)
 
 """
 PhysicalDeviceFragmentDensityMap2FeaturesEXT
@@ -28284,7 +28284,7 @@ High-level wrapper for VkRenderPassFragmentDensityMapCreateInfoEXT.
 
 Extension: VK\\_EXT\\_fragment\\_density\\_map
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html)
 
 """
 RenderPassFragmentDensityMapCreateInfoEXT
@@ -28292,7 +28292,7 @@ RenderPassFragmentDensityMapCreateInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceScalarBlockLayoutFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceScalarBlockLayoutFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceScalarBlockLayoutFeatures.html)
 
 """
 PhysicalDeviceScalarBlockLayoutFeatures
@@ -28302,7 +28302,7 @@ High-level wrapper for VkSurfaceProtectedCapabilitiesKHR.
 
 Extension: VK\\_KHR\\_surface\\_protected\\_capabilities
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceProtectedCapabilitiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceProtectedCapabilitiesKHR.html)
 
 """
 SurfaceProtectedCapabilitiesKHR
@@ -28310,7 +28310,7 @@ SurfaceProtectedCapabilitiesKHR
 """
 High-level wrapper for VkPhysicalDeviceUniformBufferStandardLayoutFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceUniformBufferStandardLayoutFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceUniformBufferStandardLayoutFeatures.html)
 
 """
 PhysicalDeviceUniformBufferStandardLayoutFeatures
@@ -28320,7 +28320,7 @@ High-level wrapper for VkPhysicalDeviceDepthClipEnableFeaturesEXT.
 
 Extension: VK\\_EXT\\_depth\\_clip\\_enable
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDepthClipEnableFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDepthClipEnableFeaturesEXT.html)
 
 """
 PhysicalDeviceDepthClipEnableFeaturesEXT
@@ -28330,7 +28330,7 @@ High-level wrapper for VkPipelineRasterizationDepthClipStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_depth\\_clip\\_enable
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationDepthClipStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationDepthClipStateCreateInfoEXT.html)
 
 """
 PipelineRasterizationDepthClipStateCreateInfoEXT
@@ -28340,7 +28340,7 @@ High-level wrapper for VkPhysicalDeviceMemoryPriorityFeaturesEXT.
 
 Extension: VK\\_EXT\\_memory\\_priority
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryPriorityFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryPriorityFeaturesEXT.html)
 
 """
 PhysicalDeviceMemoryPriorityFeaturesEXT
@@ -28350,7 +28350,7 @@ High-level wrapper for VkMemoryPriorityAllocateInfoEXT.
 
 Extension: VK\\_EXT\\_memory\\_priority
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryPriorityAllocateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryPriorityAllocateInfoEXT.html)
 
 """
 MemoryPriorityAllocateInfoEXT
@@ -28358,7 +28358,7 @@ MemoryPriorityAllocateInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceBufferDeviceAddressFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeatures.html)
 
 """
 PhysicalDeviceBufferDeviceAddressFeatures
@@ -28368,7 +28368,7 @@ High-level wrapper for VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.
 
 Extension: VK\\_EXT\\_buffer\\_device\\_address
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html)
 
 """
 PhysicalDeviceBufferDeviceAddressFeaturesEXT
@@ -28376,7 +28376,7 @@ PhysicalDeviceBufferDeviceAddressFeaturesEXT
 """
 High-level wrapper for VkBufferDeviceAddressInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressInfo.html)
 
 """
 BufferDeviceAddressInfo
@@ -28384,7 +28384,7 @@ BufferDeviceAddressInfo
 """
 High-level wrapper for VkBufferOpaqueCaptureAddressCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferOpaqueCaptureAddressCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferOpaqueCaptureAddressCreateInfo.html)
 
 """
 BufferOpaqueCaptureAddressCreateInfo
@@ -28394,7 +28394,7 @@ High-level wrapper for VkBufferDeviceAddressCreateInfoEXT.
 
 Extension: VK\\_EXT\\_buffer\\_device\\_address
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html)
 
 """
 BufferDeviceAddressCreateInfoEXT
@@ -28404,7 +28404,7 @@ High-level wrapper for VkPhysicalDeviceImageViewImageFormatInfoEXT.
 
 Extension: VK\\_EXT\\_filter\\_cubic
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html)
 
 """
 PhysicalDeviceImageViewImageFormatInfoEXT
@@ -28412,7 +28412,7 @@ PhysicalDeviceImageViewImageFormatInfoEXT
 """
 High-level wrapper for VkPhysicalDeviceImagelessFramebufferFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImagelessFramebufferFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImagelessFramebufferFeatures.html)
 
 """
 PhysicalDeviceImagelessFramebufferFeatures
@@ -28420,7 +28420,7 @@ PhysicalDeviceImagelessFramebufferFeatures
 """
 High-level wrapper for VkFramebufferAttachmentsCreateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentsCreateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentsCreateInfo.html)
 
 """
 FramebufferAttachmentsCreateInfo
@@ -28428,7 +28428,7 @@ FramebufferAttachmentsCreateInfo
 """
 High-level wrapper for VkFramebufferAttachmentImageInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentImageInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentImageInfo.html)
 
 """
 FramebufferAttachmentImageInfo
@@ -28436,7 +28436,7 @@ FramebufferAttachmentImageInfo
 """
 High-level wrapper for VkRenderPassAttachmentBeginInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassAttachmentBeginInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassAttachmentBeginInfo.html)
 
 """
 RenderPassAttachmentBeginInfo
@@ -28446,7 +28446,7 @@ High-level wrapper for VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.
 
 Extension: VK\\_EXT\\_texture\\_compression\\_astc\\_hdr
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.html)
 
 """
 PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT
@@ -28456,7 +28456,7 @@ High-level wrapper for VkPhysicalDeviceCooperativeMatrixFeaturesNV.
 
 Extension: VK\\_NV\\_cooperative\\_matrix
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html)
 
 """
 PhysicalDeviceCooperativeMatrixFeaturesNV
@@ -28466,7 +28466,7 @@ High-level wrapper for VkCooperativeMatrixPropertiesNV.
 
 Extension: VK\\_NV\\_cooperative\\_matrix
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCooperativeMatrixPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCooperativeMatrixPropertiesNV.html)
 
 """
 CooperativeMatrixPropertiesNV
@@ -28476,7 +28476,7 @@ High-level wrapper for VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.
 
 Extension: VK\\_EXT\\_ycbcr\\_image\\_arrays
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.html)
 
 """
 PhysicalDeviceYcbcrImageArraysFeaturesEXT
@@ -28486,7 +28486,7 @@ High-level wrapper for VkImageViewHandleInfoNVX.
 
 Extension: VK\\_NVX\\_image\\_view\\_handle
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewHandleInfoNVX.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewHandleInfoNVX.html)
 
 """
 ImageViewHandleInfoNVX
@@ -28496,7 +28496,7 @@ High-level wrapper for VkPipelineCreationFeedbackCreateInfoEXT.
 
 Extension: VK\\_EXT\\_pipeline\\_creation\\_feedback
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCreationFeedbackCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCreationFeedbackCreateInfoEXT.html)
 
 """
 PipelineCreationFeedbackCreateInfoEXT
@@ -28506,7 +28506,7 @@ High-level wrapper for VkPhysicalDevicePerformanceQueryFeaturesKHR.
 
 Extension: VK\\_KHR\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html)
 
 """
 PhysicalDevicePerformanceQueryFeaturesKHR
@@ -28516,7 +28516,7 @@ High-level wrapper for VkQueryPoolPerformanceCreateInfoKHR.
 
 Extension: VK\\_KHR\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html)
 
 """
 QueryPoolPerformanceCreateInfoKHR
@@ -28526,7 +28526,7 @@ High-level wrapper for VkAcquireProfilingLockInfoKHR.
 
 Extension: VK\\_KHR\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireProfilingLockInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireProfilingLockInfoKHR.html)
 
 """
 AcquireProfilingLockInfoKHR
@@ -28536,7 +28536,7 @@ High-level wrapper for VkPerformanceQuerySubmitInfoKHR.
 
 Extension: VK\\_KHR\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html)
 
 """
 PerformanceQuerySubmitInfoKHR
@@ -28546,7 +28546,7 @@ High-level wrapper for VkHeadlessSurfaceCreateInfoEXT.
 
 Extension: VK\\_EXT\\_headless\\_surface
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHeadlessSurfaceCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHeadlessSurfaceCreateInfoEXT.html)
 
 """
 HeadlessSurfaceCreateInfoEXT
@@ -28556,7 +28556,7 @@ High-level wrapper for VkPhysicalDeviceCoverageReductionModeFeaturesNV.
 
 Extension: VK\\_NV\\_coverage\\_reduction\\_mode
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html)
 
 """
 PhysicalDeviceCoverageReductionModeFeaturesNV
@@ -28566,7 +28566,7 @@ High-level wrapper for VkPipelineCoverageReductionStateCreateInfoNV.
 
 Extension: VK\\_NV\\_coverage\\_reduction\\_mode
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html)
 
 """
 PipelineCoverageReductionStateCreateInfoNV
@@ -28576,7 +28576,7 @@ High-level wrapper for VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.
 
 Extension: VK\\_INTEL\\_shader\\_integer\\_functions2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.html)
 
 """
 PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL
@@ -28586,7 +28586,7 @@ High-level wrapper for VkPerformanceValueINTEL.
 
 Extension: VK\\_INTEL\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueINTEL.html)
 
 """
 PerformanceValueINTEL
@@ -28596,7 +28596,7 @@ High-level wrapper for VkInitializePerformanceApiInfoINTEL.
 
 Extension: VK\\_INTEL\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html)
 
 """
 InitializePerformanceApiInfoINTEL
@@ -28606,7 +28606,7 @@ High-level wrapper for VkQueryPoolPerformanceQueryCreateInfoINTEL.
 
 Extension: VK\\_INTEL\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html)
 
 """
 QueryPoolPerformanceQueryCreateInfoINTEL
@@ -28616,7 +28616,7 @@ High-level wrapper for VkPerformanceMarkerInfoINTEL.
 
 Extension: VK\\_INTEL\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceMarkerInfoINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceMarkerInfoINTEL.html)
 
 """
 PerformanceMarkerInfoINTEL
@@ -28626,7 +28626,7 @@ High-level wrapper for VkPerformanceStreamMarkerInfoINTEL.
 
 Extension: VK\\_INTEL\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html)
 
 """
 PerformanceStreamMarkerInfoINTEL
@@ -28636,7 +28636,7 @@ High-level wrapper for VkPerformanceOverrideInfoINTEL.
 
 Extension: VK\\_INTEL\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceOverrideInfoINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceOverrideInfoINTEL.html)
 
 """
 PerformanceOverrideInfoINTEL
@@ -28646,7 +28646,7 @@ High-level wrapper for VkPerformanceConfigurationAcquireInfoINTEL.
 
 Extension: VK\\_INTEL\\_performance\\_query
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html)
 
 """
 PerformanceConfigurationAcquireInfoINTEL
@@ -28656,7 +28656,7 @@ High-level wrapper for VkPhysicalDeviceShaderClockFeaturesKHR.
 
 Extension: VK\\_KHR\\_shader\\_clock
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderClockFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderClockFeaturesKHR.html)
 
 """
 PhysicalDeviceShaderClockFeaturesKHR
@@ -28666,7 +28666,7 @@ High-level wrapper for VkPhysicalDeviceIndexTypeUint8FeaturesEXT.
 
 Extension: VK\\_EXT\\_index\\_type\\_uint8
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.html)
 
 """
 PhysicalDeviceIndexTypeUint8FeaturesEXT
@@ -28676,7 +28676,7 @@ High-level wrapper for VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.
 
 Extension: VK\\_NV\\_shader\\_sm\\_builtins
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html)
 
 """
 PhysicalDeviceShaderSMBuiltinsFeaturesNV
@@ -28686,7 +28686,7 @@ High-level wrapper for VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.
 
 Extension: VK\\_EXT\\_fragment\\_shader\\_interlock
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.html)
 
 """
 PhysicalDeviceFragmentShaderInterlockFeaturesEXT
@@ -28694,7 +28694,7 @@ PhysicalDeviceFragmentShaderInterlockFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.html)
 
 """
 PhysicalDeviceSeparateDepthStencilLayoutsFeatures
@@ -28702,7 +28702,7 @@ PhysicalDeviceSeparateDepthStencilLayoutsFeatures
 """
 High-level wrapper for VkAttachmentReferenceStencilLayout.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReferenceStencilLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReferenceStencilLayout.html)
 
 """
 AttachmentReferenceStencilLayout
@@ -28710,7 +28710,7 @@ AttachmentReferenceStencilLayout
 """
 High-level wrapper for VkAttachmentDescriptionStencilLayout.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescriptionStencilLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescriptionStencilLayout.html)
 
 """
 AttachmentDescriptionStencilLayout
@@ -28720,7 +28720,7 @@ High-level wrapper for VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.
 
 Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html)
 
 """
 PhysicalDevicePipelineExecutablePropertiesFeaturesKHR
@@ -28730,7 +28730,7 @@ High-level wrapper for VkPipelineInfoKHR.
 
 Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInfoKHR.html)
 
 """
 PipelineInfoKHR
@@ -28740,7 +28740,7 @@ High-level wrapper for VkPipelineExecutableInfoKHR.
 
 Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableInfoKHR.html)
 
 """
 PipelineExecutableInfoKHR
@@ -28750,7 +28750,7 @@ High-level wrapper for VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
 
 Extension: VK\\_EXT\\_shader\\_demote\\_to\\_helper\\_invocation
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.html)
 
 """
 PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT
@@ -28760,7 +28760,7 @@ High-level wrapper for VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.
 
 Extension: VK\\_EXT\\_texel\\_buffer\\_alignment
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.html)
 
 """
 PhysicalDeviceTexelBufferAlignmentFeaturesEXT
@@ -28770,7 +28770,7 @@ High-level wrapper for VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.
 
 Extension: VK\\_EXT\\_subgroup\\_size\\_control
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.html)
 
 """
 PhysicalDeviceSubgroupSizeControlFeaturesEXT
@@ -28778,7 +28778,7 @@ PhysicalDeviceSubgroupSizeControlFeaturesEXT
 """
 High-level wrapper for VkMemoryOpaqueCaptureAddressAllocateInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryOpaqueCaptureAddressAllocateInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryOpaqueCaptureAddressAllocateInfo.html)
 
 """
 MemoryOpaqueCaptureAddressAllocateInfo
@@ -28786,7 +28786,7 @@ MemoryOpaqueCaptureAddressAllocateInfo
 """
 High-level wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html)
 
 """
 DeviceMemoryOpaqueCaptureAddressInfo
@@ -28796,7 +28796,7 @@ High-level wrapper for VkPhysicalDeviceLineRasterizationFeaturesEXT.
 
 Extension: VK\\_EXT\\_line\\_rasterization
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html)
 
 """
 PhysicalDeviceLineRasterizationFeaturesEXT
@@ -28806,7 +28806,7 @@ High-level wrapper for VkPipelineRasterizationLineStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_line\\_rasterization
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html)
 
 """
 PipelineRasterizationLineStateCreateInfoEXT
@@ -28816,7 +28816,7 @@ High-level wrapper for VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.
 
 Extension: VK\\_EXT\\_pipeline\\_creation\\_cache\\_control
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.html)
 
 """
 PhysicalDevicePipelineCreationCacheControlFeaturesEXT
@@ -28824,7 +28824,7 @@ PhysicalDevicePipelineCreationCacheControlFeaturesEXT
 """
 High-level wrapper for VkPhysicalDeviceVulkan11Features.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan11Features.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan11Features.html)
 
 """
 PhysicalDeviceVulkan11Features
@@ -28832,7 +28832,7 @@ PhysicalDeviceVulkan11Features
 """
 High-level wrapper for VkPhysicalDeviceVulkan12Features.
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan12Features.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan12Features.html)
 
 """
 PhysicalDeviceVulkan12Features
@@ -28842,7 +28842,7 @@ High-level wrapper for VkPipelineCompilerControlCreateInfoAMD.
 
 Extension: VK\\_AMD\\_pipeline\\_compiler\\_control
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html)
 
 """
 PipelineCompilerControlCreateInfoAMD
@@ -28852,7 +28852,7 @@ High-level wrapper for VkPhysicalDeviceCoherentMemoryFeaturesAMD.
 
 Extension: VK\\_AMD\\_device\\_coherent\\_memory
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoherentMemoryFeaturesAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoherentMemoryFeaturesAMD.html)
 
 """
 PhysicalDeviceCoherentMemoryFeaturesAMD
@@ -28862,7 +28862,7 @@ High-level wrapper for VkSamplerCustomBorderColorCreateInfoEXT.
 
 Extension: VK\\_EXT\\_custom\\_border\\_color
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html)
 
 """
 SamplerCustomBorderColorCreateInfoEXT
@@ -28872,7 +28872,7 @@ High-level wrapper for VkPhysicalDeviceCustomBorderColorFeaturesEXT.
 
 Extension: VK\\_EXT\\_custom\\_border\\_color
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html)
 
 """
 PhysicalDeviceCustomBorderColorFeaturesEXT
@@ -28882,7 +28882,7 @@ High-level wrapper for VkAccelerationStructureGeometryTrianglesDataKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html)
 
 """
 AccelerationStructureGeometryTrianglesDataKHR
@@ -28892,7 +28892,7 @@ High-level wrapper for VkAccelerationStructureGeometryAabbsDataKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html)
 
 """
 AccelerationStructureGeometryAabbsDataKHR
@@ -28902,7 +28902,7 @@ High-level wrapper for VkAccelerationStructureGeometryInstancesDataKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryInstancesDataKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryInstancesDataKHR.html)
 
 """
 AccelerationStructureGeometryInstancesDataKHR
@@ -28912,7 +28912,7 @@ High-level wrapper for VkAccelerationStructureGeometryKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryKHR.html)
 
 """
 AccelerationStructureGeometryKHR
@@ -28922,7 +28922,7 @@ High-level wrapper for VkAccelerationStructureBuildGeometryInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html)
 
 """
 AccelerationStructureBuildGeometryInfoKHR
@@ -28932,7 +28932,7 @@ High-level wrapper for VkAccelerationStructureBuildRangeInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildRangeInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildRangeInfoKHR.html)
 
 """
 AccelerationStructureBuildRangeInfoKHR
@@ -28942,7 +28942,7 @@ High-level wrapper for VkAccelerationStructureCreateInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html)
 
 """
 AccelerationStructureCreateInfoKHR
@@ -28952,7 +28952,7 @@ High-level wrapper for VkAabbPositionsKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAabbPositionsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAabbPositionsKHR.html)
 
 """
 AabbPositionsKHR
@@ -28962,7 +28962,7 @@ High-level wrapper for VkTransformMatrixKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTransformMatrixKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTransformMatrixKHR.html)
 
 """
 TransformMatrixKHR
@@ -28972,7 +28972,7 @@ High-level wrapper for VkAccelerationStructureInstanceKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInstanceKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInstanceKHR.html)
 
 """
 AccelerationStructureInstanceKHR
@@ -28982,7 +28982,7 @@ High-level wrapper for VkAccelerationStructureDeviceAddressInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html)
 
 """
 AccelerationStructureDeviceAddressInfoKHR
@@ -28992,7 +28992,7 @@ High-level wrapper for VkAccelerationStructureVersionInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureVersionInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureVersionInfoKHR.html)
 
 """
 AccelerationStructureVersionInfoKHR
@@ -29002,7 +29002,7 @@ High-level wrapper for VkCopyAccelerationStructureInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html)
 
 """
 CopyAccelerationStructureInfoKHR
@@ -29012,7 +29012,7 @@ High-level wrapper for VkCopyAccelerationStructureToMemoryInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html)
 
 """
 CopyAccelerationStructureToMemoryInfoKHR
@@ -29022,7 +29022,7 @@ High-level wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html)
 
 """
 CopyMemoryToAccelerationStructureInfoKHR
@@ -29032,7 +29032,7 @@ High-level wrapper for VkRayTracingPipelineInterfaceCreateInfoKHR.
 
 Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineInterfaceCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineInterfaceCreateInfoKHR.html)
 
 """
 RayTracingPipelineInterfaceCreateInfoKHR
@@ -29042,7 +29042,7 @@ High-level wrapper for VkPipelineLibraryCreateInfoKHR.
 
 Extension: VK\\_KHR\\_pipeline\\_library
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html)
 
 """
 PipelineLibraryCreateInfoKHR
@@ -29052,7 +29052,7 @@ High-level wrapper for VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.
 
 Extension: VK\\_EXT\\_extended\\_dynamic\\_state
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html)
 
 """
 PhysicalDeviceExtendedDynamicStateFeaturesEXT
@@ -29062,7 +29062,7 @@ High-level wrapper for VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.
 
 Extension: VK\\_EXT\\_extended\\_dynamic\\_state2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html)
 
 """
 PhysicalDeviceExtendedDynamicState2FeaturesEXT
@@ -29072,7 +29072,7 @@ High-level wrapper for VkRenderPassTransformBeginInfoQCOM.
 
 Extension: VK\\_QCOM\\_render\\_pass\\_transform
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html)
 
 """
 RenderPassTransformBeginInfoQCOM
@@ -29082,7 +29082,7 @@ High-level wrapper for VkCopyCommandTransformInfoQCOM.
 
 Extension: VK\\_QCOM\\_rotated\\_copy\\_commands
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyCommandTransformInfoQCOM.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyCommandTransformInfoQCOM.html)
 
 """
 CopyCommandTransformInfoQCOM
@@ -29092,7 +29092,7 @@ High-level wrapper for VkCommandBufferInheritanceRenderPassTransformInfoQCOM.
 
 Extension: VK\\_QCOM\\_render\\_pass\\_transform
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html)
 
 """
 CommandBufferInheritanceRenderPassTransformInfoQCOM
@@ -29102,7 +29102,7 @@ High-level wrapper for VkPhysicalDeviceDiagnosticsConfigFeaturesNV.
 
 Extension: VK\\_NV\\_device\\_diagnostics\\_config
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html)
 
 """
 PhysicalDeviceDiagnosticsConfigFeaturesNV
@@ -29112,7 +29112,7 @@ High-level wrapper for VkDeviceDiagnosticsConfigCreateInfoNV.
 
 Extension: VK\\_NV\\_device\\_diagnostics\\_config
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDiagnosticsConfigCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDiagnosticsConfigCreateInfoNV.html)
 
 """
 DeviceDiagnosticsConfigCreateInfoNV
@@ -29122,7 +29122,7 @@ High-level wrapper for VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.
 
 Extension: VK\\_KHR\\_zero\\_initialize\\_workgroup\\_memory
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.html)
 
 """
 PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR
@@ -29132,7 +29132,7 @@ High-level wrapper for VkPhysicalDeviceRobustness2FeaturesEXT.
 
 Extension: VK\\_EXT\\_robustness2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRobustness2FeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRobustness2FeaturesEXT.html)
 
 """
 PhysicalDeviceRobustness2FeaturesEXT
@@ -29142,7 +29142,7 @@ High-level wrapper for VkPhysicalDeviceImageRobustnessFeaturesEXT.
 
 Extension: VK\\_EXT\\_image\\_robustness
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageRobustnessFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageRobustnessFeaturesEXT.html)
 
 """
 PhysicalDeviceImageRobustnessFeaturesEXT
@@ -29152,7 +29152,7 @@ High-level wrapper for VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.
 
 Extension: VK\\_KHR\\_workgroup\\_memory\\_explicit\\_layout
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.html)
 
 """
 PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR
@@ -29162,7 +29162,7 @@ High-level wrapper for VkPhysicalDevice4444FormatsFeaturesEXT.
 
 Extension: VK\\_EXT\\_4444\\_formats
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice4444FormatsFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice4444FormatsFeaturesEXT.html)
 
 """
 PhysicalDevice4444FormatsFeaturesEXT
@@ -29172,7 +29172,7 @@ High-level wrapper for VkBufferCopy2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy2KHR.html)
 
 """
 BufferCopy2KHR
@@ -29182,7 +29182,7 @@ High-level wrapper for VkImageCopy2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy2KHR.html)
 
 """
 ImageCopy2KHR
@@ -29192,7 +29192,7 @@ High-level wrapper for VkImageBlit2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit2KHR.html)
 
 """
 ImageBlit2KHR
@@ -29202,7 +29202,7 @@ High-level wrapper for VkBufferImageCopy2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy2KHR.html)
 
 """
 BufferImageCopy2KHR
@@ -29212,7 +29212,7 @@ High-level wrapper for VkImageResolve2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve2KHR.html)
 
 """
 ImageResolve2KHR
@@ -29222,7 +29222,7 @@ High-level wrapper for VkCopyBufferInfo2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferInfo2KHR.html)
 
 """
 CopyBufferInfo2KHR
@@ -29232,7 +29232,7 @@ High-level wrapper for VkCopyImageInfo2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageInfo2KHR.html)
 
 """
 CopyImageInfo2KHR
@@ -29242,7 +29242,7 @@ High-level wrapper for VkBlitImageInfo2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBlitImageInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBlitImageInfo2KHR.html)
 
 """
 BlitImageInfo2KHR
@@ -29252,7 +29252,7 @@ High-level wrapper for VkCopyBufferToImageInfo2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferToImageInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferToImageInfo2KHR.html)
 
 """
 CopyBufferToImageInfo2KHR
@@ -29262,7 +29262,7 @@ High-level wrapper for VkCopyImageToBufferInfo2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageToBufferInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageToBufferInfo2KHR.html)
 
 """
 CopyImageToBufferInfo2KHR
@@ -29272,7 +29272,7 @@ High-level wrapper for VkResolveImageInfo2KHR.
 
 Extension: VK\\_KHR\\_copy\\_commands2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkResolveImageInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkResolveImageInfo2KHR.html)
 
 """
 ResolveImageInfo2KHR
@@ -29282,7 +29282,7 @@ High-level wrapper for VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.
 
 Extension: VK\\_EXT\\_shader\\_image\\_atomic\\_int64
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.html)
 
 """
 PhysicalDeviceShaderImageAtomicInt64FeaturesEXT
@@ -29292,7 +29292,7 @@ High-level wrapper for VkFragmentShadingRateAttachmentInfoKHR.
 
 Extension: VK\\_KHR\\_fragment\\_shading\\_rate
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html)
 
 """
 FragmentShadingRateAttachmentInfoKHR
@@ -29302,7 +29302,7 @@ High-level wrapper for VkPipelineFragmentShadingRateStateCreateInfoKHR.
 
 Extension: VK\\_KHR\\_fragment\\_shading\\_rate
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html)
 
 """
 PipelineFragmentShadingRateStateCreateInfoKHR
@@ -29312,7 +29312,7 @@ High-level wrapper for VkPhysicalDeviceFragmentShadingRateFeaturesKHR.
 
 Extension: VK\\_KHR\\_fragment\\_shading\\_rate
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html)
 
 """
 PhysicalDeviceFragmentShadingRateFeaturesKHR
@@ -29322,7 +29322,7 @@ High-level wrapper for VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.
 
 Extension: VK\\_KHR\\_shader\\_terminate\\_invocation
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.html)
 
 """
 PhysicalDeviceShaderTerminateInvocationFeaturesKHR
@@ -29332,7 +29332,7 @@ High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.
 
 Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html)
 
 """
 PhysicalDeviceFragmentShadingRateEnumsFeaturesNV
@@ -29342,7 +29342,7 @@ High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.
 
 Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html)
 
 """
 PhysicalDeviceFragmentShadingRateEnumsPropertiesNV
@@ -29352,7 +29352,7 @@ High-level wrapper for VkPipelineFragmentShadingRateEnumStateCreateInfoNV.
 
 Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html)
 
 """
 PipelineFragmentShadingRateEnumStateCreateInfoNV
@@ -29362,7 +29362,7 @@ High-level wrapper for VkAccelerationStructureBuildSizesInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildSizesInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildSizesInfoKHR.html)
 
 """
 AccelerationStructureBuildSizesInfoKHR
@@ -29372,7 +29372,7 @@ High-level wrapper for VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.
 
 Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.html)
 
 """
 PhysicalDeviceMutableDescriptorTypeFeaturesVALVE
@@ -29382,7 +29382,7 @@ High-level wrapper for VkMutableDescriptorTypeListVALVE.
 
 Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeListVALVE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeListVALVE.html)
 
 """
 MutableDescriptorTypeListVALVE
@@ -29392,7 +29392,7 @@ High-level wrapper for VkMutableDescriptorTypeCreateInfoVALVE.
 
 Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html)
 
 """
 MutableDescriptorTypeCreateInfoVALVE
@@ -29402,7 +29402,7 @@ High-level wrapper for VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.
 
 Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.html)
 
 """
 PhysicalDeviceVertexInputDynamicStateFeaturesEXT
@@ -29412,7 +29412,7 @@ High-level wrapper for VkVertexInputBindingDescription2EXT.
 
 Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription2EXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription2EXT.html)
 
 """
 VertexInputBindingDescription2EXT
@@ -29422,7 +29422,7 @@ High-level wrapper for VkVertexInputAttributeDescription2EXT.
 
 Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription2EXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription2EXT.html)
 
 """
 VertexInputAttributeDescription2EXT
@@ -29432,7 +29432,7 @@ High-level wrapper for VkPhysicalDeviceColorWriteEnableFeaturesEXT.
 
 Extension: VK\\_EXT\\_color\\_write\\_enable
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceColorWriteEnableFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceColorWriteEnableFeaturesEXT.html)
 
 """
 PhysicalDeviceColorWriteEnableFeaturesEXT
@@ -29442,7 +29442,7 @@ High-level wrapper for VkPipelineColorWriteCreateInfoEXT.
 
 Extension: VK\\_EXT\\_color\\_write\\_enable
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorWriteCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorWriteCreateInfoEXT.html)
 
 """
 PipelineColorWriteCreateInfoEXT
@@ -29452,7 +29452,7 @@ High-level wrapper for VkMemoryBarrier2KHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier2KHR.html)
 
 """
 MemoryBarrier2KHR
@@ -29462,7 +29462,7 @@ High-level wrapper for VkImageMemoryBarrier2KHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier2KHR.html)
 
 """
 ImageMemoryBarrier2KHR
@@ -29472,7 +29472,7 @@ High-level wrapper for VkBufferMemoryBarrier2KHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier2KHR.html)
 
 """
 BufferMemoryBarrier2KHR
@@ -29482,7 +29482,7 @@ High-level wrapper for VkDependencyInfoKHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDependencyInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDependencyInfoKHR.html)
 
 """
 DependencyInfoKHR
@@ -29492,7 +29492,7 @@ High-level wrapper for VkSemaphoreSubmitInfoKHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSubmitInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSubmitInfoKHR.html)
 
 """
 SemaphoreSubmitInfoKHR
@@ -29502,7 +29502,7 @@ High-level wrapper for VkCommandBufferSubmitInfoKHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferSubmitInfoKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferSubmitInfoKHR.html)
 
 """
 CommandBufferSubmitInfoKHR
@@ -29512,7 +29512,7 @@ High-level wrapper for VkSubmitInfo2KHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html)
 
 """
 SubmitInfo2KHR
@@ -29522,7 +29522,7 @@ High-level wrapper for VkPhysicalDeviceSynchronization2FeaturesKHR.
 
 Extension: VK\\_KHR\\_synchronization2
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSynchronization2FeaturesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSynchronization2FeaturesKHR.html)
 
 """
 PhysicalDeviceSynchronization2FeaturesKHR
@@ -29532,7 +29532,7 @@ High-level wrapper for VkPhysicalDeviceInheritedViewportScissorFeaturesNV.
 
 Extension: VK\\_NV\\_inherited\\_viewport\\_scissor
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html)
 
 """
 PhysicalDeviceInheritedViewportScissorFeaturesNV
@@ -29542,7 +29542,7 @@ High-level wrapper for VkCommandBufferInheritanceViewportScissorInfoNV.
 
 Extension: VK\\_NV\\_inherited\\_viewport\\_scissor
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html)
 
 """
 CommandBufferInheritanceViewportScissorInfoNV
@@ -29552,7 +29552,7 @@ High-level wrapper for VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.
 
 Extension: VK\\_EXT\\_ycbcr\\_2plane\\_444\\_formats
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.html)
 
 """
 PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT
@@ -29562,7 +29562,7 @@ High-level wrapper for VkPhysicalDeviceProvokingVertexFeaturesEXT.
 
 Extension: VK\\_EXT\\_provoking\\_vertex
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html)
 
 """
 PhysicalDeviceProvokingVertexFeaturesEXT
@@ -29572,7 +29572,7 @@ High-level wrapper for VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_provoking\\_vertex
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.html)
 
 """
 PipelineRasterizationProvokingVertexStateCreateInfoEXT
@@ -30055,7 +30055,7 @@ Arguments:
 - `create_info::_InstanceCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateInstance.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateInstance.html)
 
 """
 create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)
@@ -30067,7 +30067,7 @@ Arguments:
 - `instance::Instance` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyInstance.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyInstance.html)
 
 """
 destroy_instance(instance::Instance; allocator = C_NULL)
@@ -30084,7 +30084,7 @@ Return codes:
 Arguments:
 - `instance::Instance`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDevices.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDevices.html)
 
 """
 enumerate_physical_devices(instance::Instance)
@@ -30096,7 +30096,7 @@ Arguments:
 - `device::Device`
 - `name::AbstractString`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceProcAddr.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceProcAddr.html)
 
 """
 get_device_proc_addr(device::Device, name::AbstractString)
@@ -30108,7 +30108,7 @@ Arguments:
 - `name::AbstractString`
 - `instance`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetInstanceProcAddr.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetInstanceProcAddr.html)
 
 """
 get_instance_proc_addr(name::AbstractString; instance = C_NULL)
@@ -30119,7 +30119,7 @@ get_instance_proc_addr(name::AbstractString; instance = C_NULL)
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties.html)
 
 """
 get_physical_device_properties(physical_device::PhysicalDevice)
@@ -30130,7 +30130,7 @@ get_physical_device_properties(physical_device::PhysicalDevice)
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties.html)
 
 """
 get_physical_device_queue_family_properties(physical_device::PhysicalDevice)
@@ -30141,7 +30141,7 @@ get_physical_device_queue_family_properties(physical_device::PhysicalDevice)
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties.html)
 
 """
 get_physical_device_memory_properties(physical_device::PhysicalDevice)
@@ -30152,7 +30152,7 @@ get_physical_device_memory_properties(physical_device::PhysicalDevice)
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures.html)
 
 """
 get_physical_device_features(physical_device::PhysicalDevice)
@@ -30164,7 +30164,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `format::Format`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties.html)
 
 """
 get_physical_device_format_properties(physical_device::PhysicalDevice, format::Format)
@@ -30186,7 +30186,7 @@ Arguments:
 - `usage::ImageUsageFlag`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties.html)
 
 """
 get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; flags = 0)
@@ -30209,7 +30209,7 @@ Arguments:
 - `create_info::_DeviceCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDevice.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDevice.html)
 
 """
 create_device(physical_device::PhysicalDevice, create_info::_DeviceCreateInfo; allocator = C_NULL)
@@ -30221,7 +30221,7 @@ Arguments:
 - `device::Device` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html)
 
 """
 destroy_device(device::Device; allocator = C_NULL)
@@ -30233,7 +30233,7 @@ Return codes:
 - Error:
   - `ERROR_OUT_OF_HOST_MEMORY`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceVersion.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceVersion.html)
 
 """
 enumerate_instance_version()
@@ -30246,7 +30246,7 @@ Return codes:
   - `ERROR_OUT_OF_HOST_MEMORY`
   - `ERROR_OUT_OF_DEVICE_MEMORY`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
 
 """
 enumerate_instance_layer_properties()
@@ -30263,7 +30263,7 @@ Return codes:
 Arguments:
 - `layer_name`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html)
 
 """
 enumerate_instance_extension_properties(; layer_name = C_NULL)
@@ -30279,7 +30279,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceLayerProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceLayerProperties.html)
 
 """
 enumerate_device_layer_properties(physical_device::PhysicalDevice)
@@ -30297,7 +30297,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `layer_name`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceExtensionProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceExtensionProperties.html)
 
 """
 enumerate_device_extension_properties(physical_device::PhysicalDevice; layer_name = C_NULL)
@@ -30310,7 +30310,7 @@ Arguments:
 - `queue_family_index::Integer`
 - `queue_index::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue.html)
 
 """
 get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer)
@@ -30329,7 +30329,7 @@ Arguments:
 - `submits::AbstractArray{_SubmitInfo}`
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit.html)
 
 """
 queue_submit(queue::Queue, submits::AbstractArray{_SubmitInfo}; fence = C_NULL)
@@ -30346,7 +30346,7 @@ Return codes:
 Arguments:
 - `queue::Queue` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueWaitIdle.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueWaitIdle.html)
 
 """
 queue_wait_idle(queue::Queue)
@@ -30363,7 +30363,7 @@ Return codes:
 Arguments:
 - `device::Device`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeviceWaitIdle.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeviceWaitIdle.html)
 
 """
 device_wait_idle(device::Device)
@@ -30383,7 +30383,7 @@ Arguments:
 - `allocate_info::_MemoryAllocateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateMemory.html)
 
 """
 allocate_memory(device::Device, allocate_info::_MemoryAllocateInfo; allocator = C_NULL)
@@ -30396,7 +30396,7 @@ Arguments:
 - `memory::DeviceMemory` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeMemory.html)
 
 """
 free_memory(device::Device, memory::DeviceMemory; allocator = C_NULL)
@@ -30417,7 +30417,7 @@ Arguments:
 - `size::Integer`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMapMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMapMemory.html)
 
 """
 map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer; flags = 0)
@@ -30429,7 +30429,7 @@ Arguments:
 - `device::Device`
 - `memory::DeviceMemory` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUnmapMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUnmapMemory.html)
 
 """
 unmap_memory(device::Device, memory::DeviceMemory)
@@ -30446,7 +30446,7 @@ Arguments:
 - `device::Device`
 - `memory_ranges::AbstractArray{_MappedMemoryRange}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFlushMappedMemoryRanges.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFlushMappedMemoryRanges.html)
 
 """
 flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{_MappedMemoryRange})
@@ -30463,7 +30463,7 @@ Arguments:
 - `device::Device`
 - `memory_ranges::AbstractArray{_MappedMemoryRange}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInvalidateMappedMemoryRanges.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInvalidateMappedMemoryRanges.html)
 
 """
 invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{_MappedMemoryRange})
@@ -30475,7 +30475,7 @@ Arguments:
 - `device::Device`
 - `memory::DeviceMemory`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryCommitment.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryCommitment.html)
 
 """
 get_device_memory_commitment(device::Device, memory::DeviceMemory)
@@ -30487,7 +30487,7 @@ Arguments:
 - `device::Device`
 - `buffer::Buffer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements.html)
 
 """
 get_buffer_memory_requirements(device::Device, buffer::Buffer)
@@ -30507,7 +30507,7 @@ Arguments:
 - `memory::DeviceMemory`
 - `memory_offset::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory.html)
 
 """
 bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer)
@@ -30519,7 +30519,7 @@ Arguments:
 - `device::Device`
 - `image::Image`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements.html)
 
 """
 get_image_memory_requirements(device::Device, image::Image)
@@ -30538,7 +30538,7 @@ Arguments:
 - `memory::DeviceMemory`
 - `memory_offset::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory.html)
 
 """
 bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer)
@@ -30550,7 +30550,7 @@ Arguments:
 - `device::Device`
 - `image::Image`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements.html)
 
 """
 get_image_sparse_memory_requirements(device::Device, image::Image)
@@ -30566,7 +30566,7 @@ Arguments:
 - `usage::ImageUsageFlag`
 - `tiling::ImageTiling`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties.html)
 
 """
 get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling)
@@ -30585,7 +30585,7 @@ Arguments:
 - `bind_info::AbstractArray{_BindSparseInfo}` (externsync)
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBindSparse.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBindSparse.html)
 
 """
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray{_BindSparseInfo}; fence = C_NULL)
@@ -30603,7 +30603,7 @@ Arguments:
 - `create_info::_FenceCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFence.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFence.html)
 
 """
 create_fence(device::Device, create_info::_FenceCreateInfo; allocator = C_NULL)
@@ -30616,7 +30616,7 @@ Arguments:
 - `fence::Fence` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFence.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFence.html)
 
 """
 destroy_fence(device::Device, fence::Fence; allocator = C_NULL)
@@ -30632,7 +30632,7 @@ Arguments:
 - `device::Device`
 - `fences::AbstractArray` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetFences.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetFences.html)
 
 """
 reset_fences(device::Device, fences::AbstractArray)
@@ -30653,7 +30653,7 @@ Arguments:
 - `device::Device`
 - `fence::Fence`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceStatus.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceStatus.html)
 
 """
 get_fence_status(device::Device, fence::Fence)
@@ -30676,7 +30676,7 @@ Arguments:
 - `wait_all::Bool`
 - `timeout::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitForFences.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitForFences.html)
 
 """
 wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer)
@@ -30694,7 +30694,7 @@ Arguments:
 - `create_info::_SemaphoreCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSemaphore.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSemaphore.html)
 
 """
 create_semaphore(device::Device, create_info::_SemaphoreCreateInfo; allocator = C_NULL)
@@ -30707,7 +30707,7 @@ Arguments:
 - `semaphore::Semaphore` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySemaphore.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySemaphore.html)
 
 """
 destroy_semaphore(device::Device, semaphore::Semaphore; allocator = C_NULL)
@@ -30725,7 +30725,7 @@ Arguments:
 - `create_info::_EventCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateEvent.html)
 
 """
 create_event(device::Device, create_info::_EventCreateInfo; allocator = C_NULL)
@@ -30738,7 +30738,7 @@ Arguments:
 - `event::Event` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyEvent.html)
 
 """
 destroy_event(device::Device, event::Event; allocator = C_NULL)
@@ -30759,7 +30759,7 @@ Arguments:
 - `device::Device`
 - `event::Event`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetEventStatus.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetEventStatus.html)
 
 """
 get_event_status(device::Device, event::Event)
@@ -30776,7 +30776,7 @@ Arguments:
 - `device::Device`
 - `event::Event` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetEvent.html)
 
 """
 set_event(device::Device, event::Event)
@@ -30792,7 +30792,7 @@ Arguments:
 - `device::Device`
 - `event::Event` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetEvent.html)
 
 """
 reset_event(device::Device, event::Event)
@@ -30810,7 +30810,7 @@ Arguments:
 - `create_info::_QueryPoolCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateQueryPool.html)
 
 """
 create_query_pool(device::Device, create_info::_QueryPoolCreateInfo; allocator = C_NULL)
@@ -30823,7 +30823,7 @@ Arguments:
 - `query_pool::QueryPool` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyQueryPool.html)
 
 """
 destroy_query_pool(device::Device, query_pool::QueryPool; allocator = C_NULL)
@@ -30850,7 +30850,7 @@ Arguments:
 - `stride::Integer`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueryPoolResults.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueryPoolResults.html)
 
 """
 get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)
@@ -30864,7 +30864,7 @@ Arguments:
 - `first_query::Integer`
 - `query_count::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetQueryPool.html)
 
 """
 reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer)
@@ -30883,7 +30883,7 @@ Arguments:
 - `create_info::_BufferCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBuffer.html)
 
 """
 create_buffer(device::Device, create_info::_BufferCreateInfo; allocator = C_NULL)
@@ -30896,7 +30896,7 @@ Arguments:
 - `buffer::Buffer` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBuffer.html)
 
 """
 destroy_buffer(device::Device, buffer::Buffer; allocator = C_NULL)
@@ -30914,7 +30914,7 @@ Arguments:
 - `create_info::_BufferViewCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBufferView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBufferView.html)
 
 """
 create_buffer_view(device::Device, create_info::_BufferViewCreateInfo; allocator = C_NULL)
@@ -30927,7 +30927,7 @@ Arguments:
 - `buffer_view::BufferView` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBufferView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBufferView.html)
 
 """
 destroy_buffer_view(device::Device, buffer_view::BufferView; allocator = C_NULL)
@@ -30945,7 +30945,7 @@ Arguments:
 - `create_info::_ImageCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImage.html)
 
 """
 create_image(device::Device, create_info::_ImageCreateInfo; allocator = C_NULL)
@@ -30958,7 +30958,7 @@ Arguments:
 - `image::Image` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImage.html)
 
 """
 destroy_image(device::Device, image::Image; allocator = C_NULL)
@@ -30971,7 +30971,7 @@ Arguments:
 - `image::Image`
 - `subresource::_ImageSubresource`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSubresourceLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSubresourceLayout.html)
 
 """
 get_image_subresource_layout(device::Device, image::Image, subresource::_ImageSubresource)
@@ -30989,7 +30989,7 @@ Arguments:
 - `create_info::_ImageViewCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImageView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImageView.html)
 
 """
 create_image_view(device::Device, create_info::_ImageViewCreateInfo; allocator = C_NULL)
@@ -31002,7 +31002,7 @@ Arguments:
 - `image_view::ImageView` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImageView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImageView.html)
 
 """
 destroy_image_view(device::Device, image_view::ImageView; allocator = C_NULL)
@@ -31021,7 +31021,7 @@ Arguments:
 - `create_info::_ShaderModuleCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateShaderModule.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateShaderModule.html)
 
 """
 create_shader_module(device::Device, create_info::_ShaderModuleCreateInfo; allocator = C_NULL)
@@ -31034,7 +31034,7 @@ Arguments:
 - `shader_module::ShaderModule` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyShaderModule.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyShaderModule.html)
 
 """
 destroy_shader_module(device::Device, shader_module::ShaderModule; allocator = C_NULL)
@@ -31052,7 +31052,7 @@ Arguments:
 - `create_info::_PipelineCacheCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineCache.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineCache.html)
 
 """
 create_pipeline_cache(device::Device, create_info::_PipelineCacheCreateInfo; allocator = C_NULL)
@@ -31065,7 +31065,7 @@ Arguments:
 - `pipeline_cache::PipelineCache` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineCache.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineCache.html)
 
 """
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache; allocator = C_NULL)
@@ -31085,7 +31085,7 @@ Arguments:
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html)
 
 """
 get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)
@@ -31103,7 +31103,7 @@ Arguments:
 - `dst_cache::PipelineCache` (externsync)
 - `src_caches::AbstractArray`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergePipelineCaches.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergePipelineCaches.html)
 
 """
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray)
@@ -31126,7 +31126,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateGraphicsPipelines.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateGraphicsPipelines.html)
 
 """
 create_graphics_pipelines(device::Device, create_infos::AbstractArray{_GraphicsPipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
@@ -31149,7 +31149,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateComputePipelines.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateComputePipelines.html)
 
 """
 create_compute_pipelines(device::Device, create_infos::AbstractArray{_ComputePipelineCreateInfo}; pipeline_cache = C_NULL, allocator = C_NULL)
@@ -31162,7 +31162,7 @@ Arguments:
 - `pipeline::Pipeline` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipeline.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipeline.html)
 
 """
 destroy_pipeline(device::Device, pipeline::Pipeline; allocator = C_NULL)
@@ -31180,7 +31180,7 @@ Arguments:
 - `create_info::_PipelineLayoutCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineLayout.html)
 
 """
 create_pipeline_layout(device::Device, create_info::_PipelineLayoutCreateInfo; allocator = C_NULL)
@@ -31193,7 +31193,7 @@ Arguments:
 - `pipeline_layout::PipelineLayout` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineLayout.html)
 
 """
 destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout; allocator = C_NULL)
@@ -31211,7 +31211,7 @@ Arguments:
 - `create_info::_SamplerCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSampler.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSampler.html)
 
 """
 create_sampler(device::Device, create_info::_SamplerCreateInfo; allocator = C_NULL)
@@ -31224,7 +31224,7 @@ Arguments:
 - `sampler::Sampler` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySampler.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySampler.html)
 
 """
 destroy_sampler(device::Device, sampler::Sampler; allocator = C_NULL)
@@ -31242,7 +31242,7 @@ Arguments:
 - `create_info::_DescriptorSetLayoutCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorSetLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorSetLayout.html)
 
 """
 create_descriptor_set_layout(device::Device, create_info::_DescriptorSetLayoutCreateInfo; allocator = C_NULL)
@@ -31255,7 +31255,7 @@ Arguments:
 - `descriptor_set_layout::DescriptorSetLayout` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorSetLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorSetLayout.html)
 
 """
 destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout; allocator = C_NULL)
@@ -31274,7 +31274,7 @@ Arguments:
 - `create_info::_DescriptorPoolCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorPool.html)
 
 """
 create_descriptor_pool(device::Device, create_info::_DescriptorPoolCreateInfo; allocator = C_NULL)
@@ -31287,7 +31287,7 @@ Arguments:
 - `descriptor_pool::DescriptorPool` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorPool.html)
 
 """
 destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; allocator = C_NULL)
@@ -31302,7 +31302,7 @@ Arguments:
 - `descriptor_pool::DescriptorPool` (externsync)
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetDescriptorPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetDescriptorPool.html)
 
 """
 reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool; flags = 0)
@@ -31321,7 +31321,7 @@ Arguments:
 - `device::Device`
 - `allocate_info::_DescriptorSetAllocateInfo` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateDescriptorSets.html)
 
 """
 allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo)
@@ -31336,7 +31336,7 @@ Arguments:
 - `descriptor_pool::DescriptorPool` (externsync)
 - `descriptor_sets::AbstractArray` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeDescriptorSets.html)
 
 """
 free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray)
@@ -31349,7 +31349,7 @@ Arguments:
 - `descriptor_writes::AbstractArray{_WriteDescriptorSet}` (externsync)
 - `descriptor_copies::AbstractArray{_CopyDescriptorSet}` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSets.html)
 
 """
 update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{_WriteDescriptorSet}, descriptor_copies::AbstractArray{_CopyDescriptorSet})
@@ -31367,7 +31367,7 @@ Arguments:
 - `create_info::_FramebufferCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFramebuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFramebuffer.html)
 
 """
 create_framebuffer(device::Device, create_info::_FramebufferCreateInfo; allocator = C_NULL)
@@ -31380,7 +31380,7 @@ Arguments:
 - `framebuffer::Framebuffer` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFramebuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFramebuffer.html)
 
 """
 destroy_framebuffer(device::Device, framebuffer::Framebuffer; allocator = C_NULL)
@@ -31398,7 +31398,7 @@ Arguments:
 - `create_info::_RenderPassCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass.html)
 
 """
 create_render_pass(device::Device, create_info::_RenderPassCreateInfo; allocator = C_NULL)
@@ -31411,7 +31411,7 @@ Arguments:
 - `render_pass::RenderPass` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyRenderPass.html)
 
 """
 destroy_render_pass(device::Device, render_pass::RenderPass; allocator = C_NULL)
@@ -31423,7 +31423,7 @@ Arguments:
 - `device::Device`
 - `render_pass::RenderPass`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRenderAreaGranularity.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRenderAreaGranularity.html)
 
 """
 get_render_area_granularity(device::Device, render_pass::RenderPass)
@@ -31441,7 +31441,7 @@ Arguments:
 - `create_info::_CommandPoolCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateCommandPool.html)
 
 """
 create_command_pool(device::Device, create_info::_CommandPoolCreateInfo; allocator = C_NULL)
@@ -31454,7 +31454,7 @@ Arguments:
 - `command_pool::CommandPool` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyCommandPool.html)
 
 """
 destroy_command_pool(device::Device, command_pool::CommandPool; allocator = C_NULL)
@@ -31471,7 +31471,7 @@ Arguments:
 - `command_pool::CommandPool` (externsync)
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandPool.html)
 
 """
 reset_command_pool(device::Device, command_pool::CommandPool; flags = 0)
@@ -31488,7 +31488,7 @@ Arguments:
 - `device::Device`
 - `allocate_info::_CommandBufferAllocateInfo` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateCommandBuffers.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateCommandBuffers.html)
 
 """
 allocate_command_buffers(device::Device, allocate_info::_CommandBufferAllocateInfo)
@@ -31501,7 +31501,7 @@ Arguments:
 - `command_pool::CommandPool` (externsync)
 - `command_buffers::AbstractArray` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeCommandBuffers.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeCommandBuffers.html)
 
 """
 free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray)
@@ -31518,7 +31518,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `begin_info::_CommandBufferBeginInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBeginCommandBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBeginCommandBuffer.html)
 
 """
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo)
@@ -31534,7 +31534,7 @@ Return codes:
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEndCommandBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEndCommandBuffer.html)
 
 """
 end_command_buffer(command_buffer::CommandBuffer)
@@ -31550,7 +31550,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandBuffer.html)
 
 """
 reset_command_buffer(command_buffer::CommandBuffer; flags = 0)
@@ -31563,7 +31563,7 @@ Arguments:
 - `pipeline_bind_point::PipelineBindPoint`
 - `pipeline::Pipeline`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipeline.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipeline.html)
 
 """
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline)
@@ -31575,7 +31575,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `viewports::AbstractArray{_Viewport}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html)
 
 """
 cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{_Viewport})
@@ -31587,7 +31587,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `scissors::AbstractArray{_Rect2D}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissor.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissor.html)
 
 """
 cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{_Rect2D})
@@ -31599,7 +31599,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `line_width::Real`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineWidth.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineWidth.html)
 
 """
 cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real)
@@ -31613,7 +31613,7 @@ Arguments:
 - `depth_bias_clamp::Real`
 - `depth_bias_slope_factor::Real`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBias.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBias.html)
 
 """
 cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real)
@@ -31625,7 +31625,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `blend_constants::NTuple{4, Float32}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetBlendConstants.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetBlendConstants.html)
 
 """
 cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32})
@@ -31638,7 +31638,7 @@ Arguments:
 - `min_depth_bounds::Real`
 - `max_depth_bounds::Real`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBounds.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBounds.html)
 
 """
 cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real)
@@ -31651,7 +31651,7 @@ Arguments:
 - `face_mask::StencilFaceFlag`
 - `compare_mask::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilCompareMask.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilCompareMask.html)
 
 """
 cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer)
@@ -31664,7 +31664,7 @@ Arguments:
 - `face_mask::StencilFaceFlag`
 - `write_mask::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilWriteMask.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilWriteMask.html)
 
 """
 cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer)
@@ -31677,7 +31677,7 @@ Arguments:
 - `face_mask::StencilFaceFlag`
 - `reference::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilReference.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilReference.html)
 
 """
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer)
@@ -31693,7 +31693,7 @@ Arguments:
 - `descriptor_sets::AbstractArray`
 - `dynamic_offsets::AbstractArray`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindDescriptorSets.html)
 
 """
 cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray)
@@ -31707,7 +31707,7 @@ Arguments:
 - `offset::Integer`
 - `index_type::IndexType`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindIndexBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindIndexBuffer.html)
 
 """
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType)
@@ -31720,7 +31720,7 @@ Arguments:
 - `buffers::AbstractArray`
 - `offsets::AbstractArray`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers.html)
 
 """
 cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray)
@@ -31735,7 +31735,7 @@ Arguments:
 - `first_vertex::Integer`
 - `first_instance::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDraw.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDraw.html)
 
 """
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)
@@ -31751,7 +31751,7 @@ Arguments:
 - `vertex_offset::Integer`
 - `first_instance::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexed.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexed.html)
 
 """
 cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)
@@ -31766,7 +31766,7 @@ Arguments:
 - `draw_count::Integer`
 - `stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirect.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirect.html)
 
 """
 cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)
@@ -31781,7 +31781,7 @@ Arguments:
 - `draw_count::Integer`
 - `stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirect.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirect.html)
 
 """
 cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)
@@ -31795,7 +31795,7 @@ Arguments:
 - `group_count_y::Integer`
 - `group_count_z::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatch.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatch.html)
 
 """
 cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)
@@ -31808,7 +31808,7 @@ Arguments:
 - `buffer::Buffer`
 - `offset::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchIndirect.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchIndirect.html)
 
 """
 cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer)
@@ -31822,7 +31822,7 @@ Arguments:
 - `dst_buffer::Buffer`
 - `regions::AbstractArray{_BufferCopy}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer.html)
 
 """
 cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{_BufferCopy})
@@ -31838,7 +31838,7 @@ Arguments:
 - `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{_ImageCopy}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage.html)
 
 """
 cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_ImageCopy})
@@ -31855,7 +31855,7 @@ Arguments:
 - `regions::AbstractArray{_ImageBlit}`
 - `filter::Filter`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage.html)
 
 """
 cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_ImageBlit}, filter::Filter)
@@ -31870,7 +31870,7 @@ Arguments:
 - `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{_BufferImageCopy}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage.html)
 
 """
 cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_BufferImageCopy})
@@ -31885,7 +31885,7 @@ Arguments:
 - `dst_buffer::Buffer`
 - `regions::AbstractArray{_BufferImageCopy}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer.html)
 
 """
 cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{_BufferImageCopy})
@@ -31900,7 +31900,7 @@ Arguments:
 - `data_size::Integer`
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdUpdateBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdUpdateBuffer.html)
 
 """
 cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid})
@@ -31915,7 +31915,7 @@ Arguments:
 - `size::Integer`
 - `data::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdFillBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdFillBuffer.html)
 
 """
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer)
@@ -31930,7 +31930,7 @@ Arguments:
 - `color::_ClearColorValue`
 - `ranges::AbstractArray{_ImageSubresourceRange}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearColorImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearColorImage.html)
 
 """
 cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray{_ImageSubresourceRange})
@@ -31945,7 +31945,7 @@ Arguments:
 - `depth_stencil::_ClearDepthStencilValue`
 - `ranges::AbstractArray{_ImageSubresourceRange}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearDepthStencilImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearDepthStencilImage.html)
 
 """
 cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{_ImageSubresourceRange})
@@ -31958,7 +31958,7 @@ Arguments:
 - `attachments::AbstractArray{_ClearAttachment}`
 - `rects::AbstractArray{_ClearRect}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearAttachments.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearAttachments.html)
 
 """
 cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{_ClearAttachment}, rects::AbstractArray{_ClearRect})
@@ -31974,7 +31974,7 @@ Arguments:
 - `dst_image_layout::ImageLayout`
 - `regions::AbstractArray{_ImageResolve}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage.html)
 
 """
 cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_ImageResolve})
@@ -31987,7 +31987,7 @@ Arguments:
 - `event::Event`
 - `stage_mask::PipelineStageFlag`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent.html)
 
 """
 cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)
@@ -32000,7 +32000,7 @@ Arguments:
 - `event::Event`
 - `stage_mask::PipelineStageFlag`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent.html)
 
 """
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag)
@@ -32017,7 +32017,7 @@ Arguments:
 - `src_stage_mask`: defaults to `0`
 - `dst_stage_mask`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents.html)
 
 """
 cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray{_MemoryBarrier}, buffer_memory_barriers::AbstractArray{_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{_ImageMemoryBarrier}; src_stage_mask = 0, dst_stage_mask = 0)
@@ -32034,7 +32034,7 @@ Arguments:
 - `image_memory_barriers::AbstractArray{_ImageMemoryBarrier}`
 - `dependency_flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier.html)
 
 """
 cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{_MemoryBarrier}, buffer_memory_barriers::AbstractArray{_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{_ImageMemoryBarrier}; dependency_flags = 0)
@@ -32048,7 +32048,7 @@ Arguments:
 - `query::Integer`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQuery.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQuery.html)
 
 """
 cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer; flags = 0)
@@ -32061,7 +32061,7 @@ Arguments:
 - `query_pool::QueryPool`
 - `query::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQuery.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQuery.html)
 
 """
 cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer)
@@ -32075,7 +32075,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginConditionalRenderingEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginConditionalRenderingEXT.html)
 
 """
 cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT)
@@ -32088,7 +32088,7 @@ Extension: VK\\_EXT\\_conditional\\_rendering
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndConditionalRenderingEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndConditionalRenderingEXT.html)
 
 """
 cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer)
@@ -32102,7 +32102,7 @@ Arguments:
 - `first_query::Integer`
 - `query_count::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetQueryPool.html)
 
 """
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer)
@@ -32116,7 +32116,7 @@ Arguments:
 - `query_pool::QueryPool`
 - `query::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp.html)
 
 """
 cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer)
@@ -32134,7 +32134,7 @@ Arguments:
 - `stride::Integer`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyQueryPoolResults.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyQueryPoolResults.html)
 
 """
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)
@@ -32149,7 +32149,7 @@ Arguments:
 - `offset::Integer`
 - `values::Ptr{Cvoid}` (must be a valid pointer with `size` bytes)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushConstants.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushConstants.html)
 
 """
 cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})
@@ -32162,7 +32162,7 @@ Arguments:
 - `render_pass_begin::_RenderPassBeginInfo`
 - `contents::SubpassContents`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass.html)
 
 """
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::SubpassContents)
@@ -32174,7 +32174,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `contents::SubpassContents`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass.html)
 
 """
 cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents)
@@ -32185,7 +32185,7 @@ cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents)
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass.html)
 
 """
 cmd_end_render_pass(command_buffer::CommandBuffer)
@@ -32197,7 +32197,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `command_buffers::AbstractArray`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteCommands.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteCommands.html)
 
 """
 cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray)
@@ -32215,7 +32215,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPropertiesKHR.html)
 
 """
 get_physical_device_display_properties_khr(physical_device::PhysicalDevice)
@@ -32233,7 +32233,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html)
 
 """
 get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice)
@@ -32252,7 +32252,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `plane_index::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneSupportedDisplaysKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneSupportedDisplaysKHR.html)
 
 """
 get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer)
@@ -32271,7 +32271,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `display::DisplayKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModePropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModePropertiesKHR.html)
 
 """
 get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR)
@@ -32293,7 +32293,7 @@ Arguments:
 - `create_info::_DisplayModeCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayModeKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayModeKHR.html)
 
 """
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::_DisplayModeCreateInfoKHR; allocator = C_NULL)
@@ -32313,7 +32313,7 @@ Arguments:
 - `mode::DisplayModeKHR` (externsync)
 - `plane_index::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilitiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilitiesKHR.html)
 
 """
 get_display_plane_capabilities_khr(physical_device::PhysicalDevice, mode::DisplayModeKHR, plane_index::Integer)
@@ -32333,7 +32333,7 @@ Arguments:
 - `create_info::_DisplaySurfaceCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html)
 
 """
 create_display_plane_surface_khr(instance::Instance, create_info::_DisplaySurfaceCreateInfoKHR; allocator = C_NULL)
@@ -32356,7 +32356,7 @@ Arguments:
 - `create_infos::AbstractArray{_SwapchainCreateInfoKHR}` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSharedSwapchainsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSharedSwapchainsKHR.html)
 
 """
 create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{_SwapchainCreateInfoKHR}; allocator = C_NULL)
@@ -32371,7 +32371,7 @@ Arguments:
 - `surface::SurfaceKHR` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySurfaceKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySurfaceKHR.html)
 
 """
 destroy_surface_khr(instance::Instance, surface::SurfaceKHR; allocator = C_NULL)
@@ -32392,7 +32392,7 @@ Arguments:
 - `queue_family_index::Integer`
 - `surface::SurfaceKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html)
 
 """
 get_physical_device_surface_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, surface::SurfaceKHR)
@@ -32412,7 +32412,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `surface::SurfaceKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html)
 
 """
 get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
@@ -32432,7 +32432,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `surface::SurfaceKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html)
 
 """
 get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
@@ -32452,7 +32452,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `surface::SurfaceKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html)
 
 """
 get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
@@ -32476,7 +32476,7 @@ Arguments:
 - `create_info::_SwapchainCreateInfoKHR` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSwapchainKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSwapchainKHR.html)
 
 """
 create_swapchain_khr(device::Device, create_info::_SwapchainCreateInfoKHR; allocator = C_NULL)
@@ -32491,7 +32491,7 @@ Arguments:
 - `swapchain::SwapchainKHR` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySwapchainKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySwapchainKHR.html)
 
 """
 destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR; allocator = C_NULL)
@@ -32510,7 +32510,7 @@ Arguments:
 - `device::Device`
 - `swapchain::SwapchainKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainImagesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainImagesKHR.html)
 
 """
 get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR)
@@ -32541,7 +32541,7 @@ Arguments:
 - `semaphore`: defaults to `C_NULL` (externsync)
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImageKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImageKHR.html)
 
 """
 acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer; semaphore = C_NULL, fence = C_NULL)
@@ -32567,7 +32567,7 @@ Arguments:
 - `queue::Queue` (externsync)
 - `present_info::_PresentInfoKHR` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueuePresentKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueuePresentKHR.html)
 
 """
 queue_present_khr(queue::Queue, present_info::_PresentInfoKHR)
@@ -32586,7 +32586,7 @@ Arguments:
 - `create_info::_DebugReportCallbackCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugReportCallbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugReportCallbackEXT.html)
 
 """
 create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT; allocator = C_NULL)
@@ -32601,7 +32601,7 @@ Arguments:
 - `callback::DebugReportCallbackEXT` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugReportCallbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugReportCallbackEXT.html)
 
 """
 destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT; allocator = C_NULL)
@@ -32621,7 +32621,7 @@ Arguments:
 - `layer_prefix::AbstractString`
 - `message::AbstractString`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugReportMessageEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugReportMessageEXT.html)
 
 """
 debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::DebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString)
@@ -32640,7 +32640,7 @@ Arguments:
 - `device::Device`
 - `name_info::_DebugMarkerObjectNameInfoEXT` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectNameEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectNameEXT.html)
 
 """
 debug_marker_set_object_name_ext(device::Device, name_info::_DebugMarkerObjectNameInfoEXT)
@@ -32659,7 +32659,7 @@ Arguments:
 - `device::Device`
 - `tag_info::_DebugMarkerObjectTagInfoEXT` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectTagEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectTagEXT.html)
 
 """
 debug_marker_set_object_tag_ext(device::Device, tag_info::_DebugMarkerObjectTagInfoEXT)
@@ -32673,7 +32673,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `marker_info::_DebugMarkerMarkerInfoEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerBeginEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerBeginEXT.html)
 
 """
 cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)
@@ -32686,7 +32686,7 @@ Extension: VK\\_EXT\\_debug\\_marker
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerEndEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerEndEXT.html)
 
 """
 cmd_debug_marker_end_ext(command_buffer::CommandBuffer)
@@ -32700,7 +32700,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `marker_info::_DebugMarkerMarkerInfoEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerInsertEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerInsertEXT.html)
 
 """
 cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT)
@@ -32725,7 +32725,7 @@ Arguments:
 - `flags`: defaults to `0`
 - `external_handle_type`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.html)
 
 """
 get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; flags = 0, external_handle_type = 0)
@@ -32740,7 +32740,7 @@ Arguments:
 - `is_preprocessed::Bool`
 - `generated_commands_info::_GeneratedCommandsInfoNV`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteGeneratedCommandsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteGeneratedCommandsNV.html)
 
 """
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::_GeneratedCommandsInfoNV)
@@ -32754,7 +32754,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `generated_commands_info::_GeneratedCommandsInfoNV`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPreprocessGeneratedCommandsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPreprocessGeneratedCommandsNV.html)
 
 """
 cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::_GeneratedCommandsInfoNV)
@@ -32770,7 +32770,7 @@ Arguments:
 - `pipeline::Pipeline`
 - `group_index::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipelineShaderGroupNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipelineShaderGroupNV.html)
 
 """
 cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, group_index::Integer)
@@ -32784,7 +32784,7 @@ Arguments:
 - `device::Device`
 - `info::_GeneratedCommandsMemoryRequirementsInfoNV`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html)
 
 """
 get_generated_commands_memory_requirements_nv(device::Device, info::_GeneratedCommandsMemoryRequirementsInfoNV)
@@ -32804,7 +32804,7 @@ Arguments:
 - `create_info::_IndirectCommandsLayoutCreateInfoNV`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateIndirectCommandsLayoutNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateIndirectCommandsLayoutNV.html)
 
 """
 create_indirect_commands_layout_nv(device::Device, create_info::_IndirectCommandsLayoutCreateInfoNV; allocator = C_NULL)
@@ -32819,7 +32819,7 @@ Arguments:
 - `indirect_commands_layout::IndirectCommandsLayoutNV` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyIndirectCommandsLayoutNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyIndirectCommandsLayoutNV.html)
 
 """
 destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV; allocator = C_NULL)
@@ -32830,7 +32830,7 @@ destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::In
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures2.html)
 
 """
 get_physical_device_features_2(physical_device::PhysicalDevice)
@@ -32841,7 +32841,7 @@ get_physical_device_features_2(physical_device::PhysicalDevice)
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties2.html)
 
 """
 get_physical_device_properties_2(physical_device::PhysicalDevice)
@@ -32853,7 +32853,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `format::Format`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties2.html)
 
 """
 get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::Format)
@@ -32871,7 +32871,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `image_format_info::_PhysicalDeviceImageFormatInfo2`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties2.html)
 
 """
 get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::_PhysicalDeviceImageFormatInfo2)
@@ -32882,7 +32882,7 @@ get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, i
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties2.html)
 
 """
 get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)
@@ -32893,7 +32893,7 @@ get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice)
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties2.html)
 
 """
 get_physical_device_memory_properties_2(physical_device::PhysicalDevice)
@@ -32905,7 +32905,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `format_info::_PhysicalDeviceSparseImageFormatInfo2`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties2.html)
 
 """
 get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::_PhysicalDeviceSparseImageFormatInfo2)
@@ -32922,7 +32922,7 @@ Arguments:
 - `set::Integer`
 - `descriptor_writes::AbstractArray{_WriteDescriptorSet}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetKHR.html)
 
 """
 cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{_WriteDescriptorSet})
@@ -32935,7 +32935,7 @@ Arguments:
 - `command_pool::CommandPool` (externsync)
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkTrimCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkTrimCommandPool.html)
 
 """
 trim_command_pool(device::Device, command_pool::CommandPool; flags = 0)
@@ -32947,7 +32947,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `external_buffer_info::_PhysicalDeviceExternalBufferInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalBufferProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalBufferProperties.html)
 
 """
 get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::_PhysicalDeviceExternalBufferInfo)
@@ -32966,7 +32966,7 @@ Arguments:
 - `device::Device`
 - `get_fd_info::_MemoryGetFdInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdKHR.html)
 
 """
 get_memory_fd_khr(device::Device, get_fd_info::_MemoryGetFdInfoKHR)
@@ -32986,7 +32986,7 @@ Arguments:
 - `handle_type::ExternalMemoryHandleTypeFlag`
 - `fd::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdPropertiesKHR.html)
 
 """
 get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)
@@ -32998,7 +32998,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalSemaphoreProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalSemaphoreProperties.html)
 
 """
 get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo)
@@ -33017,7 +33017,7 @@ Arguments:
 - `device::Device`
 - `get_fd_info::_SemaphoreGetFdInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreFdKHR.html)
 
 """
 get_semaphore_fd_khr(device::Device, get_fd_info::_SemaphoreGetFdInfoKHR)
@@ -33036,7 +33036,7 @@ Arguments:
 - `device::Device`
 - `import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportSemaphoreFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportSemaphoreFdKHR.html)
 
 """
 import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR)
@@ -33048,7 +33048,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `external_fence_info::_PhysicalDeviceExternalFenceInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalFenceProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalFenceProperties.html)
 
 """
 get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::_PhysicalDeviceExternalFenceInfo)
@@ -33067,7 +33067,7 @@ Arguments:
 - `device::Device`
 - `get_fd_info::_FenceGetFdInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceFdKHR.html)
 
 """
 get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR)
@@ -33086,7 +33086,7 @@ Arguments:
 - `device::Device`
 - `import_fence_fd_info::_ImportFenceFdInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportFenceFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportFenceFdKHR.html)
 
 """
 import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR)
@@ -33102,7 +33102,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `display::DisplayKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseDisplayEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseDisplayEXT.html)
 
 """
 release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR)
@@ -33121,7 +33121,7 @@ Arguments:
 - `display::DisplayKHR`
 - `display_power_info::_DisplayPowerInfoEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDisplayPowerControlEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDisplayPowerControlEXT.html)
 
 """
 display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::_DisplayPowerInfoEXT)
@@ -33140,7 +33140,7 @@ Arguments:
 - `device_event_info::_DeviceEventInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDeviceEventEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDeviceEventEXT.html)
 
 """
 register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)
@@ -33160,7 +33160,7 @@ Arguments:
 - `display_event_info::_DisplayEventInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDisplayEventEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDisplayEventEXT.html)
 
 """
 register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::_DisplayEventInfoEXT; allocator = C_NULL)
@@ -33181,7 +33181,7 @@ Arguments:
 - `swapchain::SwapchainKHR`
 - `counter::SurfaceCounterFlagEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainCounterEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainCounterEXT.html)
 
 """
 get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT)
@@ -33201,7 +33201,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `surface::SurfaceKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html)
 
 """
 get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR)
@@ -33218,7 +33218,7 @@ Return codes:
 Arguments:
 - `instance::Instance`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceGroups.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceGroups.html)
 
 """
 enumerate_physical_device_groups(instance::Instance)
@@ -33232,7 +33232,7 @@ Arguments:
 - `local_device_index::Integer`
 - `remote_device_index::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPeerMemoryFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPeerMemoryFeatures.html)
 
 """
 get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer)
@@ -33250,7 +33250,7 @@ Arguments:
 - `device::Device`
 - `bind_infos::AbstractArray{_BindBufferMemoryInfo}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory2.html)
 
 """
 bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{_BindBufferMemoryInfo})
@@ -33267,7 +33267,7 @@ Arguments:
 - `device::Device`
 - `bind_infos::AbstractArray{_BindImageMemoryInfo}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory2.html)
 
 """
 bind_image_memory_2(device::Device, bind_infos::AbstractArray{_BindImageMemoryInfo})
@@ -33279,7 +33279,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `device_mask::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDeviceMask.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDeviceMask.html)
 
 """
 cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer)
@@ -33297,7 +33297,7 @@ Return codes:
 Arguments:
 - `device::Device`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPresentCapabilitiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPresentCapabilitiesKHR.html)
 
 """
 get_device_group_present_capabilities_khr(device::Device)
@@ -33318,7 +33318,7 @@ Arguments:
 - `surface::SurfaceKHR` (externsync)
 - `modes::DeviceGroupPresentModeFlagKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupSurfacePresentModesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupSurfacePresentModesKHR.html)
 
 """
 get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR)
@@ -33346,7 +33346,7 @@ Arguments:
 - `device::Device`
 - `acquire_info::_AcquireNextImageInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImage2KHR.html)
 
 """
 acquire_next_image_2_khr(device::Device, acquire_info::_AcquireNextImageInfoKHR)
@@ -33363,7 +33363,7 @@ Arguments:
 - `group_count_y::Integer`
 - `group_count_z::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchBase.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchBase.html)
 
 """
 cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)
@@ -33382,7 +33382,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `surface::SurfaceKHR` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDevicePresentRectanglesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDevicePresentRectanglesKHR.html)
 
 """
 get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR)
@@ -33400,7 +33400,7 @@ Arguments:
 - `create_info::_DescriptorUpdateTemplateCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorUpdateTemplate.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorUpdateTemplate.html)
 
 """
 create_descriptor_update_template(device::Device, create_info::_DescriptorUpdateTemplateCreateInfo; allocator = C_NULL)
@@ -33413,7 +33413,7 @@ Arguments:
 - `descriptor_update_template::DescriptorUpdateTemplate` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorUpdateTemplate.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorUpdateTemplate.html)
 
 """
 destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate; allocator = C_NULL)
@@ -33427,7 +33427,7 @@ Arguments:
 - `descriptor_update_template::DescriptorUpdateTemplate`
 - `data::Ptr{Cvoid}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSetWithTemplate.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSetWithTemplate.html)
 
 """
 update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid})
@@ -33444,7 +33444,7 @@ Arguments:
 - `set::Integer`
 - `data::Ptr{Cvoid}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetWithTemplateKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetWithTemplateKHR.html)
 
 """
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid})
@@ -33459,7 +33459,7 @@ Arguments:
 - `swapchains::AbstractArray`
 - `metadata::AbstractArray{_HdrMetadataEXT}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetHdrMetadataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetHdrMetadataEXT.html)
 
 """
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray{_HdrMetadataEXT})
@@ -33485,7 +33485,7 @@ Arguments:
 - `device::Device`
 - `swapchain::SwapchainKHR` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainStatusKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainStatusKHR.html)
 
 """
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR)
@@ -33505,7 +33505,7 @@ Arguments:
 - `device::Device`
 - `swapchain::SwapchainKHR` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRefreshCycleDurationGOOGLE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRefreshCycleDurationGOOGLE.html)
 
 """
 get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR)
@@ -33526,7 +33526,7 @@ Arguments:
 - `device::Device`
 - `swapchain::SwapchainKHR` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPastPresentationTimingGOOGLE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPastPresentationTimingGOOGLE.html)
 
 """
 get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR)
@@ -33547,7 +33547,7 @@ Arguments:
 - `create_info::_MacOSSurfaceCreateInfoMVK`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMacOSSurfaceMVK.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMacOSSurfaceMVK.html)
 
 """
 create_mac_os_surface_mvk(instance::Instance, create_info::_MacOSSurfaceCreateInfoMVK; allocator = C_NULL)
@@ -33568,7 +33568,7 @@ Arguments:
 - `create_info::_MetalSurfaceCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMetalSurfaceEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMetalSurfaceEXT.html)
 
 """
 create_metal_surface_ext(instance::Instance, create_info::_MetalSurfaceCreateInfoEXT; allocator = C_NULL)
@@ -33582,7 +33582,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `viewport_w_scalings::AbstractArray{_ViewportWScalingNV}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWScalingNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWScalingNV.html)
 
 """
 cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{_ViewportWScalingNV})
@@ -33596,7 +33596,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `discard_rectangles::AbstractArray{_Rect2D}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDiscardRectangleEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDiscardRectangleEXT.html)
 
 """
 cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{_Rect2D})
@@ -33610,7 +33610,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `sample_locations_info::_SampleLocationsInfoEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetSampleLocationsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetSampleLocationsEXT.html)
 
 """
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::_SampleLocationsInfoEXT)
@@ -33624,7 +33624,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `samples::SampleCountFlag`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMultisamplePropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMultisamplePropertiesEXT.html)
 
 """
 get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag)
@@ -33644,7 +33644,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html)
 
 """
 get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)
@@ -33664,7 +33664,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormats2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormats2KHR.html)
 
 """
 get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR)
@@ -33682,7 +33682,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayProperties2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayProperties2KHR.html)
 
 """
 get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice)
@@ -33700,7 +33700,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlaneProperties2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlaneProperties2KHR.html)
 
 """
 get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice)
@@ -33719,7 +33719,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `display::DisplayKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModeProperties2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModeProperties2KHR.html)
 
 """
 get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR)
@@ -33738,7 +33738,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `display_plane_info::_DisplayPlaneInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilities2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilities2KHR.html)
 
 """
 get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::_DisplayPlaneInfo2KHR)
@@ -33750,7 +33750,7 @@ Arguments:
 - `device::Device`
 - `info::_BufferMemoryRequirementsInfo2`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements2.html)
 
 """
 get_buffer_memory_requirements_2(device::Device, info::_BufferMemoryRequirementsInfo2)
@@ -33762,7 +33762,7 @@ Arguments:
 - `device::Device`
 - `info::_ImageMemoryRequirementsInfo2`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements2.html)
 
 """
 get_image_memory_requirements_2(device::Device, info::_ImageMemoryRequirementsInfo2)
@@ -33774,7 +33774,7 @@ Arguments:
 - `device::Device`
 - `info::_ImageSparseMemoryRequirementsInfo2`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements2.html)
 
 """
 get_image_sparse_memory_requirements_2(device::Device, info::_ImageSparseMemoryRequirementsInfo2)
@@ -33792,7 +33792,7 @@ Arguments:
 - `create_info::_SamplerYcbcrConversionCreateInfo`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSamplerYcbcrConversion.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSamplerYcbcrConversion.html)
 
 """
 create_sampler_ycbcr_conversion(device::Device, create_info::_SamplerYcbcrConversionCreateInfo; allocator = C_NULL)
@@ -33805,7 +33805,7 @@ Arguments:
 - `ycbcr_conversion::SamplerYcbcrConversion` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySamplerYcbcrConversion.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySamplerYcbcrConversion.html)
 
 """
 destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion; allocator = C_NULL)
@@ -33817,7 +33817,7 @@ Arguments:
 - `device::Device`
 - `queue_info::_DeviceQueueInfo2`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue2.html)
 
 """
 get_device_queue_2(device::Device, queue_info::_DeviceQueueInfo2)
@@ -33836,7 +33836,7 @@ Arguments:
 - `create_info::_ValidationCacheCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateValidationCacheEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateValidationCacheEXT.html)
 
 """
 create_validation_cache_ext(device::Device, create_info::_ValidationCacheCreateInfoEXT; allocator = C_NULL)
@@ -33851,7 +33851,7 @@ Arguments:
 - `validation_cache::ValidationCacheEXT` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyValidationCacheEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyValidationCacheEXT.html)
 
 """
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT; allocator = C_NULL)
@@ -33873,7 +33873,7 @@ Arguments:
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetValidationCacheDataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetValidationCacheDataEXT.html)
 
 """
 get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT)
@@ -33893,7 +33893,7 @@ Arguments:
 - `dst_cache::ValidationCacheEXT` (externsync)
 - `src_caches::AbstractArray`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergeValidationCachesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergeValidationCachesEXT.html)
 
 """
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray)
@@ -33905,7 +33905,7 @@ Arguments:
 - `device::Device`
 - `create_info::_DescriptorSetLayoutCreateInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDescriptorSetLayoutSupport.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDescriptorSetLayoutSupport.html)
 
 """
 get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo)
@@ -33929,7 +33929,7 @@ Arguments:
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetShaderInfoAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetShaderInfoAMD.html)
 
 """
 get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::ShaderInfoTypeAMD)
@@ -33944,7 +33944,7 @@ Arguments:
 - `swap_chain::SwapchainKHR`
 - `local_dimming_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetLocalDimmingAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetLocalDimmingAMD.html)
 
 """
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool)
@@ -33962,7 +33962,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html)
 
 """
 get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice)
@@ -33981,7 +33981,7 @@ Arguments:
 - `device::Device`
 - `timestamp_infos::AbstractArray{_CalibratedTimestampInfoEXT}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetCalibratedTimestampsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetCalibratedTimestampsEXT.html)
 
 """
 get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{_CalibratedTimestampInfoEXT})
@@ -34000,7 +34000,7 @@ Arguments:
 - `device::Device`
 - `name_info::_DebugUtilsObjectNameInfoEXT` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectNameEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectNameEXT.html)
 
 """
 set_debug_utils_object_name_ext(device::Device, name_info::_DebugUtilsObjectNameInfoEXT)
@@ -34019,7 +34019,7 @@ Arguments:
 - `device::Device`
 - `tag_info::_DebugUtilsObjectTagInfoEXT` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectTagEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectTagEXT.html)
 
 """
 set_debug_utils_object_tag_ext(device::Device, tag_info::_DebugUtilsObjectTagInfoEXT)
@@ -34033,7 +34033,7 @@ Arguments:
 - `queue::Queue`
 - `label_info::_DebugUtilsLabelEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBeginDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBeginDebugUtilsLabelEXT.html)
 
 """
 queue_begin_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)
@@ -34046,7 +34046,7 @@ Extension: VK\\_EXT\\_debug\\_utils
 Arguments:
 - `queue::Queue`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueEndDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueEndDebugUtilsLabelEXT.html)
 
 """
 queue_end_debug_utils_label_ext(queue::Queue)
@@ -34060,7 +34060,7 @@ Arguments:
 - `queue::Queue`
 - `label_info::_DebugUtilsLabelEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html)
 
 """
 queue_insert_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT)
@@ -34074,7 +34074,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `label_info::_DebugUtilsLabelEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginDebugUtilsLabelEXT.html)
 
 """
 cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)
@@ -34087,7 +34087,7 @@ Extension: VK\\_EXT\\_debug\\_utils
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndDebugUtilsLabelEXT.html)
 
 """
 cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer)
@@ -34101,7 +34101,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `label_info::_DebugUtilsLabelEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html)
 
 """
 cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT)
@@ -34120,7 +34120,7 @@ Arguments:
 - `create_info::_DebugUtilsMessengerCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugUtilsMessengerEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugUtilsMessengerEXT.html)
 
 """
 create_debug_utils_messenger_ext(instance::Instance, create_info::_DebugUtilsMessengerCreateInfoEXT; allocator = C_NULL)
@@ -34135,7 +34135,7 @@ Arguments:
 - `messenger::DebugUtilsMessengerEXT` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugUtilsMessengerEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugUtilsMessengerEXT.html)
 
 """
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT; allocator = C_NULL)
@@ -34151,7 +34151,7 @@ Arguments:
 - `message_types::DebugUtilsMessageTypeFlagEXT`
 - `callback_data::_DebugUtilsMessengerCallbackDataEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html)
 
 """
 submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT)
@@ -34171,7 +34171,7 @@ Arguments:
 - `handle_type::ExternalMemoryHandleTypeFlag`
 - `host_pointer::Ptr{Cvoid}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryHostPointerPropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryHostPointerPropertiesEXT.html)
 
 """
 get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})
@@ -34188,7 +34188,7 @@ Arguments:
 - `dst_offset::Integer`
 - `marker::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarkerAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarkerAMD.html)
 
 """
 cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)
@@ -34206,7 +34206,7 @@ Arguments:
 - `create_info::_RenderPassCreateInfo2`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass2.html)
 
 """
 create_render_pass_2(device::Device, create_info::_RenderPassCreateInfo2; allocator = C_NULL)
@@ -34219,7 +34219,7 @@ Arguments:
 - `render_pass_begin::_RenderPassBeginInfo`
 - `subpass_begin_info::_SubpassBeginInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass2.html)
 
 """
 cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, subpass_begin_info::_SubpassBeginInfo)
@@ -34232,7 +34232,7 @@ Arguments:
 - `subpass_begin_info::_SubpassBeginInfo`
 - `subpass_end_info::_SubpassEndInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass2.html)
 
 """
 cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::_SubpassBeginInfo, subpass_end_info::_SubpassEndInfo)
@@ -34244,7 +34244,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `subpass_end_info::_SubpassEndInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass2.html)
 
 """
 cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::_SubpassEndInfo)
@@ -34262,7 +34262,7 @@ Arguments:
 - `device::Device`
 - `semaphore::Semaphore`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreCounterValue.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreCounterValue.html)
 
 """
 get_semaphore_counter_value(device::Device, semaphore::Semaphore)
@@ -34284,7 +34284,7 @@ Arguments:
 - `wait_info::_SemaphoreWaitInfo`
 - `timeout::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitSemaphores.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitSemaphores.html)
 
 """
 wait_semaphores(device::Device, wait_info::_SemaphoreWaitInfo, timeout::Integer)
@@ -34301,7 +34301,7 @@ Arguments:
 - `device::Device`
 - `signal_info::_SemaphoreSignalInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSignalSemaphore.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSignalSemaphore.html)
 
 """
 signal_semaphore(device::Device, signal_info::_SemaphoreSignalInfo)
@@ -34318,7 +34318,7 @@ Arguments:
 - `max_draw_count::Integer`
 - `stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectCount.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectCount.html)
 
 """
 cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)
@@ -34335,7 +34335,7 @@ Arguments:
 - `max_draw_count::Integer`
 - `stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirectCount.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirectCount.html)
 
 """
 cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)
@@ -34349,7 +34349,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `checkpoint_marker::Ptr{Cvoid}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCheckpointNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCheckpointNV.html)
 
 """
 cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid})
@@ -34362,7 +34362,7 @@ Extension: VK\\_NV\\_device\\_diagnostic\\_checkpoints
 Arguments:
 - `queue::Queue`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointDataNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointDataNV.html)
 
 """
 get_queue_checkpoint_data_nv(queue::Queue)
@@ -34378,7 +34378,7 @@ Arguments:
 - `offsets::AbstractArray`
 - `sizes`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindTransformFeedbackBuffersEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindTransformFeedbackBuffersEXT.html)
 
 """
 cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL)
@@ -34393,7 +34393,7 @@ Arguments:
 - `counter_buffers::AbstractArray`
 - `counter_buffer_offsets`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginTransformFeedbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginTransformFeedbackEXT.html)
 
 """
 cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)
@@ -34408,7 +34408,7 @@ Arguments:
 - `counter_buffers::AbstractArray`
 - `counter_buffer_offsets`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndTransformFeedbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndTransformFeedbackEXT.html)
 
 """
 cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray; counter_buffer_offsets = C_NULL)
@@ -34425,7 +34425,7 @@ Arguments:
 - `index::Integer`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQueryIndexedEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQueryIndexedEXT.html)
 
 """
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer; flags = 0)
@@ -34441,7 +34441,7 @@ Arguments:
 - `query::Integer`
 - `index::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQueryIndexedEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQueryIndexedEXT.html)
 
 """
 cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer)
@@ -34460,7 +34460,7 @@ Arguments:
 - `counter_offset::Integer`
 - `vertex_stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectByteCountEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectByteCountEXT.html)
 
 """
 cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer)
@@ -34474,7 +34474,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `exclusive_scissors::AbstractArray{_Rect2D}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetExclusiveScissorNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetExclusiveScissorNV.html)
 
 """
 cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{_Rect2D})
@@ -34489,7 +34489,7 @@ Arguments:
 - `image_layout::ImageLayout`
 - `image_view`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindShadingRateImageNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindShadingRateImageNV.html)
 
 """
 cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::ImageLayout; image_view = C_NULL)
@@ -34503,7 +34503,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `shading_rate_palettes::AbstractArray{_ShadingRatePaletteNV}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportShadingRatePaletteNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportShadingRatePaletteNV.html)
 
 """
 cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{_ShadingRatePaletteNV})
@@ -34518,7 +34518,7 @@ Arguments:
 - `sample_order_type::CoarseSampleOrderTypeNV`
 - `custom_sample_orders::AbstractArray{_CoarseSampleOrderCustomNV}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCoarseSampleOrderNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCoarseSampleOrderNV.html)
 
 """
 cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{_CoarseSampleOrderCustomNV})
@@ -34533,7 +34533,7 @@ Arguments:
 - `task_count::Integer`
 - `first_task::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksNV.html)
 
 """
 cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer)
@@ -34550,7 +34550,7 @@ Arguments:
 - `draw_count::Integer`
 - `stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectNV.html)
 
 """
 cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer)
@@ -34569,7 +34569,7 @@ Arguments:
 - `max_draw_count::Integer`
 - `stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectCountNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectCountNV.html)
 
 """
 cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer)
@@ -34589,7 +34589,7 @@ Arguments:
 - `pipeline::Pipeline`
 - `shader::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCompileDeferredNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCompileDeferredNV.html)
 
 """
 compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer)
@@ -34608,7 +34608,7 @@ Arguments:
 - `create_info::_AccelerationStructureCreateInfoNV`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureNV.html)
 
 """
 create_acceleration_structure_nv(device::Device, create_info::_AccelerationStructureCreateInfoNV; allocator = C_NULL)
@@ -34623,7 +34623,7 @@ Arguments:
 - `acceleration_structure::AccelerationStructureKHR` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureKHR.html)
 
 """
 destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR; allocator = C_NULL)
@@ -34638,7 +34638,7 @@ Arguments:
 - `acceleration_structure::AccelerationStructureNV` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureNV.html)
 
 """
 destroy_acceleration_structure_nv(device::Device, acceleration_structure::AccelerationStructureNV; allocator = C_NULL)
@@ -34652,7 +34652,7 @@ Arguments:
 - `device::Device`
 - `info::_AccelerationStructureMemoryRequirementsInfoNV`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html)
 
 """
 get_acceleration_structure_memory_requirements_nv(device::Device, info::_AccelerationStructureMemoryRequirementsInfoNV)
@@ -34671,7 +34671,7 @@ Arguments:
 - `device::Device`
 - `bind_infos::AbstractArray{_BindAccelerationStructureMemoryInfoNV}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindAccelerationStructureMemoryNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindAccelerationStructureMemoryNV.html)
 
 """
 bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{_BindAccelerationStructureMemoryInfoNV})
@@ -34687,7 +34687,7 @@ Arguments:
 - `src::AccelerationStructureNV`
 - `mode::CopyAccelerationStructureModeKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureNV.html)
 
 """
 cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::CopyAccelerationStructureModeKHR)
@@ -34701,7 +34701,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `info::_CopyAccelerationStructureInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureKHR.html)
 
 """
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureInfoKHR)
@@ -34725,7 +34725,7 @@ Arguments:
 - `info::_CopyAccelerationStructureInfoKHR`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureKHR.html)
 
 """
 copy_acceleration_structure_khr(device::Device, info::_CopyAccelerationStructureInfoKHR; deferred_operation = C_NULL)
@@ -34739,7 +34739,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `info::_CopyAccelerationStructureToMemoryInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureToMemoryKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureToMemoryKHR.html)
 
 """
 cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureToMemoryInfoKHR)
@@ -34763,7 +34763,7 @@ Arguments:
 - `info::_CopyAccelerationStructureToMemoryInfoKHR`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureToMemoryKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureToMemoryKHR.html)
 
 """
 copy_acceleration_structure_to_memory_khr(device::Device, info::_CopyAccelerationStructureToMemoryInfoKHR; deferred_operation = C_NULL)
@@ -34777,7 +34777,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `info::_CopyMemoryToAccelerationStructureInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyMemoryToAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyMemoryToAccelerationStructureKHR.html)
 
 """
 cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyMemoryToAccelerationStructureInfoKHR)
@@ -34801,7 +34801,7 @@ Arguments:
 - `info::_CopyMemoryToAccelerationStructureInfoKHR`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyMemoryToAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyMemoryToAccelerationStructureKHR.html)
 
 """
 copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR; deferred_operation = C_NULL)
@@ -34818,7 +34818,7 @@ Arguments:
 - `query_pool::QueryPool`
 - `first_query::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesKHR.html)
 
 """
 cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)
@@ -34835,7 +34835,7 @@ Arguments:
 - `query_pool::QueryPool`
 - `first_query::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesNV.html)
 
 """
 cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer)
@@ -34856,7 +34856,7 @@ Arguments:
 - `instance_data`: defaults to `C_NULL`
 - `src`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructureNV.html)
 
 """
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer; instance_data = C_NULL, src = C_NULL)
@@ -34879,7 +34879,7 @@ Arguments:
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `stride::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html)
 
 """
 write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)
@@ -34899,7 +34899,7 @@ Arguments:
 - `height::Integer`
 - `depth::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysKHR.html)
 
 """
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer)
@@ -34926,7 +34926,7 @@ Arguments:
 - `hit_shader_binding_table_buffer`: defaults to `C_NULL`
 - `callable_shader_binding_table_buffer`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysNV.html)
 
 """
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)
@@ -34949,7 +34949,7 @@ Arguments:
 - `data_size::Integer`
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupHandlesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupHandlesKHR.html)
 
 """
 get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})
@@ -34972,7 +34972,7 @@ Arguments:
 - `data_size::Integer`
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html)
 
 """
 get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid})
@@ -34993,7 +34993,7 @@ Arguments:
 - `data_size::Integer`
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureHandleNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureHandleNV.html)
 
 """
 get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid})
@@ -35018,7 +35018,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesNV.html)
 
 """
 create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{_RayTracingPipelineCreateInfoNV}; pipeline_cache = C_NULL, allocator = C_NULL)
@@ -35046,7 +35046,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesKHR.html)
 
 """
 create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{_RayTracingPipelineCreateInfoKHR}; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)
@@ -35064,7 +35064,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.html)
 
 """
 get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice)
@@ -35082,7 +35082,7 @@ Arguments:
 - `callable_shader_binding_table::_StridedDeviceAddressRegionKHR`
 - `indirect_device_address::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysIndirectKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysIndirectKHR.html)
 
 """
 cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, indirect_device_address::Integer)
@@ -35096,7 +35096,7 @@ Arguments:
 - `device::Device`
 - `version_info::_AccelerationStructureVersionInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceAccelerationStructureCompatibilityKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceAccelerationStructureCompatibilityKHR.html)
 
 """
 get_device_acceleration_structure_compatibility_khr(device::Device, version_info::_AccelerationStructureVersionInfoKHR)
@@ -35112,7 +35112,7 @@ Arguments:
 - `group::Integer`
 - `group_shader::ShaderGroupShaderKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupStackSizeKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupStackSizeKHR.html)
 
 """
 get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::ShaderGroupShaderKHR)
@@ -35126,7 +35126,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `pipeline_stack_size::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRayTracingPipelineStackSizeKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRayTracingPipelineStackSizeKHR.html)
 
 """
 cmd_set_ray_tracing_pipeline_stack_size_khr(command_buffer::CommandBuffer, pipeline_stack_size::Integer)
@@ -35140,7 +35140,7 @@ Arguments:
 - `device::Device`
 - `info::_ImageViewHandleInfoNVX`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewHandleNVX.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewHandleNVX.html)
 
 """
 get_image_view_handle_nvx(device::Device, info::_ImageViewHandleInfoNVX)
@@ -35159,7 +35159,7 @@ Arguments:
 - `device::Device`
 - `image_view::ImageView`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewAddressNVX.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewAddressNVX.html)
 
 """
 get_image_view_address_nvx(device::Device, image_view::ImageView)
@@ -35179,7 +35179,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `queue_family_index::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html)
 
 """
 enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer)
@@ -35193,7 +35193,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html)
 
 """
 get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR)
@@ -35212,7 +35212,7 @@ Arguments:
 - `device::Device`
 - `info::_AcquireProfilingLockInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireProfilingLockKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireProfilingLockKHR.html)
 
 """
 acquire_profiling_lock_khr(device::Device, info::_AcquireProfilingLockInfoKHR)
@@ -35225,7 +35225,7 @@ Extension: VK\\_KHR\\_performance\\_query
 Arguments:
 - `device::Device`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseProfilingLockKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseProfilingLockKHR.html)
 
 """
 release_profiling_lock_khr(device::Device)
@@ -35243,7 +35243,7 @@ Arguments:
 - `device::Device`
 - `image::Image`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html)
 
 """
 get_image_drm_format_modifier_properties_ext(device::Device, image::Image)
@@ -35255,7 +35255,7 @@ Arguments:
 - `device::Device`
 - `info::_BufferDeviceAddressInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferOpaqueCaptureAddress.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferOpaqueCaptureAddress.html)
 
 """
 get_buffer_opaque_capture_address(device::Device, info::_BufferDeviceAddressInfo)
@@ -35267,7 +35267,7 @@ Arguments:
 - `device::Device`
 - `info::_BufferDeviceAddressInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferDeviceAddress.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferDeviceAddress.html)
 
 """
 get_buffer_device_address(device::Device, info::_BufferDeviceAddressInfo)
@@ -35287,7 +35287,7 @@ Arguments:
 - `create_info::_HeadlessSurfaceCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateHeadlessSurfaceEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateHeadlessSurfaceEXT.html)
 
 """
 create_headless_surface_ext(instance::Instance, create_info::_HeadlessSurfaceCreateInfoEXT; allocator = C_NULL)
@@ -35305,7 +35305,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.html)
 
 """
 get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice)
@@ -35324,7 +35324,7 @@ Arguments:
 - `device::Device`
 - `initialize_info::_InitializePerformanceApiInfoINTEL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInitializePerformanceApiINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInitializePerformanceApiINTEL.html)
 
 """
 initialize_performance_api_intel(device::Device, initialize_info::_InitializePerformanceApiInfoINTEL)
@@ -35337,7 +35337,7 @@ Extension: VK\\_INTEL\\_performance\\_query
 Arguments:
 - `device::Device`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUninitializePerformanceApiINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUninitializePerformanceApiINTEL.html)
 
 """
 uninitialize_performance_api_intel(device::Device)
@@ -35356,7 +35356,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `marker_info::_PerformanceMarkerInfoINTEL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceMarkerINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceMarkerINTEL.html)
 
 """
 cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceMarkerInfoINTEL)
@@ -35375,7 +35375,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `marker_info::_PerformanceStreamMarkerInfoINTEL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceStreamMarkerINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceStreamMarkerINTEL.html)
 
 """
 cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceStreamMarkerInfoINTEL)
@@ -35394,7 +35394,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `override_info::_PerformanceOverrideInfoINTEL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceOverrideINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceOverrideINTEL.html)
 
 """
 cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::_PerformanceOverrideInfoINTEL)
@@ -35413,7 +35413,7 @@ Arguments:
 - `device::Device`
 - `acquire_info::_PerformanceConfigurationAcquireInfoINTEL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquirePerformanceConfigurationINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquirePerformanceConfigurationINTEL.html)
 
 """
 acquire_performance_configuration_intel(device::Device, acquire_info::_PerformanceConfigurationAcquireInfoINTEL)
@@ -35432,7 +35432,7 @@ Arguments:
 - `device::Device`
 - `configuration`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleasePerformanceConfigurationINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleasePerformanceConfigurationINTEL.html)
 
 """
 release_performance_configuration_intel(device::Device; configuration = C_NULL)
@@ -35451,7 +35451,7 @@ Arguments:
 - `queue::Queue`
 - `configuration::PerformanceConfigurationINTEL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSetPerformanceConfigurationINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSetPerformanceConfigurationINTEL.html)
 
 """
 queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL)
@@ -35470,7 +35470,7 @@ Arguments:
 - `device::Device`
 - `parameter::PerformanceParameterTypeINTEL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPerformanceParameterINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPerformanceParameterINTEL.html)
 
 """
 get_performance_parameter_intel(device::Device, parameter::PerformanceParameterTypeINTEL)
@@ -35482,7 +35482,7 @@ Arguments:
 - `device::Device`
 - `info::_DeviceMemoryOpaqueCaptureAddressInfo`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryOpaqueCaptureAddress.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryOpaqueCaptureAddress.html)
 
 """
 get_device_memory_opaque_capture_address(device::Device, info::_DeviceMemoryOpaqueCaptureAddressInfo)
@@ -35501,7 +35501,7 @@ Arguments:
 - `device::Device`
 - `pipeline_info::_PipelineInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutablePropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutablePropertiesKHR.html)
 
 """
 get_pipeline_executable_properties_khr(device::Device, pipeline_info::_PipelineInfoKHR)
@@ -35520,7 +35520,7 @@ Arguments:
 - `device::Device`
 - `executable_info::_PipelineExecutableInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableStatisticsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableStatisticsKHR.html)
 
 """
 get_pipeline_executable_statistics_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)
@@ -35539,7 +35539,7 @@ Arguments:
 - `device::Device`
 - `executable_info::_PipelineExecutableInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableInternalRepresentationsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableInternalRepresentationsKHR.html)
 
 """
 get_pipeline_executable_internal_representations_khr(device::Device, executable_info::_PipelineExecutableInfoKHR)
@@ -35554,7 +35554,7 @@ Arguments:
 - `line_stipple_factor::Integer`
 - `line_stipple_pattern::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineStippleEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineStippleEXT.html)
 
 """
 cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer)
@@ -35571,7 +35571,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceToolPropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceToolPropertiesEXT.html)
 
 """
 get_physical_device_tool_properties_ext(physical_device::PhysicalDevice)
@@ -35591,7 +35591,7 @@ Arguments:
 - `create_info::_AccelerationStructureCreateInfoKHR`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureKHR.html)
 
 """
 create_acceleration_structure_khr(device::Device, create_info::_AccelerationStructureCreateInfoKHR; allocator = C_NULL)
@@ -35606,7 +35606,7 @@ Arguments:
 - `infos::AbstractArray{_AccelerationStructureBuildGeometryInfoKHR}`
 - `build_range_infos::AbstractArray{_AccelerationStructureBuildRangeInfoKHR}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresKHR.html)
 
 """
 cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{_AccelerationStructureBuildRangeInfoKHR})
@@ -35623,7 +35623,7 @@ Arguments:
 - `indirect_strides::AbstractArray`
 - `max_primitive_counts::AbstractArray`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresIndirectKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresIndirectKHR.html)
 
 """
 cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{_AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray)
@@ -35648,7 +35648,7 @@ Arguments:
 - `build_range_infos::AbstractArray{_AccelerationStructureBuildRangeInfoKHR}`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBuildAccelerationStructuresKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBuildAccelerationStructuresKHR.html)
 
 """
 build_acceleration_structures_khr(device::Device, infos::AbstractArray{_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{_AccelerationStructureBuildRangeInfoKHR}; deferred_operation = C_NULL)
@@ -35662,7 +35662,7 @@ Arguments:
 - `device::Device`
 - `info::_AccelerationStructureDeviceAddressInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureDeviceAddressKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureDeviceAddressKHR.html)
 
 """
 get_acceleration_structure_device_address_khr(device::Device, info::_AccelerationStructureDeviceAddressInfoKHR)
@@ -35680,7 +35680,7 @@ Arguments:
 - `device::Device`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDeferredOperationKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDeferredOperationKHR.html)
 
 """
 create_deferred_operation_khr(device::Device; allocator = C_NULL)
@@ -35695,7 +35695,7 @@ Arguments:
 - `operation::DeferredOperationKHR` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDeferredOperationKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDeferredOperationKHR.html)
 
 """
 destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR; allocator = C_NULL)
@@ -35709,7 +35709,7 @@ Arguments:
 - `device::Device`
 - `operation::DeferredOperationKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationMaxConcurrencyKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationMaxConcurrencyKHR.html)
 
 """
 get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR)
@@ -35728,7 +35728,7 @@ Arguments:
 - `device::Device`
 - `operation::DeferredOperationKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationResultKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationResultKHR.html)
 
 """
 get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR)
@@ -35751,7 +35751,7 @@ Arguments:
 - `device::Device`
 - `operation::DeferredOperationKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeferredOperationJoinKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeferredOperationJoinKHR.html)
 
 """
 deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR)
@@ -35765,7 +35765,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `cull_mode`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCullModeEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCullModeEXT.html)
 
 """
 cmd_set_cull_mode_ext(command_buffer::CommandBuffer; cull_mode = 0)
@@ -35779,7 +35779,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `front_face::FrontFace`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFrontFaceEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFrontFaceEXT.html)
 
 """
 cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::FrontFace)
@@ -35793,7 +35793,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `primitive_topology::PrimitiveTopology`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveTopologyEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveTopologyEXT.html)
 
 """
 cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::PrimitiveTopology)
@@ -35807,7 +35807,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `viewports::AbstractArray{_Viewport}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWithCountEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWithCountEXT.html)
 
 """
 cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{_Viewport})
@@ -35821,7 +35821,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `scissors::AbstractArray{_Rect2D}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissorWithCountEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissorWithCountEXT.html)
 
 """
 cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{_Rect2D})
@@ -35838,7 +35838,7 @@ Arguments:
 - `sizes`: defaults to `C_NULL`
 - `strides`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers2EXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers2EXT.html)
 
 """
 cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray; sizes = C_NULL, strides = C_NULL)
@@ -35852,7 +35852,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `depth_test_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthTestEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthTestEnableEXT.html)
 
 """
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool)
@@ -35866,7 +35866,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `depth_write_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthWriteEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthWriteEnableEXT.html)
 
 """
 cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool)
@@ -35880,7 +35880,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `depth_compare_op::CompareOp`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthCompareOpEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthCompareOpEXT.html)
 
 """
 cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::CompareOp)
@@ -35894,7 +35894,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `depth_bounds_test_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBoundsTestEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBoundsTestEnableEXT.html)
 
 """
 cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool)
@@ -35908,7 +35908,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `stencil_test_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilTestEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilTestEnableEXT.html)
 
 """
 cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool)
@@ -35926,7 +35926,7 @@ Arguments:
 - `depth_fail_op::StencilOp`
 - `compare_op::CompareOp`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilOpEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilOpEXT.html)
 
 """
 cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp)
@@ -35940,7 +35940,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `patch_control_points::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPatchControlPointsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPatchControlPointsEXT.html)
 
 """
 cmd_set_patch_control_points_ext(command_buffer::CommandBuffer, patch_control_points::Integer)
@@ -35954,7 +35954,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `rasterizer_discard_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRasterizerDiscardEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRasterizerDiscardEnableEXT.html)
 
 """
 cmd_set_rasterizer_discard_enable_ext(command_buffer::CommandBuffer, rasterizer_discard_enable::Bool)
@@ -35968,7 +35968,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `depth_bias_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBiasEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBiasEnableEXT.html)
 
 """
 cmd_set_depth_bias_enable_ext(command_buffer::CommandBuffer, depth_bias_enable::Bool)
@@ -35982,7 +35982,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `logic_op::LogicOp`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLogicOpEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLogicOpEXT.html)
 
 """
 cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::LogicOp)
@@ -35996,7 +35996,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `primitive_restart_enable::Bool`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveRestartEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveRestartEnableEXT.html)
 
 """
 cmd_set_primitive_restart_enable_ext(command_buffer::CommandBuffer, primitive_restart_enable::Bool)
@@ -36015,7 +36015,7 @@ Arguments:
 - `create_info::_PrivateDataSlotCreateInfoEXT`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePrivateDataSlotEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePrivateDataSlotEXT.html)
 
 """
 create_private_data_slot_ext(device::Device, create_info::_PrivateDataSlotCreateInfoEXT; allocator = C_NULL)
@@ -36030,7 +36030,7 @@ Arguments:
 - `private_data_slot::PrivateDataSlotEXT` (externsync)
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPrivateDataSlotEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPrivateDataSlotEXT.html)
 
 """
 destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT; allocator = C_NULL)
@@ -36051,7 +36051,7 @@ Arguments:
 - `private_data_slot::PrivateDataSlotEXT`
 - `data::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetPrivateDataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetPrivateDataEXT.html)
 
 """
 set_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer)
@@ -36067,7 +36067,7 @@ Arguments:
 - `object_handle::Integer`
 - `private_data_slot::PrivateDataSlotEXT`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPrivateDataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPrivateDataEXT.html)
 
 """
 get_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT)
@@ -36081,7 +36081,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `copy_buffer_info::_CopyBufferInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer2KHR.html)
 
 """
 cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::_CopyBufferInfo2KHR)
@@ -36095,7 +36095,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `copy_image_info::_CopyImageInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage2KHR.html)
 
 """
 cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::_CopyImageInfo2KHR)
@@ -36109,7 +36109,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `blit_image_info::_BlitImageInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage2KHR.html)
 
 """
 cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::_BlitImageInfo2KHR)
@@ -36123,7 +36123,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage2KHR.html)
 
 """
 cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR)
@@ -36137,7 +36137,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer2KHR.html)
 
 """
 cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR)
@@ -36151,7 +36151,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `resolve_image_info::_ResolveImageInfo2KHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage2KHR.html)
 
 """
 cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::_ResolveImageInfo2KHR)
@@ -36166,7 +36166,7 @@ Arguments:
 - `fragment_size::_Extent2D`
 - `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateKHR.html)
 
 """
 cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})
@@ -36183,7 +36183,7 @@ Return codes:
 Arguments:
 - `physical_device::PhysicalDevice`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFragmentShadingRatesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFragmentShadingRatesKHR.html)
 
 """
 get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice)
@@ -36198,7 +36198,7 @@ Arguments:
 - `shading_rate::FragmentShadingRateNV`
 - `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateEnumNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateEnumNV.html)
 
 """
 cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR})
@@ -36214,7 +36214,7 @@ Arguments:
 - `build_info::_AccelerationStructureBuildGeometryInfoKHR`
 - `max_primitive_counts`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureBuildSizesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureBuildSizesKHR.html)
 
 """
 get_acceleration_structure_build_sizes_khr(device::Device, build_type::AccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)
@@ -36229,7 +36229,7 @@ Arguments:
 - `vertex_binding_descriptions::AbstractArray{_VertexInputBindingDescription2EXT}`
 - `vertex_attribute_descriptions::AbstractArray{_VertexInputAttributeDescription2EXT}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetVertexInputEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetVertexInputEXT.html)
 
 """
 cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{_VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{_VertexInputAttributeDescription2EXT})
@@ -36243,7 +36243,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `color_write_enables::AbstractArray`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetColorWriteEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetColorWriteEnableEXT.html)
 
 """
 cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray)
@@ -36258,7 +36258,7 @@ Arguments:
 - `event::Event`
 - `dependency_info::_DependencyInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent2KHR.html)
 
 """
 cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::_DependencyInfoKHR)
@@ -36273,7 +36273,7 @@ Arguments:
 - `event::Event`
 - `stage_mask::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent2KHR.html)
 
 """
 cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer)
@@ -36288,7 +36288,7 @@ Arguments:
 - `events::AbstractArray`
 - `dependency_infos::AbstractArray{_DependencyInfoKHR}`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents2KHR.html)
 
 """
 cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray{_DependencyInfoKHR})
@@ -36302,7 +36302,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `dependency_info::_DependencyInfoKHR`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier2KHR.html)
 
 """
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR)
@@ -36323,7 +36323,7 @@ Arguments:
 - `submits::AbstractArray{_SubmitInfo2KHR}`
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit2KHR.html)
 
 """
 queue_submit_2_khr(queue::Queue, submits::AbstractArray{_SubmitInfo2KHR}; fence = C_NULL)
@@ -36339,7 +36339,7 @@ Arguments:
 - `query_pool::QueryPool`
 - `query::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp2KHR.html)
 
 """
 cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer)
@@ -36356,7 +36356,7 @@ Arguments:
 - `dst_offset::Integer`
 - `marker::Integer`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarker2AMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarker2AMD.html)
 
 """
 cmd_write_buffer_marker_2_amd(command_buffer::CommandBuffer, stage::Integer, dst_buffer::Buffer, dst_offset::Integer, marker::Integer)
@@ -36369,7 +36369,7 @@ Extension: VK\\_KHR\\_synchronization2
 Arguments:
 - `queue::Queue`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointData2NV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointData2NV.html)
 
 """
 get_queue_checkpoint_data_2_nv(queue::Queue)
@@ -36392,7 +36392,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateInstance.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateInstance.html)
 
 """
 create_instance(create_info::_InstanceCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -36405,7 +36405,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyInstance.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyInstance.html)
 
 """
 destroy_instance(instance::Instance, fptr::FunctionPtr; allocator = C_NULL)
@@ -36423,7 +36423,7 @@ Arguments:
 - `instance::Instance`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDevices.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDevices.html)
 
 """
 enumerate_physical_devices(instance::Instance, fptr::FunctionPtr)
@@ -36436,7 +36436,7 @@ Arguments:
 - `name::AbstractString`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceProcAddr.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceProcAddr.html)
 
 """
 get_device_proc_addr(device::Device, name::AbstractString, fptr::FunctionPtr)
@@ -36449,7 +36449,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `instance`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetInstanceProcAddr.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetInstanceProcAddr.html)
 
 """
 get_instance_proc_addr(name::AbstractString, fptr::FunctionPtr; instance = C_NULL)
@@ -36461,7 +36461,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties.html)
 
 """
 get_physical_device_properties(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -36473,7 +36473,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties.html)
 
 """
 get_physical_device_queue_family_properties(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -36485,7 +36485,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties.html)
 
 """
 get_physical_device_memory_properties(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -36497,7 +36497,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures.html)
 
 """
 get_physical_device_features(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -36510,7 +36510,7 @@ Arguments:
 - `format::Format`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties.html)
 
 """
 get_physical_device_format_properties(physical_device::PhysicalDevice, format::Format, fptr::FunctionPtr)
@@ -36533,7 +36533,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties.html)
 
 """
 get_physical_device_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag, fptr::FunctionPtr; flags = 0)
@@ -36558,7 +36558,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDevice.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDevice.html)
 
 """
 create_device(physical_device::PhysicalDevice, create_info::_DeviceCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -36571,7 +36571,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html)
 
 """
 destroy_device(device::Device, fptr::FunctionPtr; allocator = C_NULL)
@@ -36586,7 +36586,7 @@ Return codes:
 Arguments:
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceVersion.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceVersion.html)
 
 """
 enumerate_instance_version(fptr::FunctionPtr)
@@ -36602,7 +36602,7 @@ Return codes:
 Arguments:
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
 
 """
 enumerate_instance_layer_properties(fptr::FunctionPtr)
@@ -36620,7 +36620,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `layer_name`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html)
 
 """
 enumerate_instance_extension_properties(fptr::FunctionPtr; layer_name = C_NULL)
@@ -36637,7 +36637,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceLayerProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceLayerProperties.html)
 
 """
 enumerate_device_layer_properties(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -36656,7 +36656,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `layer_name`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceExtensionProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateDeviceExtensionProperties.html)
 
 """
 enumerate_device_extension_properties(physical_device::PhysicalDevice, fptr::FunctionPtr; layer_name = C_NULL)
@@ -36670,7 +36670,7 @@ Arguments:
 - `queue_index::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue.html)
 
 """
 get_device_queue(device::Device, queue_family_index::Integer, queue_index::Integer, fptr::FunctionPtr)
@@ -36690,7 +36690,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit.html)
 
 """
 queue_submit(queue::Queue, submits::AbstractArray{_SubmitInfo}, fptr::FunctionPtr; fence = C_NULL)
@@ -36708,7 +36708,7 @@ Arguments:
 - `queue::Queue` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueWaitIdle.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueWaitIdle.html)
 
 """
 queue_wait_idle(queue::Queue, fptr::FunctionPtr)
@@ -36726,7 +36726,7 @@ Arguments:
 - `device::Device`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeviceWaitIdle.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeviceWaitIdle.html)
 
 """
 device_wait_idle(device::Device, fptr::FunctionPtr)
@@ -36748,7 +36748,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateMemory.html)
 
 """
 allocate_memory(device::Device, allocate_info::_MemoryAllocateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -36762,7 +36762,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeMemory.html)
 
 """
 free_memory(device::Device, memory::DeviceMemory, fptr::FunctionPtr; allocator = C_NULL)
@@ -36784,7 +36784,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMapMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMapMemory.html)
 
 """
 map_memory(device::Device, memory::DeviceMemory, offset::Integer, size::Integer, fptr::FunctionPtr; flags = 0)
@@ -36797,7 +36797,7 @@ Arguments:
 - `memory::DeviceMemory` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUnmapMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUnmapMemory.html)
 
 """
 unmap_memory(device::Device, memory::DeviceMemory, fptr::FunctionPtr)
@@ -36815,7 +36815,7 @@ Arguments:
 - `memory_ranges::AbstractArray{_MappedMemoryRange}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFlushMappedMemoryRanges.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFlushMappedMemoryRanges.html)
 
 """
 flush_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{_MappedMemoryRange}, fptr::FunctionPtr)
@@ -36833,7 +36833,7 @@ Arguments:
 - `memory_ranges::AbstractArray{_MappedMemoryRange}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInvalidateMappedMemoryRanges.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInvalidateMappedMemoryRanges.html)
 
 """
 invalidate_mapped_memory_ranges(device::Device, memory_ranges::AbstractArray{_MappedMemoryRange}, fptr::FunctionPtr)
@@ -36846,7 +36846,7 @@ Arguments:
 - `memory::DeviceMemory`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryCommitment.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryCommitment.html)
 
 """
 get_device_memory_commitment(device::Device, memory::DeviceMemory, fptr::FunctionPtr)
@@ -36859,7 +36859,7 @@ Arguments:
 - `buffer::Buffer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements.html)
 
 """
 get_buffer_memory_requirements(device::Device, buffer::Buffer, fptr::FunctionPtr)
@@ -36880,7 +36880,7 @@ Arguments:
 - `memory_offset::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory.html)
 
 """
 bind_buffer_memory(device::Device, buffer::Buffer, memory::DeviceMemory, memory_offset::Integer, fptr::FunctionPtr)
@@ -36893,7 +36893,7 @@ Arguments:
 - `image::Image`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements.html)
 
 """
 get_image_memory_requirements(device::Device, image::Image, fptr::FunctionPtr)
@@ -36913,7 +36913,7 @@ Arguments:
 - `memory_offset::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory.html)
 
 """
 bind_image_memory(device::Device, image::Image, memory::DeviceMemory, memory_offset::Integer, fptr::FunctionPtr)
@@ -36926,7 +36926,7 @@ Arguments:
 - `image::Image`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements.html)
 
 """
 get_image_sparse_memory_requirements(device::Device, image::Image, fptr::FunctionPtr)
@@ -36943,7 +36943,7 @@ Arguments:
 - `tiling::ImageTiling`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties.html)
 
 """
 get_physical_device_sparse_image_format_properties(physical_device::PhysicalDevice, format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling, fptr::FunctionPtr)
@@ -36963,7 +36963,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBindSparse.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBindSparse.html)
 
 """
 queue_bind_sparse(queue::Queue, bind_info::AbstractArray{_BindSparseInfo}, fptr::FunctionPtr; fence = C_NULL)
@@ -36983,7 +36983,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFence.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFence.html)
 
 """
 create_fence(device::Device, create_info::_FenceCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -36997,7 +36997,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFence.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFence.html)
 
 """
 destroy_fence(device::Device, fence::Fence, fptr::FunctionPtr; allocator = C_NULL)
@@ -37014,7 +37014,7 @@ Arguments:
 - `fences::AbstractArray` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetFences.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetFences.html)
 
 """
 reset_fences(device::Device, fences::AbstractArray, fptr::FunctionPtr)
@@ -37036,7 +37036,7 @@ Arguments:
 - `fence::Fence`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceStatus.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceStatus.html)
 
 """
 get_fence_status(device::Device, fence::Fence, fptr::FunctionPtr)
@@ -37060,7 +37060,7 @@ Arguments:
 - `timeout::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitForFences.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitForFences.html)
 
 """
 wait_for_fences(device::Device, fences::AbstractArray, wait_all::Bool, timeout::Integer, fptr::FunctionPtr)
@@ -37080,7 +37080,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSemaphore.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSemaphore.html)
 
 """
 create_semaphore(device::Device, create_info::_SemaphoreCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37094,7 +37094,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySemaphore.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySemaphore.html)
 
 """
 destroy_semaphore(device::Device, semaphore::Semaphore, fptr::FunctionPtr; allocator = C_NULL)
@@ -37114,7 +37114,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateEvent.html)
 
 """
 create_event(device::Device, create_info::_EventCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37128,7 +37128,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyEvent.html)
 
 """
 destroy_event(device::Device, event::Event, fptr::FunctionPtr; allocator = C_NULL)
@@ -37150,7 +37150,7 @@ Arguments:
 - `event::Event`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetEventStatus.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetEventStatus.html)
 
 """
 get_event_status(device::Device, event::Event, fptr::FunctionPtr)
@@ -37168,7 +37168,7 @@ Arguments:
 - `event::Event` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetEvent.html)
 
 """
 set_event(device::Device, event::Event, fptr::FunctionPtr)
@@ -37185,7 +37185,7 @@ Arguments:
 - `event::Event` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetEvent.html)
 
 """
 reset_event(device::Device, event::Event, fptr::FunctionPtr)
@@ -37205,7 +37205,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateQueryPool.html)
 
 """
 create_query_pool(device::Device, create_info::_QueryPoolCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37219,7 +37219,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyQueryPool.html)
 
 """
 destroy_query_pool(device::Device, query_pool::QueryPool, fptr::FunctionPtr; allocator = C_NULL)
@@ -37247,7 +37247,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueryPoolResults.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueryPoolResults.html)
 
 """
 get_query_pool_results(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fptr::FunctionPtr; flags = 0)
@@ -37262,7 +37262,7 @@ Arguments:
 - `query_count::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetQueryPool.html)
 
 """
 reset_query_pool(device::Device, query_pool::QueryPool, first_query::Integer, query_count::Integer, fptr::FunctionPtr)
@@ -37283,7 +37283,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBuffer.html)
 
 """
 create_buffer(device::Device, create_info::_BufferCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37297,7 +37297,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBuffer.html)
 
 """
 destroy_buffer(device::Device, buffer::Buffer, fptr::FunctionPtr; allocator = C_NULL)
@@ -37317,7 +37317,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBufferView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateBufferView.html)
 
 """
 create_buffer_view(device::Device, create_info::_BufferViewCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37331,7 +37331,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBufferView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyBufferView.html)
 
 """
 destroy_buffer_view(device::Device, buffer_view::BufferView, fptr::FunctionPtr; allocator = C_NULL)
@@ -37351,7 +37351,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImage.html)
 
 """
 create_image(device::Device, create_info::_ImageCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37365,7 +37365,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImage.html)
 
 """
 destroy_image(device::Device, image::Image, fptr::FunctionPtr; allocator = C_NULL)
@@ -37379,7 +37379,7 @@ Arguments:
 - `subresource::_ImageSubresource`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSubresourceLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSubresourceLayout.html)
 
 """
 get_image_subresource_layout(device::Device, image::Image, subresource::_ImageSubresource, fptr::FunctionPtr)
@@ -37399,7 +37399,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImageView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateImageView.html)
 
 """
 create_image_view(device::Device, create_info::_ImageViewCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37413,7 +37413,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImageView.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyImageView.html)
 
 """
 destroy_image_view(device::Device, image_view::ImageView, fptr::FunctionPtr; allocator = C_NULL)
@@ -37434,7 +37434,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateShaderModule.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateShaderModule.html)
 
 """
 create_shader_module(device::Device, create_info::_ShaderModuleCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37448,7 +37448,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyShaderModule.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyShaderModule.html)
 
 """
 destroy_shader_module(device::Device, shader_module::ShaderModule, fptr::FunctionPtr; allocator = C_NULL)
@@ -37468,7 +37468,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineCache.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineCache.html)
 
 """
 create_pipeline_cache(device::Device, create_info::_PipelineCacheCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37482,7 +37482,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineCache.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineCache.html)
 
 """
 destroy_pipeline_cache(device::Device, pipeline_cache::PipelineCache, fptr::FunctionPtr; allocator = C_NULL)
@@ -37503,7 +37503,7 @@ Arguments:
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html)
 
 """
 get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache, fptr::FunctionPtr)
@@ -37522,7 +37522,7 @@ Arguments:
 - `src_caches::AbstractArray`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergePipelineCaches.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergePipelineCaches.html)
 
 """
 merge_pipeline_caches(device::Device, dst_cache::PipelineCache, src_caches::AbstractArray, fptr::FunctionPtr)
@@ -37547,7 +37547,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateGraphicsPipelines.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateGraphicsPipelines.html)
 
 """
 create_graphics_pipelines(device::Device, create_infos::AbstractArray{_GraphicsPipelineCreateInfo}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
@@ -37572,7 +37572,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateComputePipelines.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateComputePipelines.html)
 
 """
 create_compute_pipelines(device::Device, create_infos::AbstractArray{_ComputePipelineCreateInfo}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
@@ -37586,7 +37586,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipeline.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipeline.html)
 
 """
 destroy_pipeline(device::Device, pipeline::Pipeline, fptr::FunctionPtr; allocator = C_NULL)
@@ -37606,7 +37606,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePipelineLayout.html)
 
 """
 create_pipeline_layout(device::Device, create_info::_PipelineLayoutCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37620,7 +37620,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPipelineLayout.html)
 
 """
 destroy_pipeline_layout(device::Device, pipeline_layout::PipelineLayout, fptr::FunctionPtr; allocator = C_NULL)
@@ -37640,7 +37640,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSampler.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSampler.html)
 
 """
 create_sampler(device::Device, create_info::_SamplerCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37654,7 +37654,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySampler.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySampler.html)
 
 """
 destroy_sampler(device::Device, sampler::Sampler, fptr::FunctionPtr; allocator = C_NULL)
@@ -37674,7 +37674,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorSetLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorSetLayout.html)
 
 """
 create_descriptor_set_layout(device::Device, create_info::_DescriptorSetLayoutCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37688,7 +37688,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorSetLayout.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorSetLayout.html)
 
 """
 destroy_descriptor_set_layout(device::Device, descriptor_set_layout::DescriptorSetLayout, fptr::FunctionPtr; allocator = C_NULL)
@@ -37709,7 +37709,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorPool.html)
 
 """
 create_descriptor_pool(device::Device, create_info::_DescriptorPoolCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37723,7 +37723,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorPool.html)
 
 """
 destroy_descriptor_pool(device::Device, descriptor_pool::DescriptorPool, fptr::FunctionPtr; allocator = C_NULL)
@@ -37739,7 +37739,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetDescriptorPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetDescriptorPool.html)
 
 """
 reset_descriptor_pool(device::Device, descriptor_pool::DescriptorPool, fptr::FunctionPtr; flags = 0)
@@ -37759,7 +37759,7 @@ Arguments:
 - `allocate_info::_DescriptorSetAllocateInfo` (externsync)
 - `fptr_create::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateDescriptorSets.html)
 
 """
 allocate_descriptor_sets(device::Device, allocate_info::_DescriptorSetAllocateInfo, fptr_create::FunctionPtr)
@@ -37775,7 +37775,7 @@ Arguments:
 - `descriptor_sets::AbstractArray` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeDescriptorSets.html)
 
 """
 free_descriptor_sets(device::Device, descriptor_pool::DescriptorPool, descriptor_sets::AbstractArray, fptr::FunctionPtr)
@@ -37789,7 +37789,7 @@ Arguments:
 - `descriptor_copies::AbstractArray{_CopyDescriptorSet}` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSets.html)
 
 """
 update_descriptor_sets(device::Device, descriptor_writes::AbstractArray{_WriteDescriptorSet}, descriptor_copies::AbstractArray{_CopyDescriptorSet}, fptr::FunctionPtr)
@@ -37809,7 +37809,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFramebuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateFramebuffer.html)
 
 """
 create_framebuffer(device::Device, create_info::_FramebufferCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37823,7 +37823,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFramebuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyFramebuffer.html)
 
 """
 destroy_framebuffer(device::Device, framebuffer::Framebuffer, fptr::FunctionPtr; allocator = C_NULL)
@@ -37843,7 +37843,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass.html)
 
 """
 create_render_pass(device::Device, create_info::_RenderPassCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37857,7 +37857,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyRenderPass.html)
 
 """
 destroy_render_pass(device::Device, render_pass::RenderPass, fptr::FunctionPtr; allocator = C_NULL)
@@ -37870,7 +37870,7 @@ Arguments:
 - `render_pass::RenderPass`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRenderAreaGranularity.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRenderAreaGranularity.html)
 
 """
 get_render_area_granularity(device::Device, render_pass::RenderPass, fptr::FunctionPtr)
@@ -37890,7 +37890,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateCommandPool.html)
 
 """
 create_command_pool(device::Device, create_info::_CommandPoolCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -37904,7 +37904,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyCommandPool.html)
 
 """
 destroy_command_pool(device::Device, command_pool::CommandPool, fptr::FunctionPtr; allocator = C_NULL)
@@ -37922,7 +37922,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandPool.html)
 
 """
 reset_command_pool(device::Device, command_pool::CommandPool, fptr::FunctionPtr; flags = 0)
@@ -37940,7 +37940,7 @@ Arguments:
 - `allocate_info::_CommandBufferAllocateInfo` (externsync)
 - `fptr_create::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateCommandBuffers.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAllocateCommandBuffers.html)
 
 """
 allocate_command_buffers(device::Device, allocate_info::_CommandBufferAllocateInfo, fptr_create::FunctionPtr)
@@ -37954,7 +37954,7 @@ Arguments:
 - `command_buffers::AbstractArray` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeCommandBuffers.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkFreeCommandBuffers.html)
 
 """
 free_command_buffers(device::Device, command_pool::CommandPool, command_buffers::AbstractArray, fptr::FunctionPtr)
@@ -37972,7 +37972,7 @@ Arguments:
 - `begin_info::_CommandBufferBeginInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBeginCommandBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBeginCommandBuffer.html)
 
 """
 begin_command_buffer(command_buffer::CommandBuffer, begin_info::_CommandBufferBeginInfo, fptr::FunctionPtr)
@@ -37989,7 +37989,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEndCommandBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEndCommandBuffer.html)
 
 """
 end_command_buffer(command_buffer::CommandBuffer, fptr::FunctionPtr)
@@ -38006,7 +38006,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkResetCommandBuffer.html)
 
 """
 reset_command_buffer(command_buffer::CommandBuffer, fptr::FunctionPtr; flags = 0)
@@ -38020,7 +38020,7 @@ Arguments:
 - `pipeline::Pipeline`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipeline.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipeline.html)
 
 """
 cmd_bind_pipeline(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, fptr::FunctionPtr)
@@ -38033,7 +38033,7 @@ Arguments:
 - `viewports::AbstractArray{_Viewport}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html)
 
 """
 cmd_set_viewport(command_buffer::CommandBuffer, viewports::AbstractArray{_Viewport}, fptr::FunctionPtr)
@@ -38046,7 +38046,7 @@ Arguments:
 - `scissors::AbstractArray{_Rect2D}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissor.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissor.html)
 
 """
 cmd_set_scissor(command_buffer::CommandBuffer, scissors::AbstractArray{_Rect2D}, fptr::FunctionPtr)
@@ -38059,7 +38059,7 @@ Arguments:
 - `line_width::Real`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineWidth.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineWidth.html)
 
 """
 cmd_set_line_width(command_buffer::CommandBuffer, line_width::Real, fptr::FunctionPtr)
@@ -38074,7 +38074,7 @@ Arguments:
 - `depth_bias_slope_factor::Real`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBias.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBias.html)
 
 """
 cmd_set_depth_bias(command_buffer::CommandBuffer, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, fptr::FunctionPtr)
@@ -38087,7 +38087,7 @@ Arguments:
 - `blend_constants::NTuple{4, Float32}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetBlendConstants.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetBlendConstants.html)
 
 """
 cmd_set_blend_constants(command_buffer::CommandBuffer, blend_constants::NTuple{4, Float32}, fptr::FunctionPtr)
@@ -38101,7 +38101,7 @@ Arguments:
 - `max_depth_bounds::Real`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBounds.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBounds.html)
 
 """
 cmd_set_depth_bounds(command_buffer::CommandBuffer, min_depth_bounds::Real, max_depth_bounds::Real, fptr::FunctionPtr)
@@ -38115,7 +38115,7 @@ Arguments:
 - `compare_mask::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilCompareMask.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilCompareMask.html)
 
 """
 cmd_set_stencil_compare_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, compare_mask::Integer, fptr::FunctionPtr)
@@ -38129,7 +38129,7 @@ Arguments:
 - `write_mask::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilWriteMask.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilWriteMask.html)
 
 """
 cmd_set_stencil_write_mask(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, write_mask::Integer, fptr::FunctionPtr)
@@ -38143,7 +38143,7 @@ Arguments:
 - `reference::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilReference.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilReference.html)
 
 """
 cmd_set_stencil_reference(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, reference::Integer, fptr::FunctionPtr)
@@ -38160,7 +38160,7 @@ Arguments:
 - `dynamic_offsets::AbstractArray`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindDescriptorSets.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindDescriptorSets.html)
 
 """
 cmd_bind_descriptor_sets(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, first_set::Integer, descriptor_sets::AbstractArray, dynamic_offsets::AbstractArray, fptr::FunctionPtr)
@@ -38175,7 +38175,7 @@ Arguments:
 - `index_type::IndexType`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindIndexBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindIndexBuffer.html)
 
 """
 cmd_bind_index_buffer(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, index_type::IndexType, fptr::FunctionPtr)
@@ -38189,7 +38189,7 @@ Arguments:
 - `offsets::AbstractArray`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers.html)
 
 """
 cmd_bind_vertex_buffers(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fptr::FunctionPtr)
@@ -38205,7 +38205,7 @@ Arguments:
 - `first_instance::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDraw.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDraw.html)
 
 """
 cmd_draw(command_buffer::CommandBuffer, vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer, fptr::FunctionPtr)
@@ -38222,7 +38222,7 @@ Arguments:
 - `first_instance::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexed.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexed.html)
 
 """
 cmd_draw_indexed(command_buffer::CommandBuffer, index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer, fptr::FunctionPtr)
@@ -38238,7 +38238,7 @@ Arguments:
 - `stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirect.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirect.html)
 
 """
 cmd_draw_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fptr::FunctionPtr)
@@ -38254,7 +38254,7 @@ Arguments:
 - `stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirect.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirect.html)
 
 """
 cmd_draw_indexed_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fptr::FunctionPtr)
@@ -38269,7 +38269,7 @@ Arguments:
 - `group_count_z::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatch.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatch.html)
 
 """
 cmd_dispatch(command_buffer::CommandBuffer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer, fptr::FunctionPtr)
@@ -38283,7 +38283,7 @@ Arguments:
 - `offset::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchIndirect.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchIndirect.html)
 
 """
 cmd_dispatch_indirect(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, fptr::FunctionPtr)
@@ -38298,7 +38298,7 @@ Arguments:
 - `regions::AbstractArray{_BufferCopy}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer.html)
 
 """
 cmd_copy_buffer(command_buffer::CommandBuffer, src_buffer::Buffer, dst_buffer::Buffer, regions::AbstractArray{_BufferCopy}, fptr::FunctionPtr)
@@ -38315,7 +38315,7 @@ Arguments:
 - `regions::AbstractArray{_ImageCopy}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage.html)
 
 """
 cmd_copy_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_ImageCopy}, fptr::FunctionPtr)
@@ -38333,7 +38333,7 @@ Arguments:
 - `filter::Filter`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage.html)
 
 """
 cmd_blit_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_ImageBlit}, filter::Filter, fptr::FunctionPtr)
@@ -38349,7 +38349,7 @@ Arguments:
 - `regions::AbstractArray{_BufferImageCopy}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage.html)
 
 """
 cmd_copy_buffer_to_image(command_buffer::CommandBuffer, src_buffer::Buffer, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_BufferImageCopy}, fptr::FunctionPtr)
@@ -38365,7 +38365,7 @@ Arguments:
 - `regions::AbstractArray{_BufferImageCopy}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer.html)
 
 """
 cmd_copy_image_to_buffer(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_buffer::Buffer, regions::AbstractArray{_BufferImageCopy}, fptr::FunctionPtr)
@@ -38381,7 +38381,7 @@ Arguments:
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdUpdateBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdUpdateBuffer.html)
 
 """
 cmd_update_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, data_size::Integer, data::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -38397,7 +38397,7 @@ Arguments:
 - `data::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdFillBuffer.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdFillBuffer.html)
 
 """
 cmd_fill_buffer(command_buffer::CommandBuffer, dst_buffer::Buffer, dst_offset::Integer, size::Integer, data::Integer, fptr::FunctionPtr)
@@ -38413,7 +38413,7 @@ Arguments:
 - `ranges::AbstractArray{_ImageSubresourceRange}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearColorImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearColorImage.html)
 
 """
 cmd_clear_color_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, color::_ClearColorValue, ranges::AbstractArray{_ImageSubresourceRange}, fptr::FunctionPtr)
@@ -38429,7 +38429,7 @@ Arguments:
 - `ranges::AbstractArray{_ImageSubresourceRange}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearDepthStencilImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearDepthStencilImage.html)
 
 """
 cmd_clear_depth_stencil_image(command_buffer::CommandBuffer, image::Image, image_layout::ImageLayout, depth_stencil::_ClearDepthStencilValue, ranges::AbstractArray{_ImageSubresourceRange}, fptr::FunctionPtr)
@@ -38443,7 +38443,7 @@ Arguments:
 - `rects::AbstractArray{_ClearRect}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearAttachments.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdClearAttachments.html)
 
 """
 cmd_clear_attachments(command_buffer::CommandBuffer, attachments::AbstractArray{_ClearAttachment}, rects::AbstractArray{_ClearRect}, fptr::FunctionPtr)
@@ -38460,7 +38460,7 @@ Arguments:
 - `regions::AbstractArray{_ImageResolve}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage.html)
 
 """
 cmd_resolve_image(command_buffer::CommandBuffer, src_image::Image, src_image_layout::ImageLayout, dst_image::Image, dst_image_layout::ImageLayout, regions::AbstractArray{_ImageResolve}, fptr::FunctionPtr)
@@ -38474,7 +38474,7 @@ Arguments:
 - `stage_mask::PipelineStageFlag`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent.html)
 
 """
 cmd_set_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fptr::FunctionPtr)
@@ -38488,7 +38488,7 @@ Arguments:
 - `stage_mask::PipelineStageFlag`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent.html)
 
 """
 cmd_reset_event(command_buffer::CommandBuffer, event::Event, stage_mask::PipelineStageFlag, fptr::FunctionPtr)
@@ -38506,7 +38506,7 @@ Arguments:
 - `src_stage_mask`: defaults to `0`
 - `dst_stage_mask`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents.html)
 
 """
 cmd_wait_events(command_buffer::CommandBuffer, events::AbstractArray, memory_barriers::AbstractArray{_MemoryBarrier}, buffer_memory_barriers::AbstractArray{_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{_ImageMemoryBarrier}, fptr::FunctionPtr; src_stage_mask = 0, dst_stage_mask = 0)
@@ -38524,7 +38524,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `dependency_flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier.html)
 
 """
 cmd_pipeline_barrier(command_buffer::CommandBuffer, src_stage_mask::PipelineStageFlag, dst_stage_mask::PipelineStageFlag, memory_barriers::AbstractArray{_MemoryBarrier}, buffer_memory_barriers::AbstractArray{_BufferMemoryBarrier}, image_memory_barriers::AbstractArray{_ImageMemoryBarrier}, fptr::FunctionPtr; dependency_flags = 0)
@@ -38539,7 +38539,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQuery.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQuery.html)
 
 """
 cmd_begin_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fptr::FunctionPtr; flags = 0)
@@ -38553,7 +38553,7 @@ Arguments:
 - `query::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQuery.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQuery.html)
 
 """
 cmd_end_query(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, fptr::FunctionPtr)
@@ -38568,7 +38568,7 @@ Arguments:
 - `conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginConditionalRenderingEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginConditionalRenderingEXT.html)
 
 """
 cmd_begin_conditional_rendering_ext(command_buffer::CommandBuffer, conditional_rendering_begin::_ConditionalRenderingBeginInfoEXT, fptr::FunctionPtr)
@@ -38582,7 +38582,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndConditionalRenderingEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndConditionalRenderingEXT.html)
 
 """
 cmd_end_conditional_rendering_ext(command_buffer::CommandBuffer, fptr::FunctionPtr)
@@ -38597,7 +38597,7 @@ Arguments:
 - `query_count::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetQueryPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetQueryPool.html)
 
 """
 cmd_reset_query_pool(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, fptr::FunctionPtr)
@@ -38612,7 +38612,7 @@ Arguments:
 - `query::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp.html)
 
 """
 cmd_write_timestamp(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, query_pool::QueryPool, query::Integer, fptr::FunctionPtr)
@@ -38631,7 +38631,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyQueryPoolResults.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyQueryPoolResults.html)
 
 """
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fptr::FunctionPtr; flags = 0)
@@ -38647,7 +38647,7 @@ Arguments:
 - `values::Ptr{Cvoid}` (must be a valid pointer with `size` bytes)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushConstants.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushConstants.html)
 
 """
 cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -38661,7 +38661,7 @@ Arguments:
 - `contents::SubpassContents`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass.html)
 
 """
 cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::SubpassContents, fptr::FunctionPtr)
@@ -38674,7 +38674,7 @@ Arguments:
 - `contents::SubpassContents`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass.html)
 
 """
 cmd_next_subpass(command_buffer::CommandBuffer, contents::SubpassContents, fptr::FunctionPtr)
@@ -38686,7 +38686,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass.html)
 
 """
 cmd_end_render_pass(command_buffer::CommandBuffer, fptr::FunctionPtr)
@@ -38699,7 +38699,7 @@ Arguments:
 - `command_buffers::AbstractArray`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteCommands.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteCommands.html)
 
 """
 cmd_execute_commands(command_buffer::CommandBuffer, command_buffers::AbstractArray, fptr::FunctionPtr)
@@ -38718,7 +38718,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPropertiesKHR.html)
 
 """
 get_physical_device_display_properties_khr(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -38737,7 +38737,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html)
 
 """
 get_physical_device_display_plane_properties_khr(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -38757,7 +38757,7 @@ Arguments:
 - `plane_index::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneSupportedDisplaysKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneSupportedDisplaysKHR.html)
 
 """
 get_display_plane_supported_displays_khr(physical_device::PhysicalDevice, plane_index::Integer, fptr::FunctionPtr)
@@ -38777,7 +38777,7 @@ Arguments:
 - `display::DisplayKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModePropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModePropertiesKHR.html)
 
 """
 get_display_mode_properties_khr(physical_device::PhysicalDevice, display::DisplayKHR, fptr::FunctionPtr)
@@ -38800,7 +38800,7 @@ Arguments:
 - `fptr_create::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayModeKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayModeKHR.html)
 
 """
 create_display_mode_khr(physical_device::PhysicalDevice, display::DisplayKHR, create_info::_DisplayModeCreateInfoKHR, fptr_create::FunctionPtr; allocator = C_NULL)
@@ -38821,7 +38821,7 @@ Arguments:
 - `plane_index::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilitiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilitiesKHR.html)
 
 """
 get_display_plane_capabilities_khr(physical_device::PhysicalDevice, mode::DisplayModeKHR, plane_index::Integer, fptr::FunctionPtr)
@@ -38843,7 +38843,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html)
 
 """
 create_display_plane_surface_khr(instance::Instance, create_info::_DisplaySurfaceCreateInfoKHR, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -38868,7 +38868,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSharedSwapchainsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSharedSwapchainsKHR.html)
 
 """
 create_shared_swapchains_khr(device::Device, create_infos::AbstractArray{_SwapchainCreateInfoKHR}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -38884,7 +38884,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySurfaceKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySurfaceKHR.html)
 
 """
 destroy_surface_khr(instance::Instance, surface::SurfaceKHR, fptr::FunctionPtr; allocator = C_NULL)
@@ -38906,7 +38906,7 @@ Arguments:
 - `surface::SurfaceKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html)
 
 """
 get_physical_device_surface_support_khr(physical_device::PhysicalDevice, queue_family_index::Integer, surface::SurfaceKHR, fptr::FunctionPtr)
@@ -38927,7 +38927,7 @@ Arguments:
 - `surface::SurfaceKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html)
 
 """
 get_physical_device_surface_capabilities_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fptr::FunctionPtr)
@@ -38948,7 +38948,7 @@ Arguments:
 - `surface::SurfaceKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html)
 
 """
 get_physical_device_surface_formats_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fptr::FunctionPtr)
@@ -38969,7 +38969,7 @@ Arguments:
 - `surface::SurfaceKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html)
 
 """
 get_physical_device_surface_present_modes_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fptr::FunctionPtr)
@@ -38995,7 +38995,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSwapchainKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSwapchainKHR.html)
 
 """
 create_swapchain_khr(device::Device, create_info::_SwapchainCreateInfoKHR, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -39011,7 +39011,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySwapchainKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySwapchainKHR.html)
 
 """
 destroy_swapchain_khr(device::Device, swapchain::SwapchainKHR, fptr::FunctionPtr; allocator = C_NULL)
@@ -39031,7 +39031,7 @@ Arguments:
 - `swapchain::SwapchainKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainImagesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainImagesKHR.html)
 
 """
 get_swapchain_images_khr(device::Device, swapchain::SwapchainKHR, fptr::FunctionPtr)
@@ -39063,7 +39063,7 @@ Arguments:
 - `semaphore`: defaults to `C_NULL` (externsync)
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImageKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImageKHR.html)
 
 """
 acquire_next_image_khr(device::Device, swapchain::SwapchainKHR, timeout::Integer, fptr::FunctionPtr; semaphore = C_NULL, fence = C_NULL)
@@ -39090,7 +39090,7 @@ Arguments:
 - `present_info::_PresentInfoKHR` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueuePresentKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueuePresentKHR.html)
 
 """
 queue_present_khr(queue::Queue, present_info::_PresentInfoKHR, fptr::FunctionPtr)
@@ -39111,7 +39111,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugReportCallbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugReportCallbackEXT.html)
 
 """
 create_debug_report_callback_ext(instance::Instance, create_info::_DebugReportCallbackCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -39127,7 +39127,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugReportCallbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugReportCallbackEXT.html)
 
 """
 destroy_debug_report_callback_ext(instance::Instance, callback::DebugReportCallbackEXT, fptr::FunctionPtr; allocator = C_NULL)
@@ -39148,7 +39148,7 @@ Arguments:
 - `message::AbstractString`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugReportMessageEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugReportMessageEXT.html)
 
 """
 debug_report_message_ext(instance::Instance, flags::DebugReportFlagEXT, object_type::DebugReportObjectTypeEXT, object::Integer, location::Integer, message_code::Integer, layer_prefix::AbstractString, message::AbstractString, fptr::FunctionPtr)
@@ -39168,7 +39168,7 @@ Arguments:
 - `name_info::_DebugMarkerObjectNameInfoEXT` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectNameEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectNameEXT.html)
 
 """
 debug_marker_set_object_name_ext(device::Device, name_info::_DebugMarkerObjectNameInfoEXT, fptr::FunctionPtr)
@@ -39188,7 +39188,7 @@ Arguments:
 - `tag_info::_DebugMarkerObjectTagInfoEXT` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectTagEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDebugMarkerSetObjectTagEXT.html)
 
 """
 debug_marker_set_object_tag_ext(device::Device, tag_info::_DebugMarkerObjectTagInfoEXT, fptr::FunctionPtr)
@@ -39203,7 +39203,7 @@ Arguments:
 - `marker_info::_DebugMarkerMarkerInfoEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerBeginEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerBeginEXT.html)
 
 """
 cmd_debug_marker_begin_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT, fptr::FunctionPtr)
@@ -39217,7 +39217,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerEndEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerEndEXT.html)
 
 """
 cmd_debug_marker_end_ext(command_buffer::CommandBuffer, fptr::FunctionPtr)
@@ -39232,7 +39232,7 @@ Arguments:
 - `marker_info::_DebugMarkerMarkerInfoEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerInsertEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDebugMarkerInsertEXT.html)
 
 """
 cmd_debug_marker_insert_ext(command_buffer::CommandBuffer, marker_info::_DebugMarkerMarkerInfoEXT, fptr::FunctionPtr)
@@ -39258,7 +39258,7 @@ Arguments:
 - `flags`: defaults to `0`
 - `external_handle_type`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.html)
 
 """
 get_physical_device_external_image_format_properties_nv(physical_device::PhysicalDevice, format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag, fptr::FunctionPtr; flags = 0, external_handle_type = 0)
@@ -39274,7 +39274,7 @@ Arguments:
 - `generated_commands_info::_GeneratedCommandsInfoNV`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteGeneratedCommandsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdExecuteGeneratedCommandsNV.html)
 
 """
 cmd_execute_generated_commands_nv(command_buffer::CommandBuffer, is_preprocessed::Bool, generated_commands_info::_GeneratedCommandsInfoNV, fptr::FunctionPtr)
@@ -39289,7 +39289,7 @@ Arguments:
 - `generated_commands_info::_GeneratedCommandsInfoNV`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPreprocessGeneratedCommandsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPreprocessGeneratedCommandsNV.html)
 
 """
 cmd_preprocess_generated_commands_nv(command_buffer::CommandBuffer, generated_commands_info::_GeneratedCommandsInfoNV, fptr::FunctionPtr)
@@ -39306,7 +39306,7 @@ Arguments:
 - `group_index::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipelineShaderGroupNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindPipelineShaderGroupNV.html)
 
 """
 cmd_bind_pipeline_shader_group_nv(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, pipeline::Pipeline, group_index::Integer, fptr::FunctionPtr)
@@ -39321,7 +39321,7 @@ Arguments:
 - `info::_GeneratedCommandsMemoryRequirementsInfoNV`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html)
 
 """
 get_generated_commands_memory_requirements_nv(device::Device, info::_GeneratedCommandsMemoryRequirementsInfoNV, fptr::FunctionPtr)
@@ -39343,7 +39343,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateIndirectCommandsLayoutNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateIndirectCommandsLayoutNV.html)
 
 """
 create_indirect_commands_layout_nv(device::Device, create_info::_IndirectCommandsLayoutCreateInfoNV, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -39359,7 +39359,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyIndirectCommandsLayoutNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyIndirectCommandsLayoutNV.html)
 
 """
 destroy_indirect_commands_layout_nv(device::Device, indirect_commands_layout::IndirectCommandsLayoutNV, fptr::FunctionPtr; allocator = C_NULL)
@@ -39371,7 +39371,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures2.html)
 
 """
 get_physical_device_features_2(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -39383,7 +39383,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties2.html)
 
 """
 get_physical_device_properties_2(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -39396,7 +39396,7 @@ Arguments:
 - `format::Format`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties2.html)
 
 """
 get_physical_device_format_properties_2(physical_device::PhysicalDevice, format::Format, fptr::FunctionPtr)
@@ -39415,7 +39415,7 @@ Arguments:
 - `image_format_info::_PhysicalDeviceImageFormatInfo2`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties2.html)
 
 """
 get_physical_device_image_format_properties_2(physical_device::PhysicalDevice, image_format_info::_PhysicalDeviceImageFormatInfo2, fptr::FunctionPtr)
@@ -39427,7 +39427,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyProperties2.html)
 
 """
 get_physical_device_queue_family_properties_2(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -39439,7 +39439,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties2.html)
 
 """
 get_physical_device_memory_properties_2(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -39452,7 +39452,7 @@ Arguments:
 - `format_info::_PhysicalDeviceSparseImageFormatInfo2`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSparseImageFormatProperties2.html)
 
 """
 get_physical_device_sparse_image_format_properties_2(physical_device::PhysicalDevice, format_info::_PhysicalDeviceSparseImageFormatInfo2, fptr::FunctionPtr)
@@ -39470,7 +39470,7 @@ Arguments:
 - `descriptor_writes::AbstractArray{_WriteDescriptorSet}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetKHR.html)
 
 """
 cmd_push_descriptor_set_khr(command_buffer::CommandBuffer, pipeline_bind_point::PipelineBindPoint, layout::PipelineLayout, set::Integer, descriptor_writes::AbstractArray{_WriteDescriptorSet}, fptr::FunctionPtr)
@@ -39484,7 +39484,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkTrimCommandPool.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkTrimCommandPool.html)
 
 """
 trim_command_pool(device::Device, command_pool::CommandPool, fptr::FunctionPtr; flags = 0)
@@ -39497,7 +39497,7 @@ Arguments:
 - `external_buffer_info::_PhysicalDeviceExternalBufferInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalBufferProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalBufferProperties.html)
 
 """
 get_physical_device_external_buffer_properties(physical_device::PhysicalDevice, external_buffer_info::_PhysicalDeviceExternalBufferInfo, fptr::FunctionPtr)
@@ -39517,7 +39517,7 @@ Arguments:
 - `get_fd_info::_MemoryGetFdInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdKHR.html)
 
 """
 get_memory_fd_khr(device::Device, get_fd_info::_MemoryGetFdInfoKHR, fptr::FunctionPtr)
@@ -39538,7 +39538,7 @@ Arguments:
 - `fd::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryFdPropertiesKHR.html)
 
 """
 get_memory_fd_properties_khr(device::Device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer, fptr::FunctionPtr)
@@ -39551,7 +39551,7 @@ Arguments:
 - `external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalSemaphoreProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalSemaphoreProperties.html)
 
 """
 get_physical_device_external_semaphore_properties(physical_device::PhysicalDevice, external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo, fptr::FunctionPtr)
@@ -39571,7 +39571,7 @@ Arguments:
 - `get_fd_info::_SemaphoreGetFdInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreFdKHR.html)
 
 """
 get_semaphore_fd_khr(device::Device, get_fd_info::_SemaphoreGetFdInfoKHR, fptr::FunctionPtr)
@@ -39591,7 +39591,7 @@ Arguments:
 - `import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportSemaphoreFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportSemaphoreFdKHR.html)
 
 """
 import_semaphore_fd_khr(device::Device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR, fptr::FunctionPtr)
@@ -39604,7 +39604,7 @@ Arguments:
 - `external_fence_info::_PhysicalDeviceExternalFenceInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalFenceProperties.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceExternalFenceProperties.html)
 
 """
 get_physical_device_external_fence_properties(physical_device::PhysicalDevice, external_fence_info::_PhysicalDeviceExternalFenceInfo, fptr::FunctionPtr)
@@ -39624,7 +39624,7 @@ Arguments:
 - `get_fd_info::_FenceGetFdInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetFenceFdKHR.html)
 
 """
 get_fence_fd_khr(device::Device, get_fd_info::_FenceGetFdInfoKHR, fptr::FunctionPtr)
@@ -39644,7 +39644,7 @@ Arguments:
 - `import_fence_fd_info::_ImportFenceFdInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportFenceFdKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkImportFenceFdKHR.html)
 
 """
 import_fence_fd_khr(device::Device, import_fence_fd_info::_ImportFenceFdInfoKHR, fptr::FunctionPtr)
@@ -39661,7 +39661,7 @@ Arguments:
 - `display::DisplayKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseDisplayEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseDisplayEXT.html)
 
 """
 release_display_ext(physical_device::PhysicalDevice, display::DisplayKHR, fptr::FunctionPtr)
@@ -39681,7 +39681,7 @@ Arguments:
 - `display_power_info::_DisplayPowerInfoEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDisplayPowerControlEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDisplayPowerControlEXT.html)
 
 """
 display_power_control_ext(device::Device, display::DisplayKHR, display_power_info::_DisplayPowerInfoEXT, fptr::FunctionPtr)
@@ -39701,7 +39701,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDeviceEventEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDeviceEventEXT.html)
 
 """
 register_device_event_ext(device::Device, device_event_info::_DeviceEventInfoEXT, fptr::FunctionPtr; allocator = C_NULL)
@@ -39722,7 +39722,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDisplayEventEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkRegisterDisplayEventEXT.html)
 
 """
 register_display_event_ext(device::Device, display::DisplayKHR, display_event_info::_DisplayEventInfoEXT, fptr::FunctionPtr; allocator = C_NULL)
@@ -39744,7 +39744,7 @@ Arguments:
 - `counter::SurfaceCounterFlagEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainCounterEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainCounterEXT.html)
 
 """
 get_swapchain_counter_ext(device::Device, swapchain::SwapchainKHR, counter::SurfaceCounterFlagEXT, fptr::FunctionPtr)
@@ -39765,7 +39765,7 @@ Arguments:
 - `surface::SurfaceKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html)
 
 """
 get_physical_device_surface_capabilities_2_ext(physical_device::PhysicalDevice, surface::SurfaceKHR, fptr::FunctionPtr)
@@ -39783,7 +39783,7 @@ Arguments:
 - `instance::Instance`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceGroups.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceGroups.html)
 
 """
 enumerate_physical_device_groups(instance::Instance, fptr::FunctionPtr)
@@ -39798,7 +39798,7 @@ Arguments:
 - `remote_device_index::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPeerMemoryFeatures.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPeerMemoryFeatures.html)
 
 """
 get_device_group_peer_memory_features(device::Device, heap_index::Integer, local_device_index::Integer, remote_device_index::Integer, fptr::FunctionPtr)
@@ -39817,7 +39817,7 @@ Arguments:
 - `bind_infos::AbstractArray{_BindBufferMemoryInfo}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindBufferMemory2.html)
 
 """
 bind_buffer_memory_2(device::Device, bind_infos::AbstractArray{_BindBufferMemoryInfo}, fptr::FunctionPtr)
@@ -39835,7 +39835,7 @@ Arguments:
 - `bind_infos::AbstractArray{_BindImageMemoryInfo}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindImageMemory2.html)
 
 """
 bind_image_memory_2(device::Device, bind_infos::AbstractArray{_BindImageMemoryInfo}, fptr::FunctionPtr)
@@ -39848,7 +39848,7 @@ Arguments:
 - `device_mask::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDeviceMask.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDeviceMask.html)
 
 """
 cmd_set_device_mask(command_buffer::CommandBuffer, device_mask::Integer, fptr::FunctionPtr)
@@ -39867,7 +39867,7 @@ Arguments:
 - `device::Device`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPresentCapabilitiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupPresentCapabilitiesKHR.html)
 
 """
 get_device_group_present_capabilities_khr(device::Device, fptr::FunctionPtr)
@@ -39889,7 +39889,7 @@ Arguments:
 - `modes::DeviceGroupPresentModeFlagKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupSurfacePresentModesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceGroupSurfacePresentModesKHR.html)
 
 """
 get_device_group_surface_present_modes_khr(device::Device, surface::SurfaceKHR, modes::DeviceGroupPresentModeFlagKHR, fptr::FunctionPtr)
@@ -39918,7 +39918,7 @@ Arguments:
 - `acquire_info::_AcquireNextImageInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireNextImage2KHR.html)
 
 """
 acquire_next_image_2_khr(device::Device, acquire_info::_AcquireNextImageInfoKHR, fptr::FunctionPtr)
@@ -39936,7 +39936,7 @@ Arguments:
 - `group_count_z::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchBase.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDispatchBase.html)
 
 """
 cmd_dispatch_base(command_buffer::CommandBuffer, base_group_x::Integer, base_group_y::Integer, base_group_z::Integer, group_count_x::Integer, group_count_y::Integer, group_count_z::Integer, fptr::FunctionPtr)
@@ -39956,7 +39956,7 @@ Arguments:
 - `surface::SurfaceKHR` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDevicePresentRectanglesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDevicePresentRectanglesKHR.html)
 
 """
 get_physical_device_present_rectangles_khr(physical_device::PhysicalDevice, surface::SurfaceKHR, fptr::FunctionPtr)
@@ -39976,7 +39976,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorUpdateTemplate.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorUpdateTemplate.html)
 
 """
 create_descriptor_update_template(device::Device, create_info::_DescriptorUpdateTemplateCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -39990,7 +39990,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorUpdateTemplate.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDescriptorUpdateTemplate.html)
 
 """
 destroy_descriptor_update_template(device::Device, descriptor_update_template::DescriptorUpdateTemplate, fptr::FunctionPtr; allocator = C_NULL)
@@ -40005,7 +40005,7 @@ Arguments:
 - `data::Ptr{Cvoid}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSetWithTemplate.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSetWithTemplate.html)
 
 """
 update_descriptor_set_with_template(device::Device, descriptor_set::DescriptorSet, descriptor_update_template::DescriptorUpdateTemplate, data::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -40023,7 +40023,7 @@ Arguments:
 - `data::Ptr{Cvoid}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetWithTemplateKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushDescriptorSetWithTemplateKHR.html)
 
 """
 cmd_push_descriptor_set_with_template_khr(command_buffer::CommandBuffer, descriptor_update_template::DescriptorUpdateTemplate, layout::PipelineLayout, set::Integer, data::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -40039,7 +40039,7 @@ Arguments:
 - `metadata::AbstractArray{_HdrMetadataEXT}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetHdrMetadataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetHdrMetadataEXT.html)
 
 """
 set_hdr_metadata_ext(device::Device, swapchains::AbstractArray, metadata::AbstractArray{_HdrMetadataEXT}, fptr::FunctionPtr)
@@ -40066,7 +40066,7 @@ Arguments:
 - `swapchain::SwapchainKHR` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainStatusKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSwapchainStatusKHR.html)
 
 """
 get_swapchain_status_khr(device::Device, swapchain::SwapchainKHR, fptr::FunctionPtr)
@@ -40087,7 +40087,7 @@ Arguments:
 - `swapchain::SwapchainKHR` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRefreshCycleDurationGOOGLE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRefreshCycleDurationGOOGLE.html)
 
 """
 get_refresh_cycle_duration_google(device::Device, swapchain::SwapchainKHR, fptr::FunctionPtr)
@@ -40109,7 +40109,7 @@ Arguments:
 - `swapchain::SwapchainKHR` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPastPresentationTimingGOOGLE.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPastPresentationTimingGOOGLE.html)
 
 """
 get_past_presentation_timing_google(device::Device, swapchain::SwapchainKHR, fptr::FunctionPtr)
@@ -40132,7 +40132,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMacOSSurfaceMVK.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMacOSSurfaceMVK.html)
 
 """
 create_mac_os_surface_mvk(instance::Instance, create_info::_MacOSSurfaceCreateInfoMVK, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -40155,7 +40155,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMetalSurfaceEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateMetalSurfaceEXT.html)
 
 """
 create_metal_surface_ext(instance::Instance, create_info::_MetalSurfaceCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -40170,7 +40170,7 @@ Arguments:
 - `viewport_w_scalings::AbstractArray{_ViewportWScalingNV}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWScalingNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWScalingNV.html)
 
 """
 cmd_set_viewport_w_scaling_nv(command_buffer::CommandBuffer, viewport_w_scalings::AbstractArray{_ViewportWScalingNV}, fptr::FunctionPtr)
@@ -40185,7 +40185,7 @@ Arguments:
 - `discard_rectangles::AbstractArray{_Rect2D}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDiscardRectangleEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDiscardRectangleEXT.html)
 
 """
 cmd_set_discard_rectangle_ext(command_buffer::CommandBuffer, discard_rectangles::AbstractArray{_Rect2D}, fptr::FunctionPtr)
@@ -40200,7 +40200,7 @@ Arguments:
 - `sample_locations_info::_SampleLocationsInfoEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetSampleLocationsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetSampleLocationsEXT.html)
 
 """
 cmd_set_sample_locations_ext(command_buffer::CommandBuffer, sample_locations_info::_SampleLocationsInfoEXT, fptr::FunctionPtr)
@@ -40215,7 +40215,7 @@ Arguments:
 - `samples::SampleCountFlag`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMultisamplePropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMultisamplePropertiesEXT.html)
 
 """
 get_physical_device_multisample_properties_ext(physical_device::PhysicalDevice, samples::SampleCountFlag, fptr::FunctionPtr)
@@ -40236,7 +40236,7 @@ Arguments:
 - `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html)
 
 """
 get_physical_device_surface_capabilities_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr)
@@ -40257,7 +40257,7 @@ Arguments:
 - `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormats2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceFormats2KHR.html)
 
 """
 get_physical_device_surface_formats_2_khr(physical_device::PhysicalDevice, surface_info::_PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr)
@@ -40276,7 +40276,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayProperties2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayProperties2KHR.html)
 
 """
 get_physical_device_display_properties_2_khr(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -40295,7 +40295,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlaneProperties2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceDisplayPlaneProperties2KHR.html)
 
 """
 get_physical_device_display_plane_properties_2_khr(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -40315,7 +40315,7 @@ Arguments:
 - `display::DisplayKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModeProperties2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayModeProperties2KHR.html)
 
 """
 get_display_mode_properties_2_khr(physical_device::PhysicalDevice, display::DisplayKHR, fptr::FunctionPtr)
@@ -40335,7 +40335,7 @@ Arguments:
 - `display_plane_info::_DisplayPlaneInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilities2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDisplayPlaneCapabilities2KHR.html)
 
 """
 get_display_plane_capabilities_2_khr(physical_device::PhysicalDevice, display_plane_info::_DisplayPlaneInfo2KHR, fptr::FunctionPtr)
@@ -40348,7 +40348,7 @@ Arguments:
 - `info::_BufferMemoryRequirementsInfo2`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements2.html)
 
 """
 get_buffer_memory_requirements_2(device::Device, info::_BufferMemoryRequirementsInfo2, fptr::FunctionPtr)
@@ -40361,7 +40361,7 @@ Arguments:
 - `info::_ImageMemoryRequirementsInfo2`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements2.html)
 
 """
 get_image_memory_requirements_2(device::Device, info::_ImageMemoryRequirementsInfo2, fptr::FunctionPtr)
@@ -40374,7 +40374,7 @@ Arguments:
 - `info::_ImageSparseMemoryRequirementsInfo2`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageSparseMemoryRequirements2.html)
 
 """
 get_image_sparse_memory_requirements_2(device::Device, info::_ImageSparseMemoryRequirementsInfo2, fptr::FunctionPtr)
@@ -40394,7 +40394,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSamplerYcbcrConversion.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateSamplerYcbcrConversion.html)
 
 """
 create_sampler_ycbcr_conversion(device::Device, create_info::_SamplerYcbcrConversionCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -40408,7 +40408,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySamplerYcbcrConversion.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroySamplerYcbcrConversion.html)
 
 """
 destroy_sampler_ycbcr_conversion(device::Device, ycbcr_conversion::SamplerYcbcrConversion, fptr::FunctionPtr; allocator = C_NULL)
@@ -40421,7 +40421,7 @@ Arguments:
 - `queue_info::_DeviceQueueInfo2`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceQueue2.html)
 
 """
 get_device_queue_2(device::Device, queue_info::_DeviceQueueInfo2, fptr::FunctionPtr)
@@ -40442,7 +40442,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateValidationCacheEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateValidationCacheEXT.html)
 
 """
 create_validation_cache_ext(device::Device, create_info::_ValidationCacheCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -40458,7 +40458,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyValidationCacheEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyValidationCacheEXT.html)
 
 """
 destroy_validation_cache_ext(device::Device, validation_cache::ValidationCacheEXT, fptr::FunctionPtr; allocator = C_NULL)
@@ -40481,7 +40481,7 @@ Arguments:
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetValidationCacheDataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetValidationCacheDataEXT.html)
 
 """
 get_validation_cache_data_ext(device::Device, validation_cache::ValidationCacheEXT, fptr::FunctionPtr)
@@ -40502,7 +40502,7 @@ Arguments:
 - `src_caches::AbstractArray`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergeValidationCachesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkMergeValidationCachesEXT.html)
 
 """
 merge_validation_caches_ext(device::Device, dst_cache::ValidationCacheEXT, src_caches::AbstractArray, fptr::FunctionPtr)
@@ -40515,7 +40515,7 @@ Arguments:
 - `create_info::_DescriptorSetLayoutCreateInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDescriptorSetLayoutSupport.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDescriptorSetLayoutSupport.html)
 
 """
 get_descriptor_set_layout_support(device::Device, create_info::_DescriptorSetLayoutCreateInfo, fptr::FunctionPtr)
@@ -40540,7 +40540,7 @@ Arguments:
 !!! warning
     The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetShaderInfoAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetShaderInfoAMD.html)
 
 """
 get_shader_info_amd(device::Device, pipeline::Pipeline, shader_stage::ShaderStageFlag, info_type::ShaderInfoTypeAMD, fptr::FunctionPtr)
@@ -40556,7 +40556,7 @@ Arguments:
 - `local_dimming_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetLocalDimmingAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetLocalDimmingAMD.html)
 
 """
 set_local_dimming_amd(device::Device, swap_chain::SwapchainKHR, local_dimming_enable::Bool, fptr::FunctionPtr)
@@ -40575,7 +40575,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html)
 
 """
 get_physical_device_calibrateable_time_domains_ext(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -40595,7 +40595,7 @@ Arguments:
 - `timestamp_infos::AbstractArray{_CalibratedTimestampInfoEXT}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetCalibratedTimestampsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetCalibratedTimestampsEXT.html)
 
 """
 get_calibrated_timestamps_ext(device::Device, timestamp_infos::AbstractArray{_CalibratedTimestampInfoEXT}, fptr::FunctionPtr)
@@ -40615,7 +40615,7 @@ Arguments:
 - `name_info::_DebugUtilsObjectNameInfoEXT` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectNameEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectNameEXT.html)
 
 """
 set_debug_utils_object_name_ext(device::Device, name_info::_DebugUtilsObjectNameInfoEXT, fptr::FunctionPtr)
@@ -40635,7 +40635,7 @@ Arguments:
 - `tag_info::_DebugUtilsObjectTagInfoEXT` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectTagEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetDebugUtilsObjectTagEXT.html)
 
 """
 set_debug_utils_object_tag_ext(device::Device, tag_info::_DebugUtilsObjectTagInfoEXT, fptr::FunctionPtr)
@@ -40650,7 +40650,7 @@ Arguments:
 - `label_info::_DebugUtilsLabelEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBeginDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueBeginDebugUtilsLabelEXT.html)
 
 """
 queue_begin_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT, fptr::FunctionPtr)
@@ -40664,7 +40664,7 @@ Arguments:
 - `queue::Queue`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueEndDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueEndDebugUtilsLabelEXT.html)
 
 """
 queue_end_debug_utils_label_ext(queue::Queue, fptr::FunctionPtr)
@@ -40679,7 +40679,7 @@ Arguments:
 - `label_info::_DebugUtilsLabelEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html)
 
 """
 queue_insert_debug_utils_label_ext(queue::Queue, label_info::_DebugUtilsLabelEXT, fptr::FunctionPtr)
@@ -40694,7 +40694,7 @@ Arguments:
 - `label_info::_DebugUtilsLabelEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginDebugUtilsLabelEXT.html)
 
 """
 cmd_begin_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT, fptr::FunctionPtr)
@@ -40708,7 +40708,7 @@ Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndDebugUtilsLabelEXT.html)
 
 """
 cmd_end_debug_utils_label_ext(command_buffer::CommandBuffer, fptr::FunctionPtr)
@@ -40723,7 +40723,7 @@ Arguments:
 - `label_info::_DebugUtilsLabelEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html)
 
 """
 cmd_insert_debug_utils_label_ext(command_buffer::CommandBuffer, label_info::_DebugUtilsLabelEXT, fptr::FunctionPtr)
@@ -40744,7 +40744,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugUtilsMessengerEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDebugUtilsMessengerEXT.html)
 
 """
 create_debug_utils_messenger_ext(instance::Instance, create_info::_DebugUtilsMessengerCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -40760,7 +40760,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugUtilsMessengerEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDebugUtilsMessengerEXT.html)
 
 """
 destroy_debug_utils_messenger_ext(instance::Instance, messenger::DebugUtilsMessengerEXT, fptr::FunctionPtr; allocator = C_NULL)
@@ -40777,7 +40777,7 @@ Arguments:
 - `callback_data::_DebugUtilsMessengerCallbackDataEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html)
 
 """
 submit_debug_utils_message_ext(instance::Instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT, fptr::FunctionPtr)
@@ -40798,7 +40798,7 @@ Arguments:
 - `host_pointer::Ptr{Cvoid}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryHostPointerPropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetMemoryHostPointerPropertiesEXT.html)
 
 """
 get_memory_host_pointer_properties_ext(device::Device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -40816,7 +40816,7 @@ Arguments:
 - `marker::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarkerAMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarkerAMD.html)
 
 """
 cmd_write_buffer_marker_amd(command_buffer::CommandBuffer, pipeline_stage::PipelineStageFlag, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fptr::FunctionPtr)
@@ -40836,7 +40836,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRenderPass2.html)
 
 """
 create_render_pass_2(device::Device, create_info::_RenderPassCreateInfo2, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -40850,7 +40850,7 @@ Arguments:
 - `subpass_begin_info::_SubpassBeginInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginRenderPass2.html)
 
 """
 cmd_begin_render_pass_2(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, subpass_begin_info::_SubpassBeginInfo, fptr::FunctionPtr)
@@ -40864,7 +40864,7 @@ Arguments:
 - `subpass_end_info::_SubpassEndInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdNextSubpass2.html)
 
 """
 cmd_next_subpass_2(command_buffer::CommandBuffer, subpass_begin_info::_SubpassBeginInfo, subpass_end_info::_SubpassEndInfo, fptr::FunctionPtr)
@@ -40877,7 +40877,7 @@ Arguments:
 - `subpass_end_info::_SubpassEndInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass2.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndRenderPass2.html)
 
 """
 cmd_end_render_pass_2(command_buffer::CommandBuffer, subpass_end_info::_SubpassEndInfo, fptr::FunctionPtr)
@@ -40896,7 +40896,7 @@ Arguments:
 - `semaphore::Semaphore`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreCounterValue.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetSemaphoreCounterValue.html)
 
 """
 get_semaphore_counter_value(device::Device, semaphore::Semaphore, fptr::FunctionPtr)
@@ -40919,7 +40919,7 @@ Arguments:
 - `timeout::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitSemaphores.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWaitSemaphores.html)
 
 """
 wait_semaphores(device::Device, wait_info::_SemaphoreWaitInfo, timeout::Integer, fptr::FunctionPtr)
@@ -40937,7 +40937,7 @@ Arguments:
 - `signal_info::_SemaphoreSignalInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSignalSemaphore.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSignalSemaphore.html)
 
 """
 signal_semaphore(device::Device, signal_info::_SemaphoreSignalInfo, fptr::FunctionPtr)
@@ -40955,7 +40955,7 @@ Arguments:
 - `stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectCount.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectCount.html)
 
 """
 cmd_draw_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fptr::FunctionPtr)
@@ -40973,7 +40973,7 @@ Arguments:
 - `stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirectCount.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndexedIndirectCount.html)
 
 """
 cmd_draw_indexed_indirect_count(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fptr::FunctionPtr)
@@ -40988,7 +40988,7 @@ Arguments:
 - `checkpoint_marker::Ptr{Cvoid}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCheckpointNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCheckpointNV.html)
 
 """
 cmd_set_checkpoint_nv(command_buffer::CommandBuffer, checkpoint_marker::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -41002,7 +41002,7 @@ Arguments:
 - `queue::Queue`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointDataNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointDataNV.html)
 
 """
 get_queue_checkpoint_data_nv(queue::Queue, fptr::FunctionPtr)
@@ -41019,7 +41019,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `sizes`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindTransformFeedbackBuffersEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindTransformFeedbackBuffersEXT.html)
 
 """
 cmd_bind_transform_feedback_buffers_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fptr::FunctionPtr; sizes = C_NULL)
@@ -41035,7 +41035,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `counter_buffer_offsets`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginTransformFeedbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginTransformFeedbackEXT.html)
 
 """
 cmd_begin_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fptr::FunctionPtr; counter_buffer_offsets = C_NULL)
@@ -41051,7 +41051,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `counter_buffer_offsets`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndTransformFeedbackEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndTransformFeedbackEXT.html)
 
 """
 cmd_end_transform_feedback_ext(command_buffer::CommandBuffer, counter_buffers::AbstractArray, fptr::FunctionPtr; counter_buffer_offsets = C_NULL)
@@ -41069,7 +41069,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `flags`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQueryIndexedEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBeginQueryIndexedEXT.html)
 
 """
 cmd_begin_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fptr::FunctionPtr; flags = 0)
@@ -41086,7 +41086,7 @@ Arguments:
 - `index::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQueryIndexedEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdEndQueryIndexedEXT.html)
 
 """
 cmd_end_query_indexed_ext(command_buffer::CommandBuffer, query_pool::QueryPool, query::Integer, index::Integer, fptr::FunctionPtr)
@@ -41106,7 +41106,7 @@ Arguments:
 - `vertex_stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectByteCountEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawIndirectByteCountEXT.html)
 
 """
 cmd_draw_indirect_byte_count_ext(command_buffer::CommandBuffer, instance_count::Integer, first_instance::Integer, counter_buffer::Buffer, counter_buffer_offset::Integer, counter_offset::Integer, vertex_stride::Integer, fptr::FunctionPtr)
@@ -41121,7 +41121,7 @@ Arguments:
 - `exclusive_scissors::AbstractArray{_Rect2D}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetExclusiveScissorNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetExclusiveScissorNV.html)
 
 """
 cmd_set_exclusive_scissor_nv(command_buffer::CommandBuffer, exclusive_scissors::AbstractArray{_Rect2D}, fptr::FunctionPtr)
@@ -41137,7 +41137,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `image_view`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindShadingRateImageNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindShadingRateImageNV.html)
 
 """
 cmd_bind_shading_rate_image_nv(command_buffer::CommandBuffer, image_layout::ImageLayout, fptr::FunctionPtr; image_view = C_NULL)
@@ -41152,7 +41152,7 @@ Arguments:
 - `shading_rate_palettes::AbstractArray{_ShadingRatePaletteNV}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportShadingRatePaletteNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportShadingRatePaletteNV.html)
 
 """
 cmd_set_viewport_shading_rate_palette_nv(command_buffer::CommandBuffer, shading_rate_palettes::AbstractArray{_ShadingRatePaletteNV}, fptr::FunctionPtr)
@@ -41168,7 +41168,7 @@ Arguments:
 - `custom_sample_orders::AbstractArray{_CoarseSampleOrderCustomNV}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCoarseSampleOrderNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCoarseSampleOrderNV.html)
 
 """
 cmd_set_coarse_sample_order_nv(command_buffer::CommandBuffer, sample_order_type::CoarseSampleOrderTypeNV, custom_sample_orders::AbstractArray{_CoarseSampleOrderCustomNV}, fptr::FunctionPtr)
@@ -41184,7 +41184,7 @@ Arguments:
 - `first_task::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksNV.html)
 
 """
 cmd_draw_mesh_tasks_nv(command_buffer::CommandBuffer, task_count::Integer, first_task::Integer, fptr::FunctionPtr)
@@ -41202,7 +41202,7 @@ Arguments:
 - `stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectNV.html)
 
 """
 cmd_draw_mesh_tasks_indirect_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, draw_count::Integer, stride::Integer, fptr::FunctionPtr)
@@ -41222,7 +41222,7 @@ Arguments:
 - `stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectCountNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdDrawMeshTasksIndirectCountNV.html)
 
 """
 cmd_draw_mesh_tasks_indirect_count_nv(command_buffer::CommandBuffer, buffer::Buffer, offset::Integer, count_buffer::Buffer, count_buffer_offset::Integer, max_draw_count::Integer, stride::Integer, fptr::FunctionPtr)
@@ -41243,7 +41243,7 @@ Arguments:
 - `shader::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCompileDeferredNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCompileDeferredNV.html)
 
 """
 compile_deferred_nv(device::Device, pipeline::Pipeline, shader::Integer, fptr::FunctionPtr)
@@ -41264,7 +41264,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureNV.html)
 
 """
 create_acceleration_structure_nv(device::Device, create_info::_AccelerationStructureCreateInfoNV, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -41280,7 +41280,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureKHR.html)
 
 """
 destroy_acceleration_structure_khr(device::Device, acceleration_structure::AccelerationStructureKHR, fptr::FunctionPtr; allocator = C_NULL)
@@ -41296,7 +41296,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyAccelerationStructureNV.html)
 
 """
 destroy_acceleration_structure_nv(device::Device, acceleration_structure::AccelerationStructureNV, fptr::FunctionPtr; allocator = C_NULL)
@@ -41311,7 +41311,7 @@ Arguments:
 - `info::_AccelerationStructureMemoryRequirementsInfoNV`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html)
 
 """
 get_acceleration_structure_memory_requirements_nv(device::Device, info::_AccelerationStructureMemoryRequirementsInfoNV, fptr::FunctionPtr)
@@ -41331,7 +41331,7 @@ Arguments:
 - `bind_infos::AbstractArray{_BindAccelerationStructureMemoryInfoNV}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindAccelerationStructureMemoryNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBindAccelerationStructureMemoryNV.html)
 
 """
 bind_acceleration_structure_memory_nv(device::Device, bind_infos::AbstractArray{_BindAccelerationStructureMemoryInfoNV}, fptr::FunctionPtr)
@@ -41348,7 +41348,7 @@ Arguments:
 - `mode::CopyAccelerationStructureModeKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureNV.html)
 
 """
 cmd_copy_acceleration_structure_nv(command_buffer::CommandBuffer, dst::AccelerationStructureNV, src::AccelerationStructureNV, mode::CopyAccelerationStructureModeKHR, fptr::FunctionPtr)
@@ -41363,7 +41363,7 @@ Arguments:
 - `info::_CopyAccelerationStructureInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureKHR.html)
 
 """
 cmd_copy_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureInfoKHR, fptr::FunctionPtr)
@@ -41388,7 +41388,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureKHR.html)
 
 """
 copy_acceleration_structure_khr(device::Device, info::_CopyAccelerationStructureInfoKHR, fptr::FunctionPtr; deferred_operation = C_NULL)
@@ -41403,7 +41403,7 @@ Arguments:
 - `info::_CopyAccelerationStructureToMemoryInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureToMemoryKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyAccelerationStructureToMemoryKHR.html)
 
 """
 cmd_copy_acceleration_structure_to_memory_khr(command_buffer::CommandBuffer, info::_CopyAccelerationStructureToMemoryInfoKHR, fptr::FunctionPtr)
@@ -41428,7 +41428,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureToMemoryKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyAccelerationStructureToMemoryKHR.html)
 
 """
 copy_acceleration_structure_to_memory_khr(device::Device, info::_CopyAccelerationStructureToMemoryInfoKHR, fptr::FunctionPtr; deferred_operation = C_NULL)
@@ -41443,7 +41443,7 @@ Arguments:
 - `info::_CopyMemoryToAccelerationStructureInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyMemoryToAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyMemoryToAccelerationStructureKHR.html)
 
 """
 cmd_copy_memory_to_acceleration_structure_khr(command_buffer::CommandBuffer, info::_CopyMemoryToAccelerationStructureInfoKHR, fptr::FunctionPtr)
@@ -41468,7 +41468,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyMemoryToAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCopyMemoryToAccelerationStructureKHR.html)
 
 """
 copy_memory_to_acceleration_structure_khr(device::Device, info::_CopyMemoryToAccelerationStructureInfoKHR, fptr::FunctionPtr; deferred_operation = C_NULL)
@@ -41486,7 +41486,7 @@ Arguments:
 - `first_query::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesKHR.html)
 
 """
 cmd_write_acceleration_structures_properties_khr(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fptr::FunctionPtr)
@@ -41504,7 +41504,7 @@ Arguments:
 - `first_query::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesNV.html)
 
 """
 cmd_write_acceleration_structures_properties_nv(command_buffer::CommandBuffer, acceleration_structures::AbstractArray, query_type::QueryType, query_pool::QueryPool, first_query::Integer, fptr::FunctionPtr)
@@ -41526,7 +41526,7 @@ Arguments:
 - `instance_data`: defaults to `C_NULL`
 - `src`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructureNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructureNV.html)
 
 """
 cmd_build_acceleration_structure_nv(command_buffer::CommandBuffer, info::_AccelerationStructureInfoNV, instance_offset::Integer, update::Bool, dst::AccelerationStructureNV, scratch::Buffer, scratch_offset::Integer, fptr::FunctionPtr; instance_data = C_NULL, src = C_NULL)
@@ -41550,7 +41550,7 @@ Arguments:
 - `stride::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html)
 
 """
 write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer, fptr::FunctionPtr)
@@ -41571,7 +41571,7 @@ Arguments:
 - `depth::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysKHR.html)
 
 """
 cmd_trace_rays_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, width::Integer, height::Integer, depth::Integer, fptr::FunctionPtr)
@@ -41599,7 +41599,7 @@ Arguments:
 - `hit_shader_binding_table_buffer`: defaults to `C_NULL`
 - `callable_shader_binding_table_buffer`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysNV.html)
 
 """
 cmd_trace_rays_nv(command_buffer::CommandBuffer, raygen_shader_binding_table_buffer::Buffer, raygen_shader_binding_offset::Integer, miss_shader_binding_offset::Integer, miss_shader_binding_stride::Integer, hit_shader_binding_offset::Integer, hit_shader_binding_stride::Integer, callable_shader_binding_offset::Integer, callable_shader_binding_stride::Integer, width::Integer, height::Integer, depth::Integer, fptr::FunctionPtr; miss_shader_binding_table_buffer = C_NULL, hit_shader_binding_table_buffer = C_NULL, callable_shader_binding_table_buffer = C_NULL)
@@ -41623,7 +41623,7 @@ Arguments:
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupHandlesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupHandlesKHR.html)
 
 """
 get_ray_tracing_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -41647,7 +41647,7 @@ Arguments:
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html)
 
 """
 get_ray_tracing_capture_replay_shader_group_handles_khr(device::Device, pipeline::Pipeline, first_group::Integer, group_count::Integer, data_size::Integer, data::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -41669,7 +41669,7 @@ Arguments:
 - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureHandleNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureHandleNV.html)
 
 """
 get_acceleration_structure_handle_nv(device::Device, acceleration_structure::AccelerationStructureNV, data_size::Integer, data::Ptr{Cvoid}, fptr::FunctionPtr)
@@ -41696,7 +41696,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesNV.html)
 
 """
 create_ray_tracing_pipelines_nv(device::Device, create_infos::AbstractArray{_RayTracingPipelineCreateInfoNV}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; pipeline_cache = C_NULL, allocator = C_NULL)
@@ -41726,7 +41726,7 @@ Arguments:
 - `pipeline_cache`: defaults to `C_NULL`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateRayTracingPipelinesKHR.html)
 
 """
 create_ray_tracing_pipelines_khr(device::Device, create_infos::AbstractArray{_RayTracingPipelineCreateInfoKHR}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; deferred_operation = C_NULL, pipeline_cache = C_NULL, allocator = C_NULL)
@@ -41745,7 +41745,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.html)
 
 """
 get_physical_device_cooperative_matrix_properties_nv(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -41764,7 +41764,7 @@ Arguments:
 - `indirect_device_address::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysIndirectKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdTraceRaysIndirectKHR.html)
 
 """
 cmd_trace_rays_indirect_khr(command_buffer::CommandBuffer, raygen_shader_binding_table::_StridedDeviceAddressRegionKHR, miss_shader_binding_table::_StridedDeviceAddressRegionKHR, hit_shader_binding_table::_StridedDeviceAddressRegionKHR, callable_shader_binding_table::_StridedDeviceAddressRegionKHR, indirect_device_address::Integer, fptr::FunctionPtr)
@@ -41779,7 +41779,7 @@ Arguments:
 - `version_info::_AccelerationStructureVersionInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceAccelerationStructureCompatibilityKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceAccelerationStructureCompatibilityKHR.html)
 
 """
 get_device_acceleration_structure_compatibility_khr(device::Device, version_info::_AccelerationStructureVersionInfoKHR, fptr::FunctionPtr)
@@ -41796,7 +41796,7 @@ Arguments:
 - `group_shader::ShaderGroupShaderKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupStackSizeKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetRayTracingShaderGroupStackSizeKHR.html)
 
 """
 get_ray_tracing_shader_group_stack_size_khr(device::Device, pipeline::Pipeline, group::Integer, group_shader::ShaderGroupShaderKHR, fptr::FunctionPtr)
@@ -41811,7 +41811,7 @@ Arguments:
 - `pipeline_stack_size::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRayTracingPipelineStackSizeKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRayTracingPipelineStackSizeKHR.html)
 
 """
 cmd_set_ray_tracing_pipeline_stack_size_khr(command_buffer::CommandBuffer, pipeline_stack_size::Integer, fptr::FunctionPtr)
@@ -41826,7 +41826,7 @@ Arguments:
 - `info::_ImageViewHandleInfoNVX`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewHandleNVX.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewHandleNVX.html)
 
 """
 get_image_view_handle_nvx(device::Device, info::_ImageViewHandleInfoNVX, fptr::FunctionPtr)
@@ -41846,7 +41846,7 @@ Arguments:
 - `image_view::ImageView`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewAddressNVX.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageViewAddressNVX.html)
 
 """
 get_image_view_address_nvx(device::Device, image_view::ImageView, fptr::FunctionPtr)
@@ -41867,7 +41867,7 @@ Arguments:
 - `queue_family_index::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html)
 
 """
 enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device::PhysicalDevice, queue_family_index::Integer, fptr::FunctionPtr)
@@ -41882,7 +41882,7 @@ Arguments:
 - `performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html)
 
 """
 get_physical_device_queue_family_performance_query_passes_khr(physical_device::PhysicalDevice, performance_query_create_info::_QueryPoolPerformanceCreateInfoKHR, fptr::FunctionPtr)
@@ -41902,7 +41902,7 @@ Arguments:
 - `info::_AcquireProfilingLockInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireProfilingLockKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquireProfilingLockKHR.html)
 
 """
 acquire_profiling_lock_khr(device::Device, info::_AcquireProfilingLockInfoKHR, fptr::FunctionPtr)
@@ -41916,7 +41916,7 @@ Arguments:
 - `device::Device`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseProfilingLockKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleaseProfilingLockKHR.html)
 
 """
 release_profiling_lock_khr(device::Device, fptr::FunctionPtr)
@@ -41935,7 +41935,7 @@ Arguments:
 - `image::Image`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html)
 
 """
 get_image_drm_format_modifier_properties_ext(device::Device, image::Image, fptr::FunctionPtr)
@@ -41948,7 +41948,7 @@ Arguments:
 - `info::_BufferDeviceAddressInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferOpaqueCaptureAddress.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferOpaqueCaptureAddress.html)
 
 """
 get_buffer_opaque_capture_address(device::Device, info::_BufferDeviceAddressInfo, fptr::FunctionPtr)
@@ -41961,7 +41961,7 @@ Arguments:
 - `info::_BufferDeviceAddressInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferDeviceAddress.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferDeviceAddress.html)
 
 """
 get_buffer_device_address(device::Device, info::_BufferDeviceAddressInfo, fptr::FunctionPtr)
@@ -41983,7 +41983,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateHeadlessSurfaceEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateHeadlessSurfaceEXT.html)
 
 """
 create_headless_surface_ext(instance::Instance, create_info::_HeadlessSurfaceCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -42002,7 +42002,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.html)
 
 """
 get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -42022,7 +42022,7 @@ Arguments:
 - `initialize_info::_InitializePerformanceApiInfoINTEL`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInitializePerformanceApiINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkInitializePerformanceApiINTEL.html)
 
 """
 initialize_performance_api_intel(device::Device, initialize_info::_InitializePerformanceApiInfoINTEL, fptr::FunctionPtr)
@@ -42036,7 +42036,7 @@ Arguments:
 - `device::Device`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUninitializePerformanceApiINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUninitializePerformanceApiINTEL.html)
 
 """
 uninitialize_performance_api_intel(device::Device, fptr::FunctionPtr)
@@ -42056,7 +42056,7 @@ Arguments:
 - `marker_info::_PerformanceMarkerInfoINTEL`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceMarkerINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceMarkerINTEL.html)
 
 """
 cmd_set_performance_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceMarkerInfoINTEL, fptr::FunctionPtr)
@@ -42076,7 +42076,7 @@ Arguments:
 - `marker_info::_PerformanceStreamMarkerInfoINTEL`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceStreamMarkerINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceStreamMarkerINTEL.html)
 
 """
 cmd_set_performance_stream_marker_intel(command_buffer::CommandBuffer, marker_info::_PerformanceStreamMarkerInfoINTEL, fptr::FunctionPtr)
@@ -42096,7 +42096,7 @@ Arguments:
 - `override_info::_PerformanceOverrideInfoINTEL`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceOverrideINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPerformanceOverrideINTEL.html)
 
 """
 cmd_set_performance_override_intel(command_buffer::CommandBuffer, override_info::_PerformanceOverrideInfoINTEL, fptr::FunctionPtr)
@@ -42116,7 +42116,7 @@ Arguments:
 - `acquire_info::_PerformanceConfigurationAcquireInfoINTEL`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquirePerformanceConfigurationINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkAcquirePerformanceConfigurationINTEL.html)
 
 """
 acquire_performance_configuration_intel(device::Device, acquire_info::_PerformanceConfigurationAcquireInfoINTEL, fptr::FunctionPtr)
@@ -42136,7 +42136,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `configuration`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleasePerformanceConfigurationINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkReleasePerformanceConfigurationINTEL.html)
 
 """
 release_performance_configuration_intel(device::Device, fptr::FunctionPtr; configuration = C_NULL)
@@ -42156,7 +42156,7 @@ Arguments:
 - `configuration::PerformanceConfigurationINTEL`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSetPerformanceConfigurationINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSetPerformanceConfigurationINTEL.html)
 
 """
 queue_set_performance_configuration_intel(queue::Queue, configuration::PerformanceConfigurationINTEL, fptr::FunctionPtr)
@@ -42176,7 +42176,7 @@ Arguments:
 - `parameter::PerformanceParameterTypeINTEL`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPerformanceParameterINTEL.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPerformanceParameterINTEL.html)
 
 """
 get_performance_parameter_intel(device::Device, parameter::PerformanceParameterTypeINTEL, fptr::FunctionPtr)
@@ -42189,7 +42189,7 @@ Arguments:
 - `info::_DeviceMemoryOpaqueCaptureAddressInfo`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryOpaqueCaptureAddress.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeviceMemoryOpaqueCaptureAddress.html)
 
 """
 get_device_memory_opaque_capture_address(device::Device, info::_DeviceMemoryOpaqueCaptureAddressInfo, fptr::FunctionPtr)
@@ -42209,7 +42209,7 @@ Arguments:
 - `pipeline_info::_PipelineInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutablePropertiesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutablePropertiesKHR.html)
 
 """
 get_pipeline_executable_properties_khr(device::Device, pipeline_info::_PipelineInfoKHR, fptr::FunctionPtr)
@@ -42229,7 +42229,7 @@ Arguments:
 - `executable_info::_PipelineExecutableInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableStatisticsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableStatisticsKHR.html)
 
 """
 get_pipeline_executable_statistics_khr(device::Device, executable_info::_PipelineExecutableInfoKHR, fptr::FunctionPtr)
@@ -42249,7 +42249,7 @@ Arguments:
 - `executable_info::_PipelineExecutableInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableInternalRepresentationsKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineExecutableInternalRepresentationsKHR.html)
 
 """
 get_pipeline_executable_internal_representations_khr(device::Device, executable_info::_PipelineExecutableInfoKHR, fptr::FunctionPtr)
@@ -42265,7 +42265,7 @@ Arguments:
 - `line_stipple_pattern::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineStippleEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLineStippleEXT.html)
 
 """
 cmd_set_line_stipple_ext(command_buffer::CommandBuffer, line_stipple_factor::Integer, line_stipple_pattern::Integer, fptr::FunctionPtr)
@@ -42283,7 +42283,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceToolPropertiesEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceToolPropertiesEXT.html)
 
 """
 get_physical_device_tool_properties_ext(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -42305,7 +42305,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateAccelerationStructureKHR.html)
 
 """
 create_acceleration_structure_khr(device::Device, create_info::_AccelerationStructureCreateInfoKHR, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -42321,7 +42321,7 @@ Arguments:
 - `build_range_infos::AbstractArray{_AccelerationStructureBuildRangeInfoKHR}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresKHR.html)
 
 """
 cmd_build_acceleration_structures_khr(command_buffer::CommandBuffer, infos::AbstractArray{_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{_AccelerationStructureBuildRangeInfoKHR}, fptr::FunctionPtr)
@@ -42339,7 +42339,7 @@ Arguments:
 - `max_primitive_counts::AbstractArray`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresIndirectKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBuildAccelerationStructuresIndirectKHR.html)
 
 """
 cmd_build_acceleration_structures_indirect_khr(command_buffer::CommandBuffer, infos::AbstractArray{_AccelerationStructureBuildGeometryInfoKHR}, indirect_device_addresses::AbstractArray, indirect_strides::AbstractArray, max_primitive_counts::AbstractArray, fptr::FunctionPtr)
@@ -42365,7 +42365,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `deferred_operation`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBuildAccelerationStructuresKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkBuildAccelerationStructuresKHR.html)
 
 """
 build_acceleration_structures_khr(device::Device, infos::AbstractArray{_AccelerationStructureBuildGeometryInfoKHR}, build_range_infos::AbstractArray{_AccelerationStructureBuildRangeInfoKHR}, fptr::FunctionPtr; deferred_operation = C_NULL)
@@ -42380,7 +42380,7 @@ Arguments:
 - `info::_AccelerationStructureDeviceAddressInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureDeviceAddressKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureDeviceAddressKHR.html)
 
 """
 get_acceleration_structure_device_address_khr(device::Device, info::_AccelerationStructureDeviceAddressInfoKHR, fptr::FunctionPtr)
@@ -42400,7 +42400,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDeferredOperationKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDeferredOperationKHR.html)
 
 """
 create_deferred_operation_khr(device::Device, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -42416,7 +42416,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDeferredOperationKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDeferredOperationKHR.html)
 
 """
 destroy_deferred_operation_khr(device::Device, operation::DeferredOperationKHR, fptr::FunctionPtr; allocator = C_NULL)
@@ -42431,7 +42431,7 @@ Arguments:
 - `operation::DeferredOperationKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationMaxConcurrencyKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationMaxConcurrencyKHR.html)
 
 """
 get_deferred_operation_max_concurrency_khr(device::Device, operation::DeferredOperationKHR, fptr::FunctionPtr)
@@ -42451,7 +42451,7 @@ Arguments:
 - `operation::DeferredOperationKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationResultKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDeferredOperationResultKHR.html)
 
 """
 get_deferred_operation_result_khr(device::Device, operation::DeferredOperationKHR, fptr::FunctionPtr)
@@ -42475,7 +42475,7 @@ Arguments:
 - `operation::DeferredOperationKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeferredOperationJoinKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDeferredOperationJoinKHR.html)
 
 """
 deferred_operation_join_khr(device::Device, operation::DeferredOperationKHR, fptr::FunctionPtr)
@@ -42490,7 +42490,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `cull_mode`: defaults to `0`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCullModeEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetCullModeEXT.html)
 
 """
 cmd_set_cull_mode_ext(command_buffer::CommandBuffer, fptr::FunctionPtr; cull_mode = 0)
@@ -42505,7 +42505,7 @@ Arguments:
 - `front_face::FrontFace`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFrontFaceEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFrontFaceEXT.html)
 
 """
 cmd_set_front_face_ext(command_buffer::CommandBuffer, front_face::FrontFace, fptr::FunctionPtr)
@@ -42520,7 +42520,7 @@ Arguments:
 - `primitive_topology::PrimitiveTopology`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveTopologyEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveTopologyEXT.html)
 
 """
 cmd_set_primitive_topology_ext(command_buffer::CommandBuffer, primitive_topology::PrimitiveTopology, fptr::FunctionPtr)
@@ -42535,7 +42535,7 @@ Arguments:
 - `viewports::AbstractArray{_Viewport}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWithCountEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewportWithCountEXT.html)
 
 """
 cmd_set_viewport_with_count_ext(command_buffer::CommandBuffer, viewports::AbstractArray{_Viewport}, fptr::FunctionPtr)
@@ -42550,7 +42550,7 @@ Arguments:
 - `scissors::AbstractArray{_Rect2D}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissorWithCountEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetScissorWithCountEXT.html)
 
 """
 cmd_set_scissor_with_count_ext(command_buffer::CommandBuffer, scissors::AbstractArray{_Rect2D}, fptr::FunctionPtr)
@@ -42568,7 +42568,7 @@ Arguments:
 - `sizes`: defaults to `C_NULL`
 - `strides`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers2EXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindVertexBuffers2EXT.html)
 
 """
 cmd_bind_vertex_buffers_2_ext(command_buffer::CommandBuffer, buffers::AbstractArray, offsets::AbstractArray, fptr::FunctionPtr; sizes = C_NULL, strides = C_NULL)
@@ -42583,7 +42583,7 @@ Arguments:
 - `depth_test_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthTestEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthTestEnableEXT.html)
 
 """
 cmd_set_depth_test_enable_ext(command_buffer::CommandBuffer, depth_test_enable::Bool, fptr::FunctionPtr)
@@ -42598,7 +42598,7 @@ Arguments:
 - `depth_write_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthWriteEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthWriteEnableEXT.html)
 
 """
 cmd_set_depth_write_enable_ext(command_buffer::CommandBuffer, depth_write_enable::Bool, fptr::FunctionPtr)
@@ -42613,7 +42613,7 @@ Arguments:
 - `depth_compare_op::CompareOp`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthCompareOpEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthCompareOpEXT.html)
 
 """
 cmd_set_depth_compare_op_ext(command_buffer::CommandBuffer, depth_compare_op::CompareOp, fptr::FunctionPtr)
@@ -42628,7 +42628,7 @@ Arguments:
 - `depth_bounds_test_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBoundsTestEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBoundsTestEnableEXT.html)
 
 """
 cmd_set_depth_bounds_test_enable_ext(command_buffer::CommandBuffer, depth_bounds_test_enable::Bool, fptr::FunctionPtr)
@@ -42643,7 +42643,7 @@ Arguments:
 - `stencil_test_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilTestEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilTestEnableEXT.html)
 
 """
 cmd_set_stencil_test_enable_ext(command_buffer::CommandBuffer, stencil_test_enable::Bool, fptr::FunctionPtr)
@@ -42662,7 +42662,7 @@ Arguments:
 - `compare_op::CompareOp`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilOpEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetStencilOpEXT.html)
 
 """
 cmd_set_stencil_op_ext(command_buffer::CommandBuffer, face_mask::StencilFaceFlag, fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp, fptr::FunctionPtr)
@@ -42677,7 +42677,7 @@ Arguments:
 - `patch_control_points::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPatchControlPointsEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPatchControlPointsEXT.html)
 
 """
 cmd_set_patch_control_points_ext(command_buffer::CommandBuffer, patch_control_points::Integer, fptr::FunctionPtr)
@@ -42692,7 +42692,7 @@ Arguments:
 - `rasterizer_discard_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRasterizerDiscardEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetRasterizerDiscardEnableEXT.html)
 
 """
 cmd_set_rasterizer_discard_enable_ext(command_buffer::CommandBuffer, rasterizer_discard_enable::Bool, fptr::FunctionPtr)
@@ -42707,7 +42707,7 @@ Arguments:
 - `depth_bias_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBiasEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetDepthBiasEnableEXT.html)
 
 """
 cmd_set_depth_bias_enable_ext(command_buffer::CommandBuffer, depth_bias_enable::Bool, fptr::FunctionPtr)
@@ -42722,7 +42722,7 @@ Arguments:
 - `logic_op::LogicOp`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLogicOpEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetLogicOpEXT.html)
 
 """
 cmd_set_logic_op_ext(command_buffer::CommandBuffer, logic_op::LogicOp, fptr::FunctionPtr)
@@ -42737,7 +42737,7 @@ Arguments:
 - `primitive_restart_enable::Bool`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveRestartEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetPrimitiveRestartEnableEXT.html)
 
 """
 cmd_set_primitive_restart_enable_ext(command_buffer::CommandBuffer, primitive_restart_enable::Bool, fptr::FunctionPtr)
@@ -42758,7 +42758,7 @@ Arguments:
 - `fptr_destroy::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePrivateDataSlotEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreatePrivateDataSlotEXT.html)
 
 """
 create_private_data_slot_ext(device::Device, create_info::_PrivateDataSlotCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)
@@ -42774,7 +42774,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `allocator`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPrivateDataSlotEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyPrivateDataSlotEXT.html)
 
 """
 destroy_private_data_slot_ext(device::Device, private_data_slot::PrivateDataSlotEXT, fptr::FunctionPtr; allocator = C_NULL)
@@ -42796,7 +42796,7 @@ Arguments:
 - `data::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetPrivateDataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkSetPrivateDataEXT.html)
 
 """
 set_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, data::Integer, fptr::FunctionPtr)
@@ -42813,7 +42813,7 @@ Arguments:
 - `private_data_slot::PrivateDataSlotEXT`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPrivateDataEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPrivateDataEXT.html)
 
 """
 get_private_data_ext(device::Device, object_type::ObjectType, object_handle::Integer, private_data_slot::PrivateDataSlotEXT, fptr::FunctionPtr)
@@ -42828,7 +42828,7 @@ Arguments:
 - `copy_buffer_info::_CopyBufferInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBuffer2KHR.html)
 
 """
 cmd_copy_buffer_2_khr(command_buffer::CommandBuffer, copy_buffer_info::_CopyBufferInfo2KHR, fptr::FunctionPtr)
@@ -42843,7 +42843,7 @@ Arguments:
 - `copy_image_info::_CopyImageInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImage2KHR.html)
 
 """
 cmd_copy_image_2_khr(command_buffer::CommandBuffer, copy_image_info::_CopyImageInfo2KHR, fptr::FunctionPtr)
@@ -42858,7 +42858,7 @@ Arguments:
 - `blit_image_info::_BlitImageInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBlitImage2KHR.html)
 
 """
 cmd_blit_image_2_khr(command_buffer::CommandBuffer, blit_image_info::_BlitImageInfo2KHR, fptr::FunctionPtr)
@@ -42873,7 +42873,7 @@ Arguments:
 - `copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyBufferToImage2KHR.html)
 
 """
 cmd_copy_buffer_to_image_2_khr(command_buffer::CommandBuffer, copy_buffer_to_image_info::_CopyBufferToImageInfo2KHR, fptr::FunctionPtr)
@@ -42888,7 +42888,7 @@ Arguments:
 - `copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdCopyImageToBuffer2KHR.html)
 
 """
 cmd_copy_image_to_buffer_2_khr(command_buffer::CommandBuffer, copy_image_to_buffer_info::_CopyImageToBufferInfo2KHR, fptr::FunctionPtr)
@@ -42903,7 +42903,7 @@ Arguments:
 - `resolve_image_info::_ResolveImageInfo2KHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResolveImage2KHR.html)
 
 """
 cmd_resolve_image_2_khr(command_buffer::CommandBuffer, resolve_image_info::_ResolveImageInfo2KHR, fptr::FunctionPtr)
@@ -42919,7 +42919,7 @@ Arguments:
 - `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateKHR.html)
 
 """
 cmd_set_fragment_shading_rate_khr(command_buffer::CommandBuffer, fragment_size::_Extent2D, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}, fptr::FunctionPtr)
@@ -42937,7 +42937,7 @@ Arguments:
 - `physical_device::PhysicalDevice`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFragmentShadingRatesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFragmentShadingRatesKHR.html)
 
 """
 get_physical_device_fragment_shading_rates_khr(physical_device::PhysicalDevice, fptr::FunctionPtr)
@@ -42953,7 +42953,7 @@ Arguments:
 - `combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateEnumNV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetFragmentShadingRateEnumNV.html)
 
 """
 cmd_set_fragment_shading_rate_enum_nv(command_buffer::CommandBuffer, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}, fptr::FunctionPtr)
@@ -42970,7 +42970,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `max_primitive_counts`: defaults to `C_NULL`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureBuildSizesKHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetAccelerationStructureBuildSizesKHR.html)
 
 """
 get_acceleration_structure_build_sizes_khr(device::Device, build_type::AccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR, fptr::FunctionPtr; max_primitive_counts = C_NULL)
@@ -42986,7 +42986,7 @@ Arguments:
 - `vertex_attribute_descriptions::AbstractArray{_VertexInputAttributeDescription2EXT}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetVertexInputEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetVertexInputEXT.html)
 
 """
 cmd_set_vertex_input_ext(command_buffer::CommandBuffer, vertex_binding_descriptions::AbstractArray{_VertexInputBindingDescription2EXT}, vertex_attribute_descriptions::AbstractArray{_VertexInputAttributeDescription2EXT}, fptr::FunctionPtr)
@@ -43001,7 +43001,7 @@ Arguments:
 - `color_write_enables::AbstractArray`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetColorWriteEnableEXT.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetColorWriteEnableEXT.html)
 
 """
 cmd_set_color_write_enable_ext(command_buffer::CommandBuffer, color_write_enables::AbstractArray, fptr::FunctionPtr)
@@ -43017,7 +43017,7 @@ Arguments:
 - `dependency_info::_DependencyInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetEvent2KHR.html)
 
 """
 cmd_set_event_2_khr(command_buffer::CommandBuffer, event::Event, dependency_info::_DependencyInfoKHR, fptr::FunctionPtr)
@@ -43033,7 +43033,7 @@ Arguments:
 - `stage_mask::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetEvent2KHR.html)
 
 """
 cmd_reset_event_2_khr(command_buffer::CommandBuffer, event::Event, stage_mask::Integer, fptr::FunctionPtr)
@@ -43049,7 +43049,7 @@ Arguments:
 - `dependency_infos::AbstractArray{_DependencyInfoKHR}`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWaitEvents2KHR.html)
 
 """
 cmd_wait_events_2_khr(command_buffer::CommandBuffer, events::AbstractArray, dependency_infos::AbstractArray{_DependencyInfoKHR}, fptr::FunctionPtr)
@@ -43064,7 +43064,7 @@ Arguments:
 - `dependency_info::_DependencyInfoKHR`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPipelineBarrier2KHR.html)
 
 """
 cmd_pipeline_barrier_2_khr(command_buffer::CommandBuffer, dependency_info::_DependencyInfoKHR, fptr::FunctionPtr)
@@ -43086,7 +43086,7 @@ Arguments:
 - `fptr::FunctionPtr`
 - `fence`: defaults to `C_NULL` (externsync)
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkQueueSubmit2KHR.html)
 
 """
 queue_submit_2_khr(queue::Queue, submits::AbstractArray{_SubmitInfo2KHR}, fptr::FunctionPtr; fence = C_NULL)
@@ -43103,7 +43103,7 @@ Arguments:
 - `query::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp2KHR.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp2KHR.html)
 
 """
 cmd_write_timestamp_2_khr(command_buffer::CommandBuffer, stage::Integer, query_pool::QueryPool, query::Integer, fptr::FunctionPtr)
@@ -43121,7 +43121,7 @@ Arguments:
 - `marker::Integer`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarker2AMD.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteBufferMarker2AMD.html)
 
 """
 cmd_write_buffer_marker_2_amd(command_buffer::CommandBuffer, stage::Integer, dst_buffer::Buffer, dst_offset::Integer, marker::Integer, fptr::FunctionPtr)
@@ -43135,7 +43135,7 @@ Arguments:
 - `queue::Queue`
 - `fptr::FunctionPtr`
 
-API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointData2NV.html
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetQueueCheckpointData2NV.html)
 
 """
 get_queue_checkpoint_data_2_nv(queue::Queue, fptr::FunctionPtr)

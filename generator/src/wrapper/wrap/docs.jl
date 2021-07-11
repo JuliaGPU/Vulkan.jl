@@ -30,7 +30,7 @@ function Docstring(def::StructDefinition{true})
         """ : "",
         """
 
-        API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+        [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html)
         """,
     )
     Docstring(def, docstring(name(def), doc))
@@ -108,7 +108,7 @@ function Docstring(def)
 
     extra *= """
 
-    API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
+    [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html)
     """
 
     ext = extension(spec)
