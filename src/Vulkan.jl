@@ -20,7 +20,13 @@ using MLStyle
 @reexport using ResultTypes: unwrap, unwrap_error, iserror
 using ResultTypes: ResultTypes
 
-@template (FUNCTIONS, METHODS, MACROS) =
+@template FUNCTIONS =
+    """
+    $(DOCSTRING)
+    $(METHODLIST)
+    """
+
+@template (METHODS, MACROS) =
     """
     $(DOCSTRING)
     $(TYPEDSIGNATURES)

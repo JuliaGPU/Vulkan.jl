@@ -11,30 +11,13 @@ end
 
 const DEV_PATH = joinpath(homedir(), ".julia", "dev")
 
+using Pkg
+
 if isdir(DEV_PATH)
-    if "Givre" in readdir(DEV_PATH)
-        @safetestset "Givre" begin
-            using Pkg
-            DEV_PATH = joinpath(homedir(), ".julia", "dev")
-            Pkg.activate(joinpath(DEV_PATH, "Givre"))
-            include(joinpath(DEV_PATH, "Givre", "test", "runtests.jl"))
-            GC.gc()
-            ENV["JULIA_DEBUG"] = ""
-        end
-    end
-
-    # VulkanExamples and Givre both do type piracy on Vulkan.jl
-    # which is incompatible with each other, affecting Givre specifically.
-    # Therefore Givre must run first, and can't be re-run after VulkanExamples.
-
-    if "VulkanExamples" in readdir(DEV_PATH)
-        @safetestset "VulkanExamples" begin
-            using Pkg
-            DEV_PATH = joinpath(homedir(), ".julia", "dev")
-            Pkg.activate(joinpath(DEV_PATH, "VulkanExamples"))
-            include(joinpath(DEV_PATH, "VulkanExamples", "examples", "headless", "headless.jl"))
-            GC.gc()
-            include(joinpath(DEV_PATH, "VulkanExamples", "examples", "texture", "texture_2d.jl"))
+    for package in ["Givre", "VulkanExamples"]
+        if package in readdir(DEV_PATH)
+            Pkg.activate(joinpath(DEV_PATH, package))
+            Pkg.test()
             GC.gc()
         end
     end
