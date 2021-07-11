@@ -4,7 +4,7 @@ Base.broadcastable(x::BitMask) = Ref(x)
 
 function generate_bitmask_flags(type, decl)
     identifier, value = decl.args
-    :(const $(esc(identifier)) = $(esc(:($type($value)))))
+    :(const $identifier = $type($value))
 end
 
 """
@@ -21,14 +21,19 @@ macro bitmask_flag(typedecl, expr)
         :($a::$b) => (a, b)
         _ => error("First argument to @bitmask_flag must be of the form 'type::eltype'")
     end
+    if !Meta.isexpr(expr, :block)
+        expr = Expr(:block, expr)
+    end
     decls = filter(x -> typeof(x) ≠ LineNumberNode, expr.args)
 
-    exs = [
-        esc(:(struct $type <: BitMask{$eltype}; val::$eltype; end));
-        generate_bitmask_flags.(type, decls)
-    ]
+    ex = quote
+        Base.@__doc__ struct $type <: BitMask{$eltype}
+            val::$eltype
+        end
+        $(esc.(generate_bitmask_flags.(type, decls))...)
+    end
 
-    Expr(:block, exs...)
+    ex
 end
 
 (&)(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
