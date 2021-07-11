@@ -18,7 +18,7 @@
 
 * ![Feature][badge-feature] An automatic dispatch logic was added to automate the retrieval and use of API function pointers. This means that you don't need to retrieve function pointers manually, including for extension-related functionality.
 
-* ![Enhancement] Documentation was improved, and docstrings now list extension requirements.
+* ![Enhancement][badge-enhancement] Documentation was improved, and docstrings now list extension requirements.
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
@@ -31,7 +31,7 @@
 [badge-maintenance]: https://img.shields.io/badge/maintenance-gray.svg
 
 <!--
-# Badges
+# Badges (reused from the CHANGELOG.md of Documenter.jl)
 
 ![BREAKING][badge-breaking]
 ![Deprecation][badge-deprecation]
