@@ -1,3 +1,8 @@
+"""
+$(README)
+Depends on:
+$(IMPORTS)
+"""
 module Vulkan
 
 using Reexport
@@ -25,9 +30,7 @@ using ResultTypes: ResultTypes
     """
     $(DOCSTRING)
     $(TYPEDEF)
-    $(TYPEDSIGNATURES)
     $(TYPEDFIELDS)
-    $(SIGNATURES)
     """
 
 include("preferences.jl")
