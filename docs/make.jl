@@ -5,13 +5,13 @@ julia_files(dir) = sort(filter(endswith(".jl"), readdir(dir, join=true)))
 
 function generate_markdowns(dir)
     for file in julia_files(dir)
-        _file = joinpath(splitpath(file)[1:end-1]..., string('_', basename(file)))
-        Literate.markdown(
+        md = Literate.markdown(
             file,
             dir;
             documenter = true,
         )
-        mv(file, _file)
+        _md = joinpath(splitpath(md)[1:end-1]..., string('_', basename(md)))
+        mv(md, _md, force=true)
     end
 end
 
@@ -48,8 +48,8 @@ makedocs(;
             "In-depth tutorial" => "tutorial/_indepth.md",
         ],
         "How to" => [
-            "howto/preferences.md",
-            "howto/debugging.md",
+            "howto/_preferences.md",
+            "howto/_debugging.md",
         ],
         "API" => "api.md",
         "Utility" => "utility.md",

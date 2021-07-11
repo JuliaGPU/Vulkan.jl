@@ -113,7 +113,7 @@ const debug_messenger = DebugUtilsMessengerEXT(
 #=
 
 !!! note
-    `DebugUtilsMessengerEXT` is an extension-defined handle. Any extension function such as `vkCreateDebugUtilsMessengerEXT` and `vkDestroyDebugUtilsMessengerEXT` (called in the constructor and finalizer respectively) must be called using a function pointer. This detail is abstracted away with the wrapper, as function pointers for functions are automatically retrieved as needed and stored in a thread-safe global dispatch table. See more in the [Dispatch](@ref) section.
+    `DebugUtilsMessengerEXT` is an extension-defined handle. Any extension function such as `vkCreateDebugUtilsMessengerEXT` and `vkDestroyDebugUtilsMessengerEXT` (called in the constructor and finalizer respectively) must be called using a function pointer. This detail is abstracted away with the wrapper, as API function pointers are automatically retrieved as needed and stored in a thread-safe global dispatch table. See more in the [Dispatch](@ref) section.
 
 We can now enumerate and pick a physical device that we will use for this tutorial.
 

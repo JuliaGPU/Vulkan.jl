@@ -12,8 +12,8 @@ Finally, functions and structures have docstrings with information extracted fro
 
 This package can be installed through the registry with
 
-```repl
-]add Vulkan
+```julia-repl
+julia> ]add Vulkan
 ```
 
 Make sure that you have a decently recent Vulkan driver installed.

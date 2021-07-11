@@ -1,6 +1,6 @@
 # # Resource management
 
-# Let's see how resources get freed automatically, and when they aren't. First let's set the preference "LOG_DESTRUCTION" to "true" to see what's going on:
+# Let's see how resources get freed automatically, and when they aren't. First let's set the preference `"LOG_DESTRUCTION"` to `"true"` to see what's going on:
 
 using Vulkan
 

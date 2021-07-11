@@ -8,13 +8,24 @@ To circumvent that, we provide a handy way for retrieving and calling into funct
 
 ## Retrieving function pointers
 
-API Function pointers can be obtained with the [`function_pointer`](@ref) function, using the API function name:
+API Function pointers can be obtained with the [`function_pointer`](@ref) function, using the API function name.
 
-```@setup fptr
+=#
+
+using SwiftShader_jll # hide
 using Vulkan
-```
+@set_driver :SwiftShader # hide
 
-```@repl fptr
+const instance = Instance([], [])
+const device = Device(
+    first(unwrap(enumerate_physical_devices(instance))), [DeviceQueueCreateInfo(0, [1.])],
+    [],
+    [],
+)
+
+#=
+
+```@repl dispatch
 function_pointer("vkCreateInstance")
 function_pointer(instance, "vkDestroyInstance")
 function_pointer(device, "vkCreateFence")
@@ -28,25 +39,14 @@ Every wrapper function or handle constructor has a signature which accepts the s
 
 =#
 
-using SwiftShader_jll # hide
-using Vulkan
-@set_driver :SwiftShader # hide
-
-foreach(display, unwrap(enumerate_instance_layer_properties()))
+foreach(println, unwrap(enumerate_instance_layer_properties()))
 
 # you can do
 
 fptr = function_pointer("vkEnumerateInstanceLayerProperties")
-foreach(display, unwrap(enumerate_instance_layer_properties(fptr)))
+foreach(println, unwrap(enumerate_instance_layer_properties(fptr)))
 
 # In the case of a handle constructor which calls both a creation and a destruction function, there is an argument for each corresponding function pointer:
-
-const instance = Instance([], [])
-const device = Device(
-    first(unwrap(enumerate_physical_devices(instance))), [DeviceQueueCreateInfo(0, [1.])],
-    [],
-    [],
-)
 
 fptr_create = function_pointer(device, "vkCreateFence")
 fptr_destroy = function_pointer(device, "vkDestroyFence")
