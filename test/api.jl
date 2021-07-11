@@ -1,14 +1,14 @@
-const VALIDATION_DEBUG_SIGNAL = Ref{Bool}(false)
+const CALLBACK_DEBUG_SIGNAL = Ref(false)
 
 function debug_callback(args...)
-    VALIDATION_DEBUG_SIGNAL[] = true
+    CALLBACK_DEBUG_SIGNAL[] = true
     default_debug_callback(args...)
 end
 
 const debug_callback_c = @cfunction(debug_callback, UInt32, (DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
 const API_VERSION = v"1.2"
 const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"
-const WITH_VALIDATION = Ref(false)
+
 const INSTANCE_LAYERS = [
 ]
 const INSTANCE_EXTENSIONS = [
@@ -21,10 +21,20 @@ const ENABLED_FEATURES = PhysicalDeviceFeatures(
 let available_layers = unwrap(enumerate_instance_layer_properties())
     if VALIDATION_LAYER ∈ getproperty.(available_layers, :layer_name)
         push!(INSTANCE_LAYERS, VALIDATION_LAYER)
-        push!(INSTANCE_EXTENSIONS, "VK_EXT_debug_utils")
-        WITH_VALIDATION[] = true
+        true
     else
         @warn "Validation layer not found."
+        false
+    end
+end
+
+const WITH_DEBUG = let available_extensions = unwrap(enumerate_instance_extension_properties())
+    if "VK_EXT_debug_utils" ∈ getproperty.(available_extensions, :extension_name)
+        push!(INSTANCE_EXTENSIONS, "VK_EXT_debug_utils")
+        true
+    else
+        @warn "VK_EXT_debug_utils not supported"
+        false
     end
 end
 
@@ -40,8 +50,8 @@ end
 
     @testset "Debugging" begin
         @testset "Validation" begin
-            if WITH_VALIDATION[]
-                @test VALIDATION_DEBUG_SIGNAL[]
+            if WITH_DEBUG
+                @test CALLBACK_DEBUG_SIGNAL[]
             end
         end
     end

@@ -6,7 +6,7 @@ const instance = Instance(INSTANCE_LAYERS, INSTANCE_EXTENSIONS;
     application_info = ApplicationInfo(v"0.0.1", v"0.0.1", API_VERSION; application_name="Test", engine_name="Experimental engine"))
 @info "Instance created: $instance."
 
-if WITH_VALIDATION[]
+if WITH_DEBUG[]
     debug_messenger = DebugUtilsMessengerEXT(instance, debug_callback_c)
 end
 
