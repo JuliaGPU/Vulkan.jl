@@ -1,4 +1,4 @@
-test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
+test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
 
 @testset "Generated documentation" begin
     @testset "Low-level structs" begin
@@ -11,7 +11,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             - `width::Integer`
             - `height::Integer`
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html)
             """,
         )
 
@@ -27,7 +27,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             - `flags`: defaults to `0`
             - `application_info`: defaults to `C_NULL`
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html)
             """,
         )
 
@@ -45,7 +45,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             - `next`: defaults to `C_NULL`
             - `flags`: defaults to `0`
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html)
             """,
         )
     end
@@ -55,7 +55,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             """
             High-level wrapper for VkInstanceCreateInfo.
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html)
             """,
         )
     end
@@ -75,7 +75,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             Arguments:
             - `layer_name`: defaults to `C_NULL`
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html)
             """,
         )
 
@@ -88,7 +88,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             - `device::Device` (externsync)
             - `allocator`: defaults to `C_NULL`
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html)
             """,
         )
 
@@ -109,7 +109,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             !!! warning
                 The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html)
             """,
         )
 
@@ -133,7 +133,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
             - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
             - `stride::Integer`
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html)
             """,
         )
 
@@ -147,7 +147,7 @@ test_doc(obj, doc) = @test Docstring(obj).p[:docstring] == doc
               - `ERROR_OUT_OF_HOST_MEMORY`
               - `ERROR_OUT_OF_DEVICE_MEMORY`
 
-            API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
             """,
         )
     end

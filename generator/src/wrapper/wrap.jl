@@ -29,10 +29,13 @@ struct Constructor{S} <: WrapperNode
     p::Dict
 end
 
-struct Docstring{W<:WrapperNode} <: WrapperNode
+struct Documented{W<:WrapperNode} <: WrapperNode
     def::W
     p::Dict
 end
+
+Documented(def::WrapperNode) = Documented(def, "")
+Documented(def::WrapperNode, doc::AbstractString) = Documented(def, docstring(to_expr(def), doc))
 
 abstract type MethodDefinition <: WrapperNode end
 
@@ -66,7 +69,7 @@ end
 VulkanSpec.has_parent(def::HandleDefinition) = has_parent(def.spec)
 
 to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
-to_expr(def::Union{Docstring, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
+to_expr(def::Union{Documented, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
 
 name(def::WrapperNode) = name(def.p)
 
@@ -193,10 +196,10 @@ function VulkanWrapper(config::WrapperConfig)
             to_expr.(handle_constructors);
             to_expr.(handle_constructors_hl);
             to_expr.(from_vk);
-            to_expr.(Docstring.(structs));
-            to_expr.(Docstring.(structs_hl));
-            to_expr.(Docstring.(handle_constructors));
-            to_expr.(Docstring.(funcs));
+            to_expr.(Documented.(structs));
+            to_expr.(Documented.(structs_hl));
+            to_expr.(Documented.(handle_constructors));
+            to_expr.(Documented.(funcs));
         ],
         Symbol[
             exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs);

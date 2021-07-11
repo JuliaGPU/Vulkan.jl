@@ -1,4 +1,4 @@
-function Docstring(def::StructDefinition{false})
+function Documented(def::StructDefinition{false})
     spec = def.spec
     ext = extension(spec)
     doc = string(
@@ -14,10 +14,10 @@ function Docstring(def::StructDefinition{false})
         API documentation: https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html
         """,
     )
-    Docstring(def, docstring(name(def), doc))
+    Documented(def, docstring(name(def), doc))
 end
 
-function Docstring(def::StructDefinition{true})
+function Documented(def::StructDefinition{true})
     spec = def.spec
     ext = extension(spec)
     doc = string(
@@ -33,12 +33,12 @@ function Docstring(def::StructDefinition{true})
         [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/$(spec.name).html)
         """,
     )
-    Docstring(def, docstring(name(def), doc))
+    Documented(def, docstring(name(def), doc))
 end
 
-function Docstring(def::Constructor{HandleDefinition})
+function Documented(def::Constructor{HandleDefinition})
     doc = string(' '^4, reconstruct_call(def.p), '\n'^2)
-    Docstring(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
+    Documented(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
 end
 
 backquoted(arg) = string('`', arg, '`')
@@ -70,7 +70,7 @@ function append_to_argdoc!(argdocs, spec, str)
     argdocs[i] = concat_right(argdocs[i], str)
 end
 
-function Docstring(def)
+function Documented(def::Union{<:Constructor,<:APIFunction})
     if def isa Constructor
         p = def.p
         def = def.def
@@ -129,7 +129,7 @@ function Docstring(def)
         """,
         extra,
     )
-    Docstring(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
+    Documented(def, docstring(reconstruct_call(def.p, with_typeassert=false), doc))
 end
 
 function document_arguments(p)

@@ -66,7 +66,7 @@ export
     StructDefinition,
     HandleDefinition,
     Constructor,
-    Docstring,
+    Documented,
     MethodDefinition,
     FromVk,
     Convert,
