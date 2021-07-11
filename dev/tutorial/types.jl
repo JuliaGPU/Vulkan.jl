@@ -6,11 +6,11 @@ The API possesses a few data structures that exhibit a different behavior. We li
 
 ## Handles
 
-Handles are opaque pointers to internal Vulkan objects. Almost every handle must be created and destroyed with API commands. Some handles have a parent handle (see [Parent handle access](@ref) for navigating through the resulting handle hierarchy), which *must not* be destroyed before its children. For this we provide wrappers around creation functions with an automatic finalization feature (see [Automatic finalization](@ref)) that uses a simple reference couting system. This alleviates the burden of tracking when a handle can be freed and freeing it, in conformance with the Vulkan specification.
+Handles are opaque pointers to internal Vulkan objects. Almost every handle must be created and destroyed with API commands. Some handles have a parent handle (see [Parent handle access](@ref Parent-handle-access) for navigating through the resulting handle hierarchy), which *must not* be destroyed before its children. For this we provide wrappers around creation functions with an automatic finalization feature (see [Automatic finalization](@ref Automatic-finalization)) that uses a simple reference couting system. This alleviates the burden of tracking when a handle can be freed and freeing it, in conformance with the Vulkan specification.
 Most handles are typically created with a `*CreateInfo` or `*AllocateInfo` structure, that packs creation parameters to be provided to the API creation function. To allow for nice one-liners that don't involve long create info names, [these create info parameters are exposed](@ref expose-create-info-args) in the creation function, automatically building the create info structure for you.
 
 !!! tip
-    Handle types have a constructor defined that wraps around the creation function and automatically unwrap the result (see [Error handling](@ref error-handling)).
+    Handle types have a constructor defined that wraps around the creation function and automatically unwrap the result (see [Error handling](@ref Error-handling)).
 
 
 ### Automatic finalization
@@ -36,7 +36,7 @@ There are exceptions to what is described above. `CommandBuffer`s and `Descripto
 
 Because finalization order is the source of many Vulkan bugs, particularly when objects implicitly depend on other objects being alive, there is a [preference](@ref Preferences) `LOG_DESTRUCTION` that allows you to log all destructions if set to `"true"` for debugging purposes.
 
-### [Exposition of `*[Create/Allocate\]Info` arguments](@id expose-create-info-args)
+### [Exposition of create info arguments](@id expose-create-info-args)
 
 Handles that can only be created with a single API constructor possess an additional constructor that wraps around the generated create/allocate\* functions, building the required \*\[Create/Allocate\]Info from exposed arguments. That way, you do not have to explicitly construct this intermediate structure, which reduces boilerplate code.
 
@@ -76,7 +76,7 @@ fence_signaled = unwrap(
 
 #=
 
-Note that we `unwrap` the result every time, assuming that the `create_fence` function did not return any error. See the [error handling](@ref error-handling) section for more information.
+Note that we `unwrap` the result every time, assuming that the `create_fence` function did not return any error. See the [error handling](@ref Error-handling) section for more information.
 
 Furthermore, handle types have a generated constructor that exposes the same arguments as the create/allocate\* functions, but automatically unwrapping the result so you don't have to call it manually. The above can then be further reduced into
 

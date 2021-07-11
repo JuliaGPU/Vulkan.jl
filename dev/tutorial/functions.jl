@@ -42,7 +42,7 @@ instance = unwrap(create_instance(InstanceCreateInfo([], []); allocator=C_NULL))
 
 #=
 
-Note that the `create_instance` wrapper returns a `ResultTypes.Result` type, so the result must be unwrapped to be used. To know more about `unwrap` and the `Result` type see the [Error handling](@ref error-handling) section.
+Note that the `create_instance` wrapper returns a `ResultTypes.Result` type, so the result must be unwrapped to be used. To know more about `unwrap` and the `Result` type see the [Error handling](@ref Error-handling) section.
 
 When there are multiple implicit return values (i.e. multiple pointers being written to), they are returned as a tuple:
 
