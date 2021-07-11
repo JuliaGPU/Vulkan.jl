@@ -24,7 +24,7 @@ Feel free to check out the official [Vulkan website](https://www.vulkan.org/) fo
 
 SwiftShader is available as a JLL package. You can add it with
 
-```julia
+```julia-repl
 julia> ]add SwiftShader_jll
 ```
 
