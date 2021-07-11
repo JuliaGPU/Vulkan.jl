@@ -3,16 +3,38 @@
         esc(default)
     end
 else
-    using Preferences: @load_preference
+    using Preferences: Preferences, @load_preference
+    set_preferences!(args...; kwargs...) = Preferences.set_preferences!(@__MODULE__, args...; kwargs...)
 end
 
-macro pref_log_destruction(expr)
+macro pref_log_destruction(ex)
     if @load_preference("LOG_DESTRUCTION", "false") == "true"
-        quote
-            @ccall jl_safe_printf($(esc(:("Destroying $handle\n")))::Cstring)::Cvoid
-            $(esc(expr))
+        ex = quote
+            @ccall jl_safe_printf("Finalizing $handle"::Cstring)::Cvoid
+            was_destroyed = $ex
+            msg =
+                was_destroyed ? ":\e[32m destroyed\e[m\n" :
+                ":\e[33m nothing to do\e[m\n"
+            @ccall jl_safe_printf(msg::Cstring)::Cvoid
         end
-    else
-        esc(expr)
     end
+    esc(ex)
+end
+
+macro pref_log_refcount(ex)
+    if @load_preference("LOG_REFCOUNT", "false") == "true"
+        ex = quote
+            val = Int(handle.refcount.value)
+            @ccall jl_safe_printf("Refcount: $handle: $val "::Cstring)::Cvoid
+            $ex
+            val_after = Int(handle.refcount.value)
+            if val_after < val
+                @ccall jl_safe_printf("\e[31m↓\e[m"::Cstring)::Cvoid
+            else
+                @ccall jl_safe_printf("\e[32m↑\e[m"::Cstring)::Cvoid
+            end
+            @ccall jl_safe_printf(" $val_after\n"::Cstring)::Cvoid
+        end
+    end
+    esc(ex)
 end

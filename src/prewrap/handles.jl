@@ -11,13 +11,18 @@ Base.show(io::IO, h::Handle) = print(io, typeof(h), '(', h.vks, ')')
 
 const RefCounter = Threads.Atomic{UInt}
 
-increment_refcount!(handle::Handle) = Threads.atomic_add!(handle.refcount, UInt(1))
-decrement_refcount!(handle::Handle) = Threads.atomic_sub!(handle.refcount, UInt(1))
+function increment_refcount!(handle::Handle)
+    @pref_log_refcount Threads.atomic_add!(handle.refcount, UInt(1))
+end
+
+function decrement_refcount!(handle::Handle)
+    @pref_log_refcount Threads.atomic_sub!(handle.refcount, UInt(1))
+end
 
 function try_destroy(f, handle::Handle, parent)
     decrement_refcount!(handle)
     if iszero(handle.refcount[])
-        @pref_log_destruction f(handle)
+        @pref_log_destruction f(handle) ≠ handle
         if !isnothing(parent)
             parent.destructor()
         end
