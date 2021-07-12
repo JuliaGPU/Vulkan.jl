@@ -106,3 +106,7 @@ function example_enumerate_physical_devices_2(instance)
 end
 
 example_enumerate_physical_devices_2(instance)
+
+# Fortunately, this is automated for you and you can just call
+
+unwrap(enumerate_physical_devices(instance))
