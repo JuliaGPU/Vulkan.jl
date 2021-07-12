@@ -1,4 +1,4 @@
-arg_decl(x::Spec) = :($(wrap_identifier(x))::$(signature_type(nice_julian_type(x))))
+arg_decl(x::Spec) = :($(wrap_identifier(x))::$(signature_type(idiomatic_julia_type(x))))
 
 function kwarg_decl(x::Spec)
     val = default(x)

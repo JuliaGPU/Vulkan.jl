@@ -15,6 +15,6 @@ const FunctionPtr = Union{Ptr{Cvoid}, Base.CFunction}
 const OptionalPtr{T} = Union{T, Ptr{Cvoid}}
 
 """
-High-level structure with Julian types.
+High-level structure with idiomatic Julia types.
 """
 abstract type HighLevelStruct end

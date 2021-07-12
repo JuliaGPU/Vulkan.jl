@@ -81,7 +81,7 @@ struct SpecFuncParam <: Spec
     func::Symbol
     "Identifier."
     name::Symbol
-    "Expression of its Julian type."
+    "Expression of its idiomatic Julia type."
     type::ExprLike
     "If constant, cannot be mutated by Vulkan functions."
     is_constant::Bool
@@ -125,7 +125,7 @@ struct SpecStructMember <: Spec
     parent::Symbol
     "Identifier."
     name::Symbol
-    "Expression of its Julian type."
+    "Expression of its idiomatic Julia type."
     type::ExprLike
     "If constant, cannot be mutated by Vulkan functions."
     is_constant::Bool

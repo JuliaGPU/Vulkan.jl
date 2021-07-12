@@ -1,6 +1,6 @@
 function from_vk_call(x::Spec)
     prop = :(x.$(x.name))
-    jtype = nice_julian_type(x)
+    jtype = idiomatic_julia_type(x)
     @match x begin
 
         # array pointer
@@ -24,14 +24,14 @@ function from_vk_call(prop, jtype, t)
         if follow_constant(t) == jtype
         end => prop
         :(NTuple{$N,$T}) && if is_vulkan_type(T)
-        end => broadcast_ex(from_vk_call(prop, nice_julian_type(T), T))
+        end => broadcast_ex(from_vk_call(prop, idiomatic_julia_type(T), T))
         _ => :(from_vk($jtype, $prop))
     end
 end
 
 function vk_call(x::Spec)
     var = wrap_identifier(x.name)
-    jtype = nice_julian_type(x)
+    jtype = idiomatic_julia_type(x)
     @match x begin
         ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(structure_types)
         end => structure_types[parent(x)]

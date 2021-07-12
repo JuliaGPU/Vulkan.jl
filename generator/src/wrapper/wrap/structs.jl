@@ -7,7 +7,7 @@ function StructDefinition{false}(spec::SpecStruct)
         ),
     )
     if spec.is_returnedonly
-        p[:fields] = map(x -> :($(wrap_identifier(x))::$(nice_julian_type(x))), children(spec))
+        p[:fields] = map(x -> :($(wrap_identifier(x))::$(idiomatic_julia_type(x))), children(spec))
     else
         p[:fields] = [:(vks::$(spec.name))]
         needs_deps(spec) && push!(p[:fields], :(deps::Vector{Any}))

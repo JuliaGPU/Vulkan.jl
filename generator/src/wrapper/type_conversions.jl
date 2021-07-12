@@ -37,7 +37,7 @@ function hl_type(type)
     end
 end
 
-function nice_julian_type(type)
+function idiomatic_julia_type(type)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
         GuardBy(is_opaque_pointer) => t
@@ -47,11 +47,11 @@ function nice_julian_type(type)
                 ::Symbol => :(Int($N))
                 _ => N
             end
-            :(NTuple{$_N,$(nice_julian_type(T))})
+            :(NTuple{$_N,$(idiomatic_julia_type(T))})
         end
         :Cstring => :String
         :VkBool32 => :Bool
-        :(Ptr{$pt}) => nice_julian_type(pt)
+        :(Ptr{$pt}) => idiomatic_julia_type(pt)
         GuardBy(in([spec_structs.name; spec_unions.name])) => struct_name(t)
         GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
         GuardBy(in(spec_enums.name)) => enum_type(t)
@@ -66,12 +66,12 @@ end
 """
 Return a new type easier to deal with.
 """
-function nice_julian_type(spec::Spec)
+function idiomatic_julia_type(spec::Spec)
     @match s = spec begin
         GuardBy(is_version) => :VersionNumber
-        GuardBy(is_arr) => :(Vector{$(nice_julian_type(ptr_type(s.type)))})
+        GuardBy(is_arr) => :(Vector{$(idiomatic_julia_type(ptr_type(s.type)))})
         GuardBy(is_data) => :(Ptr{Cvoid})
-        _ => nice_julian_type(s.type)
+        _ => idiomatic_julia_type(s.type)
     end
 end
 

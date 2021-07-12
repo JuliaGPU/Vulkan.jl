@@ -102,6 +102,6 @@ function supertype_union(type, is_high_level)
         :UInt8 || :UInt16 || :UInt32 || :UInt64 => :Unsigned
         :Int8 || :Int16 || :Int32 || :Int64 => :Signed
         :Float8 || :Float16 || :Float32 || :Float64 => :AbstractFloat
-        _ => is_high_level ? hl_type(type) : nice_julian_type(type)
+        _ => is_high_level ? hl_type(type) : idiomatic_julia_type(type)
     end
 end

@@ -8,7 +8,7 @@ function wrap_api_call(spec::SpecFunc, args; with_func_ptr = false)
     wrap_return(
         ex,
         spec.return_type,
-        nice_julian_type(spec.return_type),
+        idiomatic_julia_type(spec.return_type),
     )
 end
 
@@ -93,12 +93,12 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
 
         ret_type = @match length(queried_params) begin
             if any(is_data_with_retrievable_size, queried_params)
-            end => Expr(:curly, :Tuple, nice_julian_type.([unique(len.(queried_params)); queried_params])...)
-            1 => nice_julian_type(first(queried_params))
+            end => Expr(:curly, :Tuple, idiomatic_julia_type.([unique(len.(queried_params)); queried_params])...)
+            1 => idiomatic_julia_type(first(queried_params))
             _ => Expr(
                 :curly,
                 :Tuple,
-                (nice_julian_type(param) for param ∈ queried_params)...,
+                (idiomatic_julia_type(param) for param ∈ queried_params)...,
             )
         end
     elseif !isempty(queried_params)
@@ -116,8 +116,8 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
         args = filter(!in(filter(x -> x.requirement ≠ POINTER_REQUIRED, queried_params)), children(spec))
 
         ret_type = @match length(queried_params) begin
-            1 => nice_julian_type(first(queried_params))
-            _ => Expr(:curly, :Tuple, (nice_julian_type(param) for param ∈ queried_params)...)
+            1 => idiomatic_julia_type(first(queried_params))
+            _ => Expr(:curly, :Tuple, (idiomatic_julia_type(param) for param ∈ queried_params)...)
         end
     else
         p[:short] = true
@@ -125,7 +125,7 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
 
         args = children(spec)
 
-        ret_type = nice_julian_type(spec.return_type)
+        ret_type = idiomatic_julia_type(spec.return_type)
     end
 
     add_func_args!(p, spec, args; with_func_ptr)

@@ -5,7 +5,7 @@ wrap_return(ex, type, jtype) = @match t = type begin
     GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex)) # call handle constructor
     GuardBy(in(spec_enums.name)) => ex # don't change enumeration variables since they won't be wrapped under a new name
     if is_fn_ptr(type) || follow_constant(type) == jtype || innermost_type(type) ∈ spec_flags.name
-    end => ex # Vulkan and Julian types are the same (up to aliases)
+    end => ex # Vulkan and idiomatic Julia types are the same (up to aliases)
     _ => :(from_vk($jtype, $ex)) # fall back to the from_vk function for conversion
 end
 
@@ -29,7 +29,7 @@ function _wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = fals
     ex = @match p begin
 
         # array pointer
-        GuardBy(is_arr) => @match ex = wrap_return(p.name, pt, innermost_type((nice_julian_type(p)))) begin
+        GuardBy(is_arr) => @match ex = wrap_return(p.name, pt, innermost_type((idiomatic_julia_type(p)))) begin
             ::Symbol => ex
             ::Expr => broadcast_ex(ex) # broadcast result
         end
@@ -41,7 +41,7 @@ function _wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = fals
             @assert is_size(size)
             :($(size.name)[], $(p.name))
         end
-        _ => wrap_return(:($(p.name)[]), pt, innermost_type((nice_julian_type(p)))) # call return_expr on the dereferenced pointer
+        _ => wrap_return(:($(p.name)[]), pt, innermost_type((idiomatic_julia_type(p)))) # call return_expr on the dereferenced pointer
     end
 
     @match p begin
