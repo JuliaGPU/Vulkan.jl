@@ -7,6 +7,7 @@ The API possesses a few data structures that exhibit a different behavior. We li
 ## Handles
 
 Handles are opaque pointers to internal Vulkan objects. Almost every handle must be created and destroyed with API commands. Some handles have a parent handle (see [Parent handle access](@ref Parent-handle-access) for navigating through the resulting handle hierarchy), which *must not* be destroyed before its children. For this we provide wrappers around creation functions with an automatic finalization feature (see [Automatic finalization](@ref Automatic-finalization)) that uses a simple reference couting system. This alleviates the burden of tracking when a handle can be freed and freeing it, in conformance with the Vulkan specification.
+
 Most handles are typically created with a `*CreateInfo` or `*AllocateInfo` structure, that packs creation parameters to be provided to the API creation function. To allow for nice one-liners that don't involve long create info names, [these create info parameters are exposed](@ref expose-create-info-args) in the creation function, automatically building the create info structure for you.
 
 !!! tip
@@ -35,6 +36,8 @@ This introduces a small overhead, since the parent handle and allocator are stor
 There are exceptions to what is described above. `CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations. Please note also that, except for these two handle types, you should **never** explicitly call the destructors, otherwise they will be destroyed twice, likely resulting in a crash.
 
 Because finalization order is the source of many Vulkan bugs, particularly when objects implicitly depend on other objects being alive, there is a [preference](@ref Preferences) `LOG_DESTRUCTION` that allows you to log all destructions if set to `"true"` for debugging purposes.
+
+Finalizers [can be run with](https://docs.julialang.org/en/v1/base/base/#Base.finalize) `finalize(handle)`, which may be useful in situations where you want to free an object without waiting for finalizers to be triggered by the Julia runtime. This can be done safely: the finalizers won't run twice if you run them manually.
 
 ### [Exposition of create info arguments](@id expose-create-info-args)
 
@@ -116,9 +119,17 @@ command_buffers = unwrap(
 
 ### Parent handle access
 
-Handles store their parent handle if they have one. This removes the need to have giant structures or global variables to store your handles. The user can, e.g., just carry a `Pipeline` around and access its `device` field whenever he like, and the `physical_device` field of this device and so on until you reach the instance that has no parent. That way, it is not necessary to keep all the other parent handles in scope (e.g. `Device` and `Instance` handles) to make an API call.
+Handles store their parent handle if they have one. For example, it is possible to just carry a `Pipeline` around and access its `device` field whenever you like, and the `physical_device` field of this device and so on until you reach the instance that has no parent. That way, it is not necessary to keep all the other parent handles in scope (e.g. `Device` and `Instance` handles) to make an API call.
 
-`Base.parent` was extended to work on handles that possess a parent handle.
+=#
+
+command_pool.device.physical_device.instance
+
+# `Base.parent` was extended to work on handles that possess a parent handle.
+
+parent(device) == device.physical_device == physical_device
+
+#=
 
 
 ## Structures
