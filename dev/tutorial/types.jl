@@ -125,7 +125,7 @@ Handles store their parent handle if they have one. This removes the need to hav
 
 Vulkan structures, such as `Extent2D`, `InstanceCreateInfo` and `PhysicalDeviceFeatures` were wrapped into two different structures each.
 
-First, there are high-level-ish structures that are easier to work with, replacing C types by Julian types. The user will almost never need to worry about pointers, and will be able to use types such as Julia arrays, strings and version numbers in a transparent manner. All the data is stored in its fields, and is accessible just like you would expect from a Julia structure.
+First, there are high-level-ish structures that are easier to work with, replacing C types by idiomatic Julia types. The user will almost never need to worry about pointers, and will be able to use types such as Julia arrays, strings and version numbers in a transparent manner. All the data is stored in its fields, and is accessible just like you would expect from a Julia structure.
 
 However, storing data and converting it to a C-compatible format for API calls introduce some overhead for these high-level structures. It will not matter in non performance-critical sections, but may be a limitation in tight loops. Therefore, lower-level, minimalistic types are available, which only carry the smallest possible amount of information needed to use the API. Although they can be created very similarly to high-level structures, the high-level arguments are directly converted to their C-compatible counterpart. The main drawback is a lack of introspection, since these minimalistic structures carry C types, so these structures are badly suited to keeping data around. Minimalistic structures are not defined for types that are only returned and never requested by Vulkan, such as `ExtensionProperties`.
 
@@ -164,7 +164,7 @@ The only exception currently is for functions that would have the same low-level
 
 ### Conversion
 
-In Vulkan, version numbers are `UInt32` with a special encoding to extract major, minor and patch numbers, booleans are represented as `UInt32` values, `String`s as `Ptr{UInt8}` or `NTuple{N, UInt8}`. Those types have a natural counterpart in Julia, being respectively `VersionNumber`, `Bool` and `String` types. The wrapper makes it possible to work with these Julian types, automatically converting them wherever necessary.
+In Vulkan, version numbers are `UInt32` with a special encoding to extract major, minor and patch numbers, booleans are represented as `UInt32` values, `String`s as `Ptr{UInt8}` or `NTuple{N, UInt8}`. Those types have a natural counterpart in Julia, being respectively `VersionNumber`, `Bool` and `String` types. The wrapper makes it possible to work with these idiomatic Julia types, automatically converting them wherever necessary.
 
 ### Automatic insertion of inferable arguments
 
