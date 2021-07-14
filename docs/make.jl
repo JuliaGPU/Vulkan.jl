@@ -43,7 +43,7 @@ makedocs(;
             "Vulkan functions" => "tutorial/functions.md",
             "Error handling" => "tutorial/error_handling.md",
             "Resource management" => "tutorial/resource_management.md",
-            "Dispatch" => "tutorial/dispatch.jl",
+            "Dispatch" => "tutorial/dispatch.md",
             "In-depth tutorial" => "tutorial/indepth.md",
         ],
         "How to" => [
