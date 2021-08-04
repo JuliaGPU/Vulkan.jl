@@ -340,8 +340,8 @@ function arglen(node::Node; neighbor_type = "param")
 end
 
 is_arr(spec::Union{SpecStructMember,SpecFuncParam}) = has_length(spec) && innermost_type(spec.type) ≠ :Cvoid
-is_length(spec::Union{SpecStructMember,SpecFuncParam}) = !isempty(spec.arglen) && !endswith(string(spec.name), "Size")
-is_size(spec::Union{SpecStructMember,SpecFuncParam}) = !isempty(spec.arglen) && endswith(string(spec.name), "Size")
+is_length(spec::Union{SpecStructMember,SpecFuncParam}) = !isempty(spec.arglen) && !is_size(spec)
+is_size(spec::Union{SpecStructMember,SpecFuncParam}) = !isempty(spec.arglen) && endswith(string(spec.name), r"[sS]ize")
 has_length(spec::Union{SpecStructMember,SpecFuncParam}) = !isnothing(spec.len)
 has_computable_length(spec::Union{SpecStructMember,SpecFuncParam}) =
     !spec.is_constant && spec.requirement == POINTER_REQUIRED && is_arr(spec)

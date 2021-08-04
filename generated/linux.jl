@@ -33062,19 +33062,20 @@ Arguments:
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer; flags = 0)::Cvoid = @dispatch(device(command_buffer), vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags))
 
 """
-    cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})::Cvoid
+    cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, size::Integer, values::Ptr{Cvoid})::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `layout::PipelineLayout`
 - `stage_flags::ShaderStageFlag`
 - `offset::Integer`
+- `size::Integer`
 - `values::Ptr{Cvoid}` (must be a valid pointer with `size` bytes)
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushConstants.html)
 
 """
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid})::Cvoid = @dispatch(device(command_buffer), vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), values))
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, size::Integer, values::Ptr{Cvoid})::Cvoid = @dispatch(device(command_buffer), vkCmdPushConstants(command_buffer, layout, stage_flags, offset, size, values))
 
 """
     cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::SubpassContents)::Cvoid
@@ -40390,20 +40391,21 @@ Arguments:
 cmd_copy_query_pool_results(command_buffer::CommandBuffer, query_pool::QueryPool, first_query::Integer, query_count::Integer, dst_buffer::Buffer, dst_offset::Integer, stride::Integer, fptr::FunctionPtr; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fptr)
 
 """
-    cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fptr::FunctionPtr)::Cvoid
+    cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, size::Integer, values::Ptr{Cvoid}, fptr::FunctionPtr)::Cvoid
 
 Arguments:
 - `command_buffer::CommandBuffer` (externsync)
 - `layout::PipelineLayout`
 - `stage_flags::ShaderStageFlag`
 - `offset::Integer`
+- `size::Integer`
 - `values::Ptr{Cvoid}` (must be a valid pointer with `size` bytes)
 - `fptr::FunctionPtr`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdPushConstants.html)
 
 """
-cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, values::Ptr{Cvoid}, fptr::FunctionPtr)::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, pointer_length(values), values, fptr)
+cmd_push_constants(command_buffer::CommandBuffer, layout::PipelineLayout, stage_flags::ShaderStageFlag, offset::Integer, size::Integer, values::Ptr{Cvoid}, fptr::FunctionPtr)::Cvoid = vkCmdPushConstants(command_buffer, layout, stage_flags, offset, size, values, fptr)
 
 """
     cmd_begin_render_pass(command_buffer::CommandBuffer, render_pass_begin::_RenderPassBeginInfo, contents::SubpassContents, fptr::FunctionPtr)::Cvoid
