@@ -18,3 +18,5 @@ const OptionalPtr{T} = Union{T, Ptr{Cvoid}}
 High-level structure with idiomatic Julia types.
 """
 abstract type HighLevelStruct end
+
+Base.broadcastable(x::HighLevelStruct) = Ref(x)
