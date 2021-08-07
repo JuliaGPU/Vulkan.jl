@@ -16,7 +16,13 @@ Most handles are typically created with a `*CreateInfo` or `*AllocateInfo` struc
 
 ### Automatic finalization
 
-Handles can be created with the API functions `vkCreate*` and `vkAllocate*`, and most of them must be destroyed after use with a `vkDestroy*` or `vkFree*`. More importantly, they must be destroyed with the same allocator and parent handle that created them. To facilitate this, new mutable handle types were defined to allow for the registration of a finalizer. Instead of having to manually specify the finalizer for each handle instance, the `create_*` and `allocate_*` wrappers automatically register the corresponding destructor.
+Handles can be created with the API functions `vkCreate*` and `vkAllocate*`, and most of them must be destroyed after use with a `vkDestroy*` or `vkFree*`. More importantly, they must be destroyed with the same allocator and parent handle that created them. To automate this, new mutable handle types were defined to allow for the registration of a [finalizer](https://docs.julialang.org/en/v1/base/base/#Base.finalizer). The `create_*` and `allocate_*` wrappers automatically register the corresponding destructor in a finalizer, so that you don't need to worry about destructors (except for `CommandBuffer`s and `DescriptorSet`s, see below). A handle's finalizer, and therefore its API destructor, will execute when there are no program-accessible references to this handle.
+
+`CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations.
+
+Therefore, you should **never** explicitly call a destructor (`destroy_*` or `free_*`) except for `CommandBuffer` and `DescriptorSet`. Otherwise objects will be destroyed/freed twice, likely resulting in a crash.
+
+Finalizers [can be run with](https://docs.julialang.org/en/v1/base/base/#Base.finalize) `finalize(handle)`, which may be useful in situations where you want to free an object without waiting for finalizers to be triggered by the Julia runtime. This can be done safely: the finalizers won't run twice if you run them manually.
 
 However, finalizers can be run in arbitrary order, and some handles require to be destroyed only after all their children (such as `VkDevice`s). To avoid crashes related to bad finalization execution order, a simple thread-safe reference counting system is used to make sure that a handle is destroyed **only after all its children are destroyed**.
 
@@ -33,11 +39,7 @@ However, finalizers can be run in arbitrary order, and some handles require to b
 
 This introduces a small overhead, since the parent handle and allocator are stored in an anonymous function for each handle at creation. However, it should be minor compared to the execution time of the API destructors.
 
-There are exceptions to what is described above. `CommandBuffer`s and `DescriptorSet`s do not register any destructor and are never implicitly freed. You will have to explicitly free those resources yourself with `free_command_buffers` and `free_descriptor_sets` respectively. The reason for that is that they are supposed to be freed in batches for performance considerations. Please note also that, except for these two handle types, you should **never** explicitly call the destructors, otherwise they will be destroyed twice, likely resulting in a crash.
-
 Because finalization order is the source of many Vulkan bugs, particularly when objects implicitly depend on other objects being alive, there is a [preference](@ref Preferences) `LOG_DESTRUCTION` that allows you to log all destructions if set to `"true"` for debugging purposes.
-
-Finalizers [can be run with](https://docs.julialang.org/en/v1/base/base/#Base.finalize) `finalize(handle)`, which may be useful in situations where you want to free an object without waiting for finalizers to be triggered by the Julia runtime. This can be done safely: the finalizers won't run twice if you run them manually.
 
 ### [Exposition of create info arguments](@id expose-create-info-args)
 
