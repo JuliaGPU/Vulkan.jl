@@ -1,4 +1,8 @@
-arg_decl(x::Spec) = :($(wrap_identifier(x))::$(signature_type(idiomatic_julia_type(x))))
+function arg_decl(x::Spec)
+    T = idiomatic_julia_type(x)
+    T in struct_name.(spec_handles, true) && return wrap_identifier(x)
+    :($(wrap_identifier(x))::$(signature_type(T)))
+end
 
 function kwarg_decl(x::Spec)
     val = default(x)
@@ -46,7 +50,7 @@ function add_func_args!(p::Dict, spec, params; with_func_ptr = false)
         !is_optional
     end
 
-    p[:args] = map(arg_decl, filter(arg_filter, params))
+    p[:args] = convert(Vector{ExprLike}, map(arg_decl, filter(arg_filter, params)))
     p[:kwargs] = map(kwarg_decl, filter(!arg_filter, params))
 
     with_func_ptr && append!(p[:args], func_ptr_args(spec))

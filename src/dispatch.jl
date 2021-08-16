@@ -9,6 +9,7 @@ APIDispatcher() = APIDispatcher(Dict(), Dict(), Dict(), ReentrantLock())
 
 table(disp::APIDispatcher, ::Nothing) = disp.global_table
 table(disp::APIDispatcher, ::Instance) = disp.instance_table
+table(disp::APIDispatcher, x) = table(disp, handle(x))
 
 function table(disp::APIDispatcher, device::Device)
     get!(disp.device_tables, device, Dict())

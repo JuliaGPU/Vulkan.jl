@@ -9,6 +9,8 @@ Base.hash(handle::Handle, h::UInt) = hash(handle.vks, h)
 
 Base.show(io::IO, h::Handle) = print(io, typeof(h), '(', h.vks, ')')
 
+handle(h::Handle) = h
+
 const RefCounter = Threads.Atomic{UInt}
 
 function increment_refcount!(handle::Handle)
@@ -38,7 +40,8 @@ function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor)
     init_handle!(T(ptr, RefCounter(UInt(1))), destructor)
 end
 
-function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent::Handle)
+function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent)
+    parent = handle(parent)
     increment_refcount!(parent)
     init_handle!(T(ptr, parent, RefCounter(UInt(1))), destructor, parent)
 end

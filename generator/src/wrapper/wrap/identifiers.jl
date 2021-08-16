@@ -32,6 +32,7 @@ end
 
 function wrap_identifier(spec::SpecHandle)
     # try to get an id from an existing function parameter
+    spec.name == :VkDeferredOperationKHR && return :operation
     cfs = create_funcs(spec)
     id = nothing
     if !isempty(cfs)
