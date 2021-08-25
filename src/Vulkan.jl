@@ -7,6 +7,7 @@ module Vulkan
 
 using Reexport
 using DocStringExtensions
+using AutoHashEquals: @auto_hash_equals
 
 using VulkanCore: vk
 using .vk

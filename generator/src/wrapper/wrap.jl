@@ -70,6 +70,7 @@ VulkanSpec.has_parent(def::HandleDefinition) = has_parent(def.spec)
 
 to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
 to_expr(def::Union{Documented, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
+to_expr(def::StructDefinition{true,<:SpecStruct}) = :(@auto_hash_equals $(resolve_types(to_expr(def.p))))
 
 documented(def::WrapperNode) = to_expr(Documented(def))
 

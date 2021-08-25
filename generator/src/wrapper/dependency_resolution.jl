@@ -22,7 +22,11 @@ end
 function raw_dependencies(ex)
     p = deconstruct(ex)
     deps = @match category(ex) begin
-        :struct => field_deps.(p[:fields])
+        :struct => begin
+            # handle structs wrapped with @auto_hash_equals
+            p = haskey(p, :macro) ? deconstruct(p[:decl]) : p
+            field_deps.(p[:fields])
+        end
         :function => vcat(map.(Ref(@λ(begin
             :($arg::$type) => inner_type(type)
             :(::$type) => inner_type(type)

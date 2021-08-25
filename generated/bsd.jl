@@ -5220,11 +5220,11 @@ Extension: VK\\_EXT\\_provoking\\_vertex
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html)
 
 """
-struct PhysicalDeviceProvokingVertexFeaturesEXT <: HighLevelStruct
-    next::Any
-    provoking_vertex_last::Bool
-    transform_feedback_preserves_provoking_vertex::Bool
-end
+@auto_hash_equals struct PhysicalDeviceProvokingVertexFeaturesEXT <: HighLevelStruct
+        next::Any
+        provoking_vertex_last::Bool
+        transform_feedback_preserves_provoking_vertex::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.
@@ -5234,10 +5234,10 @@ Extension: VK\\_EXT\\_ycbcr\\_2plane\\_444\\_formats
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.html)
 
 """
-struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT <: HighLevelStruct
-    next::Any
-    ycbcr_444_formats::Bool
-end
+@auto_hash_equals struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT <: HighLevelStruct
+        next::Any
+        ycbcr_444_formats::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceInheritedViewportScissorFeaturesNV.
@@ -5247,10 +5247,10 @@ Extension: VK\\_NV\\_inherited\\_viewport\\_scissor
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html)
 
 """
-struct PhysicalDeviceInheritedViewportScissorFeaturesNV <: HighLevelStruct
-    next::Any
-    inherited_viewport_scissor_2_d::Bool
-end
+@auto_hash_equals struct PhysicalDeviceInheritedViewportScissorFeaturesNV <: HighLevelStruct
+        next::Any
+        inherited_viewport_scissor_2_d::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceSynchronization2FeaturesKHR.
@@ -5260,10 +5260,10 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSynchronization2FeaturesKHR.html)
 
 """
-struct PhysicalDeviceSynchronization2FeaturesKHR <: HighLevelStruct
-    next::Any
-    synchronization2::Bool
-end
+@auto_hash_equals struct PhysicalDeviceSynchronization2FeaturesKHR <: HighLevelStruct
+        next::Any
+        synchronization2::Bool
+    end
 
 """
 High-level wrapper for VkMemoryBarrier2KHR.
@@ -5273,13 +5273,13 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier2KHR.html)
 
 """
-struct MemoryBarrier2KHR <: HighLevelStruct
-    next::Any
-    src_stage_mask::UInt64
-    src_access_mask::UInt64
-    dst_stage_mask::UInt64
-    dst_access_mask::UInt64
-end
+@auto_hash_equals struct MemoryBarrier2KHR <: HighLevelStruct
+        next::Any
+        src_stage_mask::UInt64
+        src_access_mask::UInt64
+        dst_stage_mask::UInt64
+        dst_access_mask::UInt64
+    end
 
 """
 High-level wrapper for VkPipelineColorWriteCreateInfoEXT.
@@ -5289,10 +5289,10 @@ Extension: VK\\_EXT\\_color\\_write\\_enable
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorWriteCreateInfoEXT.html)
 
 """
-struct PipelineColorWriteCreateInfoEXT <: HighLevelStruct
-    next::Any
-    color_write_enables::Vector{Bool}
-end
+@auto_hash_equals struct PipelineColorWriteCreateInfoEXT <: HighLevelStruct
+        next::Any
+        color_write_enables::Vector{Bool}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceColorWriteEnableFeaturesEXT.
@@ -5302,10 +5302,10 @@ Extension: VK\\_EXT\\_color\\_write\\_enable
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceColorWriteEnableFeaturesEXT.html)
 
 """
-struct PhysicalDeviceColorWriteEnableFeaturesEXT <: HighLevelStruct
-    next::Any
-    color_write_enable::Bool
-end
+@auto_hash_equals struct PhysicalDeviceColorWriteEnableFeaturesEXT <: HighLevelStruct
+        next::Any
+        color_write_enable::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.
@@ -5315,10 +5315,10 @@ Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.html)
 
 """
-struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT <: HighLevelStruct
-    next::Any
-    vertex_input_dynamic_state::Bool
-end
+@auto_hash_equals struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT <: HighLevelStruct
+        next::Any
+        vertex_input_dynamic_state::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.
@@ -5328,10 +5328,10 @@ Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.html)
 
 """
-struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE <: HighLevelStruct
-    next::Any
-    mutable_descriptor_type::Bool
-end
+@auto_hash_equals struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE <: HighLevelStruct
+        next::Any
+        mutable_descriptor_type::Bool
+    end
 
 """
 High-level wrapper for VkAccelerationStructureBuildSizesInfoKHR.
@@ -5341,12 +5341,12 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildSizesInfoKHR.html)
 
 """
-struct AccelerationStructureBuildSizesInfoKHR <: HighLevelStruct
-    next::Any
-    acceleration_structure_size::UInt64
-    update_scratch_size::UInt64
-    build_scratch_size::UInt64
-end
+@auto_hash_equals struct AccelerationStructureBuildSizesInfoKHR <: HighLevelStruct
+        next::Any
+        acceleration_structure_size::UInt64
+        update_scratch_size::UInt64
+        build_scratch_size::UInt64
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.
@@ -5356,12 +5356,12 @@ Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html)
 
 """
-struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV <: HighLevelStruct
-    next::Any
-    fragment_shading_rate_enums::Bool
-    supersample_fragment_shading_rates::Bool
-    no_invocation_fragment_shading_rates::Bool
-end
+@auto_hash_equals struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV <: HighLevelStruct
+        next::Any
+        fragment_shading_rate_enums::Bool
+        supersample_fragment_shading_rates::Bool
+        no_invocation_fragment_shading_rates::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.
@@ -5371,10 +5371,10 @@ Extension: VK\\_KHR\\_shader\\_terminate\\_invocation
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR.html)
 
 """
-struct PhysicalDeviceShaderTerminateInvocationFeaturesKHR <: HighLevelStruct
-    next::Any
-    shader_terminate_invocation::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderTerminateInvocationFeaturesKHR <: HighLevelStruct
+        next::Any
+        shader_terminate_invocation::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShadingRateFeaturesKHR.
@@ -5384,12 +5384,12 @@ Extension: VK\\_KHR\\_fragment\\_shading\\_rate
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html)
 
 """
-struct PhysicalDeviceFragmentShadingRateFeaturesKHR <: HighLevelStruct
-    next::Any
-    pipeline_fragment_shading_rate::Bool
-    primitive_fragment_shading_rate::Bool
-    attachment_fragment_shading_rate::Bool
-end
+@auto_hash_equals struct PhysicalDeviceFragmentShadingRateFeaturesKHR <: HighLevelStruct
+        next::Any
+        pipeline_fragment_shading_rate::Bool
+        primitive_fragment_shading_rate::Bool
+        attachment_fragment_shading_rate::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.
@@ -5399,11 +5399,11 @@ Extension: VK\\_EXT\\_shader\\_image\\_atomic\\_int64
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.html)
 
 """
-struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT <: HighLevelStruct
-    next::Any
-    shader_image_int_64_atomics::Bool
-    sparse_image_int_64_atomics::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT <: HighLevelStruct
+        next::Any
+        shader_image_int_64_atomics::Bool
+        sparse_image_int_64_atomics::Bool
+    end
 
 """
 High-level wrapper for VkBufferCopy2KHR.
@@ -5413,12 +5413,12 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy2KHR.html)
 
 """
-struct BufferCopy2KHR <: HighLevelStruct
-    next::Any
-    src_offset::UInt64
-    dst_offset::UInt64
-    size::UInt64
-end
+@auto_hash_equals struct BufferCopy2KHR <: HighLevelStruct
+        next::Any
+        src_offset::UInt64
+        dst_offset::UInt64
+        size::UInt64
+    end
 
 """
 High-level wrapper for VkPhysicalDevice4444FormatsFeaturesEXT.
@@ -5428,11 +5428,11 @@ Extension: VK\\_EXT\\_4444\\_formats
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice4444FormatsFeaturesEXT.html)
 
 """
-struct PhysicalDevice4444FormatsFeaturesEXT <: HighLevelStruct
-    next::Any
-    format_a4r4g4b4::Bool
-    format_a4b4g4r4::Bool
-end
+@auto_hash_equals struct PhysicalDevice4444FormatsFeaturesEXT <: HighLevelStruct
+        next::Any
+        format_a4r4g4b4::Bool
+        format_a4b4g4r4::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.
@@ -5442,13 +5442,13 @@ Extension: VK\\_KHR\\_workgroup\\_memory\\_explicit\\_layout
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.html)
 
 """
-struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR <: HighLevelStruct
-    next::Any
-    workgroup_memory_explicit_layout::Bool
-    workgroup_memory_explicit_layout_scalar_block_layout::Bool
-    workgroup_memory_explicit_layout_8_bit_access::Bool
-    workgroup_memory_explicit_layout_16_bit_access::Bool
-end
+@auto_hash_equals struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR <: HighLevelStruct
+        next::Any
+        workgroup_memory_explicit_layout::Bool
+        workgroup_memory_explicit_layout_scalar_block_layout::Bool
+        workgroup_memory_explicit_layout_8_bit_access::Bool
+        workgroup_memory_explicit_layout_16_bit_access::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceImageRobustnessFeaturesEXT.
@@ -5458,10 +5458,10 @@ Extension: VK\\_EXT\\_image\\_robustness
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageRobustnessFeaturesEXT.html)
 
 """
-struct PhysicalDeviceImageRobustnessFeaturesEXT <: HighLevelStruct
-    next::Any
-    robust_image_access::Bool
-end
+@auto_hash_equals struct PhysicalDeviceImageRobustnessFeaturesEXT <: HighLevelStruct
+        next::Any
+        robust_image_access::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceRobustness2FeaturesEXT.
@@ -5471,12 +5471,12 @@ Extension: VK\\_EXT\\_robustness2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRobustness2FeaturesEXT.html)
 
 """
-struct PhysicalDeviceRobustness2FeaturesEXT <: HighLevelStruct
-    next::Any
-    robust_buffer_access_2::Bool
-    robust_image_access_2::Bool
-    null_descriptor::Bool
-end
+@auto_hash_equals struct PhysicalDeviceRobustness2FeaturesEXT <: HighLevelStruct
+        next::Any
+        robust_buffer_access_2::Bool
+        robust_image_access_2::Bool
+        null_descriptor::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.
@@ -5486,10 +5486,10 @@ Extension: VK\\_KHR\\_zero\\_initialize\\_workgroup\\_memory
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR.html)
 
 """
-struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR <: HighLevelStruct
-    next::Any
-    shader_zero_initialize_workgroup_memory::Bool
-end
+@auto_hash_equals struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR <: HighLevelStruct
+        next::Any
+        shader_zero_initialize_workgroup_memory::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceDiagnosticsConfigFeaturesNV.
@@ -5499,10 +5499,10 @@ Extension: VK\\_NV\\_device\\_diagnostics\\_config
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html)
 
 """
-struct PhysicalDeviceDiagnosticsConfigFeaturesNV <: HighLevelStruct
-    next::Any
-    diagnostics_config::Bool
-end
+@auto_hash_equals struct PhysicalDeviceDiagnosticsConfigFeaturesNV <: HighLevelStruct
+        next::Any
+        diagnostics_config::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.
@@ -5512,12 +5512,12 @@ Extension: VK\\_EXT\\_extended\\_dynamic\\_state2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html)
 
 """
-struct PhysicalDeviceExtendedDynamicState2FeaturesEXT <: HighLevelStruct
-    next::Any
-    extended_dynamic_state_2::Bool
-    extended_dynamic_state_2_logic_op::Bool
-    extended_dynamic_state_2_patch_control_points::Bool
-end
+@auto_hash_equals struct PhysicalDeviceExtendedDynamicState2FeaturesEXT <: HighLevelStruct
+        next::Any
+        extended_dynamic_state_2::Bool
+        extended_dynamic_state_2_logic_op::Bool
+        extended_dynamic_state_2_patch_control_points::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.
@@ -5527,10 +5527,10 @@ Extension: VK\\_EXT\\_extended\\_dynamic\\_state
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html)
 
 """
-struct PhysicalDeviceExtendedDynamicStateFeaturesEXT <: HighLevelStruct
-    next::Any
-    extended_dynamic_state::Bool
-end
+@auto_hash_equals struct PhysicalDeviceExtendedDynamicStateFeaturesEXT <: HighLevelStruct
+        next::Any
+        extended_dynamic_state::Bool
+    end
 
 """
 High-level wrapper for VkRayTracingPipelineInterfaceCreateInfoKHR.
@@ -5540,11 +5540,11 @@ Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineInterfaceCreateInfoKHR.html)
 
 """
-struct RayTracingPipelineInterfaceCreateInfoKHR <: HighLevelStruct
-    next::Any
-    max_pipeline_ray_payload_size::UInt32
-    max_pipeline_ray_hit_attribute_size::UInt32
-end
+@auto_hash_equals struct RayTracingPipelineInterfaceCreateInfoKHR <: HighLevelStruct
+        next::Any
+        max_pipeline_ray_payload_size::UInt32
+        max_pipeline_ray_hit_attribute_size::UInt32
+    end
 
 """
 High-level wrapper for VkAccelerationStructureVersionInfoKHR.
@@ -5554,10 +5554,10 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureVersionInfoKHR.html)
 
 """
-struct AccelerationStructureVersionInfoKHR <: HighLevelStruct
-    next::Any
-    version_data::Vector{UInt8}
-end
+@auto_hash_equals struct AccelerationStructureVersionInfoKHR <: HighLevelStruct
+        next::Any
+        version_data::Vector{UInt8}
+    end
 
 """
 High-level wrapper for VkTransformMatrixKHR.
@@ -5567,9 +5567,9 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTransformMatrixKHR.html)
 
 """
-struct TransformMatrixKHR <: HighLevelStruct
-    matrix::NTuple{3, NTuple{4, Float32}}
-end
+@auto_hash_equals struct TransformMatrixKHR <: HighLevelStruct
+        matrix::NTuple{3, NTuple{4, Float32}}
+    end
 
 """
 High-level wrapper for VkAabbPositionsKHR.
@@ -5579,14 +5579,14 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAabbPositionsKHR.html)
 
 """
-struct AabbPositionsKHR <: HighLevelStruct
-    min_x::Float32
-    min_y::Float32
-    min_z::Float32
-    max_x::Float32
-    max_y::Float32
-    max_z::Float32
-end
+@auto_hash_equals struct AabbPositionsKHR <: HighLevelStruct
+        min_x::Float32
+        min_y::Float32
+        min_z::Float32
+        max_x::Float32
+        max_y::Float32
+        max_z::Float32
+    end
 
 """
 High-level wrapper for VkAccelerationStructureBuildRangeInfoKHR.
@@ -5596,12 +5596,12 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildRangeInfoKHR.html)
 
 """
-struct AccelerationStructureBuildRangeInfoKHR <: HighLevelStruct
-    primitive_count::UInt32
-    primitive_offset::UInt32
-    first_vertex::UInt32
-    transform_offset::UInt32
-end
+@auto_hash_equals struct AccelerationStructureBuildRangeInfoKHR <: HighLevelStruct
+        primitive_count::UInt32
+        primitive_offset::UInt32
+        first_vertex::UInt32
+        transform_offset::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceCustomBorderColorFeaturesEXT.
@@ -5611,11 +5611,11 @@ Extension: VK\\_EXT\\_custom\\_border\\_color
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html)
 
 """
-struct PhysicalDeviceCustomBorderColorFeaturesEXT <: HighLevelStruct
-    next::Any
-    custom_border_colors::Bool
-    custom_border_color_without_format::Bool
-end
+@auto_hash_equals struct PhysicalDeviceCustomBorderColorFeaturesEXT <: HighLevelStruct
+        next::Any
+        custom_border_colors::Bool
+        custom_border_color_without_format::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceCoherentMemoryFeaturesAMD.
@@ -5625,10 +5625,10 @@ Extension: VK\\_AMD\\_device\\_coherent\\_memory
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoherentMemoryFeaturesAMD.html)
 
 """
-struct PhysicalDeviceCoherentMemoryFeaturesAMD <: HighLevelStruct
-    next::Any
-    device_coherent_memory::Bool
-end
+@auto_hash_equals struct PhysicalDeviceCoherentMemoryFeaturesAMD <: HighLevelStruct
+        next::Any
+        device_coherent_memory::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceVulkan12Features.
@@ -5636,56 +5636,56 @@ High-level wrapper for VkPhysicalDeviceVulkan12Features.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan12Features.html)
 
 """
-struct PhysicalDeviceVulkan12Features <: HighLevelStruct
-    next::Any
-    sampler_mirror_clamp_to_edge::Bool
-    draw_indirect_count::Bool
-    storage_buffer_8_bit_access::Bool
-    uniform_and_storage_buffer_8_bit_access::Bool
-    storage_push_constant_8::Bool
-    shader_buffer_int_64_atomics::Bool
-    shader_shared_int_64_atomics::Bool
-    shader_float_16::Bool
-    shader_int_8::Bool
-    descriptor_indexing::Bool
-    shader_input_attachment_array_dynamic_indexing::Bool
-    shader_uniform_texel_buffer_array_dynamic_indexing::Bool
-    shader_storage_texel_buffer_array_dynamic_indexing::Bool
-    shader_uniform_buffer_array_non_uniform_indexing::Bool
-    shader_sampled_image_array_non_uniform_indexing::Bool
-    shader_storage_buffer_array_non_uniform_indexing::Bool
-    shader_storage_image_array_non_uniform_indexing::Bool
-    shader_input_attachment_array_non_uniform_indexing::Bool
-    shader_uniform_texel_buffer_array_non_uniform_indexing::Bool
-    shader_storage_texel_buffer_array_non_uniform_indexing::Bool
-    descriptor_binding_uniform_buffer_update_after_bind::Bool
-    descriptor_binding_sampled_image_update_after_bind::Bool
-    descriptor_binding_storage_image_update_after_bind::Bool
-    descriptor_binding_storage_buffer_update_after_bind::Bool
-    descriptor_binding_uniform_texel_buffer_update_after_bind::Bool
-    descriptor_binding_storage_texel_buffer_update_after_bind::Bool
-    descriptor_binding_update_unused_while_pending::Bool
-    descriptor_binding_partially_bound::Bool
-    descriptor_binding_variable_descriptor_count::Bool
-    runtime_descriptor_array::Bool
-    sampler_filter_minmax::Bool
-    scalar_block_layout::Bool
-    imageless_framebuffer::Bool
-    uniform_buffer_standard_layout::Bool
-    shader_subgroup_extended_types::Bool
-    separate_depth_stencil_layouts::Bool
-    host_query_reset::Bool
-    timeline_semaphore::Bool
-    buffer_device_address::Bool
-    buffer_device_address_capture_replay::Bool
-    buffer_device_address_multi_device::Bool
-    vulkan_memory_model::Bool
-    vulkan_memory_model_device_scope::Bool
-    vulkan_memory_model_availability_visibility_chains::Bool
-    shader_output_viewport_index::Bool
-    shader_output_layer::Bool
-    subgroup_broadcast_dynamic_id::Bool
-end
+@auto_hash_equals struct PhysicalDeviceVulkan12Features <: HighLevelStruct
+        next::Any
+        sampler_mirror_clamp_to_edge::Bool
+        draw_indirect_count::Bool
+        storage_buffer_8_bit_access::Bool
+        uniform_and_storage_buffer_8_bit_access::Bool
+        storage_push_constant_8::Bool
+        shader_buffer_int_64_atomics::Bool
+        shader_shared_int_64_atomics::Bool
+        shader_float_16::Bool
+        shader_int_8::Bool
+        descriptor_indexing::Bool
+        shader_input_attachment_array_dynamic_indexing::Bool
+        shader_uniform_texel_buffer_array_dynamic_indexing::Bool
+        shader_storage_texel_buffer_array_dynamic_indexing::Bool
+        shader_uniform_buffer_array_non_uniform_indexing::Bool
+        shader_sampled_image_array_non_uniform_indexing::Bool
+        shader_storage_buffer_array_non_uniform_indexing::Bool
+        shader_storage_image_array_non_uniform_indexing::Bool
+        shader_input_attachment_array_non_uniform_indexing::Bool
+        shader_uniform_texel_buffer_array_non_uniform_indexing::Bool
+        shader_storage_texel_buffer_array_non_uniform_indexing::Bool
+        descriptor_binding_uniform_buffer_update_after_bind::Bool
+        descriptor_binding_sampled_image_update_after_bind::Bool
+        descriptor_binding_storage_image_update_after_bind::Bool
+        descriptor_binding_storage_buffer_update_after_bind::Bool
+        descriptor_binding_uniform_texel_buffer_update_after_bind::Bool
+        descriptor_binding_storage_texel_buffer_update_after_bind::Bool
+        descriptor_binding_update_unused_while_pending::Bool
+        descriptor_binding_partially_bound::Bool
+        descriptor_binding_variable_descriptor_count::Bool
+        runtime_descriptor_array::Bool
+        sampler_filter_minmax::Bool
+        scalar_block_layout::Bool
+        imageless_framebuffer::Bool
+        uniform_buffer_standard_layout::Bool
+        shader_subgroup_extended_types::Bool
+        separate_depth_stencil_layouts::Bool
+        host_query_reset::Bool
+        timeline_semaphore::Bool
+        buffer_device_address::Bool
+        buffer_device_address_capture_replay::Bool
+        buffer_device_address_multi_device::Bool
+        vulkan_memory_model::Bool
+        vulkan_memory_model_device_scope::Bool
+        vulkan_memory_model_availability_visibility_chains::Bool
+        shader_output_viewport_index::Bool
+        shader_output_layer::Bool
+        subgroup_broadcast_dynamic_id::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceVulkan11Features.
@@ -5693,21 +5693,21 @@ High-level wrapper for VkPhysicalDeviceVulkan11Features.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkan11Features.html)
 
 """
-struct PhysicalDeviceVulkan11Features <: HighLevelStruct
-    next::Any
-    storage_buffer_16_bit_access::Bool
-    uniform_and_storage_buffer_16_bit_access::Bool
-    storage_push_constant_16::Bool
-    storage_input_output_16::Bool
-    multiview::Bool
-    multiview_geometry_shader::Bool
-    multiview_tessellation_shader::Bool
-    variable_pointers_storage_buffer::Bool
-    variable_pointers::Bool
-    protected_memory::Bool
-    sampler_ycbcr_conversion::Bool
-    shader_draw_parameters::Bool
-end
+@auto_hash_equals struct PhysicalDeviceVulkan11Features <: HighLevelStruct
+        next::Any
+        storage_buffer_16_bit_access::Bool
+        uniform_and_storage_buffer_16_bit_access::Bool
+        storage_push_constant_16::Bool
+        storage_input_output_16::Bool
+        multiview::Bool
+        multiview_geometry_shader::Bool
+        multiview_tessellation_shader::Bool
+        variable_pointers_storage_buffer::Bool
+        variable_pointers::Bool
+        protected_memory::Bool
+        sampler_ycbcr_conversion::Bool
+        shader_draw_parameters::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.
@@ -5717,10 +5717,10 @@ Extension: VK\\_EXT\\_pipeline\\_creation\\_cache\\_control
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT.html)
 
 """
-struct PhysicalDevicePipelineCreationCacheControlFeaturesEXT <: HighLevelStruct
-    next::Any
-    pipeline_creation_cache_control::Bool
-end
+@auto_hash_equals struct PhysicalDevicePipelineCreationCacheControlFeaturesEXT <: HighLevelStruct
+        next::Any
+        pipeline_creation_cache_control::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceLineRasterizationFeaturesEXT.
@@ -5730,15 +5730,15 @@ Extension: VK\\_EXT\\_line\\_rasterization
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html)
 
 """
-struct PhysicalDeviceLineRasterizationFeaturesEXT <: HighLevelStruct
-    next::Any
-    rectangular_lines::Bool
-    bresenham_lines::Bool
-    smooth_lines::Bool
-    stippled_rectangular_lines::Bool
-    stippled_bresenham_lines::Bool
-    stippled_smooth_lines::Bool
-end
+@auto_hash_equals struct PhysicalDeviceLineRasterizationFeaturesEXT <: HighLevelStruct
+        next::Any
+        rectangular_lines::Bool
+        bresenham_lines::Bool
+        smooth_lines::Bool
+        stippled_rectangular_lines::Bool
+        stippled_bresenham_lines::Bool
+        stippled_smooth_lines::Bool
+    end
 
 """
 High-level wrapper for VkMemoryOpaqueCaptureAddressAllocateInfo.
@@ -5746,10 +5746,10 @@ High-level wrapper for VkMemoryOpaqueCaptureAddressAllocateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryOpaqueCaptureAddressAllocateInfo.html)
 
 """
-struct MemoryOpaqueCaptureAddressAllocateInfo <: HighLevelStruct
-    next::Any
-    opaque_capture_address::UInt64
-end
+@auto_hash_equals struct MemoryOpaqueCaptureAddressAllocateInfo <: HighLevelStruct
+        next::Any
+        opaque_capture_address::UInt64
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.
@@ -5759,11 +5759,11 @@ Extension: VK\\_EXT\\_subgroup\\_size\\_control
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlFeaturesEXT.html)
 
 """
-struct PhysicalDeviceSubgroupSizeControlFeaturesEXT <: HighLevelStruct
-    next::Any
-    subgroup_size_control::Bool
-    compute_full_subgroups::Bool
-end
+@auto_hash_equals struct PhysicalDeviceSubgroupSizeControlFeaturesEXT <: HighLevelStruct
+        next::Any
+        subgroup_size_control::Bool
+        compute_full_subgroups::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.
@@ -5773,10 +5773,10 @@ Extension: VK\\_EXT\\_texel\\_buffer\\_alignment
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.html)
 
 """
-struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT <: HighLevelStruct
-    next::Any
-    texel_buffer_alignment::Bool
-end
+@auto_hash_equals struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT <: HighLevelStruct
+        next::Any
+        texel_buffer_alignment::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.
@@ -5786,10 +5786,10 @@ Extension: VK\\_EXT\\_shader\\_demote\\_to\\_helper\\_invocation
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT.html)
 
 """
-struct PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT <: HighLevelStruct
-    next::Any
-    shader_demote_to_helper_invocation::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT <: HighLevelStruct
+        next::Any
+        shader_demote_to_helper_invocation::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.
@@ -5799,10 +5799,10 @@ Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html)
 
 """
-struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR <: HighLevelStruct
-    next::Any
-    pipeline_executable_info::Bool
-end
+@auto_hash_equals struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR <: HighLevelStruct
+        next::Any
+        pipeline_executable_info::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.
@@ -5810,10 +5810,10 @@ High-level wrapper for VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures.html)
 
 """
-struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures <: HighLevelStruct
-    next::Any
-    separate_depth_stencil_layouts::Bool
-end
+@auto_hash_equals struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures <: HighLevelStruct
+        next::Any
+        separate_depth_stencil_layouts::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.
@@ -5823,12 +5823,12 @@ Extension: VK\\_EXT\\_fragment\\_shader\\_interlock
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.html)
 
 """
-struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT <: HighLevelStruct
-    next::Any
-    fragment_shader_sample_interlock::Bool
-    fragment_shader_pixel_interlock::Bool
-    fragment_shader_shading_rate_interlock::Bool
-end
+@auto_hash_equals struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT <: HighLevelStruct
+        next::Any
+        fragment_shader_sample_interlock::Bool
+        fragment_shader_pixel_interlock::Bool
+        fragment_shader_shading_rate_interlock::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.
@@ -5838,10 +5838,10 @@ Extension: VK\\_NV\\_shader\\_sm\\_builtins
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html)
 
 """
-struct PhysicalDeviceShaderSMBuiltinsFeaturesNV <: HighLevelStruct
-    next::Any
-    shader_sm_builtins::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderSMBuiltinsFeaturesNV <: HighLevelStruct
+        next::Any
+        shader_sm_builtins::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceIndexTypeUint8FeaturesEXT.
@@ -5851,10 +5851,10 @@ Extension: VK\\_EXT\\_index\\_type\\_uint8
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.html)
 
 """
-struct PhysicalDeviceIndexTypeUint8FeaturesEXT <: HighLevelStruct
-    next::Any
-    index_type_uint_8::Bool
-end
+@auto_hash_equals struct PhysicalDeviceIndexTypeUint8FeaturesEXT <: HighLevelStruct
+        next::Any
+        index_type_uint_8::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderClockFeaturesKHR.
@@ -5864,11 +5864,11 @@ Extension: VK\\_KHR\\_shader\\_clock
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderClockFeaturesKHR.html)
 
 """
-struct PhysicalDeviceShaderClockFeaturesKHR <: HighLevelStruct
-    next::Any
-    shader_subgroup_clock::Bool
-    shader_device_clock::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderClockFeaturesKHR <: HighLevelStruct
+        next::Any
+        shader_subgroup_clock::Bool
+        shader_device_clock::Bool
+    end
 
 """
 High-level wrapper for VkPerformanceStreamMarkerInfoINTEL.
@@ -5878,10 +5878,10 @@ Extension: VK\\_INTEL\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html)
 
 """
-struct PerformanceStreamMarkerInfoINTEL <: HighLevelStruct
-    next::Any
-    marker::UInt32
-end
+@auto_hash_equals struct PerformanceStreamMarkerInfoINTEL <: HighLevelStruct
+        next::Any
+        marker::UInt32
+    end
 
 """
 High-level wrapper for VkPerformanceMarkerInfoINTEL.
@@ -5891,10 +5891,10 @@ Extension: VK\\_INTEL\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceMarkerInfoINTEL.html)
 
 """
-struct PerformanceMarkerInfoINTEL <: HighLevelStruct
-    next::Any
-    marker::UInt64
-end
+@auto_hash_equals struct PerformanceMarkerInfoINTEL <: HighLevelStruct
+        next::Any
+        marker::UInt64
+    end
 
 """
 High-level wrapper for VkInitializePerformanceApiInfoINTEL.
@@ -5904,10 +5904,10 @@ Extension: VK\\_INTEL\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html)
 
 """
-struct InitializePerformanceApiInfoINTEL <: HighLevelStruct
-    next::Any
-    user_data::OptionalPtr{Ptr{Cvoid}}
-end
+@auto_hash_equals struct InitializePerformanceApiInfoINTEL <: HighLevelStruct
+        next::Any
+        user_data::OptionalPtr{Ptr{Cvoid}}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.
@@ -5917,10 +5917,10 @@ Extension: VK\\_INTEL\\_shader\\_integer\\_functions2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.html)
 
 """
-struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL <: HighLevelStruct
-    next::Any
-    shader_integer_functions_2::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL <: HighLevelStruct
+        next::Any
+        shader_integer_functions_2::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceCoverageReductionModeFeaturesNV.
@@ -5930,10 +5930,10 @@ Extension: VK\\_NV\\_coverage\\_reduction\\_mode
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html)
 
 """
-struct PhysicalDeviceCoverageReductionModeFeaturesNV <: HighLevelStruct
-    next::Any
-    coverage_reduction_mode::Bool
-end
+@auto_hash_equals struct PhysicalDeviceCoverageReductionModeFeaturesNV <: HighLevelStruct
+        next::Any
+        coverage_reduction_mode::Bool
+    end
 
 """
 High-level wrapper for VkHeadlessSurfaceCreateInfoEXT.
@@ -5943,10 +5943,10 @@ Extension: VK\\_EXT\\_headless\\_surface
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHeadlessSurfaceCreateInfoEXT.html)
 
 """
-struct HeadlessSurfaceCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-end
+@auto_hash_equals struct HeadlessSurfaceCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+    end
 
 """
 High-level wrapper for VkPerformanceQuerySubmitInfoKHR.
@@ -5956,10 +5956,10 @@ Extension: VK\\_KHR\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html)
 
 """
-struct PerformanceQuerySubmitInfoKHR <: HighLevelStruct
-    next::Any
-    counter_pass_index::UInt32
-end
+@auto_hash_equals struct PerformanceQuerySubmitInfoKHR <: HighLevelStruct
+        next::Any
+        counter_pass_index::UInt32
+    end
 
 """
 High-level wrapper for VkQueryPoolPerformanceCreateInfoKHR.
@@ -5969,11 +5969,11 @@ Extension: VK\\_KHR\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html)
 
 """
-struct QueryPoolPerformanceCreateInfoKHR <: HighLevelStruct
-    next::Any
-    queue_family_index::UInt32
-    counter_indices::Vector{UInt32}
-end
+@auto_hash_equals struct QueryPoolPerformanceCreateInfoKHR <: HighLevelStruct
+        next::Any
+        queue_family_index::UInt32
+        counter_indices::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkPhysicalDevicePerformanceQueryFeaturesKHR.
@@ -5983,11 +5983,11 @@ Extension: VK\\_KHR\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html)
 
 """
-struct PhysicalDevicePerformanceQueryFeaturesKHR <: HighLevelStruct
-    next::Any
-    performance_counter_query_pools::Bool
-    performance_counter_multiple_query_pools::Bool
-end
+@auto_hash_equals struct PhysicalDevicePerformanceQueryFeaturesKHR <: HighLevelStruct
+        next::Any
+        performance_counter_query_pools::Bool
+        performance_counter_multiple_query_pools::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.
@@ -5997,10 +5997,10 @@ Extension: VK\\_EXT\\_ycbcr\\_image\\_arrays
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.html)
 
 """
-struct PhysicalDeviceYcbcrImageArraysFeaturesEXT <: HighLevelStruct
-    next::Any
-    ycbcr_image_arrays::Bool
-end
+@auto_hash_equals struct PhysicalDeviceYcbcrImageArraysFeaturesEXT <: HighLevelStruct
+        next::Any
+        ycbcr_image_arrays::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceCooperativeMatrixFeaturesNV.
@@ -6010,11 +6010,11 @@ Extension: VK\\_NV\\_cooperative\\_matrix
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html)
 
 """
-struct PhysicalDeviceCooperativeMatrixFeaturesNV <: HighLevelStruct
-    next::Any
-    cooperative_matrix::Bool
-    cooperative_matrix_robust_buffer_access::Bool
-end
+@auto_hash_equals struct PhysicalDeviceCooperativeMatrixFeaturesNV <: HighLevelStruct
+        next::Any
+        cooperative_matrix::Bool
+        cooperative_matrix_robust_buffer_access::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.
@@ -6024,10 +6024,10 @@ Extension: VK\\_EXT\\_texture\\_compression\\_astc\\_hdr
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT.html)
 
 """
-struct PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT <: HighLevelStruct
-    next::Any
-    texture_compression_astc_hdr::Bool
-end
+@auto_hash_equals struct PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT <: HighLevelStruct
+        next::Any
+        texture_compression_astc_hdr::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceImagelessFramebufferFeatures.
@@ -6035,10 +6035,10 @@ High-level wrapper for VkPhysicalDeviceImagelessFramebufferFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImagelessFramebufferFeatures.html)
 
 """
-struct PhysicalDeviceImagelessFramebufferFeatures <: HighLevelStruct
-    next::Any
-    imageless_framebuffer::Bool
-end
+@auto_hash_equals struct PhysicalDeviceImagelessFramebufferFeatures <: HighLevelStruct
+        next::Any
+        imageless_framebuffer::Bool
+    end
 
 """
 High-level wrapper for VkBufferDeviceAddressCreateInfoEXT.
@@ -6048,10 +6048,10 @@ Extension: VK\\_EXT\\_buffer\\_device\\_address
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html)
 
 """
-struct BufferDeviceAddressCreateInfoEXT <: HighLevelStruct
-    next::Any
-    device_address::UInt64
-end
+@auto_hash_equals struct BufferDeviceAddressCreateInfoEXT <: HighLevelStruct
+        next::Any
+        device_address::UInt64
+    end
 
 """
 High-level wrapper for VkBufferOpaqueCaptureAddressCreateInfo.
@@ -6059,10 +6059,10 @@ High-level wrapper for VkBufferOpaqueCaptureAddressCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferOpaqueCaptureAddressCreateInfo.html)
 
 """
-struct BufferOpaqueCaptureAddressCreateInfo <: HighLevelStruct
-    next::Any
-    opaque_capture_address::UInt64
-end
+@auto_hash_equals struct BufferOpaqueCaptureAddressCreateInfo <: HighLevelStruct
+        next::Any
+        opaque_capture_address::UInt64
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.
@@ -6072,12 +6072,12 @@ Extension: VK\\_EXT\\_buffer\\_device\\_address
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html)
 
 """
-struct PhysicalDeviceBufferDeviceAddressFeaturesEXT <: HighLevelStruct
-    next::Any
-    buffer_device_address::Bool
-    buffer_device_address_capture_replay::Bool
-    buffer_device_address_multi_device::Bool
-end
+@auto_hash_equals struct PhysicalDeviceBufferDeviceAddressFeaturesEXT <: HighLevelStruct
+        next::Any
+        buffer_device_address::Bool
+        buffer_device_address_capture_replay::Bool
+        buffer_device_address_multi_device::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceBufferDeviceAddressFeatures.
@@ -6085,12 +6085,12 @@ High-level wrapper for VkPhysicalDeviceBufferDeviceAddressFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeatures.html)
 
 """
-struct PhysicalDeviceBufferDeviceAddressFeatures <: HighLevelStruct
-    next::Any
-    buffer_device_address::Bool
-    buffer_device_address_capture_replay::Bool
-    buffer_device_address_multi_device::Bool
-end
+@auto_hash_equals struct PhysicalDeviceBufferDeviceAddressFeatures <: HighLevelStruct
+        next::Any
+        buffer_device_address::Bool
+        buffer_device_address_capture_replay::Bool
+        buffer_device_address_multi_device::Bool
+    end
 
 """
 High-level wrapper for VkMemoryPriorityAllocateInfoEXT.
@@ -6100,10 +6100,10 @@ Extension: VK\\_EXT\\_memory\\_priority
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryPriorityAllocateInfoEXT.html)
 
 """
-struct MemoryPriorityAllocateInfoEXT <: HighLevelStruct
-    next::Any
-    priority::Float32
-end
+@auto_hash_equals struct MemoryPriorityAllocateInfoEXT <: HighLevelStruct
+        next::Any
+        priority::Float32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceMemoryPriorityFeaturesEXT.
@@ -6113,10 +6113,10 @@ Extension: VK\\_EXT\\_memory\\_priority
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMemoryPriorityFeaturesEXT.html)
 
 """
-struct PhysicalDeviceMemoryPriorityFeaturesEXT <: HighLevelStruct
-    next::Any
-    memory_priority::Bool
-end
+@auto_hash_equals struct PhysicalDeviceMemoryPriorityFeaturesEXT <: HighLevelStruct
+        next::Any
+        memory_priority::Bool
+    end
 
 """
 High-level wrapper for VkPipelineRasterizationDepthClipStateCreateInfoEXT.
@@ -6126,11 +6126,11 @@ Extension: VK\\_EXT\\_depth\\_clip\\_enable
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationDepthClipStateCreateInfoEXT.html)
 
 """
-struct PipelineRasterizationDepthClipStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    depth_clip_enable::Bool
-end
+@auto_hash_equals struct PipelineRasterizationDepthClipStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        depth_clip_enable::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceDepthClipEnableFeaturesEXT.
@@ -6140,10 +6140,10 @@ Extension: VK\\_EXT\\_depth\\_clip\\_enable
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDepthClipEnableFeaturesEXT.html)
 
 """
-struct PhysicalDeviceDepthClipEnableFeaturesEXT <: HighLevelStruct
-    next::Any
-    depth_clip_enable::Bool
-end
+@auto_hash_equals struct PhysicalDeviceDepthClipEnableFeaturesEXT <: HighLevelStruct
+        next::Any
+        depth_clip_enable::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceUniformBufferStandardLayoutFeatures.
@@ -6151,10 +6151,10 @@ High-level wrapper for VkPhysicalDeviceUniformBufferStandardLayoutFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceUniformBufferStandardLayoutFeatures.html)
 
 """
-struct PhysicalDeviceUniformBufferStandardLayoutFeatures <: HighLevelStruct
-    next::Any
-    uniform_buffer_standard_layout::Bool
-end
+@auto_hash_equals struct PhysicalDeviceUniformBufferStandardLayoutFeatures <: HighLevelStruct
+        next::Any
+        uniform_buffer_standard_layout::Bool
+    end
 
 """
 High-level wrapper for VkSurfaceProtectedCapabilitiesKHR.
@@ -6164,10 +6164,10 @@ Extension: VK\\_KHR\\_surface\\_protected\\_capabilities
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSurfaceProtectedCapabilitiesKHR.html)
 
 """
-struct SurfaceProtectedCapabilitiesKHR <: HighLevelStruct
-    next::Any
-    supports_protected::Bool
-end
+@auto_hash_equals struct SurfaceProtectedCapabilitiesKHR <: HighLevelStruct
+        next::Any
+        supports_protected::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceScalarBlockLayoutFeatures.
@@ -6175,10 +6175,10 @@ High-level wrapper for VkPhysicalDeviceScalarBlockLayoutFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceScalarBlockLayoutFeatures.html)
 
 """
-struct PhysicalDeviceScalarBlockLayoutFeatures <: HighLevelStruct
-    next::Any
-    scalar_block_layout::Bool
-end
+@auto_hash_equals struct PhysicalDeviceScalarBlockLayoutFeatures <: HighLevelStruct
+        next::Any
+        scalar_block_layout::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.
@@ -6188,10 +6188,10 @@ Extension: VK\\_EXT\\_fragment\\_density\\_map2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.html)
 
 """
-struct PhysicalDeviceFragmentDensityMap2FeaturesEXT <: HighLevelStruct
-    next::Any
-    fragment_density_map_deferred::Bool
-end
+@auto_hash_equals struct PhysicalDeviceFragmentDensityMap2FeaturesEXT <: HighLevelStruct
+        next::Any
+        fragment_density_map_deferred::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentDensityMapFeaturesEXT.
@@ -6201,12 +6201,12 @@ Extension: VK\\_EXT\\_fragment\\_density\\_map
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentDensityMapFeaturesEXT.html)
 
 """
-struct PhysicalDeviceFragmentDensityMapFeaturesEXT <: HighLevelStruct
-    next::Any
-    fragment_density_map::Bool
-    fragment_density_map_dynamic::Bool
-    fragment_density_map_non_subsampled_images::Bool
-end
+@auto_hash_equals struct PhysicalDeviceFragmentDensityMapFeaturesEXT <: HighLevelStruct
+        next::Any
+        fragment_density_map::Bool
+        fragment_density_map_dynamic::Bool
+        fragment_density_map_non_subsampled_images::Bool
+    end
 
 """
 High-level wrapper for VkImageDrmFormatModifierListCreateInfoEXT.
@@ -6216,10 +6216,10 @@ Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierListCreateInfoEXT.html)
 
 """
-struct ImageDrmFormatModifierListCreateInfoEXT <: HighLevelStruct
-    next::Any
-    drm_format_modifiers::Vector{UInt64}
-end
+@auto_hash_equals struct ImageDrmFormatModifierListCreateInfoEXT <: HighLevelStruct
+        next::Any
+        drm_format_modifiers::Vector{UInt64}
+    end
 
 """
 High-level wrapper for VkTraceRaysIndirectCommandKHR.
@@ -6229,11 +6229,11 @@ Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTraceRaysIndirectCommandKHR.html)
 
 """
-struct TraceRaysIndirectCommandKHR <: HighLevelStruct
-    width::UInt32
-    height::UInt32
-    depth::UInt32
-end
+@auto_hash_equals struct TraceRaysIndirectCommandKHR <: HighLevelStruct
+        width::UInt32
+        height::UInt32
+        depth::UInt32
+    end
 
 """
 High-level wrapper for VkStridedDeviceAddressRegionKHR.
@@ -6243,11 +6243,11 @@ Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStridedDeviceAddressRegionKHR.html)
 
 """
-struct StridedDeviceAddressRegionKHR <: HighLevelStruct
-    device_address::UInt64
-    stride::UInt64
-    size::UInt64
-end
+@auto_hash_equals struct StridedDeviceAddressRegionKHR <: HighLevelStruct
+        device_address::UInt64
+        stride::UInt64
+        size::UInt64
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceRayQueryFeaturesKHR.
@@ -6257,10 +6257,10 @@ Extension: VK\\_KHR\\_ray\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayQueryFeaturesKHR.html)
 
 """
-struct PhysicalDeviceRayQueryFeaturesKHR <: HighLevelStruct
-    next::Any
-    ray_query::Bool
-end
+@auto_hash_equals struct PhysicalDeviceRayQueryFeaturesKHR <: HighLevelStruct
+        next::Any
+        ray_query::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceRayTracingPipelineFeaturesKHR.
@@ -6270,14 +6270,14 @@ Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html)
 
 """
-struct PhysicalDeviceRayTracingPipelineFeaturesKHR <: HighLevelStruct
-    next::Any
-    ray_tracing_pipeline::Bool
-    ray_tracing_pipeline_shader_group_handle_capture_replay::Bool
-    ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool
-    ray_tracing_pipeline_trace_rays_indirect::Bool
-    ray_traversal_primitive_culling::Bool
-end
+@auto_hash_equals struct PhysicalDeviceRayTracingPipelineFeaturesKHR <: HighLevelStruct
+        next::Any
+        ray_tracing_pipeline::Bool
+        ray_tracing_pipeline_shader_group_handle_capture_replay::Bool
+        ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool
+        ray_tracing_pipeline_trace_rays_indirect::Bool
+        ray_traversal_primitive_culling::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceAccelerationStructureFeaturesKHR.
@@ -6287,14 +6287,14 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceAccelerationStructureFeaturesKHR.html)
 
 """
-struct PhysicalDeviceAccelerationStructureFeaturesKHR <: HighLevelStruct
-    next::Any
-    acceleration_structure::Bool
-    acceleration_structure_capture_replay::Bool
-    acceleration_structure_indirect_build::Bool
-    acceleration_structure_host_commands::Bool
-    descriptor_binding_acceleration_structure_update_after_bind::Bool
-end
+@auto_hash_equals struct PhysicalDeviceAccelerationStructureFeaturesKHR <: HighLevelStruct
+        next::Any
+        acceleration_structure::Bool
+        acceleration_structure_capture_replay::Bool
+        acceleration_structure_indirect_build::Bool
+        acceleration_structure_host_commands::Bool
+        descriptor_binding_acceleration_structure_update_after_bind::Bool
+    end
 
 """
 High-level wrapper for VkDrawMeshTasksIndirectCommandNV.
@@ -6304,10 +6304,10 @@ Extension: VK\\_NV\\_mesh\\_shader
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html)
 
 """
-struct DrawMeshTasksIndirectCommandNV <: HighLevelStruct
-    task_count::UInt32
-    first_task::UInt32
-end
+@auto_hash_equals struct DrawMeshTasksIndirectCommandNV <: HighLevelStruct
+        task_count::UInt32
+        first_task::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceMeshShaderFeaturesNV.
@@ -6317,11 +6317,11 @@ Extension: VK\\_NV\\_mesh\\_shader
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMeshShaderFeaturesNV.html)
 
 """
-struct PhysicalDeviceMeshShaderFeaturesNV <: HighLevelStruct
-    next::Any
-    task_shader::Bool
-    mesh_shader::Bool
-end
+@auto_hash_equals struct PhysicalDeviceMeshShaderFeaturesNV <: HighLevelStruct
+        next::Any
+        task_shader::Bool
+        mesh_shader::Bool
+    end
 
 """
 High-level wrapper for VkCoarseSampleLocationNV.
@@ -6331,11 +6331,11 @@ Extension: VK\\_NV\\_shading\\_rate\\_image
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleLocationNV.html)
 
 """
-struct CoarseSampleLocationNV <: HighLevelStruct
-    pixel_x::UInt32
-    pixel_y::UInt32
-    sample::UInt32
-end
+@auto_hash_equals struct CoarseSampleLocationNV <: HighLevelStruct
+        pixel_x::UInt32
+        pixel_y::UInt32
+        sample::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShadingRateImageFeaturesNV.
@@ -6345,11 +6345,11 @@ Extension: VK\\_NV\\_shading\\_rate\\_image
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html)
 
 """
-struct PhysicalDeviceShadingRateImageFeaturesNV <: HighLevelStruct
-    next::Any
-    shading_rate_image::Bool
-    shading_rate_coarse_sample_order::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShadingRateImageFeaturesNV <: HighLevelStruct
+        next::Any
+        shading_rate_image::Bool
+        shading_rate_coarse_sample_order::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.
@@ -6359,10 +6359,10 @@ Extension: VK\\_NV\\_dedicated\\_allocation\\_image\\_aliasing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.html)
 
 """
-struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV <: HighLevelStruct
-    next::Any
-    dedicated_allocation_image_aliasing::Bool
-end
+@auto_hash_equals struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV <: HighLevelStruct
+        next::Any
+        dedicated_allocation_image_aliasing::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderImageFootprintFeaturesNV.
@@ -6372,10 +6372,10 @@ Extension: VK\\_NV\\_shader\\_image\\_footprint
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderImageFootprintFeaturesNV.html)
 
 """
-struct PhysicalDeviceShaderImageFootprintFeaturesNV <: HighLevelStruct
-    next::Any
-    image_footprint::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderImageFootprintFeaturesNV <: HighLevelStruct
+        next::Any
+        image_footprint::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.
@@ -6385,10 +6385,10 @@ Extension: VK\\_NV\\_fragment\\_shader\\_barycentric
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.html)
 
 """
-struct PhysicalDeviceFragmentShaderBarycentricFeaturesNV <: HighLevelStruct
-    next::Any
-    fragment_shader_barycentric::Bool
-end
+@auto_hash_equals struct PhysicalDeviceFragmentShaderBarycentricFeaturesNV <: HighLevelStruct
+        next::Any
+        fragment_shader_barycentric::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.
@@ -6398,11 +6398,11 @@ Extension: VK\\_NV\\_compute\\_shader\\_derivatives
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.html)
 
 """
-struct PhysicalDeviceComputeShaderDerivativesFeaturesNV <: HighLevelStruct
-    next::Any
-    compute_derivative_group_quads::Bool
-    compute_derivative_group_linear::Bool
-end
+@auto_hash_equals struct PhysicalDeviceComputeShaderDerivativesFeaturesNV <: HighLevelStruct
+        next::Any
+        compute_derivative_group_quads::Bool
+        compute_derivative_group_linear::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceCornerSampledImageFeaturesNV.
@@ -6412,10 +6412,10 @@ Extension: VK\\_NV\\_corner\\_sampled\\_image
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceCornerSampledImageFeaturesNV.html)
 
 """
-struct PhysicalDeviceCornerSampledImageFeaturesNV <: HighLevelStruct
-    next::Any
-    corner_sampled_image::Bool
-end
+@auto_hash_equals struct PhysicalDeviceCornerSampledImageFeaturesNV <: HighLevelStruct
+        next::Any
+        corner_sampled_image::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceExclusiveScissorFeaturesNV.
@@ -6425,10 +6425,10 @@ Extension: VK\\_NV\\_scissor\\_exclusive
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExclusiveScissorFeaturesNV.html)
 
 """
-struct PhysicalDeviceExclusiveScissorFeaturesNV <: HighLevelStruct
-    next::Any
-    exclusive_scissor::Bool
-end
+@auto_hash_equals struct PhysicalDeviceExclusiveScissorFeaturesNV <: HighLevelStruct
+        next::Any
+        exclusive_scissor::Bool
+    end
 
 """
 High-level wrapper for VkPipelineRepresentativeFragmentTestStateCreateInfoNV.
@@ -6438,10 +6438,10 @@ Extension: VK\\_NV\\_representative\\_fragment\\_test
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.html)
 
 """
-struct PipelineRepresentativeFragmentTestStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    representative_fragment_test_enable::Bool
-end
+@auto_hash_equals struct PipelineRepresentativeFragmentTestStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        representative_fragment_test_enable::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.
@@ -6451,10 +6451,10 @@ Extension: VK\\_NV\\_representative\\_fragment\\_test
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.html)
 
 """
-struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV <: HighLevelStruct
-    next::Any
-    representative_fragment_test::Bool
-end
+@auto_hash_equals struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV <: HighLevelStruct
+        next::Any
+        representative_fragment_test::Bool
+    end
 
 """
 High-level wrapper for VkPipelineRasterizationStateStreamCreateInfoEXT.
@@ -6464,11 +6464,11 @@ Extension: VK\\_EXT\\_transform\\_feedback
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html)
 
 """
-struct PipelineRasterizationStateStreamCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    rasterization_stream::UInt32
-end
+@auto_hash_equals struct PipelineRasterizationStateStreamCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        rasterization_stream::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceTransformFeedbackFeaturesEXT.
@@ -6478,11 +6478,11 @@ Extension: VK\\_EXT\\_transform\\_feedback
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html)
 
 """
-struct PhysicalDeviceTransformFeedbackFeaturesEXT <: HighLevelStruct
-    next::Any
-    transform_feedback::Bool
-    geometry_streams::Bool
-end
+@auto_hash_equals struct PhysicalDeviceTransformFeedbackFeaturesEXT <: HighLevelStruct
+        next::Any
+        transform_feedback::Bool
+        geometry_streams::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceASTCDecodeFeaturesEXT.
@@ -6492,10 +6492,10 @@ Extension: VK\\_EXT\\_astc\\_decode\\_mode
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceASTCDecodeFeaturesEXT.html)
 
 """
-struct PhysicalDeviceASTCDecodeFeaturesEXT <: HighLevelStruct
-    next::Any
-    decode_mode_shared_exponent::Bool
-end
+@auto_hash_equals struct PhysicalDeviceASTCDecodeFeaturesEXT <: HighLevelStruct
+        next::Any
+        decode_mode_shared_exponent::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.
@@ -6505,11 +6505,11 @@ Extension: VK\\_EXT\\_vertex\\_attribute\\_divisor
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT.html)
 
 """
-struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT <: HighLevelStruct
-    next::Any
-    vertex_attribute_instance_rate_divisor::Bool
-    vertex_attribute_instance_rate_zero_divisor::Bool
-end
+@auto_hash_equals struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT <: HighLevelStruct
+        next::Any
+        vertex_attribute_instance_rate_divisor::Bool
+        vertex_attribute_instance_rate_zero_divisor::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.
@@ -6519,21 +6519,21 @@ Extension: VK\\_EXT\\_shader\\_atomic\\_float
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html)
 
 """
-struct PhysicalDeviceShaderAtomicFloatFeaturesEXT <: HighLevelStruct
-    next::Any
-    shader_buffer_float_32_atomics::Bool
-    shader_buffer_float_32_atomic_add::Bool
-    shader_buffer_float_64_atomics::Bool
-    shader_buffer_float_64_atomic_add::Bool
-    shader_shared_float_32_atomics::Bool
-    shader_shared_float_32_atomic_add::Bool
-    shader_shared_float_64_atomics::Bool
-    shader_shared_float_64_atomic_add::Bool
-    shader_image_float_32_atomics::Bool
-    shader_image_float_32_atomic_add::Bool
-    sparse_image_float_32_atomics::Bool
-    sparse_image_float_32_atomic_add::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderAtomicFloatFeaturesEXT <: HighLevelStruct
+        next::Any
+        shader_buffer_float_32_atomics::Bool
+        shader_buffer_float_32_atomic_add::Bool
+        shader_buffer_float_64_atomics::Bool
+        shader_buffer_float_64_atomic_add::Bool
+        shader_shared_float_32_atomics::Bool
+        shader_shared_float_32_atomic_add::Bool
+        shader_shared_float_64_atomics::Bool
+        shader_shared_float_64_atomic_add::Bool
+        shader_image_float_32_atomics::Bool
+        shader_image_float_32_atomic_add::Bool
+        sparse_image_float_32_atomics::Bool
+        sparse_image_float_32_atomic_add::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderAtomicInt64Features.
@@ -6541,11 +6541,11 @@ High-level wrapper for VkPhysicalDeviceShaderAtomicInt64Features.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderAtomicInt64Features.html)
 
 """
-struct PhysicalDeviceShaderAtomicInt64Features <: HighLevelStruct
-    next::Any
-    shader_buffer_int_64_atomics::Bool
-    shader_shared_int_64_atomics::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderAtomicInt64Features <: HighLevelStruct
+        next::Any
+        shader_buffer_int_64_atomics::Bool
+        shader_shared_int_64_atomics::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceVulkanMemoryModelFeatures.
@@ -6553,12 +6553,12 @@ High-level wrapper for VkPhysicalDeviceVulkanMemoryModelFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVulkanMemoryModelFeatures.html)
 
 """
-struct PhysicalDeviceVulkanMemoryModelFeatures <: HighLevelStruct
-    next::Any
-    vulkan_memory_model::Bool
-    vulkan_memory_model_device_scope::Bool
-    vulkan_memory_model_availability_visibility_chains::Bool
-end
+@auto_hash_equals struct PhysicalDeviceVulkanMemoryModelFeatures <: HighLevelStruct
+        next::Any
+        vulkan_memory_model::Bool
+        vulkan_memory_model_device_scope::Bool
+        vulkan_memory_model_availability_visibility_chains::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceConditionalRenderingFeaturesEXT.
@@ -6568,11 +6568,11 @@ Extension: VK\\_EXT\\_conditional\\_rendering
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html)
 
 """
-struct PhysicalDeviceConditionalRenderingFeaturesEXT <: HighLevelStruct
-    next::Any
-    conditional_rendering::Bool
-    inherited_conditional_rendering::Bool
-end
+@auto_hash_equals struct PhysicalDeviceConditionalRenderingFeaturesEXT <: HighLevelStruct
+        next::Any
+        conditional_rendering::Bool
+        inherited_conditional_rendering::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDevice8BitStorageFeatures.
@@ -6580,12 +6580,12 @@ High-level wrapper for VkPhysicalDevice8BitStorageFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice8BitStorageFeatures.html)
 
 """
-struct PhysicalDevice8BitStorageFeatures <: HighLevelStruct
-    next::Any
-    storage_buffer_8_bit_access::Bool
-    uniform_and_storage_buffer_8_bit_access::Bool
-    storage_push_constant_8::Bool
-end
+@auto_hash_equals struct PhysicalDevice8BitStorageFeatures <: HighLevelStruct
+        next::Any
+        storage_buffer_8_bit_access::Bool
+        uniform_and_storage_buffer_8_bit_access::Bool
+        storage_push_constant_8::Bool
+    end
 
 """
 High-level wrapper for VkCommandBufferInheritanceConditionalRenderingInfoEXT.
@@ -6595,10 +6595,10 @@ Extension: VK\\_EXT\\_conditional\\_rendering
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html)
 
 """
-struct CommandBufferInheritanceConditionalRenderingInfoEXT <: HighLevelStruct
-    next::Any
-    conditional_rendering_enable::Bool
-end
+@auto_hash_equals struct CommandBufferInheritanceConditionalRenderingInfoEXT <: HighLevelStruct
+        next::Any
+        conditional_rendering_enable::Bool
+    end
 
 """
 High-level wrapper for VkVertexInputBindingDivisorDescriptionEXT.
@@ -6608,10 +6608,10 @@ Extension: VK\\_EXT\\_vertex\\_attribute\\_divisor
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDivisorDescriptionEXT.html)
 
 """
-struct VertexInputBindingDivisorDescriptionEXT <: HighLevelStruct
-    binding::UInt32
-    divisor::UInt32
-end
+@auto_hash_equals struct VertexInputBindingDivisorDescriptionEXT <: HighLevelStruct
+        binding::UInt32
+        divisor::UInt32
+    end
 
 """
 High-level wrapper for VkPipelineVertexInputDivisorStateCreateInfoEXT.
@@ -6621,10 +6621,10 @@ Extension: VK\\_EXT\\_vertex\\_attribute\\_divisor
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputDivisorStateCreateInfoEXT.html)
 
 """
-struct PipelineVertexInputDivisorStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    vertex_binding_divisors::Vector{VertexInputBindingDivisorDescriptionEXT}
-end
+@auto_hash_equals struct PipelineVertexInputDivisorStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        vertex_binding_divisors::Vector{VertexInputBindingDivisorDescriptionEXT}
+    end
 
 """
 High-level wrapper for VkTimelineSemaphoreSubmitInfo.
@@ -6632,11 +6632,11 @@ High-level wrapper for VkTimelineSemaphoreSubmitInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkTimelineSemaphoreSubmitInfo.html)
 
 """
-struct TimelineSemaphoreSubmitInfo <: HighLevelStruct
-    next::Any
-    wait_semaphore_values::OptionalPtr{Vector{UInt64}}
-    signal_semaphore_values::OptionalPtr{Vector{UInt64}}
-end
+@auto_hash_equals struct TimelineSemaphoreSubmitInfo <: HighLevelStruct
+        next::Any
+        wait_semaphore_values::OptionalPtr{Vector{UInt64}}
+        signal_semaphore_values::OptionalPtr{Vector{UInt64}}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceTimelineSemaphoreFeatures.
@@ -6644,10 +6644,10 @@ High-level wrapper for VkPhysicalDeviceTimelineSemaphoreFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreFeatures.html)
 
 """
-struct PhysicalDeviceTimelineSemaphoreFeatures <: HighLevelStruct
-    next::Any
-    timeline_semaphore::Bool
-end
+@auto_hash_equals struct PhysicalDeviceTimelineSemaphoreFeatures <: HighLevelStruct
+        next::Any
+        timeline_semaphore::Bool
+    end
 
 """
 High-level wrapper for VkSubpassEndInfo.
@@ -6655,9 +6655,9 @@ High-level wrapper for VkSubpassEndInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassEndInfo.html)
 
 """
-struct SubpassEndInfo <: HighLevelStruct
-    next::Any
-end
+@auto_hash_equals struct SubpassEndInfo <: HighLevelStruct
+        next::Any
+    end
 
 """
 High-level wrapper for VkDescriptorSetVariableDescriptorCountAllocateInfo.
@@ -6665,10 +6665,10 @@ High-level wrapper for VkDescriptorSetVariableDescriptorCountAllocateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetVariableDescriptorCountAllocateInfo.html)
 
 """
-struct DescriptorSetVariableDescriptorCountAllocateInfo <: HighLevelStruct
-    next::Any
-    descriptor_counts::Vector{UInt32}
-end
+@auto_hash_equals struct DescriptorSetVariableDescriptorCountAllocateInfo <: HighLevelStruct
+        next::Any
+        descriptor_counts::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceDescriptorIndexingFeatures.
@@ -6676,29 +6676,29 @@ High-level wrapper for VkPhysicalDeviceDescriptorIndexingFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDescriptorIndexingFeatures.html)
 
 """
-struct PhysicalDeviceDescriptorIndexingFeatures <: HighLevelStruct
-    next::Any
-    shader_input_attachment_array_dynamic_indexing::Bool
-    shader_uniform_texel_buffer_array_dynamic_indexing::Bool
-    shader_storage_texel_buffer_array_dynamic_indexing::Bool
-    shader_uniform_buffer_array_non_uniform_indexing::Bool
-    shader_sampled_image_array_non_uniform_indexing::Bool
-    shader_storage_buffer_array_non_uniform_indexing::Bool
-    shader_storage_image_array_non_uniform_indexing::Bool
-    shader_input_attachment_array_non_uniform_indexing::Bool
-    shader_uniform_texel_buffer_array_non_uniform_indexing::Bool
-    shader_storage_texel_buffer_array_non_uniform_indexing::Bool
-    descriptor_binding_uniform_buffer_update_after_bind::Bool
-    descriptor_binding_sampled_image_update_after_bind::Bool
-    descriptor_binding_storage_image_update_after_bind::Bool
-    descriptor_binding_storage_buffer_update_after_bind::Bool
-    descriptor_binding_uniform_texel_buffer_update_after_bind::Bool
-    descriptor_binding_storage_texel_buffer_update_after_bind::Bool
-    descriptor_binding_update_unused_while_pending::Bool
-    descriptor_binding_partially_bound::Bool
-    descriptor_binding_variable_descriptor_count::Bool
-    runtime_descriptor_array::Bool
-end
+@auto_hash_equals struct PhysicalDeviceDescriptorIndexingFeatures <: HighLevelStruct
+        next::Any
+        shader_input_attachment_array_dynamic_indexing::Bool
+        shader_uniform_texel_buffer_array_dynamic_indexing::Bool
+        shader_storage_texel_buffer_array_dynamic_indexing::Bool
+        shader_uniform_buffer_array_non_uniform_indexing::Bool
+        shader_sampled_image_array_non_uniform_indexing::Bool
+        shader_storage_buffer_array_non_uniform_indexing::Bool
+        shader_storage_image_array_non_uniform_indexing::Bool
+        shader_input_attachment_array_non_uniform_indexing::Bool
+        shader_uniform_texel_buffer_array_non_uniform_indexing::Bool
+        shader_storage_texel_buffer_array_non_uniform_indexing::Bool
+        descriptor_binding_uniform_buffer_update_after_bind::Bool
+        descriptor_binding_sampled_image_update_after_bind::Bool
+        descriptor_binding_storage_image_update_after_bind::Bool
+        descriptor_binding_storage_buffer_update_after_bind::Bool
+        descriptor_binding_uniform_texel_buffer_update_after_bind::Bool
+        descriptor_binding_storage_texel_buffer_update_after_bind::Bool
+        descriptor_binding_update_unused_while_pending::Bool
+        descriptor_binding_partially_bound::Bool
+        descriptor_binding_variable_descriptor_count::Bool
+        runtime_descriptor_array::Bool
+    end
 
 """
 High-level wrapper for VkDeviceDeviceMemoryReportCreateInfoEXT.
@@ -6708,12 +6708,12 @@ Extension: VK\\_EXT\\_device\\_memory\\_report
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDeviceMemoryReportCreateInfoEXT.html)
 
 """
-struct DeviceDeviceMemoryReportCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    pfn_user_callback::FunctionPtr
-    user_data::Ptr{Cvoid}
-end
+@auto_hash_equals struct DeviceDeviceMemoryReportCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        pfn_user_callback::FunctionPtr
+        user_data::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.
@@ -6723,10 +6723,10 @@ Extension: VK\\_EXT\\_device\\_memory\\_report
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.html)
 
 """
-struct PhysicalDeviceDeviceMemoryReportFeaturesEXT <: HighLevelStruct
-    next::Any
-    device_memory_report::Bool
-end
+@auto_hash_equals struct PhysicalDeviceDeviceMemoryReportFeaturesEXT <: HighLevelStruct
+        next::Any
+        device_memory_report::Bool
+    end
 
 """
 High-level wrapper for VkDebugUtilsLabelEXT.
@@ -6736,11 +6736,11 @@ Extension: VK\\_EXT\\_debug\\_utils
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsLabelEXT.html)
 
 """
-struct DebugUtilsLabelEXT <: HighLevelStruct
-    next::Any
-    label_name::String
-    color::NTuple{4, Float32}
-end
+@auto_hash_equals struct DebugUtilsLabelEXT <: HighLevelStruct
+        next::Any
+        label_name::String
+        color::NTuple{4, Float32}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceHostQueryResetFeatures.
@@ -6748,10 +6748,10 @@ High-level wrapper for VkPhysicalDeviceHostQueryResetFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceHostQueryResetFeatures.html)
 
 """
-struct PhysicalDeviceHostQueryResetFeatures <: HighLevelStruct
-    next::Any
-    host_query_reset::Bool
-end
+@auto_hash_equals struct PhysicalDeviceHostQueryResetFeatures <: HighLevelStruct
+        next::Any
+        host_query_reset::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderFloat16Int8Features.
@@ -6759,11 +6759,11 @@ High-level wrapper for VkPhysicalDeviceShaderFloat16Int8Features.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderFloat16Int8Features.html)
 
 """
-struct PhysicalDeviceShaderFloat16Int8Features <: HighLevelStruct
-    next::Any
-    shader_float_16::Bool
-    shader_int_8::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderFloat16Int8Features <: HighLevelStruct
+        next::Any
+        shader_float_16::Bool
+        shader_int_8::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderDrawParametersFeatures.
@@ -6771,10 +6771,10 @@ High-level wrapper for VkPhysicalDeviceShaderDrawParametersFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html)
 
 """
-struct PhysicalDeviceShaderDrawParametersFeatures <: HighLevelStruct
-    next::Any
-    shader_draw_parameters::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderDrawParametersFeatures <: HighLevelStruct
+        next::Any
+        shader_draw_parameters::Bool
+    end
 
 """
 High-level wrapper for VkValidationCacheCreateInfoEXT.
@@ -6784,12 +6784,12 @@ Extension: VK\\_EXT\\_validation\\_cache
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationCacheCreateInfoEXT.html)
 
 """
-struct ValidationCacheCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    initial_data_size::OptionalPtr{UInt}
-    initial_data::Ptr{Cvoid}
-end
+@auto_hash_equals struct ValidationCacheCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        initial_data_size::OptionalPtr{UInt}
+        initial_data::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkDescriptorPoolInlineUniformBlockCreateInfoEXT.
@@ -6799,10 +6799,10 @@ Extension: VK\\_EXT\\_inline\\_uniform\\_block
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.html)
 
 """
-struct DescriptorPoolInlineUniformBlockCreateInfoEXT <: HighLevelStruct
-    next::Any
-    max_inline_uniform_block_bindings::UInt32
-end
+@auto_hash_equals struct DescriptorPoolInlineUniformBlockCreateInfoEXT <: HighLevelStruct
+        next::Any
+        max_inline_uniform_block_bindings::UInt32
+    end
 
 """
 High-level wrapper for VkWriteDescriptorSetInlineUniformBlockEXT.
@@ -6812,11 +6812,11 @@ Extension: VK\\_EXT\\_inline\\_uniform\\_block
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetInlineUniformBlockEXT.html)
 
 """
-struct WriteDescriptorSetInlineUniformBlockEXT <: HighLevelStruct
-    next::Any
-    data_size::UInt32
-    data::Ptr{Cvoid}
-end
+@auto_hash_equals struct WriteDescriptorSetInlineUniformBlockEXT <: HighLevelStruct
+        next::Any
+        data_size::UInt32
+        data::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceInlineUniformBlockFeaturesEXT.
@@ -6826,11 +6826,11 @@ Extension: VK\\_EXT\\_inline\\_uniform\\_block
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceInlineUniformBlockFeaturesEXT.html)
 
 """
-struct PhysicalDeviceInlineUniformBlockFeaturesEXT <: HighLevelStruct
-    next::Any
-    inline_uniform_block::Bool
-    descriptor_binding_inline_uniform_block_update_after_bind::Bool
-end
+@auto_hash_equals struct PhysicalDeviceInlineUniformBlockFeaturesEXT <: HighLevelStruct
+        next::Any
+        inline_uniform_block::Bool
+        descriptor_binding_inline_uniform_block_update_after_bind::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.
@@ -6840,10 +6840,10 @@ Extension: VK\\_EXT\\_blend\\_operation\\_advanced
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html)
 
 """
-struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT <: HighLevelStruct
-    next::Any
-    advanced_blend_coherent_operations::Bool
-end
+@auto_hash_equals struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT <: HighLevelStruct
+        next::Any
+        advanced_blend_coherent_operations::Bool
+    end
 
 """
 High-level wrapper for VkSampleLocationEXT.
@@ -6853,10 +6853,10 @@ Extension: VK\\_EXT\\_sample\\_locations
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationEXT.html)
 
 """
-struct SampleLocationEXT <: HighLevelStruct
-    x::Float32
-    y::Float32
-end
+@auto_hash_equals struct SampleLocationEXT <: HighLevelStruct
+        x::Float32
+        y::Float32
+    end
 
 """
 High-level wrapper for VkPipelineCoverageToColorStateCreateInfoNV.
@@ -6866,12 +6866,12 @@ Extension: VK\\_NV\\_fragment\\_coverage\\_to\\_color
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html)
 
 """
-struct PipelineCoverageToColorStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    coverage_to_color_enable::Bool
-    coverage_to_color_location::UInt32
-end
+@auto_hash_equals struct PipelineCoverageToColorStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        coverage_to_color_enable::Bool
+        coverage_to_color_location::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceProtectedMemoryFeatures.
@@ -6879,10 +6879,10 @@ High-level wrapper for VkPhysicalDeviceProtectedMemoryFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceProtectedMemoryFeatures.html)
 
 """
-struct PhysicalDeviceProtectedMemoryFeatures <: HighLevelStruct
-    next::Any
-    protected_memory::Bool
-end
+@auto_hash_equals struct PhysicalDeviceProtectedMemoryFeatures <: HighLevelStruct
+        next::Any
+        protected_memory::Bool
+    end
 
 """
 High-level wrapper for VkProtectedSubmitInfo.
@@ -6890,10 +6890,10 @@ High-level wrapper for VkProtectedSubmitInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkProtectedSubmitInfo.html)
 
 """
-struct ProtectedSubmitInfo <: HighLevelStruct
-    next::Any
-    protected_submit::Bool
-end
+@auto_hash_equals struct ProtectedSubmitInfo <: HighLevelStruct
+        next::Any
+        protected_submit::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceSamplerYcbcrConversionFeatures.
@@ -6901,10 +6901,10 @@ High-level wrapper for VkPhysicalDeviceSamplerYcbcrConversionFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSamplerYcbcrConversionFeatures.html)
 
 """
-struct PhysicalDeviceSamplerYcbcrConversionFeatures <: HighLevelStruct
-    next::Any
-    sampler_ycbcr_conversion::Bool
-end
+@auto_hash_equals struct PhysicalDeviceSamplerYcbcrConversionFeatures <: HighLevelStruct
+        next::Any
+        sampler_ycbcr_conversion::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.
@@ -6912,10 +6912,10 @@ High-level wrapper for VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures.html)
 
 """
-struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures <: HighLevelStruct
-    next::Any
-    shader_subgroup_extended_types::Bool
-end
+@auto_hash_equals struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures <: HighLevelStruct
+        next::Any
+        shader_subgroup_extended_types::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDevice16BitStorageFeatures.
@@ -6923,13 +6923,13 @@ High-level wrapper for VkPhysicalDevice16BitStorageFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevice16BitStorageFeatures.html)
 
 """
-struct PhysicalDevice16BitStorageFeatures <: HighLevelStruct
-    next::Any
-    storage_buffer_16_bit_access::Bool
-    uniform_and_storage_buffer_16_bit_access::Bool
-    storage_push_constant_16::Bool
-    storage_input_output_16::Bool
-end
+@auto_hash_equals struct PhysicalDevice16BitStorageFeatures <: HighLevelStruct
+        next::Any
+        storage_buffer_16_bit_access::Bool
+        uniform_and_storage_buffer_16_bit_access::Bool
+        storage_push_constant_16::Bool
+        storage_input_output_16::Bool
+    end
 
 """
 High-level wrapper for VkViewportWScalingNV.
@@ -6939,10 +6939,10 @@ Extension: VK\\_NV\\_clip\\_space\\_w\\_scaling
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportWScalingNV.html)
 
 """
-struct ViewportWScalingNV <: HighLevelStruct
-    xcoeff::Float32
-    ycoeff::Float32
-end
+@auto_hash_equals struct ViewportWScalingNV <: HighLevelStruct
+        xcoeff::Float32
+        ycoeff::Float32
+    end
 
 """
 High-level wrapper for VkPipelineViewportWScalingStateCreateInfoNV.
@@ -6952,11 +6952,11 @@ Extension: VK\\_NV\\_clip\\_space\\_w\\_scaling
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportWScalingStateCreateInfoNV.html)
 
 """
-struct PipelineViewportWScalingStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    viewport_w_scaling_enable::Bool
-    viewport_w_scalings::OptionalPtr{Vector{ViewportWScalingNV}}
-end
+@auto_hash_equals struct PipelineViewportWScalingStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        viewport_w_scaling_enable::Bool
+        viewport_w_scalings::OptionalPtr{Vector{ViewportWScalingNV}}
+    end
 
 """
 High-level wrapper for VkPresentTimeGOOGLE.
@@ -6966,10 +6966,10 @@ Extension: VK\\_GOOGLE\\_display\\_timing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimeGOOGLE.html)
 
 """
-struct PresentTimeGOOGLE <: HighLevelStruct
-    present_id::UInt32
-    desired_present_time::UInt64
-end
+@auto_hash_equals struct PresentTimeGOOGLE <: HighLevelStruct
+        present_id::UInt32
+        desired_present_time::UInt64
+    end
 
 """
 High-level wrapper for VkPresentTimesInfoGOOGLE.
@@ -6979,10 +6979,10 @@ Extension: VK\\_GOOGLE\\_display\\_timing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentTimesInfoGOOGLE.html)
 
 """
-struct PresentTimesInfoGOOGLE <: HighLevelStruct
-    next::Any
-    times::OptionalPtr{Vector{PresentTimeGOOGLE}}
-end
+@auto_hash_equals struct PresentTimesInfoGOOGLE <: HighLevelStruct
+        next::Any
+        times::OptionalPtr{Vector{PresentTimeGOOGLE}}
+    end
 
 """
 High-level wrapper for VkSwapchainDisplayNativeHdrCreateInfoAMD.
@@ -6992,10 +6992,10 @@ Extension: VK\\_AMD\\_display\\_native\\_hdr
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainDisplayNativeHdrCreateInfoAMD.html)
 
 """
-struct SwapchainDisplayNativeHdrCreateInfoAMD <: HighLevelStruct
-    next::Any
-    local_dimming_enable::Bool
-end
+@auto_hash_equals struct SwapchainDisplayNativeHdrCreateInfoAMD <: HighLevelStruct
+        next::Any
+        local_dimming_enable::Bool
+    end
 
 """
 High-level wrapper for VkXYColorEXT.
@@ -7005,10 +7005,10 @@ Extension: VK\\_EXT\\_hdr\\_metadata
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXYColorEXT.html)
 
 """
-struct XYColorEXT <: HighLevelStruct
-    x::Float32
-    y::Float32
-end
+@auto_hash_equals struct XYColorEXT <: HighLevelStruct
+        x::Float32
+        y::Float32
+    end
 
 """
 High-level wrapper for VkHdrMetadataEXT.
@@ -7018,17 +7018,17 @@ Extension: VK\\_EXT\\_hdr\\_metadata
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkHdrMetadataEXT.html)
 
 """
-struct HdrMetadataEXT <: HighLevelStruct
-    next::Any
-    display_primary_red::XYColorEXT
-    display_primary_green::XYColorEXT
-    display_primary_blue::XYColorEXT
-    white_point::XYColorEXT
-    max_luminance::Float32
-    min_luminance::Float32
-    max_content_light_level::Float32
-    max_frame_average_light_level::Float32
-end
+@auto_hash_equals struct HdrMetadataEXT <: HighLevelStruct
+        next::Any
+        display_primary_red::XYColorEXT
+        display_primary_green::XYColorEXT
+        display_primary_blue::XYColorEXT
+        white_point::XYColorEXT
+        max_luminance::Float32
+        min_luminance::Float32
+        max_content_light_level::Float32
+        max_frame_average_light_level::Float32
+    end
 
 """
 High-level wrapper for VkDeviceGroupBindSparseInfo.
@@ -7036,11 +7036,11 @@ High-level wrapper for VkDeviceGroupBindSparseInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupBindSparseInfo.html)
 
 """
-struct DeviceGroupBindSparseInfo <: HighLevelStruct
-    next::Any
-    resource_device_index::UInt32
-    memory_device_index::UInt32
-end
+@auto_hash_equals struct DeviceGroupBindSparseInfo <: HighLevelStruct
+        next::Any
+        resource_device_index::UInt32
+        memory_device_index::UInt32
+    end
 
 """
 High-level wrapper for VkDeviceGroupSubmitInfo.
@@ -7048,12 +7048,12 @@ High-level wrapper for VkDeviceGroupSubmitInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSubmitInfo.html)
 
 """
-struct DeviceGroupSubmitInfo <: HighLevelStruct
-    next::Any
-    wait_semaphore_device_indices::Vector{UInt32}
-    command_buffer_device_masks::Vector{UInt32}
-    signal_semaphore_device_indices::Vector{UInt32}
-end
+@auto_hash_equals struct DeviceGroupSubmitInfo <: HighLevelStruct
+        next::Any
+        wait_semaphore_device_indices::Vector{UInt32}
+        command_buffer_device_masks::Vector{UInt32}
+        signal_semaphore_device_indices::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkDeviceGroupCommandBufferBeginInfo.
@@ -7061,10 +7061,10 @@ High-level wrapper for VkDeviceGroupCommandBufferBeginInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupCommandBufferBeginInfo.html)
 
 """
-struct DeviceGroupCommandBufferBeginInfo <: HighLevelStruct
-    next::Any
-    device_mask::UInt32
-end
+@auto_hash_equals struct DeviceGroupCommandBufferBeginInfo <: HighLevelStruct
+        next::Any
+        device_mask::UInt32
+    end
 
 """
 High-level wrapper for VkBindBufferMemoryDeviceGroupInfo.
@@ -7072,10 +7072,10 @@ High-level wrapper for VkBindBufferMemoryDeviceGroupInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html)
 
 """
-struct BindBufferMemoryDeviceGroupInfo <: HighLevelStruct
-    next::Any
-    device_indices::Vector{UInt32}
-end
+@auto_hash_equals struct BindBufferMemoryDeviceGroupInfo <: HighLevelStruct
+        next::Any
+        device_indices::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkRenderPassMultiviewCreateInfo.
@@ -7083,12 +7083,12 @@ High-level wrapper for VkRenderPassMultiviewCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassMultiviewCreateInfo.html)
 
 """
-struct RenderPassMultiviewCreateInfo <: HighLevelStruct
-    next::Any
-    view_masks::Vector{UInt32}
-    view_offsets::Vector{Int32}
-    correlation_masks::Vector{UInt32}
-end
+@auto_hash_equals struct RenderPassMultiviewCreateInfo <: HighLevelStruct
+        next::Any
+        view_masks::Vector{UInt32}
+        view_offsets::Vector{Int32}
+        correlation_masks::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceMultiviewFeatures.
@@ -7096,12 +7096,12 @@ High-level wrapper for VkPhysicalDeviceMultiviewFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceMultiviewFeatures.html)
 
 """
-struct PhysicalDeviceMultiviewFeatures <: HighLevelStruct
-    next::Any
-    multiview::Bool
-    multiview_geometry_shader::Bool
-    multiview_tessellation_shader::Bool
-end
+@auto_hash_equals struct PhysicalDeviceMultiviewFeatures <: HighLevelStruct
+        next::Any
+        multiview::Bool
+        multiview_geometry_shader::Bool
+        multiview_tessellation_shader::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceVariablePointersFeatures.
@@ -7109,11 +7109,11 @@ High-level wrapper for VkPhysicalDeviceVariablePointersFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceVariablePointersFeatures.html)
 
 """
-struct PhysicalDeviceVariablePointersFeatures <: HighLevelStruct
-    next::Any
-    variable_pointers_storage_buffer::Bool
-    variable_pointers::Bool
-end
+@auto_hash_equals struct PhysicalDeviceVariablePointersFeatures <: HighLevelStruct
+        next::Any
+        variable_pointers_storage_buffer::Bool
+        variable_pointers::Bool
+    end
 
 """
 High-level wrapper for VkConformanceVersion.
@@ -7121,12 +7121,12 @@ High-level wrapper for VkConformanceVersion.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConformanceVersion.html)
 
 """
-struct ConformanceVersion <: HighLevelStruct
-    major::UInt8
-    minor::UInt8
-    subminor::UInt8
-    patch::UInt8
-end
+@auto_hash_equals struct ConformanceVersion <: HighLevelStruct
+        major::UInt8
+        minor::UInt8
+        subminor::UInt8
+        patch::UInt8
+    end
 
 """
 High-level wrapper for VkSetStateFlagsIndirectCommandNV.
@@ -7136,9 +7136,9 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSetStateFlagsIndirectCommandNV.html)
 
 """
-struct SetStateFlagsIndirectCommandNV <: HighLevelStruct
-    data::UInt32
-end
+@auto_hash_equals struct SetStateFlagsIndirectCommandNV <: HighLevelStruct
+        data::UInt32
+    end
 
 """
 High-level wrapper for VkBindVertexBufferIndirectCommandNV.
@@ -7148,11 +7148,11 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindVertexBufferIndirectCommandNV.html)
 
 """
-struct BindVertexBufferIndirectCommandNV <: HighLevelStruct
-    buffer_address::UInt64
-    size::UInt32
-    stride::UInt32
-end
+@auto_hash_equals struct BindVertexBufferIndirectCommandNV <: HighLevelStruct
+        buffer_address::UInt64
+        size::UInt32
+        stride::UInt32
+    end
 
 """
 High-level wrapper for VkBindShaderGroupIndirectCommandNV.
@@ -7162,9 +7162,9 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindShaderGroupIndirectCommandNV.html)
 
 """
-struct BindShaderGroupIndirectCommandNV <: HighLevelStruct
-    group_index::UInt32
-end
+@auto_hash_equals struct BindShaderGroupIndirectCommandNV <: HighLevelStruct
+        group_index::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDevicePrivateDataFeaturesEXT.
@@ -7174,10 +7174,10 @@ Extension: VK\\_EXT\\_private\\_data
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDevicePrivateDataFeaturesEXT.html)
 
 """
-struct PhysicalDevicePrivateDataFeaturesEXT <: HighLevelStruct
-    next::Any
-    private_data::Bool
-end
+@auto_hash_equals struct PhysicalDevicePrivateDataFeaturesEXT <: HighLevelStruct
+        next::Any
+        private_data::Bool
+    end
 
 """
 High-level wrapper for VkDevicePrivateDataCreateInfoEXT.
@@ -7187,10 +7187,10 @@ Extension: VK\\_EXT\\_private\\_data
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDevicePrivateDataCreateInfoEXT.html)
 
 """
-struct DevicePrivateDataCreateInfoEXT <: HighLevelStruct
-    next::Any
-    private_data_slot_request_count::UInt32
-end
+@auto_hash_equals struct DevicePrivateDataCreateInfoEXT <: HighLevelStruct
+        next::Any
+        private_data_slot_request_count::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.
@@ -7200,10 +7200,10 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.html)
 
 """
-struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV <: HighLevelStruct
-    next::Any
-    device_generated_commands::Bool
-end
+@auto_hash_equals struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV <: HighLevelStruct
+        next::Any
+        device_generated_commands::Bool
+    end
 
 """
 High-level wrapper for VkDedicatedAllocationBufferCreateInfoNV.
@@ -7213,10 +7213,10 @@ Extension: VK\\_NV\\_dedicated\\_allocation
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationBufferCreateInfoNV.html)
 
 """
-struct DedicatedAllocationBufferCreateInfoNV <: HighLevelStruct
-    next::Any
-    dedicated_allocation::Bool
-end
+@auto_hash_equals struct DedicatedAllocationBufferCreateInfoNV <: HighLevelStruct
+        next::Any
+        dedicated_allocation::Bool
+    end
 
 """
 High-level wrapper for VkDedicatedAllocationImageCreateInfoNV.
@@ -7226,10 +7226,10 @@ Extension: VK\\_NV\\_dedicated\\_allocation
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationImageCreateInfoNV.html)
 
 """
-struct DedicatedAllocationImageCreateInfoNV <: HighLevelStruct
-    next::Any
-    dedicated_allocation::Bool
-end
+@auto_hash_equals struct DedicatedAllocationImageCreateInfoNV <: HighLevelStruct
+        next::Any
+        dedicated_allocation::Bool
+    end
 
 """
 High-level wrapper for VkDebugMarkerMarkerInfoEXT.
@@ -7239,11 +7239,11 @@ Extension: VK\\_EXT\\_debug\\_marker
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html)
 
 """
-struct DebugMarkerMarkerInfoEXT <: HighLevelStruct
-    next::Any
-    marker_name::String
-    color::NTuple{4, Float32}
-end
+@auto_hash_equals struct DebugMarkerMarkerInfoEXT <: HighLevelStruct
+        next::Any
+        marker_name::String
+        color::NTuple{4, Float32}
+    end
 
 """
 High-level wrapper for VkXcbSurfaceCreateInfoKHR.
@@ -7253,12 +7253,12 @@ Extension: VK\\_KHR\\_xcb\\_surface
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXcbSurfaceCreateInfoKHR.html)
 
 """
-struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    connection::Ptr{vk.xcb_connection_t}
-    window::vk.xcb_window_t
-end
+@auto_hash_equals struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        connection::Ptr{vk.xcb_connection_t}
+        window::vk.xcb_window_t
+    end
 
 """
 High-level wrapper for VkXlibSurfaceCreateInfoKHR.
@@ -7268,12 +7268,12 @@ Extension: VK\\_KHR\\_xlib\\_surface
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkXlibSurfaceCreateInfoKHR.html)
 
 """
-struct XlibSurfaceCreateInfoKHR <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    dpy::Ptr{vk.Display}
-    window::vk.Window
-end
+@auto_hash_equals struct XlibSurfaceCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        dpy::Ptr{vk.Display}
+        window::vk.Window
+    end
 
 """
 High-level wrapper for VkWaylandSurfaceCreateInfoKHR.
@@ -7283,12 +7283,12 @@ Extension: VK\\_KHR\\_wayland\\_surface
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWaylandSurfaceCreateInfoKHR.html)
 
 """
-struct WaylandSurfaceCreateInfoKHR <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    display::Ptr{vk.wl_display}
-    surface::Ptr{vk.wl_surface}
-end
+@auto_hash_equals struct WaylandSurfaceCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        display::Ptr{vk.wl_display}
+        surface::Ptr{vk.wl_surface}
+    end
 
 """
 High-level wrapper for VkDispatchIndirectCommand.
@@ -7296,11 +7296,11 @@ High-level wrapper for VkDispatchIndirectCommand.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDispatchIndirectCommand.html)
 
 """
-struct DispatchIndirectCommand <: HighLevelStruct
-    x::UInt32
-    y::UInt32
-    z::UInt32
-end
+@auto_hash_equals struct DispatchIndirectCommand <: HighLevelStruct
+        x::UInt32
+        y::UInt32
+        z::UInt32
+    end
 
 """
 High-level wrapper for VkDrawIndexedIndirectCommand.
@@ -7308,13 +7308,13 @@ High-level wrapper for VkDrawIndexedIndirectCommand.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndexedIndirectCommand.html)
 
 """
-struct DrawIndexedIndirectCommand <: HighLevelStruct
-    index_count::UInt32
-    instance_count::UInt32
-    first_index::UInt32
-    vertex_offset::Int32
-    first_instance::UInt32
-end
+@auto_hash_equals struct DrawIndexedIndirectCommand <: HighLevelStruct
+        index_count::UInt32
+        instance_count::UInt32
+        first_index::UInt32
+        vertex_offset::Int32
+        first_instance::UInt32
+    end
 
 """
 High-level wrapper for VkDrawIndirectCommand.
@@ -7322,12 +7322,12 @@ High-level wrapper for VkDrawIndirectCommand.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDrawIndirectCommand.html)
 
 """
-struct DrawIndirectCommand <: HighLevelStruct
-    vertex_count::UInt32
-    instance_count::UInt32
-    first_vertex::UInt32
-    first_instance::UInt32
-end
+@auto_hash_equals struct DrawIndirectCommand <: HighLevelStruct
+        vertex_count::UInt32
+        instance_count::UInt32
+        first_vertex::UInt32
+        first_instance::UInt32
+    end
 
 """
 High-level wrapper for VkSemaphoreCreateInfo.
@@ -7335,10 +7335,10 @@ High-level wrapper for VkSemaphoreCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreCreateInfo.html)
 
 """
-struct SemaphoreCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-end
+@auto_hash_equals struct SemaphoreCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFeatures.
@@ -7346,63 +7346,63 @@ High-level wrapper for VkPhysicalDeviceFeatures.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures.html)
 
 """
-struct PhysicalDeviceFeatures <: HighLevelStruct
-    robust_buffer_access::Bool
-    full_draw_index_uint_32::Bool
-    image_cube_array::Bool
-    independent_blend::Bool
-    geometry_shader::Bool
-    tessellation_shader::Bool
-    sample_rate_shading::Bool
-    dual_src_blend::Bool
-    logic_op::Bool
-    multi_draw_indirect::Bool
-    draw_indirect_first_instance::Bool
-    depth_clamp::Bool
-    depth_bias_clamp::Bool
-    fill_mode_non_solid::Bool
-    depth_bounds::Bool
-    wide_lines::Bool
-    large_points::Bool
-    alpha_to_one::Bool
-    multi_viewport::Bool
-    sampler_anisotropy::Bool
-    texture_compression_etc_2::Bool
-    texture_compression_astc_ldr::Bool
-    texture_compression_bc::Bool
-    occlusion_query_precise::Bool
-    pipeline_statistics_query::Bool
-    vertex_pipeline_stores_and_atomics::Bool
-    fragment_stores_and_atomics::Bool
-    shader_tessellation_and_geometry_point_size::Bool
-    shader_image_gather_extended::Bool
-    shader_storage_image_extended_formats::Bool
-    shader_storage_image_multisample::Bool
-    shader_storage_image_read_without_format::Bool
-    shader_storage_image_write_without_format::Bool
-    shader_uniform_buffer_array_dynamic_indexing::Bool
-    shader_sampled_image_array_dynamic_indexing::Bool
-    shader_storage_buffer_array_dynamic_indexing::Bool
-    shader_storage_image_array_dynamic_indexing::Bool
-    shader_clip_distance::Bool
-    shader_cull_distance::Bool
-    shader_float_64::Bool
-    shader_int_64::Bool
-    shader_int_16::Bool
-    shader_resource_residency::Bool
-    shader_resource_min_lod::Bool
-    sparse_binding::Bool
-    sparse_residency_buffer::Bool
-    sparse_residency_image_2_d::Bool
-    sparse_residency_image_3_d::Bool
-    sparse_residency_2_samples::Bool
-    sparse_residency_4_samples::Bool
-    sparse_residency_8_samples::Bool
-    sparse_residency_16_samples::Bool
-    sparse_residency_aliased::Bool
-    variable_multisample_rate::Bool
-    inherited_queries::Bool
-end
+@auto_hash_equals struct PhysicalDeviceFeatures <: HighLevelStruct
+        robust_buffer_access::Bool
+        full_draw_index_uint_32::Bool
+        image_cube_array::Bool
+        independent_blend::Bool
+        geometry_shader::Bool
+        tessellation_shader::Bool
+        sample_rate_shading::Bool
+        dual_src_blend::Bool
+        logic_op::Bool
+        multi_draw_indirect::Bool
+        draw_indirect_first_instance::Bool
+        depth_clamp::Bool
+        depth_bias_clamp::Bool
+        fill_mode_non_solid::Bool
+        depth_bounds::Bool
+        wide_lines::Bool
+        large_points::Bool
+        alpha_to_one::Bool
+        multi_viewport::Bool
+        sampler_anisotropy::Bool
+        texture_compression_etc_2::Bool
+        texture_compression_astc_ldr::Bool
+        texture_compression_bc::Bool
+        occlusion_query_precise::Bool
+        pipeline_statistics_query::Bool
+        vertex_pipeline_stores_and_atomics::Bool
+        fragment_stores_and_atomics::Bool
+        shader_tessellation_and_geometry_point_size::Bool
+        shader_image_gather_extended::Bool
+        shader_storage_image_extended_formats::Bool
+        shader_storage_image_multisample::Bool
+        shader_storage_image_read_without_format::Bool
+        shader_storage_image_write_without_format::Bool
+        shader_uniform_buffer_array_dynamic_indexing::Bool
+        shader_sampled_image_array_dynamic_indexing::Bool
+        shader_storage_buffer_array_dynamic_indexing::Bool
+        shader_storage_image_array_dynamic_indexing::Bool
+        shader_clip_distance::Bool
+        shader_cull_distance::Bool
+        shader_float_64::Bool
+        shader_int_64::Bool
+        shader_int_16::Bool
+        shader_resource_residency::Bool
+        shader_resource_min_lod::Bool
+        sparse_binding::Bool
+        sparse_residency_buffer::Bool
+        sparse_residency_image_2_d::Bool
+        sparse_residency_image_3_d::Bool
+        sparse_residency_2_samples::Bool
+        sparse_residency_4_samples::Bool
+        sparse_residency_8_samples::Bool
+        sparse_residency_16_samples::Bool
+        sparse_residency_aliased::Bool
+        variable_multisample_rate::Bool
+        inherited_queries::Bool
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFeatures2.
@@ -7410,10 +7410,10 @@ High-level wrapper for VkPhysicalDeviceFeatures2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFeatures2.html)
 
 """
-struct PhysicalDeviceFeatures2 <: HighLevelStruct
-    next::Any
-    features::PhysicalDeviceFeatures
-end
+@auto_hash_equals struct PhysicalDeviceFeatures2 <: HighLevelStruct
+        next::Any
+        features::PhysicalDeviceFeatures
+    end
 
 """
 High-level wrapper for VkClearDepthStencilValue.
@@ -7421,10 +7421,10 @@ High-level wrapper for VkClearDepthStencilValue.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearDepthStencilValue.html)
 
 """
-struct ClearDepthStencilValue <: HighLevelStruct
-    depth::Float32
-    stencil::UInt32
-end
+@auto_hash_equals struct ClearDepthStencilValue <: HighLevelStruct
+        depth::Float32
+        stencil::UInt32
+    end
 
 """
 High-level wrapper for VkPipelineTessellationStateCreateInfo.
@@ -7432,11 +7432,11 @@ High-level wrapper for VkPipelineTessellationStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationStateCreateInfo.html)
 
 """
-struct PipelineTessellationStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    patch_control_points::UInt32
-end
+@auto_hash_equals struct PipelineTessellationStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        patch_control_points::UInt32
+    end
 
 """
 High-level wrapper for VkSpecializationMapEntry.
@@ -7444,11 +7444,11 @@ High-level wrapper for VkSpecializationMapEntry.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationMapEntry.html)
 
 """
-struct SpecializationMapEntry <: HighLevelStruct
-    constant_id::UInt32
-    offset::UInt32
-    size::UInt
-end
+@auto_hash_equals struct SpecializationMapEntry <: HighLevelStruct
+        constant_id::UInt32
+        offset::UInt32
+        size::UInt
+    end
 
 """
 High-level wrapper for VkSpecializationInfo.
@@ -7456,11 +7456,11 @@ High-level wrapper for VkSpecializationInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSpecializationInfo.html)
 
 """
-struct SpecializationInfo <: HighLevelStruct
-    map_entries::Vector{SpecializationMapEntry}
-    data_size::OptionalPtr{UInt}
-    data::Ptr{Cvoid}
-end
+@auto_hash_equals struct SpecializationInfo <: HighLevelStruct
+        map_entries::Vector{SpecializationMapEntry}
+        data_size::OptionalPtr{UInt}
+        data::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkBufferCopy.
@@ -7468,11 +7468,11 @@ High-level wrapper for VkBufferCopy.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCopy.html)
 
 """
-struct BufferCopy <: HighLevelStruct
-    src_offset::UInt64
-    dst_offset::UInt64
-    size::UInt64
-end
+@auto_hash_equals struct BufferCopy <: HighLevelStruct
+        src_offset::UInt64
+        dst_offset::UInt64
+        size::UInt64
+    end
 
 """
 High-level wrapper for VkMemoryAllocateInfo.
@@ -7480,11 +7480,11 @@ High-level wrapper for VkMemoryAllocateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateInfo.html)
 
 """
-struct MemoryAllocateInfo <: HighLevelStruct
-    next::Any
-    allocation_size::UInt64
-    memory_type_index::UInt32
-end
+@auto_hash_equals struct MemoryAllocateInfo <: HighLevelStruct
+        next::Any
+        allocation_size::UInt64
+        memory_type_index::UInt32
+    end
 
 """
 High-level wrapper for VkAllocationCallbacks.
@@ -7492,14 +7492,14 @@ High-level wrapper for VkAllocationCallbacks.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAllocationCallbacks.html)
 
 """
-struct AllocationCallbacks <: HighLevelStruct
-    user_data::OptionalPtr{Ptr{Cvoid}}
-    pfn_allocation::FunctionPtr
-    pfn_reallocation::FunctionPtr
-    pfn_free::FunctionPtr
-    pfn_internal_allocation::OptionalPtr{FunctionPtr}
-    pfn_internal_free::OptionalPtr{FunctionPtr}
-end
+@auto_hash_equals struct AllocationCallbacks <: HighLevelStruct
+        user_data::OptionalPtr{Ptr{Cvoid}}
+        pfn_allocation::FunctionPtr
+        pfn_reallocation::FunctionPtr
+        pfn_free::FunctionPtr
+        pfn_internal_allocation::OptionalPtr{FunctionPtr}
+        pfn_internal_free::OptionalPtr{FunctionPtr}
+    end
 
 """
 High-level wrapper for VkApplicationInfo.
@@ -7507,14 +7507,14 @@ High-level wrapper for VkApplicationInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkApplicationInfo.html)
 
 """
-struct ApplicationInfo <: HighLevelStruct
-    next::Any
-    application_name::String
-    application_version::VersionNumber
-    engine_name::String
-    engine_version::VersionNumber
-    api_version::VersionNumber
-end
+@auto_hash_equals struct ApplicationInfo <: HighLevelStruct
+        next::Any
+        application_name::String
+        application_version::VersionNumber
+        engine_name::String
+        engine_version::VersionNumber
+        api_version::VersionNumber
+    end
 
 """
 High-level wrapper for VkInstanceCreateInfo.
@@ -7522,13 +7522,13 @@ High-level wrapper for VkInstanceCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html)
 
 """
-struct InstanceCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    application_info::OptionalPtr{ApplicationInfo}
-    enabled_layer_names::Vector{String}
-    enabled_extension_names::Vector{String}
-end
+@auto_hash_equals struct InstanceCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        application_info::OptionalPtr{ApplicationInfo}
+        enabled_layer_names::Vector{String}
+        enabled_extension_names::Vector{String}
+    end
 
 """
 High-level wrapper for VkViewport.
@@ -7536,14 +7536,14 @@ High-level wrapper for VkViewport.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewport.html)
 
 """
-struct Viewport <: HighLevelStruct
-    x::Float32
-    y::Float32
-    width::Float32
-    height::Float32
-    min_depth::Float32
-    max_depth::Float32
-end
+@auto_hash_equals struct Viewport <: HighLevelStruct
+        x::Float32
+        y::Float32
+        width::Float32
+        height::Float32
+        min_depth::Float32
+        max_depth::Float32
+    end
 
 """
 High-level wrapper for VkCommandBufferInheritanceViewportScissorInfoNV.
@@ -7553,12 +7553,12 @@ Extension: VK\\_NV\\_inherited\\_viewport\\_scissor
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html)
 
 """
-struct CommandBufferInheritanceViewportScissorInfoNV <: HighLevelStruct
-    next::Any
-    viewport_scissor_2_d::Bool
-    viewport_depth_count::UInt32
-    viewport_depths::Viewport
-end
+@auto_hash_equals struct CommandBufferInheritanceViewportScissorInfoNV <: HighLevelStruct
+        next::Any
+        viewport_scissor_2_d::Bool
+        viewport_depth_count::UInt32
+        viewport_depths::Viewport
+    end
 
 """
 High-level wrapper for VkExtent3D.
@@ -7566,11 +7566,11 @@ High-level wrapper for VkExtent3D.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent3D.html)
 
 """
-struct Extent3D <: HighLevelStruct
-    width::UInt32
-    height::UInt32
-    depth::UInt32
-end
+@auto_hash_equals struct Extent3D <: HighLevelStruct
+        width::UInt32
+        height::UInt32
+        depth::UInt32
+    end
 
 """
 High-level wrapper for VkExtent2D.
@@ -7578,10 +7578,10 @@ High-level wrapper for VkExtent2D.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html)
 
 """
-struct Extent2D <: HighLevelStruct
-    width::UInt32
-    height::UInt32
-end
+@auto_hash_equals struct Extent2D <: HighLevelStruct
+        width::UInt32
+        height::UInt32
+    end
 
 """
 High-level wrapper for VkDisplayModeParametersKHR.
@@ -7591,10 +7591,10 @@ Extension: VK\\_KHR\\_display
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeParametersKHR.html)
 
 """
-struct DisplayModeParametersKHR <: HighLevelStruct
-    visible_region::Extent2D
-    refresh_rate::UInt32
-end
+@auto_hash_equals struct DisplayModeParametersKHR <: HighLevelStruct
+        visible_region::Extent2D
+        refresh_rate::UInt32
+    end
 
 """
 High-level wrapper for VkDisplayModeCreateInfoKHR.
@@ -7604,11 +7604,11 @@ Extension: VK\\_KHR\\_display
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayModeCreateInfoKHR.html)
 
 """
-struct DisplayModeCreateInfoKHR <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    parameters::DisplayModeParametersKHR
-end
+@auto_hash_equals struct DisplayModeCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        parameters::DisplayModeParametersKHR
+    end
 
 """
 High-level wrapper for VkOffset3D.
@@ -7616,11 +7616,11 @@ High-level wrapper for VkOffset3D.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset3D.html)
 
 """
-struct Offset3D <: HighLevelStruct
-    x::Int32
-    y::Int32
-    z::Int32
-end
+@auto_hash_equals struct Offset3D <: HighLevelStruct
+        x::Int32
+        y::Int32
+        z::Int32
+    end
 
 """
 High-level wrapper for VkOffset2D.
@@ -7628,10 +7628,10 @@ High-level wrapper for VkOffset2D.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkOffset2D.html)
 
 """
-struct Offset2D <: HighLevelStruct
-    x::Int32
-    y::Int32
-end
+@auto_hash_equals struct Offset2D <: HighLevelStruct
+        x::Int32
+        y::Int32
+    end
 
 """
 High-level wrapper for VkRectLayerKHR.
@@ -7641,11 +7641,11 @@ Extension: VK\\_KHR\\_incremental\\_present
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRectLayerKHR.html)
 
 """
-struct RectLayerKHR <: HighLevelStruct
-    offset::Offset2D
-    extent::Extent2D
-    layer::UInt32
-end
+@auto_hash_equals struct RectLayerKHR <: HighLevelStruct
+        offset::Offset2D
+        extent::Extent2D
+        layer::UInt32
+    end
 
 """
 High-level wrapper for VkPresentRegionKHR.
@@ -7655,9 +7655,9 @@ Extension: VK\\_KHR\\_incremental\\_present
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionKHR.html)
 
 """
-struct PresentRegionKHR <: HighLevelStruct
-    rectangles::OptionalPtr{Vector{RectLayerKHR}}
-end
+@auto_hash_equals struct PresentRegionKHR <: HighLevelStruct
+        rectangles::OptionalPtr{Vector{RectLayerKHR}}
+    end
 
 """
 High-level wrapper for VkPresentRegionsKHR.
@@ -7667,10 +7667,10 @@ Extension: VK\\_KHR\\_incremental\\_present
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentRegionsKHR.html)
 
 """
-struct PresentRegionsKHR <: HighLevelStruct
-    next::Any
-    regions::OptionalPtr{Vector{PresentRegionKHR}}
-end
+@auto_hash_equals struct PresentRegionsKHR <: HighLevelStruct
+        next::Any
+        regions::OptionalPtr{Vector{PresentRegionKHR}}
+    end
 
 """
 High-level wrapper for VkRect2D.
@@ -7678,10 +7678,10 @@ High-level wrapper for VkRect2D.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRect2D.html)
 
 """
-struct Rect2D <: HighLevelStruct
-    offset::Offset2D
-    extent::Extent2D
-end
+@auto_hash_equals struct Rect2D <: HighLevelStruct
+        offset::Offset2D
+        extent::Extent2D
+    end
 
 """
 High-level wrapper for VkPipelineViewportExclusiveScissorStateCreateInfoNV.
@@ -7691,10 +7691,10 @@ Extension: VK\\_NV\\_scissor\\_exclusive
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html)
 
 """
-struct PipelineViewportExclusiveScissorStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    exclusive_scissors::Vector{Rect2D}
-end
+@auto_hash_equals struct PipelineViewportExclusiveScissorStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        exclusive_scissors::Vector{Rect2D}
+    end
 
 """
 High-level wrapper for VkDeviceGroupRenderPassBeginInfo.
@@ -7702,11 +7702,11 @@ High-level wrapper for VkDeviceGroupRenderPassBeginInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html)
 
 """
-struct DeviceGroupRenderPassBeginInfo <: HighLevelStruct
-    next::Any
-    device_mask::UInt32
-    device_render_areas::Vector{Rect2D}
-end
+@auto_hash_equals struct DeviceGroupRenderPassBeginInfo <: HighLevelStruct
+        next::Any
+        device_mask::UInt32
+        device_render_areas::Vector{Rect2D}
+    end
 
 """
 High-level wrapper for VkBindImageMemoryDeviceGroupInfo.
@@ -7714,11 +7714,11 @@ High-level wrapper for VkBindImageMemoryDeviceGroupInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html)
 
 """
-struct BindImageMemoryDeviceGroupInfo <: HighLevelStruct
-    next::Any
-    device_indices::Vector{UInt32}
-    split_instance_bind_regions::Vector{Rect2D}
-end
+@auto_hash_equals struct BindImageMemoryDeviceGroupInfo <: HighLevelStruct
+        next::Any
+        device_indices::Vector{UInt32}
+        split_instance_bind_regions::Vector{Rect2D}
+    end
 
 """
 High-level wrapper for VkDisplayPresentInfoKHR.
@@ -7728,12 +7728,12 @@ Extension: VK\\_KHR\\_display\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPresentInfoKHR.html)
 
 """
-struct DisplayPresentInfoKHR <: HighLevelStruct
-    next::Any
-    src_rect::Rect2D
-    dst_rect::Rect2D
-    persistent::Bool
-end
+@auto_hash_equals struct DisplayPresentInfoKHR <: HighLevelStruct
+        next::Any
+        src_rect::Rect2D
+        dst_rect::Rect2D
+        persistent::Bool
+    end
 
 """
 High-level wrapper for VkPipelineViewportStateCreateInfo.
@@ -7741,12 +7741,12 @@ High-level wrapper for VkPipelineViewportStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportStateCreateInfo.html)
 
 """
-struct PipelineViewportStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    viewports::OptionalPtr{Vector{Viewport}}
-    scissors::OptionalPtr{Vector{Rect2D}}
-end
+@auto_hash_equals struct PipelineViewportStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        viewports::OptionalPtr{Vector{Viewport}}
+        scissors::OptionalPtr{Vector{Rect2D}}
+    end
 
 """
 High-level wrapper for VkClearRect.
@@ -7754,11 +7754,11 @@ High-level wrapper for VkClearRect.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearRect.html)
 
 """
-struct ClearRect <: HighLevelStruct
-    rect::Rect2D
-    base_array_layer::UInt32
-    layer_count::UInt32
-end
+@auto_hash_equals struct ClearRect <: HighLevelStruct
+        rect::Rect2D
+        base_array_layer::UInt32
+        layer_count::UInt32
+    end
 
 """
 High-level wrapper for VkBaseInStructure.
@@ -7766,9 +7766,9 @@ High-level wrapper for VkBaseInStructure.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseInStructure.html)
 
 """
-struct BaseInStructure <: HighLevelStruct
-    next::Any
-end
+@auto_hash_equals struct BaseInStructure <: HighLevelStruct
+        next::Any
+    end
 
 """
 High-level wrapper for VkBaseOutStructure.
@@ -7776,9 +7776,9 @@ High-level wrapper for VkBaseOutStructure.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBaseOutStructure.html)
 
 """
-struct BaseOutStructure <: HighLevelStruct
-    next::Any
-end
+@auto_hash_equals struct BaseOutStructure <: HighLevelStruct
+        next::Any
+    end
 
 """
 Minimalistic wrapper for VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.
@@ -12010,11 +12010,11 @@ Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageDrmFormatModifierExplicitCreateInfoEXT.html)
 
 """
-struct ImageDrmFormatModifierExplicitCreateInfoEXT <: HighLevelStruct
-    next::Any
-    drm_format_modifier::UInt64
-    plane_layouts::Vector{SubresourceLayout}
-end
+@auto_hash_equals struct ImageDrmFormatModifierExplicitCreateInfoEXT <: HighLevelStruct
+        next::Any
+        drm_format_modifier::UInt64
+        plane_layouts::Vector{SubresourceLayout}
+    end
 
 """
 Minimalistic wrapper for VkImageCreateInfo.
@@ -12334,10 +12334,10 @@ Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html)
 
 """
-struct PhysicalDeviceSurfaceInfo2KHR <: HighLevelStruct
-    next::Any
-    surface::SurfaceKHR
-end
+@auto_hash_equals struct PhysicalDeviceSurfaceInfo2KHR <: HighLevelStruct
+        next::Any
+        surface::SurfaceKHR
+    end
 
 """
 Minimalistic wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
@@ -12372,11 +12372,11 @@ Extension: VK\\_KHR\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html)
 
 """
-struct BindImageMemorySwapchainInfoKHR <: HighLevelStruct
-    next::Any
-    swapchain::SwapchainKHR
-    image_index::UInt32
-end
+@auto_hash_equals struct BindImageMemorySwapchainInfoKHR <: HighLevelStruct
+        next::Any
+        swapchain::SwapchainKHR
+        image_index::UInt32
+    end
 
 """
 High-level wrapper for VkImageSwapchainCreateInfoKHR.
@@ -12386,10 +12386,10 @@ Extension: VK\\_KHR\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSwapchainCreateInfoKHR.html)
 
 """
-struct ImageSwapchainCreateInfoKHR <: HighLevelStruct
-    next::Any
-    swapchain::OptionalPtr{SwapchainKHR}
-end
+@auto_hash_equals struct ImageSwapchainCreateInfoKHR <: HighLevelStruct
+        next::Any
+        swapchain::OptionalPtr{SwapchainKHR}
+    end
 
 """
 Minimalistic wrapper for VkBindImageMemorySwapchainInfoKHR.
@@ -12451,10 +12451,10 @@ High-level wrapper for VkDeviceGroupDeviceCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html)
 
 """
-struct DeviceGroupDeviceCreateInfo <: HighLevelStruct
-    next::Any
-    physical_devices::Vector{PhysicalDevice}
-end
+@auto_hash_equals struct DeviceGroupDeviceCreateInfo <: HighLevelStruct
+        next::Any
+        physical_devices::Vector{PhysicalDevice}
+    end
 
 """
 
@@ -12499,11 +12499,11 @@ Extension: VK\\_KHR\\_get\\_display\\_properties2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPlaneInfo2KHR.html)
 
 """
-struct DisplayPlaneInfo2KHR <: HighLevelStruct
-    next::Any
-    mode::DisplayModeKHR
-    plane_index::UInt32
-end
+@auto_hash_equals struct DisplayPlaneInfo2KHR <: HighLevelStruct
+        next::Any
+        mode::DisplayModeKHR
+        plane_index::UInt32
+    end
 
 """
 Minimalistic wrapper for VkDisplayPlaneInfo2KHR.
@@ -12609,10 +12609,10 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html)
 
 """
-struct WriteDescriptorSetAccelerationStructureNV <: HighLevelStruct
-    next::Any
-    acceleration_structures::Vector{AccelerationStructureNV}
-end
+@auto_hash_equals struct WriteDescriptorSetAccelerationStructureNV <: HighLevelStruct
+        next::Any
+        acceleration_structures::Vector{AccelerationStructureNV}
+    end
 
 """
 Minimalistic wrapper for VkAccelerationStructureMemoryRequirementsInfoNV.
@@ -12647,10 +12647,10 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html)
 
 """
-struct AccelerationStructureDeviceAddressInfoKHR <: HighLevelStruct
-    next::Any
-    acceleration_structure::AccelerationStructureKHR
-end
+@auto_hash_equals struct AccelerationStructureDeviceAddressInfoKHR <: HighLevelStruct
+        next::Any
+        acceleration_structure::AccelerationStructureKHR
+    end
 
 """
 High-level wrapper for VkWriteDescriptorSetAccelerationStructureKHR.
@@ -12660,10 +12660,10 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html)
 
 """
-struct WriteDescriptorSetAccelerationStructureKHR <: HighLevelStruct
-    next::Any
-    acceleration_structures::Vector{AccelerationStructureKHR}
-end
+@auto_hash_equals struct WriteDescriptorSetAccelerationStructureKHR <: HighLevelStruct
+        next::Any
+        acceleration_structures::Vector{AccelerationStructureKHR}
+    end
 
 """
 Minimalistic wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
@@ -12756,10 +12756,10 @@ Extension: VK\\_EXT\\_validation\\_cache
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html)
 
 """
-struct ShaderModuleValidationCacheCreateInfoEXT <: HighLevelStruct
-    next::Any
-    validation_cache::ValidationCacheEXT
-end
+@auto_hash_equals struct ShaderModuleValidationCacheCreateInfoEXT <: HighLevelStruct
+        next::Any
+        validation_cache::ValidationCacheEXT
+    end
 
 """
 Minimalistic wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
@@ -12792,10 +12792,10 @@ High-level wrapper for VkSamplerYcbcrConversionInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionInfo.html)
 
 """
-struct SamplerYcbcrConversionInfo <: HighLevelStruct
-    next::Any
-    conversion::SamplerYcbcrConversion
-end
+@auto_hash_equals struct SamplerYcbcrConversionInfo <: HighLevelStruct
+        next::Any
+        conversion::SamplerYcbcrConversion
+    end
 
 """
 Minimalistic wrapper for VkSamplerYcbcrConversionInfo.
@@ -12943,13 +12943,13 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSubmitInfoKHR.html)
 
 """
-struct SemaphoreSubmitInfoKHR <: HighLevelStruct
-    next::Any
-    semaphore::Semaphore
-    value::UInt64
-    stage_mask::UInt64
-    device_index::UInt32
-end
+@auto_hash_equals struct SemaphoreSubmitInfoKHR <: HighLevelStruct
+        next::Any
+        semaphore::Semaphore
+        value::UInt64
+        stage_mask::UInt64
+        device_index::UInt32
+    end
 
 """
 High-level wrapper for VkSemaphoreSignalInfo.
@@ -12957,11 +12957,11 @@ High-level wrapper for VkSemaphoreSignalInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreSignalInfo.html)
 
 """
-struct SemaphoreSignalInfo <: HighLevelStruct
-    next::Any
-    semaphore::Semaphore
-    value::UInt64
-end
+@auto_hash_equals struct SemaphoreSignalInfo <: HighLevelStruct
+        next::Any
+        semaphore::Semaphore
+        value::UInt64
+    end
 
 """
 Minimalistic wrapper for VkSemaphoreSubmitInfoKHR.
@@ -13036,14 +13036,14 @@ Extension: VK\\_KHR\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireNextImageInfoKHR.html)
 
 """
-struct AcquireNextImageInfoKHR <: HighLevelStruct
-    next::Any
-    swapchain::SwapchainKHR
-    timeout::UInt64
-    semaphore::OptionalPtr{Semaphore}
-    fence::OptionalPtr{Fence}
-    device_mask::UInt32
-end
+@auto_hash_equals struct AcquireNextImageInfoKHR <: HighLevelStruct
+        next::Any
+        swapchain::SwapchainKHR
+        timeout::UInt64
+        semaphore::OptionalPtr{Semaphore}
+        fence::OptionalPtr{Fence}
+        device_mask::UInt32
+    end
 
 """
 Minimalistic wrapper for VkAcquireNextImageInfoKHR.
@@ -13129,16 +13129,16 @@ High-level wrapper for VkCopyDescriptorSet.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyDescriptorSet.html)
 
 """
-struct CopyDescriptorSet <: HighLevelStruct
-    next::Any
-    src_set::DescriptorSet
-    src_binding::UInt32
-    src_array_element::UInt32
-    dst_set::DescriptorSet
-    dst_binding::UInt32
-    dst_array_element::UInt32
-    descriptor_count::UInt32
-end
+@auto_hash_equals struct CopyDescriptorSet <: HighLevelStruct
+        next::Any
+        src_set::DescriptorSet
+        src_binding::UInt32
+        src_array_element::UInt32
+        dst_set::DescriptorSet
+        dst_binding::UInt32
+        dst_array_element::UInt32
+        descriptor_count::UInt32
+    end
 
 """
 Minimalistic wrapper for VkCopyDescriptorSet.
@@ -13182,11 +13182,11 @@ High-level wrapper for VkDescriptorSetAllocateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetAllocateInfo.html)
 
 """
-struct DescriptorSetAllocateInfo <: HighLevelStruct
-    next::Any
-    descriptor_pool::DescriptorPool
-    set_layouts::Vector{DescriptorSetLayout}
-end
+@auto_hash_equals struct DescriptorSetAllocateInfo <: HighLevelStruct
+        next::Any
+        descriptor_pool::DescriptorPool
+        set_layouts::Vector{DescriptorSetLayout}
+    end
 
 """
 
@@ -13256,10 +13256,10 @@ Extension: VK\\_KHR\\_pipeline\\_library
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html)
 
 """
-struct PipelineLibraryCreateInfoKHR <: HighLevelStruct
-    next::Any
-    libraries::Vector{Pipeline}
-end
+@auto_hash_equals struct PipelineLibraryCreateInfoKHR <: HighLevelStruct
+        next::Any
+        libraries::Vector{Pipeline}
+    end
 
 """
 High-level wrapper for VkPipelineExecutableInfoKHR.
@@ -13269,11 +13269,11 @@ Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineExecutableInfoKHR.html)
 
 """
-struct PipelineExecutableInfoKHR <: HighLevelStruct
-    next::Any
-    pipeline::Pipeline
-    executable_index::UInt32
-end
+@auto_hash_equals struct PipelineExecutableInfoKHR <: HighLevelStruct
+        next::Any
+        pipeline::Pipeline
+        executable_index::UInt32
+    end
 
 """
 High-level wrapper for VkPipelineInfoKHR.
@@ -13283,10 +13283,10 @@ Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInfoKHR.html)
 
 """
-struct PipelineInfoKHR <: HighLevelStruct
-    next::Any
-    pipeline::Pipeline
-end
+@auto_hash_equals struct PipelineInfoKHR <: HighLevelStruct
+        next::Any
+        pipeline::Pipeline
+    end
 
 """
 Minimalistic wrapper for VkPipelineExecutableInfoKHR.
@@ -13428,10 +13428,10 @@ High-level wrapper for VkRenderPassAttachmentBeginInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassAttachmentBeginInfo.html)
 
 """
-struct RenderPassAttachmentBeginInfo <: HighLevelStruct
-    next::Any
-    attachments::Vector{ImageView}
-end
+@auto_hash_equals struct RenderPassAttachmentBeginInfo <: HighLevelStruct
+        next::Any
+        attachments::Vector{ImageView}
+    end
 
 """
 Minimalistic wrapper for VkImageViewHandleInfoNVX.
@@ -13477,10 +13477,10 @@ High-level wrapper for VkImageSparseMemoryRequirementsInfo2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html)
 
 """
-struct ImageSparseMemoryRequirementsInfo2 <: HighLevelStruct
-    next::Any
-    image::Image
-end
+@auto_hash_equals struct ImageSparseMemoryRequirementsInfo2 <: HighLevelStruct
+        next::Any
+        image::Image
+    end
 
 """
 High-level wrapper for VkImageMemoryRequirementsInfo2.
@@ -13488,10 +13488,10 @@ High-level wrapper for VkImageMemoryRequirementsInfo2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryRequirementsInfo2.html)
 
 """
-struct ImageMemoryRequirementsInfo2 <: HighLevelStruct
-    next::Any
-    image::Image
-end
+@auto_hash_equals struct ImageMemoryRequirementsInfo2 <: HighLevelStruct
+        next::Any
+        image::Image
+    end
 
 """
 Minimalistic wrapper for VkImageMemoryBarrier2KHR.
@@ -13654,18 +13654,18 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier2KHR.html)
 
 """
-struct BufferMemoryBarrier2KHR <: HighLevelStruct
-    next::Any
-    src_stage_mask::UInt64
-    src_access_mask::UInt64
-    dst_stage_mask::UInt64
-    dst_access_mask::UInt64
-    src_queue_family_index::UInt32
-    dst_queue_family_index::UInt32
-    buffer::Buffer
-    offset::UInt64
-    size::UInt64
-end
+@auto_hash_equals struct BufferMemoryBarrier2KHR <: HighLevelStruct
+        next::Any
+        src_stage_mask::UInt64
+        src_access_mask::UInt64
+        dst_stage_mask::UInt64
+        dst_access_mask::UInt64
+        src_queue_family_index::UInt32
+        dst_queue_family_index::UInt32
+        buffer::Buffer
+        offset::UInt64
+        size::UInt64
+    end
 
 """
 High-level wrapper for VkCopyBufferInfo2KHR.
@@ -13675,12 +13675,12 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferInfo2KHR.html)
 
 """
-struct CopyBufferInfo2KHR <: HighLevelStruct
-    next::Any
-    src_buffer::Buffer
-    dst_buffer::Buffer
-    regions::Vector{BufferCopy2KHR}
-end
+@auto_hash_equals struct CopyBufferInfo2KHR <: HighLevelStruct
+        next::Any
+        src_buffer::Buffer
+        dst_buffer::Buffer
+        regions::Vector{BufferCopy2KHR}
+    end
 
 """
 High-level wrapper for VkBufferDeviceAddressInfo.
@@ -13688,10 +13688,10 @@ High-level wrapper for VkBufferDeviceAddressInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferDeviceAddressInfo.html)
 
 """
-struct BufferDeviceAddressInfo <: HighLevelStruct
-    next::Any
-    buffer::Buffer
-end
+@auto_hash_equals struct BufferDeviceAddressInfo <: HighLevelStruct
+        next::Any
+        buffer::Buffer
+    end
 
 """
 High-level wrapper for VkGeometryAABBNV.
@@ -13701,13 +13701,13 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryAABBNV.html)
 
 """
-struct GeometryAABBNV <: HighLevelStruct
-    next::Any
-    aabb_data::OptionalPtr{Buffer}
-    num_aab_bs::UInt32
-    stride::UInt32
-    offset::UInt64
-end
+@auto_hash_equals struct GeometryAABBNV <: HighLevelStruct
+        next::Any
+        aabb_data::OptionalPtr{Buffer}
+        num_aab_bs::UInt32
+        stride::UInt32
+        offset::UInt64
+    end
 
 """
 High-level wrapper for VkMemoryDedicatedAllocateInfo.
@@ -13715,11 +13715,11 @@ High-level wrapper for VkMemoryDedicatedAllocateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryDedicatedAllocateInfo.html)
 
 """
-struct MemoryDedicatedAllocateInfo <: HighLevelStruct
-    next::Any
-    image::OptionalPtr{Image}
-    buffer::OptionalPtr{Buffer}
-end
+@auto_hash_equals struct MemoryDedicatedAllocateInfo <: HighLevelStruct
+        next::Any
+        image::OptionalPtr{Image}
+        buffer::OptionalPtr{Buffer}
+    end
 
 """
 High-level wrapper for VkBufferMemoryRequirementsInfo2.
@@ -13727,10 +13727,10 @@ High-level wrapper for VkBufferMemoryRequirementsInfo2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryRequirementsInfo2.html)
 
 """
-struct BufferMemoryRequirementsInfo2 <: HighLevelStruct
-    next::Any
-    buffer::Buffer
-end
+@auto_hash_equals struct BufferMemoryRequirementsInfo2 <: HighLevelStruct
+        next::Any
+        buffer::Buffer
+    end
 
 """
 High-level wrapper for VkIndirectCommandsStreamNV.
@@ -13740,10 +13740,10 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsStreamNV.html)
 
 """
-struct IndirectCommandsStreamNV <: HighLevelStruct
-    buffer::Buffer
-    offset::UInt64
-end
+@auto_hash_equals struct IndirectCommandsStreamNV <: HighLevelStruct
+        buffer::Buffer
+        offset::UInt64
+    end
 
 """
 High-level wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
@@ -13753,11 +13753,11 @@ Extension: VK\\_NV\\_dedicated\\_allocation
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html)
 
 """
-struct DedicatedAllocationMemoryAllocateInfoNV <: HighLevelStruct
-    next::Any
-    image::OptionalPtr{Image}
-    buffer::OptionalPtr{Buffer}
-end
+@auto_hash_equals struct DedicatedAllocationMemoryAllocateInfoNV <: HighLevelStruct
+        next::Any
+        image::OptionalPtr{Image}
+        buffer::OptionalPtr{Buffer}
+    end
 
 """
 High-level wrapper for VkDescriptorBufferInfo.
@@ -13765,11 +13765,11 @@ High-level wrapper for VkDescriptorBufferInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorBufferInfo.html)
 
 """
-struct DescriptorBufferInfo <: HighLevelStruct
-    buffer::OptionalPtr{Buffer}
-    offset::UInt64
-    range::UInt64
-end
+@auto_hash_equals struct DescriptorBufferInfo <: HighLevelStruct
+        buffer::OptionalPtr{Buffer}
+        offset::UInt64
+        range::UInt64
+    end
 
 """
 Minimalistic wrapper for VkBufferMemoryBarrier2KHR.
@@ -14060,11 +14060,11 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferSubmitInfoKHR.html)
 
 """
-struct CommandBufferSubmitInfoKHR <: HighLevelStruct
-    next::Any
-    command_buffer::CommandBuffer
-    device_mask::UInt32
-end
+@auto_hash_equals struct CommandBufferSubmitInfoKHR <: HighLevelStruct
+        next::Any
+        command_buffer::CommandBuffer
+        device_mask::UInt32
+    end
 
 """
 Minimalistic wrapper for VkCommandBufferSubmitInfoKHR.
@@ -14097,10 +14097,10 @@ High-level wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html)
 
 """
-struct DeviceMemoryOpaqueCaptureAddressInfo <: HighLevelStruct
-    next::Any
-    memory::DeviceMemory
-end
+@auto_hash_equals struct DeviceMemoryOpaqueCaptureAddressInfo <: HighLevelStruct
+        next::Any
+        memory::DeviceMemory
+    end
 
 """
 High-level wrapper for VkBindAccelerationStructureMemoryInfoNV.
@@ -14110,13 +14110,13 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
 
 """
-struct BindAccelerationStructureMemoryInfoNV <: HighLevelStruct
-    next::Any
-    acceleration_structure::AccelerationStructureNV
-    memory::DeviceMemory
-    memory_offset::UInt64
-    device_indices::Vector{UInt32}
-end
+@auto_hash_equals struct BindAccelerationStructureMemoryInfoNV <: HighLevelStruct
+        next::Any
+        acceleration_structure::AccelerationStructureNV
+        memory::DeviceMemory
+        memory_offset::UInt64
+        device_indices::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkBindImageMemoryInfo.
@@ -14124,12 +14124,12 @@ High-level wrapper for VkBindImageMemoryInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImageMemoryInfo.html)
 
 """
-struct BindImageMemoryInfo <: HighLevelStruct
-    next::Any
-    image::Image
-    memory::DeviceMemory
-    memory_offset::UInt64
-end
+@auto_hash_equals struct BindImageMemoryInfo <: HighLevelStruct
+        next::Any
+        image::Image
+        memory::DeviceMemory
+        memory_offset::UInt64
+    end
 
 """
 High-level wrapper for VkBindBufferMemoryInfo.
@@ -14137,12 +14137,12 @@ High-level wrapper for VkBindBufferMemoryInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindBufferMemoryInfo.html)
 
 """
-struct BindBufferMemoryInfo <: HighLevelStruct
-    next::Any
-    buffer::Buffer
-    memory::DeviceMemory
-    memory_offset::UInt64
-end
+@auto_hash_equals struct BindBufferMemoryInfo <: HighLevelStruct
+        next::Any
+        buffer::Buffer
+        memory::DeviceMemory
+        memory_offset::UInt64
+    end
 
 """
 High-level wrapper for VkMappedMemoryRange.
@@ -14150,12 +14150,12 @@ High-level wrapper for VkMappedMemoryRange.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMappedMemoryRange.html)
 
 """
-struct MappedMemoryRange <: HighLevelStruct
-    next::Any
-    memory::DeviceMemory
-    offset::UInt64
-    size::UInt64
-end
+@auto_hash_equals struct MappedMemoryRange <: HighLevelStruct
+        next::Any
+        memory::DeviceMemory
+        offset::UInt64
+        size::UInt64
+    end
 
 """
 Minimalistic wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
@@ -14277,11 +14277,11 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryInstancesDataKHR.html)
 
 """
-struct AccelerationStructureGeometryInstancesDataKHR <: HighLevelStruct
-    next::Any
-    array_of_pointers::Bool
-    data::DeviceOrHostAddressConstKHR
-end
+@auto_hash_equals struct AccelerationStructureGeometryInstancesDataKHR <: HighLevelStruct
+        next::Any
+        array_of_pointers::Bool
+        data::DeviceOrHostAddressConstKHR
+    end
 
 """
 High-level wrapper for VkAccelerationStructureGeometryAabbsDataKHR.
@@ -14291,11 +14291,11 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html)
 
 """
-struct AccelerationStructureGeometryAabbsDataKHR <: HighLevelStruct
-    next::Any
-    data::DeviceOrHostAddressConstKHR
-    stride::UInt64
-end
+@auto_hash_equals struct AccelerationStructureGeometryAabbsDataKHR <: HighLevelStruct
+        next::Any
+        data::DeviceOrHostAddressConstKHR
+        stride::UInt64
+    end
 
 """
 High-level wrapper for VkRenderPassBeginInfo.
@@ -14303,13 +14303,13 @@ High-level wrapper for VkRenderPassBeginInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassBeginInfo.html)
 
 """
-struct RenderPassBeginInfo <: HighLevelStruct
-    next::Any
-    render_pass::RenderPass
-    framebuffer::Framebuffer
-    render_area::Rect2D
-    clear_values::Vector{ClearValue}
-end
+@auto_hash_equals struct RenderPassBeginInfo <: HighLevelStruct
+        next::Any
+        render_pass::RenderPass
+        framebuffer::Framebuffer
+        render_area::Rect2D
+        clear_values::Vector{ClearValue}
+    end
 
 """
 High-level wrapper for VkEventCreateInfo.
@@ -14317,10 +14317,10 @@ High-level wrapper for VkEventCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkEventCreateInfo.html)
 
 """
-struct EventCreateInfo <: HighLevelStruct
-    next::Any
-    flags::EventCreateFlag
-end
+@auto_hash_equals struct EventCreateInfo <: HighLevelStruct
+        next::Any
+        flags::EventCreateFlag
+    end
 
 """
 High-level wrapper for VkSubmitInfo2KHR.
@@ -14330,13 +14330,13 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html)
 
 """
-struct SubmitInfo2KHR <: HighLevelStruct
-    next::Any
-    flags::SubmitFlagKHR
-    wait_semaphore_infos::Vector{SemaphoreSubmitInfoKHR}
-    command_buffer_infos::Vector{CommandBufferSubmitInfoKHR}
-    signal_semaphore_infos::Vector{SemaphoreSubmitInfoKHR}
-end
+@auto_hash_equals struct SubmitInfo2KHR <: HighLevelStruct
+        next::Any
+        flags::SubmitFlagKHR
+        wait_semaphore_infos::Vector{SemaphoreSubmitInfoKHR}
+        command_buffer_infos::Vector{CommandBufferSubmitInfoKHR}
+        signal_semaphore_infos::Vector{SemaphoreSubmitInfoKHR}
+    end
 
 """
 High-level wrapper for VkPipelineCompilerControlCreateInfoAMD.
@@ -14346,10 +14346,10 @@ Extension: VK\\_AMD\\_pipeline\\_compiler\\_control
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html)
 
 """
-struct PipelineCompilerControlCreateInfoAMD <: HighLevelStruct
-    next::Any
-    compiler_control_flags::PipelineCompilerControlFlagAMD
-end
+@auto_hash_equals struct PipelineCompilerControlCreateInfoAMD <: HighLevelStruct
+        next::Any
+        compiler_control_flags::PipelineCompilerControlFlagAMD
+    end
 
 """
 High-level wrapper for VkShaderModuleCreateInfo.
@@ -14357,12 +14357,12 @@ High-level wrapper for VkShaderModuleCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShaderModuleCreateInfo.html)
 
 """
-struct ShaderModuleCreateInfo <: HighLevelStruct
-    next::Any
-    flags::ShaderModuleCreateFlag
-    code_size::UInt
-    code::Vector{UInt32}
-end
+@auto_hash_equals struct ShaderModuleCreateInfo <: HighLevelStruct
+        next::Any
+        flags::ShaderModuleCreateFlag
+        code_size::UInt
+        code::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkAcquireProfilingLockInfoKHR.
@@ -14372,11 +14372,11 @@ Extension: VK\\_KHR\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAcquireProfilingLockInfoKHR.html)
 
 """
-struct AcquireProfilingLockInfoKHR <: HighLevelStruct
-    next::Any
-    flags::AcquireProfilingLockFlagKHR
-    timeout::UInt64
-end
+@auto_hash_equals struct AcquireProfilingLockInfoKHR <: HighLevelStruct
+        next::Any
+        flags::AcquireProfilingLockFlagKHR
+        timeout::UInt64
+    end
 
 """
 Minimalistic wrapper for VkPipelineCreationFeedbackEXT.
@@ -14399,11 +14399,11 @@ Extension: VK\\_EXT\\_pipeline\\_creation\\_feedback
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCreationFeedbackCreateInfoEXT.html)
 
 """
-struct PipelineCreationFeedbackCreateInfoEXT <: HighLevelStruct
-    next::Any
-    pipeline_creation_feedback::PipelineCreationFeedbackEXT
-    pipeline_stage_creation_feedbacks::Vector{PipelineCreationFeedbackEXT}
-end
+@auto_hash_equals struct PipelineCreationFeedbackCreateInfoEXT <: HighLevelStruct
+        next::Any
+        pipeline_creation_feedback::PipelineCreationFeedbackEXT
+        pipeline_stage_creation_feedbacks::Vector{PipelineCreationFeedbackEXT}
+    end
 
 """
 High-level wrapper for VkDeviceDiagnosticsConfigCreateInfoNV.
@@ -14413,10 +14413,10 @@ Extension: VK\\_NV\\_device\\_diagnostics\\_config
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceDiagnosticsConfigCreateInfoNV.html)
 
 """
-struct DeviceDiagnosticsConfigCreateInfoNV <: HighLevelStruct
-    next::Any
-    flags::DeviceDiagnosticsConfigFlagNV
-end
+@auto_hash_equals struct DeviceDiagnosticsConfigCreateInfoNV <: HighLevelStruct
+        next::Any
+        flags::DeviceDiagnosticsConfigFlagNV
+    end
 
 """
 High-level wrapper for VkFramebufferCreateInfo.
@@ -14424,15 +14424,15 @@ High-level wrapper for VkFramebufferCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferCreateInfo.html)
 
 """
-struct FramebufferCreateInfo <: HighLevelStruct
-    next::Any
-    flags::FramebufferCreateFlag
-    render_pass::RenderPass
-    attachments::Vector{ImageView}
-    width::UInt32
-    height::UInt32
-    layers::UInt32
-end
+@auto_hash_equals struct FramebufferCreateInfo <: HighLevelStruct
+        next::Any
+        flags::FramebufferCreateFlag
+        render_pass::RenderPass
+        attachments::Vector{ImageView}
+        width::UInt32
+        height::UInt32
+        layers::UInt32
+    end
 
 """
 High-level wrapper for VkAccelerationStructureInstanceKHR.
@@ -14442,14 +14442,14 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInstanceKHR.html)
 
 """
-struct AccelerationStructureInstanceKHR <: HighLevelStruct
-    transform::TransformMatrixKHR
-    instance_custom_index::UInt32
-    mask::UInt32
-    instance_shader_binding_table_record_offset::UInt32
-    flags::GeometryInstanceFlagKHR
-    acceleration_structure_reference::UInt64
-end
+@auto_hash_equals struct AccelerationStructureInstanceKHR <: HighLevelStruct
+        transform::TransformMatrixKHR
+        instance_custom_index::UInt32
+        mask::UInt32
+        instance_shader_binding_table_record_offset::UInt32
+        flags::GeometryInstanceFlagKHR
+        acceleration_structure_reference::UInt64
+    end
 
 """
 High-level wrapper for VkConditionalRenderingBeginInfoEXT.
@@ -14459,12 +14459,12 @@ Extension: VK\\_EXT\\_conditional\\_rendering
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html)
 
 """
-struct ConditionalRenderingBeginInfoEXT <: HighLevelStruct
-    next::Any
-    buffer::Buffer
-    offset::UInt64
-    flags::ConditionalRenderingFlagEXT
-end
+@auto_hash_equals struct ConditionalRenderingBeginInfoEXT <: HighLevelStruct
+        next::Any
+        buffer::Buffer
+        offset::UInt64
+        flags::ConditionalRenderingFlagEXT
+    end
 
 """
 High-level wrapper for VkDescriptorSetLayoutBindingFlagsCreateInfo.
@@ -14472,10 +14472,10 @@ High-level wrapper for VkDescriptorSetLayoutBindingFlagsCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBindingFlagsCreateInfo.html)
 
 """
-struct DescriptorSetLayoutBindingFlagsCreateInfo <: HighLevelStruct
-    next::Any
-    binding_flags::Vector{DescriptorBindingFlag}
-end
+@auto_hash_equals struct DescriptorSetLayoutBindingFlagsCreateInfo <: HighLevelStruct
+        next::Any
+        binding_flags::Vector{DescriptorBindingFlag}
+    end
 
 """
 High-level wrapper for VkDebugUtilsMessengerCreateInfoEXT.
@@ -14485,14 +14485,14 @@ Extension: VK\\_EXT\\_debug\\_utils
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCreateInfoEXT.html)
 
 """
-struct DebugUtilsMessengerCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    message_severity::DebugUtilsMessageSeverityFlagEXT
-    message_type::DebugUtilsMessageTypeFlagEXT
-    pfn_user_callback::FunctionPtr
-    user_data::OptionalPtr{Ptr{Cvoid}}
-end
+@auto_hash_equals struct DebugUtilsMessengerCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        message_severity::DebugUtilsMessageSeverityFlagEXT
+        message_type::DebugUtilsMessageTypeFlagEXT
+        pfn_user_callback::FunctionPtr
+        user_data::OptionalPtr{Ptr{Cvoid}}
+    end
 
 """
 High-level wrapper for VkDeviceGroupSwapchainCreateInfoKHR.
@@ -14502,10 +14502,10 @@ Extension: VK\\_KHR\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html)
 
 """
-struct DeviceGroupSwapchainCreateInfoKHR <: HighLevelStruct
-    next::Any
-    modes::DeviceGroupPresentModeFlagKHR
-end
+@auto_hash_equals struct DeviceGroupSwapchainCreateInfoKHR <: HighLevelStruct
+        next::Any
+        modes::DeviceGroupPresentModeFlagKHR
+    end
 
 """
 High-level wrapper for VkDeviceGroupPresentInfoKHR.
@@ -14515,11 +14515,11 @@ Extension: VK\\_KHR\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceGroupPresentInfoKHR.html)
 
 """
-struct DeviceGroupPresentInfoKHR <: HighLevelStruct
-    next::Any
-    device_masks::Vector{UInt32}
-    mode::DeviceGroupPresentModeFlagKHR
-end
+@auto_hash_equals struct DeviceGroupPresentInfoKHR <: HighLevelStruct
+        next::Any
+        device_masks::Vector{UInt32}
+        mode::DeviceGroupPresentModeFlagKHR
+    end
 
 """
 High-level wrapper for VkMemoryAllocateFlagsInfo.
@@ -14527,11 +14527,11 @@ High-level wrapper for VkMemoryAllocateFlagsInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryAllocateFlagsInfo.html)
 
 """
-struct MemoryAllocateFlagsInfo <: HighLevelStruct
-    next::Any
-    flags::MemoryAllocateFlag
-    device_mask::UInt32
-end
+@auto_hash_equals struct MemoryAllocateFlagsInfo <: HighLevelStruct
+        next::Any
+        flags::MemoryAllocateFlag
+        device_mask::UInt32
+    end
 
 """
 High-level wrapper for VkSwapchainCounterCreateInfoEXT.
@@ -14541,10 +14541,10 @@ Extension: VK\\_EXT\\_display\\_control
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCounterCreateInfoEXT.html)
 
 """
-struct SwapchainCounterCreateInfoEXT <: HighLevelStruct
-    next::Any
-    surface_counters::SurfaceCounterFlagEXT
-end
+@auto_hash_equals struct SwapchainCounterCreateInfoEXT <: HighLevelStruct
+        next::Any
+        surface_counters::SurfaceCounterFlagEXT
+    end
 
 """
 High-level wrapper for VkFenceGetFdInfoKHR.
@@ -14554,11 +14554,11 @@ Extension: VK\\_KHR\\_external\\_fence\\_fd
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceGetFdInfoKHR.html)
 
 """
-struct FenceGetFdInfoKHR <: HighLevelStruct
-    next::Any
-    fence::Fence
-    handle_type::ExternalFenceHandleTypeFlag
-end
+@auto_hash_equals struct FenceGetFdInfoKHR <: HighLevelStruct
+        next::Any
+        fence::Fence
+        handle_type::ExternalFenceHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkImportFenceFdInfoKHR.
@@ -14568,13 +14568,13 @@ Extension: VK\\_KHR\\_external\\_fence\\_fd
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportFenceFdInfoKHR.html)
 
 """
-struct ImportFenceFdInfoKHR <: HighLevelStruct
-    next::Any
-    fence::Fence
-    flags::FenceImportFlag
-    handle_type::ExternalFenceHandleTypeFlag
-    fd::Int
-end
+@auto_hash_equals struct ImportFenceFdInfoKHR <: HighLevelStruct
+        next::Any
+        fence::Fence
+        flags::FenceImportFlag
+        handle_type::ExternalFenceHandleTypeFlag
+        fd::Int
+    end
 
 """
 High-level wrapper for VkExportFenceCreateInfo.
@@ -14582,10 +14582,10 @@ High-level wrapper for VkExportFenceCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportFenceCreateInfo.html)
 
 """
-struct ExportFenceCreateInfo <: HighLevelStruct
-    next::Any
-    handle_types::ExternalFenceHandleTypeFlag
-end
+@auto_hash_equals struct ExportFenceCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalFenceHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceExternalFenceInfo.
@@ -14593,10 +14593,10 @@ High-level wrapper for VkPhysicalDeviceExternalFenceInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html)
 
 """
-struct PhysicalDeviceExternalFenceInfo <: HighLevelStruct
-    next::Any
-    handle_type::ExternalFenceHandleTypeFlag
-end
+@auto_hash_equals struct PhysicalDeviceExternalFenceInfo <: HighLevelStruct
+        next::Any
+        handle_type::ExternalFenceHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkSemaphoreGetFdInfoKHR.
@@ -14606,11 +14606,11 @@ Extension: VK\\_KHR\\_external\\_semaphore\\_fd
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreGetFdInfoKHR.html)
 
 """
-struct SemaphoreGetFdInfoKHR <: HighLevelStruct
-    next::Any
-    semaphore::Semaphore
-    handle_type::ExternalSemaphoreHandleTypeFlag
-end
+@auto_hash_equals struct SemaphoreGetFdInfoKHR <: HighLevelStruct
+        next::Any
+        semaphore::Semaphore
+        handle_type::ExternalSemaphoreHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkImportSemaphoreFdInfoKHR.
@@ -14620,13 +14620,13 @@ Extension: VK\\_KHR\\_external\\_semaphore\\_fd
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportSemaphoreFdInfoKHR.html)
 
 """
-struct ImportSemaphoreFdInfoKHR <: HighLevelStruct
-    next::Any
-    semaphore::Semaphore
-    flags::SemaphoreImportFlag
-    handle_type::ExternalSemaphoreHandleTypeFlag
-    fd::Int
-end
+@auto_hash_equals struct ImportSemaphoreFdInfoKHR <: HighLevelStruct
+        next::Any
+        semaphore::Semaphore
+        flags::SemaphoreImportFlag
+        handle_type::ExternalSemaphoreHandleTypeFlag
+        fd::Int
+    end
 
 """
 High-level wrapper for VkExportSemaphoreCreateInfo.
@@ -14634,10 +14634,10 @@ High-level wrapper for VkExportSemaphoreCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportSemaphoreCreateInfo.html)
 
 """
-struct ExportSemaphoreCreateInfo <: HighLevelStruct
-    next::Any
-    handle_types::ExternalSemaphoreHandleTypeFlag
-end
+@auto_hash_equals struct ExportSemaphoreCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalSemaphoreHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceExternalSemaphoreInfo.
@@ -14645,10 +14645,10 @@ High-level wrapper for VkPhysicalDeviceExternalSemaphoreInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html)
 
 """
-struct PhysicalDeviceExternalSemaphoreInfo <: HighLevelStruct
-    next::Any
-    handle_type::ExternalSemaphoreHandleTypeFlag
-end
+@auto_hash_equals struct PhysicalDeviceExternalSemaphoreInfo <: HighLevelStruct
+        next::Any
+        handle_type::ExternalSemaphoreHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkImportMemoryHostPointerInfoEXT.
@@ -14658,11 +14658,11 @@ Extension: VK\\_EXT\\_external\\_memory\\_host
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html)
 
 """
-struct ImportMemoryHostPointerInfoEXT <: HighLevelStruct
-    next::Any
-    handle_type::ExternalMemoryHandleTypeFlag
-    host_pointer::Ptr{Cvoid}
-end
+@auto_hash_equals struct ImportMemoryHostPointerInfoEXT <: HighLevelStruct
+        next::Any
+        handle_type::ExternalMemoryHandleTypeFlag
+        host_pointer::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkMemoryGetFdInfoKHR.
@@ -14672,11 +14672,11 @@ Extension: VK\\_KHR\\_external\\_memory\\_fd
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryGetFdInfoKHR.html)
 
 """
-struct MemoryGetFdInfoKHR <: HighLevelStruct
-    next::Any
-    memory::DeviceMemory
-    handle_type::ExternalMemoryHandleTypeFlag
-end
+@auto_hash_equals struct MemoryGetFdInfoKHR <: HighLevelStruct
+        next::Any
+        memory::DeviceMemory
+        handle_type::ExternalMemoryHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkImportMemoryFdInfoKHR.
@@ -14686,11 +14686,11 @@ Extension: VK\\_KHR\\_external\\_memory\\_fd
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImportMemoryFdInfoKHR.html)
 
 """
-struct ImportMemoryFdInfoKHR <: HighLevelStruct
-    next::Any
-    handle_type::ExternalMemoryHandleTypeFlag
-    fd::Int
-end
+@auto_hash_equals struct ImportMemoryFdInfoKHR <: HighLevelStruct
+        next::Any
+        handle_type::ExternalMemoryHandleTypeFlag
+        fd::Int
+    end
 
 """
 High-level wrapper for VkExportMemoryAllocateInfo.
@@ -14698,10 +14698,10 @@ High-level wrapper for VkExportMemoryAllocateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfo.html)
 
 """
-struct ExportMemoryAllocateInfo <: HighLevelStruct
-    next::Any
-    handle_types::ExternalMemoryHandleTypeFlag
-end
+@auto_hash_equals struct ExportMemoryAllocateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkExternalMemoryBufferCreateInfo.
@@ -14709,10 +14709,10 @@ High-level wrapper for VkExternalMemoryBufferCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryBufferCreateInfo.html)
 
 """
-struct ExternalMemoryBufferCreateInfo <: HighLevelStruct
-    next::Any
-    handle_types::ExternalMemoryHandleTypeFlag
-end
+@auto_hash_equals struct ExternalMemoryBufferCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkExternalMemoryImageCreateInfo.
@@ -14720,10 +14720,10 @@ High-level wrapper for VkExternalMemoryImageCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfo.html)
 
 """
-struct ExternalMemoryImageCreateInfo <: HighLevelStruct
-    next::Any
-    handle_types::ExternalMemoryHandleTypeFlag
-end
+@auto_hash_equals struct ExternalMemoryImageCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceExternalImageFormatInfo.
@@ -14731,10 +14731,10 @@ High-level wrapper for VkPhysicalDeviceExternalImageFormatInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html)
 
 """
-struct PhysicalDeviceExternalImageFormatInfo <: HighLevelStruct
-    next::Any
-    handle_type::ExternalMemoryHandleTypeFlag
-end
+@auto_hash_equals struct PhysicalDeviceExternalImageFormatInfo <: HighLevelStruct
+        next::Any
+        handle_type::ExternalMemoryHandleTypeFlag
+    end
 
 """
 Minimalistic wrapper for VkExternalMemoryProperties.
@@ -14756,10 +14756,10 @@ Extension: VK\\_EXT\\_private\\_data
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPrivateDataSlotCreateInfoEXT.html)
 
 """
-struct PrivateDataSlotCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::PrivateDataSlotCreateFlagEXT
-end
+@auto_hash_equals struct PrivateDataSlotCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::PrivateDataSlotCreateFlagEXT
+    end
 
 """
 High-level wrapper for VkExportMemoryAllocateInfoNV.
@@ -14769,10 +14769,10 @@ Extension: VK\\_NV\\_external\\_memory
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExportMemoryAllocateInfoNV.html)
 
 """
-struct ExportMemoryAllocateInfoNV <: HighLevelStruct
-    next::Any
-    handle_types::ExternalMemoryHandleTypeFlagNV
-end
+@auto_hash_equals struct ExportMemoryAllocateInfoNV <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlagNV
+    end
 
 """
 High-level wrapper for VkExternalMemoryImageCreateInfoNV.
@@ -14782,10 +14782,10 @@ Extension: VK\\_NV\\_external\\_memory
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html)
 
 """
-struct ExternalMemoryImageCreateInfoNV <: HighLevelStruct
-    next::Any
-    handle_types::ExternalMemoryHandleTypeFlagNV
-end
+@auto_hash_equals struct ExternalMemoryImageCreateInfoNV <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlagNV
+    end
 
 """
 High-level wrapper for VkDebugReportCallbackCreateInfoEXT.
@@ -14795,12 +14795,12 @@ Extension: VK\\_EXT\\_debug\\_report
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugReportCallbackCreateInfoEXT.html)
 
 """
-struct DebugReportCallbackCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::DebugReportFlagEXT
-    pfn_callback::FunctionPtr
-    user_data::OptionalPtr{Ptr{Cvoid}}
-end
+@auto_hash_equals struct DebugReportCallbackCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::DebugReportFlagEXT
+        pfn_callback::FunctionPtr
+        user_data::OptionalPtr{Ptr{Cvoid}}
+    end
 
 """
 High-level wrapper for VkCommandBufferInheritanceRenderPassTransformInfoQCOM.
@@ -14810,11 +14810,11 @@ Extension: VK\\_QCOM\\_render\\_pass\\_transform
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html)
 
 """
-struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: HighLevelStruct
-    next::Any
-    transform::SurfaceTransformFlagKHR
-    render_area::Rect2D
-end
+@auto_hash_equals struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: HighLevelStruct
+        next::Any
+        transform::SurfaceTransformFlagKHR
+        render_area::Rect2D
+    end
 
 """
 High-level wrapper for VkCopyCommandTransformInfoQCOM.
@@ -14824,10 +14824,10 @@ Extension: VK\\_QCOM\\_rotated\\_copy\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyCommandTransformInfoQCOM.html)
 
 """
-struct CopyCommandTransformInfoQCOM <: HighLevelStruct
-    next::Any
-    transform::SurfaceTransformFlagKHR
-end
+@auto_hash_equals struct CopyCommandTransformInfoQCOM <: HighLevelStruct
+        next::Any
+        transform::SurfaceTransformFlagKHR
+    end
 
 """
 High-level wrapper for VkRenderPassTransformBeginInfoQCOM.
@@ -14837,10 +14837,10 @@ Extension: VK\\_QCOM\\_render\\_pass\\_transform
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html)
 
 """
-struct RenderPassTransformBeginInfoQCOM <: HighLevelStruct
-    next::Any
-    transform::SurfaceTransformFlagKHR
-end
+@auto_hash_equals struct RenderPassTransformBeginInfoQCOM <: HighLevelStruct
+        next::Any
+        transform::SurfaceTransformFlagKHR
+    end
 
 """
 Minimalistic wrapper for VkDisplayPropertiesKHR.
@@ -14868,17 +14868,17 @@ Extension: VK\\_KHR\\_display
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html)
 
 """
-struct DisplaySurfaceCreateInfoKHR <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    display_mode::DisplayModeKHR
-    plane_index::UInt32
-    plane_stack_index::UInt32
-    transform::SurfaceTransformFlagKHR
-    global_alpha::Float32
-    alpha_mode::DisplayPlaneAlphaFlagKHR
-    image_extent::Extent2D
-end
+@auto_hash_equals struct DisplaySurfaceCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        display_mode::DisplayModeKHR
+        plane_index::UInt32
+        plane_stack_index::UInt32
+        transform::SurfaceTransformFlagKHR
+        global_alpha::Float32
+        alpha_mode::DisplayPlaneAlphaFlagKHR
+        image_extent::Extent2D
+    end
 
 """
 Minimalistic wrapper for VkDisplayPlaneCapabilitiesKHR.
@@ -14906,12 +14906,12 @@ High-level wrapper for VkSemaphoreWaitInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreWaitInfo.html)
 
 """
-struct SemaphoreWaitInfo <: HighLevelStruct
-    next::Any
-    flags::SemaphoreWaitFlag
-    semaphores::Vector{Semaphore}
-    values::Vector{UInt64}
-end
+@auto_hash_equals struct SemaphoreWaitInfo <: HighLevelStruct
+        next::Any
+        flags::SemaphoreWaitFlag
+        semaphores::Vector{Semaphore}
+        values::Vector{UInt64}
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.
@@ -14921,10 +14921,10 @@ Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html)
 
 """
-struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV <: HighLevelStruct
-    next::Any
-    max_fragment_shading_rate_invocation_count::SampleCountFlag
-end
+@auto_hash_equals struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV <: HighLevelStruct
+        next::Any
+        max_fragment_shading_rate_invocation_count::SampleCountFlag
+    end
 
 """
 High-level wrapper for VkSampleLocationsInfoEXT.
@@ -14934,12 +14934,12 @@ Extension: VK\\_EXT\\_sample\\_locations
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSampleLocationsInfoEXT.html)
 
 """
-struct SampleLocationsInfoEXT <: HighLevelStruct
-    next::Any
-    sample_locations_per_pixel::SampleCountFlag
-    sample_location_grid_size::Extent2D
-    sample_locations::Vector{SampleLocationEXT}
-end
+@auto_hash_equals struct SampleLocationsInfoEXT <: HighLevelStruct
+        next::Any
+        sample_locations_per_pixel::SampleCountFlag
+        sample_location_grid_size::Extent2D
+        sample_locations::Vector{SampleLocationEXT}
+    end
 
 """
 High-level wrapper for VkPipelineSampleLocationsStateCreateInfoEXT.
@@ -14949,11 +14949,11 @@ Extension: VK\\_EXT\\_sample\\_locations
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html)
 
 """
-struct PipelineSampleLocationsStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    sample_locations_enable::Bool
-    sample_locations_info::SampleLocationsInfoEXT
-end
+@auto_hash_equals struct PipelineSampleLocationsStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        sample_locations_enable::Bool
+        sample_locations_info::SampleLocationsInfoEXT
+    end
 
 """
 High-level wrapper for VkSubpassSampleLocationsEXT.
@@ -14963,10 +14963,10 @@ Extension: VK\\_EXT\\_sample\\_locations
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassSampleLocationsEXT.html)
 
 """
-struct SubpassSampleLocationsEXT <: HighLevelStruct
-    subpass_index::UInt32
-    sample_locations_info::SampleLocationsInfoEXT
-end
+@auto_hash_equals struct SubpassSampleLocationsEXT <: HighLevelStruct
+        subpass_index::UInt32
+        sample_locations_info::SampleLocationsInfoEXT
+    end
 
 """
 High-level wrapper for VkAttachmentSampleLocationsEXT.
@@ -14976,10 +14976,10 @@ Extension: VK\\_EXT\\_sample\\_locations
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentSampleLocationsEXT.html)
 
 """
-struct AttachmentSampleLocationsEXT <: HighLevelStruct
-    attachment_index::UInt32
-    sample_locations_info::SampleLocationsInfoEXT
-end
+@auto_hash_equals struct AttachmentSampleLocationsEXT <: HighLevelStruct
+        attachment_index::UInt32
+        sample_locations_info::SampleLocationsInfoEXT
+    end
 
 """
 High-level wrapper for VkRenderPassSampleLocationsBeginInfoEXT.
@@ -14989,11 +14989,11 @@ Extension: VK\\_EXT\\_sample\\_locations
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html)
 
 """
-struct RenderPassSampleLocationsBeginInfoEXT <: HighLevelStruct
-    next::Any
-    attachment_initial_sample_locations::Vector{AttachmentSampleLocationsEXT}
-    post_subpass_sample_locations::Vector{SubpassSampleLocationsEXT}
-end
+@auto_hash_equals struct RenderPassSampleLocationsBeginInfoEXT <: HighLevelStruct
+        next::Any
+        attachment_initial_sample_locations::Vector{AttachmentSampleLocationsEXT}
+        post_subpass_sample_locations::Vector{SubpassSampleLocationsEXT}
+    end
 
 """
 High-level wrapper for VkPipelineMultisampleStateCreateInfo.
@@ -15001,16 +15001,16 @@ High-level wrapper for VkPipelineMultisampleStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html)
 
 """
-struct PipelineMultisampleStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    rasterization_samples::SampleCountFlag
-    sample_shading_enable::Bool
-    min_sample_shading::Float32
-    sample_mask::OptionalPtr{Vector{UInt32}}
-    alpha_to_coverage_enable::Bool
-    alpha_to_one_enable::Bool
-end
+@auto_hash_equals struct PipelineMultisampleStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        rasterization_samples::SampleCountFlag
+        sample_shading_enable::Bool
+        min_sample_shading::Float32
+        sample_mask::OptionalPtr{Vector{UInt32}}
+        alpha_to_coverage_enable::Bool
+        alpha_to_one_enable::Bool
+    end
 
 """
 Minimalistic wrapper for VkPhysicalDeviceLimits.
@@ -15162,11 +15162,11 @@ High-level wrapper for VkCommandPoolCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandPoolCreateInfo.html)
 
 """
-struct CommandPoolCreateInfo <: HighLevelStruct
-    next::Any
-    flags::CommandPoolCreateFlag
-    queue_family_index::UInt32
-end
+@auto_hash_equals struct CommandPoolCreateInfo <: HighLevelStruct
+        next::Any
+        flags::CommandPoolCreateFlag
+        queue_family_index::UInt32
+    end
 
 """
 High-level wrapper for VkSubmitInfo.
@@ -15174,13 +15174,13 @@ High-level wrapper for VkSubmitInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo.html)
 
 """
-struct SubmitInfo <: HighLevelStruct
-    next::Any
-    wait_semaphores::Vector{Semaphore}
-    wait_dst_stage_mask::Vector{PipelineStageFlag}
-    command_buffers::Vector{CommandBuffer}
-    signal_semaphores::Vector{Semaphore}
-end
+@auto_hash_equals struct SubmitInfo <: HighLevelStruct
+        next::Any
+        wait_semaphores::Vector{Semaphore}
+        wait_dst_stage_mask::Vector{PipelineStageFlag}
+        command_buffers::Vector{CommandBuffer}
+        signal_semaphores::Vector{Semaphore}
+    end
 
 """
 High-level wrapper for VkSparseMemoryBind.
@@ -15188,13 +15188,13 @@ High-level wrapper for VkSparseMemoryBind.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseMemoryBind.html)
 
 """
-struct SparseMemoryBind <: HighLevelStruct
-    resource_offset::UInt64
-    size::UInt64
-    memory::OptionalPtr{DeviceMemory}
-    memory_offset::UInt64
-    flags::SparseMemoryBindFlag
-end
+@auto_hash_equals struct SparseMemoryBind <: HighLevelStruct
+        resource_offset::UInt64
+        size::UInt64
+        memory::OptionalPtr{DeviceMemory}
+        memory_offset::UInt64
+        flags::SparseMemoryBindFlag
+    end
 
 """
 High-level wrapper for VkSparseImageOpaqueMemoryBindInfo.
@@ -15202,10 +15202,10 @@ High-level wrapper for VkSparseImageOpaqueMemoryBindInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html)
 
 """
-struct SparseImageOpaqueMemoryBindInfo <: HighLevelStruct
-    image::Image
-    binds::Vector{SparseMemoryBind}
-end
+@auto_hash_equals struct SparseImageOpaqueMemoryBindInfo <: HighLevelStruct
+        image::Image
+        binds::Vector{SparseMemoryBind}
+    end
 
 """
 High-level wrapper for VkSparseBufferMemoryBindInfo.
@@ -15213,10 +15213,10 @@ High-level wrapper for VkSparseBufferMemoryBindInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseBufferMemoryBindInfo.html)
 
 """
-struct SparseBufferMemoryBindInfo <: HighLevelStruct
-    buffer::Buffer
-    binds::Vector{SparseMemoryBind}
-end
+@auto_hash_equals struct SparseBufferMemoryBindInfo <: HighLevelStruct
+        buffer::Buffer
+        binds::Vector{SparseMemoryBind}
+    end
 
 """
 High-level wrapper for VkImagePlaneMemoryRequirementsInfo.
@@ -15224,10 +15224,10 @@ High-level wrapper for VkImagePlaneMemoryRequirementsInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html)
 
 """
-struct ImagePlaneMemoryRequirementsInfo <: HighLevelStruct
-    next::Any
-    plane_aspect::ImageAspectFlag
-end
+@auto_hash_equals struct ImagePlaneMemoryRequirementsInfo <: HighLevelStruct
+        next::Any
+        plane_aspect::ImageAspectFlag
+    end
 
 """
 High-level wrapper for VkBindImagePlaneMemoryInfo.
@@ -15235,10 +15235,10 @@ High-level wrapper for VkBindImagePlaneMemoryInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindImagePlaneMemoryInfo.html)
 
 """
-struct BindImagePlaneMemoryInfo <: HighLevelStruct
-    next::Any
-    plane_aspect::ImageAspectFlag
-end
+@auto_hash_equals struct BindImagePlaneMemoryInfo <: HighLevelStruct
+        next::Any
+        plane_aspect::ImageAspectFlag
+    end
 
 """
 High-level wrapper for VkInputAttachmentAspectReference.
@@ -15246,11 +15246,11 @@ High-level wrapper for VkInputAttachmentAspectReference.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInputAttachmentAspectReference.html)
 
 """
-struct InputAttachmentAspectReference <: HighLevelStruct
-    subpass::UInt32
-    input_attachment_index::UInt32
-    aspect_mask::ImageAspectFlag
-end
+@auto_hash_equals struct InputAttachmentAspectReference <: HighLevelStruct
+        subpass::UInt32
+        input_attachment_index::UInt32
+        aspect_mask::ImageAspectFlag
+    end
 
 """
 High-level wrapper for VkRenderPassInputAttachmentAspectCreateInfo.
@@ -15258,10 +15258,10 @@ High-level wrapper for VkRenderPassInputAttachmentAspectCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html)
 
 """
-struct RenderPassInputAttachmentAspectCreateInfo <: HighLevelStruct
-    next::Any
-    aspect_references::Vector{InputAttachmentAspectReference}
-end
+@auto_hash_equals struct RenderPassInputAttachmentAspectCreateInfo <: HighLevelStruct
+        next::Any
+        aspect_references::Vector{InputAttachmentAspectReference}
+    end
 
 """
 High-level wrapper for VkClearAttachment.
@@ -15269,11 +15269,11 @@ High-level wrapper for VkClearAttachment.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkClearAttachment.html)
 
 """
-struct ClearAttachment <: HighLevelStruct
-    aspect_mask::ImageAspectFlag
-    color_attachment::UInt32
-    clear_value::ClearValue
-end
+@auto_hash_equals struct ClearAttachment <: HighLevelStruct
+        aspect_mask::ImageAspectFlag
+        color_attachment::UInt32
+        clear_value::ClearValue
+    end
 
 """
 High-level wrapper for VkImageSubresourceRange.
@@ -15281,13 +15281,13 @@ High-level wrapper for VkImageSubresourceRange.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceRange.html)
 
 """
-struct ImageSubresourceRange <: HighLevelStruct
-    aspect_mask::ImageAspectFlag
-    base_mip_level::UInt32
-    level_count::UInt32
-    base_array_layer::UInt32
-    layer_count::UInt32
-end
+@auto_hash_equals struct ImageSubresourceRange <: HighLevelStruct
+        aspect_mask::ImageAspectFlag
+        base_mip_level::UInt32
+        level_count::UInt32
+        base_array_layer::UInt32
+        layer_count::UInt32
+    end
 
 """
 High-level wrapper for VkImageSubresourceLayers.
@@ -15295,12 +15295,12 @@ High-level wrapper for VkImageSubresourceLayers.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresourceLayers.html)
 
 """
-struct ImageSubresourceLayers <: HighLevelStruct
-    aspect_mask::ImageAspectFlag
-    mip_level::UInt32
-    base_array_layer::UInt32
-    layer_count::UInt32
-end
+@auto_hash_equals struct ImageSubresourceLayers <: HighLevelStruct
+        aspect_mask::ImageAspectFlag
+        mip_level::UInt32
+        base_array_layer::UInt32
+        layer_count::UInt32
+    end
 
 """
 High-level wrapper for VkImageResolve2KHR.
@@ -15310,14 +15310,14 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve2KHR.html)
 
 """
-struct ImageResolve2KHR <: HighLevelStruct
-    next::Any
-    src_subresource::ImageSubresourceLayers
-    src_offset::Offset3D
-    dst_subresource::ImageSubresourceLayers
-    dst_offset::Offset3D
-    extent::Extent3D
-end
+@auto_hash_equals struct ImageResolve2KHR <: HighLevelStruct
+        next::Any
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
+    end
 
 """
 High-level wrapper for VkBufferImageCopy2KHR.
@@ -15327,15 +15327,15 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy2KHR.html)
 
 """
-struct BufferImageCopy2KHR <: HighLevelStruct
-    next::Any
-    buffer_offset::UInt64
-    buffer_row_length::UInt32
-    buffer_image_height::UInt32
-    image_subresource::ImageSubresourceLayers
-    image_offset::Offset3D
-    image_extent::Extent3D
-end
+@auto_hash_equals struct BufferImageCopy2KHR <: HighLevelStruct
+        next::Any
+        buffer_offset::UInt64
+        buffer_row_length::UInt32
+        buffer_image_height::UInt32
+        image_subresource::ImageSubresourceLayers
+        image_offset::Offset3D
+        image_extent::Extent3D
+    end
 
 """
 High-level wrapper for VkImageBlit2KHR.
@@ -15345,13 +15345,13 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit2KHR.html)
 
 """
-struct ImageBlit2KHR <: HighLevelStruct
-    next::Any
-    src_subresource::ImageSubresourceLayers
-    src_offsets::NTuple{2, Offset3D}
-    dst_subresource::ImageSubresourceLayers
-    dst_offsets::NTuple{2, Offset3D}
-end
+@auto_hash_equals struct ImageBlit2KHR <: HighLevelStruct
+        next::Any
+        src_subresource::ImageSubresourceLayers
+        src_offsets::NTuple{2, Offset3D}
+        dst_subresource::ImageSubresourceLayers
+        dst_offsets::NTuple{2, Offset3D}
+    end
 
 """
 High-level wrapper for VkImageCopy2KHR.
@@ -15361,14 +15361,14 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy2KHR.html)
 
 """
-struct ImageCopy2KHR <: HighLevelStruct
-    next::Any
-    src_subresource::ImageSubresourceLayers
-    src_offset::Offset3D
-    dst_subresource::ImageSubresourceLayers
-    dst_offset::Offset3D
-    extent::Extent3D
-end
+@auto_hash_equals struct ImageCopy2KHR <: HighLevelStruct
+        next::Any
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
+    end
 
 """
 High-level wrapper for VkImageResolve.
@@ -15376,13 +15376,13 @@ High-level wrapper for VkImageResolve.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageResolve.html)
 
 """
-struct ImageResolve <: HighLevelStruct
-    src_subresource::ImageSubresourceLayers
-    src_offset::Offset3D
-    dst_subresource::ImageSubresourceLayers
-    dst_offset::Offset3D
-    extent::Extent3D
-end
+@auto_hash_equals struct ImageResolve <: HighLevelStruct
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
+    end
 
 """
 High-level wrapper for VkBufferImageCopy.
@@ -15390,14 +15390,14 @@ High-level wrapper for VkBufferImageCopy.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferImageCopy.html)
 
 """
-struct BufferImageCopy <: HighLevelStruct
-    buffer_offset::UInt64
-    buffer_row_length::UInt32
-    buffer_image_height::UInt32
-    image_subresource::ImageSubresourceLayers
-    image_offset::Offset3D
-    image_extent::Extent3D
-end
+@auto_hash_equals struct BufferImageCopy <: HighLevelStruct
+        buffer_offset::UInt64
+        buffer_row_length::UInt32
+        buffer_image_height::UInt32
+        image_subresource::ImageSubresourceLayers
+        image_offset::Offset3D
+        image_extent::Extent3D
+    end
 
 """
 High-level wrapper for VkImageBlit.
@@ -15405,12 +15405,12 @@ High-level wrapper for VkImageBlit.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageBlit.html)
 
 """
-struct ImageBlit <: HighLevelStruct
-    src_subresource::ImageSubresourceLayers
-    src_offsets::NTuple{2, Offset3D}
-    dst_subresource::ImageSubresourceLayers
-    dst_offsets::NTuple{2, Offset3D}
-end
+@auto_hash_equals struct ImageBlit <: HighLevelStruct
+        src_subresource::ImageSubresourceLayers
+        src_offsets::NTuple{2, Offset3D}
+        dst_subresource::ImageSubresourceLayers
+        dst_offsets::NTuple{2, Offset3D}
+    end
 
 """
 High-level wrapper for VkImageCopy.
@@ -15418,13 +15418,13 @@ High-level wrapper for VkImageCopy.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCopy.html)
 
 """
-struct ImageCopy <: HighLevelStruct
-    src_subresource::ImageSubresourceLayers
-    src_offset::Offset3D
-    dst_subresource::ImageSubresourceLayers
-    dst_offset::Offset3D
-    extent::Extent3D
-end
+@auto_hash_equals struct ImageCopy <: HighLevelStruct
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
+    end
 
 """
 High-level wrapper for VkImageSubresource.
@@ -15432,11 +15432,11 @@ High-level wrapper for VkImageSubresource.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageSubresource.html)
 
 """
-struct ImageSubresource <: HighLevelStruct
-    aspect_mask::ImageAspectFlag
-    mip_level::UInt32
-    array_layer::UInt32
-end
+@auto_hash_equals struct ImageSubresource <: HighLevelStruct
+        aspect_mask::ImageAspectFlag
+        mip_level::UInt32
+        array_layer::UInt32
+    end
 
 """
 High-level wrapper for VkSparseImageMemoryBind.
@@ -15444,14 +15444,14 @@ High-level wrapper for VkSparseImageMemoryBind.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBind.html)
 
 """
-struct SparseImageMemoryBind <: HighLevelStruct
-    subresource::ImageSubresource
-    offset::Offset3D
-    extent::Extent3D
-    memory::OptionalPtr{DeviceMemory}
-    memory_offset::UInt64
-    flags::SparseMemoryBindFlag
-end
+@auto_hash_equals struct SparseImageMemoryBind <: HighLevelStruct
+        subresource::ImageSubresource
+        offset::Offset3D
+        extent::Extent3D
+        memory::OptionalPtr{DeviceMemory}
+        memory_offset::UInt64
+        flags::SparseMemoryBindFlag
+    end
 
 """
 High-level wrapper for VkSparseImageMemoryBindInfo.
@@ -15459,10 +15459,10 @@ High-level wrapper for VkSparseImageMemoryBindInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSparseImageMemoryBindInfo.html)
 
 """
-struct SparseImageMemoryBindInfo <: HighLevelStruct
-    image::Image
-    binds::Vector{SparseImageMemoryBind}
-end
+@auto_hash_equals struct SparseImageMemoryBindInfo <: HighLevelStruct
+        image::Image
+        binds::Vector{SparseImageMemoryBind}
+    end
 
 """
 High-level wrapper for VkBindSparseInfo.
@@ -15470,14 +15470,14 @@ High-level wrapper for VkBindSparseInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindSparseInfo.html)
 
 """
-struct BindSparseInfo <: HighLevelStruct
-    next::Any
-    wait_semaphores::Vector{Semaphore}
-    buffer_binds::Vector{SparseBufferMemoryBindInfo}
-    image_opaque_binds::Vector{SparseImageOpaqueMemoryBindInfo}
-    image_binds::Vector{SparseImageMemoryBindInfo}
-    signal_semaphores::Vector{Semaphore}
-end
+@auto_hash_equals struct BindSparseInfo <: HighLevelStruct
+        next::Any
+        wait_semaphores::Vector{Semaphore}
+        buffer_binds::Vector{SparseBufferMemoryBindInfo}
+        image_opaque_binds::Vector{SparseImageOpaqueMemoryBindInfo}
+        image_binds::Vector{SparseImageMemoryBindInfo}
+        signal_semaphores::Vector{Semaphore}
+    end
 
 """
 Minimalistic wrapper for VkSparseImageFormatProperties.
@@ -15511,15 +15511,15 @@ High-level wrapper for VkCommandBufferInheritanceInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferInheritanceInfo.html)
 
 """
-struct CommandBufferInheritanceInfo <: HighLevelStruct
-    next::Any
-    render_pass::OptionalPtr{RenderPass}
-    subpass::UInt32
-    framebuffer::OptionalPtr{Framebuffer}
-    occlusion_query_enable::Bool
-    query_flags::QueryControlFlag
-    pipeline_statistics::QueryPipelineStatisticFlag
-end
+@auto_hash_equals struct CommandBufferInheritanceInfo <: HighLevelStruct
+        next::Any
+        render_pass::OptionalPtr{RenderPass}
+        subpass::UInt32
+        framebuffer::OptionalPtr{Framebuffer}
+        occlusion_query_enable::Bool
+        query_flags::QueryControlFlag
+        pipeline_statistics::QueryPipelineStatisticFlag
+    end
 
 """
 High-level wrapper for VkCommandBufferBeginInfo.
@@ -15527,11 +15527,11 @@ High-level wrapper for VkCommandBufferBeginInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferBeginInfo.html)
 
 """
-struct CommandBufferBeginInfo <: HighLevelStruct
-    next::Any
-    flags::CommandBufferUsageFlag
-    inheritance_info::OptionalPtr{CommandBufferInheritanceInfo}
-end
+@auto_hash_equals struct CommandBufferBeginInfo <: HighLevelStruct
+        next::Any
+        flags::CommandBufferUsageFlag
+        inheritance_info::OptionalPtr{CommandBufferInheritanceInfo}
+    end
 
 """
 Minimalistic wrapper for VkDrmFormatModifierPropertiesEXT.
@@ -15565,10 +15565,10 @@ High-level wrapper for VkFenceCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFenceCreateInfo.html)
 
 """
-struct FenceCreateInfo <: HighLevelStruct
-    next::Any
-    flags::FenceCreateFlag
-end
+@auto_hash_equals struct FenceCreateInfo <: HighLevelStruct
+        next::Any
+        flags::FenceCreateFlag
+    end
 
 """
 High-level wrapper for VkImageStencilUsageCreateInfo.
@@ -15576,10 +15576,10 @@ High-level wrapper for VkImageStencilUsageCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageStencilUsageCreateInfo.html)
 
 """
-struct ImageStencilUsageCreateInfo <: HighLevelStruct
-    next::Any
-    stencil_usage::ImageUsageFlag
-end
+@auto_hash_equals struct ImageStencilUsageCreateInfo <: HighLevelStruct
+        next::Any
+        stencil_usage::ImageUsageFlag
+    end
 
 """
 High-level wrapper for VkImageViewUsageCreateInfo.
@@ -15587,10 +15587,10 @@ High-level wrapper for VkImageViewUsageCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewUsageCreateInfo.html)
 
 """
-struct ImageViewUsageCreateInfo <: HighLevelStruct
-    next::Any
-    usage::ImageUsageFlag
-end
+@auto_hash_equals struct ImageViewUsageCreateInfo <: HighLevelStruct
+        next::Any
+        usage::ImageUsageFlag
+    end
 
 """
 Minimalistic wrapper for VkSurfaceCapabilitiesKHR.
@@ -15619,11 +15619,11 @@ High-level wrapper for VkPushConstantRange.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPushConstantRange.html)
 
 """
-struct PushConstantRange <: HighLevelStruct
-    stage_flags::ShaderStageFlag
-    offset::UInt32
-    size::UInt32
-end
+@auto_hash_equals struct PushConstantRange <: HighLevelStruct
+        stage_flags::ShaderStageFlag
+        offset::UInt32
+        size::UInt32
+    end
 
 """
 High-level wrapper for VkPipelineLayoutCreateInfo.
@@ -15631,12 +15631,12 @@ High-level wrapper for VkPipelineLayoutCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineLayoutCreateInfo.html)
 
 """
-struct PipelineLayoutCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    set_layouts::Vector{DescriptorSetLayout}
-    push_constant_ranges::Vector{PushConstantRange}
-end
+@auto_hash_equals struct PipelineLayoutCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        set_layouts::Vector{DescriptorSetLayout}
+        push_constant_ranges::Vector{PushConstantRange}
+    end
 
 """
 High-level wrapper for VkPipelineShaderStageCreateInfo.
@@ -15644,14 +15644,14 @@ High-level wrapper for VkPipelineShaderStageCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineShaderStageCreateInfo.html)
 
 """
-struct PipelineShaderStageCreateInfo <: HighLevelStruct
-    next::Any
-    flags::PipelineShaderStageCreateFlag
-    stage::ShaderStageFlag
-    _module::ShaderModule
-    name::String
-    specialization_info::OptionalPtr{SpecializationInfo}
-end
+@auto_hash_equals struct PipelineShaderStageCreateInfo <: HighLevelStruct
+        next::Any
+        flags::PipelineShaderStageCreateFlag
+        stage::ShaderStageFlag
+        _module::ShaderModule
+        name::String
+        specialization_info::OptionalPtr{SpecializationInfo}
+    end
 
 """
 High-level wrapper for VkComputePipelineCreateInfo.
@@ -15659,14 +15659,14 @@ High-level wrapper for VkComputePipelineCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComputePipelineCreateInfo.html)
 
 """
-struct ComputePipelineCreateInfo <: HighLevelStruct
-    next::Any
-    flags::PipelineCreateFlag
-    stage::PipelineShaderStageCreateInfo
-    layout::PipelineLayout
-    base_pipeline_handle::OptionalPtr{Pipeline}
-    base_pipeline_index::Int32
-end
+@auto_hash_equals struct ComputePipelineCreateInfo <: HighLevelStruct
+        next::Any
+        flags::PipelineCreateFlag
+        stage::PipelineShaderStageCreateInfo
+        layout::PipelineLayout
+        base_pipeline_handle::OptionalPtr{Pipeline}
+        base_pipeline_index::Int32
+    end
 
 """
 Minimalistic wrapper for VkShaderStatisticsInfoAMD.
@@ -15692,12 +15692,12 @@ High-level wrapper for VkPhysicalDeviceExternalBufferInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceExternalBufferInfo.html)
 
 """
-struct PhysicalDeviceExternalBufferInfo <: HighLevelStruct
-    next::Any
-    flags::BufferCreateFlag
-    usage::BufferUsageFlag
-    handle_type::ExternalMemoryHandleTypeFlag
-end
+@auto_hash_equals struct PhysicalDeviceExternalBufferInfo <: HighLevelStruct
+        next::Any
+        flags::BufferCreateFlag
+        usage::BufferUsageFlag
+        handle_type::ExternalMemoryHandleTypeFlag
+    end
 
 """
 High-level wrapper for VkSubpassDependency2.
@@ -15705,17 +15705,17 @@ High-level wrapper for VkSubpassDependency2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency2.html)
 
 """
-struct SubpassDependency2 <: HighLevelStruct
-    next::Any
-    src_subpass::UInt32
-    dst_subpass::UInt32
-    src_stage_mask::PipelineStageFlag
-    dst_stage_mask::PipelineStageFlag
-    src_access_mask::AccessFlag
-    dst_access_mask::AccessFlag
-    dependency_flags::DependencyFlag
-    view_offset::Int32
-end
+@auto_hash_equals struct SubpassDependency2 <: HighLevelStruct
+        next::Any
+        src_subpass::UInt32
+        dst_subpass::UInt32
+        src_stage_mask::PipelineStageFlag
+        dst_stage_mask::PipelineStageFlag
+        src_access_mask::AccessFlag
+        dst_access_mask::AccessFlag
+        dependency_flags::DependencyFlag
+        view_offset::Int32
+    end
 
 """
 High-level wrapper for VkSubpassDependency.
@@ -15723,15 +15723,15 @@ High-level wrapper for VkSubpassDependency.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDependency.html)
 
 """
-struct SubpassDependency <: HighLevelStruct
-    src_subpass::UInt32
-    dst_subpass::UInt32
-    src_stage_mask::PipelineStageFlag
-    dst_stage_mask::PipelineStageFlag
-    src_access_mask::AccessFlag
-    dst_access_mask::AccessFlag
-    dependency_flags::DependencyFlag
-end
+@auto_hash_equals struct SubpassDependency <: HighLevelStruct
+        src_subpass::UInt32
+        dst_subpass::UInt32
+        src_stage_mask::PipelineStageFlag
+        dst_stage_mask::PipelineStageFlag
+        src_access_mask::AccessFlag
+        dst_access_mask::AccessFlag
+        dependency_flags::DependencyFlag
+    end
 
 """
 High-level wrapper for VkBufferMemoryBarrier.
@@ -15739,16 +15739,16 @@ High-level wrapper for VkBufferMemoryBarrier.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferMemoryBarrier.html)
 
 """
-struct BufferMemoryBarrier <: HighLevelStruct
-    next::Any
-    src_access_mask::AccessFlag
-    dst_access_mask::AccessFlag
-    src_queue_family_index::UInt32
-    dst_queue_family_index::UInt32
-    buffer::Buffer
-    offset::UInt64
-    size::UInt64
-end
+@auto_hash_equals struct BufferMemoryBarrier <: HighLevelStruct
+        next::Any
+        src_access_mask::AccessFlag
+        dst_access_mask::AccessFlag
+        src_queue_family_index::UInt32
+        dst_queue_family_index::UInt32
+        buffer::Buffer
+        offset::UInt64
+        size::UInt64
+    end
 
 """
 High-level wrapper for VkMemoryBarrier.
@@ -15756,11 +15756,11 @@ High-level wrapper for VkMemoryBarrier.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMemoryBarrier.html)
 
 """
-struct MemoryBarrier <: HighLevelStruct
-    next::Any
-    src_access_mask::AccessFlag
-    dst_access_mask::AccessFlag
-end
+@auto_hash_equals struct MemoryBarrier <: HighLevelStruct
+        next::Any
+        src_access_mask::AccessFlag
+        dst_access_mask::AccessFlag
+    end
 
 """
 Minimalistic wrapper for VkMemoryHeap.
@@ -15803,12 +15803,12 @@ High-level wrapper for VkDeviceQueueInfo2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueInfo2.html)
 
 """
-struct DeviceQueueInfo2 <: HighLevelStruct
-    next::Any
-    flags::DeviceQueueCreateFlag
-    queue_family_index::UInt32
-    queue_index::UInt32
-end
+@auto_hash_equals struct DeviceQueueInfo2 <: HighLevelStruct
+        next::Any
+        flags::DeviceQueueCreateFlag
+        queue_family_index::UInt32
+        queue_index::UInt32
+    end
 
 """
 High-level wrapper for VkDeviceQueueCreateInfo.
@@ -15816,12 +15816,12 @@ High-level wrapper for VkDeviceQueueCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueCreateInfo.html)
 
 """
-struct DeviceQueueCreateInfo <: HighLevelStruct
-    next::Any
-    flags::DeviceQueueCreateFlag
-    queue_family_index::UInt32
-    queue_priorities::Vector{Float32}
-end
+@auto_hash_equals struct DeviceQueueCreateInfo <: HighLevelStruct
+        next::Any
+        flags::DeviceQueueCreateFlag
+        queue_family_index::UInt32
+        queue_priorities::Vector{Float32}
+    end
 
 """
 High-level wrapper for VkDeviceCreateInfo.
@@ -15829,14 +15829,14 @@ High-level wrapper for VkDeviceCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceCreateInfo.html)
 
 """
-struct DeviceCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    queue_create_infos::Vector{DeviceQueueCreateInfo}
-    enabled_layer_names::Vector{String}
-    enabled_extension_names::Vector{String}
-    enabled_features::OptionalPtr{PhysicalDeviceFeatures}
-end
+@auto_hash_equals struct DeviceCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        queue_create_infos::Vector{DeviceQueueCreateInfo}
+        enabled_layer_names::Vector{String}
+        enabled_extension_names::Vector{String}
+        enabled_features::OptionalPtr{PhysicalDeviceFeatures}
+    end
 
 """
 Minimalistic wrapper for VkQueueFamilyProperties.
@@ -15857,12 +15857,12 @@ High-level wrapper for VkPipelineCacheCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCacheCreateInfo.html)
 
 """
-struct PipelineCacheCreateInfo <: HighLevelStruct
-    next::Any
-    flags::PipelineCacheCreateFlag
-    initial_data_size::OptionalPtr{UInt}
-    initial_data::Ptr{Cvoid}
-end
+@auto_hash_equals struct PipelineCacheCreateInfo <: HighLevelStruct
+        next::Any
+        flags::PipelineCacheCreateFlag
+        initial_data_size::OptionalPtr{UInt}
+        initial_data::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.
@@ -15872,10 +15872,10 @@ Extension: VK\\_EXT\\_provoking\\_vertex
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.html)
 
 """
-struct PipelineRasterizationProvokingVertexStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    provoking_vertex_mode::ProvokingVertexModeEXT
-end
+@auto_hash_equals struct PipelineRasterizationProvokingVertexStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        provoking_vertex_mode::ProvokingVertexModeEXT
+    end
 
 """
 High-level wrapper for VkPipelineFragmentShadingRateEnumStateCreateInfoNV.
@@ -15885,12 +15885,12 @@ Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html)
 
 """
-struct PipelineFragmentShadingRateEnumStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    shading_rate_type::FragmentShadingRateTypeNV
-    shading_rate::FragmentShadingRateNV
-    combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}
-end
+@auto_hash_equals struct PipelineFragmentShadingRateEnumStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        shading_rate_type::FragmentShadingRateTypeNV
+        shading_rate::FragmentShadingRateNV
+        combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}
+    end
 
 """
 High-level wrapper for VkPipelineFragmentShadingRateStateCreateInfoKHR.
@@ -15900,11 +15900,11 @@ Extension: VK\\_KHR\\_fragment\\_shading\\_rate
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html)
 
 """
-struct PipelineFragmentShadingRateStateCreateInfoKHR <: HighLevelStruct
-    next::Any
-    fragment_size::Extent2D
-    combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}
-end
+@auto_hash_equals struct PipelineFragmentShadingRateStateCreateInfoKHR <: HighLevelStruct
+        next::Any
+        fragment_size::Extent2D
+        combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}
+    end
 
 """
 High-level wrapper for VkPipelineRasterizationLineStateCreateInfoEXT.
@@ -15914,13 +15914,13 @@ Extension: VK\\_EXT\\_line\\_rasterization
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html)
 
 """
-struct PipelineRasterizationLineStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    line_rasterization_mode::LineRasterizationModeEXT
-    stippled_line_enable::Bool
-    line_stipple_factor::UInt32
-    line_stipple_pattern::UInt16
-end
+@auto_hash_equals struct PipelineRasterizationLineStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        line_rasterization_mode::LineRasterizationModeEXT
+        stippled_line_enable::Bool
+        line_stipple_factor::UInt32
+        line_stipple_pattern::UInt16
+    end
 
 """
 High-level wrapper for VkPerformanceValueINTEL.
@@ -15930,10 +15930,10 @@ Extension: VK\\_INTEL\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceValueINTEL.html)
 
 """
-struct PerformanceValueINTEL <: HighLevelStruct
-    type::PerformanceValueTypeINTEL
-    data::PerformanceValueDataINTEL
-end
+@auto_hash_equals struct PerformanceValueINTEL <: HighLevelStruct
+        type::PerformanceValueTypeINTEL
+        data::PerformanceValueDataINTEL
+    end
 
 """
 High-level wrapper for VkPerformanceOverrideInfoINTEL.
@@ -15943,12 +15943,12 @@ Extension: VK\\_INTEL\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceOverrideInfoINTEL.html)
 
 """
-struct PerformanceOverrideInfoINTEL <: HighLevelStruct
-    next::Any
-    type::PerformanceOverrideTypeINTEL
-    enable::Bool
-    parameter::UInt64
-end
+@auto_hash_equals struct PerformanceOverrideInfoINTEL <: HighLevelStruct
+        next::Any
+        type::PerformanceOverrideTypeINTEL
+        enable::Bool
+        parameter::UInt64
+    end
 
 """
 High-level wrapper for VkQueryPoolPerformanceQueryCreateInfoINTEL.
@@ -15958,10 +15958,10 @@ Extension: VK\\_INTEL\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html)
 
 """
-struct QueryPoolPerformanceQueryCreateInfoINTEL <: HighLevelStruct
-    next::Any
-    performance_counters_sampling::QueryPoolSamplingModeINTEL
-end
+@auto_hash_equals struct QueryPoolPerformanceQueryCreateInfoINTEL <: HighLevelStruct
+        next::Any
+        performance_counters_sampling::QueryPoolSamplingModeINTEL
+    end
 
 """
 High-level wrapper for VkPerformanceConfigurationAcquireInfoINTEL.
@@ -15971,10 +15971,10 @@ Extension: VK\\_INTEL\\_performance\\_query
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html)
 
 """
-struct PerformanceConfigurationAcquireInfoINTEL <: HighLevelStruct
-    next::Any
-    type::PerformanceConfigurationTypeINTEL
-end
+@auto_hash_equals struct PerformanceConfigurationAcquireInfoINTEL <: HighLevelStruct
+        next::Any
+        type::PerformanceConfigurationTypeINTEL
+    end
 
 """
 High-level wrapper for VkCooperativeMatrixPropertiesNV.
@@ -15984,17 +15984,17 @@ Extension: VK\\_NV\\_cooperative\\_matrix
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCooperativeMatrixPropertiesNV.html)
 
 """
-struct CooperativeMatrixPropertiesNV <: HighLevelStruct
-    next::Any
-    m_size::UInt32
-    n_size::UInt32
-    k_size::UInt32
-    a_type::ComponentTypeNV
-    b_type::ComponentTypeNV
-    c_type::ComponentTypeNV
-    d_type::ComponentTypeNV
-    scope::ScopeNV
-end
+@auto_hash_equals struct CooperativeMatrixPropertiesNV <: HighLevelStruct
+        next::Any
+        m_size::UInt32
+        n_size::UInt32
+        k_size::UInt32
+        a_type::ComponentTypeNV
+        b_type::ComponentTypeNV
+        c_type::ComponentTypeNV
+        d_type::ComponentTypeNV
+        scope::ScopeNV
+    end
 
 """
 High-level wrapper for VkDeviceMemoryOverallocationCreateInfoAMD.
@@ -16004,10 +16004,10 @@ Extension: VK\\_AMD\\_memory\\_overallocation\\_behavior
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html)
 
 """
-struct DeviceMemoryOverallocationCreateInfoAMD <: HighLevelStruct
-    next::Any
-    overallocation_behavior::MemoryOverallocationBehaviorAMD
-end
+@auto_hash_equals struct DeviceMemoryOverallocationCreateInfoAMD <: HighLevelStruct
+        next::Any
+        overallocation_behavior::MemoryOverallocationBehaviorAMD
+    end
 
 """
 High-level wrapper for VkRayTracingShaderGroupCreateInfoKHR.
@@ -16017,15 +16017,15 @@ Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html)
 
 """
-struct RayTracingShaderGroupCreateInfoKHR <: HighLevelStruct
-    next::Any
-    type::RayTracingShaderGroupTypeKHR
-    general_shader::UInt32
-    closest_hit_shader::UInt32
-    any_hit_shader::UInt32
-    intersection_shader::UInt32
-    shader_group_capture_replay_handle::OptionalPtr{Ptr{Cvoid}}
-end
+@auto_hash_equals struct RayTracingShaderGroupCreateInfoKHR <: HighLevelStruct
+        next::Any
+        type::RayTracingShaderGroupTypeKHR
+        general_shader::UInt32
+        closest_hit_shader::UInt32
+        any_hit_shader::UInt32
+        intersection_shader::UInt32
+        shader_group_capture_replay_handle::OptionalPtr{Ptr{Cvoid}}
+    end
 
 """
 High-level wrapper for VkRayTracingShaderGroupCreateInfoNV.
@@ -16035,14 +16035,14 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html)
 
 """
-struct RayTracingShaderGroupCreateInfoNV <: HighLevelStruct
-    next::Any
-    type::RayTracingShaderGroupTypeKHR
-    general_shader::UInt32
-    closest_hit_shader::UInt32
-    any_hit_shader::UInt32
-    intersection_shader::UInt32
-end
+@auto_hash_equals struct RayTracingShaderGroupCreateInfoNV <: HighLevelStruct
+        next::Any
+        type::RayTracingShaderGroupTypeKHR
+        general_shader::UInt32
+        closest_hit_shader::UInt32
+        any_hit_shader::UInt32
+        intersection_shader::UInt32
+    end
 
 """
 High-level wrapper for VkRayTracingPipelineCreateInfoNV.
@@ -16052,16 +16052,16 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html)
 
 """
-struct RayTracingPipelineCreateInfoNV <: HighLevelStruct
-    next::Any
-    flags::PipelineCreateFlag
-    stages::Vector{PipelineShaderStageCreateInfo}
-    groups::Vector{RayTracingShaderGroupCreateInfoNV}
-    max_recursion_depth::UInt32
-    layout::PipelineLayout
-    base_pipeline_handle::OptionalPtr{Pipeline}
-    base_pipeline_index::Int32
-end
+@auto_hash_equals struct RayTracingPipelineCreateInfoNV <: HighLevelStruct
+        next::Any
+        flags::PipelineCreateFlag
+        stages::Vector{PipelineShaderStageCreateInfo}
+        groups::Vector{RayTracingShaderGroupCreateInfoNV}
+        max_recursion_depth::UInt32
+        layout::PipelineLayout
+        base_pipeline_handle::OptionalPtr{Pipeline}
+        base_pipeline_index::Int32
+    end
 
 """
 High-level wrapper for VkAccelerationStructureMemoryRequirementsInfoNV.
@@ -16071,11 +16071,11 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html)
 
 """
-struct AccelerationStructureMemoryRequirementsInfoNV <: HighLevelStruct
-    next::Any
-    type::AccelerationStructureMemoryRequirementsTypeNV
-    acceleration_structure::AccelerationStructureNV
-end
+@auto_hash_equals struct AccelerationStructureMemoryRequirementsInfoNV <: HighLevelStruct
+        next::Any
+        type::AccelerationStructureMemoryRequirementsTypeNV
+        acceleration_structure::AccelerationStructureNV
+    end
 
 """
 High-level wrapper for VkAccelerationStructureGeometryKHR.
@@ -16085,12 +16085,12 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryKHR.html)
 
 """
-struct AccelerationStructureGeometryKHR <: HighLevelStruct
-    next::Any
-    geometry_type::GeometryTypeKHR
-    geometry::AccelerationStructureGeometryDataKHR
-    flags::GeometryFlagKHR
-end
+@auto_hash_equals struct AccelerationStructureGeometryKHR <: HighLevelStruct
+        next::Any
+        geometry_type::GeometryTypeKHR
+        geometry::AccelerationStructureGeometryDataKHR
+        flags::GeometryFlagKHR
+    end
 
 """
 High-level wrapper for VkAccelerationStructureCreateInfoKHR.
@@ -16100,15 +16100,15 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html)
 
 """
-struct AccelerationStructureCreateInfoKHR <: HighLevelStruct
-    next::Any
-    create_flags::AccelerationStructureCreateFlagKHR
-    buffer::Buffer
-    offset::UInt64
-    size::UInt64
-    type::AccelerationStructureTypeKHR
-    device_address::UInt64
-end
+@auto_hash_equals struct AccelerationStructureCreateInfoKHR <: HighLevelStruct
+        next::Any
+        create_flags::AccelerationStructureCreateFlagKHR
+        buffer::Buffer
+        offset::UInt64
+        size::UInt64
+        type::AccelerationStructureTypeKHR
+        device_address::UInt64
+    end
 
 """
 High-level wrapper for VkAccelerationStructureBuildGeometryInfoKHR.
@@ -16118,17 +16118,17 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html)
 
 """
-struct AccelerationStructureBuildGeometryInfoKHR <: HighLevelStruct
-    next::Any
-    type::AccelerationStructureTypeKHR
-    flags::BuildAccelerationStructureFlagKHR
-    mode::BuildAccelerationStructureModeKHR
-    src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
-    dst_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
-    geometries::OptionalPtr{Vector{AccelerationStructureGeometryKHR}}
-    geometries_2::OptionalPtr{Vector{AccelerationStructureGeometryKHR}}
-    scratch_data::DeviceOrHostAddressKHR
-end
+@auto_hash_equals struct AccelerationStructureBuildGeometryInfoKHR <: HighLevelStruct
+        next::Any
+        type::AccelerationStructureTypeKHR
+        flags::BuildAccelerationStructureFlagKHR
+        mode::BuildAccelerationStructureModeKHR
+        src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
+        dst_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
+        geometries::OptionalPtr{Vector{AccelerationStructureGeometryKHR}}
+        geometries_2::OptionalPtr{Vector{AccelerationStructureGeometryKHR}}
+        scratch_data::DeviceOrHostAddressKHR
+    end
 
 """
 High-level wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
@@ -16138,12 +16138,12 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html)
 
 """
-struct CopyMemoryToAccelerationStructureInfoKHR <: HighLevelStruct
-    next::Any
-    src::DeviceOrHostAddressConstKHR
-    dst::AccelerationStructureKHR
-    mode::CopyAccelerationStructureModeKHR
-end
+@auto_hash_equals struct CopyMemoryToAccelerationStructureInfoKHR <: HighLevelStruct
+        next::Any
+        src::DeviceOrHostAddressConstKHR
+        dst::AccelerationStructureKHR
+        mode::CopyAccelerationStructureModeKHR
+    end
 
 """
 High-level wrapper for VkCopyAccelerationStructureToMemoryInfoKHR.
@@ -16153,12 +16153,12 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html)
 
 """
-struct CopyAccelerationStructureToMemoryInfoKHR <: HighLevelStruct
-    next::Any
-    src::AccelerationStructureKHR
-    dst::DeviceOrHostAddressKHR
-    mode::CopyAccelerationStructureModeKHR
-end
+@auto_hash_equals struct CopyAccelerationStructureToMemoryInfoKHR <: HighLevelStruct
+        next::Any
+        src::AccelerationStructureKHR
+        dst::DeviceOrHostAddressKHR
+        mode::CopyAccelerationStructureModeKHR
+    end
 
 """
 High-level wrapper for VkCopyAccelerationStructureInfoKHR.
@@ -16168,12 +16168,12 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html)
 
 """
-struct CopyAccelerationStructureInfoKHR <: HighLevelStruct
-    next::Any
-    src::AccelerationStructureKHR
-    dst::AccelerationStructureKHR
-    mode::CopyAccelerationStructureModeKHR
-end
+@auto_hash_equals struct CopyAccelerationStructureInfoKHR <: HighLevelStruct
+        next::Any
+        src::AccelerationStructureKHR
+        dst::AccelerationStructureKHR
+        mode::CopyAccelerationStructureModeKHR
+    end
 
 """
 High-level wrapper for VkCoarseSampleOrderCustomNV.
@@ -16183,11 +16183,11 @@ Extension: VK\\_NV\\_shading\\_rate\\_image
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCoarseSampleOrderCustomNV.html)
 
 """
-struct CoarseSampleOrderCustomNV <: HighLevelStruct
-    shading_rate::ShadingRatePaletteEntryNV
-    sample_count::UInt32
-    sample_locations::Vector{CoarseSampleLocationNV}
-end
+@auto_hash_equals struct CoarseSampleOrderCustomNV <: HighLevelStruct
+        shading_rate::ShadingRatePaletteEntryNV
+        sample_count::UInt32
+        sample_locations::Vector{CoarseSampleLocationNV}
+    end
 
 """
 High-level wrapper for VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.
@@ -16197,11 +16197,11 @@ Extension: VK\\_NV\\_shading\\_rate\\_image
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html)
 
 """
-struct PipelineViewportCoarseSampleOrderStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    sample_order_type::CoarseSampleOrderTypeNV
-    custom_sample_orders::Vector{CoarseSampleOrderCustomNV}
-end
+@auto_hash_equals struct PipelineViewportCoarseSampleOrderStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        sample_order_type::CoarseSampleOrderTypeNV
+        custom_sample_orders::Vector{CoarseSampleOrderCustomNV}
+    end
 
 """
 High-level wrapper for VkShadingRatePaletteNV.
@@ -16211,9 +16211,9 @@ Extension: VK\\_NV\\_shading\\_rate\\_image
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkShadingRatePaletteNV.html)
 
 """
-struct ShadingRatePaletteNV <: HighLevelStruct
-    shading_rate_palette_entries::Vector{ShadingRatePaletteEntryNV}
-end
+@auto_hash_equals struct ShadingRatePaletteNV <: HighLevelStruct
+        shading_rate_palette_entries::Vector{ShadingRatePaletteEntryNV}
+    end
 
 """
 High-level wrapper for VkPipelineViewportShadingRateImageStateCreateInfoNV.
@@ -16223,11 +16223,11 @@ Extension: VK\\_NV\\_shading\\_rate\\_image
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html)
 
 """
-struct PipelineViewportShadingRateImageStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    shading_rate_image_enable::Bool
-    shading_rate_palettes::Vector{ShadingRatePaletteNV}
-end
+@auto_hash_equals struct PipelineViewportShadingRateImageStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        shading_rate_image_enable::Bool
+        shading_rate_palettes::Vector{ShadingRatePaletteNV}
+    end
 
 """
 High-level wrapper for VkPipelineRasterizationConservativeStateCreateInfoEXT.
@@ -16237,12 +16237,12 @@ Extension: VK\\_EXT\\_conservative\\_rasterization
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html)
 
 """
-struct PipelineRasterizationConservativeStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    conservative_rasterization_mode::ConservativeRasterizationModeEXT
-    extra_primitive_overestimation_size::Float32
-end
+@auto_hash_equals struct PipelineRasterizationConservativeStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        conservative_rasterization_mode::ConservativeRasterizationModeEXT
+        extra_primitive_overestimation_size::Float32
+    end
 
 """
 High-level wrapper for VkDeviceQueueGlobalPriorityCreateInfoEXT.
@@ -16252,10 +16252,10 @@ Extension: VK\\_EXT\\_global\\_priority
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoEXT.html)
 
 """
-struct DeviceQueueGlobalPriorityCreateInfoEXT <: HighLevelStruct
-    next::Any
-    global_priority::QueueGlobalPriorityEXT
-end
+@auto_hash_equals struct DeviceQueueGlobalPriorityCreateInfoEXT <: HighLevelStruct
+        next::Any
+        global_priority::QueueGlobalPriorityEXT
+    end
 
 """
 High-level wrapper for VkPipelineCoverageReductionStateCreateInfoNV.
@@ -16265,11 +16265,11 @@ Extension: VK\\_NV\\_coverage\\_reduction\\_mode
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html)
 
 """
-struct PipelineCoverageReductionStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    coverage_reduction_mode::CoverageReductionModeNV
-end
+@auto_hash_equals struct PipelineCoverageReductionStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        coverage_reduction_mode::CoverageReductionModeNV
+    end
 
 """
 High-level wrapper for VkPipelineCoverageModulationStateCreateInfoNV.
@@ -16279,13 +16279,13 @@ Extension: VK\\_NV\\_framebuffer\\_mixed\\_samples
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html)
 
 """
-struct PipelineCoverageModulationStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    coverage_modulation_mode::CoverageModulationModeNV
-    coverage_modulation_table_enable::Bool
-    coverage_modulation_table::OptionalPtr{Vector{Float32}}
-end
+@auto_hash_equals struct PipelineCoverageModulationStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        coverage_modulation_mode::CoverageModulationModeNV
+        coverage_modulation_table_enable::Bool
+        coverage_modulation_table::OptionalPtr{Vector{Float32}}
+    end
 
 """
 High-level wrapper for VkPipelineColorBlendAdvancedStateCreateInfoEXT.
@@ -16295,12 +16295,12 @@ Extension: VK\\_EXT\\_blend\\_operation\\_advanced
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAdvancedStateCreateInfoEXT.html)
 
 """
-struct PipelineColorBlendAdvancedStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    src_premultiplied::Bool
-    dst_premultiplied::Bool
-    blend_overlap::BlendOverlapEXT
-end
+@auto_hash_equals struct PipelineColorBlendAdvancedStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        src_premultiplied::Bool
+        dst_premultiplied::Bool
+        blend_overlap::BlendOverlapEXT
+    end
 
 """
 High-level wrapper for VkPipelineTessellationDomainOriginStateCreateInfo.
@@ -16308,10 +16308,10 @@ High-level wrapper for VkPipelineTessellationDomainOriginStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineTessellationDomainOriginStateCreateInfo.html)
 
 """
-struct PipelineTessellationDomainOriginStateCreateInfo <: HighLevelStruct
-    next::Any
-    domain_origin::TessellationDomainOrigin
-end
+@auto_hash_equals struct PipelineTessellationDomainOriginStateCreateInfo <: HighLevelStruct
+        next::Any
+        domain_origin::TessellationDomainOrigin
+    end
 
 """
 High-level wrapper for VkSamplerReductionModeCreateInfo.
@@ -16319,10 +16319,10 @@ High-level wrapper for VkSamplerReductionModeCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerReductionModeCreateInfo.html)
 
 """
-struct SamplerReductionModeCreateInfo <: HighLevelStruct
-    next::Any
-    reduction_mode::SamplerReductionMode
-end
+@auto_hash_equals struct SamplerReductionModeCreateInfo <: HighLevelStruct
+        next::Any
+        reduction_mode::SamplerReductionMode
+    end
 
 """
 High-level wrapper for VkPipelineDiscardRectangleStateCreateInfoEXT.
@@ -16332,12 +16332,12 @@ Extension: VK\\_EXT\\_discard\\_rectangles
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDiscardRectangleStateCreateInfoEXT.html)
 
 """
-struct PipelineDiscardRectangleStateCreateInfoEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    discard_rectangle_mode::DiscardRectangleModeEXT
-    discard_rectangles::Vector{Rect2D}
-end
+@auto_hash_equals struct PipelineDiscardRectangleStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        discard_rectangle_mode::DiscardRectangleModeEXT
+        discard_rectangles::Vector{Rect2D}
+    end
 
 """
 High-level wrapper for VkViewportSwizzleNV.
@@ -16347,12 +16347,12 @@ Extension: VK\\_NV\\_viewport\\_swizzle
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkViewportSwizzleNV.html)
 
 """
-struct ViewportSwizzleNV <: HighLevelStruct
-    x::ViewportCoordinateSwizzleNV
-    y::ViewportCoordinateSwizzleNV
-    z::ViewportCoordinateSwizzleNV
-    w::ViewportCoordinateSwizzleNV
-end
+@auto_hash_equals struct ViewportSwizzleNV <: HighLevelStruct
+        x::ViewportCoordinateSwizzleNV
+        y::ViewportCoordinateSwizzleNV
+        z::ViewportCoordinateSwizzleNV
+        w::ViewportCoordinateSwizzleNV
+    end
 
 """
 High-level wrapper for VkPipelineViewportSwizzleStateCreateInfoNV.
@@ -16362,11 +16362,11 @@ Extension: VK\\_NV\\_viewport\\_swizzle
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html)
 
 """
-struct PipelineViewportSwizzleStateCreateInfoNV <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    viewport_swizzles::Vector{ViewportSwizzleNV}
-end
+@auto_hash_equals struct PipelineViewportSwizzleStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        viewport_swizzles::Vector{ViewportSwizzleNV}
+    end
 
 """
 High-level wrapper for VkDisplayEventInfoEXT.
@@ -16376,10 +16376,10 @@ Extension: VK\\_EXT\\_display\\_control
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayEventInfoEXT.html)
 
 """
-struct DisplayEventInfoEXT <: HighLevelStruct
-    next::Any
-    display_event::DisplayEventTypeEXT
-end
+@auto_hash_equals struct DisplayEventInfoEXT <: HighLevelStruct
+        next::Any
+        display_event::DisplayEventTypeEXT
+    end
 
 """
 High-level wrapper for VkDeviceEventInfoEXT.
@@ -16389,10 +16389,10 @@ Extension: VK\\_EXT\\_display\\_control
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDeviceEventInfoEXT.html)
 
 """
-struct DeviceEventInfoEXT <: HighLevelStruct
-    next::Any
-    device_event::DeviceEventTypeEXT
-end
+@auto_hash_equals struct DeviceEventInfoEXT <: HighLevelStruct
+        next::Any
+        device_event::DeviceEventTypeEXT
+    end
 
 """
 High-level wrapper for VkDisplayPowerInfoEXT.
@@ -16402,10 +16402,10 @@ Extension: VK\\_EXT\\_display\\_control
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDisplayPowerInfoEXT.html)
 
 """
-struct DisplayPowerInfoEXT <: HighLevelStruct
-    next::Any
-    power_state::DisplayPowerStateEXT
-end
+@auto_hash_equals struct DisplayPowerInfoEXT <: HighLevelStruct
+        next::Any
+        power_state::DisplayPowerStateEXT
+    end
 
 """
 High-level wrapper for VkValidationFeaturesEXT.
@@ -16415,11 +16415,11 @@ Extension: VK\\_EXT\\_validation\\_features
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFeaturesEXT.html)
 
 """
-struct ValidationFeaturesEXT <: HighLevelStruct
-    next::Any
-    enabled_validation_features::Vector{ValidationFeatureEnableEXT}
-    disabled_validation_features::Vector{ValidationFeatureDisableEXT}
-end
+@auto_hash_equals struct ValidationFeaturesEXT <: HighLevelStruct
+        next::Any
+        enabled_validation_features::Vector{ValidationFeatureEnableEXT}
+        disabled_validation_features::Vector{ValidationFeatureDisableEXT}
+    end
 
 """
 High-level wrapper for VkValidationFlagsEXT.
@@ -16429,10 +16429,10 @@ Extension: VK\\_EXT\\_validation\\_flags
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkValidationFlagsEXT.html)
 
 """
-struct ValidationFlagsEXT <: HighLevelStruct
-    next::Any
-    disabled_validation_checks::Vector{ValidationCheckEXT}
-end
+@auto_hash_equals struct ValidationFlagsEXT <: HighLevelStruct
+        next::Any
+        disabled_validation_checks::Vector{ValidationCheckEXT}
+    end
 
 """
 High-level wrapper for VkPipelineRasterizationStateRasterizationOrderAMD.
@@ -16442,10 +16442,10 @@ Extension: VK\\_AMD\\_rasterization\\_order
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html)
 
 """
-struct PipelineRasterizationStateRasterizationOrderAMD <: HighLevelStruct
-    next::Any
-    rasterization_order::RasterizationOrderAMD
-end
+@auto_hash_equals struct PipelineRasterizationStateRasterizationOrderAMD <: HighLevelStruct
+        next::Any
+        rasterization_order::RasterizationOrderAMD
+    end
 
 """
 High-level wrapper for VkDebugMarkerObjectTagInfoEXT.
@@ -16455,14 +16455,14 @@ Extension: VK\\_EXT\\_debug\\_marker
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html)
 
 """
-struct DebugMarkerObjectTagInfoEXT <: HighLevelStruct
-    next::Any
-    object_type::DebugReportObjectTypeEXT
-    object::UInt64
-    tag_name::UInt64
-    tag_size::UInt
-    tag::Ptr{Cvoid}
-end
+@auto_hash_equals struct DebugMarkerObjectTagInfoEXT <: HighLevelStruct
+        next::Any
+        object_type::DebugReportObjectTypeEXT
+        object::UInt64
+        tag_name::UInt64
+        tag_size::UInt
+        tag::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkDebugMarkerObjectNameInfoEXT.
@@ -16472,12 +16472,12 @@ Extension: VK\\_EXT\\_debug\\_marker
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html)
 
 """
-struct DebugMarkerObjectNameInfoEXT <: HighLevelStruct
-    next::Any
-    object_type::DebugReportObjectTypeEXT
-    object::UInt64
-    object_name::String
-end
+@auto_hash_equals struct DebugMarkerObjectNameInfoEXT <: HighLevelStruct
+        next::Any
+        object_type::DebugReportObjectTypeEXT
+        object::UInt64
+        object_name::String
+    end
 
 """
 High-level wrapper for VkCalibratedTimestampInfoEXT.
@@ -16487,10 +16487,10 @@ Extension: VK\\_EXT\\_calibrated\\_timestamps
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCalibratedTimestampInfoEXT.html)
 
 """
-struct CalibratedTimestampInfoEXT <: HighLevelStruct
-    next::Any
-    time_domain::TimeDomainEXT
-end
+@auto_hash_equals struct CalibratedTimestampInfoEXT <: HighLevelStruct
+        next::Any
+        time_domain::TimeDomainEXT
+    end
 
 """
 High-level wrapper for VkSemaphoreTypeCreateInfo.
@@ -16498,11 +16498,11 @@ High-level wrapper for VkSemaphoreTypeCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSemaphoreTypeCreateInfo.html)
 
 """
-struct SemaphoreTypeCreateInfo <: HighLevelStruct
-    next::Any
-    semaphore_type::SemaphoreType
-    initial_value::UInt64
-end
+@auto_hash_equals struct SemaphoreTypeCreateInfo <: HighLevelStruct
+        next::Any
+        semaphore_type::SemaphoreType
+        initial_value::UInt64
+    end
 
 """
 High-level wrapper for VkDebugUtilsObjectTagInfoEXT.
@@ -16512,14 +16512,14 @@ Extension: VK\\_EXT\\_debug\\_utils
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html)
 
 """
-struct DebugUtilsObjectTagInfoEXT <: HighLevelStruct
-    next::Any
-    object_type::ObjectType
-    object_handle::UInt64
-    tag_name::UInt64
-    tag_size::UInt
-    tag::Ptr{Cvoid}
-end
+@auto_hash_equals struct DebugUtilsObjectTagInfoEXT <: HighLevelStruct
+        next::Any
+        object_type::ObjectType
+        object_handle::UInt64
+        tag_name::UInt64
+        tag_size::UInt
+        tag::Ptr{Cvoid}
+    end
 
 """
 High-level wrapper for VkDebugUtilsObjectNameInfoEXT.
@@ -16529,12 +16529,12 @@ Extension: VK\\_EXT\\_debug\\_utils
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html)
 
 """
-struct DebugUtilsObjectNameInfoEXT <: HighLevelStruct
-    next::Any
-    object_type::ObjectType
-    object_handle::UInt64
-    object_name::String
-end
+@auto_hash_equals struct DebugUtilsObjectNameInfoEXT <: HighLevelStruct
+        next::Any
+        object_type::ObjectType
+        object_handle::UInt64
+        object_name::String
+    end
 
 """
 High-level wrapper for VkDebugUtilsMessengerCallbackDataEXT.
@@ -16544,16 +16544,16 @@ Extension: VK\\_EXT\\_debug\\_utils
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDebugUtilsMessengerCallbackDataEXT.html)
 
 """
-struct DebugUtilsMessengerCallbackDataEXT <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    message_id_name::String
-    message_id_number::Int32
-    message::String
-    queue_labels::Vector{DebugUtilsLabelEXT}
-    cmd_buf_labels::Vector{DebugUtilsLabelEXT}
-    objects::Vector{DebugUtilsObjectNameInfoEXT}
-end
+@auto_hash_equals struct DebugUtilsMessengerCallbackDataEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        message_id_name::String
+        message_id_number::Int32
+        message::String
+        queue_labels::Vector{DebugUtilsLabelEXT}
+        cmd_buf_labels::Vector{DebugUtilsLabelEXT}
+        objects::Vector{DebugUtilsObjectNameInfoEXT}
+    end
 
 """
 High-level wrapper for VkPipelineDynamicStateCreateInfo.
@@ -16561,11 +16561,11 @@ High-level wrapper for VkPipelineDynamicStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDynamicStateCreateInfo.html)
 
 """
-struct PipelineDynamicStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    dynamic_states::Vector{DynamicState}
-end
+@auto_hash_equals struct PipelineDynamicStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        dynamic_states::Vector{DynamicState}
+    end
 
 """
 High-level wrapper for VkRayTracingPipelineCreateInfoKHR.
@@ -16575,19 +16575,19 @@ Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html)
 
 """
-struct RayTracingPipelineCreateInfoKHR <: HighLevelStruct
-    next::Any
-    flags::PipelineCreateFlag
-    stages::Vector{PipelineShaderStageCreateInfo}
-    groups::Vector{RayTracingShaderGroupCreateInfoKHR}
-    max_pipeline_ray_recursion_depth::UInt32
-    library_info::OptionalPtr{PipelineLibraryCreateInfoKHR}
-    library_interface::OptionalPtr{RayTracingPipelineInterfaceCreateInfoKHR}
-    dynamic_state::OptionalPtr{PipelineDynamicStateCreateInfo}
-    layout::PipelineLayout
-    base_pipeline_handle::OptionalPtr{Pipeline}
-    base_pipeline_index::Int32
-end
+@auto_hash_equals struct RayTracingPipelineCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::PipelineCreateFlag
+        stages::Vector{PipelineShaderStageCreateInfo}
+        groups::Vector{RayTracingShaderGroupCreateInfoKHR}
+        max_pipeline_ray_recursion_depth::UInt32
+        library_info::OptionalPtr{PipelineLibraryCreateInfoKHR}
+        library_interface::OptionalPtr{RayTracingPipelineInterfaceCreateInfoKHR}
+        dynamic_state::OptionalPtr{PipelineDynamicStateCreateInfo}
+        layout::PipelineLayout
+        base_pipeline_handle::OptionalPtr{Pipeline}
+        base_pipeline_index::Int32
+    end
 
 """
 High-level wrapper for VkPresentInfoKHR.
@@ -16597,13 +16597,13 @@ Extension: VK\\_KHR\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPresentInfoKHR.html)
 
 """
-struct PresentInfoKHR <: HighLevelStruct
-    next::Any
-    wait_semaphores::Vector{Semaphore}
-    swapchains::Vector{SwapchainKHR}
-    image_indices::Vector{UInt32}
-    results::OptionalPtr{Vector{Result}}
-end
+@auto_hash_equals struct PresentInfoKHR <: HighLevelStruct
+        next::Any
+        wait_semaphores::Vector{Semaphore}
+        swapchains::Vector{SwapchainKHR}
+        image_indices::Vector{UInt32}
+        results::OptionalPtr{Vector{Result}}
+    end
 
 """
 High-level wrapper for VkSubpassBeginInfo.
@@ -16611,10 +16611,10 @@ High-level wrapper for VkSubpassBeginInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassBeginInfo.html)
 
 """
-struct SubpassBeginInfo <: HighLevelStruct
-    next::Any
-    contents::SubpassContents
-end
+@auto_hash_equals struct SubpassBeginInfo <: HighLevelStruct
+        next::Any
+        contents::SubpassContents
+    end
 
 """
 Minimalistic wrapper for VkPhysicalDeviceProvokingVertexPropertiesEXT.
@@ -18159,13 +18159,13 @@ Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription2EXT.html)
 
 """
-struct VertexInputAttributeDescription2EXT <: HighLevelStruct
-    next::Any
-    location::UInt32
-    binding::UInt32
-    format::Format
-    offset::UInt32
-end
+@auto_hash_equals struct VertexInputAttributeDescription2EXT <: HighLevelStruct
+        next::Any
+        location::UInt32
+        binding::UInt32
+        format::Format
+        offset::UInt32
+    end
 
 """
 High-level wrapper for VkSamplerCustomBorderColorCreateInfoEXT.
@@ -18175,11 +18175,11 @@ Extension: VK\\_EXT\\_custom\\_border\\_color
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html)
 
 """
-struct SamplerCustomBorderColorCreateInfoEXT <: HighLevelStruct
-    next::Any
-    custom_border_color::ClearColorValue
-    format::Format
-end
+@auto_hash_equals struct SamplerCustomBorderColorCreateInfoEXT <: HighLevelStruct
+        next::Any
+        custom_border_color::ClearColorValue
+        format::Format
+    end
 
 """
 High-level wrapper for VkFramebufferAttachmentImageInfo.
@@ -18187,15 +18187,15 @@ High-level wrapper for VkFramebufferAttachmentImageInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentImageInfo.html)
 
 """
-struct FramebufferAttachmentImageInfo <: HighLevelStruct
-    next::Any
-    flags::ImageCreateFlag
-    usage::ImageUsageFlag
-    width::UInt32
-    height::UInt32
-    layer_count::UInt32
-    view_formats::Vector{Format}
-end
+@auto_hash_equals struct FramebufferAttachmentImageInfo <: HighLevelStruct
+        next::Any
+        flags::ImageCreateFlag
+        usage::ImageUsageFlag
+        width::UInt32
+        height::UInt32
+        layer_count::UInt32
+        view_formats::Vector{Format}
+    end
 
 """
 High-level wrapper for VkFramebufferAttachmentsCreateInfo.
@@ -18203,10 +18203,10 @@ High-level wrapper for VkFramebufferAttachmentsCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFramebufferAttachmentsCreateInfo.html)
 
 """
-struct FramebufferAttachmentsCreateInfo <: HighLevelStruct
-    next::Any
-    attachment_image_infos::Vector{FramebufferAttachmentImageInfo}
-end
+@auto_hash_equals struct FramebufferAttachmentsCreateInfo <: HighLevelStruct
+        next::Any
+        attachment_image_infos::Vector{FramebufferAttachmentImageInfo}
+    end
 
 """
 High-level wrapper for VkImageViewASTCDecodeModeEXT.
@@ -18216,10 +18216,10 @@ Extension: VK\\_EXT\\_astc\\_decode\\_mode
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewASTCDecodeModeEXT.html)
 
 """
-struct ImageViewASTCDecodeModeEXT <: HighLevelStruct
-    next::Any
-    decode_mode::Format
-end
+@auto_hash_equals struct ImageViewASTCDecodeModeEXT <: HighLevelStruct
+        next::Any
+        decode_mode::Format
+    end
 
 """
 High-level wrapper for VkImageFormatListCreateInfo.
@@ -18227,10 +18227,10 @@ High-level wrapper for VkImageFormatListCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageFormatListCreateInfo.html)
 
 """
-struct ImageFormatListCreateInfo <: HighLevelStruct
-    next::Any
-    view_formats::Vector{Format}
-end
+@auto_hash_equals struct ImageFormatListCreateInfo <: HighLevelStruct
+        next::Any
+        view_formats::Vector{Format}
+    end
 
 """
 High-level wrapper for VkVertexInputAttributeDescription.
@@ -18238,12 +18238,12 @@ High-level wrapper for VkVertexInputAttributeDescription.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputAttributeDescription.html)
 
 """
-struct VertexInputAttributeDescription <: HighLevelStruct
-    location::UInt32
-    binding::UInt32
-    format::Format
-    offset::UInt32
-end
+@auto_hash_equals struct VertexInputAttributeDescription <: HighLevelStruct
+        location::UInt32
+        binding::UInt32
+        format::Format
+        offset::UInt32
+    end
 
 """
 High-level wrapper for VkBufferViewCreateInfo.
@@ -18251,14 +18251,14 @@ High-level wrapper for VkBufferViewCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferViewCreateInfo.html)
 
 """
-struct BufferViewCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    buffer::Buffer
-    format::Format
-    offset::UInt64
-    range::UInt64
-end
+@auto_hash_equals struct BufferViewCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        buffer::Buffer
+        format::Format
+        offset::UInt64
+        range::UInt64
+    end
 
 """
 Minimalistic wrapper for VkSurfaceFormatKHR.
@@ -18295,13 +18295,13 @@ Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription2EXT.html)
 
 """
-struct VertexInputBindingDescription2EXT <: HighLevelStruct
-    next::Any
-    binding::UInt32
-    stride::UInt32
-    input_rate::VertexInputRate
-    divisor::UInt32
-end
+@auto_hash_equals struct VertexInputBindingDescription2EXT <: HighLevelStruct
+        next::Any
+        binding::UInt32
+        stride::UInt32
+        input_rate::VertexInputRate
+        divisor::UInt32
+    end
 
 """
 High-level wrapper for VkVertexInputBindingDescription.
@@ -18309,11 +18309,11 @@ High-level wrapper for VkVertexInputBindingDescription.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription.html)
 
 """
-struct VertexInputBindingDescription <: HighLevelStruct
-    binding::UInt32
-    stride::UInt32
-    input_rate::VertexInputRate
-end
+@auto_hash_equals struct VertexInputBindingDescription <: HighLevelStruct
+        binding::UInt32
+        stride::UInt32
+        input_rate::VertexInputRate
+    end
 
 """
 High-level wrapper for VkPipelineVertexInputStateCreateInfo.
@@ -18321,12 +18321,12 @@ High-level wrapper for VkPipelineVertexInputStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html)
 
 """
-struct PipelineVertexInputStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    vertex_binding_descriptions::Vector{VertexInputBindingDescription}
-    vertex_attribute_descriptions::Vector{VertexInputAttributeDescription}
-end
+@auto_hash_equals struct PipelineVertexInputStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        vertex_binding_descriptions::Vector{VertexInputBindingDescription}
+        vertex_attribute_descriptions::Vector{VertexInputAttributeDescription}
+    end
 
 """
 High-level wrapper for VkGraphicsShaderGroupCreateInfoNV.
@@ -18336,12 +18336,12 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsShaderGroupCreateInfoNV.html)
 
 """
-struct GraphicsShaderGroupCreateInfoNV <: HighLevelStruct
-    next::Any
-    stages::Vector{PipelineShaderStageCreateInfo}
-    vertex_input_state::OptionalPtr{PipelineVertexInputStateCreateInfo}
-    tessellation_state::OptionalPtr{PipelineTessellationStateCreateInfo}
-end
+@auto_hash_equals struct GraphicsShaderGroupCreateInfoNV <: HighLevelStruct
+        next::Any
+        stages::Vector{PipelineShaderStageCreateInfo}
+        vertex_input_state::OptionalPtr{PipelineVertexInputStateCreateInfo}
+        tessellation_state::OptionalPtr{PipelineTessellationStateCreateInfo}
+    end
 
 """
 High-level wrapper for VkGraphicsPipelineShaderGroupsCreateInfoNV.
@@ -18351,11 +18351,11 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html)
 
 """
-struct GraphicsPipelineShaderGroupsCreateInfoNV <: HighLevelStruct
-    next::Any
-    groups::Vector{GraphicsShaderGroupCreateInfoNV}
-    pipelines::Vector{Pipeline}
-end
+@auto_hash_equals struct GraphicsPipelineShaderGroupsCreateInfoNV <: HighLevelStruct
+        next::Any
+        groups::Vector{GraphicsShaderGroupCreateInfoNV}
+        pipelines::Vector{Pipeline}
+    end
 
 """
 Minimalistic wrapper for VkPhysicalDeviceProperties.
@@ -18393,16 +18393,16 @@ High-level wrapper for VkPipelineColorBlendAttachmentState.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendAttachmentState.html)
 
 """
-struct PipelineColorBlendAttachmentState <: HighLevelStruct
-    blend_enable::Bool
-    src_color_blend_factor::BlendFactor
-    dst_color_blend_factor::BlendFactor
-    color_blend_op::BlendOp
-    src_alpha_blend_factor::BlendFactor
-    dst_alpha_blend_factor::BlendFactor
-    alpha_blend_op::BlendOp
-    color_write_mask::ColorComponentFlag
-end
+@auto_hash_equals struct PipelineColorBlendAttachmentState <: HighLevelStruct
+        blend_enable::Bool
+        src_color_blend_factor::BlendFactor
+        dst_color_blend_factor::BlendFactor
+        color_blend_op::BlendOp
+        src_alpha_blend_factor::BlendFactor
+        dst_alpha_blend_factor::BlendFactor
+        alpha_blend_op::BlendOp
+        color_write_mask::ColorComponentFlag
+    end
 
 """
 High-level wrapper for VkPipelineColorBlendStateCreateInfo.
@@ -18410,14 +18410,14 @@ High-level wrapper for VkPipelineColorBlendStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineColorBlendStateCreateInfo.html)
 
 """
-struct PipelineColorBlendStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    logic_op_enable::Bool
-    logic_op::LogicOp
-    attachments::Vector{PipelineColorBlendAttachmentState}
-    blend_constants::NTuple{4, Float32}
-end
+@auto_hash_equals struct PipelineColorBlendStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        logic_op_enable::Bool
+        logic_op::LogicOp
+        attachments::Vector{PipelineColorBlendAttachmentState}
+        blend_constants::NTuple{4, Float32}
+    end
 
 """
 High-level wrapper for VkPipelineRasterizationStateCreateInfo.
@@ -18425,20 +18425,20 @@ High-level wrapper for VkPipelineRasterizationStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html)
 
 """
-struct PipelineRasterizationStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    depth_clamp_enable::Bool
-    rasterizer_discard_enable::Bool
-    polygon_mode::PolygonMode
-    cull_mode::CullModeFlag
-    front_face::FrontFace
-    depth_bias_enable::Bool
-    depth_bias_constant_factor::Float32
-    depth_bias_clamp::Float32
-    depth_bias_slope_factor::Float32
-    line_width::Float32
-end
+@auto_hash_equals struct PipelineRasterizationStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        depth_clamp_enable::Bool
+        rasterizer_discard_enable::Bool
+        polygon_mode::PolygonMode
+        cull_mode::CullModeFlag
+        front_face::FrontFace
+        depth_bias_enable::Bool
+        depth_bias_constant_factor::Float32
+        depth_bias_clamp::Float32
+        depth_bias_slope_factor::Float32
+        line_width::Float32
+    end
 
 """
 High-level wrapper for VkStencilOpState.
@@ -18446,15 +18446,15 @@ High-level wrapper for VkStencilOpState.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkStencilOpState.html)
 
 """
-struct StencilOpState <: HighLevelStruct
-    fail_op::StencilOp
-    pass_op::StencilOp
-    depth_fail_op::StencilOp
-    compare_op::CompareOp
-    compare_mask::UInt32
-    write_mask::UInt32
-    reference::UInt32
-end
+@auto_hash_equals struct StencilOpState <: HighLevelStruct
+        fail_op::StencilOp
+        pass_op::StencilOp
+        depth_fail_op::StencilOp
+        compare_op::CompareOp
+        compare_mask::UInt32
+        write_mask::UInt32
+        reference::UInt32
+    end
 
 """
 High-level wrapper for VkPipelineDepthStencilStateCreateInfo.
@@ -18462,19 +18462,19 @@ High-level wrapper for VkPipelineDepthStencilStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html)
 
 """
-struct PipelineDepthStencilStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    depth_test_enable::Bool
-    depth_write_enable::Bool
-    depth_compare_op::CompareOp
-    depth_bounds_test_enable::Bool
-    stencil_test_enable::Bool
-    front::StencilOpState
-    back::StencilOpState
-    min_depth_bounds::Float32
-    max_depth_bounds::Float32
-end
+@auto_hash_equals struct PipelineDepthStencilStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        depth_test_enable::Bool
+        depth_write_enable::Bool
+        depth_compare_op::CompareOp
+        depth_bounds_test_enable::Bool
+        stencil_test_enable::Bool
+        front::StencilOpState
+        back::StencilOpState
+        min_depth_bounds::Float32
+        max_depth_bounds::Float32
+    end
 
 """
 High-level wrapper for VkAccelerationStructureGeometryTrianglesDataKHR.
@@ -18484,16 +18484,16 @@ Extension: VK\\_KHR\\_acceleration\\_structure
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html)
 
 """
-struct AccelerationStructureGeometryTrianglesDataKHR <: HighLevelStruct
-    next::Any
-    vertex_format::Format
-    vertex_data::DeviceOrHostAddressConstKHR
-    vertex_stride::UInt64
-    max_vertex::UInt32
-    index_type::IndexType
-    index_data::DeviceOrHostAddressConstKHR
-    transform_data::DeviceOrHostAddressConstKHR
-end
+@auto_hash_equals struct AccelerationStructureGeometryTrianglesDataKHR <: HighLevelStruct
+        next::Any
+        vertex_format::Format
+        vertex_data::DeviceOrHostAddressConstKHR
+        vertex_stride::UInt64
+        max_vertex::UInt32
+        index_type::IndexType
+        index_data::DeviceOrHostAddressConstKHR
+        transform_data::DeviceOrHostAddressConstKHR
+    end
 
 """
 High-level wrapper for VkGeometryTrianglesNV.
@@ -18503,20 +18503,20 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryTrianglesNV.html)
 
 """
-struct GeometryTrianglesNV <: HighLevelStruct
-    next::Any
-    vertex_data::OptionalPtr{Buffer}
-    vertex_offset::UInt64
-    vertex_count::UInt32
-    vertex_stride::UInt64
-    vertex_format::Format
-    index_data::OptionalPtr{Buffer}
-    index_offset::UInt64
-    index_count::UInt32
-    index_type::IndexType
-    transform_data::OptionalPtr{Buffer}
-    transform_offset::UInt64
-end
+@auto_hash_equals struct GeometryTrianglesNV <: HighLevelStruct
+        next::Any
+        vertex_data::OptionalPtr{Buffer}
+        vertex_offset::UInt64
+        vertex_count::UInt32
+        vertex_stride::UInt64
+        vertex_format::Format
+        index_data::OptionalPtr{Buffer}
+        index_offset::UInt64
+        index_count::UInt32
+        index_type::IndexType
+        transform_data::OptionalPtr{Buffer}
+        transform_offset::UInt64
+    end
 
 """
 High-level wrapper for VkGeometryDataNV.
@@ -18526,10 +18526,10 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryDataNV.html)
 
 """
-struct GeometryDataNV <: HighLevelStruct
-    triangles::GeometryTrianglesNV
-    aabbs::GeometryAABBNV
-end
+@auto_hash_equals struct GeometryDataNV <: HighLevelStruct
+        triangles::GeometryTrianglesNV
+        aabbs::GeometryAABBNV
+    end
 
 """
 High-level wrapper for VkGeometryNV.
@@ -18539,12 +18539,12 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeometryNV.html)
 
 """
-struct GeometryNV <: HighLevelStruct
-    next::Any
-    geometry_type::GeometryTypeKHR
-    geometry::GeometryDataNV
-    flags::GeometryFlagKHR
-end
+@auto_hash_equals struct GeometryNV <: HighLevelStruct
+        next::Any
+        geometry_type::GeometryTypeKHR
+        geometry::GeometryDataNV
+        flags::GeometryFlagKHR
+    end
 
 """
 High-level wrapper for VkAccelerationStructureInfoNV.
@@ -18554,13 +18554,13 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureInfoNV.html)
 
 """
-struct AccelerationStructureInfoNV <: HighLevelStruct
-    next::Any
-    type::VkAccelerationStructureTypeNV
-    flags::OptionalPtr{VkBuildAccelerationStructureFlagsNV}
-    instance_count::UInt32
-    geometries::Vector{GeometryNV}
-end
+@auto_hash_equals struct AccelerationStructureInfoNV <: HighLevelStruct
+        next::Any
+        type::VkAccelerationStructureTypeNV
+        flags::OptionalPtr{VkBuildAccelerationStructureFlagsNV}
+        instance_count::UInt32
+        geometries::Vector{GeometryNV}
+    end
 
 """
 High-level wrapper for VkAccelerationStructureCreateInfoNV.
@@ -18570,11 +18570,11 @@ Extension: VK\\_NV\\_ray\\_tracing
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAccelerationStructureCreateInfoNV.html)
 
 """
-struct AccelerationStructureCreateInfoNV <: HighLevelStruct
-    next::Any
-    compacted_size::UInt64
-    info::AccelerationStructureInfoNV
-end
+@auto_hash_equals struct AccelerationStructureCreateInfoNV <: HighLevelStruct
+        next::Any
+        compacted_size::UInt64
+        info::AccelerationStructureInfoNV
+    end
 
 """
 High-level wrapper for VkIndirectCommandsLayoutTokenNV.
@@ -18584,21 +18584,21 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html)
 
 """
-struct IndirectCommandsLayoutTokenNV <: HighLevelStruct
-    next::Any
-    token_type::IndirectCommandsTokenTypeNV
-    stream::UInt32
-    offset::UInt32
-    vertex_binding_unit::UInt32
-    vertex_dynamic_stride::Bool
-    pushconstant_pipeline_layout::OptionalPtr{PipelineLayout}
-    pushconstant_shader_stage_flags::ShaderStageFlag
-    pushconstant_offset::UInt32
-    pushconstant_size::UInt32
-    indirect_state_flags::IndirectStateFlagNV
-    index_types::Vector{IndexType}
-    index_type_values::Vector{UInt32}
-end
+@auto_hash_equals struct IndirectCommandsLayoutTokenNV <: HighLevelStruct
+        next::Any
+        token_type::IndirectCommandsTokenTypeNV
+        stream::UInt32
+        offset::UInt32
+        vertex_binding_unit::UInt32
+        vertex_dynamic_stride::Bool
+        pushconstant_pipeline_layout::OptionalPtr{PipelineLayout}
+        pushconstant_shader_stage_flags::ShaderStageFlag
+        pushconstant_offset::UInt32
+        pushconstant_size::UInt32
+        indirect_state_flags::IndirectStateFlagNV
+        index_types::Vector{IndexType}
+        index_type_values::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkBindIndexBufferIndirectCommandNV.
@@ -18608,11 +18608,11 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html)
 
 """
-struct BindIndexBufferIndirectCommandNV <: HighLevelStruct
-    buffer_address::UInt64
-    size::UInt32
-    index_type::IndexType
-end
+@auto_hash_equals struct BindIndexBufferIndirectCommandNV <: HighLevelStruct
+        buffer_address::UInt64
+        size::UInt32
+        index_type::IndexType
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceImageDrmFormatModifierInfoEXT.
@@ -18622,12 +18622,12 @@ Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html)
 
 """
-struct PhysicalDeviceImageDrmFormatModifierInfoEXT <: HighLevelStruct
-    next::Any
-    drm_format_modifier::UInt64
-    sharing_mode::SharingMode
-    queue_family_indices::Vector{UInt32}
-end
+@auto_hash_equals struct PhysicalDeviceImageDrmFormatModifierInfoEXT <: HighLevelStruct
+        next::Any
+        drm_format_modifier::UInt64
+        sharing_mode::SharingMode
+        queue_family_indices::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkSwapchainCreateInfoKHR.
@@ -18637,24 +18637,24 @@ Extension: VK\\_KHR\\_swapchain
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSwapchainCreateInfoKHR.html)
 
 """
-struct SwapchainCreateInfoKHR <: HighLevelStruct
-    next::Any
-    flags::SwapchainCreateFlagKHR
-    surface::SurfaceKHR
-    min_image_count::UInt32
-    image_format::Format
-    image_color_space::ColorSpaceKHR
-    image_extent::Extent2D
-    image_array_layers::UInt32
-    image_usage::ImageUsageFlag
-    image_sharing_mode::SharingMode
-    queue_family_indices::Vector{UInt32}
-    pre_transform::SurfaceTransformFlagKHR
-    composite_alpha::CompositeAlphaFlagKHR
-    present_mode::PresentModeKHR
-    clipped::Bool
-    old_swapchain::OptionalPtr{SwapchainKHR}
-end
+@auto_hash_equals struct SwapchainCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::SwapchainCreateFlagKHR
+        surface::SurfaceKHR
+        min_image_count::UInt32
+        image_format::Format
+        image_color_space::ColorSpaceKHR
+        image_extent::Extent2D
+        image_array_layers::UInt32
+        image_usage::ImageUsageFlag
+        image_sharing_mode::SharingMode
+        queue_family_indices::Vector{UInt32}
+        pre_transform::SurfaceTransformFlagKHR
+        composite_alpha::CompositeAlphaFlagKHR
+        present_mode::PresentModeKHR
+        clipped::Bool
+        old_swapchain::OptionalPtr{SwapchainKHR}
+    end
 
 """
 High-level wrapper for VkBufferCreateInfo.
@@ -18662,14 +18662,14 @@ High-level wrapper for VkBufferCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBufferCreateInfo.html)
 
 """
-struct BufferCreateInfo <: HighLevelStruct
-    next::Any
-    flags::BufferCreateFlag
-    size::UInt64
-    usage::BufferUsageFlag
-    sharing_mode::SharingMode
-    queue_family_indices::Vector{UInt32}
-end
+@auto_hash_equals struct BufferCreateInfo <: HighLevelStruct
+        next::Any
+        flags::BufferCreateFlag
+        size::UInt64
+        usage::BufferUsageFlag
+        sharing_mode::SharingMode
+        queue_family_indices::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkPipelineInputAssemblyStateCreateInfo.
@@ -18677,12 +18677,12 @@ High-level wrapper for VkPipelineInputAssemblyStateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html)
 
 """
-struct PipelineInputAssemblyStateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    topology::PrimitiveTopology
-    primitive_restart_enable::Bool
-end
+@auto_hash_equals struct PipelineInputAssemblyStateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        topology::PrimitiveTopology
+        primitive_restart_enable::Bool
+    end
 
 """
 High-level wrapper for VkGraphicsPipelineCreateInfo.
@@ -18690,25 +18690,25 @@ High-level wrapper for VkGraphicsPipelineCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGraphicsPipelineCreateInfo.html)
 
 """
-struct GraphicsPipelineCreateInfo <: HighLevelStruct
-    next::Any
-    flags::PipelineCreateFlag
-    stages::Vector{PipelineShaderStageCreateInfo}
-    vertex_input_state::OptionalPtr{PipelineVertexInputStateCreateInfo}
-    input_assembly_state::OptionalPtr{PipelineInputAssemblyStateCreateInfo}
-    tessellation_state::OptionalPtr{PipelineTessellationStateCreateInfo}
-    viewport_state::OptionalPtr{PipelineViewportStateCreateInfo}
-    rasterization_state::PipelineRasterizationStateCreateInfo
-    multisample_state::OptionalPtr{PipelineMultisampleStateCreateInfo}
-    depth_stencil_state::OptionalPtr{PipelineDepthStencilStateCreateInfo}
-    color_blend_state::OptionalPtr{PipelineColorBlendStateCreateInfo}
-    dynamic_state::OptionalPtr{PipelineDynamicStateCreateInfo}
-    layout::PipelineLayout
-    render_pass::RenderPass
-    subpass::UInt32
-    base_pipeline_handle::OptionalPtr{Pipeline}
-    base_pipeline_index::Int32
-end
+@auto_hash_equals struct GraphicsPipelineCreateInfo <: HighLevelStruct
+        next::Any
+        flags::PipelineCreateFlag
+        stages::Vector{PipelineShaderStageCreateInfo}
+        vertex_input_state::OptionalPtr{PipelineVertexInputStateCreateInfo}
+        input_assembly_state::OptionalPtr{PipelineInputAssemblyStateCreateInfo}
+        tessellation_state::OptionalPtr{PipelineTessellationStateCreateInfo}
+        viewport_state::OptionalPtr{PipelineViewportStateCreateInfo}
+        rasterization_state::PipelineRasterizationStateCreateInfo
+        multisample_state::OptionalPtr{PipelineMultisampleStateCreateInfo}
+        depth_stencil_state::OptionalPtr{PipelineDepthStencilStateCreateInfo}
+        color_blend_state::OptionalPtr{PipelineColorBlendStateCreateInfo}
+        dynamic_state::OptionalPtr{PipelineDynamicStateCreateInfo}
+        layout::PipelineLayout
+        render_pass::RenderPass
+        subpass::UInt32
+        base_pipeline_handle::OptionalPtr{Pipeline}
+        base_pipeline_index::Int32
+    end
 
 """
 High-level wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
@@ -18718,13 +18718,13 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html)
 
 """
-struct GeneratedCommandsMemoryRequirementsInfoNV <: HighLevelStruct
-    next::Any
-    pipeline_bind_point::PipelineBindPoint
-    pipeline::Pipeline
-    indirect_commands_layout::IndirectCommandsLayoutNV
-    max_sequences_count::UInt32
-end
+@auto_hash_equals struct GeneratedCommandsMemoryRequirementsInfoNV <: HighLevelStruct
+        next::Any
+        pipeline_bind_point::PipelineBindPoint
+        pipeline::Pipeline
+        indirect_commands_layout::IndirectCommandsLayoutNV
+        max_sequences_count::UInt32
+    end
 
 """
 High-level wrapper for VkGeneratedCommandsInfoNV.
@@ -18734,21 +18734,21 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkGeneratedCommandsInfoNV.html)
 
 """
-struct GeneratedCommandsInfoNV <: HighLevelStruct
-    next::Any
-    pipeline_bind_point::PipelineBindPoint
-    pipeline::Pipeline
-    indirect_commands_layout::IndirectCommandsLayoutNV
-    streams::Vector{IndirectCommandsStreamNV}
-    sequences_count::UInt32
-    preprocess_buffer::Buffer
-    preprocess_offset::UInt64
-    preprocess_size::UInt64
-    sequences_count_buffer::OptionalPtr{Buffer}
-    sequences_count_offset::UInt64
-    sequences_index_buffer::OptionalPtr{Buffer}
-    sequences_index_offset::UInt64
-end
+@auto_hash_equals struct GeneratedCommandsInfoNV <: HighLevelStruct
+        next::Any
+        pipeline_bind_point::PipelineBindPoint
+        pipeline::Pipeline
+        indirect_commands_layout::IndirectCommandsLayoutNV
+        streams::Vector{IndirectCommandsStreamNV}
+        sequences_count::UInt32
+        preprocess_buffer::Buffer
+        preprocess_offset::UInt64
+        preprocess_size::UInt64
+        sequences_count_buffer::OptionalPtr{Buffer}
+        sequences_count_offset::UInt64
+        sequences_index_buffer::OptionalPtr{Buffer}
+        sequences_index_offset::UInt64
+    end
 
 """
 High-level wrapper for VkIndirectCommandsLayoutCreateInfoNV.
@@ -18758,13 +18758,13 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html)
 
 """
-struct IndirectCommandsLayoutCreateInfoNV <: HighLevelStruct
-    next::Any
-    flags::IndirectCommandsLayoutUsageFlagNV
-    pipeline_bind_point::PipelineBindPoint
-    tokens::Vector{IndirectCommandsLayoutTokenNV}
-    stream_strides::Vector{UInt32}
-end
+@auto_hash_equals struct IndirectCommandsLayoutCreateInfoNV <: HighLevelStruct
+        next::Any
+        flags::IndirectCommandsLayoutUsageFlagNV
+        pipeline_bind_point::PipelineBindPoint
+        tokens::Vector{IndirectCommandsLayoutTokenNV}
+        stream_strides::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkSamplerCreateInfo.
@@ -18772,25 +18772,25 @@ High-level wrapper for VkSamplerCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerCreateInfo.html)
 
 """
-struct SamplerCreateInfo <: HighLevelStruct
-    next::Any
-    flags::SamplerCreateFlag
-    mag_filter::Filter
-    min_filter::Filter
-    mipmap_mode::SamplerMipmapMode
-    address_mode_u::SamplerAddressMode
-    address_mode_v::SamplerAddressMode
-    address_mode_w::SamplerAddressMode
-    mip_lod_bias::Float32
-    anisotropy_enable::Bool
-    max_anisotropy::Float32
-    compare_enable::Bool
-    compare_op::CompareOp
-    min_lod::Float32
-    max_lod::Float32
-    border_color::BorderColor
-    unnormalized_coordinates::Bool
-end
+@auto_hash_equals struct SamplerCreateInfo <: HighLevelStruct
+        next::Any
+        flags::SamplerCreateFlag
+        mag_filter::Filter
+        min_filter::Filter
+        mipmap_mode::SamplerMipmapMode
+        address_mode_u::SamplerAddressMode
+        address_mode_v::SamplerAddressMode
+        address_mode_w::SamplerAddressMode
+        mip_lod_bias::Float32
+        anisotropy_enable::Bool
+        max_anisotropy::Float32
+        compare_enable::Bool
+        compare_op::CompareOp
+        min_lod::Float32
+        max_lod::Float32
+        border_color::BorderColor
+        unnormalized_coordinates::Bool
+    end
 
 """
 High-level wrapper for VkQueryPoolCreateInfo.
@@ -18798,13 +18798,13 @@ High-level wrapper for VkQueryPoolCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkQueryPoolCreateInfo.html)
 
 """
-struct QueryPoolCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    query_type::QueryType
-    query_count::UInt32
-    pipeline_statistics::QueryPipelineStatisticFlag
-end
+@auto_hash_equals struct QueryPoolCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        query_type::QueryType
+        query_count::UInt32
+        pipeline_statistics::QueryPipelineStatisticFlag
+    end
 
 """
 High-level wrapper for VkMutableDescriptorTypeListVALVE.
@@ -18814,9 +18814,9 @@ Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeListVALVE.html)
 
 """
-struct MutableDescriptorTypeListVALVE <: HighLevelStruct
-    descriptor_types::Vector{DescriptorType}
-end
+@auto_hash_equals struct MutableDescriptorTypeListVALVE <: HighLevelStruct
+        descriptor_types::Vector{DescriptorType}
+    end
 
 """
 High-level wrapper for VkMutableDescriptorTypeCreateInfoVALVE.
@@ -18826,10 +18826,10 @@ Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html)
 
 """
-struct MutableDescriptorTypeCreateInfoVALVE <: HighLevelStruct
-    next::Any
-    mutable_descriptor_type_lists::Vector{MutableDescriptorTypeListVALVE}
-end
+@auto_hash_equals struct MutableDescriptorTypeCreateInfoVALVE <: HighLevelStruct
+        next::Any
+        mutable_descriptor_type_lists::Vector{MutableDescriptorTypeListVALVE}
+    end
 
 """
 High-level wrapper for VkImageViewHandleInfoNVX.
@@ -18839,12 +18839,12 @@ Extension: VK\\_NVX\\_image\\_view\\_handle
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewHandleInfoNVX.html)
 
 """
-struct ImageViewHandleInfoNVX <: HighLevelStruct
-    next::Any
-    image_view::ImageView
-    descriptor_type::DescriptorType
-    sampler::OptionalPtr{Sampler}
-end
+@auto_hash_equals struct ImageViewHandleInfoNVX <: HighLevelStruct
+        next::Any
+        image_view::ImageView
+        descriptor_type::DescriptorType
+        sampler::OptionalPtr{Sampler}
+    end
 
 """
 High-level wrapper for VkDescriptorUpdateTemplateEntry.
@@ -18852,14 +18852,14 @@ High-level wrapper for VkDescriptorUpdateTemplateEntry.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateEntry.html)
 
 """
-struct DescriptorUpdateTemplateEntry <: HighLevelStruct
-    dst_binding::UInt32
-    dst_array_element::UInt32
-    descriptor_count::UInt32
-    descriptor_type::DescriptorType
-    offset::UInt
-    stride::UInt
-end
+@auto_hash_equals struct DescriptorUpdateTemplateEntry <: HighLevelStruct
+        dst_binding::UInt32
+        dst_array_element::UInt32
+        descriptor_count::UInt32
+        descriptor_type::DescriptorType
+        offset::UInt
+        stride::UInt
+    end
 
 """
 High-level wrapper for VkDescriptorUpdateTemplateCreateInfo.
@@ -18867,16 +18867,16 @@ High-level wrapper for VkDescriptorUpdateTemplateCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html)
 
 """
-struct DescriptorUpdateTemplateCreateInfo <: HighLevelStruct
-    next::Any
-    flags::UInt32
-    descriptor_update_entries::Vector{DescriptorUpdateTemplateEntry}
-    template_type::DescriptorUpdateTemplateType
-    descriptor_set_layout::DescriptorSetLayout
-    pipeline_bind_point::PipelineBindPoint
-    pipeline_layout::PipelineLayout
-    set::UInt32
-end
+@auto_hash_equals struct DescriptorUpdateTemplateCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        descriptor_update_entries::Vector{DescriptorUpdateTemplateEntry}
+        template_type::DescriptorUpdateTemplateType
+        descriptor_set_layout::DescriptorSetLayout
+        pipeline_bind_point::PipelineBindPoint
+        pipeline_layout::PipelineLayout
+        set::UInt32
+    end
 
 """
 High-level wrapper for VkDescriptorPoolSize.
@@ -18884,10 +18884,10 @@ High-level wrapper for VkDescriptorPoolSize.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolSize.html)
 
 """
-struct DescriptorPoolSize <: HighLevelStruct
-    type::DescriptorType
-    descriptor_count::UInt32
-end
+@auto_hash_equals struct DescriptorPoolSize <: HighLevelStruct
+        type::DescriptorType
+        descriptor_count::UInt32
+    end
 
 """
 High-level wrapper for VkDescriptorPoolCreateInfo.
@@ -18895,12 +18895,12 @@ High-level wrapper for VkDescriptorPoolCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorPoolCreateInfo.html)
 
 """
-struct DescriptorPoolCreateInfo <: HighLevelStruct
-    next::Any
-    flags::DescriptorPoolCreateFlag
-    max_sets::UInt32
-    pool_sizes::Vector{DescriptorPoolSize}
-end
+@auto_hash_equals struct DescriptorPoolCreateInfo <: HighLevelStruct
+        next::Any
+        flags::DescriptorPoolCreateFlag
+        max_sets::UInt32
+        pool_sizes::Vector{DescriptorPoolSize}
+    end
 
 """
 High-level wrapper for VkDescriptorSetLayoutBinding.
@@ -18908,13 +18908,13 @@ High-level wrapper for VkDescriptorSetLayoutBinding.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutBinding.html)
 
 """
-struct DescriptorSetLayoutBinding <: HighLevelStruct
-    binding::UInt32
-    descriptor_type::DescriptorType
-    descriptor_count::UInt32
-    stage_flags::ShaderStageFlag
-    immutable_samplers::OptionalPtr{Vector{Sampler}}
-end
+@auto_hash_equals struct DescriptorSetLayoutBinding <: HighLevelStruct
+        binding::UInt32
+        descriptor_type::DescriptorType
+        descriptor_count::UInt32
+        stage_flags::ShaderStageFlag
+        immutable_samplers::OptionalPtr{Vector{Sampler}}
+    end
 
 """
 High-level wrapper for VkDescriptorSetLayoutCreateInfo.
@@ -18922,11 +18922,11 @@ High-level wrapper for VkDescriptorSetLayoutCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSetLayoutCreateInfo.html)
 
 """
-struct DescriptorSetLayoutCreateInfo <: HighLevelStruct
-    next::Any
-    flags::DescriptorSetLayoutCreateFlag
-    bindings::Vector{DescriptorSetLayoutBinding}
-end
+@auto_hash_equals struct DescriptorSetLayoutCreateInfo <: HighLevelStruct
+        next::Any
+        flags::DescriptorSetLayoutCreateFlag
+        bindings::Vector{DescriptorSetLayoutBinding}
+    end
 
 """
 High-level wrapper for VkComponentMapping.
@@ -18934,12 +18934,12 @@ High-level wrapper for VkComponentMapping.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkComponentMapping.html)
 
 """
-struct ComponentMapping <: HighLevelStruct
-    r::ComponentSwizzle
-    g::ComponentSwizzle
-    b::ComponentSwizzle
-    a::ComponentSwizzle
-end
+@auto_hash_equals struct ComponentMapping <: HighLevelStruct
+        r::ComponentSwizzle
+        g::ComponentSwizzle
+        b::ComponentSwizzle
+        a::ComponentSwizzle
+    end
 
 """
 High-level wrapper for VkSamplerYcbcrConversionCreateInfo.
@@ -18947,17 +18947,17 @@ High-level wrapper for VkSamplerYcbcrConversionCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSamplerYcbcrConversionCreateInfo.html)
 
 """
-struct SamplerYcbcrConversionCreateInfo <: HighLevelStruct
-    next::Any
-    format::Format
-    ycbcr_model::SamplerYcbcrModelConversion
-    ycbcr_range::SamplerYcbcrRange
-    components::ComponentMapping
-    x_chroma_offset::ChromaLocation
-    y_chroma_offset::ChromaLocation
-    chroma_filter::Filter
-    force_explicit_reconstruction::Bool
-end
+@auto_hash_equals struct SamplerYcbcrConversionCreateInfo <: HighLevelStruct
+        next::Any
+        format::Format
+        ycbcr_model::SamplerYcbcrModelConversion
+        ycbcr_range::SamplerYcbcrRange
+        components::ComponentMapping
+        x_chroma_offset::ChromaLocation
+        y_chroma_offset::ChromaLocation
+        chroma_filter::Filter
+        force_explicit_reconstruction::Bool
+    end
 
 """
 High-level wrapper for VkCommandBufferAllocateInfo.
@@ -18965,12 +18965,12 @@ High-level wrapper for VkCommandBufferAllocateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCommandBufferAllocateInfo.html)
 
 """
-struct CommandBufferAllocateInfo <: HighLevelStruct
-    next::Any
-    command_pool::CommandPool
-    level::CommandBufferLevel
-    command_buffer_count::UInt32
-end
+@auto_hash_equals struct CommandBufferAllocateInfo <: HighLevelStruct
+        next::Any
+        command_pool::CommandPool
+        level::CommandBufferLevel
+        command_buffer_count::UInt32
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceImageViewImageFormatInfoEXT.
@@ -18980,10 +18980,10 @@ Extension: VK\\_EXT\\_filter\\_cubic
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html)
 
 """
-struct PhysicalDeviceImageViewImageFormatInfoEXT <: HighLevelStruct
-    next::Any
-    image_view_type::ImageViewType
-end
+@auto_hash_equals struct PhysicalDeviceImageViewImageFormatInfoEXT <: HighLevelStruct
+        next::Any
+        image_view_type::ImageViewType
+    end
 
 """
 High-level wrapper for VkImageViewCreateInfo.
@@ -18991,15 +18991,15 @@ High-level wrapper for VkImageViewCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageViewCreateInfo.html)
 
 """
-struct ImageViewCreateInfo <: HighLevelStruct
-    next::Any
-    flags::ImageViewCreateFlag
-    image::Image
-    view_type::ImageViewType
-    format::Format
-    components::ComponentMapping
-    subresource_range::ImageSubresourceRange
-end
+@auto_hash_equals struct ImageViewCreateInfo <: HighLevelStruct
+        next::Any
+        flags::ImageViewCreateFlag
+        image::Image
+        view_type::ImageViewType
+        format::Format
+        components::ComponentMapping
+        subresource_range::ImageSubresourceRange
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceSparseImageFormatInfo2.
@@ -19007,14 +19007,14 @@ High-level wrapper for VkPhysicalDeviceSparseImageFormatInfo2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html)
 
 """
-struct PhysicalDeviceSparseImageFormatInfo2 <: HighLevelStruct
-    next::Any
-    format::Format
-    type::ImageType
-    samples::SampleCountFlag
-    usage::ImageUsageFlag
-    tiling::ImageTiling
-end
+@auto_hash_equals struct PhysicalDeviceSparseImageFormatInfo2 <: HighLevelStruct
+        next::Any
+        format::Format
+        type::ImageType
+        samples::SampleCountFlag
+        usage::ImageUsageFlag
+        tiling::ImageTiling
+    end
 
 """
 High-level wrapper for VkPhysicalDeviceImageFormatInfo2.
@@ -19022,14 +19022,14 @@ High-level wrapper for VkPhysicalDeviceImageFormatInfo2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html)
 
 """
-struct PhysicalDeviceImageFormatInfo2 <: HighLevelStruct
-    next::Any
-    format::Format
-    type::ImageType
-    tiling::ImageTiling
-    usage::ImageUsageFlag
-    flags::ImageCreateFlag
-end
+@auto_hash_equals struct PhysicalDeviceImageFormatInfo2 <: HighLevelStruct
+        next::Any
+        format::Format
+        type::ImageType
+        tiling::ImageTiling
+        usage::ImageUsageFlag
+        flags::ImageCreateFlag
+    end
 
 """
 High-level wrapper for VkImageMemoryBarrier2KHR.
@@ -19039,19 +19039,19 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier2KHR.html)
 
 """
-struct ImageMemoryBarrier2KHR <: HighLevelStruct
-    next::Any
-    src_stage_mask::UInt64
-    src_access_mask::UInt64
-    dst_stage_mask::UInt64
-    dst_access_mask::UInt64
-    old_layout::ImageLayout
-    new_layout::ImageLayout
-    src_queue_family_index::UInt32
-    dst_queue_family_index::UInt32
-    image::Image
-    subresource_range::ImageSubresourceRange
-end
+@auto_hash_equals struct ImageMemoryBarrier2KHR <: HighLevelStruct
+        next::Any
+        src_stage_mask::UInt64
+        src_access_mask::UInt64
+        dst_stage_mask::UInt64
+        dst_access_mask::UInt64
+        old_layout::ImageLayout
+        new_layout::ImageLayout
+        src_queue_family_index::UInt32
+        dst_queue_family_index::UInt32
+        image::Image
+        subresource_range::ImageSubresourceRange
+    end
 
 """
 High-level wrapper for VkDependencyInfoKHR.
@@ -19061,13 +19061,13 @@ Extension: VK\\_KHR\\_synchronization2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDependencyInfoKHR.html)
 
 """
-struct DependencyInfoKHR <: HighLevelStruct
-    next::Any
-    dependency_flags::DependencyFlag
-    memory_barriers::Vector{MemoryBarrier2KHR}
-    buffer_memory_barriers::Vector{BufferMemoryBarrier2KHR}
-    image_memory_barriers::Vector{ImageMemoryBarrier2KHR}
-end
+@auto_hash_equals struct DependencyInfoKHR <: HighLevelStruct
+        next::Any
+        dependency_flags::DependencyFlag
+        memory_barriers::Vector{MemoryBarrier2KHR}
+        buffer_memory_barriers::Vector{BufferMemoryBarrier2KHR}
+        image_memory_barriers::Vector{ImageMemoryBarrier2KHR}
+    end
 
 """
 High-level wrapper for VkResolveImageInfo2KHR.
@@ -19077,14 +19077,14 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkResolveImageInfo2KHR.html)
 
 """
-struct ResolveImageInfo2KHR <: HighLevelStruct
-    next::Any
-    src_image::Image
-    src_image_layout::ImageLayout
-    dst_image::Image
-    dst_image_layout::ImageLayout
-    regions::Vector{ImageResolve2KHR}
-end
+@auto_hash_equals struct ResolveImageInfo2KHR <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{ImageResolve2KHR}
+    end
 
 """
 High-level wrapper for VkCopyImageToBufferInfo2KHR.
@@ -19094,13 +19094,13 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageToBufferInfo2KHR.html)
 
 """
-struct CopyImageToBufferInfo2KHR <: HighLevelStruct
-    next::Any
-    src_image::Image
-    src_image_layout::ImageLayout
-    dst_buffer::Buffer
-    regions::Vector{BufferImageCopy2KHR}
-end
+@auto_hash_equals struct CopyImageToBufferInfo2KHR <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_buffer::Buffer
+        regions::Vector{BufferImageCopy2KHR}
+    end
 
 """
 High-level wrapper for VkCopyBufferToImageInfo2KHR.
@@ -19110,13 +19110,13 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyBufferToImageInfo2KHR.html)
 
 """
-struct CopyBufferToImageInfo2KHR <: HighLevelStruct
-    next::Any
-    src_buffer::Buffer
-    dst_image::Image
-    dst_image_layout::ImageLayout
-    regions::Vector{BufferImageCopy2KHR}
-end
+@auto_hash_equals struct CopyBufferToImageInfo2KHR <: HighLevelStruct
+        next::Any
+        src_buffer::Buffer
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{BufferImageCopy2KHR}
+    end
 
 """
 High-level wrapper for VkBlitImageInfo2KHR.
@@ -19126,15 +19126,15 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkBlitImageInfo2KHR.html)
 
 """
-struct BlitImageInfo2KHR <: HighLevelStruct
-    next::Any
-    src_image::Image
-    src_image_layout::ImageLayout
-    dst_image::Image
-    dst_image_layout::ImageLayout
-    regions::Vector{ImageBlit2KHR}
-    filter::Filter
-end
+@auto_hash_equals struct BlitImageInfo2KHR <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{ImageBlit2KHR}
+        filter::Filter
+    end
 
 """
 High-level wrapper for VkCopyImageInfo2KHR.
@@ -19144,14 +19144,14 @@ Extension: VK\\_KHR\\_copy\\_commands2
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkCopyImageInfo2KHR.html)
 
 """
-struct CopyImageInfo2KHR <: HighLevelStruct
-    next::Any
-    src_image::Image
-    src_image_layout::ImageLayout
-    dst_image::Image
-    dst_image_layout::ImageLayout
-    regions::Vector{ImageCopy2KHR}
-end
+@auto_hash_equals struct CopyImageInfo2KHR <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{ImageCopy2KHR}
+    end
 
 """
 High-level wrapper for VkAttachmentDescriptionStencilLayout.
@@ -19159,11 +19159,11 @@ High-level wrapper for VkAttachmentDescriptionStencilLayout.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescriptionStencilLayout.html)
 
 """
-struct AttachmentDescriptionStencilLayout <: HighLevelStruct
-    next::Any
-    stencil_initial_layout::ImageLayout
-    stencil_final_layout::ImageLayout
-end
+@auto_hash_equals struct AttachmentDescriptionStencilLayout <: HighLevelStruct
+        next::Any
+        stencil_initial_layout::ImageLayout
+        stencil_final_layout::ImageLayout
+    end
 
 """
 High-level wrapper for VkAttachmentReferenceStencilLayout.
@@ -19171,10 +19171,10 @@ High-level wrapper for VkAttachmentReferenceStencilLayout.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReferenceStencilLayout.html)
 
 """
-struct AttachmentReferenceStencilLayout <: HighLevelStruct
-    next::Any
-    stencil_layout::ImageLayout
-end
+@auto_hash_equals struct AttachmentReferenceStencilLayout <: HighLevelStruct
+        next::Any
+        stencil_layout::ImageLayout
+    end
 
 """
 High-level wrapper for VkAttachmentReference2.
@@ -19182,12 +19182,12 @@ High-level wrapper for VkAttachmentReference2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference2.html)
 
 """
-struct AttachmentReference2 <: HighLevelStruct
-    next::Any
-    attachment::UInt32
-    layout::ImageLayout
-    aspect_mask::ImageAspectFlag
-end
+@auto_hash_equals struct AttachmentReference2 <: HighLevelStruct
+        next::Any
+        attachment::UInt32
+        layout::ImageLayout
+        aspect_mask::ImageAspectFlag
+    end
 
 """
 High-level wrapper for VkFragmentShadingRateAttachmentInfoKHR.
@@ -19197,11 +19197,11 @@ Extension: VK\\_KHR\\_fragment\\_shading\\_rate
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html)
 
 """
-struct FragmentShadingRateAttachmentInfoKHR <: HighLevelStruct
-    next::Any
-    fragment_shading_rate_attachment::AttachmentReference2
-    shading_rate_attachment_texel_size::Extent2D
-end
+@auto_hash_equals struct FragmentShadingRateAttachmentInfoKHR <: HighLevelStruct
+        next::Any
+        fragment_shading_rate_attachment::AttachmentReference2
+        shading_rate_attachment_texel_size::Extent2D
+    end
 
 """
 High-level wrapper for VkSubpassDescriptionDepthStencilResolve.
@@ -19209,12 +19209,12 @@ High-level wrapper for VkSubpassDescriptionDepthStencilResolve.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescriptionDepthStencilResolve.html)
 
 """
-struct SubpassDescriptionDepthStencilResolve <: HighLevelStruct
-    next::Any
-    depth_resolve_mode::ResolveModeFlag
-    stencil_resolve_mode::ResolveModeFlag
-    depth_stencil_resolve_attachment::OptionalPtr{AttachmentReference2}
-end
+@auto_hash_equals struct SubpassDescriptionDepthStencilResolve <: HighLevelStruct
+        next::Any
+        depth_resolve_mode::ResolveModeFlag
+        stencil_resolve_mode::ResolveModeFlag
+        depth_stencil_resolve_attachment::OptionalPtr{AttachmentReference2}
+    end
 
 """
 High-level wrapper for VkSubpassDescription2.
@@ -19222,17 +19222,17 @@ High-level wrapper for VkSubpassDescription2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription2.html)
 
 """
-struct SubpassDescription2 <: HighLevelStruct
-    next::Any
-    flags::SubpassDescriptionFlag
-    pipeline_bind_point::PipelineBindPoint
-    view_mask::UInt32
-    input_attachments::Vector{AttachmentReference2}
-    color_attachments::Vector{AttachmentReference2}
-    resolve_attachments::OptionalPtr{Vector{AttachmentReference2}}
-    depth_stencil_attachment::OptionalPtr{AttachmentReference2}
-    preserve_attachments::Vector{UInt32}
-end
+@auto_hash_equals struct SubpassDescription2 <: HighLevelStruct
+        next::Any
+        flags::SubpassDescriptionFlag
+        pipeline_bind_point::PipelineBindPoint
+        view_mask::UInt32
+        input_attachments::Vector{AttachmentReference2}
+        color_attachments::Vector{AttachmentReference2}
+        resolve_attachments::OptionalPtr{Vector{AttachmentReference2}}
+        depth_stencil_attachment::OptionalPtr{AttachmentReference2}
+        preserve_attachments::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkAttachmentDescription2.
@@ -19240,18 +19240,18 @@ High-level wrapper for VkAttachmentDescription2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription2.html)
 
 """
-struct AttachmentDescription2 <: HighLevelStruct
-    next::Any
-    flags::AttachmentDescriptionFlag
-    format::Format
-    samples::SampleCountFlag
-    load_op::AttachmentLoadOp
-    store_op::AttachmentStoreOp
-    stencil_load_op::AttachmentLoadOp
-    stencil_store_op::AttachmentStoreOp
-    initial_layout::ImageLayout
-    final_layout::ImageLayout
-end
+@auto_hash_equals struct AttachmentDescription2 <: HighLevelStruct
+        next::Any
+        flags::AttachmentDescriptionFlag
+        format::Format
+        samples::SampleCountFlag
+        load_op::AttachmentLoadOp
+        store_op::AttachmentStoreOp
+        stencil_load_op::AttachmentLoadOp
+        stencil_store_op::AttachmentStoreOp
+        initial_layout::ImageLayout
+        final_layout::ImageLayout
+    end
 
 """
 High-level wrapper for VkRenderPassCreateInfo2.
@@ -19259,14 +19259,14 @@ High-level wrapper for VkRenderPassCreateInfo2.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo2.html)
 
 """
-struct RenderPassCreateInfo2 <: HighLevelStruct
-    next::Any
-    flags::RenderPassCreateFlag
-    attachments::Vector{AttachmentDescription2}
-    subpasses::Vector{SubpassDescription2}
-    dependencies::Vector{SubpassDependency2}
-    correlated_view_masks::Vector{UInt32}
-end
+@auto_hash_equals struct RenderPassCreateInfo2 <: HighLevelStruct
+        next::Any
+        flags::RenderPassCreateFlag
+        attachments::Vector{AttachmentDescription2}
+        subpasses::Vector{SubpassDescription2}
+        dependencies::Vector{SubpassDependency2}
+        correlated_view_masks::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkAttachmentReference.
@@ -19274,10 +19274,10 @@ High-level wrapper for VkAttachmentReference.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentReference.html)
 
 """
-struct AttachmentReference <: HighLevelStruct
-    attachment::UInt32
-    layout::ImageLayout
-end
+@auto_hash_equals struct AttachmentReference <: HighLevelStruct
+        attachment::UInt32
+        layout::ImageLayout
+    end
 
 """
 High-level wrapper for VkRenderPassFragmentDensityMapCreateInfoEXT.
@@ -19287,10 +19287,10 @@ Extension: VK\\_EXT\\_fragment\\_density\\_map
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html)
 
 """
-struct RenderPassFragmentDensityMapCreateInfoEXT <: HighLevelStruct
-    next::Any
-    fragment_density_map_attachment::AttachmentReference
-end
+@auto_hash_equals struct RenderPassFragmentDensityMapCreateInfoEXT <: HighLevelStruct
+        next::Any
+        fragment_density_map_attachment::AttachmentReference
+    end
 
 """
 High-level wrapper for VkSubpassDescription.
@@ -19298,15 +19298,15 @@ High-level wrapper for VkSubpassDescription.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubpassDescription.html)
 
 """
-struct SubpassDescription <: HighLevelStruct
-    flags::SubpassDescriptionFlag
-    pipeline_bind_point::PipelineBindPoint
-    input_attachments::Vector{AttachmentReference}
-    color_attachments::Vector{AttachmentReference}
-    resolve_attachments::OptionalPtr{Vector{AttachmentReference}}
-    depth_stencil_attachment::OptionalPtr{AttachmentReference}
-    preserve_attachments::Vector{UInt32}
-end
+@auto_hash_equals struct SubpassDescription <: HighLevelStruct
+        flags::SubpassDescriptionFlag
+        pipeline_bind_point::PipelineBindPoint
+        input_attachments::Vector{AttachmentReference}
+        color_attachments::Vector{AttachmentReference}
+        resolve_attachments::OptionalPtr{Vector{AttachmentReference}}
+        depth_stencil_attachment::OptionalPtr{AttachmentReference}
+        preserve_attachments::Vector{UInt32}
+    end
 
 """
 High-level wrapper for VkAttachmentDescription.
@@ -19314,17 +19314,17 @@ High-level wrapper for VkAttachmentDescription.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html)
 
 """
-struct AttachmentDescription <: HighLevelStruct
-    flags::AttachmentDescriptionFlag
-    format::Format
-    samples::SampleCountFlag
-    load_op::AttachmentLoadOp
-    store_op::AttachmentStoreOp
-    stencil_load_op::AttachmentLoadOp
-    stencil_store_op::AttachmentStoreOp
-    initial_layout::ImageLayout
-    final_layout::ImageLayout
-end
+@auto_hash_equals struct AttachmentDescription <: HighLevelStruct
+        flags::AttachmentDescriptionFlag
+        format::Format
+        samples::SampleCountFlag
+        load_op::AttachmentLoadOp
+        store_op::AttachmentStoreOp
+        stencil_load_op::AttachmentLoadOp
+        stencil_store_op::AttachmentStoreOp
+        initial_layout::ImageLayout
+        final_layout::ImageLayout
+    end
 
 """
 High-level wrapper for VkRenderPassCreateInfo.
@@ -19332,13 +19332,13 @@ High-level wrapper for VkRenderPassCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderPassCreateInfo.html)
 
 """
-struct RenderPassCreateInfo <: HighLevelStruct
-    next::Any
-    flags::RenderPassCreateFlag
-    attachments::Vector{AttachmentDescription}
-    subpasses::Vector{SubpassDescription}
-    dependencies::Vector{SubpassDependency}
-end
+@auto_hash_equals struct RenderPassCreateInfo <: HighLevelStruct
+        next::Any
+        flags::RenderPassCreateFlag
+        attachments::Vector{AttachmentDescription}
+        subpasses::Vector{SubpassDescription}
+        dependencies::Vector{SubpassDependency}
+    end
 
 """
 High-level wrapper for VkImageCreateInfo.
@@ -19346,21 +19346,21 @@ High-level wrapper for VkImageCreateInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageCreateInfo.html)
 
 """
-struct ImageCreateInfo <: HighLevelStruct
-    next::Any
-    flags::ImageCreateFlag
-    image_type::ImageType
-    format::Format
-    extent::Extent3D
-    mip_levels::UInt32
-    array_layers::UInt32
-    samples::SampleCountFlag
-    tiling::ImageTiling
-    usage::ImageUsageFlag
-    sharing_mode::SharingMode
-    queue_family_indices::Vector{UInt32}
-    initial_layout::ImageLayout
-end
+@auto_hash_equals struct ImageCreateInfo <: HighLevelStruct
+        next::Any
+        flags::ImageCreateFlag
+        image_type::ImageType
+        format::Format
+        extent::Extent3D
+        mip_levels::UInt32
+        array_layers::UInt32
+        samples::SampleCountFlag
+        tiling::ImageTiling
+        usage::ImageUsageFlag
+        sharing_mode::SharingMode
+        queue_family_indices::Vector{UInt32}
+        initial_layout::ImageLayout
+    end
 
 """
 High-level wrapper for VkImageMemoryBarrier.
@@ -19368,17 +19368,17 @@ High-level wrapper for VkImageMemoryBarrier.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkImageMemoryBarrier.html)
 
 """
-struct ImageMemoryBarrier <: HighLevelStruct
-    next::Any
-    src_access_mask::AccessFlag
-    dst_access_mask::AccessFlag
-    old_layout::ImageLayout
-    new_layout::ImageLayout
-    src_queue_family_index::UInt32
-    dst_queue_family_index::UInt32
-    image::Image
-    subresource_range::ImageSubresourceRange
-end
+@auto_hash_equals struct ImageMemoryBarrier <: HighLevelStruct
+        next::Any
+        src_access_mask::AccessFlag
+        dst_access_mask::AccessFlag
+        old_layout::ImageLayout
+        new_layout::ImageLayout
+        src_queue_family_index::UInt32
+        dst_queue_family_index::UInt32
+        image::Image
+        subresource_range::ImageSubresourceRange
+    end
 
 """
 High-level wrapper for VkDescriptorImageInfo.
@@ -19386,11 +19386,11 @@ High-level wrapper for VkDescriptorImageInfo.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorImageInfo.html)
 
 """
-struct DescriptorImageInfo <: HighLevelStruct
-    sampler::Sampler
-    image_view::ImageView
-    image_layout::ImageLayout
-end
+@auto_hash_equals struct DescriptorImageInfo <: HighLevelStruct
+        sampler::Sampler
+        image_view::ImageView
+        image_layout::ImageLayout
+    end
 
 """
 High-level wrapper for VkWriteDescriptorSet.
@@ -19398,17 +19398,17 @@ High-level wrapper for VkWriteDescriptorSet.
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSet.html)
 
 """
-struct WriteDescriptorSet <: HighLevelStruct
-    next::Any
-    dst_set::DescriptorSet
-    dst_binding::UInt32
-    dst_array_element::UInt32
-    descriptor_count::UInt32
-    descriptor_type::DescriptorType
-    image_info::Vector{DescriptorImageInfo}
-    buffer_info::Vector{DescriptorBufferInfo}
-    texel_buffer_view::Vector{BufferView}
-end
+@auto_hash_equals struct WriteDescriptorSet <: HighLevelStruct
+        next::Any
+        dst_set::DescriptorSet
+        dst_binding::UInt32
+        dst_array_element::UInt32
+        descriptor_count::UInt32
+        descriptor_type::DescriptorType
+        image_info::Vector{DescriptorImageInfo}
+        buffer_info::Vector{DescriptorBufferInfo}
+        texel_buffer_view::Vector{BufferView}
+    end
 
 
 """
