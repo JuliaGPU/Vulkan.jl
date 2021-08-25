@@ -105,7 +105,7 @@
         ))
 
         test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorSetAllocateInfo)), :(
-            function _DescriptorSetAllocateInfo(descriptor_pool::DescriptorPool, set_layouts::AbstractArray; next = C_NULL)
+            function _DescriptorSetAllocateInfo(descriptor_pool, set_layouts::AbstractArray; next = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
                 deps = [next, set_layouts]
@@ -115,7 +115,7 @@
         ))
 
         test(Constructor, StructDefinition{false}(struct_by_name(:VkPipelineShaderStageCreateInfo)), :(
-            function _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module::ShaderModule, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
+            function _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 name = cconvert(Cstring, name)
                 specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
@@ -126,7 +126,7 @@
         ))
 
         test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorImageInfo)), :(
-            function _DescriptorImageInfo(sampler::Sampler, image_view::ImageView, image_layout::ImageLayout)
+            function _DescriptorImageInfo(sampler, image_view, image_layout::ImageLayout)
                 _DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
             end
         ))
@@ -153,7 +153,7 @@
 
     @testset "Manual tweaks" begin
         test(Constructor, StructDefinition{false}(struct_by_name(:VkWriteDescriptorSet)), :(
-            function _WriteDescriptorSet(dst_set::DescriptorSet, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
+            function _WriteDescriptorSet(dst_set, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
                 next = cconvert(Ptr{Cvoid}, next)
                 image_info = cconvert(Ptr{VkDescriptorImageInfo}, image_info)
                 buffer_info = cconvert(Ptr{VkDescriptorBufferInfo}, buffer_info)

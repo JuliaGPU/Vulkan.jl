@@ -1,7 +1,7 @@
 @testset "High-level wrapper" begin
     @testset "Generated structs" begin
         test(StructDefinition{true}, struct_by_name, :VkApplicationInfo, :(
-            struct ApplicationInfo <: HighLevelStruct
+            @auto_hash_equals struct ApplicationInfo <: HighLevelStruct
                 next::Any
                 application_name::String
                 application_version::VersionNumber
@@ -12,7 +12,7 @@
         ))
 
         test(StructDefinition{true}, struct_by_name, :VkInstanceCreateInfo, :(
-            struct InstanceCreateInfo <: HighLevelStruct
+            @auto_hash_equals struct InstanceCreateInfo <: HighLevelStruct
                 next::Any
                 flags::UInt32
                 application_info::OptionalPtr{ApplicationInfo}
@@ -22,7 +22,7 @@
         ))
 
         test(StructDefinition{true}, struct_by_name, :VkXcbSurfaceCreateInfoKHR, :(
-            struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
+            @auto_hash_equals struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
                 next::Any
                 flags::UInt32
                 connection::Ptr{vk.xcb_connection_t}

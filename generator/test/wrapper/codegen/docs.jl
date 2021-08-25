@@ -83,10 +83,10 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkDestroyDevice), false),
             """
-                destroy_device(device::Device; allocator = C_NULL)::Cvoid
+                destroy_device(device; allocator = C_NULL)::Cvoid
 
             Arguments:
-            - `device::Device` (externsync)
+            - `device` (externsync)
             - `allocator`: defaults to `C_NULL`
 
             [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html)
@@ -96,7 +96,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkGetPipelineCacheData), false),
             """
-                get_pipeline_cache_data(device::Device, pipeline_cache::PipelineCache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+                get_pipeline_cache_data(device, pipeline_cache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
             Return codes:
             - Error:
@@ -104,8 +104,8 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
               - `ERROR_OUT_OF_DEVICE_MEMORY`
 
             Arguments:
-            - `device::Device`
-            - `pipeline_cache::PipelineCache`
+            - `device`
+            - `pipeline_cache`
 
             !!! warning
                 The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
@@ -117,7 +117,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false),
             """
-                write_acceleration_structures_properties_khr(device::Device, acceleration_structures::AbstractArray{AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
+                write_acceleration_structures_properties_khr(device, acceleration_structures::AbstractArray{AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
             Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
 
@@ -127,7 +127,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
               - `ERROR_OUT_OF_DEVICE_MEMORY`
 
             Arguments:
-            - `device::Device`
+            - `device`
             - `acceleration_structures::AbstractArray{AccelerationStructureKHR}`
             - `query_type::QueryType`
             - `data_size::Integer`

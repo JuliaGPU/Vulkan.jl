@@ -47,7 +47,7 @@
                 APIFunction(create_func(:vkCreateDebugReportCallbackEXT), true),
             ),
             :(
-                DebugReportCallbackEXT(instance::Instance, pfn_callback::FunctionPtr, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fptr_create, fptr_destroy; allocator, next, flags, user_data))
+                DebugReportCallbackEXT(instance, pfn_callback::FunctionPtr, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fptr_create, fptr_destroy; allocator, next, flags, user_data))
             )
         )
 
@@ -57,7 +57,7 @@
                 APIFunction(func_by_name(:vkCreateDeferredOperationKHR), false),
             ),
             :(
-                DeferredOperationKHR(device::Device; allocator = C_NULL) = unwrap(create_deferred_operation_khr(device; allocator))
+                DeferredOperationKHR(device; allocator = C_NULL) = unwrap(create_deferred_operation_khr(device; allocator))
             )
         )
 
@@ -67,7 +67,7 @@
                 promote_hl(APIFunction(create_func(:vkCreateRenderPass), false)),
             ),
             :(
-                RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass(device, attachments, subpasses, dependencies; allocator, next, flags))
+                RenderPass(device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass(device, attachments, subpasses, dependencies; allocator, next, flags))
             ),
         )
 
@@ -77,7 +77,7 @@
                 promote_hl(APIFunction(create_func(:vkCreateRenderPass2), false)),
             ),
             :(
-                RenderPass(device::Device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass_2(device, attachments, subpasses, dependencies, correlated_view_masks; allocator, next, flags))
+                RenderPass(device, attachments::AbstractArray, subpasses::AbstractArray, dependencies::AbstractArray, correlated_view_masks::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0) = unwrap(create_render_pass_2(device, attachments, subpasses, dependencies, correlated_view_masks; allocator, next, flags))
             ),
         )
     end
