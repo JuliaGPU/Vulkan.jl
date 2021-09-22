@@ -25,9 +25,10 @@ macro bitmask_flag(typedecl, expr)
         expr = Expr(:block, expr)
     end
     decls = filter(x -> typeof(x) ≠ LineNumberNode, expr.args)
+    etype = esc(type)
     values = map(decls) do decl
         (identifier, value) = decl.args
-        :($(QuoteNode(identifier)) => $type($value))
+        :($(QuoteNode(identifier)) => $etype($value))
     end
 
     ex = quote
@@ -35,7 +36,7 @@ macro bitmask_flag(typedecl, expr)
             val::$eltype
         end
         $(esc.(generate_bitmask_flags.(type, decls))...)
-        Base.values(::Type{$type}) = [$(values...)]
+        Base.values(::Type{$etype}) = [$(values...)]
     end
 
     ex
