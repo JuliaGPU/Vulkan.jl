@@ -25,12 +25,17 @@ macro bitmask_flag(typedecl, expr)
         expr = Expr(:block, expr)
     end
     decls = filter(x -> typeof(x) ≠ LineNumberNode, expr.args)
+    values = map(decls) do decl
+        (identifier, value) = decl.args
+        :($(QuoteNode(identifier)) => $type($value))
+    end
 
     ex = quote
         Base.@__doc__ struct $type <: BitMask{$eltype}
             val::$eltype
         end
         $(esc.(generate_bitmask_flags.(type, decls))...)
+        Base.values(::Type{$type}) = [$(values...)]
     end
 
     ex
@@ -71,3 +76,16 @@ convert(T::Type{<:Integer}, bm::BitMask) = T(bm.val)
 convert(T::Type{<:BitMask}, val::Integer) = T(val)
 
 typemax(T::Type{<:BitMask{_T}}) where {_T} = T(typemax(_T))
+
+function Base.show(io::IO, flag::T) where {T <: BitMask}
+    print(io, T, '(')
+    first = true
+    for (name, val) in values(T)
+        if val in flag
+            !first && print(io, " | ")
+            first = false
+            print(io, name)
+        end
+    end
+    print(io, ')')
+end
