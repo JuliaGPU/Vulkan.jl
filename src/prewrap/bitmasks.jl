@@ -82,7 +82,7 @@ function Base.show(io::IO, flag::T) where {T <: BitMask}
     print(io, T, '(')
     first = true
     for (name, val) in values(T)
-        if val in flag && Int(val) ≠ 0
+        if val in flag && (Int(val) ≠ 0 || val == flag)
             !first && print(io, " | ")
             first = false
             print(io, name)
