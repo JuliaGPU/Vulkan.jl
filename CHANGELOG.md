@@ -1,5 +1,9 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.4`
+
+* ![BREAKING][badge-breaking] ![Feature][badge-feature] Hashing is now defined recursively on high-level structures and equality of high-level structures is defined in terms of equality of hashes. This uses [AutoHashEquals.jl](https://github.com/andrewcooke/AutoHashEquals.jl), see the package documentation for more information.
+
 ## Version `v0.3`
 
 * ![BREAKING][badge-breaking] ![Enhancement][badge-enhancement] The beta extensions are not wrapped anymore, following their removal from VulkanCore (see [this issue](https://github.com/JuliaGPU/VulkanCore.jl/issues/43) to know why they were removed). This will allow for a more stable library.
