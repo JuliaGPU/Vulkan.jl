@@ -203,6 +203,13 @@ struct SpecBit <: Spec
     position::Int
 end
 
+struct SpecBitCombination <: Spec
+    "Name of the bit combination."
+    name::Symbol
+    "Value of the combination."
+    value::Int
+end
+
 """
 Specification for a bitmask type that must be formed through a combination of `bits`.
 
@@ -213,6 +220,7 @@ struct SpecBitmask <: Spec
     name::Symbol
     "Valid bits that can be combined to form the final bitmask value."
     bits::StructVector{SpecBit}
+    combinations::StructVector{SpecBitCombination}
     width::Integer
 end
 

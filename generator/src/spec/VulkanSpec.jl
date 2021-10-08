@@ -74,6 +74,7 @@ export
     Spec,
     SpecAlias,
     SpecBit,
+    SpecBitCombination,
     SpecBitmask,
     SpecConstant,
     SpecEnum,

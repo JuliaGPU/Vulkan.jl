@@ -156,21 +156,31 @@ function SpecFunc(node::Node)
 end
 
 SpecEnum(node::Node) =
-    SpecEnum(Symbol(node["name"]), StructVector(SpecConstant.(findall("./enum[@name and not(@alias)]", node))))
+    SpecEnum(getattr(node, "name"), StructVector(SpecConstant.(findall("./enum[@name and not(@alias)]", node))))
 
 SpecBit(node::Node) = SpecBit(
-    Symbol(node["name"]),
-    parse(Int, something(getattr(node, "value", symbol = false), getattr(node, "bitpos", symbol = false))),
+    getattr(node, "name"),
+    parse(Int, getattr(node, "bitpos", symbol = false)),
 )
 
-SpecBitmask(node::Node) =
-    SpecBitmask(Symbol(node["name"]), StructVector(SpecBit.(findall("./enum[not(@alias)]", node))), parse(Int, getattr(node, "bitwidth", symbol = false, default = "32")))
+SpecBitCombination(node::Node) = SpecBitCombination(
+    getattr(node, "name"),
+    parse(UInt, getattr(node, "value", symbol = false)),
+)
+
+function SpecBitmask(node::Node)
+    name = getattr(node, "name")
+    bits = StructVector(SpecBit.(findall("./enum[not(@alias) and not(@value)]", node)))
+    combinations = StructVector(SpecBitCombination.(findall("./enum[not(@alias) and @value]", node)))
+    width = parse(Int, getattr(node, "bitwidth", symbol = false, default = "32"))
+    SpecBitmask(name, bits, combinations, width)
+end
 
 function SpecFlag(node::Node)
     name = Symbol(findfirst("./name", node).content)
     typealias = Symbol(findfirst("./type", node).content)
     bitmask = if haskey(node, "requires")
-        bitmask_name = Symbol(node["requires"])
+        bitmask_name = getattr(node, "requires")
         if bitmask_name ∈ disabled_symbols
             nothing
         else
@@ -229,7 +239,7 @@ function SpecConstant(node::Node)
 end
 
 function SpecAlias(node::Node)
-    name = Symbol(node["name"])
+    name = getattr(node, "name")
     alias = follow_alias(name)
     spec_names = getproperty.(spec_all_noalias, :name)
     alias_spec = spec_all_noalias[findfirst(==(alias), spec_names)]
@@ -290,9 +300,9 @@ function SpecExtension(node::Node)
         s => error("Unknown extension support value '$s'")
     end
     platform = PlatformType(getattr(node, "platform", symbol=false))
-    symbols = map(x -> Symbol(x["name"]), findall(".//*[@name]", node))
+    symbols = map(x -> getattr(x, "name"), findall(".//*[@name]", node))
     SpecExtension(
-        Symbol(node["name"]),
+        getattr(node, "name"),
         exttype,
         requirements,
         is_disabled,
@@ -504,7 +514,11 @@ let nodes = findall("//*[@extends and not(@alias)]", xroot)
         spec = database[findfirst(x -> x.name == Symbol(node["extends"]), database)]
         @switch spec begin
             @case ::SpecBitmask
-            push!(spec.bits, SpecBit(node))
+            if haskey(node, "bitpos") && !haskey(node, "value")
+                push!(spec.bits, SpecBit(node))
+            elseif haskey(node, "value")
+                push!(spec.combinations, SpecBitCombination(node))
+            end
             @case ::SpecEnum
             push!(spec.enums, SpecConstant(node))
         end
@@ -523,6 +537,7 @@ const spec_all_noalias = [
     (spec_enums.enums...)...,
     spec_bitmasks...,
     (spec_bitmasks.bits...)...,
+    (spec_bitmasks.combinations...)...,
 ]
 
 """
