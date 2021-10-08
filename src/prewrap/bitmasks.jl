@@ -44,6 +44,7 @@ end
 
 Base.iszero(a::BitMask) = iszero(a.val)
 Base.zero(a::T) where {T <: BitMask} = T(zero(a.val))
+Base.:(~)(a::T) where {T<:BitMask} = T(~a.val)
 
 (&)(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
 (|)(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
@@ -79,14 +80,38 @@ convert(T::Type{<:BitMask}, val::Integer) = T(val)
 typemax(T::Type{<:BitMask{_T}}) where {_T} = T(typemax(_T))
 
 function Base.show(io::IO, flag::T) where {T <: BitMask}
-    print(io, T, '(')
+    print(io, nameof(T), '(')
     first = true
+    _flag = flag
+
+    # print any combination of flags
     for (name, val) in values(T)
-        if val in flag && (Int(val) ≠ 0 || val == flag)
-            !first && print(io, " | ")
-            first = false
-            print(io, name)
+        if Int(val) == 0 && flag == val
+            print(io, name, ')')
+            return
+        end
+        l2 = log2(Int(val))
+        if l2 % 1. ≠ 0.
+            # the value is a combination of flags
+            if val in flag
+                !first && print(io, " | ")
+                first = false
+                print(io, name)
+                _flag &= ~val
+            end
         end
     end
+
+    if !iszero(_flag)
+        # print remaining flags
+        for (name, val) in values(T)
+            if val in _flag && (Int(val) ≠ 0 || val == _flag)
+                !first && print(io, " | ")
+                first = false
+                print(io, name)
+            end
+        end
+    end
+
     print(io, ')')
 end
