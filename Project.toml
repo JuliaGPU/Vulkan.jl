@@ -14,7 +14,7 @@ ResultTypes = "08a2b407-ddc3-586a-afd6-c784ad1fffe2"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
 [compat]
-AutoHashEquals = "1"
+AutoHashEquals = "0.2"
 DocStringExtensions = "0.8"
 MLStyle = "0.4"
 Preferences = "1.2"
