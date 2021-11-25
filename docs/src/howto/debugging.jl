@@ -16,6 +16,16 @@ create_info = DebugUtilsMessengerCreateInfoEXT(
     debug_callback_c,
 )
 
+#=
+
+If you have the `VK_EXT_debug_utils` enabled, you can then create an instance and a debug messenger with
+
+```julia
+
 instance = Instance(["VK_LAYER_KHRONOS_validation"], ["VK_EXT_debug_utils"]; next=create_info)
 
 messenger = unwrap(create_debug_utils_messenger_ext(instance, create_info))
+
+```
+
+=#
