@@ -26,4 +26,13 @@
             end
         ))
     end
+
+    @testset "Constructors" begin
+        consts = VulkanGen.constructors(StructDefinition{true}(union_by_name(:VkClearValue)))
+        expected = [
+            :(ClearValue(color::ClearColorValue) = ClearValue(VkClearValue(color.data))),
+            :(ClearValue(depth_stencil::ClearDepthStencilValue) = ClearValue(VkClearValue(_ClearDepthStencilValue(depth_stencil).vks))),
+        ]
+        foreach(Base.splat(test_ex), zip(consts, expected))
+    end
 end

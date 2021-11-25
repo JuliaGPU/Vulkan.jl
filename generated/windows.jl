@@ -20094,7 +20094,7 @@ _ClearValue(color::_ClearColorValue) = _ClearValue(VkClearValue(color.data))
 """
 
 """
-_ClearValue(depth_stencil::_ClearDepthStencilValue) = _ClearValue(VkClearValue(depth_stencil))
+_ClearValue(depth_stencil::_ClearDepthStencilValue) = _ClearValue(VkClearValue(depth_stencil.vks))
 
 """
 
@@ -20194,17 +20194,17 @@ _DeviceOrHostAddressConstKHR(host_address::Ptr{Cvoid}) = _DeviceOrHostAddressCon
 """
 
 """
-_AccelerationStructureGeometryDataKHR(triangles::_AccelerationStructureGeometryTrianglesDataKHR) = _AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(triangles))
+_AccelerationStructureGeometryDataKHR(triangles::_AccelerationStructureGeometryTrianglesDataKHR) = _AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(triangles.vks))
 
 """
 
 """
-_AccelerationStructureGeometryDataKHR(aabbs::_AccelerationStructureGeometryAabbsDataKHR) = _AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(aabbs))
+_AccelerationStructureGeometryDataKHR(aabbs::_AccelerationStructureGeometryAabbsDataKHR) = _AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(aabbs.vks))
 
 """
 
 """
-_AccelerationStructureGeometryDataKHR(instances::_AccelerationStructureGeometryInstancesDataKHR) = _AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(instances))
+_AccelerationStructureGeometryDataKHR(instances::_AccelerationStructureGeometryInstancesDataKHR) = _AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(instances.vks))
 
 """
 
@@ -20229,7 +20229,7 @@ ClearValue(color::ClearColorValue) = ClearValue(VkClearValue(color.data))
 """
 
 """
-ClearValue(depth_stencil::ClearDepthStencilValue) = ClearValue(VkClearValue(depth_stencil))
+ClearValue(depth_stencil::ClearDepthStencilValue) = ClearValue(VkClearValue((_ClearDepthStencilValue(depth_stencil)).vks))
 
 """
 
@@ -20309,17 +20309,17 @@ DeviceOrHostAddressConstKHR(host_address::Ptr{Cvoid}) = DeviceOrHostAddressConst
 """
 
 """
-AccelerationStructureGeometryDataKHR(triangles::AccelerationStructureGeometryTrianglesDataKHR) = AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(triangles))
+AccelerationStructureGeometryDataKHR(triangles::AccelerationStructureGeometryTrianglesDataKHR) = AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR((_AccelerationStructureGeometryTrianglesDataKHR(triangles)).vks))
 
 """
 
 """
-AccelerationStructureGeometryDataKHR(aabbs::AccelerationStructureGeometryAabbsDataKHR) = AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(aabbs))
+AccelerationStructureGeometryDataKHR(aabbs::AccelerationStructureGeometryAabbsDataKHR) = AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR((_AccelerationStructureGeometryAabbsDataKHR(aabbs)).vks))
 
 """
 
 """
-AccelerationStructureGeometryDataKHR(instances::AccelerationStructureGeometryInstancesDataKHR) = AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(instances))
+AccelerationStructureGeometryDataKHR(instances::AccelerationStructureGeometryInstancesDataKHR) = AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR((_AccelerationStructureGeometryInstancesDataKHR(instances)).vks))
 
 """
 
