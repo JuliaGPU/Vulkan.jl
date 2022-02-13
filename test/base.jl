@@ -18,11 +18,12 @@ include("bitmasks.jl")
 include("api.jl")
 include("dispatch.jl")
 
-DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
-    using Vulkan
-    instance = unwrap(Instance([], []))
-    physical_device = first(unwrap(enumerate_physical_devices(instance)))
-end)
-
 #TODO: Add tests back after the issue is solved: https://github.com/JuliaDocs/DocStringExtensions.jl/issues/126
+
+# DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
+#     using Vulkan
+#     instance = unwrap(Instance([], []))
+#     physical_device = first(unwrap(enumerate_physical_devices(instance)))
+# end)
+
 # doctest(Vulkan)

@@ -49,7 +49,11 @@ prettify(ex) = ex |> striplines |> unblock
 isblock(ex) = false
 isblock(ex::Expr) = ex.head == :block
 
-broadcast_ex(ex) = Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...))
+broadcast_ex(sym::Symbol) = sym
+function broadcast_ex(ex)
+    isexpr(ex, :.) && return ex
+    Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...))
+end
 broadcast_ex(ex, cond::Bool) = cond ? broadcast_ex(ex) : ex
 broadcast_ex(::Nothing, ::Bool) = nothing
 

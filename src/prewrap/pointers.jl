@@ -34,7 +34,9 @@ convert_nonnull(T, val::Ptr{Cvoid}) = val == C_NULL ? val : convert(T, val)
 
 @nospecialize
 
+initialize(::Type{T}) where {T<:VkCore.CEnum.Cenum} = typemin(T)
 initialize(::Type{T}) where {T} = zero(T)
+initialize(::Type{NTuple{N,T}}) where {N,T} = ntuple(Returns(zero(T)), N)
 initialize(::Type{T}) where {T<:AbstractArray} = T()
 initialize(::Type{<:Ptr}) = C_NULL
 
@@ -58,7 +60,7 @@ function initialize_core(T::DataType, vars_types::Pair{Symbol,DataType}...)
                     Base.unsafe_convert(Ptr{Cvoid}, $var)
                 end)
             end
-        elseif isstructtype(t)
+        elseif isstructtype(t) && !(t <: NTuple)
             push!(args, initialize_core(t))
         else
             push!(args, initialize(t))
@@ -103,7 +105,7 @@ end
     quote
         @assert ptr ≠ C_NULL
         vks = Base.unsafe_load(Base.unsafe_convert($(Ptr{core_type(T)}), ptr))
-        from_vk($(hl_type(T)), vks, $(Ts...))
+        $T(vks, $(Ts...))
     end
 end
 

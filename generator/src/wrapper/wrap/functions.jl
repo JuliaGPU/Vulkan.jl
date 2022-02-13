@@ -54,7 +54,7 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
     p = Dict(
         :category => :function,
         :name => function_name(spec),
-        :relax_signature => is_promoted,
+        :relax_signature => true,
     )
 
     count_ptr_index = findfirst(x -> (is_length(x) || is_size(x)) && x.requirement == POINTER_REQUIRED, children(spec))
@@ -128,7 +128,7 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
                 $(param.name) = Ref(Base.unsafe_convert($t, $var))
                 GC.@preserve $var begin
                     $(wrap_api_call(spec, call_args; with_func_ptr))
-                    $intermediate_t($(param.name)[], [$var])
+                    $intermediate_t($(param.name)[], Any[$var])
                 end
             end
 
@@ -192,7 +192,9 @@ function APIFunction(spec::CreateFunc, with_func_ptr)
         :kwargs => kwargs,
         :short => true,
         :body => body,
-        :relax_signature => is_promoted,
+        :relax_signature => true,
+        # Do not include the return type in generated code, but keep the return type information for the promotion to a high-level function.
+        :_return_type => p_func[:return_type],
     )
     APIFunction(spec, with_func_ptr, p)
 end
@@ -205,21 +207,28 @@ is_promoted(ex) = ex == promote_hl(ex)
 
 function promote_hl(def::APIFunction)
     promoted = APIFunction(def, def.with_func_ptr, promote_hl(def.p))
-    wrap_next_chain_logic!(promoted, def)
+    type = def.p[def.spec isa CreateFunc ? :_return_type : :return_type]
+    wrap_body = :(next_types...) in promoted.p[:args] ? promote_return_hl_next_types : promote_return_hl
+    merge!(promoted.p,
+        Dict(
+            :short => false,
+            :body => wrap_body(type, promoted.p[:body])
+        )
+    )
+    promote_return_type_hl!(promoted, type)
+    promoted
 end
 
-function wrap_next_chain_logic!(promoted, def)
-    (; p) = promoted
-    if :(next_types...) in p[:args]
-        p[:body] = quote
-            next_types_hl = next_types
-            next_types = intermediate_type.(next_types)
-            ret = $(p[:body])
-            from_vk(hl_type(typeof(ret)), ret, next_types_hl...)
-        end
-        p[:short] = false
+function promote_return_type_hl!(promoted, type)
+    T = hl_type(type)
+    include_rtype = false
+    rtype = @match type begin
+        :(ResultTypes.Result{$S,$E}) => (include_rtype = true; :(ResultTypes.Result{$(promote_return_type_hl!(nothing, S)), $E}))
+        :(Vector{$_T}) => :(Vector{$(promote_return_type_hl!(nothing, _T))})
+        _ => T
     end
-    promoted
+    include_rtype && (promoted.p[:return_type] = rtype)
+    rtype
 end
 
 function promote_hl(def::Constructor)
@@ -278,4 +287,29 @@ end
 function promote_name_hl(name)
     str = String(name)
     startswith(str, '_') ? Symbol(str[2:end]) : name
+end
+
+function promote_return_hl_next_types(type, ex)
+    rex = promote_return_hl(type, ex)
+    call = isexpr(rex, :block) ? last(rex.args) : rex
+    push!(call.args, :(next_types_hl...))
+    quote
+        next_types_hl = next_types
+        next_types = intermediate_type.(next_types)
+        $((isexpr(rex, :block) ? rex.args : [rex])...)
+    end
+end
+
+function promote_return_hl(type, ex)
+    T = hl_type(type)
+    @match type begin
+        :Cvoid => ex
+        :(ResultTypes.Result{$S,$E}) => Expr(:block, :(val = @propagate_errors $ex), promote_return_hl(S, :val))
+        :(Vector{$T}) => begin
+            rex = promote_return_hl(T, ex)
+            rex isa Symbol ? rex : broadcast_ex(rex)
+        end
+        GuardBy(is_intermediate) => :($T($ex))
+        _ => ex
+    end
 end

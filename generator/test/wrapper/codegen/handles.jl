@@ -37,7 +37,7 @@
                 APIFunction(create_func(:vkCreateInstance), false),
             ),
             :(
-                Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = unwrap(create_instance(enabled_layer_names, enabled_extension_names; allocator, next, flags, application_info))
+                Instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = unwrap(_create_instance(enabled_layer_names, enabled_extension_names; allocator, next, flags, application_info))
             )
         )
 
@@ -47,7 +47,7 @@
                 APIFunction(create_func(:vkCreateDebugReportCallbackEXT), true),
             ),
             :(
-                DebugReportCallbackEXT(instance, pfn_callback::FunctionPtr, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(create_debug_report_callback_ext(instance, pfn_callback, fptr_create, fptr_destroy; allocator, next, flags, user_data))
+                DebugReportCallbackEXT(instance, pfn_callback::FunctionPtr, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = unwrap(_create_debug_report_callback_ext(instance, pfn_callback, fptr_create, fptr_destroy; allocator, next, flags, user_data))
             )
         )
 
@@ -57,7 +57,7 @@
                 APIFunction(func_by_name(:vkCreateDeferredOperationKHR), false),
             ),
             :(
-                DeferredOperationKHR(device; allocator = C_NULL) = unwrap(create_deferred_operation_khr(device; allocator))
+                DeferredOperationKHR(device; allocator = C_NULL) = unwrap(_create_deferred_operation_khr(device; allocator))
             )
         )
 

@@ -1,30 +1,19 @@
 function StructDefinition{false}(spec::SpecUnion)
-    @assert !is_returnedonly(spec)
     p = Dict(
         :category => :struct,
         :decl => :($(struct_name(spec)) <: VulkanStruct{false}),
-        :fields => [:(data::$(spec.name))],
+        :fields => [:(vks::$(spec.name))],
     )
     StructDefinition{false}(spec, p)
 end
 
-function StructDefinition{true}(spec::SpecUnion)
+function StructDefinition{true}(def::StructDefinition{false,SpecUnion})
+    (; spec) = def
     p = Dict(
         :category => :struct,
         :decl => :($(struct_name(spec, true)) <: HighLevelStruct),
-        :fields => [:(data::$(spec.name))],
-    )
-    StructDefinition{true}(spec, p)
-end
-
-function StructDefinition{true}(def::StructDefinition{false,SpecUnion})
-    (; spec) = def
-    name = struct_name(spec, true)
-    p = Dict(
-        :category => :struct,
-        :decl => :($name <: HighLevelStruct),
         :fields => [
-            :(data::$(spec.name)),
+            :(vks::$(spec.name)),
         ],
     )
     StructDefinition{true}(spec, p)
@@ -32,9 +21,8 @@ end
 
 function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
     spec = def.spec
-    is_high_level = HL || spec.is_returnedonly
-    name = struct_name(spec, is_high_level)
-    supertypes = supertype_union.(spec.types, is_high_level)
+    name = struct_name(spec, HL)
+    supertypes = supertype_union.(spec.types, HL)
     sig_types = map(zip(spec.types, supertypes)) do (type, supertype)
         if count(==(supertype), supertypes) > 1
             type
@@ -49,8 +37,8 @@ function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
     map(zip(spec.types, sig_types, spec.fields)) do (type, sig_type, field)
         var = wrap_identifier(field)
         call = if type in spec_unions.name
-            :($var.data)
-        elseif is_high_level && type in spec_structs.name
+            :($var.vks)
+        elseif HL && type in spec_structs.name
             :(($(struct_name(type))($var)).vks)
         elseif type in spec_structs.name
             :($var.vks)
@@ -75,7 +63,7 @@ function Constructor(T::StructDefinition{false, SpecUnion}, x::StructDefinition{
         :category => :function,
         :name => name(T),
         :args => [:(x::$(name(x)))],
-        :body => :($(name(T))(getfield(x, :data))),
+        :body => :($(name(T))(getfield(x, :vks))),
         :short => true,
     )
     Constructor(T, p)

@@ -42,3 +42,14 @@ macro repeat_while_incomplete(expr)
         end
     end)
 end
+
+macro propagate_errors(expr)
+    quote
+        ret = $(esc(expr))
+        if iserror(ret)
+            return ret
+        else
+            unwrap(ret)
+        end
+    end
+end

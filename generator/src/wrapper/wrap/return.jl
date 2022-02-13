@@ -24,12 +24,12 @@ Build a return expression from an implicit return parameter.
 Implicit return parameters are pointers that are mutated by the API, rather than returned directly.
 API functions with implicit return parameters return either nothing or a return code, which is
 automatically checked and not returned by the wrapper.
-Such implicit return parameters are `Ref`s or `Vector`s holding either a base type or an API struct Vk*.
+Such implicit return parameters are `Ref`s or `Vector`s holding either a base type or a core struct Vk*.
 They need to be converted by the wrapper to their wrapping type.
 """
 function _wrap_implicit_return(return_param::SpecFuncParam, next_types = nothing; with_func_ptr = false)
     p = return_param
-    @assert is_ptr(p.type) "Invalid implicit return parameter API type. Expected $(p.type) <: Ptr"
+    @assert is_ptr(p.type) "Invalid core type for an implicit return. Expected $(p.type) <: Ptr"
     pt = follow_alias(ptr_type(p.type))
     ex = @match p begin
 

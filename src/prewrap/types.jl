@@ -14,11 +14,6 @@ High-level structure with idiomatic Julia types.
 """
 abstract type HighLevelStruct end
 
-"""
-Represents a structure that will never be requested by API functions.
-"""
-abstract type ReturnedOnly <: HighLevelStruct end
-
 Base.broadcastable(x::HighLevelStruct) = Ref(x)
 
 hl_type(T::Type{<:HighLevelStruct}) = T
