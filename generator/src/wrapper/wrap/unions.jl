@@ -1,17 +1,24 @@
 function StructDefinition{false}(spec::SpecUnion)
-    name = struct_name(spec, spec.is_returnedonly)
+    @assert !is_returnedonly(spec)
     p = Dict(
         :category => :struct,
-        :decl => :($name <: $(spec.is_returnedonly ? :ReturnedOnly : :(VulkanStruct{false}))),
-        :fields => [
-            :($(spec.is_returnedonly ? :data : :vks)::$(spec.name)),
-        ],
+        :decl => :($(struct_name(spec)) <: VulkanStruct{false}),
+        :fields => [:(data::$(spec.name))],
     )
     StructDefinition{false}(spec, p)
 end
 
+function StructDefinition{true}(spec::SpecUnion)
+    p = Dict(
+        :category => :struct,
+        :decl => :($(struct_name(spec, true)) <: HighLevelStruct),
+        :fields => [:(data::$(spec.name))],
+    )
+    StructDefinition{true}(spec, p)
+end
+
 function StructDefinition{true}(def::StructDefinition{false,SpecUnion})
-    spec = def.spec
+    (; spec) = def
     name = struct_name(spec, true)
     p = Dict(
         :category => :struct,

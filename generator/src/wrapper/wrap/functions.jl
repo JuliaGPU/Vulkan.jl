@@ -53,7 +53,7 @@ end
 function APIFunction(spec::SpecFunc, with_func_ptr)
     p = Dict(
         :category => :function,
-        :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)),
+        :name => function_name(spec),
         :relax_signature => is_promoted,
     )
 
@@ -107,17 +107,41 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
             x => vk_call(x)
         end), children(spec))
 
-        p[:body] = concat_exs(
-            map(initialize_ptr, queried_params)...,
-            wrap_api_call(spec, call_args; with_func_ptr),
-            wrap_implicit_return(spec, queried_params; with_func_ptr),
-        )
-
         args = filter(!in(filter(x -> x.requirement ≠ POINTER_REQUIRED, queried_params)), children(spec))
 
         ret_type = @match length(queried_params) begin
             1 => idiomatic_julia_type(first(queried_params))
             _ => Expr(:curly, :Tuple, (idiomatic_julia_type(param) for param ∈ queried_params)...)
+        end
+
+        if spec.type == FTYPE_QUERY && length(queried_params) == 1 && begin
+                t = ptr_type(only(queried_params).type)
+                is_vulkan_type(t) && !in(t, spec_handles.name) && any(Base.Fix1(in, t), spec_structs.extends)
+            end
+
+            param = only(queried_params)
+            t = ptr_type(param.type)
+            intermediate_t = struct_name(t)
+            var = wrap_identifier(param.name)
+            p[:body] = quote
+                $var = initialize($intermediate_t, next_types...)
+                $(param.name) = Ref(Base.unsafe_convert($t, $var))
+                GC.@preserve $var begin
+                    $(wrap_api_call(spec, call_args; with_func_ptr))
+                    $intermediate_t($(param.name)[], [$var])
+                end
+            end
+
+            add_func_args!(p, spec, args; with_func_ptr)
+            push!(p[:args], :(next_types...))
+            p[:return_type] = wrap_return_type(spec, ret_type)
+            return APIFunction(spec, with_func_ptr, p)
+        else
+            p[:body] = concat_exs(
+                map(initialize_ptr, queried_params)...,
+                wrap_api_call(spec, call_args; with_func_ptr),
+                wrap_implicit_return(spec, queried_params; with_func_ptr),
+            )
         end
     else
         p[:short] = true
@@ -180,7 +204,22 @@ end
 is_promoted(ex) = ex == promote_hl(ex)
 
 function promote_hl(def::APIFunction)
-    APIFunction(def, def.with_func_ptr, promote_hl(def.p))
+    promoted = APIFunction(def, def.with_func_ptr, promote_hl(def.p))
+    wrap_next_chain_logic!(promoted, def)
+end
+
+function wrap_next_chain_logic!(promoted, def)
+    (; p) = promoted
+    if :(next_types...) in p[:args]
+        p[:body] = quote
+            next_types_hl = next_types
+            next_types = intermediate_type.(next_types)
+            ret = $(p[:body])
+            from_vk(hl_type(typeof(ret)), ret, next_types_hl...)
+        end
+        p[:short] = false
+    end
+    promoted
 end
 
 function promote_hl(def::Constructor)
@@ -205,7 +244,6 @@ end
 function promote_hl(p::Dict)
     args = promote_hl.(p[:args])
     modified_args = [arg for (arg, new_arg) in zip(p[:args], args) if arg ≠ new_arg]
-    !isempty(modified_args) || error("Cannot define high-level function for $(reconstruct_call(p)): there are no arguments to adjust, so the low-level function is enough.")
     call_args = map(p[:args]) do arg
         id, type = @match arg begin
             :($id::$t) => (id, t)
@@ -223,11 +261,21 @@ function promote_hl(p::Dict)
     end
     p = Dict(
         :category => :function,
-        :name => p[:name],
+        :name => promote_name_hl(p[:name]),
         :args => args,
         :kwargs => p[:kwargs],
         :body => reconstruct_call(Dict(:name => p[:name], :args => call_args, :kwargs => name.(p[:kwargs]))),
         :short => true,
         :relax_signature => true,
     )
+end
+
+function function_name(spec, is_high_level = false)
+    sym = nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name))
+    is_high_level ? sym : Symbol('_', sym)
+end
+
+function promote_name_hl(name)
+    str = String(name)
+    startswith(str, '_') ? Symbol(str[2:end]) : name
 end

@@ -39,6 +39,7 @@ function category(ex)
         Expr(:function, _...) || Expr(:(=), Expr(:call, _...) || Expr(:(::), Expr(:call, _...), _...), _...) => :function
         Expr(:macrocall, &enum_sym || &cenum_sym || &bitmask_enum_sym, _...)                                 => :enum
         :(Core.@doc $_ $docstring $ex)                                                                       => :doc
+        Expr(:block, _...)                                                                                   => :block
         _                                                                                                    => nothing
     end
 end
@@ -77,6 +78,7 @@ function name(ex::Expr)
         Expr(:kw, _name, _...)                                                        => _name
         :(Core.@doc $_ $docstring $ex)                                                => name(ex)
         Expr(:macrocall, &auto_hash_equals_sym, _, ex)                                => name(ex)
+        Expr(:..., ex)                                                                => name(ex)
         Expr(expr_type, _...)                                                         => error("Can't extract name from ", expr_type, " expression:\n", "    $ex\n")
     end
 end

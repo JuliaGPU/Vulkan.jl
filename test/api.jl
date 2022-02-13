@@ -5,7 +5,7 @@ function debug_callback(args...)
     default_debug_callback(args...)
 end
 
-const debug_callback_c = @cfunction(debug_callback, UInt32, (DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
+const debug_callback_c = @cfunction(debug_callback, UInt32, (DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, Ptr{VkCore.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
 const API_VERSION = v"1.2"
 const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"
 
@@ -65,6 +65,52 @@ end
 
     @testset "Buffers" begin
         include("buffers.jl")
+    end
+
+    @testset "Introspection" begin
+        @test Vk.hl_type(VkCore.VkPhysicalDeviceFeatures) == PhysicalDeviceFeatures
+        @test Vk.intermediate_type(VkCore.VkPhysicalDeviceFeatures) == Vk.intermediate_type(PhysicalDeviceFeatures) == _PhysicalDeviceFeatures
+        @test Vk.core_type(PhysicalDeviceFeatures) == VkCore.VkPhysicalDeviceFeatures
+        @test Vk.structure_type(PhysicalDeviceFeatures2) ==
+            Vk.structure_type(_PhysicalDeviceFeatures2) ==
+            Vk.structure_type(VkCore.VkPhysicalDeviceFeatures2) ==
+            VkCore.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2
+    end
+
+    @testset "Next chains" begin
+        # Initialization of chained empty structs.
+        f1 = Vk.initialize(_PhysicalDeviceFeatures2, _PhysicalDeviceVulkan12Features, _PhysicalDeviceVulkanMemoryModelFeatures)
+        @test f1.vks.pNext ≠ C_NULL
+        @test Base.unsafe_load(Base.unsafe_convert(Ptr{VkCore.VkPhysicalDeviceVulkan12Features}, f1.vks.pNext)).pNext ≠ C_NULL
+
+        f1 = Vk.initialize(PhysicalDeviceFeatures2, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
+        @test f1.next isa PhysicalDeviceVulkan12Features
+        @test f1.next.next isa PhysicalDeviceVulkanMemoryModelFeatures
+
+        # Chaining/unchaining of structs.
+        chain_args = [PhysicalDeviceFeatures2(PhysicalDeviceFeatures()), PhysicalDeviceVulkan12Features(), PhysicalDeviceVulkanMemoryModelFeatures(false, false, false)]
+        chained = Vk.chain(chain_args...)
+        @test Vk.unchain(chained) == chain_args
+        @test f1 == chained
+
+        # Conversion to core data structures and back.
+        f2 = _PhysicalDeviceFeatures2(f1)
+        f3 = Base.unsafe_convert(VkCore.VkPhysicalDeviceFeatures2, f2)
+        f4 = Vk.from_vk(PhysicalDeviceFeatures2, f3, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
+        @test f1 == f4
+
+        # Queries with optional chain members.
+        feats = get_physical_device_features_2(device.physical_device, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
+        @test feats isa PhysicalDeviceFeatures2
+        @test feats.next isa PhysicalDeviceVulkan12Features
+        @test feats.next.next isa PhysicalDeviceVulkanMemoryModelFeatures
+
+        @test_skip begin
+            props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceProtectedMemoryProperties, PhysicalDeviceProvokingVertexPropertiesEXT)
+            @test props isa PhysicalDeviceProperties2
+            @test props.next isa PhysicalDeviceProtectedMemoryProperties
+            @test props.next.next isa PhysicalDeviceProvokingVertexPropertiesEXT
+        end
     end
 end
 

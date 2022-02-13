@@ -4,7 +4,7 @@ using SwiftShader_jll # hide
 using Vulkan
 @set_driver :SwiftShader # hide
 
-const debug_callback_c = @cfunction(default_debug_callback, UInt32, (DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
+const debug_callback_c = @cfunction(default_debug_callback, UInt32, (DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, Ptr{VkCore.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))
 
 create_info = DebugUtilsMessengerCreateInfoEXT(
     |(Vulkan.message_severities...),

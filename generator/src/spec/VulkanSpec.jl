@@ -1,7 +1,7 @@
 module VulkanSpec
 
 using StructArrays: StructVector
-using LightGraphs
+using Graphs
 using MLStyle
 using DocStringExtensions
 using EzXML: Node, readxml
@@ -86,6 +86,8 @@ export
     SpecStructMember,
     SpecHandle,
     SpecUnion,
+    SpecExtensionSPIRV,
+    FeatureCondition, PropertyCondition, SpecCapabilitySPIRV,
     CreateFunc,
     DestroyFunc,
     AuthorTag,
@@ -113,6 +115,8 @@ export
     spec_handles,
     spec_all_semantic_enums,
     spec_all_noalias,
+    spec_spirv_extensions,
+    spec_spirv_capabilities,
     disabled_symbols,
 
     # Alias manipulation

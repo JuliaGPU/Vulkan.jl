@@ -225,7 +225,7 @@ SurfaceTransformFlagKHR <: BitMask # another bitmask flag
 SAMPLE_COUNT_1_BIT | SAMPLE_COUNT_2_BIT === SampleCountFlag(3)
 SAMPLE_COUNT_1_BIT & SAMPLE_COUNT_2_BIT === SampleCountFlag(0)
 SAMPLE_COUNT_1_BIT & SURFACE_TRANSFORM_IDENTITY_BIT_KHR
-UInt32(typemax(SampleCountFlag)) === UInt32(core.VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENUM)
+UInt32(typemax(SampleCountFlag)) === UInt32(VkCore.VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENUM)
 ```
 
 All functions that were expecting a `VkSampleCountFlags` (`UInt32`) value will have their wrapped versions expect a value of type `SampleCountFlag`. Furthermore, the `*FLAG_BITS_MAX_ENUM` values are removed. This value is the same for all enums and can be accessed via `typemax(T)` where `T` is a `BitMask` (e.g. `SampleCountFlag`).

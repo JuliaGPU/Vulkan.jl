@@ -15,13 +15,13 @@ function hl_type(type)
         :Cstring => :String
         :VkBool32 => :Bool
         GuardBy(is_opaque_pointer) => t
+        :(NTuple{$N,UInt8}) => :String
         :(NTuple{$N,$T}) => begin
-            @match T begin
-                :UInt8 => :String
-                # :(Ntuple{$M,$T}) => :(SMatrix{$N,$M,$T})
-                # _ => :(SVector{$N,$T})
-                _ => :(NTuple{$N,$(hl_type(T))})
+            _N = @match N begin
+                ::Symbol => :(Int($N))
+                _ => N
             end
+            :(NTuple{$_N,$(hl_type(T))})
         end
         GuardBy(in([spec_structs.name; spec_unions.name])) => struct_name(t, true)
         GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
