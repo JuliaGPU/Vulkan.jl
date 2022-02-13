@@ -14,7 +14,7 @@ function is_pointer_start(spec::Spec)
 end
 
 is_semantic_ptr(type) = is_ptr(type) || type == :Cstring
-needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type) && (!spec.is_returnedonly || :pNext in spec.members.name)
+needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type)
 must_return_success_code(spec::SpecFunc) = length(spec.success_codes) > 1 && :VK_INCOMPLETE ∉ spec.success_codes
 must_repeat_while_incomplete(spec::SpecFunc) = !must_return_success_code(spec) && :VK_INCOMPLETE ∈ spec.success_codes
 is_data_with_retrievable_size(spec::SpecFuncParam) = is_data(spec) && len(spec).requirement == POINTER_REQUIRED
@@ -41,5 +41,7 @@ function is_hl(type)
     vktype in spec_structs.name
 end
 
+is_intermediate(type) = startswith(string(type), '_')
+
 has_intermediate_type(::SpecHandle) = false
-has_intermediate_type(spec::Union{SpecStruct,SpecUnion}) = !is_returnedonly(spec)
+has_intermediate_type(spec::Union{SpecStruct,SpecUnion}) = true

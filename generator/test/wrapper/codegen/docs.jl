@@ -65,7 +65,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkEnumerateInstanceExtensionProperties), false),
             """
-                enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
+                _enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{_ExtensionProperties}, VulkanError}
 
             Return codes:
             - Error:
@@ -83,7 +83,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkDestroyDevice), false),
             """
-                destroy_device(device; allocator = C_NULL)::Cvoid
+                _destroy_device(device; allocator = C_NULL)::Cvoid
 
             Arguments:
             - `device` (externsync)
@@ -96,7 +96,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkGetPipelineCacheData), false),
             """
-                get_pipeline_cache_data(device, pipeline_cache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
+                _get_pipeline_cache_data(device, pipeline_cache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
 
             Return codes:
             - Error:
@@ -117,7 +117,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false),
             """
-                write_acceleration_structures_properties_khr(device, acceleration_structures::AbstractArray{AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
+                _write_acceleration_structures_properties_khr(device, acceleration_structures::AbstractArray{AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
 
             Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
 
@@ -141,7 +141,7 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
         test_doc(
             APIFunction(func_by_name(:vkEnumerateInstanceLayerProperties), false),
             """
-                enumerate_instance_layer_properties()::ResultTypes.Result{Vector{LayerProperties}, VulkanError}
+                _enumerate_instance_layer_properties()::ResultTypes.Result{Vector{_LayerProperties}, VulkanError}
 
             Return codes:
             - Error:

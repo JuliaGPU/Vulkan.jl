@@ -96,7 +96,7 @@ end
         # Conversion to core data structures and back.
         f2 = _PhysicalDeviceFeatures2(f1)
         f3 = Base.unsafe_convert(VkCore.VkPhysicalDeviceFeatures2, f2)
-        f4 = Vk.from_vk(PhysicalDeviceFeatures2, f3, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
+        f4 = PhysicalDeviceFeatures2(f3, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
         @test f1 == f4
 
         # Queries with optional chain members.
@@ -105,12 +105,10 @@ end
         @test feats.next isa PhysicalDeviceVulkan12Features
         @test feats.next.next isa PhysicalDeviceVulkanMemoryModelFeatures
 
-        @test_skip begin
-            props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceProtectedMemoryProperties, PhysicalDeviceProvokingVertexPropertiesEXT)
-            @test props isa PhysicalDeviceProperties2
-            @test props.next isa PhysicalDeviceProtectedMemoryProperties
-            @test props.next.next isa PhysicalDeviceProvokingVertexPropertiesEXT
-        end
+        props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceProtectedMemoryProperties, PhysicalDeviceProvokingVertexPropertiesEXT)
+        @test props isa PhysicalDeviceProperties2
+        @test props.next isa PhysicalDeviceProtectedMemoryProperties
+        @test props.next.next isa PhysicalDeviceProvokingVertexPropertiesEXT
     end
 end
 

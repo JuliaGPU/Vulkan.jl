@@ -33,6 +33,7 @@ function hl_type(type)
         GuardBy(in(spec_constants.name)) => follow_constant(t)
         GuardBy(in(spec_enums.name)) => enum_type(t)
         GuardBy(is_vulkan_type) => remove_vk_prefix(t)
+        GuardBy(is_intermediate) => Symbol(string(t)[2:end])
         _ => t
     end
 end

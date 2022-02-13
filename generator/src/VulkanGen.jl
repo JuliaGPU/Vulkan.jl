@@ -5,6 +5,7 @@ using Graphs
 using MLStyle
 using DocStringExtensions
 using Reexport
+using .Meta: isexpr
 
 @template (FUNCTIONS, METHODS, MACROS) = """
                                          $(DOCSTRING)

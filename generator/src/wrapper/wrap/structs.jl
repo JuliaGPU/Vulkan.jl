@@ -43,19 +43,10 @@ function Constructor(def::StructDefinition{false})
     Constructor(def, p)
 end
 
-function StructDefinition{true}(spec::Spec)
-    !is_returnedonly(spec) && return StructDefinition{true}(StructDefinition{false}(spec))
-    p = Dict(
-        :category => :struct,
-        :decl => :($(struct_name(spec)) <: ReturnedOnly),
-        :fields => hl_fields(spec),
-    )
-    StructDefinition{true}(spec, p)
-end
+StructDefinition{true}(spec::Spec) = StructDefinition{true}(StructDefinition{false}(spec))
 
 function StructDefinition{true}(def::StructDefinition{false})
     (; spec) = def
-    @assert !is_returnedonly(spec)
     p = Dict(
         :category => :struct,
         :decl => :($(struct_name(spec, true)) <: HighLevelStruct),
@@ -79,7 +70,7 @@ end
 drop_field(x::Spec) = drop_arg(x) || x.name == :sType
 
 function Constructor(T::StructDefinition{false}, x::StructDefinition{true})
-    spec = T.spec
+    (; spec) = T
     p = Dict(
         :category => :function,
         :name => name(T),
@@ -109,6 +100,18 @@ function Constructor(T::StructDefinition{false}, x::StructDefinition{true})
         end
     end
     p[:body] = reconstruct_call(Dict(:name => p[:name], :args => args, :kwargs => kwargs))
+    Constructor(T, p)
+end
+
+function Constructor(T::StructDefinition{true}, x::SpecStruct)
+    p = Dict(
+        :category => :function,
+        :name => name(T),
+        :args => [:(x::$(x.name))],
+        :body => :($(name(T))($(filter(!isnothing, from_vk_call.(filter(!drop_field, children(x))))...))),
+        :short => true,
+    )
+    :pNext in x.members.name && push!(p[:args], :(next_types...))
     Constructor(T, p)
 end
 
@@ -173,10 +176,7 @@ end
 
 function StructureType(spec::SpecStruct)
     stype = structure_types[spec.name]
-    types = [spec.name, struct_name(spec.name)]
-    if !spec.is_returnedonly
-        push!(types, struct_name(spec.name, true))
-    end
+    types = [spec.name, struct_name(spec.name), struct_name(spec.name, true)]
     ex = :(structure_type(@nospecialize(_::Union{$((:(Type{$T}) for T in types)...)})) = $stype)
     StructureType(spec, ex)
 end

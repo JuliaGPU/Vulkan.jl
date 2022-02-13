@@ -16,9 +16,6 @@ end
 
 StructDefinition{T}(spec, p) where {T} = StructDefinition{T,typeof(spec)}(spec, p)
 
-is_returnedonly(spec::Spec) = spec.is_returnedonly
-is_returnedonly(def::WrapperNode) = is_returnedonly(def.spec)
-
 struct HandleDefinition <: WrapperNode
     spec::SpecHandle
     p::Dict
@@ -38,11 +35,6 @@ Documented(def::WrapperNode) = Documented(def, "")
 Documented(def::WrapperNode, doc::AbstractString) = Documented(def, docstring(to_expr(def), doc))
 
 abstract type MethodDefinition <: WrapperNode end
-
-struct FromVk{S} <: MethodDefinition
-    spec::S
-    p::Dict
-end
 
 struct Convert{A,B} <: MethodDefinition
     T::A
@@ -134,7 +126,6 @@ include("wrap/handles.jl")
 include("wrap/structs.jl")
 include("wrap/unions.jl")
 include("wrap/functions.jl")
-include("wrap/overloads.jl")
 include("wrap/reflection.jl")
 include("wrap/docs.jl")
 
@@ -147,13 +138,12 @@ function VulkanWrapper(config::WrapperConfig)
     handles = HandleDefinition.(f(spec_handles))
 
     # Structures.
-    structs = StructDefinition{false}.(filter(!is_returnedonly, f(spec_structs)))
-    returnedonly_structs = StructDefinition{true}.(filter(is_returnedonly, f(spec_structs)))
+    structs = StructDefinition{false}.(f(spec_structs))
     structs_hl = StructDefinition{true}.(structs)
-    all_structs_hl = [returnedonly_structs; structs_hl]
 
     struct_constructors = Constructor.(structs)
     struct_constructors_from_hl = [Constructor(T, x) for (T, x) in zip(structs, structs_hl)]
+    struct_constructors_from_core = [Constructor(T, x) for (T, x) in zip(structs_hl, f(spec_structs))]
     struct_constructors_hl = Constructor.(structs_hl)
 
     ## Do not overwrite the default constructor (leads to infinite recursion).
@@ -162,18 +152,14 @@ function VulkanWrapper(config::WrapperConfig)
     end
 
     # Unions.
-    unions = StructDefinition{false}.(filter(!is_returnedonly, f(spec_unions)))
-    returnedonly_unions = StructDefinition{true}.(filter(is_returnedonly, f(spec_unions)))
+    unions = StructDefinition{false}.(f(spec_unions))
     unions_hl = StructDefinition{true}.(unions)
-    all_unions_hl = [returnedonly_unions; unions_hl]
 
     union_constructors = [constructors.(unions)...;]
     union_constructors_from_hl = [Constructor(T, x) for (T, x) in zip(unions, unions_hl)]
     union_constructors_hl = [constructors.(unions_hl)...;]
 
     union_getproperty_hl = GetProperty.(unions_hl)
-    from_vk = FromVk.(structs)
-    from_vk_hl = FromVk.(all_structs_hl)
 
     enum_converts_to_integer = [Convert(enum, enum_val_type(enum)) for enum in enums]
     enum_converts_to_enum = [Convert(enum_val_type(enum), enum) for enum in enums]
@@ -227,7 +213,7 @@ function VulkanWrapper(config::WrapperConfig)
             documented.(constants); documented.(enums); documented.(enum_converts_to_enum); documented.(enum_converts_to_integer); documented.(enum_converts_from_spec); documented.(enum_converts_to_spec); documented.(bitmasks);
         ],
         Expr[
-            documented.(handles); documented.(structs); documented.(all_structs_hl); documented.(unions); documented.(all_unions_hl);
+            documented.(handles); documented.(structs); documented.(unions); documented.(structs_hl); documented.(unions_hl);
         ],
         Expr[
             documented.(parent_overloads);
@@ -239,6 +225,7 @@ function VulkanWrapper(config::WrapperConfig)
             documented.(struct_constructors);
             documented.(struct_constructors_hl);
             documented.(struct_constructors_from_hl);
+            documented.(struct_constructors_from_core);
             documented.(struct_converts_to_ll);
             documented.(funcs);
             documented.(funcs_hl);
@@ -246,8 +233,6 @@ function VulkanWrapper(config::WrapperConfig)
             documented.(api_constructor_wrappers_hl);
             documented.(handle_constructors);
             documented.(handle_constructors_hl);
-            documented.(from_vk);
-            documented.(from_vk_hl);
             to_expr.(stypes);
             to_expr.(hl_type_mappings);
             to_expr.(core_type_mappings);
@@ -257,7 +242,7 @@ function VulkanWrapper(config::WrapperConfig)
             :(const SPIRV_CAPABILITIES = [$(spirv_caps...)]);
         ],
         Symbol[
-            exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(all_structs_hl); exports.(all_unions_hl); exports.(funcs); exports.(funcs_hl); exports.(api_constructor_wrappers_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES;
+            exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); exports.(api_constructor_wrappers_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES;
         ]
     )
 end

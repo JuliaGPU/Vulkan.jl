@@ -16,13 +16,13 @@
     @testset "High-level" begin
         test(StructDefinition{true}, union_by_name, :VkClearColorValue, :(
             struct ClearColorValue <: HighLevelStruct
-                data::VkClearColorValue
+                vks::VkClearColorValue
             end
         ))
 
         test(StructDefinition{true}, union_by_name, :VkClearValue, :(
             struct ClearValue <: HighLevelStruct
-                data::VkClearValue
+                vks::VkClearValue
             end
         ))
     end
@@ -30,7 +30,7 @@
     @testset "Constructors" begin
         consts = VulkanGen.constructors(StructDefinition{true}(union_by_name(:VkClearValue)))
         expected = [
-            :(ClearValue(color::ClearColorValue) = ClearValue(VkClearValue(color.data))),
+            :(ClearValue(color::ClearColorValue) = ClearValue(VkClearValue(color.vks))),
             :(ClearValue(depth_stencil::ClearDepthStencilValue) = ClearValue(VkClearValue(_ClearDepthStencilValue(depth_stencil).vks))),
         ]
         foreach(Base.splat(test_ex), zip(consts, expected))
