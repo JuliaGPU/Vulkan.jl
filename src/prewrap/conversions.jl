@@ -23,7 +23,7 @@ Convert a Vulkan type into its corresponding Julia type.
 
 ### Examples
 ```jldoctest
-julia> from_vk(VersionNumber, UInt32(vk.VK_MAKE_VERSION(1, 2, 3)))
+julia> from_vk(VersionNumber, UInt32(VkCore.VK_MAKE_VERSION(1, 2, 3)))
 v"1.2.3"
 
 julia> from_vk(String, (0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x00))
@@ -37,6 +37,7 @@ function from_vk end
 
 from_vk(T::Type{<:VulkanStruct{false}}, x) = T(x)
 from_vk(T::Type{<:VulkanStruct{true}}, x) = T(x, [])
+from_vk(T::Type{<:HighLevelStruct}, x::VulkanStruct, next_types...) = GC.@preserve x from_vk(T, x.vks, next_types...)
 from_vk(T, x) = convert(T, x)
 from_vk(T::Type{<:NTuple}, x) = from_vk.(eltype(T), x)
 from_vk(T::Type{VersionNumber}, version::UInt32) = T(VK_VERSION_MAJOR(version), VK_VERSION_MINOR(version), VK_VERSION_PATCH(version))

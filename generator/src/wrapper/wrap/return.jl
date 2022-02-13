@@ -1,12 +1,17 @@
-wrap_return(ex, type, jtype) = @match t = type begin
+wrap_return(ex, type, jtype, next_types = nothing) = @match t = type begin
     :VkResult => :(@check($ex))
     :Cstring => :(unsafe_string($ex))
     GuardBy(is_opaque_pointer) => ex
-    GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex)) # call handle constructor
-    GuardBy(in(spec_enums.name)) => ex # don't change enumeration variables since they won't be wrapped under a new name
+
+    # Call handle constructor.
+    GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex))
+    # Don't change enumeration variables since they won't be wrapped under a new name
+    GuardBy(in(spec_enums.name)) => ex
+    # Vulkan and idiomatic Julia types are the same (up to aliases).
     if is_fn_ptr(type) || follow_constant(type) == jtype || innermost_type(type) ∈ spec_flags.name
-    end => ex # Vulkan and idiomatic Julia types are the same (up to aliases)
-    _ => :(from_vk($jtype, $ex)) # fall back to the from_vk function for conversion
+    end => ex
+    # Fall back to the from_vk function for conversion.
+    _ => isnothing(next_types) ? :(from_vk($jtype, $ex)) : :(from_vk($jtype, $ex, $next_types))
 end
 
 _wrap_implicit_return(params::AbstractVector{SpecFuncParam}; with_func_ptr = false) =
@@ -22,14 +27,14 @@ automatically checked and not returned by the wrapper.
 Such implicit return parameters are `Ref`s or `Vector`s holding either a base type or an API struct Vk*.
 They need to be converted by the wrapper to their wrapping type.
 """
-function _wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = false)
+function _wrap_implicit_return(return_param::SpecFuncParam, next_types = nothing; with_func_ptr = false)
     p = return_param
     @assert is_ptr(p.type) "Invalid implicit return parameter API type. Expected $(p.type) <: Ptr"
     pt = follow_alias(ptr_type(p.type))
     ex = @match p begin
 
         # array pointer
-        GuardBy(is_arr) => @match ex = wrap_return(p.name, pt, innermost_type((idiomatic_julia_type(p)))) begin
+        GuardBy(is_arr) => @match ex = wrap_return(p.name, pt, innermost_type((idiomatic_julia_type(p))), next_types) begin
             ::Symbol => ex
             ::Expr => broadcast_ex(ex) # broadcast result
         end
@@ -41,7 +46,7 @@ function _wrap_implicit_return(return_param::SpecFuncParam; with_func_ptr = fals
             @assert is_size(size)
             :($(size.name)[], $(p.name))
         end
-        _ => wrap_return(:($(p.name)[]), pt, innermost_type((idiomatic_julia_type(p)))) # call return_expr on the dereferenced pointer
+        _ => wrap_return(:($(p.name)[]), pt, innermost_type((idiomatic_julia_type(p))), next_types) # call return_expr on the dereferenced pointer
     end
 
     @match p begin

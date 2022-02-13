@@ -293,7 +293,7 @@ function SpecExtension(node::Node)
         t => error("Unknown extension type '$t'")
     end
     requires = getattr(node, "requires", default="", symbol=false)
-    requirements = isempty(requires) ? Symbol[] : Symbol.(split(requires, ','))
+    requirements = isempty(requires) ? String[] : split(requires, ',')
     is_disabled = @match node["supported"] begin
         "vulkan" => false
         "disabled" => true
@@ -302,7 +302,7 @@ function SpecExtension(node::Node)
     platform = PlatformType(getattr(node, "platform", symbol=false))
     symbols = map(x -> getattr(x, "name"), findall(".//*[@name]", node))
     SpecExtension(
-        getattr(node, "name"),
+        node["name"],
         exttype,
         requirements,
         is_disabled,
@@ -415,6 +415,49 @@ end
 
 SpecPlatform(node::Node) = SpecPlatform(PlatformType(node["name"]), node["comment"])
 AuthorTag(node::Node) = AuthorTag(node["name"], node["author"])
+
+function SpecExtensionSPIRV(node::Node)
+    versions = map(Base.Fix2(getindex, "version"), findall(".//enable[@version]", node))
+    enabling_exts = map(Base.Fix2(getindex, "extension"), findall(".//enable[@extension]", node))
+    SpecExtensionSPIRV(node["name"], promoted_in(versions), enabling_exts)
+end
+
+function extract_version_ext(node::Node)
+    requires = split(getattr(node, "requires"; default = "", symbol = false), ',')
+    core_version = nothing
+    filter!(requires) do req
+        @match req begin
+            "VK_VERSION_1_1" => (core_version = v"1.1"; false)
+            "VK_VERSION_1_2" => (core_version = v"1.2"; false)
+            _ => true
+        end
+    end
+    core_version, isempty(requires) ? nothing : only(requires)
+end
+
+function SpecCapabilitySPIRV(node::Node)
+    versions = map(Base.Fix2(getindex, "version"), findall(".//enable[@version]", node))
+    enabling_exts = map(Base.Fix2(getindex, "extension"), findall(".//enable[@extension]", node))
+    enabling_structs = map(findall(".//enable[@struct]", node)) do node
+        FeatureCondition(getattr(node, "struct"), getattr(node, "feature"), extract_version_ext(node)...)
+    end
+    enabling_props = map(findall(".//enable[@property]", node)) do node
+        value = getattr(node, "value")
+        bit = value == :VK_TRUE ? nothing : value
+        PropertyCondition(getattr(node, "property"), getattr(node, "member"), extract_version_ext(node)..., isnothing(bit), value)
+    end
+    SpecCapabilitySPIRV(getattr(node, "name"), promoted_in(versions), enabling_exts, enabling_structs, enabling_props)
+end
+
+function promoted_in(versions)
+    isempty(versions) && return nothing
+    @match only(versions) begin
+        "VK_API_VERSION_1_0" => v"1.0"
+        "VK_API_VERSION_1_1" => v"1.1"
+        "VK_API_VERSION_1_2" => v"1.2"
+        _ => nothing
+    end
+end
 
 const spec_platforms = StructVector(SpecPlatform.(findall("//platform", xroot)))
 
@@ -555,6 +598,9 @@ const spec_aliases = StructVector(
 const spec_func_params = collect(Iterators.flatten(spec_funcs.params))
 const spec_struct_members = collect(Iterators.flatten(spec_structs.members))
 const spec_create_info_structs = filter(x -> x.type ∈ [STYPE_CREATE_INFO, STYPE_ALLOCATE_INFO], spec_structs)
+
+const spec_spirv_extensions = StructVector(SpecExtensionSPIRV.(findall("//spirvextension", xroot)))
+const spec_spirv_capabilities = StructVector(SpecCapabilitySPIRV.(findall("//spirvcapability", xroot)))
 
 function spec_by_field(specs, field, value)
     specs[findall(==(value), getproperty(specs, field))]

@@ -1,15 +1,26 @@
-function from_vk_call(x::Spec)
-    prop = :(x.$(x.name))
-    jtype = idiomatic_julia_type(x)
+function from_vk_call(x::Spec, identifier = :x)
+    prop = :($identifier.$(x.name))
+    x.name == :pNext && return :(load_next_chain($prop, next_types...))
+    x.name == :sType && return nothing
+    jtype = hl_type(x)
     @match x begin
-
         # array pointer
         GuardBy(is_arr) => @match jtype begin
-            :(Vector{$_}) => :(unsafe_wrap($jtype, $prop, x.$(x.len); own = true))
+            :(Vector{$_}) => :(unsafe_wrap($jtype, $prop, $(len_expr(x, identifier)); own = true))
         end
 
         GuardBy(is_length) => nothing
         _ => from_vk_call(prop, jtype, x.type)
+    end
+end
+
+function len_expr(x::Spec, identifier::Symbol)
+    @assert !isnothing(x.len)
+    params = children(parent_spec(x))
+    postwalk(x.len) do ex
+        ex == :/ && return :÷
+        ex isa Symbol && ex in params.name && return :($identifier.$ex)
+        ex
     end
 end
 
@@ -34,7 +45,7 @@ function vk_call(x::Spec)
     jtype = idiomatic_julia_type(x)
     @match x begin
         ::SpecStructMember && if x.type == :VkStructureType && parent(x) ∈ keys(structure_types)
-        end => structure_types[parent(x)]
+        end => :(structure_type($(parent(x))))
         ::SpecStructMember && if is_semantic_ptr(x.type)
         end => :(unsafe_convert($(x.type), $var))
         if is_fn_ptr(x.type)

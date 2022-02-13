@@ -11,7 +11,7 @@ configs = [
     wrapper_config(Windows(), "windows.jl"),
 ]
 
-foreach(configs) do config
+for config in configs
     @time vw = VulkanWrapper(config)
     @time write(vw, config)
     @info "Vulkan successfully wrapped at $(config.destfile)"

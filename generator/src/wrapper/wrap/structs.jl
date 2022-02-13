@@ -1,25 +1,16 @@
 function StructDefinition{false}(spec::SpecStruct)
     p = Dict(
         :category => :struct,
-        :decl => :(
-            $(struct_name(spec)) <:
-            $(spec.is_returnedonly ? :ReturnedOnly : :(VulkanStruct{$(needs_deps(spec))}))
-        ),
+        :decl => :($(struct_name(spec)) <: VulkanStruct{$(needs_deps(spec))}),
     )
-    if spec.is_returnedonly
-        p[:fields] = map(x -> :($(wrap_identifier(x))::$(idiomatic_julia_type(x))), children(spec))
-    else
-        p[:fields] = [:(vks::$(spec.name))]
-        needs_deps(spec) && push!(p[:fields], :(deps::Vector{Any}))
-
-        foreach(parent_handles(spec)) do member
-            handle_type = remove_vk_prefix(member.type)
-            name = wrap_identifier(member)
-            field_type = is_optional(member) ? :(OptionalPtr{$handle_type}) : handle_type
-            push!(p[:fields], :($name::$field_type))
-        end
+    p[:fields] = [:(vks::$(spec.name))]
+    needs_deps(spec) && push!(p[:fields], :(deps::Vector{Any}))
+    for member in parent_handles(spec)
+        handle_type = remove_vk_prefix(member.type)
+        name = wrap_identifier(member)
+        field_type = is_optional(member) ? :(OptionalPtr{$handle_type}) : handle_type
+        push!(p[:fields], :($name::$field_type))
     end
-
     StructDefinition{false}(spec, p)
 end
 
@@ -40,7 +31,7 @@ function Constructor(def::StructDefinition{false})
                     (m, id) ∈ zip(cconverted_members, cconverted_ids)
                 )...
             )
-            deps = [$((cconverted_ids)...)]
+            deps = Any[$((cconverted_ids)...)]
             vks = $(spec.name)($(map(vk_call, children(spec))...))
             $(name(def))(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end
@@ -52,26 +43,37 @@ function Constructor(def::StructDefinition{false})
     Constructor(def, p)
 end
 
-StructDefinition{true}(spec::Spec) = StructDefinition{true}(StructDefinition{false}(spec))
-
-function StructDefinition{true}(def::StructDefinition{false})
-    spec = def.spec
-    @assert !spec.is_returnedonly
+function StructDefinition{true}(spec::Spec)
+    !is_returnedonly(spec) && return StructDefinition{true}(StructDefinition{false}(spec))
     p = Dict(
         :category => :struct,
-        :decl => :(
-            $(struct_name(spec, true)) <: HighLevelStruct
-        ),
-        :fields => Expr[],
+        :decl => :($(struct_name(spec)) <: ReturnedOnly),
+        :fields => hl_fields(spec),
     )
+    StructDefinition{true}(spec, p)
+end
+
+function StructDefinition{true}(def::StructDefinition{false})
+    (; spec) = def
+    @assert !is_returnedonly(spec)
+    p = Dict(
+        :category => :struct,
+        :decl => :($(struct_name(spec, true)) <: HighLevelStruct),
+        :fields => hl_fields(spec),
+    )
+    StructDefinition{true}(spec, p)
+end
+
+function hl_fields(spec::Union{SpecStruct,SpecUnion})
+    fields = Expr[]
     for member in filter(!drop_field, children(spec))
         T = hl_type(member)
         if hl_is_optional(member)
             T = :(OptionalPtr{$T})
         end
-        push!(p[:fields], :($(wrap_identifier(member))::$T))
+        push!(fields, :($(wrap_identifier(member))::$T))
     end
-    StructDefinition{true}(spec, p)
+    fields
 end
 
 drop_field(x::Spec) = drop_arg(x) || x.name == :sType
@@ -167,4 +169,14 @@ function embeds_sentinel(member::SpecStructMember)
         GuardBy(in(spec_enums.name)) || GuardBy(in(spec_bitmasks.name)) || GuardBy(is_flag) => true
         _ => false
     end
+end
+
+function StructureType(spec::SpecStruct)
+    stype = structure_types[spec.name]
+    types = [spec.name, struct_name(spec.name)]
+    if !spec.is_returnedonly
+        push!(types, struct_name(spec.name, true))
+    end
+    ex = :(structure_type(@nospecialize(_::Union{$((:(Type{$T}) for T in types)...)})) = $stype)
+    StructureType(spec, ex)
 end

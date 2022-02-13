@@ -1,7 +1,7 @@
 module VulkanGen
 
 using StructArrays: StructVector
-using LightGraphs
+using Graphs
 using MLStyle
 using DocStringExtensions
 using Reexport

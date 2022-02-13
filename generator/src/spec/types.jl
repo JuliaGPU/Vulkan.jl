@@ -149,7 +149,13 @@ struct SpecStruct <: Spec
     name::Symbol
     "[`StructType`](@ref) classification."
     type::StructType
-    "Whether the structure is only returned by Vulkan functions (and never requested as input)."
+    """
+    Whether the structure is only meant to be filled in by Vulkan functions, as opposed
+    to being constructed by the user.
+
+    Note that the API may still request the user to provide an uninitialized structure,
+    notably as part of `pNext` chains for queries.
+    """
     is_returnedonly::Bool
     "Name of the structures it extends, usually done through the original structures' `pNext` argument."
     extends::Vector{Symbol}
@@ -169,7 +175,13 @@ struct SpecUnion <: Spec
     fields::Vector{Symbol}
     "Selector values, if any, to determine the type of the union in a given context (function call for example)."
     selectors::Vector{Symbol}
-    "Whether the type is only returned by Vulkan functions (and never requested as input)."
+    """
+    Whether the structure is only meant to be filled in by Vulkan functions, as opposed
+    to being constructed by the user.
+
+    Note that the API may still request the user to provide an uninitialized structure,
+    notably as part of `pNext` chains for queries.
+    """
     is_returnedonly::Bool
 end
 
@@ -319,9 +331,9 @@ struct SpecPlatform <: Spec
 end
 
 struct SpecExtension <: Spec
-    name::Symbol
+    name::String
     type::ExtensionType
-    requirements::Vector{Symbol}
+    requirements::Vector{String}
     is_disabled::Bool
     author::Optional{String}
     symbols::Vector{Symbol}
@@ -365,4 +377,52 @@ end
 struct AuthorTag
     tag::String
     author::String
+end
+
+struct SpecExtensionSPIRV <: Spec
+    "Name of the SPIR-V extension."
+    name::String
+    "Core version of the Vulkan API in which the extension was promoted, if promoted."
+    promoted_to::Optional{VersionNumber}
+    "Vulkan extensions that implicitly enable the SPIR-V extension."
+    enabling_extensions::Vector{String}
+end
+
+struct FeatureCondition
+    "Name of the feature structure relevant to the condition."
+    type::Symbol
+    "Member of the structure which must be set to true to enable the feature."
+    member::Symbol
+    "Core version corresponding to the structure, if any."
+    core_version::Optional{VersionNumber}
+    "Extension required for the corresponding structure, if any."
+    extension::Optional{String}
+end
+
+struct PropertyCondition
+    "Name of the property structure relevant to the condition."
+    type::Symbol
+    "Member of the property structure to be tested."
+    member::Symbol
+    "Required core version of the Vulkan API, if any."
+    core_version::Optional{VersionNumber}
+    "Required extension, if any."
+    extension::Optional{String}
+    "Whether the property to test is a boolean. If not, then it will be a bit from a bitmask."
+    is_bool::Bool
+    "Name of the bit enum that must be included in the property, if the property is not a boolean."
+    bit::Optional{Symbol}
+end
+
+struct SpecCapabilitySPIRV <: Spec
+    "Name of the SPIR-V capability."
+    name::Symbol
+    "Core version of the Vulkan API in which the extension was promoted, if promoted."
+    promoted_to::Optional{VersionNumber}
+    "Vulkan extensions that implicitly enable the SPIR-V capability."
+    enabling_extensions::Vector{String}
+    "Vulkan features that implicitly enable the SPIR-V capability."
+    enabling_features::Vector{FeatureCondition}
+    "Vulkan properties that implicitly enable the SPIR-V capability."
+    enabling_properties::Vector{PropertyCondition}
 end

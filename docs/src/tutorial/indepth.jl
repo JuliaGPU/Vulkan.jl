@@ -53,7 +53,7 @@ Note that we pass in arrays, version numbers and strings; but the C API does not
 
 We now setup a debug messenger that we'll use for logging. Its function is to process messages sent by the Vulkan API. We could use the default debug callback provided by Vulkan.jl, namely [`default_debug_callback`](@ref); but instead we will implement our own callback for educational purposes. We'll just define a function that prints whatever message is received from Vulkan.
 
-We won't just `println`, because it does context-switching which is not allowed in finalizers (and the callback may be called in a finalizer, notably when functions like `vkDestroy...` are called). We can use `jl_safe_printf` which does not go through the Julia task system to safely print messages. The data that will arrive from Vulkan will be a `Ptr{core.VkDebugUtilsMessengerCallbackDataEXT}`
+We won't just `println`, because it does context-switching which is not allowed in finalizers (and the callback may be called in a finalizer, notably when functions like `vkDestroy...` are called). We can use `jl_safe_printf` which does not go through the Julia task system to safely print messages. The data that will arrive from Vulkan will be a `Ptr{VkCore.VkDebugUtilsMessengerCallbackDataEXT}`
 
 =#
 
@@ -73,7 +73,7 @@ const debug_callback_c = @cfunction(
     (
         DebugUtilsMessageSeverityFlagEXT,
         DebugUtilsMessageTypeFlagEXT,
-        Ptr{core.VkDebugUtilsMessengerCallbackDataEXT},
+        Ptr{VkCore.VkDebugUtilsMessengerCallbackDataEXT},
         Ptr{Cvoid},
     )
 )
