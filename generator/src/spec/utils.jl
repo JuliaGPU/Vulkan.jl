@@ -84,7 +84,7 @@ function translate_c_type(ctype)
         :double => :Float64
         :void => :Cvoid
         :size_t => :UInt
-        :char => :UInt8
+        :char => :Char
         x => x
     end
 end
