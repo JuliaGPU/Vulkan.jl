@@ -20,7 +20,7 @@
     ))
 
     test_ex(VulkanGen.promote_hl(APIFunction(func_by_name(:vkGetPhysicalDeviceProperties2), false)), :(
-        function get_physical_device_properties_2(physical_device, next_types...)
+        function get_physical_device_properties_2(physical_device, next_types::Type...)
             next_types_hl = next_types
             next_types = intermediate_type.(next_types)
             PhysicalDeviceProperties2(_get_physical_device_properties_2(physical_device, next_types...), next_types_hl...)
@@ -28,7 +28,7 @@
     ))
 
     test_ex(VulkanGen.promote_hl(APIFunction(func_by_name(:vkGetPhysicalDeviceImageFormatProperties2), false)), :(
-        function get_physical_device_image_format_properties_2(physical_device, image_format_info::PhysicalDeviceImageFormatInfo2, next_types...)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
+        function get_physical_device_image_format_properties_2(physical_device, image_format_info::PhysicalDeviceImageFormatInfo2, next_types::Type...)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
             next_types_hl = next_types
             next_types = intermediate_type.(next_types)
             val = @propagate_errors(_get_physical_device_image_format_properties_2(physical_device, convert(_PhysicalDeviceImageFormatInfo2, image_format_info), next_types...))

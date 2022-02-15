@@ -104,6 +104,8 @@ end
         @test feats isa PhysicalDeviceFeatures2
         @test feats.next isa PhysicalDeviceVulkan12Features
         @test feats.next.next isa PhysicalDeviceVulkanMemoryModelFeatures
+        feats2 = get_physical_device_features_2(device.physical_device, PhysicalDeviceVulkan12Features)
+        @test feats2 == @set(feats2.next.next = C_NULL)
 
         props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceProtectedMemoryProperties, PhysicalDeviceProvokingVertexPropertiesEXT)
         @test props isa PhysicalDeviceProperties2

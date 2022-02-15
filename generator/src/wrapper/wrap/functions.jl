@@ -133,7 +133,7 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
             end
 
             add_func_args!(p, spec, args; with_func_ptr)
-            push!(p[:args], :(next_types...))
+            push!(p[:args], :(next_types::Type...))
             p[:return_type] = wrap_return_type(spec, ret_type)
             return APIFunction(spec, with_func_ptr, p)
         else
@@ -208,7 +208,7 @@ is_promoted(ex) = ex == promote_hl(ex)
 function promote_hl(def::APIFunction)
     promoted = APIFunction(def, def.with_func_ptr, promote_hl(def.p))
     type = def.p[def.spec isa CreateFunc ? :_return_type : :return_type]
-    wrap_body = :(next_types...) in promoted.p[:args] ? promote_return_hl_next_types : promote_return_hl
+    wrap_body = :(next_types::Type...) in promoted.p[:args] ? promote_return_hl_next_types : promote_return_hl
     merge!(promoted.p,
         Dict(
             :short => false,
@@ -256,6 +256,7 @@ function promote_hl(p::Dict)
     call_args = map(p[:args]) do arg
         id, type = @match arg begin
             :($id::$t) => (id, t)
+            :($id::$t...) => (:($id...), nothing)
             id => (id, nothing)
         end
         if arg in modified_args

@@ -7,6 +7,7 @@ end
 
 using Test
 using Vulkan
+using Accessors: @set
 using Documenter
 
 # use SwiftShader for testing

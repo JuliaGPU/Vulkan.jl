@@ -18,12 +18,6 @@ to_vk(T::Type{<:NTuple}, x) = to_vk.(eltype(T), x)
 to_vk(T::Type{UInt32}, version::VersionNumber) = VK_MAKE_VERSION(version.major, version.minor, version.patch)
 to_vk(T::Type{NTuple{N,UInt8}}, s::AbstractString) where {N} = T(s * '\0' ^ (N - length(s)))
 
-(T::Type{<:HighLevelStruct})(x::VulkanStruct{false}) = T(x.vks)
-function (T::Type{<:HighLevelStruct})(x::VulkanStruct{true}, next_types...)
-    (; deps) = x
-    GC.@preserve deps T(x.vks, next_types...)
-end
-
 """
 Convert a Vulkan type into its corresponding Julia type.
 

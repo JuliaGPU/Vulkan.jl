@@ -111,7 +111,27 @@ function Constructor(T::StructDefinition{true}, x::SpecStruct)
         :body => :($(name(T))($(filter(!isnothing, from_vk_call.(filter(!drop_field, children(x))))...))),
         :short => true,
     )
-    :pNext in x.members.name && push!(p[:args], :(next_types...))
+    :pNext in x.members.name && push!(p[:args], :(next_types::Type...))
+    Constructor(T, p)
+end
+
+function Constructor(T::StructDefinition{true}, x::StructDefinition{false})
+    (; spec) = x
+    p = Dict(
+        :category => :function,
+        :name => name(T),
+        :args => [:(x::$(name(x)))],
+        :short => !needs_deps(spec),
+    )
+    :pNext in spec.members.name && push!(p[:args], :(next_types::Type...))
+    p[:body] = if needs_deps(spec)
+        quote
+            (; deps) = x
+            GC.@preserve deps $(name(T))(x.vks, next_types...)
+        end
+    else
+        Expr(:call, name(T), :(x.vks))
+    end
     Constructor(T, p)
 end
 
