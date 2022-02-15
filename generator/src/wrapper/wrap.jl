@@ -143,6 +143,7 @@ function VulkanWrapper(config::WrapperConfig)
 
     struct_constructors = Constructor.(structs)
     struct_constructors_from_hl = [Constructor(T, x) for (T, x) in zip(structs, structs_hl)]
+    struct_constructors_from_ll = [Constructor(T, x) for (T, x) in zip(structs_hl, structs)]
     struct_constructors_from_core = [Constructor(T, x) for (T, x) in zip(structs_hl, f(spec_structs))]
     struct_constructors_hl = Constructor.(structs_hl)
 
@@ -225,6 +226,7 @@ function VulkanWrapper(config::WrapperConfig)
             documented.(struct_constructors);
             documented.(struct_constructors_hl);
             documented.(struct_constructors_from_hl);
+            documented.(struct_constructors_from_ll);
             documented.(struct_constructors_from_core);
             documented.(struct_converts_to_ll);
             documented.(funcs);

@@ -40,7 +40,7 @@
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetGeneratedCommandsMemoryRequirementsNV), false), :(
-        function _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, next_types...)::_MemoryRequirements2
+        function _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, next_types::Type...)::_MemoryRequirements2
             memory_requirements = initialize(_MemoryRequirements2, next_types...)
             pMemoryRequirements = Ref(Base.unsafe_convert(VkMemoryRequirements2, memory_requirements))
             GC.@preserve memory_requirements begin

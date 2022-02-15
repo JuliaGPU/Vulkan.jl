@@ -33122,12 +33122,4384 @@ _PipelineRasterizationProvokingVertexStateCreateInfoEXT(x::PipelineRasterization
 """
 
 """
-BaseOutStructure(x::VkBaseOutStructure, next_types...) = BaseOutStructure(load_next_chain(x.pNext, next_types...))
+function BaseOutStructure(x::_BaseOutStructure, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BaseOutStructure(x.vks, next_types...)
+end
 
 """
 
 """
-BaseInStructure(x::VkBaseInStructure, next_types...) = BaseInStructure(load_next_chain(x.pNext, next_types...))
+function BaseInStructure(x::_BaseInStructure, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BaseInStructure(x.vks, next_types...)
+end
+
+"""
+
+"""
+Offset2D(x::_Offset2D) = Offset2D(x.vks)
+
+"""
+
+"""
+Offset3D(x::_Offset3D) = Offset3D(x.vks)
+
+"""
+
+"""
+Extent2D(x::_Extent2D) = Extent2D(x.vks)
+
+"""
+
+"""
+Extent3D(x::_Extent3D) = Extent3D(x.vks)
+
+"""
+
+"""
+Viewport(x::_Viewport) = Viewport(x.vks)
+
+"""
+
+"""
+Rect2D(x::_Rect2D) = Rect2D(x.vks)
+
+"""
+
+"""
+ClearRect(x::_ClearRect) = ClearRect(x.vks)
+
+"""
+
+"""
+ComponentMapping(x::_ComponentMapping) = ComponentMapping(x.vks)
+
+"""
+
+"""
+PhysicalDeviceProperties(x::_PhysicalDeviceProperties) = PhysicalDeviceProperties(x.vks)
+
+"""
+
+"""
+ExtensionProperties(x::_ExtensionProperties) = ExtensionProperties(x.vks)
+
+"""
+
+"""
+LayerProperties(x::_LayerProperties) = LayerProperties(x.vks)
+
+"""
+
+"""
+function ApplicationInfo(x::_ApplicationInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ApplicationInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AllocationCallbacks(x::_AllocationCallbacks)
+    (; deps) = x
+    GC.@preserve deps AllocationCallbacks(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceQueueCreateInfo(x::_DeviceQueueCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceQueueCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceCreateInfo(x::_DeviceCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function InstanceCreateInfo(x::_InstanceCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps InstanceCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+QueueFamilyProperties(x::_QueueFamilyProperties) = QueueFamilyProperties(x.vks)
+
+"""
+
+"""
+PhysicalDeviceMemoryProperties(x::_PhysicalDeviceMemoryProperties) = PhysicalDeviceMemoryProperties(x.vks)
+
+"""
+
+"""
+function MemoryAllocateInfo(x::_MemoryAllocateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryAllocateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+MemoryRequirements(x::_MemoryRequirements) = MemoryRequirements(x.vks)
+
+"""
+
+"""
+SparseImageFormatProperties(x::_SparseImageFormatProperties) = SparseImageFormatProperties(x.vks)
+
+"""
+
+"""
+SparseImageMemoryRequirements(x::_SparseImageMemoryRequirements) = SparseImageMemoryRequirements(x.vks)
+
+"""
+
+"""
+MemoryType(x::_MemoryType) = MemoryType(x.vks)
+
+"""
+
+"""
+MemoryHeap(x::_MemoryHeap) = MemoryHeap(x.vks)
+
+"""
+
+"""
+function MappedMemoryRange(x::_MappedMemoryRange, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MappedMemoryRange(x.vks, next_types...)
+end
+
+"""
+
+"""
+FormatProperties(x::_FormatProperties) = FormatProperties(x.vks)
+
+"""
+
+"""
+ImageFormatProperties(x::_ImageFormatProperties) = ImageFormatProperties(x.vks)
+
+"""
+
+"""
+DescriptorBufferInfo(x::_DescriptorBufferInfo) = DescriptorBufferInfo(x.vks)
+
+"""
+
+"""
+DescriptorImageInfo(x::_DescriptorImageInfo) = DescriptorImageInfo(x.vks)
+
+"""
+
+"""
+function WriteDescriptorSet(x::_WriteDescriptorSet, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps WriteDescriptorSet(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyDescriptorSet(x::_CopyDescriptorSet, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyDescriptorSet(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferCreateInfo(x::_BufferCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferViewCreateInfo(x::_BufferViewCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferViewCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+ImageSubresource(x::_ImageSubresource) = ImageSubresource(x.vks)
+
+"""
+
+"""
+ImageSubresourceLayers(x::_ImageSubresourceLayers) = ImageSubresourceLayers(x.vks)
+
+"""
+
+"""
+ImageSubresourceRange(x::_ImageSubresourceRange) = ImageSubresourceRange(x.vks)
+
+"""
+
+"""
+function MemoryBarrier(x::_MemoryBarrier, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryBarrier(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferMemoryBarrier(x::_BufferMemoryBarrier, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferMemoryBarrier(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageMemoryBarrier(x::_ImageMemoryBarrier, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageMemoryBarrier(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageCreateInfo(x::_ImageCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+SubresourceLayout(x::_SubresourceLayout) = SubresourceLayout(x.vks)
+
+"""
+
+"""
+function ImageViewCreateInfo(x::_ImageViewCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageViewCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+BufferCopy(x::_BufferCopy) = BufferCopy(x.vks)
+
+"""
+
+"""
+SparseMemoryBind(x::_SparseMemoryBind) = SparseMemoryBind(x.vks)
+
+"""
+
+"""
+SparseImageMemoryBind(x::_SparseImageMemoryBind) = SparseImageMemoryBind(x.vks)
+
+"""
+
+"""
+function SparseBufferMemoryBindInfo(x::_SparseBufferMemoryBindInfo)
+    (; deps) = x
+    GC.@preserve deps SparseBufferMemoryBindInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SparseImageOpaqueMemoryBindInfo(x::_SparseImageOpaqueMemoryBindInfo)
+    (; deps) = x
+    GC.@preserve deps SparseImageOpaqueMemoryBindInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SparseImageMemoryBindInfo(x::_SparseImageMemoryBindInfo)
+    (; deps) = x
+    GC.@preserve deps SparseImageMemoryBindInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindSparseInfo(x::_BindSparseInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindSparseInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+ImageCopy(x::_ImageCopy) = ImageCopy(x.vks)
+
+"""
+
+"""
+ImageBlit(x::_ImageBlit) = ImageBlit(x.vks)
+
+"""
+
+"""
+BufferImageCopy(x::_BufferImageCopy) = BufferImageCopy(x.vks)
+
+"""
+
+"""
+ImageResolve(x::_ImageResolve) = ImageResolve(x.vks)
+
+"""
+
+"""
+function ShaderModuleCreateInfo(x::_ShaderModuleCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ShaderModuleCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorSetLayoutBinding(x::_DescriptorSetLayoutBinding)
+    (; deps) = x
+    GC.@preserve deps DescriptorSetLayoutBinding(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorSetLayoutCreateInfo(x::_DescriptorSetLayoutCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorSetLayoutCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+DescriptorPoolSize(x::_DescriptorPoolSize) = DescriptorPoolSize(x.vks)
+
+"""
+
+"""
+function DescriptorPoolCreateInfo(x::_DescriptorPoolCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorPoolCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorSetAllocateInfo(x::_DescriptorSetAllocateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorSetAllocateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+SpecializationMapEntry(x::_SpecializationMapEntry) = SpecializationMapEntry(x.vks)
+
+"""
+
+"""
+function SpecializationInfo(x::_SpecializationInfo)
+    (; deps) = x
+    GC.@preserve deps SpecializationInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineShaderStageCreateInfo(x::_PipelineShaderStageCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineShaderStageCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ComputePipelineCreateInfo(x::_ComputePipelineCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ComputePipelineCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+VertexInputBindingDescription(x::_VertexInputBindingDescription) = VertexInputBindingDescription(x.vks)
+
+"""
+
+"""
+VertexInputAttributeDescription(x::_VertexInputAttributeDescription) = VertexInputAttributeDescription(x.vks)
+
+"""
+
+"""
+function PipelineVertexInputStateCreateInfo(x::_PipelineVertexInputStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineVertexInputStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineInputAssemblyStateCreateInfo(x::_PipelineInputAssemblyStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineInputAssemblyStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineTessellationStateCreateInfo(x::_PipelineTessellationStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineTessellationStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineViewportStateCreateInfo(x::_PipelineViewportStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineViewportStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRasterizationStateCreateInfo(x::_PipelineRasterizationStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRasterizationStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineMultisampleStateCreateInfo(x::_PipelineMultisampleStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineMultisampleStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+PipelineColorBlendAttachmentState(x::_PipelineColorBlendAttachmentState) = PipelineColorBlendAttachmentState(x.vks)
+
+"""
+
+"""
+function PipelineColorBlendStateCreateInfo(x::_PipelineColorBlendStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineColorBlendStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineDynamicStateCreateInfo(x::_PipelineDynamicStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineDynamicStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+StencilOpState(x::_StencilOpState) = StencilOpState(x.vks)
+
+"""
+
+"""
+function PipelineDepthStencilStateCreateInfo(x::_PipelineDepthStencilStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineDepthStencilStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function GraphicsPipelineCreateInfo(x::_GraphicsPipelineCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GraphicsPipelineCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineCacheCreateInfo(x::_PipelineCacheCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineCacheCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+PushConstantRange(x::_PushConstantRange) = PushConstantRange(x.vks)
+
+"""
+
+"""
+function PipelineLayoutCreateInfo(x::_PipelineLayoutCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineLayoutCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SamplerCreateInfo(x::_SamplerCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SamplerCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandPoolCreateInfo(x::_CommandPoolCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandPoolCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandBufferAllocateInfo(x::_CommandBufferAllocateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandBufferAllocateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandBufferInheritanceInfo(x::_CommandBufferInheritanceInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandBufferInheritanceInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandBufferBeginInfo(x::_CommandBufferBeginInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandBufferBeginInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RenderPassBeginInfo(x::_RenderPassBeginInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassBeginInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+ClearDepthStencilValue(x::_ClearDepthStencilValue) = ClearDepthStencilValue(x.vks)
+
+"""
+
+"""
+ClearAttachment(x::_ClearAttachment) = ClearAttachment(x.vks)
+
+"""
+
+"""
+AttachmentDescription(x::_AttachmentDescription) = AttachmentDescription(x.vks)
+
+"""
+
+"""
+AttachmentReference(x::_AttachmentReference) = AttachmentReference(x.vks)
+
+"""
+
+"""
+function SubpassDescription(x::_SubpassDescription)
+    (; deps) = x
+    GC.@preserve deps SubpassDescription(x.vks, next_types...)
+end
+
+"""
+
+"""
+SubpassDependency(x::_SubpassDependency) = SubpassDependency(x.vks)
+
+"""
+
+"""
+function RenderPassCreateInfo(x::_RenderPassCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function EventCreateInfo(x::_EventCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps EventCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FenceCreateInfo(x::_FenceCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FenceCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+PhysicalDeviceFeatures(x::_PhysicalDeviceFeatures) = PhysicalDeviceFeatures(x.vks)
+
+"""
+
+"""
+PhysicalDeviceSparseProperties(x::_PhysicalDeviceSparseProperties) = PhysicalDeviceSparseProperties(x.vks)
+
+"""
+
+"""
+PhysicalDeviceLimits(x::_PhysicalDeviceLimits) = PhysicalDeviceLimits(x.vks)
+
+"""
+
+"""
+function SemaphoreCreateInfo(x::_SemaphoreCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SemaphoreCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function QueryPoolCreateInfo(x::_QueryPoolCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps QueryPoolCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FramebufferCreateInfo(x::_FramebufferCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FramebufferCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+DrawIndirectCommand(x::_DrawIndirectCommand) = DrawIndirectCommand(x.vks)
+
+"""
+
+"""
+DrawIndexedIndirectCommand(x::_DrawIndexedIndirectCommand) = DrawIndexedIndirectCommand(x.vks)
+
+"""
+
+"""
+DispatchIndirectCommand(x::_DispatchIndirectCommand) = DispatchIndirectCommand(x.vks)
+
+"""
+
+"""
+function SubmitInfo(x::_SubmitInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SubmitInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayPropertiesKHR(x::_DisplayPropertiesKHR)
+    (; deps) = x
+    GC.@preserve deps DisplayPropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+DisplayPlanePropertiesKHR(x::_DisplayPlanePropertiesKHR) = DisplayPlanePropertiesKHR(x.vks)
+
+"""
+
+"""
+DisplayModeParametersKHR(x::_DisplayModeParametersKHR) = DisplayModeParametersKHR(x.vks)
+
+"""
+
+"""
+DisplayModePropertiesKHR(x::_DisplayModePropertiesKHR) = DisplayModePropertiesKHR(x.vks)
+
+"""
+
+"""
+function DisplayModeCreateInfoKHR(x::_DisplayModeCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayModeCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+DisplayPlaneCapabilitiesKHR(x::_DisplayPlaneCapabilitiesKHR) = DisplayPlaneCapabilitiesKHR(x.vks)
+
+"""
+
+"""
+function DisplaySurfaceCreateInfoKHR(x::_DisplaySurfaceCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplaySurfaceCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayPresentInfoKHR(x::_DisplayPresentInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayPresentInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+SurfaceCapabilitiesKHR(x::_SurfaceCapabilitiesKHR) = SurfaceCapabilitiesKHR(x.vks)
+
+"""
+
+"""
+function Win32SurfaceCreateInfoKHR(x::_Win32SurfaceCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps Win32SurfaceCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+SurfaceFormatKHR(x::_SurfaceFormatKHR) = SurfaceFormatKHR(x.vks)
+
+"""
+
+"""
+function SwapchainCreateInfoKHR(x::_SwapchainCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SwapchainCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PresentInfoKHR(x::_PresentInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PresentInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugReportCallbackCreateInfoEXT(x::_DebugReportCallbackCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugReportCallbackCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ValidationFlagsEXT(x::_ValidationFlagsEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ValidationFlagsEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ValidationFeaturesEXT(x::_ValidationFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ValidationFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRasterizationStateRasterizationOrderAMD(x::_PipelineRasterizationStateRasterizationOrderAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRasterizationStateRasterizationOrderAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugMarkerObjectNameInfoEXT(x::_DebugMarkerObjectNameInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugMarkerObjectNameInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugMarkerObjectTagInfoEXT(x::_DebugMarkerObjectTagInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugMarkerObjectTagInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugMarkerMarkerInfoEXT(x::_DebugMarkerMarkerInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugMarkerMarkerInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DedicatedAllocationImageCreateInfoNV(x::_DedicatedAllocationImageCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DedicatedAllocationImageCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DedicatedAllocationBufferCreateInfoNV(x::_DedicatedAllocationBufferCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DedicatedAllocationBufferCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DedicatedAllocationMemoryAllocateInfoNV(x::_DedicatedAllocationMemoryAllocateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DedicatedAllocationMemoryAllocateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+ExternalImageFormatPropertiesNV(x::_ExternalImageFormatPropertiesNV) = ExternalImageFormatPropertiesNV(x.vks)
+
+"""
+
+"""
+function ExternalMemoryImageCreateInfoNV(x::_ExternalMemoryImageCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExternalMemoryImageCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportMemoryAllocateInfoNV(x::_ExportMemoryAllocateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportMemoryAllocateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportMemoryWin32HandleInfoNV(x::_ImportMemoryWin32HandleInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportMemoryWin32HandleInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportMemoryWin32HandleInfoNV(x::_ExportMemoryWin32HandleInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportMemoryWin32HandleInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function Win32KeyedMutexAcquireReleaseInfoNV(x::_Win32KeyedMutexAcquireReleaseInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps Win32KeyedMutexAcquireReleaseInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(x::_PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DevicePrivateDataCreateInfoEXT(x::_DevicePrivateDataCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DevicePrivateDataCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PrivateDataSlotCreateInfoEXT(x::_PrivateDataSlotCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PrivateDataSlotCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePrivateDataFeaturesEXT(x::_PhysicalDevicePrivateDataFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePrivateDataFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(x::_PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function GraphicsShaderGroupCreateInfoNV(x::_GraphicsShaderGroupCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GraphicsShaderGroupCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function GraphicsPipelineShaderGroupsCreateInfoNV(x::_GraphicsPipelineShaderGroupsCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GraphicsPipelineShaderGroupsCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+BindShaderGroupIndirectCommandNV(x::_BindShaderGroupIndirectCommandNV) = BindShaderGroupIndirectCommandNV(x.vks)
+
+"""
+
+"""
+BindIndexBufferIndirectCommandNV(x::_BindIndexBufferIndirectCommandNV) = BindIndexBufferIndirectCommandNV(x.vks)
+
+"""
+
+"""
+BindVertexBufferIndirectCommandNV(x::_BindVertexBufferIndirectCommandNV) = BindVertexBufferIndirectCommandNV(x.vks)
+
+"""
+
+"""
+SetStateFlagsIndirectCommandNV(x::_SetStateFlagsIndirectCommandNV) = SetStateFlagsIndirectCommandNV(x.vks)
+
+"""
+
+"""
+IndirectCommandsStreamNV(x::_IndirectCommandsStreamNV) = IndirectCommandsStreamNV(x.vks)
+
+"""
+
+"""
+function IndirectCommandsLayoutTokenNV(x::_IndirectCommandsLayoutTokenNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps IndirectCommandsLayoutTokenNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function IndirectCommandsLayoutCreateInfoNV(x::_IndirectCommandsLayoutCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps IndirectCommandsLayoutCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function GeneratedCommandsInfoNV(x::_GeneratedCommandsInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GeneratedCommandsInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function GeneratedCommandsMemoryRequirementsInfoNV(x::_GeneratedCommandsMemoryRequirementsInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GeneratedCommandsMemoryRequirementsInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFeatures2(x::_PhysicalDeviceFeatures2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFeatures2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceProperties2(x::_PhysicalDeviceProperties2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceProperties2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FormatProperties2(x::_FormatProperties2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FormatProperties2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageFormatProperties2(x::_ImageFormatProperties2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageFormatProperties2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceImageFormatInfo2(x::_PhysicalDeviceImageFormatInfo2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceImageFormatInfo2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function QueueFamilyProperties2(x::_QueueFamilyProperties2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps QueueFamilyProperties2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMemoryProperties2(x::_PhysicalDeviceMemoryProperties2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMemoryProperties2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SparseImageFormatProperties2(x::_SparseImageFormatProperties2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SparseImageFormatProperties2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSparseImageFormatInfo2(x::_PhysicalDeviceSparseImageFormatInfo2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSparseImageFormatInfo2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePushDescriptorPropertiesKHR(x::_PhysicalDevicePushDescriptorPropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePushDescriptorPropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+ConformanceVersion(x::_ConformanceVersion) = ConformanceVersion(x.vks)
+
+"""
+
+"""
+function PhysicalDeviceDriverProperties(x::_PhysicalDeviceDriverProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDriverProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PresentRegionsKHR(x::_PresentRegionsKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PresentRegionsKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PresentRegionKHR(x::_PresentRegionKHR)
+    (; deps) = x
+    GC.@preserve deps PresentRegionKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+RectLayerKHR(x::_RectLayerKHR) = RectLayerKHR(x.vks)
+
+"""
+
+"""
+function PhysicalDeviceVariablePointersFeatures(x::_PhysicalDeviceVariablePointersFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVariablePointersFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+ExternalMemoryProperties(x::_ExternalMemoryProperties) = ExternalMemoryProperties(x.vks)
+
+"""
+
+"""
+function PhysicalDeviceExternalImageFormatInfo(x::_PhysicalDeviceExternalImageFormatInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExternalImageFormatInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExternalImageFormatProperties(x::_ExternalImageFormatProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExternalImageFormatProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceExternalBufferInfo(x::_PhysicalDeviceExternalBufferInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExternalBufferInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExternalBufferProperties(x::_ExternalBufferProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExternalBufferProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceIDProperties(x::_PhysicalDeviceIDProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceIDProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExternalMemoryImageCreateInfo(x::_ExternalMemoryImageCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExternalMemoryImageCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExternalMemoryBufferCreateInfo(x::_ExternalMemoryBufferCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExternalMemoryBufferCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportMemoryAllocateInfo(x::_ExportMemoryAllocateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportMemoryAllocateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportMemoryWin32HandleInfoKHR(x::_ImportMemoryWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportMemoryWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportMemoryWin32HandleInfoKHR(x::_ExportMemoryWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportMemoryWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryWin32HandlePropertiesKHR(x::_MemoryWin32HandlePropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryWin32HandlePropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryGetWin32HandleInfoKHR(x::_MemoryGetWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryGetWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportMemoryFdInfoKHR(x::_ImportMemoryFdInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportMemoryFdInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryFdPropertiesKHR(x::_MemoryFdPropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryFdPropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryGetFdInfoKHR(x::_MemoryGetFdInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryGetFdInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function Win32KeyedMutexAcquireReleaseInfoKHR(x::_Win32KeyedMutexAcquireReleaseInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps Win32KeyedMutexAcquireReleaseInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceExternalSemaphoreInfo(x::_PhysicalDeviceExternalSemaphoreInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExternalSemaphoreInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExternalSemaphoreProperties(x::_ExternalSemaphoreProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExternalSemaphoreProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportSemaphoreCreateInfo(x::_ExportSemaphoreCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportSemaphoreCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportSemaphoreWin32HandleInfoKHR(x::_ImportSemaphoreWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportSemaphoreWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportSemaphoreWin32HandleInfoKHR(x::_ExportSemaphoreWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportSemaphoreWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function D3D12FenceSubmitInfoKHR(x::_D3D12FenceSubmitInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps D3D12FenceSubmitInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SemaphoreGetWin32HandleInfoKHR(x::_SemaphoreGetWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SemaphoreGetWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportSemaphoreFdInfoKHR(x::_ImportSemaphoreFdInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportSemaphoreFdInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SemaphoreGetFdInfoKHR(x::_SemaphoreGetFdInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SemaphoreGetFdInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceExternalFenceInfo(x::_PhysicalDeviceExternalFenceInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExternalFenceInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExternalFenceProperties(x::_ExternalFenceProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExternalFenceProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportFenceCreateInfo(x::_ExportFenceCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportFenceCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportFenceWin32HandleInfoKHR(x::_ImportFenceWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportFenceWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ExportFenceWin32HandleInfoKHR(x::_ExportFenceWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ExportFenceWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FenceGetWin32HandleInfoKHR(x::_FenceGetWin32HandleInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FenceGetWin32HandleInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportFenceFdInfoKHR(x::_ImportFenceFdInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportFenceFdInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FenceGetFdInfoKHR(x::_FenceGetFdInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FenceGetFdInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMultiviewFeatures(x::_PhysicalDeviceMultiviewFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMultiviewFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMultiviewProperties(x::_PhysicalDeviceMultiviewProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMultiviewProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RenderPassMultiviewCreateInfo(x::_RenderPassMultiviewCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassMultiviewCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SurfaceCapabilities2EXT(x::_SurfaceCapabilities2EXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SurfaceCapabilities2EXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayPowerInfoEXT(x::_DisplayPowerInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayPowerInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceEventInfoEXT(x::_DeviceEventInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceEventInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayEventInfoEXT(x::_DisplayEventInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayEventInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SwapchainCounterCreateInfoEXT(x::_SwapchainCounterCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SwapchainCounterCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceGroupProperties(x::_PhysicalDeviceGroupProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceGroupProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryAllocateFlagsInfo(x::_MemoryAllocateFlagsInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryAllocateFlagsInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindBufferMemoryInfo(x::_BindBufferMemoryInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindBufferMemoryInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindBufferMemoryDeviceGroupInfo(x::_BindBufferMemoryDeviceGroupInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindBufferMemoryDeviceGroupInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindImageMemoryInfo(x::_BindImageMemoryInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindImageMemoryInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindImageMemoryDeviceGroupInfo(x::_BindImageMemoryDeviceGroupInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindImageMemoryDeviceGroupInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupRenderPassBeginInfo(x::_DeviceGroupRenderPassBeginInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupRenderPassBeginInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupCommandBufferBeginInfo(x::_DeviceGroupCommandBufferBeginInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupCommandBufferBeginInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupSubmitInfo(x::_DeviceGroupSubmitInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupSubmitInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupBindSparseInfo(x::_DeviceGroupBindSparseInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupBindSparseInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupPresentCapabilitiesKHR(x::_DeviceGroupPresentCapabilitiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupPresentCapabilitiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageSwapchainCreateInfoKHR(x::_ImageSwapchainCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageSwapchainCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindImageMemorySwapchainInfoKHR(x::_BindImageMemorySwapchainInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindImageMemorySwapchainInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AcquireNextImageInfoKHR(x::_AcquireNextImageInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AcquireNextImageInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupPresentInfoKHR(x::_DeviceGroupPresentInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupPresentInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupDeviceCreateInfo(x::_DeviceGroupDeviceCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupDeviceCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceGroupSwapchainCreateInfoKHR(x::_DeviceGroupSwapchainCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceGroupSwapchainCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+DescriptorUpdateTemplateEntry(x::_DescriptorUpdateTemplateEntry) = DescriptorUpdateTemplateEntry(x.vks)
+
+"""
+
+"""
+function DescriptorUpdateTemplateCreateInfo(x::_DescriptorUpdateTemplateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorUpdateTemplateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+XYColorEXT(x::_XYColorEXT) = XYColorEXT(x.vks)
+
+"""
+
+"""
+function HdrMetadataEXT(x::_HdrMetadataEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps HdrMetadataEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayNativeHdrSurfaceCapabilitiesAMD(x::_DisplayNativeHdrSurfaceCapabilitiesAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayNativeHdrSurfaceCapabilitiesAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SwapchainDisplayNativeHdrCreateInfoAMD(x::_SwapchainDisplayNativeHdrCreateInfoAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SwapchainDisplayNativeHdrCreateInfoAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+RefreshCycleDurationGOOGLE(x::_RefreshCycleDurationGOOGLE) = RefreshCycleDurationGOOGLE(x.vks)
+
+"""
+
+"""
+PastPresentationTimingGOOGLE(x::_PastPresentationTimingGOOGLE) = PastPresentationTimingGOOGLE(x.vks)
+
+"""
+
+"""
+function PresentTimesInfoGOOGLE(x::_PresentTimesInfoGOOGLE, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PresentTimesInfoGOOGLE(x.vks, next_types...)
+end
+
+"""
+
+"""
+PresentTimeGOOGLE(x::_PresentTimeGOOGLE) = PresentTimeGOOGLE(x.vks)
+
+"""
+
+"""
+ViewportWScalingNV(x::_ViewportWScalingNV) = ViewportWScalingNV(x.vks)
+
+"""
+
+"""
+function PipelineViewportWScalingStateCreateInfoNV(x::_PipelineViewportWScalingStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineViewportWScalingStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+ViewportSwizzleNV(x::_ViewportSwizzleNV) = ViewportSwizzleNV(x.vks)
+
+"""
+
+"""
+function PipelineViewportSwizzleStateCreateInfoNV(x::_PipelineViewportSwizzleStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineViewportSwizzleStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDiscardRectanglePropertiesEXT(x::_PhysicalDeviceDiscardRectanglePropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDiscardRectanglePropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineDiscardRectangleStateCreateInfoEXT(x::_PipelineDiscardRectangleStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineDiscardRectangleStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(x::_PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(x.vks, next_types...)
+end
+
+"""
+
+"""
+InputAttachmentAspectReference(x::_InputAttachmentAspectReference) = InputAttachmentAspectReference(x.vks)
+
+"""
+
+"""
+function RenderPassInputAttachmentAspectCreateInfo(x::_RenderPassInputAttachmentAspectCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassInputAttachmentAspectCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSurfaceInfo2KHR(x::_PhysicalDeviceSurfaceInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSurfaceInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SurfaceCapabilities2KHR(x::_SurfaceCapabilities2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SurfaceCapabilities2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SurfaceFormat2KHR(x::_SurfaceFormat2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SurfaceFormat2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayProperties2KHR(x::_DisplayProperties2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayProperties2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayPlaneProperties2KHR(x::_DisplayPlaneProperties2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayPlaneProperties2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayModeProperties2KHR(x::_DisplayModeProperties2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayModeProperties2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayPlaneInfo2KHR(x::_DisplayPlaneInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayPlaneInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DisplayPlaneCapabilities2KHR(x::_DisplayPlaneCapabilities2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DisplayPlaneCapabilities2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SharedPresentSurfaceCapabilitiesKHR(x::_SharedPresentSurfaceCapabilitiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SharedPresentSurfaceCapabilitiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevice16BitStorageFeatures(x::_PhysicalDevice16BitStorageFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevice16BitStorageFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSubgroupProperties(x::_PhysicalDeviceSubgroupProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSubgroupProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderSubgroupExtendedTypesFeatures(x::_PhysicalDeviceShaderSubgroupExtendedTypesFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderSubgroupExtendedTypesFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferMemoryRequirementsInfo2(x::_BufferMemoryRequirementsInfo2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferMemoryRequirementsInfo2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageMemoryRequirementsInfo2(x::_ImageMemoryRequirementsInfo2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageMemoryRequirementsInfo2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageSparseMemoryRequirementsInfo2(x::_ImageSparseMemoryRequirementsInfo2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageSparseMemoryRequirementsInfo2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryRequirements2(x::_MemoryRequirements2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryRequirements2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SparseImageMemoryRequirements2(x::_SparseImageMemoryRequirements2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SparseImageMemoryRequirements2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePointClippingProperties(x::_PhysicalDevicePointClippingProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePointClippingProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryDedicatedRequirements(x::_MemoryDedicatedRequirements, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryDedicatedRequirements(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryDedicatedAllocateInfo(x::_MemoryDedicatedAllocateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryDedicatedAllocateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageViewUsageCreateInfo(x::_ImageViewUsageCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageViewUsageCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineTessellationDomainOriginStateCreateInfo(x::_PipelineTessellationDomainOriginStateCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineTessellationDomainOriginStateCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SamplerYcbcrConversionInfo(x::_SamplerYcbcrConversionInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SamplerYcbcrConversionInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SamplerYcbcrConversionCreateInfo(x::_SamplerYcbcrConversionCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SamplerYcbcrConversionCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindImagePlaneMemoryInfo(x::_BindImagePlaneMemoryInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindImagePlaneMemoryInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImagePlaneMemoryRequirementsInfo(x::_ImagePlaneMemoryRequirementsInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImagePlaneMemoryRequirementsInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSamplerYcbcrConversionFeatures(x::_PhysicalDeviceSamplerYcbcrConversionFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSamplerYcbcrConversionFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SamplerYcbcrConversionImageFormatProperties(x::_SamplerYcbcrConversionImageFormatProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SamplerYcbcrConversionImageFormatProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function TextureLODGatherFormatPropertiesAMD(x::_TextureLODGatherFormatPropertiesAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps TextureLODGatherFormatPropertiesAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ConditionalRenderingBeginInfoEXT(x::_ConditionalRenderingBeginInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ConditionalRenderingBeginInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ProtectedSubmitInfo(x::_ProtectedSubmitInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ProtectedSubmitInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceProtectedMemoryFeatures(x::_PhysicalDeviceProtectedMemoryFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceProtectedMemoryFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceProtectedMemoryProperties(x::_PhysicalDeviceProtectedMemoryProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceProtectedMemoryProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceQueueInfo2(x::_DeviceQueueInfo2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceQueueInfo2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineCoverageToColorStateCreateInfoNV(x::_PipelineCoverageToColorStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineCoverageToColorStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSamplerFilterMinmaxProperties(x::_PhysicalDeviceSamplerFilterMinmaxProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSamplerFilterMinmaxProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+SampleLocationEXT(x::_SampleLocationEXT) = SampleLocationEXT(x.vks)
+
+"""
+
+"""
+function SampleLocationsInfoEXT(x::_SampleLocationsInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SampleLocationsInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+AttachmentSampleLocationsEXT(x::_AttachmentSampleLocationsEXT) = AttachmentSampleLocationsEXT(x.vks)
+
+"""
+
+"""
+SubpassSampleLocationsEXT(x::_SubpassSampleLocationsEXT) = SubpassSampleLocationsEXT(x.vks)
+
+"""
+
+"""
+function RenderPassSampleLocationsBeginInfoEXT(x::_RenderPassSampleLocationsBeginInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassSampleLocationsBeginInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineSampleLocationsStateCreateInfoEXT(x::_PipelineSampleLocationsStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineSampleLocationsStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSampleLocationsPropertiesEXT(x::_PhysicalDeviceSampleLocationsPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSampleLocationsPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MultisamplePropertiesEXT(x::_MultisamplePropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MultisamplePropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SamplerReductionModeCreateInfo(x::_SamplerReductionModeCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SamplerReductionModeCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceBlendOperationAdvancedFeaturesEXT(x::_PhysicalDeviceBlendOperationAdvancedFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceBlendOperationAdvancedFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceBlendOperationAdvancedPropertiesEXT(x::_PhysicalDeviceBlendOperationAdvancedPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceBlendOperationAdvancedPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineColorBlendAdvancedStateCreateInfoEXT(x::_PipelineColorBlendAdvancedStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineColorBlendAdvancedStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceInlineUniformBlockFeaturesEXT(x::_PhysicalDeviceInlineUniformBlockFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceInlineUniformBlockFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceInlineUniformBlockPropertiesEXT(x::_PhysicalDeviceInlineUniformBlockPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceInlineUniformBlockPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function WriteDescriptorSetInlineUniformBlockEXT(x::_WriteDescriptorSetInlineUniformBlockEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps WriteDescriptorSetInlineUniformBlockEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorPoolInlineUniformBlockCreateInfoEXT(x::_DescriptorPoolInlineUniformBlockCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorPoolInlineUniformBlockCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineCoverageModulationStateCreateInfoNV(x::_PipelineCoverageModulationStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineCoverageModulationStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageFormatListCreateInfo(x::_ImageFormatListCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageFormatListCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ValidationCacheCreateInfoEXT(x::_ValidationCacheCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ValidationCacheCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ShaderModuleValidationCacheCreateInfoEXT(x::_ShaderModuleValidationCacheCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ShaderModuleValidationCacheCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMaintenance3Properties(x::_PhysicalDeviceMaintenance3Properties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMaintenance3Properties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorSetLayoutSupport(x::_DescriptorSetLayoutSupport, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorSetLayoutSupport(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderDrawParametersFeatures(x::_PhysicalDeviceShaderDrawParametersFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderDrawParametersFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderFloat16Int8Features(x::_PhysicalDeviceShaderFloat16Int8Features, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderFloat16Int8Features(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFloatControlsProperties(x::_PhysicalDeviceFloatControlsProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFloatControlsProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceHostQueryResetFeatures(x::_PhysicalDeviceHostQueryResetFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceHostQueryResetFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+ShaderResourceUsageAMD(x::_ShaderResourceUsageAMD) = ShaderResourceUsageAMD(x.vks)
+
+"""
+
+"""
+ShaderStatisticsInfoAMD(x::_ShaderStatisticsInfoAMD) = ShaderStatisticsInfoAMD(x.vks)
+
+"""
+
+"""
+function DeviceQueueGlobalPriorityCreateInfoEXT(x::_DeviceQueueGlobalPriorityCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceQueueGlobalPriorityCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugUtilsObjectNameInfoEXT(x::_DebugUtilsObjectNameInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugUtilsObjectNameInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugUtilsObjectTagInfoEXT(x::_DebugUtilsObjectTagInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugUtilsObjectTagInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugUtilsLabelEXT(x::_DebugUtilsLabelEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugUtilsLabelEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugUtilsMessengerCreateInfoEXT(x::_DebugUtilsMessengerCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugUtilsMessengerCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DebugUtilsMessengerCallbackDataEXT(x::_DebugUtilsMessengerCallbackDataEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DebugUtilsMessengerCallbackDataEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDeviceMemoryReportFeaturesEXT(x::_PhysicalDeviceDeviceMemoryReportFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDeviceMemoryReportFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceDeviceMemoryReportCreateInfoEXT(x::_DeviceDeviceMemoryReportCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceDeviceMemoryReportCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceMemoryReportCallbackDataEXT(x::_DeviceMemoryReportCallbackDataEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceMemoryReportCallbackDataEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImportMemoryHostPointerInfoEXT(x::_ImportMemoryHostPointerInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImportMemoryHostPointerInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryHostPointerPropertiesEXT(x::_MemoryHostPointerPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryHostPointerPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceExternalMemoryHostPropertiesEXT(x::_PhysicalDeviceExternalMemoryHostPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExternalMemoryHostPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceConservativeRasterizationPropertiesEXT(x::_PhysicalDeviceConservativeRasterizationPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceConservativeRasterizationPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CalibratedTimestampInfoEXT(x::_CalibratedTimestampInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CalibratedTimestampInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderCorePropertiesAMD(x::_PhysicalDeviceShaderCorePropertiesAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderCorePropertiesAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderCoreProperties2AMD(x::_PhysicalDeviceShaderCoreProperties2AMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderCoreProperties2AMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRasterizationConservativeStateCreateInfoEXT(x::_PipelineRasterizationConservativeStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRasterizationConservativeStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDescriptorIndexingFeatures(x::_PhysicalDeviceDescriptorIndexingFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDescriptorIndexingFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDescriptorIndexingProperties(x::_PhysicalDeviceDescriptorIndexingProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDescriptorIndexingProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorSetLayoutBindingFlagsCreateInfo(x::_DescriptorSetLayoutBindingFlagsCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorSetLayoutBindingFlagsCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorSetVariableDescriptorCountAllocateInfo(x::_DescriptorSetVariableDescriptorCountAllocateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorSetVariableDescriptorCountAllocateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DescriptorSetVariableDescriptorCountLayoutSupport(x::_DescriptorSetVariableDescriptorCountLayoutSupport, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DescriptorSetVariableDescriptorCountLayoutSupport(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AttachmentDescription2(x::_AttachmentDescription2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AttachmentDescription2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AttachmentReference2(x::_AttachmentReference2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AttachmentReference2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SubpassDescription2(x::_SubpassDescription2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SubpassDescription2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SubpassDependency2(x::_SubpassDependency2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SubpassDependency2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RenderPassCreateInfo2(x::_RenderPassCreateInfo2, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassCreateInfo2(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SubpassBeginInfo(x::_SubpassBeginInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SubpassBeginInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SubpassEndInfo(x::_SubpassEndInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SubpassEndInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceTimelineSemaphoreFeatures(x::_PhysicalDeviceTimelineSemaphoreFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceTimelineSemaphoreFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceTimelineSemaphoreProperties(x::_PhysicalDeviceTimelineSemaphoreProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceTimelineSemaphoreProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SemaphoreTypeCreateInfo(x::_SemaphoreTypeCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SemaphoreTypeCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function TimelineSemaphoreSubmitInfo(x::_TimelineSemaphoreSubmitInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps TimelineSemaphoreSubmitInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SemaphoreWaitInfo(x::_SemaphoreWaitInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SemaphoreWaitInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SemaphoreSignalInfo(x::_SemaphoreSignalInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SemaphoreSignalInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+VertexInputBindingDivisorDescriptionEXT(x::_VertexInputBindingDivisorDescriptionEXT) = VertexInputBindingDivisorDescriptionEXT(x.vks)
+
+"""
+
+"""
+function PipelineVertexInputDivisorStateCreateInfoEXT(x::_PipelineVertexInputDivisorStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineVertexInputDivisorStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVertexAttributeDivisorPropertiesEXT(x::_PhysicalDeviceVertexAttributeDivisorPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVertexAttributeDivisorPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePCIBusInfoPropertiesEXT(x::_PhysicalDevicePCIBusInfoPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePCIBusInfoPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandBufferInheritanceConditionalRenderingInfoEXT(x::_CommandBufferInheritanceConditionalRenderingInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandBufferInheritanceConditionalRenderingInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevice8BitStorageFeatures(x::_PhysicalDevice8BitStorageFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevice8BitStorageFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceConditionalRenderingFeaturesEXT(x::_PhysicalDeviceConditionalRenderingFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceConditionalRenderingFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVulkanMemoryModelFeatures(x::_PhysicalDeviceVulkanMemoryModelFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVulkanMemoryModelFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderAtomicInt64Features(x::_PhysicalDeviceShaderAtomicInt64Features, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderAtomicInt64Features(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderAtomicFloatFeaturesEXT(x::_PhysicalDeviceShaderAtomicFloatFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderAtomicFloatFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVertexAttributeDivisorFeaturesEXT(x::_PhysicalDeviceVertexAttributeDivisorFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVertexAttributeDivisorFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function QueueFamilyCheckpointPropertiesNV(x::_QueueFamilyCheckpointPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps QueueFamilyCheckpointPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CheckpointDataNV(x::_CheckpointDataNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CheckpointDataNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDepthStencilResolveProperties(x::_PhysicalDeviceDepthStencilResolveProperties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDepthStencilResolveProperties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SubpassDescriptionDepthStencilResolve(x::_SubpassDescriptionDepthStencilResolve, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SubpassDescriptionDepthStencilResolve(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageViewASTCDecodeModeEXT(x::_ImageViewASTCDecodeModeEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageViewASTCDecodeModeEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceASTCDecodeFeaturesEXT(x::_PhysicalDeviceASTCDecodeFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceASTCDecodeFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceTransformFeedbackFeaturesEXT(x::_PhysicalDeviceTransformFeedbackFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceTransformFeedbackFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceTransformFeedbackPropertiesEXT(x::_PhysicalDeviceTransformFeedbackPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceTransformFeedbackPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRasterizationStateStreamCreateInfoEXT(x::_PipelineRasterizationStateStreamCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRasterizationStateStreamCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceRepresentativeFragmentTestFeaturesNV(x::_PhysicalDeviceRepresentativeFragmentTestFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceRepresentativeFragmentTestFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRepresentativeFragmentTestStateCreateInfoNV(x::_PipelineRepresentativeFragmentTestStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRepresentativeFragmentTestStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceExclusiveScissorFeaturesNV(x::_PhysicalDeviceExclusiveScissorFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExclusiveScissorFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineViewportExclusiveScissorStateCreateInfoNV(x::_PipelineViewportExclusiveScissorStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineViewportExclusiveScissorStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceCornerSampledImageFeaturesNV(x::_PhysicalDeviceCornerSampledImageFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceCornerSampledImageFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceComputeShaderDerivativesFeaturesNV(x::_PhysicalDeviceComputeShaderDerivativesFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceComputeShaderDerivativesFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentShaderBarycentricFeaturesNV(x::_PhysicalDeviceFragmentShaderBarycentricFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentShaderBarycentricFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderImageFootprintFeaturesNV(x::_PhysicalDeviceShaderImageFootprintFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderImageFootprintFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(x::_PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ShadingRatePaletteNV(x::_ShadingRatePaletteNV)
+    (; deps) = x
+    GC.@preserve deps ShadingRatePaletteNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineViewportShadingRateImageStateCreateInfoNV(x::_PipelineViewportShadingRateImageStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineViewportShadingRateImageStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShadingRateImageFeaturesNV(x::_PhysicalDeviceShadingRateImageFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShadingRateImageFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShadingRateImagePropertiesNV(x::_PhysicalDeviceShadingRateImagePropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShadingRateImagePropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+CoarseSampleLocationNV(x::_CoarseSampleLocationNV) = CoarseSampleLocationNV(x.vks)
+
+"""
+
+"""
+function CoarseSampleOrderCustomNV(x::_CoarseSampleOrderCustomNV)
+    (; deps) = x
+    GC.@preserve deps CoarseSampleOrderCustomNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineViewportCoarseSampleOrderStateCreateInfoNV(x::_PipelineViewportCoarseSampleOrderStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineViewportCoarseSampleOrderStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMeshShaderFeaturesNV(x::_PhysicalDeviceMeshShaderFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMeshShaderFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMeshShaderPropertiesNV(x::_PhysicalDeviceMeshShaderPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMeshShaderPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+DrawMeshTasksIndirectCommandNV(x::_DrawMeshTasksIndirectCommandNV) = DrawMeshTasksIndirectCommandNV(x.vks)
+
+"""
+
+"""
+function RayTracingShaderGroupCreateInfoNV(x::_RayTracingShaderGroupCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RayTracingShaderGroupCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RayTracingShaderGroupCreateInfoKHR(x::_RayTracingShaderGroupCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RayTracingShaderGroupCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RayTracingPipelineCreateInfoNV(x::_RayTracingPipelineCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RayTracingPipelineCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RayTracingPipelineCreateInfoKHR(x::_RayTracingPipelineCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RayTracingPipelineCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function GeometryTrianglesNV(x::_GeometryTrianglesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GeometryTrianglesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function GeometryAABBNV(x::_GeometryAABBNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GeometryAABBNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+GeometryDataNV(x::_GeometryDataNV) = GeometryDataNV(x.vks)
+
+"""
+
+"""
+function GeometryNV(x::_GeometryNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps GeometryNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureInfoNV(x::_AccelerationStructureInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureCreateInfoNV(x::_AccelerationStructureCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BindAccelerationStructureMemoryInfoNV(x::_BindAccelerationStructureMemoryInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BindAccelerationStructureMemoryInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function WriteDescriptorSetAccelerationStructureKHR(x::_WriteDescriptorSetAccelerationStructureKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps WriteDescriptorSetAccelerationStructureKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function WriteDescriptorSetAccelerationStructureNV(x::_WriteDescriptorSetAccelerationStructureNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps WriteDescriptorSetAccelerationStructureNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureMemoryRequirementsInfoNV(x::_AccelerationStructureMemoryRequirementsInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureMemoryRequirementsInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceAccelerationStructureFeaturesKHR(x::_PhysicalDeviceAccelerationStructureFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceAccelerationStructureFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceRayTracingPipelineFeaturesKHR(x::_PhysicalDeviceRayTracingPipelineFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceRayTracingPipelineFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceRayQueryFeaturesKHR(x::_PhysicalDeviceRayQueryFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceRayQueryFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceAccelerationStructurePropertiesKHR(x::_PhysicalDeviceAccelerationStructurePropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceAccelerationStructurePropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceRayTracingPipelinePropertiesKHR(x::_PhysicalDeviceRayTracingPipelinePropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceRayTracingPipelinePropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceRayTracingPropertiesNV(x::_PhysicalDeviceRayTracingPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceRayTracingPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+StridedDeviceAddressRegionKHR(x::_StridedDeviceAddressRegionKHR) = StridedDeviceAddressRegionKHR(x.vks)
+
+"""
+
+"""
+TraceRaysIndirectCommandKHR(x::_TraceRaysIndirectCommandKHR) = TraceRaysIndirectCommandKHR(x.vks)
+
+"""
+
+"""
+function DrmFormatModifierPropertiesListEXT(x::_DrmFormatModifierPropertiesListEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DrmFormatModifierPropertiesListEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+DrmFormatModifierPropertiesEXT(x::_DrmFormatModifierPropertiesEXT) = DrmFormatModifierPropertiesEXT(x.vks)
+
+"""
+
+"""
+function PhysicalDeviceImageDrmFormatModifierInfoEXT(x::_PhysicalDeviceImageDrmFormatModifierInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceImageDrmFormatModifierInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageDrmFormatModifierListCreateInfoEXT(x::_ImageDrmFormatModifierListCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageDrmFormatModifierListCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageDrmFormatModifierExplicitCreateInfoEXT(x::_ImageDrmFormatModifierExplicitCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageDrmFormatModifierExplicitCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageDrmFormatModifierPropertiesEXT(x::_ImageDrmFormatModifierPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageDrmFormatModifierPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageStencilUsageCreateInfo(x::_ImageStencilUsageCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageStencilUsageCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceMemoryOverallocationCreateInfoAMD(x::_DeviceMemoryOverallocationCreateInfoAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceMemoryOverallocationCreateInfoAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentDensityMapFeaturesEXT(x::_PhysicalDeviceFragmentDensityMapFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentDensityMapFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentDensityMap2FeaturesEXT(x::_PhysicalDeviceFragmentDensityMap2FeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentDensityMap2FeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentDensityMapPropertiesEXT(x::_PhysicalDeviceFragmentDensityMapPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentDensityMapPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentDensityMap2PropertiesEXT(x::_PhysicalDeviceFragmentDensityMap2PropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentDensityMap2PropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RenderPassFragmentDensityMapCreateInfoEXT(x::_RenderPassFragmentDensityMapCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassFragmentDensityMapCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceScalarBlockLayoutFeatures(x::_PhysicalDeviceScalarBlockLayoutFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceScalarBlockLayoutFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SurfaceProtectedCapabilitiesKHR(x::_SurfaceProtectedCapabilitiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SurfaceProtectedCapabilitiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceUniformBufferStandardLayoutFeatures(x::_PhysicalDeviceUniformBufferStandardLayoutFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceUniformBufferStandardLayoutFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDepthClipEnableFeaturesEXT(x::_PhysicalDeviceDepthClipEnableFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDepthClipEnableFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRasterizationDepthClipStateCreateInfoEXT(x::_PipelineRasterizationDepthClipStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRasterizationDepthClipStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMemoryBudgetPropertiesEXT(x::_PhysicalDeviceMemoryBudgetPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMemoryBudgetPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMemoryPriorityFeaturesEXT(x::_PhysicalDeviceMemoryPriorityFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMemoryPriorityFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryPriorityAllocateInfoEXT(x::_MemoryPriorityAllocateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryPriorityAllocateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceBufferDeviceAddressFeatures(x::_PhysicalDeviceBufferDeviceAddressFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceBufferDeviceAddressFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceBufferDeviceAddressFeaturesEXT(x::_PhysicalDeviceBufferDeviceAddressFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceBufferDeviceAddressFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferDeviceAddressInfo(x::_BufferDeviceAddressInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferDeviceAddressInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferOpaqueCaptureAddressCreateInfo(x::_BufferOpaqueCaptureAddressCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferOpaqueCaptureAddressCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferDeviceAddressCreateInfoEXT(x::_BufferDeviceAddressCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferDeviceAddressCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceImageViewImageFormatInfoEXT(x::_PhysicalDeviceImageViewImageFormatInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceImageViewImageFormatInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FilterCubicImageViewImageFormatPropertiesEXT(x::_FilterCubicImageViewImageFormatPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FilterCubicImageViewImageFormatPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceImagelessFramebufferFeatures(x::_PhysicalDeviceImagelessFramebufferFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceImagelessFramebufferFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FramebufferAttachmentsCreateInfo(x::_FramebufferAttachmentsCreateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FramebufferAttachmentsCreateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FramebufferAttachmentImageInfo(x::_FramebufferAttachmentImageInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FramebufferAttachmentImageInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RenderPassAttachmentBeginInfo(x::_RenderPassAttachmentBeginInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassAttachmentBeginInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(x::_PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceCooperativeMatrixFeaturesNV(x::_PhysicalDeviceCooperativeMatrixFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceCooperativeMatrixFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceCooperativeMatrixPropertiesNV(x::_PhysicalDeviceCooperativeMatrixPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceCooperativeMatrixPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CooperativeMatrixPropertiesNV(x::_CooperativeMatrixPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CooperativeMatrixPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceYcbcrImageArraysFeaturesEXT(x::_PhysicalDeviceYcbcrImageArraysFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceYcbcrImageArraysFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageViewHandleInfoNVX(x::_ImageViewHandleInfoNVX, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageViewHandleInfoNVX(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageViewAddressPropertiesNVX(x::_ImageViewAddressPropertiesNVX, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageViewAddressPropertiesNVX(x.vks, next_types...)
+end
+
+"""
+
+"""
+PipelineCreationFeedbackEXT(x::_PipelineCreationFeedbackEXT) = PipelineCreationFeedbackEXT(x.vks)
+
+"""
+
+"""
+function PipelineCreationFeedbackCreateInfoEXT(x::_PipelineCreationFeedbackCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineCreationFeedbackCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SurfaceFullScreenExclusiveInfoEXT(x::_SurfaceFullScreenExclusiveInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SurfaceFullScreenExclusiveInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SurfaceFullScreenExclusiveWin32InfoEXT(x::_SurfaceFullScreenExclusiveWin32InfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SurfaceFullScreenExclusiveWin32InfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SurfaceCapabilitiesFullScreenExclusiveEXT(x::_SurfaceCapabilitiesFullScreenExclusiveEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SurfaceCapabilitiesFullScreenExclusiveEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePerformanceQueryFeaturesKHR(x::_PhysicalDevicePerformanceQueryFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePerformanceQueryFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePerformanceQueryPropertiesKHR(x::_PhysicalDevicePerformanceQueryPropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePerformanceQueryPropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PerformanceCounterKHR(x::_PerformanceCounterKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PerformanceCounterKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PerformanceCounterDescriptionKHR(x::_PerformanceCounterDescriptionKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PerformanceCounterDescriptionKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function QueryPoolPerformanceCreateInfoKHR(x::_QueryPoolPerformanceCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps QueryPoolPerformanceCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AcquireProfilingLockInfoKHR(x::_AcquireProfilingLockInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AcquireProfilingLockInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PerformanceQuerySubmitInfoKHR(x::_PerformanceQuerySubmitInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PerformanceQuerySubmitInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function HeadlessSurfaceCreateInfoEXT(x::_HeadlessSurfaceCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps HeadlessSurfaceCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceCoverageReductionModeFeaturesNV(x::_PhysicalDeviceCoverageReductionModeFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceCoverageReductionModeFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineCoverageReductionStateCreateInfoNV(x::_PipelineCoverageReductionStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineCoverageReductionStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FramebufferMixedSamplesCombinationNV(x::_FramebufferMixedSamplesCombinationNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FramebufferMixedSamplesCombinationNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(x::_PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(x.vks, next_types...)
+end
+
+"""
+
+"""
+PerformanceValueINTEL(x::_PerformanceValueINTEL) = PerformanceValueINTEL(x.vks)
+
+"""
+
+"""
+function InitializePerformanceApiInfoINTEL(x::_InitializePerformanceApiInfoINTEL, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps InitializePerformanceApiInfoINTEL(x.vks, next_types...)
+end
+
+"""
+
+"""
+function QueryPoolPerformanceQueryCreateInfoINTEL(x::_QueryPoolPerformanceQueryCreateInfoINTEL, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps QueryPoolPerformanceQueryCreateInfoINTEL(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PerformanceMarkerInfoINTEL(x::_PerformanceMarkerInfoINTEL, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PerformanceMarkerInfoINTEL(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PerformanceStreamMarkerInfoINTEL(x::_PerformanceStreamMarkerInfoINTEL, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PerformanceStreamMarkerInfoINTEL(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PerformanceOverrideInfoINTEL(x::_PerformanceOverrideInfoINTEL, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PerformanceOverrideInfoINTEL(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PerformanceConfigurationAcquireInfoINTEL(x::_PerformanceConfigurationAcquireInfoINTEL, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PerformanceConfigurationAcquireInfoINTEL(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderClockFeaturesKHR(x::_PhysicalDeviceShaderClockFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderClockFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceIndexTypeUint8FeaturesEXT(x::_PhysicalDeviceIndexTypeUint8FeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceIndexTypeUint8FeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderSMBuiltinsPropertiesNV(x::_PhysicalDeviceShaderSMBuiltinsPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderSMBuiltinsPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderSMBuiltinsFeaturesNV(x::_PhysicalDeviceShaderSMBuiltinsFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderSMBuiltinsFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentShaderInterlockFeaturesEXT(x::_PhysicalDeviceFragmentShaderInterlockFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentShaderInterlockFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSeparateDepthStencilLayoutsFeatures(x::_PhysicalDeviceSeparateDepthStencilLayoutsFeatures, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSeparateDepthStencilLayoutsFeatures(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AttachmentReferenceStencilLayout(x::_AttachmentReferenceStencilLayout, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AttachmentReferenceStencilLayout(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AttachmentDescriptionStencilLayout(x::_AttachmentDescriptionStencilLayout, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AttachmentDescriptionStencilLayout(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(x::_PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineInfoKHR(x::_PipelineInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineExecutablePropertiesKHR(x::_PipelineExecutablePropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineExecutablePropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineExecutableInfoKHR(x::_PipelineExecutableInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineExecutableInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineExecutableStatisticKHR(x::_PipelineExecutableStatisticKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineExecutableStatisticKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineExecutableInternalRepresentationKHR(x::_PipelineExecutableInternalRepresentationKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineExecutableInternalRepresentationKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(x::_PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceTexelBufferAlignmentFeaturesEXT(x::_PhysicalDeviceTexelBufferAlignmentFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceTexelBufferAlignmentFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceTexelBufferAlignmentPropertiesEXT(x::_PhysicalDeviceTexelBufferAlignmentPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceTexelBufferAlignmentPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSubgroupSizeControlFeaturesEXT(x::_PhysicalDeviceSubgroupSizeControlFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSubgroupSizeControlFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSubgroupSizeControlPropertiesEXT(x::_PhysicalDeviceSubgroupSizeControlPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSubgroupSizeControlPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(x::_PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryOpaqueCaptureAddressAllocateInfo(x::_MemoryOpaqueCaptureAddressAllocateInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryOpaqueCaptureAddressAllocateInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceMemoryOpaqueCaptureAddressInfo(x::_DeviceMemoryOpaqueCaptureAddressInfo, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceMemoryOpaqueCaptureAddressInfo(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceLineRasterizationFeaturesEXT(x::_PhysicalDeviceLineRasterizationFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceLineRasterizationFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceLineRasterizationPropertiesEXT(x::_PhysicalDeviceLineRasterizationPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceLineRasterizationPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRasterizationLineStateCreateInfoEXT(x::_PipelineRasterizationLineStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRasterizationLineStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevicePipelineCreationCacheControlFeaturesEXT(x::_PhysicalDevicePipelineCreationCacheControlFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevicePipelineCreationCacheControlFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVulkan11Features(x::_PhysicalDeviceVulkan11Features, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVulkan11Features(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVulkan11Properties(x::_PhysicalDeviceVulkan11Properties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVulkan11Properties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVulkan12Features(x::_PhysicalDeviceVulkan12Features, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVulkan12Features(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVulkan12Properties(x::_PhysicalDeviceVulkan12Properties, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVulkan12Properties(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineCompilerControlCreateInfoAMD(x::_PipelineCompilerControlCreateInfoAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineCompilerControlCreateInfoAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceCoherentMemoryFeaturesAMD(x::_PhysicalDeviceCoherentMemoryFeaturesAMD, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceCoherentMemoryFeaturesAMD(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceToolPropertiesEXT(x::_PhysicalDeviceToolPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceToolPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SamplerCustomBorderColorCreateInfoEXT(x::_SamplerCustomBorderColorCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SamplerCustomBorderColorCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceCustomBorderColorPropertiesEXT(x::_PhysicalDeviceCustomBorderColorPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceCustomBorderColorPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceCustomBorderColorFeaturesEXT(x::_PhysicalDeviceCustomBorderColorFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceCustomBorderColorFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureGeometryTrianglesDataKHR(x::_AccelerationStructureGeometryTrianglesDataKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureGeometryTrianglesDataKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureGeometryAabbsDataKHR(x::_AccelerationStructureGeometryAabbsDataKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureGeometryAabbsDataKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureGeometryInstancesDataKHR(x::_AccelerationStructureGeometryInstancesDataKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureGeometryInstancesDataKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureGeometryKHR(x::_AccelerationStructureGeometryKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureGeometryKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureBuildGeometryInfoKHR(x::_AccelerationStructureBuildGeometryInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureBuildGeometryInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+AccelerationStructureBuildRangeInfoKHR(x::_AccelerationStructureBuildRangeInfoKHR) = AccelerationStructureBuildRangeInfoKHR(x.vks)
+
+"""
+
+"""
+function AccelerationStructureCreateInfoKHR(x::_AccelerationStructureCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+AabbPositionsKHR(x::_AabbPositionsKHR) = AabbPositionsKHR(x.vks)
+
+"""
+
+"""
+TransformMatrixKHR(x::_TransformMatrixKHR) = TransformMatrixKHR(x.vks)
+
+"""
+
+"""
+AccelerationStructureInstanceKHR(x::_AccelerationStructureInstanceKHR) = AccelerationStructureInstanceKHR(x.vks)
+
+"""
+
+"""
+function AccelerationStructureDeviceAddressInfoKHR(x::_AccelerationStructureDeviceAddressInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureDeviceAddressInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureVersionInfoKHR(x::_AccelerationStructureVersionInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureVersionInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyAccelerationStructureInfoKHR(x::_CopyAccelerationStructureInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyAccelerationStructureInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyAccelerationStructureToMemoryInfoKHR(x::_CopyAccelerationStructureToMemoryInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyAccelerationStructureToMemoryInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyMemoryToAccelerationStructureInfoKHR(x::_CopyMemoryToAccelerationStructureInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyMemoryToAccelerationStructureInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RayTracingPipelineInterfaceCreateInfoKHR(x::_RayTracingPipelineInterfaceCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RayTracingPipelineInterfaceCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineLibraryCreateInfoKHR(x::_PipelineLibraryCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineLibraryCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceExtendedDynamicStateFeaturesEXT(x::_PhysicalDeviceExtendedDynamicStateFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExtendedDynamicStateFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceExtendedDynamicState2FeaturesEXT(x::_PhysicalDeviceExtendedDynamicState2FeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceExtendedDynamicState2FeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function RenderPassTransformBeginInfoQCOM(x::_RenderPassTransformBeginInfoQCOM, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps RenderPassTransformBeginInfoQCOM(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyCommandTransformInfoQCOM(x::_CopyCommandTransformInfoQCOM, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyCommandTransformInfoQCOM(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandBufferInheritanceRenderPassTransformInfoQCOM(x::_CommandBufferInheritanceRenderPassTransformInfoQCOM, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandBufferInheritanceRenderPassTransformInfoQCOM(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceDiagnosticsConfigFeaturesNV(x::_PhysicalDeviceDiagnosticsConfigFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceDiagnosticsConfigFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DeviceDiagnosticsConfigCreateInfoNV(x::_DeviceDiagnosticsConfigCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DeviceDiagnosticsConfigCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(x::_PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceRobustness2FeaturesEXT(x::_PhysicalDeviceRobustness2FeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceRobustness2FeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceRobustness2PropertiesEXT(x::_PhysicalDeviceRobustness2PropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceRobustness2PropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceImageRobustnessFeaturesEXT(x::_PhysicalDeviceImageRobustnessFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceImageRobustnessFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(x::_PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDevice4444FormatsFeaturesEXT(x::_PhysicalDevice4444FormatsFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDevice4444FormatsFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferCopy2KHR(x::_BufferCopy2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferCopy2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageCopy2KHR(x::_ImageCopy2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageCopy2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageBlit2KHR(x::_ImageBlit2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageBlit2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferImageCopy2KHR(x::_BufferImageCopy2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferImageCopy2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageResolve2KHR(x::_ImageResolve2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageResolve2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyBufferInfo2KHR(x::_CopyBufferInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyBufferInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyImageInfo2KHR(x::_CopyImageInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyImageInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BlitImageInfo2KHR(x::_BlitImageInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BlitImageInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyBufferToImageInfo2KHR(x::_CopyBufferToImageInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyBufferToImageInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CopyImageToBufferInfo2KHR(x::_CopyImageToBufferInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CopyImageToBufferInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ResolveImageInfo2KHR(x::_ResolveImageInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ResolveImageInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(x::_PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function FragmentShadingRateAttachmentInfoKHR(x::_FragmentShadingRateAttachmentInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps FragmentShadingRateAttachmentInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineFragmentShadingRateStateCreateInfoKHR(x::_PipelineFragmentShadingRateStateCreateInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineFragmentShadingRateStateCreateInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentShadingRateFeaturesKHR(x::_PhysicalDeviceFragmentShadingRateFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentShadingRateFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentShadingRatePropertiesKHR(x::_PhysicalDeviceFragmentShadingRatePropertiesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentShadingRatePropertiesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentShadingRateKHR(x::_PhysicalDeviceFragmentShadingRateKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentShadingRateKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceShaderTerminateInvocationFeaturesKHR(x::_PhysicalDeviceShaderTerminateInvocationFeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceShaderTerminateInvocationFeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(x::_PhysicalDeviceFragmentShadingRateEnumsFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(x::_PhysicalDeviceFragmentShadingRateEnumsPropertiesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineFragmentShadingRateEnumStateCreateInfoNV(x::_PipelineFragmentShadingRateEnumStateCreateInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineFragmentShadingRateEnumStateCreateInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function AccelerationStructureBuildSizesInfoKHR(x::_AccelerationStructureBuildSizesInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps AccelerationStructureBuildSizesInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(x::_PhysicalDeviceMutableDescriptorTypeFeaturesVALVE, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MutableDescriptorTypeListVALVE(x::_MutableDescriptorTypeListVALVE)
+    (; deps) = x
+    GC.@preserve deps MutableDescriptorTypeListVALVE(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MutableDescriptorTypeCreateInfoVALVE(x::_MutableDescriptorTypeCreateInfoVALVE, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MutableDescriptorTypeCreateInfoVALVE(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceVertexInputDynamicStateFeaturesEXT(x::_PhysicalDeviceVertexInputDynamicStateFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceVertexInputDynamicStateFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function VertexInputBindingDescription2EXT(x::_VertexInputBindingDescription2EXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps VertexInputBindingDescription2EXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function VertexInputAttributeDescription2EXT(x::_VertexInputAttributeDescription2EXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps VertexInputAttributeDescription2EXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceColorWriteEnableFeaturesEXT(x::_PhysicalDeviceColorWriteEnableFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceColorWriteEnableFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineColorWriteCreateInfoEXT(x::_PipelineColorWriteCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineColorWriteCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function MemoryBarrier2KHR(x::_MemoryBarrier2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps MemoryBarrier2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function ImageMemoryBarrier2KHR(x::_ImageMemoryBarrier2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps ImageMemoryBarrier2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function BufferMemoryBarrier2KHR(x::_BufferMemoryBarrier2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps BufferMemoryBarrier2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function DependencyInfoKHR(x::_DependencyInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps DependencyInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SemaphoreSubmitInfoKHR(x::_SemaphoreSubmitInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SemaphoreSubmitInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandBufferSubmitInfoKHR(x::_CommandBufferSubmitInfoKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandBufferSubmitInfoKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function SubmitInfo2KHR(x::_SubmitInfo2KHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps SubmitInfo2KHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function QueueFamilyCheckpointProperties2NV(x::_QueueFamilyCheckpointProperties2NV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps QueueFamilyCheckpointProperties2NV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CheckpointData2NV(x::_CheckpointData2NV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CheckpointData2NV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceSynchronization2FeaturesKHR(x::_PhysicalDeviceSynchronization2FeaturesKHR, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceSynchronization2FeaturesKHR(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceInheritedViewportScissorFeaturesNV(x::_PhysicalDeviceInheritedViewportScissorFeaturesNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceInheritedViewportScissorFeaturesNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function CommandBufferInheritanceViewportScissorInfoNV(x::_CommandBufferInheritanceViewportScissorInfoNV, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps CommandBufferInheritanceViewportScissorInfoNV(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(x::_PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceProvokingVertexFeaturesEXT(x::_PhysicalDeviceProvokingVertexFeaturesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceProvokingVertexFeaturesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PhysicalDeviceProvokingVertexPropertiesEXT(x::_PhysicalDeviceProvokingVertexPropertiesEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PhysicalDeviceProvokingVertexPropertiesEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+function PipelineRasterizationProvokingVertexStateCreateInfoEXT(x::_PipelineRasterizationProvokingVertexStateCreateInfoEXT, next_types::Type...)
+    (; deps) = x
+    GC.@preserve deps PipelineRasterizationProvokingVertexStateCreateInfoEXT(x.vks, next_types...)
+end
+
+"""
+
+"""
+BaseOutStructure(x::VkBaseOutStructure, next_types::Type...) = BaseOutStructure(load_next_chain(x.pNext, next_types...))
+
+"""
+
+"""
+BaseInStructure(x::VkBaseInStructure, next_types::Type...) = BaseInStructure(load_next_chain(x.pNext, next_types...))
 
 """
 
@@ -33187,7 +37559,7 @@ LayerProperties(x::VkLayerProperties) = LayerProperties(from_vk(String, x.layerN
 """
 
 """
-ApplicationInfo(x::VkApplicationInfo, next_types...) = ApplicationInfo(load_next_chain(x.pNext, next_types...), unsafe_string(x.pApplicationName), from_vk(VersionNumber, x.applicationVersion), unsafe_string(x.pEngineName), from_vk(VersionNumber, x.engineVersion), from_vk(VersionNumber, x.apiVersion))
+ApplicationInfo(x::VkApplicationInfo, next_types::Type...) = ApplicationInfo(load_next_chain(x.pNext, next_types...), unsafe_string(x.pApplicationName), from_vk(VersionNumber, x.applicationVersion), unsafe_string(x.pEngineName), from_vk(VersionNumber, x.engineVersion), from_vk(VersionNumber, x.apiVersion))
 
 """
 
@@ -33197,17 +37569,17 @@ AllocationCallbacks(x::VkAllocationCallbacks) = AllocationCallbacks(x.pUserData,
 """
 
 """
-DeviceQueueCreateInfo(x::VkDeviceQueueCreateInfo, next_types...) = DeviceQueueCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.queueFamilyIndex, unsafe_wrap(Vector{Float32}, x.pQueuePriorities, x.queueCount; own = true))
+DeviceQueueCreateInfo(x::VkDeviceQueueCreateInfo, next_types::Type...) = DeviceQueueCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.queueFamilyIndex, unsafe_wrap(Vector{Float32}, x.pQueuePriorities, x.queueCount; own = true))
 
 """
 
 """
-DeviceCreateInfo(x::VkDeviceCreateInfo, next_types...) = DeviceCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DeviceQueueCreateInfo}, x.pQueueCreateInfos, x.queueCreateInfoCount; own = true), unsafe_wrap(Vector{String}, x.ppEnabledLayerNames, x.enabledLayerCount; own = true), unsafe_wrap(Vector{String}, x.ppEnabledExtensionNames, x.enabledExtensionCount; own = true), PhysicalDeviceFeatures(x.pEnabledFeatures))
+DeviceCreateInfo(x::VkDeviceCreateInfo, next_types::Type...) = DeviceCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DeviceQueueCreateInfo}, x.pQueueCreateInfos, x.queueCreateInfoCount; own = true), unsafe_wrap(Vector{String}, x.ppEnabledLayerNames, x.enabledLayerCount; own = true), unsafe_wrap(Vector{String}, x.ppEnabledExtensionNames, x.enabledExtensionCount; own = true), PhysicalDeviceFeatures(x.pEnabledFeatures))
 
 """
 
 """
-InstanceCreateInfo(x::VkInstanceCreateInfo, next_types...) = InstanceCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, ApplicationInfo(x.pApplicationInfo), unsafe_wrap(Vector{String}, x.ppEnabledLayerNames, x.enabledLayerCount; own = true), unsafe_wrap(Vector{String}, x.ppEnabledExtensionNames, x.enabledExtensionCount; own = true))
+InstanceCreateInfo(x::VkInstanceCreateInfo, next_types::Type...) = InstanceCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, ApplicationInfo(x.pApplicationInfo), unsafe_wrap(Vector{String}, x.ppEnabledLayerNames, x.enabledLayerCount; own = true), unsafe_wrap(Vector{String}, x.ppEnabledExtensionNames, x.enabledExtensionCount; own = true))
 
 """
 
@@ -33222,7 +37594,7 @@ PhysicalDeviceMemoryProperties(x::VkPhysicalDeviceMemoryProperties) = PhysicalDe
 """
 
 """
-MemoryAllocateInfo(x::VkMemoryAllocateInfo, next_types...) = MemoryAllocateInfo(load_next_chain(x.pNext, next_types...), x.allocationSize, x.memoryTypeIndex)
+MemoryAllocateInfo(x::VkMemoryAllocateInfo, next_types::Type...) = MemoryAllocateInfo(load_next_chain(x.pNext, next_types...), x.allocationSize, x.memoryTypeIndex)
 
 """
 
@@ -33252,7 +37624,7 @@ MemoryHeap(x::VkMemoryHeap) = MemoryHeap(x.size, x.flags)
 """
 
 """
-MappedMemoryRange(x::VkMappedMemoryRange, next_types...) = MappedMemoryRange(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory), x.offset, x.size)
+MappedMemoryRange(x::VkMappedMemoryRange, next_types::Type...) = MappedMemoryRange(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory), x.offset, x.size)
 
 """
 
@@ -33277,22 +37649,22 @@ DescriptorImageInfo(x::VkDescriptorImageInfo) = DescriptorImageInfo(Sampler(x.sa
 """
 
 """
-WriteDescriptorSet(x::VkWriteDescriptorSet, next_types...) = WriteDescriptorSet(load_next_chain(x.pNext, next_types...), DescriptorSet(x.dstSet), x.dstBinding, x.dstArrayElement, x.descriptorType, unsafe_wrap(Vector{DescriptorImageInfo}, x.pImageInfo, x.descriptorCount; own = true), unsafe_wrap(Vector{DescriptorBufferInfo}, x.pBufferInfo, x.descriptorCount; own = true), unsafe_wrap(Vector{BufferView}, x.pTexelBufferView, x.descriptorCount; own = true))
+WriteDescriptorSet(x::VkWriteDescriptorSet, next_types::Type...) = WriteDescriptorSet(load_next_chain(x.pNext, next_types...), DescriptorSet(x.dstSet), x.dstBinding, x.dstArrayElement, x.descriptorType, unsafe_wrap(Vector{DescriptorImageInfo}, x.pImageInfo, x.descriptorCount; own = true), unsafe_wrap(Vector{DescriptorBufferInfo}, x.pBufferInfo, x.descriptorCount; own = true), unsafe_wrap(Vector{BufferView}, x.pTexelBufferView, x.descriptorCount; own = true))
 
 """
 
 """
-CopyDescriptorSet(x::VkCopyDescriptorSet, next_types...) = CopyDescriptorSet(load_next_chain(x.pNext, next_types...), DescriptorSet(x.srcSet), x.srcBinding, x.srcArrayElement, DescriptorSet(x.dstSet), x.dstBinding, x.dstArrayElement, x.descriptorCount)
+CopyDescriptorSet(x::VkCopyDescriptorSet, next_types::Type...) = CopyDescriptorSet(load_next_chain(x.pNext, next_types...), DescriptorSet(x.srcSet), x.srcBinding, x.srcArrayElement, DescriptorSet(x.dstSet), x.dstBinding, x.dstArrayElement, x.descriptorCount)
 
 """
 
 """
-BufferCreateInfo(x::VkBufferCreateInfo, next_types...) = BufferCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.size, x.usage, x.sharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true))
+BufferCreateInfo(x::VkBufferCreateInfo, next_types::Type...) = BufferCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.size, x.usage, x.sharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true))
 
 """
 
 """
-BufferViewCreateInfo(x::VkBufferViewCreateInfo, next_types...) = BufferViewCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, Buffer(x.buffer), x.format, x.offset, x.range)
+BufferViewCreateInfo(x::VkBufferViewCreateInfo, next_types::Type...) = BufferViewCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, Buffer(x.buffer), x.format, x.offset, x.range)
 
 """
 
@@ -33312,22 +37684,22 @@ ImageSubresourceRange(x::VkImageSubresourceRange) = ImageSubresourceRange(x.aspe
 """
 
 """
-MemoryBarrier(x::VkMemoryBarrier, next_types...) = MemoryBarrier(load_next_chain(x.pNext, next_types...), x.srcAccessMask, x.dstAccessMask)
+MemoryBarrier(x::VkMemoryBarrier, next_types::Type...) = MemoryBarrier(load_next_chain(x.pNext, next_types...), x.srcAccessMask, x.dstAccessMask)
 
 """
 
 """
-BufferMemoryBarrier(x::VkBufferMemoryBarrier, next_types...) = BufferMemoryBarrier(load_next_chain(x.pNext, next_types...), x.srcAccessMask, x.dstAccessMask, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Buffer(x.buffer), x.offset, x.size)
+BufferMemoryBarrier(x::VkBufferMemoryBarrier, next_types::Type...) = BufferMemoryBarrier(load_next_chain(x.pNext, next_types...), x.srcAccessMask, x.dstAccessMask, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Buffer(x.buffer), x.offset, x.size)
 
 """
 
 """
-ImageMemoryBarrier(x::VkImageMemoryBarrier, next_types...) = ImageMemoryBarrier(load_next_chain(x.pNext, next_types...), x.srcAccessMask, x.dstAccessMask, x.oldLayout, x.newLayout, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Image(x.image), ImageSubresourceRange(x.subresourceRange))
+ImageMemoryBarrier(x::VkImageMemoryBarrier, next_types::Type...) = ImageMemoryBarrier(load_next_chain(x.pNext, next_types...), x.srcAccessMask, x.dstAccessMask, x.oldLayout, x.newLayout, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Image(x.image), ImageSubresourceRange(x.subresourceRange))
 
 """
 
 """
-ImageCreateInfo(x::VkImageCreateInfo, next_types...) = ImageCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.imageType, x.format, Extent3D(x.extent), x.mipLevels, x.arrayLayers, SampleCountFlag(UInt32(x.samples)), x.tiling, x.usage, x.sharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true), x.initialLayout)
+ImageCreateInfo(x::VkImageCreateInfo, next_types::Type...) = ImageCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.imageType, x.format, Extent3D(x.extent), x.mipLevels, x.arrayLayers, SampleCountFlag(UInt32(x.samples)), x.tiling, x.usage, x.sharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true), x.initialLayout)
 
 """
 
@@ -33337,7 +37709,7 @@ SubresourceLayout(x::VkSubresourceLayout) = SubresourceLayout(x.offset, x.size, 
 """
 
 """
-ImageViewCreateInfo(x::VkImageViewCreateInfo, next_types...) = ImageViewCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, Image(x.image), x.viewType, x.format, ComponentMapping(x.components), ImageSubresourceRange(x.subresourceRange))
+ImageViewCreateInfo(x::VkImageViewCreateInfo, next_types::Type...) = ImageViewCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, Image(x.image), x.viewType, x.format, ComponentMapping(x.components), ImageSubresourceRange(x.subresourceRange))
 
 """
 
@@ -33372,7 +37744,7 @@ SparseImageMemoryBindInfo(x::VkSparseImageMemoryBindInfo) = SparseImageMemoryBin
 """
 
 """
-BindSparseInfo(x::VkBindSparseInfo, next_types...) = BindSparseInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Semaphore}, x.pWaitSemaphores, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{SparseBufferMemoryBindInfo}, x.pBufferBinds, x.bufferBindCount; own = true), unsafe_wrap(Vector{SparseImageOpaqueMemoryBindInfo}, x.pImageOpaqueBinds, x.imageOpaqueBindCount; own = true), unsafe_wrap(Vector{SparseImageMemoryBindInfo}, x.pImageBinds, x.imageBindCount; own = true), unsafe_wrap(Vector{Semaphore}, x.pSignalSemaphores, x.signalSemaphoreCount; own = true))
+BindSparseInfo(x::VkBindSparseInfo, next_types::Type...) = BindSparseInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Semaphore}, x.pWaitSemaphores, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{SparseBufferMemoryBindInfo}, x.pBufferBinds, x.bufferBindCount; own = true), unsafe_wrap(Vector{SparseImageOpaqueMemoryBindInfo}, x.pImageOpaqueBinds, x.imageOpaqueBindCount; own = true), unsafe_wrap(Vector{SparseImageMemoryBindInfo}, x.pImageBinds, x.imageBindCount; own = true), unsafe_wrap(Vector{Semaphore}, x.pSignalSemaphores, x.signalSemaphoreCount; own = true))
 
 """
 
@@ -33397,7 +37769,7 @@ ImageResolve(x::VkImageResolve) = ImageResolve(ImageSubresourceLayers(x.srcSubre
 """
 
 """
-ShaderModuleCreateInfo(x::VkShaderModuleCreateInfo, next_types...) = ShaderModuleCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.codeSize, unsafe_wrap(Vector{UInt32}, x.pCode, x.codeSize ÷ 4; own = true))
+ShaderModuleCreateInfo(x::VkShaderModuleCreateInfo, next_types::Type...) = ShaderModuleCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.codeSize, unsafe_wrap(Vector{UInt32}, x.pCode, x.codeSize ÷ 4; own = true))
 
 """
 
@@ -33407,7 +37779,7 @@ DescriptorSetLayoutBinding(x::VkDescriptorSetLayoutBinding) = DescriptorSetLayou
 """
 
 """
-DescriptorSetLayoutCreateInfo(x::VkDescriptorSetLayoutCreateInfo, next_types...) = DescriptorSetLayoutCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DescriptorSetLayoutBinding}, x.pBindings, x.bindingCount; own = true))
+DescriptorSetLayoutCreateInfo(x::VkDescriptorSetLayoutCreateInfo, next_types::Type...) = DescriptorSetLayoutCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DescriptorSetLayoutBinding}, x.pBindings, x.bindingCount; own = true))
 
 """
 
@@ -33417,12 +37789,12 @@ DescriptorPoolSize(x::VkDescriptorPoolSize) = DescriptorPoolSize(x.type, x.descr
 """
 
 """
-DescriptorPoolCreateInfo(x::VkDescriptorPoolCreateInfo, next_types...) = DescriptorPoolCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.maxSets, unsafe_wrap(Vector{DescriptorPoolSize}, x.pPoolSizes, x.poolSizeCount; own = true))
+DescriptorPoolCreateInfo(x::VkDescriptorPoolCreateInfo, next_types::Type...) = DescriptorPoolCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.maxSets, unsafe_wrap(Vector{DescriptorPoolSize}, x.pPoolSizes, x.poolSizeCount; own = true))
 
 """
 
 """
-DescriptorSetAllocateInfo(x::VkDescriptorSetAllocateInfo, next_types...) = DescriptorSetAllocateInfo(load_next_chain(x.pNext, next_types...), DescriptorPool(x.descriptorPool), unsafe_wrap(Vector{DescriptorSetLayout}, x.pSetLayouts, x.descriptorSetCount; own = true))
+DescriptorSetAllocateInfo(x::VkDescriptorSetAllocateInfo, next_types::Type...) = DescriptorSetAllocateInfo(load_next_chain(x.pNext, next_types...), DescriptorPool(x.descriptorPool), unsafe_wrap(Vector{DescriptorSetLayout}, x.pSetLayouts, x.descriptorSetCount; own = true))
 
 """
 
@@ -33437,12 +37809,12 @@ SpecializationInfo(x::VkSpecializationInfo) = SpecializationInfo(unsafe_wrap(Vec
 """
 
 """
-PipelineShaderStageCreateInfo(x::VkPipelineShaderStageCreateInfo, next_types...) = PipelineShaderStageCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, ShaderStageFlag(UInt32(x.stage)), ShaderModule(x._module), unsafe_string(x.pName), SpecializationInfo(x.pSpecializationInfo))
+PipelineShaderStageCreateInfo(x::VkPipelineShaderStageCreateInfo, next_types::Type...) = PipelineShaderStageCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, ShaderStageFlag(UInt32(x.stage)), ShaderModule(x._module), unsafe_string(x.pName), SpecializationInfo(x.pSpecializationInfo))
 
 """
 
 """
-ComputePipelineCreateInfo(x::VkComputePipelineCreateInfo, next_types...) = ComputePipelineCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, PipelineShaderStageCreateInfo(x.stage), PipelineLayout(x.layout), Pipeline(x.basePipelineHandle), x.basePipelineIndex)
+ComputePipelineCreateInfo(x::VkComputePipelineCreateInfo, next_types::Type...) = ComputePipelineCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, PipelineShaderStageCreateInfo(x.stage), PipelineLayout(x.layout), Pipeline(x.basePipelineHandle), x.basePipelineIndex)
 
 """
 
@@ -33457,32 +37829,32 @@ VertexInputAttributeDescription(x::VkVertexInputAttributeDescription) = VertexIn
 """
 
 """
-PipelineVertexInputStateCreateInfo(x::VkPipelineVertexInputStateCreateInfo, next_types...) = PipelineVertexInputStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{VertexInputBindingDescription}, x.pVertexBindingDescriptions, x.vertexBindingDescriptionCount; own = true), unsafe_wrap(Vector{VertexInputAttributeDescription}, x.pVertexAttributeDescriptions, x.vertexAttributeDescriptionCount; own = true))
+PipelineVertexInputStateCreateInfo(x::VkPipelineVertexInputStateCreateInfo, next_types::Type...) = PipelineVertexInputStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{VertexInputBindingDescription}, x.pVertexBindingDescriptions, x.vertexBindingDescriptionCount; own = true), unsafe_wrap(Vector{VertexInputAttributeDescription}, x.pVertexAttributeDescriptions, x.vertexAttributeDescriptionCount; own = true))
 
 """
 
 """
-PipelineInputAssemblyStateCreateInfo(x::VkPipelineInputAssemblyStateCreateInfo, next_types...) = PipelineInputAssemblyStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.topology, from_vk(Bool, x.primitiveRestartEnable))
+PipelineInputAssemblyStateCreateInfo(x::VkPipelineInputAssemblyStateCreateInfo, next_types::Type...) = PipelineInputAssemblyStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.topology, from_vk(Bool, x.primitiveRestartEnable))
 
 """
 
 """
-PipelineTessellationStateCreateInfo(x::VkPipelineTessellationStateCreateInfo, next_types...) = PipelineTessellationStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.patchControlPoints)
+PipelineTessellationStateCreateInfo(x::VkPipelineTessellationStateCreateInfo, next_types::Type...) = PipelineTessellationStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.patchControlPoints)
 
 """
 
 """
-PipelineViewportStateCreateInfo(x::VkPipelineViewportStateCreateInfo, next_types...) = PipelineViewportStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{Viewport}, x.pViewports, x.viewportCount; own = true), unsafe_wrap(Vector{Rect2D}, x.pScissors, x.scissorCount; own = true))
+PipelineViewportStateCreateInfo(x::VkPipelineViewportStateCreateInfo, next_types::Type...) = PipelineViewportStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{Viewport}, x.pViewports, x.viewportCount; own = true), unsafe_wrap(Vector{Rect2D}, x.pScissors, x.scissorCount; own = true))
 
 """
 
 """
-PipelineRasterizationStateCreateInfo(x::VkPipelineRasterizationStateCreateInfo, next_types...) = PipelineRasterizationStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.depthClampEnable), from_vk(Bool, x.rasterizerDiscardEnable), x.polygonMode, x.cullMode, x.frontFace, from_vk(Bool, x.depthBiasEnable), x.depthBiasConstantFactor, x.depthBiasClamp, x.depthBiasSlopeFactor, x.lineWidth)
+PipelineRasterizationStateCreateInfo(x::VkPipelineRasterizationStateCreateInfo, next_types::Type...) = PipelineRasterizationStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.depthClampEnable), from_vk(Bool, x.rasterizerDiscardEnable), x.polygonMode, x.cullMode, x.frontFace, from_vk(Bool, x.depthBiasEnable), x.depthBiasConstantFactor, x.depthBiasClamp, x.depthBiasSlopeFactor, x.lineWidth)
 
 """
 
 """
-PipelineMultisampleStateCreateInfo(x::VkPipelineMultisampleStateCreateInfo, next_types...) = PipelineMultisampleStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, SampleCountFlag(UInt32(x.rasterizationSamples)), from_vk(Bool, x.sampleShadingEnable), x.minSampleShading, unsafe_wrap(Vector{UInt32}, x.pSampleMask, (x.rasterizationSamples + 31) ÷ 32; own = true), from_vk(Bool, x.alphaToCoverageEnable), from_vk(Bool, x.alphaToOneEnable))
+PipelineMultisampleStateCreateInfo(x::VkPipelineMultisampleStateCreateInfo, next_types::Type...) = PipelineMultisampleStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, SampleCountFlag(UInt32(x.rasterizationSamples)), from_vk(Bool, x.sampleShadingEnable), x.minSampleShading, unsafe_wrap(Vector{UInt32}, x.pSampleMask, (x.rasterizationSamples + 31) ÷ 32; own = true), from_vk(Bool, x.alphaToCoverageEnable), from_vk(Bool, x.alphaToOneEnable))
 
 """
 
@@ -33492,12 +37864,12 @@ PipelineColorBlendAttachmentState(x::VkPipelineColorBlendAttachmentState) = Pipe
 """
 
 """
-PipelineColorBlendStateCreateInfo(x::VkPipelineColorBlendStateCreateInfo, next_types...) = PipelineColorBlendStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.logicOpEnable), x.logicOp, unsafe_wrap(Vector{PipelineColorBlendAttachmentState}, x.pAttachments, x.attachmentCount; own = true), x.blendConstants)
+PipelineColorBlendStateCreateInfo(x::VkPipelineColorBlendStateCreateInfo, next_types::Type...) = PipelineColorBlendStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.logicOpEnable), x.logicOp, unsafe_wrap(Vector{PipelineColorBlendAttachmentState}, x.pAttachments, x.attachmentCount; own = true), x.blendConstants)
 
 """
 
 """
-PipelineDynamicStateCreateInfo(x::VkPipelineDynamicStateCreateInfo, next_types...) = PipelineDynamicStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DynamicState}, x.pDynamicStates, x.dynamicStateCount; own = true))
+PipelineDynamicStateCreateInfo(x::VkPipelineDynamicStateCreateInfo, next_types::Type...) = PipelineDynamicStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DynamicState}, x.pDynamicStates, x.dynamicStateCount; own = true))
 
 """
 
@@ -33507,17 +37879,17 @@ StencilOpState(x::VkStencilOpState) = StencilOpState(x.failOp, x.passOp, x.depth
 """
 
 """
-PipelineDepthStencilStateCreateInfo(x::VkPipelineDepthStencilStateCreateInfo, next_types...) = PipelineDepthStencilStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.depthTestEnable), from_vk(Bool, x.depthWriteEnable), x.depthCompareOp, from_vk(Bool, x.depthBoundsTestEnable), from_vk(Bool, x.stencilTestEnable), StencilOpState(x.front), StencilOpState(x.back), x.minDepthBounds, x.maxDepthBounds)
+PipelineDepthStencilStateCreateInfo(x::VkPipelineDepthStencilStateCreateInfo, next_types::Type...) = PipelineDepthStencilStateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.depthTestEnable), from_vk(Bool, x.depthWriteEnable), x.depthCompareOp, from_vk(Bool, x.depthBoundsTestEnable), from_vk(Bool, x.stencilTestEnable), StencilOpState(x.front), StencilOpState(x.back), x.minDepthBounds, x.maxDepthBounds)
 
 """
 
 """
-GraphicsPipelineCreateInfo(x::VkGraphicsPipelineCreateInfo, next_types...) = GraphicsPipelineCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), PipelineVertexInputStateCreateInfo(x.pVertexInputState), PipelineInputAssemblyStateCreateInfo(x.pInputAssemblyState), PipelineTessellationStateCreateInfo(x.pTessellationState), PipelineViewportStateCreateInfo(x.pViewportState), PipelineRasterizationStateCreateInfo(x.pRasterizationState), PipelineMultisampleStateCreateInfo(x.pMultisampleState), PipelineDepthStencilStateCreateInfo(x.pDepthStencilState), PipelineColorBlendStateCreateInfo(x.pColorBlendState), PipelineDynamicStateCreateInfo(x.pDynamicState), PipelineLayout(x.layout), RenderPass(x.renderPass), x.subpass, Pipeline(x.basePipelineHandle), x.basePipelineIndex)
+GraphicsPipelineCreateInfo(x::VkGraphicsPipelineCreateInfo, next_types::Type...) = GraphicsPipelineCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), PipelineVertexInputStateCreateInfo(x.pVertexInputState), PipelineInputAssemblyStateCreateInfo(x.pInputAssemblyState), PipelineTessellationStateCreateInfo(x.pTessellationState), PipelineViewportStateCreateInfo(x.pViewportState), PipelineRasterizationStateCreateInfo(x.pRasterizationState), PipelineMultisampleStateCreateInfo(x.pMultisampleState), PipelineDepthStencilStateCreateInfo(x.pDepthStencilState), PipelineColorBlendStateCreateInfo(x.pColorBlendState), PipelineDynamicStateCreateInfo(x.pDynamicState), PipelineLayout(x.layout), RenderPass(x.renderPass), x.subpass, Pipeline(x.basePipelineHandle), x.basePipelineIndex)
 
 """
 
 """
-PipelineCacheCreateInfo(x::VkPipelineCacheCreateInfo, next_types...) = PipelineCacheCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.initialDataSize, x.pInitialData)
+PipelineCacheCreateInfo(x::VkPipelineCacheCreateInfo, next_types::Type...) = PipelineCacheCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.initialDataSize, x.pInitialData)
 
 """
 
@@ -33527,37 +37899,37 @@ PushConstantRange(x::VkPushConstantRange) = PushConstantRange(x.stageFlags, x.of
 """
 
 """
-PipelineLayoutCreateInfo(x::VkPipelineLayoutCreateInfo, next_types...) = PipelineLayoutCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DescriptorSetLayout}, x.pSetLayouts, x.setLayoutCount; own = true), unsafe_wrap(Vector{PushConstantRange}, x.pPushConstantRanges, x.pushConstantRangeCount; own = true))
+PipelineLayoutCreateInfo(x::VkPipelineLayoutCreateInfo, next_types::Type...) = PipelineLayoutCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DescriptorSetLayout}, x.pSetLayouts, x.setLayoutCount; own = true), unsafe_wrap(Vector{PushConstantRange}, x.pPushConstantRanges, x.pushConstantRangeCount; own = true))
 
 """
 
 """
-SamplerCreateInfo(x::VkSamplerCreateInfo, next_types...) = SamplerCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.magFilter, x.minFilter, x.mipmapMode, x.addressModeU, x.addressModeV, x.addressModeW, x.mipLodBias, from_vk(Bool, x.anisotropyEnable), x.maxAnisotropy, from_vk(Bool, x.compareEnable), x.compareOp, x.minLod, x.maxLod, x.borderColor, from_vk(Bool, x.unnormalizedCoordinates))
+SamplerCreateInfo(x::VkSamplerCreateInfo, next_types::Type...) = SamplerCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.magFilter, x.minFilter, x.mipmapMode, x.addressModeU, x.addressModeV, x.addressModeW, x.mipLodBias, from_vk(Bool, x.anisotropyEnable), x.maxAnisotropy, from_vk(Bool, x.compareEnable), x.compareOp, x.minLod, x.maxLod, x.borderColor, from_vk(Bool, x.unnormalizedCoordinates))
 
 """
 
 """
-CommandPoolCreateInfo(x::VkCommandPoolCreateInfo, next_types...) = CommandPoolCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.queueFamilyIndex)
+CommandPoolCreateInfo(x::VkCommandPoolCreateInfo, next_types::Type...) = CommandPoolCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.queueFamilyIndex)
 
 """
 
 """
-CommandBufferAllocateInfo(x::VkCommandBufferAllocateInfo, next_types...) = CommandBufferAllocateInfo(load_next_chain(x.pNext, next_types...), CommandPool(x.commandPool), x.level, x.commandBufferCount)
+CommandBufferAllocateInfo(x::VkCommandBufferAllocateInfo, next_types::Type...) = CommandBufferAllocateInfo(load_next_chain(x.pNext, next_types...), CommandPool(x.commandPool), x.level, x.commandBufferCount)
 
 """
 
 """
-CommandBufferInheritanceInfo(x::VkCommandBufferInheritanceInfo, next_types...) = CommandBufferInheritanceInfo(load_next_chain(x.pNext, next_types...), RenderPass(x.renderPass), x.subpass, Framebuffer(x.framebuffer), from_vk(Bool, x.occlusionQueryEnable), x.queryFlags, x.pipelineStatistics)
+CommandBufferInheritanceInfo(x::VkCommandBufferInheritanceInfo, next_types::Type...) = CommandBufferInheritanceInfo(load_next_chain(x.pNext, next_types...), RenderPass(x.renderPass), x.subpass, Framebuffer(x.framebuffer), from_vk(Bool, x.occlusionQueryEnable), x.queryFlags, x.pipelineStatistics)
 
 """
 
 """
-CommandBufferBeginInfo(x::VkCommandBufferBeginInfo, next_types...) = CommandBufferBeginInfo(load_next_chain(x.pNext, next_types...), x.flags, CommandBufferInheritanceInfo(x.pInheritanceInfo))
+CommandBufferBeginInfo(x::VkCommandBufferBeginInfo, next_types::Type...) = CommandBufferBeginInfo(load_next_chain(x.pNext, next_types...), x.flags, CommandBufferInheritanceInfo(x.pInheritanceInfo))
 
 """
 
 """
-RenderPassBeginInfo(x::VkRenderPassBeginInfo, next_types...) = RenderPassBeginInfo(load_next_chain(x.pNext, next_types...), RenderPass(x.renderPass), Framebuffer(x.framebuffer), Rect2D(x.renderArea), unsafe_wrap(Vector{ClearValue}, x.pClearValues, x.clearValueCount; own = true))
+RenderPassBeginInfo(x::VkRenderPassBeginInfo, next_types::Type...) = RenderPassBeginInfo(load_next_chain(x.pNext, next_types...), RenderPass(x.renderPass), Framebuffer(x.framebuffer), Rect2D(x.renderArea), unsafe_wrap(Vector{ClearValue}, x.pClearValues, x.clearValueCount; own = true))
 
 """
 
@@ -33592,17 +37964,17 @@ SubpassDependency(x::VkSubpassDependency) = SubpassDependency(x.srcSubpass, x.ds
 """
 
 """
-RenderPassCreateInfo(x::VkRenderPassCreateInfo, next_types...) = RenderPassCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{AttachmentDescription}, x.pAttachments, x.attachmentCount; own = true), unsafe_wrap(Vector{SubpassDescription}, x.pSubpasses, x.subpassCount; own = true), unsafe_wrap(Vector{SubpassDependency}, x.pDependencies, x.dependencyCount; own = true))
+RenderPassCreateInfo(x::VkRenderPassCreateInfo, next_types::Type...) = RenderPassCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{AttachmentDescription}, x.pAttachments, x.attachmentCount; own = true), unsafe_wrap(Vector{SubpassDescription}, x.pSubpasses, x.subpassCount; own = true), unsafe_wrap(Vector{SubpassDependency}, x.pDependencies, x.dependencyCount; own = true))
 
 """
 
 """
-EventCreateInfo(x::VkEventCreateInfo, next_types...) = EventCreateInfo(load_next_chain(x.pNext, next_types...), x.flags)
+EventCreateInfo(x::VkEventCreateInfo, next_types::Type...) = EventCreateInfo(load_next_chain(x.pNext, next_types...), x.flags)
 
 """
 
 """
-FenceCreateInfo(x::VkFenceCreateInfo, next_types...) = FenceCreateInfo(load_next_chain(x.pNext, next_types...), x.flags)
+FenceCreateInfo(x::VkFenceCreateInfo, next_types::Type...) = FenceCreateInfo(load_next_chain(x.pNext, next_types...), x.flags)
 
 """
 
@@ -33622,17 +37994,17 @@ PhysicalDeviceLimits(x::VkPhysicalDeviceLimits) = PhysicalDeviceLimits(x.maxImag
 """
 
 """
-SemaphoreCreateInfo(x::VkSemaphoreCreateInfo, next_types...) = SemaphoreCreateInfo(load_next_chain(x.pNext, next_types...), x.flags)
+SemaphoreCreateInfo(x::VkSemaphoreCreateInfo, next_types::Type...) = SemaphoreCreateInfo(load_next_chain(x.pNext, next_types...), x.flags)
 
 """
 
 """
-QueryPoolCreateInfo(x::VkQueryPoolCreateInfo, next_types...) = QueryPoolCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.queryType, x.queryCount, x.pipelineStatistics)
+QueryPoolCreateInfo(x::VkQueryPoolCreateInfo, next_types::Type...) = QueryPoolCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, x.queryType, x.queryCount, x.pipelineStatistics)
 
 """
 
 """
-FramebufferCreateInfo(x::VkFramebufferCreateInfo, next_types...) = FramebufferCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, RenderPass(x.renderPass), unsafe_wrap(Vector{ImageView}, x.pAttachments, x.attachmentCount; own = true), x.width, x.height, x.layers)
+FramebufferCreateInfo(x::VkFramebufferCreateInfo, next_types::Type...) = FramebufferCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, RenderPass(x.renderPass), unsafe_wrap(Vector{ImageView}, x.pAttachments, x.attachmentCount; own = true), x.width, x.height, x.layers)
 
 """
 
@@ -33652,7 +38024,7 @@ DispatchIndirectCommand(x::VkDispatchIndirectCommand) = DispatchIndirectCommand(
 """
 
 """
-SubmitInfo(x::VkSubmitInfo, next_types...) = SubmitInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Semaphore}, x.pWaitSemaphores, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{PipelineStageFlag}, x.pWaitDstStageMask, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{CommandBuffer}, x.pCommandBuffers, x.commandBufferCount; own = true), unsafe_wrap(Vector{Semaphore}, x.pSignalSemaphores, x.signalSemaphoreCount; own = true))
+SubmitInfo(x::VkSubmitInfo, next_types::Type...) = SubmitInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Semaphore}, x.pWaitSemaphores, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{PipelineStageFlag}, x.pWaitDstStageMask, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{CommandBuffer}, x.pCommandBuffers, x.commandBufferCount; own = true), unsafe_wrap(Vector{Semaphore}, x.pSignalSemaphores, x.signalSemaphoreCount; own = true))
 
 """
 
@@ -33677,7 +38049,7 @@ DisplayModePropertiesKHR(x::VkDisplayModePropertiesKHR) = DisplayModePropertiesK
 """
 
 """
-DisplayModeCreateInfoKHR(x::VkDisplayModeCreateInfoKHR, next_types...) = DisplayModeCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, DisplayModeParametersKHR(x.parameters))
+DisplayModeCreateInfoKHR(x::VkDisplayModeCreateInfoKHR, next_types::Type...) = DisplayModeCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, DisplayModeParametersKHR(x.parameters))
 
 """
 
@@ -33687,12 +38059,12 @@ DisplayPlaneCapabilitiesKHR(x::VkDisplayPlaneCapabilitiesKHR) = DisplayPlaneCapa
 """
 
 """
-DisplaySurfaceCreateInfoKHR(x::VkDisplaySurfaceCreateInfoKHR, next_types...) = DisplaySurfaceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, DisplayModeKHR(x.displayMode), x.planeIndex, x.planeStackIndex, SurfaceTransformFlagKHR(UInt32(x.transform)), x.globalAlpha, DisplayPlaneAlphaFlagKHR(UInt32(x.alphaMode)), Extent2D(x.imageExtent))
+DisplaySurfaceCreateInfoKHR(x::VkDisplaySurfaceCreateInfoKHR, next_types::Type...) = DisplaySurfaceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, DisplayModeKHR(x.displayMode), x.planeIndex, x.planeStackIndex, SurfaceTransformFlagKHR(UInt32(x.transform)), x.globalAlpha, DisplayPlaneAlphaFlagKHR(UInt32(x.alphaMode)), Extent2D(x.imageExtent))
 
 """
 
 """
-DisplayPresentInfoKHR(x::VkDisplayPresentInfoKHR, next_types...) = DisplayPresentInfoKHR(load_next_chain(x.pNext, next_types...), Rect2D(x.srcRect), Rect2D(x.dstRect), from_vk(Bool, x.persistent))
+DisplayPresentInfoKHR(x::VkDisplayPresentInfoKHR, next_types::Type...) = DisplayPresentInfoKHR(load_next_chain(x.pNext, next_types...), Rect2D(x.srcRect), Rect2D(x.dstRect), from_vk(Bool, x.persistent))
 
 """
 
@@ -33702,7 +38074,7 @@ SurfaceCapabilitiesKHR(x::VkSurfaceCapabilitiesKHR) = SurfaceCapabilitiesKHR(x.m
 """
 
 """
-Win32SurfaceCreateInfoKHR(x::VkWin32SurfaceCreateInfoKHR, next_types...) = Win32SurfaceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, x.hinstance, x.hwnd)
+Win32SurfaceCreateInfoKHR(x::VkWin32SurfaceCreateInfoKHR, next_types::Type...) = Win32SurfaceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, x.hinstance, x.hwnd)
 
 """
 
@@ -33712,62 +38084,62 @@ SurfaceFormatKHR(x::VkSurfaceFormatKHR) = SurfaceFormatKHR(x.format, x.colorSpac
 """
 
 """
-SwapchainCreateInfoKHR(x::VkSwapchainCreateInfoKHR, next_types...) = SwapchainCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, SurfaceKHR(x.surface), x.minImageCount, x.imageFormat, x.imageColorSpace, Extent2D(x.imageExtent), x.imageArrayLayers, x.imageUsage, x.imageSharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true), SurfaceTransformFlagKHR(UInt32(x.preTransform)), CompositeAlphaFlagKHR(UInt32(x.compositeAlpha)), x.presentMode, from_vk(Bool, x.clipped), SwapchainKHR(x.oldSwapchain))
+SwapchainCreateInfoKHR(x::VkSwapchainCreateInfoKHR, next_types::Type...) = SwapchainCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, SurfaceKHR(x.surface), x.minImageCount, x.imageFormat, x.imageColorSpace, Extent2D(x.imageExtent), x.imageArrayLayers, x.imageUsage, x.imageSharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true), SurfaceTransformFlagKHR(UInt32(x.preTransform)), CompositeAlphaFlagKHR(UInt32(x.compositeAlpha)), x.presentMode, from_vk(Bool, x.clipped), SwapchainKHR(x.oldSwapchain))
 
 """
 
 """
-PresentInfoKHR(x::VkPresentInfoKHR, next_types...) = PresentInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Semaphore}, x.pWaitSemaphores, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{SwapchainKHR}, x.pSwapchains, x.swapchainCount; own = true), unsafe_wrap(Vector{UInt32}, x.pImageIndices, x.swapchainCount; own = true), unsafe_wrap(Vector{Result}, x.pResults, x.swapchainCount; own = true))
+PresentInfoKHR(x::VkPresentInfoKHR, next_types::Type...) = PresentInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Semaphore}, x.pWaitSemaphores, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{SwapchainKHR}, x.pSwapchains, x.swapchainCount; own = true), unsafe_wrap(Vector{UInt32}, x.pImageIndices, x.swapchainCount; own = true), unsafe_wrap(Vector{Result}, x.pResults, x.swapchainCount; own = true))
 
 """
 
 """
-DebugReportCallbackCreateInfoEXT(x::VkDebugReportCallbackCreateInfoEXT, next_types...) = DebugReportCallbackCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, from_vk(FunctionPtr, x.pfnCallback), x.pUserData)
+DebugReportCallbackCreateInfoEXT(x::VkDebugReportCallbackCreateInfoEXT, next_types::Type...) = DebugReportCallbackCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, from_vk(FunctionPtr, x.pfnCallback), x.pUserData)
 
 """
 
 """
-ValidationFlagsEXT(x::VkValidationFlagsEXT, next_types...) = ValidationFlagsEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{ValidationCheckEXT}, x.pDisabledValidationChecks, x.disabledValidationCheckCount; own = true))
+ValidationFlagsEXT(x::VkValidationFlagsEXT, next_types::Type...) = ValidationFlagsEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{ValidationCheckEXT}, x.pDisabledValidationChecks, x.disabledValidationCheckCount; own = true))
 
 """
 
 """
-ValidationFeaturesEXT(x::VkValidationFeaturesEXT, next_types...) = ValidationFeaturesEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{ValidationFeatureEnableEXT}, x.pEnabledValidationFeatures, x.enabledValidationFeatureCount; own = true), unsafe_wrap(Vector{ValidationFeatureDisableEXT}, x.pDisabledValidationFeatures, x.disabledValidationFeatureCount; own = true))
+ValidationFeaturesEXT(x::VkValidationFeaturesEXT, next_types::Type...) = ValidationFeaturesEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{ValidationFeatureEnableEXT}, x.pEnabledValidationFeatures, x.enabledValidationFeatureCount; own = true), unsafe_wrap(Vector{ValidationFeatureDisableEXT}, x.pDisabledValidationFeatures, x.disabledValidationFeatureCount; own = true))
 
 """
 
 """
-PipelineRasterizationStateRasterizationOrderAMD(x::VkPipelineRasterizationStateRasterizationOrderAMD, next_types...) = PipelineRasterizationStateRasterizationOrderAMD(load_next_chain(x.pNext, next_types...), x.rasterizationOrder)
+PipelineRasterizationStateRasterizationOrderAMD(x::VkPipelineRasterizationStateRasterizationOrderAMD, next_types::Type...) = PipelineRasterizationStateRasterizationOrderAMD(load_next_chain(x.pNext, next_types...), x.rasterizationOrder)
 
 """
 
 """
-DebugMarkerObjectNameInfoEXT(x::VkDebugMarkerObjectNameInfoEXT, next_types...) = DebugMarkerObjectNameInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.object, unsafe_string(x.pObjectName))
+DebugMarkerObjectNameInfoEXT(x::VkDebugMarkerObjectNameInfoEXT, next_types::Type...) = DebugMarkerObjectNameInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.object, unsafe_string(x.pObjectName))
 
 """
 
 """
-DebugMarkerObjectTagInfoEXT(x::VkDebugMarkerObjectTagInfoEXT, next_types...) = DebugMarkerObjectTagInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.object, x.tagName, x.tagSize, x.pTag)
+DebugMarkerObjectTagInfoEXT(x::VkDebugMarkerObjectTagInfoEXT, next_types::Type...) = DebugMarkerObjectTagInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.object, x.tagName, x.tagSize, x.pTag)
 
 """
 
 """
-DebugMarkerMarkerInfoEXT(x::VkDebugMarkerMarkerInfoEXT, next_types...) = DebugMarkerMarkerInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_string(x.pMarkerName), x.color)
+DebugMarkerMarkerInfoEXT(x::VkDebugMarkerMarkerInfoEXT, next_types::Type...) = DebugMarkerMarkerInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_string(x.pMarkerName), x.color)
 
 """
 
 """
-DedicatedAllocationImageCreateInfoNV(x::VkDedicatedAllocationImageCreateInfoNV, next_types...) = DedicatedAllocationImageCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.dedicatedAllocation))
+DedicatedAllocationImageCreateInfoNV(x::VkDedicatedAllocationImageCreateInfoNV, next_types::Type...) = DedicatedAllocationImageCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.dedicatedAllocation))
 
 """
 
 """
-DedicatedAllocationBufferCreateInfoNV(x::VkDedicatedAllocationBufferCreateInfoNV, next_types...) = DedicatedAllocationBufferCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.dedicatedAllocation))
+DedicatedAllocationBufferCreateInfoNV(x::VkDedicatedAllocationBufferCreateInfoNV, next_types::Type...) = DedicatedAllocationBufferCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.dedicatedAllocation))
 
 """
 
 """
-DedicatedAllocationMemoryAllocateInfoNV(x::VkDedicatedAllocationMemoryAllocateInfoNV, next_types...) = DedicatedAllocationMemoryAllocateInfoNV(load_next_chain(x.pNext, next_types...), Image(x.image), Buffer(x.buffer))
+DedicatedAllocationMemoryAllocateInfoNV(x::VkDedicatedAllocationMemoryAllocateInfoNV, next_types::Type...) = DedicatedAllocationMemoryAllocateInfoNV(load_next_chain(x.pNext, next_types...), Image(x.image), Buffer(x.buffer))
 
 """
 
@@ -33777,62 +38149,62 @@ ExternalImageFormatPropertiesNV(x::VkExternalImageFormatPropertiesNV) = External
 """
 
 """
-ExternalMemoryImageCreateInfoNV(x::VkExternalMemoryImageCreateInfoNV, next_types...) = ExternalMemoryImageCreateInfoNV(load_next_chain(x.pNext, next_types...), x.handleTypes)
+ExternalMemoryImageCreateInfoNV(x::VkExternalMemoryImageCreateInfoNV, next_types::Type...) = ExternalMemoryImageCreateInfoNV(load_next_chain(x.pNext, next_types...), x.handleTypes)
 
 """
 
 """
-ExportMemoryAllocateInfoNV(x::VkExportMemoryAllocateInfoNV, next_types...) = ExportMemoryAllocateInfoNV(load_next_chain(x.pNext, next_types...), x.handleTypes)
+ExportMemoryAllocateInfoNV(x::VkExportMemoryAllocateInfoNV, next_types::Type...) = ExportMemoryAllocateInfoNV(load_next_chain(x.pNext, next_types...), x.handleTypes)
 
 """
 
 """
-ImportMemoryWin32HandleInfoNV(x::VkImportMemoryWin32HandleInfoNV, next_types...) = ImportMemoryWin32HandleInfoNV(load_next_chain(x.pNext, next_types...), x.handleType, x.handle)
+ImportMemoryWin32HandleInfoNV(x::VkImportMemoryWin32HandleInfoNV, next_types::Type...) = ImportMemoryWin32HandleInfoNV(load_next_chain(x.pNext, next_types...), x.handleType, x.handle)
 
 """
 
 """
-ExportMemoryWin32HandleInfoNV(x::VkExportMemoryWin32HandleInfoNV, next_types...) = ExportMemoryWin32HandleInfoNV(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess)
+ExportMemoryWin32HandleInfoNV(x::VkExportMemoryWin32HandleInfoNV, next_types::Type...) = ExportMemoryWin32HandleInfoNV(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess)
 
 """
 
 """
-Win32KeyedMutexAcquireReleaseInfoNV(x::VkWin32KeyedMutexAcquireReleaseInfoNV, next_types...) = Win32KeyedMutexAcquireReleaseInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DeviceMemory}, x.pAcquireSyncs, x.acquireCount; own = true), unsafe_wrap(Vector{UInt64}, x.pAcquireKeys, x.acquireCount; own = true), unsafe_wrap(Vector{UInt32}, x.pAcquireTimeoutMilliseconds, x.acquireCount; own = true), unsafe_wrap(Vector{DeviceMemory}, x.pReleaseSyncs, x.releaseCount; own = true), unsafe_wrap(Vector{UInt64}, x.pReleaseKeys, x.releaseCount; own = true))
+Win32KeyedMutexAcquireReleaseInfoNV(x::VkWin32KeyedMutexAcquireReleaseInfoNV, next_types::Type...) = Win32KeyedMutexAcquireReleaseInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DeviceMemory}, x.pAcquireSyncs, x.acquireCount; own = true), unsafe_wrap(Vector{UInt64}, x.pAcquireKeys, x.acquireCount; own = true), unsafe_wrap(Vector{UInt32}, x.pAcquireTimeoutMilliseconds, x.acquireCount; own = true), unsafe_wrap(Vector{DeviceMemory}, x.pReleaseSyncs, x.releaseCount; own = true), unsafe_wrap(Vector{UInt64}, x.pReleaseKeys, x.releaseCount; own = true))
 
 """
 
 """
-PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(x::VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV, next_types...) = PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.deviceGeneratedCommands))
+PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(x::VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV, next_types::Type...) = PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.deviceGeneratedCommands))
 
 """
 
 """
-DevicePrivateDataCreateInfoEXT(x::VkDevicePrivateDataCreateInfoEXT, next_types...) = DevicePrivateDataCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.privateDataSlotRequestCount)
+DevicePrivateDataCreateInfoEXT(x::VkDevicePrivateDataCreateInfoEXT, next_types::Type...) = DevicePrivateDataCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.privateDataSlotRequestCount)
 
 """
 
 """
-PrivateDataSlotCreateInfoEXT(x::VkPrivateDataSlotCreateInfoEXT, next_types...) = PrivateDataSlotCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags)
+PrivateDataSlotCreateInfoEXT(x::VkPrivateDataSlotCreateInfoEXT, next_types::Type...) = PrivateDataSlotCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags)
 
 """
 
 """
-PhysicalDevicePrivateDataFeaturesEXT(x::VkPhysicalDevicePrivateDataFeaturesEXT, next_types...) = PhysicalDevicePrivateDataFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.privateData))
+PhysicalDevicePrivateDataFeaturesEXT(x::VkPhysicalDevicePrivateDataFeaturesEXT, next_types::Type...) = PhysicalDevicePrivateDataFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.privateData))
 
 """
 
 """
-PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(x::VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV, next_types...) = PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(load_next_chain(x.pNext, next_types...), x.maxGraphicsShaderGroupCount, x.maxIndirectSequenceCount, x.maxIndirectCommandsTokenCount, x.maxIndirectCommandsStreamCount, x.maxIndirectCommandsTokenOffset, x.maxIndirectCommandsStreamStride, x.minSequencesCountBufferOffsetAlignment, x.minSequencesIndexBufferOffsetAlignment, x.minIndirectCommandsBufferOffsetAlignment)
+PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(x::VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV, next_types::Type...) = PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(load_next_chain(x.pNext, next_types...), x.maxGraphicsShaderGroupCount, x.maxIndirectSequenceCount, x.maxIndirectCommandsTokenCount, x.maxIndirectCommandsStreamCount, x.maxIndirectCommandsTokenOffset, x.maxIndirectCommandsStreamStride, x.minSequencesCountBufferOffsetAlignment, x.minSequencesIndexBufferOffsetAlignment, x.minIndirectCommandsBufferOffsetAlignment)
 
 """
 
 """
-GraphicsShaderGroupCreateInfoNV(x::VkGraphicsShaderGroupCreateInfoNV, next_types...) = GraphicsShaderGroupCreateInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), PipelineVertexInputStateCreateInfo(x.pVertexInputState), PipelineTessellationStateCreateInfo(x.pTessellationState))
+GraphicsShaderGroupCreateInfoNV(x::VkGraphicsShaderGroupCreateInfoNV, next_types::Type...) = GraphicsShaderGroupCreateInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), PipelineVertexInputStateCreateInfo(x.pVertexInputState), PipelineTessellationStateCreateInfo(x.pTessellationState))
 
 """
 
 """
-GraphicsPipelineShaderGroupsCreateInfoNV(x::VkGraphicsPipelineShaderGroupsCreateInfoNV, next_types...) = GraphicsPipelineShaderGroupsCreateInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{GraphicsShaderGroupCreateInfoNV}, x.pGroups, x.groupCount; own = true), unsafe_wrap(Vector{Pipeline}, x.pPipelines, x.pipelineCount; own = true))
+GraphicsPipelineShaderGroupsCreateInfoNV(x::VkGraphicsPipelineShaderGroupsCreateInfoNV, next_types::Type...) = GraphicsPipelineShaderGroupsCreateInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{GraphicsShaderGroupCreateInfoNV}, x.pGroups, x.groupCount; own = true), unsafe_wrap(Vector{Pipeline}, x.pPipelines, x.pipelineCount; own = true))
 
 """
 
@@ -33862,72 +38234,72 @@ IndirectCommandsStreamNV(x::VkIndirectCommandsStreamNV) = IndirectCommandsStream
 """
 
 """
-IndirectCommandsLayoutTokenNV(x::VkIndirectCommandsLayoutTokenNV, next_types...) = IndirectCommandsLayoutTokenNV(load_next_chain(x.pNext, next_types...), x.tokenType, x.stream, x.offset, x.vertexBindingUnit, from_vk(Bool, x.vertexDynamicStride), PipelineLayout(x.pushconstantPipelineLayout), x.pushconstantShaderStageFlags, x.pushconstantOffset, x.pushconstantSize, x.indirectStateFlags, unsafe_wrap(Vector{IndexType}, x.pIndexTypes, x.indexTypeCount; own = true), unsafe_wrap(Vector{UInt32}, x.pIndexTypeValues, x.indexTypeCount; own = true))
+IndirectCommandsLayoutTokenNV(x::VkIndirectCommandsLayoutTokenNV, next_types::Type...) = IndirectCommandsLayoutTokenNV(load_next_chain(x.pNext, next_types...), x.tokenType, x.stream, x.offset, x.vertexBindingUnit, from_vk(Bool, x.vertexDynamicStride), PipelineLayout(x.pushconstantPipelineLayout), x.pushconstantShaderStageFlags, x.pushconstantOffset, x.pushconstantSize, x.indirectStateFlags, unsafe_wrap(Vector{IndexType}, x.pIndexTypes, x.indexTypeCount; own = true), unsafe_wrap(Vector{UInt32}, x.pIndexTypeValues, x.indexTypeCount; own = true))
 
 """
 
 """
-IndirectCommandsLayoutCreateInfoNV(x::VkIndirectCommandsLayoutCreateInfoNV, next_types...) = IndirectCommandsLayoutCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, x.pipelineBindPoint, unsafe_wrap(Vector{IndirectCommandsLayoutTokenNV}, x.pTokens, x.tokenCount; own = true), unsafe_wrap(Vector{UInt32}, x.pStreamStrides, x.streamCount; own = true))
+IndirectCommandsLayoutCreateInfoNV(x::VkIndirectCommandsLayoutCreateInfoNV, next_types::Type...) = IndirectCommandsLayoutCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, x.pipelineBindPoint, unsafe_wrap(Vector{IndirectCommandsLayoutTokenNV}, x.pTokens, x.tokenCount; own = true), unsafe_wrap(Vector{UInt32}, x.pStreamStrides, x.streamCount; own = true))
 
 """
 
 """
-GeneratedCommandsInfoNV(x::VkGeneratedCommandsInfoNV, next_types...) = GeneratedCommandsInfoNV(load_next_chain(x.pNext, next_types...), x.pipelineBindPoint, Pipeline(x.pipeline), IndirectCommandsLayoutNV(x.indirectCommandsLayout), unsafe_wrap(Vector{IndirectCommandsStreamNV}, x.pStreams, x.streamCount; own = true), x.sequencesCount, Buffer(x.preprocessBuffer), x.preprocessOffset, x.preprocessSize, Buffer(x.sequencesCountBuffer), x.sequencesCountOffset, Buffer(x.sequencesIndexBuffer), x.sequencesIndexOffset)
+GeneratedCommandsInfoNV(x::VkGeneratedCommandsInfoNV, next_types::Type...) = GeneratedCommandsInfoNV(load_next_chain(x.pNext, next_types...), x.pipelineBindPoint, Pipeline(x.pipeline), IndirectCommandsLayoutNV(x.indirectCommandsLayout), unsafe_wrap(Vector{IndirectCommandsStreamNV}, x.pStreams, x.streamCount; own = true), x.sequencesCount, Buffer(x.preprocessBuffer), x.preprocessOffset, x.preprocessSize, Buffer(x.sequencesCountBuffer), x.sequencesCountOffset, Buffer(x.sequencesIndexBuffer), x.sequencesIndexOffset)
 
 """
 
 """
-GeneratedCommandsMemoryRequirementsInfoNV(x::VkGeneratedCommandsMemoryRequirementsInfoNV, next_types...) = GeneratedCommandsMemoryRequirementsInfoNV(load_next_chain(x.pNext, next_types...), x.pipelineBindPoint, Pipeline(x.pipeline), IndirectCommandsLayoutNV(x.indirectCommandsLayout), x.maxSequencesCount)
+GeneratedCommandsMemoryRequirementsInfoNV(x::VkGeneratedCommandsMemoryRequirementsInfoNV, next_types::Type...) = GeneratedCommandsMemoryRequirementsInfoNV(load_next_chain(x.pNext, next_types...), x.pipelineBindPoint, Pipeline(x.pipeline), IndirectCommandsLayoutNV(x.indirectCommandsLayout), x.maxSequencesCount)
 
 """
 
 """
-PhysicalDeviceFeatures2(x::VkPhysicalDeviceFeatures2, next_types...) = PhysicalDeviceFeatures2(load_next_chain(x.pNext, next_types...), PhysicalDeviceFeatures(x.features))
+PhysicalDeviceFeatures2(x::VkPhysicalDeviceFeatures2, next_types::Type...) = PhysicalDeviceFeatures2(load_next_chain(x.pNext, next_types...), PhysicalDeviceFeatures(x.features))
 
 """
 
 """
-PhysicalDeviceProperties2(x::VkPhysicalDeviceProperties2, next_types...) = PhysicalDeviceProperties2(load_next_chain(x.pNext, next_types...), PhysicalDeviceProperties(x.properties))
+PhysicalDeviceProperties2(x::VkPhysicalDeviceProperties2, next_types::Type...) = PhysicalDeviceProperties2(load_next_chain(x.pNext, next_types...), PhysicalDeviceProperties(x.properties))
 
 """
 
 """
-FormatProperties2(x::VkFormatProperties2, next_types...) = FormatProperties2(load_next_chain(x.pNext, next_types...), FormatProperties(x.formatProperties))
+FormatProperties2(x::VkFormatProperties2, next_types::Type...) = FormatProperties2(load_next_chain(x.pNext, next_types...), FormatProperties(x.formatProperties))
 
 """
 
 """
-ImageFormatProperties2(x::VkImageFormatProperties2, next_types...) = ImageFormatProperties2(load_next_chain(x.pNext, next_types...), ImageFormatProperties(x.imageFormatProperties))
+ImageFormatProperties2(x::VkImageFormatProperties2, next_types::Type...) = ImageFormatProperties2(load_next_chain(x.pNext, next_types...), ImageFormatProperties(x.imageFormatProperties))
 
 """
 
 """
-PhysicalDeviceImageFormatInfo2(x::VkPhysicalDeviceImageFormatInfo2, next_types...) = PhysicalDeviceImageFormatInfo2(load_next_chain(x.pNext, next_types...), x.format, x.type, x.tiling, x.usage, x.flags)
+PhysicalDeviceImageFormatInfo2(x::VkPhysicalDeviceImageFormatInfo2, next_types::Type...) = PhysicalDeviceImageFormatInfo2(load_next_chain(x.pNext, next_types...), x.format, x.type, x.tiling, x.usage, x.flags)
 
 """
 
 """
-QueueFamilyProperties2(x::VkQueueFamilyProperties2, next_types...) = QueueFamilyProperties2(load_next_chain(x.pNext, next_types...), QueueFamilyProperties(x.queueFamilyProperties))
+QueueFamilyProperties2(x::VkQueueFamilyProperties2, next_types::Type...) = QueueFamilyProperties2(load_next_chain(x.pNext, next_types...), QueueFamilyProperties(x.queueFamilyProperties))
 
 """
 
 """
-PhysicalDeviceMemoryProperties2(x::VkPhysicalDeviceMemoryProperties2, next_types...) = PhysicalDeviceMemoryProperties2(load_next_chain(x.pNext, next_types...), PhysicalDeviceMemoryProperties(x.memoryProperties))
+PhysicalDeviceMemoryProperties2(x::VkPhysicalDeviceMemoryProperties2, next_types::Type...) = PhysicalDeviceMemoryProperties2(load_next_chain(x.pNext, next_types...), PhysicalDeviceMemoryProperties(x.memoryProperties))
 
 """
 
 """
-SparseImageFormatProperties2(x::VkSparseImageFormatProperties2, next_types...) = SparseImageFormatProperties2(load_next_chain(x.pNext, next_types...), SparseImageFormatProperties(x.properties))
+SparseImageFormatProperties2(x::VkSparseImageFormatProperties2, next_types::Type...) = SparseImageFormatProperties2(load_next_chain(x.pNext, next_types...), SparseImageFormatProperties(x.properties))
 
 """
 
 """
-PhysicalDeviceSparseImageFormatInfo2(x::VkPhysicalDeviceSparseImageFormatInfo2, next_types...) = PhysicalDeviceSparseImageFormatInfo2(load_next_chain(x.pNext, next_types...), x.format, x.type, SampleCountFlag(UInt32(x.samples)), x.usage, x.tiling)
+PhysicalDeviceSparseImageFormatInfo2(x::VkPhysicalDeviceSparseImageFormatInfo2, next_types::Type...) = PhysicalDeviceSparseImageFormatInfo2(load_next_chain(x.pNext, next_types...), x.format, x.type, SampleCountFlag(UInt32(x.samples)), x.usage, x.tiling)
 
 """
 
 """
-PhysicalDevicePushDescriptorPropertiesKHR(x::VkPhysicalDevicePushDescriptorPropertiesKHR, next_types...) = PhysicalDevicePushDescriptorPropertiesKHR(load_next_chain(x.pNext, next_types...), x.maxPushDescriptors)
+PhysicalDevicePushDescriptorPropertiesKHR(x::VkPhysicalDevicePushDescriptorPropertiesKHR, next_types::Type...) = PhysicalDevicePushDescriptorPropertiesKHR(load_next_chain(x.pNext, next_types...), x.maxPushDescriptors)
 
 """
 
@@ -33937,12 +38309,12 @@ ConformanceVersion(x::VkConformanceVersion) = ConformanceVersion(x.major, x.mino
 """
 
 """
-PhysicalDeviceDriverProperties(x::VkPhysicalDeviceDriverProperties, next_types...) = PhysicalDeviceDriverProperties(load_next_chain(x.pNext, next_types...), x.driverID, from_vk(String, x.driverName), from_vk(String, x.driverInfo), ConformanceVersion(x.conformanceVersion))
+PhysicalDeviceDriverProperties(x::VkPhysicalDeviceDriverProperties, next_types::Type...) = PhysicalDeviceDriverProperties(load_next_chain(x.pNext, next_types...), x.driverID, from_vk(String, x.driverName), from_vk(String, x.driverInfo), ConformanceVersion(x.conformanceVersion))
 
 """
 
 """
-PresentRegionsKHR(x::VkPresentRegionsKHR, next_types...) = PresentRegionsKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PresentRegionKHR}, x.pRegions, x.swapchainCount; own = true))
+PresentRegionsKHR(x::VkPresentRegionsKHR, next_types::Type...) = PresentRegionsKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PresentRegionKHR}, x.pRegions, x.swapchainCount; own = true))
 
 """
 
@@ -33957,7 +38329,7 @@ RectLayerKHR(x::VkRectLayerKHR) = RectLayerKHR(Offset2D(x.offset), Extent2D(x.ex
 """
 
 """
-PhysicalDeviceVariablePointersFeatures(x::VkPhysicalDeviceVariablePointersFeatures, next_types...) = PhysicalDeviceVariablePointersFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.variablePointersStorageBuffer), from_vk(Bool, x.variablePointers))
+PhysicalDeviceVariablePointersFeatures(x::VkPhysicalDeviceVariablePointersFeatures, next_types::Type...) = PhysicalDeviceVariablePointersFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.variablePointersStorageBuffer), from_vk(Bool, x.variablePointers))
 
 """
 
@@ -33967,292 +38339,292 @@ ExternalMemoryProperties(x::VkExternalMemoryProperties) = ExternalMemoryProperti
 """
 
 """
-PhysicalDeviceExternalImageFormatInfo(x::VkPhysicalDeviceExternalImageFormatInfo, next_types...) = PhysicalDeviceExternalImageFormatInfo(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
+PhysicalDeviceExternalImageFormatInfo(x::VkPhysicalDeviceExternalImageFormatInfo, next_types::Type...) = PhysicalDeviceExternalImageFormatInfo(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-ExternalImageFormatProperties(x::VkExternalImageFormatProperties, next_types...) = ExternalImageFormatProperties(load_next_chain(x.pNext, next_types...), ExternalMemoryProperties(x.externalMemoryProperties))
+ExternalImageFormatProperties(x::VkExternalImageFormatProperties, next_types::Type...) = ExternalImageFormatProperties(load_next_chain(x.pNext, next_types...), ExternalMemoryProperties(x.externalMemoryProperties))
 
 """
 
 """
-PhysicalDeviceExternalBufferInfo(x::VkPhysicalDeviceExternalBufferInfo, next_types...) = PhysicalDeviceExternalBufferInfo(load_next_chain(x.pNext, next_types...), x.flags, x.usage, ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
+PhysicalDeviceExternalBufferInfo(x::VkPhysicalDeviceExternalBufferInfo, next_types::Type...) = PhysicalDeviceExternalBufferInfo(load_next_chain(x.pNext, next_types...), x.flags, x.usage, ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-ExternalBufferProperties(x::VkExternalBufferProperties, next_types...) = ExternalBufferProperties(load_next_chain(x.pNext, next_types...), ExternalMemoryProperties(x.externalMemoryProperties))
+ExternalBufferProperties(x::VkExternalBufferProperties, next_types::Type...) = ExternalBufferProperties(load_next_chain(x.pNext, next_types...), ExternalMemoryProperties(x.externalMemoryProperties))
 
 """
 
 """
-PhysicalDeviceIDProperties(x::VkPhysicalDeviceIDProperties, next_types...) = PhysicalDeviceIDProperties(load_next_chain(x.pNext, next_types...), from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid))
+PhysicalDeviceIDProperties(x::VkPhysicalDeviceIDProperties, next_types::Type...) = PhysicalDeviceIDProperties(load_next_chain(x.pNext, next_types...), from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid))
 
 """
 
 """
-ExternalMemoryImageCreateInfo(x::VkExternalMemoryImageCreateInfo, next_types...) = ExternalMemoryImageCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
+ExternalMemoryImageCreateInfo(x::VkExternalMemoryImageCreateInfo, next_types::Type...) = ExternalMemoryImageCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
 
 """
 
 """
-ExternalMemoryBufferCreateInfo(x::VkExternalMemoryBufferCreateInfo, next_types...) = ExternalMemoryBufferCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
+ExternalMemoryBufferCreateInfo(x::VkExternalMemoryBufferCreateInfo, next_types::Type...) = ExternalMemoryBufferCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
 
 """
 
 """
-ExportMemoryAllocateInfo(x::VkExportMemoryAllocateInfo, next_types...) = ExportMemoryAllocateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
+ExportMemoryAllocateInfo(x::VkExportMemoryAllocateInfo, next_types::Type...) = ExportMemoryAllocateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
 
 """
 
 """
-ImportMemoryWin32HandleInfoKHR(x::VkImportMemoryWin32HandleInfoKHR, next_types...) = ImportMemoryWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)), x.handle, x.name)
+ImportMemoryWin32HandleInfoKHR(x::VkImportMemoryWin32HandleInfoKHR, next_types::Type...) = ImportMemoryWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)), x.handle, x.name)
 
 """
 
 """
-ExportMemoryWin32HandleInfoKHR(x::VkExportMemoryWin32HandleInfoKHR, next_types...) = ExportMemoryWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess, x.name)
+ExportMemoryWin32HandleInfoKHR(x::VkExportMemoryWin32HandleInfoKHR, next_types::Type...) = ExportMemoryWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess, x.name)
 
 """
 
 """
-MemoryWin32HandlePropertiesKHR(x::VkMemoryWin32HandlePropertiesKHR, next_types...) = MemoryWin32HandlePropertiesKHR(load_next_chain(x.pNext, next_types...), x.memoryTypeBits)
+MemoryWin32HandlePropertiesKHR(x::VkMemoryWin32HandlePropertiesKHR, next_types::Type...) = MemoryWin32HandlePropertiesKHR(load_next_chain(x.pNext, next_types...), x.memoryTypeBits)
 
 """
 
 """
-MemoryGetWin32HandleInfoKHR(x::VkMemoryGetWin32HandleInfoKHR, next_types...) = MemoryGetWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
+MemoryGetWin32HandleInfoKHR(x::VkMemoryGetWin32HandleInfoKHR, next_types::Type...) = MemoryGetWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-ImportMemoryFdInfoKHR(x::VkImportMemoryFdInfoKHR, next_types...) = ImportMemoryFdInfoKHR(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)), x.fd)
+ImportMemoryFdInfoKHR(x::VkImportMemoryFdInfoKHR, next_types::Type...) = ImportMemoryFdInfoKHR(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)), x.fd)
 
 """
 
 """
-MemoryFdPropertiesKHR(x::VkMemoryFdPropertiesKHR, next_types...) = MemoryFdPropertiesKHR(load_next_chain(x.pNext, next_types...), x.memoryTypeBits)
+MemoryFdPropertiesKHR(x::VkMemoryFdPropertiesKHR, next_types::Type...) = MemoryFdPropertiesKHR(load_next_chain(x.pNext, next_types...), x.memoryTypeBits)
 
 """
 
 """
-MemoryGetFdInfoKHR(x::VkMemoryGetFdInfoKHR, next_types...) = MemoryGetFdInfoKHR(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
+MemoryGetFdInfoKHR(x::VkMemoryGetFdInfoKHR, next_types::Type...) = MemoryGetFdInfoKHR(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-Win32KeyedMutexAcquireReleaseInfoKHR(x::VkWin32KeyedMutexAcquireReleaseInfoKHR, next_types...) = Win32KeyedMutexAcquireReleaseInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DeviceMemory}, x.pAcquireSyncs, x.acquireCount; own = true), unsafe_wrap(Vector{UInt64}, x.pAcquireKeys, x.acquireCount; own = true), unsafe_wrap(Vector{UInt32}, x.pAcquireTimeouts, x.acquireCount; own = true), unsafe_wrap(Vector{DeviceMemory}, x.pReleaseSyncs, x.releaseCount; own = true), unsafe_wrap(Vector{UInt64}, x.pReleaseKeys, x.releaseCount; own = true))
+Win32KeyedMutexAcquireReleaseInfoKHR(x::VkWin32KeyedMutexAcquireReleaseInfoKHR, next_types::Type...) = Win32KeyedMutexAcquireReleaseInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DeviceMemory}, x.pAcquireSyncs, x.acquireCount; own = true), unsafe_wrap(Vector{UInt64}, x.pAcquireKeys, x.acquireCount; own = true), unsafe_wrap(Vector{UInt32}, x.pAcquireTimeouts, x.acquireCount; own = true), unsafe_wrap(Vector{DeviceMemory}, x.pReleaseSyncs, x.releaseCount; own = true), unsafe_wrap(Vector{UInt64}, x.pReleaseKeys, x.releaseCount; own = true))
 
 """
 
 """
-PhysicalDeviceExternalSemaphoreInfo(x::VkPhysicalDeviceExternalSemaphoreInfo, next_types...) = PhysicalDeviceExternalSemaphoreInfo(load_next_chain(x.pNext, next_types...), ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)))
+PhysicalDeviceExternalSemaphoreInfo(x::VkPhysicalDeviceExternalSemaphoreInfo, next_types::Type...) = PhysicalDeviceExternalSemaphoreInfo(load_next_chain(x.pNext, next_types...), ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-ExternalSemaphoreProperties(x::VkExternalSemaphoreProperties, next_types...) = ExternalSemaphoreProperties(load_next_chain(x.pNext, next_types...), x.exportFromImportedHandleTypes, x.compatibleHandleTypes, x.externalSemaphoreFeatures)
+ExternalSemaphoreProperties(x::VkExternalSemaphoreProperties, next_types::Type...) = ExternalSemaphoreProperties(load_next_chain(x.pNext, next_types...), x.exportFromImportedHandleTypes, x.compatibleHandleTypes, x.externalSemaphoreFeatures)
 
 """
 
 """
-ExportSemaphoreCreateInfo(x::VkExportSemaphoreCreateInfo, next_types...) = ExportSemaphoreCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
+ExportSemaphoreCreateInfo(x::VkExportSemaphoreCreateInfo, next_types::Type...) = ExportSemaphoreCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
 
 """
 
 """
-ImportSemaphoreWin32HandleInfoKHR(x::VkImportSemaphoreWin32HandleInfoKHR, next_types...) = ImportSemaphoreWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.flags, ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)), x.handle, x.name)
+ImportSemaphoreWin32HandleInfoKHR(x::VkImportSemaphoreWin32HandleInfoKHR, next_types::Type...) = ImportSemaphoreWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.flags, ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)), x.handle, x.name)
 
 """
 
 """
-ExportSemaphoreWin32HandleInfoKHR(x::VkExportSemaphoreWin32HandleInfoKHR, next_types...) = ExportSemaphoreWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess, x.name)
+ExportSemaphoreWin32HandleInfoKHR(x::VkExportSemaphoreWin32HandleInfoKHR, next_types::Type...) = ExportSemaphoreWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess, x.name)
 
 """
 
 """
-D3D12FenceSubmitInfoKHR(x::VkD3D12FenceSubmitInfoKHR, next_types...) = D3D12FenceSubmitInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt64}, x.pWaitSemaphoreValues, x.waitSemaphoreValuesCount; own = true), unsafe_wrap(Vector{UInt64}, x.pSignalSemaphoreValues, x.signalSemaphoreValuesCount; own = true))
+D3D12FenceSubmitInfoKHR(x::VkD3D12FenceSubmitInfoKHR, next_types::Type...) = D3D12FenceSubmitInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt64}, x.pWaitSemaphoreValues, x.waitSemaphoreValuesCount; own = true), unsafe_wrap(Vector{UInt64}, x.pSignalSemaphoreValues, x.signalSemaphoreValuesCount; own = true))
 
 """
 
 """
-SemaphoreGetWin32HandleInfoKHR(x::VkSemaphoreGetWin32HandleInfoKHR, next_types...) = SemaphoreGetWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)))
+SemaphoreGetWin32HandleInfoKHR(x::VkSemaphoreGetWin32HandleInfoKHR, next_types::Type...) = SemaphoreGetWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-ImportSemaphoreFdInfoKHR(x::VkImportSemaphoreFdInfoKHR, next_types...) = ImportSemaphoreFdInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.flags, ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)), x.fd)
+ImportSemaphoreFdInfoKHR(x::VkImportSemaphoreFdInfoKHR, next_types::Type...) = ImportSemaphoreFdInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.flags, ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)), x.fd)
 
 """
 
 """
-SemaphoreGetFdInfoKHR(x::VkSemaphoreGetFdInfoKHR, next_types...) = SemaphoreGetFdInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)))
+SemaphoreGetFdInfoKHR(x::VkSemaphoreGetFdInfoKHR, next_types::Type...) = SemaphoreGetFdInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), ExternalSemaphoreHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-PhysicalDeviceExternalFenceInfo(x::VkPhysicalDeviceExternalFenceInfo, next_types...) = PhysicalDeviceExternalFenceInfo(load_next_chain(x.pNext, next_types...), ExternalFenceHandleTypeFlag(UInt32(x.handleType)))
+PhysicalDeviceExternalFenceInfo(x::VkPhysicalDeviceExternalFenceInfo, next_types::Type...) = PhysicalDeviceExternalFenceInfo(load_next_chain(x.pNext, next_types...), ExternalFenceHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-ExternalFenceProperties(x::VkExternalFenceProperties, next_types...) = ExternalFenceProperties(load_next_chain(x.pNext, next_types...), x.exportFromImportedHandleTypes, x.compatibleHandleTypes, x.externalFenceFeatures)
+ExternalFenceProperties(x::VkExternalFenceProperties, next_types::Type...) = ExternalFenceProperties(load_next_chain(x.pNext, next_types...), x.exportFromImportedHandleTypes, x.compatibleHandleTypes, x.externalFenceFeatures)
 
 """
 
 """
-ExportFenceCreateInfo(x::VkExportFenceCreateInfo, next_types...) = ExportFenceCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
+ExportFenceCreateInfo(x::VkExportFenceCreateInfo, next_types::Type...) = ExportFenceCreateInfo(load_next_chain(x.pNext, next_types...), x.handleTypes)
 
 """
 
 """
-ImportFenceWin32HandleInfoKHR(x::VkImportFenceWin32HandleInfoKHR, next_types...) = ImportFenceWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), x.flags, ExternalFenceHandleTypeFlag(UInt32(x.handleType)), x.handle, x.name)
+ImportFenceWin32HandleInfoKHR(x::VkImportFenceWin32HandleInfoKHR, next_types::Type...) = ImportFenceWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), x.flags, ExternalFenceHandleTypeFlag(UInt32(x.handleType)), x.handle, x.name)
 
 """
 
 """
-ExportFenceWin32HandleInfoKHR(x::VkExportFenceWin32HandleInfoKHR, next_types...) = ExportFenceWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess, x.name)
+ExportFenceWin32HandleInfoKHR(x::VkExportFenceWin32HandleInfoKHR, next_types::Type...) = ExportFenceWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(vk.SECURITY_ATTRIBUTES, x.pAttributes), x.dwAccess, x.name)
 
 """
 
 """
-FenceGetWin32HandleInfoKHR(x::VkFenceGetWin32HandleInfoKHR, next_types...) = FenceGetWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), ExternalFenceHandleTypeFlag(UInt32(x.handleType)))
+FenceGetWin32HandleInfoKHR(x::VkFenceGetWin32HandleInfoKHR, next_types::Type...) = FenceGetWin32HandleInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), ExternalFenceHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-ImportFenceFdInfoKHR(x::VkImportFenceFdInfoKHR, next_types...) = ImportFenceFdInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), x.flags, ExternalFenceHandleTypeFlag(UInt32(x.handleType)), x.fd)
+ImportFenceFdInfoKHR(x::VkImportFenceFdInfoKHR, next_types::Type...) = ImportFenceFdInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), x.flags, ExternalFenceHandleTypeFlag(UInt32(x.handleType)), x.fd)
 
 """
 
 """
-FenceGetFdInfoKHR(x::VkFenceGetFdInfoKHR, next_types...) = FenceGetFdInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), ExternalFenceHandleTypeFlag(UInt32(x.handleType)))
+FenceGetFdInfoKHR(x::VkFenceGetFdInfoKHR, next_types::Type...) = FenceGetFdInfoKHR(load_next_chain(x.pNext, next_types...), Fence(x.fence), ExternalFenceHandleTypeFlag(UInt32(x.handleType)))
 
 """
 
 """
-PhysicalDeviceMultiviewFeatures(x::VkPhysicalDeviceMultiviewFeatures, next_types...) = PhysicalDeviceMultiviewFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.multiview), from_vk(Bool, x.multiviewGeometryShader), from_vk(Bool, x.multiviewTessellationShader))
+PhysicalDeviceMultiviewFeatures(x::VkPhysicalDeviceMultiviewFeatures, next_types::Type...) = PhysicalDeviceMultiviewFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.multiview), from_vk(Bool, x.multiviewGeometryShader), from_vk(Bool, x.multiviewTessellationShader))
 
 """
 
 """
-PhysicalDeviceMultiviewProperties(x::VkPhysicalDeviceMultiviewProperties, next_types...) = PhysicalDeviceMultiviewProperties(load_next_chain(x.pNext, next_types...), x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex)
+PhysicalDeviceMultiviewProperties(x::VkPhysicalDeviceMultiviewProperties, next_types::Type...) = PhysicalDeviceMultiviewProperties(load_next_chain(x.pNext, next_types...), x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex)
 
 """
 
 """
-RenderPassMultiviewCreateInfo(x::VkRenderPassMultiviewCreateInfo, next_types...) = RenderPassMultiviewCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pViewMasks, x.subpassCount; own = true), unsafe_wrap(Vector{Int32}, x.pViewOffsets, x.dependencyCount; own = true), unsafe_wrap(Vector{UInt32}, x.pCorrelationMasks, x.correlationMaskCount; own = true))
+RenderPassMultiviewCreateInfo(x::VkRenderPassMultiviewCreateInfo, next_types::Type...) = RenderPassMultiviewCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pViewMasks, x.subpassCount; own = true), unsafe_wrap(Vector{Int32}, x.pViewOffsets, x.dependencyCount; own = true), unsafe_wrap(Vector{UInt32}, x.pCorrelationMasks, x.correlationMaskCount; own = true))
 
 """
 
 """
-SurfaceCapabilities2EXT(x::VkSurfaceCapabilities2EXT, next_types...) = SurfaceCapabilities2EXT(load_next_chain(x.pNext, next_types...), x.minImageCount, x.maxImageCount, Extent2D(x.currentExtent), Extent2D(x.minImageExtent), Extent2D(x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, SurfaceTransformFlagKHR(UInt32(x.currentTransform)), x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
+SurfaceCapabilities2EXT(x::VkSurfaceCapabilities2EXT, next_types::Type...) = SurfaceCapabilities2EXT(load_next_chain(x.pNext, next_types...), x.minImageCount, x.maxImageCount, Extent2D(x.currentExtent), Extent2D(x.minImageExtent), Extent2D(x.maxImageExtent), x.maxImageArrayLayers, x.supportedTransforms, SurfaceTransformFlagKHR(UInt32(x.currentTransform)), x.supportedCompositeAlpha, x.supportedUsageFlags, x.supportedSurfaceCounters)
 
 """
 
 """
-DisplayPowerInfoEXT(x::VkDisplayPowerInfoEXT, next_types...) = DisplayPowerInfoEXT(load_next_chain(x.pNext, next_types...), x.powerState)
+DisplayPowerInfoEXT(x::VkDisplayPowerInfoEXT, next_types::Type...) = DisplayPowerInfoEXT(load_next_chain(x.pNext, next_types...), x.powerState)
 
 """
 
 """
-DeviceEventInfoEXT(x::VkDeviceEventInfoEXT, next_types...) = DeviceEventInfoEXT(load_next_chain(x.pNext, next_types...), x.deviceEvent)
+DeviceEventInfoEXT(x::VkDeviceEventInfoEXT, next_types::Type...) = DeviceEventInfoEXT(load_next_chain(x.pNext, next_types...), x.deviceEvent)
 
 """
 
 """
-DisplayEventInfoEXT(x::VkDisplayEventInfoEXT, next_types...) = DisplayEventInfoEXT(load_next_chain(x.pNext, next_types...), x.displayEvent)
+DisplayEventInfoEXT(x::VkDisplayEventInfoEXT, next_types::Type...) = DisplayEventInfoEXT(load_next_chain(x.pNext, next_types...), x.displayEvent)
 
 """
 
 """
-SwapchainCounterCreateInfoEXT(x::VkSwapchainCounterCreateInfoEXT, next_types...) = SwapchainCounterCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.surfaceCounters)
+SwapchainCounterCreateInfoEXT(x::VkSwapchainCounterCreateInfoEXT, next_types::Type...) = SwapchainCounterCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.surfaceCounters)
 
 """
 
 """
-PhysicalDeviceGroupProperties(x::VkPhysicalDeviceGroupProperties, next_types...) = PhysicalDeviceGroupProperties(load_next_chain(x.pNext, next_types...), x.physicalDeviceCount, PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
+PhysicalDeviceGroupProperties(x::VkPhysicalDeviceGroupProperties, next_types::Type...) = PhysicalDeviceGroupProperties(load_next_chain(x.pNext, next_types...), x.physicalDeviceCount, PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
 
 """
 
 """
-MemoryAllocateFlagsInfo(x::VkMemoryAllocateFlagsInfo, next_types...) = MemoryAllocateFlagsInfo(load_next_chain(x.pNext, next_types...), x.flags, x.deviceMask)
+MemoryAllocateFlagsInfo(x::VkMemoryAllocateFlagsInfo, next_types::Type...) = MemoryAllocateFlagsInfo(load_next_chain(x.pNext, next_types...), x.flags, x.deviceMask)
 
 """
 
 """
-BindBufferMemoryInfo(x::VkBindBufferMemoryInfo, next_types...) = BindBufferMemoryInfo(load_next_chain(x.pNext, next_types...), Buffer(x.buffer), DeviceMemory(x.memory), x.memoryOffset)
+BindBufferMemoryInfo(x::VkBindBufferMemoryInfo, next_types::Type...) = BindBufferMemoryInfo(load_next_chain(x.pNext, next_types...), Buffer(x.buffer), DeviceMemory(x.memory), x.memoryOffset)
 
 """
 
 """
-BindBufferMemoryDeviceGroupInfo(x::VkBindBufferMemoryDeviceGroupInfo, next_types...) = BindBufferMemoryDeviceGroupInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDeviceIndices, x.deviceIndexCount; own = true))
+BindBufferMemoryDeviceGroupInfo(x::VkBindBufferMemoryDeviceGroupInfo, next_types::Type...) = BindBufferMemoryDeviceGroupInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDeviceIndices, x.deviceIndexCount; own = true))
 
 """
 
 """
-BindImageMemoryInfo(x::VkBindImageMemoryInfo, next_types...) = BindImageMemoryInfo(load_next_chain(x.pNext, next_types...), Image(x.image), DeviceMemory(x.memory), x.memoryOffset)
+BindImageMemoryInfo(x::VkBindImageMemoryInfo, next_types::Type...) = BindImageMemoryInfo(load_next_chain(x.pNext, next_types...), Image(x.image), DeviceMemory(x.memory), x.memoryOffset)
 
 """
 
 """
-BindImageMemoryDeviceGroupInfo(x::VkBindImageMemoryDeviceGroupInfo, next_types...) = BindImageMemoryDeviceGroupInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDeviceIndices, x.deviceIndexCount; own = true), unsafe_wrap(Vector{Rect2D}, x.pSplitInstanceBindRegions, x.splitInstanceBindRegionCount; own = true))
+BindImageMemoryDeviceGroupInfo(x::VkBindImageMemoryDeviceGroupInfo, next_types::Type...) = BindImageMemoryDeviceGroupInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDeviceIndices, x.deviceIndexCount; own = true), unsafe_wrap(Vector{Rect2D}, x.pSplitInstanceBindRegions, x.splitInstanceBindRegionCount; own = true))
 
 """
 
 """
-DeviceGroupRenderPassBeginInfo(x::VkDeviceGroupRenderPassBeginInfo, next_types...) = DeviceGroupRenderPassBeginInfo(load_next_chain(x.pNext, next_types...), x.deviceMask, unsafe_wrap(Vector{Rect2D}, x.pDeviceRenderAreas, x.deviceRenderAreaCount; own = true))
+DeviceGroupRenderPassBeginInfo(x::VkDeviceGroupRenderPassBeginInfo, next_types::Type...) = DeviceGroupRenderPassBeginInfo(load_next_chain(x.pNext, next_types...), x.deviceMask, unsafe_wrap(Vector{Rect2D}, x.pDeviceRenderAreas, x.deviceRenderAreaCount; own = true))
 
 """
 
 """
-DeviceGroupCommandBufferBeginInfo(x::VkDeviceGroupCommandBufferBeginInfo, next_types...) = DeviceGroupCommandBufferBeginInfo(load_next_chain(x.pNext, next_types...), x.deviceMask)
+DeviceGroupCommandBufferBeginInfo(x::VkDeviceGroupCommandBufferBeginInfo, next_types::Type...) = DeviceGroupCommandBufferBeginInfo(load_next_chain(x.pNext, next_types...), x.deviceMask)
 
 """
 
 """
-DeviceGroupSubmitInfo(x::VkDeviceGroupSubmitInfo, next_types...) = DeviceGroupSubmitInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pWaitSemaphoreDeviceIndices, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{UInt32}, x.pCommandBufferDeviceMasks, x.commandBufferCount; own = true), unsafe_wrap(Vector{UInt32}, x.pSignalSemaphoreDeviceIndices, x.signalSemaphoreCount; own = true))
+DeviceGroupSubmitInfo(x::VkDeviceGroupSubmitInfo, next_types::Type...) = DeviceGroupSubmitInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pWaitSemaphoreDeviceIndices, x.waitSemaphoreCount; own = true), unsafe_wrap(Vector{UInt32}, x.pCommandBufferDeviceMasks, x.commandBufferCount; own = true), unsafe_wrap(Vector{UInt32}, x.pSignalSemaphoreDeviceIndices, x.signalSemaphoreCount; own = true))
 
 """
 
 """
-DeviceGroupBindSparseInfo(x::VkDeviceGroupBindSparseInfo, next_types...) = DeviceGroupBindSparseInfo(load_next_chain(x.pNext, next_types...), x.resourceDeviceIndex, x.memoryDeviceIndex)
+DeviceGroupBindSparseInfo(x::VkDeviceGroupBindSparseInfo, next_types::Type...) = DeviceGroupBindSparseInfo(load_next_chain(x.pNext, next_types...), x.resourceDeviceIndex, x.memoryDeviceIndex)
 
 """
 
 """
-DeviceGroupPresentCapabilitiesKHR(x::VkDeviceGroupPresentCapabilitiesKHR, next_types...) = DeviceGroupPresentCapabilitiesKHR(load_next_chain(x.pNext, next_types...), x.presentMask, x.modes)
+DeviceGroupPresentCapabilitiesKHR(x::VkDeviceGroupPresentCapabilitiesKHR, next_types::Type...) = DeviceGroupPresentCapabilitiesKHR(load_next_chain(x.pNext, next_types...), x.presentMask, x.modes)
 
 """
 
 """
-ImageSwapchainCreateInfoKHR(x::VkImageSwapchainCreateInfoKHR, next_types...) = ImageSwapchainCreateInfoKHR(load_next_chain(x.pNext, next_types...), SwapchainKHR(x.swapchain))
+ImageSwapchainCreateInfoKHR(x::VkImageSwapchainCreateInfoKHR, next_types::Type...) = ImageSwapchainCreateInfoKHR(load_next_chain(x.pNext, next_types...), SwapchainKHR(x.swapchain))
 
 """
 
 """
-BindImageMemorySwapchainInfoKHR(x::VkBindImageMemorySwapchainInfoKHR, next_types...) = BindImageMemorySwapchainInfoKHR(load_next_chain(x.pNext, next_types...), SwapchainKHR(x.swapchain), x.imageIndex)
+BindImageMemorySwapchainInfoKHR(x::VkBindImageMemorySwapchainInfoKHR, next_types::Type...) = BindImageMemorySwapchainInfoKHR(load_next_chain(x.pNext, next_types...), SwapchainKHR(x.swapchain), x.imageIndex)
 
 """
 
 """
-AcquireNextImageInfoKHR(x::VkAcquireNextImageInfoKHR, next_types...) = AcquireNextImageInfoKHR(load_next_chain(x.pNext, next_types...), SwapchainKHR(x.swapchain), x.timeout, Semaphore(x.semaphore), Fence(x.fence), x.deviceMask)
+AcquireNextImageInfoKHR(x::VkAcquireNextImageInfoKHR, next_types::Type...) = AcquireNextImageInfoKHR(load_next_chain(x.pNext, next_types...), SwapchainKHR(x.swapchain), x.timeout, Semaphore(x.semaphore), Fence(x.fence), x.deviceMask)
 
 """
 
 """
-DeviceGroupPresentInfoKHR(x::VkDeviceGroupPresentInfoKHR, next_types...) = DeviceGroupPresentInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDeviceMasks, x.swapchainCount; own = true), DeviceGroupPresentModeFlagKHR(UInt32(x.mode)))
+DeviceGroupPresentInfoKHR(x::VkDeviceGroupPresentInfoKHR, next_types::Type...) = DeviceGroupPresentInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDeviceMasks, x.swapchainCount; own = true), DeviceGroupPresentModeFlagKHR(UInt32(x.mode)))
 
 """
 
 """
-DeviceGroupDeviceCreateInfo(x::VkDeviceGroupDeviceCreateInfo, next_types...) = DeviceGroupDeviceCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PhysicalDevice}, x.pPhysicalDevices, x.physicalDeviceCount; own = true))
+DeviceGroupDeviceCreateInfo(x::VkDeviceGroupDeviceCreateInfo, next_types::Type...) = DeviceGroupDeviceCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PhysicalDevice}, x.pPhysicalDevices, x.physicalDeviceCount; own = true))
 
 """
 
 """
-DeviceGroupSwapchainCreateInfoKHR(x::VkDeviceGroupSwapchainCreateInfoKHR, next_types...) = DeviceGroupSwapchainCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.modes)
+DeviceGroupSwapchainCreateInfoKHR(x::VkDeviceGroupSwapchainCreateInfoKHR, next_types::Type...) = DeviceGroupSwapchainCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.modes)
 
 """
 
@@ -34262,7 +38634,7 @@ DescriptorUpdateTemplateEntry(x::VkDescriptorUpdateTemplateEntry) = DescriptorUp
 """
 
 """
-DescriptorUpdateTemplateCreateInfo(x::VkDescriptorUpdateTemplateCreateInfo, next_types...) = DescriptorUpdateTemplateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DescriptorUpdateTemplateEntry}, x.pDescriptorUpdateEntries, x.descriptorUpdateEntryCount; own = true), x.templateType, DescriptorSetLayout(x.descriptorSetLayout), x.pipelineBindPoint, PipelineLayout(x.pipelineLayout), x.set)
+DescriptorUpdateTemplateCreateInfo(x::VkDescriptorUpdateTemplateCreateInfo, next_types::Type...) = DescriptorUpdateTemplateCreateInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{DescriptorUpdateTemplateEntry}, x.pDescriptorUpdateEntries, x.descriptorUpdateEntryCount; own = true), x.templateType, DescriptorSetLayout(x.descriptorSetLayout), x.pipelineBindPoint, PipelineLayout(x.pipelineLayout), x.set)
 
 """
 
@@ -34272,17 +38644,17 @@ XYColorEXT(x::VkXYColorEXT) = XYColorEXT(x.x, x.y)
 """
 
 """
-HdrMetadataEXT(x::VkHdrMetadataEXT, next_types...) = HdrMetadataEXT(load_next_chain(x.pNext, next_types...), XYColorEXT(x.displayPrimaryRed), XYColorEXT(x.displayPrimaryGreen), XYColorEXT(x.displayPrimaryBlue), XYColorEXT(x.whitePoint), x.maxLuminance, x.minLuminance, x.maxContentLightLevel, x.maxFrameAverageLightLevel)
+HdrMetadataEXT(x::VkHdrMetadataEXT, next_types::Type...) = HdrMetadataEXT(load_next_chain(x.pNext, next_types...), XYColorEXT(x.displayPrimaryRed), XYColorEXT(x.displayPrimaryGreen), XYColorEXT(x.displayPrimaryBlue), XYColorEXT(x.whitePoint), x.maxLuminance, x.minLuminance, x.maxContentLightLevel, x.maxFrameAverageLightLevel)
 
 """
 
 """
-DisplayNativeHdrSurfaceCapabilitiesAMD(x::VkDisplayNativeHdrSurfaceCapabilitiesAMD, next_types...) = DisplayNativeHdrSurfaceCapabilitiesAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.localDimmingSupport))
+DisplayNativeHdrSurfaceCapabilitiesAMD(x::VkDisplayNativeHdrSurfaceCapabilitiesAMD, next_types::Type...) = DisplayNativeHdrSurfaceCapabilitiesAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.localDimmingSupport))
 
 """
 
 """
-SwapchainDisplayNativeHdrCreateInfoAMD(x::VkSwapchainDisplayNativeHdrCreateInfoAMD, next_types...) = SwapchainDisplayNativeHdrCreateInfoAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.localDimmingEnable))
+SwapchainDisplayNativeHdrCreateInfoAMD(x::VkSwapchainDisplayNativeHdrCreateInfoAMD, next_types::Type...) = SwapchainDisplayNativeHdrCreateInfoAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.localDimmingEnable))
 
 """
 
@@ -34297,7 +38669,7 @@ PastPresentationTimingGOOGLE(x::VkPastPresentationTimingGOOGLE) = PastPresentati
 """
 
 """
-PresentTimesInfoGOOGLE(x::VkPresentTimesInfoGOOGLE, next_types...) = PresentTimesInfoGOOGLE(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PresentTimeGOOGLE}, x.pTimes, x.swapchainCount; own = true))
+PresentTimesInfoGOOGLE(x::VkPresentTimesInfoGOOGLE, next_types::Type...) = PresentTimesInfoGOOGLE(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{PresentTimeGOOGLE}, x.pTimes, x.swapchainCount; own = true))
 
 """
 
@@ -34312,7 +38684,7 @@ ViewportWScalingNV(x::VkViewportWScalingNV) = ViewportWScalingNV(x.xcoeff, x.yco
 """
 
 """
-PipelineViewportWScalingStateCreateInfoNV(x::VkPipelineViewportWScalingStateCreateInfoNV, next_types...) = PipelineViewportWScalingStateCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.viewportWScalingEnable), unsafe_wrap(Vector{ViewportWScalingNV}, x.pViewportWScalings, x.viewportCount; own = true))
+PipelineViewportWScalingStateCreateInfoNV(x::VkPipelineViewportWScalingStateCreateInfoNV, next_types::Type...) = PipelineViewportWScalingStateCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.viewportWScalingEnable), unsafe_wrap(Vector{ViewportWScalingNV}, x.pViewportWScalings, x.viewportCount; own = true))
 
 """
 
@@ -34322,22 +38694,22 @@ ViewportSwizzleNV(x::VkViewportSwizzleNV) = ViewportSwizzleNV(x.x, x.y, x.z, x.w
 """
 
 """
-PipelineViewportSwizzleStateCreateInfoNV(x::VkPipelineViewportSwizzleStateCreateInfoNV, next_types...) = PipelineViewportSwizzleStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{ViewportSwizzleNV}, x.pViewportSwizzles, x.viewportCount; own = true))
+PipelineViewportSwizzleStateCreateInfoNV(x::VkPipelineViewportSwizzleStateCreateInfoNV, next_types::Type...) = PipelineViewportSwizzleStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{ViewportSwizzleNV}, x.pViewportSwizzles, x.viewportCount; own = true))
 
 """
 
 """
-PhysicalDeviceDiscardRectanglePropertiesEXT(x::VkPhysicalDeviceDiscardRectanglePropertiesEXT, next_types...) = PhysicalDeviceDiscardRectanglePropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxDiscardRectangles)
+PhysicalDeviceDiscardRectanglePropertiesEXT(x::VkPhysicalDeviceDiscardRectanglePropertiesEXT, next_types::Type...) = PhysicalDeviceDiscardRectanglePropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxDiscardRectangles)
 
 """
 
 """
-PipelineDiscardRectangleStateCreateInfoEXT(x::VkPipelineDiscardRectangleStateCreateInfoEXT, next_types...) = PipelineDiscardRectangleStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.discardRectangleMode, unsafe_wrap(Vector{Rect2D}, x.pDiscardRectangles, x.discardRectangleCount; own = true))
+PipelineDiscardRectangleStateCreateInfoEXT(x::VkPipelineDiscardRectangleStateCreateInfoEXT, next_types::Type...) = PipelineDiscardRectangleStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.discardRectangleMode, unsafe_wrap(Vector{Rect2D}, x.pDiscardRectangles, x.discardRectangleCount; own = true))
 
 """
 
 """
-PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(x::VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, next_types...) = PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.perViewPositionAllComponents))
+PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(x::VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, next_types::Type...) = PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.perViewPositionAllComponents))
 
 """
 
@@ -34347,187 +38719,187 @@ InputAttachmentAspectReference(x::VkInputAttachmentAspectReference) = InputAttac
 """
 
 """
-RenderPassInputAttachmentAspectCreateInfo(x::VkRenderPassInputAttachmentAspectCreateInfo, next_types...) = RenderPassInputAttachmentAspectCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{InputAttachmentAspectReference}, x.pAspectReferences, x.aspectReferenceCount; own = true))
+RenderPassInputAttachmentAspectCreateInfo(x::VkRenderPassInputAttachmentAspectCreateInfo, next_types::Type...) = RenderPassInputAttachmentAspectCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{InputAttachmentAspectReference}, x.pAspectReferences, x.aspectReferenceCount; own = true))
 
 """
 
 """
-PhysicalDeviceSurfaceInfo2KHR(x::VkPhysicalDeviceSurfaceInfo2KHR, next_types...) = PhysicalDeviceSurfaceInfo2KHR(load_next_chain(x.pNext, next_types...), SurfaceKHR(x.surface))
+PhysicalDeviceSurfaceInfo2KHR(x::VkPhysicalDeviceSurfaceInfo2KHR, next_types::Type...) = PhysicalDeviceSurfaceInfo2KHR(load_next_chain(x.pNext, next_types...), SurfaceKHR(x.surface))
 
 """
 
 """
-SurfaceCapabilities2KHR(x::VkSurfaceCapabilities2KHR, next_types...) = SurfaceCapabilities2KHR(load_next_chain(x.pNext, next_types...), SurfaceCapabilitiesKHR(x.surfaceCapabilities))
+SurfaceCapabilities2KHR(x::VkSurfaceCapabilities2KHR, next_types::Type...) = SurfaceCapabilities2KHR(load_next_chain(x.pNext, next_types...), SurfaceCapabilitiesKHR(x.surfaceCapabilities))
 
 """
 
 """
-SurfaceFormat2KHR(x::VkSurfaceFormat2KHR, next_types...) = SurfaceFormat2KHR(load_next_chain(x.pNext, next_types...), SurfaceFormatKHR(x.surfaceFormat))
+SurfaceFormat2KHR(x::VkSurfaceFormat2KHR, next_types::Type...) = SurfaceFormat2KHR(load_next_chain(x.pNext, next_types...), SurfaceFormatKHR(x.surfaceFormat))
 
 """
 
 """
-DisplayProperties2KHR(x::VkDisplayProperties2KHR, next_types...) = DisplayProperties2KHR(load_next_chain(x.pNext, next_types...), DisplayPropertiesKHR(x.displayProperties))
+DisplayProperties2KHR(x::VkDisplayProperties2KHR, next_types::Type...) = DisplayProperties2KHR(load_next_chain(x.pNext, next_types...), DisplayPropertiesKHR(x.displayProperties))
 
 """
 
 """
-DisplayPlaneProperties2KHR(x::VkDisplayPlaneProperties2KHR, next_types...) = DisplayPlaneProperties2KHR(load_next_chain(x.pNext, next_types...), DisplayPlanePropertiesKHR(x.displayPlaneProperties))
+DisplayPlaneProperties2KHR(x::VkDisplayPlaneProperties2KHR, next_types::Type...) = DisplayPlaneProperties2KHR(load_next_chain(x.pNext, next_types...), DisplayPlanePropertiesKHR(x.displayPlaneProperties))
 
 """
 
 """
-DisplayModeProperties2KHR(x::VkDisplayModeProperties2KHR, next_types...) = DisplayModeProperties2KHR(load_next_chain(x.pNext, next_types...), DisplayModePropertiesKHR(x.displayModeProperties))
+DisplayModeProperties2KHR(x::VkDisplayModeProperties2KHR, next_types::Type...) = DisplayModeProperties2KHR(load_next_chain(x.pNext, next_types...), DisplayModePropertiesKHR(x.displayModeProperties))
 
 """
 
 """
-DisplayPlaneInfo2KHR(x::VkDisplayPlaneInfo2KHR, next_types...) = DisplayPlaneInfo2KHR(load_next_chain(x.pNext, next_types...), DisplayModeKHR(x.mode), x.planeIndex)
+DisplayPlaneInfo2KHR(x::VkDisplayPlaneInfo2KHR, next_types::Type...) = DisplayPlaneInfo2KHR(load_next_chain(x.pNext, next_types...), DisplayModeKHR(x.mode), x.planeIndex)
 
 """
 
 """
-DisplayPlaneCapabilities2KHR(x::VkDisplayPlaneCapabilities2KHR, next_types...) = DisplayPlaneCapabilities2KHR(load_next_chain(x.pNext, next_types...), DisplayPlaneCapabilitiesKHR(x.capabilities))
+DisplayPlaneCapabilities2KHR(x::VkDisplayPlaneCapabilities2KHR, next_types::Type...) = DisplayPlaneCapabilities2KHR(load_next_chain(x.pNext, next_types...), DisplayPlaneCapabilitiesKHR(x.capabilities))
 
 """
 
 """
-SharedPresentSurfaceCapabilitiesKHR(x::VkSharedPresentSurfaceCapabilitiesKHR, next_types...) = SharedPresentSurfaceCapabilitiesKHR(load_next_chain(x.pNext, next_types...), x.sharedPresentSupportedUsageFlags)
+SharedPresentSurfaceCapabilitiesKHR(x::VkSharedPresentSurfaceCapabilitiesKHR, next_types::Type...) = SharedPresentSurfaceCapabilitiesKHR(load_next_chain(x.pNext, next_types...), x.sharedPresentSupportedUsageFlags)
 
 """
 
 """
-PhysicalDevice16BitStorageFeatures(x::VkPhysicalDevice16BitStorageFeatures, next_types...) = PhysicalDevice16BitStorageFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.storageBuffer16BitAccess), from_vk(Bool, x.uniformAndStorageBuffer16BitAccess), from_vk(Bool, x.storagePushConstant16), from_vk(Bool, x.storageInputOutput16))
+PhysicalDevice16BitStorageFeatures(x::VkPhysicalDevice16BitStorageFeatures, next_types::Type...) = PhysicalDevice16BitStorageFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.storageBuffer16BitAccess), from_vk(Bool, x.uniformAndStorageBuffer16BitAccess), from_vk(Bool, x.storagePushConstant16), from_vk(Bool, x.storageInputOutput16))
 
 """
 
 """
-PhysicalDeviceSubgroupProperties(x::VkPhysicalDeviceSubgroupProperties, next_types...) = PhysicalDeviceSubgroupProperties(load_next_chain(x.pNext, next_types...), x.subgroupSize, x.supportedStages, x.supportedOperations, from_vk(Bool, x.quadOperationsInAllStages))
+PhysicalDeviceSubgroupProperties(x::VkPhysicalDeviceSubgroupProperties, next_types::Type...) = PhysicalDeviceSubgroupProperties(load_next_chain(x.pNext, next_types...), x.subgroupSize, x.supportedStages, x.supportedOperations, from_vk(Bool, x.quadOperationsInAllStages))
 
 """
 
 """
-PhysicalDeviceShaderSubgroupExtendedTypesFeatures(x::VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures, next_types...) = PhysicalDeviceShaderSubgroupExtendedTypesFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderSubgroupExtendedTypes))
+PhysicalDeviceShaderSubgroupExtendedTypesFeatures(x::VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures, next_types::Type...) = PhysicalDeviceShaderSubgroupExtendedTypesFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderSubgroupExtendedTypes))
 
 """
 
 """
-BufferMemoryRequirementsInfo2(x::VkBufferMemoryRequirementsInfo2, next_types...) = BufferMemoryRequirementsInfo2(load_next_chain(x.pNext, next_types...), Buffer(x.buffer))
+BufferMemoryRequirementsInfo2(x::VkBufferMemoryRequirementsInfo2, next_types::Type...) = BufferMemoryRequirementsInfo2(load_next_chain(x.pNext, next_types...), Buffer(x.buffer))
 
 """
 
 """
-ImageMemoryRequirementsInfo2(x::VkImageMemoryRequirementsInfo2, next_types...) = ImageMemoryRequirementsInfo2(load_next_chain(x.pNext, next_types...), Image(x.image))
+ImageMemoryRequirementsInfo2(x::VkImageMemoryRequirementsInfo2, next_types::Type...) = ImageMemoryRequirementsInfo2(load_next_chain(x.pNext, next_types...), Image(x.image))
 
 """
 
 """
-ImageSparseMemoryRequirementsInfo2(x::VkImageSparseMemoryRequirementsInfo2, next_types...) = ImageSparseMemoryRequirementsInfo2(load_next_chain(x.pNext, next_types...), Image(x.image))
+ImageSparseMemoryRequirementsInfo2(x::VkImageSparseMemoryRequirementsInfo2, next_types::Type...) = ImageSparseMemoryRequirementsInfo2(load_next_chain(x.pNext, next_types...), Image(x.image))
 
 """
 
 """
-MemoryRequirements2(x::VkMemoryRequirements2, next_types...) = MemoryRequirements2(load_next_chain(x.pNext, next_types...), MemoryRequirements(x.memoryRequirements))
+MemoryRequirements2(x::VkMemoryRequirements2, next_types::Type...) = MemoryRequirements2(load_next_chain(x.pNext, next_types...), MemoryRequirements(x.memoryRequirements))
 
 """
 
 """
-SparseImageMemoryRequirements2(x::VkSparseImageMemoryRequirements2, next_types...) = SparseImageMemoryRequirements2(load_next_chain(x.pNext, next_types...), SparseImageMemoryRequirements(x.memoryRequirements))
+SparseImageMemoryRequirements2(x::VkSparseImageMemoryRequirements2, next_types::Type...) = SparseImageMemoryRequirements2(load_next_chain(x.pNext, next_types...), SparseImageMemoryRequirements(x.memoryRequirements))
 
 """
 
 """
-PhysicalDevicePointClippingProperties(x::VkPhysicalDevicePointClippingProperties, next_types...) = PhysicalDevicePointClippingProperties(load_next_chain(x.pNext, next_types...), x.pointClippingBehavior)
+PhysicalDevicePointClippingProperties(x::VkPhysicalDevicePointClippingProperties, next_types::Type...) = PhysicalDevicePointClippingProperties(load_next_chain(x.pNext, next_types...), x.pointClippingBehavior)
 
 """
 
 """
-MemoryDedicatedRequirements(x::VkMemoryDedicatedRequirements, next_types...) = MemoryDedicatedRequirements(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.prefersDedicatedAllocation), from_vk(Bool, x.requiresDedicatedAllocation))
+MemoryDedicatedRequirements(x::VkMemoryDedicatedRequirements, next_types::Type...) = MemoryDedicatedRequirements(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.prefersDedicatedAllocation), from_vk(Bool, x.requiresDedicatedAllocation))
 
 """
 
 """
-MemoryDedicatedAllocateInfo(x::VkMemoryDedicatedAllocateInfo, next_types...) = MemoryDedicatedAllocateInfo(load_next_chain(x.pNext, next_types...), Image(x.image), Buffer(x.buffer))
+MemoryDedicatedAllocateInfo(x::VkMemoryDedicatedAllocateInfo, next_types::Type...) = MemoryDedicatedAllocateInfo(load_next_chain(x.pNext, next_types...), Image(x.image), Buffer(x.buffer))
 
 """
 
 """
-ImageViewUsageCreateInfo(x::VkImageViewUsageCreateInfo, next_types...) = ImageViewUsageCreateInfo(load_next_chain(x.pNext, next_types...), x.usage)
+ImageViewUsageCreateInfo(x::VkImageViewUsageCreateInfo, next_types::Type...) = ImageViewUsageCreateInfo(load_next_chain(x.pNext, next_types...), x.usage)
 
 """
 
 """
-PipelineTessellationDomainOriginStateCreateInfo(x::VkPipelineTessellationDomainOriginStateCreateInfo, next_types...) = PipelineTessellationDomainOriginStateCreateInfo(load_next_chain(x.pNext, next_types...), x.domainOrigin)
+PipelineTessellationDomainOriginStateCreateInfo(x::VkPipelineTessellationDomainOriginStateCreateInfo, next_types::Type...) = PipelineTessellationDomainOriginStateCreateInfo(load_next_chain(x.pNext, next_types...), x.domainOrigin)
 
 """
 
 """
-SamplerYcbcrConversionInfo(x::VkSamplerYcbcrConversionInfo, next_types...) = SamplerYcbcrConversionInfo(load_next_chain(x.pNext, next_types...), SamplerYcbcrConversion(x.conversion))
+SamplerYcbcrConversionInfo(x::VkSamplerYcbcrConversionInfo, next_types::Type...) = SamplerYcbcrConversionInfo(load_next_chain(x.pNext, next_types...), SamplerYcbcrConversion(x.conversion))
 
 """
 
 """
-SamplerYcbcrConversionCreateInfo(x::VkSamplerYcbcrConversionCreateInfo, next_types...) = SamplerYcbcrConversionCreateInfo(load_next_chain(x.pNext, next_types...), x.format, x.ycbcrModel, x.ycbcrRange, ComponentMapping(x.components), x.xChromaOffset, x.yChromaOffset, x.chromaFilter, from_vk(Bool, x.forceExplicitReconstruction))
+SamplerYcbcrConversionCreateInfo(x::VkSamplerYcbcrConversionCreateInfo, next_types::Type...) = SamplerYcbcrConversionCreateInfo(load_next_chain(x.pNext, next_types...), x.format, x.ycbcrModel, x.ycbcrRange, ComponentMapping(x.components), x.xChromaOffset, x.yChromaOffset, x.chromaFilter, from_vk(Bool, x.forceExplicitReconstruction))
 
 """
 
 """
-BindImagePlaneMemoryInfo(x::VkBindImagePlaneMemoryInfo, next_types...) = BindImagePlaneMemoryInfo(load_next_chain(x.pNext, next_types...), ImageAspectFlag(UInt32(x.planeAspect)))
+BindImagePlaneMemoryInfo(x::VkBindImagePlaneMemoryInfo, next_types::Type...) = BindImagePlaneMemoryInfo(load_next_chain(x.pNext, next_types...), ImageAspectFlag(UInt32(x.planeAspect)))
 
 """
 
 """
-ImagePlaneMemoryRequirementsInfo(x::VkImagePlaneMemoryRequirementsInfo, next_types...) = ImagePlaneMemoryRequirementsInfo(load_next_chain(x.pNext, next_types...), ImageAspectFlag(UInt32(x.planeAspect)))
+ImagePlaneMemoryRequirementsInfo(x::VkImagePlaneMemoryRequirementsInfo, next_types::Type...) = ImagePlaneMemoryRequirementsInfo(load_next_chain(x.pNext, next_types...), ImageAspectFlag(UInt32(x.planeAspect)))
 
 """
 
 """
-PhysicalDeviceSamplerYcbcrConversionFeatures(x::VkPhysicalDeviceSamplerYcbcrConversionFeatures, next_types...) = PhysicalDeviceSamplerYcbcrConversionFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.samplerYcbcrConversion))
+PhysicalDeviceSamplerYcbcrConversionFeatures(x::VkPhysicalDeviceSamplerYcbcrConversionFeatures, next_types::Type...) = PhysicalDeviceSamplerYcbcrConversionFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.samplerYcbcrConversion))
 
 """
 
 """
-SamplerYcbcrConversionImageFormatProperties(x::VkSamplerYcbcrConversionImageFormatProperties, next_types...) = SamplerYcbcrConversionImageFormatProperties(load_next_chain(x.pNext, next_types...), x.combinedImageSamplerDescriptorCount)
+SamplerYcbcrConversionImageFormatProperties(x::VkSamplerYcbcrConversionImageFormatProperties, next_types::Type...) = SamplerYcbcrConversionImageFormatProperties(load_next_chain(x.pNext, next_types...), x.combinedImageSamplerDescriptorCount)
 
 """
 
 """
-TextureLODGatherFormatPropertiesAMD(x::VkTextureLODGatherFormatPropertiesAMD, next_types...) = TextureLODGatherFormatPropertiesAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.supportsTextureGatherLODBiasAMD))
+TextureLODGatherFormatPropertiesAMD(x::VkTextureLODGatherFormatPropertiesAMD, next_types::Type...) = TextureLODGatherFormatPropertiesAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.supportsTextureGatherLODBiasAMD))
 
 """
 
 """
-ConditionalRenderingBeginInfoEXT(x::VkConditionalRenderingBeginInfoEXT, next_types...) = ConditionalRenderingBeginInfoEXT(load_next_chain(x.pNext, next_types...), Buffer(x.buffer), x.offset, x.flags)
+ConditionalRenderingBeginInfoEXT(x::VkConditionalRenderingBeginInfoEXT, next_types::Type...) = ConditionalRenderingBeginInfoEXT(load_next_chain(x.pNext, next_types...), Buffer(x.buffer), x.offset, x.flags)
 
 """
 
 """
-ProtectedSubmitInfo(x::VkProtectedSubmitInfo, next_types...) = ProtectedSubmitInfo(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.protectedSubmit))
+ProtectedSubmitInfo(x::VkProtectedSubmitInfo, next_types::Type...) = ProtectedSubmitInfo(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.protectedSubmit))
 
 """
 
 """
-PhysicalDeviceProtectedMemoryFeatures(x::VkPhysicalDeviceProtectedMemoryFeatures, next_types...) = PhysicalDeviceProtectedMemoryFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.protectedMemory))
+PhysicalDeviceProtectedMemoryFeatures(x::VkPhysicalDeviceProtectedMemoryFeatures, next_types::Type...) = PhysicalDeviceProtectedMemoryFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.protectedMemory))
 
 """
 
 """
-PhysicalDeviceProtectedMemoryProperties(x::VkPhysicalDeviceProtectedMemoryProperties, next_types...) = PhysicalDeviceProtectedMemoryProperties(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.protectedNoFault))
+PhysicalDeviceProtectedMemoryProperties(x::VkPhysicalDeviceProtectedMemoryProperties, next_types::Type...) = PhysicalDeviceProtectedMemoryProperties(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.protectedNoFault))
 
 """
 
 """
-DeviceQueueInfo2(x::VkDeviceQueueInfo2, next_types...) = DeviceQueueInfo2(load_next_chain(x.pNext, next_types...), x.flags, x.queueFamilyIndex, x.queueIndex)
+DeviceQueueInfo2(x::VkDeviceQueueInfo2, next_types::Type...) = DeviceQueueInfo2(load_next_chain(x.pNext, next_types...), x.flags, x.queueFamilyIndex, x.queueIndex)
 
 """
 
 """
-PipelineCoverageToColorStateCreateInfoNV(x::VkPipelineCoverageToColorStateCreateInfoNV, next_types...) = PipelineCoverageToColorStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.coverageToColorEnable), x.coverageToColorLocation)
+PipelineCoverageToColorStateCreateInfoNV(x::VkPipelineCoverageToColorStateCreateInfoNV, next_types::Type...) = PipelineCoverageToColorStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.coverageToColorEnable), x.coverageToColorLocation)
 
 """
 
 """
-PhysicalDeviceSamplerFilterMinmaxProperties(x::VkPhysicalDeviceSamplerFilterMinmaxProperties, next_types...) = PhysicalDeviceSamplerFilterMinmaxProperties(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.filterMinmaxSingleComponentFormats), from_vk(Bool, x.filterMinmaxImageComponentMapping))
+PhysicalDeviceSamplerFilterMinmaxProperties(x::VkPhysicalDeviceSamplerFilterMinmaxProperties, next_types::Type...) = PhysicalDeviceSamplerFilterMinmaxProperties(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.filterMinmaxSingleComponentFormats), from_vk(Bool, x.filterMinmaxImageComponentMapping))
 
 """
 
@@ -34537,7 +38909,7 @@ SampleLocationEXT(x::VkSampleLocationEXT) = SampleLocationEXT(x.x, x.y)
 """
 
 """
-SampleLocationsInfoEXT(x::VkSampleLocationsInfoEXT, next_types...) = SampleLocationsInfoEXT(load_next_chain(x.pNext, next_types...), SampleCountFlag(UInt32(x.sampleLocationsPerPixel)), Extent2D(x.sampleLocationGridSize), unsafe_wrap(Vector{SampleLocationEXT}, x.pSampleLocations, x.sampleLocationsCount; own = true))
+SampleLocationsInfoEXT(x::VkSampleLocationsInfoEXT, next_types::Type...) = SampleLocationsInfoEXT(load_next_chain(x.pNext, next_types...), SampleCountFlag(UInt32(x.sampleLocationsPerPixel)), Extent2D(x.sampleLocationGridSize), unsafe_wrap(Vector{SampleLocationEXT}, x.pSampleLocations, x.sampleLocationsCount; own = true))
 
 """
 
@@ -34552,112 +38924,112 @@ SubpassSampleLocationsEXT(x::VkSubpassSampleLocationsEXT) = SubpassSampleLocatio
 """
 
 """
-RenderPassSampleLocationsBeginInfoEXT(x::VkRenderPassSampleLocationsBeginInfoEXT, next_types...) = RenderPassSampleLocationsBeginInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{AttachmentSampleLocationsEXT}, x.pAttachmentInitialSampleLocations, x.attachmentInitialSampleLocationsCount; own = true), unsafe_wrap(Vector{SubpassSampleLocationsEXT}, x.pPostSubpassSampleLocations, x.postSubpassSampleLocationsCount; own = true))
+RenderPassSampleLocationsBeginInfoEXT(x::VkRenderPassSampleLocationsBeginInfoEXT, next_types::Type...) = RenderPassSampleLocationsBeginInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{AttachmentSampleLocationsEXT}, x.pAttachmentInitialSampleLocations, x.attachmentInitialSampleLocationsCount; own = true), unsafe_wrap(Vector{SubpassSampleLocationsEXT}, x.pPostSubpassSampleLocations, x.postSubpassSampleLocationsCount; own = true))
 
 """
 
 """
-PipelineSampleLocationsStateCreateInfoEXT(x::VkPipelineSampleLocationsStateCreateInfoEXT, next_types...) = PipelineSampleLocationsStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.sampleLocationsEnable), SampleLocationsInfoEXT(x.sampleLocationsInfo))
+PipelineSampleLocationsStateCreateInfoEXT(x::VkPipelineSampleLocationsStateCreateInfoEXT, next_types::Type...) = PipelineSampleLocationsStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.sampleLocationsEnable), SampleLocationsInfoEXT(x.sampleLocationsInfo))
 
 """
 
 """
-PhysicalDeviceSampleLocationsPropertiesEXT(x::VkPhysicalDeviceSampleLocationsPropertiesEXT, next_types...) = PhysicalDeviceSampleLocationsPropertiesEXT(load_next_chain(x.pNext, next_types...), x.sampleLocationSampleCounts, Extent2D(x.maxSampleLocationGridSize), x.sampleLocationCoordinateRange, x.sampleLocationSubPixelBits, from_vk(Bool, x.variableSampleLocations))
+PhysicalDeviceSampleLocationsPropertiesEXT(x::VkPhysicalDeviceSampleLocationsPropertiesEXT, next_types::Type...) = PhysicalDeviceSampleLocationsPropertiesEXT(load_next_chain(x.pNext, next_types...), x.sampleLocationSampleCounts, Extent2D(x.maxSampleLocationGridSize), x.sampleLocationCoordinateRange, x.sampleLocationSubPixelBits, from_vk(Bool, x.variableSampleLocations))
 
 """
 
 """
-MultisamplePropertiesEXT(x::VkMultisamplePropertiesEXT, next_types...) = MultisamplePropertiesEXT(load_next_chain(x.pNext, next_types...), Extent2D(x.maxSampleLocationGridSize))
+MultisamplePropertiesEXT(x::VkMultisamplePropertiesEXT, next_types::Type...) = MultisamplePropertiesEXT(load_next_chain(x.pNext, next_types...), Extent2D(x.maxSampleLocationGridSize))
 
 """
 
 """
-SamplerReductionModeCreateInfo(x::VkSamplerReductionModeCreateInfo, next_types...) = SamplerReductionModeCreateInfo(load_next_chain(x.pNext, next_types...), x.reductionMode)
+SamplerReductionModeCreateInfo(x::VkSamplerReductionModeCreateInfo, next_types::Type...) = SamplerReductionModeCreateInfo(load_next_chain(x.pNext, next_types...), x.reductionMode)
 
 """
 
 """
-PhysicalDeviceBlendOperationAdvancedFeaturesEXT(x::VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT, next_types...) = PhysicalDeviceBlendOperationAdvancedFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.advancedBlendCoherentOperations))
+PhysicalDeviceBlendOperationAdvancedFeaturesEXT(x::VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT, next_types::Type...) = PhysicalDeviceBlendOperationAdvancedFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.advancedBlendCoherentOperations))
 
 """
 
 """
-PhysicalDeviceBlendOperationAdvancedPropertiesEXT(x::VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT, next_types...) = PhysicalDeviceBlendOperationAdvancedPropertiesEXT(load_next_chain(x.pNext, next_types...), x.advancedBlendMaxColorAttachments, from_vk(Bool, x.advancedBlendIndependentBlend), from_vk(Bool, x.advancedBlendNonPremultipliedSrcColor), from_vk(Bool, x.advancedBlendNonPremultipliedDstColor), from_vk(Bool, x.advancedBlendCorrelatedOverlap), from_vk(Bool, x.advancedBlendAllOperations))
+PhysicalDeviceBlendOperationAdvancedPropertiesEXT(x::VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT, next_types::Type...) = PhysicalDeviceBlendOperationAdvancedPropertiesEXT(load_next_chain(x.pNext, next_types...), x.advancedBlendMaxColorAttachments, from_vk(Bool, x.advancedBlendIndependentBlend), from_vk(Bool, x.advancedBlendNonPremultipliedSrcColor), from_vk(Bool, x.advancedBlendNonPremultipliedDstColor), from_vk(Bool, x.advancedBlendCorrelatedOverlap), from_vk(Bool, x.advancedBlendAllOperations))
 
 """
 
 """
-PipelineColorBlendAdvancedStateCreateInfoEXT(x::VkPipelineColorBlendAdvancedStateCreateInfoEXT, next_types...) = PipelineColorBlendAdvancedStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.srcPremultiplied), from_vk(Bool, x.dstPremultiplied), x.blendOverlap)
+PipelineColorBlendAdvancedStateCreateInfoEXT(x::VkPipelineColorBlendAdvancedStateCreateInfoEXT, next_types::Type...) = PipelineColorBlendAdvancedStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.srcPremultiplied), from_vk(Bool, x.dstPremultiplied), x.blendOverlap)
 
 """
 
 """
-PhysicalDeviceInlineUniformBlockFeaturesEXT(x::VkPhysicalDeviceInlineUniformBlockFeaturesEXT, next_types...) = PhysicalDeviceInlineUniformBlockFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.inlineUniformBlock), from_vk(Bool, x.descriptorBindingInlineUniformBlockUpdateAfterBind))
+PhysicalDeviceInlineUniformBlockFeaturesEXT(x::VkPhysicalDeviceInlineUniformBlockFeaturesEXT, next_types::Type...) = PhysicalDeviceInlineUniformBlockFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.inlineUniformBlock), from_vk(Bool, x.descriptorBindingInlineUniformBlockUpdateAfterBind))
 
 """
 
 """
-PhysicalDeviceInlineUniformBlockPropertiesEXT(x::VkPhysicalDeviceInlineUniformBlockPropertiesEXT, next_types...) = PhysicalDeviceInlineUniformBlockPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxInlineUniformBlockSize, x.maxPerStageDescriptorInlineUniformBlocks, x.maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks, x.maxDescriptorSetInlineUniformBlocks, x.maxDescriptorSetUpdateAfterBindInlineUniformBlocks)
+PhysicalDeviceInlineUniformBlockPropertiesEXT(x::VkPhysicalDeviceInlineUniformBlockPropertiesEXT, next_types::Type...) = PhysicalDeviceInlineUniformBlockPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxInlineUniformBlockSize, x.maxPerStageDescriptorInlineUniformBlocks, x.maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks, x.maxDescriptorSetInlineUniformBlocks, x.maxDescriptorSetUpdateAfterBindInlineUniformBlocks)
 
 """
 
 """
-WriteDescriptorSetInlineUniformBlockEXT(x::VkWriteDescriptorSetInlineUniformBlockEXT, next_types...) = WriteDescriptorSetInlineUniformBlockEXT(load_next_chain(x.pNext, next_types...), x.dataSize, x.pData)
+WriteDescriptorSetInlineUniformBlockEXT(x::VkWriteDescriptorSetInlineUniformBlockEXT, next_types::Type...) = WriteDescriptorSetInlineUniformBlockEXT(load_next_chain(x.pNext, next_types...), x.dataSize, x.pData)
 
 """
 
 """
-DescriptorPoolInlineUniformBlockCreateInfoEXT(x::VkDescriptorPoolInlineUniformBlockCreateInfoEXT, next_types...) = DescriptorPoolInlineUniformBlockCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.maxInlineUniformBlockBindings)
+DescriptorPoolInlineUniformBlockCreateInfoEXT(x::VkDescriptorPoolInlineUniformBlockCreateInfoEXT, next_types::Type...) = DescriptorPoolInlineUniformBlockCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.maxInlineUniformBlockBindings)
 
 """
 
 """
-PipelineCoverageModulationStateCreateInfoNV(x::VkPipelineCoverageModulationStateCreateInfoNV, next_types...) = PipelineCoverageModulationStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, x.coverageModulationMode, from_vk(Bool, x.coverageModulationTableEnable), unsafe_wrap(Vector{Float32}, x.pCoverageModulationTable, x.coverageModulationTableCount; own = true))
+PipelineCoverageModulationStateCreateInfoNV(x::VkPipelineCoverageModulationStateCreateInfoNV, next_types::Type...) = PipelineCoverageModulationStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, x.coverageModulationMode, from_vk(Bool, x.coverageModulationTableEnable), unsafe_wrap(Vector{Float32}, x.pCoverageModulationTable, x.coverageModulationTableCount; own = true))
 
 """
 
 """
-ImageFormatListCreateInfo(x::VkImageFormatListCreateInfo, next_types...) = ImageFormatListCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Format}, x.pViewFormats, x.viewFormatCount; own = true))
+ImageFormatListCreateInfo(x::VkImageFormatListCreateInfo, next_types::Type...) = ImageFormatListCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Format}, x.pViewFormats, x.viewFormatCount; own = true))
 
 """
 
 """
-ValidationCacheCreateInfoEXT(x::VkValidationCacheCreateInfoEXT, next_types...) = ValidationCacheCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.initialDataSize, x.pInitialData)
+ValidationCacheCreateInfoEXT(x::VkValidationCacheCreateInfoEXT, next_types::Type...) = ValidationCacheCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.initialDataSize, x.pInitialData)
 
 """
 
 """
-ShaderModuleValidationCacheCreateInfoEXT(x::VkShaderModuleValidationCacheCreateInfoEXT, next_types...) = ShaderModuleValidationCacheCreateInfoEXT(load_next_chain(x.pNext, next_types...), ValidationCacheEXT(x.validationCache))
+ShaderModuleValidationCacheCreateInfoEXT(x::VkShaderModuleValidationCacheCreateInfoEXT, next_types::Type...) = ShaderModuleValidationCacheCreateInfoEXT(load_next_chain(x.pNext, next_types...), ValidationCacheEXT(x.validationCache))
 
 """
 
 """
-PhysicalDeviceMaintenance3Properties(x::VkPhysicalDeviceMaintenance3Properties, next_types...) = PhysicalDeviceMaintenance3Properties(load_next_chain(x.pNext, next_types...), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
+PhysicalDeviceMaintenance3Properties(x::VkPhysicalDeviceMaintenance3Properties, next_types::Type...) = PhysicalDeviceMaintenance3Properties(load_next_chain(x.pNext, next_types...), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
 
 """
 
 """
-DescriptorSetLayoutSupport(x::VkDescriptorSetLayoutSupport, next_types...) = DescriptorSetLayoutSupport(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.supported))
+DescriptorSetLayoutSupport(x::VkDescriptorSetLayoutSupport, next_types::Type...) = DescriptorSetLayoutSupport(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.supported))
 
 """
 
 """
-PhysicalDeviceShaderDrawParametersFeatures(x::VkPhysicalDeviceShaderDrawParametersFeatures, next_types...) = PhysicalDeviceShaderDrawParametersFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderDrawParameters))
+PhysicalDeviceShaderDrawParametersFeatures(x::VkPhysicalDeviceShaderDrawParametersFeatures, next_types::Type...) = PhysicalDeviceShaderDrawParametersFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderDrawParameters))
 
 """
 
 """
-PhysicalDeviceShaderFloat16Int8Features(x::VkPhysicalDeviceShaderFloat16Int8Features, next_types...) = PhysicalDeviceShaderFloat16Int8Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderFloat16), from_vk(Bool, x.shaderInt8))
+PhysicalDeviceShaderFloat16Int8Features(x::VkPhysicalDeviceShaderFloat16Int8Features, next_types::Type...) = PhysicalDeviceShaderFloat16Int8Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderFloat16), from_vk(Bool, x.shaderInt8))
 
 """
 
 """
-PhysicalDeviceFloatControlsProperties(x::VkPhysicalDeviceFloatControlsProperties, next_types...) = PhysicalDeviceFloatControlsProperties(load_next_chain(x.pNext, next_types...), x.denormBehaviorIndependence, x.roundingModeIndependence, from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat16), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat32), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat64), from_vk(Bool, x.shaderDenormPreserveFloat16), from_vk(Bool, x.shaderDenormPreserveFloat32), from_vk(Bool, x.shaderDenormPreserveFloat64), from_vk(Bool, x.shaderDenormFlushToZeroFloat16), from_vk(Bool, x.shaderDenormFlushToZeroFloat32), from_vk(Bool, x.shaderDenormFlushToZeroFloat64), from_vk(Bool, x.shaderRoundingModeRTEFloat16), from_vk(Bool, x.shaderRoundingModeRTEFloat32), from_vk(Bool, x.shaderRoundingModeRTEFloat64), from_vk(Bool, x.shaderRoundingModeRTZFloat16), from_vk(Bool, x.shaderRoundingModeRTZFloat32), from_vk(Bool, x.shaderRoundingModeRTZFloat64))
+PhysicalDeviceFloatControlsProperties(x::VkPhysicalDeviceFloatControlsProperties, next_types::Type...) = PhysicalDeviceFloatControlsProperties(load_next_chain(x.pNext, next_types...), x.denormBehaviorIndependence, x.roundingModeIndependence, from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat16), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat32), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat64), from_vk(Bool, x.shaderDenormPreserveFloat16), from_vk(Bool, x.shaderDenormPreserveFloat32), from_vk(Bool, x.shaderDenormPreserveFloat64), from_vk(Bool, x.shaderDenormFlushToZeroFloat16), from_vk(Bool, x.shaderDenormFlushToZeroFloat32), from_vk(Bool, x.shaderDenormFlushToZeroFloat64), from_vk(Bool, x.shaderRoundingModeRTEFloat16), from_vk(Bool, x.shaderRoundingModeRTEFloat32), from_vk(Bool, x.shaderRoundingModeRTEFloat64), from_vk(Bool, x.shaderRoundingModeRTZFloat16), from_vk(Bool, x.shaderRoundingModeRTZFloat32), from_vk(Bool, x.shaderRoundingModeRTZFloat64))
 
 """
 
 """
-PhysicalDeviceHostQueryResetFeatures(x::VkPhysicalDeviceHostQueryResetFeatures, next_types...) = PhysicalDeviceHostQueryResetFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.hostQueryReset))
+PhysicalDeviceHostQueryResetFeatures(x::VkPhysicalDeviceHostQueryResetFeatures, next_types::Type...) = PhysicalDeviceHostQueryResetFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.hostQueryReset))
 
 """
 
@@ -34672,177 +39044,177 @@ ShaderStatisticsInfoAMD(x::VkShaderStatisticsInfoAMD) = ShaderStatisticsInfoAMD(
 """
 
 """
-DeviceQueueGlobalPriorityCreateInfoEXT(x::VkDeviceQueueGlobalPriorityCreateInfoEXT, next_types...) = DeviceQueueGlobalPriorityCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.globalPriority)
+DeviceQueueGlobalPriorityCreateInfoEXT(x::VkDeviceQueueGlobalPriorityCreateInfoEXT, next_types::Type...) = DeviceQueueGlobalPriorityCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.globalPriority)
 
 """
 
 """
-DebugUtilsObjectNameInfoEXT(x::VkDebugUtilsObjectNameInfoEXT, next_types...) = DebugUtilsObjectNameInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.objectHandle, unsafe_string(x.pObjectName))
+DebugUtilsObjectNameInfoEXT(x::VkDebugUtilsObjectNameInfoEXT, next_types::Type...) = DebugUtilsObjectNameInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.objectHandle, unsafe_string(x.pObjectName))
 
 """
 
 """
-DebugUtilsObjectTagInfoEXT(x::VkDebugUtilsObjectTagInfoEXT, next_types...) = DebugUtilsObjectTagInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.objectHandle, x.tagName, x.tagSize, x.pTag)
+DebugUtilsObjectTagInfoEXT(x::VkDebugUtilsObjectTagInfoEXT, next_types::Type...) = DebugUtilsObjectTagInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.objectHandle, x.tagName, x.tagSize, x.pTag)
 
 """
 
 """
-DebugUtilsLabelEXT(x::VkDebugUtilsLabelEXT, next_types...) = DebugUtilsLabelEXT(load_next_chain(x.pNext, next_types...), unsafe_string(x.pLabelName), x.color)
+DebugUtilsLabelEXT(x::VkDebugUtilsLabelEXT, next_types::Type...) = DebugUtilsLabelEXT(load_next_chain(x.pNext, next_types...), unsafe_string(x.pLabelName), x.color)
 
 """
 
 """
-DebugUtilsMessengerCreateInfoEXT(x::VkDebugUtilsMessengerCreateInfoEXT, next_types...) = DebugUtilsMessengerCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.messageSeverity, x.messageType, from_vk(FunctionPtr, x.pfnUserCallback), x.pUserData)
+DebugUtilsMessengerCreateInfoEXT(x::VkDebugUtilsMessengerCreateInfoEXT, next_types::Type...) = DebugUtilsMessengerCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.messageSeverity, x.messageType, from_vk(FunctionPtr, x.pfnUserCallback), x.pUserData)
 
 """
 
 """
-DebugUtilsMessengerCallbackDataEXT(x::VkDebugUtilsMessengerCallbackDataEXT, next_types...) = DebugUtilsMessengerCallbackDataEXT(load_next_chain(x.pNext, next_types...), x.flags, unsafe_string(x.pMessageIdName), x.messageIdNumber, unsafe_string(x.pMessage), unsafe_wrap(Vector{DebugUtilsLabelEXT}, x.pQueueLabels, x.queueLabelCount; own = true), unsafe_wrap(Vector{DebugUtilsLabelEXT}, x.pCmdBufLabels, x.cmdBufLabelCount; own = true), unsafe_wrap(Vector{DebugUtilsObjectNameInfoEXT}, x.pObjects, x.objectCount; own = true))
+DebugUtilsMessengerCallbackDataEXT(x::VkDebugUtilsMessengerCallbackDataEXT, next_types::Type...) = DebugUtilsMessengerCallbackDataEXT(load_next_chain(x.pNext, next_types...), x.flags, unsafe_string(x.pMessageIdName), x.messageIdNumber, unsafe_string(x.pMessage), unsafe_wrap(Vector{DebugUtilsLabelEXT}, x.pQueueLabels, x.queueLabelCount; own = true), unsafe_wrap(Vector{DebugUtilsLabelEXT}, x.pCmdBufLabels, x.cmdBufLabelCount; own = true), unsafe_wrap(Vector{DebugUtilsObjectNameInfoEXT}, x.pObjects, x.objectCount; own = true))
 
 """
 
 """
-PhysicalDeviceDeviceMemoryReportFeaturesEXT(x::VkPhysicalDeviceDeviceMemoryReportFeaturesEXT, next_types...) = PhysicalDeviceDeviceMemoryReportFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.deviceMemoryReport))
+PhysicalDeviceDeviceMemoryReportFeaturesEXT(x::VkPhysicalDeviceDeviceMemoryReportFeaturesEXT, next_types::Type...) = PhysicalDeviceDeviceMemoryReportFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.deviceMemoryReport))
 
 """
 
 """
-DeviceDeviceMemoryReportCreateInfoEXT(x::VkDeviceDeviceMemoryReportCreateInfoEXT, next_types...) = DeviceDeviceMemoryReportCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, from_vk(FunctionPtr, x.pfnUserCallback), x.pUserData)
+DeviceDeviceMemoryReportCreateInfoEXT(x::VkDeviceDeviceMemoryReportCreateInfoEXT, next_types::Type...) = DeviceDeviceMemoryReportCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, from_vk(FunctionPtr, x.pfnUserCallback), x.pUserData)
 
 """
 
 """
-DeviceMemoryReportCallbackDataEXT(x::VkDeviceMemoryReportCallbackDataEXT, next_types...) = DeviceMemoryReportCallbackDataEXT(load_next_chain(x.pNext, next_types...), x.flags, x.type, x.memoryObjectId, x.size, x.objectType, x.objectHandle, x.heapIndex)
+DeviceMemoryReportCallbackDataEXT(x::VkDeviceMemoryReportCallbackDataEXT, next_types::Type...) = DeviceMemoryReportCallbackDataEXT(load_next_chain(x.pNext, next_types...), x.flags, x.type, x.memoryObjectId, x.size, x.objectType, x.objectHandle, x.heapIndex)
 
 """
 
 """
-ImportMemoryHostPointerInfoEXT(x::VkImportMemoryHostPointerInfoEXT, next_types...) = ImportMemoryHostPointerInfoEXT(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)), x.pHostPointer)
+ImportMemoryHostPointerInfoEXT(x::VkImportMemoryHostPointerInfoEXT, next_types::Type...) = ImportMemoryHostPointerInfoEXT(load_next_chain(x.pNext, next_types...), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)), x.pHostPointer)
 
 """
 
 """
-MemoryHostPointerPropertiesEXT(x::VkMemoryHostPointerPropertiesEXT, next_types...) = MemoryHostPointerPropertiesEXT(load_next_chain(x.pNext, next_types...), x.memoryTypeBits)
+MemoryHostPointerPropertiesEXT(x::VkMemoryHostPointerPropertiesEXT, next_types::Type...) = MemoryHostPointerPropertiesEXT(load_next_chain(x.pNext, next_types...), x.memoryTypeBits)
 
 """
 
 """
-PhysicalDeviceExternalMemoryHostPropertiesEXT(x::VkPhysicalDeviceExternalMemoryHostPropertiesEXT, next_types...) = PhysicalDeviceExternalMemoryHostPropertiesEXT(load_next_chain(x.pNext, next_types...), x.minImportedHostPointerAlignment)
+PhysicalDeviceExternalMemoryHostPropertiesEXT(x::VkPhysicalDeviceExternalMemoryHostPropertiesEXT, next_types::Type...) = PhysicalDeviceExternalMemoryHostPropertiesEXT(load_next_chain(x.pNext, next_types...), x.minImportedHostPointerAlignment)
 
 """
 
 """
-PhysicalDeviceConservativeRasterizationPropertiesEXT(x::VkPhysicalDeviceConservativeRasterizationPropertiesEXT, next_types...) = PhysicalDeviceConservativeRasterizationPropertiesEXT(load_next_chain(x.pNext, next_types...), x.primitiveOverestimationSize, x.maxExtraPrimitiveOverestimationSize, x.extraPrimitiveOverestimationSizeGranularity, from_vk(Bool, x.primitiveUnderestimation), from_vk(Bool, x.conservativePointAndLineRasterization), from_vk(Bool, x.degenerateTrianglesRasterized), from_vk(Bool, x.degenerateLinesRasterized), from_vk(Bool, x.fullyCoveredFragmentShaderInputVariable), from_vk(Bool, x.conservativeRasterizationPostDepthCoverage))
+PhysicalDeviceConservativeRasterizationPropertiesEXT(x::VkPhysicalDeviceConservativeRasterizationPropertiesEXT, next_types::Type...) = PhysicalDeviceConservativeRasterizationPropertiesEXT(load_next_chain(x.pNext, next_types...), x.primitiveOverestimationSize, x.maxExtraPrimitiveOverestimationSize, x.extraPrimitiveOverestimationSizeGranularity, from_vk(Bool, x.primitiveUnderestimation), from_vk(Bool, x.conservativePointAndLineRasterization), from_vk(Bool, x.degenerateTrianglesRasterized), from_vk(Bool, x.degenerateLinesRasterized), from_vk(Bool, x.fullyCoveredFragmentShaderInputVariable), from_vk(Bool, x.conservativeRasterizationPostDepthCoverage))
 
 """
 
 """
-CalibratedTimestampInfoEXT(x::VkCalibratedTimestampInfoEXT, next_types...) = CalibratedTimestampInfoEXT(load_next_chain(x.pNext, next_types...), x.timeDomain)
+CalibratedTimestampInfoEXT(x::VkCalibratedTimestampInfoEXT, next_types::Type...) = CalibratedTimestampInfoEXT(load_next_chain(x.pNext, next_types...), x.timeDomain)
 
 """
 
 """
-PhysicalDeviceShaderCorePropertiesAMD(x::VkPhysicalDeviceShaderCorePropertiesAMD, next_types...) = PhysicalDeviceShaderCorePropertiesAMD(load_next_chain(x.pNext, next_types...), x.shaderEngineCount, x.shaderArraysPerEngineCount, x.computeUnitsPerShaderArray, x.simdPerComputeUnit, x.wavefrontsPerSimd, x.wavefrontSize, x.sgprsPerSimd, x.minSgprAllocation, x.maxSgprAllocation, x.sgprAllocationGranularity, x.vgprsPerSimd, x.minVgprAllocation, x.maxVgprAllocation, x.vgprAllocationGranularity)
+PhysicalDeviceShaderCorePropertiesAMD(x::VkPhysicalDeviceShaderCorePropertiesAMD, next_types::Type...) = PhysicalDeviceShaderCorePropertiesAMD(load_next_chain(x.pNext, next_types...), x.shaderEngineCount, x.shaderArraysPerEngineCount, x.computeUnitsPerShaderArray, x.simdPerComputeUnit, x.wavefrontsPerSimd, x.wavefrontSize, x.sgprsPerSimd, x.minSgprAllocation, x.maxSgprAllocation, x.sgprAllocationGranularity, x.vgprsPerSimd, x.minVgprAllocation, x.maxVgprAllocation, x.vgprAllocationGranularity)
 
 """
 
 """
-PhysicalDeviceShaderCoreProperties2AMD(x::VkPhysicalDeviceShaderCoreProperties2AMD, next_types...) = PhysicalDeviceShaderCoreProperties2AMD(load_next_chain(x.pNext, next_types...), x.shaderCoreFeatures, x.activeComputeUnitCount)
+PhysicalDeviceShaderCoreProperties2AMD(x::VkPhysicalDeviceShaderCoreProperties2AMD, next_types::Type...) = PhysicalDeviceShaderCoreProperties2AMD(load_next_chain(x.pNext, next_types...), x.shaderCoreFeatures, x.activeComputeUnitCount)
 
 """
 
 """
-PipelineRasterizationConservativeStateCreateInfoEXT(x::VkPipelineRasterizationConservativeStateCreateInfoEXT, next_types...) = PipelineRasterizationConservativeStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.conservativeRasterizationMode, x.extraPrimitiveOverestimationSize)
+PipelineRasterizationConservativeStateCreateInfoEXT(x::VkPipelineRasterizationConservativeStateCreateInfoEXT, next_types::Type...) = PipelineRasterizationConservativeStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.conservativeRasterizationMode, x.extraPrimitiveOverestimationSize)
 
 """
 
 """
-PhysicalDeviceDescriptorIndexingFeatures(x::VkPhysicalDeviceDescriptorIndexingFeatures, next_types...) = PhysicalDeviceDescriptorIndexingFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderInputAttachmentArrayDynamicIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexing), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.descriptorBindingUniformBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingSampledImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUniformTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUpdateUnusedWhilePending), from_vk(Bool, x.descriptorBindingPartiallyBound), from_vk(Bool, x.descriptorBindingVariableDescriptorCount), from_vk(Bool, x.runtimeDescriptorArray))
+PhysicalDeviceDescriptorIndexingFeatures(x::VkPhysicalDeviceDescriptorIndexingFeatures, next_types::Type...) = PhysicalDeviceDescriptorIndexingFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderInputAttachmentArrayDynamicIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexing), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.descriptorBindingUniformBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingSampledImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUniformTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUpdateUnusedWhilePending), from_vk(Bool, x.descriptorBindingPartiallyBound), from_vk(Bool, x.descriptorBindingVariableDescriptorCount), from_vk(Bool, x.runtimeDescriptorArray))
 
 """
 
 """
-PhysicalDeviceDescriptorIndexingProperties(x::VkPhysicalDeviceDescriptorIndexingProperties, next_types...) = PhysicalDeviceDescriptorIndexingProperties(load_next_chain(x.pNext, next_types...), x.maxUpdateAfterBindDescriptorsInAllPools, from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexingNative), from_vk(Bool, x.robustBufferAccessUpdateAfterBind), from_vk(Bool, x.quadDivergentImplicitLod), x.maxPerStageDescriptorUpdateAfterBindSamplers, x.maxPerStageDescriptorUpdateAfterBindUniformBuffers, x.maxPerStageDescriptorUpdateAfterBindStorageBuffers, x.maxPerStageDescriptorUpdateAfterBindSampledImages, x.maxPerStageDescriptorUpdateAfterBindStorageImages, x.maxPerStageDescriptorUpdateAfterBindInputAttachments, x.maxPerStageUpdateAfterBindResources, x.maxDescriptorSetUpdateAfterBindSamplers, x.maxDescriptorSetUpdateAfterBindUniformBuffers, x.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic, x.maxDescriptorSetUpdateAfterBindStorageBuffers, x.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic, x.maxDescriptorSetUpdateAfterBindSampledImages, x.maxDescriptorSetUpdateAfterBindStorageImages, x.maxDescriptorSetUpdateAfterBindInputAttachments)
+PhysicalDeviceDescriptorIndexingProperties(x::VkPhysicalDeviceDescriptorIndexingProperties, next_types::Type...) = PhysicalDeviceDescriptorIndexingProperties(load_next_chain(x.pNext, next_types...), x.maxUpdateAfterBindDescriptorsInAllPools, from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexingNative), from_vk(Bool, x.robustBufferAccessUpdateAfterBind), from_vk(Bool, x.quadDivergentImplicitLod), x.maxPerStageDescriptorUpdateAfterBindSamplers, x.maxPerStageDescriptorUpdateAfterBindUniformBuffers, x.maxPerStageDescriptorUpdateAfterBindStorageBuffers, x.maxPerStageDescriptorUpdateAfterBindSampledImages, x.maxPerStageDescriptorUpdateAfterBindStorageImages, x.maxPerStageDescriptorUpdateAfterBindInputAttachments, x.maxPerStageUpdateAfterBindResources, x.maxDescriptorSetUpdateAfterBindSamplers, x.maxDescriptorSetUpdateAfterBindUniformBuffers, x.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic, x.maxDescriptorSetUpdateAfterBindStorageBuffers, x.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic, x.maxDescriptorSetUpdateAfterBindSampledImages, x.maxDescriptorSetUpdateAfterBindStorageImages, x.maxDescriptorSetUpdateAfterBindInputAttachments)
 
 """
 
 """
-DescriptorSetLayoutBindingFlagsCreateInfo(x::VkDescriptorSetLayoutBindingFlagsCreateInfo, next_types...) = DescriptorSetLayoutBindingFlagsCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DescriptorBindingFlag}, x.pBindingFlags, x.bindingCount; own = true))
+DescriptorSetLayoutBindingFlagsCreateInfo(x::VkDescriptorSetLayoutBindingFlagsCreateInfo, next_types::Type...) = DescriptorSetLayoutBindingFlagsCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DescriptorBindingFlag}, x.pBindingFlags, x.bindingCount; own = true))
 
 """
 
 """
-DescriptorSetVariableDescriptorCountAllocateInfo(x::VkDescriptorSetVariableDescriptorCountAllocateInfo, next_types...) = DescriptorSetVariableDescriptorCountAllocateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDescriptorCounts, x.descriptorSetCount; own = true))
+DescriptorSetVariableDescriptorCountAllocateInfo(x::VkDescriptorSetVariableDescriptorCountAllocateInfo, next_types::Type...) = DescriptorSetVariableDescriptorCountAllocateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt32}, x.pDescriptorCounts, x.descriptorSetCount; own = true))
 
 """
 
 """
-DescriptorSetVariableDescriptorCountLayoutSupport(x::VkDescriptorSetVariableDescriptorCountLayoutSupport, next_types...) = DescriptorSetVariableDescriptorCountLayoutSupport(load_next_chain(x.pNext, next_types...), x.maxVariableDescriptorCount)
+DescriptorSetVariableDescriptorCountLayoutSupport(x::VkDescriptorSetVariableDescriptorCountLayoutSupport, next_types::Type...) = DescriptorSetVariableDescriptorCountLayoutSupport(load_next_chain(x.pNext, next_types...), x.maxVariableDescriptorCount)
 
 """
 
 """
-AttachmentDescription2(x::VkAttachmentDescription2, next_types...) = AttachmentDescription2(load_next_chain(x.pNext, next_types...), x.flags, x.format, SampleCountFlag(UInt32(x.samples)), x.loadOp, x.storeOp, x.stencilLoadOp, x.stencilStoreOp, x.initialLayout, x.finalLayout)
+AttachmentDescription2(x::VkAttachmentDescription2, next_types::Type...) = AttachmentDescription2(load_next_chain(x.pNext, next_types...), x.flags, x.format, SampleCountFlag(UInt32(x.samples)), x.loadOp, x.storeOp, x.stencilLoadOp, x.stencilStoreOp, x.initialLayout, x.finalLayout)
 
 """
 
 """
-AttachmentReference2(x::VkAttachmentReference2, next_types...) = AttachmentReference2(load_next_chain(x.pNext, next_types...), x.attachment, x.layout, x.aspectMask)
+AttachmentReference2(x::VkAttachmentReference2, next_types::Type...) = AttachmentReference2(load_next_chain(x.pNext, next_types...), x.attachment, x.layout, x.aspectMask)
 
 """
 
 """
-SubpassDescription2(x::VkSubpassDescription2, next_types...) = SubpassDescription2(load_next_chain(x.pNext, next_types...), x.flags, x.pipelineBindPoint, x.viewMask, unsafe_wrap(Vector{AttachmentReference2}, x.pInputAttachments, x.inputAttachmentCount; own = true), unsafe_wrap(Vector{AttachmentReference2}, x.pColorAttachments, x.colorAttachmentCount; own = true), unsafe_wrap(Vector{AttachmentReference2}, x.pResolveAttachments, x.colorAttachmentCount; own = true), AttachmentReference2(x.pDepthStencilAttachment), unsafe_wrap(Vector{UInt32}, x.pPreserveAttachments, x.preserveAttachmentCount; own = true))
+SubpassDescription2(x::VkSubpassDescription2, next_types::Type...) = SubpassDescription2(load_next_chain(x.pNext, next_types...), x.flags, x.pipelineBindPoint, x.viewMask, unsafe_wrap(Vector{AttachmentReference2}, x.pInputAttachments, x.inputAttachmentCount; own = true), unsafe_wrap(Vector{AttachmentReference2}, x.pColorAttachments, x.colorAttachmentCount; own = true), unsafe_wrap(Vector{AttachmentReference2}, x.pResolveAttachments, x.colorAttachmentCount; own = true), AttachmentReference2(x.pDepthStencilAttachment), unsafe_wrap(Vector{UInt32}, x.pPreserveAttachments, x.preserveAttachmentCount; own = true))
 
 """
 
 """
-SubpassDependency2(x::VkSubpassDependency2, next_types...) = SubpassDependency2(load_next_chain(x.pNext, next_types...), x.srcSubpass, x.dstSubpass, x.srcStageMask, x.dstStageMask, x.srcAccessMask, x.dstAccessMask, x.dependencyFlags, x.viewOffset)
+SubpassDependency2(x::VkSubpassDependency2, next_types::Type...) = SubpassDependency2(load_next_chain(x.pNext, next_types...), x.srcSubpass, x.dstSubpass, x.srcStageMask, x.dstStageMask, x.srcAccessMask, x.dstAccessMask, x.dependencyFlags, x.viewOffset)
 
 """
 
 """
-RenderPassCreateInfo2(x::VkRenderPassCreateInfo2, next_types...) = RenderPassCreateInfo2(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{AttachmentDescription2}, x.pAttachments, x.attachmentCount; own = true), unsafe_wrap(Vector{SubpassDescription2}, x.pSubpasses, x.subpassCount; own = true), unsafe_wrap(Vector{SubpassDependency2}, x.pDependencies, x.dependencyCount; own = true), unsafe_wrap(Vector{UInt32}, x.pCorrelatedViewMasks, x.correlatedViewMaskCount; own = true))
+RenderPassCreateInfo2(x::VkRenderPassCreateInfo2, next_types::Type...) = RenderPassCreateInfo2(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{AttachmentDescription2}, x.pAttachments, x.attachmentCount; own = true), unsafe_wrap(Vector{SubpassDescription2}, x.pSubpasses, x.subpassCount; own = true), unsafe_wrap(Vector{SubpassDependency2}, x.pDependencies, x.dependencyCount; own = true), unsafe_wrap(Vector{UInt32}, x.pCorrelatedViewMasks, x.correlatedViewMaskCount; own = true))
 
 """
 
 """
-SubpassBeginInfo(x::VkSubpassBeginInfo, next_types...) = SubpassBeginInfo(load_next_chain(x.pNext, next_types...), x.contents)
+SubpassBeginInfo(x::VkSubpassBeginInfo, next_types::Type...) = SubpassBeginInfo(load_next_chain(x.pNext, next_types...), x.contents)
 
 """
 
 """
-SubpassEndInfo(x::VkSubpassEndInfo, next_types...) = SubpassEndInfo(load_next_chain(x.pNext, next_types...))
+SubpassEndInfo(x::VkSubpassEndInfo, next_types::Type...) = SubpassEndInfo(load_next_chain(x.pNext, next_types...))
 
 """
 
 """
-PhysicalDeviceTimelineSemaphoreFeatures(x::VkPhysicalDeviceTimelineSemaphoreFeatures, next_types...) = PhysicalDeviceTimelineSemaphoreFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.timelineSemaphore))
+PhysicalDeviceTimelineSemaphoreFeatures(x::VkPhysicalDeviceTimelineSemaphoreFeatures, next_types::Type...) = PhysicalDeviceTimelineSemaphoreFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.timelineSemaphore))
 
 """
 
 """
-PhysicalDeviceTimelineSemaphoreProperties(x::VkPhysicalDeviceTimelineSemaphoreProperties, next_types...) = PhysicalDeviceTimelineSemaphoreProperties(load_next_chain(x.pNext, next_types...), x.maxTimelineSemaphoreValueDifference)
+PhysicalDeviceTimelineSemaphoreProperties(x::VkPhysicalDeviceTimelineSemaphoreProperties, next_types::Type...) = PhysicalDeviceTimelineSemaphoreProperties(load_next_chain(x.pNext, next_types...), x.maxTimelineSemaphoreValueDifference)
 
 """
 
 """
-SemaphoreTypeCreateInfo(x::VkSemaphoreTypeCreateInfo, next_types...) = SemaphoreTypeCreateInfo(load_next_chain(x.pNext, next_types...), x.semaphoreType, x.initialValue)
+SemaphoreTypeCreateInfo(x::VkSemaphoreTypeCreateInfo, next_types::Type...) = SemaphoreTypeCreateInfo(load_next_chain(x.pNext, next_types...), x.semaphoreType, x.initialValue)
 
 """
 
 """
-TimelineSemaphoreSubmitInfo(x::VkTimelineSemaphoreSubmitInfo, next_types...) = TimelineSemaphoreSubmitInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt64}, x.pWaitSemaphoreValues, x.waitSemaphoreValueCount; own = true), unsafe_wrap(Vector{UInt64}, x.pSignalSemaphoreValues, x.signalSemaphoreValueCount; own = true))
+TimelineSemaphoreSubmitInfo(x::VkTimelineSemaphoreSubmitInfo, next_types::Type...) = TimelineSemaphoreSubmitInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt64}, x.pWaitSemaphoreValues, x.waitSemaphoreValueCount; own = true), unsafe_wrap(Vector{UInt64}, x.pSignalSemaphoreValues, x.signalSemaphoreValueCount; own = true))
 
 """
 
 """
-SemaphoreWaitInfo(x::VkSemaphoreWaitInfo, next_types...) = SemaphoreWaitInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{Semaphore}, x.pSemaphores, x.semaphoreCount; own = true), unsafe_wrap(Vector{UInt64}, x.pValues, x.semaphoreCount; own = true))
+SemaphoreWaitInfo(x::VkSemaphoreWaitInfo, next_types::Type...) = SemaphoreWaitInfo(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{Semaphore}, x.pSemaphores, x.semaphoreCount; own = true), unsafe_wrap(Vector{UInt64}, x.pValues, x.semaphoreCount; own = true))
 
 """
 
 """
-SemaphoreSignalInfo(x::VkSemaphoreSignalInfo, next_types...) = SemaphoreSignalInfo(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.value)
+SemaphoreSignalInfo(x::VkSemaphoreSignalInfo, next_types::Type...) = SemaphoreSignalInfo(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.value)
 
 """
 
@@ -34852,142 +39224,142 @@ VertexInputBindingDivisorDescriptionEXT(x::VkVertexInputBindingDivisorDescriptio
 """
 
 """
-PipelineVertexInputDivisorStateCreateInfoEXT(x::VkPipelineVertexInputDivisorStateCreateInfoEXT, next_types...) = PipelineVertexInputDivisorStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{VertexInputBindingDivisorDescriptionEXT}, x.pVertexBindingDivisors, x.vertexBindingDivisorCount; own = true))
+PipelineVertexInputDivisorStateCreateInfoEXT(x::VkPipelineVertexInputDivisorStateCreateInfoEXT, next_types::Type...) = PipelineVertexInputDivisorStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{VertexInputBindingDivisorDescriptionEXT}, x.pVertexBindingDivisors, x.vertexBindingDivisorCount; own = true))
 
 """
 
 """
-PhysicalDeviceVertexAttributeDivisorPropertiesEXT(x::VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT, next_types...) = PhysicalDeviceVertexAttributeDivisorPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxVertexAttribDivisor)
+PhysicalDeviceVertexAttributeDivisorPropertiesEXT(x::VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT, next_types::Type...) = PhysicalDeviceVertexAttributeDivisorPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxVertexAttribDivisor)
 
 """
 
 """
-PhysicalDevicePCIBusInfoPropertiesEXT(x::VkPhysicalDevicePCIBusInfoPropertiesEXT, next_types...) = PhysicalDevicePCIBusInfoPropertiesEXT(load_next_chain(x.pNext, next_types...), x.pciDomain, x.pciBus, x.pciDevice, x.pciFunction)
+PhysicalDevicePCIBusInfoPropertiesEXT(x::VkPhysicalDevicePCIBusInfoPropertiesEXT, next_types::Type...) = PhysicalDevicePCIBusInfoPropertiesEXT(load_next_chain(x.pNext, next_types...), x.pciDomain, x.pciBus, x.pciDevice, x.pciFunction)
 
 """
 
 """
-CommandBufferInheritanceConditionalRenderingInfoEXT(x::VkCommandBufferInheritanceConditionalRenderingInfoEXT, next_types...) = CommandBufferInheritanceConditionalRenderingInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.conditionalRenderingEnable))
+CommandBufferInheritanceConditionalRenderingInfoEXT(x::VkCommandBufferInheritanceConditionalRenderingInfoEXT, next_types::Type...) = CommandBufferInheritanceConditionalRenderingInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.conditionalRenderingEnable))
 
 """
 
 """
-PhysicalDevice8BitStorageFeatures(x::VkPhysicalDevice8BitStorageFeatures, next_types...) = PhysicalDevice8BitStorageFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.storageBuffer8BitAccess), from_vk(Bool, x.uniformAndStorageBuffer8BitAccess), from_vk(Bool, x.storagePushConstant8))
+PhysicalDevice8BitStorageFeatures(x::VkPhysicalDevice8BitStorageFeatures, next_types::Type...) = PhysicalDevice8BitStorageFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.storageBuffer8BitAccess), from_vk(Bool, x.uniformAndStorageBuffer8BitAccess), from_vk(Bool, x.storagePushConstant8))
 
 """
 
 """
-PhysicalDeviceConditionalRenderingFeaturesEXT(x::VkPhysicalDeviceConditionalRenderingFeaturesEXT, next_types...) = PhysicalDeviceConditionalRenderingFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.conditionalRendering), from_vk(Bool, x.inheritedConditionalRendering))
+PhysicalDeviceConditionalRenderingFeaturesEXT(x::VkPhysicalDeviceConditionalRenderingFeaturesEXT, next_types::Type...) = PhysicalDeviceConditionalRenderingFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.conditionalRendering), from_vk(Bool, x.inheritedConditionalRendering))
 
 """
 
 """
-PhysicalDeviceVulkanMemoryModelFeatures(x::VkPhysicalDeviceVulkanMemoryModelFeatures, next_types...) = PhysicalDeviceVulkanMemoryModelFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.vulkanMemoryModel), from_vk(Bool, x.vulkanMemoryModelDeviceScope), from_vk(Bool, x.vulkanMemoryModelAvailabilityVisibilityChains))
+PhysicalDeviceVulkanMemoryModelFeatures(x::VkPhysicalDeviceVulkanMemoryModelFeatures, next_types::Type...) = PhysicalDeviceVulkanMemoryModelFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.vulkanMemoryModel), from_vk(Bool, x.vulkanMemoryModelDeviceScope), from_vk(Bool, x.vulkanMemoryModelAvailabilityVisibilityChains))
 
 """
 
 """
-PhysicalDeviceShaderAtomicInt64Features(x::VkPhysicalDeviceShaderAtomicInt64Features, next_types...) = PhysicalDeviceShaderAtomicInt64Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderBufferInt64Atomics), from_vk(Bool, x.shaderSharedInt64Atomics))
+PhysicalDeviceShaderAtomicInt64Features(x::VkPhysicalDeviceShaderAtomicInt64Features, next_types::Type...) = PhysicalDeviceShaderAtomicInt64Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderBufferInt64Atomics), from_vk(Bool, x.shaderSharedInt64Atomics))
 
 """
 
 """
-PhysicalDeviceShaderAtomicFloatFeaturesEXT(x::VkPhysicalDeviceShaderAtomicFloatFeaturesEXT, next_types...) = PhysicalDeviceShaderAtomicFloatFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderBufferFloat32Atomics), from_vk(Bool, x.shaderBufferFloat32AtomicAdd), from_vk(Bool, x.shaderBufferFloat64Atomics), from_vk(Bool, x.shaderBufferFloat64AtomicAdd), from_vk(Bool, x.shaderSharedFloat32Atomics), from_vk(Bool, x.shaderSharedFloat32AtomicAdd), from_vk(Bool, x.shaderSharedFloat64Atomics), from_vk(Bool, x.shaderSharedFloat64AtomicAdd), from_vk(Bool, x.shaderImageFloat32Atomics), from_vk(Bool, x.shaderImageFloat32AtomicAdd), from_vk(Bool, x.sparseImageFloat32Atomics), from_vk(Bool, x.sparseImageFloat32AtomicAdd))
+PhysicalDeviceShaderAtomicFloatFeaturesEXT(x::VkPhysicalDeviceShaderAtomicFloatFeaturesEXT, next_types::Type...) = PhysicalDeviceShaderAtomicFloatFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderBufferFloat32Atomics), from_vk(Bool, x.shaderBufferFloat32AtomicAdd), from_vk(Bool, x.shaderBufferFloat64Atomics), from_vk(Bool, x.shaderBufferFloat64AtomicAdd), from_vk(Bool, x.shaderSharedFloat32Atomics), from_vk(Bool, x.shaderSharedFloat32AtomicAdd), from_vk(Bool, x.shaderSharedFloat64Atomics), from_vk(Bool, x.shaderSharedFloat64AtomicAdd), from_vk(Bool, x.shaderImageFloat32Atomics), from_vk(Bool, x.shaderImageFloat32AtomicAdd), from_vk(Bool, x.sparseImageFloat32Atomics), from_vk(Bool, x.sparseImageFloat32AtomicAdd))
 
 """
 
 """
-PhysicalDeviceVertexAttributeDivisorFeaturesEXT(x::VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT, next_types...) = PhysicalDeviceVertexAttributeDivisorFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.vertexAttributeInstanceRateDivisor), from_vk(Bool, x.vertexAttributeInstanceRateZeroDivisor))
+PhysicalDeviceVertexAttributeDivisorFeaturesEXT(x::VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT, next_types::Type...) = PhysicalDeviceVertexAttributeDivisorFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.vertexAttributeInstanceRateDivisor), from_vk(Bool, x.vertexAttributeInstanceRateZeroDivisor))
 
 """
 
 """
-QueueFamilyCheckpointPropertiesNV(x::VkQueueFamilyCheckpointPropertiesNV, next_types...) = QueueFamilyCheckpointPropertiesNV(load_next_chain(x.pNext, next_types...), x.checkpointExecutionStageMask)
+QueueFamilyCheckpointPropertiesNV(x::VkQueueFamilyCheckpointPropertiesNV, next_types::Type...) = QueueFamilyCheckpointPropertiesNV(load_next_chain(x.pNext, next_types...), x.checkpointExecutionStageMask)
 
 """
 
 """
-CheckpointDataNV(x::VkCheckpointDataNV, next_types...) = CheckpointDataNV(load_next_chain(x.pNext, next_types...), PipelineStageFlag(UInt32(x.stage)), x.pCheckpointMarker)
+CheckpointDataNV(x::VkCheckpointDataNV, next_types::Type...) = CheckpointDataNV(load_next_chain(x.pNext, next_types...), PipelineStageFlag(UInt32(x.stage)), x.pCheckpointMarker)
 
 """
 
 """
-PhysicalDeviceDepthStencilResolveProperties(x::VkPhysicalDeviceDepthStencilResolveProperties, next_types...) = PhysicalDeviceDepthStencilResolveProperties(load_next_chain(x.pNext, next_types...), x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve))
+PhysicalDeviceDepthStencilResolveProperties(x::VkPhysicalDeviceDepthStencilResolveProperties, next_types::Type...) = PhysicalDeviceDepthStencilResolveProperties(load_next_chain(x.pNext, next_types...), x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve))
 
 """
 
 """
-SubpassDescriptionDepthStencilResolve(x::VkSubpassDescriptionDepthStencilResolve, next_types...) = SubpassDescriptionDepthStencilResolve(load_next_chain(x.pNext, next_types...), ResolveModeFlag(UInt32(x.depthResolveMode)), ResolveModeFlag(UInt32(x.stencilResolveMode)), AttachmentReference2(x.pDepthStencilResolveAttachment))
+SubpassDescriptionDepthStencilResolve(x::VkSubpassDescriptionDepthStencilResolve, next_types::Type...) = SubpassDescriptionDepthStencilResolve(load_next_chain(x.pNext, next_types...), ResolveModeFlag(UInt32(x.depthResolveMode)), ResolveModeFlag(UInt32(x.stencilResolveMode)), AttachmentReference2(x.pDepthStencilResolveAttachment))
 
 """
 
 """
-ImageViewASTCDecodeModeEXT(x::VkImageViewASTCDecodeModeEXT, next_types...) = ImageViewASTCDecodeModeEXT(load_next_chain(x.pNext, next_types...), x.decodeMode)
+ImageViewASTCDecodeModeEXT(x::VkImageViewASTCDecodeModeEXT, next_types::Type...) = ImageViewASTCDecodeModeEXT(load_next_chain(x.pNext, next_types...), x.decodeMode)
 
 """
 
 """
-PhysicalDeviceASTCDecodeFeaturesEXT(x::VkPhysicalDeviceASTCDecodeFeaturesEXT, next_types...) = PhysicalDeviceASTCDecodeFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.decodeModeSharedExponent))
+PhysicalDeviceASTCDecodeFeaturesEXT(x::VkPhysicalDeviceASTCDecodeFeaturesEXT, next_types::Type...) = PhysicalDeviceASTCDecodeFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.decodeModeSharedExponent))
 
 """
 
 """
-PhysicalDeviceTransformFeedbackFeaturesEXT(x::VkPhysicalDeviceTransformFeedbackFeaturesEXT, next_types...) = PhysicalDeviceTransformFeedbackFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.transformFeedback), from_vk(Bool, x.geometryStreams))
+PhysicalDeviceTransformFeedbackFeaturesEXT(x::VkPhysicalDeviceTransformFeedbackFeaturesEXT, next_types::Type...) = PhysicalDeviceTransformFeedbackFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.transformFeedback), from_vk(Bool, x.geometryStreams))
 
 """
 
 """
-PhysicalDeviceTransformFeedbackPropertiesEXT(x::VkPhysicalDeviceTransformFeedbackPropertiesEXT, next_types...) = PhysicalDeviceTransformFeedbackPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxTransformFeedbackStreams, x.maxTransformFeedbackBuffers, x.maxTransformFeedbackBufferSize, x.maxTransformFeedbackStreamDataSize, x.maxTransformFeedbackBufferDataSize, x.maxTransformFeedbackBufferDataStride, from_vk(Bool, x.transformFeedbackQueries), from_vk(Bool, x.transformFeedbackStreamsLinesTriangles), from_vk(Bool, x.transformFeedbackRasterizationStreamSelect), from_vk(Bool, x.transformFeedbackDraw))
+PhysicalDeviceTransformFeedbackPropertiesEXT(x::VkPhysicalDeviceTransformFeedbackPropertiesEXT, next_types::Type...) = PhysicalDeviceTransformFeedbackPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxTransformFeedbackStreams, x.maxTransformFeedbackBuffers, x.maxTransformFeedbackBufferSize, x.maxTransformFeedbackStreamDataSize, x.maxTransformFeedbackBufferDataSize, x.maxTransformFeedbackBufferDataStride, from_vk(Bool, x.transformFeedbackQueries), from_vk(Bool, x.transformFeedbackStreamsLinesTriangles), from_vk(Bool, x.transformFeedbackRasterizationStreamSelect), from_vk(Bool, x.transformFeedbackDraw))
 
 """
 
 """
-PipelineRasterizationStateStreamCreateInfoEXT(x::VkPipelineRasterizationStateStreamCreateInfoEXT, next_types...) = PipelineRasterizationStateStreamCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.rasterizationStream)
+PipelineRasterizationStateStreamCreateInfoEXT(x::VkPipelineRasterizationStateStreamCreateInfoEXT, next_types::Type...) = PipelineRasterizationStateStreamCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, x.rasterizationStream)
 
 """
 
 """
-PhysicalDeviceRepresentativeFragmentTestFeaturesNV(x::VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV, next_types...) = PhysicalDeviceRepresentativeFragmentTestFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.representativeFragmentTest))
+PhysicalDeviceRepresentativeFragmentTestFeaturesNV(x::VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV, next_types::Type...) = PhysicalDeviceRepresentativeFragmentTestFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.representativeFragmentTest))
 
 """
 
 """
-PipelineRepresentativeFragmentTestStateCreateInfoNV(x::VkPipelineRepresentativeFragmentTestStateCreateInfoNV, next_types...) = PipelineRepresentativeFragmentTestStateCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.representativeFragmentTestEnable))
+PipelineRepresentativeFragmentTestStateCreateInfoNV(x::VkPipelineRepresentativeFragmentTestStateCreateInfoNV, next_types::Type...) = PipelineRepresentativeFragmentTestStateCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.representativeFragmentTestEnable))
 
 """
 
 """
-PhysicalDeviceExclusiveScissorFeaturesNV(x::VkPhysicalDeviceExclusiveScissorFeaturesNV, next_types...) = PhysicalDeviceExclusiveScissorFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.exclusiveScissor))
+PhysicalDeviceExclusiveScissorFeaturesNV(x::VkPhysicalDeviceExclusiveScissorFeaturesNV, next_types::Type...) = PhysicalDeviceExclusiveScissorFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.exclusiveScissor))
 
 """
 
 """
-PipelineViewportExclusiveScissorStateCreateInfoNV(x::VkPipelineViewportExclusiveScissorStateCreateInfoNV, next_types...) = PipelineViewportExclusiveScissorStateCreateInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Rect2D}, x.pExclusiveScissors, x.exclusiveScissorCount; own = true))
+PipelineViewportExclusiveScissorStateCreateInfoNV(x::VkPipelineViewportExclusiveScissorStateCreateInfoNV, next_types::Type...) = PipelineViewportExclusiveScissorStateCreateInfoNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Rect2D}, x.pExclusiveScissors, x.exclusiveScissorCount; own = true))
 
 """
 
 """
-PhysicalDeviceCornerSampledImageFeaturesNV(x::VkPhysicalDeviceCornerSampledImageFeaturesNV, next_types...) = PhysicalDeviceCornerSampledImageFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.cornerSampledImage))
+PhysicalDeviceCornerSampledImageFeaturesNV(x::VkPhysicalDeviceCornerSampledImageFeaturesNV, next_types::Type...) = PhysicalDeviceCornerSampledImageFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.cornerSampledImage))
 
 """
 
 """
-PhysicalDeviceComputeShaderDerivativesFeaturesNV(x::VkPhysicalDeviceComputeShaderDerivativesFeaturesNV, next_types...) = PhysicalDeviceComputeShaderDerivativesFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.computeDerivativeGroupQuads), from_vk(Bool, x.computeDerivativeGroupLinear))
+PhysicalDeviceComputeShaderDerivativesFeaturesNV(x::VkPhysicalDeviceComputeShaderDerivativesFeaturesNV, next_types::Type...) = PhysicalDeviceComputeShaderDerivativesFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.computeDerivativeGroupQuads), from_vk(Bool, x.computeDerivativeGroupLinear))
 
 """
 
 """
-PhysicalDeviceFragmentShaderBarycentricFeaturesNV(x::VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV, next_types...) = PhysicalDeviceFragmentShaderBarycentricFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentShaderBarycentric))
+PhysicalDeviceFragmentShaderBarycentricFeaturesNV(x::VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV, next_types::Type...) = PhysicalDeviceFragmentShaderBarycentricFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentShaderBarycentric))
 
 """
 
 """
-PhysicalDeviceShaderImageFootprintFeaturesNV(x::VkPhysicalDeviceShaderImageFootprintFeaturesNV, next_types...) = PhysicalDeviceShaderImageFootprintFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.imageFootprint))
+PhysicalDeviceShaderImageFootprintFeaturesNV(x::VkPhysicalDeviceShaderImageFootprintFeaturesNV, next_types::Type...) = PhysicalDeviceShaderImageFootprintFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.imageFootprint))
 
 """
 
 """
-PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(x::VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, next_types...) = PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.dedicatedAllocationImageAliasing))
+PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(x::VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, next_types::Type...) = PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.dedicatedAllocationImageAliasing))
 
 """
 
@@ -34997,17 +39369,17 @@ ShadingRatePaletteNV(x::VkShadingRatePaletteNV) = ShadingRatePaletteNV(unsafe_wr
 """
 
 """
-PipelineViewportShadingRateImageStateCreateInfoNV(x::VkPipelineViewportShadingRateImageStateCreateInfoNV, next_types...) = PipelineViewportShadingRateImageStateCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shadingRateImageEnable), unsafe_wrap(Vector{ShadingRatePaletteNV}, x.pShadingRatePalettes, x.viewportCount; own = true))
+PipelineViewportShadingRateImageStateCreateInfoNV(x::VkPipelineViewportShadingRateImageStateCreateInfoNV, next_types::Type...) = PipelineViewportShadingRateImageStateCreateInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shadingRateImageEnable), unsafe_wrap(Vector{ShadingRatePaletteNV}, x.pShadingRatePalettes, x.viewportCount; own = true))
 
 """
 
 """
-PhysicalDeviceShadingRateImageFeaturesNV(x::VkPhysicalDeviceShadingRateImageFeaturesNV, next_types...) = PhysicalDeviceShadingRateImageFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shadingRateImage), from_vk(Bool, x.shadingRateCoarseSampleOrder))
+PhysicalDeviceShadingRateImageFeaturesNV(x::VkPhysicalDeviceShadingRateImageFeaturesNV, next_types::Type...) = PhysicalDeviceShadingRateImageFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shadingRateImage), from_vk(Bool, x.shadingRateCoarseSampleOrder))
 
 """
 
 """
-PhysicalDeviceShadingRateImagePropertiesNV(x::VkPhysicalDeviceShadingRateImagePropertiesNV, next_types...) = PhysicalDeviceShadingRateImagePropertiesNV(load_next_chain(x.pNext, next_types...), Extent2D(x.shadingRateTexelSize), x.shadingRatePaletteSize, x.shadingRateMaxCoarseSamples)
+PhysicalDeviceShadingRateImagePropertiesNV(x::VkPhysicalDeviceShadingRateImagePropertiesNV, next_types::Type...) = PhysicalDeviceShadingRateImagePropertiesNV(load_next_chain(x.pNext, next_types...), Extent2D(x.shadingRateTexelSize), x.shadingRatePaletteSize, x.shadingRateMaxCoarseSamples)
 
 """
 
@@ -35022,17 +39394,17 @@ CoarseSampleOrderCustomNV(x::VkCoarseSampleOrderCustomNV) = CoarseSampleOrderCus
 """
 
 """
-PipelineViewportCoarseSampleOrderStateCreateInfoNV(x::VkPipelineViewportCoarseSampleOrderStateCreateInfoNV, next_types...) = PipelineViewportCoarseSampleOrderStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.sampleOrderType, unsafe_wrap(Vector{CoarseSampleOrderCustomNV}, x.pCustomSampleOrders, x.customSampleOrderCount; own = true))
+PipelineViewportCoarseSampleOrderStateCreateInfoNV(x::VkPipelineViewportCoarseSampleOrderStateCreateInfoNV, next_types::Type...) = PipelineViewportCoarseSampleOrderStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.sampleOrderType, unsafe_wrap(Vector{CoarseSampleOrderCustomNV}, x.pCustomSampleOrders, x.customSampleOrderCount; own = true))
 
 """
 
 """
-PhysicalDeviceMeshShaderFeaturesNV(x::VkPhysicalDeviceMeshShaderFeaturesNV, next_types...) = PhysicalDeviceMeshShaderFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.taskShader), from_vk(Bool, x.meshShader))
+PhysicalDeviceMeshShaderFeaturesNV(x::VkPhysicalDeviceMeshShaderFeaturesNV, next_types::Type...) = PhysicalDeviceMeshShaderFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.taskShader), from_vk(Bool, x.meshShader))
 
 """
 
 """
-PhysicalDeviceMeshShaderPropertiesNV(x::VkPhysicalDeviceMeshShaderPropertiesNV, next_types...) = PhysicalDeviceMeshShaderPropertiesNV(load_next_chain(x.pNext, next_types...), x.maxDrawMeshTasksCount, x.maxTaskWorkGroupInvocations, x.maxTaskWorkGroupSize, x.maxTaskTotalMemorySize, x.maxTaskOutputCount, x.maxMeshWorkGroupInvocations, x.maxMeshWorkGroupSize, x.maxMeshTotalMemorySize, x.maxMeshOutputVertices, x.maxMeshOutputPrimitives, x.maxMeshMultiviewViewCount, x.meshOutputPerVertexGranularity, x.meshOutputPerPrimitiveGranularity)
+PhysicalDeviceMeshShaderPropertiesNV(x::VkPhysicalDeviceMeshShaderPropertiesNV, next_types::Type...) = PhysicalDeviceMeshShaderPropertiesNV(load_next_chain(x.pNext, next_types...), x.maxDrawMeshTasksCount, x.maxTaskWorkGroupInvocations, x.maxTaskWorkGroupSize, x.maxTaskTotalMemorySize, x.maxTaskOutputCount, x.maxMeshWorkGroupInvocations, x.maxMeshWorkGroupSize, x.maxMeshTotalMemorySize, x.maxMeshOutputVertices, x.maxMeshOutputPrimitives, x.maxMeshMultiviewViewCount, x.meshOutputPerVertexGranularity, x.meshOutputPerPrimitiveGranularity)
 
 """
 
@@ -35042,32 +39414,32 @@ DrawMeshTasksIndirectCommandNV(x::VkDrawMeshTasksIndirectCommandNV) = DrawMeshTa
 """
 
 """
-RayTracingShaderGroupCreateInfoNV(x::VkRayTracingShaderGroupCreateInfoNV, next_types...) = RayTracingShaderGroupCreateInfoNV(load_next_chain(x.pNext, next_types...), x.type, x.generalShader, x.closestHitShader, x.anyHitShader, x.intersectionShader)
+RayTracingShaderGroupCreateInfoNV(x::VkRayTracingShaderGroupCreateInfoNV, next_types::Type...) = RayTracingShaderGroupCreateInfoNV(load_next_chain(x.pNext, next_types...), x.type, x.generalShader, x.closestHitShader, x.anyHitShader, x.intersectionShader)
 
 """
 
 """
-RayTracingShaderGroupCreateInfoKHR(x::VkRayTracingShaderGroupCreateInfoKHR, next_types...) = RayTracingShaderGroupCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.type, x.generalShader, x.closestHitShader, x.anyHitShader, x.intersectionShader, x.pShaderGroupCaptureReplayHandle)
+RayTracingShaderGroupCreateInfoKHR(x::VkRayTracingShaderGroupCreateInfoKHR, next_types::Type...) = RayTracingShaderGroupCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.type, x.generalShader, x.closestHitShader, x.anyHitShader, x.intersectionShader, x.pShaderGroupCaptureReplayHandle)
 
 """
 
 """
-RayTracingPipelineCreateInfoNV(x::VkRayTracingPipelineCreateInfoNV, next_types...) = RayTracingPipelineCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), unsafe_wrap(Vector{RayTracingShaderGroupCreateInfoNV}, x.pGroups, x.groupCount; own = true), x.maxRecursionDepth, PipelineLayout(x.layout), Pipeline(x.basePipelineHandle), x.basePipelineIndex)
+RayTracingPipelineCreateInfoNV(x::VkRayTracingPipelineCreateInfoNV, next_types::Type...) = RayTracingPipelineCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), unsafe_wrap(Vector{RayTracingShaderGroupCreateInfoNV}, x.pGroups, x.groupCount; own = true), x.maxRecursionDepth, PipelineLayout(x.layout), Pipeline(x.basePipelineHandle), x.basePipelineIndex)
 
 """
 
 """
-RayTracingPipelineCreateInfoKHR(x::VkRayTracingPipelineCreateInfoKHR, next_types...) = RayTracingPipelineCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), unsafe_wrap(Vector{RayTracingShaderGroupCreateInfoKHR}, x.pGroups, x.groupCount; own = true), x.maxPipelineRayRecursionDepth, PipelineLibraryCreateInfoKHR(x.pLibraryInfo), RayTracingPipelineInterfaceCreateInfoKHR(x.pLibraryInterface), PipelineDynamicStateCreateInfo(x.pDynamicState), PipelineLayout(x.layout), Pipeline(x.basePipelineHandle), x.basePipelineIndex)
+RayTracingPipelineCreateInfoKHR(x::VkRayTracingPipelineCreateInfoKHR, next_types::Type...) = RayTracingPipelineCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{PipelineShaderStageCreateInfo}, x.pStages, x.stageCount; own = true), unsafe_wrap(Vector{RayTracingShaderGroupCreateInfoKHR}, x.pGroups, x.groupCount; own = true), x.maxPipelineRayRecursionDepth, PipelineLibraryCreateInfoKHR(x.pLibraryInfo), RayTracingPipelineInterfaceCreateInfoKHR(x.pLibraryInterface), PipelineDynamicStateCreateInfo(x.pDynamicState), PipelineLayout(x.layout), Pipeline(x.basePipelineHandle), x.basePipelineIndex)
 
 """
 
 """
-GeometryTrianglesNV(x::VkGeometryTrianglesNV, next_types...) = GeometryTrianglesNV(load_next_chain(x.pNext, next_types...), Buffer(x.vertexData), x.vertexOffset, x.vertexCount, x.vertexStride, x.vertexFormat, Buffer(x.indexData), x.indexOffset, x.indexCount, x.indexType, Buffer(x.transformData), x.transformOffset)
+GeometryTrianglesNV(x::VkGeometryTrianglesNV, next_types::Type...) = GeometryTrianglesNV(load_next_chain(x.pNext, next_types...), Buffer(x.vertexData), x.vertexOffset, x.vertexCount, x.vertexStride, x.vertexFormat, Buffer(x.indexData), x.indexOffset, x.indexCount, x.indexType, Buffer(x.transformData), x.transformOffset)
 
 """
 
 """
-GeometryAABBNV(x::VkGeometryAABBNV, next_types...) = GeometryAABBNV(load_next_chain(x.pNext, next_types...), Buffer(x.aabbData), x.numAABBs, x.stride, x.offset)
+GeometryAABBNV(x::VkGeometryAABBNV, next_types::Type...) = GeometryAABBNV(load_next_chain(x.pNext, next_types...), Buffer(x.aabbData), x.numAABBs, x.stride, x.offset)
 
 """
 
@@ -35077,67 +39449,67 @@ GeometryDataNV(x::VkGeometryDataNV) = GeometryDataNV(GeometryTrianglesNV(x.trian
 """
 
 """
-GeometryNV(x::VkGeometryNV, next_types...) = GeometryNV(load_next_chain(x.pNext, next_types...), x.geometryType, GeometryDataNV(x.geometry), x.flags)
+GeometryNV(x::VkGeometryNV, next_types::Type...) = GeometryNV(load_next_chain(x.pNext, next_types...), x.geometryType, GeometryDataNV(x.geometry), x.flags)
 
 """
 
 """
-AccelerationStructureInfoNV(x::VkAccelerationStructureInfoNV, next_types...) = AccelerationStructureInfoNV(load_next_chain(x.pNext, next_types...), x.type, x.flags, x.instanceCount, unsafe_wrap(Vector{GeometryNV}, x.pGeometries, x.geometryCount; own = true))
+AccelerationStructureInfoNV(x::VkAccelerationStructureInfoNV, next_types::Type...) = AccelerationStructureInfoNV(load_next_chain(x.pNext, next_types...), x.type, x.flags, x.instanceCount, unsafe_wrap(Vector{GeometryNV}, x.pGeometries, x.geometryCount; own = true))
 
 """
 
 """
-AccelerationStructureCreateInfoNV(x::VkAccelerationStructureCreateInfoNV, next_types...) = AccelerationStructureCreateInfoNV(load_next_chain(x.pNext, next_types...), x.compactedSize, AccelerationStructureInfoNV(x.info))
+AccelerationStructureCreateInfoNV(x::VkAccelerationStructureCreateInfoNV, next_types::Type...) = AccelerationStructureCreateInfoNV(load_next_chain(x.pNext, next_types...), x.compactedSize, AccelerationStructureInfoNV(x.info))
 
 """
 
 """
-BindAccelerationStructureMemoryInfoNV(x::VkBindAccelerationStructureMemoryInfoNV, next_types...) = BindAccelerationStructureMemoryInfoNV(load_next_chain(x.pNext, next_types...), AccelerationStructureNV(x.accelerationStructure), DeviceMemory(x.memory), x.memoryOffset, unsafe_wrap(Vector{UInt32}, x.pDeviceIndices, x.deviceIndexCount; own = true))
+BindAccelerationStructureMemoryInfoNV(x::VkBindAccelerationStructureMemoryInfoNV, next_types::Type...) = BindAccelerationStructureMemoryInfoNV(load_next_chain(x.pNext, next_types...), AccelerationStructureNV(x.accelerationStructure), DeviceMemory(x.memory), x.memoryOffset, unsafe_wrap(Vector{UInt32}, x.pDeviceIndices, x.deviceIndexCount; own = true))
 
 """
 
 """
-WriteDescriptorSetAccelerationStructureKHR(x::VkWriteDescriptorSetAccelerationStructureKHR, next_types...) = WriteDescriptorSetAccelerationStructureKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{AccelerationStructureKHR}, x.pAccelerationStructures, x.accelerationStructureCount; own = true))
+WriteDescriptorSetAccelerationStructureKHR(x::VkWriteDescriptorSetAccelerationStructureKHR, next_types::Type...) = WriteDescriptorSetAccelerationStructureKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{AccelerationStructureKHR}, x.pAccelerationStructures, x.accelerationStructureCount; own = true))
 
 """
 
 """
-WriteDescriptorSetAccelerationStructureNV(x::VkWriteDescriptorSetAccelerationStructureNV, next_types...) = WriteDescriptorSetAccelerationStructureNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{AccelerationStructureNV}, x.pAccelerationStructures, x.accelerationStructureCount; own = true))
+WriteDescriptorSetAccelerationStructureNV(x::VkWriteDescriptorSetAccelerationStructureNV, next_types::Type...) = WriteDescriptorSetAccelerationStructureNV(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{AccelerationStructureNV}, x.pAccelerationStructures, x.accelerationStructureCount; own = true))
 
 """
 
 """
-AccelerationStructureMemoryRequirementsInfoNV(x::VkAccelerationStructureMemoryRequirementsInfoNV, next_types...) = AccelerationStructureMemoryRequirementsInfoNV(load_next_chain(x.pNext, next_types...), x.type, AccelerationStructureNV(x.accelerationStructure))
+AccelerationStructureMemoryRequirementsInfoNV(x::VkAccelerationStructureMemoryRequirementsInfoNV, next_types::Type...) = AccelerationStructureMemoryRequirementsInfoNV(load_next_chain(x.pNext, next_types...), x.type, AccelerationStructureNV(x.accelerationStructure))
 
 """
 
 """
-PhysicalDeviceAccelerationStructureFeaturesKHR(x::VkPhysicalDeviceAccelerationStructureFeaturesKHR, next_types...) = PhysicalDeviceAccelerationStructureFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.accelerationStructure), from_vk(Bool, x.accelerationStructureCaptureReplay), from_vk(Bool, x.accelerationStructureIndirectBuild), from_vk(Bool, x.accelerationStructureHostCommands), from_vk(Bool, x.descriptorBindingAccelerationStructureUpdateAfterBind))
+PhysicalDeviceAccelerationStructureFeaturesKHR(x::VkPhysicalDeviceAccelerationStructureFeaturesKHR, next_types::Type...) = PhysicalDeviceAccelerationStructureFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.accelerationStructure), from_vk(Bool, x.accelerationStructureCaptureReplay), from_vk(Bool, x.accelerationStructureIndirectBuild), from_vk(Bool, x.accelerationStructureHostCommands), from_vk(Bool, x.descriptorBindingAccelerationStructureUpdateAfterBind))
 
 """
 
 """
-PhysicalDeviceRayTracingPipelineFeaturesKHR(x::VkPhysicalDeviceRayTracingPipelineFeaturesKHR, next_types...) = PhysicalDeviceRayTracingPipelineFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.rayTracingPipeline), from_vk(Bool, x.rayTracingPipelineShaderGroupHandleCaptureReplay), from_vk(Bool, x.rayTracingPipelineShaderGroupHandleCaptureReplayMixed), from_vk(Bool, x.rayTracingPipelineTraceRaysIndirect), from_vk(Bool, x.rayTraversalPrimitiveCulling))
+PhysicalDeviceRayTracingPipelineFeaturesKHR(x::VkPhysicalDeviceRayTracingPipelineFeaturesKHR, next_types::Type...) = PhysicalDeviceRayTracingPipelineFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.rayTracingPipeline), from_vk(Bool, x.rayTracingPipelineShaderGroupHandleCaptureReplay), from_vk(Bool, x.rayTracingPipelineShaderGroupHandleCaptureReplayMixed), from_vk(Bool, x.rayTracingPipelineTraceRaysIndirect), from_vk(Bool, x.rayTraversalPrimitiveCulling))
 
 """
 
 """
-PhysicalDeviceRayQueryFeaturesKHR(x::VkPhysicalDeviceRayQueryFeaturesKHR, next_types...) = PhysicalDeviceRayQueryFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.rayQuery))
+PhysicalDeviceRayQueryFeaturesKHR(x::VkPhysicalDeviceRayQueryFeaturesKHR, next_types::Type...) = PhysicalDeviceRayQueryFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.rayQuery))
 
 """
 
 """
-PhysicalDeviceAccelerationStructurePropertiesKHR(x::VkPhysicalDeviceAccelerationStructurePropertiesKHR, next_types...) = PhysicalDeviceAccelerationStructurePropertiesKHR(load_next_chain(x.pNext, next_types...), x.maxGeometryCount, x.maxInstanceCount, x.maxPrimitiveCount, x.maxPerStageDescriptorAccelerationStructures, x.maxPerStageDescriptorUpdateAfterBindAccelerationStructures, x.maxDescriptorSetAccelerationStructures, x.maxDescriptorSetUpdateAfterBindAccelerationStructures, x.minAccelerationStructureScratchOffsetAlignment)
+PhysicalDeviceAccelerationStructurePropertiesKHR(x::VkPhysicalDeviceAccelerationStructurePropertiesKHR, next_types::Type...) = PhysicalDeviceAccelerationStructurePropertiesKHR(load_next_chain(x.pNext, next_types...), x.maxGeometryCount, x.maxInstanceCount, x.maxPrimitiveCount, x.maxPerStageDescriptorAccelerationStructures, x.maxPerStageDescriptorUpdateAfterBindAccelerationStructures, x.maxDescriptorSetAccelerationStructures, x.maxDescriptorSetUpdateAfterBindAccelerationStructures, x.minAccelerationStructureScratchOffsetAlignment)
 
 """
 
 """
-PhysicalDeviceRayTracingPipelinePropertiesKHR(x::VkPhysicalDeviceRayTracingPipelinePropertiesKHR, next_types...) = PhysicalDeviceRayTracingPipelinePropertiesKHR(load_next_chain(x.pNext, next_types...), x.shaderGroupHandleSize, x.maxRayRecursionDepth, x.maxShaderGroupStride, x.shaderGroupBaseAlignment, x.shaderGroupHandleCaptureReplaySize, x.maxRayDispatchInvocationCount, x.shaderGroupHandleAlignment, x.maxRayHitAttributeSize)
+PhysicalDeviceRayTracingPipelinePropertiesKHR(x::VkPhysicalDeviceRayTracingPipelinePropertiesKHR, next_types::Type...) = PhysicalDeviceRayTracingPipelinePropertiesKHR(load_next_chain(x.pNext, next_types...), x.shaderGroupHandleSize, x.maxRayRecursionDepth, x.maxShaderGroupStride, x.shaderGroupBaseAlignment, x.shaderGroupHandleCaptureReplaySize, x.maxRayDispatchInvocationCount, x.shaderGroupHandleAlignment, x.maxRayHitAttributeSize)
 
 """
 
 """
-PhysicalDeviceRayTracingPropertiesNV(x::VkPhysicalDeviceRayTracingPropertiesNV, next_types...) = PhysicalDeviceRayTracingPropertiesNV(load_next_chain(x.pNext, next_types...), x.shaderGroupHandleSize, x.maxRecursionDepth, x.maxShaderGroupStride, x.shaderGroupBaseAlignment, x.maxGeometryCount, x.maxInstanceCount, x.maxTriangleCount, x.maxDescriptorSetAccelerationStructures)
+PhysicalDeviceRayTracingPropertiesNV(x::VkPhysicalDeviceRayTracingPropertiesNV, next_types::Type...) = PhysicalDeviceRayTracingPropertiesNV(load_next_chain(x.pNext, next_types...), x.shaderGroupHandleSize, x.maxRecursionDepth, x.maxShaderGroupStride, x.shaderGroupBaseAlignment, x.maxGeometryCount, x.maxInstanceCount, x.maxTriangleCount, x.maxDescriptorSetAccelerationStructures)
 
 """
 
@@ -35152,7 +39524,7 @@ TraceRaysIndirectCommandKHR(x::VkTraceRaysIndirectCommandKHR) = TraceRaysIndirec
 """
 
 """
-DrmFormatModifierPropertiesListEXT(x::VkDrmFormatModifierPropertiesListEXT, next_types...) = DrmFormatModifierPropertiesListEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DrmFormatModifierPropertiesEXT}, x.pDrmFormatModifierProperties, x.drmFormatModifierCount; own = true))
+DrmFormatModifierPropertiesListEXT(x::VkDrmFormatModifierPropertiesListEXT, next_types::Type...) = DrmFormatModifierPropertiesListEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{DrmFormatModifierPropertiesEXT}, x.pDrmFormatModifierProperties, x.drmFormatModifierCount; own = true))
 
 """
 
@@ -35162,187 +39534,187 @@ DrmFormatModifierPropertiesEXT(x::VkDrmFormatModifierPropertiesEXT) = DrmFormatM
 """
 
 """
-PhysicalDeviceImageDrmFormatModifierInfoEXT(x::VkPhysicalDeviceImageDrmFormatModifierInfoEXT, next_types...) = PhysicalDeviceImageDrmFormatModifierInfoEXT(load_next_chain(x.pNext, next_types...), x.drmFormatModifier, x.sharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true))
+PhysicalDeviceImageDrmFormatModifierInfoEXT(x::VkPhysicalDeviceImageDrmFormatModifierInfoEXT, next_types::Type...) = PhysicalDeviceImageDrmFormatModifierInfoEXT(load_next_chain(x.pNext, next_types...), x.drmFormatModifier, x.sharingMode, unsafe_wrap(Vector{UInt32}, x.pQueueFamilyIndices, x.queueFamilyIndexCount; own = true))
 
 """
 
 """
-ImageDrmFormatModifierListCreateInfoEXT(x::VkImageDrmFormatModifierListCreateInfoEXT, next_types...) = ImageDrmFormatModifierListCreateInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt64}, x.pDrmFormatModifiers, x.drmFormatModifierCount; own = true))
+ImageDrmFormatModifierListCreateInfoEXT(x::VkImageDrmFormatModifierListCreateInfoEXT, next_types::Type...) = ImageDrmFormatModifierListCreateInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt64}, x.pDrmFormatModifiers, x.drmFormatModifierCount; own = true))
 
 """
 
 """
-ImageDrmFormatModifierExplicitCreateInfoEXT(x::VkImageDrmFormatModifierExplicitCreateInfoEXT, next_types...) = ImageDrmFormatModifierExplicitCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.drmFormatModifier, unsafe_wrap(Vector{SubresourceLayout}, x.pPlaneLayouts, x.drmFormatModifierPlaneCount; own = true))
+ImageDrmFormatModifierExplicitCreateInfoEXT(x::VkImageDrmFormatModifierExplicitCreateInfoEXT, next_types::Type...) = ImageDrmFormatModifierExplicitCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.drmFormatModifier, unsafe_wrap(Vector{SubresourceLayout}, x.pPlaneLayouts, x.drmFormatModifierPlaneCount; own = true))
 
 """
 
 """
-ImageDrmFormatModifierPropertiesEXT(x::VkImageDrmFormatModifierPropertiesEXT, next_types...) = ImageDrmFormatModifierPropertiesEXT(load_next_chain(x.pNext, next_types...), x.drmFormatModifier)
+ImageDrmFormatModifierPropertiesEXT(x::VkImageDrmFormatModifierPropertiesEXT, next_types::Type...) = ImageDrmFormatModifierPropertiesEXT(load_next_chain(x.pNext, next_types...), x.drmFormatModifier)
 
 """
 
 """
-ImageStencilUsageCreateInfo(x::VkImageStencilUsageCreateInfo, next_types...) = ImageStencilUsageCreateInfo(load_next_chain(x.pNext, next_types...), x.stencilUsage)
+ImageStencilUsageCreateInfo(x::VkImageStencilUsageCreateInfo, next_types::Type...) = ImageStencilUsageCreateInfo(load_next_chain(x.pNext, next_types...), x.stencilUsage)
 
 """
 
 """
-DeviceMemoryOverallocationCreateInfoAMD(x::VkDeviceMemoryOverallocationCreateInfoAMD, next_types...) = DeviceMemoryOverallocationCreateInfoAMD(load_next_chain(x.pNext, next_types...), x.overallocationBehavior)
+DeviceMemoryOverallocationCreateInfoAMD(x::VkDeviceMemoryOverallocationCreateInfoAMD, next_types::Type...) = DeviceMemoryOverallocationCreateInfoAMD(load_next_chain(x.pNext, next_types...), x.overallocationBehavior)
 
 """
 
 """
-PhysicalDeviceFragmentDensityMapFeaturesEXT(x::VkPhysicalDeviceFragmentDensityMapFeaturesEXT, next_types...) = PhysicalDeviceFragmentDensityMapFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentDensityMap), from_vk(Bool, x.fragmentDensityMapDynamic), from_vk(Bool, x.fragmentDensityMapNonSubsampledImages))
+PhysicalDeviceFragmentDensityMapFeaturesEXT(x::VkPhysicalDeviceFragmentDensityMapFeaturesEXT, next_types::Type...) = PhysicalDeviceFragmentDensityMapFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentDensityMap), from_vk(Bool, x.fragmentDensityMapDynamic), from_vk(Bool, x.fragmentDensityMapNonSubsampledImages))
 
 """
 
 """
-PhysicalDeviceFragmentDensityMap2FeaturesEXT(x::VkPhysicalDeviceFragmentDensityMap2FeaturesEXT, next_types...) = PhysicalDeviceFragmentDensityMap2FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentDensityMapDeferred))
+PhysicalDeviceFragmentDensityMap2FeaturesEXT(x::VkPhysicalDeviceFragmentDensityMap2FeaturesEXT, next_types::Type...) = PhysicalDeviceFragmentDensityMap2FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentDensityMapDeferred))
 
 """
 
 """
-PhysicalDeviceFragmentDensityMapPropertiesEXT(x::VkPhysicalDeviceFragmentDensityMapPropertiesEXT, next_types...) = PhysicalDeviceFragmentDensityMapPropertiesEXT(load_next_chain(x.pNext, next_types...), Extent2D(x.minFragmentDensityTexelSize), Extent2D(x.maxFragmentDensityTexelSize), from_vk(Bool, x.fragmentDensityInvocations))
+PhysicalDeviceFragmentDensityMapPropertiesEXT(x::VkPhysicalDeviceFragmentDensityMapPropertiesEXT, next_types::Type...) = PhysicalDeviceFragmentDensityMapPropertiesEXT(load_next_chain(x.pNext, next_types...), Extent2D(x.minFragmentDensityTexelSize), Extent2D(x.maxFragmentDensityTexelSize), from_vk(Bool, x.fragmentDensityInvocations))
 
 """
 
 """
-PhysicalDeviceFragmentDensityMap2PropertiesEXT(x::VkPhysicalDeviceFragmentDensityMap2PropertiesEXT, next_types...) = PhysicalDeviceFragmentDensityMap2PropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.subsampledLoads), from_vk(Bool, x.subsampledCoarseReconstructionEarlyAccess), x.maxSubsampledArrayLayers, x.maxDescriptorSetSubsampledSamplers)
+PhysicalDeviceFragmentDensityMap2PropertiesEXT(x::VkPhysicalDeviceFragmentDensityMap2PropertiesEXT, next_types::Type...) = PhysicalDeviceFragmentDensityMap2PropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.subsampledLoads), from_vk(Bool, x.subsampledCoarseReconstructionEarlyAccess), x.maxSubsampledArrayLayers, x.maxDescriptorSetSubsampledSamplers)
 
 """
 
 """
-RenderPassFragmentDensityMapCreateInfoEXT(x::VkRenderPassFragmentDensityMapCreateInfoEXT, next_types...) = RenderPassFragmentDensityMapCreateInfoEXT(load_next_chain(x.pNext, next_types...), AttachmentReference(x.fragmentDensityMapAttachment))
+RenderPassFragmentDensityMapCreateInfoEXT(x::VkRenderPassFragmentDensityMapCreateInfoEXT, next_types::Type...) = RenderPassFragmentDensityMapCreateInfoEXT(load_next_chain(x.pNext, next_types...), AttachmentReference(x.fragmentDensityMapAttachment))
 
 """
 
 """
-PhysicalDeviceScalarBlockLayoutFeatures(x::VkPhysicalDeviceScalarBlockLayoutFeatures, next_types...) = PhysicalDeviceScalarBlockLayoutFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.scalarBlockLayout))
+PhysicalDeviceScalarBlockLayoutFeatures(x::VkPhysicalDeviceScalarBlockLayoutFeatures, next_types::Type...) = PhysicalDeviceScalarBlockLayoutFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.scalarBlockLayout))
 
 """
 
 """
-SurfaceProtectedCapabilitiesKHR(x::VkSurfaceProtectedCapabilitiesKHR, next_types...) = SurfaceProtectedCapabilitiesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.supportsProtected))
+SurfaceProtectedCapabilitiesKHR(x::VkSurfaceProtectedCapabilitiesKHR, next_types::Type...) = SurfaceProtectedCapabilitiesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.supportsProtected))
 
 """
 
 """
-PhysicalDeviceUniformBufferStandardLayoutFeatures(x::VkPhysicalDeviceUniformBufferStandardLayoutFeatures, next_types...) = PhysicalDeviceUniformBufferStandardLayoutFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.uniformBufferStandardLayout))
+PhysicalDeviceUniformBufferStandardLayoutFeatures(x::VkPhysicalDeviceUniformBufferStandardLayoutFeatures, next_types::Type...) = PhysicalDeviceUniformBufferStandardLayoutFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.uniformBufferStandardLayout))
 
 """
 
 """
-PhysicalDeviceDepthClipEnableFeaturesEXT(x::VkPhysicalDeviceDepthClipEnableFeaturesEXT, next_types...) = PhysicalDeviceDepthClipEnableFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.depthClipEnable))
+PhysicalDeviceDepthClipEnableFeaturesEXT(x::VkPhysicalDeviceDepthClipEnableFeaturesEXT, next_types::Type...) = PhysicalDeviceDepthClipEnableFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.depthClipEnable))
 
 """
 
 """
-PipelineRasterizationDepthClipStateCreateInfoEXT(x::VkPipelineRasterizationDepthClipStateCreateInfoEXT, next_types...) = PipelineRasterizationDepthClipStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.depthClipEnable))
+PipelineRasterizationDepthClipStateCreateInfoEXT(x::VkPipelineRasterizationDepthClipStateCreateInfoEXT, next_types::Type...) = PipelineRasterizationDepthClipStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags, from_vk(Bool, x.depthClipEnable))
 
 """
 
 """
-PhysicalDeviceMemoryBudgetPropertiesEXT(x::VkPhysicalDeviceMemoryBudgetPropertiesEXT, next_types...) = PhysicalDeviceMemoryBudgetPropertiesEXT(load_next_chain(x.pNext, next_types...), x.heapBudget, x.heapUsage)
+PhysicalDeviceMemoryBudgetPropertiesEXT(x::VkPhysicalDeviceMemoryBudgetPropertiesEXT, next_types::Type...) = PhysicalDeviceMemoryBudgetPropertiesEXT(load_next_chain(x.pNext, next_types...), x.heapBudget, x.heapUsage)
 
 """
 
 """
-PhysicalDeviceMemoryPriorityFeaturesEXT(x::VkPhysicalDeviceMemoryPriorityFeaturesEXT, next_types...) = PhysicalDeviceMemoryPriorityFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.memoryPriority))
+PhysicalDeviceMemoryPriorityFeaturesEXT(x::VkPhysicalDeviceMemoryPriorityFeaturesEXT, next_types::Type...) = PhysicalDeviceMemoryPriorityFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.memoryPriority))
 
 """
 
 """
-MemoryPriorityAllocateInfoEXT(x::VkMemoryPriorityAllocateInfoEXT, next_types...) = MemoryPriorityAllocateInfoEXT(load_next_chain(x.pNext, next_types...), x.priority)
+MemoryPriorityAllocateInfoEXT(x::VkMemoryPriorityAllocateInfoEXT, next_types::Type...) = MemoryPriorityAllocateInfoEXT(load_next_chain(x.pNext, next_types...), x.priority)
 
 """
 
 """
-PhysicalDeviceBufferDeviceAddressFeatures(x::VkPhysicalDeviceBufferDeviceAddressFeatures, next_types...) = PhysicalDeviceBufferDeviceAddressFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.bufferDeviceAddress), from_vk(Bool, x.bufferDeviceAddressCaptureReplay), from_vk(Bool, x.bufferDeviceAddressMultiDevice))
+PhysicalDeviceBufferDeviceAddressFeatures(x::VkPhysicalDeviceBufferDeviceAddressFeatures, next_types::Type...) = PhysicalDeviceBufferDeviceAddressFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.bufferDeviceAddress), from_vk(Bool, x.bufferDeviceAddressCaptureReplay), from_vk(Bool, x.bufferDeviceAddressMultiDevice))
 
 """
 
 """
-PhysicalDeviceBufferDeviceAddressFeaturesEXT(x::VkPhysicalDeviceBufferDeviceAddressFeaturesEXT, next_types...) = PhysicalDeviceBufferDeviceAddressFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.bufferDeviceAddress), from_vk(Bool, x.bufferDeviceAddressCaptureReplay), from_vk(Bool, x.bufferDeviceAddressMultiDevice))
+PhysicalDeviceBufferDeviceAddressFeaturesEXT(x::VkPhysicalDeviceBufferDeviceAddressFeaturesEXT, next_types::Type...) = PhysicalDeviceBufferDeviceAddressFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.bufferDeviceAddress), from_vk(Bool, x.bufferDeviceAddressCaptureReplay), from_vk(Bool, x.bufferDeviceAddressMultiDevice))
 
 """
 
 """
-BufferDeviceAddressInfo(x::VkBufferDeviceAddressInfo, next_types...) = BufferDeviceAddressInfo(load_next_chain(x.pNext, next_types...), Buffer(x.buffer))
+BufferDeviceAddressInfo(x::VkBufferDeviceAddressInfo, next_types::Type...) = BufferDeviceAddressInfo(load_next_chain(x.pNext, next_types...), Buffer(x.buffer))
 
 """
 
 """
-BufferOpaqueCaptureAddressCreateInfo(x::VkBufferOpaqueCaptureAddressCreateInfo, next_types...) = BufferOpaqueCaptureAddressCreateInfo(load_next_chain(x.pNext, next_types...), x.opaqueCaptureAddress)
+BufferOpaqueCaptureAddressCreateInfo(x::VkBufferOpaqueCaptureAddressCreateInfo, next_types::Type...) = BufferOpaqueCaptureAddressCreateInfo(load_next_chain(x.pNext, next_types...), x.opaqueCaptureAddress)
 
 """
 
 """
-BufferDeviceAddressCreateInfoEXT(x::VkBufferDeviceAddressCreateInfoEXT, next_types...) = BufferDeviceAddressCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.deviceAddress)
+BufferDeviceAddressCreateInfoEXT(x::VkBufferDeviceAddressCreateInfoEXT, next_types::Type...) = BufferDeviceAddressCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.deviceAddress)
 
 """
 
 """
-PhysicalDeviceImageViewImageFormatInfoEXT(x::VkPhysicalDeviceImageViewImageFormatInfoEXT, next_types...) = PhysicalDeviceImageViewImageFormatInfoEXT(load_next_chain(x.pNext, next_types...), x.imageViewType)
+PhysicalDeviceImageViewImageFormatInfoEXT(x::VkPhysicalDeviceImageViewImageFormatInfoEXT, next_types::Type...) = PhysicalDeviceImageViewImageFormatInfoEXT(load_next_chain(x.pNext, next_types...), x.imageViewType)
 
 """
 
 """
-FilterCubicImageViewImageFormatPropertiesEXT(x::VkFilterCubicImageViewImageFormatPropertiesEXT, next_types...) = FilterCubicImageViewImageFormatPropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.filterCubic), from_vk(Bool, x.filterCubicMinmax))
+FilterCubicImageViewImageFormatPropertiesEXT(x::VkFilterCubicImageViewImageFormatPropertiesEXT, next_types::Type...) = FilterCubicImageViewImageFormatPropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.filterCubic), from_vk(Bool, x.filterCubicMinmax))
 
 """
 
 """
-PhysicalDeviceImagelessFramebufferFeatures(x::VkPhysicalDeviceImagelessFramebufferFeatures, next_types...) = PhysicalDeviceImagelessFramebufferFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.imagelessFramebuffer))
+PhysicalDeviceImagelessFramebufferFeatures(x::VkPhysicalDeviceImagelessFramebufferFeatures, next_types::Type...) = PhysicalDeviceImagelessFramebufferFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.imagelessFramebuffer))
 
 """
 
 """
-FramebufferAttachmentsCreateInfo(x::VkFramebufferAttachmentsCreateInfo, next_types...) = FramebufferAttachmentsCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{FramebufferAttachmentImageInfo}, x.pAttachmentImageInfos, x.attachmentImageInfoCount; own = true))
+FramebufferAttachmentsCreateInfo(x::VkFramebufferAttachmentsCreateInfo, next_types::Type...) = FramebufferAttachmentsCreateInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{FramebufferAttachmentImageInfo}, x.pAttachmentImageInfos, x.attachmentImageInfoCount; own = true))
 
 """
 
 """
-FramebufferAttachmentImageInfo(x::VkFramebufferAttachmentImageInfo, next_types...) = FramebufferAttachmentImageInfo(load_next_chain(x.pNext, next_types...), x.flags, x.usage, x.width, x.height, x.layerCount, unsafe_wrap(Vector{Format}, x.pViewFormats, x.viewFormatCount; own = true))
+FramebufferAttachmentImageInfo(x::VkFramebufferAttachmentImageInfo, next_types::Type...) = FramebufferAttachmentImageInfo(load_next_chain(x.pNext, next_types...), x.flags, x.usage, x.width, x.height, x.layerCount, unsafe_wrap(Vector{Format}, x.pViewFormats, x.viewFormatCount; own = true))
 
 """
 
 """
-RenderPassAttachmentBeginInfo(x::VkRenderPassAttachmentBeginInfo, next_types...) = RenderPassAttachmentBeginInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{ImageView}, x.pAttachments, x.attachmentCount; own = true))
+RenderPassAttachmentBeginInfo(x::VkRenderPassAttachmentBeginInfo, next_types::Type...) = RenderPassAttachmentBeginInfo(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{ImageView}, x.pAttachments, x.attachmentCount; own = true))
 
 """
 
 """
-PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(x::VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, next_types...) = PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.textureCompressionASTC_HDR))
+PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(x::VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, next_types::Type...) = PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.textureCompressionASTC_HDR))
 
 """
 
 """
-PhysicalDeviceCooperativeMatrixFeaturesNV(x::VkPhysicalDeviceCooperativeMatrixFeaturesNV, next_types...) = PhysicalDeviceCooperativeMatrixFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.cooperativeMatrix), from_vk(Bool, x.cooperativeMatrixRobustBufferAccess))
+PhysicalDeviceCooperativeMatrixFeaturesNV(x::VkPhysicalDeviceCooperativeMatrixFeaturesNV, next_types::Type...) = PhysicalDeviceCooperativeMatrixFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.cooperativeMatrix), from_vk(Bool, x.cooperativeMatrixRobustBufferAccess))
 
 """
 
 """
-PhysicalDeviceCooperativeMatrixPropertiesNV(x::VkPhysicalDeviceCooperativeMatrixPropertiesNV, next_types...) = PhysicalDeviceCooperativeMatrixPropertiesNV(load_next_chain(x.pNext, next_types...), x.cooperativeMatrixSupportedStages)
+PhysicalDeviceCooperativeMatrixPropertiesNV(x::VkPhysicalDeviceCooperativeMatrixPropertiesNV, next_types::Type...) = PhysicalDeviceCooperativeMatrixPropertiesNV(load_next_chain(x.pNext, next_types...), x.cooperativeMatrixSupportedStages)
 
 """
 
 """
-CooperativeMatrixPropertiesNV(x::VkCooperativeMatrixPropertiesNV, next_types...) = CooperativeMatrixPropertiesNV(load_next_chain(x.pNext, next_types...), x.MSize, x.NSize, x.KSize, x.AType, x.BType, x.CType, x.DType, x.scope)
+CooperativeMatrixPropertiesNV(x::VkCooperativeMatrixPropertiesNV, next_types::Type...) = CooperativeMatrixPropertiesNV(load_next_chain(x.pNext, next_types...), x.MSize, x.NSize, x.KSize, x.AType, x.BType, x.CType, x.DType, x.scope)
 
 """
 
 """
-PhysicalDeviceYcbcrImageArraysFeaturesEXT(x::VkPhysicalDeviceYcbcrImageArraysFeaturesEXT, next_types...) = PhysicalDeviceYcbcrImageArraysFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.ycbcrImageArrays))
+PhysicalDeviceYcbcrImageArraysFeaturesEXT(x::VkPhysicalDeviceYcbcrImageArraysFeaturesEXT, next_types::Type...) = PhysicalDeviceYcbcrImageArraysFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.ycbcrImageArrays))
 
 """
 
 """
-ImageViewHandleInfoNVX(x::VkImageViewHandleInfoNVX, next_types...) = ImageViewHandleInfoNVX(load_next_chain(x.pNext, next_types...), ImageView(x.imageView), x.descriptorType, Sampler(x.sampler))
+ImageViewHandleInfoNVX(x::VkImageViewHandleInfoNVX, next_types::Type...) = ImageViewHandleInfoNVX(load_next_chain(x.pNext, next_types...), ImageView(x.imageView), x.descriptorType, Sampler(x.sampler))
 
 """
 
 """
-ImageViewAddressPropertiesNVX(x::VkImageViewAddressPropertiesNVX, next_types...) = ImageViewAddressPropertiesNVX(load_next_chain(x.pNext, next_types...), x.deviceAddress, x.size)
+ImageViewAddressPropertiesNVX(x::VkImageViewAddressPropertiesNVX, next_types::Type...) = ImageViewAddressPropertiesNVX(load_next_chain(x.pNext, next_types...), x.deviceAddress, x.size)
 
 """
 
@@ -35352,82 +39724,82 @@ PipelineCreationFeedbackEXT(x::VkPipelineCreationFeedbackEXT) = PipelineCreation
 """
 
 """
-PipelineCreationFeedbackCreateInfoEXT(x::VkPipelineCreationFeedbackCreateInfoEXT, next_types...) = PipelineCreationFeedbackCreateInfoEXT(load_next_chain(x.pNext, next_types...), PipelineCreationFeedbackEXT(x.pPipelineCreationFeedback), unsafe_wrap(Vector{PipelineCreationFeedbackEXT}, x.pPipelineStageCreationFeedbacks, x.pipelineStageCreationFeedbackCount; own = true))
+PipelineCreationFeedbackCreateInfoEXT(x::VkPipelineCreationFeedbackCreateInfoEXT, next_types::Type...) = PipelineCreationFeedbackCreateInfoEXT(load_next_chain(x.pNext, next_types...), PipelineCreationFeedbackEXT(x.pPipelineCreationFeedback), unsafe_wrap(Vector{PipelineCreationFeedbackEXT}, x.pPipelineStageCreationFeedbacks, x.pipelineStageCreationFeedbackCount; own = true))
 
 """
 
 """
-SurfaceFullScreenExclusiveInfoEXT(x::VkSurfaceFullScreenExclusiveInfoEXT, next_types...) = SurfaceFullScreenExclusiveInfoEXT(load_next_chain(x.pNext, next_types...), x.fullScreenExclusive)
+SurfaceFullScreenExclusiveInfoEXT(x::VkSurfaceFullScreenExclusiveInfoEXT, next_types::Type...) = SurfaceFullScreenExclusiveInfoEXT(load_next_chain(x.pNext, next_types...), x.fullScreenExclusive)
 
 """
 
 """
-SurfaceFullScreenExclusiveWin32InfoEXT(x::VkSurfaceFullScreenExclusiveWin32InfoEXT, next_types...) = SurfaceFullScreenExclusiveWin32InfoEXT(load_next_chain(x.pNext, next_types...), x.hmonitor)
+SurfaceFullScreenExclusiveWin32InfoEXT(x::VkSurfaceFullScreenExclusiveWin32InfoEXT, next_types::Type...) = SurfaceFullScreenExclusiveWin32InfoEXT(load_next_chain(x.pNext, next_types...), x.hmonitor)
 
 """
 
 """
-SurfaceCapabilitiesFullScreenExclusiveEXT(x::VkSurfaceCapabilitiesFullScreenExclusiveEXT, next_types...) = SurfaceCapabilitiesFullScreenExclusiveEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fullScreenExclusiveSupported))
+SurfaceCapabilitiesFullScreenExclusiveEXT(x::VkSurfaceCapabilitiesFullScreenExclusiveEXT, next_types::Type...) = SurfaceCapabilitiesFullScreenExclusiveEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fullScreenExclusiveSupported))
 
 """
 
 """
-PhysicalDevicePerformanceQueryFeaturesKHR(x::VkPhysicalDevicePerformanceQueryFeaturesKHR, next_types...) = PhysicalDevicePerformanceQueryFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.performanceCounterQueryPools), from_vk(Bool, x.performanceCounterMultipleQueryPools))
+PhysicalDevicePerformanceQueryFeaturesKHR(x::VkPhysicalDevicePerformanceQueryFeaturesKHR, next_types::Type...) = PhysicalDevicePerformanceQueryFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.performanceCounterQueryPools), from_vk(Bool, x.performanceCounterMultipleQueryPools))
 
 """
 
 """
-PhysicalDevicePerformanceQueryPropertiesKHR(x::VkPhysicalDevicePerformanceQueryPropertiesKHR, next_types...) = PhysicalDevicePerformanceQueryPropertiesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.allowCommandBufferQueryCopies))
+PhysicalDevicePerformanceQueryPropertiesKHR(x::VkPhysicalDevicePerformanceQueryPropertiesKHR, next_types::Type...) = PhysicalDevicePerformanceQueryPropertiesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.allowCommandBufferQueryCopies))
 
 """
 
 """
-PerformanceCounterKHR(x::VkPerformanceCounterKHR, next_types...) = PerformanceCounterKHR(load_next_chain(x.pNext, next_types...), x.unit, x.scope, x.storage, from_vk(String, x.uuid))
+PerformanceCounterKHR(x::VkPerformanceCounterKHR, next_types::Type...) = PerformanceCounterKHR(load_next_chain(x.pNext, next_types...), x.unit, x.scope, x.storage, from_vk(String, x.uuid))
 
 """
 
 """
-PerformanceCounterDescriptionKHR(x::VkPerformanceCounterDescriptionKHR, next_types...) = PerformanceCounterDescriptionKHR(load_next_chain(x.pNext, next_types...), x.flags, from_vk(String, x.name), from_vk(String, x.category), from_vk(String, x.description))
+PerformanceCounterDescriptionKHR(x::VkPerformanceCounterDescriptionKHR, next_types::Type...) = PerformanceCounterDescriptionKHR(load_next_chain(x.pNext, next_types...), x.flags, from_vk(String, x.name), from_vk(String, x.category), from_vk(String, x.description))
 
 """
 
 """
-QueryPoolPerformanceCreateInfoKHR(x::VkQueryPoolPerformanceCreateInfoKHR, next_types...) = QueryPoolPerformanceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.queueFamilyIndex, unsafe_wrap(Vector{UInt32}, x.pCounterIndices, x.counterIndexCount; own = true))
+QueryPoolPerformanceCreateInfoKHR(x::VkQueryPoolPerformanceCreateInfoKHR, next_types::Type...) = QueryPoolPerformanceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.queueFamilyIndex, unsafe_wrap(Vector{UInt32}, x.pCounterIndices, x.counterIndexCount; own = true))
 
 """
 
 """
-AcquireProfilingLockInfoKHR(x::VkAcquireProfilingLockInfoKHR, next_types...) = AcquireProfilingLockInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, x.timeout)
+AcquireProfilingLockInfoKHR(x::VkAcquireProfilingLockInfoKHR, next_types::Type...) = AcquireProfilingLockInfoKHR(load_next_chain(x.pNext, next_types...), x.flags, x.timeout)
 
 """
 
 """
-PerformanceQuerySubmitInfoKHR(x::VkPerformanceQuerySubmitInfoKHR, next_types...) = PerformanceQuerySubmitInfoKHR(load_next_chain(x.pNext, next_types...), x.counterPassIndex)
+PerformanceQuerySubmitInfoKHR(x::VkPerformanceQuerySubmitInfoKHR, next_types::Type...) = PerformanceQuerySubmitInfoKHR(load_next_chain(x.pNext, next_types...), x.counterPassIndex)
 
 """
 
 """
-HeadlessSurfaceCreateInfoEXT(x::VkHeadlessSurfaceCreateInfoEXT, next_types...) = HeadlessSurfaceCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags)
+HeadlessSurfaceCreateInfoEXT(x::VkHeadlessSurfaceCreateInfoEXT, next_types::Type...) = HeadlessSurfaceCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.flags)
 
 """
 
 """
-PhysicalDeviceCoverageReductionModeFeaturesNV(x::VkPhysicalDeviceCoverageReductionModeFeaturesNV, next_types...) = PhysicalDeviceCoverageReductionModeFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.coverageReductionMode))
+PhysicalDeviceCoverageReductionModeFeaturesNV(x::VkPhysicalDeviceCoverageReductionModeFeaturesNV, next_types::Type...) = PhysicalDeviceCoverageReductionModeFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.coverageReductionMode))
 
 """
 
 """
-PipelineCoverageReductionStateCreateInfoNV(x::VkPipelineCoverageReductionStateCreateInfoNV, next_types...) = PipelineCoverageReductionStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, x.coverageReductionMode)
+PipelineCoverageReductionStateCreateInfoNV(x::VkPipelineCoverageReductionStateCreateInfoNV, next_types::Type...) = PipelineCoverageReductionStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags, x.coverageReductionMode)
 
 """
 
 """
-FramebufferMixedSamplesCombinationNV(x::VkFramebufferMixedSamplesCombinationNV, next_types...) = FramebufferMixedSamplesCombinationNV(load_next_chain(x.pNext, next_types...), x.coverageReductionMode, SampleCountFlag(UInt32(x.rasterizationSamples)), x.depthStencilSamples, x.colorSamples)
+FramebufferMixedSamplesCombinationNV(x::VkFramebufferMixedSamplesCombinationNV, next_types::Type...) = FramebufferMixedSamplesCombinationNV(load_next_chain(x.pNext, next_types...), x.coverageReductionMode, SampleCountFlag(UInt32(x.rasterizationSamples)), x.depthStencilSamples, x.colorSamples)
 
 """
 
 """
-PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(x::VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, next_types...) = PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderIntegerFunctions2))
+PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(x::VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, next_types::Type...) = PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderIntegerFunctions2))
 
 """
 
@@ -35437,237 +39809,237 @@ PerformanceValueINTEL(x::VkPerformanceValueINTEL) = PerformanceValueINTEL(x.type
 """
 
 """
-InitializePerformanceApiInfoINTEL(x::VkInitializePerformanceApiInfoINTEL, next_types...) = InitializePerformanceApiInfoINTEL(load_next_chain(x.pNext, next_types...), x.pUserData)
+InitializePerformanceApiInfoINTEL(x::VkInitializePerformanceApiInfoINTEL, next_types::Type...) = InitializePerformanceApiInfoINTEL(load_next_chain(x.pNext, next_types...), x.pUserData)
 
 """
 
 """
-QueryPoolPerformanceQueryCreateInfoINTEL(x::VkQueryPoolPerformanceQueryCreateInfoINTEL, next_types...) = QueryPoolPerformanceQueryCreateInfoINTEL(load_next_chain(x.pNext, next_types...), x.performanceCountersSampling)
+QueryPoolPerformanceQueryCreateInfoINTEL(x::VkQueryPoolPerformanceQueryCreateInfoINTEL, next_types::Type...) = QueryPoolPerformanceQueryCreateInfoINTEL(load_next_chain(x.pNext, next_types...), x.performanceCountersSampling)
 
 """
 
 """
-PerformanceMarkerInfoINTEL(x::VkPerformanceMarkerInfoINTEL, next_types...) = PerformanceMarkerInfoINTEL(load_next_chain(x.pNext, next_types...), x.marker)
+PerformanceMarkerInfoINTEL(x::VkPerformanceMarkerInfoINTEL, next_types::Type...) = PerformanceMarkerInfoINTEL(load_next_chain(x.pNext, next_types...), x.marker)
 
 """
 
 """
-PerformanceStreamMarkerInfoINTEL(x::VkPerformanceStreamMarkerInfoINTEL, next_types...) = PerformanceStreamMarkerInfoINTEL(load_next_chain(x.pNext, next_types...), x.marker)
+PerformanceStreamMarkerInfoINTEL(x::VkPerformanceStreamMarkerInfoINTEL, next_types::Type...) = PerformanceStreamMarkerInfoINTEL(load_next_chain(x.pNext, next_types...), x.marker)
 
 """
 
 """
-PerformanceOverrideInfoINTEL(x::VkPerformanceOverrideInfoINTEL, next_types...) = PerformanceOverrideInfoINTEL(load_next_chain(x.pNext, next_types...), x.type, from_vk(Bool, x.enable), x.parameter)
+PerformanceOverrideInfoINTEL(x::VkPerformanceOverrideInfoINTEL, next_types::Type...) = PerformanceOverrideInfoINTEL(load_next_chain(x.pNext, next_types...), x.type, from_vk(Bool, x.enable), x.parameter)
 
 """
 
 """
-PerformanceConfigurationAcquireInfoINTEL(x::VkPerformanceConfigurationAcquireInfoINTEL, next_types...) = PerformanceConfigurationAcquireInfoINTEL(load_next_chain(x.pNext, next_types...), x.type)
+PerformanceConfigurationAcquireInfoINTEL(x::VkPerformanceConfigurationAcquireInfoINTEL, next_types::Type...) = PerformanceConfigurationAcquireInfoINTEL(load_next_chain(x.pNext, next_types...), x.type)
 
 """
 
 """
-PhysicalDeviceShaderClockFeaturesKHR(x::VkPhysicalDeviceShaderClockFeaturesKHR, next_types...) = PhysicalDeviceShaderClockFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderSubgroupClock), from_vk(Bool, x.shaderDeviceClock))
+PhysicalDeviceShaderClockFeaturesKHR(x::VkPhysicalDeviceShaderClockFeaturesKHR, next_types::Type...) = PhysicalDeviceShaderClockFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderSubgroupClock), from_vk(Bool, x.shaderDeviceClock))
 
 """
 
 """
-PhysicalDeviceIndexTypeUint8FeaturesEXT(x::VkPhysicalDeviceIndexTypeUint8FeaturesEXT, next_types...) = PhysicalDeviceIndexTypeUint8FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.indexTypeUint8))
+PhysicalDeviceIndexTypeUint8FeaturesEXT(x::VkPhysicalDeviceIndexTypeUint8FeaturesEXT, next_types::Type...) = PhysicalDeviceIndexTypeUint8FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.indexTypeUint8))
 
 """
 
 """
-PhysicalDeviceShaderSMBuiltinsPropertiesNV(x::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV, next_types...) = PhysicalDeviceShaderSMBuiltinsPropertiesNV(load_next_chain(x.pNext, next_types...), x.shaderSMCount, x.shaderWarpsPerSM)
+PhysicalDeviceShaderSMBuiltinsPropertiesNV(x::VkPhysicalDeviceShaderSMBuiltinsPropertiesNV, next_types::Type...) = PhysicalDeviceShaderSMBuiltinsPropertiesNV(load_next_chain(x.pNext, next_types...), x.shaderSMCount, x.shaderWarpsPerSM)
 
 """
 
 """
-PhysicalDeviceShaderSMBuiltinsFeaturesNV(x::VkPhysicalDeviceShaderSMBuiltinsFeaturesNV, next_types...) = PhysicalDeviceShaderSMBuiltinsFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderSMBuiltins))
+PhysicalDeviceShaderSMBuiltinsFeaturesNV(x::VkPhysicalDeviceShaderSMBuiltinsFeaturesNV, next_types::Type...) = PhysicalDeviceShaderSMBuiltinsFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderSMBuiltins))
 
 """
 
 """
-PhysicalDeviceFragmentShaderInterlockFeaturesEXT(x::VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT, next_types...) = PhysicalDeviceFragmentShaderInterlockFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentShaderSampleInterlock), from_vk(Bool, x.fragmentShaderPixelInterlock), from_vk(Bool, x.fragmentShaderShadingRateInterlock))
+PhysicalDeviceFragmentShaderInterlockFeaturesEXT(x::VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT, next_types::Type...) = PhysicalDeviceFragmentShaderInterlockFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentShaderSampleInterlock), from_vk(Bool, x.fragmentShaderPixelInterlock), from_vk(Bool, x.fragmentShaderShadingRateInterlock))
 
 """
 
 """
-PhysicalDeviceSeparateDepthStencilLayoutsFeatures(x::VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures, next_types...) = PhysicalDeviceSeparateDepthStencilLayoutsFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.separateDepthStencilLayouts))
+PhysicalDeviceSeparateDepthStencilLayoutsFeatures(x::VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures, next_types::Type...) = PhysicalDeviceSeparateDepthStencilLayoutsFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.separateDepthStencilLayouts))
 
 """
 
 """
-AttachmentReferenceStencilLayout(x::VkAttachmentReferenceStencilLayout, next_types...) = AttachmentReferenceStencilLayout(load_next_chain(x.pNext, next_types...), x.stencilLayout)
+AttachmentReferenceStencilLayout(x::VkAttachmentReferenceStencilLayout, next_types::Type...) = AttachmentReferenceStencilLayout(load_next_chain(x.pNext, next_types...), x.stencilLayout)
 
 """
 
 """
-AttachmentDescriptionStencilLayout(x::VkAttachmentDescriptionStencilLayout, next_types...) = AttachmentDescriptionStencilLayout(load_next_chain(x.pNext, next_types...), x.stencilInitialLayout, x.stencilFinalLayout)
+AttachmentDescriptionStencilLayout(x::VkAttachmentDescriptionStencilLayout, next_types::Type...) = AttachmentDescriptionStencilLayout(load_next_chain(x.pNext, next_types...), x.stencilInitialLayout, x.stencilFinalLayout)
 
 """
 
 """
-PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(x::VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR, next_types...) = PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.pipelineExecutableInfo))
+PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(x::VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR, next_types::Type...) = PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.pipelineExecutableInfo))
 
 """
 
 """
-PipelineInfoKHR(x::VkPipelineInfoKHR, next_types...) = PipelineInfoKHR(load_next_chain(x.pNext, next_types...), Pipeline(x.pipeline))
+PipelineInfoKHR(x::VkPipelineInfoKHR, next_types::Type...) = PipelineInfoKHR(load_next_chain(x.pNext, next_types...), Pipeline(x.pipeline))
 
 """
 
 """
-PipelineExecutablePropertiesKHR(x::VkPipelineExecutablePropertiesKHR, next_types...) = PipelineExecutablePropertiesKHR(load_next_chain(x.pNext, next_types...), x.stages, from_vk(String, x.name), from_vk(String, x.description), x.subgroupSize)
+PipelineExecutablePropertiesKHR(x::VkPipelineExecutablePropertiesKHR, next_types::Type...) = PipelineExecutablePropertiesKHR(load_next_chain(x.pNext, next_types...), x.stages, from_vk(String, x.name), from_vk(String, x.description), x.subgroupSize)
 
 """
 
 """
-PipelineExecutableInfoKHR(x::VkPipelineExecutableInfoKHR, next_types...) = PipelineExecutableInfoKHR(load_next_chain(x.pNext, next_types...), Pipeline(x.pipeline), x.executableIndex)
+PipelineExecutableInfoKHR(x::VkPipelineExecutableInfoKHR, next_types::Type...) = PipelineExecutableInfoKHR(load_next_chain(x.pNext, next_types...), Pipeline(x.pipeline), x.executableIndex)
 
 """
 
 """
-PipelineExecutableStatisticKHR(x::VkPipelineExecutableStatisticKHR, next_types...) = PipelineExecutableStatisticKHR(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.description), x.format, from_vk(PipelineExecutableStatisticValueKHR, x.value))
+PipelineExecutableStatisticKHR(x::VkPipelineExecutableStatisticKHR, next_types::Type...) = PipelineExecutableStatisticKHR(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.description), x.format, from_vk(PipelineExecutableStatisticValueKHR, x.value))
 
 """
 
 """
-PipelineExecutableInternalRepresentationKHR(x::VkPipelineExecutableInternalRepresentationKHR, next_types...) = PipelineExecutableInternalRepresentationKHR(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.description), from_vk(Bool, x.isText), x.dataSize, x.pData)
+PipelineExecutableInternalRepresentationKHR(x::VkPipelineExecutableInternalRepresentationKHR, next_types::Type...) = PipelineExecutableInternalRepresentationKHR(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.description), from_vk(Bool, x.isText), x.dataSize, x.pData)
 
 """
 
 """
-PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(x::VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, next_types...) = PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderDemoteToHelperInvocation))
+PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(x::VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, next_types::Type...) = PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderDemoteToHelperInvocation))
 
 """
 
 """
-PhysicalDeviceTexelBufferAlignmentFeaturesEXT(x::VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT, next_types...) = PhysicalDeviceTexelBufferAlignmentFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.texelBufferAlignment))
+PhysicalDeviceTexelBufferAlignmentFeaturesEXT(x::VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT, next_types::Type...) = PhysicalDeviceTexelBufferAlignmentFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.texelBufferAlignment))
 
 """
 
 """
-PhysicalDeviceTexelBufferAlignmentPropertiesEXT(x::VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT, next_types...) = PhysicalDeviceTexelBufferAlignmentPropertiesEXT(load_next_chain(x.pNext, next_types...), x.storageTexelBufferOffsetAlignmentBytes, from_vk(Bool, x.storageTexelBufferOffsetSingleTexelAlignment), x.uniformTexelBufferOffsetAlignmentBytes, from_vk(Bool, x.uniformTexelBufferOffsetSingleTexelAlignment))
+PhysicalDeviceTexelBufferAlignmentPropertiesEXT(x::VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT, next_types::Type...) = PhysicalDeviceTexelBufferAlignmentPropertiesEXT(load_next_chain(x.pNext, next_types...), x.storageTexelBufferOffsetAlignmentBytes, from_vk(Bool, x.storageTexelBufferOffsetSingleTexelAlignment), x.uniformTexelBufferOffsetAlignmentBytes, from_vk(Bool, x.uniformTexelBufferOffsetSingleTexelAlignment))
 
 """
 
 """
-PhysicalDeviceSubgroupSizeControlFeaturesEXT(x::VkPhysicalDeviceSubgroupSizeControlFeaturesEXT, next_types...) = PhysicalDeviceSubgroupSizeControlFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.subgroupSizeControl), from_vk(Bool, x.computeFullSubgroups))
+PhysicalDeviceSubgroupSizeControlFeaturesEXT(x::VkPhysicalDeviceSubgroupSizeControlFeaturesEXT, next_types::Type...) = PhysicalDeviceSubgroupSizeControlFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.subgroupSizeControl), from_vk(Bool, x.computeFullSubgroups))
 
 """
 
 """
-PhysicalDeviceSubgroupSizeControlPropertiesEXT(x::VkPhysicalDeviceSubgroupSizeControlPropertiesEXT, next_types...) = PhysicalDeviceSubgroupSizeControlPropertiesEXT(load_next_chain(x.pNext, next_types...), x.minSubgroupSize, x.maxSubgroupSize, x.maxComputeWorkgroupSubgroups, x.requiredSubgroupSizeStages)
+PhysicalDeviceSubgroupSizeControlPropertiesEXT(x::VkPhysicalDeviceSubgroupSizeControlPropertiesEXT, next_types::Type...) = PhysicalDeviceSubgroupSizeControlPropertiesEXT(load_next_chain(x.pNext, next_types...), x.minSubgroupSize, x.maxSubgroupSize, x.maxComputeWorkgroupSubgroups, x.requiredSubgroupSizeStages)
 
 """
 
 """
-PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(x::VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, next_types...) = PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.requiredSubgroupSize)
+PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(x::VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, next_types::Type...) = PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.requiredSubgroupSize)
 
 """
 
 """
-MemoryOpaqueCaptureAddressAllocateInfo(x::VkMemoryOpaqueCaptureAddressAllocateInfo, next_types...) = MemoryOpaqueCaptureAddressAllocateInfo(load_next_chain(x.pNext, next_types...), x.opaqueCaptureAddress)
+MemoryOpaqueCaptureAddressAllocateInfo(x::VkMemoryOpaqueCaptureAddressAllocateInfo, next_types::Type...) = MemoryOpaqueCaptureAddressAllocateInfo(load_next_chain(x.pNext, next_types...), x.opaqueCaptureAddress)
 
 """
 
 """
-DeviceMemoryOpaqueCaptureAddressInfo(x::VkDeviceMemoryOpaqueCaptureAddressInfo, next_types...) = DeviceMemoryOpaqueCaptureAddressInfo(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory))
+DeviceMemoryOpaqueCaptureAddressInfo(x::VkDeviceMemoryOpaqueCaptureAddressInfo, next_types::Type...) = DeviceMemoryOpaqueCaptureAddressInfo(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory))
 
 """
 
 """
-PhysicalDeviceLineRasterizationFeaturesEXT(x::VkPhysicalDeviceLineRasterizationFeaturesEXT, next_types...) = PhysicalDeviceLineRasterizationFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.rectangularLines), from_vk(Bool, x.bresenhamLines), from_vk(Bool, x.smoothLines), from_vk(Bool, x.stippledRectangularLines), from_vk(Bool, x.stippledBresenhamLines), from_vk(Bool, x.stippledSmoothLines))
+PhysicalDeviceLineRasterizationFeaturesEXT(x::VkPhysicalDeviceLineRasterizationFeaturesEXT, next_types::Type...) = PhysicalDeviceLineRasterizationFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.rectangularLines), from_vk(Bool, x.bresenhamLines), from_vk(Bool, x.smoothLines), from_vk(Bool, x.stippledRectangularLines), from_vk(Bool, x.stippledBresenhamLines), from_vk(Bool, x.stippledSmoothLines))
 
 """
 
 """
-PhysicalDeviceLineRasterizationPropertiesEXT(x::VkPhysicalDeviceLineRasterizationPropertiesEXT, next_types...) = PhysicalDeviceLineRasterizationPropertiesEXT(load_next_chain(x.pNext, next_types...), x.lineSubPixelPrecisionBits)
+PhysicalDeviceLineRasterizationPropertiesEXT(x::VkPhysicalDeviceLineRasterizationPropertiesEXT, next_types::Type...) = PhysicalDeviceLineRasterizationPropertiesEXT(load_next_chain(x.pNext, next_types...), x.lineSubPixelPrecisionBits)
 
 """
 
 """
-PipelineRasterizationLineStateCreateInfoEXT(x::VkPipelineRasterizationLineStateCreateInfoEXT, next_types...) = PipelineRasterizationLineStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.lineRasterizationMode, from_vk(Bool, x.stippledLineEnable), x.lineStippleFactor, x.lineStipplePattern)
+PipelineRasterizationLineStateCreateInfoEXT(x::VkPipelineRasterizationLineStateCreateInfoEXT, next_types::Type...) = PipelineRasterizationLineStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.lineRasterizationMode, from_vk(Bool, x.stippledLineEnable), x.lineStippleFactor, x.lineStipplePattern)
 
 """
 
 """
-PhysicalDevicePipelineCreationCacheControlFeaturesEXT(x::VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT, next_types...) = PhysicalDevicePipelineCreationCacheControlFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.pipelineCreationCacheControl))
+PhysicalDevicePipelineCreationCacheControlFeaturesEXT(x::VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT, next_types::Type...) = PhysicalDevicePipelineCreationCacheControlFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.pipelineCreationCacheControl))
 
 """
 
 """
-PhysicalDeviceVulkan11Features(x::VkPhysicalDeviceVulkan11Features, next_types...) = PhysicalDeviceVulkan11Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.storageBuffer16BitAccess), from_vk(Bool, x.uniformAndStorageBuffer16BitAccess), from_vk(Bool, x.storagePushConstant16), from_vk(Bool, x.storageInputOutput16), from_vk(Bool, x.multiview), from_vk(Bool, x.multiviewGeometryShader), from_vk(Bool, x.multiviewTessellationShader), from_vk(Bool, x.variablePointersStorageBuffer), from_vk(Bool, x.variablePointers), from_vk(Bool, x.protectedMemory), from_vk(Bool, x.samplerYcbcrConversion), from_vk(Bool, x.shaderDrawParameters))
+PhysicalDeviceVulkan11Features(x::VkPhysicalDeviceVulkan11Features, next_types::Type...) = PhysicalDeviceVulkan11Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.storageBuffer16BitAccess), from_vk(Bool, x.uniformAndStorageBuffer16BitAccess), from_vk(Bool, x.storagePushConstant16), from_vk(Bool, x.storageInputOutput16), from_vk(Bool, x.multiview), from_vk(Bool, x.multiviewGeometryShader), from_vk(Bool, x.multiviewTessellationShader), from_vk(Bool, x.variablePointersStorageBuffer), from_vk(Bool, x.variablePointers), from_vk(Bool, x.protectedMemory), from_vk(Bool, x.samplerYcbcrConversion), from_vk(Bool, x.shaderDrawParameters))
 
 """
 
 """
-PhysicalDeviceVulkan11Properties(x::VkPhysicalDeviceVulkan11Properties, next_types...) = PhysicalDeviceVulkan11Properties(load_next_chain(x.pNext, next_types...), from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid), x.subgroupSize, x.subgroupSupportedStages, x.subgroupSupportedOperations, from_vk(Bool, x.subgroupQuadOperationsInAllStages), x.pointClippingBehavior, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex, from_vk(Bool, x.protectedNoFault), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
+PhysicalDeviceVulkan11Properties(x::VkPhysicalDeviceVulkan11Properties, next_types::Type...) = PhysicalDeviceVulkan11Properties(load_next_chain(x.pNext, next_types...), from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid), x.subgroupSize, x.subgroupSupportedStages, x.subgroupSupportedOperations, from_vk(Bool, x.subgroupQuadOperationsInAllStages), x.pointClippingBehavior, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex, from_vk(Bool, x.protectedNoFault), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
 
 """
 
 """
-PhysicalDeviceVulkan12Features(x::VkPhysicalDeviceVulkan12Features, next_types...) = PhysicalDeviceVulkan12Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.samplerMirrorClampToEdge), from_vk(Bool, x.drawIndirectCount), from_vk(Bool, x.storageBuffer8BitAccess), from_vk(Bool, x.uniformAndStorageBuffer8BitAccess), from_vk(Bool, x.storagePushConstant8), from_vk(Bool, x.shaderBufferInt64Atomics), from_vk(Bool, x.shaderSharedInt64Atomics), from_vk(Bool, x.shaderFloat16), from_vk(Bool, x.shaderInt8), from_vk(Bool, x.descriptorIndexing), from_vk(Bool, x.shaderInputAttachmentArrayDynamicIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexing), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.descriptorBindingUniformBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingSampledImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUniformTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUpdateUnusedWhilePending), from_vk(Bool, x.descriptorBindingPartiallyBound), from_vk(Bool, x.descriptorBindingVariableDescriptorCount), from_vk(Bool, x.runtimeDescriptorArray), from_vk(Bool, x.samplerFilterMinmax), from_vk(Bool, x.scalarBlockLayout), from_vk(Bool, x.imagelessFramebuffer), from_vk(Bool, x.uniformBufferStandardLayout), from_vk(Bool, x.shaderSubgroupExtendedTypes), from_vk(Bool, x.separateDepthStencilLayouts), from_vk(Bool, x.hostQueryReset), from_vk(Bool, x.timelineSemaphore), from_vk(Bool, x.bufferDeviceAddress), from_vk(Bool, x.bufferDeviceAddressCaptureReplay), from_vk(Bool, x.bufferDeviceAddressMultiDevice), from_vk(Bool, x.vulkanMemoryModel), from_vk(Bool, x.vulkanMemoryModelDeviceScope), from_vk(Bool, x.vulkanMemoryModelAvailabilityVisibilityChains), from_vk(Bool, x.shaderOutputViewportIndex), from_vk(Bool, x.shaderOutputLayer), from_vk(Bool, x.subgroupBroadcastDynamicId))
+PhysicalDeviceVulkan12Features(x::VkPhysicalDeviceVulkan12Features, next_types::Type...) = PhysicalDeviceVulkan12Features(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.samplerMirrorClampToEdge), from_vk(Bool, x.drawIndirectCount), from_vk(Bool, x.storageBuffer8BitAccess), from_vk(Bool, x.uniformAndStorageBuffer8BitAccess), from_vk(Bool, x.storagePushConstant8), from_vk(Bool, x.shaderBufferInt64Atomics), from_vk(Bool, x.shaderSharedInt64Atomics), from_vk(Bool, x.shaderFloat16), from_vk(Bool, x.shaderInt8), from_vk(Bool, x.descriptorIndexing), from_vk(Bool, x.shaderInputAttachmentArrayDynamicIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayDynamicIndexing), from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexing), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexing), from_vk(Bool, x.shaderUniformTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.shaderStorageTexelBufferArrayNonUniformIndexing), from_vk(Bool, x.descriptorBindingUniformBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingSampledImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageImageUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUniformTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingStorageTexelBufferUpdateAfterBind), from_vk(Bool, x.descriptorBindingUpdateUnusedWhilePending), from_vk(Bool, x.descriptorBindingPartiallyBound), from_vk(Bool, x.descriptorBindingVariableDescriptorCount), from_vk(Bool, x.runtimeDescriptorArray), from_vk(Bool, x.samplerFilterMinmax), from_vk(Bool, x.scalarBlockLayout), from_vk(Bool, x.imagelessFramebuffer), from_vk(Bool, x.uniformBufferStandardLayout), from_vk(Bool, x.shaderSubgroupExtendedTypes), from_vk(Bool, x.separateDepthStencilLayouts), from_vk(Bool, x.hostQueryReset), from_vk(Bool, x.timelineSemaphore), from_vk(Bool, x.bufferDeviceAddress), from_vk(Bool, x.bufferDeviceAddressCaptureReplay), from_vk(Bool, x.bufferDeviceAddressMultiDevice), from_vk(Bool, x.vulkanMemoryModel), from_vk(Bool, x.vulkanMemoryModelDeviceScope), from_vk(Bool, x.vulkanMemoryModelAvailabilityVisibilityChains), from_vk(Bool, x.shaderOutputViewportIndex), from_vk(Bool, x.shaderOutputLayer), from_vk(Bool, x.subgroupBroadcastDynamicId))
 
 """
 
 """
-PhysicalDeviceVulkan12Properties(x::VkPhysicalDeviceVulkan12Properties, next_types...) = PhysicalDeviceVulkan12Properties(load_next_chain(x.pNext, next_types...), x.driverID, from_vk(String, x.driverName), from_vk(String, x.driverInfo), ConformanceVersion(x.conformanceVersion), x.denormBehaviorIndependence, x.roundingModeIndependence, from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat16), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat32), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat64), from_vk(Bool, x.shaderDenormPreserveFloat16), from_vk(Bool, x.shaderDenormPreserveFloat32), from_vk(Bool, x.shaderDenormPreserveFloat64), from_vk(Bool, x.shaderDenormFlushToZeroFloat16), from_vk(Bool, x.shaderDenormFlushToZeroFloat32), from_vk(Bool, x.shaderDenormFlushToZeroFloat64), from_vk(Bool, x.shaderRoundingModeRTEFloat16), from_vk(Bool, x.shaderRoundingModeRTEFloat32), from_vk(Bool, x.shaderRoundingModeRTEFloat64), from_vk(Bool, x.shaderRoundingModeRTZFloat16), from_vk(Bool, x.shaderRoundingModeRTZFloat32), from_vk(Bool, x.shaderRoundingModeRTZFloat64), x.maxUpdateAfterBindDescriptorsInAllPools, from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexingNative), from_vk(Bool, x.robustBufferAccessUpdateAfterBind), from_vk(Bool, x.quadDivergentImplicitLod), x.maxPerStageDescriptorUpdateAfterBindSamplers, x.maxPerStageDescriptorUpdateAfterBindUniformBuffers, x.maxPerStageDescriptorUpdateAfterBindStorageBuffers, x.maxPerStageDescriptorUpdateAfterBindSampledImages, x.maxPerStageDescriptorUpdateAfterBindStorageImages, x.maxPerStageDescriptorUpdateAfterBindInputAttachments, x.maxPerStageUpdateAfterBindResources, x.maxDescriptorSetUpdateAfterBindSamplers, x.maxDescriptorSetUpdateAfterBindUniformBuffers, x.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic, x.maxDescriptorSetUpdateAfterBindStorageBuffers, x.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic, x.maxDescriptorSetUpdateAfterBindSampledImages, x.maxDescriptorSetUpdateAfterBindStorageImages, x.maxDescriptorSetUpdateAfterBindInputAttachments, x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve), from_vk(Bool, x.filterMinmaxSingleComponentFormats), from_vk(Bool, x.filterMinmaxImageComponentMapping), x.maxTimelineSemaphoreValueDifference, x.framebufferIntegerColorSampleCounts)
+PhysicalDeviceVulkan12Properties(x::VkPhysicalDeviceVulkan12Properties, next_types::Type...) = PhysicalDeviceVulkan12Properties(load_next_chain(x.pNext, next_types...), x.driverID, from_vk(String, x.driverName), from_vk(String, x.driverInfo), ConformanceVersion(x.conformanceVersion), x.denormBehaviorIndependence, x.roundingModeIndependence, from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat16), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat32), from_vk(Bool, x.shaderSignedZeroInfNanPreserveFloat64), from_vk(Bool, x.shaderDenormPreserveFloat16), from_vk(Bool, x.shaderDenormPreserveFloat32), from_vk(Bool, x.shaderDenormPreserveFloat64), from_vk(Bool, x.shaderDenormFlushToZeroFloat16), from_vk(Bool, x.shaderDenormFlushToZeroFloat32), from_vk(Bool, x.shaderDenormFlushToZeroFloat64), from_vk(Bool, x.shaderRoundingModeRTEFloat16), from_vk(Bool, x.shaderRoundingModeRTEFloat32), from_vk(Bool, x.shaderRoundingModeRTEFloat64), from_vk(Bool, x.shaderRoundingModeRTZFloat16), from_vk(Bool, x.shaderRoundingModeRTZFloat32), from_vk(Bool, x.shaderRoundingModeRTZFloat64), x.maxUpdateAfterBindDescriptorsInAllPools, from_vk(Bool, x.shaderUniformBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderSampledImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageBufferArrayNonUniformIndexingNative), from_vk(Bool, x.shaderStorageImageArrayNonUniformIndexingNative), from_vk(Bool, x.shaderInputAttachmentArrayNonUniformIndexingNative), from_vk(Bool, x.robustBufferAccessUpdateAfterBind), from_vk(Bool, x.quadDivergentImplicitLod), x.maxPerStageDescriptorUpdateAfterBindSamplers, x.maxPerStageDescriptorUpdateAfterBindUniformBuffers, x.maxPerStageDescriptorUpdateAfterBindStorageBuffers, x.maxPerStageDescriptorUpdateAfterBindSampledImages, x.maxPerStageDescriptorUpdateAfterBindStorageImages, x.maxPerStageDescriptorUpdateAfterBindInputAttachments, x.maxPerStageUpdateAfterBindResources, x.maxDescriptorSetUpdateAfterBindSamplers, x.maxDescriptorSetUpdateAfterBindUniformBuffers, x.maxDescriptorSetUpdateAfterBindUniformBuffersDynamic, x.maxDescriptorSetUpdateAfterBindStorageBuffers, x.maxDescriptorSetUpdateAfterBindStorageBuffersDynamic, x.maxDescriptorSetUpdateAfterBindSampledImages, x.maxDescriptorSetUpdateAfterBindStorageImages, x.maxDescriptorSetUpdateAfterBindInputAttachments, x.supportedDepthResolveModes, x.supportedStencilResolveModes, from_vk(Bool, x.independentResolveNone), from_vk(Bool, x.independentResolve), from_vk(Bool, x.filterMinmaxSingleComponentFormats), from_vk(Bool, x.filterMinmaxImageComponentMapping), x.maxTimelineSemaphoreValueDifference, x.framebufferIntegerColorSampleCounts)
 
 """
 
 """
-PipelineCompilerControlCreateInfoAMD(x::VkPipelineCompilerControlCreateInfoAMD, next_types...) = PipelineCompilerControlCreateInfoAMD(load_next_chain(x.pNext, next_types...), x.compilerControlFlags)
+PipelineCompilerControlCreateInfoAMD(x::VkPipelineCompilerControlCreateInfoAMD, next_types::Type...) = PipelineCompilerControlCreateInfoAMD(load_next_chain(x.pNext, next_types...), x.compilerControlFlags)
 
 """
 
 """
-PhysicalDeviceCoherentMemoryFeaturesAMD(x::VkPhysicalDeviceCoherentMemoryFeaturesAMD, next_types...) = PhysicalDeviceCoherentMemoryFeaturesAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.deviceCoherentMemory))
+PhysicalDeviceCoherentMemoryFeaturesAMD(x::VkPhysicalDeviceCoherentMemoryFeaturesAMD, next_types::Type...) = PhysicalDeviceCoherentMemoryFeaturesAMD(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.deviceCoherentMemory))
 
 """
 
 """
-PhysicalDeviceToolPropertiesEXT(x::VkPhysicalDeviceToolPropertiesEXT, next_types...) = PhysicalDeviceToolPropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.version), x.purposes, from_vk(String, x.description), from_vk(String, x.layer))
+PhysicalDeviceToolPropertiesEXT(x::VkPhysicalDeviceToolPropertiesEXT, next_types::Type...) = PhysicalDeviceToolPropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.version), x.purposes, from_vk(String, x.description), from_vk(String, x.layer))
 
 """
 
 """
-SamplerCustomBorderColorCreateInfoEXT(x::VkSamplerCustomBorderColorCreateInfoEXT, next_types...) = SamplerCustomBorderColorCreateInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(ClearColorValue, x.customBorderColor), x.format)
+SamplerCustomBorderColorCreateInfoEXT(x::VkSamplerCustomBorderColorCreateInfoEXT, next_types::Type...) = SamplerCustomBorderColorCreateInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(ClearColorValue, x.customBorderColor), x.format)
 
 """
 
 """
-PhysicalDeviceCustomBorderColorPropertiesEXT(x::VkPhysicalDeviceCustomBorderColorPropertiesEXT, next_types...) = PhysicalDeviceCustomBorderColorPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxCustomBorderColorSamplers)
+PhysicalDeviceCustomBorderColorPropertiesEXT(x::VkPhysicalDeviceCustomBorderColorPropertiesEXT, next_types::Type...) = PhysicalDeviceCustomBorderColorPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxCustomBorderColorSamplers)
 
 """
 
 """
-PhysicalDeviceCustomBorderColorFeaturesEXT(x::VkPhysicalDeviceCustomBorderColorFeaturesEXT, next_types...) = PhysicalDeviceCustomBorderColorFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.customBorderColors), from_vk(Bool, x.customBorderColorWithoutFormat))
+PhysicalDeviceCustomBorderColorFeaturesEXT(x::VkPhysicalDeviceCustomBorderColorFeaturesEXT, next_types::Type...) = PhysicalDeviceCustomBorderColorFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.customBorderColors), from_vk(Bool, x.customBorderColorWithoutFormat))
 
 """
 
 """
-AccelerationStructureGeometryTrianglesDataKHR(x::VkAccelerationStructureGeometryTrianglesDataKHR, next_types...) = AccelerationStructureGeometryTrianglesDataKHR(load_next_chain(x.pNext, next_types...), x.vertexFormat, from_vk(DeviceOrHostAddressConstKHR, x.vertexData), x.vertexStride, x.maxVertex, x.indexType, from_vk(DeviceOrHostAddressConstKHR, x.indexData), from_vk(DeviceOrHostAddressConstKHR, x.transformData))
+AccelerationStructureGeometryTrianglesDataKHR(x::VkAccelerationStructureGeometryTrianglesDataKHR, next_types::Type...) = AccelerationStructureGeometryTrianglesDataKHR(load_next_chain(x.pNext, next_types...), x.vertexFormat, from_vk(DeviceOrHostAddressConstKHR, x.vertexData), x.vertexStride, x.maxVertex, x.indexType, from_vk(DeviceOrHostAddressConstKHR, x.indexData), from_vk(DeviceOrHostAddressConstKHR, x.transformData))
 
 """
 
 """
-AccelerationStructureGeometryAabbsDataKHR(x::VkAccelerationStructureGeometryAabbsDataKHR, next_types...) = AccelerationStructureGeometryAabbsDataKHR(load_next_chain(x.pNext, next_types...), from_vk(DeviceOrHostAddressConstKHR, x.data), x.stride)
+AccelerationStructureGeometryAabbsDataKHR(x::VkAccelerationStructureGeometryAabbsDataKHR, next_types::Type...) = AccelerationStructureGeometryAabbsDataKHR(load_next_chain(x.pNext, next_types...), from_vk(DeviceOrHostAddressConstKHR, x.data), x.stride)
 
 """
 
 """
-AccelerationStructureGeometryInstancesDataKHR(x::VkAccelerationStructureGeometryInstancesDataKHR, next_types...) = AccelerationStructureGeometryInstancesDataKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.arrayOfPointers), from_vk(DeviceOrHostAddressConstKHR, x.data))
+AccelerationStructureGeometryInstancesDataKHR(x::VkAccelerationStructureGeometryInstancesDataKHR, next_types::Type...) = AccelerationStructureGeometryInstancesDataKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.arrayOfPointers), from_vk(DeviceOrHostAddressConstKHR, x.data))
 
 """
 
 """
-AccelerationStructureGeometryKHR(x::VkAccelerationStructureGeometryKHR, next_types...) = AccelerationStructureGeometryKHR(load_next_chain(x.pNext, next_types...), x.geometryType, from_vk(AccelerationStructureGeometryDataKHR, x.geometry), x.flags)
+AccelerationStructureGeometryKHR(x::VkAccelerationStructureGeometryKHR, next_types::Type...) = AccelerationStructureGeometryKHR(load_next_chain(x.pNext, next_types...), x.geometryType, from_vk(AccelerationStructureGeometryDataKHR, x.geometry), x.flags)
 
 """
 
 """
-AccelerationStructureBuildGeometryInfoKHR(x::VkAccelerationStructureBuildGeometryInfoKHR, next_types...) = AccelerationStructureBuildGeometryInfoKHR(load_next_chain(x.pNext, next_types...), x.type, x.flags, x.mode, AccelerationStructureKHR(x.srcAccelerationStructure), AccelerationStructureKHR(x.dstAccelerationStructure), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.pGeometries, x.geometryCount; own = true), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.ppGeometries, x.geometryCount; own = true), from_vk(DeviceOrHostAddressKHR, x.scratchData))
+AccelerationStructureBuildGeometryInfoKHR(x::VkAccelerationStructureBuildGeometryInfoKHR, next_types::Type...) = AccelerationStructureBuildGeometryInfoKHR(load_next_chain(x.pNext, next_types...), x.type, x.flags, x.mode, AccelerationStructureKHR(x.srcAccelerationStructure), AccelerationStructureKHR(x.dstAccelerationStructure), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.pGeometries, x.geometryCount; own = true), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.ppGeometries, x.geometryCount; own = true), from_vk(DeviceOrHostAddressKHR, x.scratchData))
 
 """
 
@@ -35677,7 +40049,7 @@ AccelerationStructureBuildRangeInfoKHR(x::VkAccelerationStructureBuildRangeInfoK
 """
 
 """
-AccelerationStructureCreateInfoKHR(x::VkAccelerationStructureCreateInfoKHR, next_types...) = AccelerationStructureCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.createFlags, Buffer(x.buffer), x.offset, x.size, x.type, x.deviceAddress)
+AccelerationStructureCreateInfoKHR(x::VkAccelerationStructureCreateInfoKHR, next_types::Type...) = AccelerationStructureCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.createFlags, Buffer(x.buffer), x.offset, x.size, x.type, x.deviceAddress)
 
 """
 
@@ -35697,217 +40069,217 @@ AccelerationStructureInstanceKHR(x::VkAccelerationStructureInstanceKHR) = Accele
 """
 
 """
-AccelerationStructureDeviceAddressInfoKHR(x::VkAccelerationStructureDeviceAddressInfoKHR, next_types...) = AccelerationStructureDeviceAddressInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.accelerationStructure))
+AccelerationStructureDeviceAddressInfoKHR(x::VkAccelerationStructureDeviceAddressInfoKHR, next_types::Type...) = AccelerationStructureDeviceAddressInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.accelerationStructure))
 
 """
 
 """
-AccelerationStructureVersionInfoKHR(x::VkAccelerationStructureVersionInfoKHR, next_types...) = AccelerationStructureVersionInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt8}, x.pVersionData, 2VK_UUID_SIZE; own = true))
+AccelerationStructureVersionInfoKHR(x::VkAccelerationStructureVersionInfoKHR, next_types::Type...) = AccelerationStructureVersionInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt8}, x.pVersionData, 2VK_UUID_SIZE; own = true))
 
 """
 
 """
-CopyAccelerationStructureInfoKHR(x::VkCopyAccelerationStructureInfoKHR, next_types...) = CopyAccelerationStructureInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.src), AccelerationStructureKHR(x.dst), x.mode)
+CopyAccelerationStructureInfoKHR(x::VkCopyAccelerationStructureInfoKHR, next_types::Type...) = CopyAccelerationStructureInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.src), AccelerationStructureKHR(x.dst), x.mode)
 
 """
 
 """
-CopyAccelerationStructureToMemoryInfoKHR(x::VkCopyAccelerationStructureToMemoryInfoKHR, next_types...) = CopyAccelerationStructureToMemoryInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.src), from_vk(DeviceOrHostAddressKHR, x.dst), x.mode)
+CopyAccelerationStructureToMemoryInfoKHR(x::VkCopyAccelerationStructureToMemoryInfoKHR, next_types::Type...) = CopyAccelerationStructureToMemoryInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.src), from_vk(DeviceOrHostAddressKHR, x.dst), x.mode)
 
 """
 
 """
-CopyMemoryToAccelerationStructureInfoKHR(x::VkCopyMemoryToAccelerationStructureInfoKHR, next_types...) = CopyMemoryToAccelerationStructureInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(DeviceOrHostAddressConstKHR, x.src), AccelerationStructureKHR(x.dst), x.mode)
+CopyMemoryToAccelerationStructureInfoKHR(x::VkCopyMemoryToAccelerationStructureInfoKHR, next_types::Type...) = CopyMemoryToAccelerationStructureInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(DeviceOrHostAddressConstKHR, x.src), AccelerationStructureKHR(x.dst), x.mode)
 
 """
 
 """
-RayTracingPipelineInterfaceCreateInfoKHR(x::VkRayTracingPipelineInterfaceCreateInfoKHR, next_types...) = RayTracingPipelineInterfaceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.maxPipelineRayPayloadSize, x.maxPipelineRayHitAttributeSize)
+RayTracingPipelineInterfaceCreateInfoKHR(x::VkRayTracingPipelineInterfaceCreateInfoKHR, next_types::Type...) = RayTracingPipelineInterfaceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.maxPipelineRayPayloadSize, x.maxPipelineRayHitAttributeSize)
 
 """
 
 """
-PipelineLibraryCreateInfoKHR(x::VkPipelineLibraryCreateInfoKHR, next_types...) = PipelineLibraryCreateInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Pipeline}, x.pLibraries, x.libraryCount; own = true))
+PipelineLibraryCreateInfoKHR(x::VkPipelineLibraryCreateInfoKHR, next_types::Type...) = PipelineLibraryCreateInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Pipeline}, x.pLibraries, x.libraryCount; own = true))
 
 """
 
 """
-PhysicalDeviceExtendedDynamicStateFeaturesEXT(x::VkPhysicalDeviceExtendedDynamicStateFeaturesEXT, next_types...) = PhysicalDeviceExtendedDynamicStateFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.extendedDynamicState))
+PhysicalDeviceExtendedDynamicStateFeaturesEXT(x::VkPhysicalDeviceExtendedDynamicStateFeaturesEXT, next_types::Type...) = PhysicalDeviceExtendedDynamicStateFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.extendedDynamicState))
 
 """
 
 """
-PhysicalDeviceExtendedDynamicState2FeaturesEXT(x::VkPhysicalDeviceExtendedDynamicState2FeaturesEXT, next_types...) = PhysicalDeviceExtendedDynamicState2FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.extendedDynamicState2), from_vk(Bool, x.extendedDynamicState2LogicOp), from_vk(Bool, x.extendedDynamicState2PatchControlPoints))
+PhysicalDeviceExtendedDynamicState2FeaturesEXT(x::VkPhysicalDeviceExtendedDynamicState2FeaturesEXT, next_types::Type...) = PhysicalDeviceExtendedDynamicState2FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.extendedDynamicState2), from_vk(Bool, x.extendedDynamicState2LogicOp), from_vk(Bool, x.extendedDynamicState2PatchControlPoints))
 
 """
 
 """
-RenderPassTransformBeginInfoQCOM(x::VkRenderPassTransformBeginInfoQCOM, next_types...) = RenderPassTransformBeginInfoQCOM(load_next_chain(x.pNext, next_types...), SurfaceTransformFlagKHR(UInt32(x.transform)))
+RenderPassTransformBeginInfoQCOM(x::VkRenderPassTransformBeginInfoQCOM, next_types::Type...) = RenderPassTransformBeginInfoQCOM(load_next_chain(x.pNext, next_types...), SurfaceTransformFlagKHR(UInt32(x.transform)))
 
 """
 
 """
-CopyCommandTransformInfoQCOM(x::VkCopyCommandTransformInfoQCOM, next_types...) = CopyCommandTransformInfoQCOM(load_next_chain(x.pNext, next_types...), SurfaceTransformFlagKHR(UInt32(x.transform)))
+CopyCommandTransformInfoQCOM(x::VkCopyCommandTransformInfoQCOM, next_types::Type...) = CopyCommandTransformInfoQCOM(load_next_chain(x.pNext, next_types...), SurfaceTransformFlagKHR(UInt32(x.transform)))
 
 """
 
 """
-CommandBufferInheritanceRenderPassTransformInfoQCOM(x::VkCommandBufferInheritanceRenderPassTransformInfoQCOM, next_types...) = CommandBufferInheritanceRenderPassTransformInfoQCOM(load_next_chain(x.pNext, next_types...), SurfaceTransformFlagKHR(UInt32(x.transform)), Rect2D(x.renderArea))
+CommandBufferInheritanceRenderPassTransformInfoQCOM(x::VkCommandBufferInheritanceRenderPassTransformInfoQCOM, next_types::Type...) = CommandBufferInheritanceRenderPassTransformInfoQCOM(load_next_chain(x.pNext, next_types...), SurfaceTransformFlagKHR(UInt32(x.transform)), Rect2D(x.renderArea))
 
 """
 
 """
-PhysicalDeviceDiagnosticsConfigFeaturesNV(x::VkPhysicalDeviceDiagnosticsConfigFeaturesNV, next_types...) = PhysicalDeviceDiagnosticsConfigFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.diagnosticsConfig))
+PhysicalDeviceDiagnosticsConfigFeaturesNV(x::VkPhysicalDeviceDiagnosticsConfigFeaturesNV, next_types::Type...) = PhysicalDeviceDiagnosticsConfigFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.diagnosticsConfig))
 
 """
 
 """
-DeviceDiagnosticsConfigCreateInfoNV(x::VkDeviceDiagnosticsConfigCreateInfoNV, next_types...) = DeviceDiagnosticsConfigCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags)
+DeviceDiagnosticsConfigCreateInfoNV(x::VkDeviceDiagnosticsConfigCreateInfoNV, next_types::Type...) = DeviceDiagnosticsConfigCreateInfoNV(load_next_chain(x.pNext, next_types...), x.flags)
 
 """
 
 """
-PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(x::VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR, next_types...) = PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderZeroInitializeWorkgroupMemory))
+PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(x::VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR, next_types::Type...) = PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderZeroInitializeWorkgroupMemory))
 
 """
 
 """
-PhysicalDeviceRobustness2FeaturesEXT(x::VkPhysicalDeviceRobustness2FeaturesEXT, next_types...) = PhysicalDeviceRobustness2FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.robustBufferAccess2), from_vk(Bool, x.robustImageAccess2), from_vk(Bool, x.nullDescriptor))
+PhysicalDeviceRobustness2FeaturesEXT(x::VkPhysicalDeviceRobustness2FeaturesEXT, next_types::Type...) = PhysicalDeviceRobustness2FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.robustBufferAccess2), from_vk(Bool, x.robustImageAccess2), from_vk(Bool, x.nullDescriptor))
 
 """
 
 """
-PhysicalDeviceRobustness2PropertiesEXT(x::VkPhysicalDeviceRobustness2PropertiesEXT, next_types...) = PhysicalDeviceRobustness2PropertiesEXT(load_next_chain(x.pNext, next_types...), x.robustStorageBufferAccessSizeAlignment, x.robustUniformBufferAccessSizeAlignment)
+PhysicalDeviceRobustness2PropertiesEXT(x::VkPhysicalDeviceRobustness2PropertiesEXT, next_types::Type...) = PhysicalDeviceRobustness2PropertiesEXT(load_next_chain(x.pNext, next_types...), x.robustStorageBufferAccessSizeAlignment, x.robustUniformBufferAccessSizeAlignment)
 
 """
 
 """
-PhysicalDeviceImageRobustnessFeaturesEXT(x::VkPhysicalDeviceImageRobustnessFeaturesEXT, next_types...) = PhysicalDeviceImageRobustnessFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.robustImageAccess))
+PhysicalDeviceImageRobustnessFeaturesEXT(x::VkPhysicalDeviceImageRobustnessFeaturesEXT, next_types::Type...) = PhysicalDeviceImageRobustnessFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.robustImageAccess))
 
 """
 
 """
-PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(x::VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, next_types...) = PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.workgroupMemoryExplicitLayout), from_vk(Bool, x.workgroupMemoryExplicitLayoutScalarBlockLayout), from_vk(Bool, x.workgroupMemoryExplicitLayout8BitAccess), from_vk(Bool, x.workgroupMemoryExplicitLayout16BitAccess))
+PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(x::VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, next_types::Type...) = PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.workgroupMemoryExplicitLayout), from_vk(Bool, x.workgroupMemoryExplicitLayoutScalarBlockLayout), from_vk(Bool, x.workgroupMemoryExplicitLayout8BitAccess), from_vk(Bool, x.workgroupMemoryExplicitLayout16BitAccess))
 
 """
 
 """
-PhysicalDevice4444FormatsFeaturesEXT(x::VkPhysicalDevice4444FormatsFeaturesEXT, next_types...) = PhysicalDevice4444FormatsFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.formatA4R4G4B4), from_vk(Bool, x.formatA4B4G4R4))
+PhysicalDevice4444FormatsFeaturesEXT(x::VkPhysicalDevice4444FormatsFeaturesEXT, next_types::Type...) = PhysicalDevice4444FormatsFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.formatA4R4G4B4), from_vk(Bool, x.formatA4B4G4R4))
 
 """
 
 """
-BufferCopy2KHR(x::VkBufferCopy2KHR, next_types...) = BufferCopy2KHR(load_next_chain(x.pNext, next_types...), x.srcOffset, x.dstOffset, x.size)
+BufferCopy2KHR(x::VkBufferCopy2KHR, next_types::Type...) = BufferCopy2KHR(load_next_chain(x.pNext, next_types...), x.srcOffset, x.dstOffset, x.size)
 
 """
 
 """
-ImageCopy2KHR(x::VkImageCopy2KHR, next_types...) = ImageCopy2KHR(load_next_chain(x.pNext, next_types...), ImageSubresourceLayers(x.srcSubresource), Offset3D(x.srcOffset), ImageSubresourceLayers(x.dstSubresource), Offset3D(x.dstOffset), Extent3D(x.extent))
+ImageCopy2KHR(x::VkImageCopy2KHR, next_types::Type...) = ImageCopy2KHR(load_next_chain(x.pNext, next_types...), ImageSubresourceLayers(x.srcSubresource), Offset3D(x.srcOffset), ImageSubresourceLayers(x.dstSubresource), Offset3D(x.dstOffset), Extent3D(x.extent))
 
 """
 
 """
-ImageBlit2KHR(x::VkImageBlit2KHR, next_types...) = ImageBlit2KHR(load_next_chain(x.pNext, next_types...), ImageSubresourceLayers(x.srcSubresource), Offset3D.(x.srcOffsets), ImageSubresourceLayers(x.dstSubresource), Offset3D.(x.dstOffsets))
+ImageBlit2KHR(x::VkImageBlit2KHR, next_types::Type...) = ImageBlit2KHR(load_next_chain(x.pNext, next_types...), ImageSubresourceLayers(x.srcSubresource), Offset3D.(x.srcOffsets), ImageSubresourceLayers(x.dstSubresource), Offset3D.(x.dstOffsets))
 
 """
 
 """
-BufferImageCopy2KHR(x::VkBufferImageCopy2KHR, next_types...) = BufferImageCopy2KHR(load_next_chain(x.pNext, next_types...), x.bufferOffset, x.bufferRowLength, x.bufferImageHeight, ImageSubresourceLayers(x.imageSubresource), Offset3D(x.imageOffset), Extent3D(x.imageExtent))
+BufferImageCopy2KHR(x::VkBufferImageCopy2KHR, next_types::Type...) = BufferImageCopy2KHR(load_next_chain(x.pNext, next_types...), x.bufferOffset, x.bufferRowLength, x.bufferImageHeight, ImageSubresourceLayers(x.imageSubresource), Offset3D(x.imageOffset), Extent3D(x.imageExtent))
 
 """
 
 """
-ImageResolve2KHR(x::VkImageResolve2KHR, next_types...) = ImageResolve2KHR(load_next_chain(x.pNext, next_types...), ImageSubresourceLayers(x.srcSubresource), Offset3D(x.srcOffset), ImageSubresourceLayers(x.dstSubresource), Offset3D(x.dstOffset), Extent3D(x.extent))
+ImageResolve2KHR(x::VkImageResolve2KHR, next_types::Type...) = ImageResolve2KHR(load_next_chain(x.pNext, next_types...), ImageSubresourceLayers(x.srcSubresource), Offset3D(x.srcOffset), ImageSubresourceLayers(x.dstSubresource), Offset3D(x.dstOffset), Extent3D(x.extent))
 
 """
 
 """
-CopyBufferInfo2KHR(x::VkCopyBufferInfo2KHR, next_types...) = CopyBufferInfo2KHR(load_next_chain(x.pNext, next_types...), Buffer(x.srcBuffer), Buffer(x.dstBuffer), unsafe_wrap(Vector{BufferCopy2KHR}, x.pRegions, x.regionCount; own = true))
+CopyBufferInfo2KHR(x::VkCopyBufferInfo2KHR, next_types::Type...) = CopyBufferInfo2KHR(load_next_chain(x.pNext, next_types...), Buffer(x.srcBuffer), Buffer(x.dstBuffer), unsafe_wrap(Vector{BufferCopy2KHR}, x.pRegions, x.regionCount; own = true))
 
 """
 
 """
-CopyImageInfo2KHR(x::VkCopyImageInfo2KHR, next_types...) = CopyImageInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{ImageCopy2KHR}, x.pRegions, x.regionCount; own = true))
+CopyImageInfo2KHR(x::VkCopyImageInfo2KHR, next_types::Type...) = CopyImageInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{ImageCopy2KHR}, x.pRegions, x.regionCount; own = true))
 
 """
 
 """
-BlitImageInfo2KHR(x::VkBlitImageInfo2KHR, next_types...) = BlitImageInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{ImageBlit2KHR}, x.pRegions, x.regionCount; own = true), x.filter)
+BlitImageInfo2KHR(x::VkBlitImageInfo2KHR, next_types::Type...) = BlitImageInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{ImageBlit2KHR}, x.pRegions, x.regionCount; own = true), x.filter)
 
 """
 
 """
-CopyBufferToImageInfo2KHR(x::VkCopyBufferToImageInfo2KHR, next_types...) = CopyBufferToImageInfo2KHR(load_next_chain(x.pNext, next_types...), Buffer(x.srcBuffer), Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{BufferImageCopy2KHR}, x.pRegions, x.regionCount; own = true))
+CopyBufferToImageInfo2KHR(x::VkCopyBufferToImageInfo2KHR, next_types::Type...) = CopyBufferToImageInfo2KHR(load_next_chain(x.pNext, next_types...), Buffer(x.srcBuffer), Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{BufferImageCopy2KHR}, x.pRegions, x.regionCount; own = true))
 
 """
 
 """
-CopyImageToBufferInfo2KHR(x::VkCopyImageToBufferInfo2KHR, next_types...) = CopyImageToBufferInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Buffer(x.dstBuffer), unsafe_wrap(Vector{BufferImageCopy2KHR}, x.pRegions, x.regionCount; own = true))
+CopyImageToBufferInfo2KHR(x::VkCopyImageToBufferInfo2KHR, next_types::Type...) = CopyImageToBufferInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Buffer(x.dstBuffer), unsafe_wrap(Vector{BufferImageCopy2KHR}, x.pRegions, x.regionCount; own = true))
 
 """
 
 """
-ResolveImageInfo2KHR(x::VkResolveImageInfo2KHR, next_types...) = ResolveImageInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{ImageResolve2KHR}, x.pRegions, x.regionCount; own = true))
+ResolveImageInfo2KHR(x::VkResolveImageInfo2KHR, next_types::Type...) = ResolveImageInfo2KHR(load_next_chain(x.pNext, next_types...), Image(x.srcImage), x.srcImageLayout, Image(x.dstImage), x.dstImageLayout, unsafe_wrap(Vector{ImageResolve2KHR}, x.pRegions, x.regionCount; own = true))
 
 """
 
 """
-PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(x::VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT, next_types...) = PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderImageInt64Atomics), from_vk(Bool, x.sparseImageInt64Atomics))
+PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(x::VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT, next_types::Type...) = PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderImageInt64Atomics), from_vk(Bool, x.sparseImageInt64Atomics))
 
 """
 
 """
-FragmentShadingRateAttachmentInfoKHR(x::VkFragmentShadingRateAttachmentInfoKHR, next_types...) = FragmentShadingRateAttachmentInfoKHR(load_next_chain(x.pNext, next_types...), AttachmentReference2(x.pFragmentShadingRateAttachment), Extent2D(x.shadingRateAttachmentTexelSize))
+FragmentShadingRateAttachmentInfoKHR(x::VkFragmentShadingRateAttachmentInfoKHR, next_types::Type...) = FragmentShadingRateAttachmentInfoKHR(load_next_chain(x.pNext, next_types...), AttachmentReference2(x.pFragmentShadingRateAttachment), Extent2D(x.shadingRateAttachmentTexelSize))
 
 """
 
 """
-PipelineFragmentShadingRateStateCreateInfoKHR(x::VkPipelineFragmentShadingRateStateCreateInfoKHR, next_types...) = PipelineFragmentShadingRateStateCreateInfoKHR(load_next_chain(x.pNext, next_types...), Extent2D(x.fragmentSize), x.combinerOps)
+PipelineFragmentShadingRateStateCreateInfoKHR(x::VkPipelineFragmentShadingRateStateCreateInfoKHR, next_types::Type...) = PipelineFragmentShadingRateStateCreateInfoKHR(load_next_chain(x.pNext, next_types...), Extent2D(x.fragmentSize), x.combinerOps)
 
 """
 
 """
-PhysicalDeviceFragmentShadingRateFeaturesKHR(x::VkPhysicalDeviceFragmentShadingRateFeaturesKHR, next_types...) = PhysicalDeviceFragmentShadingRateFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.pipelineFragmentShadingRate), from_vk(Bool, x.primitiveFragmentShadingRate), from_vk(Bool, x.attachmentFragmentShadingRate))
+PhysicalDeviceFragmentShadingRateFeaturesKHR(x::VkPhysicalDeviceFragmentShadingRateFeaturesKHR, next_types::Type...) = PhysicalDeviceFragmentShadingRateFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.pipelineFragmentShadingRate), from_vk(Bool, x.primitiveFragmentShadingRate), from_vk(Bool, x.attachmentFragmentShadingRate))
 
 """
 
 """
-PhysicalDeviceFragmentShadingRatePropertiesKHR(x::VkPhysicalDeviceFragmentShadingRatePropertiesKHR, next_types...) = PhysicalDeviceFragmentShadingRatePropertiesKHR(load_next_chain(x.pNext, next_types...), Extent2D(x.minFragmentShadingRateAttachmentTexelSize), Extent2D(x.maxFragmentShadingRateAttachmentTexelSize), x.maxFragmentShadingRateAttachmentTexelSizeAspectRatio, from_vk(Bool, x.primitiveFragmentShadingRateWithMultipleViewports), from_vk(Bool, x.layeredShadingRateAttachments), from_vk(Bool, x.fragmentShadingRateNonTrivialCombinerOps), Extent2D(x.maxFragmentSize), x.maxFragmentSizeAspectRatio, x.maxFragmentShadingRateCoverageSamples, SampleCountFlag(UInt32(x.maxFragmentShadingRateRasterizationSamples)), from_vk(Bool, x.fragmentShadingRateWithShaderDepthStencilWrites), from_vk(Bool, x.fragmentShadingRateWithSampleMask), from_vk(Bool, x.fragmentShadingRateWithShaderSampleMask), from_vk(Bool, x.fragmentShadingRateWithConservativeRasterization), from_vk(Bool, x.fragmentShadingRateWithFragmentShaderInterlock), from_vk(Bool, x.fragmentShadingRateWithCustomSampleLocations), from_vk(Bool, x.fragmentShadingRateStrictMultiplyCombiner))
+PhysicalDeviceFragmentShadingRatePropertiesKHR(x::VkPhysicalDeviceFragmentShadingRatePropertiesKHR, next_types::Type...) = PhysicalDeviceFragmentShadingRatePropertiesKHR(load_next_chain(x.pNext, next_types...), Extent2D(x.minFragmentShadingRateAttachmentTexelSize), Extent2D(x.maxFragmentShadingRateAttachmentTexelSize), x.maxFragmentShadingRateAttachmentTexelSizeAspectRatio, from_vk(Bool, x.primitiveFragmentShadingRateWithMultipleViewports), from_vk(Bool, x.layeredShadingRateAttachments), from_vk(Bool, x.fragmentShadingRateNonTrivialCombinerOps), Extent2D(x.maxFragmentSize), x.maxFragmentSizeAspectRatio, x.maxFragmentShadingRateCoverageSamples, SampleCountFlag(UInt32(x.maxFragmentShadingRateRasterizationSamples)), from_vk(Bool, x.fragmentShadingRateWithShaderDepthStencilWrites), from_vk(Bool, x.fragmentShadingRateWithSampleMask), from_vk(Bool, x.fragmentShadingRateWithShaderSampleMask), from_vk(Bool, x.fragmentShadingRateWithConservativeRasterization), from_vk(Bool, x.fragmentShadingRateWithFragmentShaderInterlock), from_vk(Bool, x.fragmentShadingRateWithCustomSampleLocations), from_vk(Bool, x.fragmentShadingRateStrictMultiplyCombiner))
 
 """
 
 """
-PhysicalDeviceFragmentShadingRateKHR(x::VkPhysicalDeviceFragmentShadingRateKHR, next_types...) = PhysicalDeviceFragmentShadingRateKHR(load_next_chain(x.pNext, next_types...), x.sampleCounts, Extent2D(x.fragmentSize))
+PhysicalDeviceFragmentShadingRateKHR(x::VkPhysicalDeviceFragmentShadingRateKHR, next_types::Type...) = PhysicalDeviceFragmentShadingRateKHR(load_next_chain(x.pNext, next_types...), x.sampleCounts, Extent2D(x.fragmentSize))
 
 """
 
 """
-PhysicalDeviceShaderTerminateInvocationFeaturesKHR(x::VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR, next_types...) = PhysicalDeviceShaderTerminateInvocationFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderTerminateInvocation))
+PhysicalDeviceShaderTerminateInvocationFeaturesKHR(x::VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR, next_types::Type...) = PhysicalDeviceShaderTerminateInvocationFeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderTerminateInvocation))
 
 """
 
 """
-PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(x::VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV, next_types...) = PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentShadingRateEnums), from_vk(Bool, x.supersampleFragmentShadingRates), from_vk(Bool, x.noInvocationFragmentShadingRates))
+PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(x::VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV, next_types::Type...) = PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.fragmentShadingRateEnums), from_vk(Bool, x.supersampleFragmentShadingRates), from_vk(Bool, x.noInvocationFragmentShadingRates))
 
 """
 
 """
-PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(x::VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV, next_types...) = PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(load_next_chain(x.pNext, next_types...), SampleCountFlag(UInt32(x.maxFragmentShadingRateInvocationCount)))
+PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(x::VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV, next_types::Type...) = PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(load_next_chain(x.pNext, next_types...), SampleCountFlag(UInt32(x.maxFragmentShadingRateInvocationCount)))
 
 """
 
 """
-PipelineFragmentShadingRateEnumStateCreateInfoNV(x::VkPipelineFragmentShadingRateEnumStateCreateInfoNV, next_types...) = PipelineFragmentShadingRateEnumStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.shadingRateType, x.shadingRate, x.combinerOps)
+PipelineFragmentShadingRateEnumStateCreateInfoNV(x::VkPipelineFragmentShadingRateEnumStateCreateInfoNV, next_types::Type...) = PipelineFragmentShadingRateEnumStateCreateInfoNV(load_next_chain(x.pNext, next_types...), x.shadingRateType, x.shadingRate, x.combinerOps)
 
 """
 
 """
-AccelerationStructureBuildSizesInfoKHR(x::VkAccelerationStructureBuildSizesInfoKHR, next_types...) = AccelerationStructureBuildSizesInfoKHR(load_next_chain(x.pNext, next_types...), x.accelerationStructureSize, x.updateScratchSize, x.buildScratchSize)
+AccelerationStructureBuildSizesInfoKHR(x::VkAccelerationStructureBuildSizesInfoKHR, next_types::Type...) = AccelerationStructureBuildSizesInfoKHR(load_next_chain(x.pNext, next_types...), x.accelerationStructureSize, x.updateScratchSize, x.buildScratchSize)
 
 """
 
 """
-PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(x::VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE, next_types...) = PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.mutableDescriptorType))
+PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(x::VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE, next_types::Type...) = PhysicalDeviceMutableDescriptorTypeFeaturesVALVE(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.mutableDescriptorType))
 
 """
 
@@ -35917,112 +40289,112 @@ MutableDescriptorTypeListVALVE(x::VkMutableDescriptorTypeListVALVE) = MutableDes
 """
 
 """
-MutableDescriptorTypeCreateInfoVALVE(x::VkMutableDescriptorTypeCreateInfoVALVE, next_types...) = MutableDescriptorTypeCreateInfoVALVE(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{MutableDescriptorTypeListVALVE}, x.pMutableDescriptorTypeLists, x.mutableDescriptorTypeListCount; own = true))
+MutableDescriptorTypeCreateInfoVALVE(x::VkMutableDescriptorTypeCreateInfoVALVE, next_types::Type...) = MutableDescriptorTypeCreateInfoVALVE(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{MutableDescriptorTypeListVALVE}, x.pMutableDescriptorTypeLists, x.mutableDescriptorTypeListCount; own = true))
 
 """
 
 """
-PhysicalDeviceVertexInputDynamicStateFeaturesEXT(x::VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT, next_types...) = PhysicalDeviceVertexInputDynamicStateFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.vertexInputDynamicState))
+PhysicalDeviceVertexInputDynamicStateFeaturesEXT(x::VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT, next_types::Type...) = PhysicalDeviceVertexInputDynamicStateFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.vertexInputDynamicState))
 
 """
 
 """
-VertexInputBindingDescription2EXT(x::VkVertexInputBindingDescription2EXT, next_types...) = VertexInputBindingDescription2EXT(load_next_chain(x.pNext, next_types...), x.binding, x.stride, x.inputRate, x.divisor)
+VertexInputBindingDescription2EXT(x::VkVertexInputBindingDescription2EXT, next_types::Type...) = VertexInputBindingDescription2EXT(load_next_chain(x.pNext, next_types...), x.binding, x.stride, x.inputRate, x.divisor)
 
 """
 
 """
-VertexInputAttributeDescription2EXT(x::VkVertexInputAttributeDescription2EXT, next_types...) = VertexInputAttributeDescription2EXT(load_next_chain(x.pNext, next_types...), x.location, x.binding, x.format, x.offset)
+VertexInputAttributeDescription2EXT(x::VkVertexInputAttributeDescription2EXT, next_types::Type...) = VertexInputAttributeDescription2EXT(load_next_chain(x.pNext, next_types...), x.location, x.binding, x.format, x.offset)
 
 """
 
 """
-PhysicalDeviceColorWriteEnableFeaturesEXT(x::VkPhysicalDeviceColorWriteEnableFeaturesEXT, next_types...) = PhysicalDeviceColorWriteEnableFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.colorWriteEnable))
+PhysicalDeviceColorWriteEnableFeaturesEXT(x::VkPhysicalDeviceColorWriteEnableFeaturesEXT, next_types::Type...) = PhysicalDeviceColorWriteEnableFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.colorWriteEnable))
 
 """
 
 """
-PipelineColorWriteCreateInfoEXT(x::VkPipelineColorWriteCreateInfoEXT, next_types...) = PipelineColorWriteCreateInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Bool}, x.pColorWriteEnables, x.attachmentCount; own = true))
+PipelineColorWriteCreateInfoEXT(x::VkPipelineColorWriteCreateInfoEXT, next_types::Type...) = PipelineColorWriteCreateInfoEXT(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{Bool}, x.pColorWriteEnables, x.attachmentCount; own = true))
 
 """
 
 """
-MemoryBarrier2KHR(x::VkMemoryBarrier2KHR, next_types...) = MemoryBarrier2KHR(load_next_chain(x.pNext, next_types...), x.srcStageMask, x.srcAccessMask, x.dstStageMask, x.dstAccessMask)
+MemoryBarrier2KHR(x::VkMemoryBarrier2KHR, next_types::Type...) = MemoryBarrier2KHR(load_next_chain(x.pNext, next_types...), x.srcStageMask, x.srcAccessMask, x.dstStageMask, x.dstAccessMask)
 
 """
 
 """
-ImageMemoryBarrier2KHR(x::VkImageMemoryBarrier2KHR, next_types...) = ImageMemoryBarrier2KHR(load_next_chain(x.pNext, next_types...), x.srcStageMask, x.srcAccessMask, x.dstStageMask, x.dstAccessMask, x.oldLayout, x.newLayout, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Image(x.image), ImageSubresourceRange(x.subresourceRange))
+ImageMemoryBarrier2KHR(x::VkImageMemoryBarrier2KHR, next_types::Type...) = ImageMemoryBarrier2KHR(load_next_chain(x.pNext, next_types...), x.srcStageMask, x.srcAccessMask, x.dstStageMask, x.dstAccessMask, x.oldLayout, x.newLayout, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Image(x.image), ImageSubresourceRange(x.subresourceRange))
 
 """
 
 """
-BufferMemoryBarrier2KHR(x::VkBufferMemoryBarrier2KHR, next_types...) = BufferMemoryBarrier2KHR(load_next_chain(x.pNext, next_types...), x.srcStageMask, x.srcAccessMask, x.dstStageMask, x.dstAccessMask, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Buffer(x.buffer), x.offset, x.size)
+BufferMemoryBarrier2KHR(x::VkBufferMemoryBarrier2KHR, next_types::Type...) = BufferMemoryBarrier2KHR(load_next_chain(x.pNext, next_types...), x.srcStageMask, x.srcAccessMask, x.dstStageMask, x.dstAccessMask, x.srcQueueFamilyIndex, x.dstQueueFamilyIndex, Buffer(x.buffer), x.offset, x.size)
 
 """
 
 """
-DependencyInfoKHR(x::VkDependencyInfoKHR, next_types...) = DependencyInfoKHR(load_next_chain(x.pNext, next_types...), x.dependencyFlags, unsafe_wrap(Vector{MemoryBarrier2KHR}, x.pMemoryBarriers, x.memoryBarrierCount; own = true), unsafe_wrap(Vector{BufferMemoryBarrier2KHR}, x.pBufferMemoryBarriers, x.bufferMemoryBarrierCount; own = true), unsafe_wrap(Vector{ImageMemoryBarrier2KHR}, x.pImageMemoryBarriers, x.imageMemoryBarrierCount; own = true))
+DependencyInfoKHR(x::VkDependencyInfoKHR, next_types::Type...) = DependencyInfoKHR(load_next_chain(x.pNext, next_types...), x.dependencyFlags, unsafe_wrap(Vector{MemoryBarrier2KHR}, x.pMemoryBarriers, x.memoryBarrierCount; own = true), unsafe_wrap(Vector{BufferMemoryBarrier2KHR}, x.pBufferMemoryBarriers, x.bufferMemoryBarrierCount; own = true), unsafe_wrap(Vector{ImageMemoryBarrier2KHR}, x.pImageMemoryBarriers, x.imageMemoryBarrierCount; own = true))
 
 """
 
 """
-SemaphoreSubmitInfoKHR(x::VkSemaphoreSubmitInfoKHR, next_types...) = SemaphoreSubmitInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.value, x.stageMask, x.deviceIndex)
+SemaphoreSubmitInfoKHR(x::VkSemaphoreSubmitInfoKHR, next_types::Type...) = SemaphoreSubmitInfoKHR(load_next_chain(x.pNext, next_types...), Semaphore(x.semaphore), x.value, x.stageMask, x.deviceIndex)
 
 """
 
 """
-CommandBufferSubmitInfoKHR(x::VkCommandBufferSubmitInfoKHR, next_types...) = CommandBufferSubmitInfoKHR(load_next_chain(x.pNext, next_types...), CommandBuffer(x.commandBuffer), x.deviceMask)
+CommandBufferSubmitInfoKHR(x::VkCommandBufferSubmitInfoKHR, next_types::Type...) = CommandBufferSubmitInfoKHR(load_next_chain(x.pNext, next_types...), CommandBuffer(x.commandBuffer), x.deviceMask)
 
 """
 
 """
-SubmitInfo2KHR(x::VkSubmitInfo2KHR, next_types...) = SubmitInfo2KHR(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{SemaphoreSubmitInfoKHR}, x.pWaitSemaphoreInfos, x.waitSemaphoreInfoCount; own = true), unsafe_wrap(Vector{CommandBufferSubmitInfoKHR}, x.pCommandBufferInfos, x.commandBufferInfoCount; own = true), unsafe_wrap(Vector{SemaphoreSubmitInfoKHR}, x.pSignalSemaphoreInfos, x.signalSemaphoreInfoCount; own = true))
+SubmitInfo2KHR(x::VkSubmitInfo2KHR, next_types::Type...) = SubmitInfo2KHR(load_next_chain(x.pNext, next_types...), x.flags, unsafe_wrap(Vector{SemaphoreSubmitInfoKHR}, x.pWaitSemaphoreInfos, x.waitSemaphoreInfoCount; own = true), unsafe_wrap(Vector{CommandBufferSubmitInfoKHR}, x.pCommandBufferInfos, x.commandBufferInfoCount; own = true), unsafe_wrap(Vector{SemaphoreSubmitInfoKHR}, x.pSignalSemaphoreInfos, x.signalSemaphoreInfoCount; own = true))
 
 """
 
 """
-QueueFamilyCheckpointProperties2NV(x::VkQueueFamilyCheckpointProperties2NV, next_types...) = QueueFamilyCheckpointProperties2NV(load_next_chain(x.pNext, next_types...), x.checkpointExecutionStageMask)
+QueueFamilyCheckpointProperties2NV(x::VkQueueFamilyCheckpointProperties2NV, next_types::Type...) = QueueFamilyCheckpointProperties2NV(load_next_chain(x.pNext, next_types...), x.checkpointExecutionStageMask)
 
 """
 
 """
-CheckpointData2NV(x::VkCheckpointData2NV, next_types...) = CheckpointData2NV(load_next_chain(x.pNext, next_types...), x.stage, x.pCheckpointMarker)
+CheckpointData2NV(x::VkCheckpointData2NV, next_types::Type...) = CheckpointData2NV(load_next_chain(x.pNext, next_types...), x.stage, x.pCheckpointMarker)
 
 """
 
 """
-PhysicalDeviceSynchronization2FeaturesKHR(x::VkPhysicalDeviceSynchronization2FeaturesKHR, next_types...) = PhysicalDeviceSynchronization2FeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.synchronization2))
+PhysicalDeviceSynchronization2FeaturesKHR(x::VkPhysicalDeviceSynchronization2FeaturesKHR, next_types::Type...) = PhysicalDeviceSynchronization2FeaturesKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.synchronization2))
 
 """
 
 """
-PhysicalDeviceInheritedViewportScissorFeaturesNV(x::VkPhysicalDeviceInheritedViewportScissorFeaturesNV, next_types...) = PhysicalDeviceInheritedViewportScissorFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.inheritedViewportScissor2D))
+PhysicalDeviceInheritedViewportScissorFeaturesNV(x::VkPhysicalDeviceInheritedViewportScissorFeaturesNV, next_types::Type...) = PhysicalDeviceInheritedViewportScissorFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.inheritedViewportScissor2D))
 
 """
 
 """
-CommandBufferInheritanceViewportScissorInfoNV(x::VkCommandBufferInheritanceViewportScissorInfoNV, next_types...) = CommandBufferInheritanceViewportScissorInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.viewportScissor2D), x.viewportDepthCount, Viewport(x.pViewportDepths))
+CommandBufferInheritanceViewportScissorInfoNV(x::VkCommandBufferInheritanceViewportScissorInfoNV, next_types::Type...) = CommandBufferInheritanceViewportScissorInfoNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.viewportScissor2D), x.viewportDepthCount, Viewport(x.pViewportDepths))
 
 """
 
 """
-PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(x::VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, next_types...) = PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.ycbcr2plane444Formats))
+PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(x::VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, next_types::Type...) = PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.ycbcr2plane444Formats))
 
 """
 
 """
-PhysicalDeviceProvokingVertexFeaturesEXT(x::VkPhysicalDeviceProvokingVertexFeaturesEXT, next_types...) = PhysicalDeviceProvokingVertexFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.provokingVertexLast), from_vk(Bool, x.transformFeedbackPreservesProvokingVertex))
+PhysicalDeviceProvokingVertexFeaturesEXT(x::VkPhysicalDeviceProvokingVertexFeaturesEXT, next_types::Type...) = PhysicalDeviceProvokingVertexFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.provokingVertexLast), from_vk(Bool, x.transformFeedbackPreservesProvokingVertex))
 
 """
 
 """
-PhysicalDeviceProvokingVertexPropertiesEXT(x::VkPhysicalDeviceProvokingVertexPropertiesEXT, next_types...) = PhysicalDeviceProvokingVertexPropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.provokingVertexModePerPipeline), from_vk(Bool, x.transformFeedbackPreservesTriangleFanProvokingVertex))
+PhysicalDeviceProvokingVertexPropertiesEXT(x::VkPhysicalDeviceProvokingVertexPropertiesEXT, next_types::Type...) = PhysicalDeviceProvokingVertexPropertiesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.provokingVertexModePerPipeline), from_vk(Bool, x.transformFeedbackPreservesTriangleFanProvokingVertex))
 
 """
 
 """
-PipelineRasterizationProvokingVertexStateCreateInfoEXT(x::VkPipelineRasterizationProvokingVertexStateCreateInfoEXT, next_types...) = PipelineRasterizationProvokingVertexStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.provokingVertexMode)
+PipelineRasterizationProvokingVertexStateCreateInfoEXT(x::VkPipelineRasterizationProvokingVertexStateCreateInfoEXT, next_types::Type...) = PipelineRasterizationProvokingVertexStateCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.provokingVertexMode)
 
 """
 
@@ -42039,19 +46411,19 @@ Arguments:
 _cmd_bind_pipeline_shader_group_nv(command_buffer, pipeline_bind_point::PipelineBindPoint, pipeline, group_index::Integer)::Cvoid = @dispatch(device(command_buffer), vkCmdBindPipelineShaderGroupNV(command_buffer, pipeline_bind_point, pipeline, group_index))
 
 """
-    _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, next_types...)::_MemoryRequirements2
+    _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, next_types::Type...)::_MemoryRequirements2
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
 Arguments:
 - `device`
 - `info::_GeneratedCommandsMemoryRequirementsInfoNV`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html)
 
 """
-function _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, next_types...)::_MemoryRequirements2
+function _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, next_types::Type...)::_MemoryRequirements2
     memory_requirements = initialize(_MemoryRequirements2, next_types...)
     pMemoryRequirements = Ref(Base.unsafe_convert(VkMemoryRequirements2, memory_requirements))
     GC.@preserve memory_requirements begin
@@ -42100,16 +46472,16 @@ Arguments:
 _destroy_indirect_commands_layout_nv(device, indirect_commands_layout; allocator = C_NULL)::Cvoid = @dispatch(device, vkDestroyIndirectCommandsLayoutNV(device, indirect_commands_layout, allocator))
 
 """
-    _get_physical_device_features_2(physical_device, next_types...)::_PhysicalDeviceFeatures2
+    _get_physical_device_features_2(physical_device, next_types::Type...)::_PhysicalDeviceFeatures2
 
 Arguments:
 - `physical_device`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures2.html)
 
 """
-function _get_physical_device_features_2(physical_device, next_types...)::_PhysicalDeviceFeatures2
+function _get_physical_device_features_2(physical_device, next_types::Type...)::_PhysicalDeviceFeatures2
     features = initialize(_PhysicalDeviceFeatures2, next_types...)
     pFeatures = Ref(Base.unsafe_convert(VkPhysicalDeviceFeatures2, features))
     GC.@preserve features begin
@@ -42119,16 +46491,16 @@ function _get_physical_device_features_2(physical_device, next_types...)::_Physi
 end
 
 """
-    _get_physical_device_properties_2(physical_device, next_types...)::_PhysicalDeviceProperties2
+    _get_physical_device_properties_2(physical_device, next_types::Type...)::_PhysicalDeviceProperties2
 
 Arguments:
 - `physical_device`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties2.html)
 
 """
-function _get_physical_device_properties_2(physical_device, next_types...)::_PhysicalDeviceProperties2
+function _get_physical_device_properties_2(physical_device, next_types::Type...)::_PhysicalDeviceProperties2
     properties = initialize(_PhysicalDeviceProperties2, next_types...)
     pProperties = Ref(Base.unsafe_convert(VkPhysicalDeviceProperties2, properties))
     GC.@preserve properties begin
@@ -42138,17 +46510,17 @@ function _get_physical_device_properties_2(physical_device, next_types...)::_Phy
 end
 
 """
-    _get_physical_device_format_properties_2(physical_device, format::Format, next_types...)::_FormatProperties2
+    _get_physical_device_format_properties_2(physical_device, format::Format, next_types::Type...)::_FormatProperties2
 
 Arguments:
 - `physical_device`
 - `format::Format`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties2.html)
 
 """
-function _get_physical_device_format_properties_2(physical_device, format::Format, next_types...)::_FormatProperties2
+function _get_physical_device_format_properties_2(physical_device, format::Format, next_types::Type...)::_FormatProperties2
     format_properties = initialize(_FormatProperties2, next_types...)
     pFormatProperties = Ref(Base.unsafe_convert(VkFormatProperties2, format_properties))
     GC.@preserve format_properties begin
@@ -42158,7 +46530,7 @@ function _get_physical_device_format_properties_2(physical_device, format::Forma
 end
 
 """
-    _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, next_types...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
+    _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, next_types::Type...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
 
 Return codes:
 - Error:
@@ -42169,12 +46541,12 @@ Return codes:
 Arguments:
 - `physical_device`
 - `image_format_info::_PhysicalDeviceImageFormatInfo2`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties2.html)
 
 """
-function _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, next_types...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
+function _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, next_types::Type...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
     image_format_properties = initialize(_ImageFormatProperties2, next_types...)
     pImageFormatProperties = Ref(Base.unsafe_convert(VkImageFormatProperties2, image_format_properties))
     GC.@preserve image_format_properties begin
@@ -42201,16 +46573,16 @@ function _get_physical_device_queue_family_properties_2(physical_device)::Vector
 end
 
 """
-    _get_physical_device_memory_properties_2(physical_device, next_types...)::_PhysicalDeviceMemoryProperties2
+    _get_physical_device_memory_properties_2(physical_device, next_types::Type...)::_PhysicalDeviceMemoryProperties2
 
 Arguments:
 - `physical_device`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties2.html)
 
 """
-function _get_physical_device_memory_properties_2(physical_device, next_types...)::_PhysicalDeviceMemoryProperties2
+function _get_physical_device_memory_properties_2(physical_device, next_types::Type...)::_PhysicalDeviceMemoryProperties2
     memory_properties = initialize(_PhysicalDeviceMemoryProperties2, next_types...)
     pMemoryProperties = Ref(Base.unsafe_convert(VkPhysicalDeviceMemoryProperties2, memory_properties))
     GC.@preserve memory_properties begin
@@ -43177,7 +47549,7 @@ function _get_physical_device_multisample_properties_ext(physical_device, sample
 end
 
 """
-    _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, next_types...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
+    _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, next_types::Type...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
 
 Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
 
@@ -43190,12 +47562,12 @@ Return codes:
 Arguments:
 - `physical_device`
 - `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html)
 
 """
-function _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, next_types...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
+function _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, next_types::Type...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
     surface_capabilities = initialize(_SurfaceCapabilities2KHR, next_types...)
     pSurfaceCapabilities = Ref(Base.unsafe_convert(VkSurfaceCapabilities2KHR, surface_capabilities))
     GC.@preserve surface_capabilities begin
@@ -43335,17 +47707,17 @@ function _get_display_plane_capabilities_2_khr(physical_device, display_plane_in
 end
 
 """
-    _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, next_types...)::_MemoryRequirements2
+    _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, next_types::Type...)::_MemoryRequirements2
 
 Arguments:
 - `device`
 - `info::_BufferMemoryRequirementsInfo2`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements2.html)
 
 """
-function _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, next_types...)::_MemoryRequirements2
+function _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, next_types::Type...)::_MemoryRequirements2
     memory_requirements = initialize(_MemoryRequirements2, next_types...)
     pMemoryRequirements = Ref(Base.unsafe_convert(VkMemoryRequirements2, memory_requirements))
     GC.@preserve memory_requirements begin
@@ -43355,17 +47727,17 @@ function _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequiremen
 end
 
 """
-    _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, next_types...)::_MemoryRequirements2
+    _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, next_types::Type...)::_MemoryRequirements2
 
 Arguments:
 - `device`
 - `info::_ImageMemoryRequirementsInfo2`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements2.html)
 
 """
-function _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, next_types...)::_MemoryRequirements2
+function _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, next_types::Type...)::_MemoryRequirements2
     memory_requirements = initialize(_MemoryRequirements2, next_types...)
     pMemoryRequirements = Ref(Base.unsafe_convert(VkMemoryRequirements2, memory_requirements))
     GC.@preserve memory_requirements begin
@@ -43535,17 +47907,17 @@ Arguments:
 _merge_validation_caches_ext(device, dst_cache, src_caches::AbstractArray)::ResultTypes.Result{Result, VulkanError} = @check(@dispatch(device, vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches)))
 
 """
-    _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, next_types...)::_DescriptorSetLayoutSupport
+    _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, next_types::Type...)::_DescriptorSetLayoutSupport
 
 Arguments:
 - `device`
 - `create_info::_DescriptorSetLayoutCreateInfo`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDescriptorSetLayoutSupport.html)
 
 """
-function _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, next_types...)::_DescriptorSetLayoutSupport
+function _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, next_types::Type...)::_DescriptorSetLayoutSupport
     support = initialize(_DescriptorSetLayoutSupport, next_types...)
     pSupport = Ref(Base.unsafe_convert(VkDescriptorSetLayoutSupport, support))
     GC.@preserve support begin
@@ -49608,7 +53980,7 @@ Arguments:
 _cmd_bind_pipeline_shader_group_nv(command_buffer, pipeline_bind_point::PipelineBindPoint, pipeline, group_index::Integer, fptr::FunctionPtr)::Cvoid = vkCmdBindPipelineShaderGroupNV(command_buffer, pipeline_bind_point, pipeline, group_index, fptr)
 
 """
-    _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, fptr::FunctionPtr, next_types...)::_MemoryRequirements2
+    _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, fptr::FunctionPtr, next_types::Type...)::_MemoryRequirements2
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
@@ -49616,12 +53988,12 @@ Arguments:
 - `device`
 - `info::_GeneratedCommandsMemoryRequirementsInfoNV`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html)
 
 """
-function _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, fptr::FunctionPtr, next_types...)::_MemoryRequirements2
+function _get_generated_commands_memory_requirements_nv(device, info::_GeneratedCommandsMemoryRequirementsInfoNV, fptr::FunctionPtr, next_types::Type...)::_MemoryRequirements2
     memory_requirements = initialize(_MemoryRequirements2, next_types...)
     pMemoryRequirements = Ref(Base.unsafe_convert(VkMemoryRequirements2, memory_requirements))
     GC.@preserve memory_requirements begin
@@ -49673,17 +54045,17 @@ Arguments:
 _destroy_indirect_commands_layout_nv(device, indirect_commands_layout, fptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyIndirectCommandsLayoutNV(device, indirect_commands_layout, allocator, fptr)
 
 """
-    _get_physical_device_features_2(physical_device, fptr::FunctionPtr, next_types...)::_PhysicalDeviceFeatures2
+    _get_physical_device_features_2(physical_device, fptr::FunctionPtr, next_types::Type...)::_PhysicalDeviceFeatures2
 
 Arguments:
 - `physical_device`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFeatures2.html)
 
 """
-function _get_physical_device_features_2(physical_device, fptr::FunctionPtr, next_types...)::_PhysicalDeviceFeatures2
+function _get_physical_device_features_2(physical_device, fptr::FunctionPtr, next_types::Type...)::_PhysicalDeviceFeatures2
     features = initialize(_PhysicalDeviceFeatures2, next_types...)
     pFeatures = Ref(Base.unsafe_convert(VkPhysicalDeviceFeatures2, features))
     GC.@preserve features begin
@@ -49693,17 +54065,17 @@ function _get_physical_device_features_2(physical_device, fptr::FunctionPtr, nex
 end
 
 """
-    _get_physical_device_properties_2(physical_device, fptr::FunctionPtr, next_types...)::_PhysicalDeviceProperties2
+    _get_physical_device_properties_2(physical_device, fptr::FunctionPtr, next_types::Type...)::_PhysicalDeviceProperties2
 
 Arguments:
 - `physical_device`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceProperties2.html)
 
 """
-function _get_physical_device_properties_2(physical_device, fptr::FunctionPtr, next_types...)::_PhysicalDeviceProperties2
+function _get_physical_device_properties_2(physical_device, fptr::FunctionPtr, next_types::Type...)::_PhysicalDeviceProperties2
     properties = initialize(_PhysicalDeviceProperties2, next_types...)
     pProperties = Ref(Base.unsafe_convert(VkPhysicalDeviceProperties2, properties))
     GC.@preserve properties begin
@@ -49713,18 +54085,18 @@ function _get_physical_device_properties_2(physical_device, fptr::FunctionPtr, n
 end
 
 """
-    _get_physical_device_format_properties_2(physical_device, format::Format, fptr::FunctionPtr, next_types...)::_FormatProperties2
+    _get_physical_device_format_properties_2(physical_device, format::Format, fptr::FunctionPtr, next_types::Type...)::_FormatProperties2
 
 Arguments:
 - `physical_device`
 - `format::Format`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceFormatProperties2.html)
 
 """
-function _get_physical_device_format_properties_2(physical_device, format::Format, fptr::FunctionPtr, next_types...)::_FormatProperties2
+function _get_physical_device_format_properties_2(physical_device, format::Format, fptr::FunctionPtr, next_types::Type...)::_FormatProperties2
     format_properties = initialize(_FormatProperties2, next_types...)
     pFormatProperties = Ref(Base.unsafe_convert(VkFormatProperties2, format_properties))
     GC.@preserve format_properties begin
@@ -49734,7 +54106,7 @@ function _get_physical_device_format_properties_2(physical_device, format::Forma
 end
 
 """
-    _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, fptr::FunctionPtr, next_types...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
+    _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, fptr::FunctionPtr, next_types::Type...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
 
 Return codes:
 - Error:
@@ -49746,12 +54118,12 @@ Arguments:
 - `physical_device`
 - `image_format_info::_PhysicalDeviceImageFormatInfo2`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceImageFormatProperties2.html)
 
 """
-function _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, fptr::FunctionPtr, next_types...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
+function _get_physical_device_image_format_properties_2(physical_device, image_format_info::_PhysicalDeviceImageFormatInfo2, fptr::FunctionPtr, next_types::Type...)::ResultTypes.Result{_ImageFormatProperties2, VulkanError}
     image_format_properties = initialize(_ImageFormatProperties2, next_types...)
     pImageFormatProperties = Ref(Base.unsafe_convert(VkImageFormatProperties2, image_format_properties))
     GC.@preserve image_format_properties begin
@@ -49779,17 +54151,17 @@ function _get_physical_device_queue_family_properties_2(physical_device, fptr::F
 end
 
 """
-    _get_physical_device_memory_properties_2(physical_device, fptr::FunctionPtr, next_types...)::_PhysicalDeviceMemoryProperties2
+    _get_physical_device_memory_properties_2(physical_device, fptr::FunctionPtr, next_types::Type...)::_PhysicalDeviceMemoryProperties2
 
 Arguments:
 - `physical_device`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceMemoryProperties2.html)
 
 """
-function _get_physical_device_memory_properties_2(physical_device, fptr::FunctionPtr, next_types...)::_PhysicalDeviceMemoryProperties2
+function _get_physical_device_memory_properties_2(physical_device, fptr::FunctionPtr, next_types::Type...)::_PhysicalDeviceMemoryProperties2
     memory_properties = initialize(_PhysicalDeviceMemoryProperties2, next_types...)
     pMemoryProperties = Ref(Base.unsafe_convert(VkPhysicalDeviceMemoryProperties2, memory_properties))
     GC.@preserve memory_properties begin
@@ -50805,7 +55177,7 @@ function _get_physical_device_multisample_properties_ext(physical_device, sample
 end
 
 """
-    _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr, next_types...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
+    _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr, next_types::Type...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
 
 Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
 
@@ -50819,12 +55191,12 @@ Arguments:
 - `physical_device`
 - `surface_info::_PhysicalDeviceSurfaceInfo2KHR`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html)
 
 """
-function _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr, next_types...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
+function _get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::_PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr, next_types::Type...)::ResultTypes.Result{_SurfaceCapabilities2KHR, VulkanError}
     surface_capabilities = initialize(_SurfaceCapabilities2KHR, next_types...)
     pSurfaceCapabilities = Ref(Base.unsafe_convert(VkSurfaceCapabilities2KHR, surface_capabilities))
     GC.@preserve surface_capabilities begin
@@ -50969,18 +55341,18 @@ function _get_display_plane_capabilities_2_khr(physical_device, display_plane_in
 end
 
 """
-    _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, fptr::FunctionPtr, next_types...)::_MemoryRequirements2
+    _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, fptr::FunctionPtr, next_types::Type...)::_MemoryRequirements2
 
 Arguments:
 - `device`
 - `info::_BufferMemoryRequirementsInfo2`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetBufferMemoryRequirements2.html)
 
 """
-function _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, fptr::FunctionPtr, next_types...)::_MemoryRequirements2
+function _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequirementsInfo2, fptr::FunctionPtr, next_types::Type...)::_MemoryRequirements2
     memory_requirements = initialize(_MemoryRequirements2, next_types...)
     pMemoryRequirements = Ref(Base.unsafe_convert(VkMemoryRequirements2, memory_requirements))
     GC.@preserve memory_requirements begin
@@ -50990,18 +55362,18 @@ function _get_buffer_memory_requirements_2(device, info::_BufferMemoryRequiremen
 end
 
 """
-    _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, fptr::FunctionPtr, next_types...)::_MemoryRequirements2
+    _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, fptr::FunctionPtr, next_types::Type...)::_MemoryRequirements2
 
 Arguments:
 - `device`
 - `info::_ImageMemoryRequirementsInfo2`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetImageMemoryRequirements2.html)
 
 """
-function _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, fptr::FunctionPtr, next_types...)::_MemoryRequirements2
+function _get_image_memory_requirements_2(device, info::_ImageMemoryRequirementsInfo2, fptr::FunctionPtr, next_types::Type...)::_MemoryRequirements2
     memory_requirements = initialize(_MemoryRequirements2, next_types...)
     pMemoryRequirements = Ref(Base.unsafe_convert(VkMemoryRequirements2, memory_requirements))
     GC.@preserve memory_requirements begin
@@ -51181,18 +55553,18 @@ Arguments:
 _merge_validation_caches_ext(device, dst_cache, src_caches::AbstractArray, fptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergeValidationCachesEXT(device, dst_cache, pointer_length(src_caches), src_caches, fptr))
 
 """
-    _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, fptr::FunctionPtr, next_types...)::_DescriptorSetLayoutSupport
+    _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, fptr::FunctionPtr, next_types::Type...)::_DescriptorSetLayoutSupport
 
 Arguments:
 - `device`
 - `create_info::_DescriptorSetLayoutCreateInfo`
 - `fptr::FunctionPtr`
-- `next_types...`
+- `next_types::Type...`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetDescriptorSetLayoutSupport.html)
 
 """
-function _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, fptr::FunctionPtr, next_types...)::_DescriptorSetLayoutSupport
+function _get_descriptor_set_layout_support(device, create_info::_DescriptorSetLayoutCreateInfo, fptr::FunctionPtr, next_types::Type...)::_DescriptorSetLayoutSupport
     support = initialize(_DescriptorSetLayoutSupport, next_types...)
     pSupport = Ref(Base.unsafe_convert(VkDescriptorSetLayoutSupport, support))
     GC.@preserve support begin
@@ -55398,7 +59770,7 @@ end
 """
 
 """
-function get_generated_commands_memory_requirements_nv(device, info::GeneratedCommandsMemoryRequirementsInfoNV, next_types...)
+function get_generated_commands_memory_requirements_nv(device, info::GeneratedCommandsMemoryRequirementsInfoNV, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     MemoryRequirements2(_get_generated_commands_memory_requirements_nv(device, convert(_GeneratedCommandsMemoryRequirementsInfoNV, info), next_types...), next_types_hl...)
@@ -55422,7 +59794,7 @@ end
 """
 
 """
-function get_physical_device_features_2(physical_device, next_types...)
+function get_physical_device_features_2(physical_device, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     PhysicalDeviceFeatures2(_get_physical_device_features_2(physical_device, next_types...), next_types_hl...)
@@ -55431,7 +59803,7 @@ end
 """
 
 """
-function get_physical_device_properties_2(physical_device, next_types...)
+function get_physical_device_properties_2(physical_device, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     PhysicalDeviceProperties2(_get_physical_device_properties_2(physical_device, next_types...), next_types_hl...)
@@ -55440,7 +59812,7 @@ end
 """
 
 """
-function get_physical_device_format_properties_2(physical_device, format::Format, next_types...)
+function get_physical_device_format_properties_2(physical_device, format::Format, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     FormatProperties2(_get_physical_device_format_properties_2(physical_device, format, next_types...), next_types_hl...)
@@ -55449,7 +59821,7 @@ end
 """
 
 """
-function get_physical_device_image_format_properties_2(physical_device, image_format_info::PhysicalDeviceImageFormatInfo2, next_types...)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
+function get_physical_device_image_format_properties_2(physical_device, image_format_info::PhysicalDeviceImageFormatInfo2, next_types::Type...)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     val = @propagate_errors(_get_physical_device_image_format_properties_2(physical_device, convert(_PhysicalDeviceImageFormatInfo2, image_format_info), next_types...))
@@ -55466,7 +59838,7 @@ end
 """
 
 """
-function get_physical_device_memory_properties_2(physical_device, next_types...)
+function get_physical_device_memory_properties_2(physical_device, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     PhysicalDeviceMemoryProperties2(_get_physical_device_memory_properties_2(physical_device, next_types...), next_types_hl...)
@@ -55842,7 +60214,7 @@ end
 """
 
 """
-function get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::PhysicalDeviceSurfaceInfo2KHR, next_types...)::ResultTypes.Result{SurfaceCapabilities2KHR, VulkanError}
+function get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::PhysicalDeviceSurfaceInfo2KHR, next_types::Type...)::ResultTypes.Result{SurfaceCapabilities2KHR, VulkanError}
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     val = @propagate_errors(_get_physical_device_surface_capabilities_2_khr(physical_device, convert(_PhysicalDeviceSurfaceInfo2KHR, surface_info), next_types...))
@@ -55892,7 +60264,7 @@ end
 """
 
 """
-function get_buffer_memory_requirements_2(device, info::BufferMemoryRequirementsInfo2, next_types...)
+function get_buffer_memory_requirements_2(device, info::BufferMemoryRequirementsInfo2, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     MemoryRequirements2(_get_buffer_memory_requirements_2(device, convert(_BufferMemoryRequirementsInfo2, info), next_types...), next_types_hl...)
@@ -55901,7 +60273,7 @@ end
 """
 
 """
-function get_image_memory_requirements_2(device, info::ImageMemoryRequirementsInfo2, next_types...)
+function get_image_memory_requirements_2(device, info::ImageMemoryRequirementsInfo2, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     MemoryRequirements2(_get_image_memory_requirements_2(device, convert(_ImageMemoryRequirementsInfo2, info), next_types...), next_types_hl...)
@@ -55970,7 +60342,7 @@ end
 """
 
 """
-function get_descriptor_set_layout_support(device, create_info::DescriptorSetLayoutCreateInfo, next_types...)
+function get_descriptor_set_layout_support(device, create_info::DescriptorSetLayoutCreateInfo, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     DescriptorSetLayoutSupport(_get_descriptor_set_layout_support(device, convert(_DescriptorSetLayoutCreateInfo, create_info), next_types...), next_types_hl...)
@@ -58386,7 +62758,7 @@ end
 """
 
 """
-function get_generated_commands_memory_requirements_nv(device, info::GeneratedCommandsMemoryRequirementsInfoNV, fptr::FunctionPtr, next_types...)
+function get_generated_commands_memory_requirements_nv(device, info::GeneratedCommandsMemoryRequirementsInfoNV, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     MemoryRequirements2(_get_generated_commands_memory_requirements_nv(device, convert(_GeneratedCommandsMemoryRequirementsInfoNV, info), fptr, next_types...), next_types_hl...)
@@ -58410,7 +62782,7 @@ end
 """
 
 """
-function get_physical_device_features_2(physical_device, fptr::FunctionPtr, next_types...)
+function get_physical_device_features_2(physical_device, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     PhysicalDeviceFeatures2(_get_physical_device_features_2(physical_device, fptr, next_types...), next_types_hl...)
@@ -58419,7 +62791,7 @@ end
 """
 
 """
-function get_physical_device_properties_2(physical_device, fptr::FunctionPtr, next_types...)
+function get_physical_device_properties_2(physical_device, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     PhysicalDeviceProperties2(_get_physical_device_properties_2(physical_device, fptr, next_types...), next_types_hl...)
@@ -58428,7 +62800,7 @@ end
 """
 
 """
-function get_physical_device_format_properties_2(physical_device, format::Format, fptr::FunctionPtr, next_types...)
+function get_physical_device_format_properties_2(physical_device, format::Format, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     FormatProperties2(_get_physical_device_format_properties_2(physical_device, format, fptr, next_types...), next_types_hl...)
@@ -58437,7 +62809,7 @@ end
 """
 
 """
-function get_physical_device_image_format_properties_2(physical_device, image_format_info::PhysicalDeviceImageFormatInfo2, fptr::FunctionPtr, next_types...)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
+function get_physical_device_image_format_properties_2(physical_device, image_format_info::PhysicalDeviceImageFormatInfo2, fptr::FunctionPtr, next_types::Type...)::ResultTypes.Result{ImageFormatProperties2, VulkanError}
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     val = @propagate_errors(_get_physical_device_image_format_properties_2(physical_device, convert(_PhysicalDeviceImageFormatInfo2, image_format_info), fptr, next_types...))
@@ -58454,7 +62826,7 @@ end
 """
 
 """
-function get_physical_device_memory_properties_2(physical_device, fptr::FunctionPtr, next_types...)
+function get_physical_device_memory_properties_2(physical_device, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     PhysicalDeviceMemoryProperties2(_get_physical_device_memory_properties_2(physical_device, fptr, next_types...), next_types_hl...)
@@ -58830,7 +63202,7 @@ end
 """
 
 """
-function get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr, next_types...)::ResultTypes.Result{SurfaceCapabilities2KHR, VulkanError}
+function get_physical_device_surface_capabilities_2_khr(physical_device, surface_info::PhysicalDeviceSurfaceInfo2KHR, fptr::FunctionPtr, next_types::Type...)::ResultTypes.Result{SurfaceCapabilities2KHR, VulkanError}
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     val = @propagate_errors(_get_physical_device_surface_capabilities_2_khr(physical_device, convert(_PhysicalDeviceSurfaceInfo2KHR, surface_info), fptr, next_types...))
@@ -58880,7 +63252,7 @@ end
 """
 
 """
-function get_buffer_memory_requirements_2(device, info::BufferMemoryRequirementsInfo2, fptr::FunctionPtr, next_types...)
+function get_buffer_memory_requirements_2(device, info::BufferMemoryRequirementsInfo2, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     MemoryRequirements2(_get_buffer_memory_requirements_2(device, convert(_BufferMemoryRequirementsInfo2, info), fptr, next_types...), next_types_hl...)
@@ -58889,7 +63261,7 @@ end
 """
 
 """
-function get_image_memory_requirements_2(device, info::ImageMemoryRequirementsInfo2, fptr::FunctionPtr, next_types...)
+function get_image_memory_requirements_2(device, info::ImageMemoryRequirementsInfo2, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     MemoryRequirements2(_get_image_memory_requirements_2(device, convert(_ImageMemoryRequirementsInfo2, info), fptr, next_types...), next_types_hl...)
@@ -58958,7 +63330,7 @@ end
 """
 
 """
-function get_descriptor_set_layout_support(device, create_info::DescriptorSetLayoutCreateInfo, fptr::FunctionPtr, next_types...)
+function get_descriptor_set_layout_support(device, create_info::DescriptorSetLayoutCreateInfo, fptr::FunctionPtr, next_types::Type...)
     next_types_hl = next_types
     next_types = intermediate_type.(next_types)
     DescriptorSetLayoutSupport(_get_descriptor_set_layout_support(device, convert(_DescriptorSetLayoutCreateInfo, create_info), fptr, next_types...), next_types_hl...)

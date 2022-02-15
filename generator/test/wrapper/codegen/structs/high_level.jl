@@ -96,7 +96,7 @@
             def = StructDefinition{true}(struct_by_name(name))
             cons = Constructor(def, spec)
             expected = :($(VulkanGen.struct_name(name, true))(x::$name) = $body)
-            with_next_types && push!(expected.args[1].args, :(next_types...))
+            with_next_types && push!(expected.args[1].args, :(next_types::Type...))
             test_ex(cons, expected)
         end
 
@@ -126,6 +126,25 @@
 
         test_constructor_core_to_hl(:VkAccelerationStructureVersionInfoKHR, true, :(
             AccelerationStructureVersionInfoKHR(load_next_chain(x.pNext, next_types...), unsafe_wrap(Vector{UInt8}, x.pVersionData, 2VK_UUID_SIZE; own = true))
+        ))
+    end
+
+    @testset "`Low-level -> High-level constructors`" begin
+        function test_constructor_ll_to_hl(name, ex)
+            s = struct_by_name(name)
+            def_hl = StructDefinition{true}(s)
+            def_ll = StructDefinition{false}(s)
+            c = Constructor(def_hl, def_ll)
+            test_ex(c, ex)
+        end
+        test_constructor_ll_to_hl(:VkPhysicalDeviceFeatures2, :(
+            function PhysicalDeviceFeatures2(x::_PhysicalDeviceFeatures2, next_types::Type...)
+                (; deps) = x
+                GC.@preserve deps PhysicalDeviceFeatures2(x.vks, next_types...)
+            end
+        ))
+        test_constructor_ll_to_hl(:VkPhysicalDeviceFeatures, :(
+            PhysicalDeviceFeatures(x::_PhysicalDeviceFeatures) = PhysicalDeviceFeatures(x.vks)
         ))
     end
 end
