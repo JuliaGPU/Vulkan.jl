@@ -112,7 +112,7 @@ end
         @test props.next isa PhysicalDeviceProtectedMemoryProperties
         @test props.next.next isa PhysicalDeviceProvokingVertexPropertiesEXT
         props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Properties)
-        @test props.properties.api_version ≥ v"1.2"
+        @test props.properties.api_version ≥ v"1.1"
     end
 end
 
