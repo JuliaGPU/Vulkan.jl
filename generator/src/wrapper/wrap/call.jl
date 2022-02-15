@@ -84,6 +84,7 @@ function vk_call(x::Spec)
             end => var # conversions are already defined
             if x.type in [spec_structs.name; spec_unions.name] && jtype == struct_name(x.type)
             end => :($var.vks)
+            :(NTuple{Int($_N),$_T}) => var
             _ => :(to_vk($(x.type), $var)) # fall back to the to_vk function for conversion
         end
     end

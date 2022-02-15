@@ -13,6 +13,7 @@ julia> to_vk(NTuple{6, UInt8}, "hello")
 function to_vk end
 
 to_vk(T, x) = T(x)
+to_vk(::Type{T}, x::T) where {T} = x
 to_vk(::Type, x::VulkanStruct) = x.vks
 to_vk(T::Type{<:NTuple}, x) = to_vk.(eltype(T), x)
 to_vk(T::Type{UInt32}, version::VersionNumber) = VK_MAKE_VERSION(version.major, version.minor, version.patch)
@@ -44,6 +45,7 @@ from_vk(T::Type{VersionNumber}, version::UInt32) = T(VK_VERSION_MAJOR(version), 
 
 function from_vk(T::Type{S}, str::NTuple{N}) where {N,S <: AbstractString}
     nullchar = findfirst(iszero, str)
+    nullchar == 1 && return ""
     if !isnothing(nullchar)
         str = str[1:nullchar - 1]
     end

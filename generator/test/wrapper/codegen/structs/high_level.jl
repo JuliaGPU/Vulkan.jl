@@ -8,7 +8,7 @@
                 device_id::UInt32
                 device_type::PhysicalDeviceType
                 device_name::String
-                pipeline_cache_uuid::String
+                pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}
                 limits::PhysicalDeviceLimits
                 sparse_properties::PhysicalDeviceSparseProperties
             end

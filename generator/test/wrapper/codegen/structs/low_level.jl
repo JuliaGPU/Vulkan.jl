@@ -49,6 +49,12 @@
     end
 
     @testset "Friendly constructors" begin
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkPhysicalDeviceProperties)), :(
+            function _PhysicalDeviceProperties(api_version::VersionNumber, driver_version::VersionNumber, vendor_id::Integer, device_id::Integer, device_type::PhysicalDeviceType, device_name::AbstractString, pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, limits::_PhysicalDeviceLimits, sparse_properties::_PhysicalDeviceSparseProperties)
+                _PhysicalDeviceProperties(VkPhysicalDeviceProperties(to_vk(UInt32, api_version), to_vk(UInt32, driver_version), vendor_id, device_id, device_type, device_name, pipeline_cache_uuid, limits.vks, sparse_properties.vks))
+            end
+        ))
+
         test(Constructor, StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo)), :(
             function _InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)

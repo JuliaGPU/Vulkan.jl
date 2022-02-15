@@ -15,7 +15,7 @@ function hl_type(type)
         :Cstring => :String
         :VkBool32 => :Bool
         GuardBy(is_opaque_pointer) => t
-        :(NTuple{$N,UInt8}) => :String
+        :(NTuple{$_,Char}) => :String
         :(NTuple{$N,$T}) => begin
             _N = @match N begin
                 ::Symbol => :(Int($N))
@@ -42,7 +42,7 @@ function idiomatic_julia_type(type)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
         GuardBy(is_opaque_pointer) => t
-        :(NTuple{$N,UInt8}) => :String
+        :(NTuple{$_,Char}) => :String
         :(NTuple{$N,$T}) => begin
             _N = @match N begin
                 ::Symbol => :(Int($N))

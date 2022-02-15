@@ -36,7 +36,7 @@ end
 struct SpecCapabilitySPIRV
     "Name of the SPIR-V capability."
     name::Symbol
-    "Core version of the Vulkan API in which the extension was promoted, if promoted."
+    "Core version of the Vulkan API in which the SPIR-V capability was promoted, if promoted."
     promoted_to::Optional{VersionNumber}
     "Vulkan extensions that implicitly enable the SPIR-V capability."
     enabling_extensions::Vector{String}

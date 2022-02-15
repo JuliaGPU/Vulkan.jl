@@ -7773,9 +7773,9 @@ High-level wrapper for VkPhysicalDeviceIDProperties.
 """
 @auto_hash_equals struct PhysicalDeviceIDProperties <: HighLevelStruct
         next::Any
-        device_uuid::String
-        driver_uuid::String
-        device_luid::String
+        device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}
+        driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}
+        device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}
         device_node_mask::UInt32
         device_luid_valid::Bool
     end
@@ -18772,7 +18772,7 @@ Extension: VK\\_KHR\\_performance\\_query
         unit::PerformanceCounterUnitKHR
         scope::PerformanceCounterScopeKHR
         storage::PerformanceCounterStorageKHR
-        uuid::String
+        uuid::NTuple{Int(VK_UUID_SIZE), UInt8}
     end
 
 """
@@ -19223,9 +19223,9 @@ High-level wrapper for VkPhysicalDeviceVulkan11Properties.
 """
 @auto_hash_equals struct PhysicalDeviceVulkan11Properties <: HighLevelStruct
         next::Any
-        device_uuid::String
-        driver_uuid::String
-        device_luid::String
+        device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}
+        driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}
+        device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}
         device_node_mask::UInt32
         device_luid_valid::Bool
         subgroup_size::UInt32
@@ -19780,7 +19780,7 @@ High-level wrapper for VkPhysicalDeviceProperties.
         device_id::UInt32
         device_type::PhysicalDeviceType
         device_name::String
-        pipeline_cache_uuid::String
+        pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}
         limits::PhysicalDeviceLimits
         sparse_properties::PhysicalDeviceSparseProperties
     end
@@ -21570,7 +21570,7 @@ end
 """
 
 """
-function _PhysicalDeviceProperties(api_version::VersionNumber, driver_version::VersionNumber, vendor_id::Integer, device_id::Integer, device_type::PhysicalDeviceType, device_name::AbstractString, pipeline_cache_uuid::AbstractString, limits::_PhysicalDeviceLimits, sparse_properties::_PhysicalDeviceSparseProperties)
+function _PhysicalDeviceProperties(api_version::VersionNumber, driver_version::VersionNumber, vendor_id::Integer, device_id::Integer, device_type::PhysicalDeviceType, device_name::AbstractString, pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, limits::_PhysicalDeviceLimits, sparse_properties::_PhysicalDeviceSparseProperties)
     _PhysicalDeviceProperties(VkPhysicalDeviceProperties(to_vk(UInt32, api_version), to_vk(UInt32, driver_version), vendor_id, device_id, device_type, device_name, pipeline_cache_uuid, limits.vks, sparse_properties.vks))
 end
 
@@ -21659,7 +21659,7 @@ end
 
 """
 function _PhysicalDeviceMemoryProperties(memory_type_count::Integer, memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, memory_heap_count::Integer, memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap})
-    _PhysicalDeviceMemoryProperties(VkPhysicalDeviceMemoryProperties(memory_type_count, to_vk(NTuple{VK_MAX_MEMORY_TYPES, VkMemoryType}, memory_types), memory_heap_count, to_vk(NTuple{VK_MAX_MEMORY_HEAPS, VkMemoryHeap}, memory_heaps)))
+    _PhysicalDeviceMemoryProperties(VkPhysicalDeviceMemoryProperties(memory_type_count, memory_types, memory_heap_count, memory_heaps))
 end
 
 """
@@ -23104,7 +23104,7 @@ end
 """
 
 """
-function _PhysicalDeviceIDProperties(device_uuid::AbstractString, driver_uuid::AbstractString, device_luid::AbstractString, device_node_mask::Integer, device_luid_valid::Bool; next = C_NULL)
+function _PhysicalDeviceIDProperties(device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}, device_node_mask::Integer, device_luid_valid::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
     vks = VkPhysicalDeviceIDProperties(structure_type(VkPhysicalDeviceIDProperties), unsafe_convert(Ptr{Cvoid}, next), device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid)
@@ -23360,7 +23360,7 @@ end
 function _PhysicalDeviceGroupProperties(physical_device_count::Integer, physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceGroupProperties(structure_type(VkPhysicalDeviceGroupProperties), unsafe_convert(Ptr{Cvoid}, next), physical_device_count, to_vk(NTuple{VK_MAX_DEVICE_GROUP_SIZE, VkPhysicalDevice}, physical_devices), subset_allocation)
+    vks = VkPhysicalDeviceGroupProperties(structure_type(VkPhysicalDeviceGroupProperties), unsafe_convert(Ptr{Cvoid}, next), physical_device_count, physical_devices, subset_allocation)
     _PhysicalDeviceGroupProperties(vks, deps)
 end
 
@@ -23467,7 +23467,7 @@ end
 function _DeviceGroupPresentCapabilitiesKHR(present_mask::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), UInt32}, modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceGroupPresentCapabilitiesKHR(structure_type(VkDeviceGroupPresentCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), to_vk(NTuple{VK_MAX_DEVICE_GROUP_SIZE, UInt32}, present_mask), modes)
+    vks = VkDeviceGroupPresentCapabilitiesKHR(structure_type(VkDeviceGroupPresentCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), present_mask, modes)
     _DeviceGroupPresentCapabilitiesKHR(vks, deps)
 end
 
@@ -25510,7 +25510,7 @@ end
 function _PhysicalDeviceMemoryBudgetPropertiesEXT(heap_budget::NTuple{Int(VK_MAX_MEMORY_HEAPS), UInt64}, heap_usage::NTuple{Int(VK_MAX_MEMORY_HEAPS), UInt64}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMemoryBudgetPropertiesEXT(structure_type(VkPhysicalDeviceMemoryBudgetPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), to_vk(NTuple{VK_MAX_MEMORY_HEAPS, VkDeviceSize}, heap_budget), to_vk(NTuple{VK_MAX_MEMORY_HEAPS, VkDeviceSize}, heap_usage))
+    vks = VkPhysicalDeviceMemoryBudgetPropertiesEXT(structure_type(VkPhysicalDeviceMemoryBudgetPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), heap_budget, heap_usage)
     _PhysicalDeviceMemoryBudgetPropertiesEXT(vks, deps)
 end
 
@@ -25759,7 +25759,7 @@ end
 """
 
 """
-function _PerformanceCounterKHR(unit::PerformanceCounterUnitKHR, scope::PerformanceCounterScopeKHR, storage::PerformanceCounterStorageKHR, uuid::AbstractString; next = C_NULL)
+function _PerformanceCounterKHR(unit::PerformanceCounterUnitKHR, scope::PerformanceCounterScopeKHR, storage::PerformanceCounterStorageKHR, uuid::NTuple{Int(VK_UUID_SIZE), UInt8}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
     vks = VkPerformanceCounterKHR(structure_type(VkPerformanceCounterKHR), unsafe_convert(Ptr{Cvoid}, next), unit, scope, storage, uuid)
@@ -26199,7 +26199,7 @@ end
 """
 
 """
-function _PhysicalDeviceVulkan11Properties(device_uuid::AbstractString, driver_uuid::AbstractString, device_luid::AbstractString, device_node_mask::Integer, device_luid_valid::Bool, subgroup_size::Integer, subgroup_supported_stages::ShaderStageFlag, subgroup_supported_operations::SubgroupFeatureFlag, subgroup_quad_operations_in_all_stages::Bool, point_clipping_behavior::PointClippingBehavior, max_multiview_view_count::Integer, max_multiview_instance_index::Integer, protected_no_fault::Bool, max_per_set_descriptors::Integer, max_memory_allocation_size::Integer; next = C_NULL)
+function _PhysicalDeviceVulkan11Properties(device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}, device_node_mask::Integer, device_luid_valid::Bool, subgroup_size::Integer, subgroup_supported_stages::ShaderStageFlag, subgroup_supported_operations::SubgroupFeatureFlag, subgroup_quad_operations_in_all_stages::Bool, point_clipping_behavior::PointClippingBehavior, max_multiview_view_count::Integer, max_multiview_instance_index::Integer, protected_no_fault::Bool, max_per_set_descriptors::Integer, max_memory_allocation_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
     vks = VkPhysicalDeviceVulkan11Properties(structure_type(VkPhysicalDeviceVulkan11Properties), unsafe_convert(Ptr{Cvoid}, next), device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid, subgroup_size, subgroup_supported_stages, subgroup_supported_operations, subgroup_quad_operations_in_all_stages, point_clipping_behavior, max_multiview_view_count, max_multiview_instance_index, protected_no_fault, max_per_set_descriptors, max_memory_allocation_size)
@@ -27658,7 +27658,7 @@ ExternalBufferProperties(external_memory_properties::ExternalMemoryProperties; n
 """
 
 """
-PhysicalDeviceIDProperties(device_uuid::AbstractString, driver_uuid::AbstractString, device_luid::AbstractString, device_node_mask::Integer, device_luid_valid::Bool; next = C_NULL) = PhysicalDeviceIDProperties(next, device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid)
+PhysicalDeviceIDProperties(device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}, device_node_mask::Integer, device_luid_valid::Bool; next = C_NULL) = PhysicalDeviceIDProperties(next, device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid)
 
 """
 
@@ -28868,7 +28868,7 @@ PhysicalDevicePerformanceQueryPropertiesKHR(allow_command_buffer_query_copies::B
 """
 
 """
-PerformanceCounterKHR(unit::PerformanceCounterUnitKHR, scope::PerformanceCounterScopeKHR, storage::PerformanceCounterStorageKHR, uuid::AbstractString; next = C_NULL) = PerformanceCounterKHR(next, unit, scope, storage, uuid)
+PerformanceCounterKHR(unit::PerformanceCounterUnitKHR, scope::PerformanceCounterScopeKHR, storage::PerformanceCounterStorageKHR, uuid::NTuple{Int(VK_UUID_SIZE), UInt8}; next = C_NULL) = PerformanceCounterKHR(next, unit, scope, storage, uuid)
 
 """
 
@@ -29083,7 +29083,7 @@ PhysicalDeviceVulkan11Features(storage_buffer_16_bit_access::Bool, uniform_and_s
 """
 
 """
-PhysicalDeviceVulkan11Properties(device_uuid::AbstractString, driver_uuid::AbstractString, device_luid::AbstractString, device_node_mask::Integer, device_luid_valid::Bool, subgroup_size::Integer, subgroup_supported_stages::ShaderStageFlag, subgroup_supported_operations::SubgroupFeatureFlag, subgroup_quad_operations_in_all_stages::Bool, point_clipping_behavior::PointClippingBehavior, max_multiview_view_count::Integer, max_multiview_instance_index::Integer, protected_no_fault::Bool, max_per_set_descriptors::Integer, max_memory_allocation_size::Integer; next = C_NULL) = PhysicalDeviceVulkan11Properties(next, device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid, subgroup_size, subgroup_supported_stages, subgroup_supported_operations, subgroup_quad_operations_in_all_stages, point_clipping_behavior, max_multiview_view_count, max_multiview_instance_index, protected_no_fault, max_per_set_descriptors, max_memory_allocation_size)
+PhysicalDeviceVulkan11Properties(device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}, device_node_mask::Integer, device_luid_valid::Bool, subgroup_size::Integer, subgroup_supported_stages::ShaderStageFlag, subgroup_supported_operations::SubgroupFeatureFlag, subgroup_quad_operations_in_all_stages::Bool, point_clipping_behavior::PointClippingBehavior, max_multiview_view_count::Integer, max_multiview_instance_index::Integer, protected_no_fault::Bool, max_per_set_descriptors::Integer, max_memory_allocation_size::Integer; next = C_NULL) = PhysicalDeviceVulkan11Properties(next, device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid, subgroup_size, subgroup_supported_stages, subgroup_supported_operations, subgroup_quad_operations_in_all_stages, point_clipping_behavior, max_multiview_view_count, max_multiview_instance_index, protected_no_fault, max_per_set_descriptors, max_memory_allocation_size)
 
 """
 
@@ -36607,7 +36607,7 @@ ComponentMapping(x::VkComponentMapping) = ComponentMapping(x.r, x.g, x.b, x.a)
 """
 
 """
-PhysicalDeviceProperties(x::VkPhysicalDeviceProperties) = PhysicalDeviceProperties(from_vk(VersionNumber, x.apiVersion), from_vk(VersionNumber, x.driverVersion), x.vendorID, x.deviceID, x.deviceType, from_vk(String, x.deviceName), from_vk(String, x.pipelineCacheUUID), PhysicalDeviceLimits(x.limits), PhysicalDeviceSparseProperties(x.sparseProperties))
+PhysicalDeviceProperties(x::VkPhysicalDeviceProperties) = PhysicalDeviceProperties(from_vk(VersionNumber, x.apiVersion), from_vk(VersionNumber, x.driverVersion), x.vendorID, x.deviceID, x.deviceType, from_vk(String, x.deviceName), x.pipelineCacheUUID, PhysicalDeviceLimits(x.limits), PhysicalDeviceSparseProperties(x.sparseProperties))
 
 """
 
@@ -37417,7 +37417,7 @@ ExternalBufferProperties(x::VkExternalBufferProperties, next_types::Type...) = E
 """
 
 """
-PhysicalDeviceIDProperties(x::VkPhysicalDeviceIDProperties, next_types::Type...) = PhysicalDeviceIDProperties(load_next_chain(x.pNext, next_types...), from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid))
+PhysicalDeviceIDProperties(x::VkPhysicalDeviceIDProperties, next_types::Type...) = PhysicalDeviceIDProperties(load_next_chain(x.pNext, next_types...), x.deviceUUID, x.driverUUID, x.deviceLUID, x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid))
 
 """
 
@@ -38737,7 +38737,7 @@ PhysicalDevicePerformanceQueryPropertiesKHR(x::VkPhysicalDevicePerformanceQueryP
 """
 
 """
-PerformanceCounterKHR(x::VkPerformanceCounterKHR, next_types::Type...) = PerformanceCounterKHR(load_next_chain(x.pNext, next_types...), x.unit, x.scope, x.storage, from_vk(String, x.uuid))
+PerformanceCounterKHR(x::VkPerformanceCounterKHR, next_types::Type...) = PerformanceCounterKHR(load_next_chain(x.pNext, next_types...), x.unit, x.scope, x.storage, x.uuid)
 
 """
 
@@ -38957,7 +38957,7 @@ PhysicalDeviceVulkan11Features(x::VkPhysicalDeviceVulkan11Features, next_types::
 """
 
 """
-PhysicalDeviceVulkan11Properties(x::VkPhysicalDeviceVulkan11Properties, next_types::Type...) = PhysicalDeviceVulkan11Properties(load_next_chain(x.pNext, next_types...), from_vk(String, x.deviceUUID), from_vk(String, x.driverUUID), from_vk(String, x.deviceLUID), x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid), x.subgroupSize, x.subgroupSupportedStages, x.subgroupSupportedOperations, from_vk(Bool, x.subgroupQuadOperationsInAllStages), x.pointClippingBehavior, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex, from_vk(Bool, x.protectedNoFault), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
+PhysicalDeviceVulkan11Properties(x::VkPhysicalDeviceVulkan11Properties, next_types::Type...) = PhysicalDeviceVulkan11Properties(load_next_chain(x.pNext, next_types...), x.deviceUUID, x.driverUUID, x.deviceLUID, x.deviceNodeMask, from_vk(Bool, x.deviceLUIDValid), x.subgroupSize, x.subgroupSupportedStages, x.subgroupSupportedOperations, from_vk(Bool, x.subgroupQuadOperationsInAllStages), x.pointClippingBehavior, x.maxMultiviewViewCount, x.maxMultiviewInstanceIndex, from_vk(Bool, x.protectedNoFault), x.maxPerSetDescriptors, x.maxMemoryAllocationSize)
 
 """
 
