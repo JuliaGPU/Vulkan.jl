@@ -35,4 +35,11 @@
             ImageFormatProperties2(val, next_types_hl...)
         end
     ))
+
+    test_ex(VulkanGen.promote_hl(APIFunction(create_func(:vkCreateInstance), false)), :(
+        function create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL)::ResultTypes.Result{Instance, VulkanError}
+            val = @propagate_errors(_create_instance(enabled_layer_names, enabled_extension_names; allocator, next, flags, application_info))
+            val
+        end
+    ))
 end
