@@ -70,4 +70,5 @@ makedocs(;
 
 deploydocs(
     repo = "github.com/JuliaGPU/Vulkan.jl.git",
+    push_preview = true,
 )
