@@ -4,7 +4,7 @@ using Literate
 julia_files(dir) = sort(filter(endswith(".jl"), readdir(dir, join=true)))
 
 function generate_markdowns(dir)
-    for file in julia_files(dir)
+    Threads.@threads for file in julia_files(dir)
         Literate.markdown(
             file,
             dir;
@@ -66,7 +66,7 @@ makedocs(;
     strict=false,
     doctest=false,
     checkdocs=:exports,
-    linkcheck=:true,
+    linkcheck=:false,
 )
 
 deploydocs(

@@ -73,5 +73,5 @@ function Constructor(handle::HandleDefinition, def::APIFunction)
         :body => body,
         :relax_signature => is_promoted,
     )
-    Constructor(handle, p)
+    Constructor(p, handle, def)
 end

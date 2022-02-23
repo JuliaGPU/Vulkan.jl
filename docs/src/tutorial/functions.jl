@@ -12,7 +12,7 @@ Functions almost never directly return a value in Vulkan, and usually return eit
 =#
 
 using Vulkan
-using Vulkan.core
+using Vulkan.VkCore
 
 function example_create_instance()
     instance_ref = Ref{VkInstance}()

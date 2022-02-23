@@ -40,7 +40,7 @@ function Constructor(def::StructDefinition{false})
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, children(spec))
     add_func_args!(p, spec, potential_args)
-    Constructor(def, p)
+    Constructor(p, def, def.spec)
 end
 
 StructDefinition{true}(spec::Spec) = StructDefinition{true}(StructDefinition{false}(spec))
@@ -100,7 +100,7 @@ function Constructor(T::StructDefinition{false}, x::StructDefinition{true})
         end
     end
     p[:body] = reconstruct_call(Dict(:name => p[:name], :args => args, :kwargs => kwargs))
-    Constructor(T, p)
+    Constructor(p, T, x)
 end
 
 function Constructor(T::StructDefinition{true}, x::SpecStruct)
@@ -112,7 +112,7 @@ function Constructor(T::StructDefinition{true}, x::SpecStruct)
         :short => true,
     )
     :pNext in x.members.name && push!(p[:args], :(next_types::Type...))
-    Constructor(T, p)
+    Constructor(p, T, x)
 end
 
 function Constructor(T::StructDefinition{true}, x::StructDefinition{false})
@@ -132,7 +132,7 @@ function Constructor(T::StructDefinition{true}, x::StructDefinition{false})
     else
         Expr(:call, name(T), :(x.vks))
     end
-    Constructor(T, p)
+    Constructor(p, T, x)
 end
 
 function Convert(T::StructDefinition{false}, x::StructDefinition{true})
@@ -167,7 +167,7 @@ function Constructor(def::StructDefinition{true})
         push!(args, id)
     end
     p[:body] = reconstruct_call(Dict(:name => p[:name], :args => args))
-    Constructor(def, p)
+    Constructor(p, def, def.spec)
 end
 
 function hl_default(member::SpecStructMember)

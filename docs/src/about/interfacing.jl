@@ -10,7 +10,7 @@ However, the situation gets a lot more complicated when you deal with pointers a
 
 =#
 
-using Vulkan.core
+using Vulkan.VkCore
 
 function create_instance(app_name, engine_name)
     app_info = VkApplicationInfo(

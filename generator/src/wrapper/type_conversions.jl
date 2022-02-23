@@ -1,4 +1,4 @@
-function hl_type(spec::SpecStructMember)
+function hl_type(spec::Spec)
     @match s = spec begin
         if s.name == :pNext end => :Any
         GuardBy(is_version) => :VersionNumber

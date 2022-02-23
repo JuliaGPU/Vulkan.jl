@@ -21,9 +21,10 @@ struct HandleDefinition <: WrapperNode
     p::Dict
 end
 
-struct Constructor{S} <: WrapperNode
-    def::S
+struct Constructor{T,X} <: WrapperNode
     p::Dict
+    to::T
+    from::X
 end
 
 struct Documented{W<:WrapperNode} <: WrapperNode
@@ -32,7 +33,10 @@ struct Documented{W<:WrapperNode} <: WrapperNode
 end
 
 Documented(def::WrapperNode) = Documented(def, "")
-Documented(def::WrapperNode, doc::AbstractString) = Documented(def, docstring(to_expr(def), doc))
+function Documented(def::WrapperNode, doc::AbstractString)
+    doc = lstrip(doc, '\n')
+    Documented(def, docstring(to_expr(def), doc))
+end
 
 abstract type MethodDefinition <: WrapperNode end
 

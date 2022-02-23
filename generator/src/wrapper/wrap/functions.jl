@@ -232,7 +232,7 @@ function promote_return_type_hl!(promoted, type)
 end
 
 function promote_hl(def::Constructor)
-    Constructor(def, promote_hl(def.p))
+    Constructor(promote_hl(def.p), def.to, def.from)
 end
 
 function promote_hl(arg::ExprLike)

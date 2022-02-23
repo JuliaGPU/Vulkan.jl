@@ -54,7 +54,7 @@ function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
             ),
             :short => true,
         )
-        Constructor(def, p)
+        Constructor(p, def, spec)
     end
 end
 
@@ -66,7 +66,7 @@ function Constructor(T::StructDefinition{false, SpecUnion}, x::StructDefinition{
         :body => :($(name(T))(getfield(x, :vks))),
         :short => true,
     )
-    Constructor(T, p)
+    Constructor(p, T, x)
 end
 
 function GetProperty(def::StructDefinition{true, SpecUnion})
