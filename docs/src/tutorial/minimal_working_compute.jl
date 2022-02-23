@@ -63,15 +63,7 @@ mem = unwrap(allocate_memory(device, mem_size, memorytype_idx))
 # memory. (Memory allocations may be quite demanding, it is therefore often
 # better to allocate a single big chunk of memory, and create multiple buffers
 # that view it as smaller arrays.)
-buffer = unwrap(
-    create_buffer(
-        device,
-        mem_size,
-        BUFFER_USAGE_STORAGE_BUFFER_BIT,
-        SHARING_MODE_EXCLUSIVE,
-        [qfam_idx],
-    ),
-)
+buffer = unwrap(create_buffer(device, mem_size, BUFFER_USAGE_STORAGE_BUFFER_BIT, SHARING_MODE_EXCLUSIVE, [qfam_idx]))
 
 bind_buffer_memory(device, buffer, mem, 0)
 
@@ -147,13 +139,7 @@ end
 
 # Run the `glslangValidator` program to compile the shader.
 using glslang_jll
-glslang = glslangValidator(
-    bin -> open(
-        `$bin -V --quiet --stdin -S comp -o /dev/stdout `,
-        read = true,
-        write = true,
-    ),
-)
+glslang = glslangValidator(bin -> open(`$bin -V --quiet --stdin -S comp -o /dev/stdout `, read = true, write = true))
 write(glslang, shader_code) # send the code to stdin
 close(glslang.in) # send EOF
 shader_bcode = collect(reinterpret(UInt32, read(glslang))) #read the compiled shader spir-v code
@@ -161,7 +147,7 @@ close(glslang)
 @assert glslang.exitcode == 0
 
 # Make a shader module with the code
-shader = unwrap(create_shader_module(device, sizeof(UInt32)*length(shader_bcode), shader_bcode))
+shader = unwrap(create_shader_module(device, sizeof(UInt32) * length(shader_bcode), shader_bcode))
 
 # ## Assembling the pipeline
 #
@@ -170,26 +156,14 @@ shader = unwrap(create_shader_module(device, sizeof(UInt32)*length(shader_bcode)
 dsl = unwrap(
     create_descriptor_set_layout(
         device,
-        [
-            DescriptorSetLayoutBinding(
-                0,
-                DESCRIPTOR_TYPE_STORAGE_BUFFER,
-                1,
-                SHADER_STAGE_COMPUTE_BIT,
-                Sampler[],
-            ),
-        ],
+        [DescriptorSetLayoutBinding(0, DESCRIPTOR_TYPE_STORAGE_BUFFER, 1, SHADER_STAGE_COMPUTE_BIT, Sampler[])],
     ),
 )
 
 # Pipeline layout describes the descriptor set together with the location of
 # push constants
 pl = unwrap(
-    create_pipeline_layout(
-        device,
-        [dsl],
-        [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(shader_push_consts))],
-    ),
+    create_pipeline_layout(device, [dsl], [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(shader_push_consts))]),
 )
 
 # Shader compilation can use "specialization constants" that get propagated
@@ -200,27 +174,31 @@ const_local_size_x = 32
 spec_consts = [shader_spec_consts(const_local_size_x)]
 
 # Create a pipeline that can run the shader code with the specified layout.
-p = first(first(unwrap(
-    create_compute_pipelines(
-        device,
-        [
-            ComputePipelineCreateInfo(
-                PipelineShaderStageCreateInfo(
-                    SHADER_STAGE_COMPUTE_BIT,
-                    shader,
-                    "main", # this needs to match the function name in the shader
-                    specialization_info = SpecializationInfo(
-                        [SpecializationMapEntry(0, 0, 4)],
-                        UInt64(4),
-                        Ptr{Nothing}(pointer(spec_consts)),
+p = first(
+    first(
+        unwrap(
+            create_compute_pipelines(
+                device,
+                [
+                    ComputePipelineCreateInfo(
+                        PipelineShaderStageCreateInfo(
+                            SHADER_STAGE_COMPUTE_BIT,
+                            shader,
+                            "main", # this needs to match the function name in the shader
+                            specialization_info = SpecializationInfo(
+                                [SpecializationMapEntry(0, 0, 4)],
+                                UInt64(4),
+                                Ptr{Nothing}(pointer(spec_consts)),
+                            ),
+                        ),
+                        pl,
+                        -1,
                     ),
-                ),
-                pl,
-                -1,
+                ],
             ),
-        ],
+        ),
     ),
-)))
+)
 
 # Now make a descriptor pool that is used to allocate the buffer descriptors
 # from (not a big one, just 1 descriptor set and total 1 descriptor)
@@ -231,7 +209,21 @@ dsets = unwrap(allocate_descriptor_sets(device, DescriptorSetAllocateInfo(dpool,
 dset = first(dsets)
 
 # Make the descriptors point to the right buffers
-update_descriptor_sets(device, [WriteDescriptorSet(dset, 0, 0, DESCRIPTOR_TYPE_STORAGE_BUFFER, [], [DescriptorBufferInfo(buffer, 0, WHOLE_SIZE)], [])], [])
+update_descriptor_sets(
+    device,
+    [
+        WriteDescriptorSet(
+            dset,
+            0,
+            0,
+            DESCRIPTOR_TYPE_STORAGE_BUFFER,
+            [],
+            [DescriptorBufferInfo(buffer, 0, WHOLE_SIZE)],
+            [],
+        ),
+    ],
+    [],
+)
 
 # ## Executing the shader
 #
@@ -245,12 +237,17 @@ cbuf = first(cbufs)
 # the kernel to be run. Basically, we bind and fill everything, and then
 # dispatch a sufficient amount of invocations of the shader to span over the
 # array.
-begin_command_buffer(cbuf, CommandBufferBeginInfo(flags=COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT))
+begin_command_buffer(cbuf, CommandBufferBeginInfo(flags = COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT))
+
 cmd_bind_pipeline(cbuf, PIPELINE_BIND_POINT_COMPUTE, p)
+
 const_buf = [shader_push_consts(1.234, data_items)]
 cmd_push_constants(cbuf, pl, SHADER_STAGE_COMPUTE_BIT, 0, sizeof(shader_push_consts), Ptr{Nothing}(pointer(const_buf)))
+
 cmd_bind_descriptor_sets(cbuf, PIPELINE_BIND_POINT_COMPUTE, pl, 0, [dset], [])
+
 cmd_dispatch(cbuf, div(data_items, const_local_size_x, RoundUp), 1, 1)
+
 end_command_buffer(cbuf)
 
 # Finanly, find a handle to the compute queue and send the command to execute the shader!
