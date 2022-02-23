@@ -180,31 +180,22 @@ const_local_size_x = 32
 spec_consts = [ShaderSpecConsts(const_local_size_x)]
 
 # Next, we create a pipeline that can run the shader code with the specified layout:
-p = first(
-    first(
-        unwrap(
-            create_compute_pipelines(
-                device,
-                [
-                    ComputePipelineCreateInfo(
-                        PipelineShaderStageCreateInfo(
-                            SHADER_STAGE_COMPUTE_BIT,
-                            shader,
-                            "main", # this needs to match the function name in the shader
-                            specialization_info = SpecializationInfo(
-                                [SpecializationMapEntry(0, 0, 4)],
-                                UInt64(4),
-                                Ptr{Nothing}(pointer(spec_consts)),
-                            ),
-                        ),
-                        pl,
-                        -1,
-                    ),
-                ],
-            ),
+pipeline_info = ComputePipelineCreateInfo(
+    PipelineShaderStageCreateInfo(
+        SHADER_STAGE_COMPUTE_BIT,
+        shader,
+        "main", # this needs to match the function name in the shader
+        specialization_info = SpecializationInfo(
+            [SpecializationMapEntry(0, 0, 4)],
+            UInt64(4),
+            Ptr{Nothing}(pointer(spec_consts)),
         ),
     ),
+    pl,
+    -1,
 )
+ps, _ = unwrap(create_compute_pipelines(device, [pipeline_info]))
+p = first(ps)
 
 # Now make a descriptor pool to allocate the buffer descriptors from (not a big
 # one, just 1 descriptor set with 1 descriptor in total), ...
