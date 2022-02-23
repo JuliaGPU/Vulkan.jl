@@ -142,7 +142,7 @@ First, there are high-level-ish structures that are easier to work with, replaci
 
 However, storing data and converting it to a C-compatible format for API calls introduce some overhead for these high-level structures. It will not matter in non performance-critical sections, but may be a limitation in tight loops. Therefore, lower-level, minimalistic types are available, which only carry the smallest possible amount of information needed to use the API. Although they can be created very similarly to high-level structures, the high-level arguments are directly converted to their C-compatible counterpart. The main drawback is a lack of introspection, since these minimalistic structures carry C types, so these structures are badly suited to keeping data around. Minimalistic structures are not defined for types that are only returned and never requested by Vulkan, such as `ExtensionProperties`.
 
-There is a final family of Vulkan types that you may encounter. Those are the barebones VulkanCore.jl types, which you won't have to worry about in all cases *except when you need to pass functions to the API*. In this case, inputs will not be automatically converted for you, and you will have to define the appropriate signature before obtaining function pointers with `Base.@cfunction`. You can access these types from the (exported) module `Vulkan.core`.
+There is a final family of Vulkan types that you may encounter. Those are the barebones VulkanCore.jl types, which you won't have to worry about in all cases *except when you need to pass functions to the API*. In this case, inputs will not be automatically converted for you, and you will have to define the appropriate signature before obtaining function pointers with `Base.@cfunction`. You can access these types from the (exported) module `Vulkan.VkCore`.
 
 To summarize:
 
@@ -207,7 +207,7 @@ In Vulkan, the value of some flags carry meaning through a bitmask structure. Bi
 For example, consider the vanilla `VkSampleCountFlags` type (alias for `UInt32`) with bits defined via the enumerated type `VkSampleCountFlagBits`:
 
 ```@repl
-using Vulkan.core
+using Vulkan.VkCore
 VK_SAMPLE_COUNT_1_BIT isa VkSampleCountFlagBits
 VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlagBits(1)
 VK_SAMPLE_COUNT_1_BIT === VkSampleCountFlags(1)
