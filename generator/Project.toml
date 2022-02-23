@@ -16,7 +16,7 @@ Vulkan_Headers_jll = "8d446b21-f3ad-5576-a034-752265b9b6f9"
 [compat]
 StructArrays = "0.4"
 Vulkan_Headers_jll = "1.2.177"
-julia = "1.5"
+julia = "1.7"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
