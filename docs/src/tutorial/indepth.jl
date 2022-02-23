@@ -27,17 +27,15 @@ const application_info = ApplicationInfo(
 
 #=
 
-The application and engine versions don't matter here, but must be provided regardless. We request the version 1.2 of the Vulkan API (ensure you have a driver compatible with the 1.2 version first), which is the latest minor version. Application and engine names won't matter either, but we provide them for demonstration purposes.
+The application and engine versions don't matter here, but must be provided regardless. We request the version 1.2 of the Vulkan API (ensure you have a driver compatible with version 1.2 first). Application and engine names won't matter either, but we provide them for demonstration purposes.
 
-=#
-
+```julia
 const instance = Instance(
     ["VK_LAYER_KHRONOS_validation"],
     ["VK_EXT_debug_utils"];
     application_info,
 )
-
-#=
+```
 
 This simple call does a few things under the hood:
 - it creates an `InstanceCreateInfo` with the provided arguments
@@ -55,8 +53,7 @@ We now setup a debug messenger that we'll use for logging. Its function is to pr
 
 We won't just `println`, because it does context-switching which is not allowed in finalizers (and the callback may be called in a finalizer, notably when functions like `vkDestroy...` are called). We can use `jl_safe_printf` which does not go through the Julia task system to safely print messages. The data that will arrive from Vulkan will be a `Ptr{core.VkDebugUtilsMessengerCallbackDataEXT}`
 
-=#
-
+```julia
 function debug_callback(severity, type, p_data, p_user_data)
     p_data ≠ C_NULL || return UInt32(0) # don't print if there's no message
     data = unsafe_load(p_data)
@@ -64,9 +61,11 @@ function debug_callback(severity, type, p_data, p_user_data)
     ccall(:jl_safe_printf, Cstring, (Cstring,), string(msg, '\n'))
     return UInt32(0)
 end
+```
 
-# Because we are passing a callback to Vulkan as a function pointer, we need to convert it to a function pointer using `@cfunction`:
+Because we are passing a callback to Vulkan as a function pointer, we need to convert it to a function pointer using `@cfunction`:
 
+```julia
 const debug_callback_c = @cfunction(
     default_debug_callback,
     UInt32,
@@ -77,8 +76,7 @@ const debug_callback_c = @cfunction(
         Ptr{Cvoid},
     )
 )
-
-#=
+```
 
 !!! warning
     If you intend to do this inside a module that will be precompiled, you must create the function pointer in the `__init__()` stage:
@@ -92,8 +90,7 @@ const debug_callback_c = @cfunction(
 
 Note that the signature uses pointers and structures from VulkanCore.jl (accessible through the exported `core` and `vk` aliases). This is because we currently don't generate wrappers for defining function pointers. The flag types are still wrapper types, because the wrapped versions share the same binary representation as the core types. Let's create the debug messenger for all message types and severities:
 
-=#
-
+```julia
 const debug_messenger = DebugUtilsMessengerEXT(
     instance,
     |(
@@ -109,8 +106,7 @@ const debug_messenger = DebugUtilsMessengerEXT(
     ),
     debug_callback_c,
 )
-
-#=
+```
 
 !!! note
     `DebugUtilsMessengerEXT` is an extension-defined handle. Any extension function such as `vkCreateDebugUtilsMessengerEXT` and `vkDestroyDebugUtilsMessengerEXT` (called in the constructor and finalizer respectively) must be called using a function pointer. This detail is abstracted away with the wrapper, as API function pointers are automatically retrieved as needed and stored in a thread-safe global dispatch table. See more in the [Dispatch](@ref) section.
