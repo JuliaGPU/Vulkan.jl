@@ -141,14 +141,14 @@ end
 
 # `glslangValidator` program is used to compile the shader:
 using glslang_jll
-shader_bcode = mktempdir(dir -> begin
+shader_bcode = mktempdir() do dir
     inpath = joinpath(dir, "shader.comp")
     outpath = joinpath(dir, "shader.spv")
     open(f -> write(f, shader_code), inpath, "w")
     status = glslangValidator(bin -> run(`$bin -V -S comp -o $outpath $inpath`))
     @assert status.exitcode == 0
-    reinterpret(UInt32, open(f -> read(f), outpath, "r"))
-end)
+    reinterpret(UInt32, read(outpath))
+end
 
 # We can now make a shader module with the compiled code:
 shader = unwrap(create_shader_module(device, sizeof(UInt32) * length(shader_bcode), shader_bcode))
