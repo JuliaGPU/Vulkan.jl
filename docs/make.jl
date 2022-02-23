@@ -45,6 +45,7 @@ makedocs(;
             "Resource management" => "tutorial/resource_management.md",
             "Dispatch" => "tutorial/dispatch.md",
             "In-depth tutorial" => "tutorial/indepth.md",
+            "Running compute shaders" => "tutorial/minimal_working_compute.md",
         ],
         "How to" => [
             "howto/preferences.md",
