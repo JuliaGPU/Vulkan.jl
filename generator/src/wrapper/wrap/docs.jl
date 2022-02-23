@@ -36,8 +36,11 @@ function Documented(def::StructDefinition{true})
     Documented(def, doc)
 end
 
-function Documented(def::Constructor{<:StructDefinition{false}})
+function Documented(def::Constructor{StructDefinition{false, SpecStruct}})
     (; p) = def
+    args = get(Vector, p, :args)
+    # Skip wrapping inter-constructors for now.
+    !isempty(args) && name(args[1]) == :x && return Documented(def, "")
     (; spec) = def.def
     doc = string(
         call_doc(p),
@@ -102,8 +105,10 @@ function args_summary(argdocs)
     string("\n\n", "Arguments:\n- ", join(last.(argdocs), "\n- "))
 end
 
-function Documented(def::APIFunction{SpecFunc})
-    (; p, spec) = def
+Documented(def::APIFunction{SpecFunc}) = Documented(def, def.spec, def.p)
+Documented(def::APIFunction{APIFunction{SpecFunc}}) = Documented(def, def.spec.spec, def.p)
+
+function Documented(def::APIFunction, spec::SpecFunc, p)
     params = children(spec)
     argdocs = document_arguments(p, params)
     extra = ""
@@ -138,7 +143,7 @@ function Documented(def::APIFunction{SpecFunc})
 end
 
 function document_arguments(p)
-    args, kwargs = p[:args], p[:kwargs]
+    args, kwargs = get(Vector, p, :args), get(Vector, p, :kwargs)
     if isempty(args) && isempty(kwargs)
         []
     else
@@ -152,7 +157,7 @@ function document_arguments(p)
 end
 
 function docstring(ex, docstring)
-    !endswith(docstring, '\n') && (docstring *= '\n')
+    endswith(docstring, '\n') || (docstring *= '\n')
     Dict(
         :category => :doc,
         :ex => ex,

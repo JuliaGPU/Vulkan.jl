@@ -1,6 +1,7 @@
 module VulkanGen
 
 using StructArrays: StructVector
+using Accessors: @set
 using Graphs
 using MLStyle
 using DocStringExtensions
