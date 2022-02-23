@@ -87,7 +87,12 @@ to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
 to_expr(def::Union{Documented, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
 to_expr(def::StructDefinition{true,<:SpecStruct}) = :(@auto_hash_equals $(resolve_types(to_expr(def.p))))
 
-documented(def::WrapperNode) = to_expr(Documented(def))
+function documented(def::WrapperNode)
+    doc = Documented(def)
+    # Avoid empty docstrings.
+    isempty(strip(doc.p[:docstring], '\n')) && return to_expr(def)
+    to_expr(doc)
+end
 
 name(def::WrapperNode) = name(def.p)
 
