@@ -267,7 +267,17 @@ queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])])
 # get the resulting data, we need to wait for completion and invalidate the
 # mapped memory (so that whatever data updates that happened on the GPU get
 # transferred to the mapped range visible for the host).
-queue_wait_idle(compute_q)
+# Wait for computations to be carried out, while making sure data is kept alive
+# during queue operations. In non-global scopes, such as functions, the compiler
+# may skip the allocation of unused variables or garbage-collect variables that the
+# runtime thinks are unused. Notably, the runtime is not aware that there is a memory
+# dependency with these variables until that command returns, so we tell it manually.
+GC.@preserve buff dsl pl p dpool dset cmdpool cbuf const_buf begin
+    queue_wait_idle(compute_q)
+end
+
+# Note that the invalidation is only required for memory that is not host-coherent,
+# so you may not need this step if your memory has the right property flag.
 invalidate_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)])
 
 # Finally, let's have a look at the data created by your compute shader!
