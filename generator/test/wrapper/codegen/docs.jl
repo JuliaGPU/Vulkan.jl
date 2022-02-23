@@ -58,6 +58,22 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstanceCreateInfo.html)
             """,
         )
+
+        test_doc(
+            Constructor(StructDefinition{true}(struct_by_name(:VkInstanceCreateInfo))),
+            """
+                InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
+
+            Arguments:
+            - `enabled_layer_names::AbstractArray{<:AbstractString}`
+            - `enabled_extension_names::AbstractArray{<:AbstractString}`
+            - `next`: defaults to `C_NULL`
+            - `flags`: defaults to `0`
+            - `application_info`: defaults to `C_NULL`
+
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstanceCreateInfo.html)
+            """,
+        )
     end
 
     @testset "API functions" begin
