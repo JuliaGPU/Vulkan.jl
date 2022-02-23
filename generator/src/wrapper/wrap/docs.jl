@@ -36,7 +36,7 @@ function Documented(def::StructDefinition{true})
     Documented(def, doc)
 end
 
-function Documented(def::Constructor{StructDefinition{false, SpecStruct}})
+function Documented(def::Constructor{<:StructDefinition{<:Any, SpecStruct}})
     (; p) = def
     args = get(Vector, p, :args)
     # Skip wrapping inter-constructors for now.
