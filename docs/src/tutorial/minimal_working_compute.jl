@@ -126,7 +126,7 @@ main()
 # Push constants are small packs of variables that are used to quickly send
 # configuration data to the shader runs. Make sure that this structure
 # corresponds to what is declared in the shader.
-struct shader_push_consts
+struct ShaderPushConsts
     val::Float32
     n::UInt32
 end
@@ -135,7 +135,7 @@ end
 # can change them before compiling the shader for the pipeline, but not
 # dynamically. This may have performance benefits for "very static" values,
 # such as block sizes.
-struct shader_spec_consts
+struct ShaderSpecConsts
     local_size_x::UInt32
 end
 
@@ -169,7 +169,7 @@ dsl = unwrap(
 # Pipeline layout describes the descriptor set together with the location of
 # push constants:
 pl = unwrap(
-    create_pipeline_layout(device, [dsl], [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(shader_push_consts))]),
+    create_pipeline_layout(device, [dsl], [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts))]),
 )
 
 # Shader compilation can use "specialization constants" that get propagated
@@ -177,7 +177,7 @@ pl = unwrap(
 # workgroup size "dynamic" in the sense that the size (32) is not hardcoded in
 # GLSL, but instead taken from here.
 const_local_size_x = 32
-spec_consts = [shader_spec_consts(const_local_size_x)]
+spec_consts = [ShaderSpecConsts(const_local_size_x)]
 
 # Next, we create a pipeline that can run the shader code with the specified layout:
 p = first(
@@ -247,8 +247,8 @@ begin_command_buffer(cbuf, CommandBufferBeginInfo(flags = COMMAND_BUFFER_USAGE_O
 
 cmd_bind_pipeline(cbuf, PIPELINE_BIND_POINT_COMPUTE, p)
 
-const_buf = [shader_push_consts(1.234, data_items)]
-cmd_push_constants(cbuf, pl, SHADER_STAGE_COMPUTE_BIT, 0, sizeof(shader_push_consts), Ptr{Nothing}(pointer(const_buf)))
+const_buf = [ShaderPushConsts(1.234, data_items)]
+cmd_push_constants(cbuf, pl, SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts), Ptr{Nothing}(pointer(const_buf)))
 
 cmd_bind_descriptor_sets(cbuf, PIPELINE_BIND_POINT_COMPUTE, pl, 0, [dset], [])
 
