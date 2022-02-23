@@ -162,7 +162,7 @@ shader = unwrap(create_shader_module(device, sizeof(UInt32) * length(shader_bcod
 dsl = unwrap(
     create_descriptor_set_layout(
         device,
-        [DescriptorSetLayoutBinding(0, DESCRIPTOR_TYPE_STORAGE_BUFFER, 1, SHADER_STAGE_COMPUTE_BIT, Sampler[])],
+        [DescriptorSetLayoutBinding(0, DESCRIPTOR_TYPE_STORAGE_BUFFER, SHADER_STAGE_COMPUTE_BIT; descriptor_count = 1)],
     ),
 )
 
