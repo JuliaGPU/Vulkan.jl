@@ -271,9 +271,10 @@ queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])])
 # While [`queue_wait_idle`](@ref) will wait for computations to be carried out,
 # we need to make sure that the required data is kept alive during queue
 # operations. In non-global scopes, such as functions, the compiler may skip
-# the allocation of unused variables or garbage-collect variables that the
-# runtime thinks are no longer used, thus possibly breaking the initialization
-# logic of Vulkan objects. In this particular case, the runtime is not aware
+# the allocation of unused variables or garbage-collect objects that the
+# runtime thinks are no longer used. If garbage-collected, objects will call
+# their finalizers which imply the destruction of the Vulkan objects
+# (via `vkDestroy...`). In this particular case, the runtime is not aware
 # that for example the pipeline and buffer objects are still used and that
 # there's a dependency with these variables until the command returns, so we
 # tell it manually.
