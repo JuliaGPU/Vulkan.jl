@@ -70,17 +70,19 @@ bind_buffer_memory(device, buffer, mem, 0)
 # ## Uploading the data to the device
 #
 # First, map the memory and get a pointer to it.
-memptr = map_memory(device, mem, 0, mem_size)
+memptr = unwrap(map_memory(device, mem, 0, mem_size))
 
-# Here we force Julia to look at the mapped data as at the vector of
-# `Float32`s, so that we can access it easily.
-data = unsafe_wrap(Vector{Float32}, convert(Ptr{Float32}, unwrap(memptr)), data_items, own = false)
+# Here we make Julia to look at the mapped data as a vector of `Float32`s, so
+# that we can access it easily:
+data = unsafe_wrap(Vector{Float32}, convert(Ptr{Float32}, memptr), data_items, own = false)
 
 # For now, let's just zero out all the data, and *flush* the changes to make
 # sure the device can see the updated data. This is the simplest way to move
 # array data to the device.
 data .= 0
 flush_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)])
+# The flushing is not required if you have verified that the memory is
+# host-coherent (i.e., has `MEMORY_PROPERTY_HOST_COHERENT_BIT`).
 
 # Eventually, you may need to allocate memory types that are not visible from
 # host, because these provide better capacity and speed on the discrete GPUs.
@@ -97,12 +99,12 @@ flush_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)])
 shader_code = """
 #version 430
 
-layout (local_size_x_id = 0) in;
-layout (local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x_id = 0) in;
+layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
 
-layout(constant_id = 0) const uint blocksize = 1; // copy of local_size_x
+layout(constant_id = 0) const uint blocksize = 1; // manual way to capture the specialization constants
 
-layout (push_constant) uniform Params
+layout(push_constant) uniform Params
 {
     float val;
     uint n;
@@ -137,7 +139,7 @@ struct shader_spec_consts
     local_size_x::UInt32
 end
 
-# Run the `glslangValidator` program to compile the shader.
+# `glslangValidator` program is used to compile the shader:
 using glslang_jll
 shader_bcode = mktempdir(dir -> begin
     inpath = joinpath(dir, "shader.comp")
@@ -148,13 +150,13 @@ shader_bcode = mktempdir(dir -> begin
     reinterpret(UInt32, open(f -> read(f), outpath, "r"))
 end)
 
-# Make a shader module with the code
+# We can now make a shader module with the compiled code:
 shader = unwrap(create_shader_module(device, sizeof(UInt32) * length(shader_bcode), shader_bcode))
 
 # ## Assembling the pipeline
 #
 # Descriptor set layout describes how many buffers of what kind are going to be
-# used by the shader
+# used by the shader:
 dsl = unwrap(
     create_descriptor_set_layout(
         device,
@@ -163,7 +165,7 @@ dsl = unwrap(
 )
 
 # Pipeline layout describes the descriptor set together with the location of
-# push constants
+# push constants:
 pl = unwrap(
     create_pipeline_layout(device, [dsl], [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(shader_push_consts))]),
 )
@@ -175,7 +177,7 @@ pl = unwrap(
 const_local_size_x = 32
 spec_consts = [shader_spec_consts(const_local_size_x)]
 
-# Create a pipeline that can run the shader code with the specified layout.
+# Next, we create a pipeline that can run the shader code with the specified layout:
 p = first(
     first(
         unwrap(
@@ -202,15 +204,15 @@ p = first(
     ),
 )
 
-# Now make a descriptor pool that is used to allocate the buffer descriptors
-# from (not a big one, just 1 descriptor set and total 1 descriptor)
+# Now make a descriptor pool to allocate the buffer descriptors from (not a big
+# one, just 1 descriptor set with 1 descriptor in total), ...
 dpool = unwrap(create_descriptor_pool(device, 1, [DescriptorPoolSize(DESCRIPTOR_TYPE_STORAGE_BUFFER, 1)]))
 
-# Allocate the descriptors for our layout
+# ... allocate the descriptors for our layout, ...
 dsets = unwrap(allocate_descriptor_sets(device, DescriptorSetAllocateInfo(dpool, [dsl])))
 dset = first(dsets)
 
-# Make the descriptors point to the right buffers
+# ... and make the descriptors point to the right buffers.
 update_descriptor_sets(
     device,
     [
@@ -252,17 +254,19 @@ cmd_dispatch(cbuf, div(data_items, const_local_size_x, RoundUp), 1, 1)
 
 end_command_buffer(cbuf)
 
-# Finanly, find a handle to the compute queue and send the command to execute the shader!
+# Finally, find a handle to the compute queue and send the command to execute
+# the shader!
 compute_q = get_device_queue(device, qfam_idx, 0)
 queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])])
 
 # ## Getting the data
 #
-# Now, data is being crunched in the background. To get the data, we need to
-# wait for completion and invalidate the mapped memory (so that whatever
-# happened on the GPU gets to the mapped range visible for the "host" device.
+# After submitting the queue, the data is being crunched in the background. To
+# get the resulting data, we need to wait for completion and invalidate the
+# mapped memory (so that whatever data updates that happened on the GPU get
+# transferred to the mapped range visible for the host).
 queue_wait_idle(compute_q)
 invalidate_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)])
 
-# Finally, look at the data filled by your compute shader!
-display(data) # WHOA
+# Finally, let's have a look at the data created by your compute shader!
+data # WHOA
