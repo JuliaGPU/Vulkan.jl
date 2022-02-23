@@ -74,7 +74,7 @@ memptr = unwrap(map_memory(device, mem, 0, mem_size))
 
 # Here we make Julia to look at the mapped data as a vector of `Float32`s, so
 # that we can access it easily:
-data = unsafe_wrap(Vector{Float32}, convert(Ptr{Float32}, memptr), data_items, own = false)
+data = unsafe_wrap(Vector{Float32}, convert(Ptr{Float32}, memptr), data_items, own = false);
 
 # For now, let's just zero out all the data, and *flush* the changes to make
 # sure the device can see the updated data. This is the simplest way to move
