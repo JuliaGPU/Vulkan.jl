@@ -139,12 +139,14 @@ end
 
 # Run the `glslangValidator` program to compile the shader.
 using glslang_jll
-glslang = glslangValidator(bin -> open(`$bin -V --quiet --stdin -S comp -o /dev/stdout `, read = true, write = true))
-write(glslang, shader_code) # send the code to stdin
-close(glslang.in) # send EOF
-shader_bcode = collect(reinterpret(UInt32, read(glslang))) #read the compiled shader spir-v code
-close(glslang)
-@assert glslang.exitcode == 0
+shader_bcode = mktempdir(dir -> begin
+    inpath = joinpath(dir, "shader.comp")
+    outpath = joinpath(dir, "shader.spv")
+    open(f -> write(f, shader_code), inpath, "w")
+    status = glslangValidator(bin -> run(`$bin -V -S comp -o $outpath $inpath`))
+    @assert status.exitcode == 0
+    reinterpret(UInt32, open(f -> read(f), outpath, "r"))
+end)
 
 # Make a shader module with the code
 shader = unwrap(create_shader_module(device, sizeof(UInt32) * length(shader_bcode), shader_bcode))
