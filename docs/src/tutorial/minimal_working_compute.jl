@@ -157,8 +157,8 @@ shader = unwrap(create_shader_module(device, sizeof(UInt32) * length(shader_bcod
 
 # ## Assembling the pipeline
 #
-# Descriptor set layout describes how many buffers of what kind are going to be
-# used by the shader:
+# Descriptor set layout describes how many resources of what kind are going to
+# be used by the shader. In this case, we only use a single buffer:
 dsl = unwrap(
     create_descriptor_set_layout(
         device,
