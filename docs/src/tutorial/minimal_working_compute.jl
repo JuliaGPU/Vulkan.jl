@@ -145,7 +145,9 @@ shader_bcode = mktempdir() do dir
     inpath = joinpath(dir, "shader.comp")
     outpath = joinpath(dir, "shader.spv")
     open(f -> write(f, shader_code), inpath, "w")
-    status = glslangValidator(bin -> run(`$bin -V -S comp -o $outpath $inpath`))
+    status = glslangValidator() do glslang
+        run(`$glslang -V -S comp -o $outpath $inpath`)
+    end
     @assert status.exitcode == 0
     reinterpret(UInt32, read(outpath))
 end
