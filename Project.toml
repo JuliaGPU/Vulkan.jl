@@ -1,7 +1,7 @@
 name = "Vulkan"
 uuid = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
 authors = ["Cédric Belmant"]
-version = "0.4.1"
+version = "0.5.0"
 
 [deps]
 Accessors = "7d9f7c33-5ae7-4f3b-8dc6-eff91059b697"
@@ -15,6 +15,7 @@ ResultTypes = "08a2b407-ddc3-586a-afd6-c784ad1fffe2"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
 [compat]
+Accessors = "0.1.9"
 AutoHashEquals = "0.2"
 DocStringExtensions = "0.8"
 MLStyle = "0.4"
