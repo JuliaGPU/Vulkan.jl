@@ -7,5 +7,5 @@ It builds upon the core API provided by [VulkanCore.jl](https://github.com/Julia
 The approach is similar to [VulkanHpp](https://github.com/KhronosGroup/Vulkan-Hpp) for C++, except that the target language is Julia.
 
 ```@contents
-Pages = ["intro.md", "tutorial", "howto", "api.md", "utility.md", "troubleshooting.md"]
+Pages = ["intro.md", "glossary.md", "tutorial", "howto", "api.md", "utility.md", "troubleshooting.md"]
 ```
