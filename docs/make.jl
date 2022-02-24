@@ -1,6 +1,9 @@
 using Documenter
 using Literate
 using Vulkan
+
+push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
+
 using VulkanGen
 
 function julia_files(dir)
@@ -20,13 +23,6 @@ function generate_markdowns()
 end
 
 generate_markdowns()
-
-if get(ENV, "JULIA_DOCUMENTER_CI", "OFF") == "ON"
-    using Pkg
-    Pkg.develop(path=joinpath(dirname(@__DIR__), "generator"))
-else
-    push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
-end
 
 makedocs(;
     modules=[Vulkan, VulkanGen],

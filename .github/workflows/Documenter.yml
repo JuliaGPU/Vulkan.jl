@@ -17,6 +17,8 @@ jobs:
         with:
           version: 1.7
       - uses: julia-actions/julia-buildpkg@latest
+      - name: Instantiate generator
+        run: "julia --project=generator -e 'using Pkg; Pkg.instantiate()'"
       - uses: julia-actions/julia-docdeploy@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For authentication with GitHub Actions token
