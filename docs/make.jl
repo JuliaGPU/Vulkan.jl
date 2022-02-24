@@ -1,21 +1,25 @@
 using Documenter
 using Literate
+using Vulkan
+using VulkanGen
 
-julia_files(dir) = sort(filter(endswith(".jl"), readdir(dir, join=true)))
+function julia_files(dir)
+    files = reduce(vcat, [joinpath(root, file) for (root, dirs, files) in walkdir(dir) for file in files])
+    sort(filter(endswith(".jl"), files))
+end
 
-function generate_markdowns(dir)
+function generate_markdowns()
+    dir = joinpath(@__DIR__, "src")
     Threads.@threads for file in julia_files(dir)
         Literate.markdown(
             file,
-            dir;
+            dirname(file),
             documenter = true,
         )
     end
 end
 
-generate_markdowns(joinpath(@__DIR__, "src", "about"))
-generate_markdowns(joinpath(@__DIR__, "src", "tutorial"))
-generate_markdowns(joinpath(@__DIR__, "src", "howto"))
+generate_markdowns()
 
 if get(ENV, "JULIA_DOCUMENTER_CI", "OFF") == "ON"
     using Pkg
@@ -23,9 +27,6 @@ if get(ENV, "JULIA_DOCUMENTER_CI", "OFF") == "ON"
 else
     push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
 end
-
-using Vulkan
-using VulkanGen
 
 makedocs(;
     modules=[Vulkan, VulkanGen],
@@ -36,6 +37,7 @@ makedocs(;
         "About" => [
             "Motivations" => "about/motivations.md",
             "Interfacing with the C API" => "about/interfacing.md",
+            "Extension mechanism" => "about/extension_mechanism.md",
         ],
         "Tutorial" => [
             "Getting started" => "tutorial/getting_started.md",
@@ -58,6 +60,7 @@ makedocs(;
             "Overview" => "dev/overview.md",
             "Vulkan specification" => "dev/spec.md",
             "Generator" => "dev/gen.md",
+            "Next chains" => "dev/next_chains.md",
         ],
     ],
     repo="https://github.com/JuliaGPU/Vulkan.jl/blob/{commit}{path}#L{line}",
