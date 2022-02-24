@@ -30,6 +30,7 @@ makedocs(;
     pages=[
         "Home" => "index.md",
         "Introduction" => "intro.md",
+        "Glossary" => "glossary.md",
         "About" => [
             "Motivations" => "about/motivations.md",
             "Interfacing with the C API" => "about/interfacing.md",
