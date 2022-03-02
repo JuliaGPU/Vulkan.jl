@@ -178,25 +178,55 @@ function VulkanWrapper(config::WrapperConfig)
     struct_converts_to_ll = [Convert(T, x) for (T, x) in zip(structs, structs_hl)]
     union_converts_to_ll = [Convert(T, x) for (T, x) in zip(unions, unions_hl)]
 
-    funcs = [APIFunction.(f(spec_funcs), false); APIFunction.(f(spec_funcs), true)]
+    funcs = APIFunction.(f(spec_funcs), false)
+    funcs_fptr = APIFunction.(f(spec_funcs), true)
+    funcs_hl = promote_hl.(funcs)
+    funcs_hl_fptr = promote_hl.(funcs_fptr)
 
-    api_constructor_wrappers = APIFunction{CreateFunc}[]
-    handle_constructors = Constructor{HandleDefinition}[]
+    create_func_wrappers = APIFunction{CreateFunc}[]
+    create_func_wrappers_fptr = APIFunction{CreateFunc}[]
+    create_func_wrappers_hl = APIFunction{APIFunction{CreateFunc}}[]
+    create_func_wrappers_hl_fptr = APIFunction{APIFunction{CreateFunc}}[]
+    handle_constructors = Constructor{HandleDefinition,APIFunction{CreateFunc}}[]
+    handle_constructors_fptr = Constructor{HandleDefinition,APIFunction{CreateFunc}}[]
+    handle_constructors_hl = Constructor{HandleDefinition,APIFunction{APIFunction{CreateFunc}}}[]
+    handle_constructors_hl_fptr = Constructor{HandleDefinition,APIFunction{APIFunction{CreateFunc}}}[]
+    handle_constructors_api = Constructor{HandleDefinition,APIFunction{SpecFunc}}[]
+    handle_constructors_api_fptr = Constructor{HandleDefinition,APIFunction{SpecFunc}}[]
+    handle_constructors_api_hl = Constructor{HandleDefinition,APIFunction{APIFunction{SpecFunc}}}[]
+    handle_constructors_api_hl_fptr = Constructor{HandleDefinition,APIFunction{APIFunction{SpecFunc}}}[]
+
     for handle in handles
         for api_constructor in f(wrappable_constructors(handle.spec))
+            (; func) = api_constructor
+            f1 = APIFunction(func, false)
+            f2 = APIFunction(func, true)
+            f1_p = promote_hl(f1)
+            f2_p = promote_hl(f2)
             if !isnothing(api_constructor.create_info_param)
-                defs = [APIFunction(api_constructor, false); APIFunction(api_constructor, true)]
-                append!(api_constructor_wrappers, defs)
-            else
-                defs = [APIFunction(api_constructor.func, false); APIFunction(api_constructor.func, true)]
+                cf1 = APIFunction(api_constructor, false)
+                cf2 = APIFunction(api_constructor, true)
+                push!(create_func_wrappers, cf1)
+                push!(create_func_wrappers_fptr, cf2)
+                if contains_api_structs(cf1)
+                    push!(handle_constructors, Constructor(handle, cf1))
+                    push!(handle_constructors_fptr, Constructor(handle, cf2))
+                end
+                cf1_p = promote_hl(cf1)
+                cf2_p = promote_hl(cf2)
+                push!(create_func_wrappers_hl, cf1_p)
+                push!(create_func_wrappers_hl_fptr, cf2_p)
+                push!(handle_constructors_hl, Constructor(handle, cf1_p))
+                push!(handle_constructors_hl_fptr, Constructor(handle, cf2_p))
             end
-            append!(handle_constructors, Constructor(handle, def) for def in defs)
+            push!(handle_constructors_api_hl, Constructor(handle, f1_p))
+            push!(handle_constructors_api_hl_fptr, Constructor(handle, f2_p))
+            if contains_api_structs(f1)
+                push!(handle_constructors_api, Constructor(handle, f1))
+                push!(handle_constructors_api_fptr, Constructor(handle, f2))
+            end
         end
     end
-
-    api_constructor_wrappers_hl = promote_hl.(api_constructor_wrappers)
-    handle_constructors_hl = promote_hl.(filter(contains_api_structs, handle_constructors))
-    funcs_hl = promote_hl.(funcs)
 
     parent_overloads = Parent.(filter(has_parent, handles))
 
@@ -234,16 +264,30 @@ function VulkanWrapper(config::WrapperConfig)
             documented.(union_getproperty_hl);
             documented.(struct_constructors);
             documented.(struct_constructors_hl);
-            documented.(struct_constructors_from_hl);
-            documented.(struct_constructors_from_ll);
-            documented.(struct_constructors_from_core);
+            to_expr.(struct_constructors_from_hl);
+            to_expr.(struct_constructors_from_ll);
+            to_expr.(struct_constructors_from_core);
             documented.(struct_converts_to_ll);
+
             documented.(funcs);
+            to_expr.(funcs_fptr);
             documented.(funcs_hl);
-            documented.(api_constructor_wrappers);
-            documented.(api_constructor_wrappers_hl);
+            to_expr.(funcs_hl_fptr);
+
+            documented.(create_func_wrappers);
+            to_expr.(create_func_wrappers_fptr);
+            documented.(create_func_wrappers_hl);
+            to_expr.(create_func_wrappers_hl_fptr);
+
             documented.(handle_constructors);
+            to_expr.(handle_constructors_fptr);
             documented.(handle_constructors_hl);
+            to_expr.(handle_constructors_hl_fptr);
+            documented.(handle_constructors_api);
+            to_expr.(handle_constructors_api_fptr);
+            documented.(handle_constructors_api_hl);
+            to_expr.(handle_constructors_api_hl_fptr);
+
             to_expr.(stypes);
             to_expr.(hl_type_mappings);
             to_expr.(core_type_mappings);
@@ -253,7 +297,7 @@ function VulkanWrapper(config::WrapperConfig)
             :(const SPIRV_CAPABILITIES = [$(spirv_caps...)]);
         ],
         Symbol[
-            exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); exports.(api_constructor_wrappers_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES;
+            exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES;
         ]
     )
 end

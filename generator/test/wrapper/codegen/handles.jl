@@ -43,6 +43,26 @@
 
         test_ex(
             Constructor(
+                HandleDefinition(handle_by_name(:VkInstance)),
+                APIFunction(func_by_name(:vkCreateInstance), false),
+            ),
+            :(
+                Instance(create_info::_InstanceCreateInfo; allocator = C_NULL) = unwrap(_create_instance(create_info; allocator))
+            )
+        )
+
+        test_ex(
+            Constructor(
+                HandleDefinition(handle_by_name(:VkInstance)),
+                VulkanGen.promote_hl(APIFunction(func_by_name(:vkCreateInstance), false)),
+            ),
+            :(
+                Instance(create_info::InstanceCreateInfo; allocator = C_NULL) = unwrap(create_instance(create_info; allocator))
+            )
+        )
+
+        test_ex(
+            Constructor(
                 HandleDefinition(handle_by_name(:VkDebugReportCallbackEXT)),
                 APIFunction(create_func(:vkCreateDebugReportCallbackEXT), true),
             ),

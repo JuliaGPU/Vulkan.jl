@@ -18,19 +18,18 @@ function Documented(def::StructDefinition{true})
     Documented(def, doc)
 end
 
-function Documented(def::Constructor{<:StructDefinition{HL, SpecStruct}}) where {HL}
+Documented(def::Constructor{<:StructDefinition{HL, SpecStruct}}) where {HL} = document_constructor(def, def.to.spec, HL)
+Documented(def::Constructor{HandleDefinition,APIFunction{APIFunction{CreateFunc}}}) = document_constructor(def, def.from.spec.spec, true)
+Documented(def::Constructor{HandleDefinition,APIFunction{CreateFunc}}) = document_constructor(def, def.from.spec, false)
+
+function document_constructor(def::Constructor, spec, is_hl)
     (; p) = def
-    (; spec) = def.to
     doc = string(
         extension_doc(spec),
-        args_summary(document_arguments(p, spec, HL)),
+        args_summary(document_arguments(p, spec, is_hl)),
         api_doc(spec),
     )
     Documented(def, doc)
-end
-
-function Documented(def::Constructor{HandleDefinition})
-    Documented(def, "")
 end
 
 backquoted(arg) = string('`', arg, '`')

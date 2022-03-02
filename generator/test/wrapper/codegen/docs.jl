@@ -76,7 +76,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
         )
 
         test_doc(
-            APIFunction(create_func(:vkCreateInstance), true),
+            APIFunction(create_func(:vkCreateInstance), false),
             """
             Return codes:
             - `ERROR_OUT_OF_HOST_MEMORY`
@@ -89,8 +89,6 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             Arguments:
             - `enabled_layer_names::Vector{String}`
             - `enabled_extension_names::Vector{String}`
-            - `fptr_create::FunctionPtr`: function pointer used for creating the handle(s)
-            - `fptr_destroy::FunctionPtr`: function pointer used for destroying the handle(s) upon finalization
             - `allocator::_AllocationCallbacks`: defaults to `C_NULL`
             - `next::Ptr{Cvoid}`: defaults to `C_NULL`
             - `flags::UInt32`: defaults to `0`
@@ -123,18 +121,6 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
                 """
                 Arguments:
                 - `device::Device` (externsync)
-                - `allocator::_AllocationCallbacks`: defaults to `C_NULL`
-
-                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyDevice.html)
-                """,
-            )
-
-            test_doc(
-                APIFunction(func_by_name(:vkDestroyDevice), true),
-                """
-                Arguments:
-                - `device::Device` (externsync)
-                - `fptr::FunctionPtr`: function pointer used for the API call
                 - `allocator::_AllocationCallbacks`: defaults to `C_NULL`
 
                 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyDevice.html)
@@ -265,5 +251,21 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
                 """
             )
         end
+    end
+    @testset "Handles" begin
+        test_doc(
+                Constructor(HandleDefinition(handle_by_name(:VkInstance)), VulkanGen.promote_hl(APIFunction(create_func(:vkCreateInstance), false))),
+                """
+                Arguments:
+                - `enabled_layer_names::Vector{String}`
+                - `enabled_extension_names::Vector{String}`
+                - `allocator::AllocationCallbacks`: defaults to `C_NULL`
+                - `next::Any`: defaults to `C_NULL`
+                - `flags::UInt32`: defaults to `0`
+                - `application_info::ApplicationInfo`: defaults to `C_NULL`
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html)
+                """
+            )
     end
 end
