@@ -2,14 +2,14 @@
 
 # Error handling
 
-Error handling is achieved via [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl) to avoid the large overhead introduced with `try`/`catch` blocks. All functions that need to perform an operation that returns a `VkResult` are wrapped into a `ResultTypes.Result` (distinct from `Vulkan.Result` which is the wrapped version of `VkResult`), which contains a [`VulkanError`](@ref) if a non-success code is encountered. Custom error handling can be performed using the following pattern
+Error handling is achieved via a Rust-like mechanism through [ResultTypes.jl](https://github.com/iamed2/ResultTypes.jl). All Vulkan API functions that return a Vulkan [result code](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html) are wrapped into a `ResultTypes.Result`, which holds either the result or a [`VulkanError`](@ref) if a non-zero status code is encountered. Note that `ResultTypes.Result` is distinct from `Vulkan.Result` which is the wrapped version of `VkResult`. Errors can be manually handled with the following pattern
 
 =#
 
 using Vulkan
 
-res = create_instance([], [])
-if iserror(res) # handle the error
+res = create_instance(["VK_LAYER_KHRONOS_validation"], [])
+if iserror(res)
     err = unwrap_error(res)
     if err.code == ERROR_INCOMPATIBLE_DRIVER
         error(
@@ -20,7 +20,7 @@ if iserror(res) # handle the error
             """
         )
     elseif err.code == ERROR_LAYER_NOT_PRESENT
-        error("One or more layers could not be found")
+        error("Validation layers not available.")
     else
         throw(err)
     end

@@ -58,8 +58,9 @@ makedocs(;
             "Running compute shaders" => "tutorial/minimal_working_compute.md",
         ],
         "How to" => [
-            "howto/preferences.md",
-            "howto/debugging.md",
+            "Manage preferences" => "howto/preferences.md",
+            "Debug an application" => "howto/debugging.md",
+            "Manipulate handles" => "howto/handles.md",
         ],
         "API" => "api.md",
         "Utility" => "utility.md",

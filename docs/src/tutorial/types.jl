@@ -39,7 +39,7 @@ However, finalizers can be run in arbitrary order, and some handles require to b
 
 This introduces a small overhead, since the parent handle and allocator are stored in an anonymous function for each handle at creation. However, it should be minor compared to the execution time of the API destructors.
 
-Because finalization order is the source of many Vulkan bugs, particularly when objects implicitly depend on other objects being alive, there is a [preference](@ref Preferences) `LOG_DESTRUCTION` that allows you to log all destructions if set to `"true"` for debugging purposes.
+Because untamed finalization order is a great source of Vulkan bugs, particularly when objects implicitly depend on other objects being alive, there is a [preference](@ref Preferences) `LOG_DESTRUCTION` that allows you to log all destructions if set to `"true"` for debugging purposes.
 
 ### [Exposition of create info arguments](@id expose-create-info-args)
 
