@@ -114,6 +114,29 @@ end
         props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Properties)
         @test props.properties.api_version ≥ v"1.1"
     end
+
+    @testset "Handle constructors" begin
+        info = FenceCreateInfo()
+        fence_1 = Fence(device, info)
+        @test fence_1 isa Fence
+        fence_2 = Fence(device)
+        @test fence_2 isa Fence
+        fence_3 = unwrap(create_fence(device, info))
+        @test fence_3 isa Fence
+        fence_4 = unwrap(create_fence(device))
+        @test fence_4 isa Fence
+
+        info = _FenceCreateInfo()
+        fence_1 = Fence(device, info)
+        @test fence_1 isa Fence
+        fence_2 = Fence(device)
+        @test fence_2 isa Fence
+        fence_3 = unwrap(_create_fence(device, info))
+        @test_throws MethodError unwrap(create_fence(device, info))
+        @test fence_3 isa Fence
+        fence_4 = unwrap(_create_fence(device))
+        @test fence_4 isa Fence
+    end
 end
 
 GC.gc()

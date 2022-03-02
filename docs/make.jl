@@ -11,12 +11,23 @@ function julia_files(dir)
     sort(filter(endswith(".jl"), files))
 end
 
+function replace_edit(content)
+    haskey(ENV, "JULIA_GITHUB_ACTIONS_CI") && return content
+    # Linking does not work locally, but we can make
+    # the warning go away with a hard link to the repo.
+    replace(
+        content,
+        r"EditURL = \".*<unknown>/(.*)\"" => s"EditURL = \"https://github.com/JuliaGPU/Vulkan.jl/tree/master/\1\"",
+    )
+end
+
 function generate_markdowns()
     dir = joinpath(@__DIR__, "src")
     Threads.@threads for file in julia_files(dir)
         Literate.markdown(
             file,
-            dirname(file),
+            dirname(file);
+            postprocess = replace_edit,
             documenter = true,
         )
     end

@@ -3,4 +3,4 @@
 # as well as all the dependencies of the generator project.
 using LiveServer
 
-servedocs(literate = "")
+servedocs(literate = "", skip_dir = joinpath("docs", "src"))

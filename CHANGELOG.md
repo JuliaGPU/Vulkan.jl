@@ -13,6 +13,7 @@ Changelog:
 - ![BREAKING][badge-breaking] ![Enhancement][badge-enhancement] The symbol `core` has been removed and the symbol `vk` is no longer exported, in favor of the new exported symbol `VkCore`.
 - ![Enhancement][badge-enhancement] An alias named `Vk` for `Vulkan` is now exported.
 - ![Feature][badge-feature] Introspection functions `hl_type`, `intermediate_type` and `core_type` were defined to link Vulkan structures between wrapping levels, should the user ever need it. This is mostly used internally.
+- ![Enhancement][badge-enhancement] Improvements made to generated docstrings and to the package documentation.
 
 TL;DR: here is what you will likely need to do:
 - Use `Vulkan.VkCore` instead of `Vulkan.core` where necessary (typically for C-compatible callback functions, such as a validation callback)
