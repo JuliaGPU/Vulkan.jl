@@ -1,6 +1,14 @@
 #=
 
-# Interfacing with the C API
+# Motivations
+
+## Automating low-level patterns
+
+Vulkan is a low-level API that exhibits many patterns than any C library exposes. For example, some functions return error codes as a result, or mutate pointer memory as a way of returning values. Arrays are requested under the form of a pointer and a length. Pointers are used in many places; and because their dependency to their pointed data escapes the Julia compiler and the garbage collection mechanism, it is not trivial to keep pointers valid (i.e. have them point to valid -unreclaimed- memory). This introduces several pitfalls that ultimately lead to crashes. Furthermore, the API makes a heavy use of structures with pointer fields and structure pointers, which demands a clear knowledge of variable preservation in Julia.
+
+Usually, the patterns mentioned above are not problematic for small libraries, because the involved C structures are relatively simple. Vulkan being a large API, however, patterns start to feel heavy: they require lots of boilerplate code and any mistake is likely to result in a crash. That is why we developped a procedural approach to automate these patterns.
+
+Vulkan.jl uses a generator to programmatically generate higher-level wrappers for low-level API functions. This is a consequent part of this library, which helped us to minimize the amount of human errors in the wrapping process, while allowing a certain flexilibity. The related project is contained in the `generator` folder. Because its unique purpose is to generate wrappers, it is not included in the package, reducing the number of dependencies.
 
 ## Structures and variable preservation
 
@@ -82,9 +90,5 @@ We hope that the additional `Vector{Any}` will not introduce too much overhead. 
 
 !!! tip
     `cconvert`/`unsafe_convert` were extended on wrapper types so that, when using an API function directly, [`ccall`](https://docs.julialang.org/en/v1/base/c/#ccall) will convert a struct to its API-compatible version.
-
-## Version numbers
-
-Version numbers are encoded in unsigned integers (often `UInt32`) in C. Most APIs have a specific encoding (and decoding) scheme. Ideally we want to use version numbers from Julia without having to look for this encoding or decoding function, and this has been automated for the Vulkan API.
 
 =#

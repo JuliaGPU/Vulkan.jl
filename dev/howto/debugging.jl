@@ -25,7 +25,8 @@ const debug_callback_c = @cfunction(default_debug_callback, UInt32, (DebugUtilsM
 You need then need to define which message types and logging levels you want to include. Note that only setting e.g. `DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT` will not enable you the other levels, you need to set them all explicitly.
 
 ```julia
-# Include all severity messages. You can usually leave out the verbose and info severities for less noise in the output.
+# Include all severity messages. You can usually leave out
+# the verbose and info severities for less noise in the output.
 message_severity = |(
     DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT,
     DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT,
@@ -54,7 +55,7 @@ However, make sure that the messenger stays alive as long as it is used. You sho
     ```julia
     create_info = DebugUtilsMessengerCreateInfoEXT(message_severity, message_type, debug_callback_c)
     instance = Instance(["VK_LAYER_KHRONOS_validation"], ["VK_EXT_debug_utils"]; next = create_info)
-    messenger = unwrap(create_debug_utils_messenger_ext(instance, create_info))
+    messenger = DebugUtilsMessengerEXT(instance, create_info)
     ```
 
 =#

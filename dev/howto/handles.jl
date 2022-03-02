@@ -38,6 +38,9 @@ end
 
 info = BufferCreateInfo(100, BUFFER_USAGE_TRANSFER_SRC_BIT, SHARING_MODE_EXCLUSIVE, [];
     flags = BUFFER_CREATE_SPARSE_ALIASED_BIT)
+
+Buffer(device, info)
+#-
 create_buffer(device, info)
 
 # Handles allocated in batches (such as command buffers) do not have a dedicated constructor; you will need to call the corresponding function yourself.
@@ -61,4 +64,4 @@ finalize(buffer) # calls `destroy_buffer`
 
 free_command_buffers(device, command_pool, cbuffers)
 
-# or the equivalent `free_descriptor_sets` for `DescriptorSet`s.
+# or the corresponding `free_descriptor_sets` for `DescriptorSet`s.
