@@ -17,11 +17,8 @@ using Vulkan
 @set_driver :SwiftShader # hide
 
 const instance = Instance([], [])
-const device = Device(
-    first(unwrap(enumerate_physical_devices(instance))), [DeviceQueueCreateInfo(0, [1.])],
-    [],
-    [],
-)
+const pdevice = first(unwrap(enumerate_physical_devices(instance)))
+const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.])], [], [])
 
 #=
 
