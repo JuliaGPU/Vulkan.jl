@@ -42,10 +42,6 @@ makedocs(;
         "Home" => "index.md",
         "Introduction" => "intro.md",
         "Glossary" => "glossary.md",
-        "About" => [
-            "Motivations" => "about/motivations.md",
-            "Extension mechanism" => "about/extension_mechanism.md",
-        ],
         "Tutorial" => [
             "Getting started" => "tutorial/getting_started.md",
             "Error handling" => "tutorial/error_handling.md",
@@ -63,6 +59,10 @@ makedocs(;
             "Wrapper functions" => "reference/wrapper_functions.md",
             "API function dispatch" => "reference/dispatch.md",
             "Package options" => "reference/options.md",
+        ],
+        "Explanations" => [
+            "Motivations" => "about/motivations.md",
+            "Extension mechanism" => "about/extension_mechanism.md",
         ],
         "API" => "api.md",
         "Utility" => "utility.md",
