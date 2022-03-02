@@ -21,7 +21,6 @@ function do_something()
         [],
     )
 
-    fence = Fence(device)
     command_pool = CommandPool(device, 0)
     buffers = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(command_pool, COMMAND_BUFFER_LEVEL_PRIMARY, 10)))
     ## they won't be automatically freed individually

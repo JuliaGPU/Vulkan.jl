@@ -1,6 +1,6 @@
 #=
 
-# Vulkan functions
+# Wrapper functions
 
 Functions in C behave differently that in Julia. In particular, they can't return multiple values and mutate pointer memory instead. Other patterns emerge from the use of pointers with a separately-provided length, where a length/size parameter can be queried, so that you build a pointer with the right size, and pass it in to the API to be filled with data.
 All these patterns were automated, so that wrapper functions feel a lot more natural and straightforward for Julia users than the API functions.
@@ -110,3 +110,51 @@ example_enumerate_physical_devices_2(instance)
 # Fortunately, this is automated for you and you can just call
 
 unwrap(enumerate_physical_devices(instance))
+
+#=
+
+## [Exposing create info arguments](@id expose-create-info-args)
+
+# Or, if an array of create infos is expected, then you will have to provide it yourself:
+
+## the array of DeviceQueueCreateInfo has to be provided manually
+Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
+
+# When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the `create_*` function manually
+
+command_pool = CommandPool(device, 0)
+command_buffers = unwrap(
+                    allocate_command_buffers(
+                      device,
+                      CommandBufferAllocateInfo(
+                        command_pool,
+                        COMMAND_BUFFER_LEVEL_PRIMARY,
+                        3,
+                      )
+                    )
+                  )
+
+## Automatic insertion of inferable arguments
+
+In some places, part of the arguments of a function or of the fields of a structure can only take one logical value. It can be divided into two sets:
+
+1. The structure type `sType` of certain structures
+2. Arguments related to the start and length of a pointer which represents an array
+
+The second set is a consequence of using a higher-level language than C. In C, the pointer alone does not provide any information regarding the number of elements it holds. In Julia, array-like values can be constructed in many different ways, being an `Array`, a `NTuple` or other container types which provide a `length` method.
+
+#### Structure type
+
+Many API structures possess a `sType` field which must be set to a unique value. This is done to favor the extendability of the API, but is unnecessary boilerplate for the user. Worse, this is an error-prone process which may lead to crashes. All the constructors of this wrapper do not expose this `sType` argument, and hardcode the expected value.
+
+#### Pointer lengths
+
+The length of array pointers is automatically deduced from the length of the container passed in as argument.
+
+#### Pointer starts
+
+Some API functions require to specify the start of a pointer array as an argument. They have been hardcoded to 0 (first element in C), since it is always possible to pass in a sub-array (e.g. a view).
+
+## Intermediate functions
+
+=#
