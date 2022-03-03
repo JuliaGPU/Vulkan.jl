@@ -12,22 +12,42 @@ using Vulkan
 
 const instance = Instance([], [])
 const pdevice = first(unwrap(enumerate_physical_devices(instance)))
-const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.])], [], [])
+const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.0])], [], [])
 
 # The most convenient way to create a handle is through its constructor
 
-buffer = Buffer(device, 100, BUFFER_USAGE_TRANSFER_SRC_BIT, SHARING_MODE_EXCLUSIVE, [];
-    flags = BUFFER_CREATE_SPARSE_ALIASED_BIT)
+buffer = Buffer(
+    device,
+    100,
+    BUFFER_USAGE_TRANSFER_SRC_BIT,
+    SHARING_MODE_EXCLUSIVE,
+    [];
+    flags = BUFFER_CREATE_SPARSE_ALIASED_BIT,
+)
 
 # This is equivalent to
 
-unwrap(create_buffer(device, 100, BUFFER_USAGE_TRANSFER_SRC_BIT, SHARING_MODE_EXCLUSIVE, [];
-    flags = BUFFER_CREATE_SPARSE_ALIASED_BIT))
+unwrap(
+    create_buffer(
+        device,
+        100,
+        BUFFER_USAGE_TRANSFER_SRC_BIT,
+        SHARING_MODE_EXCLUSIVE,
+        [];
+        flags = BUFFER_CREATE_SPARSE_ALIASED_BIT,
+    ),
+)
 
 # [Error handling](@ref) can be performed before unwrapping, e.g.
 
-res = create_buffer(device, 100, BUFFER_USAGE_TRANSFER_SRC_BIT, SHARING_MODE_EXCLUSIVE, [];
-    flags = BUFFER_CREATE_SPARSE_ALIASED_BIT)
+res = create_buffer(
+    device,
+    100,
+    BUFFER_USAGE_TRANSFER_SRC_BIT,
+    SHARING_MODE_EXCLUSIVE,
+    [];
+    flags = BUFFER_CREATE_SPARSE_ALIASED_BIT,
+)
 if iserror(res)
     error("Could not create buffer!")
 else
@@ -36,8 +56,13 @@ end
 
 # Create info parameters can be built separately, such as
 
-info = BufferCreateInfo(100, BUFFER_USAGE_TRANSFER_SRC_BIT, SHARING_MODE_EXCLUSIVE, [];
-    flags = BUFFER_CREATE_SPARSE_ALIASED_BIT)
+info = BufferCreateInfo(
+    100,
+    BUFFER_USAGE_TRANSFER_SRC_BIT,
+    SHARING_MODE_EXCLUSIVE,
+    [];
+    flags = BUFFER_CREATE_SPARSE_ALIASED_BIT,
+)
 
 Buffer(device, info)
 #-

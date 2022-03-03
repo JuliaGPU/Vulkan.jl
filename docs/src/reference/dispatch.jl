@@ -18,7 +18,7 @@ using Vulkan
 
 const instance = Instance([], [])
 const pdevice = first(unwrap(enumerate_physical_devices(instance)))
-const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.])], [], [])
+const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.0])], [], [])
 
 #=
 

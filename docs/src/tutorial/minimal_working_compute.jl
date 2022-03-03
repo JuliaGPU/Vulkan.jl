@@ -63,8 +63,13 @@ mem = DeviceMemory(device, mem_size, memorytype_idx)
 # memory. (Memory allocations may be quite demanding, it is therefore often
 # better to allocate a single big chunk of memory, and create multiple buffers
 # that view it as smaller arrays.)
-buffer = Buffer(device, mem_size,BUFFER_USAGE_STORAGE_BUFFER_BIT,
-    SHARING_MODE_EXCLUSIVE, [qfam_idx])
+buffer = Buffer(
+    device,
+    mem_size,
+    BUFFER_USAGE_STORAGE_BUFFER_BIT,
+    SHARING_MODE_EXCLUSIVE,
+    [qfam_idx],
+)
 
 bind_buffer_memory(device, buffer, mem, 0)
 
@@ -161,14 +166,23 @@ shader = ShaderModule(device, sizeof(UInt32) * length(shader_bcode), shader_bcod
 # be used by the shader. In this case, we only use a single buffer:
 dsl = DescriptorSetLayout(
     device,
-    [DescriptorSetLayoutBinding(0, DESCRIPTOR_TYPE_STORAGE_BUFFER,
-        SHADER_STAGE_COMPUTE_BIT; descriptor_count = 1)],
+    [
+        DescriptorSetLayoutBinding(
+            0,
+            DESCRIPTOR_TYPE_STORAGE_BUFFER,
+            SHADER_STAGE_COMPUTE_BIT;
+            descriptor_count = 1,
+        ),
+    ],
 )
 
 # Pipeline layout describes the descriptor set together with the location of
 # push constants:
-pl = PipelineLayout(device, [dsl],
-    [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts))])
+pl = PipelineLayout(
+    device,
+    [dsl],
+    [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts))],
+)
 
 # Shader compilation can use "specialization constants" that get propagated
 # (and optimized) into the shader code. We use them to make the shader
@@ -225,19 +239,34 @@ update_descriptor_sets(
 # Let's create a command pool in the right queue family, and take a command
 # buffer out of that.
 cmdpool = CommandPool(device, qfam_idx)
-cbufs = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(cmdpool, COMMAND_BUFFER_LEVEL_PRIMARY, 1)))
+cbufs = unwrap(
+    allocate_command_buffers(
+        device,
+        CommandBufferAllocateInfo(cmdpool, COMMAND_BUFFER_LEVEL_PRIMARY, 1),
+    ),
+)
 cbuf = first(cbufs)
 
 # Now that we have a command buffer, we can fill it with commands that cause
 # the kernel to be run. Basically, we bind and fill everything, and then
 # dispatch a sufficient amount of invocations of the shader to span over the
 # array.
-begin_command_buffer(cbuf, CommandBufferBeginInfo(flags = COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT))
+begin_command_buffer(
+    cbuf,
+    CommandBufferBeginInfo(flags = COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT),
+)
 
 cmd_bind_pipeline(cbuf, PIPELINE_BIND_POINT_COMPUTE, p)
 
 const_buf = [ShaderPushConsts(1.234, data_items)]
-cmd_push_constants(cbuf, pl, SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts), Ptr{Nothing}(pointer(const_buf)))
+cmd_push_constants(
+    cbuf,
+    pl,
+    SHADER_STAGE_COMPUTE_BIT,
+    0,
+    sizeof(ShaderPushConsts),
+    Ptr{Nothing}(pointer(const_buf)),
+)
 
 cmd_bind_descriptor_sets(cbuf, PIPELINE_BIND_POINT_COMPUTE, pl, 0, [dset], [])
 
@@ -279,8 +308,7 @@ unwrap(free_descriptor_sets(device, dpool, dsets))
 # Just as with flushing, the invalidation is only required for memory that is
 # not host-coherent. You may skip this step if you check that the memory has
 # the host-coherent property flag.
-unwrap(invalidate_mapped_memory_ranges(device,
-    [MappedMemoryRange(mem, 0, mem_size)]))
+unwrap(invalidate_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)]))
 
 # Finally, let's have a look at the data created by your compute shader!
 data # WHOA

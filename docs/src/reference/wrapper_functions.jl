@@ -38,7 +38,7 @@ All this setup code is now automated by the wrapper:
 
 =#
 
-instance = unwrap(create_instance(InstanceCreateInfo([], []); allocator=C_NULL))
+instance = unwrap(create_instance(InstanceCreateInfo([], []); allocator = C_NULL))
 
 #=
 
@@ -97,7 +97,8 @@ function example_enumerate_physical_devices_2(instance)
     code = vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
 
     while code == VK_INCOMPLETE
-        @assert vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL) == VK_SUCCESS
+        @assert vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL) ==
+                VK_SUCCESS
         pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
         code = vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
     end
@@ -115,24 +116,9 @@ unwrap(enumerate_physical_devices(instance))
 
 ## [Exposing create info arguments](@id expose-create-info-args)
 
-# Or, if an array of create infos is expected, then you will have to provide it yourself:
+Functions that take a single `Create*Info` or `Allocate*Info` structure as an argument additionally define a method where all create info parameters are unpacked. The method will then build the create info structure automatically, slightly reducing boilerplate.
 
-## the array of DeviceQueueCreateInfo has to be provided manually
-Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
-
-# When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the `create_*` function manually
-
-command_pool = CommandPool(device, 0)
-command_buffers = unwrap(
-                    allocate_command_buffers(
-                      device,
-                      CommandBufferAllocateInfo(
-                        command_pool,
-                        COMMAND_BUFFER_LEVEL_PRIMARY,
-                        3,
-                      )
-                    )
-                  )
+For example, it is possible to create a [`Fence`](@ref) with `create_fence(device; flags = FENCE_CREATE_SIGNALED_BIT)`, instead of doing `create_fence(device, FenceCreateInfo(; flags = FENCE_CREATE_SIGNALED_BIT))`.
 
 ## Automatic insertion of inferable arguments
 
