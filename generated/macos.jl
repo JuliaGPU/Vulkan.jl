@@ -58577,6 +58577,89 @@ Arguments:
 _create_display_mode_khr(physical_device, display, parameters::_DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_mode_khr(physical_device, display, _DisplayModeCreateInfoKHR(parameters; next, flags); allocator)
 
 """
+Extension: VK\\_KHR\\_display
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `display_mode::DisplayModeKHR`
+- `plane_index::UInt32`
+- `plane_stack_index::UInt32`
+- `transform::SurfaceTransformFlagKHR`
+- `global_alpha::Float32`
+- `alpha_mode::DisplayPlaneAlphaFlagKHR`
+- `image_extent::_Extent2D`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html)
+
+"""
+_create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_plane_surface_khr(instance, _DisplaySurfaceCreateInfoKHR(display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent; next, flags); allocator)
+
+"""
+Extension: VK\\_MVK\\_macos\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+- `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+
+Arguments:
+- `instance::Instance`
+- `view::Ptr{Cvoid}`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateMacOSSurfaceMVK.html)
+
+"""
+_create_mac_os_surface_mvk(instance, view::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0) = _create_mac_os_surface_mvk(instance, _MacOSSurfaceCreateInfoMVK(view; next, flags); allocator)
+
+"""
+Extension: VK\\_EXT\\_metal\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+- `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+
+Arguments:
+- `instance::Instance`
+- `layer::Ptr{CAMetalLayer}`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateMetalSurfaceEXT.html)
+
+"""
+_create_metal_surface_ext(instance, layer::Ptr{vk.CAMetalLayer}; allocator = C_NULL, next = C_NULL, flags = 0) = _create_metal_surface_ext(instance, _MetalSurfaceCreateInfoEXT(layer; next, flags); allocator)
+
+"""
+Extension: VK\\_EXT\\_headless\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateHeadlessSurfaceEXT.html)
+
+"""
+_create_headless_surface_ext(instance; allocator = C_NULL, next = C_NULL, flags = 0) = _create_headless_surface_ext(instance, _HeadlessSurfaceCreateInfoEXT(; next, flags); allocator)
+
+"""
 Extension: VK\\_KHR\\_swapchain
 
 Return codes:
@@ -58709,6 +58792,14 @@ _create_acceleration_structure_nv(device, compacted_size::Integer, info::_Accele
 _create_private_data_slot_ext(device, flags::PrivateDataSlotCreateFlagEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = _create_private_data_slot_ext(device, _PrivateDataSlotCreateInfoEXT(flags; next), fptr_create, fptr_destroy; allocator)
 
 _create_display_mode_khr(physical_device, display, parameters::_DisplayModeParametersKHR, fptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_mode_khr(physical_device, display, _DisplayModeCreateInfoKHR(parameters; next, flags), fptr_create; allocator)
+
+_create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_plane_surface_khr(instance, _DisplaySurfaceCreateInfoKHR(display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent; next, flags), fptr_create, fptr_destroy; allocator)
+
+_create_mac_os_surface_mvk(instance, view::Ptr{Cvoid}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_mac_os_surface_mvk(instance, _MacOSSurfaceCreateInfoMVK(view; next, flags), fptr_create, fptr_destroy; allocator)
+
+_create_metal_surface_ext(instance, layer::Ptr{vk.CAMetalLayer}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_metal_surface_ext(instance, _MetalSurfaceCreateInfoEXT(layer; next, flags), fptr_create, fptr_destroy; allocator)
+
+_create_headless_surface_ext(instance, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_headless_surface_ext(instance, _HeadlessSurfaceCreateInfoEXT(; next, flags), fptr_create, fptr_destroy; allocator)
 
 _create_swapchain_khr(device, surface, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = _create_swapchain_khr(device, _SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fptr_create, fptr_destroy; allocator)
 
@@ -59389,6 +59480,101 @@ function create_display_mode_khr(physical_device, display, parameters::DisplayMo
 end
 
 """
+Extension: VK\\_KHR\\_display
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `display_mode::DisplayModeKHR`
+- `plane_index::UInt32`
+- `plane_stack_index::UInt32`
+- `transform::SurfaceTransformFlagKHR`
+- `global_alpha::Float32`
+- `alpha_mode::DisplayPlaneAlphaFlagKHR`
+- `image_extent::Extent2D`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html)
+
+"""
+function create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_display_plane_surface_khr(instance, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, convert(_Extent2D, image_extent); allocator, next, flags))
+    val
+end
+
+"""
+Extension: VK\\_MVK\\_macos\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+- `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+
+Arguments:
+- `instance::Instance`
+- `view::Ptr{Cvoid}`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateMacOSSurfaceMVK.html)
+
+"""
+function create_mac_os_surface_mvk(instance, view::Ptr{Cvoid}; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_mac_os_surface_mvk(instance, view; allocator, next, flags))
+    val
+end
+
+"""
+Extension: VK\\_EXT\\_metal\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+- `ERROR_NATIVE_WINDOW_IN_USE_KHR`
+
+Arguments:
+- `instance::Instance`
+- `layer::Ptr{CAMetalLayer}`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateMetalSurfaceEXT.html)
+
+"""
+function create_metal_surface_ext(instance, layer::Ptr{vk.CAMetalLayer}; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_metal_surface_ext(instance, layer; allocator, next, flags))
+    val
+end
+
+"""
+Extension: VK\\_EXT\\_headless\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateHeadlessSurfaceEXT.html)
+
+"""
+function create_headless_surface_ext(instance; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_headless_surface_ext(instance; allocator, next, flags))
+    val
+end
+
+"""
 Extension: VK\\_KHR\\_swapchain
 
 Return codes:
@@ -59615,6 +59801,26 @@ end
 
 function create_display_mode_khr(physical_device, display, parameters::DisplayModeParametersKHR, fptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{DisplayModeKHR, VulkanError}
     val = @propagate_errors(_create_display_mode_khr(physical_device, display, convert(_DisplayModeParametersKHR, parameters), fptr_create; allocator, next, flags))
+    val
+end
+
+function create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_display_plane_surface_khr(instance, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, convert(_Extent2D, image_extent), fptr_create, fptr_destroy; allocator, next, flags))
+    val
+end
+
+function create_mac_os_surface_mvk(instance, view::Ptr{Cvoid}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_mac_os_surface_mvk(instance, view, fptr_create, fptr_destroy; allocator, next, flags))
+    val
+end
+
+function create_metal_surface_ext(instance, layer::Ptr{vk.CAMetalLayer}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_metal_surface_ext(instance, layer, fptr_create, fptr_destroy; allocator, next, flags))
+    val
+end
+
+function create_headless_surface_ext(instance, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_headless_surface_ext(instance, fptr_create, fptr_destroy; allocator, next, flags))
     val
 end
 

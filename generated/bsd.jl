@@ -58905,6 +58905,109 @@ Arguments:
 _create_display_mode_khr(physical_device, display, parameters::_DisplayModeParametersKHR; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_mode_khr(physical_device, display, _DisplayModeCreateInfoKHR(parameters; next, flags); allocator)
 
 """
+Extension: VK\\_KHR\\_display
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `display_mode::DisplayModeKHR`
+- `plane_index::UInt32`
+- `plane_stack_index::UInt32`
+- `transform::SurfaceTransformFlagKHR`
+- `global_alpha::Float32`
+- `alpha_mode::DisplayPlaneAlphaFlagKHR`
+- `image_extent::_Extent2D`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html)
+
+"""
+_create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_plane_surface_khr(instance, _DisplaySurfaceCreateInfoKHR(display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent; next, flags); allocator)
+
+"""
+Extension: VK\\_KHR\\_wayland\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `display::Ptr{wl_display}`
+- `surface::SurfaceKHR`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateWaylandSurfaceKHR.html)
+
+"""
+_create_wayland_surface_khr(instance, display::Ptr{vk.wl_display}, surface::Ptr{vk.wl_surface}; allocator = C_NULL, next = C_NULL, flags = 0) = _create_wayland_surface_khr(instance, _WaylandSurfaceCreateInfoKHR(display, surface; next, flags); allocator)
+
+"""
+Extension: VK\\_KHR\\_xlib\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `dpy::Ptr{Display}`
+- `window::Window`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateXlibSurfaceKHR.html)
+
+"""
+_create_xlib_surface_khr(instance, dpy::Ptr{vk.Display}, window::vk.Window; allocator = C_NULL, next = C_NULL, flags = 0) = _create_xlib_surface_khr(instance, _XlibSurfaceCreateInfoKHR(dpy, window; next, flags); allocator)
+
+"""
+Extension: VK\\_KHR\\_xcb\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `connection::Ptr{xcb_connection_t}`
+- `window::xcb_window_t`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateXcbSurfaceKHR.html)
+
+"""
+_create_xcb_surface_khr(instance, connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; allocator = C_NULL, next = C_NULL, flags = 0) = _create_xcb_surface_khr(instance, _XcbSurfaceCreateInfoKHR(connection, window; next, flags); allocator)
+
+"""
+Extension: VK\\_EXT\\_headless\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+- `next::Ptr{Cvoid}`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateHeadlessSurfaceEXT.html)
+
+"""
+_create_headless_surface_ext(instance; allocator = C_NULL, next = C_NULL, flags = 0) = _create_headless_surface_ext(instance, _HeadlessSurfaceCreateInfoEXT(; next, flags); allocator)
+
+"""
 Extension: VK\\_KHR\\_swapchain
 
 Return codes:
@@ -59037,6 +59140,16 @@ _create_acceleration_structure_nv(device, compacted_size::Integer, info::_Accele
 _create_private_data_slot_ext(device, flags::PrivateDataSlotCreateFlagEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL) = _create_private_data_slot_ext(device, _PrivateDataSlotCreateInfoEXT(flags; next), fptr_create, fptr_destroy; allocator)
 
 _create_display_mode_khr(physical_device, display, parameters::_DisplayModeParametersKHR, fptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_mode_khr(physical_device, display, _DisplayModeCreateInfoKHR(parameters; next, flags), fptr_create; allocator)
+
+_create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_display_plane_surface_khr(instance, _DisplaySurfaceCreateInfoKHR(display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, image_extent; next, flags), fptr_create, fptr_destroy; allocator)
+
+_create_wayland_surface_khr(instance, display::Ptr{vk.wl_display}, surface::Ptr{vk.wl_surface}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_wayland_surface_khr(instance, _WaylandSurfaceCreateInfoKHR(display, surface; next, flags), fptr_create, fptr_destroy; allocator)
+
+_create_xlib_surface_khr(instance, dpy::Ptr{vk.Display}, window::vk.Window, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_xlib_surface_khr(instance, _XlibSurfaceCreateInfoKHR(dpy, window; next, flags), fptr_create, fptr_destroy; allocator)
+
+_create_xcb_surface_khr(instance, connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_xcb_surface_khr(instance, _XcbSurfaceCreateInfoKHR(connection, window; next, flags), fptr_create, fptr_destroy; allocator)
+
+_create_headless_surface_ext(instance, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0) = _create_headless_surface_ext(instance, _HeadlessSurfaceCreateInfoEXT(; next, flags), fptr_create, fptr_destroy; allocator)
 
 _create_swapchain_khr(device, surface, min_image_count::Integer, image_format::Format, image_color_space::ColorSpaceKHR, image_extent::_Extent2D, image_array_layers::Integer, image_usage::ImageUsageFlag, image_sharing_mode::SharingMode, queue_family_indices::AbstractArray, pre_transform::SurfaceTransformFlagKHR, composite_alpha::CompositeAlphaFlagKHR, present_mode::PresentModeKHR, clipped::Bool, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, old_swapchain = C_NULL) = _create_swapchain_khr(device, _SwapchainCreateInfoKHR(surface, min_image_count, image_format, image_color_space, image_extent, image_array_layers, image_usage, image_sharing_mode, queue_family_indices, pre_transform, composite_alpha, present_mode, clipped; next, flags, old_swapchain), fptr_create, fptr_destroy; allocator)
 
@@ -59717,6 +59830,124 @@ function create_display_mode_khr(physical_device, display, parameters::DisplayMo
 end
 
 """
+Extension: VK\\_KHR\\_display
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `display_mode::DisplayModeKHR`
+- `plane_index::UInt32`
+- `plane_stack_index::UInt32`
+- `transform::SurfaceTransformFlagKHR`
+- `global_alpha::Float32`
+- `alpha_mode::DisplayPlaneAlphaFlagKHR`
+- `image_extent::Extent2D`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html)
+
+"""
+function create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_display_plane_surface_khr(instance, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, convert(_Extent2D, image_extent); allocator, next, flags))
+    val
+end
+
+"""
+Extension: VK\\_KHR\\_wayland\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `display::Ptr{wl_display}`
+- `surface::SurfaceKHR`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateWaylandSurfaceKHR.html)
+
+"""
+function create_wayland_surface_khr(instance, display::Ptr{vk.wl_display}, surface::Ptr{vk.wl_surface}; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_wayland_surface_khr(instance, display, surface; allocator, next, flags))
+    val
+end
+
+"""
+Extension: VK\\_KHR\\_xlib\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `dpy::Ptr{Display}`
+- `window::Window`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateXlibSurfaceKHR.html)
+
+"""
+function create_xlib_surface_khr(instance, dpy::Ptr{vk.Display}, window::vk.Window; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_xlib_surface_khr(instance, dpy, window; allocator, next, flags))
+    val
+end
+
+"""
+Extension: VK\\_KHR\\_xcb\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `connection::Ptr{xcb_connection_t}`
+- `window::xcb_window_t`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateXcbSurfaceKHR.html)
+
+"""
+function create_xcb_surface_khr(instance, connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_xcb_surface_khr(instance, connection, window; allocator, next, flags))
+    val
+end
+
+"""
+Extension: VK\\_EXT\\_headless\\_surface
+
+Return codes:
+- `ERROR_OUT_OF_HOST_MEMORY`
+- `ERROR_OUT_OF_DEVICE_MEMORY`
+
+Arguments:
+- `instance::Instance`
+- `allocator::AllocationCallbacks`: defaults to `C_NULL`
+- `next::Any`: defaults to `C_NULL`
+- `flags::UInt32`: defaults to `0`
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateHeadlessSurfaceEXT.html)
+
+"""
+function create_headless_surface_ext(instance; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_headless_surface_ext(instance; allocator, next, flags))
+    val
+end
+
+"""
 Extension: VK\\_KHR\\_swapchain
 
 Return codes:
@@ -59943,6 +60174,31 @@ end
 
 function create_display_mode_khr(physical_device, display, parameters::DisplayModeParametersKHR, fptr_create::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{DisplayModeKHR, VulkanError}
     val = @propagate_errors(_create_display_mode_khr(physical_device, display, convert(_DisplayModeParametersKHR, parameters), fptr_create; allocator, next, flags))
+    val
+end
+
+function create_display_plane_surface_khr(instance, display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::Extent2D, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_display_plane_surface_khr(instance, display_mode, plane_index, plane_stack_index, transform, global_alpha, alpha_mode, convert(_Extent2D, image_extent), fptr_create, fptr_destroy; allocator, next, flags))
+    val
+end
+
+function create_wayland_surface_khr(instance, display::Ptr{vk.wl_display}, surface::Ptr{vk.wl_surface}, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_wayland_surface_khr(instance, display, surface, fptr_create, fptr_destroy; allocator, next, flags))
+    val
+end
+
+function create_xlib_surface_khr(instance, dpy::Ptr{vk.Display}, window::vk.Window, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_xlib_surface_khr(instance, dpy, window, fptr_create, fptr_destroy; allocator, next, flags))
+    val
+end
+
+function create_xcb_surface_khr(instance, connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_xcb_surface_khr(instance, connection, window, fptr_create, fptr_destroy; allocator, next, flags))
+    val
+end
+
+function create_headless_surface_ext(instance, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0)::ResultTypes.Result{SurfaceKHR, VulkanError}
+    val = @propagate_errors(_create_headless_surface_ext(instance, fptr_create, fptr_destroy; allocator, next, flags))
     val
 end
 

@@ -1,15 +1,7 @@
-"""
-API constructors (for a given handle) that can be wrapped to expose create info parameters.
-"""
-function wrappable_constructors(handle::SpecHandle)::Vector{CreateFunc}
-    # don't wrap VkSurfaceKHR, almost all signatures conflict with one another with create info parameters exposed
-    handle.name == :VkSurfaceKHR && return []
-    all_constructors_nobatch = filter(x -> x.handle == handle && !x.batch, spec_create_funcs)
-    if length(unique(all_constructors_nobatch.create_info_struct)) == length(all_constructors_nobatch)
-        all_constructors_nobatch
-    else
-        []
-    end
+function can_wrap(handle::SpecHandle, constructors, constructor)
+    # Don't wrap VkSurfaceKHR, almost all signatures conflict with one another with create info parameters exposed.
+    handle.name == :VkSurfaceKHR && return false
+    count(x -> x.create_info_struct == constructor.create_info_struct, constructors) == 1
 end
 
 handle_type(spec::SpecHandle) = handle_type(spec.name)

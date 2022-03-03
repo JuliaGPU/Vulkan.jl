@@ -197,7 +197,8 @@ function VulkanWrapper(config::WrapperConfig)
     handle_constructors_api_hl_fptr = Constructor{HandleDefinition,APIFunction{APIFunction{SpecFunc}}}[]
 
     for handle in handles
-        for api_constructor in f(wrappable_constructors(handle.spec))
+        cs = f(filter(x -> x.handle == handle.spec && !x.batch, spec_create_funcs))
+        for api_constructor in cs
             (; func) = api_constructor
             f1 = APIFunction(func, false)
             f2 = APIFunction(func, true)
@@ -208,17 +209,20 @@ function VulkanWrapper(config::WrapperConfig)
                 cf2 = APIFunction(api_constructor, true)
                 push!(create_func_wrappers, cf1)
                 push!(create_func_wrappers_fptr, cf2)
-                if contains_api_structs(cf1)
-                    push!(handle_constructors, Constructor(handle, cf1))
-                    push!(handle_constructors_fptr, Constructor(handle, cf2))
-                end
                 cf1_p = promote_hl(cf1)
                 cf2_p = promote_hl(cf2)
                 push!(create_func_wrappers_hl, cf1_p)
                 push!(create_func_wrappers_hl_fptr, cf2_p)
-                push!(handle_constructors_hl, Constructor(handle, cf1_p))
-                push!(handle_constructors_hl_fptr, Constructor(handle, cf2_p))
+                if can_wrap(handle.spec, cs, api_constructor)
+                    if contains_api_structs(cf1)
+                        push!(handle_constructors, Constructor(handle, cf1))
+                        push!(handle_constructors_fptr, Constructor(handle, cf2))
+                    end
+                    push!(handle_constructors_hl, Constructor(handle, cf1_p))
+                    push!(handle_constructors_hl_fptr, Constructor(handle, cf2_p))
+                end
             end
+            can_wrap(handle.spec, cs, api_constructor) || continue
             push!(handle_constructors_api_hl, Constructor(handle, f1_p))
             push!(handle_constructors_api_hl_fptr, Constructor(handle, f2_p))
             if contains_api_structs(f1)
