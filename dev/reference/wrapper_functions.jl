@@ -7,16 +7,16 @@ All these patterns were automated, so that wrapper functions feel a lot more nat
 
 ## Implicit return values
 
-Functions almost never directly return a value in Vulkan, and usually return either a return code or nothing. This is a limitation of C where only one value can be returned. Instead, they fill pointers with data, and it is your responsibility to initialize them before the call and dereference them afterwards. Here is an example:
+Functions almost never directly return a value in Vulkan, and usually return either a return code or nothing. This is a limitation of C where only a single value can be returned from a function. Instead, they fill pointers with data, and it is your responsibility to initialize them before the call and dereference them afterwards. Here is an example:
 
 =#
 
 using Vulkan
-using Vulkan.VkCore
+using .VkCore
 
 function example_create_instance()
     instance_ref = Ref{VkInstance}()
-    ## we'll cheat a bit for the create info
+    ## We will cheat a bit for the create info.
     code = vkCreateInstance(
         InstanceCreateInfo([], []), # create info
         C_NULL,                     # allocator
@@ -34,15 +34,13 @@ example_create_instance()
 
 We did not create a `VkInstanceCreateInfo` to stay concise. Note that the create info structure can be used as is by the `vkCreateInstance`, even if it is a wrapper. Indeed, it implements `Base.cconvert` and `Base.unsafe_convert` to automatically interface with the C API.
 
-All this setup code is now automated by the wrapper:
+All this setup code is now automated, with a better [error handling](@ref Error-handling).
 
 =#
 
-instance = unwrap(create_instance(InstanceCreateInfo([], []); allocator=C_NULL))
+instance = create_instance(InstanceCreateInfo([], []); allocator = C_NULL)
 
 #=
-
-Note that the `create_instance` wrapper returns a `ResultTypes.Result` type, so the result must be unwrapped to be used. To know more about `unwrap` and the `Result` type see the [Error handling](@ref Error-handling) section.
 
 When there are multiple implicit return values (i.e. multiple pointers being written to), they are returned as a tuple:
 
@@ -61,14 +59,14 @@ Sometimes, when enumerating objects or properties for example, a function may ne
 function example_enumerate_physical_devices(instance)
     pPhysicalDeviceCount = Ref{UInt32}(0)
 
-    ## get the length in pPhysicalDeviceCount
+    ## Get the length in pPhysicalDeviceCount.
     code = vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL)
 
     @assert code == VK_SUCCESS
-    ## initialize the array with the returned length
+    ## Initialize the array with the returned length.
     pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
 
-    ## fill the array
+    ## Fill the array.
     code = vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
     @assert code == VK_SUCCESS
 
@@ -97,7 +95,8 @@ function example_enumerate_physical_devices_2(instance)
     code = vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
 
     while code == VK_INCOMPLETE
-        @assert vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL) == VK_SUCCESS
+        @assert vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, C_NULL) ==
+                VK_SUCCESS
         pPhysicalDevices = Vector{VkPhysicalDevice}(undef, pPhysicalDeviceCount[])
         code = vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices)
     end
@@ -107,7 +106,7 @@ end
 
 example_enumerate_physical_devices_2(instance)
 
-# Fortunately, this is automated for you and you can just call
+# The wrapper function [`enumerate_physical_devices`](@ref) implements this logic, yielding
 
 unwrap(enumerate_physical_devices(instance))
 
@@ -115,24 +114,11 @@ unwrap(enumerate_physical_devices(instance))
 
 ## [Exposing create info arguments](@id expose-create-info-args)
 
-# Or, if an array of create infos is expected, then you will have to provide it yourself:
+Functions that take a single `Create*Info` or `Allocate*Info` structure as an argument additionally define a method where all create info parameters are unpacked. The method will then build the create info structure automatically, slightly reducing boilerplate.
 
-## the array of DeviceQueueCreateInfo has to be provided manually
-Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
+For example, it is possible to create a [`Fence`](@ref) with `create_fence(device; flags = FENCE_CREATE_SIGNALED_BIT)`, instead of `create_fence(device, FenceCreateInfo(; flags = FENCE_CREATE_SIGNALED_BIT))`.
 
-# When multiple handles are constructed at the same time, no additional constructor is defined and you need to call the `create_*` function manually
-
-command_pool = CommandPool(device, 0)
-command_buffers = unwrap(
-                    allocate_command_buffers(
-                      device,
-                      CommandBufferAllocateInfo(
-                        command_pool,
-                        COMMAND_BUFFER_LEVEL_PRIMARY,
-                        3,
-                      )
-                    )
-                  )
+Note that this feature is also available for handle constructors in conjunction with [Handle constructors](@ref), allowing `Fence(device; flags = FENCE_CREATE_SIGNALED_BIT)`.
 
 ## Automatic insertion of inferable arguments
 
@@ -145,7 +131,22 @@ The second set is a consequence of using a higher-level language than C. In C, t
 
 #### Structure type
 
-Many API structures possess a `sType` field which must be set to a unique value. This is done to favor the extendability of the API, but is unnecessary boilerplate for the user. Worse, this is an error-prone process which may lead to crashes. All the constructors of this wrapper do not expose this `sType` argument, and hardcode the expected value.
+Many API structures possess a `sType` field which must be set to a unique value. This is done to favor the extendability of the API, but is unnecessary boilerplate for the user. Worse, this is an error-prone process which may lead to crashes. All the constructors of this library do not expose this `sType` argument, and hardcode the expected value.
+
+If for any reason the structure type must be retrieved, it can be done via `structure_type`:
+
+```@repl
+julia> using Vulkan
+
+julia> structure_type(InstanceCreateInfo)
+VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO::VkStructureType = 0x00000001
+
+julia> structure_type(_InstanceCreateInfo)
+VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO::VkStructureType = 0x00000001
+
+julia> structure_type(VkCore.VkInstanceCreateInfo)
+VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO::VkStructureType = 0x00000001
+```
 
 #### Pointer lengths
 
@@ -153,7 +154,7 @@ The length of array pointers is automatically deduced from the length of the con
 
 #### Pointer starts
 
-Some API functions require to specify the start of a pointer array as an argument. They have been hardcoded to 0 (first element in C), since it is always possible to pass in a sub-array (e.g. a view).
+Some API functions require to specify the start of a pointer array as an argument. They have been hardcoded to 0 (first element), since it is always possible to pass in a sub-array (e.g. a view).
 
 ## Intermediate functions
 

@@ -12,13 +12,11 @@ res = create_instance(["VK_LAYER_KHRONOS_validation"], [])
 if iserror(res)
     err = unwrap_error(res)
     if err.code == ERROR_INCOMPATIBLE_DRIVER
-        error(
-            """
-            No driver compatible with the requested API version could be found.
-            Please make sure that a driver supporting Vulkan is installed, and
-            that it is up to date with the requested version.
-            """
-        )
+        error("""
+              No driver compatible with the requested API version could be found.
+              Please make sure that a driver supporting Vulkan is installed, and
+              that it is up to date with the requested version.
+              """)
     elseif err.code == ERROR_LAYER_NOT_PRESENT
         error("Validation layers not available.")
     else

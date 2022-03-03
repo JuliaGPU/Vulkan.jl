@@ -21,8 +21,8 @@ const application_info = ApplicationInfo(
     v"0.0.1", # application version
     v"0.0.1", # engine version
     v"1.2"; # requested API version
-    application_name="Demo",
-    engine_name="DemoEngine",
+    application_name = "Demo",
+    engine_name = "DemoEngine",
 )
 
 #=
