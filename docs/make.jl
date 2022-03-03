@@ -53,6 +53,7 @@ makedocs(;
             "Specify package options" => "howto/preferences.md",
             "Debug an application" => "howto/debugging.md",
             "Manipulate handles" => "howto/handles.md",
+            "Compile a SPIR-V shader from Julia" => "howto/shaders.md",
         ],
         "Reference" => [
             "Wrapper types" => "reference/wrapper_types.md",
