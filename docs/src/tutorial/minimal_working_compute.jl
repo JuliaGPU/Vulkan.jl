@@ -27,7 +27,7 @@ using SwiftShader_jll # hide
 using Vulkan
 @set_driver :SwiftShader # hide
 
-instance = Instance([], [])
+instance = Instance(["VK_LAYER_KHRONOS_validation"], [])
 
 # Take the first available physical device (you might check that it is an
 # actual GPU, using [`get_physical_device_properties`](@ref)).
@@ -57,13 +57,14 @@ data_items = 100
 mem_size = sizeof(Float32) * data_items
 
 # Allocate the memory of the correct type
-mem = unwrap(allocate_memory(device, mem_size, memorytype_idx))
+mem = DeviceMemory(device, mem_size, memorytype_idx)
 
 # Make a buffer that will be used to access the memory, and bind it to the
 # memory. (Memory allocations may be quite demanding, it is therefore often
 # better to allocate a single big chunk of memory, and create multiple buffers
 # that view it as smaller arrays.)
-buffer = unwrap(create_buffer(device, mem_size, BUFFER_USAGE_STORAGE_BUFFER_BIT, SHARING_MODE_EXCLUSIVE, [qfam_idx]))
+buffer = Buffer(device, mem_size,BUFFER_USAGE_STORAGE_BUFFER_BIT,
+    SHARING_MODE_EXCLUSIVE, [qfam_idx])
 
 bind_buffer_memory(device, buffer, mem, 0)
 
@@ -80,7 +81,7 @@ data = unsafe_wrap(Vector{Float32}, convert(Ptr{Float32}, memptr), data_items, o
 # sure the device can see the updated data. This is the simplest way to move
 # array data to the device.
 data .= 0
-flush_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)])
+unwrap(flush_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)]))
 # The flushing is not required if you have verified that the memory is
 # host-coherent (i.e., has `MEMORY_PROPERTY_HOST_COHERENT_BIT`).
 
@@ -139,38 +140,35 @@ struct ShaderSpecConsts
     local_size_x::UInt32
 end
 
-# `glslangValidator` program is used to compile the shader:
-using glslang_jll
+# Let's now compile the shader to SPIR-V with `glslang`. We can use the artifact `glslang_jll` which provides the binary through the [Artifact system](https://pkgdocs.julialang.org/v1/artifacts/).
+using glslang_jll: glslangValidator
+glslang = glslangValidator(identity)
 shader_bcode = mktempdir() do dir
     inpath = joinpath(dir, "shader.comp")
     outpath = joinpath(dir, "shader.spv")
     open(f -> write(f, shader_code), inpath, "w")
-    status = glslangValidator() do glslang
-        run(`$glslang -V -S comp -o $outpath $inpath`)
-    end
+    status = run(`$glslang -V -S comp -o $outpath $inpath`)
     @assert status.exitcode == 0
     reinterpret(UInt32, read(outpath))
 end
 
 # We can now make a shader module with the compiled code:
-shader = unwrap(create_shader_module(device, sizeof(UInt32) * length(shader_bcode), shader_bcode))
+shader = ShaderModule(device, sizeof(UInt32) * length(shader_bcode), shader_bcode)
 
 # ## Assembling the pipeline
 #
 # Descriptor set layout describes how many resources of what kind are going to
 # be used by the shader. In this case, we only use a single buffer:
-dsl = unwrap(
-    create_descriptor_set_layout(
-        device,
-        [DescriptorSetLayoutBinding(0, DESCRIPTOR_TYPE_STORAGE_BUFFER, SHADER_STAGE_COMPUTE_BIT; descriptor_count = 1)],
-    ),
+dsl = DescriptorSetLayout(
+    device,
+    [DescriptorSetLayoutBinding(0, DESCRIPTOR_TYPE_STORAGE_BUFFER,
+        SHADER_STAGE_COMPUTE_BIT; descriptor_count = 1)],
 )
 
 # Pipeline layout describes the descriptor set together with the location of
 # push constants:
-pl = unwrap(
-    create_pipeline_layout(device, [dsl], [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts))]),
-)
+pl = PipelineLayout(device, [dsl],
+    [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts))])
 
 # Shader compilation can use "specialization constants" that get propagated
 # (and optimized) into the shader code. We use them to make the shader
@@ -199,7 +197,7 @@ p = first(ps)
 
 # Now make a descriptor pool to allocate the buffer descriptors from (not a big
 # one, just 1 descriptor set with 1 descriptor in total), ...
-dpool = unwrap(create_descriptor_pool(device, 1, [DescriptorPoolSize(DESCRIPTOR_TYPE_STORAGE_BUFFER, 1)]))
+dpool = DescriptorPool(device, 1, [DescriptorPoolSize(DESCRIPTOR_TYPE_STORAGE_BUFFER, 1)])
 
 # ... allocate the descriptors for our layout, ...
 dsets = unwrap(allocate_descriptor_sets(device, DescriptorSetAllocateInfo(dpool, [dsl])))
@@ -226,7 +224,7 @@ update_descriptor_sets(
 #
 # Let's create a command pool in the right queue family, and take a command
 # buffer out of that.
-cmdpool = unwrap(create_command_pool(device, qfam_idx))
+cmdpool = CommandPool(device, qfam_idx)
 cbufs = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(cmdpool, COMMAND_BUFFER_LEVEL_PRIMARY, 1)))
 cbuf = first(cbufs)
 
@@ -250,7 +248,7 @@ end_command_buffer(cbuf)
 # Finally, find a handle to the compute queue and send the command to execute
 # the shader!
 compute_q = get_device_queue(device, qfam_idx, 0)
-queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])])
+unwrap(queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])]))
 
 # ## Getting the data
 #
@@ -269,14 +267,20 @@ queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])])
 # that for example the pipeline and buffer objects are still used and that
 # there's a dependency with these variables until the command returns, so we
 # tell it manually.
-GC.@preserve buff dsl pl p dpool dset cmdpool cbuf const_buf begin
-    queue_wait_idle(compute_q)
+GC.@preserve buff dsl pl p const_buf begin
+    unwrap(queue_wait_idle(compute_q))
 end
+
+# Free the command buffers and the descriptor sets. These are the only handles that are not cleaned up automatically (see [Automatic finalization](@ref)).
+
+unwrap(free_command_buffers(device, cmdpool, cbufs))
+unwrap(free_descriptor_sets(device, dpool, dsets))
 
 # Just as with flushing, the invalidation is only required for memory that is
 # not host-coherent. You may skip this step if you check that the memory has
 # the host-coherent property flag.
-invalidate_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)])
+unwrap(invalidate_mapped_memory_ranges(device,
+    [MappedMemoryRange(mem, 0, mem_size)]))
 
 # Finally, let's have a look at the data created by your compute shader!
 data # WHOA
