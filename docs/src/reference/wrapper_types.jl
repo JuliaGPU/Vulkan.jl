@@ -57,11 +57,18 @@ Vulkan structures, such as `Extent2D`, `InstanceCreateInfo` and `PhysicalDeviceF
 
 ### High-level structures
 
-High-level structures were defined to ressemble idiomatic Julia structures, replacing C types by idiomatic Julia types. They abstract most pointers away, using Julia arrays and strings, and use `VersionNumbers` instead of integers. Equality and hashing are implemented with [AutoHashEquals.jl](https://github.com/andrewcooke/AutoHashEquals.jl), to facilitate their use in dictionaries.
+High-level structures were defined to ressemble idiomatic Julia structures, replacing C types by idiomatic Julia types. They abstract most pointers away, using Julia arrays and strings, and use `VersionNumbers` instead of integers. Equality and hashing are implemented with [AutoHashEquals.jl](https://github.com/andrewcooke/AutoHashEquals.jl) to facilitate their use in dictionaries.
 
 ### Intermediate structures
 
-Intermediate structures wrap C-compatible structures and embed pointer data as dependencies. Therefore, as long as the intermediate structure lives, all pointer data contained within the C-compatible structure will be valid. These structures are mostly used internally by Vulkan.jl, but can also be used directly as part of other intermediate structures or with intermediate functions (see [Intermediate functions](@ref)) for maximum performance, avoiding the overhead incurred by high-level structures which require back and forth conversions with C-compatible structures for API calls. Note that outside performance-critical sections such as tight loops, high-level structures are much more convenient to manipulate.
+Intermediate structures wrap C-compatible structures and embed pointer data as dependencies. Therefore, as long as the intermediate structure lives, all pointer data contained within the C-compatible structure will be valid. These structures are mostly used internally by Vulkan.jl, but they can be used with [intermediate functions](@ref Intermediate-functions) for maximum performance, avoiding the overhead incurred by high-level structures which require back and forth conversions with C-compatible structures for API calls.
+
+These intermediate structures share the name of the high-level structures, starting with an underscore. For example, the high-level structure [`InstanceCreateInfo`](@ref) has an intermediate counterpart [`_InstanceCreateInfo`](@ref).
+
+Note that intermediate structures can only be used with other intermediate structures. `convert` methods allow the conversion between arbitrary high-level and intermediate structures, if required.
+
+!!! tip
+    Outside performance-critical sections such as tight loops, high-level structures are much more convenient to manipulate and should be used instead.
 
 ## Bitmask flags
 

@@ -38,7 +38,7 @@ All this setup code is now automated, with a better [error handling](@ref Error-
 
 =#
 
-instance = create_instance(InstanceCreateInfo([], []); allocator = C_NULL)
+instance = unwrap(create_instance(InstanceCreateInfo([], []); allocator = C_NULL))
 
 #=
 
@@ -135,17 +135,10 @@ Many API structures possess a `sType` field which must be set to a unique value.
 
 If for any reason the structure type must be retrieved, it can be done via `structure_type`:
 
-```@repl
-julia> using Vulkan
-
-julia> structure_type(InstanceCreateInfo)
-VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO::VkStructureType = 0x00000001
-
-julia> structure_type(_InstanceCreateInfo)
-VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO::VkStructureType = 0x00000001
-
-julia> structure_type(VkCore.VkInstanceCreateInfo)
-VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO::VkStructureType = 0x00000001
+```@repl wrapper_functions
+structure_type(InstanceCreateInfo)
+structure_type(_InstanceCreateInfo)
+structure_type(VkCore.VkInstanceCreateInfo)
 ```
 
 #### Pointer lengths
@@ -157,5 +150,7 @@ The length of array pointers is automatically deduced from the length of the con
 Some API functions require to specify the start of a pointer array as an argument. They have been hardcoded to 0 (first element), since it is always possible to pass in a sub-array (e.g. a view).
 
 ## Intermediate functions
+
+Similarly to [structures](@ref Structures), there are intermediate functions that accept and return [intermediate structures](@ref Intermediate-structures). For example, [`enumerate_instance_layer_properties`](@ref) which returns a `ResultTypes.Result{Vector{LayerProperties}}` has an intermediate counterpart [`_enumerate_instance_layer_properties`](@ref) which returns a `ResultTypes.Result{Vector{_LayerProperties}}`.
 
 =#
