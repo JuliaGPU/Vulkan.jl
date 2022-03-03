@@ -80,6 +80,7 @@ export
         Handle,
         to_vk,
         from_vk,
+        structure_type,
         SpecExtensionSPIRV, SpecCapabilitySPIRV,
         PropertyCondition, FeatureCondition,
 
