@@ -33,6 +33,7 @@ test(T, arg, ex) = test(T, identity, arg, ex)
             include("wrapper/codegen/functions/overloads.jl")
         end
 
+        include("wrapper/codegen/aliases.jl")
         include("wrapper/codegen/docs.jl")
     end
 end

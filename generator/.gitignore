@@ -6,3 +6,4 @@ Manifest.toml
 *.code-workspace
 /.vscode
 /src/vulkan/spec/dev*.jl
+/old.vk.xml

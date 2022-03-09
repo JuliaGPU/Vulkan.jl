@@ -280,10 +280,11 @@ function promote_hl(p::Dict)
     )
 end
 
-function function_name(spec, is_high_level = false)
-    sym = nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name))
+function function_name(sym::Symbol, is_high_level = false)
+    sym = nc_convert(SnakeCaseLower, remove_vk_prefix(sym))
     is_high_level ? sym : Symbol('_', sym)
 end
+function_name(spec::Spec, is_high_level = false) = function_name(spec.name, is_high_level)
 
 function promote_name_hl(name)
     str = String(name)

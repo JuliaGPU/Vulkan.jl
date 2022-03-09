@@ -54,7 +54,7 @@
     test_ex(APIFunction(func_by_name(:vkGetInstanceProcAddr), true), :(_get_instance_proc_addr(name::AbstractString, fptr::FunctionPtr; instance = C_NULL)::FunctionPtr = vkGetInstanceProcAddr(instance, name, fptr)))
 
     test_ex(APIFunction(func_by_name(:vkGetPhysicalDeviceSurfacePresentModesKHR), false), :(
-        function _get_physical_device_surface_present_modes_khr(physical_device, surface)::ResultTypes.Result{Vector{PresentModeKHR},VulkanError}
+        function _get_physical_device_surface_present_modes_khr(physical_device; surface = C_NULL)::ResultTypes.Result{Vector{PresentModeKHR},VulkanError}
             pPresentModeCount = Ref{UInt32}()
             @repeat_while_incomplete begin
                 @check @dispatch instance(physical_device) vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, pPresentModeCount, C_NULL)
@@ -77,7 +77,7 @@
         function _register_device_event_ext(device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence,VulkanError}
             pFence = Ref{VkFence}()
             @check @dispatch device vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
-            Fence(pFence[], (x->_destroy_fence(device, x; allocator)), device)
+            Fence(pFence[], (x -> _destroy_fence(device, x; allocator)), device)
         end
     ))
 
@@ -93,12 +93,12 @@
         function _create_debug_report_callback_ext(instance, create_info::_DebugReportCallbackCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT,VulkanError}
             pCallback = Ref{VkDebugReportCallbackEXT}()
             @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fptr_create)
-            DebugReportCallbackEXT(pCallback[], (x->_destroy_debug_report_callback_ext(instance, x, fptr_destroy; allocator)), instance)
+            DebugReportCallbackEXT(pCallback[], (x -> _destroy_debug_report_callback_ext(instance, x, fptr_destroy; allocator)), instance)
         end
     ))
 
     test_ex(APIFunction(func_by_name(:vkCreateGraphicsPipelines), false), :(
-        function _create_graphics_pipelines(device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline}, Result}, VulkanError}
+        function _create_graphics_pipelines(device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline},Result},VulkanError}
             pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
             @check @dispatch device vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
             (Pipeline.(pPipelines, x -> _destroy_pipeline(device, x; allocator), device), _return_code)
@@ -158,7 +158,7 @@
     ))
 
     test_ex(APIFunction(func_by_name(:vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR), false), :(
-        function _enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device, queue_family_index::Integer)::ResultTypes.Result{Tuple{Vector{_PerformanceCounterKHR}, Vector{_PerformanceCounterDescriptionKHR}},VulkanError}
+        function _enumerate_physical_device_queue_family_performance_query_counters_khr(physical_device, queue_family_index::Integer)::ResultTypes.Result{Tuple{Vector{_PerformanceCounterKHR},Vector{_PerformanceCounterDescriptionKHR}},VulkanError}
             pCounterCount = Ref{UInt32}()
             @repeat_while_incomplete begin
                 @check @dispatch instance(physical_device) vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
@@ -186,37 +186,37 @@
     ))
 
     test_ex(APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false), :(
-        _write_acceleration_structures_properties_khr(device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError} = @check @dispatch device vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride)
+        _write_acceleration_structures_properties_khr(device, acceleration_structures::AbstractArray, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result,VulkanError} = @check @dispatch device vkWriteAccelerationStructuresPropertiesKHR(device, pointer_length(acceleration_structures), acceleration_structures, query_type, data_size, data, stride)
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetQueryPoolResults), false), :(
-        _get_query_pool_results(device, query_pool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::ResultTypes.Result{Result, VulkanError} = @check @dispatch device vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags)
+        _get_query_pool_results(device, query_pool, first_query::Integer, query_count::Integer, data_size::Integer, data::Ptr{Cvoid}, stride::Integer; flags = 0)::ResultTypes.Result{Result,VulkanError} = @check @dispatch device vkGetQueryPoolResults(device, query_pool, first_query, query_count, data_size, data, stride, flags)
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetFenceStatus), false), :(
-        _get_fence_status(device, fence)::ResultTypes.Result{Result, VulkanError} = @check(@dispatch(device, vkGetFenceStatus(device, fence)))
+        _get_fence_status(device, fence)::ResultTypes.Result{Result,VulkanError} = @check(@dispatch(device, vkGetFenceStatus(device, fence)))
     ))
 
     test_ex(APIFunction(func_by_name(:vkGetSwapchainImagesKHR), false), :(
-        function _get_swapchain_images_khr(device, swapchain)::ResultTypes.Result{Vector{Image}, VulkanError}
+        function _get_swapchain_images_khr(device, swapchain)::ResultTypes.Result{Vector{Image},VulkanError}
             pSwapchainImageCount = Ref{UInt32}()
             @repeat_while_incomplete begin
-                    @check @dispatch device vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL)
-                    pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
-                    @check @dispatch device vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
-                end
+                @check @dispatch device vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, C_NULL)
+                pSwapchainImages = Vector{VkImage}(undef, pSwapchainImageCount[])
+                @check @dispatch device vkGetSwapchainImagesKHR(device, swapchain, pSwapchainImageCount, pSwapchainImages)
+            end
             Image.(pSwapchainImages, identity, device)
         end
     ))
 
     @testset "Automatic reconstruction of create infos" begin
         test_ex(APIFunction(create_func(:vkCreateInstance), false), :(
-            _create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next=C_NULL, flags=0, application_info=C_NULL) = _create_instance(_InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
+            _create_instance(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; allocator = C_NULL, next = C_NULL, flags = 0, application_info = C_NULL) = _create_instance(_InstanceCreateInfo(enabled_layer_names, enabled_extension_names; next, flags, application_info); allocator)
         ))
 
         test_ex(APIFunction(create_func(:vkCreateDebugReportCallbackEXT), true), :(
             _create_debug_report_callback_ext(instance, pfn_callback::FunctionPtr, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL, next = C_NULL, flags = 0, user_data = C_NULL) = _create_debug_report_callback_ext(instance, _DebugReportCallbackCreateInfoEXT(pfn_callback; next, flags, user_data), fptr_create, fptr_destroy; allocator)
-            ),
+        ),
         )
     end
 end

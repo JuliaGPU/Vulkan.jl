@@ -37,11 +37,11 @@ function Base.show(io::IO, spec::SpecFunc)
     !isempty(spec.render_pass_compatibility) && push!(
         props,
         string("to be executed ", join(map(spec.render_pass_compatibility) do compat
-            @match compat begin
-                ::RenderPassInside => "inside"
-                ::RenderPassOutside => "outside"
-            end
-        end, " and "), " render passes"),
+                    @match compat begin
+                        ::RenderPassInside => "inside"
+                        ::RenderPassOutside => "outside"
+                    end
+                end, " and "), " render passes"),
     )
     !isempty(spec.queue_compatibility) &&
         push!(props, string(" (compatible with $(join(string.(spec.queue_compatibility), ", ")) queues)"))
@@ -61,17 +61,16 @@ function Base.show(io::IO, spec::Union{SpecStructMember,SpecFuncParam})
 end
 
 function SpecStructMember(node::Node)
-    id = extract_identifier(node)
     SpecStructMember(
         parent_name(node),
-        id == :module ? :_module : id,
+        extract_identifier(node),
         extract_type(node),
         is_constant(node),
         externsync(node),
         PARAM_REQUIREMENT(node),
         len(node),
         arglen(node, neighbor_type = "member"),
-        !parse(Bool, getattr(node, "noautovalidity", default="false", symbol=false)),
+        !parse(Bool, getattr(node, "noautovalidity", default = "false", symbol = false)),
     )
 end
 
@@ -122,7 +121,7 @@ SpecFuncParam(node::Node) = SpecFuncParam(
     PARAM_REQUIREMENT(node),
     len(node),
     arglen(node),
-    !parse(Bool, getattr(node, "noautovalidity", default="false", symbol=false)),
+    !parse(Bool, getattr(node, "noautovalidity", default = "false", symbol = false)),
 )
 
 function SpecFunc(node::Node)
@@ -270,7 +269,7 @@ function find_destroyed_param(spec::SpecFunc)
     @match idx begin
         ::Integer => spec.params[idx]
         ::Nothing => @match idx = findfirst(in(spec_handles.name), innermost_type.(spec.params.type)) begin
-            ::Integer => spec.params[idx + 1]
+            ::Integer => spec.params[idx+1]
             ::Nothing => error("Failed to retrieve the parameter to be destroyed:\n $spec")
         end
     end
@@ -292,21 +291,21 @@ function SpecExtension(node::Node)
         ::Nothing => EXTENSION_TYPE_ANY
         t => error("Unknown extension type '$t'")
     end
-    requires = getattr(node, "requires", default="", symbol=false)
+    requires = getattr(node, "requires", default = "", symbol = false)
     requirements = isempty(requires) ? String[] : split(requires, ',')
     is_disabled = @match node["supported"] begin
         "vulkan" => false
         "disabled" => true
         s => error("Unknown extension support value '$s'")
     end
-    platform = PlatformType(getattr(node, "platform", symbol=false))
+    platform = PlatformType(getattr(node, "platform", symbol = false))
     symbols = map(x -> getattr(x, "name"), findall(".//*[@name]", node))
     SpecExtension(
         node["name"],
         exttype,
         requirements,
         is_disabled,
-        getattr(node, "author", symbol=false),
+        getattr(node, "author", symbol = false),
         symbols,
         platform,
         platform == PLATFORM_PROVISIONAL,
@@ -422,15 +421,19 @@ function SpecExtensionSPIRV(node::Node)
     SpecExtensionSPIRV(node["name"], promoted_in(versions), enabling_exts)
 end
 
+function version_number(str::AbstractString)
+    m = match(r"VK_VERSION(?:_API)?_(\d+)_(\d+)", str)
+    isnothing(m) && return nothing
+    VersionNumber(parse(Int, m.captures[1]), parse(Int, m.captures[2]))
+end
+
 function extract_version_ext(node::Node)
     requires = split(getattr(node, "requires"; default = "", symbol = false), ',')
     core_version = nothing
     filter!(requires) do req
-        @match req begin
-            "VK_VERSION_1_1" => (core_version = v"1.1"; false)
-            "VK_VERSION_1_2" => (core_version = v"1.2"; false)
-            _ => true
-        end
+        version = version_number(req)
+        isnothing(version) && (core_version = version)
+        isnothing(version)
     end
     core_version, isempty(requires) ? nothing : only(requires)
 end
@@ -451,12 +454,7 @@ end
 
 function promoted_in(versions)
     isempty(versions) && return nothing
-    @match only(versions) begin
-        "VK_API_VERSION_1_0" => v"1.0"
-        "VK_API_VERSION_1_1" => v"1.1"
-        "VK_API_VERSION_1_2" => v"1.2"
-        _ => nothing
-    end
+    version_number(only(versions))
 end
 
 const spec_platforms = StructVector(SpecPlatform.(findall("//platform", xroot)))

@@ -36,18 +36,16 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
         )
 
         test_doc(
-            Constructor(StructDefinition{false}(struct_by_name(:VkSubmitInfo2KHR))),
+            Constructor(StructDefinition{false}(struct_by_name(:VkSubmitInfo2))),
             """
-            Extension: VK\\\\_KHR\\\\_synchronization2
-
             Arguments:
-            - `wait_semaphore_infos::Vector{_SemaphoreSubmitInfoKHR}`
-            - `command_buffer_infos::Vector{_CommandBufferSubmitInfoKHR}`
-            - `signal_semaphore_infos::Vector{_SemaphoreSubmitInfoKHR}`
+            - `wait_semaphore_infos::Vector{_SemaphoreSubmitInfo}`
+            - `command_buffer_infos::Vector{_CommandBufferSubmitInfo}`
+            - `signal_semaphore_infos::Vector{_SemaphoreSubmitInfo}`
             - `next::Ptr{Cvoid}`: defaults to `C_NULL`
-            - `flags::SubmitFlagKHR`: defaults to `0`
+            - `flags::SubmitFlag`: defaults to `0`
 
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubmitInfo2KHR.html)
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubmitInfo2.html)
             """,
         )
     end
@@ -254,18 +252,18 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
     end
     @testset "Handles" begin
         test_doc(
-                Constructor(HandleDefinition(handle_by_name(:VkInstance)), VulkanGen.promote_hl(APIFunction(create_func(:vkCreateInstance), false))),
-                """
-                Arguments:
-                - `enabled_layer_names::Vector{String}`
-                - `enabled_extension_names::Vector{String}`
-                - `allocator::AllocationCallbacks`: defaults to `C_NULL`
-                - `next::Any`: defaults to `C_NULL`
-                - `flags::UInt32`: defaults to `0`
-                - `application_info::ApplicationInfo`: defaults to `C_NULL`
+            Constructor(HandleDefinition(handle_by_name(:VkInstance)), VulkanGen.promote_hl(APIFunction(create_func(:vkCreateInstance), false))),
+            """
+            Arguments:
+            - `enabled_layer_names::Vector{String}`
+            - `enabled_extension_names::Vector{String}`
+            - `allocator::AllocationCallbacks`: defaults to `C_NULL`
+            - `next::Any`: defaults to `C_NULL`
+            - `flags::UInt32`: defaults to `0`
+            - `application_info::ApplicationInfo`: defaults to `C_NULL`
 
-                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html)
-                """
-            )
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html)
+            """
+        )
     end
 end

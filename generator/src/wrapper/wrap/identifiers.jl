@@ -37,20 +37,20 @@ function wrap_identifier(spec::SpecHandle)
     id = nothing
     if !isempty(cfs)
         for cf in cfs
-            id = _wrap_identifier(spec, first(cfs).func)
+            id = wrap_identifier(spec, first(cfs).func)
             !isnothing(id) && break
         end
     end
     if isnothing(id)
         for f ∈ spec_funcs
-            id = _wrap_identifier(spec, f)
+            id = wrap_identifier(spec, f)
             !isnothing(id) && return id
         end
         wrap_identifier(remove_vk_prefix(spec.name))
     end
 end
 
-function _wrap_identifier(spec::SpecHandle, func::SpecFunc)
+function wrap_identifier(spec::SpecHandle, func::SpecFunc)
     for param ∈ children(func)
         if spec.name == param.type
             return wrap_identifier(param)

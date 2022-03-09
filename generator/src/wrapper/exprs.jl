@@ -87,6 +87,22 @@ function name(ex::Expr)
     end
 end
 
+function names(ex::Expr)
+    assignments = Symbol[name(ex)]
+    postwalk(ex) do _ex
+        ex == _ex && return _ex
+        @switch _ex begin
+            @case :($(assigned::Symbol) = $_)
+            push!(assignments, assigned)
+            return nothing
+            @case _
+            nothing
+        end
+        _ex
+    end
+    assignments
+end
+
 function name(p::Dict)
     !haskey(p, :category) && return p[:name]
     @match p[:category] begin

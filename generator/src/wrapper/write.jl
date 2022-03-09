@@ -12,8 +12,7 @@ function Base.write(vw::VulkanWrapper, config::WrapperConfig)
 end
 
 function sort_expressions(exprs)
-    exprs = filter(ex -> !Meta.isexpr(ex, :block), exprs)
-    exprs_order = resolve_dependencies(name.(exprs), exprs)
+    exprs_order = resolve_dependencies(exprs)
     ordered_exprs = exprs[exprs_order]
     check_dependencies(ordered_exprs)
 end

@@ -1,5 +1,10 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.5.1`
+
+- The version of the Vulkan API has been updated to 1.3.207.
+- All aliases are now generated to ensure backwards compatibilty with all [promotions](https://www.khronos.org/registry/vulkan/specs/1.3/html/vkspec.html#extendingvulkan-compatibility-promotion) of extensions or extension features.
+
 ## Version `v0.5`
 
 Changelog:

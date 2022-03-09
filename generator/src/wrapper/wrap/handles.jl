@@ -43,7 +43,7 @@ function destructor(handle::SpecHandle, with_func_ptr = false)
             p = APIFunction(df.func, false).p
             p_call = Dict(:name => p[:name], :args => Any[name.(p[:args])...], :kwargs => name.(p[:kwargs]))
             with_func_ptr && push!(p_call[:args], :fptr_destroy)
-            p_call[:args][findfirst(==(wrap_identifier(handle)), name.(p[:args]))] = :x
+            p_call[:args][findfirst(==(wrap_identifier(handle, df.func)), name.(p[:args]))] = :x
             :(x -> $(reconstruct_call(p_call)))
         else
             :identity

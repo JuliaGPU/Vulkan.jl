@@ -37,6 +37,7 @@
             SHADER_STAGE_CALLABLE_BIT_KHR = 8192
             SHADER_STAGE_TASK_BIT_NV = 64
             SHADER_STAGE_MESH_BIT_NV = 128
+            SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI = 16384
             SHADER_STAGE_ALL_GRAPHICS = $(Int(0x0000001f))
             SHADER_STAGE_ALL = $(Int(0x7fffffff))
         end

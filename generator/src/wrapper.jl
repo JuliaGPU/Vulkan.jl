@@ -68,11 +68,10 @@ export
     Constructor,
     Documented,
     MethodDefinition,
+    AliasDeclaration,
     FromVk,
     Convert,
     GetProperty,
     APIFunction,
     Parent,
     exports
-
-

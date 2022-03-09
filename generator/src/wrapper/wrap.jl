@@ -86,7 +86,18 @@ struct IntermediateTypeMapping <: TypeMapping
     ex::Expr
 end
 
+struct AliasDeclaration <: WrapperNode
+    source::Symbol
+    target::Symbol
+end
+
+function AliasDeclaration((source, target))
+    f = startswith(string(source), "vk") ? Base.Fix2(function_name, true) : remove_vk_prefix
+    AliasDeclaration(f(source), f(target))
+end
+
 to_expr(def::Union{StructureType, TypeMapping}) = def.ex
+to_expr((; source, target)::AliasDeclaration) = :(const $source = $target)
 to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
 to_expr(def::Union{Documented, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
 to_expr(def::StructDefinition{true,<:SpecStruct}) = :(@auto_hash_equals $(resolve_types(to_expr(def.p))))
@@ -99,6 +110,7 @@ function documented(def::WrapperNode)
 end
 
 name(def::WrapperNode) = name(def.p)
+name(alias::AliasDeclaration) = alias.source
 
 function exports(def::WrapperNode)
     @match n = name(def) begin
@@ -243,7 +255,7 @@ function VulkanWrapper(config::WrapperConfig)
     spirv_exts = spec_spirv_extensions
     spirv_caps = map(spec_spirv_capabilities) do spec
         feats = map(spec.enabling_features) do feat
-            FeatureCondition(struct_name(feat.type, true), nc_convert(SnakeCaseLower, feat.member), feat.core_version, feat.extension)
+            FeatureCondition(struct_name(follow_alias(feat.type), true), nc_convert(SnakeCaseLower, feat.member), feat.core_version, feat.extension)
         end
         props = map(spec.enabling_properties) do prop
             bit = isnothing(prop.bit) ? nothing : remove_vk_prefix(prop.bit)
@@ -251,6 +263,13 @@ function VulkanWrapper(config::WrapperConfig)
         end
         SpecCapabilitySPIRV(spec.name, spec.promoted_to, spec.enabling_extensions, feats, props)
     end
+
+    exported_symbols = Symbol[
+        exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES;
+    ]
+
+    aliases = filter(al -> al.target in exported_symbols, AliasDeclaration.(collect(VulkanSpec.alias_dict)))
+    append!(exported_symbols, exports.(aliases))
 
     VulkanWrapper(
         Expr[
@@ -297,11 +316,11 @@ function VulkanWrapper(config::WrapperConfig)
             to_expr.(core_type_mappings);
             to_expr.(intermediate_type_mappings);
 
+            to_expr.(aliases);
+
             :(const SPIRV_EXTENSIONS = [$(spirv_exts...)]);
             :(const SPIRV_CAPABILITIES = [$(spirv_caps...)]);
         ],
-        Symbol[
-            exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES;
-        ]
+        exported_symbols,
     )
 end

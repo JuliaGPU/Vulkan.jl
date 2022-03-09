@@ -38,7 +38,15 @@ function extract_type(param)
     end
 end
 
-extract_identifier(param) = Symbol(findfirst("./name", param).content)
+function extract_identifier(param)
+    id = Symbol(findfirst("./name", param).content)
+    # Avoid aliasing with Julia built-in identifiers.
+    @match id begin
+        :module => :_module
+        :function => :_function
+        _ => id
+    end
+end
 getattr(node::Node, attr; default = nothing, symbol = true) =
     haskey(node, attr) ? (symbol ? Symbol(node[attr]) : node[attr]) : default
 
