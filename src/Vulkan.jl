@@ -71,7 +71,11 @@ include("dispatch.jl")
 include("print.jl")
 # include("precompile.jl")
 
-const global_dispatcher = APIDispatcher()
+const global_dispatcher = Ref{APIDispatcher}()
+
+function __init__()
+    global_dispatcher[] = APIDispatcher()
+end
 
 export
         # Wrapper

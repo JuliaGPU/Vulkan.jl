@@ -46988,7 +46988,9 @@ Arguments:
 function _create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Instance, VulkanError}
     pInstance = Ref{VkInstance}()
     @check @dispatch(nothing, vkCreateInstance(create_info, allocator, pInstance))
-    Instance(pInstance[], (x->_destroy_instance(x; allocator)))
+    instance = Instance(pInstance[], (x->_destroy_instance(x; allocator)))
+    @extract_version instance create_info
+    instance
 end
 
 """
@@ -53503,7 +53505,9 @@ end
 function _create_instance(create_info::_InstanceCreateInfo, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Instance, VulkanError}
     pInstance = Ref{VkInstance}()
     @check vkCreateInstance(create_info, allocator, pInstance, fptr_create)
-    Instance(pInstance[], (x->_destroy_instance(x, fptr_destroy; allocator)))
+    instance = Instance(pInstance[], (x->_destroy_instance(x, fptr_destroy; allocator)))
+    @extract_version instance create_info
+    instance
 end
 
 _destroy_instance(instance, fptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyInstance(instance, allocator, fptr)

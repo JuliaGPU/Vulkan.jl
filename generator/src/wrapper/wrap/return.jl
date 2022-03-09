@@ -58,6 +58,14 @@ end
 
 function wrap_implicit_return(spec::SpecFunc, args...; kwargs...)
     ex = _wrap_implicit_return(args...; kwargs...)
+    if spec.name == :vkCreateInstance
+        # Insert an expression for the automatic dispatch.
+        ex = quote
+            instance = $ex
+            @extract_version instance create_info
+            instance
+        end
+    end
     must_return_success_code(spec) ? :(($ex, _return_code)) : ex
 end
 
