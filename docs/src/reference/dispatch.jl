@@ -53,7 +53,7 @@ Fence(device, fptr_create, fptr_destroy)
 
 ## Automatic dispatch
 
-Querying and retrieving function pointers every time results in a lot of boilerplate code. To remedy this, we provide a thread-safe global dispatch table. Upon every API call, it will call the function pointer directly, and will automatically retrieve it if necessary. It has one dispatch table per device, so that multiple devices can be used at the same time.
+Querying and retrieving function pointers every time results in a lot of boilerplate code. To remedy this, we provide a global dispatch table. At the time being, this dispatch table is not thread safe; if you intend to call the same function from multiple threads, and that function has never been called before on the device or instance (triggering a write on the dispatch table), behavior is undefined. Upon every API call, it will call the function pointer directly, and will automatically retrieve it if necessary. It has one dispatch table per device and per instance, so that multiple instances and devices can be used at the same time.
 
 This feature can be disabled by setting the [preference](@ref Package-options) `USE_DISPATCH_TABLE` to `"false"`.
 
