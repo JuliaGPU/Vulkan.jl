@@ -51,7 +51,7 @@ macro dispatch(handle, expr)
         @match expr begin
             :($f($(args...))) => begin
                 quote
-                    fptr = get_fptr(global_dispatcher[], $(esc(handle)), $(QuoteNode(f)))
+                    fptr = function_pointer(global_dispatcher[], $(esc(handle)), $(QuoteNode(f)))
                     $f($(esc.(args)...), fptr)
                 end
             end
@@ -62,19 +62,12 @@ macro dispatch(handle, expr)
     end
 end
 
-macro extract_version(instance, create_info)
-    ci = esc(create_info)
-    if @load_preference("USE_DISPATCH_TABLE", "true") == "true"
-        quote
-            version = if $ci.vks.pApplicationInfo ≠ C_NULL
-                app_info = unsafe_load($ci.vks.pApplicationInfo)
-                from_vk(VersionNumber, app_info.apiVersion)
-            else
-                nothing
-            end
-            global_dispatcher[].application_versions[$(esc(instance))] = version
-        end
-    else
-        :()
+macro fill_dispatch_table(handle)
+    handle = esc(handle)
+    @load_preference("USE_DISPATCH_TABLE", "true") ≠ "true" && return handle
+    quote
+        handle = $handle
+        fill_dispatch_table(handle)
+        handle
     end
 end

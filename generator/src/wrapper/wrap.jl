@@ -265,11 +265,31 @@ function VulkanWrapper(config::WrapperConfig)
     end
 
     exported_symbols = Symbol[
-        exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES;
+        exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES; :CORE_FUNCTIONS; :INSTANCE_FUNCTIONS; :DEVICE_FUNCTIONS;
     ]
 
     aliases = filter(al -> al.target in exported_symbols, AliasDeclaration.(collect(VulkanSpec.alias_dict)))
     append!(exported_symbols, exports.(aliases))
+
+    core_functions = Symbol[]
+    instance_functions = Symbol[]
+    device_functions = Symbol[]
+    fnames = unique!([spec_funcs.name; [al.name for al in spec_aliases if isa(al.alias, SpecFunc)]])
+    for fname in fnames
+        spec = func_by_name(follow_alias(fname))
+        t = follow_alias(first(children(spec)).type)
+        h = handle_by_name(t)
+        if isnothing(h)
+            push!(core_functions, fname)
+            continue
+        end
+
+        if :VkDevice in parent_hierarchy(h)
+            push!(device_functions, fname)
+        elseif :VkInstance in parent_hierarchy(h)
+            push!(instance_functions, fname)
+        end
+    end
 
     VulkanWrapper(
         Expr[
@@ -320,6 +340,9 @@ function VulkanWrapper(config::WrapperConfig)
 
             :(const SPIRV_EXTENSIONS = [$(spirv_exts...)]);
             :(const SPIRV_CAPABILITIES = [$(spirv_caps...)]);
+            :(const INSTANCE_FUNCTIONS = $instance_functions);
+            :(const DEVICE_FUNCTIONS = $device_functions);
+            :(const CORE_FUNCTIONS = $core_functions);
         ],
         exported_symbols,
     )

@@ -98,6 +98,7 @@ export
     structure_types,
 
     # Specification data structures
+    spec_aliases,
     spec_extensions,
     spec_extensions_supported,
     spec_constants,

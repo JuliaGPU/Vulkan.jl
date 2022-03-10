@@ -85,9 +85,7 @@
         function _create_instance(create_info::_InstanceCreateInfo; allocator = C_NULL)::ResultTypes.Result{Instance,VulkanError}
             pInstance = Ref{VkInstance}()
             @check @dispatch nothing vkCreateInstance(create_info, allocator, pInstance)
-            instance = Instance(pInstance[], x -> _destroy_instance(x; allocator))
-            @extract_version instance create_info
-            instance
+            @fill_dispatch_table Instance(pInstance[], x -> _destroy_instance(x; allocator))
         end
     ))
 

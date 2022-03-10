@@ -300,6 +300,8 @@ function SpecExtension(node::Node)
     end
     platform = PlatformType(getattr(node, "platform", symbol = false))
     symbols = map(x -> getattr(x, "name"), findall(".//*[@name]", node))
+    promoted_to = getattr(node, "promotedto", symbol = false)
+    promoted_to = something(version_number(promoted_to), promoted_to, Some(nothing))
     SpecExtension(
         node["name"],
         exttype,
@@ -309,6 +311,8 @@ function SpecExtension(node::Node)
         symbols,
         platform,
         platform == PLATFORM_PROVISIONAL,
+        promoted_to,
+        getattr(node, "deprecatedby", symbol = false),
     )
 end
 
@@ -426,6 +430,7 @@ function version_number(str::AbstractString)
     isnothing(m) && return nothing
     VersionNumber(parse(Int, m.captures[1]), parse(Int, m.captures[2]))
 end
+version_number(::Nothing) = nothing
 
 function extract_version_ext(node::Node)
     requires = split(getattr(node, "requires"; default = "", symbol = false), ',')

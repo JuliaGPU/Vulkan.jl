@@ -339,6 +339,9 @@ struct SpecExtension <: Spec
     symbols::Vector{Symbol}
     platform::PlatformType
     is_provisional::Bool
+    "Core version or core extension which this extension was promoted to, if promoted."
+    promoted_to::Optional{Union{VersionNumber,String}}
+    deprecated_by::Optional{String}
 end
 
 function Base.show(io::IO, ::MIME"text/plain", ext::SpecExtension)

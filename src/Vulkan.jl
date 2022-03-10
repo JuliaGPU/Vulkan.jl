@@ -75,6 +75,7 @@ const global_dispatcher = Ref{APIDispatcher}()
 
 function __init__()
     global_dispatcher[] = APIDispatcher()
+    fill_dispatch_table()
 end
 
 export
