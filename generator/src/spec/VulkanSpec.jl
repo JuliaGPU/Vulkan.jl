@@ -119,8 +119,12 @@ export
     spec_spirv_extensions,
     spec_spirv_capabilities,
     disabled_symbols,
+    core_functions,
+    instance_functions,
+    device_functions,
 
     # Alias manipulation
+    alias_dict,
     follow_alias,
     isalias,
     hasalias,

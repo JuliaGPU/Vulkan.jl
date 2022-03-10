@@ -647,6 +647,31 @@ parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))
 
 parent_hierarchy(spec::SpecHandle) = isnothing(spec.parent) ? [spec.name] : [parent_hierarchy(parent_spec(spec)); spec.name]
 
+
+const core_functions = Symbol[]
+const instance_functions = Symbol[]
+const device_functions = Symbol[]
+
+function fill_functions()
+    for fname in unique!([spec_funcs.name; [al.name for al in spec_aliases if isa(al.alias, SpecFunc)]])
+        spec = func_by_name(follow_alias(fname))
+        t = follow_alias(first(children(spec)).type)
+        h = handle_by_name(t)
+        if isnothing(h)
+            push!(core_functions, fname)
+            continue
+        end
+
+        if :VkDevice in parent_hierarchy(h)
+            push!(device_functions, fname)
+        elseif :VkInstance in parent_hierarchy(h)
+            push!(instance_functions, fname)
+        end
+    end
+end
+
+fill_functions()
+
 function len(spec::Union{SpecFuncParam,SpecStructMember})
     params = children(parent_spec(spec))
     params[findfirst(x -> x.name == spec.len, params)]

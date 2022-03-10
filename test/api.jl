@@ -9,11 +9,11 @@ const debug_callback_c = @cfunction(debug_callback, UInt32, (DebugUtilsMessageSe
 const API_VERSION = v"1.2"
 const VALIDATION_LAYER = "VK_LAYER_KHRONOS_validation"
 
-const INSTANCE_LAYERS = [
+const INSTANCE_LAYERS = String[
 ]
-const INSTANCE_EXTENSIONS = [
+const INSTANCE_EXTENSIONS = String[
 ]
-const DEVICE_EXTENSIONS = [
+const DEVICE_EXTENSIONS = String[
 ]
 const ENABLED_FEATURES = PhysicalDeviceFeatures(
 )

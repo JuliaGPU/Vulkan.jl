@@ -268,28 +268,35 @@ function VulkanWrapper(config::WrapperConfig)
         exports.(constants); exports.(enums)...; exports.(bitmasks)...; exports.(handles); exports.(structs); exports.(unions); exports.(structs_hl); exports.(unions_hl); exports.(funcs); exports.(funcs_hl); :SPIRV_EXTENSIONS; :SPIRV_CAPABILITIES; :CORE_FUNCTIONS; :INSTANCE_FUNCTIONS; :DEVICE_FUNCTIONS;
     ]
 
-    aliases = filter(al -> al.target in exported_symbols, AliasDeclaration.(collect(VulkanSpec.alias_dict)))
-    append!(exported_symbols, exports.(aliases))
-
-    core_functions = Symbol[]
-    instance_functions = Symbol[]
-    device_functions = Symbol[]
-    fnames = unique!([spec_funcs.name; [al.name for al in spec_aliases if isa(al.alias, SpecFunc)]])
-    for fname in fnames
-        spec = func_by_name(follow_alias(fname))
-        t = follow_alias(first(children(spec)).type)
-        h = handle_by_name(t)
-        if isnothing(h)
-            push!(core_functions, fname)
-            continue
+    aliases = AliasDeclaration[]
+    for (source, target) in collect(alias_dict)
+        startswith(string(target), "vk") && continue
+        al = AliasDeclaration(source => target)
+        al.target in exported_symbols && push!(aliases, al)
+    end
+    function_aliases = Expr[]
+    _spec_funcs = f(spec_funcs)
+    for (source, target) in collect(alias_dict)
+        al = AliasDeclaration(source => target)
+        startswith(string(source), "vk") || continue
+        f = func_by_name(target)
+        handle = dispatch_handle(f)
+        param = @match handle begin
+            :(device($x)) || :(instance($x)) || x::Symbol => x
+            nothing => nothing
         end
-
-        if :VkDevice in parent_hierarchy(h)
-            push!(device_functions, fname)
-        elseif :VkInstance in parent_hierarchy(h)
-            push!(instance_functions, fname)
+        args = Any[:(args...)]
+        !isnothing(param) && pushfirst!(args, param)
+        if f in _spec_funcs
+            push!(function_aliases,
+                # :($source(args..., fptr::FunctionPtr; kwargs...) = $target(args..., fptr; kwargs...)),
+                :($(al.source)($(args...); kwargs...) = @dispatch $source $handle $(al.target)($(args...); kwargs...))
+            )
+            push!(exported_symbols, al.source)
         end
     end
+
+    append!(exported_symbols, exports.(aliases))
 
     VulkanWrapper(
         Expr[
@@ -337,12 +344,13 @@ function VulkanWrapper(config::WrapperConfig)
             to_expr.(intermediate_type_mappings);
 
             to_expr.(aliases);
+            function_aliases;
 
             :(const SPIRV_EXTENSIONS = [$(spirv_exts...)]);
             :(const SPIRV_CAPABILITIES = [$(spirv_caps...)]);
+            :(const CORE_FUNCTIONS = $core_functions);
             :(const INSTANCE_FUNCTIONS = $instance_functions);
             :(const DEVICE_FUNCTIONS = $device_functions);
-            :(const CORE_FUNCTIONS = $core_functions);
         ],
         exported_symbols,
     )
