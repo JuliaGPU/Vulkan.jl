@@ -1,9 +1,11 @@
 # Changelog for Vulkan.jl
 
-## Version `v0.5.1`
+## Version `v
 
-- The version of the Vulkan API has been updated to 1.3.207.
-- All aliases are now generated to ensure backwards compatibilty with all [promotions](https://www.khronos.org/registry/vulkan/specs/1.3/html/vkspec.html#extendingvulkan-compatibility-promotion) of extensions or extension features.
+## Version `v0.6`
+
+- ![BREAKING][badge-breaking] The version of the Vulkan API has been updated to 1.3.207. This is breaking because certain function arguments can be annotated as optional in the specification, turning them into keyword arguments in generated code.
+- ![Feature][badge-feature] All aliases are now generated to ensure backwards compatibilty with all [promotions](https://www.khronos.org/registry/vulkan/specs/1.3/html/vkspec.html#extendingvulkan-compatibility-promotion) of extensions or extension features.
 
 ## Version `v0.5`
 
