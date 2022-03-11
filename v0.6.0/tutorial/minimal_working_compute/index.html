@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Running compute shaders · Vulkan.jl</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">Vulkan.jl</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../intro/">Introduction</a></li><li><a class="tocitem" href="../../glossary/">Glossary</a></li><li><span class="tocitem">Tutorial</span><ul><li><a class="tocitem" href="../getting_started/">Getting started</a></li><li><a class="tocitem" href="../error_handling/">Error handling</a></li><li><a class="tocitem" href="../resource_management/">Resource management</a></li><li><a class="tocitem" href="../indepth/">In-depth tutorial</a></li><li class="is-active"><a class="tocitem" href>Running compute shaders</a><ul class="internal"><li><a class="tocitem" href="#Initialization"><span>Initialization</span></a></li><li><a class="tocitem" href="#Allocating-the-memory"><span>Allocating the memory</span></a></li><li><a class="tocitem" href="#Uploading-the-data-to-the-device"><span>Uploading the data to the device</span></a></li><li><a class="tocitem" href="#Compiling-the-shader"><span>Compiling the shader</span></a></li><li><a class="tocitem" href="#Assembling-the-pipeline"><span>Assembling the pipeline</span></a></li><li><a class="tocitem" href="#Executing-the-shader"><span>Executing the shader</span></a></li><li><a class="tocitem" href="#Getting-the-data"><span>Getting the data</span></a></li></ul></li></ul></li><li><span class="tocitem">How to</span><ul><li><a class="tocitem" href="../../howto/preferences/">Specify package options</a></li><li><a class="tocitem" href="../../howto/debugging/">Debug an application</a></li><li><a class="tocitem" href="../../howto/handles/">Manipulate handles</a></li><li><a class="tocitem" href="../../howto/shaders/">Compile a SPIR-V shader from Julia</a></li></ul></li><li><span class="tocitem">Reference</span><ul><li><a class="tocitem" href="../../reference/wrapper_types/">Wrapper types</a></li><li><a class="tocitem" href="../../reference/wrapper_functions/">Wrapper functions</a></li><li><a class="tocitem" href="../../reference/dispatch/">API function dispatch</a></li><li><a class="tocitem" href="../../reference/options/">Package options</a></li></ul></li><li><span class="tocitem">Explanations</span><ul><li><a class="tocitem" href="../../about/motivations/">Motivations</a></li><li><a class="tocitem" href="../../about/extension_mechanism/">Extension mechanism</a></li></ul></li><li><a class="tocitem" href="../../api/">API</a></li><li><a class="tocitem" href="../../utility/">Utility</a></li><li><a class="tocitem" href="../../troubleshooting/">Troubleshooting</a></li><li><span class="tocitem">Developer documentation</span><ul><li><a class="tocitem" href="../../dev/overview/">Overview</a></li><li><a class="tocitem" href="../../dev/spec/">Vulkan specification</a></li><li><a class="tocitem" href="../../dev/gen/">Generator</a></li><li><a class="tocitem" href="../../dev/next_chains/">Next chains</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Tutorial</a></li><li class="is-active"><a href>Running compute shaders</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Running compute shaders</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/JuliaGPU/Vulkan.jl/blob/master/docs/src/tutorial/minimal_working_compute.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Minimal-working-compute-example"><a class="docs-heading-anchor" href="#Minimal-working-compute-example">Minimal working compute example</a><a id="Minimal-working-compute-example-1"></a><a class="docs-heading-anchor-permalink" href="#Minimal-working-compute-example" title="Permalink"></a></h1><p>The amount of control offered by Vulkan is not a very welcome property for users who just want to run a simple shader to compute something quickly, and the effort required for the &quot;first good run&quot; is often quite deterrent. To ease the struggle, this tutorial gives precisely the small &quot;bootstrap&quot; piece of code that should allow you to quickly run a compute shader on actual data. In short, we walk through the following steps:</p><ul><li>Opening a device and finding good queues families and memory types</li><li>Allocating memory and buffers</li><li>Compiling a shader program and filling up the structures necessary to run it:<ul><li>specialization constants</li><li>push constants</li><li>descriptor sets and layouts</li></ul></li><li>Making a command buffer and submitting it to the queue, efficiently running the shader</li></ul><h2 id="Initialization"><a class="docs-heading-anchor" href="#Initialization">Initialization</a><a id="Initialization-1"></a><a class="docs-heading-anchor-permalink" href="#Initialization" title="Permalink"></a></h2><pre><code class="language- hljs">using SwiftShader_jll # hide
+using Vulkan
+@set_driver :SwiftShader # hide
+
+instance = Instance([&quot;VK_LAYER_KHRONOS_validation&quot;], [])</code></pre><p>Take the first available physical device (you might check that it is an actual GPU, using <a href="../../api/#Vulkan.get_physical_device_properties-Tuple{Any}"><code>get_physical_device_properties</code></a>).</p><pre><code class="language- hljs">physical_device = first(unwrap(enumerate_physical_devices(instance)))</code></pre><p>At this point, we need to choose a queue family index to use. For this example, have a look at <code>vulkaninfo</code> command and pick the good queue manually from the list of <code>VkQueueFamilyProperties</code> – you want one that has <code>QUEUE_COMPUTE</code> in the flags. In a production environment, you would use <a href="../../api/#Vulkan.get_physical_device_queue_family_properties-Tuple{Any}"><code>get_physical_device_queue_family_properties</code></a> to find a good index.</p><pre><code class="language-julia hljs">qfam_idx = 0</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">0</code></pre><p>Create a device object and make a queue for our purposes.</p><pre><code class="language- hljs">device = Device(physical_device, [DeviceQueueCreateInfo(qfam_idx, [1.0])], [], [])</code></pre><h2 id="Allocating-the-memory"><a class="docs-heading-anchor" href="#Allocating-the-memory">Allocating the memory</a><a id="Allocating-the-memory-1"></a><a class="docs-heading-anchor-permalink" href="#Allocating-the-memory" title="Permalink"></a></h2><p>Same way, you need to find a good memory type. Again, you can find a good one using <code>vulkaninfo</code> or with <a href="../../api/#Vulkan.get_physical_device_memory_properties-Tuple{Any}"><code>get_physical_device_memory_properties</code></a>. For compute, you want something that is both at the device (contains <code>MEMORY_PROPERTY_DEVICE_LOCAL_BIT</code>) and visible from the host (<code>..._HOST_VISIBLE_BIT</code>).</p><pre><code class="language-julia hljs">memorytype_idx = 0</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">0</code></pre><p>Let&#39;s create some data. We will work with 100 flimsy floats.</p><pre><code class="language-julia hljs">data_items = 100
+mem_size = sizeof(Float32) * data_items</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">400</code></pre><p>Allocate the memory of the correct type</p><pre><code class="language- hljs">mem = DeviceMemory(device, mem_size, memorytype_idx)</code></pre><p>Make a buffer that will be used to access the memory, and bind it to the memory. (Memory allocations may be quite demanding, it is therefore often better to allocate a single big chunk of memory, and create multiple buffers that view it as smaller arrays.)</p><pre><code class="language- hljs">buffer = Buffer(
+    device,
+    mem_size,
+    BUFFER_USAGE_STORAGE_BUFFER_BIT,
+    SHARING_MODE_EXCLUSIVE,
+    [qfam_idx],
+)
+
+bind_buffer_memory(device, buffer, mem, 0)</code></pre><h2 id="Uploading-the-data-to-the-device"><a class="docs-heading-anchor" href="#Uploading-the-data-to-the-device">Uploading the data to the device</a><a id="Uploading-the-data-to-the-device-1"></a><a class="docs-heading-anchor-permalink" href="#Uploading-the-data-to-the-device" title="Permalink"></a></h2><p>First, map the memory and get a pointer to it.</p><pre><code class="language- hljs">memptr = unwrap(map_memory(device, mem, 0, mem_size))</code></pre><p>Here we make Julia to look at the mapped data as a vector of <code>Float32</code>s, so that we can access it easily:</p><pre><code class="language- hljs">data = unsafe_wrap(Vector{Float32}, convert(Ptr{Float32}, memptr), data_items, own = false);
+nothing #hide</code></pre><p>For now, let&#39;s just zero out all the data, and <em>flush</em> the changes to make sure the device can see the updated data. This is the simplest way to move array data to the device.</p><pre><code class="language- hljs">data .= 0
+unwrap(flush_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)]))</code></pre><p>The flushing is not required if you have verified that the memory is host-coherent (i.e., has <code>MEMORY_PROPERTY_HOST_COHERENT_BIT</code>).</p><p>Eventually, you may need to allocate memory types that are not visible from host, because these provide better capacity and speed on the discrete GPUs. At that point, you may need to use the transfer queue and memory transfer commands to get the data from host-visible to GPU-local memory, using e.g. <a href="../../api/#Vulkan.cmd_copy_buffer-Tuple{Any, Any, Any, AbstractArray}"><code>cmd_copy_buffer</code></a>.</p><h2 id="Compiling-the-shader"><a class="docs-heading-anchor" href="#Compiling-the-shader">Compiling the shader</a><a id="Compiling-the-shader-1"></a><a class="docs-heading-anchor-permalink" href="#Compiling-the-shader" title="Permalink"></a></h2><p>Now we need to make a shader program. We will use <code>glslangValidator</code> packaged in a JLL to compile a GLSL program from a string into a spir-v bytecode, which is later passed to the GPU drivers.</p><pre><code class="language-julia hljs">shader_code = &quot;&quot;&quot;
+#version 430
+
+layout(local_size_x_id = 0) in;
+layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+
+layout(constant_id = 0) const uint blocksize = 1; // manual way to capture the specialization constants
+
+layout(push_constant) uniform Params
+{
+    float val;
+    uint n;
+} params;
+
+layout(std430, binding=0) buffer databuf
+{
+    float data[];
+};
+
+void
+main()
+{
+    uint i = gl_GlobalInvocationID.x;
+    if(i &lt; params.n) data[i] = params.val * i;
+}
+&quot;&quot;&quot;</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">&quot;#version 430\n\nlayout(local_size_x_id = 0) in;\nlayout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;\n\nlayout(constant_id = 0) const uint blocksize = 1; // manual way to capture the specialization constants\n\nlayout(push_constant) uniform Params\n{\n    float val;\n    uint n;\n} params;\n\nlayout(std430, binding=0) buffer databuf\n{\n    float data[];\n};\n\nvoid\nmain()\n{\n    uint i = gl_GlobalInvocationID.x;\n    if(i &lt; params.n) data[i] = params.val * i;\n}\n&quot;</code></pre><p>Push constants are small packs of variables that are used to quickly send configuration data to the shader runs. Make sure that this structure corresponds to what is declared in the shader.</p><pre><code class="language-julia hljs">struct ShaderPushConsts
+    val::Float32
+    n::UInt32
+end</code></pre><p>Specialization constants are similar to push constants, but less dynamic: You can change them before compiling the shader for the pipeline, but not dynamically. This may have performance benefits for &quot;very static&quot; values, such as block sizes.</p><pre><code class="language-julia hljs">struct ShaderSpecConsts
+    local_size_x::UInt32
+end</code></pre><p>Let&#39;s now compile the shader to SPIR-V with <code>glslang</code>. We can use the artifact <code>glslang_jll</code> which provides the binary through the <a href="https://pkgdocs.julialang.org/v1/artifacts/">Artifact system</a>.</p><pre><code class="language-julia hljs">using glslang_jll: glslangValidator
+glslang = glslangValidator(identity)
+shader_bcode = mktempdir() do dir
+    inpath = joinpath(dir, &quot;shader.comp&quot;)
+    outpath = joinpath(dir, &quot;shader.spv&quot;)
+    open(f -&gt; write(f, shader_code), inpath, &quot;w&quot;)
+    status = run(`$glslang -V -S comp -o $outpath $inpath`)
+    @assert status.exitcode == 0
+    reinterpret(UInt32, read(outpath))
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">325-element reinterpret(UInt32, ::Vector{UInt8}):
+ 0x07230203
+ 0x00010000
+ 0x0008000a
+ 0x00000030
+ 0x00000000
+ 0x00020011
+ 0x00000001
+ 0x0006000b
+ 0x00000001
+ 0x4c534c47
+          ⋮
+ 0x0003003e
+ 0x0000002b
+ 0x00000029
+ 0x000200f9
+ 0x0000001d
+ 0x000200f8
+ 0x0000001d
+ 0x000100fd
+ 0x00010038</code></pre><p>We can now make a shader module with the compiled code:</p><pre><code class="language- hljs">shader = ShaderModule(device, sizeof(UInt32) * length(shader_bcode), shader_bcode)</code></pre><h2 id="Assembling-the-pipeline"><a class="docs-heading-anchor" href="#Assembling-the-pipeline">Assembling the pipeline</a><a id="Assembling-the-pipeline-1"></a><a class="docs-heading-anchor-permalink" href="#Assembling-the-pipeline" title="Permalink"></a></h2><p>Descriptor set layout describes how many resources of what kind are going to be used by the shader. In this case, we only use a single buffer:</p><pre><code class="language- hljs">dsl = DescriptorSetLayout(
+    device,
+    [
+        DescriptorSetLayoutBinding(
+            0,
+            DESCRIPTOR_TYPE_STORAGE_BUFFER,
+            SHADER_STAGE_COMPUTE_BIT;
+            descriptor_count = 1,
+        ),
+    ],
+)</code></pre><p>Pipeline layout describes the descriptor set together with the location of push constants:</p><pre><code class="language- hljs">pl = PipelineLayout(
+    device,
+    [dsl],
+    [PushConstantRange(SHADER_STAGE_COMPUTE_BIT, 0, sizeof(ShaderPushConsts))],
+)</code></pre><p>Shader compilation can use &quot;specialization constants&quot; that get propagated (and optimized) into the shader code. We use them to make the shader workgroup size &quot;dynamic&quot; in the sense that the size (32) is not hardcoded in GLSL, but instead taken from here.</p><pre><code class="language-julia hljs">const_local_size_x = 32
+spec_consts = [ShaderSpecConsts(const_local_size_x)]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">1-element Vector{Main.ShaderSpecConsts}:
+ Main.ShaderSpecConsts(0x00000020)</code></pre><p>Next, we create a pipeline that can run the shader code with the specified layout:</p><pre><code class="language- hljs">pipeline_info = ComputePipelineCreateInfo(
+    PipelineShaderStageCreateInfo(
+        SHADER_STAGE_COMPUTE_BIT,
+        shader,
+        &quot;main&quot;, # this needs to match the function name in the shader
+        specialization_info = SpecializationInfo(
+            [SpecializationMapEntry(0, 0, 4)],
+            UInt64(4),
+            Ptr{Nothing}(pointer(spec_consts)),
+        ),
+    ),
+    pl,
+    -1,
+)
+ps, _ = unwrap(create_compute_pipelines(device, [pipeline_info]))
+p = first(ps)</code></pre><p>Now make a descriptor pool to allocate the buffer descriptors from (not a big one, just 1 descriptor set with 1 descriptor in total), ...</p><pre><code class="language- hljs">dpool = DescriptorPool(device, 1, [DescriptorPoolSize(DESCRIPTOR_TYPE_STORAGE_BUFFER, 1)])</code></pre><p>... allocate the descriptors for our layout, ...</p><pre><code class="language- hljs">dsets = unwrap(allocate_descriptor_sets(device, DescriptorSetAllocateInfo(dpool, [dsl])))
+dset = first(dsets)</code></pre><p>... and make the descriptors point to the right buffers.</p><pre><code class="language- hljs">update_descriptor_sets(
+    device,
+    [
+        WriteDescriptorSet(
+            dset,
+            0,
+            0,
+            DESCRIPTOR_TYPE_STORAGE_BUFFER,
+            [],
+            [DescriptorBufferInfo(buffer, 0, WHOLE_SIZE)],
+            [],
+        ),
+    ],
+    [],
+)</code></pre><h2 id="Executing-the-shader"><a class="docs-heading-anchor" href="#Executing-the-shader">Executing the shader</a><a id="Executing-the-shader-1"></a><a class="docs-heading-anchor-permalink" href="#Executing-the-shader" title="Permalink"></a></h2><p>Let&#39;s create a command pool in the right queue family, and take a command buffer out of that.</p><pre><code class="language- hljs">cmdpool = CommandPool(device, qfam_idx)
+cbufs = unwrap(
+    allocate_command_buffers(
+        device,
+        CommandBufferAllocateInfo(cmdpool, COMMAND_BUFFER_LEVEL_PRIMARY, 1),
+    ),
+)
+cbuf = first(cbufs)</code></pre><p>Now that we have a command buffer, we can fill it with commands that cause the kernel to be run. Basically, we bind and fill everything, and then dispatch a sufficient amount of invocations of the shader to span over the array.</p><pre><code class="language- hljs">begin_command_buffer(
+    cbuf,
+    CommandBufferBeginInfo(flags = COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT),
+)
+
+cmd_bind_pipeline(cbuf, PIPELINE_BIND_POINT_COMPUTE, p)
+
+const_buf = [ShaderPushConsts(1.234, data_items)]
+cmd_push_constants(
+    cbuf,
+    pl,
+    SHADER_STAGE_COMPUTE_BIT,
+    0,
+    sizeof(ShaderPushConsts),
+    Ptr{Nothing}(pointer(const_buf)),
+)
+
+cmd_bind_descriptor_sets(cbuf, PIPELINE_BIND_POINT_COMPUTE, pl, 0, [dset], [])
+
+cmd_dispatch(cbuf, div(data_items, const_local_size_x, RoundUp), 1, 1)
+
+end_command_buffer(cbuf)</code></pre><p>Finally, find a handle to the compute queue and send the command to execute the shader!</p><pre><code class="language- hljs">compute_q = get_device_queue(device, qfam_idx, 0)
+unwrap(queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])]))</code></pre><h2 id="Getting-the-data"><a class="docs-heading-anchor" href="#Getting-the-data">Getting the data</a><a id="Getting-the-data-1"></a><a class="docs-heading-anchor-permalink" href="#Getting-the-data" title="Permalink"></a></h2><p>After submitting the queue, the data is being crunched in the background. To get the resulting data, we need to wait for completion and invalidate the mapped memory (so that whatever data updates that happened on the GPU get transferred to the mapped range visible for the host).</p><p>While <a href="../../api/#Vulkan.queue_wait_idle-Tuple{Any}"><code>queue_wait_idle</code></a> will wait for computations to be carried out, we need to make sure that the required data is kept alive during queue operations. In non-global scopes, such as functions, the compiler may skip the allocation of unused variables or garbage-collect objects that the runtime thinks are no longer used. If garbage-collected, objects will call their finalizers which imply the destruction of the Vulkan objects (via <code>vkDestroy...</code>). In this particular case, the runtime is not aware that for example the pipeline and buffer objects are still used and that there&#39;s a dependency with these variables until the command returns, so we tell it manually.</p><pre><code class="language- hljs">GC.@preserve buff dsl pl p const_buf begin
+    unwrap(queue_wait_idle(compute_q))
+end</code></pre><p>Free the command buffers and the descriptor sets. These are the only handles that are not cleaned up automatically (see <a href="../../reference/wrapper_types/#Automatic-finalization">Automatic finalization</a>).</p><pre><code class="language- hljs">unwrap(free_command_buffers(device, cmdpool, cbufs))
+unwrap(free_descriptor_sets(device, dpool, dsets))</code></pre><p>Just as with flushing, the invalidation is only required for memory that is not host-coherent. You may skip this step if you check that the memory has the host-coherent property flag.</p><pre><code class="language- hljs">unwrap(invalidate_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0, mem_size)]))</code></pre><p>Finally, let&#39;s have a look at the data created by your compute shader!</p><pre><code class="language- hljs">data # WHOA</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../indepth/">« In-depth tutorial</a><a class="docs-footer-nextpage" href="../../howto/preferences/">Specify package options »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.14 on <span class="colophon-date" title="Friday 11 March 2022 11:33">Friday 11 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
