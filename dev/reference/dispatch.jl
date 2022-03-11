@@ -53,8 +53,11 @@ Fence(device, fptr_create, fptr_destroy)
 
 ## Automatic dispatch
 
-Querying and retrieving function pointers every time results in a lot of boilerplate code. To remedy this, we provide a thread-safe global dispatch table. Upon every API call, it will call the function pointer directly, and will automatically retrieve it if necessary. It has one dispatch table per device, so that multiple devices can be used at the same time.
+Querying and retrieving function pointers every time results in a lot of boilerplate code. To remedy this, we provide a concurrent global dispatch table which loads all available function pointers for loader, instance and device commands. It has one dispatch table per instance and per device to support using multiple instances and devices at the same time.
 
 This feature can be disabled by setting the [preference](@ref Package-options) `USE_DISPATCH_TABLE` to `"false"`.
+
+!!! warn
+    All instance and device creations must be externally synchronized if the dispatch table is enabled. This is because all function pointers are retrieved and stored right after the creation of an instance or device handle.
 
 =#
