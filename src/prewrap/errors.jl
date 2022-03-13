@@ -47,7 +47,7 @@ macro propagate_errors(expr)
     quote
         ret = $(esc(expr))
         if iserror(ret)
-            return ret
+            return unwrap_error(ret)
         else
             unwrap(ret)
         end
