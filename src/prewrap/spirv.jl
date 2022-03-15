@@ -1,3 +1,6 @@
+"""
+SPIR-V extension which may have been promoted to a core version or be enabled implicitly by enabled Vulkan extensions.
+"""
 struct SpecExtensionSPIRV
     "Name of the SPIR-V extension."
     name::String
@@ -7,6 +10,9 @@ struct SpecExtensionSPIRV
     enabling_extensions::Vector{String}
 end
 
+"""
+Condition that a feature needs to satisfy to be considered enabled.
+"""
 struct FeatureCondition
     "Name of the feature structure relevant to the condition."
     type::Symbol
@@ -18,6 +24,9 @@ struct FeatureCondition
     extension::Optional{String}
 end
 
+"""
+Device property that enables a SPIR-V capability when supported.
+"""
 struct PropertyCondition
     "Name of the property structure relevant to the condition."
     type::Symbol
@@ -33,6 +42,9 @@ struct PropertyCondition
     bit::Optional{Symbol}
 end
 
+"""
+SPIR-V capability with information regarding various requirements to consider it enabled.
+"""
 struct SpecCapabilitySPIRV
     "Name of the SPIR-V capability."
     name::Symbol
