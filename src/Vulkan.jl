@@ -8,7 +8,7 @@ module Vulkan
 using Reexport
 using DocStringExtensions
 using AutoHashEquals: @auto_hash_equals
-using Accessors: @set
+using Accessors: @set, setproperties
 
 using VulkanCore: VulkanCore, vk
 using .vk
@@ -69,7 +69,7 @@ include("instance.jl")
 include("device.jl")
 include("dispatch.jl")
 include("print.jl")
-# include("precompile.jl")
+include("precompile.jl")
 
 const global_dispatcher = Ref{APIDispatcher}()
 

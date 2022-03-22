@@ -40,73 +40,164 @@ initialize(::Type{NTuple{N,T}}) where {N,T} = ntuple(Returns(zero(T)), N)
 initialize(::Type{T}) where {T<:AbstractArray} = T()
 initialize(::Type{<:Ptr}) = C_NULL
 
-"""
-Initialize a core structure of type `T` recursively, converting references provided in `vars_types` to pointers for their `next` chain.
-"""
-function initialize_core(T::DataType, vars_types::Pair{Symbol,DataType}...)
-    # This function takes a while to compile, if there are ways to speed it up that would be nice.
-    args = []
-    for (name, t) in zip(fieldnames(T), fieldtypes(T))
-        if name == :sType
-            push!(args, structure_type(T))
-        elseif name == :pNext
-            if isempty(vars_types)
-                push!(args, C_NULL)
-            else
-                ((var, type), vars_types...) = vars_types
-                ref_ex = initialize_core(type, (vars_types)...)
-                push!(args, quote
-                    $var[] = $ref_ex
-                    Base.unsafe_convert(Ptr{Cvoid}, $var)
-                end)
-            end
-        elseif isstructtype(t) && !(t <: NTuple)
-            push!(args, initialize_core(t))
-        else
-            push!(args, initialize(t))
-        end
-    end
-    :($T($(args...)))
+function init_empty(T)
+    @assert isbitstype(T)
+    ptr = Libc.calloc(1, sizeof(T))
+    res = unsafe_load(Ptr{T}(ptr))
+    Libc.free(ptr)
+    res
 end
+
+function _initialize_core(T, refs)
+    res = init_empty(T)
+    sType = structure_type(T)
+    if isempty(refs)
+        pNext = C_NULL
+    else
+        ref = popfirst!(refs)
+        ref[] = _initialize_core(Base.inferencebarrier(typeof(ref[])), refs)
+        pNext = Base.unsafe_convert(Ptr{Cvoid}, ref)
+    end
+    setproperties(res, (; sType, pNext))
+end
+
+initialize_core(T, refs) = _initialize_core(Base.inferencebarrier(T), Base.inferencebarrier(refs))
+
+# """
+# Initialize a core structure of type `T` recursively, converting references provided in `vars_types` to pointers for their `next` chain.
+# """
+# function initialize_core(T::DataType, refs = [])
+#     # This function takes a while to compile, if there are ways to speed it up that would be nice.
+#     args = []
+#     for (name, t) in zip(fieldnames(T), fieldtypes(T))
+#         if name == :sType
+#             push!(args, structure_type(T))
+#         elseif name == :pNext
+#             if isempty(refs)
+#                 push!(args, C_NULL)
+#             else
+#                 ref, refs... = refs
+#                 ref[] = initialize_core(eltype(ref), refs)
+#                 push!(args, Base.unsafe_convert(Ptr{Cvoid}, ref))
+#             end
+#         elseif isstructtype(t) && !(t <: NTuple)
+#             push!(args, initialize_core(t))
+#         else
+#             push!(args, initialize(t))
+#         end
+#     end
+#     T(args...)
+# end
 
 """
 Initialize an intermediate structure, with a `next` chain built from initialized `Tnext` structs.
 """
-@generated function initialize(::Type{T}, Tnext...) where {T<:VulkanStruct}
-    Tnext = getindex.(getproperty.(Tnext, :parameters), 1)
-    vars_types = Symbol.(:ref_, 1:length(Tnext)) .=> core_type.(Tnext)
-    body = [:($var = Ref{$t}()) for (var, t) in vars_types]
-    vks = initialize_core(core_type(T), vars_types...)
-    Expr(:block, body..., :($T($vks, Any[$(first.(vars_types)...)])))
+function _initialize(T::Type{<:VulkanStruct}, Tnext)
+    refs = Any[]
+    for t in Tnext
+        push!(refs, Ref{core_type(t)}())
+    end
+    vks = _initialize_core(Base.inferencebarrier(core_type(T)), Base.inferencebarrier(refs))
+    T(vks, refs)
 end
 
 """
 Initialize a high-level structure, with a `next` chain built from initialized `Tnext` structs.
 """
-@generated function initialize(::Type{T}, Tnext...) where {T<:HighLevelStruct}
-    Tnext = getindex.(getproperty.(Tnext, :parameters), 1)
+function _initialize(T::Type{<:HighLevelStruct}, Tnext)
     args = []
     for (name, t) in zip(fieldnames(T), fieldtypes(T))
         if t === StructureType
             push!(args, structure_type(T))
         elseif name == :next
-            push!(args, isempty(Tnext) ? C_NULL : initialize(Tnext...))
+            push!(args, isempty(Tnext) ? C_NULL : _initialize(Base.inferencebarrier(Tnext[1]), Base.inferencebarrier(Tnext[2:end])))
         else
             push!(args, initialize(t))
         end
     end
-    Expr(:call, nameof(T), args...)
+    T(args...)
 end
 
-@generated function load_next_chain(ptr, next_types...)
+initialize(T::Type{<:HighLevelStruct}, args...) = _initialize(Base.inferencebarrier(T), Base.inferencebarrier(collect(args)))
+initialize(T::Type{<:VulkanStruct}, args...) = _initialize(Base.inferencebarrier(T), Base.inferencebarrier(collect(args)))
+
+# """
+# Initialize a core structure of type `T` recursively, converting references provided in `vars_types` to pointers for their `next` chain.
+# """
+# function initialize_core(T::DataType, vars_types::Pair{Symbol,DataType}...)
+#     # This function takes a while to compile, if there are ways to speed it up that would be nice.
+#     args = []
+#     for (name, t) in zip(fieldnames(T), fieldtypes(T))
+#         if name == :sType
+#             push!(args, structure_type(T))
+#         elseif name == :pNext
+#             if isempty(vars_types)
+#                 push!(args, C_NULL)
+#             else
+#                 ((var, type), vars_types...) = vars_types
+#                 ref_ex = initialize_core(type, (vars_types)...)
+#                 push!(args, quote
+#                     $var[] = $ref_ex
+#                     Base.unsafe_convert(Ptr{Cvoid}, $var)
+#                 end)
+#             end
+#         elseif isstructtype(t) && !(t <: NTuple)
+#             push!(args, initialize_core(t))
+#         else
+#             push!(args, initialize(t))
+#         end
+#     end
+#     :($T($(args...)))
+# end
+
+# """
+# Initialize an intermediate structure, with a `next` chain built from initialized `Tnext` structs.
+# """
+# @generated function initialize(::Type{T}, Tnext...) where {T<:VulkanStruct}
+#     Tnext = getindex.(getproperty.(Tnext, :parameters), 1)
+#     vars_types = Symbol.(:ref_, 1:length(Tnext)) .=> core_type.(Tnext)
+#     body = [:($var = Ref{$t}()) for (var, t) in vars_types]
+#     vks = initialize_core(core_type(T), vars_types...)
+#     Expr(:block, body..., :($T($vks, Any[$(first.(vars_types)...)])))
+# end
+
+# """
+# Initialize a high-level structure, with a `next` chain built from initialized `Tnext` structs.
+# """
+# @generated function initialize(::Type{T}, Tnext...) where {T<:HighLevelStruct}
+#     Tnext = getindex.(getproperty.(Tnext, :parameters), 1)
+#     args = []
+#     for (name, t) in zip(fieldnames(T), fieldtypes(T))
+#         if t === StructureType
+#             push!(args, structure_type(T))
+#         elseif name == :next
+#             push!(args, isempty(Tnext) ? C_NULL : initialize(Tnext...))
+#         else
+#             push!(args, initialize(t))
+#         end
+#     end
+#     Expr(:call, nameof(T), args...)
+# end
+
+# @generated function load_next_chain(ptr, next_types...)
+#     isempty(next_types) && return C_NULL
+#     next_types = only.(getproperty.(next_types, :parameters))
+#     T, Ts... = next_types
+#     quote
+#         @assert ptr ≠ C_NULL
+#         vks = Base.unsafe_load(Base.unsafe_convert($(Ptr{core_type(T)}), ptr))
+#         $T(vks, $(Ts...))
+#     end
+# end
+
+@noinline function _load_next_chain(ptr, next_types)
     isempty(next_types) && return C_NULL
-    next_types = only.(getproperty.(next_types, :parameters))
     T, Ts... = next_types
-    quote
-        @assert ptr ≠ C_NULL
-        vks = Base.unsafe_load(Base.unsafe_convert($(Ptr{core_type(T)}), ptr))
-        $T(vks, $(Ts...))
-    end
+    @assert ptr ≠ C_NULL
+    vks = Base.unsafe_load(Ptr{core_type(T)}(ptr))
+    T(vks, Ts...)
 end
+
+load_next_chain(ptr, args...) = _load_next_chain(Base.inferencebarrier(ptr), Base.inferencebarrier(collect(args)))
 
 @specialize
