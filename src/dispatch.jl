@@ -18,7 +18,11 @@ end
 APIDispatcher() = APIDispatcher(DispatchTable(), Dict(), Dict())
 
 table(disp::APIDispatcher, ::Nothing) = disp.loader_table
-table(disp::APIDispatcher, x) = table(disp, handle(x))
+function table(disp::APIDispatcher, x)
+    h = handle(x)
+    h isa Instance || h isa Device || error("Expected instance or device handle, got $h")
+    table(disp, h)
+end
 
 function table(disp::APIDispatcher, instance::Instance)
     get!(DispatchTable, disp.instance_tables, instance)
@@ -37,7 +41,9 @@ function function_pointer(disp::APIDispatcher, handle, key::Symbol)::Ptr{Cvoid}
     t = table(disp, handle)
     fptr = t.pointers[key]
     if fptr == C_NULL
-        error("Could not retrieve function pointer for '$f'. This can be caused by an extension not being enabled for a function that needs it; see the help with `?` or the documentation for more information.")
+        error(
+            "Could not retrieve function pointer for '$f'. This can be caused by an extension not being enabled for a function that needs it; see the help with `?` or the documentation for more information.",
+        )
     end
     fptr
 end
