@@ -40504,11 +40504,11 @@ _CommandBufferInheritanceInfo(x::CommandBufferInheritanceInfo) = _CommandBufferI
 
 _CommandBufferBeginInfo(x::CommandBufferBeginInfo) = _CommandBufferBeginInfo(; x.next, x.flags, inheritance_info = convert_nonnull(_CommandBufferInheritanceInfo, x.inheritance_info))
 
-_RenderPassBeginInfo(x::RenderPassBeginInfo) = _RenderPassBeginInfo(x.render_pass, x.framebuffer, convert_nonnull(_Rect2D, x.render_area), x.clear_values; x.next)
+_RenderPassBeginInfo(x::RenderPassBeginInfo) = _RenderPassBeginInfo(x.render_pass, x.framebuffer, convert_nonnull(_Rect2D, x.render_area), convert_nonnull(Vector{_ClearValue}, x.clear_values); x.next)
 
 _ClearDepthStencilValue(x::ClearDepthStencilValue) = _ClearDepthStencilValue(x.depth, x.stencil)
 
-_ClearAttachment(x::ClearAttachment) = _ClearAttachment(x.aspect_mask, x.color_attachment, x.clear_value)
+_ClearAttachment(x::ClearAttachment) = _ClearAttachment(x.aspect_mask, x.color_attachment, convert_nonnull(_ClearValue, x.clear_value))
 
 _AttachmentDescription(x::AttachmentDescription) = _AttachmentDescription(x.format, x.samples, x.load_op, x.store_op, x.stencil_load_op, x.stencil_store_op, x.initial_layout, x.final_layout; x.flags)
 
@@ -41260,7 +41260,7 @@ _FramebufferMixedSamplesCombinationNV(x::FramebufferMixedSamplesCombinationNV) =
 
 _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(x::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL) = _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(x.shader_integer_functions_2; x.next)
 
-_PerformanceValueINTEL(x::PerformanceValueINTEL) = _PerformanceValueINTEL(x.type, x.data)
+_PerformanceValueINTEL(x::PerformanceValueINTEL) = _PerformanceValueINTEL(x.type, convert_nonnull(_PerformanceValueDataINTEL, x.data))
 
 _InitializePerformanceApiInfoINTEL(x::InitializePerformanceApiInfoINTEL) = _InitializePerformanceApiInfoINTEL(; x.next, x.user_data)
 
@@ -41300,7 +41300,7 @@ _PipelineExecutablePropertiesKHR(x::PipelineExecutablePropertiesKHR) = _Pipeline
 
 _PipelineExecutableInfoKHR(x::PipelineExecutableInfoKHR) = _PipelineExecutableInfoKHR(x.pipeline, x.executable_index; x.next)
 
-_PipelineExecutableStatisticKHR(x::PipelineExecutableStatisticKHR) = _PipelineExecutableStatisticKHR(x.name, x.description, x.format, x.value; x.next)
+_PipelineExecutableStatisticKHR(x::PipelineExecutableStatisticKHR) = _PipelineExecutableStatisticKHR(x.name, x.description, x.format, convert_nonnull(_PipelineExecutableStatisticValueKHR, x.value); x.next)
 
 _PipelineExecutableInternalRepresentationKHR(x::PipelineExecutableInternalRepresentationKHR) = _PipelineExecutableInternalRepresentationKHR(x.name, x.description, x.is_text, x.data_size; x.next, x.data)
 
@@ -41350,7 +41350,7 @@ _PhysicalDeviceCoherentMemoryFeaturesAMD(x::PhysicalDeviceCoherentMemoryFeatures
 
 _PhysicalDeviceToolProperties(x::PhysicalDeviceToolProperties) = _PhysicalDeviceToolProperties(x.name, x.version, x.purposes, x.description, x.layer; x.next)
 
-_SamplerCustomBorderColorCreateInfoEXT(x::SamplerCustomBorderColorCreateInfoEXT) = _SamplerCustomBorderColorCreateInfoEXT(x.custom_border_color, x.format; x.next)
+_SamplerCustomBorderColorCreateInfoEXT(x::SamplerCustomBorderColorCreateInfoEXT) = _SamplerCustomBorderColorCreateInfoEXT(convert_nonnull(_ClearColorValue, x.custom_border_color), x.format; x.next)
 
 _PhysicalDeviceCustomBorderColorPropertiesEXT(x::PhysicalDeviceCustomBorderColorPropertiesEXT) = _PhysicalDeviceCustomBorderColorPropertiesEXT(x.max_custom_border_color_samplers; x.next)
 
@@ -41360,15 +41360,15 @@ _SamplerBorderColorComponentMappingCreateInfoEXT(x::SamplerBorderColorComponentM
 
 _PhysicalDeviceBorderColorSwizzleFeaturesEXT(x::PhysicalDeviceBorderColorSwizzleFeaturesEXT) = _PhysicalDeviceBorderColorSwizzleFeaturesEXT(x.border_color_swizzle, x.border_color_swizzle_from_image; x.next)
 
-_AccelerationStructureGeometryTrianglesDataKHR(x::AccelerationStructureGeometryTrianglesDataKHR) = _AccelerationStructureGeometryTrianglesDataKHR(x.vertex_format, x.vertex_data, x.vertex_stride, x.max_vertex, x.index_type, x.index_data, x.transform_data; x.next)
+_AccelerationStructureGeometryTrianglesDataKHR(x::AccelerationStructureGeometryTrianglesDataKHR) = _AccelerationStructureGeometryTrianglesDataKHR(x.vertex_format, convert_nonnull(_DeviceOrHostAddressConstKHR, x.vertex_data), x.vertex_stride, x.max_vertex, x.index_type, convert_nonnull(_DeviceOrHostAddressConstKHR, x.index_data), convert_nonnull(_DeviceOrHostAddressConstKHR, x.transform_data); x.next)
 
-_AccelerationStructureGeometryAabbsDataKHR(x::AccelerationStructureGeometryAabbsDataKHR) = _AccelerationStructureGeometryAabbsDataKHR(x.data, x.stride; x.next)
+_AccelerationStructureGeometryAabbsDataKHR(x::AccelerationStructureGeometryAabbsDataKHR) = _AccelerationStructureGeometryAabbsDataKHR(convert_nonnull(_DeviceOrHostAddressConstKHR, x.data), x.stride; x.next)
 
-_AccelerationStructureGeometryInstancesDataKHR(x::AccelerationStructureGeometryInstancesDataKHR) = _AccelerationStructureGeometryInstancesDataKHR(x.array_of_pointers, x.data; x.next)
+_AccelerationStructureGeometryInstancesDataKHR(x::AccelerationStructureGeometryInstancesDataKHR) = _AccelerationStructureGeometryInstancesDataKHR(x.array_of_pointers, convert_nonnull(_DeviceOrHostAddressConstKHR, x.data); x.next)
 
-_AccelerationStructureGeometryKHR(x::AccelerationStructureGeometryKHR) = _AccelerationStructureGeometryKHR(x.geometry_type, x.geometry; x.next, x.flags)
+_AccelerationStructureGeometryKHR(x::AccelerationStructureGeometryKHR) = _AccelerationStructureGeometryKHR(x.geometry_type, convert_nonnull(_AccelerationStructureGeometryDataKHR, x.geometry); x.next, x.flags)
 
-_AccelerationStructureBuildGeometryInfoKHR(x::AccelerationStructureBuildGeometryInfoKHR) = _AccelerationStructureBuildGeometryInfoKHR(x.type, x.mode, x.scratch_data; x.next, x.flags, x.src_acceleration_structure, x.dst_acceleration_structure, geometries = convert_nonnull(Vector{_AccelerationStructureGeometryKHR}, x.geometries), geometries_2 = convert_nonnull(Vector{_AccelerationStructureGeometryKHR}, x.geometries_2))
+_AccelerationStructureBuildGeometryInfoKHR(x::AccelerationStructureBuildGeometryInfoKHR) = _AccelerationStructureBuildGeometryInfoKHR(x.type, x.mode, convert_nonnull(_DeviceOrHostAddressKHR, x.scratch_data); x.next, x.flags, x.src_acceleration_structure, x.dst_acceleration_structure, geometries = convert_nonnull(Vector{_AccelerationStructureGeometryKHR}, x.geometries), geometries_2 = convert_nonnull(Vector{_AccelerationStructureGeometryKHR}, x.geometries_2))
 
 _AccelerationStructureBuildRangeInfoKHR(x::AccelerationStructureBuildRangeInfoKHR) = _AccelerationStructureBuildRangeInfoKHR(x.primitive_count, x.primitive_offset, x.first_vertex, x.transform_offset)
 
@@ -41386,9 +41386,9 @@ _AccelerationStructureVersionInfoKHR(x::AccelerationStructureVersionInfoKHR) = _
 
 _CopyAccelerationStructureInfoKHR(x::CopyAccelerationStructureInfoKHR) = _CopyAccelerationStructureInfoKHR(x.src, x.dst, x.mode; x.next)
 
-_CopyAccelerationStructureToMemoryInfoKHR(x::CopyAccelerationStructureToMemoryInfoKHR) = _CopyAccelerationStructureToMemoryInfoKHR(x.src, x.dst, x.mode; x.next)
+_CopyAccelerationStructureToMemoryInfoKHR(x::CopyAccelerationStructureToMemoryInfoKHR) = _CopyAccelerationStructureToMemoryInfoKHR(x.src, convert_nonnull(_DeviceOrHostAddressKHR, x.dst), x.mode; x.next)
 
-_CopyMemoryToAccelerationStructureInfoKHR(x::CopyMemoryToAccelerationStructureInfoKHR) = _CopyMemoryToAccelerationStructureInfoKHR(x.src, x.dst, x.mode; x.next)
+_CopyMemoryToAccelerationStructureInfoKHR(x::CopyMemoryToAccelerationStructureInfoKHR) = _CopyMemoryToAccelerationStructureInfoKHR(convert_nonnull(_DeviceOrHostAddressConstKHR, x.src), x.dst, x.mode; x.next)
 
 _RayTracingPipelineInterfaceCreateInfoKHR(x::RayTracingPipelineInterfaceCreateInfoKHR) = _RayTracingPipelineInterfaceCreateInfoKHR(x.max_pipeline_ray_payload_size, x.max_pipeline_ray_hit_attribute_size; x.next)
 
@@ -41536,7 +41536,7 @@ _PhysicalDeviceDrmPropertiesEXT(x::PhysicalDeviceDrmPropertiesEXT) = _PhysicalDe
 
 _PhysicalDeviceRayTracingMotionBlurFeaturesNV(x::PhysicalDeviceRayTracingMotionBlurFeaturesNV) = _PhysicalDeviceRayTracingMotionBlurFeaturesNV(x.ray_tracing_motion_blur, x.ray_tracing_motion_blur_pipeline_trace_rays_indirect; x.next)
 
-_AccelerationStructureGeometryMotionTrianglesDataNV(x::AccelerationStructureGeometryMotionTrianglesDataNV) = _AccelerationStructureGeometryMotionTrianglesDataNV(x.vertex_data; x.next)
+_AccelerationStructureGeometryMotionTrianglesDataNV(x::AccelerationStructureGeometryMotionTrianglesDataNV) = _AccelerationStructureGeometryMotionTrianglesDataNV(convert_nonnull(_DeviceOrHostAddressConstKHR, x.vertex_data); x.next)
 
 _AccelerationStructureMotionInfoNV(x::AccelerationStructureMotionInfoNV) = _AccelerationStructureMotionInfoNV(x.max_instances; x.next, x.flags)
 
@@ -41546,7 +41546,7 @@ _AccelerationStructureSRTMotionInstanceNV(x::AccelerationStructureSRTMotionInsta
 
 _AccelerationStructureMatrixMotionInstanceNV(x::AccelerationStructureMatrixMotionInstanceNV) = _AccelerationStructureMatrixMotionInstanceNV(convert_nonnull(_TransformMatrixKHR, x.transform_t_0), convert_nonnull(_TransformMatrixKHR, x.transform_t_1), x.instance_custom_index, x.mask, x.instance_shader_binding_table_record_offset, x.acceleration_structure_reference; x.flags)
 
-_AccelerationStructureMotionInstanceNV(x::AccelerationStructureMotionInstanceNV) = _AccelerationStructureMotionInstanceNV(x.type, x.data; x.flags)
+_AccelerationStructureMotionInstanceNV(x::AccelerationStructureMotionInstanceNV) = _AccelerationStructureMotionInstanceNV(x.type, convert_nonnull(_AccelerationStructureMotionInstanceDataNV, x.data); x.flags)
 
 _MemoryGetRemoteAddressInfoNV(x::MemoryGetRemoteAddressInfoNV) = _MemoryGetRemoteAddressInfoNV(x.memory, x.handle_type; x.next)
 
@@ -41562,7 +41562,7 @@ _PipelineRenderingCreateInfo(x::PipelineRenderingCreateInfo) = _PipelineRenderin
 
 _RenderingInfo(x::RenderingInfo) = _RenderingInfo(convert_nonnull(_Rect2D, x.render_area), x.layer_count, x.view_mask, convert_nonnull(Vector{_RenderingAttachmentInfo}, x.color_attachments); x.next, x.flags, depth_attachment = convert_nonnull(_RenderingAttachmentInfo, x.depth_attachment), stencil_attachment = convert_nonnull(_RenderingAttachmentInfo, x.stencil_attachment))
 
-_RenderingAttachmentInfo(x::RenderingAttachmentInfo) = _RenderingAttachmentInfo(x.image_layout, x.resolve_image_layout, x.load_op, x.store_op, x.clear_value; x.next, x.image_view, x.resolve_mode, x.resolve_image_view)
+_RenderingAttachmentInfo(x::RenderingAttachmentInfo) = _RenderingAttachmentInfo(x.image_layout, x.resolve_image_layout, x.load_op, x.store_op, convert_nonnull(_ClearValue, x.clear_value); x.next, x.image_view, x.resolve_mode, x.resolve_image_view)
 
 _RenderingFragmentShadingRateAttachmentInfoKHR(x::RenderingFragmentShadingRateAttachmentInfoKHR) = _RenderingFragmentShadingRateAttachmentInfoKHR(x.image_layout, convert_nonnull(_Extent2D, x.shading_rate_attachment_texel_size); x.next, x.image_view)
 
@@ -44625,7 +44625,7 @@ RenderPassBeginInfo(x::VkRenderPassBeginInfo, next_types::Type...) = RenderPassB
 
 ClearDepthStencilValue(x::VkClearDepthStencilValue) = ClearDepthStencilValue(x.depth, x.stencil)
 
-ClearAttachment(x::VkClearAttachment) = ClearAttachment(x.aspectMask, x.colorAttachment, from_vk(ClearValue, x.clearValue))
+ClearAttachment(x::VkClearAttachment) = ClearAttachment(x.aspectMask, x.colorAttachment, ClearValue(x.clearValue))
 
 AttachmentDescription(x::VkAttachmentDescription) = AttachmentDescription(x.flags, x.format, SampleCountFlag(UInt32(x.samples)), x.loadOp, x.storeOp, x.stencilLoadOp, x.stencilStoreOp, x.initialLayout, x.finalLayout)
 
@@ -45377,7 +45377,7 @@ FramebufferMixedSamplesCombinationNV(x::VkFramebufferMixedSamplesCombinationNV, 
 
 PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(x::VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, next_types::Type...) = PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.shaderIntegerFunctions2))
 
-PerformanceValueINTEL(x::VkPerformanceValueINTEL) = PerformanceValueINTEL(x.type, from_vk(PerformanceValueDataINTEL, x.data))
+PerformanceValueINTEL(x::VkPerformanceValueINTEL) = PerformanceValueINTEL(x.type, PerformanceValueDataINTEL(x.data))
 
 InitializePerformanceApiInfoINTEL(x::VkInitializePerformanceApiInfoINTEL, next_types::Type...) = InitializePerformanceApiInfoINTEL(load_next_chain(x.pNext, next_types...), x.pUserData)
 
@@ -45417,7 +45417,7 @@ PipelineExecutablePropertiesKHR(x::VkPipelineExecutablePropertiesKHR, next_types
 
 PipelineExecutableInfoKHR(x::VkPipelineExecutableInfoKHR, next_types::Type...) = PipelineExecutableInfoKHR(load_next_chain(x.pNext, next_types...), Pipeline(x.pipeline), x.executableIndex)
 
-PipelineExecutableStatisticKHR(x::VkPipelineExecutableStatisticKHR, next_types::Type...) = PipelineExecutableStatisticKHR(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.description), x.format, from_vk(PipelineExecutableStatisticValueKHR, x.value))
+PipelineExecutableStatisticKHR(x::VkPipelineExecutableStatisticKHR, next_types::Type...) = PipelineExecutableStatisticKHR(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.description), x.format, PipelineExecutableStatisticValueKHR(x.value))
 
 PipelineExecutableInternalRepresentationKHR(x::VkPipelineExecutableInternalRepresentationKHR, next_types::Type...) = PipelineExecutableInternalRepresentationKHR(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.description), from_vk(Bool, x.isText), x.dataSize, x.pData)
 
@@ -45467,7 +45467,7 @@ PhysicalDeviceCoherentMemoryFeaturesAMD(x::VkPhysicalDeviceCoherentMemoryFeature
 
 PhysicalDeviceToolProperties(x::VkPhysicalDeviceToolProperties, next_types::Type...) = PhysicalDeviceToolProperties(load_next_chain(x.pNext, next_types...), from_vk(String, x.name), from_vk(String, x.version), x.purposes, from_vk(String, x.description), from_vk(String, x.layer))
 
-SamplerCustomBorderColorCreateInfoEXT(x::VkSamplerCustomBorderColorCreateInfoEXT, next_types::Type...) = SamplerCustomBorderColorCreateInfoEXT(load_next_chain(x.pNext, next_types...), from_vk(ClearColorValue, x.customBorderColor), x.format)
+SamplerCustomBorderColorCreateInfoEXT(x::VkSamplerCustomBorderColorCreateInfoEXT, next_types::Type...) = SamplerCustomBorderColorCreateInfoEXT(load_next_chain(x.pNext, next_types...), ClearColorValue(x.customBorderColor), x.format)
 
 PhysicalDeviceCustomBorderColorPropertiesEXT(x::VkPhysicalDeviceCustomBorderColorPropertiesEXT, next_types::Type...) = PhysicalDeviceCustomBorderColorPropertiesEXT(load_next_chain(x.pNext, next_types...), x.maxCustomBorderColorSamplers)
 
@@ -45477,15 +45477,15 @@ SamplerBorderColorComponentMappingCreateInfoEXT(x::VkSamplerBorderColorComponent
 
 PhysicalDeviceBorderColorSwizzleFeaturesEXT(x::VkPhysicalDeviceBorderColorSwizzleFeaturesEXT, next_types::Type...) = PhysicalDeviceBorderColorSwizzleFeaturesEXT(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.borderColorSwizzle), from_vk(Bool, x.borderColorSwizzleFromImage))
 
-AccelerationStructureGeometryTrianglesDataKHR(x::VkAccelerationStructureGeometryTrianglesDataKHR, next_types::Type...) = AccelerationStructureGeometryTrianglesDataKHR(load_next_chain(x.pNext, next_types...), x.vertexFormat, from_vk(DeviceOrHostAddressConstKHR, x.vertexData), x.vertexStride, x.maxVertex, x.indexType, from_vk(DeviceOrHostAddressConstKHR, x.indexData), from_vk(DeviceOrHostAddressConstKHR, x.transformData))
+AccelerationStructureGeometryTrianglesDataKHR(x::VkAccelerationStructureGeometryTrianglesDataKHR, next_types::Type...) = AccelerationStructureGeometryTrianglesDataKHR(load_next_chain(x.pNext, next_types...), x.vertexFormat, DeviceOrHostAddressConstKHR(x.vertexData), x.vertexStride, x.maxVertex, x.indexType, DeviceOrHostAddressConstKHR(x.indexData), DeviceOrHostAddressConstKHR(x.transformData))
 
-AccelerationStructureGeometryAabbsDataKHR(x::VkAccelerationStructureGeometryAabbsDataKHR, next_types::Type...) = AccelerationStructureGeometryAabbsDataKHR(load_next_chain(x.pNext, next_types...), from_vk(DeviceOrHostAddressConstKHR, x.data), x.stride)
+AccelerationStructureGeometryAabbsDataKHR(x::VkAccelerationStructureGeometryAabbsDataKHR, next_types::Type...) = AccelerationStructureGeometryAabbsDataKHR(load_next_chain(x.pNext, next_types...), DeviceOrHostAddressConstKHR(x.data), x.stride)
 
-AccelerationStructureGeometryInstancesDataKHR(x::VkAccelerationStructureGeometryInstancesDataKHR, next_types::Type...) = AccelerationStructureGeometryInstancesDataKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.arrayOfPointers), from_vk(DeviceOrHostAddressConstKHR, x.data))
+AccelerationStructureGeometryInstancesDataKHR(x::VkAccelerationStructureGeometryInstancesDataKHR, next_types::Type...) = AccelerationStructureGeometryInstancesDataKHR(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.arrayOfPointers), DeviceOrHostAddressConstKHR(x.data))
 
-AccelerationStructureGeometryKHR(x::VkAccelerationStructureGeometryKHR, next_types::Type...) = AccelerationStructureGeometryKHR(load_next_chain(x.pNext, next_types...), x.geometryType, from_vk(AccelerationStructureGeometryDataKHR, x.geometry), x.flags)
+AccelerationStructureGeometryKHR(x::VkAccelerationStructureGeometryKHR, next_types::Type...) = AccelerationStructureGeometryKHR(load_next_chain(x.pNext, next_types...), x.geometryType, AccelerationStructureGeometryDataKHR(x.geometry), x.flags)
 
-AccelerationStructureBuildGeometryInfoKHR(x::VkAccelerationStructureBuildGeometryInfoKHR, next_types::Type...) = AccelerationStructureBuildGeometryInfoKHR(load_next_chain(x.pNext, next_types...), x.type, x.flags, x.mode, AccelerationStructureKHR(x.srcAccelerationStructure), AccelerationStructureKHR(x.dstAccelerationStructure), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.pGeometries, x.geometryCount; own = true), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.ppGeometries, x.geometryCount; own = true), from_vk(DeviceOrHostAddressKHR, x.scratchData))
+AccelerationStructureBuildGeometryInfoKHR(x::VkAccelerationStructureBuildGeometryInfoKHR, next_types::Type...) = AccelerationStructureBuildGeometryInfoKHR(load_next_chain(x.pNext, next_types...), x.type, x.flags, x.mode, AccelerationStructureKHR(x.srcAccelerationStructure), AccelerationStructureKHR(x.dstAccelerationStructure), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.pGeometries, x.geometryCount; own = true), unsafe_wrap(Vector{AccelerationStructureGeometryKHR}, x.ppGeometries, x.geometryCount; own = true), DeviceOrHostAddressKHR(x.scratchData))
 
 AccelerationStructureBuildRangeInfoKHR(x::VkAccelerationStructureBuildRangeInfoKHR) = AccelerationStructureBuildRangeInfoKHR(x.primitiveCount, x.primitiveOffset, x.firstVertex, x.transformOffset)
 
@@ -45503,9 +45503,9 @@ AccelerationStructureVersionInfoKHR(x::VkAccelerationStructureVersionInfoKHR, ne
 
 CopyAccelerationStructureInfoKHR(x::VkCopyAccelerationStructureInfoKHR, next_types::Type...) = CopyAccelerationStructureInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.src), AccelerationStructureKHR(x.dst), x.mode)
 
-CopyAccelerationStructureToMemoryInfoKHR(x::VkCopyAccelerationStructureToMemoryInfoKHR, next_types::Type...) = CopyAccelerationStructureToMemoryInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.src), from_vk(DeviceOrHostAddressKHR, x.dst), x.mode)
+CopyAccelerationStructureToMemoryInfoKHR(x::VkCopyAccelerationStructureToMemoryInfoKHR, next_types::Type...) = CopyAccelerationStructureToMemoryInfoKHR(load_next_chain(x.pNext, next_types...), AccelerationStructureKHR(x.src), DeviceOrHostAddressKHR(x.dst), x.mode)
 
-CopyMemoryToAccelerationStructureInfoKHR(x::VkCopyMemoryToAccelerationStructureInfoKHR, next_types::Type...) = CopyMemoryToAccelerationStructureInfoKHR(load_next_chain(x.pNext, next_types...), from_vk(DeviceOrHostAddressConstKHR, x.src), AccelerationStructureKHR(x.dst), x.mode)
+CopyMemoryToAccelerationStructureInfoKHR(x::VkCopyMemoryToAccelerationStructureInfoKHR, next_types::Type...) = CopyMemoryToAccelerationStructureInfoKHR(load_next_chain(x.pNext, next_types...), DeviceOrHostAddressConstKHR(x.src), AccelerationStructureKHR(x.dst), x.mode)
 
 RayTracingPipelineInterfaceCreateInfoKHR(x::VkRayTracingPipelineInterfaceCreateInfoKHR, next_types::Type...) = RayTracingPipelineInterfaceCreateInfoKHR(load_next_chain(x.pNext, next_types...), x.maxPipelineRayPayloadSize, x.maxPipelineRayHitAttributeSize)
 
@@ -45653,7 +45653,7 @@ PhysicalDeviceDrmPropertiesEXT(x::VkPhysicalDeviceDrmPropertiesEXT, next_types::
 
 PhysicalDeviceRayTracingMotionBlurFeaturesNV(x::VkPhysicalDeviceRayTracingMotionBlurFeaturesNV, next_types::Type...) = PhysicalDeviceRayTracingMotionBlurFeaturesNV(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.rayTracingMotionBlur), from_vk(Bool, x.rayTracingMotionBlurPipelineTraceRaysIndirect))
 
-AccelerationStructureGeometryMotionTrianglesDataNV(x::VkAccelerationStructureGeometryMotionTrianglesDataNV, next_types::Type...) = AccelerationStructureGeometryMotionTrianglesDataNV(load_next_chain(x.pNext, next_types...), from_vk(DeviceOrHostAddressConstKHR, x.vertexData))
+AccelerationStructureGeometryMotionTrianglesDataNV(x::VkAccelerationStructureGeometryMotionTrianglesDataNV, next_types::Type...) = AccelerationStructureGeometryMotionTrianglesDataNV(load_next_chain(x.pNext, next_types...), DeviceOrHostAddressConstKHR(x.vertexData))
 
 AccelerationStructureMotionInfoNV(x::VkAccelerationStructureMotionInfoNV, next_types::Type...) = AccelerationStructureMotionInfoNV(load_next_chain(x.pNext, next_types...), x.maxInstances, x.flags)
 
@@ -45663,7 +45663,7 @@ AccelerationStructureSRTMotionInstanceNV(x::VkAccelerationStructureSRTMotionInst
 
 AccelerationStructureMatrixMotionInstanceNV(x::VkAccelerationStructureMatrixMotionInstanceNV) = AccelerationStructureMatrixMotionInstanceNV(TransformMatrixKHR(x.transformT0), TransformMatrixKHR(x.transformT1), x.instanceCustomIndex, x.mask, x.instanceShaderBindingTableRecordOffset, x.flags, x.accelerationStructureReference)
 
-AccelerationStructureMotionInstanceNV(x::VkAccelerationStructureMotionInstanceNV) = AccelerationStructureMotionInstanceNV(x.type, x.flags, from_vk(AccelerationStructureMotionInstanceDataNV, x.data))
+AccelerationStructureMotionInstanceNV(x::VkAccelerationStructureMotionInstanceNV) = AccelerationStructureMotionInstanceNV(x.type, x.flags, AccelerationStructureMotionInstanceDataNV(x.data))
 
 MemoryGetRemoteAddressInfoNV(x::VkMemoryGetRemoteAddressInfoNV, next_types::Type...) = MemoryGetRemoteAddressInfoNV(load_next_chain(x.pNext, next_types...), DeviceMemory(x.memory), ExternalMemoryHandleTypeFlag(UInt32(x.handleType)))
 
@@ -45679,7 +45679,7 @@ PipelineRenderingCreateInfo(x::VkPipelineRenderingCreateInfo, next_types::Type..
 
 RenderingInfo(x::VkRenderingInfo, next_types::Type...) = RenderingInfo(load_next_chain(x.pNext, next_types...), x.flags, Rect2D(x.renderArea), x.layerCount, x.viewMask, unsafe_wrap(Vector{RenderingAttachmentInfo}, x.pColorAttachments, x.colorAttachmentCount; own = true), RenderingAttachmentInfo(x.pDepthAttachment), RenderingAttachmentInfo(x.pStencilAttachment))
 
-RenderingAttachmentInfo(x::VkRenderingAttachmentInfo, next_types::Type...) = RenderingAttachmentInfo(load_next_chain(x.pNext, next_types...), ImageView(x.imageView), x.imageLayout, ResolveModeFlag(UInt32(x.resolveMode)), ImageView(x.resolveImageView), x.resolveImageLayout, x.loadOp, x.storeOp, from_vk(ClearValue, x.clearValue))
+RenderingAttachmentInfo(x::VkRenderingAttachmentInfo, next_types::Type...) = RenderingAttachmentInfo(load_next_chain(x.pNext, next_types...), ImageView(x.imageView), x.imageLayout, ResolveModeFlag(UInt32(x.resolveMode)), ImageView(x.resolveImageView), x.resolveImageLayout, x.loadOp, x.storeOp, ClearValue(x.clearValue))
 
 RenderingFragmentShadingRateAttachmentInfoKHR(x::VkRenderingFragmentShadingRateAttachmentInfoKHR, next_types::Type...) = RenderingFragmentShadingRateAttachmentInfoKHR(load_next_chain(x.pNext, next_types...), ImageView(x.imageView), x.imageLayout, Extent2D(x.shadingRateAttachmentTexelSize))
 
