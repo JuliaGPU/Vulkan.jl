@@ -38,7 +38,7 @@ is_fn_ptr(spec::Spec) = is_fn_ptr(spec.type)
 
 function is_hl(type)
     vktype = Symbol(:Vk, type)
-    vktype in spec_structs.name
+    vktype in [spec_structs.name; spec_unions.name]
 end
 
 is_intermediate(type) = startswith(string(type), '_')

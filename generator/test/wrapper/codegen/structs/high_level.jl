@@ -82,6 +82,15 @@
                 _InstanceCreateInfo(x::InstanceCreateInfo) = _InstanceCreateInfo(x.enabled_layer_names, x.enabled_extension_names; x.next, x.flags, application_info = convert_nonnull(_ApplicationInfo, x.application_info))
             ),
         )
+        test_ex(
+            Constructor(
+                StructDefinition{false}(struct_by_name(:VkRenderingAttachmentInfo)),
+                StructDefinition{true}(struct_by_name(:VkRenderingAttachmentInfo)),
+            ),
+            :(
+                _RenderingAttachmentInfo(x::RenderingAttachmentInfo) = _RenderingAttachmentInfo(x.image_layout, x.resolve_image_layout, x.load_op, x.store_op, convert_nonnull(_ClearValue, x.clear_value); x.next, x.image_view, x.resolve_mode, x.resolve_image_view)
+            ),
+        )
     end
 
     @testset "Additional constructor" begin
