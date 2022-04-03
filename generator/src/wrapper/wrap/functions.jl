@@ -13,7 +13,7 @@ function wrap_api_call(spec::SpecFunc, args; with_func_ptr = false)
 end
 
 function dispatch_handle(spec::SpecFunc)
-    maybe_handle = !isempty(children(spec)) ? first(children(spec)).type : nothing
+    maybe_handle = !isempty(children(spec)) ? first(children(spec)).type : :nothing
     if maybe_handle in spec_handles.name
         handle = handle_by_name(maybe_handle)
         handle_id = wrap_identifier(handle)
@@ -27,7 +27,7 @@ function dispatch_handle(spec::SpecFunc)
             :(instance($handle_id))
         end
     else
-        nothing
+        :nothing
     end
 end
 
