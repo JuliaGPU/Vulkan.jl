@@ -1,6 +1,14 @@
 # Troubleshooting
 
-Here we list common errors that can be encountered, with common solutions.
+There can be many kinds of errors when developing a Vulkan application, which can sometimes be difficult to troubleshoot.
+
+If you think you identified an error in the Vulkan driver, or in any other C library, you can troubleshoot whether it has is in any way linked to Julia by doing the following:
+- Executing a system utility that uses the library (driver, loader, extension dependency...) in question. If no errors happen, you can try the next step.
+- If you have the courage, you can write a MWE in Julia and then translate that to C or any other low-level language.
+
+## Known sources of errors
+
+Here we list common errors and potential solutions. If you encounter a new error, or found a new solution to an error already listed, feel free to submit a pull request to improve this section.
 
 ##### ERROR\_LAYER\_NOT\_PRESENT
 
@@ -21,3 +29,11 @@ If the bug is encountered in a function from the loader (e.g. via a function tha
 ##### 0-based vs 1-based indexing
 
 Vulkan uses a 0-based indexing system, so be careful whenever an index is returned from or requested for a Vulkan function.
+
+##### Crash in extension depending on an external C library
+
+There have been cases where the relevant C libraries must be loaded (`dlopen`ed) before the instance or device with the relevant extension is used. For example, [XCB.jl](https://github.com/JuliaGL/XCB.jl) uses its own `libxcb` via `Xorg_libxcb_jll`, and this library is automatically `dlopen`ed when loading XCB (because in turn it loads `Xorg_libxcb_jll` which does the `dlopen` during `__init__()`). When loading XCB only after an instance with the extension `VK_KHR_xcb_surface` was created, trying to retrieve basic information (e.g. via `get_physical_device_surface_capabilities_khr`) caused a segmentation fault.
+
+If may be expected that this happens with any package that relies on a C library using the [artifact system](https://pkgdocs.julialang.org/v1/artifacts/), and that is required by a Vulkan extension. In this case, always make sure you load the package before setting up your instance(s) and device(s).
+
+In general, make sure you know where any relevant external libraries come from.
