@@ -42,7 +42,7 @@ function function_pointer(disp::APIDispatcher, handle, key::Symbol)::Ptr{Cvoid}
     fptr = t.pointers[key]
     if fptr == C_NULL
         error(
-            "Could not retrieve function pointer for '$f'. This can be caused by an extension not being enabled for a function that needs it; see the help with `?` or the documentation for more information.",
+            "Could not retrieve function pointer for '$key'. This can be caused by an extension not being enabled for a function that needs it; see the help with `?` or the documentation for more information.",
         )
     end
     fptr
