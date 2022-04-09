@@ -43,7 +43,8 @@ macro bitmask_flag(typedecl, expr)
 end
 
 Base.iszero(a::BitMask) = iszero(a.val)
-Base.zero(a::T) where {T<:BitMask} = T(zero(a.val))
+Base.zero(a::T) where {T<:BitMask} = zero(T)
+Base.zero(T::Type{<:BitMask{U}}) where {U} = T(zero(U))
 Base.:(~)(a::T) where {T<:BitMask} = T(~a.val)
 
 (&)(a::BitMask, b::BitMask) = error("Bitwise operation not allowed between incompatible bitmasks '$(typeof(a))', '$(typeof(b))'")
