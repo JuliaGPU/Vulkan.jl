@@ -12,8 +12,10 @@ end
 
 @testset "Bitmasks" begin
     @testset "Bitmask creation & operations" begin
-        @test BIT_A & BIT_B == FlagBits(0)
+        @test BIT_A & BIT_B == FlagBits(0) == zero(FlagBits)
+        @test iszero(BIT_A & BIT_B)
         @test BIT_A | BIT_B == BIT_C
+        @test !iszero(BIT_C)
         @test xor(BIT_A, BIT_B) == BIT_C
         @test BIT_A < BIT_B && BIT_B < BIT_C && BIT_A < BIT_C
         @test BIT_A & 1 == 1 & BIT_A == BIT_A
