@@ -2,7 +2,7 @@
 
 There can be many kinds of errors when developing a Vulkan application, which can sometimes be difficult to troubleshoot.
 
-If you think you identified an error in the Vulkan driver, or in any other C library, you can troubleshoot whether it has is in any way linked to Julia by doing the following:
+If you identified an error happening in the Vulkan driver, or in any other C library, you can troubleshoot whether it has anything to do with Julia by doing the following:
 - Executing a system utility that uses the library (driver, loader, extension dependency...) in question. If no errors happen, you can try the next step.
 - If you have the courage, you can write a MWE in Julia and then translate that to C or any other low-level language.
 
