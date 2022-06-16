@@ -27,7 +27,7 @@ using SwiftShader_jll # hide
 using Vulkan
 @set_driver :SwiftShader # hide
 
-instance = Instance(["VK_LAYER_KHRONOS_validation"], [])
+instance = Instance([], [])
 
 # Take the first available physical device (you might check that it is an
 # actual GPU, using [`get_physical_device_properties`](@ref)).
