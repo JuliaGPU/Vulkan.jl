@@ -78,7 +78,7 @@ makedocs(;
     repo="https://github.com/JuliaGPU/Vulkan.jl/blob/{commit}{path}#L{line}",
     sitename="Vulkan.jl",
     authors="serenity4 <cedric.bel@hotmail.fr>",
-    strict=false,
+    strict=true,
     doctest=false,
     checkdocs=:exports,
     linkcheck=:false,

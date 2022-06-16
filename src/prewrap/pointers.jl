@@ -55,39 +55,20 @@ function _initialize_core(T, refs)
         pNext = C_NULL
     else
         ref = popfirst!(refs)
-        ref[] = _initialize_core(Base.inferencebarrier(typeof(ref[])), refs)
+        ref[] = initialize_core(typeof(ref[]), refs)
         pNext = Base.unsafe_convert(Ptr{Cvoid}, ref)
     end
     setproperties(res, (; sType, pNext))
 end
 
-initialize_core(T, refs) = _initialize_core(Base.inferencebarrier(T), Base.inferencebarrier(refs))
+"""
+    initialize_core(T, next_refs)
 
-# """
-# Initialize a core structure of type `T` recursively, converting references provided in `vars_types` to pointers for their `next` chain.
-# """
-# function initialize_core(T::DataType, refs = [])
-#     # This function takes a while to compile, if there are ways to speed it up that would be nice.
-#     args = []
-#     for (name, t) in zip(fieldnames(T), fieldtypes(T))
-#         if name == :sType
-#             push!(args, structure_type(T))
-#         elseif name == :pNext
-#             if isempty(refs)
-#                 push!(args, C_NULL)
-#             else
-#                 ref, refs... = refs
-#                 ref[] = initialize_core(eltype(ref), refs)
-#                 push!(args, Base.unsafe_convert(Ptr{Cvoid}, ref))
-#             end
-#         elseif isstructtype(t) && !(t <: NTuple)
-#             push!(args, initialize_core(t))
-#         else
-#             push!(args, initialize(t))
-#         end
-#     end
-#     T(args...)
-# end
+Initialize a core Vulkan structure, with `next` chain types specified in `refs`.
+
+Every ref in `refs` will be used to construct an initialized `pNext` element, and will be filled with the *value* of the initialized type, acting as the pointer. Note that these references will have to be preserved for the initialized Vulkan structure to remain valid.
+"""
+initialize_core(T, refs) = _initialize_core(Base.inferencebarrier(T), Base.inferencebarrier(refs))
 
 """
 Initialize an intermediate structure, with a `next` chain built from initialized `Tnext` structs.
@@ -97,7 +78,7 @@ function _initialize(T::Type{<:VulkanStruct}, Tnext)
     for t in Tnext
         push!(refs, Ref{core_type(t)}())
     end
-    vks = _initialize_core(Base.inferencebarrier(core_type(T)), Base.inferencebarrier(refs))
+    vks = initialize_core(core_type(T), refs)
     T(vks, refs)
 end
 
@@ -110,7 +91,7 @@ function _initialize(T::Type{<:HighLevelStruct}, Tnext)
         if t === StructureType
             push!(args, structure_type(T))
         elseif name == :next
-            push!(args, isempty(Tnext) ? C_NULL : _initialize(Base.inferencebarrier(Tnext[1]), Base.inferencebarrier(Tnext[2:end])))
+            push!(args, isempty(Tnext) ? C_NULL : initialize(Tnext...))
         else
             push!(args, initialize(t))
         end
@@ -118,77 +99,18 @@ function _initialize(T::Type{<:HighLevelStruct}, Tnext)
     T(args...)
 end
 
-initialize(T::Type{<:HighLevelStruct}, args...) = _initialize(Base.inferencebarrier(T), Base.inferencebarrier(collect(args)))
-initialize(T::Type{<:VulkanStruct}, args...) = _initialize(Base.inferencebarrier(T), Base.inferencebarrier(collect(args)))
+"""
+    initialize(T, next_Ts...)
 
-# """
-# Initialize a core structure of type `T` recursively, converting references provided in `vars_types` to pointers for their `next` chain.
-# """
-# function initialize_core(T::DataType, vars_types::Pair{Symbol,DataType}...)
-#     # This function takes a while to compile, if there are ways to speed it up that would be nice.
-#     args = []
-#     for (name, t) in zip(fieldnames(T), fieldtypes(T))
-#         if name == :sType
-#             push!(args, structure_type(T))
-#         elseif name == :pNext
-#             if isempty(vars_types)
-#                 push!(args, C_NULL)
-#             else
-#                 ((var, type), vars_types...) = vars_types
-#                 ref_ex = initialize_core(type, (vars_types)...)
-#                 push!(args, quote
-#                     $var[] = $ref_ex
-#                     Base.unsafe_convert(Ptr{Cvoid}, $var)
-#                 end)
-#             end
-#         elseif isstructtype(t) && !(t <: NTuple)
-#             push!(args, initialize_core(t))
-#         else
-#             push!(args, initialize(t))
-#         end
-#     end
-#     :($T($(args...)))
-# end
+Initialize a value or Vulkan structure with the purpose of being
+filled in by the API. The types can be either high-level or intermediate
+wrapper types.
 
-# """
-# Initialize an intermediate structure, with a `next` chain built from initialized `Tnext` structs.
-# """
-# @generated function initialize(::Type{T}, Tnext...) where {T<:VulkanStruct}
-#     Tnext = getindex.(getproperty.(Tnext, :parameters), 1)
-#     vars_types = Symbol.(:ref_, 1:length(Tnext)) .=> core_type.(Tnext)
-#     body = [:($var = Ref{$t}()) for (var, t) in vars_types]
-#     vks = initialize_core(core_type(T), vars_types...)
-#     Expr(:block, body..., :($T($vks, Any[$(first.(vars_types)...)])))
-# end
-
-# """
-# Initialize a high-level structure, with a `next` chain built from initialized `Tnext` structs.
-# """
-# @generated function initialize(::Type{T}, Tnext...) where {T<:HighLevelStruct}
-#     Tnext = getindex.(getproperty.(Tnext, :parameters), 1)
-#     args = []
-#     for (name, t) in zip(fieldnames(T), fieldtypes(T))
-#         if t === StructureType
-#             push!(args, structure_type(T))
-#         elseif name == :next
-#             push!(args, isempty(Tnext) ? C_NULL : initialize(Tnext...))
-#         else
-#             push!(args, initialize(t))
-#         end
-#     end
-#     Expr(:call, nameof(T), args...)
-# end
-
-# @generated function load_next_chain(ptr, next_types...)
-#     isempty(next_types) && return C_NULL
-#     next_types = only.(getproperty.(next_types, :parameters))
-#     T, Ts... = next_types
-#     quote
-#         @assert ptr ≠ C_NULL
-#         vks = Base.unsafe_load(Base.unsafe_convert($(Ptr{core_type(T)}), ptr))
-#         $T(vks, $(Ts...))
-#     end
-# end
+If `next_Ts` is not empty and `T` designates
+a Vulkan structure which can hold `next` chains, then the corresponding
+types will be initialized and added to the `next`/`pNext` member.
+"""
+initialize(T::Union{Type{<:HighLevelStruct}, Type{<:VulkanStruct}}, args...) = _initialize(Base.inferencebarrier(T), Base.inferencebarrier(collect(args)))
 
 @noinline function _load_next_chain(ptr, next_types)
     isempty(next_types) && return C_NULL

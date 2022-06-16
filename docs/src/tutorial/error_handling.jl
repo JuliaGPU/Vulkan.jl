@@ -18,7 +18,8 @@ if iserror(res)
               that it is up to date with the requested version.
               """)
     elseif err.code == ERROR_LAYER_NOT_PRESENT
-        error("Validation layers not available.")
+        @warn "Validation layers not available."
+        create_instance([], [])
     else
         throw(err)
     end
