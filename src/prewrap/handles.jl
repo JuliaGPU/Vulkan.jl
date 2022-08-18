@@ -24,7 +24,7 @@ end
 function try_destroy(f, handle::Handle, parent)
     decrement_refcount!(handle)
     if iszero(handle.refcount[])
-        @pref_log_destruction f(handle) ≠ handle
+        @pref_log_destruction handle f(handle) ≠ handle
         if !isnothing(parent) && !isa(parent.destructor, UndefInitializer)
             parent.destructor()
         end

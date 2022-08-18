@@ -7,18 +7,19 @@ else
     set_preferences!(args...; kwargs...) = Preferences.set_preferences!(@__MODULE__, args...; kwargs...)
 end
 
-macro pref_log_destruction(ex)
+macro pref_log_destruction(handle, ex)
     if @load_preference("LOG_DESTRUCTION", "false") == "true"
         ex = quote
-            @ccall jl_safe_printf("Finalizing $handle"::Cstring)::Cvoid
-            was_destroyed = $ex
+            premsg = string("Finalizing ", $(esc(handle)))
+            @ccall jl_safe_printf(premsg::Cstring)::Cvoid
+            was_destroyed = $(esc(ex))
             msg =
                 was_destroyed ? ":\e[32m destroyed\e[m\n" :
                 ":\e[33m nothing to do\e[m\n"
             @ccall jl_safe_printf(msg::Cstring)::Cvoid
         end
     end
-    esc(ex)
+    ex
 end
 
 macro pref_log_refcount(ex)
