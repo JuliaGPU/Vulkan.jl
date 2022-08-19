@@ -9,7 +9,7 @@ end
 
 macro pref_log_destruction(handle, ex)
     if @load_preference("LOG_DESTRUCTION", "false") == "true"
-        ex = quote
+        quote
             premsg = string("Finalizing ", $(esc(handle)))
             @ccall jl_safe_printf(premsg::Cstring)::Cvoid
             was_destroyed = $(esc(ex))
@@ -18,8 +18,9 @@ macro pref_log_destruction(handle, ex)
                 ":\e[33m nothing to do\e[m\n"
             @ccall jl_safe_printf(msg::Cstring)::Cvoid
         end
+    else
+        esc(ex)
     end
-    ex
 end
 
 macro pref_log_refcount(ex)
