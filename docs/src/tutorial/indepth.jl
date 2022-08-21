@@ -2,9 +2,9 @@
 
 # In-depth tutorial
 
-This objective of this in-depth tutorial is to introduce the reader to the functionality of this library and reach a level of familiarity sufficient for building more complex applications.
+The objective of this in-depth tutorial is to introduce the reader to the functionality of this library and reach a level of familiarity sufficient for building more complex applications.
 
-This tutorial is *not* intended as a replacement for a Vulkan tutorial. In particular, it is assumed that the reader has a basic understanding of Vulkan. If you are new to Vulkan, feel free to follow the [official Vulkan tutorial](https://vulkan-tutorial.com/) along with this one. The Vulkan tutorial will teach you the concepts behind Vulkan, and this tutorial how to use the API it *from Julia*.
+This tutorial is *not* intended as a replacement for a Vulkan tutorial. In particular, it is assumed that the reader has a basic understanding of Vulkan. If you are new to Vulkan, feel free to follow the [official Vulkan tutorial](https://vulkan-tutorial.com/) along with this one. The Vulkan tutorial will teach you the concepts behind Vulkan, and this tutorial, how to use the API *from Julia*.
 A lot of resources are available online for learning about Vulkan, such as the [Vulkan Guide](https://github.com/KhronosGroup/Vulkan-Guide) by the Khronos Group. You can find a more detailed list [here](https://www.vulkan.org/learn).
 
 ## Initialization
@@ -47,7 +47,7 @@ This simple call does a few things under the hood:
 
 Note that this little abstraction does not induce any loss of functionality. Indeed, the `Instance` constructor has a few keyword arguments not mentioned above for a more advanced use, which simply provides default values.
 
-Note that we pass in arrays, version numbers and strings; but the C API does not know anything about Julia types. Fortunately, these conversions are taken care of by the wrapper, so that we don't need to provide pointers for arrays and strings nor integers that act as version numbers.
+Note that we pass in arrays, version numbers and strings; but the C API does not know anything about Julia types. Fortunately, these conversions are taken care of by the wrapper, so that we don't need to provide pointers for arrays and strings, nor integers that act as version numbers.
 
 We now setup a debug messenger that we'll use for logging. Its function is to process messages sent by the Vulkan API. We could use the default debug callback provided by Vulkan.jl, namely [`default_debug_callback`](@ref); but instead we will implement our own callback for educational purposes. We'll just define a function that prints whatever message is received from Vulkan.
 

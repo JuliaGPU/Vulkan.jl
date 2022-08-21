@@ -10,7 +10,7 @@ the struggle, this tutorial gives precisely the small "bootstrap" piece of code
 that should allow you to quickly run a compute shader on actual data. In short,
 we walk through the following steps:
 
-- Opening a device and finding good queues families and memory types
+- Opening a device and finding good queue families and memory types
 - Allocating memory and buffers
 - Compiling a shader program and filling up the structures necessary to run it:
   - specialization constants
@@ -23,9 +23,9 @@ we walk through the following steps:
 
 =#
 
-using SwiftShader_jll # hide
+using SwiftShader_jll #hide
 using Vulkan
-@set_driver :SwiftShader # hide
+@set_driver :SwiftShader #hide
 
 instance = Instance([], [])
 
@@ -45,7 +45,7 @@ device = Device(physical_device, [DeviceQueueCreateInfo(qfam_idx, [1.0])], [], [
 
 # ## Allocating the memory
 #
-# Same way, you need to find a good memory type. Again, you can find a good one
+# Similarly, you need to find a good memory type. Again, you can find a good one
 # using `vulkaninfo` or with [`get_physical_device_memory_properties`](@ref).
 # For compute, you want something that is both at the device (contains
 # `MEMORY_PROPERTY_DEVICE_LOCAL_BIT`) and visible from the host
@@ -146,6 +146,8 @@ struct ShaderSpecConsts
 end
 
 # Let's now compile the shader to SPIR-V with `glslang`. We can use the artifact `glslang_jll` which provides the binary through the [Artifact system](https://pkgdocs.julialang.org/v1/artifacts/).
+
+# First, make sure to `] add glslang_jll`, then we can do the shader compilation through:
 using glslang_jll: glslangValidator
 glslang = glslangValidator(identity)
 shader_bcode = mktempdir() do dir
@@ -162,7 +164,7 @@ shader = ShaderModule(device, sizeof(UInt32) * length(shader_bcode), shader_bcod
 
 # ## Assembling the pipeline
 #
-# Descriptor set layout describes how many resources of what kind are going to
+# A `descriptor set layout` describes how many resources of what kind will
 # be used by the shader. In this case, we only use a single buffer:
 dsl = DescriptorSetLayout(
     device,
