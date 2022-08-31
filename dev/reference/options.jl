@@ -9,6 +9,7 @@ Certain features of this library are configurable via [Preferences.jl](https://g
 |:-----------------:|:-------------------------------------:|:---------:|
 | `LOG_DESTRUCTION` | Log the destruction of Vulkan handles | `"false"` |
 | `USE_DISPATCH_TABLE` | Retrieve and store function pointers in a [dispatch table](@ref Dispatch) to speed up API calls and facilitate the use of extensions | `"true"` |
+| `PRECOMPILE_DEVICE_FUNCTIONS` | Precompile device-specific functions if a Vulkan driver and suitable devices are available | `"true"` |
 
 ## Destruction logging
 
