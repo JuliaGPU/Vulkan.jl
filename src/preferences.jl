@@ -1,11 +1,5 @@
-@static if VERSION < v"1.6.0-DEV"
-    macro load_preference(name, default)
-        esc(default)
-    end
-else
-    using Preferences: Preferences, @load_preference
-    set_preferences!(args...; kwargs...) = Preferences.set_preferences!(@__MODULE__, args...; kwargs...)
-end
+using Preferences: Preferences, @load_preference
+set_preferences!(args...; kwargs...) = Preferences.set_preferences!(@__MODULE__, args...; kwargs...)
 
 macro pref_log_destruction(handle, ex)
     if @load_preference("LOG_DESTRUCTION", "false") == "true"

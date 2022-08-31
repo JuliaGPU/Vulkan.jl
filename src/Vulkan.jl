@@ -9,6 +9,8 @@ using Reexport
 using DocStringExtensions
 using AutoHashEquals: @auto_hash_equals
 using Accessors: @set, setproperties
+using SnoopPrecompile
+using Libdl: Libdl
 
 using VulkanCore: VulkanCore, vk
 using .vk
@@ -69,9 +71,10 @@ include("instance.jl")
 include("device.jl")
 include("dispatch.jl")
 include("print.jl")
-include("precompile.jl")
 
 const global_dispatcher = Ref{APIDispatcher}()
+
+include("precompile.jl")
 
 function __init__()
     global_dispatcher[] = APIDispatcher()

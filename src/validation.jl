@@ -58,7 +58,7 @@ A default function [`default_debug_callback`](@ref) can be converted to a functi
 
 !!! warning
     `callback` must be a function pointer of type `Ptr{Nothing}` obtained from a `callback_f` function as follows:  
-    `callback = @cfunction(callback_f, UInt32, (DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageTypeFlagBitsEXT, Ptr{VkCore.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`  
+    `callback = @cfunction(callback_f, UInt32, (DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, Ptr{VkCore.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`
     with `callback_f` a Julia function with a signature matching the `@cfunction` call.
 """
 function DebugUtilsMessengerEXT(
