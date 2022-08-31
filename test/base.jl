@@ -18,6 +18,7 @@ end
 include("bitmasks.jl")
 include("api.jl")
 include("dispatch.jl")
+@test Vulkan.precompile_workload()
 
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan
