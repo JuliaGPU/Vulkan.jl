@@ -3,14 +3,14 @@
 
 const instance = Instance([], [])
 const pdevice = first(unwrap(enumerate_physical_devices(instance)))
-const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.0])], [], [])</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Device(Ptr{Nothing} @0x0000000005c656a8)</code></pre><p>The most convenient way to create a handle is through its constructor</p><pre><code class="language-julia hljs">buffer = Buffer(
+const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.0])], [], [])</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Device(Ptr{Nothing} @0x000000000501ed98)</code></pre><p>The most convenient way to create a handle is through its constructor</p><pre><code class="language-julia hljs">buffer = Buffer(
     device,
     100,
     BUFFER_USAGE_TRANSFER_SRC_BIT,
     SHARING_MODE_EXCLUSIVE,
     [];
     flags = BUFFER_CREATE_SPARSE_ALIASED_BIT,
-)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x00000000058ea528)</code></pre><p>This is equivalent to</p><pre><code class="language-julia hljs">unwrap(
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x000000000491d9f8)</code></pre><p>This is equivalent to</p><pre><code class="language-julia hljs">unwrap(
     create_buffer(
         device,
         100,
@@ -19,7 +19,7 @@ const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.0])], [], [])</code>
         [];
         flags = BUFFER_CREATE_SPARSE_ALIASED_BIT,
     ),
-)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x0000000005315748)</code></pre><p><a href="../../tutorial/error_handling/#Error-handling">Error handling</a> can be performed before unwrapping, e.g.</p><pre><code class="language-julia hljs">res = create_buffer(
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x0000000004c54fa8)</code></pre><p><a href="../../tutorial/error_handling/#Error-handling">Error handling</a> can be performed before unwrapping, e.g.</p><pre><code class="language-julia hljs">res = create_buffer(
     device,
     100,
     BUFFER_USAGE_TRANSFER_SRC_BIT,
@@ -31,7 +31,7 @@ if iserror(res)
     error(&quot;Could not create buffer!&quot;)
 else
     unwrap(res)
-end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x0000000005100288)</code></pre><p>Create info parameters can be built separately, such as</p><pre><code class="language-julia hljs">info = BufferCreateInfo(
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x0000000005e1b1b8)</code></pre><p>Create info parameters can be built separately, such as</p><pre><code class="language-julia hljs">info = BufferCreateInfo(
     100,
     BUFFER_USAGE_TRANSFER_SRC_BIT,
     SHARING_MODE_EXCLUSIVE,
@@ -39,13 +39,13 @@ end</code></pre><pre class="documenter-example-output"><code class="nohighlight 
     flags = BUFFER_CREATE_SPARSE_ALIASED_BIT,
 )
 
-Buffer(device, info)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x0000000002c2e548)</code></pre><pre><code class="language-julia hljs">create_buffer(device, info)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Result(Buffer(Ptr{Nothing} @0x0000000005191698))</code></pre><p>Handles allocated in batches (such as command buffers) do not have a dedicated constructor; you will need to call the corresponding function yourself.</p><pre><code class="language-julia hljs">command_pool = CommandPool(device, 0)
+Buffer(device, info)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Buffer(Ptr{Nothing} @0x0000000005b2d498)</code></pre><pre><code class="language-julia hljs">create_buffer(device, info)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Result(Buffer(Ptr{Nothing} @0x00000000055507d8))</code></pre><p>Handles allocated in batches (such as command buffers) do not have a dedicated constructor; you will need to call the corresponding function yourself.</p><pre><code class="language-julia hljs">command_pool = CommandPool(device, 0)
 info = CommandBufferAllocateInfo(command_pool, COMMAND_BUFFER_LEVEL_PRIMARY, 5)
 res = allocate_command_buffers(device, info)
 iserror(res) &amp;&amp; error(&quot;Tried to create 5 command buffers, but failed miserably.&quot;)
 cbuffers = unwrap(res)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">5-element Vector{CommandBuffer}:
- CommandBuffer(Ptr{Nothing} @0x00000000058c3f00)
- CommandBuffer(Ptr{Nothing} @0x0000000004999200)
- CommandBuffer(Ptr{Nothing} @0x000000000568f3e0)
- CommandBuffer(Ptr{Nothing} @0x000000000326e8b0)
- CommandBuffer(Ptr{Nothing} @0x000000000531a990)</code></pre><p>Note that they won&#39;t be freed automatically; forgetting to free them after use would result in a memory leak (see <a href="#Destroying-a-handle">Destroying a handle</a>).</p><h2 id="Destroying-a-handle"><a class="docs-heading-anchor" href="#Destroying-a-handle">Destroying a handle</a><a id="Destroying-a-handle-1"></a><a class="docs-heading-anchor-permalink" href="#Destroying-a-handle" title="Permalink"></a></h2><p>The garbage collector will free most handles automatically with a finalizer (see <a href="../../reference/wrapper_types/#Automatic-finalization">Automatic finalization</a>), but you can force the destruction yourself early with</p><pre><code class="language-julia hljs">finalize(buffer) # calls `destroy_buffer`</code></pre><p>This is most useful when you need to release resources associated to a handle, e.g. a <code>DeviceMemory</code>. Handle types that can be freed in batches don&#39;t register finalizers, such as <code>CommandBuffer</code> and <code>DescriptorSet</code>. They must be freed with</p><pre><code class="language-julia hljs">free_command_buffers(device, command_pool, cbuffers)</code></pre><p>or the corresponding <code>free_descriptor_sets</code> for <code>DescriptorSet</code>s.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../debugging/">« Debug an application</a><a class="docs-footer-nextpage" href="../shaders/">Compile a SPIR-V shader from Julia »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Wednesday 31 August 2022 16:32">Wednesday 31 August 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+ CommandBuffer(Ptr{Nothing} @0x0000000005ddfb80)
+ CommandBuffer(Ptr{Nothing} @0x0000000004b5a480)
+ CommandBuffer(Ptr{Nothing} @0x00000000031997a0)
+ CommandBuffer(Ptr{Nothing} @0x00000000026be620)
+ CommandBuffer(Ptr{Nothing} @0x0000000002ecb8b0)</code></pre><p>Note that they won&#39;t be freed automatically; forgetting to free them after use would result in a memory leak (see <a href="#Destroying-a-handle">Destroying a handle</a>).</p><h2 id="Destroying-a-handle"><a class="docs-heading-anchor" href="#Destroying-a-handle">Destroying a handle</a><a id="Destroying-a-handle-1"></a><a class="docs-heading-anchor-permalink" href="#Destroying-a-handle" title="Permalink"></a></h2><p>The garbage collector will free most handles automatically with a finalizer (see <a href="../../reference/wrapper_types/#Automatic-finalization">Automatic finalization</a>), but you can force the destruction yourself early with</p><pre><code class="language-julia hljs">finalize(buffer) # calls `destroy_buffer`</code></pre><p>This is most useful when you need to release resources associated to a handle, e.g. a <code>DeviceMemory</code>. Handle types that can be freed in batches don&#39;t register finalizers, such as <code>CommandBuffer</code> and <code>DescriptorSet</code>. They must be freed with</p><pre><code class="language-julia hljs">free_command_buffers(device, command_pool, cbuffers)</code></pre><p>or the corresponding <code>free_descriptor_sets</code> for <code>DescriptorSet</code>s.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../debugging/">« Debug an application</a><a class="docs-footer-nextpage" href="../shaders/">Compile a SPIR-V shader from Julia »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Wednesday 31 August 2022 17:02">Wednesday 31 August 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
