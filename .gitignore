@@ -13,3 +13,4 @@ _*wrapped_api.jl
 /docs/site
 .vscode
 /LocalPreferences.toml
+!/test/*.spv

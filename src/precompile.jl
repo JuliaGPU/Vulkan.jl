@@ -10,4 +10,9 @@
     from_vk(PhysicalDeviceFeatures2, f2.vks, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
     f3 = Base.unsafe_convert(VkCore.VkPhysicalDeviceFeatures2, f2)
     f4 = PhysicalDeviceFeatures2(f3, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
+
+    if @load_preference("PRECOMPILE_DEVICE_FUNCTIONS", "true") == "true"
+        include("../test/precompile_workload.jl")
+        precompile_workload()
+    end
 end
