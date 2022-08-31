@@ -41,7 +41,7 @@ function precompile_workload()
     next = messenger_create_info
   end
 
-  instance = Instance(layers, exts; application_info = ApplicationInfo(v"0.1", v"0.1", v"1.3"), next)
+  instance = Instance(layers, exts; application_info = ApplicationInfo(v"0.1", v"0.1", v"1.2"), next)
   messenger = DebugUtilsMessengerEXT(instance, messenger_create_info)
 
   pdevices = unwrap(enumerate_physical_devices(instance))
@@ -51,9 +51,9 @@ function precompile_workload()
   for pdevice in pdevices
     props = unwrap(get_physical_device_properties(pdevice))
     @debug sprint(show, MIME"text/plain"(), props)
-    props.api_version ≥ v"1.3" && (physical_device = pdevice)
+    props.api_version ≥ v"1.2" && (physical_device = pdevice)
   end
-  !isnothing(physical_device) || throw(PrecompilationError("No physical device was found which supports Vulkan 1.3 or higher."))
+  !isnothing(physical_device) || throw(PrecompilationError("No physical device was found which supports Vulkan 1.2 or higher."))
 
   queue_props = get_physical_device_queue_family_properties(physical_device)
   queue_family_index = findfirst(x -> (QUEUE_COMPUTE_BIT | QUEUE_GRAPHICS_BIT) in x.queue_flags, queue_props)
