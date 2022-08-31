@@ -1,7 +1,13 @@
+struct PrecompilationError
+  msg::String
+end
+
+Base.showerror(io::IO, err::PrecompilationError) = print(io, "PrecompilationError: ", err.msg)
+
 function precompile_workload()
   # Only run Vulkan commands if a Vulkan library is found.
   libname = Libdl.find_library(VkCore.libvulkan)
-  !isempty(libname) || return 1
+  !isempty(libname) || throw(PrecompilationError("No Vulkan library named $(VkCore.libvulkan) in the library path."))
 
   # This is run before initializing Vulkan.
   # VkCore.libvulkan_handle[] = Libdl.dlopen(libname)
@@ -9,7 +15,8 @@ function precompile_workload()
   !isdefined(global_dispatcher, 1) && (global_dispatcher[] = APIDispatcher())
   fill_dispatch_table()
 
-  unwrap(enumerate_instance_version()) ≥ v"1.3" || return 2
+  loader_version = unwrap(enumerate_instance_version())
+  loader_version ≥ v"1.1" || throw(PrecompilationError("The Vulkan loader version is unsupported ($loader_version): a of 1.1 or higher is required."))
   layers = []
   exts = []
 
@@ -39,20 +46,23 @@ function precompile_workload()
 
   pdevices = unwrap(enumerate_physical_devices(instance))
   physical_device = nothing
+  isempty(pdevices) && throw(PrecompilationError("No physical devices found which support Vulkan."))
+  @debug "Physical devices: "
   for pdevice in pdevices
     props = unwrap(get_physical_device_properties(pdevice))
+    @debug sprint(show, MIME"text/plain"(), props)
     props.api_version ≥ v"1.3" && (physical_device = pdevice)
   end
-  !isnothing(physical_device) || return 3
+  !isnothing(physical_device) || throw(PrecompilationError("No physical device was found which supports Vulkan 1.3 or higher."))
 
   queue_props = get_physical_device_queue_family_properties(physical_device)
   queue_family_index = findfirst(x -> (QUEUE_COMPUTE_BIT | QUEUE_GRAPHICS_BIT) in x.queue_flags, queue_props)
-  !isnothing(queue_family_index) || return 4
+  !isnothing(queue_family_index) || throw(PrecompilationError("No queue found which supports graphics and compute operations."))
   queue_family_index -= 1 # 0-based indexing
   device = Device(physical_device, [DeviceQueueCreateInfo(queue_family_index, [1.0])], [], [])
   queue = get_device_queue(device, queue_family_index, 0)
   command_pool = CommandPool(device, queue_family_index)
-  !isnothing(compute_workload(device, queue, command_pool)) || return 5
+  compute_workload(device, queue, command_pool)
   true
 end
 
@@ -70,9 +80,9 @@ function compute_workload(device, queue, command_pool)
   buffer_reqs = get_buffer_memory_requirements(device, buffer)
   memory_props = get_physical_device_memory_properties(device.physical_device)
   candidate_indices = findall(i -> buffer_reqs.memory_type_bits & (1 << (i - 1)) ≠ 0, 1:memory_props.memory_type_count)
-  isempty(candidate_indices) && return
+  isempty(candidate_indices) && throw(PrecompilationError("No buffer memory available."))
   memory_type = findfirst(i -> (MEMORY_PROPERTY_HOST_VISIBLE_BIT | MEMORY_PROPERTY_HOST_COHERENT_BIT) in memory_props.memory_types[i].property_flags, candidate_indices)
-  isnothing(memory_type) && return
+  isnothing(memory_type) && throw(PrecompilationError("No host-visible and host-coherent buffer memory available."))
   memory_type = candidate_indices[memory_type] - 1
   mem = DeviceMemory(device, buffer_reqs.size, memory_type)
 
