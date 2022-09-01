@@ -21,7 +21,7 @@ end
 
 function raw_dependencies(ex)
     p = deconstruct(ex)
-    deps = @match category(ex) begin
+    @match category(ex) begin
         :struct => begin
             # handle structs wrapped with @auto_hash_equals
             p = haskey(p, :macro) ? deconstruct(p[:decl]) : p
@@ -32,11 +32,10 @@ function raw_dependencies(ex)
             :(::$type) => inner_type(type)
             arg => nothing
         end)), [p[:args], p[:kwargs]])...)
-        :const => isalias(p[:name]) ? p[:value] : p[:value] isa Symbol ? p[:value] : []
-        :enum => p[:type]
+        :const => p[:value] isa Symbol ? [p[:value]] : Symbol[]
+        :enum => [p[:type]]
         :doc => raw_dependencies(p[:ex])
     end
-    deps isa Vector ? deps : [deps]
 end
 
 function dependencies(ex)
@@ -48,8 +47,8 @@ function dependencies(ex)
             !is_vulkan_type,
             !in(known_dependencies),
             !in(extension_types),
-            !in(names(Core)),
-            !in(names(Base)),
+            !in(Base.names(Core)),
+            !in(Base.names(Base)),
             x -> x isa Symbol,
         ],
         Ref(deps),
@@ -75,13 +74,14 @@ function check_is_dag(g, decls)
     end
 end
 
-function resolve_dependencies(decl_names, decls)
-    g = SimpleDiGraph(length(decl_names))
+function resolve_dependencies(decls)
+    defined_names = names.(decls)
+    g = SimpleDiGraph(length(decls))
 
-    for (j, (decl_name, decl)) ∈ enumerate(zip(decl_names, decls))
+    for (j, decl) ∈ enumerate(decls)
         for dep ∈ dependencies(decl)
-            i = findfirst(x -> x == dep, decl_names)
-            isnothing(i) && error("Could not find dependency '$dep' for $decl")
+            i = findfirst(Base.Fix1(in, dep), defined_names)
+            !isnothing(i) || error("Could not find dependency '$dep' for $decl")
             add_edge!(g, i, j)
         end
     end
@@ -97,7 +97,7 @@ function check_dependencies(decls)
         if deps ⊈ encountered_deps
             error("Unsolved dependencies $deps for declaration $decl")
         end
-        push!(encountered_deps, name(decl))
+        append!(encountered_deps, names(decl))
     end
     decls
 end

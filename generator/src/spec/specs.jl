@@ -37,11 +37,11 @@ function Base.show(io::IO, spec::SpecFunc)
     !isempty(spec.render_pass_compatibility) && push!(
         props,
         string("to be executed ", join(map(spec.render_pass_compatibility) do compat
-            @match compat begin
-                ::RenderPassInside => "inside"
-                ::RenderPassOutside => "outside"
-            end
-        end, " and "), " render passes"),
+                    @match compat begin
+                        ::RenderPassInside => "inside"
+                        ::RenderPassOutside => "outside"
+                    end
+                end, " and "), " render passes"),
     )
     !isempty(spec.queue_compatibility) &&
         push!(props, string(" (compatible with $(join(string.(spec.queue_compatibility), ", ")) queues)"))
@@ -61,17 +61,16 @@ function Base.show(io::IO, spec::Union{SpecStructMember,SpecFuncParam})
 end
 
 function SpecStructMember(node::Node)
-    id = extract_identifier(node)
     SpecStructMember(
         parent_name(node),
-        id == :module ? :_module : id,
+        extract_identifier(node),
         extract_type(node),
         is_constant(node),
         externsync(node),
         PARAM_REQUIREMENT(node),
         len(node),
         arglen(node, neighbor_type = "member"),
-        !parse(Bool, getattr(node, "noautovalidity", default="false", symbol=false)),
+        !parse(Bool, getattr(node, "noautovalidity", default = "false", symbol = false)),
     )
 end
 
@@ -122,7 +121,7 @@ SpecFuncParam(node::Node) = SpecFuncParam(
     PARAM_REQUIREMENT(node),
     len(node),
     arglen(node),
-    !parse(Bool, getattr(node, "noautovalidity", default="false", symbol=false)),
+    !parse(Bool, getattr(node, "noautovalidity", default = "false", symbol = false)),
 )
 
 function SpecFunc(node::Node)
@@ -156,21 +155,31 @@ function SpecFunc(node::Node)
 end
 
 SpecEnum(node::Node) =
-    SpecEnum(Symbol(node["name"]), StructVector(SpecConstant.(findall("./enum[@name and not(@alias)]", node))))
+    SpecEnum(getattr(node, "name"), StructVector(SpecConstant.(findall("./enum[@name and not(@alias)]", node))))
 
 SpecBit(node::Node) = SpecBit(
-    Symbol(node["name"]),
-    parse(Int, something(getattr(node, "value", symbol = false), getattr(node, "bitpos", symbol = false))),
+    getattr(node, "name"),
+    parse(Int, getattr(node, "bitpos", symbol = false)),
 )
 
-SpecBitmask(node::Node) =
-    SpecBitmask(Symbol(node["name"]), StructVector(SpecBit.(findall("./enum[not(@alias)]", node))), parse(Int, getattr(node, "bitwidth", symbol = false, default = "32")))
+SpecBitCombination(node::Node) = SpecBitCombination(
+    getattr(node, "name"),
+    parse(UInt, getattr(node, "value", symbol = false)),
+)
+
+function SpecBitmask(node::Node)
+    name = getattr(node, "name")
+    bits = StructVector(SpecBit.(findall("./enum[not(@alias) and not(@value)]", node)))
+    combinations = StructVector(SpecBitCombination.(findall("./enum[not(@alias) and @value]", node)))
+    width = parse(Int, getattr(node, "bitwidth", symbol = false, default = "32"))
+    SpecBitmask(name, bits, combinations, width)
+end
 
 function SpecFlag(node::Node)
     name = Symbol(findfirst("./name", node).content)
     typealias = Symbol(findfirst("./type", node).content)
     bitmask = if haskey(node, "requires")
-        bitmask_name = Symbol(node["requires"])
+        bitmask_name = getattr(node, "requires")
         if bitmask_name ∈ disabled_symbols
             nothing
         else
@@ -229,7 +238,7 @@ function SpecConstant(node::Node)
 end
 
 function SpecAlias(node::Node)
-    name = Symbol(node["name"])
+    name = getattr(node, "name")
     alias = follow_alias(name)
     spec_names = getproperty.(spec_all_noalias, :name)
     alias_spec = spec_all_noalias[findfirst(==(alias), spec_names)]
@@ -260,7 +269,7 @@ function find_destroyed_param(spec::SpecFunc)
     @match idx begin
         ::Integer => spec.params[idx]
         ::Nothing => @match idx = findfirst(in(spec_handles.name), innermost_type.(spec.params.type)) begin
-            ::Integer => spec.params[idx + 1]
+            ::Integer => spec.params[idx+1]
             ::Nothing => error("Failed to retrieve the parameter to be destroyed:\n $spec")
         end
     end
@@ -282,24 +291,28 @@ function SpecExtension(node::Node)
         ::Nothing => EXTENSION_TYPE_ANY
         t => error("Unknown extension type '$t'")
     end
-    requires = getattr(node, "requires", default="", symbol=false)
-    requirements = isempty(requires) ? Symbol[] : Symbol.(split(requires, ','))
+    requires = getattr(node, "requires", default = "", symbol = false)
+    requirements = isempty(requires) ? String[] : split(requires, ',')
     is_disabled = @match node["supported"] begin
         "vulkan" => false
         "disabled" => true
         s => error("Unknown extension support value '$s'")
     end
-    platform = PlatformType(getattr(node, "platform", symbol=false))
-    symbols = map(x -> Symbol(x["name"]), findall(".//*[@name]", node))
+    platform = PlatformType(getattr(node, "platform", symbol = false))
+    symbols = map(x -> getattr(x, "name"), findall(".//*[@name]", node))
+    promoted_to = getattr(node, "promotedto", symbol = false)
+    promoted_to = something(version_number(promoted_to), promoted_to, Some(nothing))
     SpecExtension(
-        Symbol(node["name"]),
+        node["name"],
         exttype,
         requirements,
         is_disabled,
-        getattr(node, "author", symbol=false),
+        getattr(node, "author", symbol = false),
         symbols,
         platform,
         platform == PLATFORM_PROVISIONAL,
+        promoted_to,
+        getattr(node, "deprecatedby", symbol = false),
     )
 end
 
@@ -406,6 +419,49 @@ end
 SpecPlatform(node::Node) = SpecPlatform(PlatformType(node["name"]), node["comment"])
 AuthorTag(node::Node) = AuthorTag(node["name"], node["author"])
 
+function SpecExtensionSPIRV(node::Node)
+    versions = map(Base.Fix2(getindex, "version"), findall(".//enable[@version]", node))
+    enabling_exts = map(Base.Fix2(getindex, "extension"), findall(".//enable[@extension]", node))
+    SpecExtensionSPIRV(node["name"], promoted_in(versions), enabling_exts)
+end
+
+function version_number(str::AbstractString)
+    m = match(r"VK_VERSION(?:_API)?_(\d+)_(\d+)", str)
+    isnothing(m) && return nothing
+    VersionNumber(parse(Int, m.captures[1]), parse(Int, m.captures[2]))
+end
+version_number(::Nothing) = nothing
+
+function extract_version_ext(node::Node)
+    requires = split(getattr(node, "requires"; default = "", symbol = false), ',')
+    core_version = nothing
+    filter!(requires) do req
+        version = version_number(req)
+        isnothing(version) && (core_version = version)
+        isnothing(version)
+    end
+    core_version, isempty(requires) ? nothing : only(requires)
+end
+
+function SpecCapabilitySPIRV(node::Node)
+    versions = map(Base.Fix2(getindex, "version"), findall(".//enable[@version]", node))
+    enabling_exts = map(Base.Fix2(getindex, "extension"), findall(".//enable[@extension]", node))
+    enabling_structs = map(findall(".//enable[@struct]", node)) do node
+        FeatureCondition(getattr(node, "struct"), getattr(node, "feature"), extract_version_ext(node)...)
+    end
+    enabling_props = map(findall(".//enable[@property]", node)) do node
+        value = getattr(node, "value")
+        bit = value == :VK_TRUE ? nothing : value
+        PropertyCondition(getattr(node, "property"), getattr(node, "member"), extract_version_ext(node)..., isnothing(bit), value)
+    end
+    SpecCapabilitySPIRV(getattr(node, "name"), promoted_in(versions), enabling_exts, enabling_structs, enabling_props)
+end
+
+function promoted_in(versions)
+    isempty(versions) && return nothing
+    version_number(only(versions))
+end
+
 const spec_platforms = StructVector(SpecPlatform.(findall("//platform", xroot)))
 
 const author_tags = StructVector(AuthorTag.(findall("//tag", xroot)))
@@ -504,7 +560,11 @@ let nodes = findall("//*[@extends and not(@alias)]", xroot)
         spec = database[findfirst(x -> x.name == Symbol(node["extends"]), database)]
         @switch spec begin
             @case ::SpecBitmask
-            push!(spec.bits, SpecBit(node))
+            if haskey(node, "bitpos") && !haskey(node, "value")
+                push!(spec.bits, SpecBit(node))
+            elseif haskey(node, "value")
+                push!(spec.combinations, SpecBitCombination(node))
+            end
             @case ::SpecEnum
             push!(spec.enums, SpecConstant(node))
         end
@@ -523,6 +583,7 @@ const spec_all_noalias = [
     (spec_enums.enums...)...,
     spec_bitmasks...,
     (spec_bitmasks.bits...)...,
+    (spec_bitmasks.combinations...)...,
 ]
 
 """
@@ -540,6 +601,9 @@ const spec_aliases = StructVector(
 const spec_func_params = collect(Iterators.flatten(spec_funcs.params))
 const spec_struct_members = collect(Iterators.flatten(spec_structs.members))
 const spec_create_info_structs = filter(x -> x.type ∈ [STYPE_CREATE_INFO, STYPE_ALLOCATE_INFO], spec_structs)
+
+const spec_spirv_extensions = StructVector(SpecExtensionSPIRV.(findall("//spirvextension", xroot)))
+const spec_spirv_capabilities = StructVector(SpecCapabilitySPIRV.(findall("//spirvcapability", xroot)))
 
 function spec_by_field(specs, field, value)
     specs[findall(==(value), getproperty(specs, field))]
@@ -582,6 +646,31 @@ parent_spec(spec::SpecStructMember) = struct_by_name(parent(spec))
 parent_spec(spec::SpecHandle) = handle_by_name(parent(spec))
 
 parent_hierarchy(spec::SpecHandle) = isnothing(spec.parent) ? [spec.name] : [parent_hierarchy(parent_spec(spec)); spec.name]
+
+
+const core_functions = Symbol[]
+const instance_functions = Symbol[]
+const device_functions = Symbol[]
+
+function fill_functions()
+    for fname in unique!([spec_funcs.name; [al.name for al in spec_aliases if isa(al.alias, SpecFunc)]])
+        spec = func_by_name(follow_alias(fname))
+        t = follow_alias(first(children(spec)).type)
+        h = handle_by_name(t)
+        if isnothing(h)
+            push!(core_functions, fname)
+            continue
+        end
+
+        if :VkDevice in parent_hierarchy(h)
+            push!(device_functions, fname)
+        elseif :VkInstance in parent_hierarchy(h)
+            push!(instance_functions, fname)
+        end
+    end
+end
+
+fill_functions()
 
 function len(spec::Union{SpecFuncParam,SpecStructMember})
     params = children(parent_spec(spec))

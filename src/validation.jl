@@ -1,19 +1,14 @@
 using Logging
 
-# from https://discourse.julialang.org/t/task-switch-not-allowed-from-inside-staged-nor-pure-functions/20488/9
-# define safe loggers for use in generated functions (where task switches are not allowed)
+# From https://discourse.julialang.org/t/task-switch-not-allowed-from-inside-staged-nor-pure-functions/20488/9
+# Define safe loggers for use in finalizers (where task switches are not allowed).
 for level in [:debug, :info, :warn, :error]
-    @eval begin
-        macro $(Symbol("safe_$level"))(ex...)
-            macrocall = :(@placeholder $(ex...))
-            # NOTE: `@placeholder` in order to avoid hard-coding @__LINE__ etc
-            macrocall.args[1] = Symbol($"@$level")
-            quote
-                ret = nothing
-                with_logger(Logging.ConsoleLogger(Base.stderr, global_logger().min_level)) do
-                    ret = $(esc(macrocall))
-                end
-                ret
+    @eval macro $(Symbol("safe_$level"))(ex...)
+        macrocall = Expr(:macrocall, Symbol($"@$level"), __source__, ex...)
+        quote
+            # Log to `Base.stderr`
+            with_logger(Logging.ConsoleLogger(stderr, global_logger().min_level)) do
+                $(esc(macrocall))
             end
         end
     end
@@ -34,7 +29,7 @@ function default_debug_callback(message_severity, message_type, callback_data_pt
     callback_data = unsafe_load(callback_data_ptr)
     message = unsafe_string(callback_data.pMessage)
 
-    # ignore messages about available device extensions
+    # Ignore messages about available device extensions.
     if !startswith(message, "Device Extension: VK")
         id_name = unsafe_string(callback_data.pMessageIdName)
         msg_type = @match message_type begin
@@ -63,7 +58,7 @@ A default function [`default_debug_callback`](@ref) can be converted to a functi
 
 !!! warning
     `callback` must be a function pointer of type `Ptr{Nothing}` obtained from a `callback_f` function as follows:  
-    `callback = @cfunction(callback_f, UInt32, (DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageTypeFlagBitsEXT, Ptr{vk.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`  
+    `callback = @cfunction(callback_f, UInt32, (DebugUtilsMessageSeverityFlagEXT, DebugUtilsMessageTypeFlagEXT, Ptr{VkCore.VkDebugUtilsMessengerCallbackDataEXT}, Ptr{Cvoid}))`
     with `callback_f` a Julia function with a signature matching the `@cfunction` call.
 """
 function DebugUtilsMessengerEXT(

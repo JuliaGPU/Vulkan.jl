@@ -1,52 +1,51 @@
 test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
-test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
 
 @testset "Generated documentation" begin
     @testset "Low-level structs" begin
-        test_doc_broken(
+        test_doc(StructDefinition{false}(struct_by_name(:VkExtent2D)),
+            """
+            Intermediate wrapper for VkExtent2D.
+
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExtent2D.html)
+            """
+        )
+
+        test_doc(
             Constructor(StructDefinition{false}(struct_by_name(:VkExtent2D))),
             """
-                _Extent2D(width::Integer, height::Integer)
-
             Arguments:
-            - `width::Integer`
-            - `height::Integer`
+            - `width::UInt32`
+            - `height::UInt32`
 
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkExtent2D.html)
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExtent2D.html)
             """,
         )
 
-        test_doc_broken(
+        test_doc(
             Constructor(StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo))),
             """
-                _InstanceCreateInfo(enabled_layer_names::AbstractArray{<:AbstractString}, enabled_extension_names::AbstractArray{<:AbstractString}; next = C_NULL, flags = 0, application_info = C_NULL)
-
             Arguments:
-            - `enabled_layer_names::AbstractArray{<:AbstractString}`
-            - `enabled_extension_names::AbstractArray{<:AbstractString}`
-            - `next`: defaults to `C_NULL`
-            - `flags`: defaults to `0`
-            - `application_info`: defaults to `C_NULL`
+            - `enabled_layer_names::Vector{String}`
+            - `enabled_extension_names::Vector{String}`
+            - `next::Ptr{Cvoid}`: defaults to `C_NULL`
+            - `flags::UInt32`: defaults to `0`
+            - `application_info::_ApplicationInfo`: defaults to `C_NULL`
 
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html)
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstanceCreateInfo.html)
             """,
         )
 
-        test_doc_broken(
-            Constructor(StructDefinition{false}(struct_by_name(:VkSubmitInfo2KHR))),
+        test_doc(
+            Constructor(StructDefinition{false}(struct_by_name(:VkSubmitInfo2))),
             """
-                _SubmitInfo2KHR(wait_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}, command_buffer_infos::AbstractArray{_CommandBufferSubmitInfoKHR}, signal_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}; next = C_NULL, flags = 0)
-
-            Extension: VK\\\\_KHR\\\\_synchronization2
-
             Arguments:
-            - `wait_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}`
-            - `command_buffer_infos::AbstractArray{_CommandBufferSubmitInfoKHR}`
-            - `signal_semaphore_infos::AbstractArray{_SemaphoreSubmitInfoKHR}`
-            - `next`: defaults to `C_NULL`
-            - `flags`: defaults to `0`
+            - `wait_semaphore_infos::Vector{_SemaphoreSubmitInfo}`
+            - `command_buffer_infos::Vector{_CommandBufferSubmitInfo}`
+            - `signal_semaphore_infos::Vector{_SemaphoreSubmitInfo}`
+            - `next::Ptr{Cvoid}`: defaults to `C_NULL`
+            - `flags::SubmitFlag`: defaults to `0`
 
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkSubmitInfo2KHR.html)
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubmitInfo2.html)
             """,
         )
     end
@@ -56,100 +55,215 @@ test_doc_broken(obj, doc) = @test_broken Documented(obj).p[:docstring] == doc
             """
             High-level wrapper for VkInstanceCreateInfo.
 
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkInstanceCreateInfo.html)
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstanceCreateInfo.html)
+            """,
+        )
+
+        test_doc(
+            Constructor(StructDefinition{true}(struct_by_name(:VkInstanceCreateInfo))),
+            """
+            Arguments:
+            - `enabled_layer_names::Vector{String}`
+            - `enabled_extension_names::Vector{String}`
+            - `next::Any`: defaults to `C_NULL`
+            - `flags::UInt32`: defaults to `0`
+            - `application_info::ApplicationInfo`: defaults to `C_NULL`
+
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstanceCreateInfo.html)
+            """,
+        )
+
+        test_doc(
+            APIFunction(create_func(:vkCreateInstance), false),
+            """
+            Return codes:
+            - `ERROR_OUT_OF_HOST_MEMORY`
+            - `ERROR_OUT_OF_DEVICE_MEMORY`
+            - `ERROR_INITIALIZATION_FAILED`
+            - `ERROR_LAYER_NOT_PRESENT`
+            - `ERROR_EXTENSION_NOT_PRESENT`
+            - `ERROR_INCOMPATIBLE_DRIVER`
+
+            Arguments:
+            - `enabled_layer_names::Vector{String}`
+            - `enabled_extension_names::Vector{String}`
+            - `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+            - `next::Ptr{Cvoid}`: defaults to `C_NULL`
+            - `flags::UInt32`: defaults to `0`
+            - `application_info::_ApplicationInfo`: defaults to `C_NULL`
+
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html)
             """,
         )
     end
 
     @testset "API functions" begin
+        @testset "Intermediate functions" begin
+            test_doc(
+                APIFunction(func_by_name(:vkEnumerateInstanceExtensionProperties), false),
+                """
+                Return codes:
+                - `ERROR_OUT_OF_HOST_MEMORY`
+                - `ERROR_OUT_OF_DEVICE_MEMORY`
+                - `ERROR_LAYER_NOT_PRESENT`
+
+                Arguments:
+                - `layer_name::String`: defaults to `C_NULL`
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceExtensionProperties.html)
+                """,
+            )
+
+            test_doc(
+                APIFunction(func_by_name(:vkDestroyDevice), false),
+                """
+                Arguments:
+                - `device::Device` (externsync)
+                - `allocator::_AllocationCallbacks`: defaults to `C_NULL`
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyDevice.html)
+                """,
+            )
+
+            test_doc(
+                APIFunction(func_by_name(:vkGetPipelineCacheData), false),
+                """
+                Return codes:
+                - `ERROR_OUT_OF_HOST_MEMORY`
+                - `ERROR_OUT_OF_DEVICE_MEMORY`
+
+                Arguments:
+                - `device::Device`
+                - `pipeline_cache::PipelineCache`
+
+                !!! warning
+                    The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPipelineCacheData.html)
+                """,
+            )
+
+            test_doc(
+                APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false),
+                """
+                Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
+
+                Return codes:
+                - `ERROR_OUT_OF_HOST_MEMORY`
+                - `ERROR_OUT_OF_DEVICE_MEMORY`
+
+                Arguments:
+                - `device::Device`
+                - `acceleration_structures::Vector{AccelerationStructureKHR}`
+                - `query_type::QueryType`
+                - `data_size::UInt`
+                - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+                - `stride::UInt`
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html)
+                """,
+            )
+
+            test_doc(
+                APIFunction(func_by_name(:vkEnumerateInstanceLayerProperties), false),
+                """
+                Return codes:
+                - `ERROR_OUT_OF_HOST_MEMORY`
+                - `ERROR_OUT_OF_DEVICE_MEMORY`
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
+                """,
+            )
+        end
+
+        @testset "High-level functions" begin
+            test_doc(
+                VulkanGen.promote_hl(APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false)),
+                """
+                Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
+
+                Return codes:
+                - `ERROR_OUT_OF_HOST_MEMORY`
+                - `ERROR_OUT_OF_DEVICE_MEMORY`
+
+                Arguments:
+                - `device::Device`
+                - `acceleration_structures::Vector{AccelerationStructureKHR}`
+                - `query_type::QueryType`
+                - `data_size::UInt`
+                - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
+                - `stride::UInt`
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html)
+                """,
+            )
+
+            test_doc(
+                VulkanGen.promote_hl(APIFunction(func_by_name(:vkEnumerateInstanceLayerProperties), false)),
+                """
+                Return codes:
+                - `ERROR_OUT_OF_HOST_MEMORY`
+                - `ERROR_OUT_OF_DEVICE_MEMORY`
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
+                """,
+            )
+
+            test_doc(
+                VulkanGen.promote_hl(APIFunction(func_by_name(:vkAcquireNextImageKHR), false)),
+                """
+                Extension: VK\\\\_KHR\\\\_swapchain
+
+                Return codes:
+                - `SUCCESS`
+                - `TIMEOUT`
+                - `NOT_READY`
+                - `SUBOPTIMAL_KHR`
+                - `ERROR_OUT_OF_HOST_MEMORY`
+                - `ERROR_OUT_OF_DEVICE_MEMORY`
+                - `ERROR_DEVICE_LOST`
+                - `ERROR_OUT_OF_DATE_KHR`
+                - `ERROR_SURFACE_LOST_KHR`
+                - `ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+
+                Arguments:
+                - `device::Device`
+                - `swapchain::SwapchainKHR` (externsync)
+                - `timeout::UInt64`
+                - `semaphore::Semaphore`: defaults to `C_NULL` (externsync)
+                - `fence::Fence`: defaults to `C_NULL` (externsync)
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireNextImageKHR.html)
+                """,
+            )
+
+            test_doc(
+                VulkanGen.promote_hl(APIFunction(func_by_name(:vkGetDescriptorSetLayoutSupport), false)),
+                """
+                Arguments:
+                - `device::Device`
+                - `create_info::DescriptorSetLayoutCreateInfo`
+                - `next_types::Type...`: types of members to initialize and include as part of the `next` chain
+
+                [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDescriptorSetLayoutSupport.html)
+                """
+            )
+        end
+    end
+    @testset "Handles" begin
         test_doc(
-            APIFunction(func_by_name(:vkEnumerateInstanceExtensionProperties), false),
+            Constructor(HandleDefinition(handle_by_name(:VkInstance)), VulkanGen.promote_hl(APIFunction(create_func(:vkCreateInstance), false))),
             """
-                enumerate_instance_extension_properties(; layer_name = C_NULL)::ResultTypes.Result{Vector{ExtensionProperties}, VulkanError}
-
-            Return codes:
-            - Error:
-              - `ERROR_OUT_OF_HOST_MEMORY`
-              - `ERROR_OUT_OF_DEVICE_MEMORY`
-              - `ERROR_LAYER_NOT_PRESENT`
-
             Arguments:
-            - `layer_name`: defaults to `C_NULL`
+            - `enabled_layer_names::Vector{String}`
+            - `enabled_extension_names::Vector{String}`
+            - `allocator::AllocationCallbacks`: defaults to `C_NULL`
+            - `next::Any`: defaults to `C_NULL`
+            - `flags::UInt32`: defaults to `0`
+            - `application_info::ApplicationInfo`: defaults to `C_NULL`
 
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceExtensionProperties.html)
-            """,
-        )
-
-        test_doc(
-            APIFunction(func_by_name(:vkDestroyDevice), false),
+            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html)
             """
-                destroy_device(device; allocator = C_NULL)::Cvoid
-
-            Arguments:
-            - `device` (externsync)
-            - `allocator`: defaults to `C_NULL`
-
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkDestroyDevice.html)
-            """,
-        )
-
-        test_doc(
-            APIFunction(func_by_name(:vkGetPipelineCacheData), false),
-            """
-                get_pipeline_cache_data(device, pipeline_cache)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
-
-            Return codes:
-            - Error:
-              - `ERROR_OUT_OF_HOST_MEMORY`
-              - `ERROR_OUT_OF_DEVICE_MEMORY`
-
-            Arguments:
-            - `device`
-            - `pipeline_cache`
-
-            !!! warning
-                The pointer returned by this function holds memory owned by Julia. It is therefore **your** responsibility to free it after use (e.g. with `Libc.free`).
-
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkGetPipelineCacheData.html)
-            """,
-        )
-
-        test_doc(
-            APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false),
-            """
-                write_acceleration_structures_properties_khr(device, acceleration_structures::AbstractArray{AccelerationStructureKHR}, query_type::QueryType, data_size::Integer, data::Ptr{Cvoid}, stride::Integer)::ResultTypes.Result{Result, VulkanError}
-
-            Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
-
-            Return codes:
-            - Error:
-              - `ERROR_OUT_OF_HOST_MEMORY`
-              - `ERROR_OUT_OF_DEVICE_MEMORY`
-
-            Arguments:
-            - `device`
-            - `acceleration_structures::AbstractArray{AccelerationStructureKHR}`
-            - `query_type::QueryType`
-            - `data_size::Integer`
-            - `data::Ptr{Cvoid}` (must be a valid pointer with `data_size` bytes)
-            - `stride::Integer`
-
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkWriteAccelerationStructuresPropertiesKHR.html)
-            """,
-        )
-
-        test_doc(
-            APIFunction(func_by_name(:vkEnumerateInstanceLayerProperties), false),
-            """
-                enumerate_instance_layer_properties()::ResultTypes.Result{Vector{LayerProperties}, VulkanError}
-
-            Return codes:
-            - Error:
-              - `ERROR_OUT_OF_HOST_MEMORY`
-              - `ERROR_OUT_OF_DEVICE_MEMORY`
-
-            [API documentation](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
-            """,
         )
     end
 end

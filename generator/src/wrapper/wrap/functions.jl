@@ -3,7 +3,7 @@ function wrap_api_call(spec::SpecFunc, args; with_func_ptr = false)
     ex = if with_func_ptr
         ex
     else
-        maybe_dispatch(spec, ex)
+        dispatch_call(spec, ex)
     end
     wrap_return(
         ex,
@@ -12,26 +12,26 @@ function wrap_api_call(spec::SpecFunc, args; with_func_ptr = false)
     )
 end
 
-function maybe_dispatch(spec::SpecFunc, ex)
-    maybe_handle = !isempty(children(spec)) ? innermost_type(first(children(spec)).type) : nothing
-    use_dispatch_macro = spec.name ∉ (:vkGetInstanceProcAddr, :vkGetDeviceProcAddr)
-    use_dispatch_macro || return ex
+function dispatch_handle(spec::SpecFunc)
+    maybe_handle = !isempty(children(spec)) ? first(children(spec)).type : :nothing
     if maybe_handle in spec_handles.name
         handle = handle_by_name(maybe_handle)
         handle_id = wrap_identifier(handle)
         hierarchy = parent_hierarchy(handle)
         if handle.name == :VkDevice || handle.name == :VkInstance
             # to avoid name conflicts
-            :(@dispatch $handle_id $ex)
+            handle_id
         elseif :VkDevice in hierarchy
-            :(@dispatch device($handle_id) $ex)
+            :(device($handle_id))
         elseif :VkInstance in hierarchy
-            :(@dispatch instance($handle_id) $ex)
+            :(instance($handle_id))
         end
     else
-        :(@dispatch nothing $ex)
+        :nothing
     end
 end
+
+dispatch_call(spec::SpecFunc, ex) = spec.name in (:vkGetInstanceProcAddr, :vkGetDeviceProcAddr) ? ex : :(@dispatch $(dispatch_handle(spec)) $ex)
 
 function wrap_enumeration_api_call(spec::SpecFunc, exs::Expr...; free = [])
     if must_repeat_while_incomplete(spec)
@@ -53,8 +53,8 @@ end
 function APIFunction(spec::SpecFunc, with_func_ptr)
     p = Dict(
         :category => :function,
-        :name => nc_convert(SnakeCaseLower, remove_vk_prefix(spec.name)),
-        :relax_signature => is_promoted,
+        :name => function_name(spec),
+        :relax_signature => true,
     )
 
     count_ptr_index = findfirst(x -> (is_length(x) || is_size(x)) && x.requirement == POINTER_REQUIRED, children(spec))
@@ -107,17 +107,41 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
             x => vk_call(x)
         end), children(spec))
 
-        p[:body] = concat_exs(
-            map(initialize_ptr, queried_params)...,
-            wrap_api_call(spec, call_args; with_func_ptr),
-            wrap_implicit_return(spec, queried_params; with_func_ptr),
-        )
-
         args = filter(!in(filter(x -> x.requirement ≠ POINTER_REQUIRED, queried_params)), children(spec))
 
         ret_type = @match length(queried_params) begin
             1 => idiomatic_julia_type(first(queried_params))
             _ => Expr(:curly, :Tuple, (idiomatic_julia_type(param) for param ∈ queried_params)...)
+        end
+
+        if spec.type == FTYPE_QUERY && length(queried_params) == 1 && begin
+                t = ptr_type(only(queried_params).type)
+                is_vulkan_type(t) && !in(t, spec_handles.name) && any(Base.Fix1(in, t), spec_structs.extends)
+            end
+
+            param = only(queried_params)
+            t = ptr_type(param.type)
+            intermediate_t = struct_name(t)
+            var = wrap_identifier(param.name)
+            p[:body] = quote
+                $var = initialize($intermediate_t, next_types...)
+                $(param.name) = Ref(Base.unsafe_convert($t, $var))
+                GC.@preserve $var begin
+                    $(wrap_api_call(spec, call_args; with_func_ptr))
+                    $intermediate_t($(param.name)[], Any[$var])
+                end
+            end
+
+            add_func_args!(p, spec, args; with_func_ptr)
+            push!(p[:args], :(next_types::Type...))
+            p[:return_type] = wrap_return_type(spec, ret_type)
+            return APIFunction(spec, with_func_ptr, p)
+        else
+            p[:body] = concat_exs(
+                map(initialize_ptr, queried_params)...,
+                wrap_api_call(spec, call_args; with_func_ptr),
+                wrap_implicit_return(spec, queried_params; with_func_ptr),
+            )
         end
     else
         p[:short] = true
@@ -168,7 +192,9 @@ function APIFunction(spec::CreateFunc, with_func_ptr)
         :kwargs => kwargs,
         :short => true,
         :body => body,
-        :relax_signature => is_promoted,
+        :relax_signature => true,
+        # Do not include the return type in generated code, but keep the return type information for the promotion to a high-level function.
+        :_return_type => p_func[:return_type],
     )
     APIFunction(spec, with_func_ptr, p)
 end
@@ -180,11 +206,33 @@ end
 is_promoted(ex) = ex == promote_hl(ex)
 
 function promote_hl(def::APIFunction)
-    APIFunction(def, def.with_func_ptr, promote_hl(def.p))
+    promoted = APIFunction(def, def.with_func_ptr, promote_hl(def.p))
+    type = def.p[def.spec isa CreateFunc ? :_return_type : :return_type]
+    wrap_body = :(next_types::Type...) in promoted.p[:args] ? promote_return_hl_next_types : promote_return_hl
+    merge!(promoted.p,
+        Dict(
+            :short => false,
+            :body => wrap_body(type, promoted.p[:body])
+        )
+    )
+    promote_return_type_hl!(promoted, type)
+    promoted
+end
+
+function promote_return_type_hl!(promoted, type)
+    T = hl_type(type)
+    include_rtype = false
+    rtype = @match type begin
+        :(ResultTypes.Result{$S,$E}) => (include_rtype = true; :(ResultTypes.Result{$(promote_return_type_hl!(nothing, S)), $E}))
+        :(Vector{$_T}) => :(Vector{$(promote_return_type_hl!(nothing, _T))})
+        _ => T
+    end
+    include_rtype && (promoted.p[:return_type] = rtype)
+    rtype
 end
 
 function promote_hl(def::Constructor)
-    Constructor(def, promote_hl(def.p))
+    Constructor(promote_hl(def.p), def.to, def.from)
 end
 
 function promote_hl(arg::ExprLike)
@@ -205,10 +253,10 @@ end
 function promote_hl(p::Dict)
     args = promote_hl.(p[:args])
     modified_args = [arg for (arg, new_arg) in zip(p[:args], args) if arg ≠ new_arg]
-    !isempty(modified_args) || error("Cannot define high-level function for $(reconstruct_call(p)): there are no arguments to adjust, so the low-level function is enough.")
     call_args = map(p[:args]) do arg
         id, type = @match arg begin
             :($id::$t) => (id, t)
+            :($id::$t...) => (:($id...), nothing)
             id => (id, nothing)
         end
         if arg in modified_args
@@ -223,11 +271,47 @@ function promote_hl(p::Dict)
     end
     p = Dict(
         :category => :function,
-        :name => p[:name],
+        :name => promote_name_hl(p[:name]),
         :args => args,
         :kwargs => p[:kwargs],
         :body => reconstruct_call(Dict(:name => p[:name], :args => call_args, :kwargs => name.(p[:kwargs]))),
         :short => true,
         :relax_signature => true,
     )
+end
+
+function function_name(sym::Symbol, is_high_level = false)
+    sym = nc_convert(SnakeCaseLower, remove_vk_prefix(sym))
+    is_high_level ? sym : Symbol('_', sym)
+end
+function_name(spec::Spec, is_high_level = false) = function_name(spec.name, is_high_level)
+
+function promote_name_hl(name)
+    str = String(name)
+    startswith(str, '_') ? Symbol(str[2:end]) : name
+end
+
+function promote_return_hl_next_types(type, ex)
+    rex = promote_return_hl(type, ex)
+    call = isexpr(rex, :block) ? last(rex.args) : rex
+    push!(call.args, :(next_types_hl...))
+    quote
+        next_types_hl = next_types
+        next_types = intermediate_type.(next_types)
+        $((isexpr(rex, :block) ? rex.args : [rex])...)
+    end
+end
+
+function promote_return_hl(type, ex)
+    T = hl_type(type)
+    @match type begin
+        :Cvoid => ex
+        :(ResultTypes.Result{$S,$E}) => Expr(:block, :(val = @propagate_errors $ex), promote_return_hl(S, :val))
+        :(Vector{$T}) => begin
+            rex = promote_return_hl(T, ex)
+            rex isa Symbol ? rex : broadcast_ex(rex)
+        end
+        GuardBy(is_intermediate) => :($T($ex))
+        _ => ex
+    end
 end

@@ -1,31 +1,39 @@
 using Documenter
 using Literate
+using Vulkan
 
-julia_files(dir) = sort(filter(endswith(".jl"), readdir(dir, join=true)))
+push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
 
-function generate_markdowns(dir)
-    for file in julia_files(dir)
+using VulkanGen
+
+function julia_files(dir)
+    files = reduce(vcat, [joinpath(root, file) for (root, dirs, files) in walkdir(dir) for file in files])
+    sort(filter(endswith(".jl"), files))
+end
+
+function replace_edit(content)
+    haskey(ENV, "JULIA_GITHUB_ACTIONS_CI") && return content
+    # Linking does not work locally, but we can make
+    # the warning go away with a hard link to the repo.
+    replace(
+        content,
+        r"EditURL = \".*<unknown>/(.*)\"" => s"EditURL = \"https://github.com/JuliaGPU/Vulkan.jl/tree/master/\1\"",
+    )
+end
+
+function generate_markdowns()
+    dir = joinpath(@__DIR__, "src")
+    Threads.@threads for file in julia_files(dir)
         Literate.markdown(
             file,
-            dir;
+            dirname(file);
+            postprocess = replace_edit,
             documenter = true,
         )
     end
 end
 
-generate_markdowns(joinpath(@__DIR__, "src", "about"))
-generate_markdowns(joinpath(@__DIR__, "src", "tutorial"))
-generate_markdowns(joinpath(@__DIR__, "src", "howto"))
-
-if get(ENV, "JULIA_DOCUMENTER_CI", "OFF") == "ON"
-    using Pkg
-    Pkg.develop(path=joinpath(dirname(@__DIR__), "generator"))
-else
-    push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
-end
-
-using Vulkan
-using VulkanGen
+generate_markdowns()
 
 makedocs(;
     modules=[Vulkan, VulkanGen],
@@ -33,22 +41,29 @@ makedocs(;
     pages=[
         "Home" => "index.md",
         "Introduction" => "intro.md",
-        "About" => [
-            "Motivations" => "about/motivations.md",
-            "Interfacing with the C API" => "about/interfacing.md",
-        ],
+        "Glossary" => "glossary.md",
         "Tutorial" => [
             "Getting started" => "tutorial/getting_started.md",
-            "Vulkan types" => "tutorial/types.md",
-            "Vulkan functions" => "tutorial/functions.md",
             "Error handling" => "tutorial/error_handling.md",
             "Resource management" => "tutorial/resource_management.md",
-            "Dispatch" => "tutorial/dispatch.md",
             "In-depth tutorial" => "tutorial/indepth.md",
+            "Running compute shaders" => "tutorial/minimal_working_compute.md",
         ],
         "How to" => [
-            "howto/preferences.md",
-            "howto/debugging.md",
+            "Specify package options" => "howto/preferences.md",
+            "Debug an application" => "howto/debugging.md",
+            "Manipulate handles" => "howto/handles.md",
+            "Compile a SPIR-V shader from Julia" => "howto/shaders.md",
+        ],
+        "Reference" => [
+            "Wrapper types" => "reference/wrapper_types.md",
+            "Wrapper functions" => "reference/wrapper_functions.md",
+            "API function dispatch" => "reference/dispatch.md",
+            "Package options" => "reference/options.md",
+        ],
+        "Explanations" => [
+            "Motivations" => "about/motivations.md",
+            "Extension mechanism" => "about/extension_mechanism.md",
         ],
         "API" => "api.md",
         "Utility" => "utility.md",
@@ -57,17 +72,19 @@ makedocs(;
             "Overview" => "dev/overview.md",
             "Vulkan specification" => "dev/spec.md",
             "Generator" => "dev/gen.md",
+            "Next chains" => "dev/next_chains.md",
         ],
     ],
     repo="https://github.com/JuliaGPU/Vulkan.jl/blob/{commit}{path}#L{line}",
     sitename="Vulkan.jl",
     authors="serenity4 <cedric.bel@hotmail.fr>",
-    strict=false,
+    strict=true,
     doctest=false,
     checkdocs=:exports,
-    linkcheck=:true,
+    linkcheck=:false,
 )
 
 deploydocs(
     repo = "github.com/JuliaGPU/Vulkan.jl.git",
+    push_preview = true,
 )

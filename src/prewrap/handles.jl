@@ -24,8 +24,8 @@ end
 function try_destroy(f, handle::Handle, parent)
     decrement_refcount!(handle)
     if iszero(handle.refcount[])
-        @pref_log_destruction f(handle) ≠ handle
-        if !isnothing(parent)
+        @pref_log_destruction handle f(handle) ≠ handle
+        if !isnothing(parent) && !isa(parent.destructor, UndefInitializer)
             parent.destructor()
         end
     end
@@ -51,7 +51,7 @@ macro dispatch(handle, expr)
         @match expr begin
             :($f($(args...))) => begin
                 quote
-                    fptr = get_fptr(global_dispatcher, $(esc(handle)), $(QuoteNode(f)))
+                    fptr = function_pointer(global_dispatcher[], $(esc(handle)), $(QuoteNode(f)))
                     $f($(esc.(args)...), fptr)
                 end
             end
@@ -59,5 +59,35 @@ macro dispatch(handle, expr)
         end
     else
         esc(expr)
+    end
+end
+
+"""
+Obtain a function pointer from `source` and `handle`, and append the retrieved pointer to the function call arguments of `expr`.
+
+No effect if the preference "USE_DISPATCH_TABLE" is not enabled.
+"""
+macro dispatch(source, handle, expr)
+    handle = esc(handle)
+    if @load_preference("USE_DISPATCH_TABLE", "true") == "true"
+        @match expr begin
+            :($f($(args...); $(kwargs...))) => quote
+                fptr = function_pointer(global_dispatcher[], $handle, $(QuoteNode(source)))
+                $f($(esc.(args)...), fptr; $(esc.(kwargs)...))
+            end
+            _ => error("Expected a function call, got $expr")
+        end
+    else
+        esc(expr)
+    end
+end
+
+macro fill_dispatch_table(handle)
+    handle = esc(handle)
+    @load_preference("USE_DISPATCH_TABLE", "true") ≠ "true" && return handle
+    quote
+        handle = $handle
+        fill_dispatch_table(handle)
+        handle
     end
 end

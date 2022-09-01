@@ -1,4 +1,4 @@
-function hl_type(spec::SpecStructMember)
+function hl_type(spec::Spec)
     @match s = spec begin
         if s.name == :pNext end => :Any
         GuardBy(is_version) => :VersionNumber
@@ -15,13 +15,13 @@ function hl_type(type)
         :Cstring => :String
         :VkBool32 => :Bool
         GuardBy(is_opaque_pointer) => t
+        :(NTuple{$_,Char}) => :String
         :(NTuple{$N,$T}) => begin
-            @match T begin
-                :UInt8 => :String
-                # :(Ntuple{$M,$T}) => :(SMatrix{$N,$M,$T})
-                # _ => :(SVector{$N,$T})
-                _ => :(NTuple{$N,$(hl_type(T))})
+            _N = @match N begin
+                ::Symbol => :(Int($N))
+                _ => N
             end
+            :(NTuple{$_N,$(hl_type(T))})
         end
         GuardBy(in([spec_structs.name; spec_unions.name])) => struct_name(t, true)
         GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
@@ -33,6 +33,7 @@ function hl_type(type)
         GuardBy(in(spec_constants.name)) => follow_constant(t)
         GuardBy(in(spec_enums.name)) => enum_type(t)
         GuardBy(is_vulkan_type) => remove_vk_prefix(t)
+        GuardBy(is_intermediate) => Symbol(string(t)[2:end])
         _ => t
     end
 end
@@ -41,7 +42,7 @@ function idiomatic_julia_type(type)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
         GuardBy(is_opaque_pointer) => t
-        :(NTuple{$N,UInt8}) => :String
+        :(NTuple{$_,Char}) => :String
         :(NTuple{$N,$T}) => begin
             _N = @match N begin
                 ::Symbol => :(Int($N))

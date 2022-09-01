@@ -1,15 +1,16 @@
-@testset "Dispatcher" begin
-    dispatcher = Vulkan.APIDispatcher()
-    @test !haskey(dispatcher.instance_table, :vkEnumerateDeviceExtensionProperties)
-    Vulkan.add_fptr!(dispatcher, instance, :vkEnumerateDeviceExtensionProperties)
-    @test haskey(dispatcher.instance_table, :vkEnumerateDeviceExtensionProperties)
-    @test !isnothing(enumerate_instance_extension_properties(Vulkan.get_fptr(dispatcher, nothing, :vkEnumerateInstanceExtensionProperties)))
-    @test !isnothing(enumerate_device_extension_properties(device.physical_device, Vulkan.get_fptr(dispatcher, instance, :vkEnumerateDeviceExtensionProperties)))
-    @test Fence(device, Vulkan.get_fptr(dispatcher, device, :vkCreateFence), Vulkan.get_fptr(dispatcher, device, :vkDestroyFence)) isa Fence
-    if WITH_DEBUG
-        @test Vulkan.add_fptr!(dispatcher, instance, :vkCreateDebugUtilsMessengerEXT) ≠ C_NULL
-    end
-    @test_throws ErrorException Vulkan.add_fptr!(dispatcher, device, :vkCmdPushDescriptorSetWithTemplateKHR)
-end
+using Preferences: load_preference
 
-GC.gc()
+@testset "Dispatcher" begin
+    if load_preference(Vk, "USE_DISPATCH_TABLE", "true") == "true"
+        disp = Vk.global_dispatcher[]
+        @test haskey(disp.instance_tables, instance)
+        @test haskey(disp.instance_tables[instance].pointers, :vkCreateDevice)
+        @test disp.instance_tables[instance].pointers[:vkCreateDevice] ≠ :C_NULL
+        @test haskey(disp.device_tables, device)
+        @test haskey(disp.device_tables[device].pointers, :vkCreateGraphicsPipelines)
+        @test disp.device_tables[device].pointers[:vkCreateGraphicsPipelines] ≠ C_NULL
+        @test_throws ErrorException("Could not retrieve function pointer for 'vkCreateSwapchainKHR'. This can be caused by an extension not being enabled for a function that needs it; see the help with `?` or the documentation for more information.") function_pointer(disp, device, :vkCreateSwapchainKHR)
+    else
+        @test !haskey(disp.instance_tables, instance)
+    end
+end

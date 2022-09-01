@@ -17,6 +17,7 @@ function set_driver(mod::Module, backend::Symbol)
                         end
         _ => error("Backend $backend not available. Only 'SwiftShader' is currently supported.")
     end
+    nothing
 end
 
 """

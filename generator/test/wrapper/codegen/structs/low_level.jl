@@ -1,16 +1,8 @@
 @testset "Low-level" begin
     @testset "Definitions" begin
         test(StructDefinition{false}, struct_by_name, :VkPhysicalDeviceProperties, :(
-            struct PhysicalDeviceProperties <: ReturnedOnly
-                api_version::VersionNumber
-                driver_version::VersionNumber
-                vendor_id::UInt32
-                device_id::UInt32
-                device_type::PhysicalDeviceType
-                device_name::String
-                pipeline_cache_uuid::String
-                limits::PhysicalDeviceLimits
-                sparse_properties::PhysicalDeviceSparseProperties
+            struct _PhysicalDeviceProperties <: VulkanStruct{false}
+                vks::VkPhysicalDeviceProperties
             end))
 
         test(StructDefinition{false}, struct_by_name, :VkApplicationInfo, :(
@@ -25,22 +17,16 @@
             end))
 
         test(StructDefinition{false}, struct_by_name, :VkExternalBufferProperties, :(
-            struct ExternalBufferProperties <: ReturnedOnly
-                s_type::StructureType
-                next::Ptr{Cvoid}
-                external_memory_properties::ExternalMemoryProperties
+            struct _ExternalBufferProperties <: VulkanStruct{true}
+                vks::VkExternalBufferProperties
+                deps::Vector{Any}
             end
         ))
 
         test(StructDefinition{false}, struct_by_name, :VkPipelineExecutableInternalRepresentationKHR, :(
-            struct PipelineExecutableInternalRepresentationKHR <: ReturnedOnly
-                s_type::StructureType
-                next::Ptr{Cvoid}
-                name::String
-                description::String
-                is_text::Bool
-                data_size::UInt
-                data::Ptr{Cvoid}
+            struct _PipelineExecutableInternalRepresentationKHR <: VulkanStruct{true}
+                vks::VkPipelineExecutableInternalRepresentationKHR
+                deps::Vector{Any}
             end
         ))
 
@@ -63,19 +49,25 @@
     end
 
     @testset "Friendly constructors" begin
+        test(Constructor, StructDefinition{false}(struct_by_name(:VkPhysicalDeviceProperties)), :(
+            function _PhysicalDeviceProperties(api_version::VersionNumber, driver_version::VersionNumber, vendor_id::Integer, device_id::Integer, device_type::PhysicalDeviceType, device_name::AbstractString, pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, limits::_PhysicalDeviceLimits, sparse_properties::_PhysicalDeviceSparseProperties)
+                _PhysicalDeviceProperties(VkPhysicalDeviceProperties(to_vk(UInt32, api_version), to_vk(UInt32, driver_version), vendor_id, device_id, device_type, device_name, pipeline_cache_uuid, limits.vks, sparse_properties.vks))
+            end
+        ))
+
         test(Constructor, StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo)), :(
             function _InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
                 enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
                 enabled_extension_names = cconvert(Ptr{Cstring}, enabled_extension_names)
-                deps = [
+                deps = Any[
                     next,
                     application_info,
                     enabled_layer_names,
                     enabled_extension_names
                 ]
-                vks = VkInstanceCreateInfo(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
+                vks = VkInstanceCreateInfo(structure_type(VkInstanceCreateInfo),
                                         unsafe_convert(Ptr{Cvoid}, next),
                                         flags,
                                         unsafe_convert(Ptr{VkApplicationInfo}, application_info),
@@ -98,8 +90,8 @@
             function _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 user_data = cconvert(Ptr{Cvoid}, user_data)
-                deps = [next, user_data]
-                vks = VkDebugUtilsMessengerCreateInfoEXT(VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT, unsafe_convert(Ptr{Cvoid}, next), flags, message_severity, message_type, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+                deps = Any[next, user_data]
+                vks = VkDebugUtilsMessengerCreateInfoEXT(structure_type(VkDebugUtilsMessengerCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, message_severity, message_type, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
                 _DebugUtilsMessengerCreateInfoEXT(vks, deps)
             end
         ))
@@ -108,8 +100,8 @@
             function _DescriptorSetAllocateInfo(descriptor_pool, set_layouts::AbstractArray; next = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
-                deps = [next, set_layouts]
-                vks = VkDescriptorSetAllocateInfo(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO, unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, pointer_length(set_layouts), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
+                deps = Any[next, set_layouts]
+                vks = VkDescriptorSetAllocateInfo(structure_type(VkDescriptorSetAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, pointer_length(set_layouts), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
                 _DescriptorSetAllocateInfo(vks, deps, descriptor_pool)
             end
         ))
@@ -119,8 +111,8 @@
                 next = cconvert(Ptr{Cvoid}, next)
                 name = cconvert(Cstring, name)
                 specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
-                deps = [next, name, specialization_info]
-                vks = VkPipelineShaderStageCreateInfo(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
+                deps = Any[next, name, specialization_info]
+                vks = VkPipelineShaderStageCreateInfo(structure_type(VkPipelineShaderStageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
                 _PipelineShaderStageCreateInfo(vks, deps, _module)
             end
         ))
@@ -134,7 +126,7 @@
         test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorSetLayoutBinding)), :(
             function _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::DescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
                 immutable_samplers = cconvert(Ptr{VkSampler}, immutable_samplers)
-                deps = [immutable_samplers]
+                deps = Any[immutable_samplers]
                 vks = VkDescriptorSetLayoutBinding(binding, descriptor_type, descriptor_count, stage_flags, unsafe_convert(Ptr{VkSampler}, immutable_samplers))
                 _DescriptorSetLayoutBinding(vks, deps)
             end
@@ -144,8 +136,8 @@
             function _XcbSurfaceCreateInfoKHR(connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; next = C_NULL, flags = 0)
                 next = cconvert(Ptr{Cvoid}, next)
                 connection = cconvert(Ptr{vk.xcb_connection_t}, connection)
-                deps = [next, connection]
-                vks = VkXcbSurfaceCreateInfoKHR(VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR, unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{vk.xcb_connection_t}, connection), window)
+                deps = Any[next, connection]
+                vks = VkXcbSurfaceCreateInfoKHR(structure_type(VkXcbSurfaceCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{vk.xcb_connection_t}, connection), window)
                 _XcbSurfaceCreateInfoKHR(vks, deps)
             end
         ))
@@ -158,8 +150,8 @@
                 image_info = cconvert(Ptr{VkDescriptorImageInfo}, image_info)
                 buffer_info = cconvert(Ptr{VkDescriptorBufferInfo}, buffer_info)
                 texel_buffer_view = cconvert(Ptr{VkBufferView}, texel_buffer_view)
-                deps = [next, image_info, buffer_info, texel_buffer_view]
-                vks = VkWriteDescriptorSet(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET, unsafe_convert(Ptr{Cvoid}, next), dst_set, dst_binding, dst_array_element, descriptor_count, descriptor_type, unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
+                deps = Any[next, image_info, buffer_info, texel_buffer_view]
+                vks = VkWriteDescriptorSet(structure_type(VkWriteDescriptorSet), unsafe_convert(Ptr{Cvoid}, next), dst_set, dst_binding, dst_array_element, descriptor_count, descriptor_type, unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
                 _WriteDescriptorSet(vks, deps, dst_set)
             end
         ))

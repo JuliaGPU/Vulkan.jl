@@ -39,6 +39,7 @@ function category(ex)
         Expr(:function, _...) || Expr(:(=), Expr(:call, _...) || Expr(:(::), Expr(:call, _...), _...), _...) => :function
         Expr(:macrocall, &enum_sym || &cenum_sym || &bitmask_enum_sym, _...)                                 => :enum
         :(Core.@doc $_ $docstring $ex)                                                                       => :doc
+        Expr(:block, _...)                                                                                   => :block
         _                                                                                                    => nothing
     end
 end
@@ -48,7 +49,11 @@ prettify(ex) = ex |> striplines |> unblock
 isblock(ex) = false
 isblock(ex::Expr) = ex.head == :block
 
-broadcast_ex(ex) = Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...))
+broadcast_ex(sym::Symbol) = sym
+function broadcast_ex(ex)
+    isexpr(ex, :.) && return ex
+    Expr(:., ex.args[1], Expr(:tuple, ex.args[2:end]...))
+end
 broadcast_ex(ex, cond::Bool) = cond ? broadcast_ex(ex) : ex
 broadcast_ex(::Nothing, ::Bool) = nothing
 
@@ -77,8 +82,25 @@ function name(ex::Expr)
         Expr(:kw, _name, _...)                                                        => _name
         :(Core.@doc $_ $docstring $ex)                                                => name(ex)
         Expr(:macrocall, &auto_hash_equals_sym, _, ex)                                => name(ex)
+        Expr(:..., ex)                                                                => name(ex)
         Expr(expr_type, _...)                                                         => error("Can't extract name from ", expr_type, " expression:\n", "    $ex\n")
     end
+end
+
+function names(ex::Expr)
+    assignments = Symbol[name(ex)]
+    postwalk(ex) do _ex
+        ex == _ex && return _ex
+        @switch _ex begin
+            @case :($(assigned::Symbol) = $_)
+            push!(assignments, assigned)
+            return nothing
+            @case _
+            nothing
+        end
+        _ex
+    end
+    assignments
 end
 
 function name(p::Dict)
@@ -166,7 +188,7 @@ function deconstruct(ex::Expr)
     dict
 end
 
-function reconstruct_call(d::Dict; is_decl = true, with_typeassert=true)
+function reconstruct_call(d::Dict; is_decl = true, with_typeassert = true)
     args = get(d, :args, [])
     kwargs = get(d, :kwargs, [])
 

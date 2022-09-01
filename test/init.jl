@@ -14,7 +14,7 @@ const device = let pdevices = unwrap(enumerate_physical_devices(instance))
     if isempty(pdevices)
         error("No physical devices available for testing.")
     end
-    
+
     @info "$(length(pdevices)) physical device(s) found."
 
     pdevice = first(pdevices)

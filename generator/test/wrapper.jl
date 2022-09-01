@@ -28,10 +28,12 @@ test(T, arg, ex) = test(T, identity, arg, ex)
         include("wrapper/codegen/handles.jl")
 
         @testset "Functions" begin
-            include("wrapper/codegen/functions/api.jl")
+            include("wrapper/codegen/functions/low_level.jl")
+            include("wrapper/codegen/functions/high_level.jl")
             include("wrapper/codegen/functions/overloads.jl")
         end
 
+        include("wrapper/codegen/aliases.jl")
         include("wrapper/codegen/docs.jl")
     end
 end

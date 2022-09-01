@@ -1,16 +1,24 @@
 #=
 
-# Interfacing with the C API
+# Motivations
+
+## Automating low-level patterns
+
+Vulkan is a low-level API that exhibits many patterns than any C library exposes. For example, some functions return error codes as a result, or mutate pointer memory as a way of returning values. Arrays are requested in the form of a pointer and a length. Pointers are used in many places; and because their dependency to their pointed data escapes the Julia compiler and the garbage collection mechanism, it is not trivial to keep pointers valid, i.e.: to have them point to valid *unreclaimed* memory. These pitfalls lead to crashes. Furthermore, the Vulkan C API makes heavy use of structures with pointer fields and structure pointers, requiring from the Julia runtime a clear knowledge of variable preservation.
+
+Usually, the patterns mentioned above are not problematic for small libraries, because the C structures involved are relatively simple. Vulkan being a large API, however, patterns start to feel heavy: they require lots of boilerplate code and any mistake is likely to result in a crash. That is why we developped a procedural approach to automate these patterns.
+
+Vulkan.jl uses a generator to programmatically generate higher-level wrappers for low-level API functions. This is a critical part of this library, which helped us to minimize the amount of human errors in the wrapping process, while allowing a certain flexilibity. The related project is contained in the `generator` folder. Because its unique purpose is to generate wrappers, it is not included in the package, reducing the number of dependencies.
 
 ## Structures and variable preservation
 
-As the API is written in C, there are a lot of pointers to deal with and handling them is not always an easy task. With a little practice, one can figure out how to wrap function calls with `cconvert` and `unsafe_convert` provided by Julia. Those functions provide automatic conversions and `ccall` GC-roots `cconvert`ed variables to ensure that pointers will point to valid memory (by explicitly telling the compiler not to garbage-collect nor optimize away the original variable).
+Since the original Vulkan API is written in C, there are a lot of pointers to deal with and handling them is not always an easy task. With a little practice, one can figure out how to wrap function calls with `cconvert` and `unsafe_convert` provided by Julia. Those functions provide automatic conversions and `ccall` GC-roots `cconvert`ed variables to ensure that pointers will point to valid memory, by explicitly telling the compiler not to garbage-collect nor optimize away the original variable.
 
-However, the situation gets a lot more complicated when you deal with pointers as type fields. We will look at a naive example that show how difficult it can get for a Julia developer not used to calling C code. If we wanted to create a `VkInstance`, we might be tempted to do:
+However, the situation gets a lot more complicated when you deal with pointers as type fields. We will look at a naive example that show how difficult it can get for a Julia developer unfamiliar with calling C code. If we wanted to create a `VkInstance`, we might be tempted to do:
 
 =#
 
-using Vulkan.core
+using Vulkan.VkCore
 
 function create_instance(app_name, engine_name)
     app_info = VkApplicationInfo(
@@ -55,7 +63,7 @@ Two causes may lead to such a result:
 1. `app_name` and `engine_name` may never be allocated if the compiler decides not to, so there is no guarantee that `pointer(app_name)` and `pointer(engine_name)` will point to anything valid. Additionally, even if those variables were allocated with valid pointer addresses at some point, they can be garbage collected **at any time**, including before the call to `vkCreateInstance`.
 2. `app_info` is not what should be preserved. It cannot be converted to a pointer, but a `Ref` to it can. Therefore it is the reference that needs to be `GC.@preserve`d, not `app_info`. So, `Ref(app_info)` must be assigned to a variable, and replace `app_info` in the call to `GC.@preserve`.
 
-Basically, it all comes down to having to preserve everything you take a pointer of. And, if you need to create an intermediary object when converting a variable to a pointer, you need to preserve it too. For example, take of an array of `String`s, that need to be converted as a `Ptr{Cstring}`. You first need to create an array of `Cstring`s, then convert that array to a pointer. The `String`s and the `Cstring` array need to be preseved.
+Basically, it all comes down to having to preserve everything you take a pointer of. And, if you need to create an intermediary object when converting a variable to a pointer, you need to preserve it too. For example, take of an array of `String`s, that need to be converted as a `Ptr{Cstring}`. You first need to create an array of `Cstring`s, then convert that array to a pointer. The `String`s and the `Cstring` array need to be preserved.
 
 This is exactly what `cconvert` and `unsafe_convert` are for. `cconvert` converts a variable to a type that can be converted to the desired (possibly pointer) type using `unsafe_convert`. In addition of chaining both conversions, `ccall` also preserves the `cconvert`ed variable, so that the unsafe conversion becomes safe.
 
@@ -82,9 +90,5 @@ We hope that the additional `Vector{Any}` will not introduce too much overhead. 
 
 !!! tip
     `cconvert`/`unsafe_convert` were extended on wrapper types so that, when using an API function directly, [`ccall`](https://docs.julialang.org/en/v1/base/c/#ccall) will convert a struct to its API-compatible version.
-
-## Version numbers
-
-Version numbers are encoded in unsigned integers (often `UInt32`) in C. Most APIs have a specific encoding (and decoding) scheme. Ideally we want to use version numbers from Julia without having to look for this encoding or decoding function, and this has been automated for the Vulkan API.
 
 =#

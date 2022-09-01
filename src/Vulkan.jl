@@ -8,15 +8,21 @@ module Vulkan
 using Reexport
 using DocStringExtensions
 using AutoHashEquals: @auto_hash_equals
+using Accessors: @set, setproperties
+using SnoopPrecompile
+using Libdl: Libdl
 
-using VulkanCore: vk
+using VulkanCore: VulkanCore, vk
 using .vk
-const core = vk
-export vk, core
+const Vk = Vulkan
+const VkCore = vk
+export VkCore, Vk
 
 using Base: RefArray
 import Base: convert, cconvert, unsafe_convert, &, |, xor, isless, ==, typemax, in, parent
 using MLStyle
+
+const Optional{T} = Union{T, Nothing}
 
 @reexport using ResultTypes: unwrap, unwrap_error, iserror
 using ResultTypes: ResultTypes
@@ -66,7 +72,14 @@ include("device.jl")
 include("dispatch.jl")
 include("print.jl")
 
-const global_dispatcher = APIDispatcher()
+const global_dispatcher = Ref{APIDispatcher}()
+
+include("precompile.jl")
+
+function __init__()
+    global_dispatcher[] = APIDispatcher()
+    fill_dispatch_table()
+end
 
 export
         # Wrapper
@@ -75,6 +88,9 @@ export
         Handle,
         to_vk,
         from_vk,
+        structure_type,
+        SpecExtensionSPIRV, SpecCapabilitySPIRV,
+        PropertyCondition, FeatureCondition,
 
         # Driver
         set_driver,
@@ -95,6 +111,7 @@ export
         # Pointer utilities
         function_pointer,
         pointer_length,
+        chain, unchain,
 
         # Bitmask manipulation utilities
         BitMask,

@@ -1,4 +1,4 @@
-for (T, msg) in zip([:PhysicalDeviceFeatures, :PhysicalDeviceVulkan11Features, :PhysicalDeviceVulkan12Features], ["physical device", "physical device Vulkan 1.1", "physical device Vulkan 1.2"])
+for (T, msg) in zip([:PhysicalDeviceFeatures, :PhysicalDeviceVulkan11Features, :PhysicalDeviceVulkan12Features, :PhysicalDeviceVulkan13Features], ["", " Vulkan 1.1", " Vulkan 1.2", " Vulkan 1.3"])
     hasnext = T ≠ :PhysicalDeviceFeatures
     fdecl = hasnext ? :($T(features::AbstractArray; next=C_NULL)) : :($T(features::AbstractArray))
     call = hasnext ? :($T(args...; next)) : :($T(args...))
@@ -6,7 +6,7 @@ for (T, msg) in zip([:PhysicalDeviceFeatures, :PhysicalDeviceVulkan11Features, :
         names = filter(!in((:s_type, :next)), fieldnames($T))
         diff = setdiff(features, names)
         if length(diff) ≠ 0
-            error(string("Invalid ", $msg, " features: ", join(diff, ", ")))
+            error(string("Invalid physical device", $msg, " features: ", join(diff, ", ")))
         end
         args = map(in(features), names)
         $call
@@ -51,6 +51,19 @@ PhysicalDeviceVulkan12Features(next=Ptr{Nothing} @0x0000000000000000, draw_indir
 ```
 """
 PhysicalDeviceVulkan12Features(features::Symbol...; next = C_NULL) = PhysicalDeviceVulkan12Features(collect(features); next)
+
+"""
+Return a `PhysicalDeviceVulkan13Features` object with the provided `features` set to true.
+
+```jldoctest
+julia> PhysicalDeviceVulkan13Features(; next = C_NULL)
+PhysicalDeviceVulkan13Features(next=Ptr{Nothing} @0x0000000000000000)
+
+julia> PhysicalDeviceVulkan13Features(:dynamic_rendering)
+PhysicalDeviceVulkan13Features(next=Ptr{Nothing} @0x0000000000000000, dynamic_rendering)
+```
+"""
+PhysicalDeviceVulkan13Features(features::Symbol...; next = C_NULL) = PhysicalDeviceVulkan13Features(collect(features); next)
 
 """
 Find a queue index (starting at 0) from `physical_device` which matches the provided `queue_capabilities`.

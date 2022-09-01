@@ -1,23 +1,19 @@
 function StructDefinition{false}(spec::SpecUnion)
-    name = struct_name(spec, spec.is_returnedonly)
     p = Dict(
         :category => :struct,
-        :decl => :($name <: $(spec.is_returnedonly ? :ReturnedOnly : :(VulkanStruct{false}))),
-        :fields => [
-            :($(spec.is_returnedonly ? :data : :vks)::$(spec.name)),
-        ],
+        :decl => :($(struct_name(spec)) <: VulkanStruct{false}),
+        :fields => [:(vks::$(spec.name))],
     )
     StructDefinition{false}(spec, p)
 end
 
 function StructDefinition{true}(def::StructDefinition{false,SpecUnion})
-    spec = def.spec
-    name = struct_name(spec, true)
+    (; spec) = def
     p = Dict(
         :category => :struct,
-        :decl => :($name <: HighLevelStruct),
+        :decl => :($(struct_name(spec, true)) <: HighLevelStruct),
         :fields => [
-            :(data::$(spec.name)),
+            :(vks::$(spec.name)),
         ],
     )
     StructDefinition{true}(spec, p)
@@ -25,9 +21,8 @@ end
 
 function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
     spec = def.spec
-    is_high_level = HL || spec.is_returnedonly
-    name = struct_name(spec, is_high_level)
-    supertypes = supertype_union.(spec.types, is_high_level)
+    name = struct_name(spec, HL)
+    supertypes = supertype_union.(spec.types, HL)
     sig_types = map(zip(spec.types, supertypes)) do (type, supertype)
         if count(==(supertype), supertypes) > 1
             type
@@ -41,7 +36,15 @@ function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
 
     map(zip(spec.types, sig_types, spec.fields)) do (type, sig_type, field)
         var = wrap_identifier(field)
-        call = type in spec_unions.name ? :($var.data) : var
+        call = if type in spec_unions.name
+            :($var.vks)
+        elseif HL && type in spec_structs.name
+            :(($(struct_name(type))($var)).vks)
+        elseif type in spec_structs.name
+            :($var.vks)
+        else
+            var
+        end
         p = Dict(
             :category => :function,
             :name => name,
@@ -51,7 +54,7 @@ function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
             ),
             :short => true,
         )
-        Constructor(def, p)
+        Constructor(p, def, spec)
     end
 end
 
@@ -60,10 +63,10 @@ function Constructor(T::StructDefinition{false, SpecUnion}, x::StructDefinition{
         :category => :function,
         :name => name(T),
         :args => [:(x::$(name(x)))],
-        :body => :($(name(T))(getfield(x, :data))),
+        :body => :($(name(T))(getfield(x, :vks))),
         :short => true,
     )
-    Constructor(T, p)
+    Constructor(p, T, x)
 end
 
 function GetProperty(def::StructDefinition{true, SpecUnion})

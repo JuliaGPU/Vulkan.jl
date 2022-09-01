@@ -14,16 +14,15 @@ function do_something()
     instance = Instance([], [])
     physical_devices = unwrap(enumerate_physical_devices(instance))
     physical_device = first(physical_devices)
-    device = Device(
-        physical_device,
-        [DeviceQueueCreateInfo(0, [1.])],
-        [],
-        [],
-    )
+    device = Device(physical_device, [DeviceQueueCreateInfo(0, [1.0])], [], [])
 
-    fence = Fence(device)
     command_pool = CommandPool(device, 0)
-    buffers = unwrap(allocate_command_buffers(device, CommandBufferAllocateInfo(command_pool, COMMAND_BUFFER_LEVEL_PRIMARY, 10)))
+    buffers = unwrap(
+        allocate_command_buffers(
+            device,
+            CommandBufferAllocateInfo(command_pool, COMMAND_BUFFER_LEVEL_PRIMARY, 10),
+        ),
+    )
     ## they won't be automatically freed individually
     free_command_buffers(device, command_pool, buffers)
     nothing

@@ -37,20 +37,20 @@ function wrap_identifier(spec::SpecHandle)
     id = nothing
     if !isempty(cfs)
         for cf in cfs
-            id = _wrap_identifier(spec, first(cfs).func)
+            id = wrap_identifier(spec, first(cfs).func)
             !isnothing(id) && break
         end
     end
     if isnothing(id)
         for f ∈ spec_funcs
-            id = _wrap_identifier(spec, f)
+            id = wrap_identifier(spec, f)
             !isnothing(id) && return id
         end
         wrap_identifier(remove_vk_prefix(spec.name))
     end
 end
 
-function _wrap_identifier(spec::SpecHandle, func::SpecFunc)
+function wrap_identifier(spec::SpecHandle, func::SpecFunc)
     for param ∈ children(func)
         if spec.name == param.type
             return wrap_identifier(param)
@@ -60,18 +60,11 @@ function _wrap_identifier(spec::SpecHandle, func::SpecFunc)
 end
 
 function struct_name(sym::Symbol, is_high_level = false)
-    spec = struct_by_name(sym)
-    if isnothing(spec)
-        spec = union_by_name(sym)
-        is_high_level |= spec.is_returnedonly
-    elseif isnothing(spec)
-        spec = handle_by_name(sym)
-    end
-    @assert !isnothing(spec)
+    spec = @something(struct_by_name(sym), union_by_name(sym), handle_by_name(sym))
     struct_name(spec, is_high_level)
 end
 
 function struct_name(spec::Spec, is_high_level = false)
     sym = remove_vk_prefix(spec.name)
-    is_high_level || spec isa SpecHandle || spec.is_returnedonly ? sym : Symbol(:_, sym)
+    is_high_level || !has_intermediate_type(spec) ? sym : Symbol(:_, sym)
 end

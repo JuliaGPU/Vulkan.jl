@@ -1,6 +1,6 @@
 #=
 
-# Dispatch
+# [Dispatch mechanism](@id Dispatch)
 
 Some API functions cannot be called directly from the Vulkan library. In particular, extension functions *must* be called through a pointer obtained via API commands. In addition, most functions can be made faster by calling directly into their function pointer, instead of going through the loader trampoline which resolves the function pointer every time.
 
@@ -17,11 +17,8 @@ using Vulkan
 @set_driver :SwiftShader # hide
 
 const instance = Instance([], [])
-const device = Device(
-    first(unwrap(enumerate_physical_devices(instance))), [DeviceQueueCreateInfo(0, [1.])],
-    [],
-    [],
-)
+const pdevice = first(unwrap(enumerate_physical_devices(instance)))
+const device = Device(pdevice, [DeviceQueueCreateInfo(0, [1.0])], [], [])
 
 #=
 
@@ -56,8 +53,11 @@ Fence(device, fptr_create, fptr_destroy)
 
 ## Automatic dispatch
 
-Querying and retrieving function pointers every time results in a lot of boilerplate code. To remedy this, we provide a thread-safe global dispatch table. Upon every API call, it will call the function pointer directly, and will automatically retrieve it if necessary. It has one dispatch table per device, so that multiple devices can be used at the same time.
+Querying and retrieving function pointers every time results in a lot of boilerplate code. To remedy this, we provide a concurrent global dispatch table which loads all available function pointers for loader, instance and device commands. It has one dispatch table per instance and per device to support using multiple instances and devices at the same time.
 
-This feature can be disabled by setting the [preference](@ref Preferences) `USE_DISPATCH_TABLE` to `"false"`.
+This feature can be disabled by setting the [preference](@ref Package-options) `USE_DISPATCH_TABLE` to `"false"`.
+
+!!! warn
+    All instance and device creations must be externally synchronized if the dispatch table is enabled. This is because all function pointers are retrieved and stored right after the creation of an instance or device handle.
 
 =#

@@ -1,10 +1,13 @@
 module VulkanGen
 
 using StructArrays: StructVector
-using LightGraphs
+using Accessors: @set
+using Graphs
 using MLStyle
 using DocStringExtensions
 using Reexport
+using Dictionaries
+using .Meta: isexpr
 
 @template (FUNCTIONS, METHODS, MACROS) = """
                                          $(DOCSTRING)

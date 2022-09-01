@@ -1,0 +1,6 @@
+align_struct_field = true
+align_conditional = true
+align_assignment = true
+align_pair_arrow = true
+margin = 92
+verbose = true

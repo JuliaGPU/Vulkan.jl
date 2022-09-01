@@ -12,7 +12,7 @@ function Base.write(vw::VulkanWrapper, config::WrapperConfig)
 end
 
 function sort_expressions(exprs)
-    exprs_order = resolve_dependencies(name.(exprs), exprs)
+    exprs_order = resolve_dependencies(exprs)
     ordered_exprs = exprs[exprs_order]
     check_dependencies(ordered_exprs)
 end
@@ -41,6 +41,7 @@ spacing(cat::Symbol) = @match cat begin
     :const => '\n'
     :enum => '\n'^2
     :doc => ""
+    :block => '\n'^2
 end
 
 function write_exports(io::IO, exports)
