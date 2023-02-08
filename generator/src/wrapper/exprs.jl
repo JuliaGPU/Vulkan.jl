@@ -1,6 +1,6 @@
 const enum_sym = Symbol("@enum")
 const cenum_sym = Symbol("@cenum")
-const bitmask_enum_sym = Symbol("@bitmask_flag")
+const bitmask_enum_sym = Symbol("@bitmask")
 const auto_hash_equals_sym = Symbol("@auto_hash_equals")
 
 isline(x) = false

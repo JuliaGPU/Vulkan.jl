@@ -6,6 +6,7 @@ version = "0.6.3"
 [deps]
 Accessors = "7d9f7c33-5ae7-4f3b-8dc6-eff91059b697"
 AutoHashEquals = "15f4f7f2-30c1-5605-9d31-71845cf9641f"
+BitMasks = "a3e06817-fd65-4797-8291-16f435bc2529"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"

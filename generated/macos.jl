@@ -2682,13 +2682,13 @@ convert(T::Type{VkProvokingVertexModeEXT}, x::ProvokingVertexModeEXT) = Base.bit
 
 convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStructureMotionInstanceTypeNV) = Base.bitcast(VkAccelerationStructureMotionInstanceTypeNV, x)
 
-@bitmask_flag PipelineCacheCreateFlag::UInt32 begin
+@bitmask PipelineCacheCreateFlag::UInt32 begin
         PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT = 1
         PIPELINE_CACHE_CREATE_RESERVED_1_BIT_EXT = 2
         PIPELINE_CACHE_CREATE_RESERVED_2_BIT_KHR = 4
     end
 
-@bitmask_flag QueueFlag::UInt32 begin
+@bitmask QueueFlag::UInt32 begin
         QUEUE_GRAPHICS_BIT = 1
         QUEUE_COMPUTE_BIT = 2
         QUEUE_TRANSFER_BIT = 4
@@ -2699,24 +2699,24 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         QUEUE_RESERVED_7_BIT_QCOM = 128
     end
 
-@bitmask_flag CullModeFlag::UInt32 begin
+@bitmask CullModeFlag::UInt32 begin
         CULL_MODE_FRONT_BIT = 1
         CULL_MODE_BACK_BIT = 2
         CULL_MODE_NONE = 0
         CULL_MODE_FRONT_AND_BACK = 3
     end
 
-@bitmask_flag RenderPassCreateFlag::UInt32 begin
+@bitmask RenderPassCreateFlag::UInt32 begin
         RENDER_PASS_CREATE_RESERVED_0_BIT_KHR = 1
         RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM = 2
     end
 
-@bitmask_flag DeviceQueueCreateFlag::UInt32 begin
+@bitmask DeviceQueueCreateFlag::UInt32 begin
         DEVICE_QUEUE_CREATE_PROTECTED_BIT = 1
         DEVICE_QUEUE_CREATE_RESERVED_1_BIT_QCOM = 2
     end
 
-@bitmask_flag MemoryPropertyFlag::UInt32 begin
+@bitmask MemoryPropertyFlag::UInt32 begin
         MEMORY_PROPERTY_DEVICE_LOCAL_BIT = 1
         MEMORY_PROPERTY_HOST_VISIBLE_BIT = 2
         MEMORY_PROPERTY_HOST_COHERENT_BIT = 4
@@ -2728,13 +2728,13 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV = 256
     end
 
-@bitmask_flag MemoryHeapFlag::UInt32 begin
+@bitmask MemoryHeapFlag::UInt32 begin
         MEMORY_HEAP_DEVICE_LOCAL_BIT = 1
         MEMORY_HEAP_MULTI_INSTANCE_BIT = 2
         MEMORY_HEAP_RESERVED_2_BIT_KHR = 4
     end
 
-@bitmask_flag AccessFlag::UInt32 begin
+@bitmask AccessFlag::UInt32 begin
         ACCESS_INDIRECT_COMMAND_READ_BIT = 1
         ACCESS_INDEX_READ_BIT = 2
         ACCESS_VERTEX_ATTRIBUTE_READ_BIT = 4
@@ -2766,7 +2766,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         ACCESS_NONE = 0
     end
 
-@bitmask_flag BufferUsageFlag::UInt32 begin
+@bitmask BufferUsageFlag::UInt32 begin
         BUFFER_USAGE_TRANSFER_SRC_BIT = 1
         BUFFER_USAGE_TRANSFER_DST_BIT = 2
         BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = 4
@@ -2792,7 +2792,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         BUFFER_USAGE_RESERVED_22_BIT_AMD = 4194304
     end
 
-@bitmask_flag BufferCreateFlag::UInt32 begin
+@bitmask BufferCreateFlag::UInt32 begin
         BUFFER_CREATE_SPARSE_BINDING_BIT = 1
         BUFFER_CREATE_SPARSE_RESIDENCY_BIT = 2
         BUFFER_CREATE_SPARSE_ALIASED_BIT = 4
@@ -2801,7 +2801,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         BUFFER_CREATE_RESERVED_5_BIT_AMD = 32
     end
 
-@bitmask_flag ShaderStageFlag::UInt32 begin
+@bitmask ShaderStageFlag::UInt32 begin
         SHADER_STAGE_VERTEX_BIT = 1
         SHADER_STAGE_TESSELLATION_CONTROL_BIT = 2
         SHADER_STAGE_TESSELLATION_EVALUATION_BIT = 4
@@ -2821,7 +2821,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         SHADER_STAGE_ALL = 2147483647
     end
 
-@bitmask_flag ImageUsageFlag::UInt32 begin
+@bitmask ImageUsageFlag::UInt32 begin
         IMAGE_USAGE_TRANSFER_SRC_BIT = 1
         IMAGE_USAGE_TRANSFER_DST_BIT = 2
         IMAGE_USAGE_SAMPLED_BIT = 4
@@ -2847,7 +2847,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         IMAGE_USAGE_RESERVED_21_BIT_QCOM = 2097152
     end
 
-@bitmask_flag ImageCreateFlag::UInt32 begin
+@bitmask ImageCreateFlag::UInt32 begin
         IMAGE_CREATE_SPARSE_BINDING_BIT = 1
         IMAGE_CREATE_SPARSE_RESIDENCY_BIT = 2
         IMAGE_CREATE_SPARSE_ALIASED_BIT = 4
@@ -2869,13 +2869,13 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM = 32768
     end
 
-@bitmask_flag ImageViewCreateFlag::UInt32 begin
+@bitmask ImageViewCreateFlag::UInt32 begin
         IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT = 1
         IMAGE_VIEW_CREATE_RESERVED_2_BIT_AMD = 4
         IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT = 2
     end
 
-@bitmask_flag SamplerCreateFlag::UInt32 begin
+@bitmask SamplerCreateFlag::UInt32 begin
         SAMPLER_CREATE_SUBSAMPLED_BIT_EXT = 1
         SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT = 2
         SAMPLER_CREATE_RESERVED_3_BIT_AMD = 8
@@ -2883,7 +2883,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         SAMPLER_CREATE_IMAGE_PROCESSING_BIT_QCOM = 16
     end
 
-@bitmask_flag PipelineCreateFlag::UInt32 begin
+@bitmask PipelineCreateFlag::UInt32 begin
         PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT = 1
         PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT = 2
         PIPELINE_CREATE_DERIVATIVE_BIT = 4
@@ -2910,28 +2910,28 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV = 1048576
     end
 
-@bitmask_flag PipelineShaderStageCreateFlag::UInt32 begin
+@bitmask PipelineShaderStageCreateFlag::UInt32 begin
         PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT = 1
         PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT = 2
         PIPELINE_SHADER_STAGE_CREATE_RESERVED_2_BIT_NV = 4
         PIPELINE_SHADER_STAGE_CREATE_RESERVED_3_BIT_KHR = 8
     end
 
-@bitmask_flag ColorComponentFlag::UInt32 begin
+@bitmask ColorComponentFlag::UInt32 begin
         COLOR_COMPONENT_R_BIT = 1
         COLOR_COMPONENT_G_BIT = 2
         COLOR_COMPONENT_B_BIT = 4
         COLOR_COMPONENT_A_BIT = 8
     end
 
-@bitmask_flag FenceCreateFlag::UInt32 begin
+@bitmask FenceCreateFlag::UInt32 begin
         FENCE_CREATE_SIGNALED_BIT = 1
     end
 
-@bitmask_flag SemaphoreCreateFlag::UInt32 begin
+@bitmask SemaphoreCreateFlag::UInt32 begin
     end
 
-@bitmask_flag FormatFeatureFlag::UInt32 begin
+@bitmask FormatFeatureFlag::UInt32 begin
         FORMAT_FEATURE_SAMPLED_IMAGE_BIT = 1
         FORMAT_FEATURE_STORAGE_IMAGE_BIT = 2
         FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT = 4
@@ -2965,11 +2965,11 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR = 268435456
     end
 
-@bitmask_flag QueryControlFlag::UInt32 begin
+@bitmask QueryControlFlag::UInt32 begin
         QUERY_CONTROL_PRECISE_BIT = 1
     end
 
-@bitmask_flag QueryResultFlag::UInt32 begin
+@bitmask QueryResultFlag::UInt32 begin
         QUERY_RESULT_64_BIT = 1
         QUERY_RESULT_WAIT_BIT = 2
         QUERY_RESULT_WITH_AVAILABILITY_BIT = 4
@@ -2977,13 +2977,13 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         QUERY_RESULT_WITH_STATUS_BIT_KHR = 16
     end
 
-@bitmask_flag CommandBufferUsageFlag::UInt32 begin
+@bitmask CommandBufferUsageFlag::UInt32 begin
         COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT = 1
         COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT = 2
         COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT = 4
     end
 
-@bitmask_flag QueryPipelineStatisticFlag::UInt32 begin
+@bitmask QueryPipelineStatisticFlag::UInt32 begin
         QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 1
         QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 2
         QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 4
@@ -2997,7 +2997,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = 1024
     end
 
-@bitmask_flag ImageAspectFlag::UInt32 begin
+@bitmask ImageAspectFlag::UInt32 begin
         IMAGE_ASPECT_COLOR_BIT = 1
         IMAGE_ASPECT_DEPTH_BIT = 2
         IMAGE_ASPECT_STENCIL_BIT = 4
@@ -3012,17 +3012,17 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         IMAGE_ASPECT_NONE = 0
     end
 
-@bitmask_flag SparseImageFormatFlag::UInt32 begin
+@bitmask SparseImageFormatFlag::UInt32 begin
         SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = 1
         SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = 2
         SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = 4
     end
 
-@bitmask_flag SparseMemoryBindFlag::UInt32 begin
+@bitmask SparseMemoryBindFlag::UInt32 begin
         SPARSE_MEMORY_BIND_METADATA_BIT = 1
     end
 
-@bitmask_flag PipelineStageFlag::UInt32 begin
+@bitmask PipelineStageFlag::UInt32 begin
         PIPELINE_STAGE_TOP_OF_PIPE_BIT = 1
         PIPELINE_STAGE_DRAW_INDIRECT_BIT = 2
         PIPELINE_STAGE_VERTEX_INPUT_BIT = 4
@@ -3052,22 +3052,22 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         PIPELINE_STAGE_NONE = 0
     end
 
-@bitmask_flag CommandPoolCreateFlag::UInt32 begin
+@bitmask CommandPoolCreateFlag::UInt32 begin
         COMMAND_POOL_CREATE_TRANSIENT_BIT = 1
         COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT = 2
         COMMAND_POOL_CREATE_PROTECTED_BIT = 4
     end
 
-@bitmask_flag CommandPoolResetFlag::UInt32 begin
+@bitmask CommandPoolResetFlag::UInt32 begin
         COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT = 1
         COMMAND_POOL_RESET_RESERVED_1_BIT_COREAVI = 2
     end
 
-@bitmask_flag CommandBufferResetFlag::UInt32 begin
+@bitmask CommandBufferResetFlag::UInt32 begin
         COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT = 1
     end
 
-@bitmask_flag SampleCountFlag::UInt32 begin
+@bitmask SampleCountFlag::UInt32 begin
         SAMPLE_COUNT_1_BIT = 1
         SAMPLE_COUNT_2_BIT = 2
         SAMPLE_COUNT_4_BIT = 4
@@ -3077,47 +3077,47 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         SAMPLE_COUNT_64_BIT = 64
     end
 
-@bitmask_flag AttachmentDescriptionFlag::UInt32 begin
+@bitmask AttachmentDescriptionFlag::UInt32 begin
         ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT = 1
     end
 
-@bitmask_flag StencilFaceFlag::UInt32 begin
+@bitmask StencilFaceFlag::UInt32 begin
         STENCIL_FACE_FRONT_BIT = 1
         STENCIL_FACE_BACK_BIT = 2
         STENCIL_FACE_FRONT_AND_BACK = 3
     end
 
-@bitmask_flag DescriptorPoolCreateFlag::UInt32 begin
+@bitmask DescriptorPoolCreateFlag::UInt32 begin
         DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT = 1
         DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT = 2
         DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE = 4
     end
 
-@bitmask_flag DependencyFlag::UInt32 begin
+@bitmask DependencyFlag::UInt32 begin
         DEPENDENCY_BY_REGION_BIT = 1
         DEPENDENCY_DEVICE_GROUP_BIT = 4
         DEPENDENCY_VIEW_LOCAL_BIT = 2
     end
 
-@bitmask_flag SemaphoreWaitFlag::UInt32 begin
+@bitmask SemaphoreWaitFlag::UInt32 begin
         SEMAPHORE_WAIT_ANY_BIT = 1
     end
 
-@bitmask_flag DisplayPlaneAlphaFlagKHR::UInt32 begin
+@bitmask DisplayPlaneAlphaFlagKHR::UInt32 begin
         DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR = 1
         DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR = 2
         DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR = 4
         DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 8
     end
 
-@bitmask_flag CompositeAlphaFlagKHR::UInt32 begin
+@bitmask CompositeAlphaFlagKHR::UInt32 begin
         COMPOSITE_ALPHA_OPAQUE_BIT_KHR = 1
         COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR = 2
         COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR = 4
         COMPOSITE_ALPHA_INHERIT_BIT_KHR = 8
     end
 
-@bitmask_flag SurfaceTransformFlagKHR::UInt32 begin
+@bitmask SurfaceTransformFlagKHR::UInt32 begin
         SURFACE_TRANSFORM_IDENTITY_BIT_KHR = 1
         SURFACE_TRANSFORM_ROTATE_90_BIT_KHR = 2
         SURFACE_TRANSFORM_ROTATE_180_BIT_KHR = 4
@@ -3129,7 +3129,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         SURFACE_TRANSFORM_INHERIT_BIT_KHR = 256
     end
 
-@bitmask_flag DebugReportFlagEXT::UInt32 begin
+@bitmask DebugReportFlagEXT::UInt32 begin
         DEBUG_REPORT_INFORMATION_BIT_EXT = 1
         DEBUG_REPORT_WARNING_BIT_EXT = 2
         DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT = 4
@@ -3137,20 +3137,20 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         DEBUG_REPORT_DEBUG_BIT_EXT = 16
     end
 
-@bitmask_flag ExternalMemoryHandleTypeFlagNV::UInt32 begin
+@bitmask ExternalMemoryHandleTypeFlagNV::UInt32 begin
         EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV = 1
         EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV = 2
         EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV = 4
         EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV = 8
     end
 
-@bitmask_flag ExternalMemoryFeatureFlagNV::UInt32 begin
+@bitmask ExternalMemoryFeatureFlagNV::UInt32 begin
         EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV = 1
         EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV = 2
         EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV = 4
     end
 
-@bitmask_flag SubgroupFeatureFlag::UInt32 begin
+@bitmask SubgroupFeatureFlag::UInt32 begin
         SUBGROUP_FEATURE_BASIC_BIT = 1
         SUBGROUP_FEATURE_VOTE_BIT = 2
         SUBGROUP_FEATURE_ARITHMETIC_BIT = 4
@@ -3162,20 +3162,20 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         SUBGROUP_FEATURE_PARTITIONED_BIT_NV = 256
     end
 
-@bitmask_flag IndirectCommandsLayoutUsageFlagNV::UInt32 begin
+@bitmask IndirectCommandsLayoutUsageFlagNV::UInt32 begin
         INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV = 1
         INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV = 2
         INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV = 4
     end
 
-@bitmask_flag IndirectStateFlagNV::UInt32 begin
+@bitmask IndirectStateFlagNV::UInt32 begin
         INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV = 1
     end
 
-@bitmask_flag PrivateDataSlotCreateFlag::UInt32 begin
+@bitmask PrivateDataSlotCreateFlag::UInt32 begin
     end
 
-@bitmask_flag DescriptorSetLayoutCreateFlag::UInt32 begin
+@bitmask DescriptorSetLayoutCreateFlag::UInt32 begin
         DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT = 2
         DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR = 1
         DESCRIPTOR_SET_LAYOUT_CREATE_RESERVED_4_BIT_AMD = 16
@@ -3183,7 +3183,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE = 4
     end
 
-@bitmask_flag ExternalMemoryHandleTypeFlag::UInt32 begin
+@bitmask ExternalMemoryHandleTypeFlag::UInt32 begin
         EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT = 1
         EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT = 2
         EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
@@ -3200,13 +3200,13 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         EXTERNAL_MEMORY_HANDLE_TYPE_RESERVED_13_BIT_NV = 8192
     end
 
-@bitmask_flag ExternalMemoryFeatureFlag::UInt32 begin
+@bitmask ExternalMemoryFeatureFlag::UInt32 begin
         EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT = 1
         EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT = 2
         EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT = 4
     end
 
-@bitmask_flag ExternalSemaphoreHandleTypeFlag::UInt32 begin
+@bitmask ExternalSemaphoreHandleTypeFlag::UInt32 begin
         EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT = 1
         EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 2
         EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
@@ -3217,16 +3217,16 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_6_BIT_NV = 64
     end
 
-@bitmask_flag ExternalSemaphoreFeatureFlag::UInt32 begin
+@bitmask ExternalSemaphoreFeatureFlag::UInt32 begin
         EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT = 1
         EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT = 2
     end
 
-@bitmask_flag SemaphoreImportFlag::UInt32 begin
+@bitmask SemaphoreImportFlag::UInt32 begin
         SEMAPHORE_IMPORT_TEMPORARY_BIT = 1
     end
 
-@bitmask_flag ExternalFenceHandleTypeFlag::UInt32 begin
+@bitmask ExternalFenceHandleTypeFlag::UInt32 begin
         EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT = 1
         EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 2
         EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 4
@@ -3235,47 +3235,47 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_5_BIT_NV = 32
     end
 
-@bitmask_flag ExternalFenceFeatureFlag::UInt32 begin
+@bitmask ExternalFenceFeatureFlag::UInt32 begin
         EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT = 1
         EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT = 2
     end
 
-@bitmask_flag FenceImportFlag::UInt32 begin
+@bitmask FenceImportFlag::UInt32 begin
         FENCE_IMPORT_TEMPORARY_BIT = 1
     end
 
-@bitmask_flag SurfaceCounterFlagEXT::UInt32 begin
+@bitmask SurfaceCounterFlagEXT::UInt32 begin
         SURFACE_COUNTER_VBLANK_BIT_EXT = 1
     end
 
-@bitmask_flag PeerMemoryFeatureFlag::UInt32 begin
+@bitmask PeerMemoryFeatureFlag::UInt32 begin
         PEER_MEMORY_FEATURE_COPY_SRC_BIT = 1
         PEER_MEMORY_FEATURE_COPY_DST_BIT = 2
         PEER_MEMORY_FEATURE_GENERIC_SRC_BIT = 4
         PEER_MEMORY_FEATURE_GENERIC_DST_BIT = 8
     end
 
-@bitmask_flag MemoryAllocateFlag::UInt32 begin
+@bitmask MemoryAllocateFlag::UInt32 begin
         MEMORY_ALLOCATE_DEVICE_MASK_BIT = 1
         MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT = 2
         MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = 4
     end
 
-@bitmask_flag DeviceGroupPresentModeFlagKHR::UInt32 begin
+@bitmask DeviceGroupPresentModeFlagKHR::UInt32 begin
         DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR = 1
         DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR = 2
         DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR = 4
         DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 8
     end
 
-@bitmask_flag SwapchainCreateFlagKHR::UInt32 begin
+@bitmask SwapchainCreateFlagKHR::UInt32 begin
         SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = 1
         SWAPCHAIN_CREATE_PROTECTED_BIT_KHR = 2
         SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = 1
         SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR = 4
     end
 
-@bitmask_flag SubpassDescriptionFlag::UInt32 begin
+@bitmask SubpassDescriptionFlag::UInt32 begin
         SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX = 1
         SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX = 2
         SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM = 4
@@ -3285,20 +3285,20 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM = 64
     end
 
-@bitmask_flag DebugUtilsMessageSeverityFlagEXT::UInt32 begin
+@bitmask DebugUtilsMessageSeverityFlagEXT::UInt32 begin
         DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT = 1
         DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT = 16
         DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT = 256
         DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 4096
     end
 
-@bitmask_flag DebugUtilsMessageTypeFlagEXT::UInt32 begin
+@bitmask DebugUtilsMessageTypeFlagEXT::UInt32 begin
         DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT = 1
         DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT = 2
         DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 4
     end
 
-@bitmask_flag DescriptorBindingFlag::UInt32 begin
+@bitmask DescriptorBindingFlag::UInt32 begin
         DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT = 1
         DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT = 2
         DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT = 4
@@ -3306,11 +3306,11 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         DESCRIPTOR_BINDING_RESERVED_4_BIT_QCOM = 16
     end
 
-@bitmask_flag ConditionalRenderingFlagEXT::UInt32 begin
+@bitmask ConditionalRenderingFlagEXT::UInt32 begin
         CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 1
     end
 
-@bitmask_flag ResolveModeFlag::UInt32 begin
+@bitmask ResolveModeFlag::UInt32 begin
         RESOLVE_MODE_SAMPLE_ZERO_BIT = 1
         RESOLVE_MODE_AVERAGE_BIT = 2
         RESOLVE_MODE_MIN_BIT = 4
@@ -3318,19 +3318,19 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         RESOLVE_MODE_NONE = 0
     end
 
-@bitmask_flag GeometryInstanceFlagKHR::UInt32 begin
+@bitmask GeometryInstanceFlagKHR::UInt32 begin
         GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR = 1
         GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR = 2
         GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR = 4
         GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR = 8
     end
 
-@bitmask_flag GeometryFlagKHR::UInt32 begin
+@bitmask GeometryFlagKHR::UInt32 begin
         GEOMETRY_OPAQUE_BIT_KHR = 1
         GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR = 2
     end
 
-@bitmask_flag BuildAccelerationStructureFlagKHR::UInt32 begin
+@bitmask BuildAccelerationStructureFlagKHR::UInt32 begin
         BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR = 1
         BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR = 2
         BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR = 4
@@ -3339,46 +3339,46 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV = 32
     end
 
-@bitmask_flag AccelerationStructureCreateFlagKHR::UInt32 begin
+@bitmask AccelerationStructureCreateFlagKHR::UInt32 begin
         ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = 1
         ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV = 4
     end
 
-@bitmask_flag FramebufferCreateFlag::UInt32 begin
+@bitmask FramebufferCreateFlag::UInt32 begin
         FRAMEBUFFER_CREATE_IMAGELESS_BIT = 1
     end
 
-@bitmask_flag DeviceDiagnosticsConfigFlagNV::UInt32 begin
+@bitmask DeviceDiagnosticsConfigFlagNV::UInt32 begin
         DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV = 1
         DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV = 2
         DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 4
     end
 
-@bitmask_flag PipelineCreationFeedbackFlag::UInt32 begin
+@bitmask PipelineCreationFeedbackFlag::UInt32 begin
         PIPELINE_CREATION_FEEDBACK_VALID_BIT = 1
         PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT = 2
         PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT = 4
     end
 
-@bitmask_flag PerformanceCounterDescriptionFlagKHR::UInt32 begin
+@bitmask PerformanceCounterDescriptionFlagKHR::UInt32 begin
         PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR = 1
         PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR = 2
     end
 
-@bitmask_flag AcquireProfilingLockFlagKHR::UInt32 begin
+@bitmask AcquireProfilingLockFlagKHR::UInt32 begin
     end
 
-@bitmask_flag ShaderCorePropertiesFlagAMD::UInt32 begin
+@bitmask ShaderCorePropertiesFlagAMD::UInt32 begin
     end
 
-@bitmask_flag ShaderModuleCreateFlag::UInt32 begin
+@bitmask ShaderModuleCreateFlag::UInt32 begin
         SHADER_MODULE_CREATE_RESERVED_0_BIT_NV = 1
     end
 
-@bitmask_flag PipelineCompilerControlFlagAMD::UInt32 begin
+@bitmask PipelineCompilerControlFlagAMD::UInt32 begin
     end
 
-@bitmask_flag ToolPurposeFlag::UInt32 begin
+@bitmask ToolPurposeFlag::UInt32 begin
         TOOL_PURPOSE_VALIDATION_BIT = 1
         TOOL_PURPOSE_PROFILING_BIT = 2
         TOOL_PURPOSE_TRACING_BIT = 4
@@ -3390,7 +3390,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT = 64
     end
 
-@bitmask_flag AccessFlag2::UInt64 begin
+@bitmask AccessFlag2::UInt64 begin
         ACCESS_2_INDIRECT_COMMAND_READ_BIT = 1
         ACCESS_2_INDEX_READ_BIT = 2
         ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT = 4
@@ -3432,7 +3432,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         ACCESS_2_NONE = 0
     end
 
-@bitmask_flag PipelineStageFlag2::UInt64 begin
+@bitmask PipelineStageFlag2::UInt64 begin
         PIPELINE_STAGE_2_TOP_OF_PIPE_BIT = 1
         PIPELINE_STAGE_2_DRAW_INDIRECT_BIT = 2
         PIPELINE_STAGE_2_VERTEX_INPUT_BIT = 4
@@ -3474,32 +3474,32 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         PIPELINE_STAGE_2_NONE = 0
     end
 
-@bitmask_flag SubmitFlag::UInt32 begin
+@bitmask SubmitFlag::UInt32 begin
         SUBMIT_PROTECTED_BIT = 1
     end
 
-@bitmask_flag EventCreateFlag::UInt32 begin
+@bitmask EventCreateFlag::UInt32 begin
         EVENT_CREATE_DEVICE_ONLY_BIT = 1
     end
 
-@bitmask_flag PipelineLayoutCreateFlag::UInt32 begin
+@bitmask PipelineLayoutCreateFlag::UInt32 begin
         PIPELINE_LAYOUT_CREATE_RESERVED_0_BIT_AMD = 1
         PIPELINE_LAYOUT_CREATE_RESERVED_1_BIT_AMD = 2
     end
 
-@bitmask_flag PipelineColorBlendStateCreateFlag::UInt32 begin
+@bitmask PipelineColorBlendStateCreateFlag::UInt32 begin
         PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_ARM = 1
     end
 
-@bitmask_flag PipelineDepthStencilStateCreateFlag::UInt32 begin
+@bitmask PipelineDepthStencilStateCreateFlag::UInt32 begin
         PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM = 1
         PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM = 2
     end
 
-@bitmask_flag ImageFormatConstraintsFlagFUCHSIA::UInt32 begin
+@bitmask ImageFormatConstraintsFlagFUCHSIA::UInt32 begin
     end
 
-@bitmask_flag FormatFeatureFlag2::UInt64 begin
+@bitmask FormatFeatureFlag2::UInt64 begin
         FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT = 1
         FORMAT_FEATURE_2_STORAGE_IMAGE_BIT = 2
         FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT = 4
@@ -3541,7 +3541,7 @@ convert(T::Type{VkAccelerationStructureMotionInstanceTypeNV}, x::AccelerationStr
         FORMAT_FEATURE_2_RESERVED_37_BIT_QCOM = 137438953472
     end
 
-@bitmask_flag RenderingFlag::UInt32 begin
+@bitmask RenderingFlag::UInt32 begin
         RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT = 1
         RENDERING_SUSPENDING_BIT = 2
         RENDERING_RESUMING_BIT = 4

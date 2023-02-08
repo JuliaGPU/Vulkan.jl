@@ -1,6 +1,6 @@
 @testset "Bitmask flags" begin
     test(BitmaskDefinition, bitmask_by_name, :VkQueryPipelineStatisticFlagBits, :(
-        @bitmask_flag QueryPipelineStatisticFlag::UInt32 begin
+        @bitmask QueryPipelineStatisticFlag::UInt32 begin
             QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 1
             QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 2
             QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 4
@@ -16,13 +16,13 @@
     ))
 
     test(BitmaskDefinition, bitmask_by_name, :VkSparseMemoryBindFlagBits, :(
-        @bitmask_flag SparseMemoryBindFlag::UInt32 begin
+        @bitmask SparseMemoryBindFlag::UInt32 begin
             SPARSE_MEMORY_BIND_METADATA_BIT = 1
         end
     ))
 
     test(BitmaskDefinition, bitmask_by_name, :VkShaderStageFlagBits, :(
-        @bitmask_flag ShaderStageFlag::UInt32 begin
+        @bitmask ShaderStageFlag::UInt32 begin
             SHADER_STAGE_VERTEX_BIT = 1
             SHADER_STAGE_TESSELLATION_CONTROL_BIT = 2
             SHADER_STAGE_TESSELLATION_EVALUATION_BIT = 4
@@ -44,7 +44,7 @@
     ))
 
     test(BitmaskDefinition, bitmask_by_name, :VkCullModeFlagBits, :(
-        @bitmask_flag CullModeFlag::UInt32 begin
+        @bitmask CullModeFlag::UInt32 begin
             CULL_MODE_FRONT_BIT = 1
             CULL_MODE_BACK_BIT = 2
             CULL_MODE_NONE = 0

@@ -11,6 +11,7 @@ using AutoHashEquals: @auto_hash_equals
 using Accessors: @set, setproperties
 using SnoopPrecompile
 using Libdl: Libdl
+using BitMasks
 
 using VulkanCore: VulkanCore, vk
 using .vk

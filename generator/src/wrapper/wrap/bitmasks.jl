@@ -15,7 +15,7 @@ function BitmaskDefinition(spec::SpecBitmask)
     name = bitmask_flag_type(spec)
     p = Dict(
         :category => :enum,
-        :macro => Symbol("@bitmask_flag"),
+        :macro => bitmask_enum_sym,
         :values => map(x -> :($(remove_vk_prefix(x.name)) = $(bitmask_value(x))), [collect(spec.bits); collect(spec.combinations)]),
         :decl => :($name::$(bitmask_type(spec))),
     )

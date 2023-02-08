@@ -16,7 +16,6 @@ if get(ENV, "JULIA_GITHUB_ACTIONS_CI", "OFF") == "ON"
     @set_driver :SwiftShader
 end
 
-include("bitmasks.jl")
 include("api.jl")
 include("dispatch.jl")
 @test Vulkan.precompile_workload() broken = is_ci
