@@ -16,7 +16,7 @@ function precompile_workload()
   fill_dispatch_table()
 
   loader_version = unwrap(enumerate_instance_version())
-  loader_version ≥ v"1.1" || throw(PrecompilationError("The Vulkan loader version is unsupported ($loader_version): a of 1.1 or higher is required."))
+  loader_version ≥ v"1.1" || throw(PrecompilationError("The Vulkan loader version is unsupported ($loader_version): a version of 1.1 or higher is required."))
   layers = []
   exts = []
 
