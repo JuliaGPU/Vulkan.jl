@@ -4,7 +4,7 @@ set_preferences!(args...; kwargs...) = Preferences.set_preferences!(@__MODULE__,
 macro pref_log_destruction(handle, ex)
     if @load_preference("LOG_DESTRUCTION", "false") == "true"
         quote
-            premsg = string("Finalizing ", $(esc(handle)))
+            premsg = string("(thread ", Threads.threadid(), ") Finalizing ", $(esc(handle)))
             @ccall jl_safe_printf(premsg::Cstring)::Cvoid
             was_destroyed = $(esc(ex))
             msg =
