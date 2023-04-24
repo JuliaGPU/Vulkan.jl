@@ -9,7 +9,7 @@ using Reexport
 using DocStringExtensions
 using AutoHashEquals: @auto_hash_equals
 using Accessors: @set, setproperties
-using SnoopPrecompile
+using PrecompileTools
 using Libdl: Libdl
 using BitMasks
 
