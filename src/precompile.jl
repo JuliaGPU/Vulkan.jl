@@ -1,4 +1,4 @@
-@precompile_all_calls begin
+@compile_workload begin
     initialize(_PhysicalDeviceFeatures2, _PhysicalDeviceVulkan12Features, _PhysicalDeviceVulkanMemoryModelFeatures)
     f1 = initialize(PhysicalDeviceFeatures2, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
 
