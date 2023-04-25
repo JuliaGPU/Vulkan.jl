@@ -18,7 +18,7 @@ PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
 [compat]
-Accessors = "0.1.9"
+Accessors = "0.1.29"
 AutoHashEquals = "0.2, 1.0"
 BitMasks = "0.1"
 DocStringExtensions = "0.8, 0.9"
