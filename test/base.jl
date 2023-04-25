@@ -18,7 +18,7 @@ end
 
 include("api.jl")
 include("dispatch.jl")
-@test Vulkan.precompile_workload() broken = is_ci
+@test Vulkan.precompile_workload()
 
 DocMeta.setdocmeta!(Vulkan, :DocTestSetup, quote
     using Vulkan
