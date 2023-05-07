@@ -121,6 +121,9 @@ export
         # Error handling
         VulkanError,
         @check,
-        iserror
+        iserror,
+
+        # Formats
+        format_type
 
 end # module Vulkan

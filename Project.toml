@@ -17,10 +17,14 @@ ResultTypes = "08a2b407-ddc3-586a-afd6-c784ad1fffe2"
 PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
+[weakdeps]
+ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
+
 [compat]
 Accessors = "0.1.29"
 AutoHashEquals = "0.2, 1.0"
 BitMasks = "0.1"
+ColorTypes = "0.11"
 DocStringExtensions = "0.8, 0.9"
 MLStyle = "0.4"
 Preferences = "1.2"
@@ -30,12 +34,15 @@ PrecompileTools = "1"
 VulkanCore = "1.3"
 julia = "1.7"
 
+[extensions]
+VulkanColorTypesExt = "ColorTypes"
+
 [extras]
+ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-SafeTestsets = "1bc83da4-3b8d-516f-aca4-4fe02f6d838f"
 SwiftShader_jll = "c404ff5a-e271-5628-8eaa-423d39d64c15"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test", "Documenter", "Pkg", "SafeTestsets", "SwiftShader_jll"]
+test = ["Test", "Documenter", "Pkg", "SwiftShader_jll", "ColorTypes"]

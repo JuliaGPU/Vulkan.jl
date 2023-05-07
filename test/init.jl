@@ -30,4 +30,4 @@ const device = let pdevices = unwrap(enumerate_physical_devices(instance))
     )
 end
 
-@info "Logical device created: $device."
+@info "Logical device created: $device"
