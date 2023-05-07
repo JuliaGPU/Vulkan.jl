@@ -1,7 +1,8 @@
 *.jl.cov
 *.jl.*.cov
 *.jl.mem
-Manifest.toml
+generator/Manifest.toml
+/Manifest.toml
 JuliaSysimage.so
 /vulkan.code-workspace
 /*.qdrep
@@ -12,5 +13,5 @@ _*wrapped_api.jl
 /docs/build
 /docs/site
 .vscode
-/LocalPreferences.toml
+LocalPreferences.toml
 !/test/*.spv

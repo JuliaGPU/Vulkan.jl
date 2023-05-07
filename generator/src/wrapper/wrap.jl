@@ -126,7 +126,7 @@ struct VulkanWrapper
     interdependent::Vector{Expr}
     dependent::Vector{Expr}
     exports::Vector{Symbol}
-    function VulkanWrapper(independent::Vector{Expr}, interdependent::Vector{Expr}, dependent::Vector{Expr}, exports::Vector{Symbol})
+    function VulkanWrapper(independent::AbstractVector{Expr}, interdependent::AbstractVector{Expr}, dependent::AbstractVector{Expr}, exports::AbstractVector{Symbol})
         new(independent, interdependent, dependent, unique(exports))
     end
 end

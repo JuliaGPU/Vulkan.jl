@@ -1,9 +1,6 @@
 using Documenter
 using Literate
 using Vulkan
-
-push!(LOAD_PATH, joinpath(dirname(@__DIR__), "generator"))
-
 using VulkanGen
 
 function julia_files(dir)
