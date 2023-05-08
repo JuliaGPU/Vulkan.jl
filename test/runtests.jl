@@ -15,4 +15,5 @@ using Accessors: @set
     include("dispatch.jl")
     @test Vulkan.precompile_workload()
     isdefined(Base, :get_extension) && include("extensions.jl")
+    include("doctests.jl")
 end;
