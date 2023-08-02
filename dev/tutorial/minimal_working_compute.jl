@@ -298,7 +298,7 @@ unwrap(queue_submit(compute_q, [SubmitInfo([], [], [cbuf], [])]))
 # that for example the pipeline and buffer objects are still used and that
 # there's a dependency with these variables until the command returns, so we
 # tell it manually.
-GC.@preserve buff dsl pl p const_buf begin
+GC.@preserve buff dsl pl p const_buf spec_consts begin
     unwrap(queue_wait_idle(compute_q))
 end
 
