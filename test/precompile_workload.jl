@@ -118,7 +118,7 @@ function compute_workload(device, queue, command_pool)
   local_size_x = UInt32(4)
   spec_consts = [local_size_x]
 
-  pipeline_info = GC.@preserve spec_consts ComputePipelineCreateInfo(
+  pipeline_info = ComputePipelineCreateInfo(
     PipelineShaderStageCreateInfo(
       SHADER_STAGE_COMPUTE_BIT,
       shader,
@@ -178,7 +178,7 @@ function compute_workload(device, queue, command_pool)
 
   unwrap(queue_submit(queue, [SubmitInfo([], [], [command_buffer], [])]))
 
-  GC.@preserve buffer descriptor_set_layout pipeline_layout pipeline push_constants begin
+  GC.@preserve buffer descriptor_set_layout pipeline_layout spec_consts pipeline push_constants begin
     unwrap(queue_wait_idle(queue))
   end
 
