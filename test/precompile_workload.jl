@@ -125,7 +125,7 @@ function compute_workload(device, queue, command_pool)
       "main", # this needs to match the function name in the shader
       specialization_info = SpecializationInfo(
         [SpecializationMapEntry(0 #= id =#, 0 #= offset =#, 4 #= size =#)],
-        UInt64(4),
+        UInt(sizeof(spec_consts)),
         Ptr{Nothing}(pointer(spec_consts)),
       ),
     ),
@@ -169,7 +169,7 @@ function compute_workload(device, queue, command_pool)
     pipeline_layout,
     SHADER_STAGE_COMPUTE_BIT,
     0, # offset
-    8, # size
+    sizeof(push_constants), # size
     Ptr{Nothing}(pointer(push_constants)),
   )
   cmd_bind_descriptor_sets(command_buffer, PIPELINE_BIND_POINT_COMPUTE, pipeline_layout, 0 #= first set =#, [dset], [])

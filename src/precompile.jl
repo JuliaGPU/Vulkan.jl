@@ -12,6 +12,7 @@
     f4 = PhysicalDeviceFeatures2(f3, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkanMemoryModelFeatures)
 
     if in(@load_preference("PRECOMPILE_DEVICE_FUNCTIONS", "auto"), ("true", "auto"))
+        @debug "Running device-dependent precompilation workload"
         include("../test/precompile_workload.jl")
         try
             precompile_workload()
@@ -23,6 +24,8 @@
                     @error "The precompilation of device functions failed unexpectedly. We encourage you to file an issue on https://github.com/JuliaGPU/Vulkan.jl including this logged message."
                 end
                 rethrow()
+            else
+                @debug "The precompilation of device functions failed, likely because of an unsupported configuration on the host machine.\nException: $(sprint(showerror, e))"
             end
         end
     end
