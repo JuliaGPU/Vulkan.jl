@@ -1,7 +1,7 @@
 @testset "High-level wrapper" begin
     @testset "Generated structs" begin
         test(StructDefinition{true}, struct_by_name, :VkPhysicalDeviceProperties, :(
-            @auto_hash_equals struct PhysicalDeviceProperties <: HighLevelStruct
+            @struct_hash_equal struct PhysicalDeviceProperties <: HighLevelStruct
                 api_version::VersionNumber
                 driver_version::VersionNumber
                 vendor_id::UInt32
@@ -15,14 +15,14 @@
         ))
 
         test(StructDefinition{true}, struct_by_name, :VkExternalBufferProperties, :(
-            @auto_hash_equals struct ExternalBufferProperties <: HighLevelStruct
+            @struct_hash_equal struct ExternalBufferProperties <: HighLevelStruct
                 next::Any
                 external_memory_properties::ExternalMemoryProperties
             end
         ))
 
         test(StructDefinition{true}, struct_by_name, :VkPipelineExecutableInternalRepresentationKHR, :(
-            @auto_hash_equals struct PipelineExecutableInternalRepresentationKHR <: HighLevelStruct
+            @struct_hash_equal struct PipelineExecutableInternalRepresentationKHR <: HighLevelStruct
                 next::Any
                 name::String
                 description::String
@@ -33,7 +33,7 @@
         ))
 
         test(StructDefinition{true}, struct_by_name, :VkApplicationInfo, :(
-            @auto_hash_equals struct ApplicationInfo <: HighLevelStruct
+            @struct_hash_equal struct ApplicationInfo <: HighLevelStruct
                 next::Any
                 application_name::String
                 application_version::VersionNumber
@@ -44,7 +44,7 @@
         ))
 
         test(StructDefinition{true}, struct_by_name, :VkInstanceCreateInfo, :(
-            @auto_hash_equals struct InstanceCreateInfo <: HighLevelStruct
+            @struct_hash_equal struct InstanceCreateInfo <: HighLevelStruct
                 next::Any
                 flags::UInt32
                 application_info::OptionalPtr{ApplicationInfo}
@@ -54,7 +54,7 @@
         ))
 
         test(StructDefinition{true}, struct_by_name, :VkXcbSurfaceCreateInfoKHR, :(
-            @auto_hash_equals struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
+            @struct_hash_equal struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
                 next::Any
                 flags::UInt32
                 connection::Ptr{vk.xcb_connection_t}

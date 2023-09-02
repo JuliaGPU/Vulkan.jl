@@ -1,5 +1,7 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.6.8`
+- ![Enhancement][badge-enhancement] The default hash and equality methods defined for structures is now provided by StructEquals.jl instead of AutoHashEquals.jl.
 ## Version `v0.6`
 
 - ![BREAKING][badge-breaking] The version of the Vulkan API has been updated to 1.3.207. This is breaking because certain function arguments can be annotated as optional in the specification, turning them into keyword arguments in generated code.

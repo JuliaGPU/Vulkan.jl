@@ -100,7 +100,7 @@ to_expr(def::Union{StructureType, TypeMapping}) = def.ex
 to_expr((; source, target)::AliasDeclaration) = :(const $source = $target)
 to_expr(def::WrapperNode) = resolve_types(to_expr(def.p))
 to_expr(def::Union{Documented, ConstantDefinition, EnumDefinition, BitmaskDefinition}) = to_expr(def.p)
-to_expr(def::StructDefinition{true,<:SpecStruct}) = :(@auto_hash_equals $(resolve_types(to_expr(def.p))))
+to_expr(def::StructDefinition{true,<:SpecStruct}) = :(@struct_hash_equal $(resolve_types(to_expr(def.p))))
 
 function documented(def::WrapperNode)
     doc = Documented(def)

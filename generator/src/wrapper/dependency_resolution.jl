@@ -23,7 +23,7 @@ function raw_dependencies(ex)
     p = deconstruct(ex)
     @match category(ex) begin
         :struct => begin
-            # handle structs wrapped with @auto_hash_equals
+            # handle structs wrapped with @struct_hash_equal
             p = haskey(p, :macro) ? deconstruct(p[:decl]) : p
             field_deps.(p[:fields])
         end

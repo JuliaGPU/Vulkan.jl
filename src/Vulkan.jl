@@ -7,7 +7,7 @@ module Vulkan
 
 using Reexport
 using DocStringExtensions
-using AutoHashEquals: @auto_hash_equals
+using StructEquality: @struct_hash_equal
 using Accessors: @set, setproperties
 using PrecompileTools
 using Libdl: Libdl
