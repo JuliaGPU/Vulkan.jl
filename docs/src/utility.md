@@ -33,7 +33,7 @@ A convenience macro is implemented in Vulkan, so you can quickly use SwiftShader
 ```@example
 using SwiftShader_jll
 using Vulkan
-@set_driver :SwiftShader
+set_driver(:SwiftShader)
 ```
 
 which will tell the Vulkan Loader to use the SwiftShader Installable Client Driver.

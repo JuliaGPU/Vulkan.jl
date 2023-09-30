@@ -4,7 +4,7 @@
 
 using SwiftShader_jll # hide
 using Vulkan
-@set_driver :SwiftShader # hide
+set_driver(:SwiftShader) # hide
 
 Vulkan.set_preferences!("LOG_DESTRUCTION" => "true")
 

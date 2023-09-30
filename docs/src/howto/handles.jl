@@ -8,7 +8,7 @@
 
 using SwiftShader_jll # hide
 using Vulkan
-@set_driver :SwiftShader # hide
+set_driver(:SwiftShader) # hide
 
 const instance = Instance([], [])
 const pdevice = first(unwrap(enumerate_physical_devices(instance)))

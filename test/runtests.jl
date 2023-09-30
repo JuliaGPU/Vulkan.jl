@@ -8,7 +8,7 @@ using Vulkan
 using Accessors: @set
 
 # Use SwiftShader for testing.
-@set_driver :SwiftShader
+set_driver(:SwiftShader)
 
 @testset "Vulkan.jl" begin
     include("api.jl")
