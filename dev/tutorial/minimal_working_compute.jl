@@ -25,7 +25,7 @@ we walk through the following steps:
 
 using SwiftShader_jll # hide
 using Vulkan
-@set_driver :SwiftShader # hide
+set_driver(:SwiftShader) # hide
 
 instance = Instance([], [])
 

@@ -15,7 +15,7 @@ The entry point of any Vulkan application is an `Instance`, so we will create on
 
 using SwiftShader_jll # hide
 using Vulkan
-@set_driver :SwiftShader # hide
+set_driver(:SwiftShader) # hide
 
 const application_info = ApplicationInfo(
     v"0.0.1", # application version

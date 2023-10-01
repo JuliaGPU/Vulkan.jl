@@ -57,7 +57,7 @@ Vulkan structures, such as `Extent2D`, `InstanceCreateInfo` and `PhysicalDeviceF
 
 ### High-level structures
 
-High-level structures were defined to ressemble idiomatic Julia structures, replacing C types by idiomatic Julia types. They abstract most pointers away, using Julia arrays and strings, and use `VersionNumbers` instead of integers. Equality and hashing are implemented with [AutoHashEquals.jl](https://github.com/andrewcooke/AutoHashEquals.jl) to facilitate their use in dictionaries.
+High-level structures were defined to ressemble idiomatic Julia structures, replacing C types by idiomatic Julia types. They abstract most pointers away, using Julia arrays and strings, and use `VersionNumbers` instead of integers. Equality and hashing are implemented with [StructEquality.jl](https://github.com/jolin-io/StructEquality.jl) to facilitate their use in dictionaries.
 
 ### Intermediate structures
 
