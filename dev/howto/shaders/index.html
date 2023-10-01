@@ -20,7 +20,7 @@ push!(flags, &quot;-o&quot;, path)</code></pre><pre class="documenter-example-ou
  &quot;-S&quot;
  &quot;vert&quot;
  &quot;-o&quot;
- &quot;/tmp/jl_CjeP4VAjIN&quot;</code></pre><p>Run <code>glslang</code>.</p><pre><code class="language-julia hljs">run(pipeline(`$glslang $flags`, stdin = _stdin))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Process(`/home/runner/.julia/artifacts/f1fa93f41410326ba4ca250dbf71306ccc966830/bin/glslangValidator --stdin -V -S vert -o /tmp/jl_CjeP4VAjIN`, ProcessExited(0))</code></pre><p>Read the code and clean the temporary file.</p><pre><code class="language-julia hljs">spirv_code = reinterpret(UInt32, read(path))
+ &quot;/tmp/jl_S74vsVANef&quot;</code></pre><p>Run <code>glslang</code>.</p><pre><code class="language-julia hljs">run(pipeline(`$glslang $flags`, stdin = _stdin))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Process(`/home/runner/.julia/artifacts/f1fa93f41410326ba4ca250dbf71306ccc966830/bin/glslangValidator --stdin -V -S vert -o /tmp/jl_S74vsVANef`, ProcessExited(0))</code></pre><p>Read the code and clean the temporary file.</p><pre><code class="language-julia hljs">spirv_code = reinterpret(UInt32, read(path))
 rm(path)
 @assert first(spirv_code) == 0x07230203 # SPIR-V magic number
 spirv_code</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">118-element reinterpret(UInt32, ::Vector{UInt8}):
