@@ -46,9 +46,7 @@ end
 """
 These handle types are consumed by whatever command uses them. From the specification: "The following object types are consumed when they are passed into a Vulkan command and not further accessed by the objects they are used to create.".
 """
-const consumed_handles = handle_by_name.([:VkShaderModule, :VkPipelineCache, :VkValidationCacheEXT])
-
-is_consumed(spec::SpecHandle) = spec ∈ consumed_handles
+is_consumed(spec::SpecHandle) = name(spec) ∈ (:VkShaderModule, :VkPipelineCache, :VkValidationCacheEXT)
 is_consumed(name::Symbol) = is_consumed(handle_by_name(name))
 is_consumed(spec::Union{SpecFuncParam,SpecStructMember}) = is_consumed(spec.type)
 

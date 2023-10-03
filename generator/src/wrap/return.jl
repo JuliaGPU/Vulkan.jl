@@ -41,7 +41,7 @@ function _wrap_implicit_return(return_param::SpecFuncParam, next_types = nothing
 
         # pointer to a unique object
         GuardBy(is_data_with_retrievable_size) => begin
-            @assert has_length(p)
+            @assert !isnothing(p.len)
             size = len(p)
             @assert is_size(size)
             :($(size.name)[], $(p.name))
