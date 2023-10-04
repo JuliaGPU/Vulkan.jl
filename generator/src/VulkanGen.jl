@@ -24,7 +24,7 @@ using Pkg: project
                   $(SIGNATURES)
                   """
 
-const api = VulkanAPI(project().version)
+const api = VulkanAPI(project().version, include_video_api = false)
 
 include("types.jl")
 include("exprs.jl")

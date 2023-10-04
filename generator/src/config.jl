@@ -15,7 +15,7 @@ end
 include_provisional_exts(config::WrapperConfig) = config.include_provisional_exts || PLATFORM_PROVISIONAL in config.include_platforms
 
 function extensions(config::WrapperConfig)
-    exts = filter(x -> x.is_provisional && include_provisional_exts(config) || x.platform in config.include_platforms || x.platform == PLATFORM_NONE && config.wrap_core, filter(x -> !x.is_disabled, api.extensions))
+    exts = filter(x -> x.is_provisional && include_provisional_exts(config) || x.platform in config.include_platforms || x.platform == PLATFORM_NONE && config.wrap_core, filter(x -> EXTENSION_SUPPORT_VULKAN in x.support, api.extensions))
 end
 
 function _filter_specs(specs, extensions, wrap_core)
