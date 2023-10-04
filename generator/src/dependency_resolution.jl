@@ -1,4 +1,4 @@
-const known_dependencies = [:FunctionPtr, :RefCounter]
+const known_dependencies = Set([:FunctionPtr, :RefCounter, :UInt8, :UInt16, :UInt32, :UInt64, :UInt, :Int8, :Int16, :Int32, :Int64, :Int, :Float16, :Float32, :Float64, :String, :Cstring, :VersionNumber, :Any, :Cvoid, :Bool])
 
 function resolve_type(type)
     if type isa Symbol
@@ -25,13 +25,13 @@ function raw_dependencies(ex)
         :struct => begin
             # handle structs wrapped with @struct_hash_equal
             p = haskey(p, :macro) ? deconstruct(p[:decl]) : p
-            field_deps.(p[:fields])
+            [dep for dep in field_deps.(p[:fields]) if isa(dep, Symbol)]
         end
-        :function => vcat(map.(Ref(@λ(begin
-            :($arg::$type) => inner_type(type)
-            :(::$type) => inner_type(type)
+        :function => foldl((x, y) -> isnothing(y) ? x : append!(x, y), map(@λ(begin
+            :($arg::$type) => filter(x -> isa(x, Symbol), @something(inner_type(type), return nothing))
+            :(::$type) => filter(x -> isa(x, Symbol), @something(inner_type(type), return nothing))
             arg => nothing
-        end)), [p[:args], p[:kwargs]])...)
+        end), [p[:args]; p[:kwargs]]); init = Symbol[])
         :const => p[:value] isa Symbol ? [p[:value]] : Symbol[]
         :enum => [p[:type]]
         :doc => raw_dependencies(p[:ex])
@@ -42,14 +42,12 @@ function dependencies(ex)
     deps = raw_dependencies(ex)
     filter!.(
         [
+            x -> x isa Symbol,
             x -> !isalias(x, api.aliases),
             x -> !startswith(string(x), r"(?:Vk|VK_|StdVideo)"),
             !is_vulkan_type,
             !in(known_dependencies),
             !in(extension_types),
-            !in(Base.names(Core)),
-            !in(Base.names(Base)),
-            x -> x isa Symbol,
         ],
         Ref(deps),
     )

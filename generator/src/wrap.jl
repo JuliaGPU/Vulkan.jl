@@ -242,7 +242,7 @@ function VulkanWrapper(config::WrapperConfig)
         end
     end
 
-    parent_overloads = Parent.(filter(has_parent, handles))
+    parent_overloads = Parent.(filter(x -> !isnothing(x.spec.parent), handles))
 
     stypes = StructureType.(filter(x -> haskey(api.structure_types, x.name), f(api.structs)))
     hl_type_mappings = [HLTypeMapping.(f(api.structs)); HLTypeMapping.(f(api.unions))]
@@ -267,14 +267,14 @@ function VulkanWrapper(config::WrapperConfig)
     ]
 
     aliases = AliasDeclaration[]
-    for (source, target) in collect(api.aliases.dict)
+    for (source, target) in pairs(api.aliases.dict)
         startswith(string(target), "vk") && continue
         al = AliasDeclaration(source => target)
         al.target in exported_symbols && push!(aliases, al)
     end
     function_aliases = Expr[]
     functions = f(api.functions)
-    for (source, target) in collect(api.aliases.dict)
+    for (source, target) in pairs(api.aliases.dict)
         al = AliasDeclaration(source => target)
         startswith(string(source), "vk") || continue
         f = api.functions[target]
