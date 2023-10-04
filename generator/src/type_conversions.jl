@@ -1,7 +1,7 @@
 function hl_type(spec::Spec)
     @match s = spec begin
         if s.name == :pNext end => :Any
-        GuardBy(is_version) => :VersionNumber
+        if is_version(s, api.constants) end => :VersionNumber
         GuardBy(is_arr) => begin
             T = hl_type(ptr_type(s.type))
             :(Vector{$T})
@@ -23,15 +23,15 @@ function hl_type(type)
             end
             :(NTuple{$_N,$(hl_type(T))})
         end
-        GuardBy(in([spec_structs.name; spec_unions.name])) => struct_name(t, true)
-        GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
+        GuardBy(in([api.structs.name; api.unions.name])) => struct_name(t, true)
+        GuardBy(in(api.handles.name)) => remove_vk_prefix(t)
         GuardBy(is_fn_ptr) => :FunctionPtr
         :(Ptr{$T}) => hl_type(T)
         GuardBy(is_flag_bitmask) => bitmask_flag_type(t)
-        GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(t).bitmask)
-        end => bitmask_flag_type(flag_by_name(t).bitmask)
-        GuardBy(in(spec_constants.name)) => follow_constant(t)
-        GuardBy(in(spec_enums.name)) => enum_type(t)
+        GuardBy(in(api.flags.name)) && if !isnothing(api.flags[t].bitmask)
+        end => bitmask_flag_type(api.flags[t].bitmask)
+        GuardBy(in(api.constants.name)) => follow_constant(t, api.constants)
+        GuardBy(in(api.enums.name)) => enum_type(t)
         GuardBy(is_vulkan_type) => remove_vk_prefix(t)
         GuardBy(is_intermediate) => Symbol(string(t)[2:end])
         _ => t
@@ -53,13 +53,13 @@ function idiomatic_julia_type(type)
         :Cstring => :String
         :VkBool32 => :Bool
         :(Ptr{$pt}) => idiomatic_julia_type(pt)
-        GuardBy(in([spec_structs.name; spec_unions.name])) => struct_name(t)
-        GuardBy(in(spec_handles.name)) => remove_vk_prefix(t)
-        GuardBy(in(spec_enums.name)) => enum_type(t)
+        GuardBy(in([api.structs.name; api.unions.name])) => struct_name(t)
+        GuardBy(in(api.handles.name)) => remove_vk_prefix(t)
+        GuardBy(in(api.enums.name)) => enum_type(t)
         GuardBy(is_flag_bitmask) => bitmask_flag_type(t)
-        GuardBy(in(spec_flags.name)) && if !isnothing(flag_by_name(t).bitmask)
-        end => bitmask_flag_type(flag_by_name(t).bitmask)
-        GuardBy(in(spec_constants.name)) => follow_constant(t)
+        GuardBy(in(api.flags.name)) && if !isnothing(api.flags[t].bitmask)
+        end => bitmask_flag_type(api.flags[t].bitmask)
+        GuardBy(in(api.constants.name)) => follow_constant(t, api.constants)
         _ => t
     end
 end
@@ -69,7 +69,7 @@ Return a new type easier to deal with.
 """
 function idiomatic_julia_type(spec::Spec)
     @match s = spec begin
-        GuardBy(is_version) => :VersionNumber
+        if is_version(s, api.constants) end => :VersionNumber
         GuardBy(is_arr) => :(Vector{$(idiomatic_julia_type(ptr_type(s.type)))})
         GuardBy(is_data) => :(Ptr{Cvoid})
         _ => idiomatic_julia_type(s.type)

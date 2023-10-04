@@ -2,7 +2,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
 
 @testset "Generated documentation" begin
     @testset "Low-level structs" begin
-        test_doc(StructDefinition{false}(struct_by_name(:VkExtent2D)),
+        test_doc(StructDefinition{false}(api.structs[:VkExtent2D]),
             """
             Intermediate wrapper for VkExtent2D.
 
@@ -11,7 +11,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
         )
 
         test_doc(
-            Constructor(StructDefinition{false}(struct_by_name(:VkExtent2D))),
+            Constructor(StructDefinition{false}(api.structs[:VkExtent2D])),
             """
             Arguments:
             - `width::UInt32`
@@ -22,7 +22,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
         )
 
         test_doc(
-            Constructor(StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo))),
+            Constructor(StructDefinition{false}(api.structs[:VkInstanceCreateInfo])),
             """
             Arguments:
             - `enabled_layer_names::Vector{String}`
@@ -36,7 +36,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
         )
 
         test_doc(
-            Constructor(StructDefinition{false}(struct_by_name(:VkSubmitInfo2))),
+            Constructor(StructDefinition{false}(api.structs[:VkSubmitInfo2])),
             """
             Arguments:
             - `wait_semaphore_infos::Vector{_SemaphoreSubmitInfo}`
@@ -51,7 +51,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
     end
 
     @testset "High-level structs" begin
-        test_doc(StructDefinition{true}(struct_by_name(:VkInstanceCreateInfo)),
+        test_doc(StructDefinition{true}(api.structs[:VkInstanceCreateInfo]),
             """
             High-level wrapper for VkInstanceCreateInfo.
 
@@ -60,7 +60,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
         )
 
         test_doc(
-            Constructor(StructDefinition{true}(struct_by_name(:VkInstanceCreateInfo))),
+            Constructor(StructDefinition{true}(api.structs[:VkInstanceCreateInfo])),
             """
             Arguments:
             - `enabled_layer_names::Vector{String}`
@@ -74,7 +74,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
         )
 
         test_doc(
-            APIFunction(create_func(:vkCreateInstance), false),
+            APIFunction(api.constructors[:vkCreateInstance], false),
             """
             Return codes:
             - `ERROR_OUT_OF_HOST_MEMORY`
@@ -100,7 +100,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
     @testset "API functions" begin
         @testset "Intermediate functions" begin
             test_doc(
-                APIFunction(func_by_name(:vkEnumerateInstanceExtensionProperties), false),
+                APIFunction(api.functions[:vkEnumerateInstanceExtensionProperties], false),
                 """
                 Return codes:
                 - `ERROR_OUT_OF_HOST_MEMORY`
@@ -115,7 +115,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             )
 
             test_doc(
-                APIFunction(func_by_name(:vkDestroyDevice), false),
+                APIFunction(api.functions[:vkDestroyDevice], false),
                 """
                 Arguments:
                 - `device::Device` (externsync)
@@ -126,7 +126,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             )
 
             test_doc(
-                APIFunction(func_by_name(:vkGetPipelineCacheData), false),
+                APIFunction(api.functions[:vkGetPipelineCacheData], false),
                 """
                 Return codes:
                 - `ERROR_OUT_OF_HOST_MEMORY`
@@ -144,7 +144,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             )
 
             test_doc(
-                APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false),
+                APIFunction(api.functions[:vkWriteAccelerationStructuresPropertiesKHR], false),
                 """
                 Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
 
@@ -165,7 +165,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             )
 
             test_doc(
-                APIFunction(func_by_name(:vkEnumerateInstanceLayerProperties), false),
+                APIFunction(api.functions[:vkEnumerateInstanceLayerProperties], false),
                 """
                 Return codes:
                 - `ERROR_OUT_OF_HOST_MEMORY`
@@ -178,7 +178,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
 
         @testset "High-level functions" begin
             test_doc(
-                VulkanGen.promote_hl(APIFunction(func_by_name(:vkWriteAccelerationStructuresPropertiesKHR), false)),
+                VulkanGen.promote_hl(APIFunction(api.functions[:vkWriteAccelerationStructuresPropertiesKHR], false)),
                 """
                 Extension: VK\\\\_KHR\\\\_acceleration\\\\_structure
 
@@ -199,7 +199,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             )
 
             test_doc(
-                VulkanGen.promote_hl(APIFunction(func_by_name(:vkEnumerateInstanceLayerProperties), false)),
+                VulkanGen.promote_hl(APIFunction(api.functions[:vkEnumerateInstanceLayerProperties], false)),
                 """
                 Return codes:
                 - `ERROR_OUT_OF_HOST_MEMORY`
@@ -210,7 +210,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             )
 
             test_doc(
-                VulkanGen.promote_hl(APIFunction(func_by_name(:vkAcquireNextImageKHR), false)),
+                VulkanGen.promote_hl(APIFunction(api.functions[:vkAcquireNextImageKHR], false)),
                 """
                 Extension: VK\\\\_KHR\\\\_swapchain
 
@@ -238,7 +238,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             )
 
             test_doc(
-                VulkanGen.promote_hl(APIFunction(func_by_name(:vkGetDescriptorSetLayoutSupport), false)),
+                VulkanGen.promote_hl(APIFunction(api.functions[:vkGetDescriptorSetLayoutSupport], false)),
                 """
                 Arguments:
                 - `device::Device`
@@ -252,7 +252,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
     end
     @testset "Handles" begin
         test_doc(
-            Constructor(HandleDefinition(handle_by_name(:VkInstance)), VulkanGen.promote_hl(APIFunction(create_func(:vkCreateInstance), false))),
+            Constructor(HandleDefinition(api.handles[:VkInstance]), VulkanGen.promote_hl(APIFunction(api.constructors[:vkCreateInstance], false))),
             """
             Arguments:
             - `enabled_layer_names::Vector{String}`
@@ -266,4 +266,4 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             """
         )
     end
-end
+end;

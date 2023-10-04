@@ -14,10 +14,10 @@ end
 
 function dispatch_handle(spec::SpecFunc)
     maybe_handle = !isempty(children(spec)) ? first(children(spec)).type : :nothing
-    if maybe_handle in spec_handles.name
-        handle = handle_by_name(maybe_handle)
+    if maybe_handle in api.handles.name
+        handle = api.handles[maybe_handle]
         handle_id = wrap_identifier(handle)
-        hierarchy = parent_hierarchy(handle)
+        hierarchy = parent_hierarchy(handle, api.handles)
         if handle.name == :VkDevice || handle.name == :VkInstance
             # to avoid name conflicts
             handle_id
@@ -116,7 +116,7 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
 
         if spec.type == FTYPE_QUERY && length(queried_params) == 1 && begin
                 t = ptr_type(only(queried_params).type)
-                is_vulkan_type(t) && !in(t, spec_handles.name) && any(Base.Fix1(in, t), spec_structs.extends)
+                is_vulkan_type(t) && !in(t, api.handles.name) && any(Base.Fix1(in, t), api.structs.extends)
             end
 
             param = only(queried_params)

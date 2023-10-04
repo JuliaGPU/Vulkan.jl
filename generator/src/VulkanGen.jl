@@ -24,9 +24,7 @@ using Pkg: project
                   $(SIGNATURES)
                   """
 
-const VULKAN_API = Ref{VulkanAPI}()
-
-__init__() = VULKAN_API[] = VulkanAPI(project().version)
+const api = VulkanAPI(project().version)
 
 include("types.jl")
 include("exprs.jl")
@@ -106,6 +104,6 @@ export
   Parent,
   exports,
 
-  VULKAN_API
+  api
 
 end # module VulkanGen

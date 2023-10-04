@@ -4,11 +4,11 @@ wrap_return(ex, type, jtype, next_types = nothing) = @match t = type begin
     GuardBy(is_opaque_pointer) => ex
 
     # Call handle constructor.
-    GuardBy(in(spec_handles.name)) => :($(remove_vk_prefix(t))($ex))
+    GuardBy(in(api.handles.name)) => :($(remove_vk_prefix(t))($ex))
     # Don't change enumeration variables since they won't be wrapped under a new name
-    GuardBy(in(spec_enums.name)) => ex
+    GuardBy(in(api.enums.name)) => ex
     # Vulkan and idiomatic Julia types are the same (up to aliases).
-    if is_fn_ptr(type) || follow_constant(type) == jtype || innermost_type(type) ∈ spec_flags.name
+    if is_fn_ptr(type) || follow_constant(type, api.constants) == jtype || innermost_type(type) ∈ api.flags.name
     end => ex
     # Fall back to the from_vk function for conversion.
     _ => isnothing(next_types) ? :(from_vk($jtype, $ex)) : :(from_vk($jtype, $ex, $next_types))
@@ -30,7 +30,7 @@ They need to be converted by the wrapper to their wrapping type.
 function _wrap_implicit_return(return_param::SpecFuncParam, next_types = nothing; with_func_ptr = false)
     p = return_param
     @assert is_ptr(p.type) "Invalid core type for an implicit return. Expected $(p.type) <: Ptr"
-    pt = follow_alias(ptr_type(p.type))
+    pt = follow_alias(ptr_type(p.type), api.aliases)
     ex = @match p begin
 
         # array pointer
@@ -50,8 +50,8 @@ function _wrap_implicit_return(return_param::SpecFuncParam, next_types = nothing
     end
 
     @match p begin
-        if pt ∈ spec_handles.name
-        end => wrap_implicit_handle_return(parent_spec(return_param), handle_by_name(pt), ex, with_func_ptr)
+        if pt ∈ api.handles.name
+        end => wrap_implicit_handle_return(return_param.parent, api.handles[pt], ex, with_func_ptr)
         _ => ex
     end
 end
@@ -81,11 +81,11 @@ end
 
 function wrap_implicit_handle_return(spec::SpecFunc, handle::SpecHandle, ex::Expr, with_func_ptr)
     destroy = spec.type ≠ FTYPE_QUERY
-    args = @match parent_spec(handle) begin
+    args = @match handle.parent begin
         ::Nothing => (handle, ex)
-        p::SpecHandle => @match spec.type begin
-            &FTYPE_CREATE || &FTYPE_ALLOCATE => (handle, ex, p, retrieve_parent_ex(p, create_func(spec)))
-            _ => (handle, ex, p, retrieve_parent_ex(p, spec)::Symbol)
+        name::Symbol && Do(parent = api.handles[name]) => @match spec.type begin
+            &FTYPE_CREATE || &FTYPE_ALLOCATE => (handle, ex, parent, retrieve_parent_ex(parent, api.constructors[spec]))
+            _ => (handle, ex, parent, retrieve_parent_ex(parent, spec)::Symbol)
         end
     end
 

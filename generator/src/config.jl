@@ -15,12 +15,12 @@ end
 include_provisional_exts(config::WrapperConfig) = config.include_provisional_exts || PLATFORM_PROVISIONAL in config.include_platforms
 
 function extensions(config::WrapperConfig)
-    exts = filter(x -> x.is_provisional && include_provisional_exts(config) || x.platform in config.include_platforms || x.platform == PLATFORM_NONE && config.wrap_core, spec_extensions_supported)
+    exts = filter(x -> x.is_provisional && include_provisional_exts(config) || x.platform in config.include_platforms || x.platform == PLATFORM_NONE && config.wrap_core, filter(x -> !x.is_disabled, api.extensions))
 end
 
 function _filter_specs(specs, extensions, wrap_core)
     filter(specs) do spec
-        ext = extension(spec)
+        ext = get(api.extensions, spec, nothing)
         isnothing(ext) && wrap_core || ext in extensions
     end
 end

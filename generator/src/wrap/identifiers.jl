@@ -15,7 +15,7 @@ function wrap_identifier(spec::Union{SpecFuncParam,SpecStructMember})
     # handle the case where two identifiers end up being the same
     # issue caused by VkAccelerationStructureBuildGeometryInfoKHR
     # which has both pGeometries and ppGeometries
-    siblings = children(parent_spec(spec))
+    siblings = children(spec.parent)
     id = wrap_identifier(spec.name)
     ids = wrap_identifier.(siblings.name)
     if count(==(id), ids) == 2
@@ -33,25 +33,23 @@ end
 function wrap_identifier(spec::SpecHandle)
     # try to get an id from an existing function parameter
     spec.name == :VkDeferredOperationKHR && return :operation
-    cfs = create_funcs(spec)
+    cfs = api.constructors[spec]
     id = nothing
     if !isempty(cfs)
         for cf in cfs
             id = wrap_identifier(spec, first(cfs).func)
-            !isnothing(id) && break
-        end
-    end
-    if isnothing(id)
-        for f ∈ spec_funcs
-            id = wrap_identifier(spec, f)
             !isnothing(id) && return id
         end
-        wrap_identifier(remove_vk_prefix(spec.name))
     end
+    for f in api.functions
+        id = wrap_identifier(spec, f)
+        !isnothing(id) && return id
+    end
+    wrap_identifier(remove_vk_prefix(spec.name))
 end
 
 function wrap_identifier(spec::SpecHandle, func::SpecFunc)
-    for param ∈ children(func)
+    for param in func
         if spec.name == param.type
             return wrap_identifier(param)
         end
@@ -60,7 +58,7 @@ function wrap_identifier(spec::SpecHandle, func::SpecFunc)
 end
 
 function struct_name(sym::Symbol, is_high_level = false)
-    spec = @something(struct_by_name(sym), union_by_name(sym), handle_by_name(sym))
+    spec = @something(get(api.structs, sym, nothing), get(api.unions, sym, nothing), api.handles[sym])
     struct_name(spec, is_high_level)
 end
 

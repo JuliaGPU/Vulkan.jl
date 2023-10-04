@@ -65,7 +65,7 @@ api_doc(::Nothing) = ""
 
 extension_doc(::Nothing) = ""
 function extension_doc(spec)
-    ext = extension(spec)
+    ext = get(api.extensions, spec, nothing)
     isnothing(ext) && return ""
     string("\n\n", "Extension: ", replace(string(ext.name), '_' => "\\\\_"))
 end

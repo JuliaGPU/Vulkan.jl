@@ -6,9 +6,6 @@ test_ex(x, y) = @test prettify(x) == prettify(y)
 test_ex(x::AbstractArray, y::AbstractArray) = foreach(test_ex, x, y)
 test_ex(x::WrapperNode, y) = @test prettify(to_expr(x)) == prettify(y)
 
-test(T, f, name, ex) = test_ex(T(f(name)), ex)
-test(T, arg, ex) = test(T, identity, arg, ex)
-
 @testset "VulkanGen.jl" begin
   @testset "Wrapper utilities" begin
     include("utilities/exprs.jl")
@@ -40,6 +37,4 @@ test(T, arg, ex) = test(T, identity, arg, ex)
     include("codegen/aliases.jl")
     include("codegen/docs.jl")
   end
-end
-
 end;

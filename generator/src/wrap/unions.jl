@@ -36,11 +36,11 @@ function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
 
     map(zip(spec.types, sig_types, spec.fields)) do (type, sig_type, field)
         var = wrap_identifier(field)
-        call = if type in spec_unions.name
+        call = if type in api.unions.name
             :($var.vks)
-        elseif HL && type in spec_structs.name
+        elseif HL && type in api.structs.name
             :(($(struct_name(type))($var)).vks)
-        elseif type in spec_structs.name
+        elseif type in api.structs.name
             :($var.vks)
         else
             var

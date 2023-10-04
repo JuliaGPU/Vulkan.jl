@@ -1,5 +1,5 @@
 function retrieve_length(spec)
-    chain = length_chain(spec, spec.len)
+    chain = length_chain(spec.parent, spec.len, api.structs)
     @match length(chain) begin
         1 => vk_call(first(chain))
         GuardBy(>(1)) =>

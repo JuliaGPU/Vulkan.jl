@@ -1,5 +1,5 @@
 @testset "Enums" begin
-    test(EnumDefinition, enum_by_name, :VkAttachmentLoadOp, :(
+    test_ex(EnumDefinition(api.enums[:VkAttachmentLoadOp]), :(
         @cenum AttachmentLoadOp::UInt32 begin
             ATTACHMENT_LOAD_OP_LOAD = 0
             ATTACHMENT_LOAD_OP_CLEAR = 1
@@ -8,7 +8,7 @@
         end
     ))
 
-    test(EnumDefinition, enum_by_name, :VkResult, :(
+    test_ex(EnumDefinition(api.enums[:VkResult]), :(
         @cenum Result::Int32 begin
             SUCCESS = 0
             NOT_READY = 1
@@ -51,9 +51,9 @@
         end
     ))
 
-    test(EnumDefinition, enum_by_name, :VkPipelineCacheHeaderVersion, :(
+    test_ex(EnumDefinition(api.enums[:VkPipelineCacheHeaderVersion]), :(
         @cenum PipelineCacheHeaderVersion::UInt32 begin
             PIPELINE_CACHE_HEADER_VERSION_ONE = 1
     end
     ))
-end
+end;

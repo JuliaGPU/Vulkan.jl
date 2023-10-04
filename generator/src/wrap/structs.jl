@@ -15,8 +15,8 @@ function StructDefinition{false}(spec::SpecStruct)
 end
 
 function Constructor(def::StructDefinition{false})
-    spec = def.spec
-    cconverted_members = getindex(children(spec), findall(is_semantic_ptr, children(spec).type))
+    (; spec) = def
+    cconverted_members = spec[findall(is_semantic_ptr, spec.members.type)]
     cconverted_ids = map(wrap_identifier, cconverted_members)
     p = Dict(
         :category => :function,
@@ -32,13 +32,13 @@ function Constructor(def::StructDefinition{false})
                 )...
             )
             deps = Any[$((cconverted_ids)...)]
-            vks = $(spec.name)($(map(vk_call, children(spec))...))
+            vks = $(spec.name)($(map(vk_call, spec)...))
             $(name(def))(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end
     else
-        p[:body] = :($(name(def))($(spec.name)($(map(vk_call, children(spec))...)), $(wrap_identifier.(parent_handles(spec))...)))
+        p[:body] = :($(name(def))($(spec.name)($(map(vk_call, spec)...)), $(wrap_identifier.(parent_handles(spec))...)))
     end
-    potential_args = filter(x -> x.type ≠ :VkStructureType, children(spec))
+    potential_args = filter(x -> x.type ≠ :VkStructureType, spec)
     add_func_args!(p, spec, potential_args)
     Constructor(p, def, def.spec)
 end
@@ -189,13 +189,13 @@ function embeds_sentinel(member::SpecStructMember)
     end
 
     @match member.type begin
-        GuardBy(in(spec_enums.name)) || GuardBy(in(spec_bitmasks.name)) || GuardBy(is_flag) => true
+        GuardBy(in(api.enums.name)) || GuardBy(in(api.bitmasks.name)) || GuardBy(is_flag) => true
         _ => false
     end
 end
 
 function StructureType(spec::SpecStruct)
-    stype = structure_types[spec.name]
+    stype = api.structure_types[spec.name]
     types = [spec.name, struct_name(spec.name), struct_name(spec.name, true)]
     ex = :(structure_type(@nospecialize(_::Union{$((:(Type{$T}) for T in types)...)})) = $stype)
     StructureType(spec, ex)

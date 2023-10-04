@@ -1,6 +1,6 @@
 @testset "High-level wrapper" begin
     @testset "Generated structs" begin
-        test(StructDefinition{true}, struct_by_name, :VkPhysicalDeviceProperties, :(
+        test_ex(StructDefinition{true}(api.structs[:VkPhysicalDeviceProperties]), :(
             @struct_hash_equal struct PhysicalDeviceProperties <: HighLevelStruct
                 api_version::VersionNumber
                 driver_version::VersionNumber
@@ -14,14 +14,14 @@
             end
         ))
 
-        test(StructDefinition{true}, struct_by_name, :VkExternalBufferProperties, :(
+        test_ex(StructDefinition{true}(api.structs[:VkExternalBufferProperties]), :(
             @struct_hash_equal struct ExternalBufferProperties <: HighLevelStruct
                 next::Any
                 external_memory_properties::ExternalMemoryProperties
             end
         ))
 
-        test(StructDefinition{true}, struct_by_name, :VkPipelineExecutableInternalRepresentationKHR, :(
+        test_ex(StructDefinition{true}(api.structs[:VkPipelineExecutableInternalRepresentationKHR]), :(
             @struct_hash_equal struct PipelineExecutableInternalRepresentationKHR <: HighLevelStruct
                 next::Any
                 name::String
@@ -32,7 +32,7 @@
             end
         ))
 
-        test(StructDefinition{true}, struct_by_name, :VkApplicationInfo, :(
+        test_ex(StructDefinition{true}(api.structs[:VkApplicationInfo]), :(
             @struct_hash_equal struct ApplicationInfo <: HighLevelStruct
                 next::Any
                 application_name::String
@@ -43,7 +43,7 @@
             end
         ))
 
-        test(StructDefinition{true}, struct_by_name, :VkInstanceCreateInfo, :(
+        test_ex(StructDefinition{true}(api.structs[:VkInstanceCreateInfo]), :(
             @struct_hash_equal struct InstanceCreateInfo <: HighLevelStruct
                 next::Any
                 flags::UInt32
@@ -53,7 +53,7 @@
             end
         ))
 
-        test(StructDefinition{true}, struct_by_name, :VkXcbSurfaceCreateInfoKHR, :(
+        test_ex(StructDefinition{true}(api.structs[:VkXcbSurfaceCreateInfoKHR]), :(
             @struct_hash_equal struct XcbSurfaceCreateInfoKHR <: HighLevelStruct
                 next::Any
                 flags::UInt32
@@ -66,8 +66,8 @@
     @testset "Conversion to low-level structs" begin
         test_ex(
             Constructor(
-                StructDefinition{false}(struct_by_name(:VkApplicationInfo)),
-                StructDefinition{true}(struct_by_name(:VkApplicationInfo)),
+                StructDefinition{false}(api.structs[:VkApplicationInfo]),
+                StructDefinition{true}(api.structs[:VkApplicationInfo]),
             ),
             :(
                 _ApplicationInfo(x::ApplicationInfo) = _ApplicationInfo(x.application_version, x.engine_version, x.api_version; x.next, x.application_name, x.engine_name)
@@ -75,8 +75,8 @@
         )
         test_ex(
             Constructor(
-                StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo)),
-                StructDefinition{true}(struct_by_name(:VkInstanceCreateInfo)),
+                StructDefinition{false}(api.structs[:VkInstanceCreateInfo]),
+                StructDefinition{true}(api.structs[:VkInstanceCreateInfo]),
             ),
             :(
                 _InstanceCreateInfo(x::InstanceCreateInfo) = _InstanceCreateInfo(x.enabled_layer_names, x.enabled_extension_names; x.next, x.flags, application_info = convert_nonnull(_ApplicationInfo, x.application_info))
@@ -84,8 +84,8 @@
         )
         test_ex(
             Constructor(
-                StructDefinition{false}(struct_by_name(:VkRenderingAttachmentInfo)),
-                StructDefinition{true}(struct_by_name(:VkRenderingAttachmentInfo)),
+                StructDefinition{false}(api.structs[:VkRenderingAttachmentInfo]),
+                StructDefinition{true}(api.structs[:VkRenderingAttachmentInfo]),
             ),
             :(
                 _RenderingAttachmentInfo(x::RenderingAttachmentInfo) = _RenderingAttachmentInfo(x.image_layout, x.resolve_image_layout, x.load_op, x.store_op, convert_nonnull(_ClearValue, x.clear_value); x.next, x.image_view, x.resolve_mode, x.resolve_image_view)
@@ -94,15 +94,15 @@
     end
 
     @testset "Additional constructor" begin
-        test(Constructor, StructDefinition{true}(StructDefinition{false}(struct_by_name(:VkApplicationInfo))), :(
+        test_ex(Constructor(StructDefinition{true}(StructDefinition{false}(api.structs[:VkApplicationInfo]))), :(
             ApplicationInfo(application_version::VersionNumber, engine_version::VersionNumber, api_version::VersionNumber; next = C_NULL, application_name = "", engine_name = "") = ApplicationInfo(next, application_name, application_version, engine_name, engine_version, api_version)
         ))
     end
 
     @testset "`Core -> High-level constructors`" begin
         function test_constructor_core_to_hl(name, with_next_types, body)
-            spec = struct_by_name(name)
-            def = StructDefinition{true}(struct_by_name(name))
+            spec = api.structs[name]
+            def = StructDefinition{true}(api.structs[name])
             cons = Constructor(def, spec)
             expected = :($(VulkanGen.struct_name(name, true))(x::$name) = $body)
             with_next_types && push!(expected.args[1].args, :(next_types::Type...))
@@ -140,7 +140,7 @@
 
     @testset "`Low-level -> High-level constructors`" begin
         function test_constructor_ll_to_hl(name, ex)
-            s = struct_by_name(name)
+            s = api.structs[name]
             def_hl = StructDefinition{true}(s)
             def_ll = StructDefinition{false}(s)
             c = Constructor(def_hl, def_ll)
@@ -156,4 +156,4 @@
             PhysicalDeviceFeatures(x::_PhysicalDeviceFeatures) = PhysicalDeviceFeatures(x.vks)
         ))
     end
-end
+end;

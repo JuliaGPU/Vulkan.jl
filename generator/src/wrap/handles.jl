@@ -16,7 +16,7 @@ function HandleDefinition(spec::SpecHandle)
     )
 
     if !isnothing(spec.parent)
-        id = wrap_identifier(handle_by_name(spec.parent))
+        id = wrap_identifier(api.handles[spec.parent])
         pdecl = :($id::$(handle_type(spec.parent)))
         insert!(d[:fields], 2, pdecl)
         d[:constructors] = [
@@ -34,7 +34,7 @@ function HandleDefinition(spec::SpecHandle)
 end
 
 function destructor(handle::SpecHandle, with_func_ptr = false)
-    dfs = destroy_funcs(handle)
+    dfs = api.destructors[handle]
     has_destructors = !isempty(dfs)
     if has_destructors
         @assert length(dfs) == 1

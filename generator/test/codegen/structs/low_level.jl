@@ -1,36 +1,36 @@
 @testset "Low-level" begin
     @testset "Definitions" begin
-        test(StructDefinition{false}, struct_by_name, :VkPhysicalDeviceProperties, :(
+        test_ex(StructDefinition{false}(api.structs[:VkPhysicalDeviceProperties]), :(
             struct _PhysicalDeviceProperties <: VulkanStruct{false}
                 vks::VkPhysicalDeviceProperties
             end))
 
-        test(StructDefinition{false}, struct_by_name, :VkApplicationInfo, :(
+        test_ex(StructDefinition{false}(api.structs[:VkApplicationInfo]), :(
             struct _ApplicationInfo <: VulkanStruct{true}
                 vks::VkApplicationInfo
                 deps::Vector{Any}
             end))
 
-        test(StructDefinition{false}, struct_by_name, :VkExtent2D, :(
+        test_ex(StructDefinition{false}(api.structs[:VkExtent2D]), :(
             struct _Extent2D <: VulkanStruct{false}
                 vks::VkExtent2D
             end))
 
-        test(StructDefinition{false}, struct_by_name, :VkExternalBufferProperties, :(
+        test_ex(StructDefinition{false}(api.structs[:VkExternalBufferProperties]), :(
             struct _ExternalBufferProperties <: VulkanStruct{true}
                 vks::VkExternalBufferProperties
                 deps::Vector{Any}
             end
         ))
 
-        test(StructDefinition{false}, struct_by_name, :VkPipelineExecutableInternalRepresentationKHR, :(
+        test_ex(StructDefinition{false}(api.structs[:VkPipelineExecutableInternalRepresentationKHR]), :(
             struct _PipelineExecutableInternalRepresentationKHR <: VulkanStruct{true}
                 vks::VkPipelineExecutableInternalRepresentationKHR
                 deps::Vector{Any}
             end
         ))
 
-        test(StructDefinition{false}, struct_by_name, :VkDescriptorSetAllocateInfo, :(
+        test_ex(StructDefinition{false}(api.structs[:VkDescriptorSetAllocateInfo]), :(
             struct _DescriptorSetAllocateInfo <: VulkanStruct{true}
                 vks::VkDescriptorSetAllocateInfo
                 deps::Vector{Any}
@@ -38,7 +38,7 @@
             end
         ))
 
-        test(StructDefinition{false}, struct_by_name, :VkAccelerationStructureBuildGeometryInfoKHR, :(
+        test_ex(StructDefinition{false}(api.structs[:VkAccelerationStructureBuildGeometryInfoKHR]), :(
             struct _AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
                 vks::VkAccelerationStructureBuildGeometryInfoKHR
                 deps::Vector{Any}
@@ -49,13 +49,13 @@
     end
 
     @testset "Friendly constructors" begin
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkPhysicalDeviceProperties)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkPhysicalDeviceProperties])), :(
             function _PhysicalDeviceProperties(api_version::VersionNumber, driver_version::VersionNumber, vendor_id::Integer, device_id::Integer, device_type::PhysicalDeviceType, device_name::AbstractString, pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, limits::_PhysicalDeviceLimits, sparse_properties::_PhysicalDeviceSparseProperties)
                 _PhysicalDeviceProperties(VkPhysicalDeviceProperties(to_vk(UInt32, api_version), to_vk(UInt32, driver_version), vendor_id, device_id, device_type, device_name, pipeline_cache_uuid, limits.vks, sparse_properties.vks))
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkInstanceCreateInfo)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkInstanceCreateInfo])), :(
             function _InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
@@ -80,13 +80,13 @@
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkSubpassSampleLocationsEXT)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkSubpassSampleLocationsEXT])), :(
             function _SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
                 _SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkDebugUtilsMessengerCreateInfoEXT)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkDebugUtilsMessengerCreateInfoEXT])), :(
             function _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSeverityFlagEXT, message_type::DebugUtilsMessageTypeFlagEXT, pfn_user_callback::FunctionPtr; next = C_NULL, flags = 0, user_data = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 user_data = cconvert(Ptr{Cvoid}, user_data)
@@ -96,7 +96,7 @@
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorSetAllocateInfo)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkDescriptorSetAllocateInfo])), :(
             function _DescriptorSetAllocateInfo(descriptor_pool, set_layouts::AbstractArray; next = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
@@ -106,7 +106,7 @@
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkPipelineShaderStageCreateInfo)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkPipelineShaderStageCreateInfo])), :(
             function _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module, name::AbstractString; next = C_NULL, flags = 0, specialization_info = C_NULL)
                 next = cconvert(Ptr{Cvoid}, next)
                 name = cconvert(Cstring, name)
@@ -117,13 +117,13 @@
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorImageInfo)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkDescriptorImageInfo])), :(
             function _DescriptorImageInfo(sampler, image_view, image_layout::ImageLayout)
                 _DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkDescriptorSetLayoutBinding)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkDescriptorSetLayoutBinding])), :(
             function _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::DescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
                 immutable_samplers = cconvert(Ptr{VkSampler}, immutable_samplers)
                 deps = Any[immutable_samplers]
@@ -132,7 +132,7 @@
             end
         ))
 
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkXcbSurfaceCreateInfoKHR)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkXcbSurfaceCreateInfoKHR])), :(
             function _XcbSurfaceCreateInfoKHR(connection::Ptr{vk.xcb_connection_t}, window::vk.xcb_window_t; next = C_NULL, flags = 0)
                 next = cconvert(Ptr{Cvoid}, next)
                 connection = cconvert(Ptr{vk.xcb_connection_t}, connection)
@@ -144,7 +144,7 @@
     end
 
     @testset "Manual tweaks" begin
-        test(Constructor, StructDefinition{false}(struct_by_name(:VkWriteDescriptorSet)), :(
+        test_ex(Constructor(StructDefinition{false}(api.structs[:VkWriteDescriptorSet])), :(
             function _WriteDescriptorSet(dst_set, dst_binding::Integer, dst_array_element::Integer, descriptor_type::DescriptorType, image_info::AbstractArray, buffer_info::AbstractArray, texel_buffer_view::AbstractArray; next = C_NULL, descriptor_count = max(pointer_length(image_info), pointer_length(buffer_info), pointer_length(texel_buffer_view)))
                 next = cconvert(Ptr{Cvoid}, next)
                 image_info = cconvert(Ptr{VkDescriptorImageInfo}, image_info)
@@ -156,4 +156,4 @@
             end
         ))
     end
-end
+end;

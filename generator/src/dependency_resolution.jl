@@ -42,7 +42,7 @@ function dependencies(ex)
     deps = raw_dependencies(ex)
     filter!.(
         [
-            !isalias,
+            x -> !isalias(x, api.aliases),
             x -> !startswith(string(x), r"(?:Vk|VK_|StdVideo)"),
             !is_vulkan_type,
             !in(known_dependencies),

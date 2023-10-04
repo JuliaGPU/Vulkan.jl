@@ -9,7 +9,7 @@ ntuple_type(ex) = @when :(NTuple{$N,$T}) = ex T
 
 is_ntuple(ex) = !isnothing(ntuple_type(ex))
 
-is_vulkan_type(name) = name ∈ [spec_handles.name; spec_structs.name; spec_unions.name]
+is_vulkan_type(name) = name ∈ [api.handles.name; api.structs.name; api.unions.name]
 
 inner_type(ex) = @when :($T{$(args...)}) = ex map(args) do arg
     @match arg begin
