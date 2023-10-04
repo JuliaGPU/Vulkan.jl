@@ -7620,62 +7620,6 @@ High-level wrapper for VkExtent2D.
     end
 
 """
-High-level wrapper for VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM.
-
-Extension: VK\\_QCOM\\_fragment\\_density\\_map\\_offset
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM <: HighLevelStruct
-        next::Any
-        fragment_density_offset_granularity::Extent2D
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceFragmentDensityMapPropertiesEXT.
-
-Extension: VK\\_EXT\\_fragment\\_density\\_map
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMapPropertiesEXT.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceFragmentDensityMapPropertiesEXT <: HighLevelStruct
-        next::Any
-        min_fragment_density_texel_size::Extent2D
-        max_fragment_density_texel_size::Extent2D
-        fragment_density_invocations::Bool
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceShadingRateImagePropertiesNV.
-
-Extension: VK\\_NV\\_shading\\_rate\\_image
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShadingRateImagePropertiesNV.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceShadingRateImagePropertiesNV <: HighLevelStruct
-        next::Any
-        shading_rate_texel_size::Extent2D
-        shading_rate_palette_size::UInt32
-        shading_rate_max_coarse_samples::UInt32
-    end
-
-"""
-High-level wrapper for VkMultisamplePropertiesEXT.
-
-Extension: VK\\_EXT\\_sample\\_locations
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMultisamplePropertiesEXT.html)
-
-"""
-@struct_hash_equal struct MultisamplePropertiesEXT <: HighLevelStruct
-        next::Any
-        max_sample_location_grid_size::Extent2D
-    end
-
-"""
 High-level wrapper for VkDisplayModeParametersKHR.
 
 Extension: VK\\_KHR\\_display
@@ -7703,6 +7647,62 @@ Extension: VK\\_KHR\\_display
     end
 
 """
+High-level wrapper for VkMultisamplePropertiesEXT.
+
+Extension: VK\\_EXT\\_sample\\_locations
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMultisamplePropertiesEXT.html)
+
+"""
+@struct_hash_equal struct MultisamplePropertiesEXT <: HighLevelStruct
+        next::Any
+        max_sample_location_grid_size::Extent2D
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceShadingRateImagePropertiesNV.
+
+Extension: VK\\_NV\\_shading\\_rate\\_image
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShadingRateImagePropertiesNV.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceShadingRateImagePropertiesNV <: HighLevelStruct
+        next::Any
+        shading_rate_texel_size::Extent2D
+        shading_rate_palette_size::UInt32
+        shading_rate_max_coarse_samples::UInt32
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceFragmentDensityMapPropertiesEXT.
+
+Extension: VK\\_EXT\\_fragment\\_density\\_map
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMapPropertiesEXT.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceFragmentDensityMapPropertiesEXT <: HighLevelStruct
+        next::Any
+        min_fragment_density_texel_size::Extent2D
+        max_fragment_density_texel_size::Extent2D
+        fragment_density_invocations::Bool
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM.
+
+Extension: VK\\_QCOM\\_fragment\\_density\\_map\\_offset
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM <: HighLevelStruct
+        next::Any
+        fragment_density_offset_granularity::Extent2D
+    end
+
+"""
 High-level wrapper for VkOffset3D.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkOffset3D.html)
@@ -7726,16 +7726,91 @@ High-level wrapper for VkOffset2D.
     end
 
 """
-High-level wrapper for VkSubpassFragmentDensityMapOffsetEndInfoQCOM.
+High-level wrapper for VkRect2D.
 
-Extension: VK\\_QCOM\\_fragment\\_density\\_map\\_offset
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassFragmentDensityMapOffsetEndInfoQCOM.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRect2D.html)
 
 """
-@struct_hash_equal struct SubpassFragmentDensityMapOffsetEndInfoQCOM <: HighLevelStruct
+@struct_hash_equal struct Rect2D <: HighLevelStruct
+        offset::Offset2D
+        extent::Extent2D
+    end
+
+"""
+High-level wrapper for VkClearRect.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkClearRect.html)
+
+"""
+@struct_hash_equal struct ClearRect <: HighLevelStruct
+        rect::Rect2D
+        base_array_layer::UInt32
+        layer_count::UInt32
+    end
+
+"""
+High-level wrapper for VkPipelineViewportStateCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportStateCreateInfo.html)
+
+"""
+@struct_hash_equal struct PipelineViewportStateCreateInfo <: HighLevelStruct
         next::Any
-        fragment_density_offsets::Vector{Offset2D}
+        flags::UInt32
+        viewports::OptionalPtr{Vector{Viewport}}
+        scissors::OptionalPtr{Vector{Rect2D}}
+    end
+
+"""
+High-level wrapper for VkDisplayPresentInfoKHR.
+
+Extension: VK\\_KHR\\_display\\_swapchain
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPresentInfoKHR.html)
+
+"""
+@struct_hash_equal struct DisplayPresentInfoKHR <: HighLevelStruct
+        next::Any
+        src_rect::Rect2D
+        dst_rect::Rect2D
+        persistent::Bool
+    end
+
+"""
+High-level wrapper for VkBindImageMemoryDeviceGroupInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html)
+
+"""
+@struct_hash_equal struct BindImageMemoryDeviceGroupInfo <: HighLevelStruct
+        next::Any
+        device_indices::Vector{UInt32}
+        split_instance_bind_regions::Vector{Rect2D}
+    end
+
+"""
+High-level wrapper for VkDeviceGroupRenderPassBeginInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html)
+
+"""
+@struct_hash_equal struct DeviceGroupRenderPassBeginInfo <: HighLevelStruct
+        next::Any
+        device_mask::UInt32
+        device_render_areas::Vector{Rect2D}
+    end
+
+"""
+High-level wrapper for VkPipelineViewportExclusiveScissorStateCreateInfoNV.
+
+Extension: VK\\_NV\\_scissor\\_exclusive
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html)
+
+"""
+@struct_hash_equal struct PipelineViewportExclusiveScissorStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        exclusive_scissors::Vector{Rect2D}
     end
 
 """
@@ -7778,91 +7853,16 @@ Extension: VK\\_KHR\\_incremental\\_present
     end
 
 """
-High-level wrapper for VkRect2D.
+High-level wrapper for VkSubpassFragmentDensityMapOffsetEndInfoQCOM.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRect2D.html)
+Extension: VK\\_QCOM\\_fragment\\_density\\_map\\_offset
 
-"""
-@struct_hash_equal struct Rect2D <: HighLevelStruct
-        offset::Offset2D
-        extent::Extent2D
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassFragmentDensityMapOffsetEndInfoQCOM.html)
 
 """
-High-level wrapper for VkPipelineViewportExclusiveScissorStateCreateInfoNV.
-
-Extension: VK\\_NV\\_scissor\\_exclusive
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html)
-
-"""
-@struct_hash_equal struct PipelineViewportExclusiveScissorStateCreateInfoNV <: HighLevelStruct
+@struct_hash_equal struct SubpassFragmentDensityMapOffsetEndInfoQCOM <: HighLevelStruct
         next::Any
-        exclusive_scissors::Vector{Rect2D}
-    end
-
-"""
-High-level wrapper for VkDeviceGroupRenderPassBeginInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html)
-
-"""
-@struct_hash_equal struct DeviceGroupRenderPassBeginInfo <: HighLevelStruct
-        next::Any
-        device_mask::UInt32
-        device_render_areas::Vector{Rect2D}
-    end
-
-"""
-High-level wrapper for VkBindImageMemoryDeviceGroupInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html)
-
-"""
-@struct_hash_equal struct BindImageMemoryDeviceGroupInfo <: HighLevelStruct
-        next::Any
-        device_indices::Vector{UInt32}
-        split_instance_bind_regions::Vector{Rect2D}
-    end
-
-"""
-High-level wrapper for VkDisplayPresentInfoKHR.
-
-Extension: VK\\_KHR\\_display\\_swapchain
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPresentInfoKHR.html)
-
-"""
-@struct_hash_equal struct DisplayPresentInfoKHR <: HighLevelStruct
-        next::Any
-        src_rect::Rect2D
-        dst_rect::Rect2D
-        persistent::Bool
-    end
-
-"""
-High-level wrapper for VkPipelineViewportStateCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportStateCreateInfo.html)
-
-"""
-@struct_hash_equal struct PipelineViewportStateCreateInfo <: HighLevelStruct
-        next::Any
-        flags::UInt32
-        viewports::OptionalPtr{Vector{Viewport}}
-        scissors::OptionalPtr{Vector{Rect2D}}
-    end
-
-"""
-High-level wrapper for VkClearRect.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkClearRect.html)
-
-"""
-@struct_hash_equal struct ClearRect <: HighLevelStruct
-        rect::Rect2D
-        base_array_layer::UInt32
-        layer_count::UInt32
+        fragment_density_offsets::Vector{Offset2D}
     end
 
 """
@@ -14633,135 +14633,6 @@ mutable struct Instance <: Handle
     Instance(vks::VkInstance, refcount::RefCounter) = new(vks, refcount, undef)
 end
 
-mutable struct DebugUtilsMessengerEXT <: Handle
-    vks::VkDebugUtilsMessengerEXT
-    instance::Instance
-    refcount::RefCounter
-    destructor
-    DebugUtilsMessengerEXT(vks::VkDebugUtilsMessengerEXT, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
-end
-
-mutable struct DebugReportCallbackEXT <: Handle
-    vks::VkDebugReportCallbackEXT
-    instance::Instance
-    refcount::RefCounter
-    destructor
-    DebugReportCallbackEXT(vks::VkDebugReportCallbackEXT, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
-end
-
-mutable struct SurfaceKHR <: Handle
-    vks::VkSurfaceKHR
-    instance::Instance
-    refcount::RefCounter
-    destructor
-    SurfaceKHR(vks::VkSurfaceKHR, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
-end
-
-"""
-High-level wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
-
-Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceSurfaceInfo2KHR <: HighLevelStruct
-        next::Any
-        surface::OptionalPtr{SurfaceKHR}
-    end
-
-"""
-Intermediate wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
-
-Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html)
-
-"""
-struct _PhysicalDeviceSurfaceInfo2KHR <: VulkanStruct{true}
-    vks::VkPhysicalDeviceSurfaceInfo2KHR
-    deps::Vector{Any}
-    surface::OptionalPtr{SurfaceKHR}
-end
-
-mutable struct SwapchainKHR <: Handle
-    vks::VkSwapchainKHR
-    surface::SurfaceKHR
-    refcount::RefCounter
-    destructor
-    SwapchainKHR(vks::VkSwapchainKHR, surface::SurfaceKHR, refcount::RefCounter) = new(vks, surface, refcount, undef)
-end
-
-"""
-High-level wrapper for VkBindImageMemorySwapchainInfoKHR.
-
-Extension: VK\\_KHR\\_swapchain
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html)
-
-"""
-@struct_hash_equal struct BindImageMemorySwapchainInfoKHR <: HighLevelStruct
-        next::Any
-        swapchain::SwapchainKHR
-        image_index::UInt32
-    end
-
-"""
-High-level wrapper for VkImageSwapchainCreateInfoKHR.
-
-Extension: VK\\_KHR\\_swapchain
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSwapchainCreateInfoKHR.html)
-
-"""
-@struct_hash_equal struct ImageSwapchainCreateInfoKHR <: HighLevelStruct
-        next::Any
-        swapchain::OptionalPtr{SwapchainKHR}
-    end
-
-"""
-Intermediate wrapper for VkBindImageMemorySwapchainInfoKHR.
-
-Extension: VK\\_KHR\\_swapchain
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html)
-
-"""
-struct _BindImageMemorySwapchainInfoKHR <: VulkanStruct{true}
-    vks::VkBindImageMemorySwapchainInfoKHR
-    deps::Vector{Any}
-    swapchain::SwapchainKHR
-end
-
-"""
-Intermediate wrapper for VkImageSwapchainCreateInfoKHR.
-
-Extension: VK\\_KHR\\_swapchain
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSwapchainCreateInfoKHR.html)
-
-"""
-struct _ImageSwapchainCreateInfoKHR <: VulkanStruct{true}
-    vks::VkImageSwapchainCreateInfoKHR
-    deps::Vector{Any}
-    swapchain::OptionalPtr{SwapchainKHR}
-end
-
-"""
-Intermediate wrapper for VkSwapchainCreateInfoKHR.
-
-Extension: VK\\_KHR\\_swapchain
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateInfoKHR.html)
-
-"""
-struct _SwapchainCreateInfoKHR <: VulkanStruct{true}
-    vks::VkSwapchainCreateInfoKHR
-    deps::Vector{Any}
-    surface::SurfaceKHR
-    old_swapchain::OptionalPtr{SwapchainKHR}
-end
-
 mutable struct PhysicalDevice <: Handle
     vks::VkPhysicalDevice
     instance::Instance
@@ -14770,28 +14641,1877 @@ mutable struct PhysicalDevice <: Handle
     PhysicalDevice(vks::VkPhysicalDevice, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
 end
 
-"""
-High-level wrapper for VkDeviceGroupDeviceCreateInfo.
+mutable struct Device <: Handle
+    vks::VkDevice
+    physical_device::PhysicalDevice
+    refcount::RefCounter
+    destructor
+    Device(vks::VkDevice, physical_device::PhysicalDevice, refcount::RefCounter) = new(vks, physical_device, refcount, undef)
+end
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html)
+mutable struct Queue <: Handle
+    vks::VkQueue
+    device::Device
+    refcount::RefCounter
+    destructor
+    Queue(vks::VkQueue, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct DeviceMemory <: Handle
+    vks::VkDeviceMemory
+    device::Device
+    refcount::RefCounter
+    destructor
+    DeviceMemory(vks::VkDeviceMemory, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
 
 """
-@struct_hash_equal struct DeviceGroupDeviceCreateInfo <: HighLevelStruct
+Intermediate wrapper for VkMappedMemoryRange.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMappedMemoryRange.html)
+
+"""
+struct _MappedMemoryRange <: VulkanStruct{true}
+    vks::VkMappedMemoryRange
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+"""
+Intermediate wrapper for VkSparseMemoryBind.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseMemoryBind.html)
+
+"""
+struct _SparseMemoryBind <: VulkanStruct{false}
+    vks::VkSparseMemoryBind
+    memory::OptionalPtr{DeviceMemory}
+end
+
+"""
+Intermediate wrapper for VkSparseImageMemoryBind.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryBind.html)
+
+"""
+struct _SparseImageMemoryBind <: VulkanStruct{false}
+    vks::VkSparseImageMemoryBind
+    memory::OptionalPtr{DeviceMemory}
+end
+
+"""
+Intermediate wrapper for VkMemoryGetWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_memory\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetWin32HandleInfoKHR.html)
+
+"""
+struct _MemoryGetWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkMemoryGetWin32HandleInfoKHR
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+"""
+Intermediate wrapper for VkMemoryGetFdInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_memory\\_fd
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetFdInfoKHR.html)
+
+"""
+struct _MemoryGetFdInfoKHR <: VulkanStruct{true}
+    vks::VkMemoryGetFdInfoKHR
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+"""
+Intermediate wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html)
+
+"""
+struct _DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct{true}
+    vks::VkDeviceMemoryOpaqueCaptureAddressInfo
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+"""
+Intermediate wrapper for VkMemoryGetRemoteAddressInfoNV.
+
+Extension: VK\\_NV\\_external\\_memory\\_rdma
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetRemoteAddressInfoNV.html)
+
+"""
+struct _MemoryGetRemoteAddressInfoNV <: VulkanStruct{true}
+    vks::VkMemoryGetRemoteAddressInfoNV
+    deps::Vector{Any}
+    memory::DeviceMemory
+end
+
+"""
+High-level wrapper for VkMappedMemoryRange.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMappedMemoryRange.html)
+
+"""
+@struct_hash_equal struct MappedMemoryRange <: HighLevelStruct
         next::Any
-        physical_devices::Vector{PhysicalDevice}
+        memory::DeviceMemory
+        offset::UInt64
+        size::UInt64
     end
 
 """
-High-level wrapper for VkPhysicalDeviceGroupProperties.
+High-level wrapper for VkWin32KeyedMutexAcquireReleaseInfoNV.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGroupProperties.html)
+Extension: VK\\_NV\\_win32\\_keyed\\_mutex
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoNV.html)
 
 """
-@struct_hash_equal struct PhysicalDeviceGroupProperties <: HighLevelStruct
+@struct_hash_equal struct Win32KeyedMutexAcquireReleaseInfoNV <: HighLevelStruct
         next::Any
-        physical_device_count::UInt32
-        physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}
-        subset_allocation::Bool
+        acquire_syncs::Vector{DeviceMemory}
+        acquire_keys::Vector{UInt64}
+        acquire_timeout_milliseconds::Vector{UInt32}
+        release_syncs::Vector{DeviceMemory}
+        release_keys::Vector{UInt64}
+    end
+
+"""
+High-level wrapper for VkWin32KeyedMutexAcquireReleaseInfoKHR.
+
+Extension: VK\\_KHR\\_win32\\_keyed\\_mutex
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoKHR.html)
+
+"""
+@struct_hash_equal struct Win32KeyedMutexAcquireReleaseInfoKHR <: HighLevelStruct
+        next::Any
+        acquire_syncs::Vector{DeviceMemory}
+        acquire_keys::Vector{UInt64}
+        acquire_timeouts::Vector{UInt32}
+        release_syncs::Vector{DeviceMemory}
+        release_keys::Vector{UInt64}
+    end
+
+"""
+High-level wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html)
+
+"""
+@struct_hash_equal struct DeviceMemoryOpaqueCaptureAddressInfo <: HighLevelStruct
+        next::Any
+        memory::DeviceMemory
+    end
+
+mutable struct CommandPool <: Handle
+    vks::VkCommandPool
+    device::Device
+    refcount::RefCounter
+    destructor
+    CommandPool(vks::VkCommandPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct CommandBuffer <: Handle
+    vks::VkCommandBuffer
+    command_pool::CommandPool
+    refcount::RefCounter
+    destructor
+    CommandBuffer(vks::VkCommandBuffer, command_pool::CommandPool, refcount::RefCounter) = new(vks, command_pool, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkCommandBufferSubmitInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferSubmitInfo.html)
+
+"""
+struct _CommandBufferSubmitInfo <: VulkanStruct{true}
+    vks::VkCommandBufferSubmitInfo
+    deps::Vector{Any}
+    command_buffer::CommandBuffer
+end
+
+"""
+High-level wrapper for VkCommandBufferSubmitInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferSubmitInfo.html)
+
+"""
+@struct_hash_equal struct CommandBufferSubmitInfo <: HighLevelStruct
+        next::Any
+        command_buffer::CommandBuffer
+        device_mask::UInt32
+    end
+
+"""
+Intermediate wrapper for VkCommandBufferAllocateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferAllocateInfo.html)
+
+"""
+struct _CommandBufferAllocateInfo <: VulkanStruct{true}
+    vks::VkCommandBufferAllocateInfo
+    deps::Vector{Any}
+    command_pool::CommandPool
+end
+
+mutable struct Buffer <: Handle
+    vks::VkBuffer
+    device::Device
+    refcount::RefCounter
+    destructor
+    Buffer(vks::VkBuffer, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkDescriptorBufferInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html)
+
+"""
+struct _DescriptorBufferInfo <: VulkanStruct{false}
+    vks::VkDescriptorBufferInfo
+    buffer::OptionalPtr{Buffer}
+end
+
+"""
+Intermediate wrapper for VkBufferViewCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferViewCreateInfo.html)
+
+"""
+struct _BufferViewCreateInfo <: VulkanStruct{true}
+    vks::VkBufferViewCreateInfo
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkBufferMemoryBarrier.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryBarrier.html)
+
+"""
+struct _BufferMemoryBarrier <: VulkanStruct{true}
+    vks::VkBufferMemoryBarrier
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkSparseBufferMemoryBindInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseBufferMemoryBindInfo.html)
+
+"""
+struct _SparseBufferMemoryBindInfo <: VulkanStruct{true}
+    vks::VkSparseBufferMemoryBindInfo
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkIndirectCommandsStreamNV.
+
+Extension: VK\\_NV\\_device\\_generated\\_commands
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsStreamNV.html)
+
+"""
+struct _IndirectCommandsStreamNV <: VulkanStruct{false}
+    vks::VkIndirectCommandsStreamNV
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkBindBufferMemoryInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryInfo.html)
+
+"""
+struct _BindBufferMemoryInfo <: VulkanStruct{true}
+    vks::VkBindBufferMemoryInfo
+    deps::Vector{Any}
+    buffer::Buffer
+    memory::DeviceMemory
+end
+
+"""
+Intermediate wrapper for VkBufferMemoryRequirementsInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryRequirementsInfo2.html)
+
+"""
+struct _BufferMemoryRequirementsInfo2 <: VulkanStruct{true}
+    vks::VkBufferMemoryRequirementsInfo2
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkConditionalRenderingBeginInfoEXT.
+
+Extension: VK\\_EXT\\_conditional\\_rendering
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html)
+
+"""
+struct _ConditionalRenderingBeginInfoEXT <: VulkanStruct{true}
+    vks::VkConditionalRenderingBeginInfoEXT
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkGeometryTrianglesNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTrianglesNV.html)
+
+"""
+struct _GeometryTrianglesNV <: VulkanStruct{true}
+    vks::VkGeometryTrianglesNV
+    deps::Vector{Any}
+    vertex_data::OptionalPtr{Buffer}
+    index_data::OptionalPtr{Buffer}
+    transform_data::OptionalPtr{Buffer}
+end
+
+"""
+Intermediate wrapper for VkGeometryAABBNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryAABBNV.html)
+
+"""
+struct _GeometryAABBNV <: VulkanStruct{true}
+    vks::VkGeometryAABBNV
+    deps::Vector{Any}
+    aabb_data::OptionalPtr{Buffer}
+end
+
+"""
+Intermediate wrapper for VkBufferDeviceAddressInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferDeviceAddressInfo.html)
+
+"""
+struct _BufferDeviceAddressInfo <: VulkanStruct{true}
+    vks::VkBufferDeviceAddressInfo
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkAccelerationStructureCreateInfoKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html)
+
+"""
+struct _AccelerationStructureCreateInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureCreateInfoKHR
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkCopyBufferInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferInfo2.html)
+
+"""
+struct _CopyBufferInfo2 <: VulkanStruct{true}
+    vks::VkCopyBufferInfo2
+    deps::Vector{Any}
+    src_buffer::Buffer
+    dst_buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkBufferMemoryBarrier2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryBarrier2.html)
+
+"""
+struct _BufferMemoryBarrier2 <: VulkanStruct{true}
+    vks::VkBufferMemoryBarrier2
+    deps::Vector{Any}
+    buffer::Buffer
+end
+
+"""
+High-level wrapper for VkDescriptorBufferInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html)
+
+"""
+@struct_hash_equal struct DescriptorBufferInfo <: HighLevelStruct
+        buffer::OptionalPtr{Buffer}
+        offset::UInt64
+        range::UInt64
+    end
+
+"""
+High-level wrapper for VkIndirectCommandsStreamNV.
+
+Extension: VK\\_NV\\_device\\_generated\\_commands
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsStreamNV.html)
+
+"""
+@struct_hash_equal struct IndirectCommandsStreamNV <: HighLevelStruct
+        buffer::Buffer
+        offset::UInt64
+    end
+
+"""
+High-level wrapper for VkBindBufferMemoryInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryInfo.html)
+
+"""
+@struct_hash_equal struct BindBufferMemoryInfo <: HighLevelStruct
+        next::Any
+        buffer::Buffer
+        memory::DeviceMemory
+        memory_offset::UInt64
+    end
+
+"""
+High-level wrapper for VkBufferMemoryRequirementsInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryRequirementsInfo2.html)
+
+"""
+@struct_hash_equal struct BufferMemoryRequirementsInfo2 <: HighLevelStruct
+        next::Any
+        buffer::Buffer
+    end
+
+"""
+High-level wrapper for VkGeometryAABBNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryAABBNV.html)
+
+"""
+@struct_hash_equal struct GeometryAABBNV <: HighLevelStruct
+        next::Any
+        aabb_data::OptionalPtr{Buffer}
+        num_aab_bs::UInt32
+        stride::UInt32
+        offset::UInt64
+    end
+
+"""
+High-level wrapper for VkBufferDeviceAddressInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferDeviceAddressInfo.html)
+
+"""
+@struct_hash_equal struct BufferDeviceAddressInfo <: HighLevelStruct
+        next::Any
+        buffer::Buffer
+    end
+
+"""
+High-level wrapper for VkCopyBufferInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferInfo2.html)
+
+"""
+@struct_hash_equal struct CopyBufferInfo2 <: HighLevelStruct
+        next::Any
+        src_buffer::Buffer
+        dst_buffer::Buffer
+        regions::Vector{BufferCopy2}
+    end
+
+"""
+High-level wrapper for VkBufferMemoryBarrier2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryBarrier2.html)
+
+"""
+@struct_hash_equal struct BufferMemoryBarrier2 <: HighLevelStruct
+        next::Any
+        src_stage_mask::UInt64
+        src_access_mask::UInt64
+        dst_stage_mask::UInt64
+        dst_access_mask::UInt64
+        src_queue_family_index::UInt32
+        dst_queue_family_index::UInt32
+        buffer::Buffer
+        offset::UInt64
+        size::UInt64
+    end
+
+mutable struct BufferView <: Handle
+    vks::VkBufferView
+    device::Device
+    refcount::RefCounter
+    destructor
+    BufferView(vks::VkBufferView, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct Image <: Handle
+    vks::VkImage
+    device::Device
+    refcount::RefCounter
+    destructor
+    Image(vks::VkImage, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkImageMemoryBarrier.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier.html)
+
+"""
+struct _ImageMemoryBarrier <: VulkanStruct{true}
+    vks::VkImageMemoryBarrier
+    deps::Vector{Any}
+    image::Image
+end
+
+"""
+Intermediate wrapper for VkImageViewCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewCreateInfo.html)
+
+"""
+struct _ImageViewCreateInfo <: VulkanStruct{true}
+    vks::VkImageViewCreateInfo
+    deps::Vector{Any}
+    image::Image
+end
+
+"""
+Intermediate wrapper for VkSparseImageOpaqueMemoryBindInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html)
+
+"""
+struct _SparseImageOpaqueMemoryBindInfo <: VulkanStruct{true}
+    vks::VkSparseImageOpaqueMemoryBindInfo
+    deps::Vector{Any}
+    image::Image
+end
+
+"""
+Intermediate wrapper for VkSparseImageMemoryBindInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryBindInfo.html)
+
+"""
+struct _SparseImageMemoryBindInfo <: VulkanStruct{true}
+    vks::VkSparseImageMemoryBindInfo
+    deps::Vector{Any}
+    image::Image
+end
+
+"""
+Intermediate wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
+
+Extension: VK\\_NV\\_dedicated\\_allocation
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html)
+
+"""
+struct _DedicatedAllocationMemoryAllocateInfoNV <: VulkanStruct{true}
+    vks::VkDedicatedAllocationMemoryAllocateInfoNV
+    deps::Vector{Any}
+    image::OptionalPtr{Image}
+    buffer::OptionalPtr{Buffer}
+end
+
+"""
+Intermediate wrapper for VkBindImageMemoryInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryInfo.html)
+
+"""
+struct _BindImageMemoryInfo <: VulkanStruct{true}
+    vks::VkBindImageMemoryInfo
+    deps::Vector{Any}
+    image::Image
+    memory::DeviceMemory
+end
+
+"""
+Intermediate wrapper for VkImageMemoryRequirementsInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryRequirementsInfo2.html)
+
+"""
+struct _ImageMemoryRequirementsInfo2 <: VulkanStruct{true}
+    vks::VkImageMemoryRequirementsInfo2
+    deps::Vector{Any}
+    image::Image
+end
+
+"""
+Intermediate wrapper for VkImageSparseMemoryRequirementsInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html)
+
+"""
+struct _ImageSparseMemoryRequirementsInfo2 <: VulkanStruct{true}
+    vks::VkImageSparseMemoryRequirementsInfo2
+    deps::Vector{Any}
+    image::Image
+end
+
+"""
+Intermediate wrapper for VkMemoryDedicatedAllocateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryDedicatedAllocateInfo.html)
+
+"""
+struct _MemoryDedicatedAllocateInfo <: VulkanStruct{true}
+    vks::VkMemoryDedicatedAllocateInfo
+    deps::Vector{Any}
+    image::OptionalPtr{Image}
+    buffer::OptionalPtr{Buffer}
+end
+
+"""
+Intermediate wrapper for VkCopyImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageInfo2.html)
+
+"""
+struct _CopyImageInfo2 <: VulkanStruct{true}
+    vks::VkCopyImageInfo2
+    deps::Vector{Any}
+    src_image::Image
+    dst_image::Image
+end
+
+"""
+Intermediate wrapper for VkBlitImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBlitImageInfo2.html)
+
+"""
+struct _BlitImageInfo2 <: VulkanStruct{true}
+    vks::VkBlitImageInfo2
+    deps::Vector{Any}
+    src_image::Image
+    dst_image::Image
+end
+
+"""
+Intermediate wrapper for VkCopyBufferToImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferToImageInfo2.html)
+
+"""
+struct _CopyBufferToImageInfo2 <: VulkanStruct{true}
+    vks::VkCopyBufferToImageInfo2
+    deps::Vector{Any}
+    src_buffer::Buffer
+    dst_image::Image
+end
+
+"""
+Intermediate wrapper for VkCopyImageToBufferInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageToBufferInfo2.html)
+
+"""
+struct _CopyImageToBufferInfo2 <: VulkanStruct{true}
+    vks::VkCopyImageToBufferInfo2
+    deps::Vector{Any}
+    src_image::Image
+    dst_buffer::Buffer
+end
+
+"""
+Intermediate wrapper for VkResolveImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveImageInfo2.html)
+
+"""
+struct _ResolveImageInfo2 <: VulkanStruct{true}
+    vks::VkResolveImageInfo2
+    deps::Vector{Any}
+    src_image::Image
+    dst_image::Image
+end
+
+"""
+Intermediate wrapper for VkImageMemoryBarrier2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier2.html)
+
+"""
+struct _ImageMemoryBarrier2 <: VulkanStruct{true}
+    vks::VkImageMemoryBarrier2
+    deps::Vector{Any}
+    image::Image
+end
+
+"""
+High-level wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
+
+Extension: VK\\_NV\\_dedicated\\_allocation
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html)
+
+"""
+@struct_hash_equal struct DedicatedAllocationMemoryAllocateInfoNV <: HighLevelStruct
+        next::Any
+        image::OptionalPtr{Image}
+        buffer::OptionalPtr{Buffer}
+    end
+
+"""
+High-level wrapper for VkBindImageMemoryInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryInfo.html)
+
+"""
+@struct_hash_equal struct BindImageMemoryInfo <: HighLevelStruct
+        next::Any
+        image::Image
+        memory::DeviceMemory
+        memory_offset::UInt64
+    end
+
+"""
+High-level wrapper for VkImageMemoryRequirementsInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryRequirementsInfo2.html)
+
+"""
+@struct_hash_equal struct ImageMemoryRequirementsInfo2 <: HighLevelStruct
+        next::Any
+        image::Image
+    end
+
+"""
+High-level wrapper for VkImageSparseMemoryRequirementsInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html)
+
+"""
+@struct_hash_equal struct ImageSparseMemoryRequirementsInfo2 <: HighLevelStruct
+        next::Any
+        image::Image
+    end
+
+"""
+High-level wrapper for VkMemoryDedicatedAllocateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryDedicatedAllocateInfo.html)
+
+"""
+@struct_hash_equal struct MemoryDedicatedAllocateInfo <: HighLevelStruct
+        next::Any
+        image::OptionalPtr{Image}
+        buffer::OptionalPtr{Buffer}
+    end
+
+mutable struct ImageView <: Handle
+    vks::VkImageView
+    device::Device
+    refcount::RefCounter
+    destructor
+    ImageView(vks::VkImageView, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkRenderingAttachmentInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingAttachmentInfo.html)
+
+"""
+struct _RenderingAttachmentInfo <: VulkanStruct{true}
+    vks::VkRenderingAttachmentInfo
+    deps::Vector{Any}
+    image_view::OptionalPtr{ImageView}
+    resolve_image_view::OptionalPtr{ImageView}
+end
+
+"""
+Intermediate wrapper for VkRenderingFragmentShadingRateAttachmentInfoKHR.
+
+Extension: VK\\_KHR\\_dynamic\\_rendering
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentShadingRateAttachmentInfoKHR.html)
+
+"""
+struct _RenderingFragmentShadingRateAttachmentInfoKHR <: VulkanStruct{true}
+    vks::VkRenderingFragmentShadingRateAttachmentInfoKHR
+    deps::Vector{Any}
+    image_view::OptionalPtr{ImageView}
+end
+
+"""
+Intermediate wrapper for VkRenderingFragmentDensityMapAttachmentInfoEXT.
+
+Extension: VK\\_KHR\\_dynamic\\_rendering
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentDensityMapAttachmentInfoEXT.html)
+
+"""
+struct _RenderingFragmentDensityMapAttachmentInfoEXT <: VulkanStruct{true}
+    vks::VkRenderingFragmentDensityMapAttachmentInfoEXT
+    deps::Vector{Any}
+    image_view::ImageView
+end
+
+"""
+High-level wrapper for VkRenderPassAttachmentBeginInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassAttachmentBeginInfo.html)
+
+"""
+@struct_hash_equal struct RenderPassAttachmentBeginInfo <: HighLevelStruct
+        next::Any
+        attachments::Vector{ImageView}
+    end
+
+mutable struct ShaderModule <: Handle
+    vks::VkShaderModule
+    device::Device
+    refcount::RefCounter
+    destructor
+    ShaderModule(vks::VkShaderModule, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkPipelineShaderStageCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineShaderStageCreateInfo.html)
+
+"""
+struct _PipelineShaderStageCreateInfo <: VulkanStruct{true}
+    vks::VkPipelineShaderStageCreateInfo
+    deps::Vector{Any}
+    _module::ShaderModule
+end
+
+mutable struct Pipeline <: Handle
+    vks::VkPipeline
+    device::Device
+    refcount::RefCounter
+    destructor
+    Pipeline(vks::VkPipeline, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkPipelineInfoKHR.
+
+Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInfoKHR.html)
+
+"""
+struct _PipelineInfoKHR <: VulkanStruct{true}
+    vks::VkPipelineInfoKHR
+    deps::Vector{Any}
+    pipeline::Pipeline
+end
+
+"""
+Intermediate wrapper for VkPipelineExecutableInfoKHR.
+
+Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableInfoKHR.html)
+
+"""
+struct _PipelineExecutableInfoKHR <: VulkanStruct{true}
+    vks::VkPipelineExecutableInfoKHR
+    deps::Vector{Any}
+    pipeline::Pipeline
+end
+
+"""
+High-level wrapper for VkPipelineInfoKHR.
+
+Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInfoKHR.html)
+
+"""
+@struct_hash_equal struct PipelineInfoKHR <: HighLevelStruct
+        next::Any
+        pipeline::Pipeline
+    end
+
+"""
+High-level wrapper for VkPipelineExecutableInfoKHR.
+
+Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableInfoKHR.html)
+
+"""
+@struct_hash_equal struct PipelineExecutableInfoKHR <: HighLevelStruct
+        next::Any
+        pipeline::Pipeline
+        executable_index::UInt32
+    end
+
+"""
+High-level wrapper for VkPipelineLibraryCreateInfoKHR.
+
+Extension: VK\\_KHR\\_pipeline\\_library
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html)
+
+"""
+@struct_hash_equal struct PipelineLibraryCreateInfoKHR <: HighLevelStruct
+        next::Any
+        libraries::Vector{Pipeline}
+    end
+
+mutable struct PipelineLayout <: Handle
+    vks::VkPipelineLayout
+    device::Device
+    refcount::RefCounter
+    destructor
+    PipelineLayout(vks::VkPipelineLayout, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkComputePipelineCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkComputePipelineCreateInfo.html)
+
+"""
+struct _ComputePipelineCreateInfo <: VulkanStruct{true}
+    vks::VkComputePipelineCreateInfo
+    deps::Vector{Any}
+    layout::PipelineLayout
+    base_pipeline_handle::OptionalPtr{Pipeline}
+end
+
+"""
+Intermediate wrapper for VkIndirectCommandsLayoutTokenNV.
+
+Extension: VK\\_NV\\_device\\_generated\\_commands
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html)
+
+"""
+struct _IndirectCommandsLayoutTokenNV <: VulkanStruct{true}
+    vks::VkIndirectCommandsLayoutTokenNV
+    deps::Vector{Any}
+    pushconstant_pipeline_layout::OptionalPtr{PipelineLayout}
+end
+
+"""
+Intermediate wrapper for VkRayTracingPipelineCreateInfoNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html)
+
+"""
+struct _RayTracingPipelineCreateInfoNV <: VulkanStruct{true}
+    vks::VkRayTracingPipelineCreateInfoNV
+    deps::Vector{Any}
+    layout::PipelineLayout
+    base_pipeline_handle::OptionalPtr{Pipeline}
+end
+
+"""
+Intermediate wrapper for VkRayTracingPipelineCreateInfoKHR.
+
+Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html)
+
+"""
+struct _RayTracingPipelineCreateInfoKHR <: VulkanStruct{true}
+    vks::VkRayTracingPipelineCreateInfoKHR
+    deps::Vector{Any}
+    layout::PipelineLayout
+    base_pipeline_handle::OptionalPtr{Pipeline}
+end
+
+mutable struct Sampler <: Handle
+    vks::VkSampler
+    device::Device
+    refcount::RefCounter
+    destructor
+    Sampler(vks::VkSampler, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkDescriptorImageInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorImageInfo.html)
+
+"""
+struct _DescriptorImageInfo <: VulkanStruct{false}
+    vks::VkDescriptorImageInfo
+    sampler::Sampler
+    image_view::ImageView
+end
+
+"""
+Intermediate wrapper for VkImageViewHandleInfoNVX.
+
+Extension: VK\\_NVX\\_image\\_view\\_handle
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewHandleInfoNVX.html)
+
+"""
+struct _ImageViewHandleInfoNVX <: VulkanStruct{true}
+    vks::VkImageViewHandleInfoNVX
+    deps::Vector{Any}
+    image_view::ImageView
+    sampler::OptionalPtr{Sampler}
+end
+
+mutable struct DescriptorSetLayout <: Handle
+    vks::VkDescriptorSetLayout
+    device::Device
+    refcount::RefCounter
+    destructor
+    DescriptorSetLayout(vks::VkDescriptorSetLayout, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkDescriptorUpdateTemplateCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html)
+
+"""
+struct _DescriptorUpdateTemplateCreateInfo <: VulkanStruct{true}
+    vks::VkDescriptorUpdateTemplateCreateInfo
+    deps::Vector{Any}
+    descriptor_set_layout::DescriptorSetLayout
+    pipeline_layout::PipelineLayout
+end
+
+"""
+Intermediate wrapper for VkDescriptorSetBindingReferenceVALVE.
+
+Extension: VK\\_VALVE\\_descriptor\\_set\\_host\\_mapping
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetBindingReferenceVALVE.html)
+
+"""
+struct _DescriptorSetBindingReferenceVALVE <: VulkanStruct{true}
+    vks::VkDescriptorSetBindingReferenceVALVE
+    deps::Vector{Any}
+    descriptor_set_layout::DescriptorSetLayout
+end
+
+"""
+High-level wrapper for VkDescriptorSetBindingReferenceVALVE.
+
+Extension: VK\\_VALVE\\_descriptor\\_set\\_host\\_mapping
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetBindingReferenceVALVE.html)
+
+"""
+@struct_hash_equal struct DescriptorSetBindingReferenceVALVE <: HighLevelStruct
+        next::Any
+        descriptor_set_layout::DescriptorSetLayout
+        binding::UInt32
+    end
+
+mutable struct DescriptorPool <: Handle
+    vks::VkDescriptorPool
+    device::Device
+    refcount::RefCounter
+    destructor
+    DescriptorPool(vks::VkDescriptorPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct DescriptorSet <: Handle
+    vks::VkDescriptorSet
+    descriptor_pool::DescriptorPool
+    refcount::RefCounter
+    destructor
+    DescriptorSet(vks::VkDescriptorSet, descriptor_pool::DescriptorPool, refcount::RefCounter) = new(vks, descriptor_pool, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkWriteDescriptorSet.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSet.html)
+
+"""
+struct _WriteDescriptorSet <: VulkanStruct{true}
+    vks::VkWriteDescriptorSet
+    deps::Vector{Any}
+    dst_set::DescriptorSet
+end
+
+"""
+Intermediate wrapper for VkCopyDescriptorSet.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyDescriptorSet.html)
+
+"""
+struct _CopyDescriptorSet <: VulkanStruct{true}
+    vks::VkCopyDescriptorSet
+    deps::Vector{Any}
+    src_set::DescriptorSet
+    dst_set::DescriptorSet
+end
+
+"""
+High-level wrapper for VkCopyDescriptorSet.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyDescriptorSet.html)
+
+"""
+@struct_hash_equal struct CopyDescriptorSet <: HighLevelStruct
+        next::Any
+        src_set::DescriptorSet
+        src_binding::UInt32
+        src_array_element::UInt32
+        dst_set::DescriptorSet
+        dst_binding::UInt32
+        dst_array_element::UInt32
+        descriptor_count::UInt32
+    end
+
+"""
+Intermediate wrapper for VkDescriptorSetAllocateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetAllocateInfo.html)
+
+"""
+struct _DescriptorSetAllocateInfo <: VulkanStruct{true}
+    vks::VkDescriptorSetAllocateInfo
+    deps::Vector{Any}
+    descriptor_pool::DescriptorPool
+end
+
+"""
+High-level wrapper for VkDescriptorSetAllocateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetAllocateInfo.html)
+
+"""
+@struct_hash_equal struct DescriptorSetAllocateInfo <: HighLevelStruct
+        next::Any
+        descriptor_pool::DescriptorPool
+        set_layouts::Vector{DescriptorSetLayout}
+    end
+
+mutable struct Fence <: Handle
+    vks::VkFence
+    device::Device
+    refcount::RefCounter
+    destructor
+    Fence(vks::VkFence, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkImportFenceWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_fence\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportFenceWin32HandleInfoKHR.html)
+
+"""
+struct _ImportFenceWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkImportFenceWin32HandleInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
+"""
+Intermediate wrapper for VkFenceGetWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_fence\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetWin32HandleInfoKHR.html)
+
+"""
+struct _FenceGetWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkFenceGetWin32HandleInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
+"""
+Intermediate wrapper for VkImportFenceFdInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_fence\\_fd
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportFenceFdInfoKHR.html)
+
+"""
+struct _ImportFenceFdInfoKHR <: VulkanStruct{true}
+    vks::VkImportFenceFdInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
+"""
+Intermediate wrapper for VkFenceGetFdInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_fence\\_fd
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetFdInfoKHR.html)
+
+"""
+struct _FenceGetFdInfoKHR <: VulkanStruct{true}
+    vks::VkFenceGetFdInfoKHR
+    deps::Vector{Any}
+    fence::Fence
+end
+
+mutable struct Semaphore <: Handle
+    vks::VkSemaphore
+    device::Device
+    refcount::RefCounter
+    destructor
+    Semaphore(vks::VkSemaphore, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkImportSemaphoreWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_semaphore\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreWin32HandleInfoKHR.html)
+
+"""
+struct _ImportSemaphoreWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkImportSemaphoreWin32HandleInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+"""
+Intermediate wrapper for VkSemaphoreGetWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_semaphore\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetWin32HandleInfoKHR.html)
+
+"""
+struct _SemaphoreGetWin32HandleInfoKHR <: VulkanStruct{true}
+    vks::VkSemaphoreGetWin32HandleInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+"""
+Intermediate wrapper for VkImportSemaphoreFdInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_semaphore\\_fd
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreFdInfoKHR.html)
+
+"""
+struct _ImportSemaphoreFdInfoKHR <: VulkanStruct{true}
+    vks::VkImportSemaphoreFdInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+"""
+Intermediate wrapper for VkSemaphoreGetFdInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_semaphore\\_fd
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetFdInfoKHR.html)
+
+"""
+struct _SemaphoreGetFdInfoKHR <: VulkanStruct{true}
+    vks::VkSemaphoreGetFdInfoKHR
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+"""
+Intermediate wrapper for VkSemaphoreSignalInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSignalInfo.html)
+
+"""
+struct _SemaphoreSignalInfo <: VulkanStruct{true}
+    vks::VkSemaphoreSignalInfo
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+"""
+Intermediate wrapper for VkSemaphoreSubmitInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSubmitInfo.html)
+
+"""
+struct _SemaphoreSubmitInfo <: VulkanStruct{true}
+    vks::VkSemaphoreSubmitInfo
+    deps::Vector{Any}
+    semaphore::Semaphore
+end
+
+"""
+High-level wrapper for VkSemaphoreSignalInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSignalInfo.html)
+
+"""
+@struct_hash_equal struct SemaphoreSignalInfo <: HighLevelStruct
+        next::Any
+        semaphore::Semaphore
+        value::UInt64
+    end
+
+"""
+High-level wrapper for VkSemaphoreSubmitInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSubmitInfo.html)
+
+"""
+@struct_hash_equal struct SemaphoreSubmitInfo <: HighLevelStruct
+        next::Any
+        semaphore::Semaphore
+        value::UInt64
+        stage_mask::UInt64
+        device_index::UInt32
+    end
+
+mutable struct Event <: Handle
+    vks::VkEvent
+    device::Device
+    refcount::RefCounter
+    destructor
+    Event(vks::VkEvent, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct QueryPool <: Handle
+    vks::VkQueryPool
+    device::Device
+    refcount::RefCounter
+    destructor
+    QueryPool(vks::VkQueryPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct Framebuffer <: Handle
+    vks::VkFramebuffer
+    device::Device
+    refcount::RefCounter
+    destructor
+    Framebuffer(vks::VkFramebuffer, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct RenderPass <: Handle
+    vks::VkRenderPass
+    device::Device
+    refcount::RefCounter
+    destructor
+    RenderPass(vks::VkRenderPass, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkGraphicsPipelineCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGraphicsPipelineCreateInfo.html)
+
+"""
+struct _GraphicsPipelineCreateInfo <: VulkanStruct{true}
+    vks::VkGraphicsPipelineCreateInfo
+    deps::Vector{Any}
+    layout::PipelineLayout
+    render_pass::OptionalPtr{RenderPass}
+    base_pipeline_handle::OptionalPtr{Pipeline}
+end
+
+"""
+Intermediate wrapper for VkCommandBufferInheritanceInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceInfo.html)
+
+"""
+struct _CommandBufferInheritanceInfo <: VulkanStruct{true}
+    vks::VkCommandBufferInheritanceInfo
+    deps::Vector{Any}
+    render_pass::OptionalPtr{RenderPass}
+    framebuffer::OptionalPtr{Framebuffer}
+end
+
+"""
+Intermediate wrapper for VkRenderPassBeginInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassBeginInfo.html)
+
+"""
+struct _RenderPassBeginInfo <: VulkanStruct{true}
+    vks::VkRenderPassBeginInfo
+    deps::Vector{Any}
+    render_pass::RenderPass
+    framebuffer::Framebuffer
+end
+
+"""
+Intermediate wrapper for VkFramebufferCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFramebufferCreateInfo.html)
+
+"""
+struct _FramebufferCreateInfo <: VulkanStruct{true}
+    vks::VkFramebufferCreateInfo
+    deps::Vector{Any}
+    render_pass::RenderPass
+end
+
+"""
+Intermediate wrapper for VkSubpassShadingPipelineCreateInfoHUAWEI.
+
+Extension: VK\\_HUAWEI\\_subpass\\_shading
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassShadingPipelineCreateInfoHUAWEI.html)
+
+"""
+struct _SubpassShadingPipelineCreateInfoHUAWEI <: VulkanStruct{true}
+    vks::VkSubpassShadingPipelineCreateInfoHUAWEI
+    deps::Vector{Any}
+    render_pass::RenderPass
+end
+
+"""
+High-level wrapper for VkRenderPassBeginInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassBeginInfo.html)
+
+"""
+@struct_hash_equal struct RenderPassBeginInfo <: HighLevelStruct
+        next::Any
+        render_pass::RenderPass
+        framebuffer::Framebuffer
+        render_area::Rect2D
+        clear_values::Vector{ClearValue}
+    end
+
+"""
+High-level wrapper for VkSubpassShadingPipelineCreateInfoHUAWEI.
+
+Extension: VK\\_HUAWEI\\_subpass\\_shading
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassShadingPipelineCreateInfoHUAWEI.html)
+
+"""
+@struct_hash_equal struct SubpassShadingPipelineCreateInfoHUAWEI <: HighLevelStruct
+        next::Any
+        render_pass::RenderPass
+        subpass::UInt32
+    end
+
+mutable struct PipelineCache <: Handle
+    vks::VkPipelineCache
+    device::Device
+    refcount::RefCounter
+    destructor
+    PipelineCache(vks::VkPipelineCache, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct IndirectCommandsLayoutNV <: Handle
+    vks::VkIndirectCommandsLayoutNV
+    device::Device
+    refcount::RefCounter
+    destructor
+    IndirectCommandsLayoutNV(vks::VkIndirectCommandsLayoutNV, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkGeneratedCommandsInfoNV.
+
+Extension: VK\\_NV\\_device\\_generated\\_commands
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsInfoNV.html)
+
+"""
+struct _GeneratedCommandsInfoNV <: VulkanStruct{true}
+    vks::VkGeneratedCommandsInfoNV
+    deps::Vector{Any}
+    pipeline::Pipeline
+    indirect_commands_layout::IndirectCommandsLayoutNV
+    preprocess_buffer::Buffer
+    sequences_count_buffer::OptionalPtr{Buffer}
+    sequences_index_buffer::OptionalPtr{Buffer}
+end
+
+"""
+Intermediate wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
+
+Extension: VK\\_NV\\_device\\_generated\\_commands
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html)
+
+"""
+struct _GeneratedCommandsMemoryRequirementsInfoNV <: VulkanStruct{true}
+    vks::VkGeneratedCommandsMemoryRequirementsInfoNV
+    deps::Vector{Any}
+    pipeline::Pipeline
+    indirect_commands_layout::IndirectCommandsLayoutNV
+end
+
+mutable struct DescriptorUpdateTemplate <: Handle
+    vks::VkDescriptorUpdateTemplate
+    device::Device
+    refcount::RefCounter
+    destructor
+    DescriptorUpdateTemplate(vks::VkDescriptorUpdateTemplate, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct SamplerYcbcrConversion <: Handle
+    vks::VkSamplerYcbcrConversion
+    device::Device
+    refcount::RefCounter
+    destructor
+    SamplerYcbcrConversion(vks::VkSamplerYcbcrConversion, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkSamplerYcbcrConversionInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversionInfo.html)
+
+"""
+struct _SamplerYcbcrConversionInfo <: VulkanStruct{true}
+    vks::VkSamplerYcbcrConversionInfo
+    deps::Vector{Any}
+    conversion::SamplerYcbcrConversion
+end
+
+"""
+High-level wrapper for VkSamplerYcbcrConversionInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversionInfo.html)
+
+"""
+@struct_hash_equal struct SamplerYcbcrConversionInfo <: HighLevelStruct
+        next::Any
+        conversion::SamplerYcbcrConversion
+    end
+
+mutable struct ValidationCacheEXT <: Handle
+    vks::VkValidationCacheEXT
+    device::Device
+    refcount::RefCounter
+    destructor
+    ValidationCacheEXT(vks::VkValidationCacheEXT, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
+
+Extension: VK\\_EXT\\_validation\\_cache
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html)
+
+"""
+struct _ShaderModuleValidationCacheCreateInfoEXT <: VulkanStruct{true}
+    vks::VkShaderModuleValidationCacheCreateInfoEXT
+    deps::Vector{Any}
+    validation_cache::ValidationCacheEXT
+end
+
+"""
+High-level wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
+
+Extension: VK\\_EXT\\_validation\\_cache
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html)
+
+"""
+@struct_hash_equal struct ShaderModuleValidationCacheCreateInfoEXT <: HighLevelStruct
+        next::Any
+        validation_cache::ValidationCacheEXT
+    end
+
+mutable struct AccelerationStructureKHR <: Handle
+    vks::VkAccelerationStructureKHR
+    device::Device
+    refcount::RefCounter
+    destructor
+    AccelerationStructureKHR(vks::VkAccelerationStructureKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkAccelerationStructureBuildGeometryInfoKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html)
+
+"""
+struct _AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureBuildGeometryInfoKHR
+    deps::Vector{Any}
+    src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
+    dst_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
+end
+
+"""
+Intermediate wrapper for VkAccelerationStructureDeviceAddressInfoKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html)
+
+"""
+struct _AccelerationStructureDeviceAddressInfoKHR <: VulkanStruct{true}
+    vks::VkAccelerationStructureDeviceAddressInfoKHR
+    deps::Vector{Any}
+    acceleration_structure::AccelerationStructureKHR
+end
+
+"""
+Intermediate wrapper for VkCopyAccelerationStructureInfoKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html)
+
+"""
+struct _CopyAccelerationStructureInfoKHR <: VulkanStruct{true}
+    vks::VkCopyAccelerationStructureInfoKHR
+    deps::Vector{Any}
+    src::AccelerationStructureKHR
+    dst::AccelerationStructureKHR
+end
+
+"""
+Intermediate wrapper for VkCopyAccelerationStructureToMemoryInfoKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html)
+
+"""
+struct _CopyAccelerationStructureToMemoryInfoKHR <: VulkanStruct{true}
+    vks::VkCopyAccelerationStructureToMemoryInfoKHR
+    deps::Vector{Any}
+    src::AccelerationStructureKHR
+end
+
+"""
+Intermediate wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html)
+
+"""
+struct _CopyMemoryToAccelerationStructureInfoKHR <: VulkanStruct{true}
+    vks::VkCopyMemoryToAccelerationStructureInfoKHR
+    deps::Vector{Any}
+    dst::AccelerationStructureKHR
+end
+
+"""
+High-level wrapper for VkWriteDescriptorSetAccelerationStructureKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html)
+
+"""
+@struct_hash_equal struct WriteDescriptorSetAccelerationStructureKHR <: HighLevelStruct
+        next::Any
+        acceleration_structures::Vector{AccelerationStructureKHR}
+    end
+
+"""
+High-level wrapper for VkAccelerationStructureDeviceAddressInfoKHR.
+
+Extension: VK\\_KHR\\_acceleration\\_structure
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html)
+
+"""
+@struct_hash_equal struct AccelerationStructureDeviceAddressInfoKHR <: HighLevelStruct
+        next::Any
+        acceleration_structure::AccelerationStructureKHR
+    end
+
+mutable struct AccelerationStructureNV <: Handle
+    vks::VkAccelerationStructureNV
+    device::Device
+    refcount::RefCounter
+    destructor
+    AccelerationStructureNV(vks::VkAccelerationStructureNV, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkBindAccelerationStructureMemoryInfoNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
+
+"""
+struct _BindAccelerationStructureMemoryInfoNV <: VulkanStruct{true}
+    vks::VkBindAccelerationStructureMemoryInfoNV
+    deps::Vector{Any}
+    acceleration_structure::AccelerationStructureNV
+    memory::DeviceMemory
+end
+
+"""
+Intermediate wrapper for VkAccelerationStructureMemoryRequirementsInfoNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html)
+
+"""
+struct _AccelerationStructureMemoryRequirementsInfoNV <: VulkanStruct{true}
+    vks::VkAccelerationStructureMemoryRequirementsInfoNV
+    deps::Vector{Any}
+    acceleration_structure::AccelerationStructureNV
+end
+
+"""
+High-level wrapper for VkBindAccelerationStructureMemoryInfoNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
+
+"""
+@struct_hash_equal struct BindAccelerationStructureMemoryInfoNV <: HighLevelStruct
+        next::Any
+        acceleration_structure::AccelerationStructureNV
+        memory::DeviceMemory
+        memory_offset::UInt64
+        device_indices::Vector{UInt32}
+    end
+
+"""
+High-level wrapper for VkWriteDescriptorSetAccelerationStructureNV.
+
+Extension: VK\\_NV\\_ray\\_tracing
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html)
+
+"""
+@struct_hash_equal struct WriteDescriptorSetAccelerationStructureNV <: HighLevelStruct
+        next::Any
+        acceleration_structures::Vector{AccelerationStructureNV}
+    end
+
+mutable struct PerformanceConfigurationINTEL <: Handle
+    vks::VkPerformanceConfigurationINTEL
+    device::Device
+    refcount::RefCounter
+    destructor
+    PerformanceConfigurationINTEL(vks::VkPerformanceConfigurationINTEL, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct DeferredOperationKHR <: Handle
+    vks::VkDeferredOperationKHR
+    device::Device
+    refcount::RefCounter
+    destructor
+    DeferredOperationKHR(vks::VkDeferredOperationKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct PrivateDataSlot <: Handle
+    vks::VkPrivateDataSlot
+    device::Device
+    refcount::RefCounter
+    destructor
+    PrivateDataSlot(vks::VkPrivateDataSlot, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+mutable struct CuModuleNVX <: Handle
+    vks::VkCuModuleNVX
+    device::Device
+    refcount::RefCounter
+    destructor
+    CuModuleNVX(vks::VkCuModuleNVX, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkCuFunctionCreateInfoNVX.
+
+Extension: VK\\_NVX\\_binary\\_import
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionCreateInfoNVX.html)
+
+"""
+struct _CuFunctionCreateInfoNVX <: VulkanStruct{true}
+    vks::VkCuFunctionCreateInfoNVX
+    deps::Vector{Any}
+    _module::CuModuleNVX
+end
+
+"""
+High-level wrapper for VkCuFunctionCreateInfoNVX.
+
+Extension: VK\\_NVX\\_binary\\_import
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionCreateInfoNVX.html)
+
+"""
+@struct_hash_equal struct CuFunctionCreateInfoNVX <: HighLevelStruct
+        next::Any
+        _module::CuModuleNVX
+        name::String
+    end
+
+mutable struct CuFunctionNVX <: Handle
+    vks::VkCuFunctionNVX
+    device::Device
+    refcount::RefCounter
+    destructor
+    CuFunctionNVX(vks::VkCuFunctionNVX, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkCuLaunchInfoNVX.
+
+Extension: VK\\_NVX\\_binary\\_import
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuLaunchInfoNVX.html)
+
+"""
+struct _CuLaunchInfoNVX <: VulkanStruct{true}
+    vks::VkCuLaunchInfoNVX
+    deps::Vector{Any}
+    _function::CuFunctionNVX
+end
+
+"""
+High-level wrapper for VkCuLaunchInfoNVX.
+
+Extension: VK\\_NVX\\_binary\\_import
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuLaunchInfoNVX.html)
+
+"""
+@struct_hash_equal struct CuLaunchInfoNVX <: HighLevelStruct
+        next::Any
+        _function::CuFunctionNVX
+        grid_dim_x::UInt32
+        grid_dim_y::UInt32
+        grid_dim_z::UInt32
+        block_dim_x::UInt32
+        block_dim_y::UInt32
+        block_dim_z::UInt32
+        shared_mem_bytes::UInt32
     end
 
 mutable struct DisplayKHR <: Handle
@@ -14800,6 +16520,122 @@ mutable struct DisplayKHR <: Handle
     refcount::RefCounter
     destructor
     DisplayKHR(vks::VkDisplayKHR, physical_device::PhysicalDevice, refcount::RefCounter) = new(vks, physical_device, refcount, undef)
+end
+
+mutable struct DisplayModeKHR <: Handle
+    vks::VkDisplayModeKHR
+    display::DisplayKHR
+    refcount::RefCounter
+    destructor
+    DisplayModeKHR(vks::VkDisplayModeKHR, display::DisplayKHR, refcount::RefCounter) = new(vks, display, refcount, undef)
+end
+
+"""
+Intermediate wrapper for VkDisplayModePropertiesKHR.
+
+Extension: VK\\_KHR\\_display
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModePropertiesKHR.html)
+
+"""
+struct _DisplayModePropertiesKHR <: VulkanStruct{false}
+    vks::VkDisplayModePropertiesKHR
+    display_mode::DisplayModeKHR
+end
+
+"""
+Intermediate wrapper for VkDisplaySurfaceCreateInfoKHR.
+
+Extension: VK\\_KHR\\_display
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html)
+
+"""
+struct _DisplaySurfaceCreateInfoKHR <: VulkanStruct{true}
+    vks::VkDisplaySurfaceCreateInfoKHR
+    deps::Vector{Any}
+    display_mode::DisplayModeKHR
+end
+
+"""
+Intermediate wrapper for VkDisplayPlaneInfo2KHR.
+
+Extension: VK\\_KHR\\_get\\_display\\_properties2
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneInfo2KHR.html)
+
+"""
+struct _DisplayPlaneInfo2KHR <: VulkanStruct{true}
+    vks::VkDisplayPlaneInfo2KHR
+    deps::Vector{Any}
+    mode::DisplayModeKHR
+end
+
+"""
+High-level wrapper for VkDisplayModePropertiesKHR.
+
+Extension: VK\\_KHR\\_display
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModePropertiesKHR.html)
+
+"""
+@struct_hash_equal struct DisplayModePropertiesKHR <: HighLevelStruct
+        display_mode::DisplayModeKHR
+        parameters::DisplayModeParametersKHR
+    end
+
+"""
+High-level wrapper for VkDisplayModeProperties2KHR.
+
+Extension: VK\\_KHR\\_get\\_display\\_properties2
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModeProperties2KHR.html)
+
+"""
+@struct_hash_equal struct DisplayModeProperties2KHR <: HighLevelStruct
+        next::Any
+        display_mode_properties::DisplayModePropertiesKHR
+    end
+
+"""
+High-level wrapper for VkDisplayPlaneInfo2KHR.
+
+Extension: VK\\_KHR\\_get\\_display\\_properties2
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneInfo2KHR.html)
+
+"""
+@struct_hash_equal struct DisplayPlaneInfo2KHR <: HighLevelStruct
+        next::Any
+        mode::DisplayModeKHR
+        plane_index::UInt32
+    end
+
+"""
+Intermediate wrapper for VkDisplayPropertiesKHR.
+
+Extension: VK\\_KHR\\_display
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPropertiesKHR.html)
+
+"""
+struct _DisplayPropertiesKHR <: VulkanStruct{true}
+    vks::VkDisplayPropertiesKHR
+    deps::Vector{Any}
+    display::DisplayKHR
+end
+
+"""
+Intermediate wrapper for VkDisplayPlanePropertiesKHR.
+
+Extension: VK\\_KHR\\_display
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlanePropertiesKHR.html)
+
+"""
+struct _DisplayPlanePropertiesKHR <: VulkanStruct{false}
+    vks::VkDisplayPlanePropertiesKHR
+    current_display::DisplayKHR
 end
 
 """
@@ -14829,695 +16665,115 @@ Extension: VK\\_KHR\\_get\\_display\\_properties2
     end
 
 """
-Intermediate wrapper for VkDisplayPlanePropertiesKHR.
+High-level wrapper for VkPhysicalDeviceGroupProperties.
 
-Extension: VK\\_KHR\\_display
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlanePropertiesKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGroupProperties.html)
 
 """
-struct _DisplayPlanePropertiesKHR <: VulkanStruct{false}
-    vks::VkDisplayPlanePropertiesKHR
-    current_display::DisplayKHR
-end
-
-"""
-Intermediate wrapper for VkDisplayPropertiesKHR.
-
-Extension: VK\\_KHR\\_display
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPropertiesKHR.html)
-
-"""
-struct _DisplayPropertiesKHR <: VulkanStruct{true}
-    vks::VkDisplayPropertiesKHR
-    deps::Vector{Any}
-    display::DisplayKHR
-end
-
-mutable struct DisplayModeKHR <: Handle
-    vks::VkDisplayModeKHR
-    display::DisplayKHR
-    refcount::RefCounter
-    destructor
-    DisplayModeKHR(vks::VkDisplayModeKHR, display::DisplayKHR, refcount::RefCounter) = new(vks, display, refcount, undef)
-end
-
-"""
-High-level wrapper for VkDisplayPlaneInfo2KHR.
-
-Extension: VK\\_KHR\\_get\\_display\\_properties2
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneInfo2KHR.html)
-
-"""
-@struct_hash_equal struct DisplayPlaneInfo2KHR <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceGroupProperties <: HighLevelStruct
         next::Any
-        mode::DisplayModeKHR
-        plane_index::UInt32
+        physical_device_count::UInt32
+        physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}
+        subset_allocation::Bool
     end
 
 """
-High-level wrapper for VkDisplayModePropertiesKHR.
+High-level wrapper for VkDeviceGroupDeviceCreateInfo.
 
-Extension: VK\\_KHR\\_display
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModePropertiesKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html)
 
 """
-@struct_hash_equal struct DisplayModePropertiesKHR <: HighLevelStruct
-        display_mode::DisplayModeKHR
-        parameters::DisplayModeParametersKHR
-    end
-
-"""
-High-level wrapper for VkDisplayModeProperties2KHR.
-
-Extension: VK\\_KHR\\_get\\_display\\_properties2
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModeProperties2KHR.html)
-
-"""
-@struct_hash_equal struct DisplayModeProperties2KHR <: HighLevelStruct
+@struct_hash_equal struct DeviceGroupDeviceCreateInfo <: HighLevelStruct
         next::Any
-        display_mode_properties::DisplayModePropertiesKHR
+        physical_devices::Vector{PhysicalDevice}
     end
 
-"""
-Intermediate wrapper for VkDisplayPlaneInfo2KHR.
-
-Extension: VK\\_KHR\\_get\\_display\\_properties2
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneInfo2KHR.html)
-
-"""
-struct _DisplayPlaneInfo2KHR <: VulkanStruct{true}
-    vks::VkDisplayPlaneInfo2KHR
-    deps::Vector{Any}
-    mode::DisplayModeKHR
-end
-
-"""
-Intermediate wrapper for VkDisplaySurfaceCreateInfoKHR.
-
-Extension: VK\\_KHR\\_display
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html)
-
-"""
-struct _DisplaySurfaceCreateInfoKHR <: VulkanStruct{true}
-    vks::VkDisplaySurfaceCreateInfoKHR
-    deps::Vector{Any}
-    display_mode::DisplayModeKHR
-end
-
-"""
-Intermediate wrapper for VkDisplayModePropertiesKHR.
-
-Extension: VK\\_KHR\\_display
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModePropertiesKHR.html)
-
-"""
-struct _DisplayModePropertiesKHR <: VulkanStruct{false}
-    vks::VkDisplayModePropertiesKHR
-    display_mode::DisplayModeKHR
-end
-
-mutable struct Device <: Handle
-    vks::VkDevice
-    physical_device::PhysicalDevice
+mutable struct SurfaceKHR <: Handle
+    vks::VkSurfaceKHR
+    instance::Instance
     refcount::RefCounter
     destructor
-    Device(vks::VkDevice, physical_device::PhysicalDevice, refcount::RefCounter) = new(vks, physical_device, refcount, undef)
+    SurfaceKHR(vks::VkSurfaceKHR, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
 end
 
-mutable struct CuFunctionNVX <: Handle
-    vks::VkCuFunctionNVX
-    device::Device
+mutable struct SwapchainKHR <: Handle
+    vks::VkSwapchainKHR
+    surface::SurfaceKHR
     refcount::RefCounter
     destructor
-    CuFunctionNVX(vks::VkCuFunctionNVX, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+    SwapchainKHR(vks::VkSwapchainKHR, surface::SurfaceKHR, refcount::RefCounter) = new(vks, surface, refcount, undef)
 end
 
 """
-High-level wrapper for VkCuLaunchInfoNVX.
+Intermediate wrapper for VkImageSwapchainCreateInfoKHR.
 
-Extension: VK\\_NVX\\_binary\\_import
+Extension: VK\\_KHR\\_swapchain
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuLaunchInfoNVX.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSwapchainCreateInfoKHR.html)
 
 """
-@struct_hash_equal struct CuLaunchInfoNVX <: HighLevelStruct
+struct _ImageSwapchainCreateInfoKHR <: VulkanStruct{true}
+    vks::VkImageSwapchainCreateInfoKHR
+    deps::Vector{Any}
+    swapchain::OptionalPtr{SwapchainKHR}
+end
+
+"""
+Intermediate wrapper for VkBindImageMemorySwapchainInfoKHR.
+
+Extension: VK\\_KHR\\_swapchain
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html)
+
+"""
+struct _BindImageMemorySwapchainInfoKHR <: VulkanStruct{true}
+    vks::VkBindImageMemorySwapchainInfoKHR
+    deps::Vector{Any}
+    swapchain::SwapchainKHR
+end
+
+"""
+Intermediate wrapper for VkAcquireNextImageInfoKHR.
+
+Extension: VK\\_KHR\\_swapchain
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireNextImageInfoKHR.html)
+
+"""
+struct _AcquireNextImageInfoKHR <: VulkanStruct{true}
+    vks::VkAcquireNextImageInfoKHR
+    deps::Vector{Any}
+    swapchain::SwapchainKHR
+    semaphore::OptionalPtr{Semaphore}
+    fence::OptionalPtr{Fence}
+end
+
+"""
+High-level wrapper for VkImageSwapchainCreateInfoKHR.
+
+Extension: VK\\_KHR\\_swapchain
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSwapchainCreateInfoKHR.html)
+
+"""
+@struct_hash_equal struct ImageSwapchainCreateInfoKHR <: HighLevelStruct
         next::Any
-        _function::CuFunctionNVX
-        grid_dim_x::UInt32
-        grid_dim_y::UInt32
-        grid_dim_z::UInt32
-        block_dim_x::UInt32
-        block_dim_y::UInt32
-        block_dim_z::UInt32
-        shared_mem_bytes::UInt32
+        swapchain::OptionalPtr{SwapchainKHR}
     end
 
 """
-Intermediate wrapper for VkCuLaunchInfoNVX.
+High-level wrapper for VkBindImageMemorySwapchainInfoKHR.
 
-Extension: VK\\_NVX\\_binary\\_import
+Extension: VK\\_KHR\\_swapchain
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuLaunchInfoNVX.html)
-
-"""
-struct _CuLaunchInfoNVX <: VulkanStruct{true}
-    vks::VkCuLaunchInfoNVX
-    deps::Vector{Any}
-    _function::CuFunctionNVX
-end
-
-mutable struct CuModuleNVX <: Handle
-    vks::VkCuModuleNVX
-    device::Device
-    refcount::RefCounter
-    destructor
-    CuModuleNVX(vks::VkCuModuleNVX, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html)
 
 """
-High-level wrapper for VkCuFunctionCreateInfoNVX.
-
-Extension: VK\\_NVX\\_binary\\_import
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionCreateInfoNVX.html)
-
-"""
-@struct_hash_equal struct CuFunctionCreateInfoNVX <: HighLevelStruct
+@struct_hash_equal struct BindImageMemorySwapchainInfoKHR <: HighLevelStruct
         next::Any
-        _module::CuModuleNVX
-        name::String
+        swapchain::SwapchainKHR
+        image_index::UInt32
     end
-
-"""
-Intermediate wrapper for VkCuFunctionCreateInfoNVX.
-
-Extension: VK\\_NVX\\_binary\\_import
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionCreateInfoNVX.html)
-
-"""
-struct _CuFunctionCreateInfoNVX <: VulkanStruct{true}
-    vks::VkCuFunctionCreateInfoNVX
-    deps::Vector{Any}
-    _module::CuModuleNVX
-end
-
-mutable struct PrivateDataSlot <: Handle
-    vks::VkPrivateDataSlot
-    device::Device
-    refcount::RefCounter
-    destructor
-    PrivateDataSlot(vks::VkPrivateDataSlot, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct DeferredOperationKHR <: Handle
-    vks::VkDeferredOperationKHR
-    device::Device
-    refcount::RefCounter
-    destructor
-    DeferredOperationKHR(vks::VkDeferredOperationKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct PerformanceConfigurationINTEL <: Handle
-    vks::VkPerformanceConfigurationINTEL
-    device::Device
-    refcount::RefCounter
-    destructor
-    PerformanceConfigurationINTEL(vks::VkPerformanceConfigurationINTEL, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct AccelerationStructureNV <: Handle
-    vks::VkAccelerationStructureNV
-    device::Device
-    refcount::RefCounter
-    destructor
-    AccelerationStructureNV(vks::VkAccelerationStructureNV, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkWriteDescriptorSetAccelerationStructureNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html)
-
-"""
-@struct_hash_equal struct WriteDescriptorSetAccelerationStructureNV <: HighLevelStruct
-        next::Any
-        acceleration_structures::Vector{AccelerationStructureNV}
-    end
-
-"""
-Intermediate wrapper for VkAccelerationStructureMemoryRequirementsInfoNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html)
-
-"""
-struct _AccelerationStructureMemoryRequirementsInfoNV <: VulkanStruct{true}
-    vks::VkAccelerationStructureMemoryRequirementsInfoNV
-    deps::Vector{Any}
-    acceleration_structure::AccelerationStructureNV
-end
-
-mutable struct AccelerationStructureKHR <: Handle
-    vks::VkAccelerationStructureKHR
-    device::Device
-    refcount::RefCounter
-    destructor
-    AccelerationStructureKHR(vks::VkAccelerationStructureKHR, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkAccelerationStructureDeviceAddressInfoKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html)
-
-"""
-@struct_hash_equal struct AccelerationStructureDeviceAddressInfoKHR <: HighLevelStruct
-        next::Any
-        acceleration_structure::AccelerationStructureKHR
-    end
-
-"""
-High-level wrapper for VkWriteDescriptorSetAccelerationStructureKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html)
-
-"""
-@struct_hash_equal struct WriteDescriptorSetAccelerationStructureKHR <: HighLevelStruct
-        next::Any
-        acceleration_structures::Vector{AccelerationStructureKHR}
-    end
-
-"""
-Intermediate wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html)
-
-"""
-struct _CopyMemoryToAccelerationStructureInfoKHR <: VulkanStruct{true}
-    vks::VkCopyMemoryToAccelerationStructureInfoKHR
-    deps::Vector{Any}
-    dst::AccelerationStructureKHR
-end
-
-"""
-Intermediate wrapper for VkCopyAccelerationStructureToMemoryInfoKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html)
-
-"""
-struct _CopyAccelerationStructureToMemoryInfoKHR <: VulkanStruct{true}
-    vks::VkCopyAccelerationStructureToMemoryInfoKHR
-    deps::Vector{Any}
-    src::AccelerationStructureKHR
-end
-
-"""
-Intermediate wrapper for VkCopyAccelerationStructureInfoKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html)
-
-"""
-struct _CopyAccelerationStructureInfoKHR <: VulkanStruct{true}
-    vks::VkCopyAccelerationStructureInfoKHR
-    deps::Vector{Any}
-    src::AccelerationStructureKHR
-    dst::AccelerationStructureKHR
-end
-
-"""
-Intermediate wrapper for VkAccelerationStructureDeviceAddressInfoKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html)
-
-"""
-struct _AccelerationStructureDeviceAddressInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureDeviceAddressInfoKHR
-    deps::Vector{Any}
-    acceleration_structure::AccelerationStructureKHR
-end
-
-"""
-Intermediate wrapper for VkAccelerationStructureBuildGeometryInfoKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html)
-
-"""
-struct _AccelerationStructureBuildGeometryInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureBuildGeometryInfoKHR
-    deps::Vector{Any}
-    src_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
-    dst_acceleration_structure::OptionalPtr{AccelerationStructureKHR}
-end
-
-mutable struct ValidationCacheEXT <: Handle
-    vks::VkValidationCacheEXT
-    device::Device
-    refcount::RefCounter
-    destructor
-    ValidationCacheEXT(vks::VkValidationCacheEXT, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
-
-Extension: VK\\_EXT\\_validation\\_cache
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html)
-
-"""
-@struct_hash_equal struct ShaderModuleValidationCacheCreateInfoEXT <: HighLevelStruct
-        next::Any
-        validation_cache::ValidationCacheEXT
-    end
-
-"""
-Intermediate wrapper for VkShaderModuleValidationCacheCreateInfoEXT.
-
-Extension: VK\\_EXT\\_validation\\_cache
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html)
-
-"""
-struct _ShaderModuleValidationCacheCreateInfoEXT <: VulkanStruct{true}
-    vks::VkShaderModuleValidationCacheCreateInfoEXT
-    deps::Vector{Any}
-    validation_cache::ValidationCacheEXT
-end
-
-mutable struct SamplerYcbcrConversion <: Handle
-    vks::VkSamplerYcbcrConversion
-    device::Device
-    refcount::RefCounter
-    destructor
-    SamplerYcbcrConversion(vks::VkSamplerYcbcrConversion, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkSamplerYcbcrConversionInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversionInfo.html)
-
-"""
-@struct_hash_equal struct SamplerYcbcrConversionInfo <: HighLevelStruct
-        next::Any
-        conversion::SamplerYcbcrConversion
-    end
-
-"""
-Intermediate wrapper for VkSamplerYcbcrConversionInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversionInfo.html)
-
-"""
-struct _SamplerYcbcrConversionInfo <: VulkanStruct{true}
-    vks::VkSamplerYcbcrConversionInfo
-    deps::Vector{Any}
-    conversion::SamplerYcbcrConversion
-end
-
-mutable struct DescriptorUpdateTemplate <: Handle
-    vks::VkDescriptorUpdateTemplate
-    device::Device
-    refcount::RefCounter
-    destructor
-    DescriptorUpdateTemplate(vks::VkDescriptorUpdateTemplate, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct IndirectCommandsLayoutNV <: Handle
-    vks::VkIndirectCommandsLayoutNV
-    device::Device
-    refcount::RefCounter
-    destructor
-    IndirectCommandsLayoutNV(vks::VkIndirectCommandsLayoutNV, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct PipelineCache <: Handle
-    vks::VkPipelineCache
-    device::Device
-    refcount::RefCounter
-    destructor
-    PipelineCache(vks::VkPipelineCache, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct RenderPass <: Handle
-    vks::VkRenderPass
-    device::Device
-    refcount::RefCounter
-    destructor
-    RenderPass(vks::VkRenderPass, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkSubpassShadingPipelineCreateInfoHUAWEI.
-
-Extension: VK\\_HUAWEI\\_subpass\\_shading
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassShadingPipelineCreateInfoHUAWEI.html)
-
-"""
-@struct_hash_equal struct SubpassShadingPipelineCreateInfoHUAWEI <: HighLevelStruct
-        next::Any
-        render_pass::RenderPass
-        subpass::UInt32
-    end
-
-"""
-Intermediate wrapper for VkSubpassShadingPipelineCreateInfoHUAWEI.
-
-Extension: VK\\_HUAWEI\\_subpass\\_shading
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassShadingPipelineCreateInfoHUAWEI.html)
-
-"""
-struct _SubpassShadingPipelineCreateInfoHUAWEI <: VulkanStruct{true}
-    vks::VkSubpassShadingPipelineCreateInfoHUAWEI
-    deps::Vector{Any}
-    render_pass::RenderPass
-end
-
-"""
-Intermediate wrapper for VkFramebufferCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFramebufferCreateInfo.html)
-
-"""
-struct _FramebufferCreateInfo <: VulkanStruct{true}
-    vks::VkFramebufferCreateInfo
-    deps::Vector{Any}
-    render_pass::RenderPass
-end
-
-mutable struct Framebuffer <: Handle
-    vks::VkFramebuffer
-    device::Device
-    refcount::RefCounter
-    destructor
-    Framebuffer(vks::VkFramebuffer, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkRenderPassBeginInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassBeginInfo.html)
-
-"""
-@struct_hash_equal struct RenderPassBeginInfo <: HighLevelStruct
-        next::Any
-        render_pass::RenderPass
-        framebuffer::Framebuffer
-        render_area::Rect2D
-        clear_values::Vector{ClearValue}
-    end
-
-"""
-Intermediate wrapper for VkRenderPassBeginInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassBeginInfo.html)
-
-"""
-struct _RenderPassBeginInfo <: VulkanStruct{true}
-    vks::VkRenderPassBeginInfo
-    deps::Vector{Any}
-    render_pass::RenderPass
-    framebuffer::Framebuffer
-end
-
-"""
-Intermediate wrapper for VkCommandBufferInheritanceInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceInfo.html)
-
-"""
-struct _CommandBufferInheritanceInfo <: VulkanStruct{true}
-    vks::VkCommandBufferInheritanceInfo
-    deps::Vector{Any}
-    render_pass::OptionalPtr{RenderPass}
-    framebuffer::OptionalPtr{Framebuffer}
-end
-
-mutable struct QueryPool <: Handle
-    vks::VkQueryPool
-    device::Device
-    refcount::RefCounter
-    destructor
-    QueryPool(vks::VkQueryPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct Event <: Handle
-    vks::VkEvent
-    device::Device
-    refcount::RefCounter
-    destructor
-    Event(vks::VkEvent, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct Semaphore <: Handle
-    vks::VkSemaphore
-    device::Device
-    refcount::RefCounter
-    destructor
-    Semaphore(vks::VkSemaphore, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkSemaphoreSubmitInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSubmitInfo.html)
-
-"""
-@struct_hash_equal struct SemaphoreSubmitInfo <: HighLevelStruct
-        next::Any
-        semaphore::Semaphore
-        value::UInt64
-        stage_mask::UInt64
-        device_index::UInt32
-    end
-
-"""
-High-level wrapper for VkSemaphoreSignalInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSignalInfo.html)
-
-"""
-@struct_hash_equal struct SemaphoreSignalInfo <: HighLevelStruct
-        next::Any
-        semaphore::Semaphore
-        value::UInt64
-    end
-
-"""
-Intermediate wrapper for VkSemaphoreSubmitInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSubmitInfo.html)
-
-"""
-struct _SemaphoreSubmitInfo <: VulkanStruct{true}
-    vks::VkSemaphoreSubmitInfo
-    deps::Vector{Any}
-    semaphore::Semaphore
-end
-
-"""
-Intermediate wrapper for VkSemaphoreSignalInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreSignalInfo.html)
-
-"""
-struct _SemaphoreSignalInfo <: VulkanStruct{true}
-    vks::VkSemaphoreSignalInfo
-    deps::Vector{Any}
-    semaphore::Semaphore
-end
-
-"""
-Intermediate wrapper for VkSemaphoreGetFdInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_semaphore\\_fd
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetFdInfoKHR.html)
-
-"""
-struct _SemaphoreGetFdInfoKHR <: VulkanStruct{true}
-    vks::VkSemaphoreGetFdInfoKHR
-    deps::Vector{Any}
-    semaphore::Semaphore
-end
-
-"""
-Intermediate wrapper for VkImportSemaphoreFdInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_semaphore\\_fd
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreFdInfoKHR.html)
-
-"""
-struct _ImportSemaphoreFdInfoKHR <: VulkanStruct{true}
-    vks::VkImportSemaphoreFdInfoKHR
-    deps::Vector{Any}
-    semaphore::Semaphore
-end
-
-"""
-Intermediate wrapper for VkSemaphoreGetWin32HandleInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_semaphore\\_win32
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetWin32HandleInfoKHR.html)
-
-"""
-struct _SemaphoreGetWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkSemaphoreGetWin32HandleInfoKHR
-    deps::Vector{Any}
-    semaphore::Semaphore
-end
-
-"""
-Intermediate wrapper for VkImportSemaphoreWin32HandleInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_semaphore\\_win32
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreWin32HandleInfoKHR.html)
-
-"""
-struct _ImportSemaphoreWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkImportSemaphoreWin32HandleInfoKHR
-    deps::Vector{Any}
-    semaphore::Semaphore
-end
-
-mutable struct Fence <: Handle
-    vks::VkFence
-    device::Device
-    refcount::RefCounter
-    destructor
-    Fence(vks::VkFence, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
 
 """
 High-level wrapper for VkAcquireNextImageInfoKHR.
@@ -15537,1317 +16793,61 @@ Extension: VK\\_KHR\\_swapchain
     end
 
 """
-Intermediate wrapper for VkAcquireNextImageInfoKHR.
+Intermediate wrapper for VkSwapchainCreateInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireNextImageInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateInfoKHR.html)
 
 """
-struct _AcquireNextImageInfoKHR <: VulkanStruct{true}
-    vks::VkAcquireNextImageInfoKHR
+struct _SwapchainCreateInfoKHR <: VulkanStruct{true}
+    vks::VkSwapchainCreateInfoKHR
     deps::Vector{Any}
-    swapchain::SwapchainKHR
-    semaphore::OptionalPtr{Semaphore}
-    fence::OptionalPtr{Fence}
+    surface::SurfaceKHR
+    old_swapchain::OptionalPtr{SwapchainKHR}
 end
 
 """
-Intermediate wrapper for VkFenceGetFdInfoKHR.
+Intermediate wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
 
-Extension: VK\\_KHR\\_external\\_fence\\_fd
+Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetFdInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html)
 
 """
-struct _FenceGetFdInfoKHR <: VulkanStruct{true}
-    vks::VkFenceGetFdInfoKHR
+struct _PhysicalDeviceSurfaceInfo2KHR <: VulkanStruct{true}
+    vks::VkPhysicalDeviceSurfaceInfo2KHR
     deps::Vector{Any}
-    fence::Fence
+    surface::OptionalPtr{SurfaceKHR}
 end
 
 """
-Intermediate wrapper for VkImportFenceFdInfoKHR.
+High-level wrapper for VkPhysicalDeviceSurfaceInfo2KHR.
 
-Extension: VK\\_KHR\\_external\\_fence\\_fd
+Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportFenceFdInfoKHR.html)
-
-"""
-struct _ImportFenceFdInfoKHR <: VulkanStruct{true}
-    vks::VkImportFenceFdInfoKHR
-    deps::Vector{Any}
-    fence::Fence
-end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSurfaceInfo2KHR.html)
 
 """
-Intermediate wrapper for VkFenceGetWin32HandleInfoKHR.
+@struct_hash_equal struct PhysicalDeviceSurfaceInfo2KHR <: HighLevelStruct
+        next::Any
+        surface::OptionalPtr{SurfaceKHR}
+    end
 
-Extension: VK\\_KHR\\_external\\_fence\\_win32
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetWin32HandleInfoKHR.html)
-
-"""
-struct _FenceGetWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkFenceGetWin32HandleInfoKHR
-    deps::Vector{Any}
-    fence::Fence
-end
-
-"""
-Intermediate wrapper for VkImportFenceWin32HandleInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_fence\\_win32
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportFenceWin32HandleInfoKHR.html)
-
-"""
-struct _ImportFenceWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkImportFenceWin32HandleInfoKHR
-    deps::Vector{Any}
-    fence::Fence
-end
-
-mutable struct DescriptorPool <: Handle
-    vks::VkDescriptorPool
-    device::Device
+mutable struct DebugReportCallbackEXT <: Handle
+    vks::VkDebugReportCallbackEXT
+    instance::Instance
     refcount::RefCounter
     destructor
-    DescriptorPool(vks::VkDescriptorPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+    DebugReportCallbackEXT(vks::VkDebugReportCallbackEXT, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
 end
 
-"""
-Intermediate wrapper for VkDescriptorSetAllocateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetAllocateInfo.html)
-
-"""
-struct _DescriptorSetAllocateInfo <: VulkanStruct{true}
-    vks::VkDescriptorSetAllocateInfo
-    deps::Vector{Any}
-    descriptor_pool::DescriptorPool
-end
-
-mutable struct DescriptorSet <: Handle
-    vks::VkDescriptorSet
-    descriptor_pool::DescriptorPool
+mutable struct DebugUtilsMessengerEXT <: Handle
+    vks::VkDebugUtilsMessengerEXT
+    instance::Instance
     refcount::RefCounter
     destructor
-    DescriptorSet(vks::VkDescriptorSet, descriptor_pool::DescriptorPool, refcount::RefCounter) = new(vks, descriptor_pool, refcount, undef)
-end
-
-"""
-High-level wrapper for VkCopyDescriptorSet.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyDescriptorSet.html)
-
-"""
-@struct_hash_equal struct CopyDescriptorSet <: HighLevelStruct
-        next::Any
-        src_set::DescriptorSet
-        src_binding::UInt32
-        src_array_element::UInt32
-        dst_set::DescriptorSet
-        dst_binding::UInt32
-        dst_array_element::UInt32
-        descriptor_count::UInt32
-    end
-
-"""
-Intermediate wrapper for VkCopyDescriptorSet.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyDescriptorSet.html)
-
-"""
-struct _CopyDescriptorSet <: VulkanStruct{true}
-    vks::VkCopyDescriptorSet
-    deps::Vector{Any}
-    src_set::DescriptorSet
-    dst_set::DescriptorSet
-end
-
-"""
-Intermediate wrapper for VkWriteDescriptorSet.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSet.html)
-
-"""
-struct _WriteDescriptorSet <: VulkanStruct{true}
-    vks::VkWriteDescriptorSet
-    deps::Vector{Any}
-    dst_set::DescriptorSet
-end
-
-mutable struct DescriptorSetLayout <: Handle
-    vks::VkDescriptorSetLayout
-    device::Device
-    refcount::RefCounter
-    destructor
-    DescriptorSetLayout(vks::VkDescriptorSetLayout, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkDescriptorSetBindingReferenceVALVE.
-
-Extension: VK\\_VALVE\\_descriptor\\_set\\_host\\_mapping
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetBindingReferenceVALVE.html)
-
-"""
-@struct_hash_equal struct DescriptorSetBindingReferenceVALVE <: HighLevelStruct
-        next::Any
-        descriptor_set_layout::DescriptorSetLayout
-        binding::UInt32
-    end
-
-"""
-High-level wrapper for VkDescriptorSetAllocateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetAllocateInfo.html)
-
-"""
-@struct_hash_equal struct DescriptorSetAllocateInfo <: HighLevelStruct
-        next::Any
-        descriptor_pool::DescriptorPool
-        set_layouts::Vector{DescriptorSetLayout}
-    end
-
-"""
-Intermediate wrapper for VkDescriptorSetBindingReferenceVALVE.
-
-Extension: VK\\_VALVE\\_descriptor\\_set\\_host\\_mapping
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetBindingReferenceVALVE.html)
-
-"""
-struct _DescriptorSetBindingReferenceVALVE <: VulkanStruct{true}
-    vks::VkDescriptorSetBindingReferenceVALVE
-    deps::Vector{Any}
-    descriptor_set_layout::DescriptorSetLayout
-end
-
-mutable struct Sampler <: Handle
-    vks::VkSampler
-    device::Device
-    refcount::RefCounter
-    destructor
-    Sampler(vks::VkSampler, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct PipelineLayout <: Handle
-    vks::VkPipelineLayout
-    device::Device
-    refcount::RefCounter
-    destructor
-    PipelineLayout(vks::VkPipelineLayout, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-Intermediate wrapper for VkDescriptorUpdateTemplateCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html)
-
-"""
-struct _DescriptorUpdateTemplateCreateInfo <: VulkanStruct{true}
-    vks::VkDescriptorUpdateTemplateCreateInfo
-    deps::Vector{Any}
-    descriptor_set_layout::DescriptorSetLayout
-    pipeline_layout::PipelineLayout
-end
-
-"""
-Intermediate wrapper for VkIndirectCommandsLayoutTokenNV.
-
-Extension: VK\\_NV\\_device\\_generated\\_commands
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html)
-
-"""
-struct _IndirectCommandsLayoutTokenNV <: VulkanStruct{true}
-    vks::VkIndirectCommandsLayoutTokenNV
-    deps::Vector{Any}
-    pushconstant_pipeline_layout::OptionalPtr{PipelineLayout}
-end
-
-mutable struct Pipeline <: Handle
-    vks::VkPipeline
-    device::Device
-    refcount::RefCounter
-    destructor
-    Pipeline(vks::VkPipeline, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkPipelineLibraryCreateInfoKHR.
-
-Extension: VK\\_KHR\\_pipeline\\_library
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html)
-
-"""
-@struct_hash_equal struct PipelineLibraryCreateInfoKHR <: HighLevelStruct
-        next::Any
-        libraries::Vector{Pipeline}
-    end
-
-"""
-High-level wrapper for VkPipelineExecutableInfoKHR.
-
-Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableInfoKHR.html)
-
-"""
-@struct_hash_equal struct PipelineExecutableInfoKHR <: HighLevelStruct
-        next::Any
-        pipeline::Pipeline
-        executable_index::UInt32
-    end
-
-"""
-High-level wrapper for VkPipelineInfoKHR.
-
-Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInfoKHR.html)
-
-"""
-@struct_hash_equal struct PipelineInfoKHR <: HighLevelStruct
-        next::Any
-        pipeline::Pipeline
-    end
-
-"""
-Intermediate wrapper for VkPipelineExecutableInfoKHR.
-
-Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableInfoKHR.html)
-
-"""
-struct _PipelineExecutableInfoKHR <: VulkanStruct{true}
-    vks::VkPipelineExecutableInfoKHR
-    deps::Vector{Any}
-    pipeline::Pipeline
-end
-
-"""
-Intermediate wrapper for VkPipelineInfoKHR.
-
-Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInfoKHR.html)
-
-"""
-struct _PipelineInfoKHR <: VulkanStruct{true}
-    vks::VkPipelineInfoKHR
-    deps::Vector{Any}
-    pipeline::Pipeline
-end
-
-"""
-Intermediate wrapper for VkRayTracingPipelineCreateInfoKHR.
-
-Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html)
-
-"""
-struct _RayTracingPipelineCreateInfoKHR <: VulkanStruct{true}
-    vks::VkRayTracingPipelineCreateInfoKHR
-    deps::Vector{Any}
-    layout::PipelineLayout
-    base_pipeline_handle::OptionalPtr{Pipeline}
-end
-
-"""
-Intermediate wrapper for VkRayTracingPipelineCreateInfoNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html)
-
-"""
-struct _RayTracingPipelineCreateInfoNV <: VulkanStruct{true}
-    vks::VkRayTracingPipelineCreateInfoNV
-    deps::Vector{Any}
-    layout::PipelineLayout
-    base_pipeline_handle::OptionalPtr{Pipeline}
-end
-
-"""
-Intermediate wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
-
-Extension: VK\\_NV\\_device\\_generated\\_commands
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html)
-
-"""
-struct _GeneratedCommandsMemoryRequirementsInfoNV <: VulkanStruct{true}
-    vks::VkGeneratedCommandsMemoryRequirementsInfoNV
-    deps::Vector{Any}
-    pipeline::Pipeline
-    indirect_commands_layout::IndirectCommandsLayoutNV
-end
-
-"""
-Intermediate wrapper for VkGraphicsPipelineCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGraphicsPipelineCreateInfo.html)
-
-"""
-struct _GraphicsPipelineCreateInfo <: VulkanStruct{true}
-    vks::VkGraphicsPipelineCreateInfo
-    deps::Vector{Any}
-    layout::PipelineLayout
-    render_pass::OptionalPtr{RenderPass}
-    base_pipeline_handle::OptionalPtr{Pipeline}
-end
-
-"""
-Intermediate wrapper for VkComputePipelineCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkComputePipelineCreateInfo.html)
-
-"""
-struct _ComputePipelineCreateInfo <: VulkanStruct{true}
-    vks::VkComputePipelineCreateInfo
-    deps::Vector{Any}
-    layout::PipelineLayout
-    base_pipeline_handle::OptionalPtr{Pipeline}
-end
-
-mutable struct ShaderModule <: Handle
-    vks::VkShaderModule
-    device::Device
-    refcount::RefCounter
-    destructor
-    ShaderModule(vks::VkShaderModule, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-Intermediate wrapper for VkPipelineShaderStageCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineShaderStageCreateInfo.html)
-
-"""
-struct _PipelineShaderStageCreateInfo <: VulkanStruct{true}
-    vks::VkPipelineShaderStageCreateInfo
-    deps::Vector{Any}
-    _module::ShaderModule
-end
-
-mutable struct ImageView <: Handle
-    vks::VkImageView
-    device::Device
-    refcount::RefCounter
-    destructor
-    ImageView(vks::VkImageView, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkRenderPassAttachmentBeginInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassAttachmentBeginInfo.html)
-
-"""
-@struct_hash_equal struct RenderPassAttachmentBeginInfo <: HighLevelStruct
-        next::Any
-        attachments::Vector{ImageView}
-    end
-
-"""
-Intermediate wrapper for VkRenderingFragmentDensityMapAttachmentInfoEXT.
-
-Extension: VK\\_KHR\\_dynamic\\_rendering
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentDensityMapAttachmentInfoEXT.html)
-
-"""
-struct _RenderingFragmentDensityMapAttachmentInfoEXT <: VulkanStruct{true}
-    vks::VkRenderingFragmentDensityMapAttachmentInfoEXT
-    deps::Vector{Any}
-    image_view::ImageView
-end
-
-"""
-Intermediate wrapper for VkRenderingFragmentShadingRateAttachmentInfoKHR.
-
-Extension: VK\\_KHR\\_dynamic\\_rendering
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentShadingRateAttachmentInfoKHR.html)
-
-"""
-struct _RenderingFragmentShadingRateAttachmentInfoKHR <: VulkanStruct{true}
-    vks::VkRenderingFragmentShadingRateAttachmentInfoKHR
-    deps::Vector{Any}
-    image_view::OptionalPtr{ImageView}
-end
-
-"""
-Intermediate wrapper for VkRenderingAttachmentInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingAttachmentInfo.html)
-
-"""
-struct _RenderingAttachmentInfo <: VulkanStruct{true}
-    vks::VkRenderingAttachmentInfo
-    deps::Vector{Any}
-    image_view::OptionalPtr{ImageView}
-    resolve_image_view::OptionalPtr{ImageView}
-end
-
-"""
-Intermediate wrapper for VkImageViewHandleInfoNVX.
-
-Extension: VK\\_NVX\\_image\\_view\\_handle
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewHandleInfoNVX.html)
-
-"""
-struct _ImageViewHandleInfoNVX <: VulkanStruct{true}
-    vks::VkImageViewHandleInfoNVX
-    deps::Vector{Any}
-    image_view::ImageView
-    sampler::OptionalPtr{Sampler}
-end
-
-"""
-Intermediate wrapper for VkDescriptorImageInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorImageInfo.html)
-
-"""
-struct _DescriptorImageInfo <: VulkanStruct{false}
-    vks::VkDescriptorImageInfo
-    sampler::Sampler
-    image_view::ImageView
-end
-
-mutable struct Image <: Handle
-    vks::VkImage
-    device::Device
-    refcount::RefCounter
-    destructor
-    Image(vks::VkImage, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkImageSparseMemoryRequirementsInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html)
-
-"""
-@struct_hash_equal struct ImageSparseMemoryRequirementsInfo2 <: HighLevelStruct
-        next::Any
-        image::Image
-    end
-
-"""
-High-level wrapper for VkImageMemoryRequirementsInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryRequirementsInfo2.html)
-
-"""
-@struct_hash_equal struct ImageMemoryRequirementsInfo2 <: HighLevelStruct
-        next::Any
-        image::Image
-    end
-
-"""
-Intermediate wrapper for VkImageMemoryBarrier2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier2.html)
-
-"""
-struct _ImageMemoryBarrier2 <: VulkanStruct{true}
-    vks::VkImageMemoryBarrier2
-    deps::Vector{Any}
-    image::Image
-end
-
-"""
-Intermediate wrapper for VkResolveImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveImageInfo2.html)
-
-"""
-struct _ResolveImageInfo2 <: VulkanStruct{true}
-    vks::VkResolveImageInfo2
-    deps::Vector{Any}
-    src_image::Image
-    dst_image::Image
-end
-
-"""
-Intermediate wrapper for VkBlitImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBlitImageInfo2.html)
-
-"""
-struct _BlitImageInfo2 <: VulkanStruct{true}
-    vks::VkBlitImageInfo2
-    deps::Vector{Any}
-    src_image::Image
-    dst_image::Image
-end
-
-"""
-Intermediate wrapper for VkCopyImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageInfo2.html)
-
-"""
-struct _CopyImageInfo2 <: VulkanStruct{true}
-    vks::VkCopyImageInfo2
-    deps::Vector{Any}
-    src_image::Image
-    dst_image::Image
-end
-
-"""
-Intermediate wrapper for VkImageSparseMemoryRequirementsInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html)
-
-"""
-struct _ImageSparseMemoryRequirementsInfo2 <: VulkanStruct{true}
-    vks::VkImageSparseMemoryRequirementsInfo2
-    deps::Vector{Any}
-    image::Image
-end
-
-"""
-Intermediate wrapper for VkImageMemoryRequirementsInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryRequirementsInfo2.html)
-
-"""
-struct _ImageMemoryRequirementsInfo2 <: VulkanStruct{true}
-    vks::VkImageMemoryRequirementsInfo2
-    deps::Vector{Any}
-    image::Image
-end
-
-"""
-Intermediate wrapper for VkSparseImageMemoryBindInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryBindInfo.html)
-
-"""
-struct _SparseImageMemoryBindInfo <: VulkanStruct{true}
-    vks::VkSparseImageMemoryBindInfo
-    deps::Vector{Any}
-    image::Image
-end
-
-"""
-Intermediate wrapper for VkSparseImageOpaqueMemoryBindInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html)
-
-"""
-struct _SparseImageOpaqueMemoryBindInfo <: VulkanStruct{true}
-    vks::VkSparseImageOpaqueMemoryBindInfo
-    deps::Vector{Any}
-    image::Image
-end
-
-"""
-Intermediate wrapper for VkImageViewCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewCreateInfo.html)
-
-"""
-struct _ImageViewCreateInfo <: VulkanStruct{true}
-    vks::VkImageViewCreateInfo
-    deps::Vector{Any}
-    image::Image
-end
-
-"""
-Intermediate wrapper for VkImageMemoryBarrier.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier.html)
-
-"""
-struct _ImageMemoryBarrier <: VulkanStruct{true}
-    vks::VkImageMemoryBarrier
-    deps::Vector{Any}
-    image::Image
-end
-
-mutable struct BufferView <: Handle
-    vks::VkBufferView
-    device::Device
-    refcount::RefCounter
-    destructor
-    BufferView(vks::VkBufferView, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-mutable struct Buffer <: Handle
-    vks::VkBuffer
-    device::Device
-    refcount::RefCounter
-    destructor
-    Buffer(vks::VkBuffer, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkBufferMemoryBarrier2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryBarrier2.html)
-
-"""
-@struct_hash_equal struct BufferMemoryBarrier2 <: HighLevelStruct
-        next::Any
-        src_stage_mask::UInt64
-        src_access_mask::UInt64
-        dst_stage_mask::UInt64
-        dst_access_mask::UInt64
-        src_queue_family_index::UInt32
-        dst_queue_family_index::UInt32
-        buffer::Buffer
-        offset::UInt64
-        size::UInt64
-    end
-
-"""
-High-level wrapper for VkCopyBufferInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferInfo2.html)
-
-"""
-@struct_hash_equal struct CopyBufferInfo2 <: HighLevelStruct
-        next::Any
-        src_buffer::Buffer
-        dst_buffer::Buffer
-        regions::Vector{BufferCopy2}
-    end
-
-"""
-High-level wrapper for VkBufferDeviceAddressInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferDeviceAddressInfo.html)
-
-"""
-@struct_hash_equal struct BufferDeviceAddressInfo <: HighLevelStruct
-        next::Any
-        buffer::Buffer
-    end
-
-"""
-High-level wrapper for VkGeometryAABBNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryAABBNV.html)
-
-"""
-@struct_hash_equal struct GeometryAABBNV <: HighLevelStruct
-        next::Any
-        aabb_data::OptionalPtr{Buffer}
-        num_aab_bs::UInt32
-        stride::UInt32
-        offset::UInt64
-    end
-
-"""
-High-level wrapper for VkMemoryDedicatedAllocateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryDedicatedAllocateInfo.html)
-
-"""
-@struct_hash_equal struct MemoryDedicatedAllocateInfo <: HighLevelStruct
-        next::Any
-        image::OptionalPtr{Image}
-        buffer::OptionalPtr{Buffer}
-    end
-
-"""
-High-level wrapper for VkBufferMemoryRequirementsInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryRequirementsInfo2.html)
-
-"""
-@struct_hash_equal struct BufferMemoryRequirementsInfo2 <: HighLevelStruct
-        next::Any
-        buffer::Buffer
-    end
-
-"""
-High-level wrapper for VkIndirectCommandsStreamNV.
-
-Extension: VK\\_NV\\_device\\_generated\\_commands
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsStreamNV.html)
-
-"""
-@struct_hash_equal struct IndirectCommandsStreamNV <: HighLevelStruct
-        buffer::Buffer
-        offset::UInt64
-    end
-
-"""
-High-level wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
-
-Extension: VK\\_NV\\_dedicated\\_allocation
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html)
-
-"""
-@struct_hash_equal struct DedicatedAllocationMemoryAllocateInfoNV <: HighLevelStruct
-        next::Any
-        image::OptionalPtr{Image}
-        buffer::OptionalPtr{Buffer}
-    end
-
-"""
-High-level wrapper for VkDescriptorBufferInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html)
-
-"""
-@struct_hash_equal struct DescriptorBufferInfo <: HighLevelStruct
-        buffer::OptionalPtr{Buffer}
-        offset::UInt64
-        range::UInt64
-    end
-
-"""
-Intermediate wrapper for VkBufferMemoryBarrier2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryBarrier2.html)
-
-"""
-struct _BufferMemoryBarrier2 <: VulkanStruct{true}
-    vks::VkBufferMemoryBarrier2
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkCopyImageToBufferInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageToBufferInfo2.html)
-
-"""
-struct _CopyImageToBufferInfo2 <: VulkanStruct{true}
-    vks::VkCopyImageToBufferInfo2
-    deps::Vector{Any}
-    src_image::Image
-    dst_buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkCopyBufferToImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferToImageInfo2.html)
-
-"""
-struct _CopyBufferToImageInfo2 <: VulkanStruct{true}
-    vks::VkCopyBufferToImageInfo2
-    deps::Vector{Any}
-    src_buffer::Buffer
-    dst_image::Image
-end
-
-"""
-Intermediate wrapper for VkCopyBufferInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferInfo2.html)
-
-"""
-struct _CopyBufferInfo2 <: VulkanStruct{true}
-    vks::VkCopyBufferInfo2
-    deps::Vector{Any}
-    src_buffer::Buffer
-    dst_buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkAccelerationStructureCreateInfoKHR.
-
-Extension: VK\\_KHR\\_acceleration\\_structure
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html)
-
-"""
-struct _AccelerationStructureCreateInfoKHR <: VulkanStruct{true}
-    vks::VkAccelerationStructureCreateInfoKHR
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkBufferDeviceAddressInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferDeviceAddressInfo.html)
-
-"""
-struct _BufferDeviceAddressInfo <: VulkanStruct{true}
-    vks::VkBufferDeviceAddressInfo
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkGeometryAABBNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryAABBNV.html)
-
-"""
-struct _GeometryAABBNV <: VulkanStruct{true}
-    vks::VkGeometryAABBNV
-    deps::Vector{Any}
-    aabb_data::OptionalPtr{Buffer}
-end
-
-"""
-Intermediate wrapper for VkGeometryTrianglesNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTrianglesNV.html)
-
-"""
-struct _GeometryTrianglesNV <: VulkanStruct{true}
-    vks::VkGeometryTrianglesNV
-    deps::Vector{Any}
-    vertex_data::OptionalPtr{Buffer}
-    index_data::OptionalPtr{Buffer}
-    transform_data::OptionalPtr{Buffer}
-end
-
-"""
-Intermediate wrapper for VkConditionalRenderingBeginInfoEXT.
-
-Extension: VK\\_EXT\\_conditional\\_rendering
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html)
-
-"""
-struct _ConditionalRenderingBeginInfoEXT <: VulkanStruct{true}
-    vks::VkConditionalRenderingBeginInfoEXT
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkMemoryDedicatedAllocateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryDedicatedAllocateInfo.html)
-
-"""
-struct _MemoryDedicatedAllocateInfo <: VulkanStruct{true}
-    vks::VkMemoryDedicatedAllocateInfo
-    deps::Vector{Any}
-    image::OptionalPtr{Image}
-    buffer::OptionalPtr{Buffer}
-end
-
-"""
-Intermediate wrapper for VkBufferMemoryRequirementsInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryRequirementsInfo2.html)
-
-"""
-struct _BufferMemoryRequirementsInfo2 <: VulkanStruct{true}
-    vks::VkBufferMemoryRequirementsInfo2
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkGeneratedCommandsInfoNV.
-
-Extension: VK\\_NV\\_device\\_generated\\_commands
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsInfoNV.html)
-
-"""
-struct _GeneratedCommandsInfoNV <: VulkanStruct{true}
-    vks::VkGeneratedCommandsInfoNV
-    deps::Vector{Any}
-    pipeline::Pipeline
-    indirect_commands_layout::IndirectCommandsLayoutNV
-    preprocess_buffer::Buffer
-    sequences_count_buffer::OptionalPtr{Buffer}
-    sequences_index_buffer::OptionalPtr{Buffer}
-end
-
-"""
-Intermediate wrapper for VkIndirectCommandsStreamNV.
-
-Extension: VK\\_NV\\_device\\_generated\\_commands
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsStreamNV.html)
-
-"""
-struct _IndirectCommandsStreamNV <: VulkanStruct{false}
-    vks::VkIndirectCommandsStreamNV
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkDedicatedAllocationMemoryAllocateInfoNV.
-
-Extension: VK\\_NV\\_dedicated\\_allocation
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDedicatedAllocationMemoryAllocateInfoNV.html)
-
-"""
-struct _DedicatedAllocationMemoryAllocateInfoNV <: VulkanStruct{true}
-    vks::VkDedicatedAllocationMemoryAllocateInfoNV
-    deps::Vector{Any}
-    image::OptionalPtr{Image}
-    buffer::OptionalPtr{Buffer}
-end
-
-"""
-Intermediate wrapper for VkSparseBufferMemoryBindInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseBufferMemoryBindInfo.html)
-
-"""
-struct _SparseBufferMemoryBindInfo <: VulkanStruct{true}
-    vks::VkSparseBufferMemoryBindInfo
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkBufferMemoryBarrier.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryBarrier.html)
-
-"""
-struct _BufferMemoryBarrier <: VulkanStruct{true}
-    vks::VkBufferMemoryBarrier
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkBufferViewCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferViewCreateInfo.html)
-
-"""
-struct _BufferViewCreateInfo <: VulkanStruct{true}
-    vks::VkBufferViewCreateInfo
-    deps::Vector{Any}
-    buffer::Buffer
-end
-
-"""
-Intermediate wrapper for VkDescriptorBufferInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html)
-
-"""
-struct _DescriptorBufferInfo <: VulkanStruct{false}
-    vks::VkDescriptorBufferInfo
-    buffer::OptionalPtr{Buffer}
-end
-
-mutable struct CommandPool <: Handle
-    vks::VkCommandPool
-    device::Device
-    refcount::RefCounter
-    destructor
-    CommandPool(vks::VkCommandPool, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-Intermediate wrapper for VkCommandBufferAllocateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferAllocateInfo.html)
-
-"""
-struct _CommandBufferAllocateInfo <: VulkanStruct{true}
-    vks::VkCommandBufferAllocateInfo
-    deps::Vector{Any}
-    command_pool::CommandPool
-end
-
-mutable struct CommandBuffer <: Handle
-    vks::VkCommandBuffer
-    command_pool::CommandPool
-    refcount::RefCounter
-    destructor
-    CommandBuffer(vks::VkCommandBuffer, command_pool::CommandPool, refcount::RefCounter) = new(vks, command_pool, refcount, undef)
-end
-
-"""
-High-level wrapper for VkCommandBufferSubmitInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferSubmitInfo.html)
-
-"""
-@struct_hash_equal struct CommandBufferSubmitInfo <: HighLevelStruct
-        next::Any
-        command_buffer::CommandBuffer
-        device_mask::UInt32
-    end
-
-"""
-Intermediate wrapper for VkCommandBufferSubmitInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferSubmitInfo.html)
-
-"""
-struct _CommandBufferSubmitInfo <: VulkanStruct{true}
-    vks::VkCommandBufferSubmitInfo
-    deps::Vector{Any}
-    command_buffer::CommandBuffer
-end
-
-mutable struct DeviceMemory <: Handle
-    vks::VkDeviceMemory
-    device::Device
-    refcount::RefCounter
-    destructor
-    DeviceMemory(vks::VkDeviceMemory, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
-end
-
-"""
-High-level wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html)
-
-"""
-@struct_hash_equal struct DeviceMemoryOpaqueCaptureAddressInfo <: HighLevelStruct
-        next::Any
-        memory::DeviceMemory
-    end
-
-"""
-High-level wrapper for VkBindAccelerationStructureMemoryInfoNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
-
-"""
-@struct_hash_equal struct BindAccelerationStructureMemoryInfoNV <: HighLevelStruct
-        next::Any
-        acceleration_structure::AccelerationStructureNV
-        memory::DeviceMemory
-        memory_offset::UInt64
-        device_indices::Vector{UInt32}
-    end
-
-"""
-High-level wrapper for VkBindImageMemoryInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryInfo.html)
-
-"""
-@struct_hash_equal struct BindImageMemoryInfo <: HighLevelStruct
-        next::Any
-        image::Image
-        memory::DeviceMemory
-        memory_offset::UInt64
-    end
-
-"""
-High-level wrapper for VkBindBufferMemoryInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryInfo.html)
-
-"""
-@struct_hash_equal struct BindBufferMemoryInfo <: HighLevelStruct
-        next::Any
-        buffer::Buffer
-        memory::DeviceMemory
-        memory_offset::UInt64
-    end
-
-"""
-High-level wrapper for VkWin32KeyedMutexAcquireReleaseInfoKHR.
-
-Extension: VK\\_KHR\\_win32\\_keyed\\_mutex
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoKHR.html)
-
-"""
-@struct_hash_equal struct Win32KeyedMutexAcquireReleaseInfoKHR <: HighLevelStruct
-        next::Any
-        acquire_syncs::Vector{DeviceMemory}
-        acquire_keys::Vector{UInt64}
-        acquire_timeouts::Vector{UInt32}
-        release_syncs::Vector{DeviceMemory}
-        release_keys::Vector{UInt64}
-    end
-
-"""
-High-level wrapper for VkWin32KeyedMutexAcquireReleaseInfoNV.
-
-Extension: VK\\_NV\\_win32\\_keyed\\_mutex
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoNV.html)
-
-"""
-@struct_hash_equal struct Win32KeyedMutexAcquireReleaseInfoNV <: HighLevelStruct
-        next::Any
-        acquire_syncs::Vector{DeviceMemory}
-        acquire_keys::Vector{UInt64}
-        acquire_timeout_milliseconds::Vector{UInt32}
-        release_syncs::Vector{DeviceMemory}
-        release_keys::Vector{UInt64}
-    end
-
-"""
-High-level wrapper for VkMappedMemoryRange.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMappedMemoryRange.html)
-
-"""
-@struct_hash_equal struct MappedMemoryRange <: HighLevelStruct
-        next::Any
-        memory::DeviceMemory
-        offset::UInt64
-        size::UInt64
-    end
-
-"""
-Intermediate wrapper for VkMemoryGetRemoteAddressInfoNV.
-
-Extension: VK\\_NV\\_external\\_memory\\_rdma
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetRemoteAddressInfoNV.html)
-
-"""
-struct _MemoryGetRemoteAddressInfoNV <: VulkanStruct{true}
-    vks::VkMemoryGetRemoteAddressInfoNV
-    deps::Vector{Any}
-    memory::DeviceMemory
-end
-
-"""
-Intermediate wrapper for VkDeviceMemoryOpaqueCaptureAddressInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryOpaqueCaptureAddressInfo.html)
-
-"""
-struct _DeviceMemoryOpaqueCaptureAddressInfo <: VulkanStruct{true}
-    vks::VkDeviceMemoryOpaqueCaptureAddressInfo
-    deps::Vector{Any}
-    memory::DeviceMemory
-end
-
-"""
-Intermediate wrapper for VkBindAccelerationStructureMemoryInfoNV.
-
-Extension: VK\\_NV\\_ray\\_tracing
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
-
-"""
-struct _BindAccelerationStructureMemoryInfoNV <: VulkanStruct{true}
-    vks::VkBindAccelerationStructureMemoryInfoNV
-    deps::Vector{Any}
-    acceleration_structure::AccelerationStructureNV
-    memory::DeviceMemory
-end
-
-"""
-Intermediate wrapper for VkBindImageMemoryInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryInfo.html)
-
-"""
-struct _BindImageMemoryInfo <: VulkanStruct{true}
-    vks::VkBindImageMemoryInfo
-    deps::Vector{Any}
-    image::Image
-    memory::DeviceMemory
-end
-
-"""
-Intermediate wrapper for VkBindBufferMemoryInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryInfo.html)
-
-"""
-struct _BindBufferMemoryInfo <: VulkanStruct{true}
-    vks::VkBindBufferMemoryInfo
-    deps::Vector{Any}
-    buffer::Buffer
-    memory::DeviceMemory
-end
-
-"""
-Intermediate wrapper for VkMemoryGetFdInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_memory\\_fd
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetFdInfoKHR.html)
-
-"""
-struct _MemoryGetFdInfoKHR <: VulkanStruct{true}
-    vks::VkMemoryGetFdInfoKHR
-    deps::Vector{Any}
-    memory::DeviceMemory
-end
-
-"""
-Intermediate wrapper for VkMemoryGetWin32HandleInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_memory\\_win32
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetWin32HandleInfoKHR.html)
-
-"""
-struct _MemoryGetWin32HandleInfoKHR <: VulkanStruct{true}
-    vks::VkMemoryGetWin32HandleInfoKHR
-    deps::Vector{Any}
-    memory::DeviceMemory
-end
-
-"""
-Intermediate wrapper for VkSparseImageMemoryBind.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryBind.html)
-
-"""
-struct _SparseImageMemoryBind <: VulkanStruct{false}
-    vks::VkSparseImageMemoryBind
-    memory::OptionalPtr{DeviceMemory}
-end
-
-"""
-Intermediate wrapper for VkSparseMemoryBind.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseMemoryBind.html)
-
-"""
-struct _SparseMemoryBind <: VulkanStruct{false}
-    vks::VkSparseMemoryBind
-    memory::OptionalPtr{DeviceMemory}
-end
-
-"""
-Intermediate wrapper for VkMappedMemoryRange.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMappedMemoryRange.html)
-
-"""
-struct _MappedMemoryRange <: VulkanStruct{true}
-    vks::VkMappedMemoryRange
-    deps::Vector{Any}
-    memory::DeviceMemory
-end
-
-mutable struct Queue <: Handle
-    vks::VkQueue
-    device::Device
-    refcount::RefCounter
-    destructor
-    Queue(vks::VkQueue, device::Device, refcount::RefCounter) = new(vks, device, refcount, undef)
+    DebugUtilsMessengerEXT(vks::VkDebugUtilsMessengerEXT, instance::Instance, refcount::RefCounter) = new(vks, instance, refcount, undef)
 end
 
 """
@@ -17000,16 +17000,15 @@ High-level wrapper for VkFramebufferCreateInfo.
     end
 
 """
-High-level wrapper for VkAccelerationStructureMatrixMotionInstanceNV.
+High-level wrapper for VkAccelerationStructureInstanceKHR.
 
-Extension: VK\\_NV\\_ray\\_tracing\\_motion\\_blur
+Extension: VK\\_KHR\\_acceleration\\_structure
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMatrixMotionInstanceNV.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInstanceKHR.html)
 
 """
-@struct_hash_equal struct AccelerationStructureMatrixMotionInstanceNV <: HighLevelStruct
-        transform_t_0::TransformMatrixKHR
-        transform_t_1::TransformMatrixKHR
+@struct_hash_equal struct AccelerationStructureInstanceKHR <: HighLevelStruct
+        transform::TransformMatrixKHR
         instance_custom_index::UInt32
         mask::UInt32
         instance_shader_binding_table_record_offset::UInt32
@@ -17036,15 +17035,16 @@ Extension: VK\\_NV\\_ray\\_tracing\\_motion\\_blur
     end
 
 """
-High-level wrapper for VkAccelerationStructureInstanceKHR.
+High-level wrapper for VkAccelerationStructureMatrixMotionInstanceNV.
 
-Extension: VK\\_KHR\\_acceleration\\_structure
+Extension: VK\\_NV\\_ray\\_tracing\\_motion\\_blur
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInstanceKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMatrixMotionInstanceNV.html)
 
 """
-@struct_hash_equal struct AccelerationStructureInstanceKHR <: HighLevelStruct
-        transform::TransformMatrixKHR
+@struct_hash_equal struct AccelerationStructureMatrixMotionInstanceNV <: HighLevelStruct
+        transform_t_0::TransformMatrixKHR
+        transform_t_1::TransformMatrixKHR
         instance_custom_index::UInt32
         mask::UInt32
         instance_shader_binding_table_record_offset::UInt32
@@ -17110,15 +17110,16 @@ Extension: VK\\_EXT\\_debug\\_utils
     end
 
 """
-High-level wrapper for VkDeviceGroupSwapchainCreateInfoKHR.
+High-level wrapper for VkDeviceGroupPresentCapabilitiesKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentCapabilitiesKHR.html)
 
 """
-@struct_hash_equal struct DeviceGroupSwapchainCreateInfoKHR <: HighLevelStruct
+@struct_hash_equal struct DeviceGroupPresentCapabilitiesKHR <: HighLevelStruct
         next::Any
+        present_mask::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), UInt32}
         modes::DeviceGroupPresentModeFlagKHR
     end
 
@@ -17137,16 +17138,15 @@ Extension: VK\\_KHR\\_swapchain
     end
 
 """
-High-level wrapper for VkDeviceGroupPresentCapabilitiesKHR.
+High-level wrapper for VkDeviceGroupSwapchainCreateInfoKHR.
 
 Extension: VK\\_KHR\\_swapchain
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentCapabilitiesKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html)
 
 """
-@struct_hash_equal struct DeviceGroupPresentCapabilitiesKHR <: HighLevelStruct
+@struct_hash_equal struct DeviceGroupSwapchainCreateInfoKHR <: HighLevelStruct
         next::Any
-        present_mask::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), UInt32}
         modes::DeviceGroupPresentModeFlagKHR
     end
 
@@ -17176,14 +17176,66 @@ Extension: VK\\_EXT\\_display\\_control
     end
 
 """
-High-level wrapper for VkFenceGetFdInfoKHR.
+High-level wrapper for VkPhysicalDeviceExternalFenceInfo.
 
-Extension: VK\\_KHR\\_external\\_fence\\_fd
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetFdInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html)
 
 """
-@struct_hash_equal struct FenceGetFdInfoKHR <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceExternalFenceInfo <: HighLevelStruct
+        next::Any
+        handle_type::ExternalFenceHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkExternalFenceProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceProperties.html)
+
+"""
+@struct_hash_equal struct ExternalFenceProperties <: HighLevelStruct
+        next::Any
+        export_from_imported_handle_types::ExternalFenceHandleTypeFlag
+        compatible_handle_types::ExternalFenceHandleTypeFlag
+        external_fence_features::ExternalFenceFeatureFlag
+    end
+
+"""
+High-level wrapper for VkExportFenceCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportFenceCreateInfo.html)
+
+"""
+@struct_hash_equal struct ExportFenceCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalFenceHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkImportFenceWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_fence\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportFenceWin32HandleInfoKHR.html)
+
+"""
+@struct_hash_equal struct ImportFenceWin32HandleInfoKHR <: HighLevelStruct
+        next::Any
+        fence::Fence
+        flags::FenceImportFlag
+        handle_type::ExternalFenceHandleTypeFlag
+        handle::OptionalPtr{vk.HANDLE}
+        name::OptionalPtr{vk.LPCWSTR}
+    end
+
+"""
+High-level wrapper for VkFenceGetWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_fence\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetWin32HandleInfoKHR.html)
+
+"""
+@struct_hash_equal struct FenceGetWin32HandleInfoKHR <: HighLevelStruct
         next::Any
         fence::Fence
         handle_type::ExternalFenceHandleTypeFlag
@@ -17206,80 +17258,80 @@ Extension: VK\\_KHR\\_external\\_fence\\_fd
     end
 
 """
-High-level wrapper for VkFenceGetWin32HandleInfoKHR.
+High-level wrapper for VkFenceGetFdInfoKHR.
 
-Extension: VK\\_KHR\\_external\\_fence\\_win32
+Extension: VK\\_KHR\\_external\\_fence\\_fd
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetWin32HandleInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetFdInfoKHR.html)
 
 """
-@struct_hash_equal struct FenceGetWin32HandleInfoKHR <: HighLevelStruct
+@struct_hash_equal struct FenceGetFdInfoKHR <: HighLevelStruct
         next::Any
         fence::Fence
         handle_type::ExternalFenceHandleTypeFlag
     end
 
 """
-High-level wrapper for VkImportFenceWin32HandleInfoKHR.
+High-level wrapper for VkPhysicalDeviceExternalSemaphoreInfo.
 
-Extension: VK\\_KHR\\_external\\_fence\\_win32
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportFenceWin32HandleInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html)
 
 """
-@struct_hash_equal struct ImportFenceWin32HandleInfoKHR <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceExternalSemaphoreInfo <: HighLevelStruct
         next::Any
-        fence::Fence
-        flags::FenceImportFlag
-        handle_type::ExternalFenceHandleTypeFlag
+        handle_type::ExternalSemaphoreHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkExternalSemaphoreProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreProperties.html)
+
+"""
+@struct_hash_equal struct ExternalSemaphoreProperties <: HighLevelStruct
+        next::Any
+        export_from_imported_handle_types::ExternalSemaphoreHandleTypeFlag
+        compatible_handle_types::ExternalSemaphoreHandleTypeFlag
+        external_semaphore_features::ExternalSemaphoreFeatureFlag
+    end
+
+"""
+High-level wrapper for VkExportSemaphoreCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportSemaphoreCreateInfo.html)
+
+"""
+@struct_hash_equal struct ExportSemaphoreCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalSemaphoreHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkImportSemaphoreWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_semaphore\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreWin32HandleInfoKHR.html)
+
+"""
+@struct_hash_equal struct ImportSemaphoreWin32HandleInfoKHR <: HighLevelStruct
+        next::Any
+        semaphore::Semaphore
+        flags::SemaphoreImportFlag
+        handle_type::ExternalSemaphoreHandleTypeFlag
         handle::OptionalPtr{vk.HANDLE}
         name::OptionalPtr{vk.LPCWSTR}
     end
 
 """
-High-level wrapper for VkExportFenceCreateInfo.
+High-level wrapper for VkSemaphoreGetWin32HandleInfoKHR.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportFenceCreateInfo.html)
+Extension: VK\\_KHR\\_external\\_semaphore\\_win32
 
-"""
-@struct_hash_equal struct ExportFenceCreateInfo <: HighLevelStruct
-        next::Any
-        handle_types::ExternalFenceHandleTypeFlag
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetWin32HandleInfoKHR.html)
 
 """
-High-level wrapper for VkExternalFenceProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceProperties.html)
-
-"""
-@struct_hash_equal struct ExternalFenceProperties <: HighLevelStruct
-        next::Any
-        export_from_imported_handle_types::ExternalFenceHandleTypeFlag
-        compatible_handle_types::ExternalFenceHandleTypeFlag
-        external_fence_features::ExternalFenceFeatureFlag
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceExternalFenceInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceExternalFenceInfo <: HighLevelStruct
-        next::Any
-        handle_type::ExternalFenceHandleTypeFlag
-    end
-
-"""
-High-level wrapper for VkSemaphoreGetFdInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_semaphore\\_fd
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetFdInfoKHR.html)
-
-"""
-@struct_hash_equal struct SemaphoreGetFdInfoKHR <: HighLevelStruct
+@struct_hash_equal struct SemaphoreGetWin32HandleInfoKHR <: HighLevelStruct
         next::Any
         semaphore::Semaphore
         handle_type::ExternalSemaphoreHandleTypeFlag
@@ -17302,108 +17354,121 @@ Extension: VK\\_KHR\\_external\\_semaphore\\_fd
     end
 
 """
-High-level wrapper for VkSemaphoreGetWin32HandleInfoKHR.
+High-level wrapper for VkSemaphoreGetFdInfoKHR.
 
-Extension: VK\\_KHR\\_external\\_semaphore\\_win32
+Extension: VK\\_KHR\\_external\\_semaphore\\_fd
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetWin32HandleInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetFdInfoKHR.html)
 
 """
-@struct_hash_equal struct SemaphoreGetWin32HandleInfoKHR <: HighLevelStruct
+@struct_hash_equal struct SemaphoreGetFdInfoKHR <: HighLevelStruct
         next::Any
         semaphore::Semaphore
         handle_type::ExternalSemaphoreHandleTypeFlag
     end
 
 """
-High-level wrapper for VkImportSemaphoreWin32HandleInfoKHR.
+High-level wrapper for VkExternalMemoryProperties.
 
-Extension: VK\\_KHR\\_external\\_semaphore\\_win32
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreWin32HandleInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryProperties.html)
 
 """
-@struct_hash_equal struct ImportSemaphoreWin32HandleInfoKHR <: HighLevelStruct
+@struct_hash_equal struct ExternalMemoryProperties <: HighLevelStruct
+        external_memory_features::ExternalMemoryFeatureFlag
+        export_from_imported_handle_types::ExternalMemoryHandleTypeFlag
+        compatible_handle_types::ExternalMemoryHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkExternalImageFormatProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalImageFormatProperties.html)
+
+"""
+@struct_hash_equal struct ExternalImageFormatProperties <: HighLevelStruct
         next::Any
-        semaphore::Semaphore
-        flags::SemaphoreImportFlag
-        handle_type::ExternalSemaphoreHandleTypeFlag
+        external_memory_properties::ExternalMemoryProperties
+    end
+
+"""
+High-level wrapper for VkExternalBufferProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalBufferProperties.html)
+
+"""
+@struct_hash_equal struct ExternalBufferProperties <: HighLevelStruct
+        next::Any
+        external_memory_properties::ExternalMemoryProperties
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceExternalImageFormatInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceExternalImageFormatInfo <: HighLevelStruct
+        next::Any
+        handle_type::ExternalMemoryHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkExternalMemoryImageCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryImageCreateInfo.html)
+
+"""
+@struct_hash_equal struct ExternalMemoryImageCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkExternalMemoryBufferCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryBufferCreateInfo.html)
+
+"""
+@struct_hash_equal struct ExternalMemoryBufferCreateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkExportMemoryAllocateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportMemoryAllocateInfo.html)
+
+"""
+@struct_hash_equal struct ExportMemoryAllocateInfo <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlag
+    end
+
+"""
+High-level wrapper for VkImportMemoryWin32HandleInfoKHR.
+
+Extension: VK\\_KHR\\_external\\_memory\\_win32
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryWin32HandleInfoKHR.html)
+
+"""
+@struct_hash_equal struct ImportMemoryWin32HandleInfoKHR <: HighLevelStruct
+        next::Any
+        handle_type::ExternalMemoryHandleTypeFlag
         handle::OptionalPtr{vk.HANDLE}
         name::OptionalPtr{vk.LPCWSTR}
     end
 
 """
-High-level wrapper for VkExportSemaphoreCreateInfo.
+High-level wrapper for VkMemoryGetWin32HandleInfoKHR.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportSemaphoreCreateInfo.html)
+Extension: VK\\_KHR\\_external\\_memory\\_win32
 
-"""
-@struct_hash_equal struct ExportSemaphoreCreateInfo <: HighLevelStruct
-        next::Any
-        handle_types::ExternalSemaphoreHandleTypeFlag
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetWin32HandleInfoKHR.html)
 
 """
-High-level wrapper for VkExternalSemaphoreProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreProperties.html)
-
-"""
-@struct_hash_equal struct ExternalSemaphoreProperties <: HighLevelStruct
-        next::Any
-        export_from_imported_handle_types::ExternalSemaphoreHandleTypeFlag
-        compatible_handle_types::ExternalSemaphoreHandleTypeFlag
-        external_semaphore_features::ExternalSemaphoreFeatureFlag
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceExternalSemaphoreInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceExternalSemaphoreInfo <: HighLevelStruct
-        next::Any
-        handle_type::ExternalSemaphoreHandleTypeFlag
-    end
-
-"""
-High-level wrapper for VkMemoryGetRemoteAddressInfoNV.
-
-Extension: VK\\_NV\\_external\\_memory\\_rdma
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetRemoteAddressInfoNV.html)
-
-"""
-@struct_hash_equal struct MemoryGetRemoteAddressInfoNV <: HighLevelStruct
-        next::Any
-        memory::DeviceMemory
-        handle_type::ExternalMemoryHandleTypeFlag
-    end
-
-"""
-High-level wrapper for VkImportMemoryHostPointerInfoEXT.
-
-Extension: VK\\_EXT\\_external\\_memory\\_host
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html)
-
-"""
-@struct_hash_equal struct ImportMemoryHostPointerInfoEXT <: HighLevelStruct
-        next::Any
-        handle_type::ExternalMemoryHandleTypeFlag
-        host_pointer::Ptr{Cvoid}
-    end
-
-"""
-High-level wrapper for VkMemoryGetFdInfoKHR.
-
-Extension: VK\\_KHR\\_external\\_memory\\_fd
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetFdInfoKHR.html)
-
-"""
-@struct_hash_equal struct MemoryGetFdInfoKHR <: HighLevelStruct
+@struct_hash_equal struct MemoryGetWin32HandleInfoKHR <: HighLevelStruct
         next::Any
         memory::DeviceMemory
         handle_type::ExternalMemoryHandleTypeFlag
@@ -17424,110 +17489,71 @@ Extension: VK\\_KHR\\_external\\_memory\\_fd
     end
 
 """
-High-level wrapper for VkMemoryGetWin32HandleInfoKHR.
+High-level wrapper for VkMemoryGetFdInfoKHR.
 
-Extension: VK\\_KHR\\_external\\_memory\\_win32
+Extension: VK\\_KHR\\_external\\_memory\\_fd
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetWin32HandleInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetFdInfoKHR.html)
 
 """
-@struct_hash_equal struct MemoryGetWin32HandleInfoKHR <: HighLevelStruct
+@struct_hash_equal struct MemoryGetFdInfoKHR <: HighLevelStruct
         next::Any
         memory::DeviceMemory
         handle_type::ExternalMemoryHandleTypeFlag
     end
 
 """
-High-level wrapper for VkImportMemoryWin32HandleInfoKHR.
+High-level wrapper for VkImportMemoryHostPointerInfoEXT.
 
-Extension: VK\\_KHR\\_external\\_memory\\_win32
+Extension: VK\\_EXT\\_external\\_memory\\_host
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryWin32HandleInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html)
 
 """
-@struct_hash_equal struct ImportMemoryWin32HandleInfoKHR <: HighLevelStruct
+@struct_hash_equal struct ImportMemoryHostPointerInfoEXT <: HighLevelStruct
         next::Any
         handle_type::ExternalMemoryHandleTypeFlag
-        handle::OptionalPtr{vk.HANDLE}
-        name::OptionalPtr{vk.LPCWSTR}
+        host_pointer::Ptr{Cvoid}
     end
 
 """
-High-level wrapper for VkExportMemoryAllocateInfo.
+High-level wrapper for VkMemoryGetRemoteAddressInfoNV.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportMemoryAllocateInfo.html)
+Extension: VK\\_NV\\_external\\_memory\\_rdma
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetRemoteAddressInfoNV.html)
 
 """
-@struct_hash_equal struct ExportMemoryAllocateInfo <: HighLevelStruct
+@struct_hash_equal struct MemoryGetRemoteAddressInfoNV <: HighLevelStruct
         next::Any
-        handle_types::ExternalMemoryHandleTypeFlag
-    end
-
-"""
-High-level wrapper for VkExternalMemoryBufferCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryBufferCreateInfo.html)
-
-"""
-@struct_hash_equal struct ExternalMemoryBufferCreateInfo <: HighLevelStruct
-        next::Any
-        handle_types::ExternalMemoryHandleTypeFlag
-    end
-
-"""
-High-level wrapper for VkExternalMemoryImageCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryImageCreateInfo.html)
-
-"""
-@struct_hash_equal struct ExternalMemoryImageCreateInfo <: HighLevelStruct
-        next::Any
-        handle_types::ExternalMemoryHandleTypeFlag
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceExternalImageFormatInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceExternalImageFormatInfo <: HighLevelStruct
-        next::Any
+        memory::DeviceMemory
         handle_type::ExternalMemoryHandleTypeFlag
     end
 
 """
-High-level wrapper for VkExternalMemoryProperties.
+High-level wrapper for VkExternalMemoryImageCreateInfoNV.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryProperties.html)
+Extension: VK\\_NV\\_external\\_memory
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html)
 
 """
-@struct_hash_equal struct ExternalMemoryProperties <: HighLevelStruct
-        external_memory_features::ExternalMemoryFeatureFlag
-        export_from_imported_handle_types::ExternalMemoryHandleTypeFlag
-        compatible_handle_types::ExternalMemoryHandleTypeFlag
+@struct_hash_equal struct ExternalMemoryImageCreateInfoNV <: HighLevelStruct
+        next::Any
+        handle_types::ExternalMemoryHandleTypeFlagNV
     end
 
 """
-High-level wrapper for VkExternalBufferProperties.
+High-level wrapper for VkExportMemoryAllocateInfoNV.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalBufferProperties.html)
+Extension: VK\\_NV\\_external\\_memory
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportMemoryAllocateInfoNV.html)
 
 """
-@struct_hash_equal struct ExternalBufferProperties <: HighLevelStruct
+@struct_hash_equal struct ExportMemoryAllocateInfoNV <: HighLevelStruct
         next::Any
-        external_memory_properties::ExternalMemoryProperties
-    end
-
-"""
-High-level wrapper for VkExternalImageFormatProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalImageFormatProperties.html)
-
-"""
-@struct_hash_equal struct ExternalImageFormatProperties <: HighLevelStruct
-        next::Any
-        external_memory_properties::ExternalMemoryProperties
+        handle_types::ExternalMemoryHandleTypeFlagNV
     end
 
 """
@@ -17545,32 +17571,6 @@ Extension: VK\\_NV\\_external\\_memory\\_win32
     end
 
 """
-High-level wrapper for VkExportMemoryAllocateInfoNV.
-
-Extension: VK\\_NV\\_external\\_memory
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportMemoryAllocateInfoNV.html)
-
-"""
-@struct_hash_equal struct ExportMemoryAllocateInfoNV <: HighLevelStruct
-        next::Any
-        handle_types::ExternalMemoryHandleTypeFlagNV
-    end
-
-"""
-High-level wrapper for VkExternalMemoryImageCreateInfoNV.
-
-Extension: VK\\_NV\\_external\\_memory
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryImageCreateInfoNV.html)
-
-"""
-@struct_hash_equal struct ExternalMemoryImageCreateInfoNV <: HighLevelStruct
-        next::Any
-        handle_types::ExternalMemoryHandleTypeFlagNV
-    end
-
-"""
 High-level wrapper for VkDebugReportCallbackCreateInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_report
@@ -17583,46 +17583,6 @@ Extension: VK\\_EXT\\_debug\\_report
         flags::DebugReportFlagEXT
         pfn_callback::FunctionPtr
         user_data::OptionalPtr{Ptr{Cvoid}}
-    end
-
-"""
-High-level wrapper for VkCommandBufferInheritanceRenderPassTransformInfoQCOM.
-
-Extension: VK\\_QCOM\\_render\\_pass\\_transform
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html)
-
-"""
-@struct_hash_equal struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: HighLevelStruct
-        next::Any
-        transform::SurfaceTransformFlagKHR
-        render_area::Rect2D
-    end
-
-"""
-High-level wrapper for VkCopyCommandTransformInfoQCOM.
-
-Extension: VK\\_QCOM\\_rotated\\_copy\\_commands
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyCommandTransformInfoQCOM.html)
-
-"""
-@struct_hash_equal struct CopyCommandTransformInfoQCOM <: HighLevelStruct
-        next::Any
-        transform::SurfaceTransformFlagKHR
-    end
-
-"""
-High-level wrapper for VkRenderPassTransformBeginInfoQCOM.
-
-Extension: VK\\_QCOM\\_render\\_pass\\_transform
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html)
-
-"""
-@struct_hash_equal struct RenderPassTransformBeginInfoQCOM <: HighLevelStruct
-        next::Any
-        transform::SurfaceTransformFlagKHR
     end
 
 """
@@ -17657,23 +17617,43 @@ Extension: VK\\_KHR\\_get\\_display\\_properties2
     end
 
 """
-High-level wrapper for VkDisplaySurfaceCreateInfoKHR.
+High-level wrapper for VkRenderPassTransformBeginInfoQCOM.
 
-Extension: VK\\_KHR\\_display
+Extension: VK\\_QCOM\\_render\\_pass\\_transform
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassTransformBeginInfoQCOM.html)
 
 """
-@struct_hash_equal struct DisplaySurfaceCreateInfoKHR <: HighLevelStruct
+@struct_hash_equal struct RenderPassTransformBeginInfoQCOM <: HighLevelStruct
         next::Any
-        flags::UInt32
-        display_mode::DisplayModeKHR
-        plane_index::UInt32
-        plane_stack_index::UInt32
         transform::SurfaceTransformFlagKHR
-        global_alpha::Float32
-        alpha_mode::DisplayPlaneAlphaFlagKHR
-        image_extent::Extent2D
+    end
+
+"""
+High-level wrapper for VkCopyCommandTransformInfoQCOM.
+
+Extension: VK\\_QCOM\\_rotated\\_copy\\_commands
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyCommandTransformInfoQCOM.html)
+
+"""
+@struct_hash_equal struct CopyCommandTransformInfoQCOM <: HighLevelStruct
+        next::Any
+        transform::SurfaceTransformFlagKHR
+    end
+
+"""
+High-level wrapper for VkCommandBufferInheritanceRenderPassTransformInfoQCOM.
+
+Extension: VK\\_QCOM\\_render\\_pass\\_transform
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceRenderPassTransformInfoQCOM.html)
+
+"""
+@struct_hash_equal struct CommandBufferInheritanceRenderPassTransformInfoQCOM <: HighLevelStruct
+        next::Any
+        transform::SurfaceTransformFlagKHR
+        render_area::Rect2D
     end
 
 """
@@ -17710,6 +17690,26 @@ Extension: VK\\_KHR\\_get\\_display\\_properties2
     end
 
 """
+High-level wrapper for VkDisplaySurfaceCreateInfoKHR.
+
+Extension: VK\\_KHR\\_display
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html)
+
+"""
+@struct_hash_equal struct DisplaySurfaceCreateInfoKHR <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        display_mode::DisplayModeKHR
+        plane_index::UInt32
+        plane_stack_index::UInt32
+        transform::SurfaceTransformFlagKHR
+        global_alpha::Float32
+        alpha_mode::DisplayPlaneAlphaFlagKHR
+        image_extent::Extent2D
+    end
+
+"""
 High-level wrapper for VkSemaphoreWaitInfo.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreWaitInfo.html)
@@ -17723,159 +17723,60 @@ High-level wrapper for VkSemaphoreWaitInfo.
     end
 
 """
-High-level wrapper for VkAttachmentSampleCountInfoAMD.
+High-level wrapper for VkImageFormatProperties.
 
-Extension: VK\\_KHR\\_dynamic\\_rendering
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleCountInfoAMD.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatProperties.html)
 
 """
-@struct_hash_equal struct AttachmentSampleCountInfoAMD <: HighLevelStruct
-        next::Any
-        color_attachment_samples::Vector{SampleCountFlag}
-        depth_stencil_attachment_samples::SampleCountFlag
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.
-
-Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV <: HighLevelStruct
-        next::Any
-        max_fragment_shading_rate_invocation_count::SampleCountFlag
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceFragmentShadingRateKHR.
-
-Extension: VK\\_KHR\\_fragment\\_shading\\_rate
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateKHR.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceFragmentShadingRateKHR <: HighLevelStruct
-        next::Any
+@struct_hash_equal struct ImageFormatProperties <: HighLevelStruct
+        max_extent::Extent3D
+        max_mip_levels::UInt32
+        max_array_layers::UInt32
         sample_counts::SampleCountFlag
-        fragment_size::Extent2D
+        max_resource_size::UInt64
     end
 
 """
-High-level wrapper for VkPhysicalDeviceFragmentShadingRatePropertiesKHR.
+High-level wrapper for VkExternalImageFormatPropertiesNV.
 
-Extension: VK\\_KHR\\_fragment\\_shading\\_rate
+Extension: VK\\_NV\\_external\\_memory\\_capabilities
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRatePropertiesKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalImageFormatPropertiesNV.html)
 
 """
-@struct_hash_equal struct PhysicalDeviceFragmentShadingRatePropertiesKHR <: HighLevelStruct
+@struct_hash_equal struct ExternalImageFormatPropertiesNV <: HighLevelStruct
+        image_format_properties::ImageFormatProperties
+        external_memory_features::ExternalMemoryFeatureFlagNV
+        export_from_imported_handle_types::ExternalMemoryHandleTypeFlagNV
+        compatible_handle_types::ExternalMemoryHandleTypeFlagNV
+    end
+
+"""
+High-level wrapper for VkImageFormatProperties2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatProperties2.html)
+
+"""
+@struct_hash_equal struct ImageFormatProperties2 <: HighLevelStruct
         next::Any
-        min_fragment_shading_rate_attachment_texel_size::Extent2D
-        max_fragment_shading_rate_attachment_texel_size::Extent2D
-        max_fragment_shading_rate_attachment_texel_size_aspect_ratio::UInt32
-        primitive_fragment_shading_rate_with_multiple_viewports::Bool
-        layered_shading_rate_attachments::Bool
-        fragment_shading_rate_non_trivial_combiner_ops::Bool
-        max_fragment_size::Extent2D
-        max_fragment_size_aspect_ratio::UInt32
-        max_fragment_shading_rate_coverage_samples::UInt32
-        max_fragment_shading_rate_rasterization_samples::SampleCountFlag
-        fragment_shading_rate_with_shader_depth_stencil_writes::Bool
-        fragment_shading_rate_with_sample_mask::Bool
-        fragment_shading_rate_with_shader_sample_mask::Bool
-        fragment_shading_rate_with_conservative_rasterization::Bool
-        fragment_shading_rate_with_fragment_shader_interlock::Bool
-        fragment_shading_rate_with_custom_sample_locations::Bool
-        fragment_shading_rate_strict_multiply_combiner::Bool
+        image_format_properties::ImageFormatProperties
     end
 
 """
-High-level wrapper for VkPhysicalDeviceSampleLocationsPropertiesEXT.
+High-level wrapper for VkPipelineMultisampleStateCreateInfo.
 
-Extension: VK\\_EXT\\_sample\\_locations
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSampleLocationsPropertiesEXT.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html)
 
 """
-@struct_hash_equal struct PhysicalDeviceSampleLocationsPropertiesEXT <: HighLevelStruct
+@struct_hash_equal struct PipelineMultisampleStateCreateInfo <: HighLevelStruct
         next::Any
-        sample_location_sample_counts::SampleCountFlag
-        max_sample_location_grid_size::Extent2D
-        sample_location_coordinate_range::NTuple{2, Float32}
-        sample_location_sub_pixel_bits::UInt32
-        variable_sample_locations::Bool
-    end
-
-"""
-High-level wrapper for VkSampleLocationsInfoEXT.
-
-Extension: VK\\_EXT\\_sample\\_locations
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSampleLocationsInfoEXT.html)
-
-"""
-@struct_hash_equal struct SampleLocationsInfoEXT <: HighLevelStruct
-        next::Any
-        sample_locations_per_pixel::SampleCountFlag
-        sample_location_grid_size::Extent2D
-        sample_locations::Vector{SampleLocationEXT}
-    end
-
-"""
-High-level wrapper for VkPipelineSampleLocationsStateCreateInfoEXT.
-
-Extension: VK\\_EXT\\_sample\\_locations
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html)
-
-"""
-@struct_hash_equal struct PipelineSampleLocationsStateCreateInfoEXT <: HighLevelStruct
-        next::Any
-        sample_locations_enable::Bool
-        sample_locations_info::SampleLocationsInfoEXT
-    end
-
-"""
-High-level wrapper for VkSubpassSampleLocationsEXT.
-
-Extension: VK\\_EXT\\_sample\\_locations
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassSampleLocationsEXT.html)
-
-"""
-@struct_hash_equal struct SubpassSampleLocationsEXT <: HighLevelStruct
-        subpass_index::UInt32
-        sample_locations_info::SampleLocationsInfoEXT
-    end
-
-"""
-High-level wrapper for VkAttachmentSampleLocationsEXT.
-
-Extension: VK\\_EXT\\_sample\\_locations
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleLocationsEXT.html)
-
-"""
-@struct_hash_equal struct AttachmentSampleLocationsEXT <: HighLevelStruct
-        attachment_index::UInt32
-        sample_locations_info::SampleLocationsInfoEXT
-    end
-
-"""
-High-level wrapper for VkRenderPassSampleLocationsBeginInfoEXT.
-
-Extension: VK\\_EXT\\_sample\\_locations
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html)
-
-"""
-@struct_hash_equal struct RenderPassSampleLocationsBeginInfoEXT <: HighLevelStruct
-        next::Any
-        attachment_initial_sample_locations::Vector{AttachmentSampleLocationsEXT}
-        post_subpass_sample_locations::Vector{SubpassSampleLocationsEXT}
+        flags::UInt32
+        rasterization_samples::SampleCountFlag
+        sample_shading_enable::Bool
+        min_sample_shading::Float32
+        sample_mask::OptionalPtr{Vector{UInt32}}
+        alpha_to_coverage_enable::Bool
+        alpha_to_one_enable::Bool
     end
 
 """
@@ -17994,60 +17895,159 @@ High-level wrapper for VkPhysicalDeviceLimits.
     end
 
 """
-High-level wrapper for VkPipelineMultisampleStateCreateInfo.
+High-level wrapper for VkSampleLocationsInfoEXT.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html)
+Extension: VK\\_EXT\\_sample\\_locations
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSampleLocationsInfoEXT.html)
 
 """
-@struct_hash_equal struct PipelineMultisampleStateCreateInfo <: HighLevelStruct
+@struct_hash_equal struct SampleLocationsInfoEXT <: HighLevelStruct
         next::Any
-        flags::UInt32
-        rasterization_samples::SampleCountFlag
-        sample_shading_enable::Bool
-        min_sample_shading::Float32
-        sample_mask::OptionalPtr{Vector{UInt32}}
-        alpha_to_coverage_enable::Bool
-        alpha_to_one_enable::Bool
+        sample_locations_per_pixel::SampleCountFlag
+        sample_location_grid_size::Extent2D
+        sample_locations::Vector{SampleLocationEXT}
     end
 
 """
-High-level wrapper for VkImageFormatProperties.
+High-level wrapper for VkAttachmentSampleLocationsEXT.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatProperties.html)
+Extension: VK\\_EXT\\_sample\\_locations
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleLocationsEXT.html)
 
 """
-@struct_hash_equal struct ImageFormatProperties <: HighLevelStruct
-        max_extent::Extent3D
-        max_mip_levels::UInt32
-        max_array_layers::UInt32
+@struct_hash_equal struct AttachmentSampleLocationsEXT <: HighLevelStruct
+        attachment_index::UInt32
+        sample_locations_info::SampleLocationsInfoEXT
+    end
+
+"""
+High-level wrapper for VkSubpassSampleLocationsEXT.
+
+Extension: VK\\_EXT\\_sample\\_locations
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassSampleLocationsEXT.html)
+
+"""
+@struct_hash_equal struct SubpassSampleLocationsEXT <: HighLevelStruct
+        subpass_index::UInt32
+        sample_locations_info::SampleLocationsInfoEXT
+    end
+
+"""
+High-level wrapper for VkRenderPassSampleLocationsBeginInfoEXT.
+
+Extension: VK\\_EXT\\_sample\\_locations
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html)
+
+"""
+@struct_hash_equal struct RenderPassSampleLocationsBeginInfoEXT <: HighLevelStruct
+        next::Any
+        attachment_initial_sample_locations::Vector{AttachmentSampleLocationsEXT}
+        post_subpass_sample_locations::Vector{SubpassSampleLocationsEXT}
+    end
+
+"""
+High-level wrapper for VkPipelineSampleLocationsStateCreateInfoEXT.
+
+Extension: VK\\_EXT\\_sample\\_locations
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html)
+
+"""
+@struct_hash_equal struct PipelineSampleLocationsStateCreateInfoEXT <: HighLevelStruct
+        next::Any
+        sample_locations_enable::Bool
+        sample_locations_info::SampleLocationsInfoEXT
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceSampleLocationsPropertiesEXT.
+
+Extension: VK\\_EXT\\_sample\\_locations
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSampleLocationsPropertiesEXT.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceSampleLocationsPropertiesEXT <: HighLevelStruct
+        next::Any
+        sample_location_sample_counts::SampleCountFlag
+        max_sample_location_grid_size::Extent2D
+        sample_location_coordinate_range::NTuple{2, Float32}
+        sample_location_sub_pixel_bits::UInt32
+        variable_sample_locations::Bool
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceFragmentShadingRatePropertiesKHR.
+
+Extension: VK\\_KHR\\_fragment\\_shading\\_rate
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRatePropertiesKHR.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceFragmentShadingRatePropertiesKHR <: HighLevelStruct
+        next::Any
+        min_fragment_shading_rate_attachment_texel_size::Extent2D
+        max_fragment_shading_rate_attachment_texel_size::Extent2D
+        max_fragment_shading_rate_attachment_texel_size_aspect_ratio::UInt32
+        primitive_fragment_shading_rate_with_multiple_viewports::Bool
+        layered_shading_rate_attachments::Bool
+        fragment_shading_rate_non_trivial_combiner_ops::Bool
+        max_fragment_size::Extent2D
+        max_fragment_size_aspect_ratio::UInt32
+        max_fragment_shading_rate_coverage_samples::UInt32
+        max_fragment_shading_rate_rasterization_samples::SampleCountFlag
+        fragment_shading_rate_with_shader_depth_stencil_writes::Bool
+        fragment_shading_rate_with_sample_mask::Bool
+        fragment_shading_rate_with_shader_sample_mask::Bool
+        fragment_shading_rate_with_conservative_rasterization::Bool
+        fragment_shading_rate_with_fragment_shader_interlock::Bool
+        fragment_shading_rate_with_custom_sample_locations::Bool
+        fragment_shading_rate_strict_multiply_combiner::Bool
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceFragmentShadingRateKHR.
+
+Extension: VK\\_KHR\\_fragment\\_shading\\_rate
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateKHR.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceFragmentShadingRateKHR <: HighLevelStruct
+        next::Any
         sample_counts::SampleCountFlag
-        max_resource_size::UInt64
+        fragment_size::Extent2D
     end
 
 """
-High-level wrapper for VkImageFormatProperties2.
+High-level wrapper for VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatProperties2.html)
+Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html)
 
 """
-@struct_hash_equal struct ImageFormatProperties2 <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV <: HighLevelStruct
         next::Any
-        image_format_properties::ImageFormatProperties
+        max_fragment_shading_rate_invocation_count::SampleCountFlag
     end
 
 """
-High-level wrapper for VkExternalImageFormatPropertiesNV.
+High-level wrapper for VkAttachmentSampleCountInfoAMD.
 
-Extension: VK\\_NV\\_external\\_memory\\_capabilities
+Extension: VK\\_KHR\\_dynamic\\_rendering
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalImageFormatPropertiesNV.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleCountInfoAMD.html)
 
 """
-@struct_hash_equal struct ExternalImageFormatPropertiesNV <: HighLevelStruct
-        image_format_properties::ImageFormatProperties
-        external_memory_features::ExternalMemoryFeatureFlagNV
-        export_from_imported_handle_types::ExternalMemoryHandleTypeFlagNV
-        compatible_handle_types::ExternalMemoryHandleTypeFlagNV
+@struct_hash_equal struct AttachmentSampleCountInfoAMD <: HighLevelStruct
+        next::Any
+        color_attachment_samples::Vector{SampleCountFlag}
+        depth_stencil_attachment_samples::SampleCountFlag
     end
 
 """
@@ -18060,33 +18060,6 @@ High-level wrapper for VkCommandPoolCreateInfo.
         next::Any
         flags::CommandPoolCreateFlag
         queue_family_index::UInt32
-    end
-
-"""
-High-level wrapper for VkCheckpointDataNV.
-
-Extension: VK\\_NV\\_device\\_diagnostic\\_checkpoints
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCheckpointDataNV.html)
-
-"""
-@struct_hash_equal struct CheckpointDataNV <: HighLevelStruct
-        next::Any
-        stage::PipelineStageFlag
-        checkpoint_marker::Ptr{Cvoid}
-    end
-
-"""
-High-level wrapper for VkQueueFamilyCheckpointPropertiesNV.
-
-Extension: VK\\_NV\\_device\\_diagnostic\\_checkpoints
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyCheckpointPropertiesNV.html)
-
-"""
-@struct_hash_equal struct QueueFamilyCheckpointPropertiesNV <: HighLevelStruct
-        next::Any
-        checkpoint_execution_stage_mask::PipelineStageFlag
     end
 
 """
@@ -18104,6 +18077,33 @@ High-level wrapper for VkSubmitInfo.
     end
 
 """
+High-level wrapper for VkQueueFamilyCheckpointPropertiesNV.
+
+Extension: VK\\_NV\\_device\\_diagnostic\\_checkpoints
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyCheckpointPropertiesNV.html)
+
+"""
+@struct_hash_equal struct QueueFamilyCheckpointPropertiesNV <: HighLevelStruct
+        next::Any
+        checkpoint_execution_stage_mask::PipelineStageFlag
+    end
+
+"""
+High-level wrapper for VkCheckpointDataNV.
+
+Extension: VK\\_NV\\_device\\_diagnostic\\_checkpoints
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCheckpointDataNV.html)
+
+"""
+@struct_hash_equal struct CheckpointDataNV <: HighLevelStruct
+        next::Any
+        stage::PipelineStageFlag
+        checkpoint_marker::Ptr{Cvoid}
+    end
+
+"""
 High-level wrapper for VkSparseMemoryBind.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseMemoryBind.html)
@@ -18118,17 +18118,6 @@ High-level wrapper for VkSparseMemoryBind.
     end
 
 """
-High-level wrapper for VkSparseImageOpaqueMemoryBindInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html)
-
-"""
-@struct_hash_equal struct SparseImageOpaqueMemoryBindInfo <: HighLevelStruct
-        image::Image
-        binds::Vector{SparseMemoryBind}
-    end
-
-"""
 High-level wrapper for VkSparseBufferMemoryBindInfo.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseBufferMemoryBindInfo.html)
@@ -18140,203 +18129,62 @@ High-level wrapper for VkSparseBufferMemoryBindInfo.
     end
 
 """
-High-level wrapper for VkImagePlaneMemoryRequirementsInfo.
+High-level wrapper for VkSparseImageOpaqueMemoryBindInfo.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageOpaqueMemoryBindInfo.html)
 
 """
-@struct_hash_equal struct ImagePlaneMemoryRequirementsInfo <: HighLevelStruct
-        next::Any
-        plane_aspect::ImageAspectFlag
+@struct_hash_equal struct SparseImageOpaqueMemoryBindInfo <: HighLevelStruct
+        image::Image
+        binds::Vector{SparseMemoryBind}
     end
 
 """
-High-level wrapper for VkBindImagePlaneMemoryInfo.
+High-level wrapper for VkSparseImageFormatProperties.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImagePlaneMemoryInfo.html)
-
-"""
-@struct_hash_equal struct BindImagePlaneMemoryInfo <: HighLevelStruct
-        next::Any
-        plane_aspect::ImageAspectFlag
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageFormatProperties.html)
 
 """
-High-level wrapper for VkInputAttachmentAspectReference.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInputAttachmentAspectReference.html)
-
-"""
-@struct_hash_equal struct InputAttachmentAspectReference <: HighLevelStruct
-        subpass::UInt32
-        input_attachment_index::UInt32
+@struct_hash_equal struct SparseImageFormatProperties <: HighLevelStruct
         aspect_mask::ImageAspectFlag
+        image_granularity::Extent3D
+        flags::SparseImageFormatFlag
     end
 
 """
-High-level wrapper for VkRenderPassInputAttachmentAspectCreateInfo.
+High-level wrapper for VkSparseImageMemoryRequirements.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryRequirements.html)
 
 """
-@struct_hash_equal struct RenderPassInputAttachmentAspectCreateInfo <: HighLevelStruct
+@struct_hash_equal struct SparseImageMemoryRequirements <: HighLevelStruct
+        format_properties::SparseImageFormatProperties
+        image_mip_tail_first_lod::UInt32
+        image_mip_tail_size::UInt64
+        image_mip_tail_offset::UInt64
+        image_mip_tail_stride::UInt64
+    end
+
+"""
+High-level wrapper for VkSparseImageMemoryRequirements2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryRequirements2.html)
+
+"""
+@struct_hash_equal struct SparseImageMemoryRequirements2 <: HighLevelStruct
         next::Any
-        aspect_references::Vector{InputAttachmentAspectReference}
+        memory_requirements::SparseImageMemoryRequirements
     end
 
 """
-High-level wrapper for VkClearAttachment.
+High-level wrapper for VkSparseImageFormatProperties2.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkClearAttachment.html)
-
-"""
-@struct_hash_equal struct ClearAttachment <: HighLevelStruct
-        aspect_mask::ImageAspectFlag
-        color_attachment::UInt32
-        clear_value::ClearValue
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageFormatProperties2.html)
 
 """
-High-level wrapper for VkImageSubresourceRange.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSubresourceRange.html)
-
-"""
-@struct_hash_equal struct ImageSubresourceRange <: HighLevelStruct
-        aspect_mask::ImageAspectFlag
-        base_mip_level::UInt32
-        level_count::UInt32
-        base_array_layer::UInt32
-        layer_count::UInt32
-    end
-
-"""
-High-level wrapper for VkImageSubresourceLayers.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSubresourceLayers.html)
-
-"""
-@struct_hash_equal struct ImageSubresourceLayers <: HighLevelStruct
-        aspect_mask::ImageAspectFlag
-        mip_level::UInt32
-        base_array_layer::UInt32
-        layer_count::UInt32
-    end
-
-"""
-High-level wrapper for VkImageResolve2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageResolve2.html)
-
-"""
-@struct_hash_equal struct ImageResolve2 <: HighLevelStruct
+@struct_hash_equal struct SparseImageFormatProperties2 <: HighLevelStruct
         next::Any
-        src_subresource::ImageSubresourceLayers
-        src_offset::Offset3D
-        dst_subresource::ImageSubresourceLayers
-        dst_offset::Offset3D
-        extent::Extent3D
-    end
-
-"""
-High-level wrapper for VkBufferImageCopy2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferImageCopy2.html)
-
-"""
-@struct_hash_equal struct BufferImageCopy2 <: HighLevelStruct
-        next::Any
-        buffer_offset::UInt64
-        buffer_row_length::UInt32
-        buffer_image_height::UInt32
-        image_subresource::ImageSubresourceLayers
-        image_offset::Offset3D
-        image_extent::Extent3D
-    end
-
-"""
-High-level wrapper for VkImageBlit2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageBlit2.html)
-
-"""
-@struct_hash_equal struct ImageBlit2 <: HighLevelStruct
-        next::Any
-        src_subresource::ImageSubresourceLayers
-        src_offsets::NTuple{2, Offset3D}
-        dst_subresource::ImageSubresourceLayers
-        dst_offsets::NTuple{2, Offset3D}
-    end
-
-"""
-High-level wrapper for VkImageCopy2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageCopy2.html)
-
-"""
-@struct_hash_equal struct ImageCopy2 <: HighLevelStruct
-        next::Any
-        src_subresource::ImageSubresourceLayers
-        src_offset::Offset3D
-        dst_subresource::ImageSubresourceLayers
-        dst_offset::Offset3D
-        extent::Extent3D
-    end
-
-"""
-High-level wrapper for VkImageResolve.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageResolve.html)
-
-"""
-@struct_hash_equal struct ImageResolve <: HighLevelStruct
-        src_subresource::ImageSubresourceLayers
-        src_offset::Offset3D
-        dst_subresource::ImageSubresourceLayers
-        dst_offset::Offset3D
-        extent::Extent3D
-    end
-
-"""
-High-level wrapper for VkBufferImageCopy.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferImageCopy.html)
-
-"""
-@struct_hash_equal struct BufferImageCopy <: HighLevelStruct
-        buffer_offset::UInt64
-        buffer_row_length::UInt32
-        buffer_image_height::UInt32
-        image_subresource::ImageSubresourceLayers
-        image_offset::Offset3D
-        image_extent::Extent3D
-    end
-
-"""
-High-level wrapper for VkImageBlit.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageBlit.html)
-
-"""
-@struct_hash_equal struct ImageBlit <: HighLevelStruct
-        src_subresource::ImageSubresourceLayers
-        src_offsets::NTuple{2, Offset3D}
-        dst_subresource::ImageSubresourceLayers
-        dst_offsets::NTuple{2, Offset3D}
-    end
-
-"""
-High-level wrapper for VkImageCopy.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageCopy.html)
-
-"""
-@struct_hash_equal struct ImageCopy <: HighLevelStruct
-        src_subresource::ImageSubresourceLayers
-        src_offset::Offset3D
-        dst_subresource::ImageSubresourceLayers
-        dst_offset::Offset3D
-        extent::Extent3D
+        properties::SparseImageFormatProperties
     end
 
 """
@@ -18393,51 +18241,203 @@ High-level wrapper for VkBindSparseInfo.
     end
 
 """
-High-level wrapper for VkSparseImageFormatProperties.
+High-level wrapper for VkImageSubresourceLayers.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageFormatProperties.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSubresourceLayers.html)
 
 """
-@struct_hash_equal struct SparseImageFormatProperties <: HighLevelStruct
+@struct_hash_equal struct ImageSubresourceLayers <: HighLevelStruct
         aspect_mask::ImageAspectFlag
-        image_granularity::Extent3D
-        flags::SparseImageFormatFlag
+        mip_level::UInt32
+        base_array_layer::UInt32
+        layer_count::UInt32
     end
 
 """
-High-level wrapper for VkSparseImageFormatProperties2.
+High-level wrapper for VkImageCopy.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageFormatProperties2.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageCopy.html)
 
 """
-@struct_hash_equal struct SparseImageFormatProperties2 <: HighLevelStruct
+@struct_hash_equal struct ImageCopy <: HighLevelStruct
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
+    end
+
+"""
+High-level wrapper for VkImageBlit.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageBlit.html)
+
+"""
+@struct_hash_equal struct ImageBlit <: HighLevelStruct
+        src_subresource::ImageSubresourceLayers
+        src_offsets::NTuple{2, Offset3D}
+        dst_subresource::ImageSubresourceLayers
+        dst_offsets::NTuple{2, Offset3D}
+    end
+
+"""
+High-level wrapper for VkBufferImageCopy.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferImageCopy.html)
+
+"""
+@struct_hash_equal struct BufferImageCopy <: HighLevelStruct
+        buffer_offset::UInt64
+        buffer_row_length::UInt32
+        buffer_image_height::UInt32
+        image_subresource::ImageSubresourceLayers
+        image_offset::Offset3D
+        image_extent::Extent3D
+    end
+
+"""
+High-level wrapper for VkImageResolve.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageResolve.html)
+
+"""
+@struct_hash_equal struct ImageResolve <: HighLevelStruct
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
+    end
+
+"""
+High-level wrapper for VkImageCopy2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageCopy2.html)
+
+"""
+@struct_hash_equal struct ImageCopy2 <: HighLevelStruct
         next::Any
-        properties::SparseImageFormatProperties
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
     end
 
 """
-High-level wrapper for VkSparseImageMemoryRequirements.
+High-level wrapper for VkImageBlit2.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryRequirements.html)
-
-"""
-@struct_hash_equal struct SparseImageMemoryRequirements <: HighLevelStruct
-        format_properties::SparseImageFormatProperties
-        image_mip_tail_first_lod::UInt32
-        image_mip_tail_size::UInt64
-        image_mip_tail_offset::UInt64
-        image_mip_tail_stride::UInt64
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageBlit2.html)
 
 """
-High-level wrapper for VkSparseImageMemoryRequirements2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryRequirements2.html)
-
-"""
-@struct_hash_equal struct SparseImageMemoryRequirements2 <: HighLevelStruct
+@struct_hash_equal struct ImageBlit2 <: HighLevelStruct
         next::Any
-        memory_requirements::SparseImageMemoryRequirements
+        src_subresource::ImageSubresourceLayers
+        src_offsets::NTuple{2, Offset3D}
+        dst_subresource::ImageSubresourceLayers
+        dst_offsets::NTuple{2, Offset3D}
+    end
+
+"""
+High-level wrapper for VkBufferImageCopy2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferImageCopy2.html)
+
+"""
+@struct_hash_equal struct BufferImageCopy2 <: HighLevelStruct
+        next::Any
+        buffer_offset::UInt64
+        buffer_row_length::UInt32
+        buffer_image_height::UInt32
+        image_subresource::ImageSubresourceLayers
+        image_offset::Offset3D
+        image_extent::Extent3D
+    end
+
+"""
+High-level wrapper for VkImageResolve2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageResolve2.html)
+
+"""
+@struct_hash_equal struct ImageResolve2 <: HighLevelStruct
+        next::Any
+        src_subresource::ImageSubresourceLayers
+        src_offset::Offset3D
+        dst_subresource::ImageSubresourceLayers
+        dst_offset::Offset3D
+        extent::Extent3D
+    end
+
+"""
+High-level wrapper for VkImageSubresourceRange.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSubresourceRange.html)
+
+"""
+@struct_hash_equal struct ImageSubresourceRange <: HighLevelStruct
+        aspect_mask::ImageAspectFlag
+        base_mip_level::UInt32
+        level_count::UInt32
+        base_array_layer::UInt32
+        layer_count::UInt32
+    end
+
+"""
+High-level wrapper for VkClearAttachment.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkClearAttachment.html)
+
+"""
+@struct_hash_equal struct ClearAttachment <: HighLevelStruct
+        aspect_mask::ImageAspectFlag
+        color_attachment::UInt32
+        clear_value::ClearValue
+    end
+
+"""
+High-level wrapper for VkInputAttachmentAspectReference.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInputAttachmentAspectReference.html)
+
+"""
+@struct_hash_equal struct InputAttachmentAspectReference <: HighLevelStruct
+        subpass::UInt32
+        input_attachment_index::UInt32
+        aspect_mask::ImageAspectFlag
+    end
+
+"""
+High-level wrapper for VkRenderPassInputAttachmentAspectCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html)
+
+"""
+@struct_hash_equal struct RenderPassInputAttachmentAspectCreateInfo <: HighLevelStruct
+        next::Any
+        aspect_references::Vector{InputAttachmentAspectReference}
+    end
+
+"""
+High-level wrapper for VkBindImagePlaneMemoryInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImagePlaneMemoryInfo.html)
+
+"""
+@struct_hash_equal struct BindImagePlaneMemoryInfo <: HighLevelStruct
+        next::Any
+        plane_aspect::ImageAspectFlag
+    end
+
+"""
+High-level wrapper for VkImagePlaneMemoryRequirementsInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html)
+
+"""
+@struct_hash_equal struct ImagePlaneMemoryRequirementsInfo <: HighLevelStruct
+        next::Any
+        plane_aspect::ImageAspectFlag
     end
 
 """
@@ -18469,6 +18469,29 @@ High-level wrapper for VkCommandBufferBeginInfo.
     end
 
 """
+High-level wrapper for VkFormatProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormatProperties.html)
+
+"""
+@struct_hash_equal struct FormatProperties <: HighLevelStruct
+        linear_tiling_features::FormatFeatureFlag
+        optimal_tiling_features::FormatFeatureFlag
+        buffer_features::FormatFeatureFlag
+    end
+
+"""
+High-level wrapper for VkFormatProperties2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormatProperties2.html)
+
+"""
+@struct_hash_equal struct FormatProperties2 <: HighLevelStruct
+        next::Any
+        format_properties::FormatProperties
+    end
+
+"""
 High-level wrapper for VkDrmFormatModifierPropertiesEXT.
 
 Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
@@ -18496,29 +18519,6 @@ Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
     end
 
 """
-High-level wrapper for VkFormatProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormatProperties.html)
-
-"""
-@struct_hash_equal struct FormatProperties <: HighLevelStruct
-        linear_tiling_features::FormatFeatureFlag
-        optimal_tiling_features::FormatFeatureFlag
-        buffer_features::FormatFeatureFlag
-    end
-
-"""
-High-level wrapper for VkFormatProperties2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormatProperties2.html)
-
-"""
-@struct_hash_equal struct FormatProperties2 <: HighLevelStruct
-        next::Any
-        format_properties::FormatProperties
-    end
-
-"""
 High-level wrapper for VkFenceCreateInfo.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceCreateInfo.html)
@@ -18527,64 +18527,6 @@ High-level wrapper for VkFenceCreateInfo.
 @struct_hash_equal struct FenceCreateInfo <: HighLevelStruct
         next::Any
         flags::FenceCreateFlag
-    end
-
-"""
-High-level wrapper for VkImageStencilUsageCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageStencilUsageCreateInfo.html)
-
-"""
-@struct_hash_equal struct ImageStencilUsageCreateInfo <: HighLevelStruct
-        next::Any
-        stencil_usage::ImageUsageFlag
-    end
-
-"""
-High-level wrapper for VkImageViewUsageCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewUsageCreateInfo.html)
-
-"""
-@struct_hash_equal struct ImageViewUsageCreateInfo <: HighLevelStruct
-        next::Any
-        usage::ImageUsageFlag
-    end
-
-"""
-High-level wrapper for VkSharedPresentSurfaceCapabilitiesKHR.
-
-Extension: VK\\_KHR\\_shared\\_presentable\\_image
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSharedPresentSurfaceCapabilitiesKHR.html)
-
-"""
-@struct_hash_equal struct SharedPresentSurfaceCapabilitiesKHR <: HighLevelStruct
-        next::Any
-        shared_present_supported_usage_flags::ImageUsageFlag
-    end
-
-"""
-High-level wrapper for VkSurfaceCapabilities2EXT.
-
-Extension: VK\\_EXT\\_display\\_surface\\_counter
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceCapabilities2EXT.html)
-
-"""
-@struct_hash_equal struct SurfaceCapabilities2EXT <: HighLevelStruct
-        next::Any
-        min_image_count::UInt32
-        max_image_count::UInt32
-        current_extent::Extent2D
-        min_image_extent::Extent2D
-        max_image_extent::Extent2D
-        max_image_array_layers::UInt32
-        supported_transforms::SurfaceTransformFlagKHR
-        current_transform::SurfaceTransformFlagKHR
-        supported_composite_alpha::CompositeAlphaFlagKHR
-        supported_usage_flags::ImageUsageFlag
-        supported_surface_counters::SurfaceCounterFlagEXT
     end
 
 """
@@ -18619,6 +18561,194 @@ Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
 @struct_hash_equal struct SurfaceCapabilities2KHR <: HighLevelStruct
         next::Any
         surface_capabilities::SurfaceCapabilitiesKHR
+    end
+
+"""
+High-level wrapper for VkSurfaceCapabilities2EXT.
+
+Extension: VK\\_EXT\\_display\\_surface\\_counter
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceCapabilities2EXT.html)
+
+"""
+@struct_hash_equal struct SurfaceCapabilities2EXT <: HighLevelStruct
+        next::Any
+        min_image_count::UInt32
+        max_image_count::UInt32
+        current_extent::Extent2D
+        min_image_extent::Extent2D
+        max_image_extent::Extent2D
+        max_image_array_layers::UInt32
+        supported_transforms::SurfaceTransformFlagKHR
+        current_transform::SurfaceTransformFlagKHR
+        supported_composite_alpha::CompositeAlphaFlagKHR
+        supported_usage_flags::ImageUsageFlag
+        supported_surface_counters::SurfaceCounterFlagEXT
+    end
+
+"""
+High-level wrapper for VkSharedPresentSurfaceCapabilitiesKHR.
+
+Extension: VK\\_KHR\\_shared\\_presentable\\_image
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSharedPresentSurfaceCapabilitiesKHR.html)
+
+"""
+@struct_hash_equal struct SharedPresentSurfaceCapabilitiesKHR <: HighLevelStruct
+        next::Any
+        shared_present_supported_usage_flags::ImageUsageFlag
+    end
+
+"""
+High-level wrapper for VkImageViewUsageCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewUsageCreateInfo.html)
+
+"""
+@struct_hash_equal struct ImageViewUsageCreateInfo <: HighLevelStruct
+        next::Any
+        usage::ImageUsageFlag
+    end
+
+"""
+High-level wrapper for VkImageStencilUsageCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageStencilUsageCreateInfo.html)
+
+"""
+@struct_hash_equal struct ImageStencilUsageCreateInfo <: HighLevelStruct
+        next::Any
+        stencil_usage::ImageUsageFlag
+    end
+
+"""
+High-level wrapper for VkPipelineShaderStageCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineShaderStageCreateInfo.html)
+
+"""
+@struct_hash_equal struct PipelineShaderStageCreateInfo <: HighLevelStruct
+        next::Any
+        flags::PipelineShaderStageCreateFlag
+        stage::ShaderStageFlag
+        _module::ShaderModule
+        name::String
+        specialization_info::OptionalPtr{SpecializationInfo}
+    end
+
+"""
+High-level wrapper for VkComputePipelineCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkComputePipelineCreateInfo.html)
+
+"""
+@struct_hash_equal struct ComputePipelineCreateInfo <: HighLevelStruct
+        next::Any
+        flags::PipelineCreateFlag
+        stage::PipelineShaderStageCreateInfo
+        layout::PipelineLayout
+        base_pipeline_handle::OptionalPtr{Pipeline}
+        base_pipeline_index::Int32
+    end
+
+"""
+High-level wrapper for VkPushConstantRange.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPushConstantRange.html)
+
+"""
+@struct_hash_equal struct PushConstantRange <: HighLevelStruct
+        stage_flags::ShaderStageFlag
+        offset::UInt32
+        size::UInt32
+    end
+
+"""
+High-level wrapper for VkPipelineLayoutCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineLayoutCreateInfo.html)
+
+"""
+@struct_hash_equal struct PipelineLayoutCreateInfo <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        set_layouts::Vector{DescriptorSetLayout}
+        push_constant_ranges::Vector{PushConstantRange}
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceSubgroupProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSubgroupProperties.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceSubgroupProperties <: HighLevelStruct
+        next::Any
+        subgroup_size::UInt32
+        supported_stages::ShaderStageFlag
+        supported_operations::SubgroupFeatureFlag
+        quad_operations_in_all_stages::Bool
+    end
+
+"""
+High-level wrapper for VkShaderStatisticsInfoAMD.
+
+Extension: VK\\_AMD\\_shader\\_info
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStatisticsInfoAMD.html)
+
+"""
+@struct_hash_equal struct ShaderStatisticsInfoAMD <: HighLevelStruct
+        shader_stage_mask::ShaderStageFlag
+        resource_usage::ShaderResourceUsageAMD
+        num_physical_vgprs::UInt32
+        num_physical_sgprs::UInt32
+        num_available_vgprs::UInt32
+        num_available_sgprs::UInt32
+        compute_work_group_size::NTuple{3, UInt32}
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceCooperativeMatrixPropertiesNV.
+
+Extension: VK\\_NV\\_cooperative\\_matrix
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixPropertiesNV.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceCooperativeMatrixPropertiesNV <: HighLevelStruct
+        next::Any
+        cooperative_matrix_supported_stages::ShaderStageFlag
+    end
+
+"""
+High-level wrapper for VkPipelineExecutablePropertiesKHR.
+
+Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutablePropertiesKHR.html)
+
+"""
+@struct_hash_equal struct PipelineExecutablePropertiesKHR <: HighLevelStruct
+        next::Any
+        stages::ShaderStageFlag
+        name::String
+        description::String
+        subgroup_size::UInt32
+    end
+
+"""
+High-level wrapper for VkPhysicalDeviceSubgroupSizeControlProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlProperties.html)
+
+"""
+@struct_hash_equal struct PhysicalDeviceSubgroupSizeControlProperties <: HighLevelStruct
+        next::Any
+        min_subgroup_size::UInt32
+        max_subgroup_size::UInt32
+        max_compute_workgroup_subgroups::UInt32
+        required_subgroup_size_stages::ShaderStageFlag
     end
 
 """
@@ -18677,136 +18807,6 @@ High-level wrapper for VkPhysicalDeviceVulkan13Properties.
     end
 
 """
-High-level wrapper for VkPhysicalDeviceSubgroupSizeControlProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSubgroupSizeControlProperties.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceSubgroupSizeControlProperties <: HighLevelStruct
-        next::Any
-        min_subgroup_size::UInt32
-        max_subgroup_size::UInt32
-        max_compute_workgroup_subgroups::UInt32
-        required_subgroup_size_stages::ShaderStageFlag
-    end
-
-"""
-High-level wrapper for VkPipelineExecutablePropertiesKHR.
-
-Extension: VK\\_KHR\\_pipeline\\_executable\\_properties
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutablePropertiesKHR.html)
-
-"""
-@struct_hash_equal struct PipelineExecutablePropertiesKHR <: HighLevelStruct
-        next::Any
-        stages::ShaderStageFlag
-        name::String
-        description::String
-        subgroup_size::UInt32
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceCooperativeMatrixPropertiesNV.
-
-Extension: VK\\_NV\\_cooperative\\_matrix
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixPropertiesNV.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceCooperativeMatrixPropertiesNV <: HighLevelStruct
-        next::Any
-        cooperative_matrix_supported_stages::ShaderStageFlag
-    end
-
-"""
-High-level wrapper for VkShaderStatisticsInfoAMD.
-
-Extension: VK\\_AMD\\_shader\\_info
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStatisticsInfoAMD.html)
-
-"""
-@struct_hash_equal struct ShaderStatisticsInfoAMD <: HighLevelStruct
-        shader_stage_mask::ShaderStageFlag
-        resource_usage::ShaderResourceUsageAMD
-        num_physical_vgprs::UInt32
-        num_physical_sgprs::UInt32
-        num_available_vgprs::UInt32
-        num_available_sgprs::UInt32
-        compute_work_group_size::NTuple{3, UInt32}
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceSubgroupProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSubgroupProperties.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceSubgroupProperties <: HighLevelStruct
-        next::Any
-        subgroup_size::UInt32
-        supported_stages::ShaderStageFlag
-        supported_operations::SubgroupFeatureFlag
-        quad_operations_in_all_stages::Bool
-    end
-
-"""
-High-level wrapper for VkPushConstantRange.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPushConstantRange.html)
-
-"""
-@struct_hash_equal struct PushConstantRange <: HighLevelStruct
-        stage_flags::ShaderStageFlag
-        offset::UInt32
-        size::UInt32
-    end
-
-"""
-High-level wrapper for VkPipelineLayoutCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineLayoutCreateInfo.html)
-
-"""
-@struct_hash_equal struct PipelineLayoutCreateInfo <: HighLevelStruct
-        next::Any
-        flags::UInt32
-        set_layouts::Vector{DescriptorSetLayout}
-        push_constant_ranges::Vector{PushConstantRange}
-    end
-
-"""
-High-level wrapper for VkPipelineShaderStageCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineShaderStageCreateInfo.html)
-
-"""
-@struct_hash_equal struct PipelineShaderStageCreateInfo <: HighLevelStruct
-        next::Any
-        flags::PipelineShaderStageCreateFlag
-        stage::ShaderStageFlag
-        _module::ShaderModule
-        name::String
-        specialization_info::OptionalPtr{SpecializationInfo}
-    end
-
-"""
-High-level wrapper for VkComputePipelineCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkComputePipelineCreateInfo.html)
-
-"""
-@struct_hash_equal struct ComputePipelineCreateInfo <: HighLevelStruct
-        next::Any
-        flags::PipelineCreateFlag
-        stage::PipelineShaderStageCreateInfo
-        layout::PipelineLayout
-        base_pipeline_handle::OptionalPtr{Pipeline}
-        base_pipeline_index::Int32
-    end
-
-"""
 High-level wrapper for VkPhysicalDeviceExternalBufferInfo.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalBufferInfo.html)
@@ -18820,37 +18820,15 @@ High-level wrapper for VkPhysicalDeviceExternalBufferInfo.
     end
 
 """
-High-level wrapper for VkSubpassDependency2.
+High-level wrapper for VkMemoryBarrier.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDependency2.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryBarrier.html)
 
 """
-@struct_hash_equal struct SubpassDependency2 <: HighLevelStruct
+@struct_hash_equal struct MemoryBarrier <: HighLevelStruct
         next::Any
-        src_subpass::UInt32
-        dst_subpass::UInt32
-        src_stage_mask::PipelineStageFlag
-        dst_stage_mask::PipelineStageFlag
         src_access_mask::AccessFlag
         dst_access_mask::AccessFlag
-        dependency_flags::DependencyFlag
-        view_offset::Int32
-    end
-
-"""
-High-level wrapper for VkSubpassDependency.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDependency.html)
-
-"""
-@struct_hash_equal struct SubpassDependency <: HighLevelStruct
-        src_subpass::UInt32
-        dst_subpass::UInt32
-        src_stage_mask::PipelineStageFlag
-        dst_stage_mask::PipelineStageFlag
-        src_access_mask::AccessFlag
-        dst_access_mask::AccessFlag
-        dependency_flags::DependencyFlag
     end
 
 """
@@ -18871,15 +18849,37 @@ High-level wrapper for VkBufferMemoryBarrier.
     end
 
 """
-High-level wrapper for VkMemoryBarrier.
+High-level wrapper for VkSubpassDependency.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryBarrier.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDependency.html)
 
 """
-@struct_hash_equal struct MemoryBarrier <: HighLevelStruct
-        next::Any
+@struct_hash_equal struct SubpassDependency <: HighLevelStruct
+        src_subpass::UInt32
+        dst_subpass::UInt32
+        src_stage_mask::PipelineStageFlag
+        dst_stage_mask::PipelineStageFlag
         src_access_mask::AccessFlag
         dst_access_mask::AccessFlag
+        dependency_flags::DependencyFlag
+    end
+
+"""
+High-level wrapper for VkSubpassDependency2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDependency2.html)
+
+"""
+@struct_hash_equal struct SubpassDependency2 <: HighLevelStruct
+        next::Any
+        src_subpass::UInt32
+        dst_subpass::UInt32
+        src_stage_mask::PipelineStageFlag
+        dst_stage_mask::PipelineStageFlag
+        src_access_mask::AccessFlag
+        dst_access_mask::AccessFlag
+        dependency_flags::DependencyFlag
+        view_offset::Int32
     end
 
 """
@@ -18929,19 +18929,6 @@ High-level wrapper for VkPhysicalDeviceMemoryProperties2.
     end
 
 """
-High-level wrapper for VkDeviceQueueInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueInfo2.html)
-
-"""
-@struct_hash_equal struct DeviceQueueInfo2 <: HighLevelStruct
-        next::Any
-        flags::DeviceQueueCreateFlag
-        queue_family_index::UInt32
-        queue_index::UInt32
-    end
-
-"""
 High-level wrapper for VkDeviceQueueCreateInfo.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateInfo.html)
@@ -18967,6 +18954,19 @@ High-level wrapper for VkDeviceCreateInfo.
         enabled_layer_names::Vector{String}
         enabled_extension_names::Vector{String}
         enabled_features::OptionalPtr{PhysicalDeviceFeatures}
+    end
+
+"""
+High-level wrapper for VkDeviceQueueInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueInfo2.html)
+
+"""
+@struct_hash_equal struct DeviceQueueInfo2 <: HighLevelStruct
+        next::Any
+        flags::DeviceQueueCreateFlag
+        queue_family_index::UInt32
+        queue_index::UInt32
     end
 
 """
@@ -19034,6 +19034,20 @@ Extension: VK\\_EXT\\_provoking\\_vertex
     end
 
 """
+High-level wrapper for VkPipelineFragmentShadingRateStateCreateInfoKHR.
+
+Extension: VK\\_KHR\\_fragment\\_shading\\_rate
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html)
+
+"""
+@struct_hash_equal struct PipelineFragmentShadingRateStateCreateInfoKHR <: HighLevelStruct
+        next::Any
+        fragment_size::Extent2D
+        combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}
+    end
+
+"""
 High-level wrapper for VkPipelineFragmentShadingRateEnumStateCreateInfoNV.
 
 Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
@@ -19045,20 +19059,6 @@ Extension: VK\\_NV\\_fragment\\_shading\\_rate\\_enums
         next::Any
         shading_rate_type::FragmentShadingRateTypeNV
         shading_rate::FragmentShadingRateNV
-        combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}
-    end
-
-"""
-High-level wrapper for VkPipelineFragmentShadingRateStateCreateInfoKHR.
-
-Extension: VK\\_KHR\\_fragment\\_shading\\_rate
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html)
-
-"""
-@struct_hash_equal struct PipelineFragmentShadingRateStateCreateInfoKHR <: HighLevelStruct
-        next::Any
-        fragment_size::Extent2D
         combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}
     end
 
@@ -19238,24 +19238,6 @@ Extension: VK\\_AMD\\_memory\\_overallocation\\_behavior
     end
 
 """
-High-level wrapper for VkRayTracingShaderGroupCreateInfoKHR.
-
-Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html)
-
-"""
-@struct_hash_equal struct RayTracingShaderGroupCreateInfoKHR <: HighLevelStruct
-        next::Any
-        type::RayTracingShaderGroupTypeKHR
-        general_shader::UInt32
-        closest_hit_shader::UInt32
-        any_hit_shader::UInt32
-        intersection_shader::UInt32
-        shader_group_capture_replay_handle::OptionalPtr{Ptr{Cvoid}}
-    end
-
-"""
 High-level wrapper for VkRayTracingShaderGroupCreateInfoNV.
 
 Extension: VK\\_NV\\_ray\\_tracing
@@ -19289,6 +19271,24 @@ Extension: VK\\_NV\\_ray\\_tracing
         layout::PipelineLayout
         base_pipeline_handle::OptionalPtr{Pipeline}
         base_pipeline_index::Int32
+    end
+
+"""
+High-level wrapper for VkRayTracingShaderGroupCreateInfoKHR.
+
+Extension: VK\\_KHR\\_ray\\_tracing\\_pipeline
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html)
+
+"""
+@struct_hash_equal struct RayTracingShaderGroupCreateInfoKHR <: HighLevelStruct
+        next::Any
+        type::RayTracingShaderGroupTypeKHR
+        general_shader::UInt32
+        closest_hit_shader::UInt32
+        any_hit_shader::UInt32
+        intersection_shader::UInt32
+        shader_group_capture_replay_handle::OptionalPtr{Ptr{Cvoid}}
     end
 
 """
@@ -19359,16 +19359,16 @@ Extension: VK\\_KHR\\_acceleration\\_structure
     end
 
 """
-High-level wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
+High-level wrapper for VkCopyAccelerationStructureInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html)
 
 """
-@struct_hash_equal struct CopyMemoryToAccelerationStructureInfoKHR <: HighLevelStruct
+@struct_hash_equal struct CopyAccelerationStructureInfoKHR <: HighLevelStruct
         next::Any
-        src::DeviceOrHostAddressConstKHR
+        src::AccelerationStructureKHR
         dst::AccelerationStructureKHR
         mode::CopyAccelerationStructureModeKHR
     end
@@ -19389,18 +19389,44 @@ Extension: VK\\_KHR\\_acceleration\\_structure
     end
 
 """
-High-level wrapper for VkCopyAccelerationStructureInfoKHR.
+High-level wrapper for VkCopyMemoryToAccelerationStructureInfoKHR.
 
 Extension: VK\\_KHR\\_acceleration\\_structure
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html)
 
 """
-@struct_hash_equal struct CopyAccelerationStructureInfoKHR <: HighLevelStruct
+@struct_hash_equal struct CopyMemoryToAccelerationStructureInfoKHR <: HighLevelStruct
         next::Any
-        src::AccelerationStructureKHR
+        src::DeviceOrHostAddressConstKHR
         dst::AccelerationStructureKHR
         mode::CopyAccelerationStructureModeKHR
+    end
+
+"""
+High-level wrapper for VkShadingRatePaletteNV.
+
+Extension: VK\\_NV\\_shading\\_rate\\_image
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShadingRatePaletteNV.html)
+
+"""
+@struct_hash_equal struct ShadingRatePaletteNV <: HighLevelStruct
+        shading_rate_palette_entries::Vector{ShadingRatePaletteEntryNV}
+    end
+
+"""
+High-level wrapper for VkPipelineViewportShadingRateImageStateCreateInfoNV.
+
+Extension: VK\\_NV\\_shading\\_rate\\_image
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html)
+
+"""
+@struct_hash_equal struct PipelineViewportShadingRateImageStateCreateInfoNV <: HighLevelStruct
+        next::Any
+        shading_rate_image_enable::Bool
+        shading_rate_palettes::Vector{ShadingRatePaletteNV}
     end
 
 """
@@ -19432,29 +19458,17 @@ Extension: VK\\_NV\\_shading\\_rate\\_image
     end
 
 """
-High-level wrapper for VkShadingRatePaletteNV.
+High-level wrapper for VkPhysicalDeviceDriverProperties.
 
-Extension: VK\\_NV\\_shading\\_rate\\_image
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShadingRatePaletteNV.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDriverProperties.html)
 
 """
-@struct_hash_equal struct ShadingRatePaletteNV <: HighLevelStruct
-        shading_rate_palette_entries::Vector{ShadingRatePaletteEntryNV}
-    end
-
-"""
-High-level wrapper for VkPipelineViewportShadingRateImageStateCreateInfoNV.
-
-Extension: VK\\_NV\\_shading\\_rate\\_image
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html)
-
-"""
-@struct_hash_equal struct PipelineViewportShadingRateImageStateCreateInfoNV <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceDriverProperties <: HighLevelStruct
         next::Any
-        shading_rate_image_enable::Bool
-        shading_rate_palettes::Vector{ShadingRatePaletteNV}
+        driver_id::DriverId
+        driver_name::String
+        driver_info::String
+        conformance_version::ConformanceVersion
     end
 
 """
@@ -19520,20 +19534,6 @@ High-level wrapper for VkPhysicalDeviceVulkan12Properties.
     end
 
 """
-High-level wrapper for VkPhysicalDeviceDriverProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDriverProperties.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceDriverProperties <: HighLevelStruct
-        next::Any
-        driver_id::DriverId
-        driver_name::String
-        driver_info::String
-        conformance_version::ConformanceVersion
-    end
-
-"""
 High-level wrapper for VkPipelineRasterizationConservativeStateCreateInfoEXT.
 
 Extension: VK\\_EXT\\_conservative\\_rasterization
@@ -19546,6 +19546,19 @@ Extension: VK\\_EXT\\_conservative\\_rasterization
         flags::UInt32
         conservative_rasterization_mode::ConservativeRasterizationModeEXT
         extra_primitive_overestimation_size::Float32
+    end
+
+"""
+High-level wrapper for VkDeviceQueueGlobalPriorityCreateInfoKHR.
+
+Extension: VK\\_KHR\\_global\\_priority
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoKHR.html)
+
+"""
+@struct_hash_equal struct DeviceQueueGlobalPriorityCreateInfoKHR <: HighLevelStruct
+        next::Any
+        global_priority::QueueGlobalPriorityKHR
     end
 
 """
@@ -19563,16 +19576,17 @@ Extension: VK\\_KHR\\_global\\_priority
     end
 
 """
-High-level wrapper for VkDeviceQueueGlobalPriorityCreateInfoKHR.
+High-level wrapper for VkPipelineCoverageReductionStateCreateInfoNV.
 
-Extension: VK\\_KHR\\_global\\_priority
+Extension: VK\\_NV\\_coverage\\_reduction\\_mode
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html)
 
 """
-@struct_hash_equal struct DeviceQueueGlobalPriorityCreateInfoKHR <: HighLevelStruct
+@struct_hash_equal struct PipelineCoverageReductionStateCreateInfoNV <: HighLevelStruct
         next::Any
-        global_priority::QueueGlobalPriorityKHR
+        flags::UInt32
+        coverage_reduction_mode::CoverageReductionModeNV
     end
 
 """
@@ -19589,20 +19603,6 @@ Extension: VK\\_NV\\_coverage\\_reduction\\_mode
         rasterization_samples::SampleCountFlag
         depth_stencil_samples::SampleCountFlag
         color_samples::SampleCountFlag
-    end
-
-"""
-High-level wrapper for VkPipelineCoverageReductionStateCreateInfoNV.
-
-Extension: VK\\_NV\\_coverage\\_reduction\\_mode
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html)
-
-"""
-@struct_hash_equal struct PipelineCoverageReductionStateCreateInfoNV <: HighLevelStruct
-        next::Any
-        flags::UInt32
-        coverage_reduction_mode::CoverageReductionModeNV
     end
 
 """
@@ -19659,6 +19659,17 @@ High-level wrapper for VkSamplerReductionModeCreateInfo.
     end
 
 """
+High-level wrapper for VkPhysicalDevicePointClippingProperties.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePointClippingProperties.html)
+
+"""
+@struct_hash_equal struct PhysicalDevicePointClippingProperties <: HighLevelStruct
+        next::Any
+        point_clipping_behavior::PointClippingBehavior
+    end
+
+"""
 High-level wrapper for VkPhysicalDeviceVulkan11Properties.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceVulkan11Properties.html)
@@ -19681,17 +19692,6 @@ High-level wrapper for VkPhysicalDeviceVulkan11Properties.
         protected_no_fault::Bool
         max_per_set_descriptors::UInt32
         max_memory_allocation_size::UInt64
-    end
-
-"""
-High-level wrapper for VkPhysicalDevicePointClippingProperties.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePointClippingProperties.html)
-
-"""
-@struct_hash_equal struct PhysicalDevicePointClippingProperties <: HighLevelStruct
-        next::Any
-        point_clipping_behavior::PointClippingBehavior
     end
 
 """
@@ -19818,6 +19818,21 @@ Extension: VK\\_AMD\\_rasterization\\_order
     end
 
 """
+High-level wrapper for VkDebugMarkerObjectNameInfoEXT.
+
+Extension: VK\\_EXT\\_debug\\_marker
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html)
+
+"""
+@struct_hash_equal struct DebugMarkerObjectNameInfoEXT <: HighLevelStruct
+        next::Any
+        object_type::DebugReportObjectTypeEXT
+        object::UInt64
+        object_name::String
+    end
+
+"""
 High-level wrapper for VkDebugMarkerObjectTagInfoEXT.
 
 Extension: VK\\_EXT\\_debug\\_marker
@@ -19832,21 +19847,6 @@ Extension: VK\\_EXT\\_debug\\_marker
         tag_name::UInt64
         tag_size::UInt
         tag::Ptr{Cvoid}
-    end
-
-"""
-High-level wrapper for VkDebugMarkerObjectNameInfoEXT.
-
-Extension: VK\\_EXT\\_debug\\_marker
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html)
-
-"""
-@struct_hash_equal struct DebugMarkerObjectNameInfoEXT <: HighLevelStruct
-        next::Any
-        object_type::DebugReportObjectTypeEXT
-        object::UInt64
-        object_name::String
     end
 
 """
@@ -19872,42 +19872,6 @@ High-level wrapper for VkSemaphoreTypeCreateInfo.
         next::Any
         semaphore_type::SemaphoreType
         initial_value::UInt64
-    end
-
-"""
-High-level wrapper for VkDeviceMemoryReportCallbackDataEXT.
-
-Extension: VK\\_EXT\\_device\\_memory\\_report
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryReportCallbackDataEXT.html)
-
-"""
-@struct_hash_equal struct DeviceMemoryReportCallbackDataEXT <: HighLevelStruct
-        next::Any
-        flags::UInt32
-        type::DeviceMemoryReportEventTypeEXT
-        memory_object_id::UInt64
-        size::UInt64
-        object_type::ObjectType
-        object_handle::UInt64
-        heap_index::UInt32
-    end
-
-"""
-High-level wrapper for VkDebugUtilsObjectTagInfoEXT.
-
-Extension: VK\\_EXT\\_debug\\_utils
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html)
-
-"""
-@struct_hash_equal struct DebugUtilsObjectTagInfoEXT <: HighLevelStruct
-        next::Any
-        object_type::ObjectType
-        object_handle::UInt64
-        tag_name::UInt64
-        tag_size::UInt
-        tag::Ptr{Cvoid}
     end
 
 """
@@ -19942,6 +19906,42 @@ Extension: VK\\_EXT\\_debug\\_utils
         queue_labels::Vector{DebugUtilsLabelEXT}
         cmd_buf_labels::Vector{DebugUtilsLabelEXT}
         objects::Vector{DebugUtilsObjectNameInfoEXT}
+    end
+
+"""
+High-level wrapper for VkDebugUtilsObjectTagInfoEXT.
+
+Extension: VK\\_EXT\\_debug\\_utils
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html)
+
+"""
+@struct_hash_equal struct DebugUtilsObjectTagInfoEXT <: HighLevelStruct
+        next::Any
+        object_type::ObjectType
+        object_handle::UInt64
+        tag_name::UInt64
+        tag_size::UInt
+        tag::Ptr{Cvoid}
+    end
+
+"""
+High-level wrapper for VkDeviceMemoryReportCallbackDataEXT.
+
+Extension: VK\\_EXT\\_device\\_memory\\_report
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryReportCallbackDataEXT.html)
+
+"""
+@struct_hash_equal struct DeviceMemoryReportCallbackDataEXT <: HighLevelStruct
+        next::Any
+        flags::UInt32
+        type::DeviceMemoryReportEventTypeEXT
+        memory_object_id::UInt64
+        size::UInt64
+        object_type::ObjectType
+        object_handle::UInt64
+        heap_index::UInt32
     end
 
 """
@@ -20006,45 +20006,27 @@ High-level wrapper for VkSubpassBeginInfo.
     end
 
 """
-High-level wrapper for VkCommandBufferInheritanceRenderingInfo.
+High-level wrapper for VkBufferViewCreateInfo.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceRenderingInfo.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferViewCreateInfo.html)
 
 """
-@struct_hash_equal struct CommandBufferInheritanceRenderingInfo <: HighLevelStruct
+@struct_hash_equal struct BufferViewCreateInfo <: HighLevelStruct
         next::Any
-        flags::RenderingFlag
-        view_mask::UInt32
-        color_attachment_formats::Vector{Format}
-        depth_attachment_format::Format
-        stencil_attachment_format::Format
-        rasterization_samples::SampleCountFlag
+        flags::UInt32
+        buffer::Buffer
+        format::Format
+        offset::UInt64
+        range::UInt64
     end
 
 """
-High-level wrapper for VkPipelineRenderingCreateInfo.
+High-level wrapper for VkVertexInputAttributeDescription.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRenderingCreateInfo.html)
-
-"""
-@struct_hash_equal struct PipelineRenderingCreateInfo <: HighLevelStruct
-        next::Any
-        view_mask::UInt32
-        color_attachment_formats::Vector{Format}
-        depth_attachment_format::Format
-        stencil_attachment_format::Format
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription.html)
 
 """
-High-level wrapper for VkVertexInputAttributeDescription2EXT.
-
-Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription2EXT.html)
-
-"""
-@struct_hash_equal struct VertexInputAttributeDescription2EXT <: HighLevelStruct
-        next::Any
+@struct_hash_equal struct VertexInputAttributeDescription <: HighLevelStruct
         location::UInt32
         binding::UInt32
         format::Format
@@ -20052,17 +20034,53 @@ Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
     end
 
 """
-High-level wrapper for VkSamplerCustomBorderColorCreateInfoEXT.
+High-level wrapper for VkSurfaceFormatKHR.
 
-Extension: VK\\_EXT\\_custom\\_border\\_color
+Extension: VK\\_KHR\\_surface
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFormatKHR.html)
 
 """
-@struct_hash_equal struct SamplerCustomBorderColorCreateInfoEXT <: HighLevelStruct
-        next::Any
-        custom_border_color::ClearColorValue
+@struct_hash_equal struct SurfaceFormatKHR <: HighLevelStruct
         format::Format
+        color_space::ColorSpaceKHR
+    end
+
+"""
+High-level wrapper for VkSurfaceFormat2KHR.
+
+Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFormat2KHR.html)
+
+"""
+@struct_hash_equal struct SurfaceFormat2KHR <: HighLevelStruct
+        next::Any
+        surface_format::SurfaceFormatKHR
+    end
+
+"""
+High-level wrapper for VkImageFormatListCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatListCreateInfo.html)
+
+"""
+@struct_hash_equal struct ImageFormatListCreateInfo <: HighLevelStruct
+        next::Any
+        view_formats::Vector{Format}
+    end
+
+"""
+High-level wrapper for VkImageViewASTCDecodeModeEXT.
+
+Extension: VK\\_EXT\\_astc\\_decode\\_mode
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewASTCDecodeModeEXT.html)
+
+"""
+@struct_hash_equal struct ImageViewASTCDecodeModeEXT <: HighLevelStruct
+        next::Any
+        decode_mode::Format
     end
 
 """
@@ -20093,62 +20111,29 @@ High-level wrapper for VkFramebufferAttachmentsCreateInfo.
     end
 
 """
-High-level wrapper for VkImageViewASTCDecodeModeEXT.
+High-level wrapper for VkSamplerCustomBorderColorCreateInfoEXT.
 
-Extension: VK\\_EXT\\_astc\\_decode\\_mode
+Extension: VK\\_EXT\\_custom\\_border\\_color
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewASTCDecodeModeEXT.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html)
 
 """
-@struct_hash_equal struct ImageViewASTCDecodeModeEXT <: HighLevelStruct
+@struct_hash_equal struct SamplerCustomBorderColorCreateInfoEXT <: HighLevelStruct
         next::Any
-        decode_mode::Format
-    end
-
-"""
-High-level wrapper for VkImageFormatListCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatListCreateInfo.html)
-
-"""
-@struct_hash_equal struct ImageFormatListCreateInfo <: HighLevelStruct
-        next::Any
-        view_formats::Vector{Format}
-    end
-
-"""
-High-level wrapper for VkSurfaceFormatKHR.
-
-Extension: VK\\_KHR\\_surface
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFormatKHR.html)
-
-"""
-@struct_hash_equal struct SurfaceFormatKHR <: HighLevelStruct
+        custom_border_color::ClearColorValue
         format::Format
-        color_space::ColorSpaceKHR
     end
 
 """
-High-level wrapper for VkSurfaceFormat2KHR.
+High-level wrapper for VkVertexInputAttributeDescription2EXT.
 
-Extension: VK\\_KHR\\_get\\_surface\\_capabilities2
+Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFormat2KHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription2EXT.html)
 
 """
-@struct_hash_equal struct SurfaceFormat2KHR <: HighLevelStruct
+@struct_hash_equal struct VertexInputAttributeDescription2EXT <: HighLevelStruct
         next::Any
-        surface_format::SurfaceFormatKHR
-    end
-
-"""
-High-level wrapper for VkVertexInputAttributeDescription.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription.html)
-
-"""
-@struct_hash_equal struct VertexInputAttributeDescription <: HighLevelStruct
         location::UInt32
         binding::UInt32
         format::Format
@@ -20156,34 +20141,33 @@ High-level wrapper for VkVertexInputAttributeDescription.
     end
 
 """
-High-level wrapper for VkBufferViewCreateInfo.
+High-level wrapper for VkPipelineRenderingCreateInfo.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferViewCreateInfo.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRenderingCreateInfo.html)
 
 """
-@struct_hash_equal struct BufferViewCreateInfo <: HighLevelStruct
+@struct_hash_equal struct PipelineRenderingCreateInfo <: HighLevelStruct
         next::Any
-        flags::UInt32
-        buffer::Buffer
-        format::Format
-        offset::UInt64
-        range::UInt64
+        view_mask::UInt32
+        color_attachment_formats::Vector{Format}
+        depth_attachment_format::Format
+        stencil_attachment_format::Format
     end
 
 """
-High-level wrapper for VkVertexInputBindingDescription2EXT.
+High-level wrapper for VkCommandBufferInheritanceRenderingInfo.
 
-Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputBindingDescription2EXT.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceRenderingInfo.html)
 
 """
-@struct_hash_equal struct VertexInputBindingDescription2EXT <: HighLevelStruct
+@struct_hash_equal struct CommandBufferInheritanceRenderingInfo <: HighLevelStruct
         next::Any
-        binding::UInt32
-        stride::UInt32
-        input_rate::VertexInputRate
-        divisor::UInt32
+        flags::RenderingFlag
+        view_mask::UInt32
+        color_attachment_formats::Vector{Format}
+        depth_attachment_format::Format
+        stencil_attachment_format::Format
+        rasterization_samples::SampleCountFlag
     end
 
 """
@@ -20238,6 +20222,22 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
         next::Any
         groups::Vector{GraphicsShaderGroupCreateInfoNV}
         pipelines::Vector{Pipeline}
+    end
+
+"""
+High-level wrapper for VkVertexInputBindingDescription2EXT.
+
+Extension: VK\\_EXT\\_vertex\\_input\\_dynamic\\_state
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputBindingDescription2EXT.html)
+
+"""
+@struct_hash_equal struct VertexInputBindingDescription2EXT <: HighLevelStruct
+        next::Any
+        binding::UInt32
+        stride::UInt32
+        input_rate::VertexInputRate
+        divisor::UInt32
     end
 
 """
@@ -20359,22 +20359,41 @@ High-level wrapper for VkPipelineDepthStencilStateCreateInfo.
     end
 
 """
-High-level wrapper for VkAccelerationStructureGeometryTrianglesDataKHR.
+High-level wrapper for VkBindIndexBufferIndirectCommandNV.
 
-Extension: VK\\_KHR\\_acceleration\\_structure
+Extension: VK\\_NV\\_device\\_generated\\_commands
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html)
 
 """
-@struct_hash_equal struct AccelerationStructureGeometryTrianglesDataKHR <: HighLevelStruct
-        next::Any
-        vertex_format::Format
-        vertex_data::DeviceOrHostAddressConstKHR
-        vertex_stride::UInt64
-        max_vertex::UInt32
+@struct_hash_equal struct BindIndexBufferIndirectCommandNV <: HighLevelStruct
+        buffer_address::UInt64
+        size::UInt32
         index_type::IndexType
-        index_data::DeviceOrHostAddressConstKHR
-        transform_data::DeviceOrHostAddressConstKHR
+    end
+
+"""
+High-level wrapper for VkIndirectCommandsLayoutTokenNV.
+
+Extension: VK\\_NV\\_device\\_generated\\_commands
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html)
+
+"""
+@struct_hash_equal struct IndirectCommandsLayoutTokenNV <: HighLevelStruct
+        next::Any
+        token_type::IndirectCommandsTokenTypeNV
+        stream::UInt32
+        offset::UInt32
+        vertex_binding_unit::UInt32
+        vertex_dynamic_stride::Bool
+        pushconstant_pipeline_layout::OptionalPtr{PipelineLayout}
+        pushconstant_shader_stage_flags::ShaderStageFlag
+        pushconstant_offset::UInt32
+        pushconstant_size::UInt32
+        indirect_state_flags::IndirectStateFlagNV
+        index_types::Vector{IndexType}
+        index_type_values::Vector{UInt32}
     end
 
 """
@@ -20459,56 +20478,48 @@ Extension: VK\\_NV\\_ray\\_tracing
     end
 
 """
-High-level wrapper for VkIndirectCommandsLayoutTokenNV.
+High-level wrapper for VkAccelerationStructureGeometryTrianglesDataKHR.
 
-Extension: VK\\_NV\\_device\\_generated\\_commands
+Extension: VK\\_KHR\\_acceleration\\_structure
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html)
 
 """
-@struct_hash_equal struct IndirectCommandsLayoutTokenNV <: HighLevelStruct
+@struct_hash_equal struct AccelerationStructureGeometryTrianglesDataKHR <: HighLevelStruct
         next::Any
-        token_type::IndirectCommandsTokenTypeNV
-        stream::UInt32
-        offset::UInt32
-        vertex_binding_unit::UInt32
-        vertex_dynamic_stride::Bool
-        pushconstant_pipeline_layout::OptionalPtr{PipelineLayout}
-        pushconstant_shader_stage_flags::ShaderStageFlag
-        pushconstant_offset::UInt32
-        pushconstant_size::UInt32
-        indirect_state_flags::IndirectStateFlagNV
-        index_types::Vector{IndexType}
-        index_type_values::Vector{UInt32}
-    end
-
-"""
-High-level wrapper for VkBindIndexBufferIndirectCommandNV.
-
-Extension: VK\\_NV\\_device\\_generated\\_commands
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html)
-
-"""
-@struct_hash_equal struct BindIndexBufferIndirectCommandNV <: HighLevelStruct
-        buffer_address::UInt64
-        size::UInt32
+        vertex_format::Format
+        vertex_data::DeviceOrHostAddressConstKHR
+        vertex_stride::UInt64
+        max_vertex::UInt32
         index_type::IndexType
+        index_data::DeviceOrHostAddressConstKHR
+        transform_data::DeviceOrHostAddressConstKHR
     end
 
 """
-High-level wrapper for VkPhysicalDeviceImageDrmFormatModifierInfoEXT.
+High-level wrapper for VkBufferCreateInfo.
 
-Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferCreateInfo.html)
 
 """
-@struct_hash_equal struct PhysicalDeviceImageDrmFormatModifierInfoEXT <: HighLevelStruct
+@struct_hash_equal struct BufferCreateInfo <: HighLevelStruct
         next::Any
-        drm_format_modifier::UInt64
+        flags::BufferCreateFlag
+        size::UInt64
+        usage::BufferUsageFlag
         sharing_mode::SharingMode
         queue_family_indices::Vector{UInt32}
+    end
+
+"""
+High-level wrapper for VkDeviceBufferMemoryRequirements.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceBufferMemoryRequirements.html)
+
+"""
+@struct_hash_equal struct DeviceBufferMemoryRequirements <: HighLevelStruct
+        next::Any
+        create_info::BufferCreateInfo
     end
 
 """
@@ -20539,29 +20550,18 @@ Extension: VK\\_KHR\\_swapchain
     end
 
 """
-High-level wrapper for VkBufferCreateInfo.
+High-level wrapper for VkPhysicalDeviceImageDrmFormatModifierInfoEXT.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferCreateInfo.html)
+Extension: VK\\_EXT\\_image\\_drm\\_format\\_modifier
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageDrmFormatModifierInfoEXT.html)
 
 """
-@struct_hash_equal struct BufferCreateInfo <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceImageDrmFormatModifierInfoEXT <: HighLevelStruct
         next::Any
-        flags::BufferCreateFlag
-        size::UInt64
-        usage::BufferUsageFlag
+        drm_format_modifier::UInt64
         sharing_mode::SharingMode
         queue_family_indices::Vector{UInt32}
-    end
-
-"""
-High-level wrapper for VkDeviceBufferMemoryRequirements.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceBufferMemoryRequirements.html)
-
-"""
-@struct_hash_equal struct DeviceBufferMemoryRequirements <: HighLevelStruct
-        next::Any
-        create_info::BufferCreateInfo
     end
 
 """
@@ -20618,19 +20618,19 @@ High-level wrapper for VkPipelineCacheHeaderVersionOne.
     end
 
 """
-High-level wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
+High-level wrapper for VkIndirectCommandsLayoutCreateInfoNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html)
 
 """
-@struct_hash_equal struct GeneratedCommandsMemoryRequirementsInfoNV <: HighLevelStruct
+@struct_hash_equal struct IndirectCommandsLayoutCreateInfoNV <: HighLevelStruct
         next::Any
+        flags::IndirectCommandsLayoutUsageFlagNV
         pipeline_bind_point::PipelineBindPoint
-        pipeline::Pipeline
-        indirect_commands_layout::IndirectCommandsLayoutNV
-        max_sequences_count::UInt32
+        tokens::Vector{IndirectCommandsLayoutTokenNV}
+        stream_strides::Vector{UInt32}
     end
 
 """
@@ -20658,19 +20658,19 @@ Extension: VK\\_NV\\_device\\_generated\\_commands
     end
 
 """
-High-level wrapper for VkIndirectCommandsLayoutCreateInfoNV.
+High-level wrapper for VkGeneratedCommandsMemoryRequirementsInfoNV.
 
 Extension: VK\\_NV\\_device\\_generated\\_commands
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html)
 
 """
-@struct_hash_equal struct IndirectCommandsLayoutCreateInfoNV <: HighLevelStruct
+@struct_hash_equal struct GeneratedCommandsMemoryRequirementsInfoNV <: HighLevelStruct
         next::Any
-        flags::IndirectCommandsLayoutUsageFlagNV
         pipeline_bind_point::PipelineBindPoint
-        tokens::Vector{IndirectCommandsLayoutTokenNV}
-        stream_strides::Vector{UInt32}
+        pipeline::Pipeline
+        indirect_commands_layout::IndirectCommandsLayoutNV
+        max_sequences_count::UInt32
     end
 
 """
@@ -20714,43 +20714,53 @@ High-level wrapper for VkQueryPoolCreateInfo.
     end
 
 """
-High-level wrapper for VkMutableDescriptorTypeListVALVE.
+High-level wrapper for VkDescriptorSetLayoutBinding.
 
-Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeListVALVE.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutBinding.html)
 
 """
-@struct_hash_equal struct MutableDescriptorTypeListVALVE <: HighLevelStruct
-        descriptor_types::Vector{DescriptorType}
-    end
-
-"""
-High-level wrapper for VkMutableDescriptorTypeCreateInfoVALVE.
-
-Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html)
-
-"""
-@struct_hash_equal struct MutableDescriptorTypeCreateInfoVALVE <: HighLevelStruct
-        next::Any
-        mutable_descriptor_type_lists::Vector{MutableDescriptorTypeListVALVE}
-    end
-
-"""
-High-level wrapper for VkImageViewHandleInfoNVX.
-
-Extension: VK\\_NVX\\_image\\_view\\_handle
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewHandleInfoNVX.html)
-
-"""
-@struct_hash_equal struct ImageViewHandleInfoNVX <: HighLevelStruct
-        next::Any
-        image_view::ImageView
+@struct_hash_equal struct DescriptorSetLayoutBinding <: HighLevelStruct
+        binding::UInt32
         descriptor_type::DescriptorType
-        sampler::OptionalPtr{Sampler}
+        descriptor_count::UInt32
+        stage_flags::ShaderStageFlag
+        immutable_samplers::OptionalPtr{Vector{Sampler}}
+    end
+
+"""
+High-level wrapper for VkDescriptorSetLayoutCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutCreateInfo.html)
+
+"""
+@struct_hash_equal struct DescriptorSetLayoutCreateInfo <: HighLevelStruct
+        next::Any
+        flags::DescriptorSetLayoutCreateFlag
+        bindings::Vector{DescriptorSetLayoutBinding}
+    end
+
+"""
+High-level wrapper for VkDescriptorPoolSize.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPoolSize.html)
+
+"""
+@struct_hash_equal struct DescriptorPoolSize <: HighLevelStruct
+        type::DescriptorType
+        descriptor_count::UInt32
+    end
+
+"""
+High-level wrapper for VkDescriptorPoolCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPoolCreateInfo.html)
+
+"""
+@struct_hash_equal struct DescriptorPoolCreateInfo <: HighLevelStruct
+        next::Any
+        flags::DescriptorPoolCreateFlag
+        max_sets::UInt32
+        pool_sizes::Vector{DescriptorPoolSize}
     end
 
 """
@@ -20786,53 +20796,43 @@ High-level wrapper for VkDescriptorUpdateTemplateCreateInfo.
     end
 
 """
-High-level wrapper for VkDescriptorPoolSize.
+High-level wrapper for VkImageViewHandleInfoNVX.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPoolSize.html)
+Extension: VK\\_NVX\\_image\\_view\\_handle
 
-"""
-@struct_hash_equal struct DescriptorPoolSize <: HighLevelStruct
-        type::DescriptorType
-        descriptor_count::UInt32
-    end
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewHandleInfoNVX.html)
 
 """
-High-level wrapper for VkDescriptorPoolCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPoolCreateInfo.html)
-
-"""
-@struct_hash_equal struct DescriptorPoolCreateInfo <: HighLevelStruct
+@struct_hash_equal struct ImageViewHandleInfoNVX <: HighLevelStruct
         next::Any
-        flags::DescriptorPoolCreateFlag
-        max_sets::UInt32
-        pool_sizes::Vector{DescriptorPoolSize}
-    end
-
-"""
-High-level wrapper for VkDescriptorSetLayoutBinding.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutBinding.html)
-
-"""
-@struct_hash_equal struct DescriptorSetLayoutBinding <: HighLevelStruct
-        binding::UInt32
+        image_view::ImageView
         descriptor_type::DescriptorType
-        descriptor_count::UInt32
-        stage_flags::ShaderStageFlag
-        immutable_samplers::OptionalPtr{Vector{Sampler}}
+        sampler::OptionalPtr{Sampler}
     end
 
 """
-High-level wrapper for VkDescriptorSetLayoutCreateInfo.
+High-level wrapper for VkMutableDescriptorTypeListVALVE.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutCreateInfo.html)
+Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeListVALVE.html)
 
 """
-@struct_hash_equal struct DescriptorSetLayoutCreateInfo <: HighLevelStruct
+@struct_hash_equal struct MutableDescriptorTypeListVALVE <: HighLevelStruct
+        descriptor_types::Vector{DescriptorType}
+    end
+
+"""
+High-level wrapper for VkMutableDescriptorTypeCreateInfoVALVE.
+
+Extension: VK\\_VALVE\\_mutable\\_descriptor\\_type
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html)
+
+"""
+@struct_hash_equal struct MutableDescriptorTypeCreateInfoVALVE <: HighLevelStruct
         next::Any
-        flags::DescriptorSetLayoutCreateFlag
-        bindings::Vector{DescriptorSetLayoutBinding}
+        mutable_descriptor_type_lists::Vector{MutableDescriptorTypeListVALVE}
     end
 
 """
@@ -20846,20 +20846,6 @@ High-level wrapper for VkComponentMapping.
         g::ComponentSwizzle
         b::ComponentSwizzle
         a::ComponentSwizzle
-    end
-
-"""
-High-level wrapper for VkSamplerBorderColorComponentMappingCreateInfoEXT.
-
-Extension: VK\\_EXT\\_border\\_color\\_swizzle
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerBorderColorComponentMappingCreateInfoEXT.html)
-
-"""
-@struct_hash_equal struct SamplerBorderColorComponentMappingCreateInfoEXT <: HighLevelStruct
-        next::Any
-        components::ComponentMapping
-        srgb::Bool
     end
 
 """
@@ -20881,6 +20867,20 @@ High-level wrapper for VkSamplerYcbcrConversionCreateInfo.
     end
 
 """
+High-level wrapper for VkSamplerBorderColorComponentMappingCreateInfoEXT.
+
+Extension: VK\\_EXT\\_border\\_color\\_swizzle
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerBorderColorComponentMappingCreateInfoEXT.html)
+
+"""
+@struct_hash_equal struct SamplerBorderColorComponentMappingCreateInfoEXT <: HighLevelStruct
+        next::Any
+        components::ComponentMapping
+        srgb::Bool
+    end
+
+"""
 High-level wrapper for VkCommandBufferAllocateInfo.
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferAllocateInfo.html)
@@ -20891,19 +20891,6 @@ High-level wrapper for VkCommandBufferAllocateInfo.
         command_pool::CommandPool
         level::CommandBufferLevel
         command_buffer_count::UInt32
-    end
-
-"""
-High-level wrapper for VkPhysicalDeviceImageViewImageFormatInfoEXT.
-
-Extension: VK\\_EXT\\_filter\\_cubic
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html)
-
-"""
-@struct_hash_equal struct PhysicalDeviceImageViewImageFormatInfoEXT <: HighLevelStruct
-        next::Any
-        image_view_type::ImageViewType
     end
 
 """
@@ -20923,18 +20910,16 @@ High-level wrapper for VkImageViewCreateInfo.
     end
 
 """
-High-level wrapper for VkPhysicalDeviceSparseImageFormatInfo2.
+High-level wrapper for VkPhysicalDeviceImageViewImageFormatInfoEXT.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html)
+Extension: VK\\_EXT\\_filter\\_cubic
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html)
 
 """
-@struct_hash_equal struct PhysicalDeviceSparseImageFormatInfo2 <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceImageViewImageFormatInfoEXT <: HighLevelStruct
         next::Any
-        format::Format
-        type::ImageType
-        samples::SampleCountFlag
-        usage::ImageUsageFlag
-        tiling::ImageTiling
+        image_view_type::ImageViewType
     end
 
 """
@@ -20953,32 +20938,395 @@ High-level wrapper for VkPhysicalDeviceImageFormatInfo2.
     end
 
 """
-High-level wrapper for VkRenderingFragmentDensityMapAttachmentInfoEXT.
+High-level wrapper for VkPhysicalDeviceSparseImageFormatInfo2.
 
-Extension: VK\\_KHR\\_dynamic\\_rendering
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentDensityMapAttachmentInfoEXT.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html)
 
 """
-@struct_hash_equal struct RenderingFragmentDensityMapAttachmentInfoEXT <: HighLevelStruct
+@struct_hash_equal struct PhysicalDeviceSparseImageFormatInfo2 <: HighLevelStruct
         next::Any
+        format::Format
+        type::ImageType
+        samples::SampleCountFlag
+        usage::ImageUsageFlag
+        tiling::ImageTiling
+    end
+
+"""
+High-level wrapper for VkDescriptorImageInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorImageInfo.html)
+
+"""
+@struct_hash_equal struct DescriptorImageInfo <: HighLevelStruct
+        sampler::Sampler
         image_view::ImageView
         image_layout::ImageLayout
     end
 
 """
-High-level wrapper for VkRenderingFragmentShadingRateAttachmentInfoKHR.
+High-level wrapper for VkWriteDescriptorSet.
 
-Extension: VK\\_KHR\\_dynamic\\_rendering
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentShadingRateAttachmentInfoKHR.html)
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSet.html)
 
 """
-@struct_hash_equal struct RenderingFragmentShadingRateAttachmentInfoKHR <: HighLevelStruct
+@struct_hash_equal struct WriteDescriptorSet <: HighLevelStruct
         next::Any
-        image_view::OptionalPtr{ImageView}
-        image_layout::ImageLayout
+        dst_set::DescriptorSet
+        dst_binding::UInt32
+        dst_array_element::UInt32
+        descriptor_count::UInt32
+        descriptor_type::DescriptorType
+        image_info::Vector{DescriptorImageInfo}
+        buffer_info::Vector{DescriptorBufferInfo}
+        texel_buffer_view::Vector{BufferView}
+    end
+
+"""
+High-level wrapper for VkImageMemoryBarrier.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier.html)
+
+"""
+@struct_hash_equal struct ImageMemoryBarrier <: HighLevelStruct
+        next::Any
+        src_access_mask::AccessFlag
+        dst_access_mask::AccessFlag
+        old_layout::ImageLayout
+        new_layout::ImageLayout
+        src_queue_family_index::UInt32
+        dst_queue_family_index::UInt32
+        image::Image
+        subresource_range::ImageSubresourceRange
+    end
+
+"""
+High-level wrapper for VkImageCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageCreateInfo.html)
+
+"""
+@struct_hash_equal struct ImageCreateInfo <: HighLevelStruct
+        next::Any
+        flags::ImageCreateFlag
+        image_type::ImageType
+        format::Format
+        extent::Extent3D
+        mip_levels::UInt32
+        array_layers::UInt32
+        samples::SampleCountFlag
+        tiling::ImageTiling
+        usage::ImageUsageFlag
+        sharing_mode::SharingMode
+        queue_family_indices::Vector{UInt32}
+        initial_layout::ImageLayout
+    end
+
+"""
+High-level wrapper for VkDeviceImageMemoryRequirements.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceImageMemoryRequirements.html)
+
+"""
+@struct_hash_equal struct DeviceImageMemoryRequirements <: HighLevelStruct
+        next::Any
+        create_info::ImageCreateInfo
+        plane_aspect::ImageAspectFlag
+    end
+
+"""
+High-level wrapper for VkAttachmentDescription.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentDescription.html)
+
+"""
+@struct_hash_equal struct AttachmentDescription <: HighLevelStruct
+        flags::AttachmentDescriptionFlag
+        format::Format
+        samples::SampleCountFlag
+        load_op::AttachmentLoadOp
+        store_op::AttachmentStoreOp
+        stencil_load_op::AttachmentLoadOp
+        stencil_store_op::AttachmentStoreOp
+        initial_layout::ImageLayout
+        final_layout::ImageLayout
+    end
+
+"""
+High-level wrapper for VkAttachmentReference.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReference.html)
+
+"""
+@struct_hash_equal struct AttachmentReference <: HighLevelStruct
+        attachment::UInt32
+        layout::ImageLayout
+    end
+
+"""
+High-level wrapper for VkSubpassDescription.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescription.html)
+
+"""
+@struct_hash_equal struct SubpassDescription <: HighLevelStruct
+        flags::SubpassDescriptionFlag
+        pipeline_bind_point::PipelineBindPoint
+        input_attachments::Vector{AttachmentReference}
+        color_attachments::Vector{AttachmentReference}
+        resolve_attachments::OptionalPtr{Vector{AttachmentReference}}
+        depth_stencil_attachment::OptionalPtr{AttachmentReference}
+        preserve_attachments::Vector{UInt32}
+    end
+
+"""
+High-level wrapper for VkRenderPassCreateInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassCreateInfo.html)
+
+"""
+@struct_hash_equal struct RenderPassCreateInfo <: HighLevelStruct
+        next::Any
+        flags::RenderPassCreateFlag
+        attachments::Vector{AttachmentDescription}
+        subpasses::Vector{SubpassDescription}
+        dependencies::Vector{SubpassDependency}
+    end
+
+"""
+High-level wrapper for VkRenderPassFragmentDensityMapCreateInfoEXT.
+
+Extension: VK\\_EXT\\_fragment\\_density\\_map
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html)
+
+"""
+@struct_hash_equal struct RenderPassFragmentDensityMapCreateInfoEXT <: HighLevelStruct
+        next::Any
+        fragment_density_map_attachment::AttachmentReference
+    end
+
+"""
+High-level wrapper for VkAttachmentDescription2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentDescription2.html)
+
+"""
+@struct_hash_equal struct AttachmentDescription2 <: HighLevelStruct
+        next::Any
+        flags::AttachmentDescriptionFlag
+        format::Format
+        samples::SampleCountFlag
+        load_op::AttachmentLoadOp
+        store_op::AttachmentStoreOp
+        stencil_load_op::AttachmentLoadOp
+        stencil_store_op::AttachmentStoreOp
+        initial_layout::ImageLayout
+        final_layout::ImageLayout
+    end
+
+"""
+High-level wrapper for VkAttachmentReference2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReference2.html)
+
+"""
+@struct_hash_equal struct AttachmentReference2 <: HighLevelStruct
+        next::Any
+        attachment::UInt32
+        layout::ImageLayout
+        aspect_mask::ImageAspectFlag
+    end
+
+"""
+High-level wrapper for VkSubpassDescription2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescription2.html)
+
+"""
+@struct_hash_equal struct SubpassDescription2 <: HighLevelStruct
+        next::Any
+        flags::SubpassDescriptionFlag
+        pipeline_bind_point::PipelineBindPoint
+        view_mask::UInt32
+        input_attachments::Vector{AttachmentReference2}
+        color_attachments::Vector{AttachmentReference2}
+        resolve_attachments::OptionalPtr{Vector{AttachmentReference2}}
+        depth_stencil_attachment::OptionalPtr{AttachmentReference2}
+        preserve_attachments::Vector{UInt32}
+    end
+
+"""
+High-level wrapper for VkRenderPassCreateInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassCreateInfo2.html)
+
+"""
+@struct_hash_equal struct RenderPassCreateInfo2 <: HighLevelStruct
+        next::Any
+        flags::RenderPassCreateFlag
+        attachments::Vector{AttachmentDescription2}
+        subpasses::Vector{SubpassDescription2}
+        dependencies::Vector{SubpassDependency2}
+        correlated_view_masks::Vector{UInt32}
+    end
+
+"""
+High-level wrapper for VkSubpassDescriptionDepthStencilResolve.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescriptionDepthStencilResolve.html)
+
+"""
+@struct_hash_equal struct SubpassDescriptionDepthStencilResolve <: HighLevelStruct
+        next::Any
+        depth_resolve_mode::ResolveModeFlag
+        stencil_resolve_mode::ResolveModeFlag
+        depth_stencil_resolve_attachment::OptionalPtr{AttachmentReference2}
+    end
+
+"""
+High-level wrapper for VkFragmentShadingRateAttachmentInfoKHR.
+
+Extension: VK\\_KHR\\_fragment\\_shading\\_rate
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html)
+
+"""
+@struct_hash_equal struct FragmentShadingRateAttachmentInfoKHR <: HighLevelStruct
+        next::Any
+        fragment_shading_rate_attachment::OptionalPtr{AttachmentReference2}
         shading_rate_attachment_texel_size::Extent2D
+    end
+
+"""
+High-level wrapper for VkAttachmentReferenceStencilLayout.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReferenceStencilLayout.html)
+
+"""
+@struct_hash_equal struct AttachmentReferenceStencilLayout <: HighLevelStruct
+        next::Any
+        stencil_layout::ImageLayout
+    end
+
+"""
+High-level wrapper for VkAttachmentDescriptionStencilLayout.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentDescriptionStencilLayout.html)
+
+"""
+@struct_hash_equal struct AttachmentDescriptionStencilLayout <: HighLevelStruct
+        next::Any
+        stencil_initial_layout::ImageLayout
+        stencil_final_layout::ImageLayout
+    end
+
+"""
+High-level wrapper for VkCopyImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageInfo2.html)
+
+"""
+@struct_hash_equal struct CopyImageInfo2 <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{ImageCopy2}
+    end
+
+"""
+High-level wrapper for VkBlitImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBlitImageInfo2.html)
+
+"""
+@struct_hash_equal struct BlitImageInfo2 <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{ImageBlit2}
+        filter::Filter
+    end
+
+"""
+High-level wrapper for VkCopyBufferToImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferToImageInfo2.html)
+
+"""
+@struct_hash_equal struct CopyBufferToImageInfo2 <: HighLevelStruct
+        next::Any
+        src_buffer::Buffer
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{BufferImageCopy2}
+    end
+
+"""
+High-level wrapper for VkCopyImageToBufferInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageToBufferInfo2.html)
+
+"""
+@struct_hash_equal struct CopyImageToBufferInfo2 <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_buffer::Buffer
+        regions::Vector{BufferImageCopy2}
+    end
+
+"""
+High-level wrapper for VkResolveImageInfo2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveImageInfo2.html)
+
+"""
+@struct_hash_equal struct ResolveImageInfo2 <: HighLevelStruct
+        next::Any
+        src_image::Image
+        src_image_layout::ImageLayout
+        dst_image::Image
+        dst_image_layout::ImageLayout
+        regions::Vector{ImageResolve2}
+    end
+
+"""
+High-level wrapper for VkImageMemoryBarrier2.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier2.html)
+
+"""
+@struct_hash_equal struct ImageMemoryBarrier2 <: HighLevelStruct
+        next::Any
+        src_stage_mask::UInt64
+        src_access_mask::UInt64
+        dst_stage_mask::UInt64
+        dst_access_mask::UInt64
+        old_layout::ImageLayout
+        new_layout::ImageLayout
+        src_queue_family_index::UInt32
+        dst_queue_family_index::UInt32
+        image::Image
+        subresource_range::ImageSubresourceRange
+    end
+
+"""
+High-level wrapper for VkDependencyInfo.
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDependencyInfo.html)
+
+"""
+@struct_hash_equal struct DependencyInfo <: HighLevelStruct
+        next::Any
+        dependency_flags::DependencyFlag
+        memory_barriers::Vector{MemoryBarrier2}
+        buffer_memory_barriers::Vector{BufferMemoryBarrier2}
+        image_memory_barriers::Vector{ImageMemoryBarrier2}
     end
 
 """
@@ -21017,380 +21365,32 @@ High-level wrapper for VkRenderingInfo.
     end
 
 """
-High-level wrapper for VkImageMemoryBarrier2.
+High-level wrapper for VkRenderingFragmentShadingRateAttachmentInfoKHR.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier2.html)
+Extension: VK\\_KHR\\_dynamic\\_rendering
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentShadingRateAttachmentInfoKHR.html)
 
 """
-@struct_hash_equal struct ImageMemoryBarrier2 <: HighLevelStruct
+@struct_hash_equal struct RenderingFragmentShadingRateAttachmentInfoKHR <: HighLevelStruct
         next::Any
-        src_stage_mask::UInt64
-        src_access_mask::UInt64
-        dst_stage_mask::UInt64
-        dst_access_mask::UInt64
-        old_layout::ImageLayout
-        new_layout::ImageLayout
-        src_queue_family_index::UInt32
-        dst_queue_family_index::UInt32
-        image::Image
-        subresource_range::ImageSubresourceRange
-    end
-
-"""
-High-level wrapper for VkDependencyInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDependencyInfo.html)
-
-"""
-@struct_hash_equal struct DependencyInfo <: HighLevelStruct
-        next::Any
-        dependency_flags::DependencyFlag
-        memory_barriers::Vector{MemoryBarrier2}
-        buffer_memory_barriers::Vector{BufferMemoryBarrier2}
-        image_memory_barriers::Vector{ImageMemoryBarrier2}
-    end
-
-"""
-High-level wrapper for VkResolveImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveImageInfo2.html)
-
-"""
-@struct_hash_equal struct ResolveImageInfo2 <: HighLevelStruct
-        next::Any
-        src_image::Image
-        src_image_layout::ImageLayout
-        dst_image::Image
-        dst_image_layout::ImageLayout
-        regions::Vector{ImageResolve2}
-    end
-
-"""
-High-level wrapper for VkCopyImageToBufferInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageToBufferInfo2.html)
-
-"""
-@struct_hash_equal struct CopyImageToBufferInfo2 <: HighLevelStruct
-        next::Any
-        src_image::Image
-        src_image_layout::ImageLayout
-        dst_buffer::Buffer
-        regions::Vector{BufferImageCopy2}
-    end
-
-"""
-High-level wrapper for VkCopyBufferToImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyBufferToImageInfo2.html)
-
-"""
-@struct_hash_equal struct CopyBufferToImageInfo2 <: HighLevelStruct
-        next::Any
-        src_buffer::Buffer
-        dst_image::Image
-        dst_image_layout::ImageLayout
-        regions::Vector{BufferImageCopy2}
-    end
-
-"""
-High-level wrapper for VkBlitImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBlitImageInfo2.html)
-
-"""
-@struct_hash_equal struct BlitImageInfo2 <: HighLevelStruct
-        next::Any
-        src_image::Image
-        src_image_layout::ImageLayout
-        dst_image::Image
-        dst_image_layout::ImageLayout
-        regions::Vector{ImageBlit2}
-        filter::Filter
-    end
-
-"""
-High-level wrapper for VkCopyImageInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyImageInfo2.html)
-
-"""
-@struct_hash_equal struct CopyImageInfo2 <: HighLevelStruct
-        next::Any
-        src_image::Image
-        src_image_layout::ImageLayout
-        dst_image::Image
-        dst_image_layout::ImageLayout
-        regions::Vector{ImageCopy2}
-    end
-
-"""
-High-level wrapper for VkAttachmentDescriptionStencilLayout.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentDescriptionStencilLayout.html)
-
-"""
-@struct_hash_equal struct AttachmentDescriptionStencilLayout <: HighLevelStruct
-        next::Any
-        stencil_initial_layout::ImageLayout
-        stencil_final_layout::ImageLayout
-    end
-
-"""
-High-level wrapper for VkAttachmentReferenceStencilLayout.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReferenceStencilLayout.html)
-
-"""
-@struct_hash_equal struct AttachmentReferenceStencilLayout <: HighLevelStruct
-        next::Any
-        stencil_layout::ImageLayout
-    end
-
-"""
-High-level wrapper for VkAttachmentReference2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReference2.html)
-
-"""
-@struct_hash_equal struct AttachmentReference2 <: HighLevelStruct
-        next::Any
-        attachment::UInt32
-        layout::ImageLayout
-        aspect_mask::ImageAspectFlag
-    end
-
-"""
-High-level wrapper for VkFragmentShadingRateAttachmentInfoKHR.
-
-Extension: VK\\_KHR\\_fragment\\_shading\\_rate
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html)
-
-"""
-@struct_hash_equal struct FragmentShadingRateAttachmentInfoKHR <: HighLevelStruct
-        next::Any
-        fragment_shading_rate_attachment::OptionalPtr{AttachmentReference2}
+        image_view::OptionalPtr{ImageView}
+        image_layout::ImageLayout
         shading_rate_attachment_texel_size::Extent2D
     end
 
 """
-High-level wrapper for VkSubpassDescriptionDepthStencilResolve.
+High-level wrapper for VkRenderingFragmentDensityMapAttachmentInfoEXT.
 
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescriptionDepthStencilResolve.html)
+Extension: VK\\_KHR\\_dynamic\\_rendering
+
+[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentDensityMapAttachmentInfoEXT.html)
 
 """
-@struct_hash_equal struct SubpassDescriptionDepthStencilResolve <: HighLevelStruct
+@struct_hash_equal struct RenderingFragmentDensityMapAttachmentInfoEXT <: HighLevelStruct
         next::Any
-        depth_resolve_mode::ResolveModeFlag
-        stencil_resolve_mode::ResolveModeFlag
-        depth_stencil_resolve_attachment::OptionalPtr{AttachmentReference2}
-    end
-
-"""
-High-level wrapper for VkSubpassDescription2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescription2.html)
-
-"""
-@struct_hash_equal struct SubpassDescription2 <: HighLevelStruct
-        next::Any
-        flags::SubpassDescriptionFlag
-        pipeline_bind_point::PipelineBindPoint
-        view_mask::UInt32
-        input_attachments::Vector{AttachmentReference2}
-        color_attachments::Vector{AttachmentReference2}
-        resolve_attachments::OptionalPtr{Vector{AttachmentReference2}}
-        depth_stencil_attachment::OptionalPtr{AttachmentReference2}
-        preserve_attachments::Vector{UInt32}
-    end
-
-"""
-High-level wrapper for VkAttachmentDescription2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentDescription2.html)
-
-"""
-@struct_hash_equal struct AttachmentDescription2 <: HighLevelStruct
-        next::Any
-        flags::AttachmentDescriptionFlag
-        format::Format
-        samples::SampleCountFlag
-        load_op::AttachmentLoadOp
-        store_op::AttachmentStoreOp
-        stencil_load_op::AttachmentLoadOp
-        stencil_store_op::AttachmentStoreOp
-        initial_layout::ImageLayout
-        final_layout::ImageLayout
-    end
-
-"""
-High-level wrapper for VkRenderPassCreateInfo2.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassCreateInfo2.html)
-
-"""
-@struct_hash_equal struct RenderPassCreateInfo2 <: HighLevelStruct
-        next::Any
-        flags::RenderPassCreateFlag
-        attachments::Vector{AttachmentDescription2}
-        subpasses::Vector{SubpassDescription2}
-        dependencies::Vector{SubpassDependency2}
-        correlated_view_masks::Vector{UInt32}
-    end
-
-"""
-High-level wrapper for VkAttachmentReference.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReference.html)
-
-"""
-@struct_hash_equal struct AttachmentReference <: HighLevelStruct
-        attachment::UInt32
-        layout::ImageLayout
-    end
-
-"""
-High-level wrapper for VkRenderPassFragmentDensityMapCreateInfoEXT.
-
-Extension: VK\\_EXT\\_fragment\\_density\\_map
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html)
-
-"""
-@struct_hash_equal struct RenderPassFragmentDensityMapCreateInfoEXT <: HighLevelStruct
-        next::Any
-        fragment_density_map_attachment::AttachmentReference
-    end
-
-"""
-High-level wrapper for VkSubpassDescription.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescription.html)
-
-"""
-@struct_hash_equal struct SubpassDescription <: HighLevelStruct
-        flags::SubpassDescriptionFlag
-        pipeline_bind_point::PipelineBindPoint
-        input_attachments::Vector{AttachmentReference}
-        color_attachments::Vector{AttachmentReference}
-        resolve_attachments::OptionalPtr{Vector{AttachmentReference}}
-        depth_stencil_attachment::OptionalPtr{AttachmentReference}
-        preserve_attachments::Vector{UInt32}
-    end
-
-"""
-High-level wrapper for VkAttachmentDescription.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentDescription.html)
-
-"""
-@struct_hash_equal struct AttachmentDescription <: HighLevelStruct
-        flags::AttachmentDescriptionFlag
-        format::Format
-        samples::SampleCountFlag
-        load_op::AttachmentLoadOp
-        store_op::AttachmentStoreOp
-        stencil_load_op::AttachmentLoadOp
-        stencil_store_op::AttachmentStoreOp
-        initial_layout::ImageLayout
-        final_layout::ImageLayout
-    end
-
-"""
-High-level wrapper for VkRenderPassCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassCreateInfo.html)
-
-"""
-@struct_hash_equal struct RenderPassCreateInfo <: HighLevelStruct
-        next::Any
-        flags::RenderPassCreateFlag
-        attachments::Vector{AttachmentDescription}
-        subpasses::Vector{SubpassDescription}
-        dependencies::Vector{SubpassDependency}
-    end
-
-"""
-High-level wrapper for VkImageCreateInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageCreateInfo.html)
-
-"""
-@struct_hash_equal struct ImageCreateInfo <: HighLevelStruct
-        next::Any
-        flags::ImageCreateFlag
-        image_type::ImageType
-        format::Format
-        extent::Extent3D
-        mip_levels::UInt32
-        array_layers::UInt32
-        samples::SampleCountFlag
-        tiling::ImageTiling
-        usage::ImageUsageFlag
-        sharing_mode::SharingMode
-        queue_family_indices::Vector{UInt32}
-        initial_layout::ImageLayout
-    end
-
-"""
-High-level wrapper for VkDeviceImageMemoryRequirements.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceImageMemoryRequirements.html)
-
-"""
-@struct_hash_equal struct DeviceImageMemoryRequirements <: HighLevelStruct
-        next::Any
-        create_info::ImageCreateInfo
-        plane_aspect::ImageAspectFlag
-    end
-
-"""
-High-level wrapper for VkImageMemoryBarrier.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryBarrier.html)
-
-"""
-@struct_hash_equal struct ImageMemoryBarrier <: HighLevelStruct
-        next::Any
-        src_access_mask::AccessFlag
-        dst_access_mask::AccessFlag
-        old_layout::ImageLayout
-        new_layout::ImageLayout
-        src_queue_family_index::UInt32
-        dst_queue_family_index::UInt32
-        image::Image
-        subresource_range::ImageSubresourceRange
-    end
-
-"""
-High-level wrapper for VkDescriptorImageInfo.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorImageInfo.html)
-
-"""
-@struct_hash_equal struct DescriptorImageInfo <: HighLevelStruct
-        sampler::Sampler
         image_view::ImageView
         image_layout::ImageLayout
-    end
-
-"""
-High-level wrapper for VkWriteDescriptorSet.
-
-[API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSet.html)
-
-"""
-@struct_hash_equal struct WriteDescriptorSet <: HighLevelStruct
-        next::Any
-        dst_set::DescriptorSet
-        dst_binding::UInt32
-        dst_array_element::UInt32
-        descriptor_count::UInt32
-        descriptor_type::DescriptorType
-        image_info::Vector{DescriptorImageInfo}
-        buffer_info::Vector{DescriptorBufferInfo}
-        texel_buffer_view::Vector{BufferView}
     end
 
 
@@ -73279,897 +73279,897 @@ intermediate_type(@nospecialize(_::Union{Type{DescriptorSetBindingReferenceVALVE
 
 intermediate_type(@nospecialize(_::Union{Type{DescriptorSetLayoutHostMappingInfoVALVE}, Type{VkDescriptorSetLayoutHostMappingInfoVALVE}})) = _DescriptorSetLayoutHostMappingInfoVALVE
 
-const ImageMemoryBarrier2KHR = ImageMemoryBarrier2
-const IMAGE_ASPECT_PLANE_0_BIT_KHR = IMAGE_ASPECT_PLANE_0_BIT
-const FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x6_SFLOAT_BLOCK
-const IMAGE_CREATE_ALIAS_BIT_KHR = IMAGE_CREATE_ALIAS_BIT
-const PIPELINE_STAGE_NONE_KHR = PIPELINE_STAGE_NONE
-const FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT_KHR = FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT
-const DeviceGroupSubmitInfoKHR = DeviceGroupSubmitInfo
-const SparseImageMemoryRequirements2KHR = SparseImageMemoryRequirements2
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2
-const DeviceGroupCommandBufferBeginInfoKHR = DeviceGroupCommandBufferBeginInfo
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES
-const STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2_KHR = STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2
-const EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR = EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT
-const FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16_KHR = FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16
-const ACCESS_ACCELERATION_STRUCTURE_READ_BIT_NV = ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR
-const TessellationDomainOriginKHR = TessellationDomainOrigin
-const DescriptorUpdateTemplateKHR = DescriptorUpdateTemplate
-const DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT = DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE
-const PhysicalDeviceMaintenance4FeaturesKHR = PhysicalDeviceMaintenance4Features
-const ATTACHMENT_STORE_OP_NONE_KHR = ATTACHMENT_STORE_OP_NONE
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES
-const SubpassDescription2KHR = SubpassDescription2
-const FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT = FORMAT_ASTC_5x4_SFLOAT_BLOCK
-const SamplerYcbcrConversionImageFormatPropertiesKHR = SamplerYcbcrConversionImageFormatProperties
-const AccelerationStructureTypeNV = AccelerationStructureTypeKHR
-const PhysicalDevice16BitStorageFeaturesKHR = PhysicalDevice16BitStorageFeatures
-const QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT = QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR
-const ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT_KHR = ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT
-const FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_8x5_SFLOAT_BLOCK
-const FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT = FORMAT_ASTC_12x10_SFLOAT_BLOCK
-const MemoryDedicatedRequirementsKHR = MemoryDedicatedRequirements
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES
-const FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT_KHR = FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT
-const DYNAMIC_STATE_DEPTH_COMPARE_OP_EXT = DYNAMIC_STATE_DEPTH_COMPARE_OP
-const STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR = STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO
-const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020
-const RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV = RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR
-const STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR = STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO
-const FramebufferAttachmentsCreateInfoKHR = FramebufferAttachmentsCreateInfo
-const PhysicalDeviceShaderFloat16Int8FeaturesKHR = PhysicalDeviceShaderFloat16Int8Features
-const STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2
-const COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV = COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES
-const FORMAT_G8B8G8R8_422_UNORM_KHR = FORMAT_G8B8G8R8_422_UNORM
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT = FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT
-const STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO_KHR = STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES
-const STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES
-const DescriptorPoolInlineUniformBlockCreateInfoEXT = DescriptorPoolInlineUniformBlockCreateInfo
-const MAX_GLOBAL_PRIORITY_SIZE_EXT = MAX_GLOBAL_PRIORITY_SIZE_KHR
-const EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES
-const SamplerYcbcrConversionInfoKHR = SamplerYcbcrConversionInfo
-const PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_NV = PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR
-const PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR = PEER_MEMORY_FEATURE_COPY_SRC_BIT
-const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT
-const ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV = ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR
-const STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT = STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK
-const MAX_DEVICE_GROUP_SIZE_KHR = MAX_DEVICE_GROUP_SIZE
-const POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR = POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES
-const STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT = STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR
-const ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_NV = ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR
-const FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT_KHR = FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT
-const FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16
-const DevicePrivateDataCreateInfoEXT = DevicePrivateDataCreateInfo
-const DRIVER_ID_BROADCOM_PROPRIETARY_KHR = DRIVER_ID_BROADCOM_PROPRIETARY
-const QUEUE_GLOBAL_PRIORITY_HIGH_EXT = QUEUE_GLOBAL_PRIORITY_HIGH_KHR
-const POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR = POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY
-const FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16_KHR = FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16
-const STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT = STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO
-const ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV = ACCESS_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR
-const SHADER_STAGE_MISS_BIT_NV = SHADER_STAGE_MISS_BIT_KHR
-const FORMAT_G8_B8R8_2PLANE_444_UNORM_EXT = FORMAT_G8_B8R8_2PLANE_444_UNORM
-const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV = BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR
-const DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT_EXT = DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT
-const MemoryDedicatedAllocateInfoKHR = MemoryDedicatedAllocateInfo
-const PhysicalDeviceMemoryProperties2KHR = PhysicalDeviceMemoryProperties2
-const PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT = PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES
-const ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR = ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS
-const DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR = DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET
-const SemaphoreSubmitInfoKHR = SemaphoreSubmitInfo
-const FORMAT_FEATURE_2_STORAGE_IMAGE_BIT_KHR = FORMAT_FEATURE_2_STORAGE_IMAGE_BIT
-const PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR = PhysicalDeviceShaderSubgroupExtendedTypesFeatures
-const PhysicalDevicePrivateDataFeaturesEXT = PhysicalDevicePrivateDataFeatures
-const FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT = FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16
-const FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT = FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16
-const EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR = EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT
-const PhysicalDeviceDescriptorIndexingPropertiesEXT = PhysicalDeviceDescriptorIndexingProperties
-const BufferMemoryBarrier2KHR = BufferMemoryBarrier2
-const ImageSparseMemoryRequirementsInfo2KHR = ImageSparseMemoryRequirementsInfo2
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT
-const PIPELINE_CREATE_DISPATCH_BASE = PIPELINE_CREATE_DISPATCH_BASE_BIT
-const DRIVER_ID_AMD_PROPRIETARY_KHR = DRIVER_ID_AMD_PROPRIETARY
-const EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT
-const AccelerationStructureInstanceNV = AccelerationStructureInstanceKHR
-const DependencyInfoKHR = DependencyInfo
-const BufferMemoryRequirementsInfo2KHR = BufferMemoryRequirementsInfo2
-const OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR = OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES
-const GEOMETRY_TYPE_TRIANGLES_NV = GEOMETRY_TYPE_TRIANGLES_KHR
-const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV = BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR
-const IMAGE_ASPECT_PLANE_2_BIT_KHR = IMAGE_ASPECT_PLANE_2_BIT
-const FORMAT_G16_B16_R16_3PLANE_444_UNORM_KHR = FORMAT_G16_B16_R16_3PLANE_444_UNORM
-const EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT
-const RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR = RESOLVE_MODE_SAMPLE_ZERO_BIT
-const PhysicalDeviceDriverPropertiesKHR = PhysicalDeviceDriverProperties
-const STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO_KHR = STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO
-const ATTACHMENT_STORE_OP_NONE_QCOM = ATTACHMENT_STORE_OP_NONE
-const SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR = SAMPLER_YCBCR_RANGE_ITU_NARROW
-const SURFACE_COUNTER_VBLANK_EXT = SURFACE_COUNTER_VBLANK_BIT_EXT
-const EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR = EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT
-const IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES
-const PhysicalDeviceDescriptorIndexingFeaturesEXT = PhysicalDeviceDescriptorIndexingFeatures
-const STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT = STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO
-const STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT = STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO
-const GeometryTypeNV = GeometryTypeKHR
-const FORMAT_FEATURE_2_VERTEX_BUFFER_BIT_KHR = FORMAT_FEATURE_2_VERTEX_BUFFER_BIT
-const COLOR_SPACE_DCI_P3_LINEAR_EXT = COLOR_SPACE_DISPLAY_P3_LINEAR_EXT
-const BUFFER_USAGE_RAY_TRACING_BIT_NV = BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR
-const PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT_KHR = PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT
-const PhysicalDeviceTimelineSemaphoreFeaturesKHR = PhysicalDeviceTimelineSemaphoreFeatures
-const STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR = STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT
-const BufferCopy2KHR = BufferCopy2
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES
-const RenderPassCreateInfo2KHR = RenderPassCreateInfo2
-const BindImageMemoryInfoKHR = BindImageMemoryInfo
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES
-const STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR = STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO
-const STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR = STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS
-const IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL
-const RenderingInfoKHR = RenderingInfo
-const EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT
-const PhysicalDeviceIDPropertiesKHR = PhysicalDeviceIDProperties
-const DriverIdKHR = DriverId
-const PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT = PhysicalDeviceShaderDemoteToHelperInvocationFeatures
-const ERROR_NOT_PERMITTED_EXT = ERROR_NOT_PERMITTED_KHR
-const PhysicalDeviceTexelBufferAlignmentPropertiesEXT = PhysicalDeviceTexelBufferAlignmentProperties
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES
-const STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR = STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT
 const ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV = ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR
-const OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR = OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION
-const EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT
-const TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR = TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT
-const RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT_KHR = RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT
-const DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT = DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT
-const IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_ATTACHMENT_OPTIMAL
-const PIPELINE_STAGE_2_HOST_BIT_KHR = PIPELINE_STAGE_2_HOST_BIT
-const CHROMA_LOCATION_MIDPOINT_KHR = CHROMA_LOCATION_MIDPOINT
-const FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT
-const PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR = PEER_MEMORY_FEATURE_GENERIC_DST_BIT
-const STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT = STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO
-const DYNAMIC_STATE_STENCIL_OP_EXT = DYNAMIC_STATE_STENCIL_OP
-const FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16
-const PipelineRenderingCreateInfoKHR = PipelineRenderingCreateInfo
-const FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x10_SFLOAT_BLOCK
-const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT = DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT
-const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT
-const EVENT_CREATE_DEVICE_ONLY_BIT_KHR = EVENT_CREATE_DEVICE_ONLY_BIT
-const RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV = RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR
-const SparseImageFormatProperties2KHR = SparseImageFormatProperties2
-const DRIVER_ID_GGP_PROPRIETARY_KHR = DRIVER_ID_GGP_PROPRIETARY
-const FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16
-const PhysicalDeviceFloatControlsPropertiesKHR = PhysicalDeviceFloatControlsProperties
-const PointClippingBehaviorKHR = PointClippingBehavior
-const STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR = STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO
-const FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT_KHR = FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT
-const SHADER_STAGE_ANY_HIT_BIT_NV = SHADER_STAGE_ANY_HIT_BIT_KHR
-const ACCESS_2_SHADER_STORAGE_WRITE_BIT_KHR = ACCESS_2_SHADER_STORAGE_WRITE_BIT
-const DescriptorSetLayoutSupportKHR = DescriptorSetLayoutSupport
-const PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT_KHR = PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT
-const STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR = STRUCTURE_TYPE_IMAGE_RESOLVE_2
-const BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV = BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT
-const BindImageMemoryDeviceGroupInfoKHR = BindImageMemoryDeviceGroupInfo
-const STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT = STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT
-const ExternalBufferPropertiesKHR = ExternalBufferProperties
-const STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO_KHR = STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO
-const FORMAT_A4R4G4B4_UNORM_PACK16_EXT = FORMAT_A4R4G4B4_UNORM_PACK16
-const ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT_KHR = ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT
-const STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO
-const STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR = STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO
-const PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT = PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT
-const PhysicalDeviceExternalBufferInfoKHR = PhysicalDeviceExternalBufferInfo
-const PhysicalDeviceShaderIntegerDotProductPropertiesKHR = PhysicalDeviceShaderIntegerDotProductProperties
-const PhysicalDeviceSubgroupSizeControlFeaturesEXT = PhysicalDeviceSubgroupSizeControlFeatures
-const EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D11_FENCE_BIT = EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT
-const SHADER_STAGE_RAYGEN_BIT_NV = SHADER_STAGE_RAYGEN_BIT_KHR
-const GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR = GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR
-const FORMAT_FEATURE_2_DISJOINT_BIT_KHR = FORMAT_FEATURE_2_DISJOINT_BIT
-const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT
-const SubmitInfo2KHR = SubmitInfo2
-const IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES
-const FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT_KHR = FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT
-const STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO
-const STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT = STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO
-const EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT
-const FORMAT_FEATURE_2_BLIT_SRC_BIT_KHR = FORMAT_FEATURE_2_BLIT_SRC_BIT
-const FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16
-const STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT = STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO
-const MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR = MEMORY_HEAP_MULTI_INSTANCE_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES
-const ACCESS_2_SHADER_READ_BIT_KHR = ACCESS_2_SHADER_READ_BIT
-const ACCESS_2_INDIRECT_COMMAND_READ_BIT_KHR = ACCESS_2_INDIRECT_COMMAND_READ_BIT
-const BufferImageCopy2KHR = BufferImageCopy2
-const RENDERING_SUSPENDING_BIT_KHR = RENDERING_SUSPENDING_BIT
-const FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_6x5_SFLOAT_BLOCK
-const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT
-const FORMAT_B16G16R16G16_422_UNORM_KHR = FORMAT_B16G16R16G16_422_UNORM
-const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT
-const DRIVER_ID_ARM_PROPRIETARY_KHR = DRIVER_ID_ARM_PROPRIETARY
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES
-const FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT_KHR = FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT
-const SamplerYcbcrConversionKHR = SamplerYcbcrConversion
-const DRIVER_ID_NVIDIA_PROPRIETARY_KHR = DRIVER_ID_NVIDIA_PROPRIETARY
-const ExternalMemoryImageCreateInfoKHR = ExternalMemoryImageCreateInfo
-const FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT = FORMAT_ASTC_8x6_SFLOAT_BLOCK
-const FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x8_SFLOAT_BLOCK
-const STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR = STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2
-const STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV = STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD
-const FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT
-const BufferOpaqueCaptureAddressCreateInfoKHR = BufferOpaqueCaptureAddressCreateInfo
-const DRIVER_ID_QUALCOMM_PROPRIETARY_KHR = DRIVER_ID_QUALCOMM_PROPRIETARY
-const RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV = RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES
-const ImageResolve2KHR = ImageResolve2
-const DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE_EXT = DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE
-const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT
-const FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16
-const PhysicalDeviceMultiviewFeaturesKHR = PhysicalDeviceMultiviewFeatures
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2
-const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT
-const PhysicalDeviceMaintenance4PropertiesKHR = PhysicalDeviceMaintenance4Properties
-const DEPENDENCY_VIEW_LOCAL_BIT_KHR = DEPENDENCY_VIEW_LOCAL_BIT
-const STRUCTURE_TYPE_DEPENDENCY_INFO_KHR = STRUCTURE_TYPE_DEPENDENCY_INFO
-const QueryPoolCreateInfoINTEL = QueryPoolPerformanceQueryCreateInfoINTEL
-const FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR = FORMAT_FEATURE_TRANSFER_SRC_BIT
-const QUEUE_GLOBAL_PRIORITY_LOW_EXT = QUEUE_GLOBAL_PRIORITY_LOW_KHR
-const GEOMETRY_OPAQUE_BIT_NV = GEOMETRY_OPAQUE_BIT_KHR
-const GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV = GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR
-const RESOLVE_MODE_MAX_BIT_KHR = RESOLVE_MODE_MAX_BIT
-const QUEUE_GLOBAL_PRIORITY_REALTIME_EXT = QUEUE_GLOBAL_PRIORITY_REALTIME_KHR
-const SubpassDependency2KHR = SubpassDependency2
-const SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR = SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL
-const MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR = MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT
-const IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR = IMAGE_CREATE_EXTENDED_USAGE_BIT
-const PhysicalDeviceBufferAddressFeaturesEXT = PhysicalDeviceBufferDeviceAddressFeaturesEXT
-const DRIVER_ID_MESA_RADV_KHR = DRIVER_ID_MESA_RADV
-const SUBMIT_PROTECTED_BIT_KHR = SUBMIT_PROTECTED_BIT
-const FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16
-const RenderingAttachmentInfoKHR = RenderingAttachmentInfo
-const BufferDeviceAddressInfoKHR = BufferDeviceAddressInfo
-const ACCESS_2_HOST_WRITE_BIT_KHR = ACCESS_2_HOST_WRITE_BIT
-const PhysicalDeviceSparseImageFormatInfo2KHR = PhysicalDeviceSparseImageFormatInfo2
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES
-const RESOLVE_MODE_MIN_BIT_KHR = RESOLVE_MODE_MIN_BIT
-const ResolveImageInfo2KHR = ResolveImageInfo2
-const FORMAT_G8_B8_R8_3PLANE_444_UNORM_KHR = FORMAT_G8_B8_R8_3PLANE_444_UNORM
-const PIPELINE_STAGE_2_COMPUTE_SHADER_BIT_KHR = PIPELINE_STAGE_2_COMPUTE_SHADER_BIT
-const ExternalMemoryPropertiesKHR = ExternalMemoryProperties
-const SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE_KHR = SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE
-const PIPELINE_BIND_POINT_RAY_TRACING_NV = PIPELINE_BIND_POINT_RAY_TRACING_KHR
-const TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT = TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT
-const IMAGE_ASPECT_NONE_KHR = IMAGE_ASPECT_NONE
-const FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x5_SFLOAT_BLOCK
-const GEOMETRY_TYPE_AABBS_NV = GEOMETRY_TYPE_AABBS_KHR
-const DeviceQueueGlobalPriorityCreateInfoEXT = DeviceQueueGlobalPriorityCreateInfoKHR
-const FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT
-const PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT_KHR = PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT
-const PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT_KHR = PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT
-const ACCESS_2_SHADER_SAMPLED_READ_BIT_KHR = ACCESS_2_SHADER_SAMPLED_READ_BIT
-const GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_NV = GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES
-const STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_COPY_IMAGE_INFO_2
-const SubpassEndInfoKHR = SubpassEndInfo
-const DeviceMemoryOpaqueCaptureAddressInfoKHR = DeviceMemoryOpaqueCaptureAddressInfo
-const ExportSemaphoreCreateInfoKHR = ExportSemaphoreCreateInfo
-const FormatProperties2KHR = FormatProperties2
-const EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT
-const DYNAMIC_STATE_DEPTH_BIAS_ENABLE_EXT = DYNAMIC_STATE_DEPTH_BIAS_ENABLE
-const PipelineCreationFeedbackCreateInfoEXT = PipelineCreationFeedbackCreateInfo
-const STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2_KHR = STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2
-const STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_BLIT_IMAGE_INFO_2
-const IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV = IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR
-const PhysicalDeviceImagelessFramebufferFeaturesKHR = PhysicalDeviceImagelessFramebufferFeatures
-const DYNAMIC_STATE_STENCIL_TEST_ENABLE_EXT = DYNAMIC_STATE_STENCIL_TEST_ENABLE
-const ACCESS_2_SHADER_STORAGE_READ_BIT_KHR = ACCESS_2_SHADER_STORAGE_READ_BIT
-const ImageBlit2KHR = ImageBlit2
-const FORMAT_A4B4G4R4_UNORM_PACK16_EXT = FORMAT_A4B4G4R4_UNORM_PACK16
-const ACCESS_2_HOST_READ_BIT_KHR = ACCESS_2_HOST_READ_BIT
-const STRUCTURE_TYPE_SUBPASS_BEGIN_INFO_KHR = STRUCTURE_TYPE_SUBPASS_BEGIN_INFO
-const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT
-const DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT = DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE
-const PhysicalDeviceVariablePointerFeatures = PhysicalDeviceVariablePointersFeatures
-const PhysicalDeviceShaderIntegerDotProductFeaturesKHR = PhysicalDeviceShaderIntegerDotProductFeatures
-const LUID_SIZE_KHR = LUID_SIZE
-const ImageMemoryRequirementsInfo2KHR = ImageMemoryRequirementsInfo2
-const PIPELINE_STAGE_2_VERTEX_SHADER_BIT_KHR = PIPELINE_STAGE_2_VERTEX_SHADER_BIT
-const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES
-const STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT = STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT
-const FORMAT_B8G8R8G8_422_UNORM_KHR = FORMAT_B8G8R8G8_422_UNORM
-const PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT = PhysicalDeviceTextureCompressionASTCHDRFeatures
-const CommandBufferInheritanceRenderingInfoKHR = CommandBufferInheritanceRenderingInfo
-const BindBufferMemoryInfoKHR = BindBufferMemoryInfo
-const PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT_KHR = PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT
-const FORMAT_R12X4_UNORM_PACK16_KHR = FORMAT_R12X4_UNORM_PACK16
-const DYNAMIC_STATE_VIEWPORT_WITH_COUNT_EXT = DYNAMIC_STATE_VIEWPORT_WITH_COUNT
-const PhysicalDeviceFeatures2KHR = PhysicalDeviceFeatures2
-const PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT = PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT
-const DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT = DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO
-const ImageCopy2KHR = ImageCopy2
-const ACCESS_2_INPUT_ATTACHMENT_READ_BIT_KHR = ACCESS_2_INPUT_ATTACHMENT_READ_BIT
-const FORMAT_G8_B8_R8_3PLANE_420_UNORM_KHR = FORMAT_G8_B8_R8_3PLANE_420_UNORM
-const IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV = IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
-const DRIVER_ID_GOOGLE_SWIFTSHADER_KHR = DRIVER_ID_GOOGLE_SWIFTSHADER
-const PIPELINE_CACHE_CREATE_RESERVED_1_BIT_KHR = PIPELINE_CACHE_CREATE_RESERVED_1_BIT_EXT
-const STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES
-const STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO
-const DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT = DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT
-const ACCESS_2_TRANSFER_WRITE_BIT_KHR = ACCESS_2_TRANSFER_WRITE_BIT
-const STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR = STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO
-const SubpassDescriptionDepthStencilResolveKHR = SubpassDescriptionDepthStencilResolve
-const PhysicalDeviceShaderDrawParameterFeatures = PhysicalDeviceShaderDrawParametersFeatures
-const ExternalMemoryBufferCreateInfoKHR = ExternalMemoryBufferCreateInfo
-const PhysicalDeviceVulkanMemoryModelFeaturesKHR = PhysicalDeviceVulkanMemoryModelFeatures
-const FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_5x5_SFLOAT_BLOCK
-const PhysicalDeviceSubgroupSizeControlPropertiesEXT = PhysicalDeviceSubgroupSizeControlProperties
-const FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT = FORMAT_ASTC_8x8_SFLOAT_BLOCK
-const BindBufferMemoryDeviceGroupInfoKHR = BindBufferMemoryDeviceGroupInfo
-const MemoryRequirements2KHR = MemoryRequirements2
-const STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR = STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO
-const ExternalFencePropertiesKHR = ExternalFenceProperties
-const STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO_KHR = STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO
-const PIPELINE_STAGE_2_ALL_GRAPHICS_BIT_KHR = PIPELINE_STAGE_2_ALL_GRAPHICS_BIT
-const PhysicalDeviceBufferDeviceAddressFeaturesKHR = PhysicalDeviceBufferDeviceAddressFeatures
-const PhysicalDeviceToolPropertiesEXT = PhysicalDeviceToolProperties
-const SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY
-const PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR = PEER_MEMORY_FEATURE_COPY_DST_BIT
-const TOOL_PURPOSE_VALIDATION_BIT_EXT = TOOL_PURPOSE_VALIDATION_BIT
-const STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR = STRUCTURE_TYPE_FORMAT_PROPERTIES_3
-const PhysicalDeviceScalarBlockLayoutFeaturesEXT = PhysicalDeviceScalarBlockLayoutFeatures
-const ACCESS_2_MEMORY_READ_BIT_KHR = ACCESS_2_MEMORY_READ_BIT
-const STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO_KHR = STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO
-const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT
-const SEMAPHORE_TYPE_BINARY_KHR = SEMAPHORE_TYPE_BINARY
-const PhysicalDeviceSamplerFilterMinmaxPropertiesEXT = PhysicalDeviceSamplerFilterMinmaxProperties
-const MemoryOpaqueCaptureAddressAllocateInfoKHR = MemoryOpaqueCaptureAddressAllocateInfo
-const ACCESS_2_MEMORY_WRITE_BIT_KHR = ACCESS_2_MEMORY_WRITE_BIT
-const IMAGE_CREATE_DISJOINT_BIT_KHR = IMAGE_CREATE_DISJOINT_BIT
-const SEMAPHORE_WAIT_ANY_BIT_KHR = SEMAPHORE_WAIT_ANY_BIT
-const FORMAT_G8_B8R8_2PLANE_420_UNORM_KHR = FORMAT_G8_B8R8_2PLANE_420_UNORM
-const EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR = EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT
-const CopyBufferInfo2KHR = CopyBufferInfo2
-const PhysicalDeviceImageRobustnessFeaturesEXT = PhysicalDeviceImageRobustnessFeatures
-const BlitImageInfo2KHR = BlitImageInfo2
-const RENDERING_RESUMING_BIT_KHR = RENDERING_RESUMING_BIT
-const COLORSPACE_SRGB_NONLINEAR_KHR = COLOR_SPACE_SRGB_NONLINEAR_KHR
-const FORMAT_G8_B8R8_2PLANE_422_UNORM_KHR = FORMAT_G8_B8R8_2PLANE_422_UNORM
-const IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR = IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT
-const FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT_EXT = FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT
-const PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
-const MemoryBarrier2KHR = MemoryBarrier2
-const FORMAT_FEATURE_2_TRANSFER_SRC_BIT_KHR = FORMAT_FEATURE_2_TRANSFER_SRC_BIT
-const DEPENDENCY_DEVICE_GROUP_BIT_KHR = DEPENDENCY_DEVICE_GROUP_BIT
-const PhysicalDeviceDepthStencilResolvePropertiesKHR = PhysicalDeviceDepthStencilResolveProperties
-const PIPELINE_STAGE_2_BLIT_BIT_KHR = PIPELINE_STAGE_2_BLIT_BIT
-const ERROR_INVALID_DEVICE_ADDRESS_EXT = ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS
-const DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR_EXT = DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT
-const PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT = PipelineShaderStageRequiredSubgroupSizeCreateInfo
-const STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO_KHR = STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO
-const CHROMA_LOCATION_COSITED_EVEN_KHR = CHROMA_LOCATION_COSITED_EVEN
 const ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV = ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES
-const DescriptorUpdateTemplateTypeKHR = DescriptorUpdateTemplateType
-const PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT_KHR = PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT
-const ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT_KHR = ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT
-const STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR = STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO
-const STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO_KHR = STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO
-const RESOLVE_MODE_NONE_KHR = RESOLVE_MODE_NONE
-const STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_KHR = STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO
-const STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR = STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO
-const FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT
-const PhysicalDeviceSamplerYcbcrConversionFeaturesKHR = PhysicalDeviceSamplerYcbcrConversionFeatures
-const DeviceBufferMemoryRequirementsKHR = DeviceBufferMemoryRequirements
-const BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_NV = BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES
-const TransformMatrixNV = TransformMatrixKHR
-const CopyAccelerationStructureModeNV = CopyAccelerationStructureModeKHR
-const SemaphoreWaitInfoKHR = SemaphoreWaitInfo
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES
-const CommandBufferSubmitInfoKHR = CommandBufferSubmitInfo
-const IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL
-const STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR = STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES
-const STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2_KHR = STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2
-const ImageStencilUsageCreateInfoEXT = ImageStencilUsageCreateInfo
-const FORMAT_G16_B16R16_2PLANE_422_UNORM_KHR = FORMAT_G16_B16R16_2PLANE_422_UNORM
-const SamplerReductionModeEXT = SamplerReductionMode
-const DescriptorUpdateTemplateEntryKHR = DescriptorUpdateTemplateEntry
-const DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT = DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT
-const ImagePlaneMemoryRequirementsInfoKHR = ImagePlaneMemoryRequirementsInfo
-const PIPELINE_STAGE_2_ALL_TRANSFER_BIT_KHR = PIPELINE_STAGE_2_ALL_TRANSFER_BIT
-const IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL
-const PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR
-const PIPELINE_STAGE_2_COPY_BIT_KHR = PIPELINE_STAGE_2_COPY_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES
-const TimelineSemaphoreSubmitInfoKHR = TimelineSemaphoreSubmitInfo
-const DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT = DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT
-const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT
-const FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16
-const MAX_DRIVER_NAME_SIZE_KHR = MAX_DRIVER_NAME_SIZE
-const PIPELINE_STAGE_2_VERTEX_INPUT_BIT_KHR = PIPELINE_STAGE_2_VERTEX_INPUT_BIT
-const STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO_KHR = STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO
-const PhysicalDeviceShaderAtomicInt64FeaturesKHR = PhysicalDeviceShaderAtomicInt64Features
-const FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16
-const COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV = COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO
-const GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_NV = GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR
-const STENCIL_FRONT_AND_BACK = STENCIL_FACE_FRONT_AND_BACK
-const FORMAT_G16_B16_R16_3PLANE_420_UNORM_KHR = FORMAT_G16_B16_R16_3PLANE_420_UNORM
-const STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR = STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO
-const STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2_KHR = STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2
-const DRIVER_ID_IMAGINATION_PROPRIETARY_KHR = DRIVER_ID_IMAGINATION_PROPRIETARY
-const PIPELINE_STAGE_2_INDEX_INPUT_BIT_KHR = PIPELINE_STAGE_2_INDEX_INPUT_BIT
-const RenderPassAttachmentBeginInfoKHR = RenderPassAttachmentBeginInfo
-const STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT = STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR
-const SHADER_STAGE_CLOSEST_HIT_BIT_NV = SHADER_STAGE_CLOSEST_HIT_BIT_KHR
-const ACCESS_2_SHADER_WRITE_BIT_KHR = ACCESS_2_SHADER_WRITE_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES
-const FORMAT_FEATURE_2_BLIT_DST_BIT_KHR = FORMAT_FEATURE_2_BLIT_DST_BIT
-const ACCESS_2_INDEX_READ_BIT_KHR = ACCESS_2_INDEX_READ_BIT
-const SamplerYcbcrRangeKHR = SamplerYcbcrRange
-const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT
-const STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO_EXT = STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO
-const PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT = PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT
-const PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT = PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT
-const STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES
-const FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16_KHR = FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16
-const BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_KHR = BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES
-const PhysicalDeviceInlineUniformBlockPropertiesEXT = PhysicalDeviceInlineUniformBlockProperties
-const STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2_KHR = STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2
-const EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR = EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT
-const SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT = SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE
-const FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16_KHR = FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT
-const ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_KHR = ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT
-const STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR = STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO
-const RESOLVE_MODE_AVERAGE_BIT_KHR = RESOLVE_MODE_AVERAGE_BIT
-const SEMAPHORE_TYPE_TIMELINE_KHR = SEMAPHORE_TYPE_TIMELINE
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES
-const STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO
-const PIPELINE_STAGE_2_DRAW_INDIRECT_BIT_KHR = PIPELINE_STAGE_2_DRAW_INDIRECT_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES
-const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601
-const FramebufferAttachmentImageInfoKHR = FramebufferAttachmentImageInfo
-const STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO
-const ERROR_FRAGMENTATION_EXT = ERROR_FRAGMENTATION
-const ImageFormatProperties2KHR = ImageFormatProperties2
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT
-const STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR = STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO
-const DYNAMIC_STATE_FRONT_FACE_EXT = DYNAMIC_STATE_FRONT_FACE
-const PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR = PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR
-const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT
-const IMAGE_ASPECT_PLANE_1_BIT_KHR = IMAGE_ASPECT_PLANE_1_BIT
-const PIPELINE_STAGE_2_TOP_OF_PIPE_BIT_KHR = PIPELINE_STAGE_2_TOP_OF_PIPE_BIT
-const DeviceGroupRenderPassBeginInfoKHR = DeviceGroupRenderPassBeginInfo
-const TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT = TOOL_PURPOSE_MODIFYING_FEATURES_BIT
-const PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR = PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures
-const STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_KHR = STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO
-const FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT_KHR = FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT
-const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY
-const AttachmentDescriptionStencilLayoutKHR = AttachmentDescriptionStencilLayout
-const BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT
-const STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR = STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT
-const PhysicalDeviceInlineUniformBlockFeaturesEXT = PhysicalDeviceInlineUniformBlockFeatures
-const ImageViewUsageCreateInfoKHR = ImageViewUsageCreateInfo
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES
-const CopyImageToBufferInfo2KHR = CopyImageToBufferInfo2
-const PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR = PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT
-const STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2_KHR = STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2
-const ERROR_PIPELINE_COMPILE_REQUIRED_EXT = PIPELINE_COMPILE_REQUIRED
-const STRUCTURE_TYPE_BUFFER_COPY_2_KHR = STRUCTURE_TYPE_BUFFER_COPY_2
-const PIPELINE_STAGE_2_CLEAR_BIT_KHR = PIPELINE_STAGE_2_CLEAR_BIT
-const PIPELINE_COMPILE_REQUIRED_EXT = PIPELINE_COMPILE_REQUIRED
-const PipelineTessellationDomainOriginStateCreateInfoKHR = PipelineTessellationDomainOriginStateCreateInfo
-const STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2_KHR = STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2
-const FORMAT_R12X4G12X4_UNORM_2PACK16_KHR = FORMAT_R12X4G12X4_UNORM_2PACK16
-const SemaphoreTypeCreateInfoKHR = SemaphoreTypeCreateInfo
-const FORMAT_FEATURE_2_TRANSFER_DST_BIT_KHR = FORMAT_FEATURE_2_TRANSFER_DST_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR
-const INDEX_TYPE_NONE_NV = INDEX_TYPE_NONE_KHR
-const SHADER_UNUSED_NV = SHADER_UNUSED_KHR
-const QUEUE_FAMILY_EXTERNAL_KHR = QUEUE_FAMILY_EXTERNAL
-const DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT = DYNAMIC_STATE_PRIMITIVE_TOPOLOGY
-const BufferDeviceAddressInfoEXT = BufferDeviceAddressInfo
-const FORMAT_FEATURE_TRANSFER_DST_BIT_KHR = FORMAT_FEATURE_TRANSFER_DST_BIT
-const ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_NV = ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR
-const STRUCTURE_TYPE_IMAGE_BLIT_2_KHR = STRUCTURE_TYPE_IMAGE_BLIT_2
-const PhysicalDeviceHostQueryResetFeaturesEXT = PhysicalDeviceHostQueryResetFeatures
-const ConformanceVersionKHR = ConformanceVersion
-const QUERY_SCOPE_RENDER_PASS_KHR = PERFORMANCE_COUNTER_SCOPE_RENDER_PASS_KHR
-const SHADER_STAGE_INTERSECTION_BIT_NV = SHADER_STAGE_INTERSECTION_BIT_KHR
-const PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR = PEER_MEMORY_FEATURE_GENERIC_SRC_BIT
-const PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT_KHR = PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT
-const SamplerYcbcrModelConversionKHR = SamplerYcbcrModelConversion
-const STRUCTURE_TYPE_RENDERING_INFO_KHR = STRUCTURE_TYPE_RENDERING_INFO
-const STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO_EXT = STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO
-const AttachmentSampleCountInfoNV = AttachmentSampleCountInfoAMD
-const ACCESS_2_UNIFORM_READ_BIT_KHR = ACCESS_2_UNIFORM_READ_BIT
-const STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2
-const FORMAT_G16_B16_R16_3PLANE_422_UNORM_KHR = FORMAT_G16_B16_R16_3PLANE_422_UNORM
-const STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR = STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO
 const ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_NV = ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES
-const TOOL_PURPOSE_TRACING_BIT_EXT = TOOL_PURPOSE_TRACING_BIT
-const FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT_KHR = FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT
-const PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR = PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR
-const SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY_KHR = SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY
-const IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL
-const SHADER_STAGE_CALLABLE_BIT_NV = SHADER_STAGE_CALLABLE_BIT_KHR
-const STRUCTURE_TYPE_SUBPASS_END_INFO_KHR = STRUCTURE_TYPE_SUBPASS_END_INFO
-const CopyImageInfo2KHR = CopyImageInfo2
-const IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT
-const BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT = BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT
-const SAMPLER_REDUCTION_MODE_MIN_EXT = SAMPLER_REDUCTION_MODE_MIN
-const FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16
-const FILTER_CUBIC_EXT = FILTER_CUBIC_IMG
-const PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT = PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT
-const SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR = SEMAPHORE_IMPORT_TEMPORARY_BIT
-const STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO_KHR = STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO
+const ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_NV = ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR
 const ACCESS_2_COLOR_ATTACHMENT_READ_BIT_KHR = ACCESS_2_COLOR_ATTACHMENT_READ_BIT
-const PhysicalDevice8BitStorageFeaturesKHR = PhysicalDevice8BitStorageFeatures
-const FormatProperties3KHR = FormatProperties3
-const PIPELINE_STAGE_2_RESOLVE_BIT_KHR = PIPELINE_STAGE_2_RESOLVE_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT16_INT8_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES
-const STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR = STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2
-const PhysicalDeviceFloat16Int8FeaturesKHR = PhysicalDeviceShaderFloat16Int8Features
-const PhysicalDeviceVariablePointerFeaturesKHR = PhysicalDeviceVariablePointersFeatures
-const STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR = STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO
-const FORMAT_G16_B16R16_2PLANE_420_UNORM_KHR = FORMAT_G16_B16R16_2PLANE_420_UNORM
-const QueueFamilyProperties2KHR = QueueFamilyProperties2
-const STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2_KHR = STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2
-const MAX_DRIVER_INFO_SIZE_KHR = MAX_DRIVER_INFO_SIZE
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES = STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES
-const IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_READ_ONLY_OPTIMAL
-const DescriptorSetVariableDescriptorCountLayoutSupportEXT = DescriptorSetVariableDescriptorCountLayoutSupport
-const STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR = STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO
-const PhysicalDeviceImageFormatInfo2KHR = PhysicalDeviceImageFormatInfo2
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES
-const STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR = STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO
-const DYNAMIC_STATE_CULL_MODE_EXT = DYNAMIC_STATE_CULL_MODE
-const ACCESS_NONE_KHR = ACCESS_NONE
-const DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR = DRIVER_ID_INTEL_PROPRIETARY_WINDOWS
-const DescriptorSetVariableDescriptorCountAllocateInfoEXT = DescriptorSetVariableDescriptorCountAllocateInfo
-const STRUCTURE_TYPE_SUBMIT_INFO_2_KHR = STRUCTURE_TYPE_SUBMIT_INFO_2
-const MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR = MEMORY_ALLOCATE_DEVICE_MASK_BIT
-const STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO
-const ExternalSemaphorePropertiesKHR = ExternalSemaphoreProperties
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES
-const BindImagePlaneMemoryInfoKHR = BindImagePlaneMemoryInfo
-const IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT_KHR = IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT
-const FORMAT_R10X6_UNORM_PACK16_KHR = FORMAT_R10X6_UNORM_PACK16
-const AabbPositionsNV = AabbPositionsKHR
-const GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_NV = GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR
-const STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT = STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO
-const FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16
-const RenderPassMultiviewCreateInfoKHR = RenderPassMultiviewCreateInfo
-const PhysicalDeviceExternalFenceInfoKHR = PhysicalDeviceExternalFenceInfo
-const MemoryAllocateFlagsInfoKHR = MemoryAllocateFlagsInfo
-const FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT = FORMAT_ASTC_4x4_SFLOAT_BLOCK
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2
-const CopyBufferToImageInfo2KHR = CopyBufferToImageInfo2
-const PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT_KHR = PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT
-const PhysicalDeviceProperties2KHR = PhysicalDeviceProperties2
-const STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL = STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL
-const ERROR_OUT_OF_POOL_MEMORY_KHR = ERROR_OUT_OF_POOL_MEMORY
-const QueueGlobalPriorityEXT = QueueGlobalPriorityKHR
-const STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO_KHR = STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO
-const PrivateDataSlotCreateInfoEXT = PrivateDataSlotCreateInfo
-const PIPELINE_STAGE_2_NONE_KHR = PIPELINE_STAGE_2_NONE
-const SemaphoreSignalInfoKHR = SemaphoreSignalInfo
-const STRUCTURE_TYPE_MEMORY_BARRIER_2_KHR = STRUCTURE_TYPE_MEMORY_BARRIER_2
-const STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2_KHR = STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES
-const DeviceImageMemoryRequirementsKHR = DeviceImageMemoryRequirements
-const DYNAMIC_STATE_DEPTH_WRITE_ENABLE_EXT = DYNAMIC_STATE_DEPTH_WRITE_ENABLE
-const STRUCTURE_TYPE_FORMAT_PROPERTIES_2_KHR = STRUCTURE_TYPE_FORMAT_PROPERTIES_2
-const STRUCTURE_TYPE_IMAGE_COPY_2_KHR = STRUCTURE_TYPE_IMAGE_COPY_2
-const STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR = STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2
-const InputAttachmentAspectReferenceKHR = InputAttachmentAspectReference
-const FRAMEBUFFER_CREATE_IMAGELESS_BIT_KHR = FRAMEBUFFER_CREATE_IMAGELESS_BIT
-const FORMAT_FEATURE_DISJOINT_BIT_KHR = FORMAT_FEATURE_DISJOINT_BIT
-const OBJECT_TYPE_PRIVATE_DATA_SLOT_EXT = OBJECT_TYPE_PRIVATE_DATA_SLOT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES
-const PhysicalDeviceGlobalPriorityQueryFeaturesEXT = PhysicalDeviceGlobalPriorityQueryFeaturesKHR
-const FORMAT_G8_B8_R8_3PLANE_422_UNORM_KHR = FORMAT_G8_B8_R8_3PLANE_422_UNORM
-const DescriptorUpdateTemplateCreateInfoKHR = DescriptorUpdateTemplateCreateInfo
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES
-const PipelineCreationFeedbackEXT = PipelineCreationFeedback
-const PhysicalDeviceShaderTerminateInvocationFeaturesKHR = PhysicalDeviceShaderTerminateInvocationFeatures
-const TOOL_PURPOSE_PROFILING_BIT_EXT = TOOL_PURPOSE_PROFILING_BIT
-const PhysicalDeviceMultiviewPropertiesKHR = PhysicalDeviceMultiviewProperties
-const PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
-const PhysicalDeviceSynchronization2FeaturesKHR = PhysicalDeviceSynchronization2Features
-const AttachmentReferenceStencilLayoutKHR = AttachmentReferenceStencilLayout
-const PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT_KHR = PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT
-const DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT_EXT = DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES
-const FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT = FORMAT_ASTC_12x12_SFLOAT_BLOCK
-const FORMAT_G16B16G16R16_422_UNORM_KHR = FORMAT_G16B16G16R16_422_UNORM
-const STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR = STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2
-const ShaderFloatControlsIndependenceKHR = ShaderFloatControlsIndependence
-const RenderPassInputAttachmentAspectCreateInfoKHR = RenderPassInputAttachmentAspectCreateInfo
-const STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR = STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO
-const PhysicalDeviceTimelineSemaphorePropertiesKHR = PhysicalDeviceTimelineSemaphoreProperties
-const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT
-const ChromaLocationKHR = ChromaLocation
-const STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES
-const PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_NV = PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR
-const RayTracingShaderGroupTypeNV = RayTracingShaderGroupTypeKHR
-const DescriptorSetLayoutBindingFlagsCreateInfoEXT = DescriptorSetLayoutBindingFlagsCreateInfo
-const SamplerYcbcrConversionCreateInfoKHR = SamplerYcbcrConversionCreateInfo
-const TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR = TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT
-const SemaphoreTypeKHR = SemaphoreType
-const STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR = STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO
-const BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_NV = BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR
-const PhysicalDevicePipelineCreationCacheControlFeaturesEXT = PhysicalDevicePipelineCreationCacheControlFeatures
-const STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT = STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO
-const STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES
-const STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR = STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS
+const ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT_KHR = ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT
+const ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT_KHR = ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT
+const ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_KHR = ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT
+const ACCESS_2_HOST_READ_BIT_KHR = ACCESS_2_HOST_READ_BIT
+const ACCESS_2_HOST_WRITE_BIT_KHR = ACCESS_2_HOST_WRITE_BIT
+const ACCESS_2_INDEX_READ_BIT_KHR = ACCESS_2_INDEX_READ_BIT
+const ACCESS_2_INDIRECT_COMMAND_READ_BIT_KHR = ACCESS_2_INDIRECT_COMMAND_READ_BIT
+const ACCESS_2_INPUT_ATTACHMENT_READ_BIT_KHR = ACCESS_2_INPUT_ATTACHMENT_READ_BIT
+const ACCESS_2_MEMORY_READ_BIT_KHR = ACCESS_2_MEMORY_READ_BIT
+const ACCESS_2_MEMORY_WRITE_BIT_KHR = ACCESS_2_MEMORY_WRITE_BIT
 const ACCESS_2_NONE_KHR = ACCESS_2_NONE
-const FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT = FORMAT_ASTC_6x6_SFLOAT_BLOCK
-const EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR = EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT
-const STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR = STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE
-const DYNAMIC_STATE_SCISSOR_WITH_COUNT_EXT = DYNAMIC_STATE_SCISSOR_WITH_COUNT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES
+const ACCESS_2_SHADER_READ_BIT_KHR = ACCESS_2_SHADER_READ_BIT
+const ACCESS_2_SHADER_SAMPLED_READ_BIT_KHR = ACCESS_2_SHADER_SAMPLED_READ_BIT
+const ACCESS_2_SHADER_STORAGE_READ_BIT_KHR = ACCESS_2_SHADER_STORAGE_READ_BIT
+const ACCESS_2_SHADER_STORAGE_WRITE_BIT_KHR = ACCESS_2_SHADER_STORAGE_WRITE_BIT
+const ACCESS_2_SHADER_WRITE_BIT_KHR = ACCESS_2_SHADER_WRITE_BIT
+const ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV = ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR
 const ACCESS_2_TRANSFER_READ_BIT_KHR = ACCESS_2_TRANSFER_READ_BIT
-const FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16_KHR = FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES
-const DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT = DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT
-const DeviceGroupDeviceCreateInfoKHR = DeviceGroupDeviceCreateInfo
-const AttachmentDescription2KHR = AttachmentDescription2
-const DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE_EXT = DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE
-const STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR = STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO
-const PhysicalDeviceExternalImageFormatInfoKHR = PhysicalDeviceExternalImageFormatInfo
-const SubpassBeginInfoKHR = SubpassBeginInfo
-const ERROR_INVALID_EXTERNAL_HANDLE_KHR = ERROR_INVALID_EXTERNAL_HANDLE
-const DYNAMIC_STATE_DEPTH_TEST_ENABLE_EXT = DYNAMIC_STATE_DEPTH_TEST_ENABLE
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2
-const PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT = PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES
-const QueueFamilyGlobalPriorityPropertiesEXT = QueueFamilyGlobalPriorityPropertiesKHR
-const FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16_KHR = FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16
-const PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR = PhysicalDeviceSeparateDepthStencilLayoutsFeatures
-const SAMPLER_REDUCTION_MODE_MAX_EXT = SAMPLER_REDUCTION_MODE_MAX
-const ExportFenceCreateInfoKHR = ExportFenceCreateInfo
-const EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR = EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT
-const STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO
-const AttachmentReference2KHR = AttachmentReference2
-const BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT
-const DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT = DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK
-const STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR = STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS
-const PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV = PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
-const STRUCTURE_TYPE_SURFACE_CAPABILITIES2_EXT = STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT
-const FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT = FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG
-const STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO
-const PhysicalDevicePointClippingPropertiesKHR = PhysicalDevicePointClippingProperties
-const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES
-const FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT_KHR = FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT
-const SAMPLER_YCBCR_RANGE_ITU_FULL_KHR = SAMPLER_YCBCR_RANGE_ITU_FULL
-const SamplerReductionModeCreateInfoEXT = SamplerReductionModeCreateInfo
-const ImageFormatListCreateInfoKHR = ImageFormatListCreateInfo
-const FORMAT_G16_B16R16_2PLANE_444_UNORM_EXT = FORMAT_G16_B16R16_2PLANE_444_UNORM
-const WriteDescriptorSetInlineUniformBlockEXT = WriteDescriptorSetInlineUniformBlock
-const STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR = STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES
+const ACCESS_2_TRANSFER_WRITE_BIT_KHR = ACCESS_2_TRANSFER_WRITE_BIT
+const ACCESS_2_UNIFORM_READ_BIT_KHR = ACCESS_2_UNIFORM_READ_BIT
+const ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT_KHR = ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT
+const ACCESS_ACCELERATION_STRUCTURE_READ_BIT_NV = ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR
+const ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_NV = ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR
+const ACCESS_NONE_KHR = ACCESS_NONE
+const ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV = ACCESS_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR
 const ATTACHMENT_STORE_OP_NONE_EXT = ATTACHMENT_STORE_OP_NONE
-const STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2_KHR = STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2
-const PhysicalDeviceVariablePointersFeaturesKHR = PhysicalDeviceVariablePointersFeatures
-const PhysicalDeviceGroupPropertiesKHR = PhysicalDeviceGroupProperties
-const FORMAT_R10X6G10X6_UNORM_2PACK16_KHR = FORMAT_R10X6G10X6_UNORM_2PACK16
-const QUERY_SCOPE_COMMAND_BUFFER_KHR = PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR
-const MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT
-const ExternalImageFormatPropertiesKHR = ExternalImageFormatProperties
-const PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT_KHR = PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT
-const PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT = PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES
-const FENCE_IMPORT_TEMPORARY_BIT_KHR = FENCE_IMPORT_TEMPORARY_BIT
-const SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR = SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE
-const STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR = STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO
+const ATTACHMENT_STORE_OP_NONE_KHR = ATTACHMENT_STORE_OP_NONE
+const ATTACHMENT_STORE_OP_NONE_QCOM = ATTACHMENT_STORE_OP_NONE
+const BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT
+const BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT
+const BUFFER_USAGE_RAY_TRACING_BIT_NV = BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR
+const BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT = BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT
+const BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_KHR = BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT
+const BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_NV = BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR
+const BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV = BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR
+const BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_NV = BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR
+const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV = BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR
+const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV = BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR
+const CHROMA_LOCATION_COSITED_EVEN_KHR = CHROMA_LOCATION_COSITED_EVEN
+const CHROMA_LOCATION_MIDPOINT_KHR = CHROMA_LOCATION_MIDPOINT
+const COLORSPACE_SRGB_NONLINEAR_KHR = COLOR_SPACE_SRGB_NONLINEAR_KHR
+const COLOR_SPACE_DCI_P3_LINEAR_EXT = COLOR_SPACE_DISPLAY_P3_LINEAR_EXT
+const COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV = COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR
+const COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV = COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR
+const DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT = DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT
+const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT = DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT
+const DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR_EXT = DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT
+const DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT = DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT
+const DEPENDENCY_DEVICE_GROUP_BIT_KHR = DEPENDENCY_DEVICE_GROUP_BIT
+const DEPENDENCY_VIEW_LOCAL_BIT_KHR = DEPENDENCY_VIEW_LOCAL_BIT
+const DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT = DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT
+const DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT = DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT
+const DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT = DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT
+const DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT = DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT
+const DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT_EXT = DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT
+const DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT_EXT = DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT
+const DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT = DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK
+const DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR = DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET
 const DRIVER_ID_AMD_OPEN_SOURCE_KHR = DRIVER_ID_AMD_OPEN_SOURCE
-const PIPELINE_STAGE_2_ALL_COMMANDS_BIT_KHR = PIPELINE_STAGE_2_ALL_COMMANDS_BIT
-const QUERY_SCOPE_COMMAND_KHR = PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR
-const STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR = STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2
-const ExportMemoryAllocateInfoKHR = ExportMemoryAllocateInfo
-const STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2_KHR = STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES
-const PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV = PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR
+const DRIVER_ID_AMD_PROPRIETARY_KHR = DRIVER_ID_AMD_PROPRIETARY
+const DRIVER_ID_ARM_PROPRIETARY_KHR = DRIVER_ID_ARM_PROPRIETARY
+const DRIVER_ID_BROADCOM_PROPRIETARY_KHR = DRIVER_ID_BROADCOM_PROPRIETARY
+const DRIVER_ID_GGP_PROPRIETARY_KHR = DRIVER_ID_GGP_PROPRIETARY
+const DRIVER_ID_GOOGLE_SWIFTSHADER_KHR = DRIVER_ID_GOOGLE_SWIFTSHADER
+const DRIVER_ID_IMAGINATION_PROPRIETARY_KHR = DRIVER_ID_IMAGINATION_PROPRIETARY
 const DRIVER_ID_INTEL_OPEN_SOURCE_MESA_KHR = DRIVER_ID_INTEL_OPEN_SOURCE_MESA
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES
-const PhysicalDeviceMaintenance3PropertiesKHR = PhysicalDeviceMaintenance3Properties
-const STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR = STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2
+const DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR = DRIVER_ID_INTEL_PROPRIETARY_WINDOWS
+const DRIVER_ID_MESA_RADV_KHR = DRIVER_ID_MESA_RADV
+const DRIVER_ID_NVIDIA_PROPRIETARY_KHR = DRIVER_ID_NVIDIA_PROPRIETARY
+const DRIVER_ID_QUALCOMM_PROPRIETARY_KHR = DRIVER_ID_QUALCOMM_PROPRIETARY
+const DYNAMIC_STATE_CULL_MODE_EXT = DYNAMIC_STATE_CULL_MODE
+const DYNAMIC_STATE_DEPTH_BIAS_ENABLE_EXT = DYNAMIC_STATE_DEPTH_BIAS_ENABLE
+const DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE_EXT = DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE
+const DYNAMIC_STATE_DEPTH_COMPARE_OP_EXT = DYNAMIC_STATE_DEPTH_COMPARE_OP
+const DYNAMIC_STATE_DEPTH_TEST_ENABLE_EXT = DYNAMIC_STATE_DEPTH_TEST_ENABLE
+const DYNAMIC_STATE_DEPTH_WRITE_ENABLE_EXT = DYNAMIC_STATE_DEPTH_WRITE_ENABLE
+const DYNAMIC_STATE_FRONT_FACE_EXT = DYNAMIC_STATE_FRONT_FACE
+const DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT = DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE
+const DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT = DYNAMIC_STATE_PRIMITIVE_TOPOLOGY
+const DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE_EXT = DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE
+const DYNAMIC_STATE_SCISSOR_WITH_COUNT_EXT = DYNAMIC_STATE_SCISSOR_WITH_COUNT
+const DYNAMIC_STATE_STENCIL_OP_EXT = DYNAMIC_STATE_STENCIL_OP
+const DYNAMIC_STATE_STENCIL_TEST_ENABLE_EXT = DYNAMIC_STATE_STENCIL_TEST_ENABLE
+const DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT = DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE
+const DYNAMIC_STATE_VIEWPORT_WITH_COUNT_EXT = DYNAMIC_STATE_VIEWPORT_WITH_COUNT
+const ERROR_FRAGMENTATION_EXT = ERROR_FRAGMENTATION
+const ERROR_INVALID_DEVICE_ADDRESS_EXT = ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS
+const ERROR_INVALID_EXTERNAL_HANDLE_KHR = ERROR_INVALID_EXTERNAL_HANDLE
+const ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR = ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS
+const ERROR_NOT_PERMITTED_EXT = ERROR_NOT_PERMITTED_KHR
+const ERROR_OUT_OF_POOL_MEMORY_KHR = ERROR_OUT_OF_POOL_MEMORY
+const ERROR_PIPELINE_COMPILE_REQUIRED_EXT = PIPELINE_COMPILE_REQUIRED
+const EVENT_CREATE_DEVICE_ONLY_BIT_KHR = EVENT_CREATE_DEVICE_ONLY_BIT
+const EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR = EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT
+const EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR = EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT
+const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT
+const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT
+const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT
+const EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR = EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT
+const EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR = EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT
+const EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR = EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT
+const EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR = EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT
+const EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT
+const EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT
+const EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT
+const EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT
+const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT
+const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT
+const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT
+const EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR = EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT
+const EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR = EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT
+const EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D11_FENCE_BIT = EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT
+const EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT
+const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT
+const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT
+const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT
+const EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR = EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT
+const FENCE_IMPORT_TEMPORARY_BIT_KHR = FENCE_IMPORT_TEMPORARY_BIT
+const FILTER_CUBIC_EXT = FILTER_CUBIC_IMG
+const FORMAT_A4B4G4R4_UNORM_PACK16_EXT = FORMAT_A4B4G4R4_UNORM_PACK16
+const FORMAT_A4R4G4B4_UNORM_PACK16_EXT = FORMAT_A4R4G4B4_UNORM_PACK16
+const FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x10_SFLOAT_BLOCK
+const FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x5_SFLOAT_BLOCK
+const FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x6_SFLOAT_BLOCK
+const FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT = FORMAT_ASTC_10x8_SFLOAT_BLOCK
+const FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT = FORMAT_ASTC_12x10_SFLOAT_BLOCK
+const FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT = FORMAT_ASTC_12x12_SFLOAT_BLOCK
+const FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT = FORMAT_ASTC_4x4_SFLOAT_BLOCK
+const FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT = FORMAT_ASTC_5x4_SFLOAT_BLOCK
+const FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_5x5_SFLOAT_BLOCK
+const FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_6x5_SFLOAT_BLOCK
+const FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT = FORMAT_ASTC_6x6_SFLOAT_BLOCK
+const FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT = FORMAT_ASTC_8x5_SFLOAT_BLOCK
+const FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT = FORMAT_ASTC_8x6_SFLOAT_BLOCK
+const FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT = FORMAT_ASTC_8x8_SFLOAT_BLOCK
+const FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16_KHR = FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16
+const FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16_KHR = FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16
+const FORMAT_B16G16R16G16_422_UNORM_KHR = FORMAT_B16G16R16G16_422_UNORM
+const FORMAT_B8G8R8G8_422_UNORM_KHR = FORMAT_B8G8R8G8_422_UNORM
+const FORMAT_FEATURE_2_BLIT_DST_BIT_KHR = FORMAT_FEATURE_2_BLIT_DST_BIT
+const FORMAT_FEATURE_2_BLIT_SRC_BIT_KHR = FORMAT_FEATURE_2_BLIT_SRC_BIT
+const FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT_KHR = FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT
+const FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT_KHR = FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT
+const FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT
+const FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT_KHR = FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT
+const FORMAT_FEATURE_2_DISJOINT_BIT_KHR = FORMAT_FEATURE_2_DISJOINT_BIT
+const FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT
 const FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT
-const PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR = PhysicalDeviceUniformBufferStandardLayoutFeatures
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES
-const PhysicalDeviceExternalSemaphoreInfoKHR = PhysicalDeviceExternalSemaphoreInfo
-const STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT = FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT
+const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR = FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT
+const FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT_KHR = FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT
+const FORMAT_FEATURE_2_STORAGE_IMAGE_BIT_KHR = FORMAT_FEATURE_2_STORAGE_IMAGE_BIT
+const FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT_KHR = FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT
+const FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT_KHR = FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT
+const FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT_KHR = FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT
+const FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT_KHR = FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT
+const FORMAT_FEATURE_2_TRANSFER_DST_BIT_KHR = FORMAT_FEATURE_2_TRANSFER_DST_BIT
+const FORMAT_FEATURE_2_TRANSFER_SRC_BIT_KHR = FORMAT_FEATURE_2_TRANSFER_SRC_BIT
+const FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT_KHR = FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT
+const FORMAT_FEATURE_2_VERTEX_BUFFER_BIT_KHR = FORMAT_FEATURE_2_VERTEX_BUFFER_BIT
+const FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT
+const FORMAT_FEATURE_DISJOINT_BIT_KHR = FORMAT_FEATURE_DISJOINT_BIT
+const FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT_KHR = FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT
+const FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT = FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG
+const FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT_EXT = FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT
+const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT
+const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT
+const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT
+const FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR = FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT
+const FORMAT_FEATURE_TRANSFER_DST_BIT_KHR = FORMAT_FEATURE_TRANSFER_DST_BIT
+const FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR = FORMAT_FEATURE_TRANSFER_SRC_BIT
+const FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16_KHR = FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16
+const FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16
+const FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16
+const FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT = FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16
+const FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16
+const FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16
+const FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16_KHR = FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16
+const FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16_KHR = FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16
+const FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16
+const FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16
+const FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT = FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16
+const FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16
+const FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16
+const FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16_KHR = FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16
+const FORMAT_G16B16G16R16_422_UNORM_KHR = FORMAT_G16B16G16R16_422_UNORM
+const FORMAT_G16_B16R16_2PLANE_420_UNORM_KHR = FORMAT_G16_B16R16_2PLANE_420_UNORM
+const FORMAT_G16_B16R16_2PLANE_422_UNORM_KHR = FORMAT_G16_B16R16_2PLANE_422_UNORM
+const FORMAT_G16_B16R16_2PLANE_444_UNORM_EXT = FORMAT_G16_B16R16_2PLANE_444_UNORM
+const FORMAT_G16_B16_R16_3PLANE_420_UNORM_KHR = FORMAT_G16_B16_R16_3PLANE_420_UNORM
+const FORMAT_G16_B16_R16_3PLANE_422_UNORM_KHR = FORMAT_G16_B16_R16_3PLANE_422_UNORM
+const FORMAT_G16_B16_R16_3PLANE_444_UNORM_KHR = FORMAT_G16_B16_R16_3PLANE_444_UNORM
+const FORMAT_G8B8G8R8_422_UNORM_KHR = FORMAT_G8B8G8R8_422_UNORM
+const FORMAT_G8_B8R8_2PLANE_420_UNORM_KHR = FORMAT_G8_B8R8_2PLANE_420_UNORM
+const FORMAT_G8_B8R8_2PLANE_422_UNORM_KHR = FORMAT_G8_B8R8_2PLANE_422_UNORM
+const FORMAT_G8_B8R8_2PLANE_444_UNORM_EXT = FORMAT_G8_B8R8_2PLANE_444_UNORM
+const FORMAT_G8_B8_R8_3PLANE_420_UNORM_KHR = FORMAT_G8_B8_R8_3PLANE_420_UNORM
+const FORMAT_G8_B8_R8_3PLANE_422_UNORM_KHR = FORMAT_G8_B8_R8_3PLANE_422_UNORM
+const FORMAT_G8_B8_R8_3PLANE_444_UNORM_KHR = FORMAT_G8_B8_R8_3PLANE_444_UNORM
+const FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16_KHR = FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16
+const FORMAT_R10X6G10X6_UNORM_2PACK16_KHR = FORMAT_R10X6G10X6_UNORM_2PACK16
+const FORMAT_R10X6_UNORM_PACK16_KHR = FORMAT_R10X6_UNORM_PACK16
+const FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16_KHR = FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16
+const FORMAT_R12X4G12X4_UNORM_2PACK16_KHR = FORMAT_R12X4G12X4_UNORM_2PACK16
+const FORMAT_R12X4_UNORM_PACK16_KHR = FORMAT_R12X4_UNORM_PACK16
+const FRAMEBUFFER_CREATE_IMAGELESS_BIT_KHR = FRAMEBUFFER_CREATE_IMAGELESS_BIT
+const GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_NV = GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR
+const GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_NV = GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR
+const GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV = GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR
+const GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR = GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR
+const GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_NV = GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR
+const GEOMETRY_OPAQUE_BIT_NV = GEOMETRY_OPAQUE_BIT_KHR
+const GEOMETRY_TYPE_AABBS_NV = GEOMETRY_TYPE_AABBS_KHR
+const GEOMETRY_TYPE_TRIANGLES_NV = GEOMETRY_TYPE_TRIANGLES_KHR
+const IMAGE_ASPECT_NONE_KHR = IMAGE_ASPECT_NONE
+const IMAGE_ASPECT_PLANE_0_BIT_KHR = IMAGE_ASPECT_PLANE_0_BIT
+const IMAGE_ASPECT_PLANE_1_BIT_KHR = IMAGE_ASPECT_PLANE_1_BIT
+const IMAGE_ASPECT_PLANE_2_BIT_KHR = IMAGE_ASPECT_PLANE_2_BIT
+const IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR = IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT
+const IMAGE_CREATE_ALIAS_BIT_KHR = IMAGE_CREATE_ALIAS_BIT
+const IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT_KHR = IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT
+const IMAGE_CREATE_DISJOINT_BIT_KHR = IMAGE_CREATE_DISJOINT_BIT
+const IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR = IMAGE_CREATE_EXTENDED_USAGE_BIT
+const IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT
+const IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_ATTACHMENT_OPTIMAL
+const IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL
+const IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL
+const IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL
+const IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL
+const IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_READ_ONLY_OPTIMAL
+const IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV = IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR
+const IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR = IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL
+const IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR = IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL
+const IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV = IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
+const INDEX_TYPE_NONE_NV = INDEX_TYPE_NONE_KHR
+const LUID_SIZE_KHR = LUID_SIZE
+const MAX_DEVICE_GROUP_SIZE_KHR = MAX_DEVICE_GROUP_SIZE
+const MAX_DRIVER_INFO_SIZE_KHR = MAX_DRIVER_INFO_SIZE
+const MAX_DRIVER_NAME_SIZE_KHR = MAX_DRIVER_NAME_SIZE
+const MAX_GLOBAL_PRIORITY_SIZE_EXT = MAX_GLOBAL_PRIORITY_SIZE_KHR
+const MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR = MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT
+const MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT
+const MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR = MEMORY_ALLOCATE_DEVICE_MASK_BIT
+const MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR = MEMORY_HEAP_MULTI_INSTANCE_BIT
+const OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR = OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE
+const OBJECT_TYPE_PRIVATE_DATA_SLOT_EXT = OBJECT_TYPE_PRIVATE_DATA_SLOT
+const OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR = OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION
+const PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR = PEER_MEMORY_FEATURE_COPY_DST_BIT
+const PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR = PEER_MEMORY_FEATURE_COPY_SRC_BIT
+const PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR = PEER_MEMORY_FEATURE_GENERIC_DST_BIT
+const PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR = PEER_MEMORY_FEATURE_GENERIC_SRC_BIT
+const PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR = PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR
+const PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR = PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR
+const PIPELINE_BIND_POINT_RAY_TRACING_NV = PIPELINE_BIND_POINT_RAY_TRACING_KHR
+const PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT = PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT
+const PIPELINE_CACHE_CREATE_RESERVED_1_BIT_KHR = PIPELINE_CACHE_CREATE_RESERVED_1_BIT_EXT
+const PIPELINE_COMPILE_REQUIRED_EXT = PIPELINE_COMPILE_REQUIRED
+const PIPELINE_CREATE_DISPATCH_BASE = PIPELINE_CREATE_DISPATCH_BASE_BIT
+const PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT = PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT
+const PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT = PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT
+const PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR = PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT
+const PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT = PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT
+const PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT = PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT
 const PIPELINE_CREATION_FEEDBACK_VALID_BIT_EXT = PIPELINE_CREATION_FEEDBACK_VALID_BIT
+const PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT = PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT
+const PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
+const PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT = PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT
+const PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT = PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT
+const PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_NV = PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR
+const PIPELINE_STAGE_2_ALL_COMMANDS_BIT_KHR = PIPELINE_STAGE_2_ALL_COMMANDS_BIT
+const PIPELINE_STAGE_2_ALL_GRAPHICS_BIT_KHR = PIPELINE_STAGE_2_ALL_GRAPHICS_BIT
+const PIPELINE_STAGE_2_ALL_TRANSFER_BIT_KHR = PIPELINE_STAGE_2_ALL_TRANSFER_BIT
+const PIPELINE_STAGE_2_BLIT_BIT_KHR = PIPELINE_STAGE_2_BLIT_BIT
+const PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT_KHR = PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT
+const PIPELINE_STAGE_2_CLEAR_BIT_KHR = PIPELINE_STAGE_2_CLEAR_BIT
+const PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT_KHR = PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT
+const PIPELINE_STAGE_2_COMPUTE_SHADER_BIT_KHR = PIPELINE_STAGE_2_COMPUTE_SHADER_BIT
+const PIPELINE_STAGE_2_COPY_BIT_KHR = PIPELINE_STAGE_2_COPY_BIT
+const PIPELINE_STAGE_2_DRAW_INDIRECT_BIT_KHR = PIPELINE_STAGE_2_DRAW_INDIRECT_BIT
+const PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT_KHR = PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT
+const PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT_KHR = PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT
+const PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT_KHR = PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT
+const PIPELINE_STAGE_2_HOST_BIT_KHR = PIPELINE_STAGE_2_HOST_BIT
+const PIPELINE_STAGE_2_INDEX_INPUT_BIT_KHR = PIPELINE_STAGE_2_INDEX_INPUT_BIT
+const PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT_KHR = PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT
+const PIPELINE_STAGE_2_NONE_KHR = PIPELINE_STAGE_2_NONE
+const PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT_KHR = PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT
+const PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_NV = PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR
+const PIPELINE_STAGE_2_RESOLVE_BIT_KHR = PIPELINE_STAGE_2_RESOLVE_BIT
+const PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV = PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
+const PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT_KHR = PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT
+const PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT_KHR = PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT
+const PIPELINE_STAGE_2_TOP_OF_PIPE_BIT_KHR = PIPELINE_STAGE_2_TOP_OF_PIPE_BIT
+const PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT_KHR = PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT
+const PIPELINE_STAGE_2_VERTEX_INPUT_BIT_KHR = PIPELINE_STAGE_2_VERTEX_INPUT_BIT
+const PIPELINE_STAGE_2_VERTEX_SHADER_BIT_KHR = PIPELINE_STAGE_2_VERTEX_SHADER_BIT
+const PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR
+const PIPELINE_STAGE_NONE_KHR = PIPELINE_STAGE_NONE
+const PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV = PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR
+const PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR
+const POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR = POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES
+const POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR = POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY
+const QUERY_SCOPE_COMMAND_BUFFER_KHR = PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR
+const QUERY_SCOPE_COMMAND_KHR = PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR
+const QUERY_SCOPE_RENDER_PASS_KHR = PERFORMANCE_COUNTER_SCOPE_RENDER_PASS_KHR
+const QUEUE_FAMILY_EXTERNAL_KHR = QUEUE_FAMILY_EXTERNAL
+const QUEUE_GLOBAL_PRIORITY_HIGH_EXT = QUEUE_GLOBAL_PRIORITY_HIGH_KHR
+const QUEUE_GLOBAL_PRIORITY_LOW_EXT = QUEUE_GLOBAL_PRIORITY_LOW_KHR
+const QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT = QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR
+const QUEUE_GLOBAL_PRIORITY_REALTIME_EXT = QUEUE_GLOBAL_PRIORITY_REALTIME_KHR
+const RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV = RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR
+const RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV = RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR
+const RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV = RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR
+const RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT_KHR = RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT
+const RENDERING_RESUMING_BIT_KHR = RENDERING_RESUMING_BIT
+const RENDERING_SUSPENDING_BIT_KHR = RENDERING_SUSPENDING_BIT
+const RESOLVE_MODE_AVERAGE_BIT_KHR = RESOLVE_MODE_AVERAGE_BIT
+const RESOLVE_MODE_MAX_BIT_KHR = RESOLVE_MODE_MAX_BIT
+const RESOLVE_MODE_MIN_BIT_KHR = RESOLVE_MODE_MIN_BIT
+const RESOLVE_MODE_NONE_KHR = RESOLVE_MODE_NONE
+const RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR = RESOLVE_MODE_SAMPLE_ZERO_BIT
+const SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE_KHR = SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE
+const SAMPLER_REDUCTION_MODE_MAX_EXT = SAMPLER_REDUCTION_MODE_MAX
+const SAMPLER_REDUCTION_MODE_MIN_EXT = SAMPLER_REDUCTION_MODE_MIN
+const SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT = SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE
+const SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY
+const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020
+const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601
+const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709
+const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY_KHR = SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY
+const SAMPLER_YCBCR_RANGE_ITU_FULL_KHR = SAMPLER_YCBCR_RANGE_ITU_FULL
+const SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR = SAMPLER_YCBCR_RANGE_ITU_NARROW
+const SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR = SEMAPHORE_IMPORT_TEMPORARY_BIT
+const SEMAPHORE_TYPE_BINARY_KHR = SEMAPHORE_TYPE_BINARY
+const SEMAPHORE_TYPE_TIMELINE_KHR = SEMAPHORE_TYPE_TIMELINE
+const SEMAPHORE_WAIT_ANY_BIT_KHR = SEMAPHORE_WAIT_ANY_BIT
+const SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY_KHR = SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY
+const SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR = SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL
+const SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR = SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE
+const SHADER_STAGE_ANY_HIT_BIT_NV = SHADER_STAGE_ANY_HIT_BIT_KHR
+const SHADER_STAGE_CALLABLE_BIT_NV = SHADER_STAGE_CALLABLE_BIT_KHR
+const SHADER_STAGE_CLOSEST_HIT_BIT_NV = SHADER_STAGE_CLOSEST_HIT_BIT_KHR
+const SHADER_STAGE_INTERSECTION_BIT_NV = SHADER_STAGE_INTERSECTION_BIT_KHR
+const SHADER_STAGE_MISS_BIT_NV = SHADER_STAGE_MISS_BIT_KHR
+const SHADER_STAGE_RAYGEN_BIT_NV = SHADER_STAGE_RAYGEN_BIT_KHR
+const SHADER_UNUSED_NV = SHADER_UNUSED_KHR
+const STENCIL_FRONT_AND_BACK = STENCIL_FACE_FRONT_AND_BACK
+const STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2_KHR = STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2
+const STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR = STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT
+const STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2_KHR = STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2
+const STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR = STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT
+const STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV = STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD
+const STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR = STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO
+const STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO_KHR = STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO
+const STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR = STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO
+const STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO_KHR = STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO
+const STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO_KHR = STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO
+const STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_BLIT_IMAGE_INFO_2
+const STRUCTURE_TYPE_BUFFER_COPY_2_KHR = STRUCTURE_TYPE_BUFFER_COPY_2
+const STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT = STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO
+const STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_KHR = STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO
+const STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR = STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2
+const STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2_KHR = STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2
+const STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR = STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2
+const STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO_KHR = STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO
+const STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR = STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO
+const STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR = STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO
 const STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR = STRUCTURE_TYPE_COPY_BUFFER_INFO_2
+const STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2
+const STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_COPY_IMAGE_INFO_2
+const STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR = STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2
+const STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT = STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT
+const STRUCTURE_TYPE_DEPENDENCY_INFO_KHR = STRUCTURE_TYPE_DEPENDENCY_INFO
+const STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT = STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO
+const STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT = STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO
+const STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR = STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT
+const STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO_EXT = STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO
+const STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT = STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT
+const STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR = STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO
+const STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR = STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS
+const STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO
+const STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO
+const STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO
+const STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO
+const STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR = STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO
+const STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR = STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS
+const STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO_KHR = STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO
+const STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT = STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO
+const STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT = STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR
+const STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR = STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO
+const STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_KHR = STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO
+const STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO_KHR = STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO
+const STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES
+const STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES
+const STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES
+const STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR = STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO
+const STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR = STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO
+const STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR = STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES
+const STRUCTURE_TYPE_FORMAT_PROPERTIES_2_KHR = STRUCTURE_TYPE_FORMAT_PROPERTIES_2
+const STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR = STRUCTURE_TYPE_FORMAT_PROPERTIES_3
+const STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR = STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO
+const STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR = STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO
+const STRUCTURE_TYPE_IMAGE_BLIT_2_KHR = STRUCTURE_TYPE_IMAGE_BLIT_2
+const STRUCTURE_TYPE_IMAGE_COPY_2_KHR = STRUCTURE_TYPE_IMAGE_COPY_2
+const STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR = STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO
+const STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2_KHR = STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2
+const STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2_KHR = STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2
+const STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR = STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2
+const STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO_KHR = STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO
+const STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR = STRUCTURE_TYPE_IMAGE_RESOLVE_2
+const STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR = STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2
+const STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO_EXT = STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO
+const STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO_KHR = STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO
+const STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR = STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO
+const STRUCTURE_TYPE_MEMORY_BARRIER_2_KHR = STRUCTURE_TYPE_MEMORY_BARRIER_2
+const STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR = STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO
+const STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR = STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS
+const STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO_KHR = STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO
+const STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2_KHR = STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT16_INT8_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT = STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES = STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES
+const STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR = STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES
+const STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT = STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO
+const STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR = STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO
+const STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT = STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO
+const STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR = STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO
+const STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT = STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO
+const STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL = STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL
+const STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT = STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR
+const STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2_KHR = STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2
+const STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR = STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO
+const STRUCTURE_TYPE_RENDERING_INFO_KHR = STRUCTURE_TYPE_RENDERING_INFO
+const STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR = STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO
+const STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2_KHR = STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2
+const STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR = STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO
+const STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR = STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO
+const STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR = STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2
+const STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT = STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO
+const STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR = STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO
+const STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR = STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES
+const STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO_KHR = STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO
+const STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO
+const STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO
+const STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO
+const STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO_KHR = STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO
+const STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2_KHR = STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2
+const STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR = STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2
+const STRUCTURE_TYPE_SUBMIT_INFO_2_KHR = STRUCTURE_TYPE_SUBMIT_INFO_2
+const STRUCTURE_TYPE_SUBPASS_BEGIN_INFO_KHR = STRUCTURE_TYPE_SUBPASS_BEGIN_INFO
+const STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2_KHR = STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2
+const STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2_KHR = STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2
+const STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR = STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE
+const STRUCTURE_TYPE_SUBPASS_END_INFO_KHR = STRUCTURE_TYPE_SUBPASS_END_INFO
+const STRUCTURE_TYPE_SURFACE_CAPABILITIES2_EXT = STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT
+const STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR = STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO
+const STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT = STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK
+const SUBMIT_PROTECTED_BIT_KHR = SUBMIT_PROTECTED_BIT
+const SURFACE_COUNTER_VBLANK_EXT = SURFACE_COUNTER_VBLANK_BIT_EXT
+const TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR = TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT
+const TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR = TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT
+const TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT = TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT
+const TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT = TOOL_PURPOSE_MODIFYING_FEATURES_BIT
+const TOOL_PURPOSE_PROFILING_BIT_EXT = TOOL_PURPOSE_PROFILING_BIT
+const TOOL_PURPOSE_TRACING_BIT_EXT = TOOL_PURPOSE_TRACING_BIT
+const TOOL_PURPOSE_VALIDATION_BIT_EXT = TOOL_PURPOSE_VALIDATION_BIT
+const AabbPositionsNV = AabbPositionsKHR
+const AccelerationStructureInstanceNV = AccelerationStructureInstanceKHR
+const AccelerationStructureTypeNV = AccelerationStructureTypeKHR
+const AttachmentDescription2KHR = AttachmentDescription2
+const AttachmentDescriptionStencilLayoutKHR = AttachmentDescriptionStencilLayout
+const AttachmentReference2KHR = AttachmentReference2
+const AttachmentReferenceStencilLayoutKHR = AttachmentReferenceStencilLayout
+const AttachmentSampleCountInfoNV = AttachmentSampleCountInfoAMD
+const BindBufferMemoryDeviceGroupInfoKHR = BindBufferMemoryDeviceGroupInfo
+const BindBufferMemoryInfoKHR = BindBufferMemoryInfo
+const BindImageMemoryDeviceGroupInfoKHR = BindImageMemoryDeviceGroupInfo
+const BindImageMemoryInfoKHR = BindImageMemoryInfo
+const BindImagePlaneMemoryInfoKHR = BindImagePlaneMemoryInfo
+const BlitImageInfo2KHR = BlitImageInfo2
+const BufferCopy2KHR = BufferCopy2
+const BufferDeviceAddressInfoEXT = BufferDeviceAddressInfo
+const BufferDeviceAddressInfoKHR = BufferDeviceAddressInfo
+const BufferImageCopy2KHR = BufferImageCopy2
+const BufferMemoryBarrier2KHR = BufferMemoryBarrier2
+const BufferMemoryRequirementsInfo2KHR = BufferMemoryRequirementsInfo2
+const BufferOpaqueCaptureAddressCreateInfoKHR = BufferOpaqueCaptureAddressCreateInfo
+const ChromaLocationKHR = ChromaLocation
+const CommandBufferInheritanceRenderingInfoKHR = CommandBufferInheritanceRenderingInfo
+const CommandBufferSubmitInfoKHR = CommandBufferSubmitInfo
+const ConformanceVersionKHR = ConformanceVersion
+const CopyAccelerationStructureModeNV = CopyAccelerationStructureModeKHR
+const CopyBufferInfo2KHR = CopyBufferInfo2
+const CopyBufferToImageInfo2KHR = CopyBufferToImageInfo2
+const CopyImageInfo2KHR = CopyImageInfo2
+const CopyImageToBufferInfo2KHR = CopyImageToBufferInfo2
+const DependencyInfoKHR = DependencyInfo
+const DescriptorPoolInlineUniformBlockCreateInfoEXT = DescriptorPoolInlineUniformBlockCreateInfo
+const DescriptorSetLayoutBindingFlagsCreateInfoEXT = DescriptorSetLayoutBindingFlagsCreateInfo
+const DescriptorSetLayoutSupportKHR = DescriptorSetLayoutSupport
+const DescriptorSetVariableDescriptorCountAllocateInfoEXT = DescriptorSetVariableDescriptorCountAllocateInfo
+const DescriptorSetVariableDescriptorCountLayoutSupportEXT = DescriptorSetVariableDescriptorCountLayoutSupport
+const DescriptorUpdateTemplateCreateInfoKHR = DescriptorUpdateTemplateCreateInfo
+const DescriptorUpdateTemplateEntryKHR = DescriptorUpdateTemplateEntry
+const DescriptorUpdateTemplateKHR = DescriptorUpdateTemplate
+const DescriptorUpdateTemplateTypeKHR = DescriptorUpdateTemplateType
+const DeviceBufferMemoryRequirementsKHR = DeviceBufferMemoryRequirements
 const DeviceGroupBindSparseInfoKHR = DeviceGroupBindSparseInfo
-const PrivateDataSlotEXT = PrivateDataSlot
+const DeviceGroupCommandBufferBeginInfoKHR = DeviceGroupCommandBufferBeginInfo
+const DeviceGroupDeviceCreateInfoKHR = DeviceGroupDeviceCreateInfo
+const DeviceGroupRenderPassBeginInfoKHR = DeviceGroupRenderPassBeginInfo
+const DeviceGroupSubmitInfoKHR = DeviceGroupSubmitInfo
+const DeviceImageMemoryRequirementsKHR = DeviceImageMemoryRequirements
+const DeviceMemoryOpaqueCaptureAddressInfoKHR = DeviceMemoryOpaqueCaptureAddressInfo
+const DevicePrivateDataCreateInfoEXT = DevicePrivateDataCreateInfo
+const DeviceQueueGlobalPriorityCreateInfoEXT = DeviceQueueGlobalPriorityCreateInfoKHR
+const DriverIdKHR = DriverId
+const ExportFenceCreateInfoKHR = ExportFenceCreateInfo
+const ExportMemoryAllocateInfoKHR = ExportMemoryAllocateInfo
+const ExportSemaphoreCreateInfoKHR = ExportSemaphoreCreateInfo
+const ExternalBufferPropertiesKHR = ExternalBufferProperties
+const ExternalFencePropertiesKHR = ExternalFenceProperties
+const ExternalImageFormatPropertiesKHR = ExternalImageFormatProperties
+const ExternalMemoryBufferCreateInfoKHR = ExternalMemoryBufferCreateInfo
+const ExternalMemoryImageCreateInfoKHR = ExternalMemoryImageCreateInfo
+const ExternalMemoryPropertiesKHR = ExternalMemoryProperties
+const ExternalSemaphorePropertiesKHR = ExternalSemaphoreProperties
+const FormatProperties2KHR = FormatProperties2
+const FormatProperties3KHR = FormatProperties3
+const FramebufferAttachmentImageInfoKHR = FramebufferAttachmentImageInfo
+const FramebufferAttachmentsCreateInfoKHR = FramebufferAttachmentsCreateInfo
+const GeometryTypeNV = GeometryTypeKHR
+const ImageBlit2KHR = ImageBlit2
+const ImageCopy2KHR = ImageCopy2
+const ImageFormatListCreateInfoKHR = ImageFormatListCreateInfo
+const ImageFormatProperties2KHR = ImageFormatProperties2
+const ImageMemoryBarrier2KHR = ImageMemoryBarrier2
+const ImageMemoryRequirementsInfo2KHR = ImageMemoryRequirementsInfo2
+const ImagePlaneMemoryRequirementsInfoKHR = ImagePlaneMemoryRequirementsInfo
+const ImageResolve2KHR = ImageResolve2
+const ImageSparseMemoryRequirementsInfo2KHR = ImageSparseMemoryRequirementsInfo2
+const ImageStencilUsageCreateInfoEXT = ImageStencilUsageCreateInfo
+const ImageViewUsageCreateInfoKHR = ImageViewUsageCreateInfo
+const InputAttachmentAspectReferenceKHR = InputAttachmentAspectReference
+const MemoryAllocateFlagsInfoKHR = MemoryAllocateFlagsInfo
+const MemoryBarrier2KHR = MemoryBarrier2
+const MemoryDedicatedAllocateInfoKHR = MemoryDedicatedAllocateInfo
+const MemoryDedicatedRequirementsKHR = MemoryDedicatedRequirements
+const MemoryOpaqueCaptureAddressAllocateInfoKHR = MemoryOpaqueCaptureAddressAllocateInfo
+const MemoryRequirements2KHR = MemoryRequirements2
+const PhysicalDevice16BitStorageFeaturesKHR = PhysicalDevice16BitStorageFeatures
+const PhysicalDevice8BitStorageFeaturesKHR = PhysicalDevice8BitStorageFeatures
+const PhysicalDeviceBufferAddressFeaturesEXT = PhysicalDeviceBufferDeviceAddressFeaturesEXT
+const PhysicalDeviceBufferDeviceAddressFeaturesKHR = PhysicalDeviceBufferDeviceAddressFeatures
+const PhysicalDeviceDepthStencilResolvePropertiesKHR = PhysicalDeviceDepthStencilResolveProperties
+const PhysicalDeviceDescriptorIndexingFeaturesEXT = PhysicalDeviceDescriptorIndexingFeatures
+const PhysicalDeviceDescriptorIndexingPropertiesEXT = PhysicalDeviceDescriptorIndexingProperties
+const PhysicalDeviceDriverPropertiesKHR = PhysicalDeviceDriverProperties
 const PhysicalDeviceDynamicRenderingFeaturesKHR = PhysicalDeviceDynamicRenderingFeatures
-cmd_set_primitive_restart_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetPrimitiveRestartEnableEXT, device(command_buffer), cmd_set_primitive_restart_enable(command_buffer, args...; kwargs...))
+const PhysicalDeviceExternalBufferInfoKHR = PhysicalDeviceExternalBufferInfo
+const PhysicalDeviceExternalFenceInfoKHR = PhysicalDeviceExternalFenceInfo
+const PhysicalDeviceExternalImageFormatInfoKHR = PhysicalDeviceExternalImageFormatInfo
+const PhysicalDeviceExternalSemaphoreInfoKHR = PhysicalDeviceExternalSemaphoreInfo
+const PhysicalDeviceFeatures2KHR = PhysicalDeviceFeatures2
+const PhysicalDeviceFloat16Int8FeaturesKHR = PhysicalDeviceShaderFloat16Int8Features
+const PhysicalDeviceFloatControlsPropertiesKHR = PhysicalDeviceFloatControlsProperties
+const PhysicalDeviceGlobalPriorityQueryFeaturesEXT = PhysicalDeviceGlobalPriorityQueryFeaturesKHR
+const PhysicalDeviceGroupPropertiesKHR = PhysicalDeviceGroupProperties
+const PhysicalDeviceHostQueryResetFeaturesEXT = PhysicalDeviceHostQueryResetFeatures
+const PhysicalDeviceIDPropertiesKHR = PhysicalDeviceIDProperties
+const PhysicalDeviceImageFormatInfo2KHR = PhysicalDeviceImageFormatInfo2
+const PhysicalDeviceImageRobustnessFeaturesEXT = PhysicalDeviceImageRobustnessFeatures
+const PhysicalDeviceImagelessFramebufferFeaturesKHR = PhysicalDeviceImagelessFramebufferFeatures
+const PhysicalDeviceInlineUniformBlockFeaturesEXT = PhysicalDeviceInlineUniformBlockFeatures
+const PhysicalDeviceInlineUniformBlockPropertiesEXT = PhysicalDeviceInlineUniformBlockProperties
+const PhysicalDeviceMaintenance3PropertiesKHR = PhysicalDeviceMaintenance3Properties
+const PhysicalDeviceMaintenance4FeaturesKHR = PhysicalDeviceMaintenance4Features
+const PhysicalDeviceMaintenance4PropertiesKHR = PhysicalDeviceMaintenance4Properties
+const PhysicalDeviceMemoryProperties2KHR = PhysicalDeviceMemoryProperties2
+const PhysicalDeviceMultiviewFeaturesKHR = PhysicalDeviceMultiviewFeatures
+const PhysicalDeviceMultiviewPropertiesKHR = PhysicalDeviceMultiviewProperties
+const PhysicalDevicePipelineCreationCacheControlFeaturesEXT = PhysicalDevicePipelineCreationCacheControlFeatures
+const PhysicalDevicePointClippingPropertiesKHR = PhysicalDevicePointClippingProperties
+const PhysicalDevicePrivateDataFeaturesEXT = PhysicalDevicePrivateDataFeatures
+const PhysicalDeviceProperties2KHR = PhysicalDeviceProperties2
+const PhysicalDeviceSamplerFilterMinmaxPropertiesEXT = PhysicalDeviceSamplerFilterMinmaxProperties
+const PhysicalDeviceSamplerYcbcrConversionFeaturesKHR = PhysicalDeviceSamplerYcbcrConversionFeatures
+const PhysicalDeviceScalarBlockLayoutFeaturesEXT = PhysicalDeviceScalarBlockLayoutFeatures
+const PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR = PhysicalDeviceSeparateDepthStencilLayoutsFeatures
+const PhysicalDeviceShaderAtomicInt64FeaturesKHR = PhysicalDeviceShaderAtomicInt64Features
+const PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT = PhysicalDeviceShaderDemoteToHelperInvocationFeatures
+const PhysicalDeviceShaderDrawParameterFeatures = PhysicalDeviceShaderDrawParametersFeatures
+const PhysicalDeviceShaderFloat16Int8FeaturesKHR = PhysicalDeviceShaderFloat16Int8Features
+const PhysicalDeviceShaderIntegerDotProductFeaturesKHR = PhysicalDeviceShaderIntegerDotProductFeatures
+const PhysicalDeviceShaderIntegerDotProductPropertiesKHR = PhysicalDeviceShaderIntegerDotProductProperties
+const PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR = PhysicalDeviceShaderSubgroupExtendedTypesFeatures
+const PhysicalDeviceShaderTerminateInvocationFeaturesKHR = PhysicalDeviceShaderTerminateInvocationFeatures
+const PhysicalDeviceSparseImageFormatInfo2KHR = PhysicalDeviceSparseImageFormatInfo2
+const PhysicalDeviceSubgroupSizeControlFeaturesEXT = PhysicalDeviceSubgroupSizeControlFeatures
+const PhysicalDeviceSubgroupSizeControlPropertiesEXT = PhysicalDeviceSubgroupSizeControlProperties
+const PhysicalDeviceSynchronization2FeaturesKHR = PhysicalDeviceSynchronization2Features
+const PhysicalDeviceTexelBufferAlignmentPropertiesEXT = PhysicalDeviceTexelBufferAlignmentProperties
+const PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT = PhysicalDeviceTextureCompressionASTCHDRFeatures
+const PhysicalDeviceTimelineSemaphoreFeaturesKHR = PhysicalDeviceTimelineSemaphoreFeatures
+const PhysicalDeviceTimelineSemaphorePropertiesKHR = PhysicalDeviceTimelineSemaphoreProperties
+const PhysicalDeviceToolPropertiesEXT = PhysicalDeviceToolProperties
+const PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR = PhysicalDeviceUniformBufferStandardLayoutFeatures
+const PhysicalDeviceVariablePointerFeatures = PhysicalDeviceVariablePointersFeatures
+const PhysicalDeviceVariablePointerFeaturesKHR = PhysicalDeviceVariablePointersFeatures
+const PhysicalDeviceVariablePointersFeaturesKHR = PhysicalDeviceVariablePointersFeatures
+const PhysicalDeviceVulkanMemoryModelFeaturesKHR = PhysicalDeviceVulkanMemoryModelFeatures
+const PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR = PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures
+const PipelineCreationFeedbackCreateInfoEXT = PipelineCreationFeedbackCreateInfo
+const PipelineCreationFeedbackEXT = PipelineCreationFeedback
+const PipelineRenderingCreateInfoKHR = PipelineRenderingCreateInfo
+const PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT = PipelineShaderStageRequiredSubgroupSizeCreateInfo
+const PipelineTessellationDomainOriginStateCreateInfoKHR = PipelineTessellationDomainOriginStateCreateInfo
+const PointClippingBehaviorKHR = PointClippingBehavior
+const PrivateDataSlotCreateInfoEXT = PrivateDataSlotCreateInfo
+const PrivateDataSlotEXT = PrivateDataSlot
+const QueryPoolCreateInfoINTEL = QueryPoolPerformanceQueryCreateInfoINTEL
+const QueueFamilyGlobalPriorityPropertiesEXT = QueueFamilyGlobalPriorityPropertiesKHR
+const QueueFamilyProperties2KHR = QueueFamilyProperties2
+const QueueGlobalPriorityEXT = QueueGlobalPriorityKHR
+const RayTracingShaderGroupTypeNV = RayTracingShaderGroupTypeKHR
+const RenderPassAttachmentBeginInfoKHR = RenderPassAttachmentBeginInfo
+const RenderPassCreateInfo2KHR = RenderPassCreateInfo2
+const RenderPassInputAttachmentAspectCreateInfoKHR = RenderPassInputAttachmentAspectCreateInfo
+const RenderPassMultiviewCreateInfoKHR = RenderPassMultiviewCreateInfo
+const RenderingAttachmentInfoKHR = RenderingAttachmentInfo
+const RenderingInfoKHR = RenderingInfo
+const ResolveImageInfo2KHR = ResolveImageInfo2
+const SamplerReductionModeCreateInfoEXT = SamplerReductionModeCreateInfo
+const SamplerReductionModeEXT = SamplerReductionMode
+const SamplerYcbcrConversionCreateInfoKHR = SamplerYcbcrConversionCreateInfo
+const SamplerYcbcrConversionImageFormatPropertiesKHR = SamplerYcbcrConversionImageFormatProperties
+const SamplerYcbcrConversionInfoKHR = SamplerYcbcrConversionInfo
+const SamplerYcbcrConversionKHR = SamplerYcbcrConversion
+const SamplerYcbcrModelConversionKHR = SamplerYcbcrModelConversion
+const SamplerYcbcrRangeKHR = SamplerYcbcrRange
+const SemaphoreSignalInfoKHR = SemaphoreSignalInfo
+const SemaphoreSubmitInfoKHR = SemaphoreSubmitInfo
+const SemaphoreTypeCreateInfoKHR = SemaphoreTypeCreateInfo
+const SemaphoreTypeKHR = SemaphoreType
+const SemaphoreWaitInfoKHR = SemaphoreWaitInfo
+const ShaderFloatControlsIndependenceKHR = ShaderFloatControlsIndependence
+const SparseImageFormatProperties2KHR = SparseImageFormatProperties2
+const SparseImageMemoryRequirements2KHR = SparseImageMemoryRequirements2
+const SubmitInfo2KHR = SubmitInfo2
+const SubpassBeginInfoKHR = SubpassBeginInfo
+const SubpassDependency2KHR = SubpassDependency2
+const SubpassDescription2KHR = SubpassDescription2
+const SubpassDescriptionDepthStencilResolveKHR = SubpassDescriptionDepthStencilResolve
+const SubpassEndInfoKHR = SubpassEndInfo
+const TessellationDomainOriginKHR = TessellationDomainOrigin
+const TimelineSemaphoreSubmitInfoKHR = TimelineSemaphoreSubmitInfo
+const TransformMatrixNV = TransformMatrixKHR
+const WriteDescriptorSetInlineUniformBlockEXT = WriteDescriptorSetInlineUniformBlock
+bind_buffer_memory_2_khr(device, args...; kwargs...) = @dispatch(vkBindBufferMemory2KHR, device, bind_buffer_memory_2(device, args...; kwargs...))
 
-cmd_set_rasterizer_discard_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetRasterizerDiscardEnableEXT, device(command_buffer), cmd_set_rasterizer_discard_enable(command_buffer, args...; kwargs...))
-
-cmd_next_subpass_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdNextSubpass2KHR, device(command_buffer), cmd_next_subpass_2(command_buffer, args...; kwargs...))
-
-cmd_set_cull_mode_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetCullModeEXT, device(command_buffer), cmd_set_cull_mode(command_buffer, args...; kwargs...))
-
-cmd_blit_image_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdBlitImage2KHR, device(command_buffer), cmd_blit_image_2(command_buffer, args...; kwargs...))
-
-get_physical_device_memory_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceMemoryProperties2KHR, instance(physical_device), get_physical_device_memory_properties_2(physical_device, args...; kwargs...))
-
-create_sampler_ycbcr_conversion_khr(device, args...; kwargs...) = @dispatch(vkCreateSamplerYcbcrConversionKHR, device, create_sampler_ycbcr_conversion(device, args...; kwargs...))
-
-cmd_set_event_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetEvent2KHR, device(command_buffer), cmd_set_event_2(command_buffer, args...; kwargs...))
-
-cmd_dispatch_base_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdDispatchBaseKHR, device(command_buffer), cmd_dispatch_base(command_buffer, args...; kwargs...))
-
-cmd_copy_image_to_buffer_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdCopyImageToBuffer2KHR, device(command_buffer), cmd_copy_image_to_buffer_2(command_buffer, args...; kwargs...))
-
-cmd_copy_buffer_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdCopyBuffer2KHR, device(command_buffer), cmd_copy_buffer_2(command_buffer, args...; kwargs...))
-
-cmd_set_front_face_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetFrontFaceEXT, device(command_buffer), cmd_set_front_face(command_buffer, args...; kwargs...))
-
-get_descriptor_set_layout_support_khr(device, args...; kwargs...) = @dispatch(vkGetDescriptorSetLayoutSupportKHR, device, get_descriptor_set_layout_support(device, args...; kwargs...))
-
-cmd_begin_rendering_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdBeginRenderingKHR, device(command_buffer), cmd_begin_rendering(command_buffer, args...; kwargs...))
-
-cmd_set_depth_write_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthWriteEnableEXT, device(command_buffer), cmd_set_depth_write_enable(command_buffer, args...; kwargs...))
-
-get_physical_device_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceProperties2KHR, instance(physical_device), get_physical_device_properties_2(physical_device, args...; kwargs...))
-
-destroy_private_data_slot_ext(device, args...; kwargs...) = @dispatch(vkDestroyPrivateDataSlotEXT, device, destroy_private_data_slot(device, args...; kwargs...))
+bind_image_memory_2_khr(device, args...; kwargs...) = @dispatch(vkBindImageMemory2KHR, device, bind_image_memory_2(device, args...; kwargs...))
 
 cmd_begin_render_pass_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdBeginRenderPass2KHR, device(command_buffer), cmd_begin_render_pass_2(command_buffer, args...; kwargs...))
 
-signal_semaphore_khr(device, args...; kwargs...) = @dispatch(vkSignalSemaphoreKHR, device, signal_semaphore(device, args...; kwargs...))
+cmd_begin_rendering_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdBeginRenderingKHR, device(command_buffer), cmd_begin_rendering(command_buffer, args...; kwargs...))
 
-create_private_data_slot_ext(device, args...; kwargs...) = @dispatch(vkCreatePrivateDataSlotEXT, device, create_private_data_slot(device, args...; kwargs...))
+cmd_bind_vertex_buffers_2_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdBindVertexBuffers2EXT, device(command_buffer), cmd_bind_vertex_buffers_2(command_buffer, args...; kwargs...))
 
-get_physical_device_image_format_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceImageFormatProperties2KHR, instance(physical_device), get_physical_device_image_format_properties_2(physical_device, args...; kwargs...))
+cmd_blit_image_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdBlitImage2KHR, device(command_buffer), cmd_blit_image_2(command_buffer, args...; kwargs...))
 
-get_physical_device_tool_properties_ext(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceToolPropertiesEXT, instance(physical_device), get_physical_device_tool_properties(physical_device, args...; kwargs...))
-
-bind_buffer_memory_2_khr(device, args...; kwargs...) = @dispatch(vkBindBufferMemory2KHR, device, bind_buffer_memory_2(device, args...; kwargs...))
-
-get_physical_device_sparse_image_format_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceSparseImageFormatProperties2KHR, instance(physical_device), get_physical_device_sparse_image_format_properties_2(physical_device, args...; kwargs...))
-
-get_buffer_device_address_ext(device, args...; kwargs...) = @dispatch(vkGetBufferDeviceAddressEXT, device, get_buffer_device_address(device, args...; kwargs...))
-
-destroy_descriptor_update_template_khr(device, args...; kwargs...) = @dispatch(vkDestroyDescriptorUpdateTemplateKHR, device, destroy_descriptor_update_template(device, args...; kwargs...))
-
-get_device_image_memory_requirements_khr(device, args...; kwargs...) = @dispatch(vkGetDeviceImageMemoryRequirementsKHR, device, get_device_image_memory_requirements(device, args...; kwargs...))
-
-queue_submit_2_khr(queue, args...; kwargs...) = @dispatch(vkQueueSubmit2KHR, device(queue), queue_submit_2(queue, args...; kwargs...))
-
-cmd_set_scissor_with_count_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetScissorWithCountEXT, device(command_buffer), cmd_set_scissor_with_count(command_buffer, args...; kwargs...))
-
-get_buffer_memory_requirements_2_khr(device, args...; kwargs...) = @dispatch(vkGetBufferMemoryRequirements2KHR, device, get_buffer_memory_requirements_2(device, args...; kwargs...))
-
-cmd_resolve_image_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdResolveImage2KHR, device(command_buffer), cmd_resolve_image_2(command_buffer, args...; kwargs...))
-
-get_semaphore_counter_value_khr(device, args...; kwargs...) = @dispatch(vkGetSemaphoreCounterValueKHR, device, get_semaphore_counter_value(device, args...; kwargs...))
-
-cmd_write_timestamp_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdWriteTimestamp2KHR, device(command_buffer), cmd_write_timestamp_2(command_buffer, args...; kwargs...))
-
-get_image_memory_requirements_2_khr(device, args...; kwargs...) = @dispatch(vkGetImageMemoryRequirements2KHR, device, get_image_memory_requirements_2(device, args...; kwargs...))
-
-get_device_image_sparse_memory_requirements_khr(device, args...; kwargs...) = @dispatch(vkGetDeviceImageSparseMemoryRequirementsKHR, device, get_device_image_sparse_memory_requirements(device, args...; kwargs...))
-
-update_descriptor_set_with_template_khr(device, args...; kwargs...) = @dispatch(vkUpdateDescriptorSetWithTemplateKHR, device, update_descriptor_set_with_template(device, args...; kwargs...))
+cmd_copy_buffer_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdCopyBuffer2KHR, device(command_buffer), cmd_copy_buffer_2(command_buffer, args...; kwargs...))
 
 cmd_copy_buffer_to_image_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdCopyBufferToImage2KHR, device(command_buffer), cmd_copy_buffer_to_image_2(command_buffer, args...; kwargs...))
 
+cmd_copy_image_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdCopyImage2KHR, device(command_buffer), cmd_copy_image_2(command_buffer, args...; kwargs...))
+
+cmd_copy_image_to_buffer_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdCopyImageToBuffer2KHR, device(command_buffer), cmd_copy_image_to_buffer_2(command_buffer, args...; kwargs...))
+
+cmd_dispatch_base_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdDispatchBaseKHR, device(command_buffer), cmd_dispatch_base(command_buffer, args...; kwargs...))
+
 cmd_draw_indexed_indirect_count_amd(command_buffer, args...; kwargs...) = @dispatch(vkCmdDrawIndexedIndirectCountAMD, device(command_buffer), cmd_draw_indexed_indirect_count(command_buffer, args...; kwargs...))
 
-wait_semaphores_khr(device, args...; kwargs...) = @dispatch(vkWaitSemaphoresKHR, device, wait_semaphores(device, args...; kwargs...))
+cmd_draw_indexed_indirect_count_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdDrawIndexedIndirectCountKHR, device(command_buffer), cmd_draw_indexed_indirect_count(command_buffer, args...; kwargs...))
 
-cmd_wait_events_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdWaitEvents2KHR, device(command_buffer), cmd_wait_events_2(command_buffer, args...; kwargs...))
+cmd_draw_indirect_count_amd(command_buffer, args...; kwargs...) = @dispatch(vkCmdDrawIndirectCountAMD, device(command_buffer), cmd_draw_indirect_count(command_buffer, args...; kwargs...))
 
-cmd_set_depth_test_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthTestEnableEXT, device(command_buffer), cmd_set_depth_test_enable(command_buffer, args...; kwargs...))
-
-get_physical_device_format_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceFormatProperties2KHR, instance(physical_device), get_physical_device_format_properties_2(physical_device, args...; kwargs...))
-
-get_physical_device_external_buffer_properties_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceExternalBufferPropertiesKHR, instance(physical_device), get_physical_device_external_buffer_properties(physical_device, args...; kwargs...))
-
-get_buffer_opaque_capture_address_khr(device, args...; kwargs...) = @dispatch(vkGetBufferOpaqueCaptureAddressKHR, device, get_buffer_opaque_capture_address(device, args...; kwargs...))
-
-set_private_data_ext(device, args...; kwargs...) = @dispatch(vkSetPrivateDataEXT, device, set_private_data(device, args...; kwargs...))
-
-cmd_end_rendering_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdEndRenderingKHR, device(command_buffer), cmd_end_rendering(command_buffer, args...; kwargs...))
-
-cmd_reset_event_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdResetEvent2KHR, device(command_buffer), cmd_reset_event_2(command_buffer, args...; kwargs...))
-
-trim_command_pool_khr(device, args...; kwargs...) = @dispatch(vkTrimCommandPoolKHR, device, trim_command_pool(device, args...; kwargs...))
-
-destroy_sampler_ycbcr_conversion_khr(device, args...; kwargs...) = @dispatch(vkDestroySamplerYcbcrConversionKHR, device, destroy_sampler_ycbcr_conversion(device, args...; kwargs...))
-
-create_render_pass_2_khr(device, args...; kwargs...) = @dispatch(vkCreateRenderPass2KHR, device, create_render_pass_2(device, args...; kwargs...))
-
-cmd_set_depth_bias_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthBiasEnableEXT, device(command_buffer), cmd_set_depth_bias_enable(command_buffer, args...; kwargs...))
+cmd_draw_indirect_count_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdDrawIndirectCountKHR, device(command_buffer), cmd_draw_indirect_count(command_buffer, args...; kwargs...))
 
 cmd_end_render_pass_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdEndRenderPass2KHR, device(command_buffer), cmd_end_render_pass_2(command_buffer, args...; kwargs...))
 
-cmd_set_device_mask_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDeviceMaskKHR, device(command_buffer), cmd_set_device_mask(command_buffer, args...; kwargs...))
+cmd_end_rendering_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdEndRenderingKHR, device(command_buffer), cmd_end_rendering(command_buffer, args...; kwargs...))
 
-create_descriptor_update_template_khr(device, args...; kwargs...) = @dispatch(vkCreateDescriptorUpdateTemplateKHR, device, create_descriptor_update_template(device, args...; kwargs...))
+cmd_next_subpass_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdNextSubpass2KHR, device(command_buffer), cmd_next_subpass_2(command_buffer, args...; kwargs...))
+
+cmd_pipeline_barrier_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdPipelineBarrier2KHR, device(command_buffer), cmd_pipeline_barrier_2(command_buffer, args...; kwargs...))
+
+cmd_reset_event_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdResetEvent2KHR, device(command_buffer), cmd_reset_event_2(command_buffer, args...; kwargs...))
+
+cmd_resolve_image_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdResolveImage2KHR, device(command_buffer), cmd_resolve_image_2(command_buffer, args...; kwargs...))
+
+cmd_set_cull_mode_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetCullModeEXT, device(command_buffer), cmd_set_cull_mode(command_buffer, args...; kwargs...))
+
+cmd_set_depth_bias_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthBiasEnableEXT, device(command_buffer), cmd_set_depth_bias_enable(command_buffer, args...; kwargs...))
 
 cmd_set_depth_bounds_test_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthBoundsTestEnableEXT, device(command_buffer), cmd_set_depth_bounds_test_enable(command_buffer, args...; kwargs...))
 
 cmd_set_depth_compare_op_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthCompareOpEXT, device(command_buffer), cmd_set_depth_compare_op(command_buffer, args...; kwargs...))
 
-enumerate_physical_device_groups_khr(instance, args...; kwargs...) = @dispatch(vkEnumeratePhysicalDeviceGroupsKHR, instance, enumerate_physical_device_groups(instance, args...; kwargs...))
+cmd_set_depth_test_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthTestEnableEXT, device(command_buffer), cmd_set_depth_test_enable(command_buffer, args...; kwargs...))
 
-cmd_draw_indexed_indirect_count_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdDrawIndexedIndirectCountKHR, device(command_buffer), cmd_draw_indexed_indirect_count(command_buffer, args...; kwargs...))
+cmd_set_depth_write_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDepthWriteEnableEXT, device(command_buffer), cmd_set_depth_write_enable(command_buffer, args...; kwargs...))
+
+cmd_set_device_mask_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetDeviceMaskKHR, device(command_buffer), cmd_set_device_mask(command_buffer, args...; kwargs...))
+
+cmd_set_event_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetEvent2KHR, device(command_buffer), cmd_set_event_2(command_buffer, args...; kwargs...))
+
+cmd_set_front_face_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetFrontFaceEXT, device(command_buffer), cmd_set_front_face(command_buffer, args...; kwargs...))
+
+cmd_set_primitive_restart_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetPrimitiveRestartEnableEXT, device(command_buffer), cmd_set_primitive_restart_enable(command_buffer, args...; kwargs...))
+
+cmd_set_primitive_topology_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetPrimitiveTopologyEXT, device(command_buffer), cmd_set_primitive_topology(command_buffer, args...; kwargs...))
+
+cmd_set_rasterizer_discard_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetRasterizerDiscardEnableEXT, device(command_buffer), cmd_set_rasterizer_discard_enable(command_buffer, args...; kwargs...))
+
+cmd_set_scissor_with_count_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetScissorWithCountEXT, device(command_buffer), cmd_set_scissor_with_count(command_buffer, args...; kwargs...))
 
 cmd_set_stencil_op_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetStencilOpEXT, device(command_buffer), cmd_set_stencil_op(command_buffer, args...; kwargs...))
+
+cmd_set_stencil_test_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetStencilTestEnableEXT, device(command_buffer), cmd_set_stencil_test_enable(command_buffer, args...; kwargs...))
+
+cmd_set_viewport_with_count_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetViewportWithCountEXT, device(command_buffer), cmd_set_viewport_with_count(command_buffer, args...; kwargs...))
+
+cmd_wait_events_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdWaitEvents2KHR, device(command_buffer), cmd_wait_events_2(command_buffer, args...; kwargs...))
+
+cmd_write_timestamp_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdWriteTimestamp2KHR, device(command_buffer), cmd_write_timestamp_2(command_buffer, args...; kwargs...))
+
+create_descriptor_update_template_khr(device, args...; kwargs...) = @dispatch(vkCreateDescriptorUpdateTemplateKHR, device, create_descriptor_update_template(device, args...; kwargs...))
+
+create_private_data_slot_ext(device, args...; kwargs...) = @dispatch(vkCreatePrivateDataSlotEXT, device, create_private_data_slot(device, args...; kwargs...))
+
+create_render_pass_2_khr(device, args...; kwargs...) = @dispatch(vkCreateRenderPass2KHR, device, create_render_pass_2(device, args...; kwargs...))
+
+create_sampler_ycbcr_conversion_khr(device, args...; kwargs...) = @dispatch(vkCreateSamplerYcbcrConversionKHR, device, create_sampler_ycbcr_conversion(device, args...; kwargs...))
+
+destroy_descriptor_update_template_khr(device, args...; kwargs...) = @dispatch(vkDestroyDescriptorUpdateTemplateKHR, device, destroy_descriptor_update_template(device, args...; kwargs...))
+
+destroy_private_data_slot_ext(device, args...; kwargs...) = @dispatch(vkDestroyPrivateDataSlotEXT, device, destroy_private_data_slot(device, args...; kwargs...))
+
+destroy_sampler_ycbcr_conversion_khr(device, args...; kwargs...) = @dispatch(vkDestroySamplerYcbcrConversionKHR, device, destroy_sampler_ycbcr_conversion(device, args...; kwargs...))
+
+enumerate_physical_device_groups_khr(instance, args...; kwargs...) = @dispatch(vkEnumeratePhysicalDeviceGroupsKHR, instance, enumerate_physical_device_groups(instance, args...; kwargs...))
+
+get_buffer_device_address_ext(device, args...; kwargs...) = @dispatch(vkGetBufferDeviceAddressEXT, device, get_buffer_device_address(device, args...; kwargs...))
+
+get_buffer_device_address_khr(device, args...; kwargs...) = @dispatch(vkGetBufferDeviceAddressKHR, device, get_buffer_device_address(device, args...; kwargs...))
+
+get_buffer_memory_requirements_2_khr(device, args...; kwargs...) = @dispatch(vkGetBufferMemoryRequirements2KHR, device, get_buffer_memory_requirements_2(device, args...; kwargs...))
+
+get_buffer_opaque_capture_address_khr(device, args...; kwargs...) = @dispatch(vkGetBufferOpaqueCaptureAddressKHR, device, get_buffer_opaque_capture_address(device, args...; kwargs...))
+
+get_descriptor_set_layout_support_khr(device, args...; kwargs...) = @dispatch(vkGetDescriptorSetLayoutSupportKHR, device, get_descriptor_set_layout_support(device, args...; kwargs...))
 
 get_device_buffer_memory_requirements_khr(device, args...; kwargs...) = @dispatch(vkGetDeviceBufferMemoryRequirementsKHR, device, get_device_buffer_memory_requirements(device, args...; kwargs...))
 
 get_device_group_peer_memory_features_khr(device, args...; kwargs...) = @dispatch(vkGetDeviceGroupPeerMemoryFeaturesKHR, device, get_device_group_peer_memory_features(device, args...; kwargs...))
 
-get_physical_device_queue_family_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceQueueFamilyProperties2KHR, instance(physical_device), get_physical_device_queue_family_properties_2(physical_device, args...; kwargs...))
+get_device_image_memory_requirements_khr(device, args...; kwargs...) = @dispatch(vkGetDeviceImageMemoryRequirementsKHR, device, get_device_image_memory_requirements(device, args...; kwargs...))
 
-get_image_sparse_memory_requirements_2_khr(device, args...; kwargs...) = @dispatch(vkGetImageSparseMemoryRequirements2KHR, device, get_image_sparse_memory_requirements_2(device, args...; kwargs...))
-
-cmd_copy_image_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdCopyImage2KHR, device(command_buffer), cmd_copy_image_2(command_buffer, args...; kwargs...))
-
-cmd_pipeline_barrier_2_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdPipelineBarrier2KHR, device(command_buffer), cmd_pipeline_barrier_2(command_buffer, args...; kwargs...))
-
-get_physical_device_external_semaphore_properties_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceExternalSemaphorePropertiesKHR, instance(physical_device), get_physical_device_external_semaphore_properties(physical_device, args...; kwargs...))
-
-cmd_draw_indirect_count_amd(command_buffer, args...; kwargs...) = @dispatch(vkCmdDrawIndirectCountAMD, device(command_buffer), cmd_draw_indirect_count(command_buffer, args...; kwargs...))
-
-get_physical_device_external_fence_properties_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceExternalFencePropertiesKHR, instance(physical_device), get_physical_device_external_fence_properties(physical_device, args...; kwargs...))
-
-get_physical_device_features_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceFeatures2KHR, instance(physical_device), get_physical_device_features_2(physical_device, args...; kwargs...))
-
-cmd_set_stencil_test_enable_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetStencilTestEnableEXT, device(command_buffer), cmd_set_stencil_test_enable(command_buffer, args...; kwargs...))
-
-get_buffer_device_address_khr(device, args...; kwargs...) = @dispatch(vkGetBufferDeviceAddressKHR, device, get_buffer_device_address(device, args...; kwargs...))
-
-get_private_data_ext(device, args...; kwargs...) = @dispatch(vkGetPrivateDataEXT, device, get_private_data(device, args...; kwargs...))
-
-reset_query_pool_ext(device, args...; kwargs...) = @dispatch(vkResetQueryPoolEXT, device, reset_query_pool(device, args...; kwargs...))
-
-bind_image_memory_2_khr(device, args...; kwargs...) = @dispatch(vkBindImageMemory2KHR, device, bind_image_memory_2(device, args...; kwargs...))
-
-get_ray_tracing_shader_group_handles_nv(device, args...; kwargs...) = @dispatch(vkGetRayTracingShaderGroupHandlesNV, device, get_ray_tracing_shader_group_handles_khr(device, args...; kwargs...))
-
-cmd_draw_indirect_count_khr(command_buffer, args...; kwargs...) = @dispatch(vkCmdDrawIndirectCountKHR, device(command_buffer), cmd_draw_indirect_count(command_buffer, args...; kwargs...))
-
-cmd_set_viewport_with_count_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetViewportWithCountEXT, device(command_buffer), cmd_set_viewport_with_count(command_buffer, args...; kwargs...))
-
-cmd_bind_vertex_buffers_2_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdBindVertexBuffers2EXT, device(command_buffer), cmd_bind_vertex_buffers_2(command_buffer, args...; kwargs...))
+get_device_image_sparse_memory_requirements_khr(device, args...; kwargs...) = @dispatch(vkGetDeviceImageSparseMemoryRequirementsKHR, device, get_device_image_sparse_memory_requirements(device, args...; kwargs...))
 
 get_device_memory_opaque_capture_address_khr(device, args...; kwargs...) = @dispatch(vkGetDeviceMemoryOpaqueCaptureAddressKHR, device, get_device_memory_opaque_capture_address(device, args...; kwargs...))
 
-cmd_set_primitive_topology_ext(command_buffer, args...; kwargs...) = @dispatch(vkCmdSetPrimitiveTopologyEXT, device(command_buffer), cmd_set_primitive_topology(command_buffer, args...; kwargs...))
+get_image_memory_requirements_2_khr(device, args...; kwargs...) = @dispatch(vkGetImageMemoryRequirements2KHR, device, get_image_memory_requirements_2(device, args...; kwargs...))
+
+get_image_sparse_memory_requirements_2_khr(device, args...; kwargs...) = @dispatch(vkGetImageSparseMemoryRequirements2KHR, device, get_image_sparse_memory_requirements_2(device, args...; kwargs...))
+
+get_physical_device_external_buffer_properties_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceExternalBufferPropertiesKHR, instance(physical_device), get_physical_device_external_buffer_properties(physical_device, args...; kwargs...))
+
+get_physical_device_external_fence_properties_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceExternalFencePropertiesKHR, instance(physical_device), get_physical_device_external_fence_properties(physical_device, args...; kwargs...))
+
+get_physical_device_external_semaphore_properties_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceExternalSemaphorePropertiesKHR, instance(physical_device), get_physical_device_external_semaphore_properties(physical_device, args...; kwargs...))
+
+get_physical_device_features_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceFeatures2KHR, instance(physical_device), get_physical_device_features_2(physical_device, args...; kwargs...))
+
+get_physical_device_format_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceFormatProperties2KHR, instance(physical_device), get_physical_device_format_properties_2(physical_device, args...; kwargs...))
+
+get_physical_device_image_format_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceImageFormatProperties2KHR, instance(physical_device), get_physical_device_image_format_properties_2(physical_device, args...; kwargs...))
+
+get_physical_device_memory_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceMemoryProperties2KHR, instance(physical_device), get_physical_device_memory_properties_2(physical_device, args...; kwargs...))
+
+get_physical_device_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceProperties2KHR, instance(physical_device), get_physical_device_properties_2(physical_device, args...; kwargs...))
+
+get_physical_device_queue_family_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceQueueFamilyProperties2KHR, instance(physical_device), get_physical_device_queue_family_properties_2(physical_device, args...; kwargs...))
+
+get_physical_device_sparse_image_format_properties_2_khr(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceSparseImageFormatProperties2KHR, instance(physical_device), get_physical_device_sparse_image_format_properties_2(physical_device, args...; kwargs...))
+
+get_physical_device_tool_properties_ext(physical_device, args...; kwargs...) = @dispatch(vkGetPhysicalDeviceToolPropertiesEXT, instance(physical_device), get_physical_device_tool_properties(physical_device, args...; kwargs...))
+
+get_private_data_ext(device, args...; kwargs...) = @dispatch(vkGetPrivateDataEXT, device, get_private_data(device, args...; kwargs...))
+
+get_ray_tracing_shader_group_handles_nv(device, args...; kwargs...) = @dispatch(vkGetRayTracingShaderGroupHandlesNV, device, get_ray_tracing_shader_group_handles_khr(device, args...; kwargs...))
+
+get_semaphore_counter_value_khr(device, args...; kwargs...) = @dispatch(vkGetSemaphoreCounterValueKHR, device, get_semaphore_counter_value(device, args...; kwargs...))
+
+queue_submit_2_khr(queue, args...; kwargs...) = @dispatch(vkQueueSubmit2KHR, device(queue), queue_submit_2(queue, args...; kwargs...))
+
+reset_query_pool_ext(device, args...; kwargs...) = @dispatch(vkResetQueryPoolEXT, device, reset_query_pool(device, args...; kwargs...))
+
+set_private_data_ext(device, args...; kwargs...) = @dispatch(vkSetPrivateDataEXT, device, set_private_data(device, args...; kwargs...))
+
+signal_semaphore_khr(device, args...; kwargs...) = @dispatch(vkSignalSemaphoreKHR, device, signal_semaphore(device, args...; kwargs...))
+
+trim_command_pool_khr(device, args...; kwargs...) = @dispatch(vkTrimCommandPoolKHR, device, trim_command_pool(device, args...; kwargs...))
+
+update_descriptor_set_with_template_khr(device, args...; kwargs...) = @dispatch(vkUpdateDescriptorSetWithTemplateKHR, device, update_descriptor_set_with_template(device, args...; kwargs...))
+
+wait_semaphores_khr(device, args...; kwargs...) = @dispatch(vkWaitSemaphoresKHR, device, wait_semaphores(device, args...; kwargs...))
 
 const SPIRV_EXTENSIONS = [SpecExtensionSPIRV("SPV_KHR_variable_pointers", v"1.1.0", ["VK_KHR_variable_pointers"]), SpecExtensionSPIRV("SPV_AMD_shader_explicit_vertex_parameter", nothing, ["VK_AMD_shader_explicit_vertex_parameter"]), SpecExtensionSPIRV("SPV_AMD_gcn_shader", nothing, ["VK_AMD_gcn_shader"]), SpecExtensionSPIRV("SPV_AMD_gpu_shader_half_float", nothing, ["VK_AMD_gpu_shader_half_float"]), SpecExtensionSPIRV("SPV_AMD_gpu_shader_int16", nothing, ["VK_AMD_gpu_shader_int16"]), SpecExtensionSPIRV("SPV_AMD_shader_ballot", nothing, ["VK_AMD_shader_ballot"]), SpecExtensionSPIRV("SPV_AMD_shader_fragment_mask", nothing, ["VK_AMD_shader_fragment_mask"]), SpecExtensionSPIRV("SPV_AMD_shader_image_load_store_lod", nothing, ["VK_AMD_shader_image_load_store_lod"]), SpecExtensionSPIRV("SPV_AMD_shader_trinary_minmax", nothing, ["VK_AMD_shader_trinary_minmax"]), SpecExtensionSPIRV("SPV_AMD_texture_gather_bias_lod", nothing, ["VK_AMD_texture_gather_bias_lod"]), SpecExtensionSPIRV("SPV_KHR_shader_draw_parameters", v"1.1.0", ["VK_KHR_shader_draw_parameters"]), SpecExtensionSPIRV("SPV_KHR_8bit_storage", v"1.2.0", ["VK_KHR_8bit_storage"]), SpecExtensionSPIRV("SPV_KHR_16bit_storage", v"1.1.0", ["VK_KHR_16bit_storage"]), SpecExtensionSPIRV("SPV_KHR_shader_clock", nothing, ["VK_KHR_shader_clock"]), SpecExtensionSPIRV("SPV_KHR_float_controls", v"1.2.0", ["VK_KHR_shader_float_controls"]), SpecExtensionSPIRV("SPV_KHR_storage_buffer_storage_class", v"1.1.0", ["VK_KHR_storage_buffer_storage_class"]), SpecExtensionSPIRV("SPV_KHR_post_depth_coverage", nothing, ["VK_EXT_post_depth_coverage"]), SpecExtensionSPIRV("SPV_EXT_shader_stencil_export", nothing, ["VK_EXT_shader_stencil_export"]), SpecExtensionSPIRV("SPV_KHR_shader_ballot", nothing, ["VK_EXT_shader_subgroup_ballot"]), SpecExtensionSPIRV("SPV_KHR_subgroup_vote", nothing, ["VK_EXT_shader_subgroup_vote"]), SpecExtensionSPIRV("SPV_NV_sample_mask_override_coverage", nothing, ["VK_NV_sample_mask_override_coverage"]), SpecExtensionSPIRV("SPV_NV_geometry_shader_passthrough", nothing, ["VK_NV_geometry_shader_passthrough"]), SpecExtensionSPIRV("SPV_NV_mesh_shader", nothing, ["VK_NV_mesh_shader"]), SpecExtensionSPIRV("SPV_NV_viewport_array2", nothing, ["VK_NV_viewport_array2"]), SpecExtensionSPIRV("SPV_NV_shader_subgroup_partitioned", nothing, ["VK_NV_shader_subgroup_partitioned"]), SpecExtensionSPIRV("SPV_EXT_shader_viewport_index_layer", v"1.2.0", ["VK_EXT_shader_viewport_index_layer"]), SpecExtensionSPIRV("SPV_NVX_multiview_per_view_attributes", nothing, ["VK_NVX_multiview_per_view_attributes"]), SpecExtensionSPIRV("SPV_EXT_descriptor_indexing", v"1.2.0", ["VK_EXT_descriptor_indexing"]), SpecExtensionSPIRV("SPV_KHR_vulkan_memory_model", v"1.2.0", ["VK_KHR_vulkan_memory_model"]), SpecExtensionSPIRV("SPV_NV_compute_shader_derivatives", nothing, ["VK_NV_compute_shader_derivatives"]), SpecExtensionSPIRV("SPV_NV_fragment_shader_barycentric", nothing, ["VK_NV_fragment_shader_barycentric"]), SpecExtensionSPIRV("SPV_NV_shader_image_footprint", nothing, ["VK_NV_shader_image_footprint"]), SpecExtensionSPIRV("SPV_NV_shading_rate", nothing, ["VK_NV_shading_rate_image"]), SpecExtensionSPIRV("SPV_NV_ray_tracing", nothing, ["VK_NV_ray_tracing"]), SpecExtensionSPIRV("SPV_KHR_ray_tracing", nothing, ["VK_KHR_ray_tracing_pipeline"]), SpecExtensionSPIRV("SPV_KHR_ray_query", nothing, ["VK_KHR_ray_query"]), SpecExtensionSPIRV("SPV_GOOGLE_hlsl_functionality1", nothing, ["VK_GOOGLE_hlsl_functionality1"]), SpecExtensionSPIRV("SPV_GOOGLE_user_type", nothing, ["VK_GOOGLE_user_type"]), SpecExtensionSPIRV("SPV_GOOGLE_decorate_string", nothing, ["VK_GOOGLE_decorate_string"]), SpecExtensionSPIRV("SPV_EXT_fragment_invocation_density", nothing, ["VK_EXT_fragment_density_map"]), SpecExtensionSPIRV("SPV_KHR_physical_storage_buffer", v"1.2.0", ["VK_KHR_buffer_device_address"]), SpecExtensionSPIRV("SPV_EXT_physical_storage_buffer", nothing, ["VK_EXT_buffer_device_address"]), SpecExtensionSPIRV("SPV_NV_cooperative_matrix", nothing, ["VK_NV_cooperative_matrix"]), SpecExtensionSPIRV("SPV_NV_shader_sm_builtins", nothing, ["VK_NV_shader_sm_builtins"]), SpecExtensionSPIRV("SPV_EXT_fragment_shader_interlock", nothing, ["VK_EXT_fragment_shader_interlock"]), SpecExtensionSPIRV("SPV_EXT_demote_to_helper_invocation", nothing, ["VK_EXT_shader_demote_to_helper_invocation"]), SpecExtensionSPIRV("SPV_KHR_fragment_shading_rate", nothing, ["VK_KHR_fragment_shading_rate"]), SpecExtensionSPIRV("SPV_KHR_non_semantic_info", nothing, ["VK_KHR_shader_non_semantic_info"]), SpecExtensionSPIRV("SPV_EXT_shader_image_int64", nothing, ["VK_EXT_shader_image_atomic_int64"]), SpecExtensionSPIRV("SPV_KHR_terminate_invocation", nothing, ["VK_KHR_shader_terminate_invocation"]), SpecExtensionSPIRV("SPV_KHR_multiview", v"1.1.0", ["VK_KHR_multiview"]), SpecExtensionSPIRV("SPV_KHR_workgroup_memory_explicit_layout", nothing, ["VK_KHR_workgroup_memory_explicit_layout"]), SpecExtensionSPIRV("SPV_EXT_shader_atomic_float_add", nothing, ["VK_EXT_shader_atomic_float"]), SpecExtensionSPIRV("SPV_KHR_subgroup_uniform_control_flow", nothing, ["VK_KHR_shader_subgroup_uniform_control_flow"]), SpecExtensionSPIRV("SPV_EXT_shader_atomic_float_min_max", nothing, ["VK_EXT_shader_atomic_float2"]), SpecExtensionSPIRV("SPV_EXT_shader_atomic_float16_add", nothing, ["VK_EXT_shader_atomic_float2"]), SpecExtensionSPIRV("SPV_KHR_integer_dot_product", nothing, ["VK_KHR_shader_integer_dot_product"]), SpecExtensionSPIRV("SPV_INTEL_shader_integer_functions", nothing, ["VK_INTEL_shader_integer_functions2"]), SpecExtensionSPIRV("SPV_KHR_device_group", nothing, ["VK_KHR_device_group"])]
 const SPIRV_CAPABILITIES = [SpecCapabilitySPIRV(:Matrix, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:Shader, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:InputAttachment, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:Sampled1D, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:Image1D, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:SampledBuffer, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ImageBuffer, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ImageQuery, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:DerivativeControl, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:Geometry, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :geometry_shader, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:Tessellation, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :tessellation_shader, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:Float64, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_float_64, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:Int64, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_int_64, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:Int64Atomics, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_buffer_int_64_atomics, nothing, "VK_KHR_shader_atomic_int64"), FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_shared_int_64_atomics, nothing, "VK_KHR_shader_atomic_int64"), FeatureCondition(:PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, :shader_image_int_64_atomics, nothing, "VK_EXT_shader_image_atomic_int64")], PropertyCondition[]), SpecCapabilitySPIRV(:AtomicFloat16AddEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_buffer_float_16_atomic_add, nothing, "VK_EXT_shader_atomic_float2"), FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_shared_float_16_atomic_add, nothing, "VK_EXT_shader_atomic_float2")], PropertyCondition[]), SpecCapabilitySPIRV(:AtomicFloat32AddEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderAtomicFloatFeaturesEXT, :shader_buffer_float_32_atomic_add, nothing, "VK_EXT_shader_atomic_float"), FeatureCondition(:PhysicalDeviceShaderAtomicFloatFeaturesEXT, :shader_shared_float_32_atomic_add, nothing, "VK_EXT_shader_atomic_float"), FeatureCondition(:PhysicalDeviceShaderAtomicFloatFeaturesEXT, :shader_image_float_32_atomic_add, nothing, "VK_EXT_shader_atomic_float")], PropertyCondition[]), SpecCapabilitySPIRV(:AtomicFloat64AddEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderAtomicFloatFeaturesEXT, :shader_buffer_float_64_atomic_add, nothing, "VK_EXT_shader_atomic_float"), FeatureCondition(:PhysicalDeviceShaderAtomicFloatFeaturesEXT, :shader_shared_float_64_atomic_add, nothing, "VK_EXT_shader_atomic_float")], PropertyCondition[]), SpecCapabilitySPIRV(:AtomicFloat16MinMaxEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_buffer_float_16_atomic_min_max, nothing, "VK_EXT_shader_atomic_float2"), FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_shared_float_16_atomic_min_max, nothing, "VK_EXT_shader_atomic_float2")], PropertyCondition[]), SpecCapabilitySPIRV(:AtomicFloat32MinMaxEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_buffer_float_32_atomic_min_max, nothing, "VK_EXT_shader_atomic_float2"), FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_shared_float_32_atomic_min_max, nothing, "VK_EXT_shader_atomic_float2"), FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_image_float_32_atomic_min_max, nothing, "VK_EXT_shader_atomic_float2")], PropertyCondition[]), SpecCapabilitySPIRV(:AtomicFloat64MinMaxEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_buffer_float_64_atomic_min_max, nothing, "VK_EXT_shader_atomic_float2"), FeatureCondition(:PhysicalDeviceShaderAtomicFloat2FeaturesEXT, :shader_shared_float_64_atomic_min_max, nothing, "VK_EXT_shader_atomic_float2")], PropertyCondition[]), SpecCapabilitySPIRV(:Int64ImageEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, :shader_image_int_64_atomics, nothing, "VK_EXT_shader_image_atomic_int64")], PropertyCondition[]), SpecCapabilitySPIRV(:Int16, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_int_16, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:TessellationPointSize, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_tessellation_and_geometry_point_size, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:GeometryPointSize, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_tessellation_and_geometry_point_size, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:ImageGatherExtended, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_image_gather_extended, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:StorageImageMultisample, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_storage_image_multisample, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:UniformBufferArrayDynamicIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_uniform_buffer_array_dynamic_indexing, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:SampledImageArrayDynamicIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_sampled_image_array_dynamic_indexing, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:StorageBufferArrayDynamicIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_storage_buffer_array_dynamic_indexing, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:StorageImageArrayDynamicIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_storage_image_array_dynamic_indexing, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:ClipDistance, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_clip_distance, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:CullDistance, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_cull_distance, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:ImageCubeArray, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :image_cube_array, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:SampleRateShading, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :sample_rate_shading, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:SparseResidency, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_resource_residency, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:MinLod, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_resource_min_lod, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:SampledCubeArray, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :image_cube_array, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:ImageMSArray, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_storage_image_multisample, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:StorageImageExtendedFormats, v"1.0.0", String[], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:InterpolationFunction, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :sample_rate_shading, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:StorageImageReadWithoutFormat, nothing, ["VK_KHR_format_feature_flags2"], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_storage_image_read_without_format, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:StorageImageWriteWithoutFormat, nothing, ["VK_KHR_format_feature_flags2"], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :shader_storage_image_write_without_format, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:MultiViewport, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFeatures, :multi_viewport, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:DrawParameters, nothing, ["VK_KHR_shader_draw_parameters"], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :shader_draw_parameters, nothing, nothing), FeatureCondition(:PhysicalDeviceShaderDrawParametersFeatures, :shader_draw_parameters, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:MultiView, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :multiview, nothing, nothing), FeatureCondition(:PhysicalDeviceMultiviewFeatures, :multiview, nothing, "VK_KHR_multiview")], PropertyCondition[]), SpecCapabilitySPIRV(:DeviceGroup, v"1.1.0", ["VK_KHR_device_group"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:VariablePointersStorageBuffer, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :variable_pointers_storage_buffer, nothing, nothing), FeatureCondition(:PhysicalDeviceVariablePointersFeatures, :variable_pointers_storage_buffer, nothing, "VK_KHR_variable_pointers")], PropertyCondition[]), SpecCapabilitySPIRV(:VariablePointers, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :variable_pointers, nothing, nothing), FeatureCondition(:PhysicalDeviceVariablePointersFeatures, :variable_pointers, nothing, "VK_KHR_variable_pointers")], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderClockKHR, nothing, ["VK_KHR_shader_clock"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:StencilExportEXT, nothing, ["VK_EXT_shader_stencil_export"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:SubgroupBallotKHR, nothing, ["VK_EXT_shader_subgroup_ballot"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:SubgroupVoteKHR, nothing, ["VK_EXT_shader_subgroup_vote"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ImageReadWriteLodAMD, nothing, ["VK_AMD_shader_image_load_store_lod"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ImageGatherBiasLodAMD, nothing, ["VK_AMD_texture_gather_bias_lod"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:FragmentMaskAMD, nothing, ["VK_AMD_shader_fragment_mask"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:SampleMaskOverrideCoverageNV, nothing, ["VK_NV_sample_mask_override_coverage"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:GeometryShaderPassthroughNV, nothing, ["VK_NV_geometry_shader_passthrough"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderViewportIndex, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_output_viewport_index, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderLayer, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_output_layer, nothing, nothing)], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderViewportIndexLayerEXT, nothing, ["VK_EXT_shader_viewport_index_layer"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderViewportIndexLayerNV, nothing, ["VK_NV_viewport_array2"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderViewportMaskNV, nothing, ["VK_NV_viewport_array2"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:PerViewAttributesNV, nothing, ["VK_NVX_multiview_per_view_attributes"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:StorageBuffer16BitAccess, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :storage_buffer_16_bit_access, nothing, nothing), FeatureCondition(:PhysicalDevice16BitStorageFeatures, :storage_buffer_16_bit_access, nothing, "VK_KHR_16bit_storage")], PropertyCondition[]), SpecCapabilitySPIRV(:UniformAndStorageBuffer16BitAccess, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :uniform_and_storage_buffer_16_bit_access, nothing, nothing), FeatureCondition(:PhysicalDevice16BitStorageFeatures, :uniform_and_storage_buffer_16_bit_access, nothing, "VK_KHR_16bit_storage")], PropertyCondition[]), SpecCapabilitySPIRV(:StoragePushConstant16, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :storage_push_constant_16, nothing, nothing), FeatureCondition(:PhysicalDevice16BitStorageFeatures, :storage_push_constant_16, nothing, "VK_KHR_16bit_storage")], PropertyCondition[]), SpecCapabilitySPIRV(:StorageInputOutput16, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan11Features, :storage_input_output_16, nothing, nothing), FeatureCondition(:PhysicalDevice16BitStorageFeatures, :storage_input_output_16, nothing, "VK_KHR_16bit_storage")], PropertyCondition[]), SpecCapabilitySPIRV(:GroupNonUniform, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_BASIC_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformVote, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_VOTE_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformArithmetic, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_ARITHMETIC_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformBallot, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_BALLOT_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformShuffle, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_SHUFFLE_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformShuffleRelative, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformClustered, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_CLUSTERED_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformQuad, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, nothing, false, :SUBGROUP_FEATURE_QUAD_BIT)]), SpecCapabilitySPIRV(:GroupNonUniformPartitionedNV, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan11Properties, :subgroup_supported_operations, nothing, "VK_NV_shader_subgroup_partitioned", false, :SUBGROUP_FEATURE_PARTITIONED_BIT_NV)]), SpecCapabilitySPIRV(:SampleMaskPostDepthCoverage, nothing, ["VK_EXT_post_depth_coverage"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderNonUniform, v"1.2.0", ["VK_EXT_descriptor_indexing"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:RuntimeDescriptorArray, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :runtime_descriptor_array, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:InputAttachmentArrayDynamicIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_input_attachment_array_dynamic_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:UniformTexelBufferArrayDynamicIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_uniform_texel_buffer_array_dynamic_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:StorageTexelBufferArrayDynamicIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_storage_texel_buffer_array_dynamic_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:UniformBufferArrayNonUniformIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_uniform_buffer_array_non_uniform_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:SampledImageArrayNonUniformIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_sampled_image_array_non_uniform_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:StorageBufferArrayNonUniformIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_storage_buffer_array_non_uniform_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:StorageImageArrayNonUniformIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_storage_image_array_non_uniform_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:InputAttachmentArrayNonUniformIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_input_attachment_array_non_uniform_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:UniformTexelBufferArrayNonUniformIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_uniform_texel_buffer_array_non_uniform_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:StorageTexelBufferArrayNonUniformIndexing, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_storage_texel_buffer_array_non_uniform_indexing, nothing, "VK_EXT_descriptor_indexing")], PropertyCondition[]), SpecCapabilitySPIRV(:Float16, nothing, ["VK_AMD_gpu_shader_half_float"], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_float_16, nothing, "VK_KHR_shader_float16_int8")], PropertyCondition[]), SpecCapabilitySPIRV(:Int8, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :shader_int_8, nothing, "VK_KHR_shader_float16_int8")], PropertyCondition[]), SpecCapabilitySPIRV(:StorageBuffer8BitAccess, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :storage_buffer_8_bit_access, nothing, "VK_KHR_8bit_storage")], PropertyCondition[]), SpecCapabilitySPIRV(:UniformAndStorageBuffer8BitAccess, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :uniform_and_storage_buffer_8_bit_access, nothing, "VK_KHR_8bit_storage")], PropertyCondition[]), SpecCapabilitySPIRV(:StoragePushConstant8, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :storage_push_constant_8, nothing, "VK_KHR_8bit_storage")], PropertyCondition[]), SpecCapabilitySPIRV(:VulkanMemoryModel, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :vulkan_memory_model, nothing, "VK_KHR_vulkan_memory_model")], PropertyCondition[]), SpecCapabilitySPIRV(:VulkanMemoryModelDeviceScope, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :vulkan_memory_model_device_scope, nothing, "VK_KHR_vulkan_memory_model")], PropertyCondition[]), SpecCapabilitySPIRV(:DenormPreserve, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_denorm_preserve_float_16, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_denorm_preserve_float_32, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_denorm_preserve_float_64, nothing, "VK_KHR_shader_float_controls", true, :TRUE)]), SpecCapabilitySPIRV(:DenormFlushToZero, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_denorm_flush_to_zero_float_16, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_denorm_flush_to_zero_float_32, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_denorm_flush_to_zero_float_64, nothing, "VK_KHR_shader_float_controls", true, :TRUE)]), SpecCapabilitySPIRV(:SignedZeroInfNanPreserve, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_signed_zero_inf_nan_preserve_float_16, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_signed_zero_inf_nan_preserve_float_32, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_signed_zero_inf_nan_preserve_float_64, nothing, "VK_KHR_shader_float_controls", true, :TRUE)]), SpecCapabilitySPIRV(:RoundingModeRTE, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_rounding_mode_rte_float_16, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_rounding_mode_rte_float_32, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_rounding_mode_rte_float_64, nothing, "VK_KHR_shader_float_controls", true, :TRUE)]), SpecCapabilitySPIRV(:RoundingModeRTZ, nothing, String[], FeatureCondition[], PropertyCondition[PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_rounding_mode_rtz_float_16, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_rounding_mode_rtz_float_32, nothing, "VK_KHR_shader_float_controls", true, :TRUE), PropertyCondition(:PhysicalDeviceVulkan12Properties, :shader_rounding_mode_rtz_float_64, nothing, "VK_KHR_shader_float_controls", true, :TRUE)]), SpecCapabilitySPIRV(:ComputeDerivativeGroupQuadsNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceComputeShaderDerivativesFeaturesNV, :compute_derivative_group_quads, nothing, "VK_NV_compute_shader_derivatives")], PropertyCondition[]), SpecCapabilitySPIRV(:ComputeDerivativeGroupLinearNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceComputeShaderDerivativesFeaturesNV, :compute_derivative_group_linear, nothing, "VK_NV_compute_shader_derivatives")], PropertyCondition[]), SpecCapabilitySPIRV(:FragmentBarycentricNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFragmentShaderBarycentricFeaturesNV, :fragment_shader_barycentric, nothing, "VK_NV_fragment_shader_barycentric")], PropertyCondition[]), SpecCapabilitySPIRV(:ImageFootprintNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderImageFootprintFeaturesNV, :image_footprint, nothing, "VK_NV_shader_image_footprint")], PropertyCondition[]), SpecCapabilitySPIRV(:ShadingRateNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShadingRateImageFeaturesNV, :shading_rate_image, nothing, "VK_NV_shading_rate_image")], PropertyCondition[]), SpecCapabilitySPIRV(:MeshShadingNV, nothing, ["VK_NV_mesh_shader"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:RayTracingKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceRayTracingPipelineFeaturesKHR, :ray_tracing_pipeline, nothing, "VK_KHR_ray_tracing_pipeline")], PropertyCondition[]), SpecCapabilitySPIRV(:RayQueryKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceRayQueryFeaturesKHR, :ray_query, nothing, "VK_KHR_ray_query")], PropertyCondition[]), SpecCapabilitySPIRV(:RayTraversalPrimitiveCullingKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceRayTracingPipelineFeaturesKHR, :ray_traversal_primitive_culling, nothing, "VK_KHR_ray_tracing_pipeline")], PropertyCondition[]), SpecCapabilitySPIRV(:RayTracingNV, nothing, ["VK_NV_ray_tracing"], FeatureCondition[], PropertyCondition[]), SpecCapabilitySPIRV(:RayTracingMotionBlurNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceRayTracingMotionBlurFeaturesNV, :ray_tracing_motion_blur, nothing, "VK_NV_ray_tracing_motion_blur")], PropertyCondition[]), SpecCapabilitySPIRV(:TransformFeedback, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceTransformFeedbackFeaturesEXT, :transform_feedback, nothing, "VK_EXT_transform_feedback")], PropertyCondition[]), SpecCapabilitySPIRV(:GeometryStreams, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceTransformFeedbackFeaturesEXT, :geometry_streams, nothing, "VK_EXT_transform_feedback")], PropertyCondition[]), SpecCapabilitySPIRV(:FragmentDensityEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFragmentDensityMapFeaturesEXT, :fragment_density_map, nothing, "VK_EXT_fragment_density_map")], PropertyCondition[]), SpecCapabilitySPIRV(:PhysicalStorageBufferAddresses, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan12Features, :buffer_device_address, nothing, "VK_KHR_buffer_device_address"), FeatureCondition(:PhysicalDeviceBufferDeviceAddressFeaturesEXT, :buffer_device_address, nothing, "VK_EXT_buffer_device_address")], PropertyCondition[]), SpecCapabilitySPIRV(:CooperativeMatrixNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceCooperativeMatrixFeaturesNV, :cooperative_matrix, nothing, "VK_NV_cooperative_matrix")], PropertyCondition[]), SpecCapabilitySPIRV(:IntegerFunctions2INTEL, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, :shader_integer_functions_2, nothing, "VK_INTEL_shader_integer_functions2")], PropertyCondition[]), SpecCapabilitySPIRV(:ShaderSMBuiltinsNV, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceShaderSMBuiltinsFeaturesNV, :shader_sm_builtins, nothing, "VK_NV_shader_sm_builtins")], PropertyCondition[]), SpecCapabilitySPIRV(:FragmentShaderSampleInterlockEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFragmentShaderInterlockFeaturesEXT, :fragment_shader_sample_interlock, nothing, "VK_EXT_fragment_shader_interlock")], PropertyCondition[]), SpecCapabilitySPIRV(:FragmentShaderPixelInterlockEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFragmentShaderInterlockFeaturesEXT, :fragment_shader_pixel_interlock, nothing, "VK_EXT_fragment_shader_interlock")], PropertyCondition[]), SpecCapabilitySPIRV(:FragmentShaderShadingRateInterlockEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFragmentShaderInterlockFeaturesEXT, :fragment_shader_shading_rate_interlock, nothing, "VK_EXT_fragment_shader_interlock"), FeatureCondition(:PhysicalDeviceShadingRateImageFeaturesNV, :shading_rate_image, nothing, "VK_NV_shading_rate_image")], PropertyCondition[]), SpecCapabilitySPIRV(:DemoteToHelperInvocationEXT, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan13Features, :shader_demote_to_helper_invocation, nothing, "VK_EXT_shader_demote_to_helper_invocation"), FeatureCondition(:PhysicalDeviceShaderDemoteToHelperInvocationFeatures, :shader_demote_to_helper_invocation, nothing, "VK_EXT_shader_demote_to_helper_invocation")], PropertyCondition[]), SpecCapabilitySPIRV(:FragmentShadingRateKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceFragmentShadingRateFeaturesKHR, :pipeline_fragment_shading_rate, nothing, "VK_KHR_fragment_shading_rate"), FeatureCondition(:PhysicalDeviceFragmentShadingRateFeaturesKHR, :primitive_fragment_shading_rate, nothing, "VK_KHR_fragment_shading_rate"), FeatureCondition(:PhysicalDeviceFragmentShadingRateFeaturesKHR, :attachment_fragment_shading_rate, nothing, "VK_KHR_fragment_shading_rate")], PropertyCondition[]), SpecCapabilitySPIRV(:WorkgroupMemoryExplicitLayoutKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, :workgroup_memory_explicit_layout, nothing, "VK_KHR_workgroup_memory_explicit_layout")], PropertyCondition[]), SpecCapabilitySPIRV(:WorkgroupMemoryExplicitLayout8BitAccessKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, :workgroup_memory_explicit_layout_8_bit_access, nothing, "VK_KHR_workgroup_memory_explicit_layout")], PropertyCondition[]), SpecCapabilitySPIRV(:WorkgroupMemoryExplicitLayout16BitAccessKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, :workgroup_memory_explicit_layout_16_bit_access, nothing, "VK_KHR_workgroup_memory_explicit_layout")], PropertyCondition[]), SpecCapabilitySPIRV(:DotProductInputAllKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan13Features, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product"), FeatureCondition(:PhysicalDeviceShaderIntegerDotProductFeatures, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product")], PropertyCondition[]), SpecCapabilitySPIRV(:DotProductInput4x8BitKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan13Features, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product"), FeatureCondition(:PhysicalDeviceShaderIntegerDotProductFeatures, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product")], PropertyCondition[]), SpecCapabilitySPIRV(:DotProductInput4x8BitPackedKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan13Features, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product"), FeatureCondition(:PhysicalDeviceShaderIntegerDotProductFeatures, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product")], PropertyCondition[]), SpecCapabilitySPIRV(:DotProductKHR, nothing, String[], FeatureCondition[FeatureCondition(:PhysicalDeviceVulkan13Features, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product"), FeatureCondition(:PhysicalDeviceShaderIntegerDotProductFeatures, :shader_integer_dot_product, nothing, "VK_KHR_shader_integer_dot_product")], PropertyCondition[])]
 const CORE_FUNCTIONS = [:vkCreateInstance, :vkEnumerateInstanceVersion, :vkEnumerateInstanceLayerProperties, :vkEnumerateInstanceExtensionProperties]
-const INSTANCE_FUNCTIONS = [:vkDestroyInstance, :vkEnumeratePhysicalDevices, :vkGetInstanceProcAddr, :vkGetPhysicalDeviceProperties, :vkGetPhysicalDeviceQueueFamilyProperties, :vkGetPhysicalDeviceMemoryProperties, :vkGetPhysicalDeviceFeatures, :vkGetPhysicalDeviceFormatProperties, :vkGetPhysicalDeviceImageFormatProperties, :vkCreateDevice, :vkEnumerateDeviceLayerProperties, :vkEnumerateDeviceExtensionProperties, :vkGetPhysicalDeviceSparseImageFormatProperties, :vkCreateAndroidSurfaceKHR, :vkGetPhysicalDeviceDisplayPropertiesKHR, :vkGetPhysicalDeviceDisplayPlanePropertiesKHR, :vkGetDisplayPlaneSupportedDisplaysKHR, :vkGetDisplayModePropertiesKHR, :vkCreateDisplayModeKHR, :vkGetDisplayPlaneCapabilitiesKHR, :vkCreateDisplayPlaneSurfaceKHR, :vkDestroySurfaceKHR, :vkGetPhysicalDeviceSurfaceSupportKHR, :vkGetPhysicalDeviceSurfaceCapabilitiesKHR, :vkGetPhysicalDeviceSurfaceFormatsKHR, :vkGetPhysicalDeviceSurfacePresentModesKHR, :vkCreateViSurfaceNN, :vkCreateWaylandSurfaceKHR, :vkGetPhysicalDeviceWaylandPresentationSupportKHR, :vkCreateWin32SurfaceKHR, :vkGetPhysicalDeviceWin32PresentationSupportKHR, :vkCreateXlibSurfaceKHR, :vkGetPhysicalDeviceXlibPresentationSupportKHR, :vkCreateXcbSurfaceKHR, :vkGetPhysicalDeviceXcbPresentationSupportKHR, :vkCreateDirectFBSurfaceEXT, :vkGetPhysicalDeviceDirectFBPresentationSupportEXT, :vkCreateImagePipeSurfaceFUCHSIA, :vkCreateStreamDescriptorSurfaceGGP, :vkCreateScreenSurfaceQNX, :vkGetPhysicalDeviceScreenPresentationSupportQNX, :vkCreateDebugReportCallbackEXT, :vkDestroyDebugReportCallbackEXT, :vkDebugReportMessageEXT, :vkGetPhysicalDeviceExternalImageFormatPropertiesNV, :vkGetPhysicalDeviceFeatures2, :vkGetPhysicalDeviceProperties2, :vkGetPhysicalDeviceFormatProperties2, :vkGetPhysicalDeviceImageFormatProperties2, :vkGetPhysicalDeviceQueueFamilyProperties2, :vkGetPhysicalDeviceMemoryProperties2, :vkGetPhysicalDeviceSparseImageFormatProperties2, :vkGetPhysicalDeviceExternalBufferProperties, :vkGetPhysicalDeviceExternalSemaphoreProperties, :vkGetPhysicalDeviceExternalFenceProperties, :vkReleaseDisplayEXT, :vkAcquireXlibDisplayEXT, :vkGetRandROutputDisplayEXT, :vkAcquireWinrtDisplayNV, :vkGetWinrtDisplayNV, :vkGetPhysicalDeviceSurfaceCapabilities2EXT, :vkEnumeratePhysicalDeviceGroups, :vkGetPhysicalDevicePresentRectanglesKHR, :vkCreateIOSSurfaceMVK, :vkCreateMacOSSurfaceMVK, :vkCreateMetalSurfaceEXT, :vkGetPhysicalDeviceMultisamplePropertiesEXT, :vkGetPhysicalDeviceSurfaceCapabilities2KHR, :vkGetPhysicalDeviceSurfaceFormats2KHR, :vkGetPhysicalDeviceDisplayProperties2KHR, :vkGetPhysicalDeviceDisplayPlaneProperties2KHR, :vkGetDisplayModeProperties2KHR, :vkGetDisplayPlaneCapabilities2KHR, :vkGetPhysicalDeviceCalibrateableTimeDomainsEXT, :vkCreateDebugUtilsMessengerEXT, :vkDestroyDebugUtilsMessengerEXT, :vkSubmitDebugUtilsMessageEXT, :vkGetPhysicalDeviceCooperativeMatrixPropertiesNV, :vkGetPhysicalDeviceSurfacePresentModes2EXT, :vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR, :vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR, :vkCreateHeadlessSurfaceEXT, :vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV, :vkGetPhysicalDeviceToolProperties, :vkGetPhysicalDeviceFragmentShadingRatesKHR, :vkGetPhysicalDeviceVideoCapabilitiesKHR, :vkGetPhysicalDeviceVideoFormatPropertiesKHR, :vkAcquireDrmDisplayEXT, :vkGetDrmDisplayEXT, :vkGetPhysicalDeviceFeatures2KHR, :vkGetPhysicalDeviceProperties2KHR, :vkGetPhysicalDeviceFormatProperties2KHR, :vkGetPhysicalDeviceImageFormatProperties2KHR, :vkGetPhysicalDeviceQueueFamilyProperties2KHR, :vkGetPhysicalDeviceMemoryProperties2KHR, :vkGetPhysicalDeviceSparseImageFormatProperties2KHR, :vkGetPhysicalDeviceExternalBufferPropertiesKHR, :vkGetPhysicalDeviceExternalSemaphorePropertiesKHR, :vkGetPhysicalDeviceExternalFencePropertiesKHR, :vkEnumeratePhysicalDeviceGroupsKHR, :vkGetPhysicalDeviceToolPropertiesEXT]
-const DEVICE_FUNCTIONS = [:vkGetDeviceProcAddr, :vkDestroyDevice, :vkGetDeviceQueue, :vkQueueSubmit, :vkQueueWaitIdle, :vkDeviceWaitIdle, :vkAllocateMemory, :vkFreeMemory, :vkMapMemory, :vkUnmapMemory, :vkFlushMappedMemoryRanges, :vkInvalidateMappedMemoryRanges, :vkGetDeviceMemoryCommitment, :vkGetBufferMemoryRequirements, :vkBindBufferMemory, :vkGetImageMemoryRequirements, :vkBindImageMemory, :vkGetImageSparseMemoryRequirements, :vkQueueBindSparse, :vkCreateFence, :vkDestroyFence, :vkResetFences, :vkGetFenceStatus, :vkWaitForFences, :vkCreateSemaphore, :vkDestroySemaphore, :vkCreateEvent, :vkDestroyEvent, :vkGetEventStatus, :vkSetEvent, :vkResetEvent, :vkCreateQueryPool, :vkDestroyQueryPool, :vkGetQueryPoolResults, :vkResetQueryPool, :vkCreateBuffer, :vkDestroyBuffer, :vkCreateBufferView, :vkDestroyBufferView, :vkCreateImage, :vkDestroyImage, :vkGetImageSubresourceLayout, :vkCreateImageView, :vkDestroyImageView, :vkCreateShaderModule, :vkDestroyShaderModule, :vkCreatePipelineCache, :vkDestroyPipelineCache, :vkGetPipelineCacheData, :vkMergePipelineCaches, :vkCreateGraphicsPipelines, :vkCreateComputePipelines, :vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI, :vkDestroyPipeline, :vkCreatePipelineLayout, :vkDestroyPipelineLayout, :vkCreateSampler, :vkDestroySampler, :vkCreateDescriptorSetLayout, :vkDestroyDescriptorSetLayout, :vkCreateDescriptorPool, :vkDestroyDescriptorPool, :vkResetDescriptorPool, :vkAllocateDescriptorSets, :vkFreeDescriptorSets, :vkUpdateDescriptorSets, :vkCreateFramebuffer, :vkDestroyFramebuffer, :vkCreateRenderPass, :vkDestroyRenderPass, :vkGetRenderAreaGranularity, :vkCreateCommandPool, :vkDestroyCommandPool, :vkResetCommandPool, :vkAllocateCommandBuffers, :vkFreeCommandBuffers, :vkBeginCommandBuffer, :vkEndCommandBuffer, :vkResetCommandBuffer, :vkCmdBindPipeline, :vkCmdSetViewport, :vkCmdSetScissor, :vkCmdSetLineWidth, :vkCmdSetDepthBias, :vkCmdSetBlendConstants, :vkCmdSetDepthBounds, :vkCmdSetStencilCompareMask, :vkCmdSetStencilWriteMask, :vkCmdSetStencilReference, :vkCmdBindDescriptorSets, :vkCmdBindIndexBuffer, :vkCmdBindVertexBuffers, :vkCmdDraw, :vkCmdDrawIndexed, :vkCmdDrawMultiEXT, :vkCmdDrawMultiIndexedEXT, :vkCmdDrawIndirect, :vkCmdDrawIndexedIndirect, :vkCmdDispatch, :vkCmdDispatchIndirect, :vkCmdSubpassShadingHUAWEI, :vkCmdCopyBuffer, :vkCmdCopyImage, :vkCmdBlitImage, :vkCmdCopyBufferToImage, :vkCmdCopyImageToBuffer, :vkCmdUpdateBuffer, :vkCmdFillBuffer, :vkCmdClearColorImage, :vkCmdClearDepthStencilImage, :vkCmdClearAttachments, :vkCmdResolveImage, :vkCmdSetEvent, :vkCmdResetEvent, :vkCmdWaitEvents, :vkCmdPipelineBarrier, :vkCmdBeginQuery, :vkCmdEndQuery, :vkCmdBeginConditionalRenderingEXT, :vkCmdEndConditionalRenderingEXT, :vkCmdResetQueryPool, :vkCmdWriteTimestamp, :vkCmdCopyQueryPoolResults, :vkCmdPushConstants, :vkCmdBeginRenderPass, :vkCmdNextSubpass, :vkCmdEndRenderPass, :vkCmdExecuteCommands, :vkCreateSharedSwapchainsKHR, :vkCreateSwapchainKHR, :vkDestroySwapchainKHR, :vkGetSwapchainImagesKHR, :vkAcquireNextImageKHR, :vkQueuePresentKHR, :vkDebugMarkerSetObjectNameEXT, :vkDebugMarkerSetObjectTagEXT, :vkCmdDebugMarkerBeginEXT, :vkCmdDebugMarkerEndEXT, :vkCmdDebugMarkerInsertEXT, :vkGetMemoryWin32HandleNV, :vkCmdExecuteGeneratedCommandsNV, :vkCmdPreprocessGeneratedCommandsNV, :vkCmdBindPipelineShaderGroupNV, :vkGetGeneratedCommandsMemoryRequirementsNV, :vkCreateIndirectCommandsLayoutNV, :vkDestroyIndirectCommandsLayoutNV, :vkCmdPushDescriptorSetKHR, :vkTrimCommandPool, :vkGetMemoryWin32HandleKHR, :vkGetMemoryWin32HandlePropertiesKHR, :vkGetMemoryFdKHR, :vkGetMemoryFdPropertiesKHR, :vkGetMemoryZirconHandleFUCHSIA, :vkGetMemoryZirconHandlePropertiesFUCHSIA, :vkGetMemoryRemoteAddressNV, :vkGetSemaphoreWin32HandleKHR, :vkImportSemaphoreWin32HandleKHR, :vkGetSemaphoreFdKHR, :vkImportSemaphoreFdKHR, :vkGetSemaphoreZirconHandleFUCHSIA, :vkImportSemaphoreZirconHandleFUCHSIA, :vkGetFenceWin32HandleKHR, :vkImportFenceWin32HandleKHR, :vkGetFenceFdKHR, :vkImportFenceFdKHR, :vkDisplayPowerControlEXT, :vkRegisterDeviceEventEXT, :vkRegisterDisplayEventEXT, :vkGetSwapchainCounterEXT, :vkGetDeviceGroupPeerMemoryFeatures, :vkBindBufferMemory2, :vkBindImageMemory2, :vkCmdSetDeviceMask, :vkGetDeviceGroupPresentCapabilitiesKHR, :vkGetDeviceGroupSurfacePresentModesKHR, :vkAcquireNextImage2KHR, :vkCmdDispatchBase, :vkCreateDescriptorUpdateTemplate, :vkDestroyDescriptorUpdateTemplate, :vkUpdateDescriptorSetWithTemplate, :vkCmdPushDescriptorSetWithTemplateKHR, :vkSetHdrMetadataEXT, :vkGetSwapchainStatusKHR, :vkGetRefreshCycleDurationGOOGLE, :vkGetPastPresentationTimingGOOGLE, :vkCmdSetViewportWScalingNV, :vkCmdSetDiscardRectangleEXT, :vkCmdSetSampleLocationsEXT, :vkGetBufferMemoryRequirements2, :vkGetImageMemoryRequirements2, :vkGetImageSparseMemoryRequirements2, :vkGetDeviceBufferMemoryRequirements, :vkGetDeviceImageMemoryRequirements, :vkGetDeviceImageSparseMemoryRequirements, :vkCreateSamplerYcbcrConversion, :vkDestroySamplerYcbcrConversion, :vkGetDeviceQueue2, :vkCreateValidationCacheEXT, :vkDestroyValidationCacheEXT, :vkGetValidationCacheDataEXT, :vkMergeValidationCachesEXT, :vkGetDescriptorSetLayoutSupport, :vkGetShaderInfoAMD, :vkSetLocalDimmingAMD, :vkGetCalibratedTimestampsEXT, :vkSetDebugUtilsObjectNameEXT, :vkSetDebugUtilsObjectTagEXT, :vkQueueBeginDebugUtilsLabelEXT, :vkQueueEndDebugUtilsLabelEXT, :vkQueueInsertDebugUtilsLabelEXT, :vkCmdBeginDebugUtilsLabelEXT, :vkCmdEndDebugUtilsLabelEXT, :vkCmdInsertDebugUtilsLabelEXT, :vkGetMemoryHostPointerPropertiesEXT, :vkCmdWriteBufferMarkerAMD, :vkCreateRenderPass2, :vkCmdBeginRenderPass2, :vkCmdNextSubpass2, :vkCmdEndRenderPass2, :vkGetSemaphoreCounterValue, :vkWaitSemaphores, :vkSignalSemaphore, :vkGetAndroidHardwareBufferPropertiesANDROID, :vkGetMemoryAndroidHardwareBufferANDROID, :vkCmdDrawIndirectCount, :vkCmdDrawIndexedIndirectCount, :vkCmdSetCheckpointNV, :vkGetQueueCheckpointDataNV, :vkCmdBindTransformFeedbackBuffersEXT, :vkCmdBeginTransformFeedbackEXT, :vkCmdEndTransformFeedbackEXT, :vkCmdBeginQueryIndexedEXT, :vkCmdEndQueryIndexedEXT, :vkCmdDrawIndirectByteCountEXT, :vkCmdSetExclusiveScissorNV, :vkCmdBindShadingRateImageNV, :vkCmdSetViewportShadingRatePaletteNV, :vkCmdSetCoarseSampleOrderNV, :vkCmdDrawMeshTasksNV, :vkCmdDrawMeshTasksIndirectNV, :vkCmdDrawMeshTasksIndirectCountNV, :vkCompileDeferredNV, :vkCreateAccelerationStructureNV, :vkCmdBindInvocationMaskHUAWEI, :vkDestroyAccelerationStructureKHR, :vkDestroyAccelerationStructureNV, :vkGetAccelerationStructureMemoryRequirementsNV, :vkBindAccelerationStructureMemoryNV, :vkCmdCopyAccelerationStructureNV, :vkCmdCopyAccelerationStructureKHR, :vkCopyAccelerationStructureKHR, :vkCmdCopyAccelerationStructureToMemoryKHR, :vkCopyAccelerationStructureToMemoryKHR, :vkCmdCopyMemoryToAccelerationStructureKHR, :vkCopyMemoryToAccelerationStructureKHR, :vkCmdWriteAccelerationStructuresPropertiesKHR, :vkCmdWriteAccelerationStructuresPropertiesNV, :vkCmdBuildAccelerationStructureNV, :vkWriteAccelerationStructuresPropertiesKHR, :vkCmdTraceRaysKHR, :vkCmdTraceRaysNV, :vkGetRayTracingShaderGroupHandlesKHR, :vkGetRayTracingCaptureReplayShaderGroupHandlesKHR, :vkGetAccelerationStructureHandleNV, :vkCreateRayTracingPipelinesNV, :vkCreateRayTracingPipelinesKHR, :vkCmdTraceRaysIndirectKHR, :vkGetDeviceAccelerationStructureCompatibilityKHR, :vkGetRayTracingShaderGroupStackSizeKHR, :vkCmdSetRayTracingPipelineStackSizeKHR, :vkGetImageViewHandleNVX, :vkGetImageViewAddressNVX, :vkGetDeviceGroupSurfacePresentModes2EXT, :vkAcquireFullScreenExclusiveModeEXT, :vkReleaseFullScreenExclusiveModeEXT, :vkAcquireProfilingLockKHR, :vkReleaseProfilingLockKHR, :vkGetImageDrmFormatModifierPropertiesEXT, :vkGetBufferOpaqueCaptureAddress, :vkGetBufferDeviceAddress, :vkInitializePerformanceApiINTEL, :vkUninitializePerformanceApiINTEL, :vkCmdSetPerformanceMarkerINTEL, :vkCmdSetPerformanceStreamMarkerINTEL, :vkCmdSetPerformanceOverrideINTEL, :vkAcquirePerformanceConfigurationINTEL, :vkReleasePerformanceConfigurationINTEL, :vkQueueSetPerformanceConfigurationINTEL, :vkGetPerformanceParameterINTEL, :vkGetDeviceMemoryOpaqueCaptureAddress, :vkGetPipelineExecutablePropertiesKHR, :vkGetPipelineExecutableStatisticsKHR, :vkGetPipelineExecutableInternalRepresentationsKHR, :vkCmdSetLineStippleEXT, :vkCreateAccelerationStructureKHR, :vkCmdBuildAccelerationStructuresKHR, :vkCmdBuildAccelerationStructuresIndirectKHR, :vkBuildAccelerationStructuresKHR, :vkGetAccelerationStructureDeviceAddressKHR, :vkCreateDeferredOperationKHR, :vkDestroyDeferredOperationKHR, :vkGetDeferredOperationMaxConcurrencyKHR, :vkGetDeferredOperationResultKHR, :vkDeferredOperationJoinKHR, :vkCmdSetCullMode, :vkCmdSetFrontFace, :vkCmdSetPrimitiveTopology, :vkCmdSetViewportWithCount, :vkCmdSetScissorWithCount, :vkCmdBindVertexBuffers2, :vkCmdSetDepthTestEnable, :vkCmdSetDepthWriteEnable, :vkCmdSetDepthCompareOp, :vkCmdSetDepthBoundsTestEnable, :vkCmdSetStencilTestEnable, :vkCmdSetStencilOp, :vkCmdSetPatchControlPointsEXT, :vkCmdSetRasterizerDiscardEnable, :vkCmdSetDepthBiasEnable, :vkCmdSetLogicOpEXT, :vkCmdSetPrimitiveRestartEnable, :vkCreatePrivateDataSlot, :vkDestroyPrivateDataSlot, :vkSetPrivateData, :vkGetPrivateData, :vkCmdCopyBuffer2, :vkCmdCopyImage2, :vkCmdBlitImage2, :vkCmdCopyBufferToImage2, :vkCmdCopyImageToBuffer2, :vkCmdResolveImage2, :vkCmdSetFragmentShadingRateKHR, :vkCmdSetFragmentShadingRateEnumNV, :vkGetAccelerationStructureBuildSizesKHR, :vkCmdSetVertexInputEXT, :vkCmdSetColorWriteEnableEXT, :vkCmdSetEvent2, :vkCmdResetEvent2, :vkCmdWaitEvents2, :vkCmdPipelineBarrier2, :vkQueueSubmit2, :vkCmdWriteTimestamp2, :vkCmdWriteBufferMarker2AMD, :vkGetQueueCheckpointData2NV, :vkCreateVideoSessionKHR, :vkDestroyVideoSessionKHR, :vkCreateVideoSessionParametersKHR, :vkUpdateVideoSessionParametersKHR, :vkDestroyVideoSessionParametersKHR, :vkGetVideoSessionMemoryRequirementsKHR, :vkBindVideoSessionMemoryKHR, :vkCmdDecodeVideoKHR, :vkCmdBeginVideoCodingKHR, :vkCmdControlVideoCodingKHR, :vkCmdEndVideoCodingKHR, :vkCmdEncodeVideoKHR, :vkCreateCuModuleNVX, :vkCreateCuFunctionNVX, :vkDestroyCuModuleNVX, :vkDestroyCuFunctionNVX, :vkCmdCuLaunchKernelNVX, :vkSetDeviceMemoryPriorityEXT, :vkWaitForPresentKHR, :vkCreateBufferCollectionFUCHSIA, :vkSetBufferCollectionBufferConstraintsFUCHSIA, :vkSetBufferCollectionImageConstraintsFUCHSIA, :vkDestroyBufferCollectionFUCHSIA, :vkGetBufferCollectionPropertiesFUCHSIA, :vkCmdBeginRendering, :vkCmdEndRendering, :vkGetDescriptorSetLayoutHostMappingInfoVALVE, :vkGetDescriptorSetHostMappingVALVE, :vkResetQueryPoolEXT, :vkTrimCommandPoolKHR, :vkGetDeviceGroupPeerMemoryFeaturesKHR, :vkBindBufferMemory2KHR, :vkBindImageMemory2KHR, :vkCmdSetDeviceMaskKHR, :vkCmdDispatchBaseKHR, :vkCreateDescriptorUpdateTemplateKHR, :vkDestroyDescriptorUpdateTemplateKHR, :vkUpdateDescriptorSetWithTemplateKHR, :vkGetBufferMemoryRequirements2KHR, :vkGetImageMemoryRequirements2KHR, :vkGetImageSparseMemoryRequirements2KHR, :vkGetDeviceBufferMemoryRequirementsKHR, :vkGetDeviceImageMemoryRequirementsKHR, :vkGetDeviceImageSparseMemoryRequirementsKHR, :vkCreateSamplerYcbcrConversionKHR, :vkDestroySamplerYcbcrConversionKHR, :vkGetDescriptorSetLayoutSupportKHR, :vkCreateRenderPass2KHR, :vkCmdBeginRenderPass2KHR, :vkCmdNextSubpass2KHR, :vkCmdEndRenderPass2KHR, :vkGetSemaphoreCounterValueKHR, :vkWaitSemaphoresKHR, :vkSignalSemaphoreKHR, :vkCmdDrawIndirectCountKHR, :vkCmdDrawIndirectCountAMD, :vkCmdDrawIndexedIndirectCountKHR, :vkCmdDrawIndexedIndirectCountAMD, :vkGetRayTracingShaderGroupHandlesNV, :vkGetBufferOpaqueCaptureAddressKHR, :vkGetBufferDeviceAddressKHR, :vkGetBufferDeviceAddressEXT, :vkGetDeviceMemoryOpaqueCaptureAddressKHR, :vkCmdSetCullModeEXT, :vkCmdSetFrontFaceEXT, :vkCmdSetPrimitiveTopologyEXT, :vkCmdSetViewportWithCountEXT, :vkCmdSetScissorWithCountEXT, :vkCmdBindVertexBuffers2EXT, :vkCmdSetDepthTestEnableEXT, :vkCmdSetDepthWriteEnableEXT, :vkCmdSetDepthCompareOpEXT, :vkCmdSetDepthBoundsTestEnableEXT, :vkCmdSetStencilTestEnableEXT, :vkCmdSetStencilOpEXT, :vkCmdSetRasterizerDiscardEnableEXT, :vkCmdSetDepthBiasEnableEXT, :vkCmdSetPrimitiveRestartEnableEXT, :vkCreatePrivateDataSlotEXT, :vkDestroyPrivateDataSlotEXT, :vkSetPrivateDataEXT, :vkGetPrivateDataEXT, :vkCmdCopyBuffer2KHR, :vkCmdCopyImage2KHR, :vkCmdBlitImage2KHR, :vkCmdCopyBufferToImage2KHR, :vkCmdCopyImageToBuffer2KHR, :vkCmdResolveImage2KHR, :vkCmdSetEvent2KHR, :vkCmdResetEvent2KHR, :vkCmdWaitEvents2KHR, :vkCmdPipelineBarrier2KHR, :vkQueueSubmit2KHR, :vkCmdWriteTimestamp2KHR, :vkCmdBeginRenderingKHR, :vkCmdEndRenderingKHR]
+const INSTANCE_FUNCTIONS = [:vkDestroyInstance, :vkEnumeratePhysicalDevices, :vkGetInstanceProcAddr, :vkGetPhysicalDeviceProperties, :vkGetPhysicalDeviceQueueFamilyProperties, :vkGetPhysicalDeviceMemoryProperties, :vkGetPhysicalDeviceFeatures, :vkGetPhysicalDeviceFormatProperties, :vkGetPhysicalDeviceImageFormatProperties, :vkCreateDevice, :vkEnumerateDeviceLayerProperties, :vkEnumerateDeviceExtensionProperties, :vkGetPhysicalDeviceSparseImageFormatProperties, :vkCreateAndroidSurfaceKHR, :vkGetPhysicalDeviceDisplayPropertiesKHR, :vkGetPhysicalDeviceDisplayPlanePropertiesKHR, :vkGetDisplayPlaneSupportedDisplaysKHR, :vkGetDisplayModePropertiesKHR, :vkCreateDisplayModeKHR, :vkGetDisplayPlaneCapabilitiesKHR, :vkCreateDisplayPlaneSurfaceKHR, :vkDestroySurfaceKHR, :vkGetPhysicalDeviceSurfaceSupportKHR, :vkGetPhysicalDeviceSurfaceCapabilitiesKHR, :vkGetPhysicalDeviceSurfaceFormatsKHR, :vkGetPhysicalDeviceSurfacePresentModesKHR, :vkCreateViSurfaceNN, :vkCreateWaylandSurfaceKHR, :vkGetPhysicalDeviceWaylandPresentationSupportKHR, :vkCreateWin32SurfaceKHR, :vkGetPhysicalDeviceWin32PresentationSupportKHR, :vkCreateXlibSurfaceKHR, :vkGetPhysicalDeviceXlibPresentationSupportKHR, :vkCreateXcbSurfaceKHR, :vkGetPhysicalDeviceXcbPresentationSupportKHR, :vkCreateDirectFBSurfaceEXT, :vkGetPhysicalDeviceDirectFBPresentationSupportEXT, :vkCreateImagePipeSurfaceFUCHSIA, :vkCreateStreamDescriptorSurfaceGGP, :vkCreateScreenSurfaceQNX, :vkGetPhysicalDeviceScreenPresentationSupportQNX, :vkCreateDebugReportCallbackEXT, :vkDestroyDebugReportCallbackEXT, :vkDebugReportMessageEXT, :vkGetPhysicalDeviceExternalImageFormatPropertiesNV, :vkGetPhysicalDeviceFeatures2, :vkGetPhysicalDeviceProperties2, :vkGetPhysicalDeviceFormatProperties2, :vkGetPhysicalDeviceImageFormatProperties2, :vkGetPhysicalDeviceQueueFamilyProperties2, :vkGetPhysicalDeviceMemoryProperties2, :vkGetPhysicalDeviceSparseImageFormatProperties2, :vkGetPhysicalDeviceExternalBufferProperties, :vkGetPhysicalDeviceExternalSemaphoreProperties, :vkGetPhysicalDeviceExternalFenceProperties, :vkReleaseDisplayEXT, :vkAcquireXlibDisplayEXT, :vkGetRandROutputDisplayEXT, :vkAcquireWinrtDisplayNV, :vkGetWinrtDisplayNV, :vkGetPhysicalDeviceSurfaceCapabilities2EXT, :vkEnumeratePhysicalDeviceGroups, :vkGetPhysicalDevicePresentRectanglesKHR, :vkCreateIOSSurfaceMVK, :vkCreateMacOSSurfaceMVK, :vkCreateMetalSurfaceEXT, :vkGetPhysicalDeviceMultisamplePropertiesEXT, :vkGetPhysicalDeviceSurfaceCapabilities2KHR, :vkGetPhysicalDeviceSurfaceFormats2KHR, :vkGetPhysicalDeviceDisplayProperties2KHR, :vkGetPhysicalDeviceDisplayPlaneProperties2KHR, :vkGetDisplayModeProperties2KHR, :vkGetDisplayPlaneCapabilities2KHR, :vkGetPhysicalDeviceCalibrateableTimeDomainsEXT, :vkCreateDebugUtilsMessengerEXT, :vkDestroyDebugUtilsMessengerEXT, :vkSubmitDebugUtilsMessageEXT, :vkGetPhysicalDeviceCooperativeMatrixPropertiesNV, :vkGetPhysicalDeviceSurfacePresentModes2EXT, :vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR, :vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR, :vkCreateHeadlessSurfaceEXT, :vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV, :vkGetPhysicalDeviceToolProperties, :vkGetPhysicalDeviceFragmentShadingRatesKHR, :vkGetPhysicalDeviceVideoCapabilitiesKHR, :vkGetPhysicalDeviceVideoFormatPropertiesKHR, :vkAcquireDrmDisplayEXT, :vkGetDrmDisplayEXT, :vkEnumeratePhysicalDeviceGroupsKHR, :vkGetPhysicalDeviceExternalBufferPropertiesKHR, :vkGetPhysicalDeviceExternalFencePropertiesKHR, :vkGetPhysicalDeviceExternalSemaphorePropertiesKHR, :vkGetPhysicalDeviceFeatures2KHR, :vkGetPhysicalDeviceFormatProperties2KHR, :vkGetPhysicalDeviceImageFormatProperties2KHR, :vkGetPhysicalDeviceMemoryProperties2KHR, :vkGetPhysicalDeviceProperties2KHR, :vkGetPhysicalDeviceQueueFamilyProperties2KHR, :vkGetPhysicalDeviceSparseImageFormatProperties2KHR, :vkGetPhysicalDeviceToolPropertiesEXT]
+const DEVICE_FUNCTIONS = [:vkGetDeviceProcAddr, :vkDestroyDevice, :vkGetDeviceQueue, :vkQueueSubmit, :vkQueueWaitIdle, :vkDeviceWaitIdle, :vkAllocateMemory, :vkFreeMemory, :vkMapMemory, :vkUnmapMemory, :vkFlushMappedMemoryRanges, :vkInvalidateMappedMemoryRanges, :vkGetDeviceMemoryCommitment, :vkGetBufferMemoryRequirements, :vkBindBufferMemory, :vkGetImageMemoryRequirements, :vkBindImageMemory, :vkGetImageSparseMemoryRequirements, :vkQueueBindSparse, :vkCreateFence, :vkDestroyFence, :vkResetFences, :vkGetFenceStatus, :vkWaitForFences, :vkCreateSemaphore, :vkDestroySemaphore, :vkCreateEvent, :vkDestroyEvent, :vkGetEventStatus, :vkSetEvent, :vkResetEvent, :vkCreateQueryPool, :vkDestroyQueryPool, :vkGetQueryPoolResults, :vkResetQueryPool, :vkCreateBuffer, :vkDestroyBuffer, :vkCreateBufferView, :vkDestroyBufferView, :vkCreateImage, :vkDestroyImage, :vkGetImageSubresourceLayout, :vkCreateImageView, :vkDestroyImageView, :vkCreateShaderModule, :vkDestroyShaderModule, :vkCreatePipelineCache, :vkDestroyPipelineCache, :vkGetPipelineCacheData, :vkMergePipelineCaches, :vkCreateGraphicsPipelines, :vkCreateComputePipelines, :vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI, :vkDestroyPipeline, :vkCreatePipelineLayout, :vkDestroyPipelineLayout, :vkCreateSampler, :vkDestroySampler, :vkCreateDescriptorSetLayout, :vkDestroyDescriptorSetLayout, :vkCreateDescriptorPool, :vkDestroyDescriptorPool, :vkResetDescriptorPool, :vkAllocateDescriptorSets, :vkFreeDescriptorSets, :vkUpdateDescriptorSets, :vkCreateFramebuffer, :vkDestroyFramebuffer, :vkCreateRenderPass, :vkDestroyRenderPass, :vkGetRenderAreaGranularity, :vkCreateCommandPool, :vkDestroyCommandPool, :vkResetCommandPool, :vkAllocateCommandBuffers, :vkFreeCommandBuffers, :vkBeginCommandBuffer, :vkEndCommandBuffer, :vkResetCommandBuffer, :vkCmdBindPipeline, :vkCmdSetViewport, :vkCmdSetScissor, :vkCmdSetLineWidth, :vkCmdSetDepthBias, :vkCmdSetBlendConstants, :vkCmdSetDepthBounds, :vkCmdSetStencilCompareMask, :vkCmdSetStencilWriteMask, :vkCmdSetStencilReference, :vkCmdBindDescriptorSets, :vkCmdBindIndexBuffer, :vkCmdBindVertexBuffers, :vkCmdDraw, :vkCmdDrawIndexed, :vkCmdDrawMultiEXT, :vkCmdDrawMultiIndexedEXT, :vkCmdDrawIndirect, :vkCmdDrawIndexedIndirect, :vkCmdDispatch, :vkCmdDispatchIndirect, :vkCmdSubpassShadingHUAWEI, :vkCmdCopyBuffer, :vkCmdCopyImage, :vkCmdBlitImage, :vkCmdCopyBufferToImage, :vkCmdCopyImageToBuffer, :vkCmdUpdateBuffer, :vkCmdFillBuffer, :vkCmdClearColorImage, :vkCmdClearDepthStencilImage, :vkCmdClearAttachments, :vkCmdResolveImage, :vkCmdSetEvent, :vkCmdResetEvent, :vkCmdWaitEvents, :vkCmdPipelineBarrier, :vkCmdBeginQuery, :vkCmdEndQuery, :vkCmdBeginConditionalRenderingEXT, :vkCmdEndConditionalRenderingEXT, :vkCmdResetQueryPool, :vkCmdWriteTimestamp, :vkCmdCopyQueryPoolResults, :vkCmdPushConstants, :vkCmdBeginRenderPass, :vkCmdNextSubpass, :vkCmdEndRenderPass, :vkCmdExecuteCommands, :vkCreateSharedSwapchainsKHR, :vkCreateSwapchainKHR, :vkDestroySwapchainKHR, :vkGetSwapchainImagesKHR, :vkAcquireNextImageKHR, :vkQueuePresentKHR, :vkDebugMarkerSetObjectNameEXT, :vkDebugMarkerSetObjectTagEXT, :vkCmdDebugMarkerBeginEXT, :vkCmdDebugMarkerEndEXT, :vkCmdDebugMarkerInsertEXT, :vkGetMemoryWin32HandleNV, :vkCmdExecuteGeneratedCommandsNV, :vkCmdPreprocessGeneratedCommandsNV, :vkCmdBindPipelineShaderGroupNV, :vkGetGeneratedCommandsMemoryRequirementsNV, :vkCreateIndirectCommandsLayoutNV, :vkDestroyIndirectCommandsLayoutNV, :vkCmdPushDescriptorSetKHR, :vkTrimCommandPool, :vkGetMemoryWin32HandleKHR, :vkGetMemoryWin32HandlePropertiesKHR, :vkGetMemoryFdKHR, :vkGetMemoryFdPropertiesKHR, :vkGetMemoryZirconHandleFUCHSIA, :vkGetMemoryZirconHandlePropertiesFUCHSIA, :vkGetMemoryRemoteAddressNV, :vkGetSemaphoreWin32HandleKHR, :vkImportSemaphoreWin32HandleKHR, :vkGetSemaphoreFdKHR, :vkImportSemaphoreFdKHR, :vkGetSemaphoreZirconHandleFUCHSIA, :vkImportSemaphoreZirconHandleFUCHSIA, :vkGetFenceWin32HandleKHR, :vkImportFenceWin32HandleKHR, :vkGetFenceFdKHR, :vkImportFenceFdKHR, :vkDisplayPowerControlEXT, :vkRegisterDeviceEventEXT, :vkRegisterDisplayEventEXT, :vkGetSwapchainCounterEXT, :vkGetDeviceGroupPeerMemoryFeatures, :vkBindBufferMemory2, :vkBindImageMemory2, :vkCmdSetDeviceMask, :vkGetDeviceGroupPresentCapabilitiesKHR, :vkGetDeviceGroupSurfacePresentModesKHR, :vkAcquireNextImage2KHR, :vkCmdDispatchBase, :vkCreateDescriptorUpdateTemplate, :vkDestroyDescriptorUpdateTemplate, :vkUpdateDescriptorSetWithTemplate, :vkCmdPushDescriptorSetWithTemplateKHR, :vkSetHdrMetadataEXT, :vkGetSwapchainStatusKHR, :vkGetRefreshCycleDurationGOOGLE, :vkGetPastPresentationTimingGOOGLE, :vkCmdSetViewportWScalingNV, :vkCmdSetDiscardRectangleEXT, :vkCmdSetSampleLocationsEXT, :vkGetBufferMemoryRequirements2, :vkGetImageMemoryRequirements2, :vkGetImageSparseMemoryRequirements2, :vkGetDeviceBufferMemoryRequirements, :vkGetDeviceImageMemoryRequirements, :vkGetDeviceImageSparseMemoryRequirements, :vkCreateSamplerYcbcrConversion, :vkDestroySamplerYcbcrConversion, :vkGetDeviceQueue2, :vkCreateValidationCacheEXT, :vkDestroyValidationCacheEXT, :vkGetValidationCacheDataEXT, :vkMergeValidationCachesEXT, :vkGetDescriptorSetLayoutSupport, :vkGetShaderInfoAMD, :vkSetLocalDimmingAMD, :vkGetCalibratedTimestampsEXT, :vkSetDebugUtilsObjectNameEXT, :vkSetDebugUtilsObjectTagEXT, :vkQueueBeginDebugUtilsLabelEXT, :vkQueueEndDebugUtilsLabelEXT, :vkQueueInsertDebugUtilsLabelEXT, :vkCmdBeginDebugUtilsLabelEXT, :vkCmdEndDebugUtilsLabelEXT, :vkCmdInsertDebugUtilsLabelEXT, :vkGetMemoryHostPointerPropertiesEXT, :vkCmdWriteBufferMarkerAMD, :vkCreateRenderPass2, :vkCmdBeginRenderPass2, :vkCmdNextSubpass2, :vkCmdEndRenderPass2, :vkGetSemaphoreCounterValue, :vkWaitSemaphores, :vkSignalSemaphore, :vkGetAndroidHardwareBufferPropertiesANDROID, :vkGetMemoryAndroidHardwareBufferANDROID, :vkCmdDrawIndirectCount, :vkCmdDrawIndexedIndirectCount, :vkCmdSetCheckpointNV, :vkGetQueueCheckpointDataNV, :vkCmdBindTransformFeedbackBuffersEXT, :vkCmdBeginTransformFeedbackEXT, :vkCmdEndTransformFeedbackEXT, :vkCmdBeginQueryIndexedEXT, :vkCmdEndQueryIndexedEXT, :vkCmdDrawIndirectByteCountEXT, :vkCmdSetExclusiveScissorNV, :vkCmdBindShadingRateImageNV, :vkCmdSetViewportShadingRatePaletteNV, :vkCmdSetCoarseSampleOrderNV, :vkCmdDrawMeshTasksNV, :vkCmdDrawMeshTasksIndirectNV, :vkCmdDrawMeshTasksIndirectCountNV, :vkCompileDeferredNV, :vkCreateAccelerationStructureNV, :vkCmdBindInvocationMaskHUAWEI, :vkDestroyAccelerationStructureKHR, :vkDestroyAccelerationStructureNV, :vkGetAccelerationStructureMemoryRequirementsNV, :vkBindAccelerationStructureMemoryNV, :vkCmdCopyAccelerationStructureNV, :vkCmdCopyAccelerationStructureKHR, :vkCopyAccelerationStructureKHR, :vkCmdCopyAccelerationStructureToMemoryKHR, :vkCopyAccelerationStructureToMemoryKHR, :vkCmdCopyMemoryToAccelerationStructureKHR, :vkCopyMemoryToAccelerationStructureKHR, :vkCmdWriteAccelerationStructuresPropertiesKHR, :vkCmdWriteAccelerationStructuresPropertiesNV, :vkCmdBuildAccelerationStructureNV, :vkWriteAccelerationStructuresPropertiesKHR, :vkCmdTraceRaysKHR, :vkCmdTraceRaysNV, :vkGetRayTracingShaderGroupHandlesKHR, :vkGetRayTracingCaptureReplayShaderGroupHandlesKHR, :vkGetAccelerationStructureHandleNV, :vkCreateRayTracingPipelinesNV, :vkCreateRayTracingPipelinesKHR, :vkCmdTraceRaysIndirectKHR, :vkGetDeviceAccelerationStructureCompatibilityKHR, :vkGetRayTracingShaderGroupStackSizeKHR, :vkCmdSetRayTracingPipelineStackSizeKHR, :vkGetImageViewHandleNVX, :vkGetImageViewAddressNVX, :vkGetDeviceGroupSurfacePresentModes2EXT, :vkAcquireFullScreenExclusiveModeEXT, :vkReleaseFullScreenExclusiveModeEXT, :vkAcquireProfilingLockKHR, :vkReleaseProfilingLockKHR, :vkGetImageDrmFormatModifierPropertiesEXT, :vkGetBufferOpaqueCaptureAddress, :vkGetBufferDeviceAddress, :vkInitializePerformanceApiINTEL, :vkUninitializePerformanceApiINTEL, :vkCmdSetPerformanceMarkerINTEL, :vkCmdSetPerformanceStreamMarkerINTEL, :vkCmdSetPerformanceOverrideINTEL, :vkAcquirePerformanceConfigurationINTEL, :vkReleasePerformanceConfigurationINTEL, :vkQueueSetPerformanceConfigurationINTEL, :vkGetPerformanceParameterINTEL, :vkGetDeviceMemoryOpaqueCaptureAddress, :vkGetPipelineExecutablePropertiesKHR, :vkGetPipelineExecutableStatisticsKHR, :vkGetPipelineExecutableInternalRepresentationsKHR, :vkCmdSetLineStippleEXT, :vkCreateAccelerationStructureKHR, :vkCmdBuildAccelerationStructuresKHR, :vkCmdBuildAccelerationStructuresIndirectKHR, :vkBuildAccelerationStructuresKHR, :vkGetAccelerationStructureDeviceAddressKHR, :vkCreateDeferredOperationKHR, :vkDestroyDeferredOperationKHR, :vkGetDeferredOperationMaxConcurrencyKHR, :vkGetDeferredOperationResultKHR, :vkDeferredOperationJoinKHR, :vkCmdSetCullMode, :vkCmdSetFrontFace, :vkCmdSetPrimitiveTopology, :vkCmdSetViewportWithCount, :vkCmdSetScissorWithCount, :vkCmdBindVertexBuffers2, :vkCmdSetDepthTestEnable, :vkCmdSetDepthWriteEnable, :vkCmdSetDepthCompareOp, :vkCmdSetDepthBoundsTestEnable, :vkCmdSetStencilTestEnable, :vkCmdSetStencilOp, :vkCmdSetPatchControlPointsEXT, :vkCmdSetRasterizerDiscardEnable, :vkCmdSetDepthBiasEnable, :vkCmdSetLogicOpEXT, :vkCmdSetPrimitiveRestartEnable, :vkCreatePrivateDataSlot, :vkDestroyPrivateDataSlot, :vkSetPrivateData, :vkGetPrivateData, :vkCmdCopyBuffer2, :vkCmdCopyImage2, :vkCmdBlitImage2, :vkCmdCopyBufferToImage2, :vkCmdCopyImageToBuffer2, :vkCmdResolveImage2, :vkCmdSetFragmentShadingRateKHR, :vkCmdSetFragmentShadingRateEnumNV, :vkGetAccelerationStructureBuildSizesKHR, :vkCmdSetVertexInputEXT, :vkCmdSetColorWriteEnableEXT, :vkCmdSetEvent2, :vkCmdResetEvent2, :vkCmdWaitEvents2, :vkCmdPipelineBarrier2, :vkQueueSubmit2, :vkCmdWriteTimestamp2, :vkCmdWriteBufferMarker2AMD, :vkGetQueueCheckpointData2NV, :vkCreateVideoSessionKHR, :vkDestroyVideoSessionKHR, :vkCreateVideoSessionParametersKHR, :vkUpdateVideoSessionParametersKHR, :vkDestroyVideoSessionParametersKHR, :vkGetVideoSessionMemoryRequirementsKHR, :vkBindVideoSessionMemoryKHR, :vkCmdDecodeVideoKHR, :vkCmdBeginVideoCodingKHR, :vkCmdControlVideoCodingKHR, :vkCmdEndVideoCodingKHR, :vkCmdEncodeVideoKHR, :vkCreateCuModuleNVX, :vkCreateCuFunctionNVX, :vkDestroyCuModuleNVX, :vkDestroyCuFunctionNVX, :vkCmdCuLaunchKernelNVX, :vkSetDeviceMemoryPriorityEXT, :vkWaitForPresentKHR, :vkCreateBufferCollectionFUCHSIA, :vkSetBufferCollectionBufferConstraintsFUCHSIA, :vkSetBufferCollectionImageConstraintsFUCHSIA, :vkDestroyBufferCollectionFUCHSIA, :vkGetBufferCollectionPropertiesFUCHSIA, :vkCmdBeginRendering, :vkCmdEndRendering, :vkGetDescriptorSetLayoutHostMappingInfoVALVE, :vkGetDescriptorSetHostMappingVALVE, :vkBindBufferMemory2KHR, :vkBindImageMemory2KHR, :vkCmdBeginRenderPass2KHR, :vkCmdBeginRenderingKHR, :vkCmdBindVertexBuffers2EXT, :vkCmdBlitImage2KHR, :vkCmdCopyBuffer2KHR, :vkCmdCopyBufferToImage2KHR, :vkCmdCopyImage2KHR, :vkCmdCopyImageToBuffer2KHR, :vkCmdDispatchBaseKHR, :vkCmdDrawIndexedIndirectCountAMD, :vkCmdDrawIndexedIndirectCountKHR, :vkCmdDrawIndirectCountAMD, :vkCmdDrawIndirectCountKHR, :vkCmdEndRenderPass2KHR, :vkCmdEndRenderingKHR, :vkCmdNextSubpass2KHR, :vkCmdPipelineBarrier2KHR, :vkCmdResetEvent2KHR, :vkCmdResolveImage2KHR, :vkCmdSetCullModeEXT, :vkCmdSetDepthBiasEnableEXT, :vkCmdSetDepthBoundsTestEnableEXT, :vkCmdSetDepthCompareOpEXT, :vkCmdSetDepthTestEnableEXT, :vkCmdSetDepthWriteEnableEXT, :vkCmdSetDeviceMaskKHR, :vkCmdSetEvent2KHR, :vkCmdSetFrontFaceEXT, :vkCmdSetPrimitiveRestartEnableEXT, :vkCmdSetPrimitiveTopologyEXT, :vkCmdSetRasterizerDiscardEnableEXT, :vkCmdSetScissorWithCountEXT, :vkCmdSetStencilOpEXT, :vkCmdSetStencilTestEnableEXT, :vkCmdSetViewportWithCountEXT, :vkCmdWaitEvents2KHR, :vkCmdWriteTimestamp2KHR, :vkCreateDescriptorUpdateTemplateKHR, :vkCreatePrivateDataSlotEXT, :vkCreateRenderPass2KHR, :vkCreateSamplerYcbcrConversionKHR, :vkDestroyDescriptorUpdateTemplateKHR, :vkDestroyPrivateDataSlotEXT, :vkDestroySamplerYcbcrConversionKHR, :vkGetBufferDeviceAddressEXT, :vkGetBufferDeviceAddressKHR, :vkGetBufferMemoryRequirements2KHR, :vkGetBufferOpaqueCaptureAddressKHR, :vkGetDescriptorSetLayoutSupportKHR, :vkGetDeviceBufferMemoryRequirementsKHR, :vkGetDeviceGroupPeerMemoryFeaturesKHR, :vkGetDeviceImageMemoryRequirementsKHR, :vkGetDeviceImageSparseMemoryRequirementsKHR, :vkGetDeviceMemoryOpaqueCaptureAddressKHR, :vkGetImageMemoryRequirements2KHR, :vkGetImageSparseMemoryRequirements2KHR, :vkGetPrivateDataEXT, :vkGetRayTracingShaderGroupHandlesNV, :vkGetSemaphoreCounterValueKHR, :vkQueueSubmit2KHR, :vkResetQueryPoolEXT, :vkSetPrivateDataEXT, :vkSignalSemaphoreKHR, :vkTrimCommandPoolKHR, :vkUpdateDescriptorSetWithTemplateKHR, :vkWaitSemaphoresKHR]
 
 
-export MAX_PHYSICAL_DEVICE_NAME_SIZE, UUID_SIZE, LUID_SIZE, MAX_DESCRIPTION_SIZE, MAX_MEMORY_TYPES, MAX_MEMORY_HEAPS, LOD_CLAMP_NONE, REMAINING_MIP_LEVELS, REMAINING_ARRAY_LAYERS, WHOLE_SIZE, ATTACHMENT_UNUSED, QUEUE_FAMILY_IGNORED, QUEUE_FAMILY_EXTERNAL, QUEUE_FAMILY_FOREIGN_EXT, SUBPASS_EXTERNAL, MAX_DEVICE_GROUP_SIZE, MAX_DRIVER_NAME_SIZE, MAX_DRIVER_INFO_SIZE, SHADER_UNUSED_KHR, MAX_GLOBAL_PRIORITY_SIZE_KHR, ImageLayout, IMAGE_LAYOUT_UNDEFINED, IMAGE_LAYOUT_GENERAL, IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, IMAGE_LAYOUT_PREINITIALIZED, IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_PRESENT_SRC_KHR, IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR, IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR, IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR, IMAGE_LAYOUT_SHARED_PRESENT_KHR, IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT, IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR, IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR, IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR, IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR, AttachmentLoadOp, ATTACHMENT_LOAD_OP_LOAD, ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_LOAD_OP_DONT_CARE, ATTACHMENT_LOAD_OP_NONE_EXT, AttachmentStoreOp, ATTACHMENT_STORE_OP_STORE, ATTACHMENT_STORE_OP_DONT_CARE, ATTACHMENT_STORE_OP_NONE, ImageType, IMAGE_TYPE_1D, IMAGE_TYPE_2D, IMAGE_TYPE_3D, ImageTiling, IMAGE_TILING_OPTIMAL, IMAGE_TILING_LINEAR, IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT, ImageViewType, IMAGE_VIEW_TYPE_1D, IMAGE_VIEW_TYPE_2D, IMAGE_VIEW_TYPE_3D, IMAGE_VIEW_TYPE_CUBE, IMAGE_VIEW_TYPE_1D_ARRAY, IMAGE_VIEW_TYPE_2D_ARRAY, IMAGE_VIEW_TYPE_CUBE_ARRAY, CommandBufferLevel, COMMAND_BUFFER_LEVEL_PRIMARY, COMMAND_BUFFER_LEVEL_SECONDARY, ComponentSwizzle, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_ZERO, COMPONENT_SWIZZLE_ONE, COMPONENT_SWIZZLE_R, COMPONENT_SWIZZLE_G, COMPONENT_SWIZZLE_B, COMPONENT_SWIZZLE_A, DescriptorType, DESCRIPTOR_TYPE_SAMPLER, DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, DESCRIPTOR_TYPE_SAMPLED_IMAGE, DESCRIPTOR_TYPE_STORAGE_IMAGE, DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, DESCRIPTOR_TYPE_UNIFORM_BUFFER, DESCRIPTOR_TYPE_STORAGE_BUFFER, DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, DESCRIPTOR_TYPE_INPUT_ATTACHMENT, DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK, DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR, DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV, DESCRIPTOR_TYPE_MUTABLE_VALVE, QueryType, QUERY_TYPE_OCCLUSION, QUERY_TYPE_PIPELINE_STATISTICS, QUERY_TYPE_TIMESTAMP, QUERY_TYPE_RESULT_STATUS_ONLY_KHR, QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT, QUERY_TYPE_PERFORMANCE_QUERY_KHR, QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR, QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR, QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV, QUERY_TYPE_PERFORMANCE_QUERY_INTEL, QUERY_TYPE_VIDEO_ENCODE_BITSTREAM_BUFFER_RANGE_KHR, BorderColor, BORDER_COLOR_FLOAT_TRANSPARENT_BLACK, BORDER_COLOR_INT_TRANSPARENT_BLACK, BORDER_COLOR_FLOAT_OPAQUE_BLACK, BORDER_COLOR_INT_OPAQUE_BLACK, BORDER_COLOR_FLOAT_OPAQUE_WHITE, BORDER_COLOR_INT_OPAQUE_WHITE, BORDER_COLOR_FLOAT_CUSTOM_EXT, BORDER_COLOR_INT_CUSTOM_EXT, PipelineBindPoint, PIPELINE_BIND_POINT_GRAPHICS, PIPELINE_BIND_POINT_COMPUTE, PIPELINE_BIND_POINT_RAY_TRACING_KHR, PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI, PipelineCacheHeaderVersion, PIPELINE_CACHE_HEADER_VERSION_ONE, PrimitiveTopology, PRIMITIVE_TOPOLOGY_POINT_LIST, PRIMITIVE_TOPOLOGY_LINE_LIST, PRIMITIVE_TOPOLOGY_LINE_STRIP, PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP, PRIMITIVE_TOPOLOGY_TRIANGLE_FAN, PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_LINE_STRIP_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_PATCH_LIST, SharingMode, SHARING_MODE_EXCLUSIVE, SHARING_MODE_CONCURRENT, IndexType, INDEX_TYPE_UINT16, INDEX_TYPE_UINT32, INDEX_TYPE_NONE_KHR, INDEX_TYPE_UINT8_EXT, Filter, FILTER_NEAREST, FILTER_LINEAR, FILTER_CUBIC_IMG, SamplerMipmapMode, SAMPLER_MIPMAP_MODE_NEAREST, SAMPLER_MIPMAP_MODE_LINEAR, SamplerAddressMode, SAMPLER_ADDRESS_MODE_REPEAT, SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT, SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE, SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER, SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE, CompareOp, COMPARE_OP_NEVER, COMPARE_OP_LESS, COMPARE_OP_EQUAL, COMPARE_OP_LESS_OR_EQUAL, COMPARE_OP_GREATER, COMPARE_OP_NOT_EQUAL, COMPARE_OP_GREATER_OR_EQUAL, COMPARE_OP_ALWAYS, PolygonMode, POLYGON_MODE_FILL, POLYGON_MODE_LINE, POLYGON_MODE_POINT, POLYGON_MODE_FILL_RECTANGLE_NV, FrontFace, FRONT_FACE_COUNTER_CLOCKWISE, FRONT_FACE_CLOCKWISE, BlendFactor, BLEND_FACTOR_ZERO, BLEND_FACTOR_ONE, BLEND_FACTOR_SRC_COLOR, BLEND_FACTOR_ONE_MINUS_SRC_COLOR, BLEND_FACTOR_DST_COLOR, BLEND_FACTOR_ONE_MINUS_DST_COLOR, BLEND_FACTOR_SRC_ALPHA, BLEND_FACTOR_ONE_MINUS_SRC_ALPHA, BLEND_FACTOR_DST_ALPHA, BLEND_FACTOR_ONE_MINUS_DST_ALPHA, BLEND_FACTOR_CONSTANT_COLOR, BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR, BLEND_FACTOR_CONSTANT_ALPHA, BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA, BLEND_FACTOR_SRC_ALPHA_SATURATE, BLEND_FACTOR_SRC1_COLOR, BLEND_FACTOR_ONE_MINUS_SRC1_COLOR, BLEND_FACTOR_SRC1_ALPHA, BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA, BlendOp, BLEND_OP_ADD, BLEND_OP_SUBTRACT, BLEND_OP_REVERSE_SUBTRACT, BLEND_OP_MIN, BLEND_OP_MAX, BLEND_OP_ZERO_EXT, BLEND_OP_SRC_EXT, BLEND_OP_DST_EXT, BLEND_OP_SRC_OVER_EXT, BLEND_OP_DST_OVER_EXT, BLEND_OP_SRC_IN_EXT, BLEND_OP_DST_IN_EXT, BLEND_OP_SRC_OUT_EXT, BLEND_OP_DST_OUT_EXT, BLEND_OP_SRC_ATOP_EXT, BLEND_OP_DST_ATOP_EXT, BLEND_OP_XOR_EXT, BLEND_OP_MULTIPLY_EXT, BLEND_OP_SCREEN_EXT, BLEND_OP_OVERLAY_EXT, BLEND_OP_DARKEN_EXT, BLEND_OP_LIGHTEN_EXT, BLEND_OP_COLORDODGE_EXT, BLEND_OP_COLORBURN_EXT, BLEND_OP_HARDLIGHT_EXT, BLEND_OP_SOFTLIGHT_EXT, BLEND_OP_DIFFERENCE_EXT, BLEND_OP_EXCLUSION_EXT, BLEND_OP_INVERT_EXT, BLEND_OP_INVERT_RGB_EXT, BLEND_OP_LINEARDODGE_EXT, BLEND_OP_LINEARBURN_EXT, BLEND_OP_VIVIDLIGHT_EXT, BLEND_OP_LINEARLIGHT_EXT, BLEND_OP_PINLIGHT_EXT, BLEND_OP_HARDMIX_EXT, BLEND_OP_HSL_HUE_EXT, BLEND_OP_HSL_SATURATION_EXT, BLEND_OP_HSL_COLOR_EXT, BLEND_OP_HSL_LUMINOSITY_EXT, BLEND_OP_PLUS_EXT, BLEND_OP_PLUS_CLAMPED_EXT, BLEND_OP_PLUS_CLAMPED_ALPHA_EXT, BLEND_OP_PLUS_DARKER_EXT, BLEND_OP_MINUS_EXT, BLEND_OP_MINUS_CLAMPED_EXT, BLEND_OP_CONTRAST_EXT, BLEND_OP_INVERT_OVG_EXT, BLEND_OP_RED_EXT, BLEND_OP_GREEN_EXT, BLEND_OP_BLUE_EXT, StencilOp, STENCIL_OP_KEEP, STENCIL_OP_ZERO, STENCIL_OP_REPLACE, STENCIL_OP_INCREMENT_AND_CLAMP, STENCIL_OP_DECREMENT_AND_CLAMP, STENCIL_OP_INVERT, STENCIL_OP_INCREMENT_AND_WRAP, STENCIL_OP_DECREMENT_AND_WRAP, LogicOp, LOGIC_OP_CLEAR, LOGIC_OP_AND, LOGIC_OP_AND_REVERSE, LOGIC_OP_COPY, LOGIC_OP_AND_INVERTED, LOGIC_OP_NO_OP, LOGIC_OP_XOR, LOGIC_OP_OR, LOGIC_OP_NOR, LOGIC_OP_EQUIVALENT, LOGIC_OP_INVERT, LOGIC_OP_OR_REVERSE, LOGIC_OP_COPY_INVERTED, LOGIC_OP_OR_INVERTED, LOGIC_OP_NAND, LOGIC_OP_SET, InternalAllocationType, INTERNAL_ALLOCATION_TYPE_EXECUTABLE, SystemAllocationScope, SYSTEM_ALLOCATION_SCOPE_COMMAND, SYSTEM_ALLOCATION_SCOPE_OBJECT, SYSTEM_ALLOCATION_SCOPE_CACHE, SYSTEM_ALLOCATION_SCOPE_DEVICE, SYSTEM_ALLOCATION_SCOPE_INSTANCE, PhysicalDeviceType, PHYSICAL_DEVICE_TYPE_OTHER, PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU, PHYSICAL_DEVICE_TYPE_DISCRETE_GPU, PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU, PHYSICAL_DEVICE_TYPE_CPU, VertexInputRate, VERTEX_INPUT_RATE_VERTEX, VERTEX_INPUT_RATE_INSTANCE, Format, FORMAT_UNDEFINED, FORMAT_R4G4_UNORM_PACK8, FORMAT_R4G4B4A4_UNORM_PACK16, FORMAT_B4G4R4A4_UNORM_PACK16, FORMAT_R5G6B5_UNORM_PACK16, FORMAT_B5G6R5_UNORM_PACK16, FORMAT_R5G5B5A1_UNORM_PACK16, FORMAT_B5G5R5A1_UNORM_PACK16, FORMAT_A1R5G5B5_UNORM_PACK16, FORMAT_R8_UNORM, FORMAT_R8_SNORM, FORMAT_R8_USCALED, FORMAT_R8_SSCALED, FORMAT_R8_UINT, FORMAT_R8_SINT, FORMAT_R8_SRGB, FORMAT_R8G8_UNORM, FORMAT_R8G8_SNORM, FORMAT_R8G8_USCALED, FORMAT_R8G8_SSCALED, FORMAT_R8G8_UINT, FORMAT_R8G8_SINT, FORMAT_R8G8_SRGB, FORMAT_R8G8B8_UNORM, FORMAT_R8G8B8_SNORM, FORMAT_R8G8B8_USCALED, FORMAT_R8G8B8_SSCALED, FORMAT_R8G8B8_UINT, FORMAT_R8G8B8_SINT, FORMAT_R8G8B8_SRGB, FORMAT_B8G8R8_UNORM, FORMAT_B8G8R8_SNORM, FORMAT_B8G8R8_USCALED, FORMAT_B8G8R8_SSCALED, FORMAT_B8G8R8_UINT, FORMAT_B8G8R8_SINT, FORMAT_B8G8R8_SRGB, FORMAT_R8G8B8A8_UNORM, FORMAT_R8G8B8A8_SNORM, FORMAT_R8G8B8A8_USCALED, FORMAT_R8G8B8A8_SSCALED, FORMAT_R8G8B8A8_UINT, FORMAT_R8G8B8A8_SINT, FORMAT_R8G8B8A8_SRGB, FORMAT_B8G8R8A8_UNORM, FORMAT_B8G8R8A8_SNORM, FORMAT_B8G8R8A8_USCALED, FORMAT_B8G8R8A8_SSCALED, FORMAT_B8G8R8A8_UINT, FORMAT_B8G8R8A8_SINT, FORMAT_B8G8R8A8_SRGB, FORMAT_A8B8G8R8_UNORM_PACK32, FORMAT_A8B8G8R8_SNORM_PACK32, FORMAT_A8B8G8R8_USCALED_PACK32, FORMAT_A8B8G8R8_SSCALED_PACK32, FORMAT_A8B8G8R8_UINT_PACK32, FORMAT_A8B8G8R8_SINT_PACK32, FORMAT_A8B8G8R8_SRGB_PACK32, FORMAT_A2R10G10B10_UNORM_PACK32, FORMAT_A2R10G10B10_SNORM_PACK32, FORMAT_A2R10G10B10_USCALED_PACK32, FORMAT_A2R10G10B10_SSCALED_PACK32, FORMAT_A2R10G10B10_UINT_PACK32, FORMAT_A2R10G10B10_SINT_PACK32, FORMAT_A2B10G10R10_UNORM_PACK32, FORMAT_A2B10G10R10_SNORM_PACK32, FORMAT_A2B10G10R10_USCALED_PACK32, FORMAT_A2B10G10R10_SSCALED_PACK32, FORMAT_A2B10G10R10_UINT_PACK32, FORMAT_A2B10G10R10_SINT_PACK32, FORMAT_R16_UNORM, FORMAT_R16_SNORM, FORMAT_R16_USCALED, FORMAT_R16_SSCALED, FORMAT_R16_UINT, FORMAT_R16_SINT, FORMAT_R16_SFLOAT, FORMAT_R16G16_UNORM, FORMAT_R16G16_SNORM, FORMAT_R16G16_USCALED, FORMAT_R16G16_SSCALED, FORMAT_R16G16_UINT, FORMAT_R16G16_SINT, FORMAT_R16G16_SFLOAT, FORMAT_R16G16B16_UNORM, FORMAT_R16G16B16_SNORM, FORMAT_R16G16B16_USCALED, FORMAT_R16G16B16_SSCALED, FORMAT_R16G16B16_UINT, FORMAT_R16G16B16_SINT, FORMAT_R16G16B16_SFLOAT, FORMAT_R16G16B16A16_UNORM, FORMAT_R16G16B16A16_SNORM, FORMAT_R16G16B16A16_USCALED, FORMAT_R16G16B16A16_SSCALED, FORMAT_R16G16B16A16_UINT, FORMAT_R16G16B16A16_SINT, FORMAT_R16G16B16A16_SFLOAT, FORMAT_R32_UINT, FORMAT_R32_SINT, FORMAT_R32_SFLOAT, FORMAT_R32G32_UINT, FORMAT_R32G32_SINT, FORMAT_R32G32_SFLOAT, FORMAT_R32G32B32_UINT, FORMAT_R32G32B32_SINT, FORMAT_R32G32B32_SFLOAT, FORMAT_R32G32B32A32_UINT, FORMAT_R32G32B32A32_SINT, FORMAT_R32G32B32A32_SFLOAT, FORMAT_R64_UINT, FORMAT_R64_SINT, FORMAT_R64_SFLOAT, FORMAT_R64G64_UINT, FORMAT_R64G64_SINT, FORMAT_R64G64_SFLOAT, FORMAT_R64G64B64_UINT, FORMAT_R64G64B64_SINT, FORMAT_R64G64B64_SFLOAT, FORMAT_R64G64B64A64_UINT, FORMAT_R64G64B64A64_SINT, FORMAT_R64G64B64A64_SFLOAT, FORMAT_B10G11R11_UFLOAT_PACK32, FORMAT_E5B9G9R9_UFLOAT_PACK32, FORMAT_D16_UNORM, FORMAT_X8_D24_UNORM_PACK32, FORMAT_D32_SFLOAT, FORMAT_S8_UINT, FORMAT_D16_UNORM_S8_UINT, FORMAT_D24_UNORM_S8_UINT, FORMAT_D32_SFLOAT_S8_UINT, FORMAT_BC1_RGB_UNORM_BLOCK, FORMAT_BC1_RGB_SRGB_BLOCK, FORMAT_BC1_RGBA_UNORM_BLOCK, FORMAT_BC1_RGBA_SRGB_BLOCK, FORMAT_BC2_UNORM_BLOCK, FORMAT_BC2_SRGB_BLOCK, FORMAT_BC3_UNORM_BLOCK, FORMAT_BC3_SRGB_BLOCK, FORMAT_BC4_UNORM_BLOCK, FORMAT_BC4_SNORM_BLOCK, FORMAT_BC5_UNORM_BLOCK, FORMAT_BC5_SNORM_BLOCK, FORMAT_BC6H_UFLOAT_BLOCK, FORMAT_BC6H_SFLOAT_BLOCK, FORMAT_BC7_UNORM_BLOCK, FORMAT_BC7_SRGB_BLOCK, FORMAT_ETC2_R8G8B8_UNORM_BLOCK, FORMAT_ETC2_R8G8B8_SRGB_BLOCK, FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK, FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK, FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK, FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK, FORMAT_EAC_R11_UNORM_BLOCK, FORMAT_EAC_R11_SNORM_BLOCK, FORMAT_EAC_R11G11_UNORM_BLOCK, FORMAT_EAC_R11G11_SNORM_BLOCK, FORMAT_ASTC_4x4_UNORM_BLOCK, FORMAT_ASTC_4x4_SRGB_BLOCK, FORMAT_ASTC_5x4_UNORM_BLOCK, FORMAT_ASTC_5x4_SRGB_BLOCK, FORMAT_ASTC_5x5_UNORM_BLOCK, FORMAT_ASTC_5x5_SRGB_BLOCK, FORMAT_ASTC_6x5_UNORM_BLOCK, FORMAT_ASTC_6x5_SRGB_BLOCK, FORMAT_ASTC_6x6_UNORM_BLOCK, FORMAT_ASTC_6x6_SRGB_BLOCK, FORMAT_ASTC_8x5_UNORM_BLOCK, FORMAT_ASTC_8x5_SRGB_BLOCK, FORMAT_ASTC_8x6_UNORM_BLOCK, FORMAT_ASTC_8x6_SRGB_BLOCK, FORMAT_ASTC_8x8_UNORM_BLOCK, FORMAT_ASTC_8x8_SRGB_BLOCK, FORMAT_ASTC_10x5_UNORM_BLOCK, FORMAT_ASTC_10x5_SRGB_BLOCK, FORMAT_ASTC_10x6_UNORM_BLOCK, FORMAT_ASTC_10x6_SRGB_BLOCK, FORMAT_ASTC_10x8_UNORM_BLOCK, FORMAT_ASTC_10x8_SRGB_BLOCK, FORMAT_ASTC_10x10_UNORM_BLOCK, FORMAT_ASTC_10x10_SRGB_BLOCK, FORMAT_ASTC_12x10_UNORM_BLOCK, FORMAT_ASTC_12x10_SRGB_BLOCK, FORMAT_ASTC_12x12_UNORM_BLOCK, FORMAT_ASTC_12x12_SRGB_BLOCK, FORMAT_G8B8G8R8_422_UNORM, FORMAT_B8G8R8G8_422_UNORM, FORMAT_G8_B8_R8_3PLANE_420_UNORM, FORMAT_G8_B8R8_2PLANE_420_UNORM, FORMAT_G8_B8_R8_3PLANE_422_UNORM, FORMAT_G8_B8R8_2PLANE_422_UNORM, FORMAT_G8_B8_R8_3PLANE_444_UNORM, FORMAT_R10X6_UNORM_PACK16, FORMAT_R10X6G10X6_UNORM_2PACK16, FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16, FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16, FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16, FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16, FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16, FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16, FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16, FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16, FORMAT_R12X4_UNORM_PACK16, FORMAT_R12X4G12X4_UNORM_2PACK16, FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16, FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16, FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16, FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16, FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16, FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16, FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16, FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16, FORMAT_G16B16G16R16_422_UNORM, FORMAT_B16G16R16G16_422_UNORM, FORMAT_G16_B16_R16_3PLANE_420_UNORM, FORMAT_G16_B16R16_2PLANE_420_UNORM, FORMAT_G16_B16_R16_3PLANE_422_UNORM, FORMAT_G16_B16R16_2PLANE_422_UNORM, FORMAT_G16_B16_R16_3PLANE_444_UNORM, FORMAT_G8_B8R8_2PLANE_444_UNORM, FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16, FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16, FORMAT_G16_B16R16_2PLANE_444_UNORM, FORMAT_A4R4G4B4_UNORM_PACK16, FORMAT_A4B4G4R4_UNORM_PACK16, FORMAT_ASTC_4x4_SFLOAT_BLOCK, FORMAT_ASTC_5x4_SFLOAT_BLOCK, FORMAT_ASTC_5x5_SFLOAT_BLOCK, FORMAT_ASTC_6x5_SFLOAT_BLOCK, FORMAT_ASTC_6x6_SFLOAT_BLOCK, FORMAT_ASTC_8x5_SFLOAT_BLOCK, FORMAT_ASTC_8x6_SFLOAT_BLOCK, FORMAT_ASTC_8x8_SFLOAT_BLOCK, FORMAT_ASTC_10x5_SFLOAT_BLOCK, FORMAT_ASTC_10x6_SFLOAT_BLOCK, FORMAT_ASTC_10x8_SFLOAT_BLOCK, FORMAT_ASTC_10x10_SFLOAT_BLOCK, FORMAT_ASTC_12x10_SFLOAT_BLOCK, FORMAT_ASTC_12x12_SFLOAT_BLOCK, FORMAT_PVRTC1_2BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG, FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG, FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG, FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG, FORMAT_ASTC_3x3x3_UNORM_BLOCK_EXT, FORMAT_ASTC_3x3x3_SRGB_BLOCK_EXT, FORMAT_ASTC_3x3x3_SFLOAT_BLOCK_EXT, FORMAT_ASTC_4x3x3_UNORM_BLOCK_EXT, FORMAT_ASTC_4x3x3_SRGB_BLOCK_EXT, FORMAT_ASTC_4x3x3_SFLOAT_BLOCK_EXT, FORMAT_ASTC_4x4x3_UNORM_BLOCK_EXT, FORMAT_ASTC_4x4x3_SRGB_BLOCK_EXT, FORMAT_ASTC_4x4x3_SFLOAT_BLOCK_EXT, FORMAT_ASTC_4x4x4_UNORM_BLOCK_EXT, FORMAT_ASTC_4x4x4_SRGB_BLOCK_EXT, FORMAT_ASTC_4x4x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x4x4_UNORM_BLOCK_EXT, FORMAT_ASTC_5x4x4_SRGB_BLOCK_EXT, FORMAT_ASTC_5x4x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x5x4_UNORM_BLOCK_EXT, FORMAT_ASTC_5x5x4_SRGB_BLOCK_EXT, FORMAT_ASTC_5x5x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x5x5_UNORM_BLOCK_EXT, FORMAT_ASTC_5x5x5_SRGB_BLOCK_EXT, FORMAT_ASTC_5x5x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x5x5_UNORM_BLOCK_EXT, FORMAT_ASTC_6x5x5_SRGB_BLOCK_EXT, FORMAT_ASTC_6x5x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x6x5_UNORM_BLOCK_EXT, FORMAT_ASTC_6x6x5_SRGB_BLOCK_EXT, FORMAT_ASTC_6x6x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x6x6_UNORM_BLOCK_EXT, FORMAT_ASTC_6x6x6_SRGB_BLOCK_EXT, FORMAT_ASTC_6x6x6_SFLOAT_BLOCK_EXT, StructureType, STRUCTURE_TYPE_APPLICATION_INFO, STRUCTURE_TYPE_INSTANCE_CREATE_INFO, STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO, STRUCTURE_TYPE_DEVICE_CREATE_INFO, STRUCTURE_TYPE_SUBMIT_INFO, STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO, STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, STRUCTURE_TYPE_BIND_SPARSE_INFO, STRUCTURE_TYPE_FENCE_CREATE_INFO, STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO, STRUCTURE_TYPE_EVENT_CREATE_INFO, STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO, STRUCTURE_TYPE_BUFFER_CREATE_INFO, STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO, STRUCTURE_TYPE_IMAGE_CREATE_INFO, STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO, STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO, STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO, STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO, STRUCTURE_TYPE_SAMPLER_CREATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET, STRUCTURE_TYPE_COPY_DESCRIPTOR_SET, STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO, STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO, STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO, STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER, STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER, STRUCTURE_TYPE_MEMORY_BARRIER, STRUCTURE_TYPE_LOADER_INSTANCE_CREATE_INFO, STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_PROPERTIES, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES, STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS, STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO, STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO, STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO, STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO, STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO, STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES, STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO, STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2, STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2, STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2, STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2, STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2, STRUCTURE_TYPE_FORMAT_PROPERTIES_2, STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2, STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2, STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES, STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO, STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO, STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES, STRUCTURE_TYPE_PROTECTED_SUBMIT_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES, STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO, STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO, STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO, STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO, STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES, STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO, STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO, STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO, STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES, STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO, STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO, STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES, STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2, STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2, STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2, STRUCTURE_TYPE_SUBPASS_BEGIN_INFO, STRUCTURE_TYPE_SUBPASS_END_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE, STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES, STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES, STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO, STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT, STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES, STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO, STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO, STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO, STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO, STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO, STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO, STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES, STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES, STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO, STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES, STRUCTURE_TYPE_MEMORY_BARRIER_2, STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2, STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2, STRUCTURE_TYPE_DEPENDENCY_INFO, STRUCTURE_TYPE_SUBMIT_INFO_2, STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES, STRUCTURE_TYPE_COPY_BUFFER_INFO_2, STRUCTURE_TYPE_COPY_IMAGE_INFO_2, STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2, STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2, STRUCTURE_TYPE_BLIT_IMAGE_INFO_2, STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2, STRUCTURE_TYPE_BUFFER_COPY_2, STRUCTURE_TYPE_IMAGE_COPY_2, STRUCTURE_TYPE_IMAGE_BLIT_2, STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2, STRUCTURE_TYPE_IMAGE_RESOLVE_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES, STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK, STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES, STRUCTURE_TYPE_RENDERING_INFO, STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO, STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES, STRUCTURE_TYPE_FORMAT_PROPERTIES_3, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES, STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS, STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS, STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, STRUCTURE_TYPE_PRESENT_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR, STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR, STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR, STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR, STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR, STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_NATIVE_BUFFER_ANDROID, STRUCTURE_TYPE_SWAPCHAIN_IMAGE_CREATE_INFO_ANDROID, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENTATION_PROPERTIES_ANDROID, STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD, STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT, STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT, STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT, STRUCTURE_TYPE_VIDEO_PROFILE_KHR, STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR, STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_KHR, STRUCTURE_TYPE_VIDEO_GET_MEMORY_PROPERTIES_KHR, STRUCTURE_TYPE_VIDEO_BIND_MEMORY_KHR, STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR, STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR, STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR, STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR, STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR, STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR, STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_KHR, STRUCTURE_TYPE_VIDEO_QUEUE_FAMILY_PROPERTIES_2_KHR, STRUCTURE_TYPE_VIDEO_PROFILES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR, STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR, STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR, STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR, STRUCTURE_TYPE_VIDEO_DECODE_CAPABILITIES_KHR, STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV, STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV, STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT, STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX, STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX, STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX, STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX, STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX, STRUCTURE_TYPE_VIDEO_ENCODE_H264_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_VCL_FRAME_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_NALU_SLICE_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_EMIT_PICTURE_PARAMETERS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_REFERENCE_LISTS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_VCL_FRAME_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_EMIT_PICTURE_PARAMETERS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_REFERENCE_LISTS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_PICTURE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_MVC_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD, STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR, STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT, STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD, STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX, STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP, STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV, STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV, STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV, STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV, STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV, STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV, STRUCTURE_TYPE_VALIDATION_FLAGS_EXT, STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN, STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT, STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR, STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR, STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR, STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR, STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR, STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT, STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT, STRUCTURE_TYPE_PRESENT_REGIONS_KHR, STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT, STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT, STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT, STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT, STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT, STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX, STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_HDR_METADATA_EXT, STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR, STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR, STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR, STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR, STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR, STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR, STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR, STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR, STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR, STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR, STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR, STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR, STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR, STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR, STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK, STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK, STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT, STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT, STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT, STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT, STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID, STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID, STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID, STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID, STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT, STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT, STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT, STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR, STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR, STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR, STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR, STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR, STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR, STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR, STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV, STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT, STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT, STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT, STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT, STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT, STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT, STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR, STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV, STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV, STRUCTURE_TYPE_GEOMETRY_NV, STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV, STRUCTURE_TYPE_GEOMETRY_AABB_NV, STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV, STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT, STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT, STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT, STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR, STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD, STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD, STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR, STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR, STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD, STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT, STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP, STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV, STRUCTURE_TYPE_CHECKPOINT_DATA_NV, STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL, STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL, STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL, STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT, STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD, STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD, STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT, STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT, STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR, STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD, STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT, STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT, STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT, STRUCTURE_TYPE_VALIDATION_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV, STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT, STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT, STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT, STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT, STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR, STRUCTURE_TYPE_PIPELINE_INFO_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV, STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV, STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV, STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV, STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV, STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV, STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM, STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT, STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT, STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT, STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR, STRUCTURE_TYPE_PRESENT_ID_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_CAPABILITIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV, STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV, STRUCTURE_TYPE_RESERVED_QCOM, STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV, STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MOTION_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT, STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM, STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT, STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE, STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE, STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT, STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT, STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT, STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA, STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA, STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI, STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI, STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT, STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX, STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT, STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT, STRUCTURE_TYPE_SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE, STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM, STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV, SubpassContents, SUBPASS_CONTENTS_INLINE, SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS, Result, SUCCESS, NOT_READY, TIMEOUT, EVENT_SET, EVENT_RESET, INCOMPLETE, ERROR_OUT_OF_HOST_MEMORY, ERROR_OUT_OF_DEVICE_MEMORY, ERROR_INITIALIZATION_FAILED, ERROR_DEVICE_LOST, ERROR_MEMORY_MAP_FAILED, ERROR_LAYER_NOT_PRESENT, ERROR_EXTENSION_NOT_PRESENT, ERROR_FEATURE_NOT_PRESENT, ERROR_INCOMPATIBLE_DRIVER, ERROR_TOO_MANY_OBJECTS, ERROR_FORMAT_NOT_SUPPORTED, ERROR_FRAGMENTED_POOL, ERROR_UNKNOWN, ERROR_OUT_OF_POOL_MEMORY, ERROR_INVALID_EXTERNAL_HANDLE, ERROR_FRAGMENTATION, ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS, PIPELINE_COMPILE_REQUIRED, ERROR_SURFACE_LOST_KHR, ERROR_NATIVE_WINDOW_IN_USE_KHR, SUBOPTIMAL_KHR, ERROR_OUT_OF_DATE_KHR, ERROR_INCOMPATIBLE_DISPLAY_KHR, ERROR_VALIDATION_FAILED_EXT, ERROR_INVALID_SHADER_NV, ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT, ERROR_NOT_PERMITTED_KHR, ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT, THREAD_IDLE_KHR, THREAD_DONE_KHR, OPERATION_DEFERRED_KHR, OPERATION_NOT_DEFERRED_KHR, DynamicState, DYNAMIC_STATE_VIEWPORT, DYNAMIC_STATE_SCISSOR, DYNAMIC_STATE_LINE_WIDTH, DYNAMIC_STATE_DEPTH_BIAS, DYNAMIC_STATE_BLEND_CONSTANTS, DYNAMIC_STATE_DEPTH_BOUNDS, DYNAMIC_STATE_STENCIL_COMPARE_MASK, DYNAMIC_STATE_STENCIL_WRITE_MASK, DYNAMIC_STATE_STENCIL_REFERENCE, DYNAMIC_STATE_CULL_MODE, DYNAMIC_STATE_FRONT_FACE, DYNAMIC_STATE_PRIMITIVE_TOPOLOGY, DYNAMIC_STATE_VIEWPORT_WITH_COUNT, DYNAMIC_STATE_SCISSOR_WITH_COUNT, DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE, DYNAMIC_STATE_DEPTH_TEST_ENABLE, DYNAMIC_STATE_DEPTH_WRITE_ENABLE, DYNAMIC_STATE_DEPTH_COMPARE_OP, DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE, DYNAMIC_STATE_STENCIL_TEST_ENABLE, DYNAMIC_STATE_STENCIL_OP, DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE, DYNAMIC_STATE_DEPTH_BIAS_ENABLE, DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE, DYNAMIC_STATE_VIEWPORT_W_SCALING_NV, DYNAMIC_STATE_DISCARD_RECTANGLE_EXT, DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT, DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR, DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV, DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV, DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV, DYNAMIC_STATE_FRAGMENT_SHADING_RATE_KHR, DYNAMIC_STATE_LINE_STIPPLE_EXT, DYNAMIC_STATE_VERTEX_INPUT_EXT, DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT, DYNAMIC_STATE_LOGIC_OP_EXT, DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT, DescriptorUpdateTemplateType, DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET, DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR, ObjectType, OBJECT_TYPE_UNKNOWN, OBJECT_TYPE_INSTANCE, OBJECT_TYPE_PHYSICAL_DEVICE, OBJECT_TYPE_DEVICE, OBJECT_TYPE_QUEUE, OBJECT_TYPE_SEMAPHORE, OBJECT_TYPE_COMMAND_BUFFER, OBJECT_TYPE_FENCE, OBJECT_TYPE_DEVICE_MEMORY, OBJECT_TYPE_BUFFER, OBJECT_TYPE_IMAGE, OBJECT_TYPE_EVENT, OBJECT_TYPE_QUERY_POOL, OBJECT_TYPE_BUFFER_VIEW, OBJECT_TYPE_IMAGE_VIEW, OBJECT_TYPE_SHADER_MODULE, OBJECT_TYPE_PIPELINE_CACHE, OBJECT_TYPE_PIPELINE_LAYOUT, OBJECT_TYPE_RENDER_PASS, OBJECT_TYPE_PIPELINE, OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, OBJECT_TYPE_SAMPLER, OBJECT_TYPE_DESCRIPTOR_POOL, OBJECT_TYPE_DESCRIPTOR_SET, OBJECT_TYPE_FRAMEBUFFER, OBJECT_TYPE_COMMAND_POOL, OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION, OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE, OBJECT_TYPE_PRIVATE_DATA_SLOT, OBJECT_TYPE_SURFACE_KHR, OBJECT_TYPE_SWAPCHAIN_KHR, OBJECT_TYPE_DISPLAY_KHR, OBJECT_TYPE_DISPLAY_MODE_KHR, OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT, OBJECT_TYPE_VIDEO_SESSION_KHR, OBJECT_TYPE_VIDEO_SESSION_PARAMETERS_KHR, OBJECT_TYPE_CU_MODULE_NVX, OBJECT_TYPE_CU_FUNCTION_NVX, OBJECT_TYPE_DEBUG_UTILS_MESSENGER_EXT, OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR, OBJECT_TYPE_VALIDATION_CACHE_EXT, OBJECT_TYPE_ACCELERATION_STRUCTURE_NV, OBJECT_TYPE_PERFORMANCE_CONFIGURATION_INTEL, OBJECT_TYPE_DEFERRED_OPERATION_KHR, OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NV, OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA, SemaphoreType, SEMAPHORE_TYPE_BINARY, SEMAPHORE_TYPE_TIMELINE, PresentModeKHR, PRESENT_MODE_IMMEDIATE_KHR, PRESENT_MODE_MAILBOX_KHR, PRESENT_MODE_FIFO_KHR, PRESENT_MODE_FIFO_RELAXED_KHR, PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR, PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR, ColorSpaceKHR, COLOR_SPACE_SRGB_NONLINEAR_KHR, COLOR_SPACE_DISPLAY_P3_NONLINEAR_EXT, COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT, COLOR_SPACE_DISPLAY_P3_LINEAR_EXT, COLOR_SPACE_DCI_P3_NONLINEAR_EXT, COLOR_SPACE_BT709_LINEAR_EXT, COLOR_SPACE_BT709_NONLINEAR_EXT, COLOR_SPACE_BT2020_LINEAR_EXT, COLOR_SPACE_HDR10_ST2084_EXT, COLOR_SPACE_DOLBYVISION_EXT, COLOR_SPACE_HDR10_HLG_EXT, COLOR_SPACE_ADOBERGB_LINEAR_EXT, COLOR_SPACE_ADOBERGB_NONLINEAR_EXT, COLOR_SPACE_PASS_THROUGH_EXT, COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT, COLOR_SPACE_DISPLAY_NATIVE_AMD, TimeDomainEXT, TIME_DOMAIN_DEVICE_EXT, TIME_DOMAIN_CLOCK_MONOTONIC_EXT, TIME_DOMAIN_CLOCK_MONOTONIC_RAW_EXT, TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT, DebugReportObjectTypeEXT, DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT, DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT, DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT, DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT, DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT, DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT, DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT, DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT, DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT, DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT, DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT, DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT, DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT, DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT, DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT, DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT, DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT, DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT, DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT, DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT, DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT, DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT, DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT, DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT, DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT, DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT, DEBUG_REPORT_OBJECT_TYPE_CU_MODULE_NVX_EXT, DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX_EXT, DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV_EXT, DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT, DeviceMemoryReportEventTypeEXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_FREE_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_UNIMPORT_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT, RasterizationOrderAMD, RASTERIZATION_ORDER_STRICT_AMD, RASTERIZATION_ORDER_RELAXED_AMD, ValidationCheckEXT, VALIDATION_CHECK_ALL_EXT, VALIDATION_CHECK_SHADERS_EXT, ValidationFeatureEnableEXT, VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT, VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT, VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT, VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT, VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT, ValidationFeatureDisableEXT, VALIDATION_FEATURE_DISABLE_ALL_EXT, VALIDATION_FEATURE_DISABLE_SHADERS_EXT, VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT, VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT, VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT, VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT, VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT, VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT, IndirectCommandsTokenTypeNV, INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV, INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV, INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV, INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV, INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV, INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV, INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV, INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV, DisplayPowerStateEXT, DISPLAY_POWER_STATE_OFF_EXT, DISPLAY_POWER_STATE_SUSPEND_EXT, DISPLAY_POWER_STATE_ON_EXT, DeviceEventTypeEXT, DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT, DisplayEventTypeEXT, DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT, ViewportCoordinateSwizzleNV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_X_NV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Y_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Y_NV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Z_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Z_NV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_W_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV, DiscardRectangleModeEXT, DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT, DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT, PointClippingBehavior, POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES, POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY, SamplerReductionMode, SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE, SAMPLER_REDUCTION_MODE_MIN, SAMPLER_REDUCTION_MODE_MAX, TessellationDomainOrigin, TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT, TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT, SamplerYcbcrModelConversion, SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020, SamplerYcbcrRange, SAMPLER_YCBCR_RANGE_ITU_FULL, SAMPLER_YCBCR_RANGE_ITU_NARROW, ChromaLocation, CHROMA_LOCATION_COSITED_EVEN, CHROMA_LOCATION_MIDPOINT, BlendOverlapEXT, BLEND_OVERLAP_UNCORRELATED_EXT, BLEND_OVERLAP_DISJOINT_EXT, BLEND_OVERLAP_CONJOINT_EXT, CoverageModulationModeNV, COVERAGE_MODULATION_MODE_NONE_NV, COVERAGE_MODULATION_MODE_RGB_NV, COVERAGE_MODULATION_MODE_ALPHA_NV, COVERAGE_MODULATION_MODE_RGBA_NV, CoverageReductionModeNV, COVERAGE_REDUCTION_MODE_MERGE_NV, COVERAGE_REDUCTION_MODE_TRUNCATE_NV, ValidationCacheHeaderVersionEXT, VALIDATION_CACHE_HEADER_VERSION_ONE_EXT, ShaderInfoTypeAMD, SHADER_INFO_TYPE_STATISTICS_AMD, SHADER_INFO_TYPE_BINARY_AMD, SHADER_INFO_TYPE_DISASSEMBLY_AMD, QueueGlobalPriorityKHR, QUEUE_GLOBAL_PRIORITY_LOW_KHR, QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR, QUEUE_GLOBAL_PRIORITY_HIGH_KHR, QUEUE_GLOBAL_PRIORITY_REALTIME_KHR, ConservativeRasterizationModeEXT, CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT, CONSERVATIVE_RASTERIZATION_MODE_OVERESTIMATE_EXT, CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT, VendorId, VENDOR_ID_VIV, VENDOR_ID_VSI, VENDOR_ID_KAZAN, VENDOR_ID_CODEPLAY, VENDOR_ID_MESA, VENDOR_ID_POCL, DriverId, DRIVER_ID_AMD_PROPRIETARY, DRIVER_ID_AMD_OPEN_SOURCE, DRIVER_ID_MESA_RADV, DRIVER_ID_NVIDIA_PROPRIETARY, DRIVER_ID_INTEL_PROPRIETARY_WINDOWS, DRIVER_ID_INTEL_OPEN_SOURCE_MESA, DRIVER_ID_IMAGINATION_PROPRIETARY, DRIVER_ID_QUALCOMM_PROPRIETARY, DRIVER_ID_ARM_PROPRIETARY, DRIVER_ID_GOOGLE_SWIFTSHADER, DRIVER_ID_GGP_PROPRIETARY, DRIVER_ID_BROADCOM_PROPRIETARY, DRIVER_ID_MESA_LLVMPIPE, DRIVER_ID_MOLTENVK, DRIVER_ID_COREAVI_PROPRIETARY, DRIVER_ID_JUICE_PROPRIETARY, DRIVER_ID_VERISILICON_PROPRIETARY, DRIVER_ID_MESA_TURNIP, DRIVER_ID_MESA_V3DV, DRIVER_ID_MESA_PANVK, DRIVER_ID_SAMSUNG_PROPRIETARY, DRIVER_ID_MESA_VENUS, ShadingRatePaletteEntryNV, SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV, SHADING_RATE_PALETTE_ENTRY_16_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_8_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_4_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_2_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X1_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_1X2_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X2_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X2_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X4_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV, CoarseSampleOrderTypeNV, COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV, COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV, COARSE_SAMPLE_ORDER_TYPE_PIXEL_MAJOR_NV, COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV, CopyAccelerationStructureModeKHR, COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR, COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR, COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR, COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR, BuildAccelerationStructureModeKHR, BUILD_ACCELERATION_STRUCTURE_MODE_BUILD_KHR, BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR, AccelerationStructureTypeKHR, ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR, ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR, ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR, GeometryTypeKHR, GEOMETRY_TYPE_TRIANGLES_KHR, GEOMETRY_TYPE_AABBS_KHR, GEOMETRY_TYPE_INSTANCES_KHR, AccelerationStructureMemoryRequirementsTypeNV, ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV, ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BUILD_SCRATCH_NV, ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV, AccelerationStructureBuildTypeKHR, ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_KHR, ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE_KHR, ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE_KHR, RayTracingShaderGroupTypeKHR, RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR, RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR, RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR, AccelerationStructureCompatibilityKHR, ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE_KHR, ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE_KHR, ShaderGroupShaderKHR, SHADER_GROUP_SHADER_GENERAL_KHR, SHADER_GROUP_SHADER_CLOSEST_HIT_KHR, SHADER_GROUP_SHADER_ANY_HIT_KHR, SHADER_GROUP_SHADER_INTERSECTION_KHR, MemoryOverallocationBehaviorAMD, MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD, MEMORY_OVERALLOCATION_BEHAVIOR_ALLOWED_AMD, MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD, ScopeNV, SCOPE_DEVICE_NV, SCOPE_WORKGROUP_NV, SCOPE_SUBGROUP_NV, SCOPE_QUEUE_FAMILY_NV, ComponentTypeNV, COMPONENT_TYPE_FLOAT16_NV, COMPONENT_TYPE_FLOAT32_NV, COMPONENT_TYPE_FLOAT64_NV, COMPONENT_TYPE_SINT8_NV, COMPONENT_TYPE_SINT16_NV, COMPONENT_TYPE_SINT32_NV, COMPONENT_TYPE_SINT64_NV, COMPONENT_TYPE_UINT8_NV, COMPONENT_TYPE_UINT16_NV, COMPONENT_TYPE_UINT32_NV, COMPONENT_TYPE_UINT64_NV, FullScreenExclusiveEXT, FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT, FULL_SCREEN_EXCLUSIVE_ALLOWED_EXT, FULL_SCREEN_EXCLUSIVE_DISALLOWED_EXT, FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT, PerformanceCounterScopeKHR, PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR, PERFORMANCE_COUNTER_SCOPE_RENDER_PASS_KHR, PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR, PerformanceCounterUnitKHR, PERFORMANCE_COUNTER_UNIT_GENERIC_KHR, PERFORMANCE_COUNTER_UNIT_PERCENTAGE_KHR, PERFORMANCE_COUNTER_UNIT_NANOSECONDS_KHR, PERFORMANCE_COUNTER_UNIT_BYTES_KHR, PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND_KHR, PERFORMANCE_COUNTER_UNIT_KELVIN_KHR, PERFORMANCE_COUNTER_UNIT_WATTS_KHR, PERFORMANCE_COUNTER_UNIT_VOLTS_KHR, PERFORMANCE_COUNTER_UNIT_AMPS_KHR, PERFORMANCE_COUNTER_UNIT_HERTZ_KHR, PERFORMANCE_COUNTER_UNIT_CYCLES_KHR, PerformanceCounterStorageKHR, PERFORMANCE_COUNTER_STORAGE_INT32_KHR, PERFORMANCE_COUNTER_STORAGE_INT64_KHR, PERFORMANCE_COUNTER_STORAGE_UINT32_KHR, PERFORMANCE_COUNTER_STORAGE_UINT64_KHR, PERFORMANCE_COUNTER_STORAGE_FLOAT32_KHR, PERFORMANCE_COUNTER_STORAGE_FLOAT64_KHR, PerformanceConfigurationTypeINTEL, PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL, QueryPoolSamplingModeINTEL, QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL, PerformanceOverrideTypeINTEL, PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE_INTEL, PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES_INTEL, PerformanceParameterTypeINTEL, PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED_INTEL, PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL, PerformanceValueTypeINTEL, PERFORMANCE_VALUE_TYPE_UINT32_INTEL, PERFORMANCE_VALUE_TYPE_UINT64_INTEL, PERFORMANCE_VALUE_TYPE_FLOAT_INTEL, PERFORMANCE_VALUE_TYPE_BOOL_INTEL, PERFORMANCE_VALUE_TYPE_STRING_INTEL, ShaderFloatControlsIndependence, SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY, SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL, SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE, PipelineExecutableStatisticFormatKHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_INT64_KHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_UINT64_KHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR, LineRasterizationModeEXT, LINE_RASTERIZATION_MODE_DEFAULT_EXT, LINE_RASTERIZATION_MODE_RECTANGULAR_EXT, LINE_RASTERIZATION_MODE_BRESENHAM_EXT, LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT, FragmentShadingRateCombinerOpKHR, FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_MIN_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_MAX_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR, FragmentShadingRateNV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_1X2_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X1_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X2_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X4_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X2_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X4_PIXELS_NV, FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV, FragmentShadingRateTypeNV, FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV, FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV, ProvokingVertexModeEXT, PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT, PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT, AccelerationStructureMotionInstanceTypeNV, ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV, ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV, ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV, PipelineCacheCreateFlag, PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT, PIPELINE_CACHE_CREATE_RESERVED_1_BIT_EXT, PIPELINE_CACHE_CREATE_RESERVED_2_BIT_KHR, QueueFlag, QUEUE_GRAPHICS_BIT, QUEUE_COMPUTE_BIT, QUEUE_TRANSFER_BIT, QUEUE_SPARSE_BINDING_BIT, QUEUE_PROTECTED_BIT, QUEUE_VIDEO_DECODE_BIT_KHR, QUEUE_VIDEO_ENCODE_BIT_KHR, QUEUE_RESERVED_7_BIT_QCOM, CullModeFlag, CULL_MODE_FRONT_BIT, CULL_MODE_BACK_BIT, CULL_MODE_NONE, CULL_MODE_FRONT_AND_BACK, RenderPassCreateFlag, RENDER_PASS_CREATE_RESERVED_0_BIT_KHR, RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM, DeviceQueueCreateFlag, DEVICE_QUEUE_CREATE_PROTECTED_BIT, DEVICE_QUEUE_CREATE_RESERVED_1_BIT_QCOM, MemoryPropertyFlag, MEMORY_PROPERTY_DEVICE_LOCAL_BIT, MEMORY_PROPERTY_HOST_VISIBLE_BIT, MEMORY_PROPERTY_HOST_COHERENT_BIT, MEMORY_PROPERTY_HOST_CACHED_BIT, MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT, MEMORY_PROPERTY_PROTECTED_BIT, MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD, MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD, MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV, MemoryHeapFlag, MEMORY_HEAP_DEVICE_LOCAL_BIT, MEMORY_HEAP_MULTI_INSTANCE_BIT, MEMORY_HEAP_RESERVED_2_BIT_KHR, AccessFlag, ACCESS_INDIRECT_COMMAND_READ_BIT, ACCESS_INDEX_READ_BIT, ACCESS_VERTEX_ATTRIBUTE_READ_BIT, ACCESS_UNIFORM_READ_BIT, ACCESS_INPUT_ATTACHMENT_READ_BIT, ACCESS_SHADER_READ_BIT, ACCESS_SHADER_WRITE_BIT, ACCESS_COLOR_ATTACHMENT_READ_BIT, ACCESS_COLOR_ATTACHMENT_WRITE_BIT, ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT, ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT, ACCESS_TRANSFER_READ_BIT, ACCESS_TRANSFER_WRITE_BIT, ACCESS_HOST_READ_BIT, ACCESS_HOST_WRITE_BIT, ACCESS_MEMORY_READ_BIT, ACCESS_MEMORY_WRITE_BIT, ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR, ACCESS_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_NONE, BufferUsageFlag, BUFFER_USAGE_TRANSFER_SRC_BIT, BUFFER_USAGE_TRANSFER_DST_BIT, BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT, BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, BUFFER_USAGE_UNIFORM_BUFFER_BIT, BUFFER_USAGE_STORAGE_BUFFER_BIT, BUFFER_USAGE_INDEX_BUFFER_BIT, BUFFER_USAGE_VERTEX_BUFFER_BIT, BUFFER_USAGE_INDIRECT_BUFFER_BIT, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, BUFFER_USAGE_VIDEO_DECODE_SRC_BIT_KHR, BUFFER_USAGE_VIDEO_DECODE_DST_BIT_KHR, BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT, BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT, BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT, BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR, BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR, BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR, BUFFER_USAGE_RESERVED_18_BIT_QCOM, BUFFER_USAGE_VIDEO_ENCODE_DST_BIT_KHR, BUFFER_USAGE_VIDEO_ENCODE_SRC_BIT_KHR, BUFFER_USAGE_RESERVED_21_BIT_AMD, BUFFER_USAGE_RESERVED_22_BIT_AMD, BufferCreateFlag, BUFFER_CREATE_SPARSE_BINDING_BIT, BUFFER_CREATE_SPARSE_RESIDENCY_BIT, BUFFER_CREATE_SPARSE_ALIASED_BIT, BUFFER_CREATE_PROTECTED_BIT, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, BUFFER_CREATE_RESERVED_5_BIT_AMD, ShaderStageFlag, SHADER_STAGE_VERTEX_BIT, SHADER_STAGE_TESSELLATION_CONTROL_BIT, SHADER_STAGE_TESSELLATION_EVALUATION_BIT, SHADER_STAGE_GEOMETRY_BIT, SHADER_STAGE_FRAGMENT_BIT, SHADER_STAGE_COMPUTE_BIT, SHADER_STAGE_RAYGEN_BIT_KHR, SHADER_STAGE_ANY_HIT_BIT_KHR, SHADER_STAGE_CLOSEST_HIT_BIT_KHR, SHADER_STAGE_MISS_BIT_KHR, SHADER_STAGE_INTERSECTION_BIT_KHR, SHADER_STAGE_CALLABLE_BIT_KHR, SHADER_STAGE_TASK_BIT_NV, SHADER_STAGE_MESH_BIT_NV, SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI, SHADER_STAGE_ALL_GRAPHICS, SHADER_STAGE_ALL, ImageUsageFlag, IMAGE_USAGE_TRANSFER_SRC_BIT, IMAGE_USAGE_TRANSFER_DST_BIT, IMAGE_USAGE_SAMPLED_BIT, IMAGE_USAGE_STORAGE_BIT, IMAGE_USAGE_COLOR_ATTACHMENT_BIT, IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT, IMAGE_USAGE_INPUT_ATTACHMENT_BIT, IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR, IMAGE_USAGE_VIDEO_DECODE_SRC_BIT_KHR, IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR, IMAGE_USAGE_RESERVED_16_BIT_QCOM, IMAGE_USAGE_RESERVED_17_BIT_QCOM, IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT, IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, IMAGE_USAGE_RESERVED_22_BIT_EXT, IMAGE_USAGE_VIDEO_ENCODE_DST_BIT_KHR, IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR, IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR, IMAGE_USAGE_RESERVED_19_BIT_EXT, IMAGE_USAGE_INVOCATION_MASK_BIT_HUAWEI, IMAGE_USAGE_RESERVED_20_BIT_QCOM, IMAGE_USAGE_RESERVED_21_BIT_QCOM, ImageCreateFlag, IMAGE_CREATE_SPARSE_BINDING_BIT, IMAGE_CREATE_SPARSE_RESIDENCY_BIT, IMAGE_CREATE_SPARSE_ALIASED_BIT, IMAGE_CREATE_MUTABLE_FORMAT_BIT, IMAGE_CREATE_CUBE_COMPATIBLE_BIT, IMAGE_CREATE_ALIAS_BIT, IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT, IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT, IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT, IMAGE_CREATE_EXTENDED_USAGE_BIT, IMAGE_CREATE_PROTECTED_BIT, IMAGE_CREATE_DISJOINT_BIT, IMAGE_CREATE_CORNER_SAMPLED_BIT_NV, IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT, IMAGE_CREATE_SUBSAMPLED_BIT_EXT, IMAGE_CREATE_RESERVED_16_BIT_AMD, IMAGE_CREATE_RESERVED_18_BIT_EXT, IMAGE_CREATE_RESERVED_394_BIT_EXT, IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM, ImageViewCreateFlag, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT, IMAGE_VIEW_CREATE_RESERVED_2_BIT_AMD, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT, SamplerCreateFlag, SAMPLER_CREATE_SUBSAMPLED_BIT_EXT, SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT, SAMPLER_CREATE_RESERVED_3_BIT_AMD, SAMPLER_CREATE_RESERVED_2_BIT_EXT, SAMPLER_CREATE_IMAGE_PROCESSING_BIT_QCOM, PipelineCreateFlag, PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT, PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT, PIPELINE_CREATE_DERIVATIVE_BIT, PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT, PIPELINE_CREATE_DISPATCH_BASE_BIT, PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT, PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT, PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT, PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR, PIPELINE_CREATE_DEFER_COMPILE_BIT_NV, PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR, PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR, PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV, PIPELINE_CREATE_LIBRARY_BIT_KHR, PIPELINE_CREATE_RESERVED_23_BIT_AMD, PIPELINE_CREATE_RESERVED_10_BIT_AMD, PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV, PipelineShaderStageCreateFlag, PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT, PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT, PIPELINE_SHADER_STAGE_CREATE_RESERVED_2_BIT_NV, PIPELINE_SHADER_STAGE_CREATE_RESERVED_3_BIT_KHR, ColorComponentFlag, COLOR_COMPONENT_R_BIT, COLOR_COMPONENT_G_BIT, COLOR_COMPONENT_B_BIT, COLOR_COMPONENT_A_BIT, FenceCreateFlag, FENCE_CREATE_SIGNALED_BIT, SemaphoreCreateFlag, FormatFeatureFlag, FORMAT_FEATURE_SAMPLED_IMAGE_BIT, FORMAT_FEATURE_STORAGE_IMAGE_BIT, FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT, FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT, FORMAT_FEATURE_VERTEX_BUFFER_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT, FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT, FORMAT_FEATURE_BLIT_SRC_BIT, FORMAT_FEATURE_BLIT_DST_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT, FORMAT_FEATURE_TRANSFER_SRC_BIT, FORMAT_FEATURE_TRANSFER_DST_BIT, FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT, FORMAT_FEATURE_DISJOINT_BIT, FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG, FORMAT_FEATURE_VIDEO_DECODE_OUTPUT_BIT_KHR, FORMAT_FEATURE_VIDEO_DECODE_DPB_BIT_KHR, FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT, FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_VIDEO_ENCODE_INPUT_BIT_KHR, FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR, QueryControlFlag, QUERY_CONTROL_PRECISE_BIT, QueryResultFlag, QUERY_RESULT_64_BIT, QUERY_RESULT_WAIT_BIT, QUERY_RESULT_WITH_AVAILABILITY_BIT, QUERY_RESULT_PARTIAL_BIT, QUERY_RESULT_WITH_STATUS_BIT_KHR, CommandBufferUsageFlag, COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT, COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT, QueryPipelineStatisticFlag, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT, ImageAspectFlag, IMAGE_ASPECT_COLOR_BIT, IMAGE_ASPECT_DEPTH_BIT, IMAGE_ASPECT_STENCIL_BIT, IMAGE_ASPECT_METADATA_BIT, IMAGE_ASPECT_PLANE_0_BIT, IMAGE_ASPECT_PLANE_1_BIT, IMAGE_ASPECT_PLANE_2_BIT, IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT, IMAGE_ASPECT_NONE, SparseImageFormatFlag, SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT, SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT, SparseMemoryBindFlag, SPARSE_MEMORY_BIND_METADATA_BIT, PipelineStageFlag, PIPELINE_STAGE_TOP_OF_PIPE_BIT, PIPELINE_STAGE_DRAW_INDIRECT_BIT, PIPELINE_STAGE_VERTEX_INPUT_BIT, PIPELINE_STAGE_VERTEX_SHADER_BIT, PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT, PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT, PIPELINE_STAGE_GEOMETRY_SHADER_BIT, PIPELINE_STAGE_FRAGMENT_SHADER_BIT, PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COMPUTE_SHADER_BIT, PIPELINE_STAGE_TRANSFER_BIT, PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, PIPELINE_STAGE_HOST_BIT, PIPELINE_STAGE_ALL_GRAPHICS_BIT, PIPELINE_STAGE_ALL_COMMANDS_BIT, PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_TASK_SHADER_BIT_NV, PIPELINE_STAGE_MESH_SHADER_BIT_NV, PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_NONE, CommandPoolCreateFlag, COMMAND_POOL_CREATE_TRANSIENT_BIT, COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT, COMMAND_POOL_CREATE_PROTECTED_BIT, CommandPoolResetFlag, COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT, COMMAND_POOL_RESET_RESERVED_1_BIT_COREAVI, CommandBufferResetFlag, COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT, SampleCountFlag, SAMPLE_COUNT_1_BIT, SAMPLE_COUNT_2_BIT, SAMPLE_COUNT_4_BIT, SAMPLE_COUNT_8_BIT, SAMPLE_COUNT_16_BIT, SAMPLE_COUNT_32_BIT, SAMPLE_COUNT_64_BIT, AttachmentDescriptionFlag, ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, StencilFaceFlag, STENCIL_FACE_FRONT_BIT, STENCIL_FACE_BACK_BIT, STENCIL_FACE_FRONT_AND_BACK, DescriptorPoolCreateFlag, DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT, DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE, DependencyFlag, DEPENDENCY_BY_REGION_BIT, DEPENDENCY_DEVICE_GROUP_BIT, DEPENDENCY_VIEW_LOCAL_BIT, SemaphoreWaitFlag, SEMAPHORE_WAIT_ANY_BIT, DisplayPlaneAlphaFlagKHR, DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR, DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR, CompositeAlphaFlagKHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR, COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR, COMPOSITE_ALPHA_INHERIT_BIT_KHR, SurfaceTransformFlagKHR, SURFACE_TRANSFORM_IDENTITY_BIT_KHR, SURFACE_TRANSFORM_ROTATE_90_BIT_KHR, SURFACE_TRANSFORM_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_INHERIT_BIT_KHR, DebugReportFlagEXT, DEBUG_REPORT_INFORMATION_BIT_EXT, DEBUG_REPORT_WARNING_BIT_EXT, DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT, DEBUG_REPORT_ERROR_BIT_EXT, DEBUG_REPORT_DEBUG_BIT_EXT, ExternalMemoryHandleTypeFlagNV, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV, ExternalMemoryFeatureFlagNV, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV, SubgroupFeatureFlag, SUBGROUP_FEATURE_BASIC_BIT, SUBGROUP_FEATURE_VOTE_BIT, SUBGROUP_FEATURE_ARITHMETIC_BIT, SUBGROUP_FEATURE_BALLOT_BIT, SUBGROUP_FEATURE_SHUFFLE_BIT, SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT, SUBGROUP_FEATURE_CLUSTERED_BIT, SUBGROUP_FEATURE_QUAD_BIT, SUBGROUP_FEATURE_PARTITIONED_BIT_NV, IndirectCommandsLayoutUsageFlagNV, INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV, IndirectStateFlagNV, INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV, PrivateDataSlotCreateFlag, DescriptorSetLayoutCreateFlag, DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT, DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR, DESCRIPTOR_SET_LAYOUT_CREATE_RESERVED_4_BIT_AMD, DESCRIPTOR_SET_LAYOUT_CREATE_RESERVED_3_BIT_AMD, DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE, ExternalMemoryHandleTypeFlag, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA, EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_RESERVED_13_BIT_NV, ExternalMemoryFeatureFlag, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT, ExternalSemaphoreHandleTypeFlag, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA, EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_5_BIT_NV, EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_6_BIT_NV, ExternalSemaphoreFeatureFlag, EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT, EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT, SemaphoreImportFlag, SEMAPHORE_IMPORT_TEMPORARY_BIT, ExternalFenceHandleTypeFlag, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_4_BIT_NV, EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_5_BIT_NV, ExternalFenceFeatureFlag, EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT, EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT, FenceImportFlag, FENCE_IMPORT_TEMPORARY_BIT, SurfaceCounterFlagEXT, SURFACE_COUNTER_VBLANK_BIT_EXT, PeerMemoryFeatureFlag, PEER_MEMORY_FEATURE_COPY_SRC_BIT, PEER_MEMORY_FEATURE_COPY_DST_BIT, PEER_MEMORY_FEATURE_GENERIC_SRC_BIT, PEER_MEMORY_FEATURE_GENERIC_DST_BIT, MemoryAllocateFlag, MEMORY_ALLOCATE_DEVICE_MASK_BIT, MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT, MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, DeviceGroupPresentModeFlagKHR, DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR, SwapchainCreateFlagKHR, SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR, SWAPCHAIN_CREATE_PROTECTED_BIT_KHR, SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR, SubpassDescriptionFlag, SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX, SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX, SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM, SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM, SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_BIT_ARM, SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM, SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM, DebugUtilsMessageSeverityFlagEXT, DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT, DebugUtilsMessageTypeFlagEXT, DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT, DescriptorBindingFlag, DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT, DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT, DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT, DESCRIPTOR_BINDING_RESERVED_4_BIT_QCOM, ConditionalRenderingFlagEXT, CONDITIONAL_RENDERING_INVERTED_BIT_EXT, ResolveModeFlag, RESOLVE_MODE_SAMPLE_ZERO_BIT, RESOLVE_MODE_AVERAGE_BIT, RESOLVE_MODE_MIN_BIT, RESOLVE_MODE_MAX_BIT, RESOLVE_MODE_NONE, GeometryInstanceFlagKHR, GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR, GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR, GeometryFlagKHR, GEOMETRY_OPAQUE_BIT_KHR, GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR, BuildAccelerationStructureFlagKHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV, AccelerationStructureCreateFlagKHR, ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR, ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV, FramebufferCreateFlag, FRAMEBUFFER_CREATE_IMAGELESS_BIT, DeviceDiagnosticsConfigFlagNV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV, PipelineCreationFeedbackFlag, PIPELINE_CREATION_FEEDBACK_VALID_BIT, PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT, PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT, PerformanceCounterDescriptionFlagKHR, PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR, PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR, AcquireProfilingLockFlagKHR, ShaderCorePropertiesFlagAMD, ShaderModuleCreateFlag, SHADER_MODULE_CREATE_RESERVED_0_BIT_NV, PipelineCompilerControlFlagAMD, ToolPurposeFlag, TOOL_PURPOSE_VALIDATION_BIT, TOOL_PURPOSE_PROFILING_BIT, TOOL_PURPOSE_TRACING_BIT, TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT, TOOL_PURPOSE_MODIFYING_FEATURES_BIT, TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT, TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT, AccessFlag2, ACCESS_2_INDIRECT_COMMAND_READ_BIT, ACCESS_2_INDEX_READ_BIT, ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT, ACCESS_2_UNIFORM_READ_BIT, ACCESS_2_INPUT_ATTACHMENT_READ_BIT, ACCESS_2_SHADER_READ_BIT, ACCESS_2_SHADER_WRITE_BIT, ACCESS_2_COLOR_ATTACHMENT_READ_BIT, ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT, ACCESS_2_TRANSFER_READ_BIT, ACCESS_2_TRANSFER_WRITE_BIT, ACCESS_2_HOST_READ_BIT, ACCESS_2_HOST_WRITE_BIT, ACCESS_2_MEMORY_READ_BIT, ACCESS_2_MEMORY_WRITE_BIT, ACCESS_2_SHADER_SAMPLED_READ_BIT, ACCESS_2_SHADER_STORAGE_READ_BIT, ACCESS_2_SHADER_STORAGE_WRITE_BIT, ACCESS_2_VIDEO_DECODE_READ_BIT_KHR, ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR, ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR, ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR, ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR, ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_2_RESERVED_41_BIT_AMD, ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI, ACCESS_2_RESERVED_387_BIT_KHR, ACCESS_2_NONE, PipelineStageFlag2, PIPELINE_STAGE_2_TOP_OF_PIPE_BIT, PIPELINE_STAGE_2_DRAW_INDIRECT_BIT, PIPELINE_STAGE_2_VERTEX_INPUT_BIT, PIPELINE_STAGE_2_VERTEX_SHADER_BIT, PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT, PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT, PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT, PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT, PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_2_COMPUTE_SHADER_BIT, PIPELINE_STAGE_2_ALL_TRANSFER_BIT, PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT, PIPELINE_STAGE_2_HOST_BIT, PIPELINE_STAGE_2_ALL_GRAPHICS_BIT, PIPELINE_STAGE_2_ALL_COMMANDS_BIT, PIPELINE_STAGE_2_COPY_BIT, PIPELINE_STAGE_2_RESOLVE_BIT, PIPELINE_STAGE_2_BLIT_BIT, PIPELINE_STAGE_2_CLEAR_BIT, PIPELINE_STAGE_2_INDEX_INPUT_BIT, PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT, PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT, PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR, PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR, PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_2_TASK_SHADER_BIT_NV, PIPELINE_STAGE_2_MESH_SHADER_BIT_NV, PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI, PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI, PIPELINE_STAGE_2_RESERVED_387_BIT_KHR, PIPELINE_STAGE_2_NONE, SubmitFlag, SUBMIT_PROTECTED_BIT, EventCreateFlag, EVENT_CREATE_DEVICE_ONLY_BIT, PipelineLayoutCreateFlag, PIPELINE_LAYOUT_CREATE_RESERVED_0_BIT_AMD, PIPELINE_LAYOUT_CREATE_RESERVED_1_BIT_AMD, PipelineColorBlendStateCreateFlag, PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_ARM, PipelineDepthStencilStateCreateFlag, PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM, PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM, ImageFormatConstraintsFlagFUCHSIA, FormatFeatureFlag2, FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT, FORMAT_FEATURE_2_STORAGE_IMAGE_BIT, FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT, FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT, FORMAT_FEATURE_2_VERTEX_BUFFER_BIT, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT, FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT, FORMAT_FEATURE_2_BLIT_SRC_BIT, FORMAT_FEATURE_2_BLIT_DST_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT, FORMAT_FEATURE_2_TRANSFER_SRC_BIT, FORMAT_FEATURE_2_TRANSFER_DST_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT, FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT, FORMAT_FEATURE_2_DISJOINT_BIT, FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT, FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT, FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_BIT_KHR, FORMAT_FEATURE_2_VIDEO_DECODE_DPB_BIT_KHR, FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT, FORMAT_FEATURE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR, FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR, FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV, FORMAT_FEATURE_2_RESERVED_34_BIT_QCOM, FORMAT_FEATURE_2_RESERVED_35_BIT_QCOM, FORMAT_FEATURE_2_RESERVED_36_BIT_QCOM, FORMAT_FEATURE_2_RESERVED_37_BIT_QCOM, RenderingFlag, RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT, RENDERING_SUSPENDING_BIT, RENDERING_RESUMING_BIT, Instance, PhysicalDevice, Device, Queue, CommandBuffer, DeviceMemory, CommandPool, Buffer, BufferView, Image, ImageView, ShaderModule, Pipeline, PipelineLayout, Sampler, DescriptorSet, DescriptorSetLayout, DescriptorPool, Fence, Semaphore, Event, QueryPool, Framebuffer, RenderPass, PipelineCache, IndirectCommandsLayoutNV, DescriptorUpdateTemplate, SamplerYcbcrConversion, ValidationCacheEXT, AccelerationStructureKHR, AccelerationStructureNV, PerformanceConfigurationINTEL, DeferredOperationKHR, PrivateDataSlot, CuModuleNVX, CuFunctionNVX, DisplayKHR, DisplayModeKHR, SurfaceKHR, SwapchainKHR, DebugReportCallbackEXT, DebugUtilsMessengerEXT, _BaseOutStructure, _BaseInStructure, _Offset2D, _Offset3D, _Extent2D, _Extent3D, _Viewport, _Rect2D, _ClearRect, _ComponentMapping, _PhysicalDeviceProperties, _ExtensionProperties, _LayerProperties, _ApplicationInfo, _AllocationCallbacks, _DeviceQueueCreateInfo, _DeviceCreateInfo, _InstanceCreateInfo, _QueueFamilyProperties, _PhysicalDeviceMemoryProperties, _MemoryAllocateInfo, _MemoryRequirements, _SparseImageFormatProperties, _SparseImageMemoryRequirements, _MemoryType, _MemoryHeap, _MappedMemoryRange, _FormatProperties, _ImageFormatProperties, _DescriptorBufferInfo, _DescriptorImageInfo, _WriteDescriptorSet, _CopyDescriptorSet, _BufferCreateInfo, _BufferViewCreateInfo, _ImageSubresource, _ImageSubresourceLayers, _ImageSubresourceRange, _MemoryBarrier, _BufferMemoryBarrier, _ImageMemoryBarrier, _ImageCreateInfo, _SubresourceLayout, _ImageViewCreateInfo, _BufferCopy, _SparseMemoryBind, _SparseImageMemoryBind, _SparseBufferMemoryBindInfo, _SparseImageOpaqueMemoryBindInfo, _SparseImageMemoryBindInfo, _BindSparseInfo, _ImageCopy, _ImageBlit, _BufferImageCopy, _ImageResolve, _ShaderModuleCreateInfo, _DescriptorSetLayoutBinding, _DescriptorSetLayoutCreateInfo, _DescriptorPoolSize, _DescriptorPoolCreateInfo, _DescriptorSetAllocateInfo, _SpecializationMapEntry, _SpecializationInfo, _PipelineShaderStageCreateInfo, _ComputePipelineCreateInfo, _VertexInputBindingDescription, _VertexInputAttributeDescription, _PipelineVertexInputStateCreateInfo, _PipelineInputAssemblyStateCreateInfo, _PipelineTessellationStateCreateInfo, _PipelineViewportStateCreateInfo, _PipelineRasterizationStateCreateInfo, _PipelineMultisampleStateCreateInfo, _PipelineColorBlendAttachmentState, _PipelineColorBlendStateCreateInfo, _PipelineDynamicStateCreateInfo, _StencilOpState, _PipelineDepthStencilStateCreateInfo, _GraphicsPipelineCreateInfo, _PipelineCacheCreateInfo, _PipelineCacheHeaderVersionOne, _PushConstantRange, _PipelineLayoutCreateInfo, _SamplerCreateInfo, _CommandPoolCreateInfo, _CommandBufferAllocateInfo, _CommandBufferInheritanceInfo, _CommandBufferBeginInfo, _RenderPassBeginInfo, _ClearDepthStencilValue, _ClearAttachment, _AttachmentDescription, _AttachmentReference, _SubpassDescription, _SubpassDependency, _RenderPassCreateInfo, _EventCreateInfo, _FenceCreateInfo, _PhysicalDeviceFeatures, _PhysicalDeviceSparseProperties, _PhysicalDeviceLimits, _SemaphoreCreateInfo, _QueryPoolCreateInfo, _FramebufferCreateInfo, _DrawIndirectCommand, _DrawIndexedIndirectCommand, _DispatchIndirectCommand, _MultiDrawInfoEXT, _MultiDrawIndexedInfoEXT, _SubmitInfo, _DisplayPropertiesKHR, _DisplayPlanePropertiesKHR, _DisplayModeParametersKHR, _DisplayModePropertiesKHR, _DisplayModeCreateInfoKHR, _DisplayPlaneCapabilitiesKHR, _DisplaySurfaceCreateInfoKHR, _DisplayPresentInfoKHR, _SurfaceCapabilitiesKHR, _Win32SurfaceCreateInfoKHR, _SurfaceFormatKHR, _SwapchainCreateInfoKHR, _PresentInfoKHR, _DebugReportCallbackCreateInfoEXT, _ValidationFlagsEXT, _ValidationFeaturesEXT, _PipelineRasterizationStateRasterizationOrderAMD, _DebugMarkerObjectNameInfoEXT, _DebugMarkerObjectTagInfoEXT, _DebugMarkerMarkerInfoEXT, _DedicatedAllocationImageCreateInfoNV, _DedicatedAllocationBufferCreateInfoNV, _DedicatedAllocationMemoryAllocateInfoNV, _ExternalImageFormatPropertiesNV, _ExternalMemoryImageCreateInfoNV, _ExportMemoryAllocateInfoNV, _ImportMemoryWin32HandleInfoNV, _ExportMemoryWin32HandleInfoNV, _Win32KeyedMutexAcquireReleaseInfoNV, _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, _DevicePrivateDataCreateInfo, _PrivateDataSlotCreateInfo, _PhysicalDevicePrivateDataFeatures, _PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, _PhysicalDeviceMultiDrawPropertiesEXT, _GraphicsShaderGroupCreateInfoNV, _GraphicsPipelineShaderGroupsCreateInfoNV, _BindShaderGroupIndirectCommandNV, _BindIndexBufferIndirectCommandNV, _BindVertexBufferIndirectCommandNV, _SetStateFlagsIndirectCommandNV, _IndirectCommandsStreamNV, _IndirectCommandsLayoutTokenNV, _IndirectCommandsLayoutCreateInfoNV, _GeneratedCommandsInfoNV, _GeneratedCommandsMemoryRequirementsInfoNV, _PhysicalDeviceFeatures2, _PhysicalDeviceProperties2, _FormatProperties2, _ImageFormatProperties2, _PhysicalDeviceImageFormatInfo2, _QueueFamilyProperties2, _PhysicalDeviceMemoryProperties2, _SparseImageFormatProperties2, _PhysicalDeviceSparseImageFormatInfo2, _PhysicalDevicePushDescriptorPropertiesKHR, _ConformanceVersion, _PhysicalDeviceDriverProperties, _PresentRegionsKHR, _PresentRegionKHR, _RectLayerKHR, _PhysicalDeviceVariablePointersFeatures, _ExternalMemoryProperties, _PhysicalDeviceExternalImageFormatInfo, _ExternalImageFormatProperties, _PhysicalDeviceExternalBufferInfo, _ExternalBufferProperties, _PhysicalDeviceIDProperties, _ExternalMemoryImageCreateInfo, _ExternalMemoryBufferCreateInfo, _ExportMemoryAllocateInfo, _ImportMemoryWin32HandleInfoKHR, _ExportMemoryWin32HandleInfoKHR, _MemoryWin32HandlePropertiesKHR, _MemoryGetWin32HandleInfoKHR, _ImportMemoryFdInfoKHR, _MemoryFdPropertiesKHR, _MemoryGetFdInfoKHR, _Win32KeyedMutexAcquireReleaseInfoKHR, _PhysicalDeviceExternalSemaphoreInfo, _ExternalSemaphoreProperties, _ExportSemaphoreCreateInfo, _ImportSemaphoreWin32HandleInfoKHR, _ExportSemaphoreWin32HandleInfoKHR, _D3D12FenceSubmitInfoKHR, _SemaphoreGetWin32HandleInfoKHR, _ImportSemaphoreFdInfoKHR, _SemaphoreGetFdInfoKHR, _PhysicalDeviceExternalFenceInfo, _ExternalFenceProperties, _ExportFenceCreateInfo, _ImportFenceWin32HandleInfoKHR, _ExportFenceWin32HandleInfoKHR, _FenceGetWin32HandleInfoKHR, _ImportFenceFdInfoKHR, _FenceGetFdInfoKHR, _PhysicalDeviceMultiviewFeatures, _PhysicalDeviceMultiviewProperties, _RenderPassMultiviewCreateInfo, _SurfaceCapabilities2EXT, _DisplayPowerInfoEXT, _DeviceEventInfoEXT, _DisplayEventInfoEXT, _SwapchainCounterCreateInfoEXT, _PhysicalDeviceGroupProperties, _MemoryAllocateFlagsInfo, _BindBufferMemoryInfo, _BindBufferMemoryDeviceGroupInfo, _BindImageMemoryInfo, _BindImageMemoryDeviceGroupInfo, _DeviceGroupRenderPassBeginInfo, _DeviceGroupCommandBufferBeginInfo, _DeviceGroupSubmitInfo, _DeviceGroupBindSparseInfo, _DeviceGroupPresentCapabilitiesKHR, _ImageSwapchainCreateInfoKHR, _BindImageMemorySwapchainInfoKHR, _AcquireNextImageInfoKHR, _DeviceGroupPresentInfoKHR, _DeviceGroupDeviceCreateInfo, _DeviceGroupSwapchainCreateInfoKHR, _DescriptorUpdateTemplateEntry, _DescriptorUpdateTemplateCreateInfo, _XYColorEXT, _PhysicalDevicePresentIdFeaturesKHR, _PresentIdKHR, _PhysicalDevicePresentWaitFeaturesKHR, _HdrMetadataEXT, _DisplayNativeHdrSurfaceCapabilitiesAMD, _SwapchainDisplayNativeHdrCreateInfoAMD, _RefreshCycleDurationGOOGLE, _PastPresentationTimingGOOGLE, _PresentTimesInfoGOOGLE, _PresentTimeGOOGLE, _ViewportWScalingNV, _PipelineViewportWScalingStateCreateInfoNV, _ViewportSwizzleNV, _PipelineViewportSwizzleStateCreateInfoNV, _PhysicalDeviceDiscardRectanglePropertiesEXT, _PipelineDiscardRectangleStateCreateInfoEXT, _PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, _InputAttachmentAspectReference, _RenderPassInputAttachmentAspectCreateInfo, _PhysicalDeviceSurfaceInfo2KHR, _SurfaceCapabilities2KHR, _SurfaceFormat2KHR, _DisplayProperties2KHR, _DisplayPlaneProperties2KHR, _DisplayModeProperties2KHR, _DisplayPlaneInfo2KHR, _DisplayPlaneCapabilities2KHR, _SharedPresentSurfaceCapabilitiesKHR, _PhysicalDevice16BitStorageFeatures, _PhysicalDeviceSubgroupProperties, _PhysicalDeviceShaderSubgroupExtendedTypesFeatures, _BufferMemoryRequirementsInfo2, _DeviceBufferMemoryRequirements, _ImageMemoryRequirementsInfo2, _ImageSparseMemoryRequirementsInfo2, _DeviceImageMemoryRequirements, _MemoryRequirements2, _SparseImageMemoryRequirements2, _PhysicalDevicePointClippingProperties, _MemoryDedicatedRequirements, _MemoryDedicatedAllocateInfo, _ImageViewUsageCreateInfo, _PipelineTessellationDomainOriginStateCreateInfo, _SamplerYcbcrConversionInfo, _SamplerYcbcrConversionCreateInfo, _BindImagePlaneMemoryInfo, _ImagePlaneMemoryRequirementsInfo, _PhysicalDeviceSamplerYcbcrConversionFeatures, _SamplerYcbcrConversionImageFormatProperties, _TextureLODGatherFormatPropertiesAMD, _ConditionalRenderingBeginInfoEXT, _ProtectedSubmitInfo, _PhysicalDeviceProtectedMemoryFeatures, _PhysicalDeviceProtectedMemoryProperties, _DeviceQueueInfo2, _PipelineCoverageToColorStateCreateInfoNV, _PhysicalDeviceSamplerFilterMinmaxProperties, _SampleLocationEXT, _SampleLocationsInfoEXT, _AttachmentSampleLocationsEXT, _SubpassSampleLocationsEXT, _RenderPassSampleLocationsBeginInfoEXT, _PipelineSampleLocationsStateCreateInfoEXT, _PhysicalDeviceSampleLocationsPropertiesEXT, _MultisamplePropertiesEXT, _SamplerReductionModeCreateInfo, _PhysicalDeviceBlendOperationAdvancedFeaturesEXT, _PhysicalDeviceMultiDrawFeaturesEXT, _PhysicalDeviceBlendOperationAdvancedPropertiesEXT, _PipelineColorBlendAdvancedStateCreateInfoEXT, _PhysicalDeviceInlineUniformBlockFeatures, _PhysicalDeviceInlineUniformBlockProperties, _WriteDescriptorSetInlineUniformBlock, _DescriptorPoolInlineUniformBlockCreateInfo, _PipelineCoverageModulationStateCreateInfoNV, _ImageFormatListCreateInfo, _ValidationCacheCreateInfoEXT, _ShaderModuleValidationCacheCreateInfoEXT, _PhysicalDeviceMaintenance3Properties, _PhysicalDeviceMaintenance4Features, _PhysicalDeviceMaintenance4Properties, _DescriptorSetLayoutSupport, _PhysicalDeviceShaderDrawParametersFeatures, _PhysicalDeviceShaderFloat16Int8Features, _PhysicalDeviceFloatControlsProperties, _PhysicalDeviceHostQueryResetFeatures, _ShaderResourceUsageAMD, _ShaderStatisticsInfoAMD, _DeviceQueueGlobalPriorityCreateInfoKHR, _PhysicalDeviceGlobalPriorityQueryFeaturesKHR, _QueueFamilyGlobalPriorityPropertiesKHR, _DebugUtilsObjectNameInfoEXT, _DebugUtilsObjectTagInfoEXT, _DebugUtilsLabelEXT, _DebugUtilsMessengerCreateInfoEXT, _DebugUtilsMessengerCallbackDataEXT, _PhysicalDeviceDeviceMemoryReportFeaturesEXT, _DeviceDeviceMemoryReportCreateInfoEXT, _DeviceMemoryReportCallbackDataEXT, _ImportMemoryHostPointerInfoEXT, _MemoryHostPointerPropertiesEXT, _PhysicalDeviceExternalMemoryHostPropertiesEXT, _PhysicalDeviceConservativeRasterizationPropertiesEXT, _CalibratedTimestampInfoEXT, _PhysicalDeviceShaderCorePropertiesAMD, _PhysicalDeviceShaderCoreProperties2AMD, _PipelineRasterizationConservativeStateCreateInfoEXT, _PhysicalDeviceDescriptorIndexingFeatures, _PhysicalDeviceDescriptorIndexingProperties, _DescriptorSetLayoutBindingFlagsCreateInfo, _DescriptorSetVariableDescriptorCountAllocateInfo, _DescriptorSetVariableDescriptorCountLayoutSupport, _AttachmentDescription2, _AttachmentReference2, _SubpassDescription2, _SubpassDependency2, _RenderPassCreateInfo2, _SubpassBeginInfo, _SubpassEndInfo, _PhysicalDeviceTimelineSemaphoreFeatures, _PhysicalDeviceTimelineSemaphoreProperties, _SemaphoreTypeCreateInfo, _TimelineSemaphoreSubmitInfo, _SemaphoreWaitInfo, _SemaphoreSignalInfo, _VertexInputBindingDivisorDescriptionEXT, _PipelineVertexInputDivisorStateCreateInfoEXT, _PhysicalDeviceVertexAttributeDivisorPropertiesEXT, _PhysicalDevicePCIBusInfoPropertiesEXT, _CommandBufferInheritanceConditionalRenderingInfoEXT, _PhysicalDevice8BitStorageFeatures, _PhysicalDeviceConditionalRenderingFeaturesEXT, _PhysicalDeviceVulkanMemoryModelFeatures, _PhysicalDeviceShaderAtomicInt64Features, _PhysicalDeviceShaderAtomicFloatFeaturesEXT, _PhysicalDeviceShaderAtomicFloat2FeaturesEXT, _PhysicalDeviceVertexAttributeDivisorFeaturesEXT, _QueueFamilyCheckpointPropertiesNV, _CheckpointDataNV, _PhysicalDeviceDepthStencilResolveProperties, _SubpassDescriptionDepthStencilResolve, _ImageViewASTCDecodeModeEXT, _PhysicalDeviceASTCDecodeFeaturesEXT, _PhysicalDeviceTransformFeedbackFeaturesEXT, _PhysicalDeviceTransformFeedbackPropertiesEXT, _PipelineRasterizationStateStreamCreateInfoEXT, _PhysicalDeviceRepresentativeFragmentTestFeaturesNV, _PipelineRepresentativeFragmentTestStateCreateInfoNV, _PhysicalDeviceExclusiveScissorFeaturesNV, _PipelineViewportExclusiveScissorStateCreateInfoNV, _PhysicalDeviceCornerSampledImageFeaturesNV, _PhysicalDeviceComputeShaderDerivativesFeaturesNV, _PhysicalDeviceFragmentShaderBarycentricFeaturesNV, _PhysicalDeviceShaderImageFootprintFeaturesNV, _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, _ShadingRatePaletteNV, _PipelineViewportShadingRateImageStateCreateInfoNV, _PhysicalDeviceShadingRateImageFeaturesNV, _PhysicalDeviceShadingRateImagePropertiesNV, _PhysicalDeviceInvocationMaskFeaturesHUAWEI, _CoarseSampleLocationNV, _CoarseSampleOrderCustomNV, _PipelineViewportCoarseSampleOrderStateCreateInfoNV, _PhysicalDeviceMeshShaderFeaturesNV, _PhysicalDeviceMeshShaderPropertiesNV, _DrawMeshTasksIndirectCommandNV, _RayTracingShaderGroupCreateInfoNV, _RayTracingShaderGroupCreateInfoKHR, _RayTracingPipelineCreateInfoNV, _RayTracingPipelineCreateInfoKHR, _GeometryTrianglesNV, _GeometryAABBNV, _GeometryDataNV, _GeometryNV, _AccelerationStructureInfoNV, _AccelerationStructureCreateInfoNV, _BindAccelerationStructureMemoryInfoNV, _WriteDescriptorSetAccelerationStructureKHR, _WriteDescriptorSetAccelerationStructureNV, _AccelerationStructureMemoryRequirementsInfoNV, _PhysicalDeviceAccelerationStructureFeaturesKHR, _PhysicalDeviceRayTracingPipelineFeaturesKHR, _PhysicalDeviceRayQueryFeaturesKHR, _PhysicalDeviceAccelerationStructurePropertiesKHR, _PhysicalDeviceRayTracingPipelinePropertiesKHR, _PhysicalDeviceRayTracingPropertiesNV, _StridedDeviceAddressRegionKHR, _TraceRaysIndirectCommandKHR, _DrmFormatModifierPropertiesListEXT, _DrmFormatModifierPropertiesEXT, _PhysicalDeviceImageDrmFormatModifierInfoEXT, _ImageDrmFormatModifierListCreateInfoEXT, _ImageDrmFormatModifierExplicitCreateInfoEXT, _ImageDrmFormatModifierPropertiesEXT, _ImageStencilUsageCreateInfo, _DeviceMemoryOverallocationCreateInfoAMD, _PhysicalDeviceFragmentDensityMapFeaturesEXT, _PhysicalDeviceFragmentDensityMap2FeaturesEXT, _PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM, _PhysicalDeviceFragmentDensityMapPropertiesEXT, _PhysicalDeviceFragmentDensityMap2PropertiesEXT, _PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM, _RenderPassFragmentDensityMapCreateInfoEXT, _SubpassFragmentDensityMapOffsetEndInfoQCOM, _PhysicalDeviceScalarBlockLayoutFeatures, _SurfaceProtectedCapabilitiesKHR, _PhysicalDeviceUniformBufferStandardLayoutFeatures, _PhysicalDeviceDepthClipEnableFeaturesEXT, _PipelineRasterizationDepthClipStateCreateInfoEXT, _PhysicalDeviceMemoryBudgetPropertiesEXT, _PhysicalDeviceMemoryPriorityFeaturesEXT, _MemoryPriorityAllocateInfoEXT, _PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT, _PhysicalDeviceBufferDeviceAddressFeatures, _PhysicalDeviceBufferDeviceAddressFeaturesEXT, _BufferDeviceAddressInfo, _BufferOpaqueCaptureAddressCreateInfo, _BufferDeviceAddressCreateInfoEXT, _PhysicalDeviceImageViewImageFormatInfoEXT, _FilterCubicImageViewImageFormatPropertiesEXT, _PhysicalDeviceImagelessFramebufferFeatures, _FramebufferAttachmentsCreateInfo, _FramebufferAttachmentImageInfo, _RenderPassAttachmentBeginInfo, _PhysicalDeviceTextureCompressionASTCHDRFeatures, _PhysicalDeviceCooperativeMatrixFeaturesNV, _PhysicalDeviceCooperativeMatrixPropertiesNV, _CooperativeMatrixPropertiesNV, _PhysicalDeviceYcbcrImageArraysFeaturesEXT, _ImageViewHandleInfoNVX, _ImageViewAddressPropertiesNVX, _PipelineCreationFeedback, _PipelineCreationFeedbackCreateInfo, _SurfaceFullScreenExclusiveInfoEXT, _SurfaceFullScreenExclusiveWin32InfoEXT, _SurfaceCapabilitiesFullScreenExclusiveEXT, _PhysicalDevicePerformanceQueryFeaturesKHR, _PhysicalDevicePerformanceQueryPropertiesKHR, _PerformanceCounterKHR, _PerformanceCounterDescriptionKHR, _QueryPoolPerformanceCreateInfoKHR, _AcquireProfilingLockInfoKHR, _PerformanceQuerySubmitInfoKHR, _HeadlessSurfaceCreateInfoEXT, _PhysicalDeviceCoverageReductionModeFeaturesNV, _PipelineCoverageReductionStateCreateInfoNV, _FramebufferMixedSamplesCombinationNV, _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, _PerformanceValueINTEL, _InitializePerformanceApiInfoINTEL, _QueryPoolPerformanceQueryCreateInfoINTEL, _PerformanceMarkerInfoINTEL, _PerformanceStreamMarkerInfoINTEL, _PerformanceOverrideInfoINTEL, _PerformanceConfigurationAcquireInfoINTEL, _PhysicalDeviceShaderClockFeaturesKHR, _PhysicalDeviceIndexTypeUint8FeaturesEXT, _PhysicalDeviceShaderSMBuiltinsPropertiesNV, _PhysicalDeviceShaderSMBuiltinsFeaturesNV, _PhysicalDeviceFragmentShaderInterlockFeaturesEXT, _PhysicalDeviceSeparateDepthStencilLayoutsFeatures, _AttachmentReferenceStencilLayout, _PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT, _AttachmentDescriptionStencilLayout, _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, _PipelineInfoKHR, _PipelineExecutablePropertiesKHR, _PipelineExecutableInfoKHR, _PipelineExecutableStatisticKHR, _PipelineExecutableInternalRepresentationKHR, _PhysicalDeviceShaderDemoteToHelperInvocationFeatures, _PhysicalDeviceTexelBufferAlignmentFeaturesEXT, _PhysicalDeviceTexelBufferAlignmentProperties, _PhysicalDeviceSubgroupSizeControlFeatures, _PhysicalDeviceSubgroupSizeControlProperties, _PipelineShaderStageRequiredSubgroupSizeCreateInfo, _SubpassShadingPipelineCreateInfoHUAWEI, _PhysicalDeviceSubpassShadingPropertiesHUAWEI, _MemoryOpaqueCaptureAddressAllocateInfo, _DeviceMemoryOpaqueCaptureAddressInfo, _PhysicalDeviceLineRasterizationFeaturesEXT, _PhysicalDeviceLineRasterizationPropertiesEXT, _PipelineRasterizationLineStateCreateInfoEXT, _PhysicalDevicePipelineCreationCacheControlFeatures, _PhysicalDeviceVulkan11Features, _PhysicalDeviceVulkan11Properties, _PhysicalDeviceVulkan12Features, _PhysicalDeviceVulkan12Properties, _PhysicalDeviceVulkan13Features, _PhysicalDeviceVulkan13Properties, _PipelineCompilerControlCreateInfoAMD, _PhysicalDeviceCoherentMemoryFeaturesAMD, _PhysicalDeviceToolProperties, _SamplerCustomBorderColorCreateInfoEXT, _PhysicalDeviceCustomBorderColorPropertiesEXT, _PhysicalDeviceCustomBorderColorFeaturesEXT, _SamplerBorderColorComponentMappingCreateInfoEXT, _PhysicalDeviceBorderColorSwizzleFeaturesEXT, _AccelerationStructureGeometryTrianglesDataKHR, _AccelerationStructureGeometryAabbsDataKHR, _AccelerationStructureGeometryInstancesDataKHR, _AccelerationStructureGeometryKHR, _AccelerationStructureBuildGeometryInfoKHR, _AccelerationStructureBuildRangeInfoKHR, _AccelerationStructureCreateInfoKHR, _AabbPositionsKHR, _TransformMatrixKHR, _AccelerationStructureInstanceKHR, _AccelerationStructureDeviceAddressInfoKHR, _AccelerationStructureVersionInfoKHR, _CopyAccelerationStructureInfoKHR, _CopyAccelerationStructureToMemoryInfoKHR, _CopyMemoryToAccelerationStructureInfoKHR, _RayTracingPipelineInterfaceCreateInfoKHR, _PipelineLibraryCreateInfoKHR, _PhysicalDeviceExtendedDynamicStateFeaturesEXT, _PhysicalDeviceExtendedDynamicState2FeaturesEXT, _RenderPassTransformBeginInfoQCOM, _CopyCommandTransformInfoQCOM, _CommandBufferInheritanceRenderPassTransformInfoQCOM, _PhysicalDeviceDiagnosticsConfigFeaturesNV, _DeviceDiagnosticsConfigCreateInfoNV, _PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures, _PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR, _PhysicalDeviceRobustness2FeaturesEXT, _PhysicalDeviceRobustness2PropertiesEXT, _PhysicalDeviceImageRobustnessFeatures, _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, _PhysicalDevice4444FormatsFeaturesEXT, _PhysicalDeviceSubpassShadingFeaturesHUAWEI, _BufferCopy2, _ImageCopy2, _ImageBlit2, _BufferImageCopy2, _ImageResolve2, _CopyBufferInfo2, _CopyImageInfo2, _BlitImageInfo2, _CopyBufferToImageInfo2, _CopyImageToBufferInfo2, _ResolveImageInfo2, _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, _FragmentShadingRateAttachmentInfoKHR, _PipelineFragmentShadingRateStateCreateInfoKHR, _PhysicalDeviceFragmentShadingRateFeaturesKHR, _PhysicalDeviceFragmentShadingRatePropertiesKHR, _PhysicalDeviceFragmentShadingRateKHR, _PhysicalDeviceShaderTerminateInvocationFeatures, _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV, _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV, _PipelineFragmentShadingRateEnumStateCreateInfoNV, _AccelerationStructureBuildSizesInfoKHR, _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE, _MutableDescriptorTypeListVALVE, _MutableDescriptorTypeCreateInfoVALVE, _PhysicalDeviceDepthClipControlFeaturesEXT, _PipelineViewportDepthClipControlCreateInfoEXT, _PhysicalDeviceVertexInputDynamicStateFeaturesEXT, _PhysicalDeviceExternalMemoryRDMAFeaturesNV, _VertexInputBindingDescription2EXT, _VertexInputAttributeDescription2EXT, _PhysicalDeviceColorWriteEnableFeaturesEXT, _PipelineColorWriteCreateInfoEXT, _MemoryBarrier2, _ImageMemoryBarrier2, _BufferMemoryBarrier2, _DependencyInfo, _SemaphoreSubmitInfo, _CommandBufferSubmitInfo, _SubmitInfo2, _QueueFamilyCheckpointProperties2NV, _CheckpointData2NV, _PhysicalDeviceSynchronization2Features, _PhysicalDeviceInheritedViewportScissorFeaturesNV, _CommandBufferInheritanceViewportScissorInfoNV, _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, _PhysicalDeviceProvokingVertexFeaturesEXT, _PhysicalDeviceProvokingVertexPropertiesEXT, _PipelineRasterizationProvokingVertexStateCreateInfoEXT, _CuModuleCreateInfoNVX, _CuFunctionCreateInfoNVX, _CuLaunchInfoNVX, _PhysicalDeviceShaderIntegerDotProductFeatures, _PhysicalDeviceShaderIntegerDotProductProperties, _PhysicalDeviceDrmPropertiesEXT, _PhysicalDeviceRayTracingMotionBlurFeaturesNV, _AccelerationStructureGeometryMotionTrianglesDataNV, _AccelerationStructureMotionInfoNV, _SRTDataNV, _AccelerationStructureSRTMotionInstanceNV, _AccelerationStructureMatrixMotionInstanceNV, _AccelerationStructureMotionInstanceNV, _MemoryGetRemoteAddressInfoNV, _PhysicalDeviceRGBA10X6FormatsFeaturesEXT, _FormatProperties3, _DrmFormatModifierPropertiesList2EXT, _DrmFormatModifierProperties2EXT, _PipelineRenderingCreateInfo, _RenderingInfo, _RenderingAttachmentInfo, _RenderingFragmentShadingRateAttachmentInfoKHR, _RenderingFragmentDensityMapAttachmentInfoEXT, _PhysicalDeviceDynamicRenderingFeatures, _CommandBufferInheritanceRenderingInfo, _AttachmentSampleCountInfoAMD, _MultiviewPerViewAttributesInfoNVX, _PhysicalDeviceImageViewMinLodFeaturesEXT, _ImageViewMinLodCreateInfoEXT, _PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM, _PhysicalDeviceLinearColorAttachmentFeaturesNV, _PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE, _DescriptorSetBindingReferenceVALVE, _DescriptorSetLayoutHostMappingInfoVALVE, _ClearColorValue, _ClearValue, _PerformanceCounterResultKHR, _PerformanceValueDataINTEL, _PipelineExecutableStatisticValueKHR, _DeviceOrHostAddressKHR, _DeviceOrHostAddressConstKHR, _AccelerationStructureGeometryDataKHR, _AccelerationStructureMotionInstanceDataNV, BaseOutStructure, BaseInStructure, Offset2D, Offset3D, Extent2D, Extent3D, Viewport, Rect2D, ClearRect, ComponentMapping, PhysicalDeviceProperties, ExtensionProperties, LayerProperties, ApplicationInfo, AllocationCallbacks, DeviceQueueCreateInfo, DeviceCreateInfo, InstanceCreateInfo, QueueFamilyProperties, PhysicalDeviceMemoryProperties, MemoryAllocateInfo, MemoryRequirements, SparseImageFormatProperties, SparseImageMemoryRequirements, MemoryType, MemoryHeap, MappedMemoryRange, FormatProperties, ImageFormatProperties, DescriptorBufferInfo, DescriptorImageInfo, WriteDescriptorSet, CopyDescriptorSet, BufferCreateInfo, BufferViewCreateInfo, ImageSubresource, ImageSubresourceLayers, ImageSubresourceRange, MemoryBarrier, BufferMemoryBarrier, ImageMemoryBarrier, ImageCreateInfo, SubresourceLayout, ImageViewCreateInfo, BufferCopy, SparseMemoryBind, SparseImageMemoryBind, SparseBufferMemoryBindInfo, SparseImageOpaqueMemoryBindInfo, SparseImageMemoryBindInfo, BindSparseInfo, ImageCopy, ImageBlit, BufferImageCopy, ImageResolve, ShaderModuleCreateInfo, DescriptorSetLayoutBinding, DescriptorSetLayoutCreateInfo, DescriptorPoolSize, DescriptorPoolCreateInfo, DescriptorSetAllocateInfo, SpecializationMapEntry, SpecializationInfo, PipelineShaderStageCreateInfo, ComputePipelineCreateInfo, VertexInputBindingDescription, VertexInputAttributeDescription, PipelineVertexInputStateCreateInfo, PipelineInputAssemblyStateCreateInfo, PipelineTessellationStateCreateInfo, PipelineViewportStateCreateInfo, PipelineRasterizationStateCreateInfo, PipelineMultisampleStateCreateInfo, PipelineColorBlendAttachmentState, PipelineColorBlendStateCreateInfo, PipelineDynamicStateCreateInfo, StencilOpState, PipelineDepthStencilStateCreateInfo, GraphicsPipelineCreateInfo, PipelineCacheCreateInfo, PipelineCacheHeaderVersionOne, PushConstantRange, PipelineLayoutCreateInfo, SamplerCreateInfo, CommandPoolCreateInfo, CommandBufferAllocateInfo, CommandBufferInheritanceInfo, CommandBufferBeginInfo, RenderPassBeginInfo, ClearDepthStencilValue, ClearAttachment, AttachmentDescription, AttachmentReference, SubpassDescription, SubpassDependency, RenderPassCreateInfo, EventCreateInfo, FenceCreateInfo, PhysicalDeviceFeatures, PhysicalDeviceSparseProperties, PhysicalDeviceLimits, SemaphoreCreateInfo, QueryPoolCreateInfo, FramebufferCreateInfo, DrawIndirectCommand, DrawIndexedIndirectCommand, DispatchIndirectCommand, MultiDrawInfoEXT, MultiDrawIndexedInfoEXT, SubmitInfo, DisplayPropertiesKHR, DisplayPlanePropertiesKHR, DisplayModeParametersKHR, DisplayModePropertiesKHR, DisplayModeCreateInfoKHR, DisplayPlaneCapabilitiesKHR, DisplaySurfaceCreateInfoKHR, DisplayPresentInfoKHR, SurfaceCapabilitiesKHR, Win32SurfaceCreateInfoKHR, SurfaceFormatKHR, SwapchainCreateInfoKHR, PresentInfoKHR, DebugReportCallbackCreateInfoEXT, ValidationFlagsEXT, ValidationFeaturesEXT, PipelineRasterizationStateRasterizationOrderAMD, DebugMarkerObjectNameInfoEXT, DebugMarkerObjectTagInfoEXT, DebugMarkerMarkerInfoEXT, DedicatedAllocationImageCreateInfoNV, DedicatedAllocationBufferCreateInfoNV, DedicatedAllocationMemoryAllocateInfoNV, ExternalImageFormatPropertiesNV, ExternalMemoryImageCreateInfoNV, ExportMemoryAllocateInfoNV, ImportMemoryWin32HandleInfoNV, ExportMemoryWin32HandleInfoNV, Win32KeyedMutexAcquireReleaseInfoNV, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, DevicePrivateDataCreateInfo, PrivateDataSlotCreateInfo, PhysicalDevicePrivateDataFeatures, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, PhysicalDeviceMultiDrawPropertiesEXT, GraphicsShaderGroupCreateInfoNV, GraphicsPipelineShaderGroupsCreateInfoNV, BindShaderGroupIndirectCommandNV, BindIndexBufferIndirectCommandNV, BindVertexBufferIndirectCommandNV, SetStateFlagsIndirectCommandNV, IndirectCommandsStreamNV, IndirectCommandsLayoutTokenNV, IndirectCommandsLayoutCreateInfoNV, GeneratedCommandsInfoNV, GeneratedCommandsMemoryRequirementsInfoNV, PhysicalDeviceFeatures2, PhysicalDeviceProperties2, FormatProperties2, ImageFormatProperties2, PhysicalDeviceImageFormatInfo2, QueueFamilyProperties2, PhysicalDeviceMemoryProperties2, SparseImageFormatProperties2, PhysicalDeviceSparseImageFormatInfo2, PhysicalDevicePushDescriptorPropertiesKHR, ConformanceVersion, PhysicalDeviceDriverProperties, PresentRegionsKHR, PresentRegionKHR, RectLayerKHR, PhysicalDeviceVariablePointersFeatures, ExternalMemoryProperties, PhysicalDeviceExternalImageFormatInfo, ExternalImageFormatProperties, PhysicalDeviceExternalBufferInfo, ExternalBufferProperties, PhysicalDeviceIDProperties, ExternalMemoryImageCreateInfo, ExternalMemoryBufferCreateInfo, ExportMemoryAllocateInfo, ImportMemoryWin32HandleInfoKHR, ExportMemoryWin32HandleInfoKHR, MemoryWin32HandlePropertiesKHR, MemoryGetWin32HandleInfoKHR, ImportMemoryFdInfoKHR, MemoryFdPropertiesKHR, MemoryGetFdInfoKHR, Win32KeyedMutexAcquireReleaseInfoKHR, PhysicalDeviceExternalSemaphoreInfo, ExternalSemaphoreProperties, ExportSemaphoreCreateInfo, ImportSemaphoreWin32HandleInfoKHR, ExportSemaphoreWin32HandleInfoKHR, D3D12FenceSubmitInfoKHR, SemaphoreGetWin32HandleInfoKHR, ImportSemaphoreFdInfoKHR, SemaphoreGetFdInfoKHR, PhysicalDeviceExternalFenceInfo, ExternalFenceProperties, ExportFenceCreateInfo, ImportFenceWin32HandleInfoKHR, ExportFenceWin32HandleInfoKHR, FenceGetWin32HandleInfoKHR, ImportFenceFdInfoKHR, FenceGetFdInfoKHR, PhysicalDeviceMultiviewFeatures, PhysicalDeviceMultiviewProperties, RenderPassMultiviewCreateInfo, SurfaceCapabilities2EXT, DisplayPowerInfoEXT, DeviceEventInfoEXT, DisplayEventInfoEXT, SwapchainCounterCreateInfoEXT, PhysicalDeviceGroupProperties, MemoryAllocateFlagsInfo, BindBufferMemoryInfo, BindBufferMemoryDeviceGroupInfo, BindImageMemoryInfo, BindImageMemoryDeviceGroupInfo, DeviceGroupRenderPassBeginInfo, DeviceGroupCommandBufferBeginInfo, DeviceGroupSubmitInfo, DeviceGroupBindSparseInfo, DeviceGroupPresentCapabilitiesKHR, ImageSwapchainCreateInfoKHR, BindImageMemorySwapchainInfoKHR, AcquireNextImageInfoKHR, DeviceGroupPresentInfoKHR, DeviceGroupDeviceCreateInfo, DeviceGroupSwapchainCreateInfoKHR, DescriptorUpdateTemplateEntry, DescriptorUpdateTemplateCreateInfo, XYColorEXT, PhysicalDevicePresentIdFeaturesKHR, PresentIdKHR, PhysicalDevicePresentWaitFeaturesKHR, HdrMetadataEXT, DisplayNativeHdrSurfaceCapabilitiesAMD, SwapchainDisplayNativeHdrCreateInfoAMD, RefreshCycleDurationGOOGLE, PastPresentationTimingGOOGLE, PresentTimesInfoGOOGLE, PresentTimeGOOGLE, ViewportWScalingNV, PipelineViewportWScalingStateCreateInfoNV, ViewportSwizzleNV, PipelineViewportSwizzleStateCreateInfoNV, PhysicalDeviceDiscardRectanglePropertiesEXT, PipelineDiscardRectangleStateCreateInfoEXT, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, InputAttachmentAspectReference, RenderPassInputAttachmentAspectCreateInfo, PhysicalDeviceSurfaceInfo2KHR, SurfaceCapabilities2KHR, SurfaceFormat2KHR, DisplayProperties2KHR, DisplayPlaneProperties2KHR, DisplayModeProperties2KHR, DisplayPlaneInfo2KHR, DisplayPlaneCapabilities2KHR, SharedPresentSurfaceCapabilitiesKHR, PhysicalDevice16BitStorageFeatures, PhysicalDeviceSubgroupProperties, PhysicalDeviceShaderSubgroupExtendedTypesFeatures, BufferMemoryRequirementsInfo2, DeviceBufferMemoryRequirements, ImageMemoryRequirementsInfo2, ImageSparseMemoryRequirementsInfo2, DeviceImageMemoryRequirements, MemoryRequirements2, SparseImageMemoryRequirements2, PhysicalDevicePointClippingProperties, MemoryDedicatedRequirements, MemoryDedicatedAllocateInfo, ImageViewUsageCreateInfo, PipelineTessellationDomainOriginStateCreateInfo, SamplerYcbcrConversionInfo, SamplerYcbcrConversionCreateInfo, BindImagePlaneMemoryInfo, ImagePlaneMemoryRequirementsInfo, PhysicalDeviceSamplerYcbcrConversionFeatures, SamplerYcbcrConversionImageFormatProperties, TextureLODGatherFormatPropertiesAMD, ConditionalRenderingBeginInfoEXT, ProtectedSubmitInfo, PhysicalDeviceProtectedMemoryFeatures, PhysicalDeviceProtectedMemoryProperties, DeviceQueueInfo2, PipelineCoverageToColorStateCreateInfoNV, PhysicalDeviceSamplerFilterMinmaxProperties, SampleLocationEXT, SampleLocationsInfoEXT, AttachmentSampleLocationsEXT, SubpassSampleLocationsEXT, RenderPassSampleLocationsBeginInfoEXT, PipelineSampleLocationsStateCreateInfoEXT, PhysicalDeviceSampleLocationsPropertiesEXT, MultisamplePropertiesEXT, SamplerReductionModeCreateInfo, PhysicalDeviceBlendOperationAdvancedFeaturesEXT, PhysicalDeviceMultiDrawFeaturesEXT, PhysicalDeviceBlendOperationAdvancedPropertiesEXT, PipelineColorBlendAdvancedStateCreateInfoEXT, PhysicalDeviceInlineUniformBlockFeatures, PhysicalDeviceInlineUniformBlockProperties, WriteDescriptorSetInlineUniformBlock, DescriptorPoolInlineUniformBlockCreateInfo, PipelineCoverageModulationStateCreateInfoNV, ImageFormatListCreateInfo, ValidationCacheCreateInfoEXT, ShaderModuleValidationCacheCreateInfoEXT, PhysicalDeviceMaintenance3Properties, PhysicalDeviceMaintenance4Features, PhysicalDeviceMaintenance4Properties, DescriptorSetLayoutSupport, PhysicalDeviceShaderDrawParametersFeatures, PhysicalDeviceShaderFloat16Int8Features, PhysicalDeviceFloatControlsProperties, PhysicalDeviceHostQueryResetFeatures, ShaderResourceUsageAMD, ShaderStatisticsInfoAMD, DeviceQueueGlobalPriorityCreateInfoKHR, PhysicalDeviceGlobalPriorityQueryFeaturesKHR, QueueFamilyGlobalPriorityPropertiesKHR, DebugUtilsObjectNameInfoEXT, DebugUtilsObjectTagInfoEXT, DebugUtilsLabelEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerCallbackDataEXT, PhysicalDeviceDeviceMemoryReportFeaturesEXT, DeviceDeviceMemoryReportCreateInfoEXT, DeviceMemoryReportCallbackDataEXT, ImportMemoryHostPointerInfoEXT, MemoryHostPointerPropertiesEXT, PhysicalDeviceExternalMemoryHostPropertiesEXT, PhysicalDeviceConservativeRasterizationPropertiesEXT, CalibratedTimestampInfoEXT, PhysicalDeviceShaderCorePropertiesAMD, PhysicalDeviceShaderCoreProperties2AMD, PipelineRasterizationConservativeStateCreateInfoEXT, PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties, DescriptorSetLayoutBindingFlagsCreateInfo, DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport, AttachmentDescription2, AttachmentReference2, SubpassDescription2, SubpassDependency2, RenderPassCreateInfo2, SubpassBeginInfo, SubpassEndInfo, PhysicalDeviceTimelineSemaphoreFeatures, PhysicalDeviceTimelineSemaphoreProperties, SemaphoreTypeCreateInfo, TimelineSemaphoreSubmitInfo, SemaphoreWaitInfo, SemaphoreSignalInfo, VertexInputBindingDivisorDescriptionEXT, PipelineVertexInputDivisorStateCreateInfoEXT, PhysicalDeviceVertexAttributeDivisorPropertiesEXT, PhysicalDevicePCIBusInfoPropertiesEXT, CommandBufferInheritanceConditionalRenderingInfoEXT, PhysicalDevice8BitStorageFeatures, PhysicalDeviceConditionalRenderingFeaturesEXT, PhysicalDeviceVulkanMemoryModelFeatures, PhysicalDeviceShaderAtomicInt64Features, PhysicalDeviceShaderAtomicFloatFeaturesEXT, PhysicalDeviceShaderAtomicFloat2FeaturesEXT, PhysicalDeviceVertexAttributeDivisorFeaturesEXT, QueueFamilyCheckpointPropertiesNV, CheckpointDataNV, PhysicalDeviceDepthStencilResolveProperties, SubpassDescriptionDepthStencilResolve, ImageViewASTCDecodeModeEXT, PhysicalDeviceASTCDecodeFeaturesEXT, PhysicalDeviceTransformFeedbackFeaturesEXT, PhysicalDeviceTransformFeedbackPropertiesEXT, PipelineRasterizationStateStreamCreateInfoEXT, PhysicalDeviceRepresentativeFragmentTestFeaturesNV, PipelineRepresentativeFragmentTestStateCreateInfoNV, PhysicalDeviceExclusiveScissorFeaturesNV, PipelineViewportExclusiveScissorStateCreateInfoNV, PhysicalDeviceCornerSampledImageFeaturesNV, PhysicalDeviceComputeShaderDerivativesFeaturesNV, PhysicalDeviceFragmentShaderBarycentricFeaturesNV, PhysicalDeviceShaderImageFootprintFeaturesNV, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, ShadingRatePaletteNV, PipelineViewportShadingRateImageStateCreateInfoNV, PhysicalDeviceShadingRateImageFeaturesNV, PhysicalDeviceShadingRateImagePropertiesNV, PhysicalDeviceInvocationMaskFeaturesHUAWEI, CoarseSampleLocationNV, CoarseSampleOrderCustomNV, PipelineViewportCoarseSampleOrderStateCreateInfoNV, PhysicalDeviceMeshShaderFeaturesNV, PhysicalDeviceMeshShaderPropertiesNV, DrawMeshTasksIndirectCommandNV, RayTracingShaderGroupCreateInfoNV, RayTracingShaderGroupCreateInfoKHR, RayTracingPipelineCreateInfoNV, RayTracingPipelineCreateInfoKHR, GeometryTrianglesNV, GeometryAABBNV, GeometryDataNV, GeometryNV, AccelerationStructureInfoNV, AccelerationStructureCreateInfoNV, BindAccelerationStructureMemoryInfoNV, WriteDescriptorSetAccelerationStructureKHR, WriteDescriptorSetAccelerationStructureNV, AccelerationStructureMemoryRequirementsInfoNV, PhysicalDeviceAccelerationStructureFeaturesKHR, PhysicalDeviceRayTracingPipelineFeaturesKHR, PhysicalDeviceRayQueryFeaturesKHR, PhysicalDeviceAccelerationStructurePropertiesKHR, PhysicalDeviceRayTracingPipelinePropertiesKHR, PhysicalDeviceRayTracingPropertiesNV, StridedDeviceAddressRegionKHR, TraceRaysIndirectCommandKHR, DrmFormatModifierPropertiesListEXT, DrmFormatModifierPropertiesEXT, PhysicalDeviceImageDrmFormatModifierInfoEXT, ImageDrmFormatModifierListCreateInfoEXT, ImageDrmFormatModifierExplicitCreateInfoEXT, ImageDrmFormatModifierPropertiesEXT, ImageStencilUsageCreateInfo, DeviceMemoryOverallocationCreateInfoAMD, PhysicalDeviceFragmentDensityMapFeaturesEXT, PhysicalDeviceFragmentDensityMap2FeaturesEXT, PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM, PhysicalDeviceFragmentDensityMapPropertiesEXT, PhysicalDeviceFragmentDensityMap2PropertiesEXT, PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM, RenderPassFragmentDensityMapCreateInfoEXT, SubpassFragmentDensityMapOffsetEndInfoQCOM, PhysicalDeviceScalarBlockLayoutFeatures, SurfaceProtectedCapabilitiesKHR, PhysicalDeviceUniformBufferStandardLayoutFeatures, PhysicalDeviceDepthClipEnableFeaturesEXT, PipelineRasterizationDepthClipStateCreateInfoEXT, PhysicalDeviceMemoryBudgetPropertiesEXT, PhysicalDeviceMemoryPriorityFeaturesEXT, MemoryPriorityAllocateInfoEXT, PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT, PhysicalDeviceBufferDeviceAddressFeatures, PhysicalDeviceBufferDeviceAddressFeaturesEXT, BufferDeviceAddressInfo, BufferOpaqueCaptureAddressCreateInfo, BufferDeviceAddressCreateInfoEXT, PhysicalDeviceImageViewImageFormatInfoEXT, FilterCubicImageViewImageFormatPropertiesEXT, PhysicalDeviceImagelessFramebufferFeatures, FramebufferAttachmentsCreateInfo, FramebufferAttachmentImageInfo, RenderPassAttachmentBeginInfo, PhysicalDeviceTextureCompressionASTCHDRFeatures, PhysicalDeviceCooperativeMatrixFeaturesNV, PhysicalDeviceCooperativeMatrixPropertiesNV, CooperativeMatrixPropertiesNV, PhysicalDeviceYcbcrImageArraysFeaturesEXT, ImageViewHandleInfoNVX, ImageViewAddressPropertiesNVX, PipelineCreationFeedback, PipelineCreationFeedbackCreateInfo, SurfaceFullScreenExclusiveInfoEXT, SurfaceFullScreenExclusiveWin32InfoEXT, SurfaceCapabilitiesFullScreenExclusiveEXT, PhysicalDevicePerformanceQueryFeaturesKHR, PhysicalDevicePerformanceQueryPropertiesKHR, PerformanceCounterKHR, PerformanceCounterDescriptionKHR, QueryPoolPerformanceCreateInfoKHR, AcquireProfilingLockInfoKHR, PerformanceQuerySubmitInfoKHR, HeadlessSurfaceCreateInfoEXT, PhysicalDeviceCoverageReductionModeFeaturesNV, PipelineCoverageReductionStateCreateInfoNV, FramebufferMixedSamplesCombinationNV, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, PerformanceValueINTEL, InitializePerformanceApiInfoINTEL, QueryPoolPerformanceQueryCreateInfoINTEL, PerformanceMarkerInfoINTEL, PerformanceStreamMarkerInfoINTEL, PerformanceOverrideInfoINTEL, PerformanceConfigurationAcquireInfoINTEL, PhysicalDeviceShaderClockFeaturesKHR, PhysicalDeviceIndexTypeUint8FeaturesEXT, PhysicalDeviceShaderSMBuiltinsPropertiesNV, PhysicalDeviceShaderSMBuiltinsFeaturesNV, PhysicalDeviceFragmentShaderInterlockFeaturesEXT, PhysicalDeviceSeparateDepthStencilLayoutsFeatures, AttachmentReferenceStencilLayout, PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT, AttachmentDescriptionStencilLayout, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, PipelineInfoKHR, PipelineExecutablePropertiesKHR, PipelineExecutableInfoKHR, PipelineExecutableStatisticKHR, PipelineExecutableInternalRepresentationKHR, PhysicalDeviceShaderDemoteToHelperInvocationFeatures, PhysicalDeviceTexelBufferAlignmentFeaturesEXT, PhysicalDeviceTexelBufferAlignmentProperties, PhysicalDeviceSubgroupSizeControlFeatures, PhysicalDeviceSubgroupSizeControlProperties, PipelineShaderStageRequiredSubgroupSizeCreateInfo, SubpassShadingPipelineCreateInfoHUAWEI, PhysicalDeviceSubpassShadingPropertiesHUAWEI, MemoryOpaqueCaptureAddressAllocateInfo, DeviceMemoryOpaqueCaptureAddressInfo, PhysicalDeviceLineRasterizationFeaturesEXT, PhysicalDeviceLineRasterizationPropertiesEXT, PipelineRasterizationLineStateCreateInfoEXT, PhysicalDevicePipelineCreationCacheControlFeatures, PhysicalDeviceVulkan11Features, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkan12Properties, PhysicalDeviceVulkan13Features, PhysicalDeviceVulkan13Properties, PipelineCompilerControlCreateInfoAMD, PhysicalDeviceCoherentMemoryFeaturesAMD, PhysicalDeviceToolProperties, SamplerCustomBorderColorCreateInfoEXT, PhysicalDeviceCustomBorderColorPropertiesEXT, PhysicalDeviceCustomBorderColorFeaturesEXT, SamplerBorderColorComponentMappingCreateInfoEXT, PhysicalDeviceBorderColorSwizzleFeaturesEXT, AccelerationStructureGeometryTrianglesDataKHR, AccelerationStructureGeometryAabbsDataKHR, AccelerationStructureGeometryInstancesDataKHR, AccelerationStructureGeometryKHR, AccelerationStructureBuildGeometryInfoKHR, AccelerationStructureBuildRangeInfoKHR, AccelerationStructureCreateInfoKHR, AabbPositionsKHR, TransformMatrixKHR, AccelerationStructureInstanceKHR, AccelerationStructureDeviceAddressInfoKHR, AccelerationStructureVersionInfoKHR, CopyAccelerationStructureInfoKHR, CopyAccelerationStructureToMemoryInfoKHR, CopyMemoryToAccelerationStructureInfoKHR, RayTracingPipelineInterfaceCreateInfoKHR, PipelineLibraryCreateInfoKHR, PhysicalDeviceExtendedDynamicStateFeaturesEXT, PhysicalDeviceExtendedDynamicState2FeaturesEXT, RenderPassTransformBeginInfoQCOM, CopyCommandTransformInfoQCOM, CommandBufferInheritanceRenderPassTransformInfoQCOM, PhysicalDeviceDiagnosticsConfigFeaturesNV, DeviceDiagnosticsConfigCreateInfoNV, PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures, PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR, PhysicalDeviceRobustness2FeaturesEXT, PhysicalDeviceRobustness2PropertiesEXT, PhysicalDeviceImageRobustnessFeatures, PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, PhysicalDevice4444FormatsFeaturesEXT, PhysicalDeviceSubpassShadingFeaturesHUAWEI, BufferCopy2, ImageCopy2, ImageBlit2, BufferImageCopy2, ImageResolve2, CopyBufferInfo2, CopyImageInfo2, BlitImageInfo2, CopyBufferToImageInfo2, CopyImageToBufferInfo2, ResolveImageInfo2, PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, FragmentShadingRateAttachmentInfoKHR, PipelineFragmentShadingRateStateCreateInfoKHR, PhysicalDeviceFragmentShadingRateFeaturesKHR, PhysicalDeviceFragmentShadingRatePropertiesKHR, PhysicalDeviceFragmentShadingRateKHR, PhysicalDeviceShaderTerminateInvocationFeatures, PhysicalDeviceFragmentShadingRateEnumsFeaturesNV, PhysicalDeviceFragmentShadingRateEnumsPropertiesNV, PipelineFragmentShadingRateEnumStateCreateInfoNV, AccelerationStructureBuildSizesInfoKHR, PhysicalDeviceMutableDescriptorTypeFeaturesVALVE, MutableDescriptorTypeListVALVE, MutableDescriptorTypeCreateInfoVALVE, PhysicalDeviceDepthClipControlFeaturesEXT, PipelineViewportDepthClipControlCreateInfoEXT, PhysicalDeviceVertexInputDynamicStateFeaturesEXT, PhysicalDeviceExternalMemoryRDMAFeaturesNV, VertexInputBindingDescription2EXT, VertexInputAttributeDescription2EXT, PhysicalDeviceColorWriteEnableFeaturesEXT, PipelineColorWriteCreateInfoEXT, MemoryBarrier2, ImageMemoryBarrier2, BufferMemoryBarrier2, DependencyInfo, SemaphoreSubmitInfo, CommandBufferSubmitInfo, SubmitInfo2, QueueFamilyCheckpointProperties2NV, CheckpointData2NV, PhysicalDeviceSynchronization2Features, PhysicalDeviceInheritedViewportScissorFeaturesNV, CommandBufferInheritanceViewportScissorInfoNV, PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, PhysicalDeviceProvokingVertexFeaturesEXT, PhysicalDeviceProvokingVertexPropertiesEXT, PipelineRasterizationProvokingVertexStateCreateInfoEXT, CuModuleCreateInfoNVX, CuFunctionCreateInfoNVX, CuLaunchInfoNVX, PhysicalDeviceShaderIntegerDotProductFeatures, PhysicalDeviceShaderIntegerDotProductProperties, PhysicalDeviceDrmPropertiesEXT, PhysicalDeviceRayTracingMotionBlurFeaturesNV, AccelerationStructureGeometryMotionTrianglesDataNV, AccelerationStructureMotionInfoNV, SRTDataNV, AccelerationStructureSRTMotionInstanceNV, AccelerationStructureMatrixMotionInstanceNV, AccelerationStructureMotionInstanceNV, MemoryGetRemoteAddressInfoNV, PhysicalDeviceRGBA10X6FormatsFeaturesEXT, FormatProperties3, DrmFormatModifierPropertiesList2EXT, DrmFormatModifierProperties2EXT, PipelineRenderingCreateInfo, RenderingInfo, RenderingAttachmentInfo, RenderingFragmentShadingRateAttachmentInfoKHR, RenderingFragmentDensityMapAttachmentInfoEXT, PhysicalDeviceDynamicRenderingFeatures, CommandBufferInheritanceRenderingInfo, AttachmentSampleCountInfoAMD, MultiviewPerViewAttributesInfoNVX, PhysicalDeviceImageViewMinLodFeaturesEXT, ImageViewMinLodCreateInfoEXT, PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM, PhysicalDeviceLinearColorAttachmentFeaturesNV, PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE, DescriptorSetBindingReferenceVALVE, DescriptorSetLayoutHostMappingInfoVALVE, ClearColorValue, ClearValue, PerformanceCounterResultKHR, PerformanceValueDataINTEL, PipelineExecutableStatisticValueKHR, DeviceOrHostAddressKHR, DeviceOrHostAddressConstKHR, AccelerationStructureGeometryDataKHR, AccelerationStructureMotionInstanceDataNV, _create_instance, _destroy_instance, _enumerate_physical_devices, _get_device_proc_addr, _get_instance_proc_addr, _get_physical_device_properties, _get_physical_device_queue_family_properties, _get_physical_device_memory_properties, _get_physical_device_features, _get_physical_device_format_properties, _get_physical_device_image_format_properties, _create_device, _destroy_device, _enumerate_instance_version, _enumerate_instance_layer_properties, _enumerate_instance_extension_properties, _enumerate_device_layer_properties, _enumerate_device_extension_properties, _get_device_queue, _queue_submit, _queue_wait_idle, _device_wait_idle, _allocate_memory, _free_memory, _map_memory, _unmap_memory, _flush_mapped_memory_ranges, _invalidate_mapped_memory_ranges, _get_device_memory_commitment, _get_buffer_memory_requirements, _bind_buffer_memory, _get_image_memory_requirements, _bind_image_memory, _get_image_sparse_memory_requirements, _get_physical_device_sparse_image_format_properties, _queue_bind_sparse, _create_fence, _destroy_fence, _reset_fences, _get_fence_status, _wait_for_fences, _create_semaphore, _destroy_semaphore, _create_event, _destroy_event, _get_event_status, _set_event, _reset_event, _create_query_pool, _destroy_query_pool, _get_query_pool_results, _reset_query_pool, _create_buffer, _destroy_buffer, _create_buffer_view, _destroy_buffer_view, _create_image, _destroy_image, _get_image_subresource_layout, _create_image_view, _destroy_image_view, _create_shader_module, _destroy_shader_module, _create_pipeline_cache, _destroy_pipeline_cache, _get_pipeline_cache_data, _merge_pipeline_caches, _create_graphics_pipelines, _create_compute_pipelines, _get_device_subpass_shading_max_workgroup_size_huawei, _destroy_pipeline, _create_pipeline_layout, _destroy_pipeline_layout, _create_sampler, _destroy_sampler, _create_descriptor_set_layout, _destroy_descriptor_set_layout, _create_descriptor_pool, _destroy_descriptor_pool, _reset_descriptor_pool, _allocate_descriptor_sets, _free_descriptor_sets, _update_descriptor_sets, _create_framebuffer, _destroy_framebuffer, _create_render_pass, _destroy_render_pass, _get_render_area_granularity, _create_command_pool, _destroy_command_pool, _reset_command_pool, _allocate_command_buffers, _free_command_buffers, _begin_command_buffer, _end_command_buffer, _reset_command_buffer, _cmd_bind_pipeline, _cmd_set_viewport, _cmd_set_scissor, _cmd_set_line_width, _cmd_set_depth_bias, _cmd_set_blend_constants, _cmd_set_depth_bounds, _cmd_set_stencil_compare_mask, _cmd_set_stencil_write_mask, _cmd_set_stencil_reference, _cmd_bind_descriptor_sets, _cmd_bind_index_buffer, _cmd_bind_vertex_buffers, _cmd_draw, _cmd_draw_indexed, _cmd_draw_multi_ext, _cmd_draw_multi_indexed_ext, _cmd_draw_indirect, _cmd_draw_indexed_indirect, _cmd_dispatch, _cmd_dispatch_indirect, _cmd_subpass_shading_huawei, _cmd_copy_buffer, _cmd_copy_image, _cmd_blit_image, _cmd_copy_buffer_to_image, _cmd_copy_image_to_buffer, _cmd_update_buffer, _cmd_fill_buffer, _cmd_clear_color_image, _cmd_clear_depth_stencil_image, _cmd_clear_attachments, _cmd_resolve_image, _cmd_set_event, _cmd_reset_event, _cmd_wait_events, _cmd_pipeline_barrier, _cmd_begin_query, _cmd_end_query, _cmd_begin_conditional_rendering_ext, _cmd_end_conditional_rendering_ext, _cmd_reset_query_pool, _cmd_write_timestamp, _cmd_copy_query_pool_results, _cmd_push_constants, _cmd_begin_render_pass, _cmd_next_subpass, _cmd_end_render_pass, _cmd_execute_commands, _get_physical_device_display_properties_khr, _get_physical_device_display_plane_properties_khr, _get_display_plane_supported_displays_khr, _get_display_mode_properties_khr, _create_display_mode_khr, _get_display_plane_capabilities_khr, _create_display_plane_surface_khr, _create_shared_swapchains_khr, _destroy_surface_khr, _get_physical_device_surface_support_khr, _get_physical_device_surface_capabilities_khr, _get_physical_device_surface_formats_khr, _get_physical_device_surface_present_modes_khr, _create_swapchain_khr, _destroy_swapchain_khr, _get_swapchain_images_khr, _acquire_next_image_khr, _queue_present_khr, _create_win_32_surface_khr, _get_physical_device_win_32_presentation_support_khr, _create_debug_report_callback_ext, _destroy_debug_report_callback_ext, _debug_report_message_ext, _debug_marker_set_object_name_ext, _debug_marker_set_object_tag_ext, _cmd_debug_marker_begin_ext, _cmd_debug_marker_end_ext, _cmd_debug_marker_insert_ext, _get_physical_device_external_image_format_properties_nv, _get_memory_win_32_handle_nv, _cmd_execute_generated_commands_nv, _cmd_preprocess_generated_commands_nv, _cmd_bind_pipeline_shader_group_nv, _get_generated_commands_memory_requirements_nv, _create_indirect_commands_layout_nv, _destroy_indirect_commands_layout_nv, _get_physical_device_features_2, _get_physical_device_properties_2, _get_physical_device_format_properties_2, _get_physical_device_image_format_properties_2, _get_physical_device_queue_family_properties_2, _get_physical_device_memory_properties_2, _get_physical_device_sparse_image_format_properties_2, _cmd_push_descriptor_set_khr, _trim_command_pool, _get_physical_device_external_buffer_properties, _get_memory_win_32_handle_khr, _get_memory_win_32_handle_properties_khr, _get_memory_fd_khr, _get_memory_fd_properties_khr, _get_memory_remote_address_nv, _get_physical_device_external_semaphore_properties, _get_semaphore_win_32_handle_khr, _import_semaphore_win_32_handle_khr, _get_semaphore_fd_khr, _import_semaphore_fd_khr, _get_physical_device_external_fence_properties, _get_fence_win_32_handle_khr, _import_fence_win_32_handle_khr, _get_fence_fd_khr, _import_fence_fd_khr, _release_display_ext, _acquire_winrt_display_nv, _get_winrt_display_nv, _display_power_control_ext, _register_device_event_ext, _register_display_event_ext, _get_swapchain_counter_ext, _get_physical_device_surface_capabilities_2_ext, _enumerate_physical_device_groups, _get_device_group_peer_memory_features, _bind_buffer_memory_2, _bind_image_memory_2, _cmd_set_device_mask, _get_device_group_present_capabilities_khr, _get_device_group_surface_present_modes_khr, _acquire_next_image_2_khr, _cmd_dispatch_base, _get_physical_device_present_rectangles_khr, _create_descriptor_update_template, _destroy_descriptor_update_template, _update_descriptor_set_with_template, _cmd_push_descriptor_set_with_template_khr, _set_hdr_metadata_ext, _get_swapchain_status_khr, _get_refresh_cycle_duration_google, _get_past_presentation_timing_google, _cmd_set_viewport_w_scaling_nv, _cmd_set_discard_rectangle_ext, _cmd_set_sample_locations_ext, _get_physical_device_multisample_properties_ext, _get_physical_device_surface_capabilities_2_khr, _get_physical_device_surface_formats_2_khr, _get_physical_device_display_properties_2_khr, _get_physical_device_display_plane_properties_2_khr, _get_display_mode_properties_2_khr, _get_display_plane_capabilities_2_khr, _get_buffer_memory_requirements_2, _get_image_memory_requirements_2, _get_image_sparse_memory_requirements_2, _get_device_buffer_memory_requirements, _get_device_image_memory_requirements, _get_device_image_sparse_memory_requirements, _create_sampler_ycbcr_conversion, _destroy_sampler_ycbcr_conversion, _get_device_queue_2, _create_validation_cache_ext, _destroy_validation_cache_ext, _get_validation_cache_data_ext, _merge_validation_caches_ext, _get_descriptor_set_layout_support, _get_shader_info_amd, _set_local_dimming_amd, _get_physical_device_calibrateable_time_domains_ext, _get_calibrated_timestamps_ext, _set_debug_utils_object_name_ext, _set_debug_utils_object_tag_ext, _queue_begin_debug_utils_label_ext, _queue_end_debug_utils_label_ext, _queue_insert_debug_utils_label_ext, _cmd_begin_debug_utils_label_ext, _cmd_end_debug_utils_label_ext, _cmd_insert_debug_utils_label_ext, _create_debug_utils_messenger_ext, _destroy_debug_utils_messenger_ext, _submit_debug_utils_message_ext, _get_memory_host_pointer_properties_ext, _cmd_write_buffer_marker_amd, _create_render_pass_2, _cmd_begin_render_pass_2, _cmd_next_subpass_2, _cmd_end_render_pass_2, _get_semaphore_counter_value, _wait_semaphores, _signal_semaphore, _cmd_draw_indirect_count, _cmd_draw_indexed_indirect_count, _cmd_set_checkpoint_nv, _get_queue_checkpoint_data_nv, _cmd_bind_transform_feedback_buffers_ext, _cmd_begin_transform_feedback_ext, _cmd_end_transform_feedback_ext, _cmd_begin_query_indexed_ext, _cmd_end_query_indexed_ext, _cmd_draw_indirect_byte_count_ext, _cmd_set_exclusive_scissor_nv, _cmd_bind_shading_rate_image_nv, _cmd_set_viewport_shading_rate_palette_nv, _cmd_set_coarse_sample_order_nv, _cmd_draw_mesh_tasks_nv, _cmd_draw_mesh_tasks_indirect_nv, _cmd_draw_mesh_tasks_indirect_count_nv, _compile_deferred_nv, _create_acceleration_structure_nv, _cmd_bind_invocation_mask_huawei, _destroy_acceleration_structure_khr, _destroy_acceleration_structure_nv, _get_acceleration_structure_memory_requirements_nv, _bind_acceleration_structure_memory_nv, _cmd_copy_acceleration_structure_nv, _cmd_copy_acceleration_structure_khr, _copy_acceleration_structure_khr, _cmd_copy_acceleration_structure_to_memory_khr, _copy_acceleration_structure_to_memory_khr, _cmd_copy_memory_to_acceleration_structure_khr, _copy_memory_to_acceleration_structure_khr, _cmd_write_acceleration_structures_properties_khr, _cmd_write_acceleration_structures_properties_nv, _cmd_build_acceleration_structure_nv, _write_acceleration_structures_properties_khr, _cmd_trace_rays_khr, _cmd_trace_rays_nv, _get_ray_tracing_shader_group_handles_khr, _get_ray_tracing_capture_replay_shader_group_handles_khr, _get_acceleration_structure_handle_nv, _create_ray_tracing_pipelines_nv, _create_ray_tracing_pipelines_khr, _get_physical_device_cooperative_matrix_properties_nv, _cmd_trace_rays_indirect_khr, _get_device_acceleration_structure_compatibility_khr, _get_ray_tracing_shader_group_stack_size_khr, _cmd_set_ray_tracing_pipeline_stack_size_khr, _get_image_view_handle_nvx, _get_image_view_address_nvx, _get_physical_device_surface_present_modes_2_ext, _get_device_group_surface_present_modes_2_ext, _acquire_full_screen_exclusive_mode_ext, _release_full_screen_exclusive_mode_ext, _enumerate_physical_device_queue_family_performance_query_counters_khr, _get_physical_device_queue_family_performance_query_passes_khr, _acquire_profiling_lock_khr, _release_profiling_lock_khr, _get_image_drm_format_modifier_properties_ext, _get_buffer_opaque_capture_address, _get_buffer_device_address, _create_headless_surface_ext, _get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, _initialize_performance_api_intel, _uninitialize_performance_api_intel, _cmd_set_performance_marker_intel, _cmd_set_performance_stream_marker_intel, _cmd_set_performance_override_intel, _acquire_performance_configuration_intel, _release_performance_configuration_intel, _queue_set_performance_configuration_intel, _get_performance_parameter_intel, _get_device_memory_opaque_capture_address, _get_pipeline_executable_properties_khr, _get_pipeline_executable_statistics_khr, _get_pipeline_executable_internal_representations_khr, _cmd_set_line_stipple_ext, _get_physical_device_tool_properties, _create_acceleration_structure_khr, _cmd_build_acceleration_structures_khr, _cmd_build_acceleration_structures_indirect_khr, _build_acceleration_structures_khr, _get_acceleration_structure_device_address_khr, _create_deferred_operation_khr, _destroy_deferred_operation_khr, _get_deferred_operation_max_concurrency_khr, _get_deferred_operation_result_khr, _deferred_operation_join_khr, _cmd_set_cull_mode, _cmd_set_front_face, _cmd_set_primitive_topology, _cmd_set_viewport_with_count, _cmd_set_scissor_with_count, _cmd_bind_vertex_buffers_2, _cmd_set_depth_test_enable, _cmd_set_depth_write_enable, _cmd_set_depth_compare_op, _cmd_set_depth_bounds_test_enable, _cmd_set_stencil_test_enable, _cmd_set_stencil_op, _cmd_set_patch_control_points_ext, _cmd_set_rasterizer_discard_enable, _cmd_set_depth_bias_enable, _cmd_set_logic_op_ext, _cmd_set_primitive_restart_enable, _create_private_data_slot, _destroy_private_data_slot, _set_private_data, _get_private_data, _cmd_copy_buffer_2, _cmd_copy_image_2, _cmd_blit_image_2, _cmd_copy_buffer_to_image_2, _cmd_copy_image_to_buffer_2, _cmd_resolve_image_2, _cmd_set_fragment_shading_rate_khr, _get_physical_device_fragment_shading_rates_khr, _cmd_set_fragment_shading_rate_enum_nv, _get_acceleration_structure_build_sizes_khr, _cmd_set_vertex_input_ext, _cmd_set_color_write_enable_ext, _cmd_set_event_2, _cmd_reset_event_2, _cmd_wait_events_2, _cmd_pipeline_barrier_2, _queue_submit_2, _cmd_write_timestamp_2, _cmd_write_buffer_marker_2_amd, _get_queue_checkpoint_data_2_nv, _create_cu_module_nvx, _create_cu_function_nvx, _destroy_cu_module_nvx, _destroy_cu_function_nvx, _cmd_cu_launch_kernel_nvx, _set_device_memory_priority_ext, _acquire_drm_display_ext, _get_drm_display_ext, _wait_for_present_khr, _cmd_begin_rendering, _cmd_end_rendering, _get_descriptor_set_layout_host_mapping_info_valve, _get_descriptor_set_host_mapping_valve, create_instance, destroy_instance, enumerate_physical_devices, get_device_proc_addr, get_instance_proc_addr, get_physical_device_properties, get_physical_device_queue_family_properties, get_physical_device_memory_properties, get_physical_device_features, get_physical_device_format_properties, get_physical_device_image_format_properties, create_device, destroy_device, enumerate_instance_version, enumerate_instance_layer_properties, enumerate_instance_extension_properties, enumerate_device_layer_properties, enumerate_device_extension_properties, get_device_queue, queue_submit, queue_wait_idle, device_wait_idle, allocate_memory, free_memory, map_memory, unmap_memory, flush_mapped_memory_ranges, invalidate_mapped_memory_ranges, get_device_memory_commitment, get_buffer_memory_requirements, bind_buffer_memory, get_image_memory_requirements, bind_image_memory, get_image_sparse_memory_requirements, get_physical_device_sparse_image_format_properties, queue_bind_sparse, create_fence, destroy_fence, reset_fences, get_fence_status, wait_for_fences, create_semaphore, destroy_semaphore, create_event, destroy_event, get_event_status, set_event, reset_event, create_query_pool, destroy_query_pool, get_query_pool_results, reset_query_pool, create_buffer, destroy_buffer, create_buffer_view, destroy_buffer_view, create_image, destroy_image, get_image_subresource_layout, create_image_view, destroy_image_view, create_shader_module, destroy_shader_module, create_pipeline_cache, destroy_pipeline_cache, get_pipeline_cache_data, merge_pipeline_caches, create_graphics_pipelines, create_compute_pipelines, get_device_subpass_shading_max_workgroup_size_huawei, destroy_pipeline, create_pipeline_layout, destroy_pipeline_layout, create_sampler, destroy_sampler, create_descriptor_set_layout, destroy_descriptor_set_layout, create_descriptor_pool, destroy_descriptor_pool, reset_descriptor_pool, allocate_descriptor_sets, free_descriptor_sets, update_descriptor_sets, create_framebuffer, destroy_framebuffer, create_render_pass, destroy_render_pass, get_render_area_granularity, create_command_pool, destroy_command_pool, reset_command_pool, allocate_command_buffers, free_command_buffers, begin_command_buffer, end_command_buffer, reset_command_buffer, cmd_bind_pipeline, cmd_set_viewport, cmd_set_scissor, cmd_set_line_width, cmd_set_depth_bias, cmd_set_blend_constants, cmd_set_depth_bounds, cmd_set_stencil_compare_mask, cmd_set_stencil_write_mask, cmd_set_stencil_reference, cmd_bind_descriptor_sets, cmd_bind_index_buffer, cmd_bind_vertex_buffers, cmd_draw, cmd_draw_indexed, cmd_draw_multi_ext, cmd_draw_multi_indexed_ext, cmd_draw_indirect, cmd_draw_indexed_indirect, cmd_dispatch, cmd_dispatch_indirect, cmd_subpass_shading_huawei, cmd_copy_buffer, cmd_copy_image, cmd_blit_image, cmd_copy_buffer_to_image, cmd_copy_image_to_buffer, cmd_update_buffer, cmd_fill_buffer, cmd_clear_color_image, cmd_clear_depth_stencil_image, cmd_clear_attachments, cmd_resolve_image, cmd_set_event, cmd_reset_event, cmd_wait_events, cmd_pipeline_barrier, cmd_begin_query, cmd_end_query, cmd_begin_conditional_rendering_ext, cmd_end_conditional_rendering_ext, cmd_reset_query_pool, cmd_write_timestamp, cmd_copy_query_pool_results, cmd_push_constants, cmd_begin_render_pass, cmd_next_subpass, cmd_end_render_pass, cmd_execute_commands, get_physical_device_display_properties_khr, get_physical_device_display_plane_properties_khr, get_display_plane_supported_displays_khr, get_display_mode_properties_khr, create_display_mode_khr, get_display_plane_capabilities_khr, create_display_plane_surface_khr, create_shared_swapchains_khr, destroy_surface_khr, get_physical_device_surface_support_khr, get_physical_device_surface_capabilities_khr, get_physical_device_surface_formats_khr, get_physical_device_surface_present_modes_khr, create_swapchain_khr, destroy_swapchain_khr, get_swapchain_images_khr, acquire_next_image_khr, queue_present_khr, create_win_32_surface_khr, get_physical_device_win_32_presentation_support_khr, create_debug_report_callback_ext, destroy_debug_report_callback_ext, debug_report_message_ext, debug_marker_set_object_name_ext, debug_marker_set_object_tag_ext, cmd_debug_marker_begin_ext, cmd_debug_marker_end_ext, cmd_debug_marker_insert_ext, get_physical_device_external_image_format_properties_nv, get_memory_win_32_handle_nv, cmd_execute_generated_commands_nv, cmd_preprocess_generated_commands_nv, cmd_bind_pipeline_shader_group_nv, get_generated_commands_memory_requirements_nv, create_indirect_commands_layout_nv, destroy_indirect_commands_layout_nv, get_physical_device_features_2, get_physical_device_properties_2, get_physical_device_format_properties_2, get_physical_device_image_format_properties_2, get_physical_device_queue_family_properties_2, get_physical_device_memory_properties_2, get_physical_device_sparse_image_format_properties_2, cmd_push_descriptor_set_khr, trim_command_pool, get_physical_device_external_buffer_properties, get_memory_win_32_handle_khr, get_memory_win_32_handle_properties_khr, get_memory_fd_khr, get_memory_fd_properties_khr, get_memory_remote_address_nv, get_physical_device_external_semaphore_properties, get_semaphore_win_32_handle_khr, import_semaphore_win_32_handle_khr, get_semaphore_fd_khr, import_semaphore_fd_khr, get_physical_device_external_fence_properties, get_fence_win_32_handle_khr, import_fence_win_32_handle_khr, get_fence_fd_khr, import_fence_fd_khr, release_display_ext, acquire_winrt_display_nv, get_winrt_display_nv, display_power_control_ext, register_device_event_ext, register_display_event_ext, get_swapchain_counter_ext, get_physical_device_surface_capabilities_2_ext, enumerate_physical_device_groups, get_device_group_peer_memory_features, bind_buffer_memory_2, bind_image_memory_2, cmd_set_device_mask, get_device_group_present_capabilities_khr, get_device_group_surface_present_modes_khr, acquire_next_image_2_khr, cmd_dispatch_base, get_physical_device_present_rectangles_khr, create_descriptor_update_template, destroy_descriptor_update_template, update_descriptor_set_with_template, cmd_push_descriptor_set_with_template_khr, set_hdr_metadata_ext, get_swapchain_status_khr, get_refresh_cycle_duration_google, get_past_presentation_timing_google, cmd_set_viewport_w_scaling_nv, cmd_set_discard_rectangle_ext, cmd_set_sample_locations_ext, get_physical_device_multisample_properties_ext, get_physical_device_surface_capabilities_2_khr, get_physical_device_surface_formats_2_khr, get_physical_device_display_properties_2_khr, get_physical_device_display_plane_properties_2_khr, get_display_mode_properties_2_khr, get_display_plane_capabilities_2_khr, get_buffer_memory_requirements_2, get_image_memory_requirements_2, get_image_sparse_memory_requirements_2, get_device_buffer_memory_requirements, get_device_image_memory_requirements, get_device_image_sparse_memory_requirements, create_sampler_ycbcr_conversion, destroy_sampler_ycbcr_conversion, get_device_queue_2, create_validation_cache_ext, destroy_validation_cache_ext, get_validation_cache_data_ext, merge_validation_caches_ext, get_descriptor_set_layout_support, get_shader_info_amd, set_local_dimming_amd, get_physical_device_calibrateable_time_domains_ext, get_calibrated_timestamps_ext, set_debug_utils_object_name_ext, set_debug_utils_object_tag_ext, queue_begin_debug_utils_label_ext, queue_end_debug_utils_label_ext, queue_insert_debug_utils_label_ext, cmd_begin_debug_utils_label_ext, cmd_end_debug_utils_label_ext, cmd_insert_debug_utils_label_ext, create_debug_utils_messenger_ext, destroy_debug_utils_messenger_ext, submit_debug_utils_message_ext, get_memory_host_pointer_properties_ext, cmd_write_buffer_marker_amd, create_render_pass_2, cmd_begin_render_pass_2, cmd_next_subpass_2, cmd_end_render_pass_2, get_semaphore_counter_value, wait_semaphores, signal_semaphore, cmd_draw_indirect_count, cmd_draw_indexed_indirect_count, cmd_set_checkpoint_nv, get_queue_checkpoint_data_nv, cmd_bind_transform_feedback_buffers_ext, cmd_begin_transform_feedback_ext, cmd_end_transform_feedback_ext, cmd_begin_query_indexed_ext, cmd_end_query_indexed_ext, cmd_draw_indirect_byte_count_ext, cmd_set_exclusive_scissor_nv, cmd_bind_shading_rate_image_nv, cmd_set_viewport_shading_rate_palette_nv, cmd_set_coarse_sample_order_nv, cmd_draw_mesh_tasks_nv, cmd_draw_mesh_tasks_indirect_nv, cmd_draw_mesh_tasks_indirect_count_nv, compile_deferred_nv, create_acceleration_structure_nv, cmd_bind_invocation_mask_huawei, destroy_acceleration_structure_khr, destroy_acceleration_structure_nv, get_acceleration_structure_memory_requirements_nv, bind_acceleration_structure_memory_nv, cmd_copy_acceleration_structure_nv, cmd_copy_acceleration_structure_khr, copy_acceleration_structure_khr, cmd_copy_acceleration_structure_to_memory_khr, copy_acceleration_structure_to_memory_khr, cmd_copy_memory_to_acceleration_structure_khr, copy_memory_to_acceleration_structure_khr, cmd_write_acceleration_structures_properties_khr, cmd_write_acceleration_structures_properties_nv, cmd_build_acceleration_structure_nv, write_acceleration_structures_properties_khr, cmd_trace_rays_khr, cmd_trace_rays_nv, get_ray_tracing_shader_group_handles_khr, get_ray_tracing_capture_replay_shader_group_handles_khr, get_acceleration_structure_handle_nv, create_ray_tracing_pipelines_nv, create_ray_tracing_pipelines_khr, get_physical_device_cooperative_matrix_properties_nv, cmd_trace_rays_indirect_khr, get_device_acceleration_structure_compatibility_khr, get_ray_tracing_shader_group_stack_size_khr, cmd_set_ray_tracing_pipeline_stack_size_khr, get_image_view_handle_nvx, get_image_view_address_nvx, get_physical_device_surface_present_modes_2_ext, get_device_group_surface_present_modes_2_ext, acquire_full_screen_exclusive_mode_ext, release_full_screen_exclusive_mode_ext, enumerate_physical_device_queue_family_performance_query_counters_khr, get_physical_device_queue_family_performance_query_passes_khr, acquire_profiling_lock_khr, release_profiling_lock_khr, get_image_drm_format_modifier_properties_ext, get_buffer_opaque_capture_address, get_buffer_device_address, create_headless_surface_ext, get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, initialize_performance_api_intel, uninitialize_performance_api_intel, cmd_set_performance_marker_intel, cmd_set_performance_stream_marker_intel, cmd_set_performance_override_intel, acquire_performance_configuration_intel, release_performance_configuration_intel, queue_set_performance_configuration_intel, get_performance_parameter_intel, get_device_memory_opaque_capture_address, get_pipeline_executable_properties_khr, get_pipeline_executable_statistics_khr, get_pipeline_executable_internal_representations_khr, cmd_set_line_stipple_ext, get_physical_device_tool_properties, create_acceleration_structure_khr, cmd_build_acceleration_structures_khr, cmd_build_acceleration_structures_indirect_khr, build_acceleration_structures_khr, get_acceleration_structure_device_address_khr, create_deferred_operation_khr, destroy_deferred_operation_khr, get_deferred_operation_max_concurrency_khr, get_deferred_operation_result_khr, deferred_operation_join_khr, cmd_set_cull_mode, cmd_set_front_face, cmd_set_primitive_topology, cmd_set_viewport_with_count, cmd_set_scissor_with_count, cmd_bind_vertex_buffers_2, cmd_set_depth_test_enable, cmd_set_depth_write_enable, cmd_set_depth_compare_op, cmd_set_depth_bounds_test_enable, cmd_set_stencil_test_enable, cmd_set_stencil_op, cmd_set_patch_control_points_ext, cmd_set_rasterizer_discard_enable, cmd_set_depth_bias_enable, cmd_set_logic_op_ext, cmd_set_primitive_restart_enable, create_private_data_slot, destroy_private_data_slot, set_private_data, get_private_data, cmd_copy_buffer_2, cmd_copy_image_2, cmd_blit_image_2, cmd_copy_buffer_to_image_2, cmd_copy_image_to_buffer_2, cmd_resolve_image_2, cmd_set_fragment_shading_rate_khr, get_physical_device_fragment_shading_rates_khr, cmd_set_fragment_shading_rate_enum_nv, get_acceleration_structure_build_sizes_khr, cmd_set_vertex_input_ext, cmd_set_color_write_enable_ext, cmd_set_event_2, cmd_reset_event_2, cmd_wait_events_2, cmd_pipeline_barrier_2, queue_submit_2, cmd_write_timestamp_2, cmd_write_buffer_marker_2_amd, get_queue_checkpoint_data_2_nv, create_cu_module_nvx, create_cu_function_nvx, destroy_cu_module_nvx, destroy_cu_function_nvx, cmd_cu_launch_kernel_nvx, set_device_memory_priority_ext, acquire_drm_display_ext, get_drm_display_ext, wait_for_present_khr, cmd_begin_rendering, cmd_end_rendering, get_descriptor_set_layout_host_mapping_info_valve, get_descriptor_set_host_mapping_valve, SPIRV_EXTENSIONS, SPIRV_CAPABILITIES, CORE_FUNCTIONS, INSTANCE_FUNCTIONS, DEVICE_FUNCTIONS, cmd_set_primitive_restart_enable_ext, cmd_set_rasterizer_discard_enable_ext, cmd_next_subpass_2_khr, cmd_set_cull_mode_ext, cmd_blit_image_2_khr, get_physical_device_memory_properties_2_khr, create_sampler_ycbcr_conversion_khr, cmd_set_event_2_khr, cmd_dispatch_base_khr, cmd_copy_image_to_buffer_2_khr, cmd_copy_buffer_2_khr, cmd_set_front_face_ext, get_descriptor_set_layout_support_khr, cmd_begin_rendering_khr, cmd_set_depth_write_enable_ext, get_physical_device_properties_2_khr, destroy_private_data_slot_ext, cmd_begin_render_pass_2_khr, signal_semaphore_khr, create_private_data_slot_ext, get_physical_device_image_format_properties_2_khr, get_physical_device_tool_properties_ext, bind_buffer_memory_2_khr, get_physical_device_sparse_image_format_properties_2_khr, get_buffer_device_address_ext, destroy_descriptor_update_template_khr, get_device_image_memory_requirements_khr, queue_submit_2_khr, cmd_set_scissor_with_count_ext, get_buffer_memory_requirements_2_khr, cmd_resolve_image_2_khr, get_semaphore_counter_value_khr, cmd_write_timestamp_2_khr, get_image_memory_requirements_2_khr, get_device_image_sparse_memory_requirements_khr, update_descriptor_set_with_template_khr, cmd_copy_buffer_to_image_2_khr, cmd_draw_indexed_indirect_count_amd, wait_semaphores_khr, cmd_wait_events_2_khr, cmd_set_depth_test_enable_ext, get_physical_device_format_properties_2_khr, get_physical_device_external_buffer_properties_khr, get_buffer_opaque_capture_address_khr, set_private_data_ext, cmd_end_rendering_khr, cmd_reset_event_2_khr, trim_command_pool_khr, destroy_sampler_ycbcr_conversion_khr, create_render_pass_2_khr, cmd_set_depth_bias_enable_ext, cmd_end_render_pass_2_khr, cmd_set_device_mask_khr, create_descriptor_update_template_khr, cmd_set_depth_bounds_test_enable_ext, cmd_set_depth_compare_op_ext, enumerate_physical_device_groups_khr, cmd_draw_indexed_indirect_count_khr, cmd_set_stencil_op_ext, get_device_buffer_memory_requirements_khr, get_device_group_peer_memory_features_khr, get_physical_device_queue_family_properties_2_khr, get_image_sparse_memory_requirements_2_khr, cmd_copy_image_2_khr, cmd_pipeline_barrier_2_khr, get_physical_device_external_semaphore_properties_khr, cmd_draw_indirect_count_amd, get_physical_device_external_fence_properties_khr, get_physical_device_features_2_khr, cmd_set_stencil_test_enable_ext, get_buffer_device_address_khr, get_private_data_ext, reset_query_pool_ext, bind_image_memory_2_khr, get_ray_tracing_shader_group_handles_nv, cmd_draw_indirect_count_khr, cmd_set_viewport_with_count_ext, cmd_bind_vertex_buffers_2_ext, get_device_memory_opaque_capture_address_khr, cmd_set_primitive_topology_ext, ImageMemoryBarrier2KHR, IMAGE_ASPECT_PLANE_0_BIT_KHR, FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT, IMAGE_CREATE_ALIAS_BIT_KHR, PIPELINE_STAGE_NONE_KHR, FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT_KHR, DeviceGroupSubmitInfoKHR, SparseImageMemoryRequirements2KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2_KHR, DeviceGroupCommandBufferBeginInfoKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR, STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2_KHR, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR, FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16_KHR, ACCESS_ACCELERATION_STRUCTURE_READ_BIT_NV, TessellationDomainOriginKHR, DescriptorUpdateTemplateKHR, DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT, PhysicalDeviceMaintenance4FeaturesKHR, ATTACHMENT_STORE_OP_NONE_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR, SubpassDescription2KHR, FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT, SamplerYcbcrConversionImageFormatPropertiesKHR, AccelerationStructureTypeNV, PhysicalDevice16BitStorageFeaturesKHR, QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT, ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT_KHR, FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT, MemoryDedicatedRequirementsKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT_KHR, DYNAMIC_STATE_DEPTH_COMPARE_OP_EXT, STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020_KHR, RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR, FramebufferAttachmentsCreateInfoKHR, PhysicalDeviceShaderFloat16Int8FeaturesKHR, STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR, COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR, FORMAT_G8B8G8R8_422_UNORM_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR, STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT, DescriptorPoolInlineUniformBlockCreateInfoEXT, MAX_GLOBAL_PRIORITY_SIZE_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR, SamplerYcbcrConversionInfoKHR, PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_NV, PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR, ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT, MAX_DEVICE_GROUP_SIZE_KHR, POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR, STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT, ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_NV, FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT_KHR, FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16_KHR, DevicePrivateDataCreateInfoEXT, DRIVER_ID_BROADCOM_PROPRIETARY_KHR, QUEUE_GLOBAL_PRIORITY_HIGH_EXT, POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR, FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16_KHR, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT, ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV, SHADER_STAGE_MISS_BIT_NV, FORMAT_G8_B8R8_2PLANE_444_UNORM_EXT, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV, DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT_EXT, MemoryDedicatedAllocateInfoKHR, PhysicalDeviceMemoryProperties2KHR, PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR, ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR, DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR, SemaphoreSubmitInfoKHR, FORMAT_FEATURE_2_STORAGE_IMAGE_BIT_KHR, PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR, PhysicalDevicePrivateDataFeaturesEXT, FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT, FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR, PhysicalDeviceDescriptorIndexingPropertiesEXT, BufferMemoryBarrier2KHR, ImageSparseMemoryRequirementsInfo2KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT_KHR, PIPELINE_CREATE_DISPATCH_BASE, DRIVER_ID_AMD_PROPRIETARY_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR, AccelerationStructureInstanceNV, DependencyInfoKHR, BufferMemoryRequirementsInfo2KHR, OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR, GEOMETRY_TYPE_TRIANGLES_NV, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV, IMAGE_ASPECT_PLANE_2_BIT_KHR, FORMAT_G16_B16_R16_3PLANE_444_UNORM_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR, RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR, PhysicalDeviceDriverPropertiesKHR, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO_KHR, ATTACHMENT_STORE_OP_NONE_QCOM, SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR, SURFACE_COUNTER_VBLANK_EXT, EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR, IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR, PhysicalDeviceDescriptorIndexingFeaturesEXT, STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT, STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT, GeometryTypeNV, FORMAT_FEATURE_2_VERTEX_BUFFER_BIT_KHR, COLOR_SPACE_DCI_P3_LINEAR_EXT, BUFFER_USAGE_RAY_TRACING_BIT_NV, PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT_KHR, PhysicalDeviceTimelineSemaphoreFeaturesKHR, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR, BufferCopy2KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT, RenderPassCreateInfo2KHR, BindImageMemoryInfoKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR, STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR, IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR, RenderingInfoKHR, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR, PhysicalDeviceIDPropertiesKHR, DriverIdKHR, PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, ERROR_NOT_PERMITTED_EXT, PhysicalDeviceTexelBufferAlignmentPropertiesEXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR, ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV, OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR, TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR, RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT_KHR, DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT, IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR, PIPELINE_STAGE_2_HOST_BIT_KHR, CHROMA_LOCATION_MIDPOINT_KHR, FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT_KHR, PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR, STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT, DYNAMIC_STATE_STENCIL_OP_EXT, FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16_KHR, PipelineRenderingCreateInfoKHR, FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR, EVENT_CREATE_DEVICE_ONLY_BIT_KHR, RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV, SparseImageFormatProperties2KHR, DRIVER_ID_GGP_PROPRIETARY_KHR, FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16_KHR, PhysicalDeviceFloatControlsPropertiesKHR, PointClippingBehaviorKHR, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT_KHR, SHADER_STAGE_ANY_HIT_BIT_NV, ACCESS_2_SHADER_STORAGE_WRITE_BIT_KHR, DescriptorSetLayoutSupportKHR, PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT_KHR, STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV, FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT_KHR, BindImageMemoryDeviceGroupInfoKHR, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT, ExternalBufferPropertiesKHR, STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO_KHR, FORMAT_A4R4G4B4_UNORM_PACK16_EXT, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT_KHR, STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR, STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR, PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT, PhysicalDeviceExternalBufferInfoKHR, PhysicalDeviceShaderIntegerDotProductPropertiesKHR, PhysicalDeviceSubgroupSizeControlFeaturesEXT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D11_FENCE_BIT, SHADER_STAGE_RAYGEN_BIT_NV, GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR, FORMAT_FEATURE_2_DISJOINT_BIT_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR, SubmitInfo2KHR, IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT, FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT_KHR, STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO_KHR, STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT, EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR, FORMAT_FEATURE_2_BLIT_SRC_BIT_KHR, FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16_KHR, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT, MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR, ACCESS_2_SHADER_READ_BIT_KHR, ACCESS_2_INDIRECT_COMMAND_READ_BIT_KHR, BufferImageCopy2KHR, RENDERING_SUSPENDING_BIT_KHR, FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR, FORMAT_B16G16R16G16_422_UNORM_KHR, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR, DRIVER_ID_ARM_PROPRIETARY_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES_KHR, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT_KHR, SamplerYcbcrConversionKHR, DRIVER_ID_NVIDIA_PROPRIETARY_KHR, ExternalMemoryImageCreateInfoKHR, FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT, FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT, STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR, STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV, FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT_KHR, BufferOpaqueCaptureAddressCreateInfoKHR, DRIVER_ID_QUALCOMM_PROPRIETARY_KHR, RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR, ImageResolve2KHR, DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE_EXT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR, FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16_KHR, PhysicalDeviceMultiviewFeaturesKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2_KHR, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR, PhysicalDeviceMaintenance4PropertiesKHR, DEPENDENCY_VIEW_LOCAL_BIT_KHR, STRUCTURE_TYPE_DEPENDENCY_INFO_KHR, QueryPoolCreateInfoINTEL, FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR, QUEUE_GLOBAL_PRIORITY_LOW_EXT, GEOMETRY_OPAQUE_BIT_NV, GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV, RESOLVE_MODE_MAX_BIT_KHR, QUEUE_GLOBAL_PRIORITY_REALTIME_EXT, SubpassDependency2KHR, SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR, MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR, IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR, PhysicalDeviceBufferAddressFeaturesEXT, DRIVER_ID_MESA_RADV_KHR, SUBMIT_PROTECTED_BIT_KHR, FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16_KHR, RenderingAttachmentInfoKHR, BufferDeviceAddressInfoKHR, ACCESS_2_HOST_WRITE_BIT_KHR, PhysicalDeviceSparseImageFormatInfo2KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT, RESOLVE_MODE_MIN_BIT_KHR, ResolveImageInfo2KHR, FORMAT_G8_B8_R8_3PLANE_444_UNORM_KHR, PIPELINE_STAGE_2_COMPUTE_SHADER_BIT_KHR, ExternalMemoryPropertiesKHR, SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE_KHR, PIPELINE_BIND_POINT_RAY_TRACING_NV, TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT, IMAGE_ASPECT_NONE_KHR, FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT, GEOMETRY_TYPE_AABBS_NV, DeviceQueueGlobalPriorityCreateInfoEXT, FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT_KHR, PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT_KHR, PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT_KHR, ACCESS_2_SHADER_SAMPLED_READ_BIT_KHR, GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR, STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR, SubpassEndInfoKHR, DeviceMemoryOpaqueCaptureAddressInfoKHR, ExportSemaphoreCreateInfoKHR, FormatProperties2KHR, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR, DYNAMIC_STATE_DEPTH_BIAS_ENABLE_EXT, PipelineCreationFeedbackCreateInfoEXT, STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2_KHR, STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR, IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV, PhysicalDeviceImagelessFramebufferFeaturesKHR, DYNAMIC_STATE_STENCIL_TEST_ENABLE_EXT, ACCESS_2_SHADER_STORAGE_READ_BIT_KHR, ImageBlit2KHR, FORMAT_A4B4G4R4_UNORM_PACK16_EXT, ACCESS_2_HOST_READ_BIT_KHR, STRUCTURE_TYPE_SUBPASS_BEGIN_INFO_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR, DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT, PhysicalDeviceVariablePointerFeatures, PhysicalDeviceShaderIntegerDotProductFeaturesKHR, LUID_SIZE_KHR, ImageMemoryRequirementsInfo2KHR, PIPELINE_STAGE_2_VERTEX_SHADER_BIT_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR, STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT, FORMAT_B8G8R8G8_422_UNORM_KHR, PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, CommandBufferInheritanceRenderingInfoKHR, BindBufferMemoryInfoKHR, PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT_KHR, FORMAT_R12X4_UNORM_PACK16_KHR, DYNAMIC_STATE_VIEWPORT_WITH_COUNT_EXT, PhysicalDeviceFeatures2KHR, PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT, DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR, ImageCopy2KHR, ACCESS_2_INPUT_ATTACHMENT_READ_BIT_KHR, FORMAT_G8_B8_R8_3PLANE_420_UNORM_KHR, IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV, DRIVER_ID_GOOGLE_SWIFTSHADER_KHR, PIPELINE_CACHE_CREATE_RESERVED_1_BIT_KHR, STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES_KHR, STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR, DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT, ACCESS_2_TRANSFER_WRITE_BIT_KHR, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR, SubpassDescriptionDepthStencilResolveKHR, PhysicalDeviceShaderDrawParameterFeatures, ExternalMemoryBufferCreateInfoKHR, PhysicalDeviceVulkanMemoryModelFeaturesKHR, FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT, PhysicalDeviceSubgroupSizeControlPropertiesEXT, FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT, BindBufferMemoryDeviceGroupInfoKHR, MemoryRequirements2KHR, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR, ExternalFencePropertiesKHR, STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO_KHR, PIPELINE_STAGE_2_ALL_GRAPHICS_BIT_KHR, PhysicalDeviceBufferDeviceAddressFeaturesKHR, PhysicalDeviceToolPropertiesEXT, SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY_KHR, PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR, TOOL_PURPOSE_VALIDATION_BIT_EXT, STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR, PhysicalDeviceScalarBlockLayoutFeaturesEXT, ACCESS_2_MEMORY_READ_BIT_KHR, STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR, SEMAPHORE_TYPE_BINARY_KHR, PhysicalDeviceSamplerFilterMinmaxPropertiesEXT, MemoryOpaqueCaptureAddressAllocateInfoKHR, ACCESS_2_MEMORY_WRITE_BIT_KHR, IMAGE_CREATE_DISJOINT_BIT_KHR, SEMAPHORE_WAIT_ANY_BIT_KHR, FORMAT_G8_B8R8_2PLANE_420_UNORM_KHR, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR, CopyBufferInfo2KHR, PhysicalDeviceImageRobustnessFeaturesEXT, BlitImageInfo2KHR, RENDERING_RESUMING_BIT_KHR, COLORSPACE_SRGB_NONLINEAR_KHR, FORMAT_G8_B8R8_2PLANE_422_UNORM_KHR, IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT_EXT, PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV, MemoryBarrier2KHR, FORMAT_FEATURE_2_TRANSFER_SRC_BIT_KHR, DEPENDENCY_DEVICE_GROUP_BIT_KHR, PhysicalDeviceDepthStencilResolvePropertiesKHR, PIPELINE_STAGE_2_BLIT_BIT_KHR, ERROR_INVALID_DEVICE_ADDRESS_EXT, DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR_EXT, PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO_KHR, CHROMA_LOCATION_COSITED_EVEN_KHR, ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR, DescriptorUpdateTemplateTypeKHR, PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT_KHR, ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT_KHR, STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO_KHR, RESOLVE_MODE_NONE_KHR, STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_KHR, STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR, FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT_KHR, PhysicalDeviceSamplerYcbcrConversionFeaturesKHR, DeviceBufferMemoryRequirementsKHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES_KHR, TransformMatrixNV, CopyAccelerationStructureModeNV, SemaphoreWaitInfoKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR, CommandBufferSubmitInfoKHR, IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR, STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2_KHR, ImageStencilUsageCreateInfoEXT, FORMAT_G16_B16R16_2PLANE_422_UNORM_KHR, SamplerReductionModeEXT, DescriptorUpdateTemplateEntryKHR, DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT, ImagePlaneMemoryRequirementsInfoKHR, PIPELINE_STAGE_2_ALL_TRANSFER_BIT_KHR, IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR, PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV, PIPELINE_STAGE_2_COPY_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR, TimelineSemaphoreSubmitInfoKHR, DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR, FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16_KHR, MAX_DRIVER_NAME_SIZE_KHR, PIPELINE_STAGE_2_VERTEX_INPUT_BIT_KHR, STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO_KHR, PhysicalDeviceShaderAtomicInt64FeaturesKHR, FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16_KHR, COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR, GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_NV, STENCIL_FRONT_AND_BACK, FORMAT_G16_B16_R16_3PLANE_420_UNORM_KHR, STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR, STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2_KHR, DRIVER_ID_IMAGINATION_PROPRIETARY_KHR, PIPELINE_STAGE_2_INDEX_INPUT_BIT_KHR, RenderPassAttachmentBeginInfoKHR, STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT, SHADER_STAGE_CLOSEST_HIT_BIT_NV, ACCESS_2_SHADER_WRITE_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR, FORMAT_FEATURE_2_BLIT_DST_BIT_KHR, ACCESS_2_INDEX_READ_BIT_KHR, SamplerYcbcrRangeKHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT, STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO_EXT, PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT, PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT, STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES_KHR, FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16_KHR, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR, PhysicalDeviceInlineUniformBlockPropertiesEXT, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2_KHR, EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR, SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT, FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_KHR, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR, RESOLVE_MODE_AVERAGE_BIT_KHR, SEMAPHORE_TYPE_TIMELINE_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES_KHR, STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR, PIPELINE_STAGE_2_DRAW_INDIRECT_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601_KHR, FramebufferAttachmentImageInfoKHR, STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR, ERROR_FRAGMENTATION_EXT, ImageFormatProperties2KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT_KHR, STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR, DYNAMIC_STATE_FRONT_FACE_EXT, PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR, IMAGE_ASPECT_PLANE_1_BIT_KHR, PIPELINE_STAGE_2_TOP_OF_PIPE_BIT_KHR, DeviceGroupRenderPassBeginInfoKHR, TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT, PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_KHR, FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY_KHR, AttachmentDescriptionStencilLayoutKHR, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR, PhysicalDeviceInlineUniformBlockFeaturesEXT, ImageViewUsageCreateInfoKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR, CopyImageToBufferInfo2KHR, PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2_KHR, ERROR_PIPELINE_COMPILE_REQUIRED_EXT, STRUCTURE_TYPE_BUFFER_COPY_2_KHR, PIPELINE_STAGE_2_CLEAR_BIT_KHR, PIPELINE_COMPILE_REQUIRED_EXT, PipelineTessellationDomainOriginStateCreateInfoKHR, STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2_KHR, FORMAT_R12X4G12X4_UNORM_2PACK16_KHR, SemaphoreTypeCreateInfoKHR, FORMAT_FEATURE_2_TRANSFER_DST_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT, INDEX_TYPE_NONE_NV, SHADER_UNUSED_NV, QUEUE_FAMILY_EXTERNAL_KHR, DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT, BufferDeviceAddressInfoEXT, FORMAT_FEATURE_TRANSFER_DST_BIT_KHR, ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_NV, STRUCTURE_TYPE_IMAGE_BLIT_2_KHR, PhysicalDeviceHostQueryResetFeaturesEXT, ConformanceVersionKHR, QUERY_SCOPE_RENDER_PASS_KHR, SHADER_STAGE_INTERSECTION_BIT_NV, PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR, PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT_KHR, SamplerYcbcrModelConversionKHR, STRUCTURE_TYPE_RENDERING_INFO_KHR, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR, AttachmentSampleCountInfoNV, ACCESS_2_UNIFORM_READ_BIT_KHR, STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR, FORMAT_G16_B16_R16_3PLANE_422_UNORM_KHR, STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR, ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT, TOOL_PURPOSE_TRACING_BIT_EXT, FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT_KHR, PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR, SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY_KHR, IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR, SHADER_STAGE_CALLABLE_BIT_NV, STRUCTURE_TYPE_SUBPASS_END_INFO_KHR, CopyImageInfo2KHR, IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT, SAMPLER_REDUCTION_MODE_MIN_EXT, FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16_KHR, FILTER_CUBIC_EXT, PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT, SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR, STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO_KHR, ACCESS_2_COLOR_ATTACHMENT_READ_BIT_KHR, PhysicalDevice8BitStorageFeaturesKHR, FormatProperties3KHR, PIPELINE_STAGE_2_RESOLVE_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT16_INT8_FEATURES_KHR, STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR, PhysicalDeviceFloat16Int8FeaturesKHR, PhysicalDeviceVariablePointerFeaturesKHR, STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR, FORMAT_G16_B16R16_2PLANE_420_UNORM_KHR, QueueFamilyProperties2KHR, STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2_KHR, MAX_DRIVER_INFO_SIZE_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES, IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR, DescriptorSetVariableDescriptorCountLayoutSupportEXT, STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR, PhysicalDeviceImageFormatInfo2KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR, STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR, DYNAMIC_STATE_CULL_MODE_EXT, ACCESS_NONE_KHR, DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR, DescriptorSetVariableDescriptorCountAllocateInfoEXT, STRUCTURE_TYPE_SUBMIT_INFO_2_KHR, MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR, STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO_KHR, ExternalSemaphorePropertiesKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR, BindImagePlaneMemoryInfoKHR, IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT_KHR, FORMAT_R10X6_UNORM_PACK16_KHR, AabbPositionsNV, GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_NV, STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT, FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16_KHR, RenderPassMultiviewCreateInfoKHR, PhysicalDeviceExternalFenceInfoKHR, MemoryAllocateFlagsInfoKHR, FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2_KHR, CopyBufferToImageInfo2KHR, PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT_KHR, PhysicalDeviceProperties2KHR, STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL, ERROR_OUT_OF_POOL_MEMORY_KHR, QueueGlobalPriorityEXT, STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO_KHR, PrivateDataSlotCreateInfoEXT, PIPELINE_STAGE_2_NONE_KHR, SemaphoreSignalInfoKHR, STRUCTURE_TYPE_MEMORY_BARRIER_2_KHR, STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT, DeviceImageMemoryRequirementsKHR, DYNAMIC_STATE_DEPTH_WRITE_ENABLE_EXT, STRUCTURE_TYPE_FORMAT_PROPERTIES_2_KHR, STRUCTURE_TYPE_IMAGE_COPY_2_KHR, STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR, InputAttachmentAspectReferenceKHR, FRAMEBUFFER_CREATE_IMAGELESS_BIT_KHR, FORMAT_FEATURE_DISJOINT_BIT_KHR, OBJECT_TYPE_PRIVATE_DATA_SLOT_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR, PhysicalDeviceGlobalPriorityQueryFeaturesEXT, FORMAT_G8_B8_R8_3PLANE_422_UNORM_KHR, DescriptorUpdateTemplateCreateInfoKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT, PipelineCreationFeedbackEXT, PhysicalDeviceShaderTerminateInvocationFeaturesKHR, TOOL_PURPOSE_PROFILING_BIT_EXT, PhysicalDeviceMultiviewPropertiesKHR, PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PhysicalDeviceSynchronization2FeaturesKHR, AttachmentReferenceStencilLayoutKHR, PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT_KHR, DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR, FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT, FORMAT_G16B16G16R16_422_UNORM_KHR, STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR, ShaderFloatControlsIndependenceKHR, RenderPassInputAttachmentAspectCreateInfoKHR, STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR, PhysicalDeviceTimelineSemaphorePropertiesKHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR, ChromaLocationKHR, STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR, PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_NV, RayTracingShaderGroupTypeNV, DescriptorSetLayoutBindingFlagsCreateInfoEXT, SamplerYcbcrConversionCreateInfoKHR, TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR, SemaphoreTypeKHR, STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR, BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_NV, PhysicalDevicePipelineCreationCacheControlFeaturesEXT, STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT, STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR, STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR, ACCESS_2_NONE_KHR, FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT, EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR, DYNAMIC_STATE_SCISSOR_WITH_COUNT_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT, ACCESS_2_TRANSFER_READ_BIT_KHR, FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR, DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT, DeviceGroupDeviceCreateInfoKHR, AttachmentDescription2KHR, DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE_EXT, STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR, PhysicalDeviceExternalImageFormatInfoKHR, SubpassBeginInfoKHR, ERROR_INVALID_EXTERNAL_HANDLE_KHR, DYNAMIC_STATE_DEPTH_TEST_ENABLE_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2_KHR, PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT, QueueFamilyGlobalPriorityPropertiesEXT, FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16_KHR, PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR, SAMPLER_REDUCTION_MODE_MAX_EXT, ExportFenceCreateInfoKHR, EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR, STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR, AttachmentReference2KHR, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT, DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT, STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR, PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV, STRUCTURE_TYPE_SURFACE_CAPABILITIES2_EXT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT, STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR, PhysicalDevicePointClippingPropertiesKHR, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES_KHR, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT_KHR, SAMPLER_YCBCR_RANGE_ITU_FULL_KHR, SamplerReductionModeCreateInfoEXT, ImageFormatListCreateInfoKHR, FORMAT_G16_B16R16_2PLANE_444_UNORM_EXT, WriteDescriptorSetInlineUniformBlockEXT, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR, ATTACHMENT_STORE_OP_NONE_EXT, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2_KHR, PhysicalDeviceVariablePointersFeaturesKHR, PhysicalDeviceGroupPropertiesKHR, FORMAT_R10X6G10X6_UNORM_2PACK16_KHR, QUERY_SCOPE_COMMAND_BUFFER_KHR, MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR, ExternalImageFormatPropertiesKHR, PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT_KHR, PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT, FENCE_IMPORT_TEMPORARY_BIT_KHR, SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR, STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR, DRIVER_ID_AMD_OPEN_SOURCE_KHR, PIPELINE_STAGE_2_ALL_COMMANDS_BIT_KHR, QUERY_SCOPE_COMMAND_KHR, STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR, ExportMemoryAllocateInfoKHR, STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR, PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV, DRIVER_ID_INTEL_OPEN_SOURCE_MESA_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT, PhysicalDeviceMaintenance3PropertiesKHR, STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT_KHR, PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT, PhysicalDeviceExternalSemaphoreInfoKHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT, PIPELINE_CREATION_FEEDBACK_VALID_BIT_EXT, STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR, DeviceGroupBindSparseInfoKHR, PrivateDataSlotEXT, PhysicalDeviceDynamicRenderingFeaturesKHR
+export MAX_PHYSICAL_DEVICE_NAME_SIZE, UUID_SIZE, LUID_SIZE, MAX_DESCRIPTION_SIZE, MAX_MEMORY_TYPES, MAX_MEMORY_HEAPS, LOD_CLAMP_NONE, REMAINING_MIP_LEVELS, REMAINING_ARRAY_LAYERS, WHOLE_SIZE, ATTACHMENT_UNUSED, QUEUE_FAMILY_IGNORED, QUEUE_FAMILY_EXTERNAL, QUEUE_FAMILY_FOREIGN_EXT, SUBPASS_EXTERNAL, MAX_DEVICE_GROUP_SIZE, MAX_DRIVER_NAME_SIZE, MAX_DRIVER_INFO_SIZE, SHADER_UNUSED_KHR, MAX_GLOBAL_PRIORITY_SIZE_KHR, ImageLayout, IMAGE_LAYOUT_UNDEFINED, IMAGE_LAYOUT_GENERAL, IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, IMAGE_LAYOUT_PREINITIALIZED, IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_READ_ONLY_OPTIMAL, IMAGE_LAYOUT_ATTACHMENT_OPTIMAL, IMAGE_LAYOUT_PRESENT_SRC_KHR, IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR, IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR, IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR, IMAGE_LAYOUT_SHARED_PRESENT_KHR, IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT, IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR, IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR, IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR, IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR, AttachmentLoadOp, ATTACHMENT_LOAD_OP_LOAD, ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_LOAD_OP_DONT_CARE, ATTACHMENT_LOAD_OP_NONE_EXT, AttachmentStoreOp, ATTACHMENT_STORE_OP_STORE, ATTACHMENT_STORE_OP_DONT_CARE, ATTACHMENT_STORE_OP_NONE, ImageType, IMAGE_TYPE_1D, IMAGE_TYPE_2D, IMAGE_TYPE_3D, ImageTiling, IMAGE_TILING_OPTIMAL, IMAGE_TILING_LINEAR, IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT, ImageViewType, IMAGE_VIEW_TYPE_1D, IMAGE_VIEW_TYPE_2D, IMAGE_VIEW_TYPE_3D, IMAGE_VIEW_TYPE_CUBE, IMAGE_VIEW_TYPE_1D_ARRAY, IMAGE_VIEW_TYPE_2D_ARRAY, IMAGE_VIEW_TYPE_CUBE_ARRAY, CommandBufferLevel, COMMAND_BUFFER_LEVEL_PRIMARY, COMMAND_BUFFER_LEVEL_SECONDARY, ComponentSwizzle, COMPONENT_SWIZZLE_IDENTITY, COMPONENT_SWIZZLE_ZERO, COMPONENT_SWIZZLE_ONE, COMPONENT_SWIZZLE_R, COMPONENT_SWIZZLE_G, COMPONENT_SWIZZLE_B, COMPONENT_SWIZZLE_A, DescriptorType, DESCRIPTOR_TYPE_SAMPLER, DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, DESCRIPTOR_TYPE_SAMPLED_IMAGE, DESCRIPTOR_TYPE_STORAGE_IMAGE, DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, DESCRIPTOR_TYPE_UNIFORM_BUFFER, DESCRIPTOR_TYPE_STORAGE_BUFFER, DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, DESCRIPTOR_TYPE_INPUT_ATTACHMENT, DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK, DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR, DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV, DESCRIPTOR_TYPE_MUTABLE_VALVE, QueryType, QUERY_TYPE_OCCLUSION, QUERY_TYPE_PIPELINE_STATISTICS, QUERY_TYPE_TIMESTAMP, QUERY_TYPE_RESULT_STATUS_ONLY_KHR, QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT, QUERY_TYPE_PERFORMANCE_QUERY_KHR, QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR, QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR, QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV, QUERY_TYPE_PERFORMANCE_QUERY_INTEL, QUERY_TYPE_VIDEO_ENCODE_BITSTREAM_BUFFER_RANGE_KHR, BorderColor, BORDER_COLOR_FLOAT_TRANSPARENT_BLACK, BORDER_COLOR_INT_TRANSPARENT_BLACK, BORDER_COLOR_FLOAT_OPAQUE_BLACK, BORDER_COLOR_INT_OPAQUE_BLACK, BORDER_COLOR_FLOAT_OPAQUE_WHITE, BORDER_COLOR_INT_OPAQUE_WHITE, BORDER_COLOR_FLOAT_CUSTOM_EXT, BORDER_COLOR_INT_CUSTOM_EXT, PipelineBindPoint, PIPELINE_BIND_POINT_GRAPHICS, PIPELINE_BIND_POINT_COMPUTE, PIPELINE_BIND_POINT_RAY_TRACING_KHR, PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI, PipelineCacheHeaderVersion, PIPELINE_CACHE_HEADER_VERSION_ONE, PrimitiveTopology, PRIMITIVE_TOPOLOGY_POINT_LIST, PRIMITIVE_TOPOLOGY_LINE_LIST, PRIMITIVE_TOPOLOGY_LINE_STRIP, PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP, PRIMITIVE_TOPOLOGY_TRIANGLE_FAN, PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_LINE_STRIP_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_WITH_ADJACENCY, PRIMITIVE_TOPOLOGY_PATCH_LIST, SharingMode, SHARING_MODE_EXCLUSIVE, SHARING_MODE_CONCURRENT, IndexType, INDEX_TYPE_UINT16, INDEX_TYPE_UINT32, INDEX_TYPE_NONE_KHR, INDEX_TYPE_UINT8_EXT, Filter, FILTER_NEAREST, FILTER_LINEAR, FILTER_CUBIC_IMG, SamplerMipmapMode, SAMPLER_MIPMAP_MODE_NEAREST, SAMPLER_MIPMAP_MODE_LINEAR, SamplerAddressMode, SAMPLER_ADDRESS_MODE_REPEAT, SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT, SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE, SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER, SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE, CompareOp, COMPARE_OP_NEVER, COMPARE_OP_LESS, COMPARE_OP_EQUAL, COMPARE_OP_LESS_OR_EQUAL, COMPARE_OP_GREATER, COMPARE_OP_NOT_EQUAL, COMPARE_OP_GREATER_OR_EQUAL, COMPARE_OP_ALWAYS, PolygonMode, POLYGON_MODE_FILL, POLYGON_MODE_LINE, POLYGON_MODE_POINT, POLYGON_MODE_FILL_RECTANGLE_NV, FrontFace, FRONT_FACE_COUNTER_CLOCKWISE, FRONT_FACE_CLOCKWISE, BlendFactor, BLEND_FACTOR_ZERO, BLEND_FACTOR_ONE, BLEND_FACTOR_SRC_COLOR, BLEND_FACTOR_ONE_MINUS_SRC_COLOR, BLEND_FACTOR_DST_COLOR, BLEND_FACTOR_ONE_MINUS_DST_COLOR, BLEND_FACTOR_SRC_ALPHA, BLEND_FACTOR_ONE_MINUS_SRC_ALPHA, BLEND_FACTOR_DST_ALPHA, BLEND_FACTOR_ONE_MINUS_DST_ALPHA, BLEND_FACTOR_CONSTANT_COLOR, BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR, BLEND_FACTOR_CONSTANT_ALPHA, BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA, BLEND_FACTOR_SRC_ALPHA_SATURATE, BLEND_FACTOR_SRC1_COLOR, BLEND_FACTOR_ONE_MINUS_SRC1_COLOR, BLEND_FACTOR_SRC1_ALPHA, BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA, BlendOp, BLEND_OP_ADD, BLEND_OP_SUBTRACT, BLEND_OP_REVERSE_SUBTRACT, BLEND_OP_MIN, BLEND_OP_MAX, BLEND_OP_ZERO_EXT, BLEND_OP_SRC_EXT, BLEND_OP_DST_EXT, BLEND_OP_SRC_OVER_EXT, BLEND_OP_DST_OVER_EXT, BLEND_OP_SRC_IN_EXT, BLEND_OP_DST_IN_EXT, BLEND_OP_SRC_OUT_EXT, BLEND_OP_DST_OUT_EXT, BLEND_OP_SRC_ATOP_EXT, BLEND_OP_DST_ATOP_EXT, BLEND_OP_XOR_EXT, BLEND_OP_MULTIPLY_EXT, BLEND_OP_SCREEN_EXT, BLEND_OP_OVERLAY_EXT, BLEND_OP_DARKEN_EXT, BLEND_OP_LIGHTEN_EXT, BLEND_OP_COLORDODGE_EXT, BLEND_OP_COLORBURN_EXT, BLEND_OP_HARDLIGHT_EXT, BLEND_OP_SOFTLIGHT_EXT, BLEND_OP_DIFFERENCE_EXT, BLEND_OP_EXCLUSION_EXT, BLEND_OP_INVERT_EXT, BLEND_OP_INVERT_RGB_EXT, BLEND_OP_LINEARDODGE_EXT, BLEND_OP_LINEARBURN_EXT, BLEND_OP_VIVIDLIGHT_EXT, BLEND_OP_LINEARLIGHT_EXT, BLEND_OP_PINLIGHT_EXT, BLEND_OP_HARDMIX_EXT, BLEND_OP_HSL_HUE_EXT, BLEND_OP_HSL_SATURATION_EXT, BLEND_OP_HSL_COLOR_EXT, BLEND_OP_HSL_LUMINOSITY_EXT, BLEND_OP_PLUS_EXT, BLEND_OP_PLUS_CLAMPED_EXT, BLEND_OP_PLUS_CLAMPED_ALPHA_EXT, BLEND_OP_PLUS_DARKER_EXT, BLEND_OP_MINUS_EXT, BLEND_OP_MINUS_CLAMPED_EXT, BLEND_OP_CONTRAST_EXT, BLEND_OP_INVERT_OVG_EXT, BLEND_OP_RED_EXT, BLEND_OP_GREEN_EXT, BLEND_OP_BLUE_EXT, StencilOp, STENCIL_OP_KEEP, STENCIL_OP_ZERO, STENCIL_OP_REPLACE, STENCIL_OP_INCREMENT_AND_CLAMP, STENCIL_OP_DECREMENT_AND_CLAMP, STENCIL_OP_INVERT, STENCIL_OP_INCREMENT_AND_WRAP, STENCIL_OP_DECREMENT_AND_WRAP, LogicOp, LOGIC_OP_CLEAR, LOGIC_OP_AND, LOGIC_OP_AND_REVERSE, LOGIC_OP_COPY, LOGIC_OP_AND_INVERTED, LOGIC_OP_NO_OP, LOGIC_OP_XOR, LOGIC_OP_OR, LOGIC_OP_NOR, LOGIC_OP_EQUIVALENT, LOGIC_OP_INVERT, LOGIC_OP_OR_REVERSE, LOGIC_OP_COPY_INVERTED, LOGIC_OP_OR_INVERTED, LOGIC_OP_NAND, LOGIC_OP_SET, InternalAllocationType, INTERNAL_ALLOCATION_TYPE_EXECUTABLE, SystemAllocationScope, SYSTEM_ALLOCATION_SCOPE_COMMAND, SYSTEM_ALLOCATION_SCOPE_OBJECT, SYSTEM_ALLOCATION_SCOPE_CACHE, SYSTEM_ALLOCATION_SCOPE_DEVICE, SYSTEM_ALLOCATION_SCOPE_INSTANCE, PhysicalDeviceType, PHYSICAL_DEVICE_TYPE_OTHER, PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU, PHYSICAL_DEVICE_TYPE_DISCRETE_GPU, PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU, PHYSICAL_DEVICE_TYPE_CPU, VertexInputRate, VERTEX_INPUT_RATE_VERTEX, VERTEX_INPUT_RATE_INSTANCE, Format, FORMAT_UNDEFINED, FORMAT_R4G4_UNORM_PACK8, FORMAT_R4G4B4A4_UNORM_PACK16, FORMAT_B4G4R4A4_UNORM_PACK16, FORMAT_R5G6B5_UNORM_PACK16, FORMAT_B5G6R5_UNORM_PACK16, FORMAT_R5G5B5A1_UNORM_PACK16, FORMAT_B5G5R5A1_UNORM_PACK16, FORMAT_A1R5G5B5_UNORM_PACK16, FORMAT_R8_UNORM, FORMAT_R8_SNORM, FORMAT_R8_USCALED, FORMAT_R8_SSCALED, FORMAT_R8_UINT, FORMAT_R8_SINT, FORMAT_R8_SRGB, FORMAT_R8G8_UNORM, FORMAT_R8G8_SNORM, FORMAT_R8G8_USCALED, FORMAT_R8G8_SSCALED, FORMAT_R8G8_UINT, FORMAT_R8G8_SINT, FORMAT_R8G8_SRGB, FORMAT_R8G8B8_UNORM, FORMAT_R8G8B8_SNORM, FORMAT_R8G8B8_USCALED, FORMAT_R8G8B8_SSCALED, FORMAT_R8G8B8_UINT, FORMAT_R8G8B8_SINT, FORMAT_R8G8B8_SRGB, FORMAT_B8G8R8_UNORM, FORMAT_B8G8R8_SNORM, FORMAT_B8G8R8_USCALED, FORMAT_B8G8R8_SSCALED, FORMAT_B8G8R8_UINT, FORMAT_B8G8R8_SINT, FORMAT_B8G8R8_SRGB, FORMAT_R8G8B8A8_UNORM, FORMAT_R8G8B8A8_SNORM, FORMAT_R8G8B8A8_USCALED, FORMAT_R8G8B8A8_SSCALED, FORMAT_R8G8B8A8_UINT, FORMAT_R8G8B8A8_SINT, FORMAT_R8G8B8A8_SRGB, FORMAT_B8G8R8A8_UNORM, FORMAT_B8G8R8A8_SNORM, FORMAT_B8G8R8A8_USCALED, FORMAT_B8G8R8A8_SSCALED, FORMAT_B8G8R8A8_UINT, FORMAT_B8G8R8A8_SINT, FORMAT_B8G8R8A8_SRGB, FORMAT_A8B8G8R8_UNORM_PACK32, FORMAT_A8B8G8R8_SNORM_PACK32, FORMAT_A8B8G8R8_USCALED_PACK32, FORMAT_A8B8G8R8_SSCALED_PACK32, FORMAT_A8B8G8R8_UINT_PACK32, FORMAT_A8B8G8R8_SINT_PACK32, FORMAT_A8B8G8R8_SRGB_PACK32, FORMAT_A2R10G10B10_UNORM_PACK32, FORMAT_A2R10G10B10_SNORM_PACK32, FORMAT_A2R10G10B10_USCALED_PACK32, FORMAT_A2R10G10B10_SSCALED_PACK32, FORMAT_A2R10G10B10_UINT_PACK32, FORMAT_A2R10G10B10_SINT_PACK32, FORMAT_A2B10G10R10_UNORM_PACK32, FORMAT_A2B10G10R10_SNORM_PACK32, FORMAT_A2B10G10R10_USCALED_PACK32, FORMAT_A2B10G10R10_SSCALED_PACK32, FORMAT_A2B10G10R10_UINT_PACK32, FORMAT_A2B10G10R10_SINT_PACK32, FORMAT_R16_UNORM, FORMAT_R16_SNORM, FORMAT_R16_USCALED, FORMAT_R16_SSCALED, FORMAT_R16_UINT, FORMAT_R16_SINT, FORMAT_R16_SFLOAT, FORMAT_R16G16_UNORM, FORMAT_R16G16_SNORM, FORMAT_R16G16_USCALED, FORMAT_R16G16_SSCALED, FORMAT_R16G16_UINT, FORMAT_R16G16_SINT, FORMAT_R16G16_SFLOAT, FORMAT_R16G16B16_UNORM, FORMAT_R16G16B16_SNORM, FORMAT_R16G16B16_USCALED, FORMAT_R16G16B16_SSCALED, FORMAT_R16G16B16_UINT, FORMAT_R16G16B16_SINT, FORMAT_R16G16B16_SFLOAT, FORMAT_R16G16B16A16_UNORM, FORMAT_R16G16B16A16_SNORM, FORMAT_R16G16B16A16_USCALED, FORMAT_R16G16B16A16_SSCALED, FORMAT_R16G16B16A16_UINT, FORMAT_R16G16B16A16_SINT, FORMAT_R16G16B16A16_SFLOAT, FORMAT_R32_UINT, FORMAT_R32_SINT, FORMAT_R32_SFLOAT, FORMAT_R32G32_UINT, FORMAT_R32G32_SINT, FORMAT_R32G32_SFLOAT, FORMAT_R32G32B32_UINT, FORMAT_R32G32B32_SINT, FORMAT_R32G32B32_SFLOAT, FORMAT_R32G32B32A32_UINT, FORMAT_R32G32B32A32_SINT, FORMAT_R32G32B32A32_SFLOAT, FORMAT_R64_UINT, FORMAT_R64_SINT, FORMAT_R64_SFLOAT, FORMAT_R64G64_UINT, FORMAT_R64G64_SINT, FORMAT_R64G64_SFLOAT, FORMAT_R64G64B64_UINT, FORMAT_R64G64B64_SINT, FORMAT_R64G64B64_SFLOAT, FORMAT_R64G64B64A64_UINT, FORMAT_R64G64B64A64_SINT, FORMAT_R64G64B64A64_SFLOAT, FORMAT_B10G11R11_UFLOAT_PACK32, FORMAT_E5B9G9R9_UFLOAT_PACK32, FORMAT_D16_UNORM, FORMAT_X8_D24_UNORM_PACK32, FORMAT_D32_SFLOAT, FORMAT_S8_UINT, FORMAT_D16_UNORM_S8_UINT, FORMAT_D24_UNORM_S8_UINT, FORMAT_D32_SFLOAT_S8_UINT, FORMAT_BC1_RGB_UNORM_BLOCK, FORMAT_BC1_RGB_SRGB_BLOCK, FORMAT_BC1_RGBA_UNORM_BLOCK, FORMAT_BC1_RGBA_SRGB_BLOCK, FORMAT_BC2_UNORM_BLOCK, FORMAT_BC2_SRGB_BLOCK, FORMAT_BC3_UNORM_BLOCK, FORMAT_BC3_SRGB_BLOCK, FORMAT_BC4_UNORM_BLOCK, FORMAT_BC4_SNORM_BLOCK, FORMAT_BC5_UNORM_BLOCK, FORMAT_BC5_SNORM_BLOCK, FORMAT_BC6H_UFLOAT_BLOCK, FORMAT_BC6H_SFLOAT_BLOCK, FORMAT_BC7_UNORM_BLOCK, FORMAT_BC7_SRGB_BLOCK, FORMAT_ETC2_R8G8B8_UNORM_BLOCK, FORMAT_ETC2_R8G8B8_SRGB_BLOCK, FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK, FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK, FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK, FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK, FORMAT_EAC_R11_UNORM_BLOCK, FORMAT_EAC_R11_SNORM_BLOCK, FORMAT_EAC_R11G11_UNORM_BLOCK, FORMAT_EAC_R11G11_SNORM_BLOCK, FORMAT_ASTC_4x4_UNORM_BLOCK, FORMAT_ASTC_4x4_SRGB_BLOCK, FORMAT_ASTC_5x4_UNORM_BLOCK, FORMAT_ASTC_5x4_SRGB_BLOCK, FORMAT_ASTC_5x5_UNORM_BLOCK, FORMAT_ASTC_5x5_SRGB_BLOCK, FORMAT_ASTC_6x5_UNORM_BLOCK, FORMAT_ASTC_6x5_SRGB_BLOCK, FORMAT_ASTC_6x6_UNORM_BLOCK, FORMAT_ASTC_6x6_SRGB_BLOCK, FORMAT_ASTC_8x5_UNORM_BLOCK, FORMAT_ASTC_8x5_SRGB_BLOCK, FORMAT_ASTC_8x6_UNORM_BLOCK, FORMAT_ASTC_8x6_SRGB_BLOCK, FORMAT_ASTC_8x8_UNORM_BLOCK, FORMAT_ASTC_8x8_SRGB_BLOCK, FORMAT_ASTC_10x5_UNORM_BLOCK, FORMAT_ASTC_10x5_SRGB_BLOCK, FORMAT_ASTC_10x6_UNORM_BLOCK, FORMAT_ASTC_10x6_SRGB_BLOCK, FORMAT_ASTC_10x8_UNORM_BLOCK, FORMAT_ASTC_10x8_SRGB_BLOCK, FORMAT_ASTC_10x10_UNORM_BLOCK, FORMAT_ASTC_10x10_SRGB_BLOCK, FORMAT_ASTC_12x10_UNORM_BLOCK, FORMAT_ASTC_12x10_SRGB_BLOCK, FORMAT_ASTC_12x12_UNORM_BLOCK, FORMAT_ASTC_12x12_SRGB_BLOCK, FORMAT_G8B8G8R8_422_UNORM, FORMAT_B8G8R8G8_422_UNORM, FORMAT_G8_B8_R8_3PLANE_420_UNORM, FORMAT_G8_B8R8_2PLANE_420_UNORM, FORMAT_G8_B8_R8_3PLANE_422_UNORM, FORMAT_G8_B8R8_2PLANE_422_UNORM, FORMAT_G8_B8_R8_3PLANE_444_UNORM, FORMAT_R10X6_UNORM_PACK16, FORMAT_R10X6G10X6_UNORM_2PACK16, FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16, FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16, FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16, FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16, FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16, FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16, FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16, FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16, FORMAT_R12X4_UNORM_PACK16, FORMAT_R12X4G12X4_UNORM_2PACK16, FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16, FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16, FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16, FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16, FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16, FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16, FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16, FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16, FORMAT_G16B16G16R16_422_UNORM, FORMAT_B16G16R16G16_422_UNORM, FORMAT_G16_B16_R16_3PLANE_420_UNORM, FORMAT_G16_B16R16_2PLANE_420_UNORM, FORMAT_G16_B16_R16_3PLANE_422_UNORM, FORMAT_G16_B16R16_2PLANE_422_UNORM, FORMAT_G16_B16_R16_3PLANE_444_UNORM, FORMAT_G8_B8R8_2PLANE_444_UNORM, FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16, FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16, FORMAT_G16_B16R16_2PLANE_444_UNORM, FORMAT_A4R4G4B4_UNORM_PACK16, FORMAT_A4B4G4R4_UNORM_PACK16, FORMAT_ASTC_4x4_SFLOAT_BLOCK, FORMAT_ASTC_5x4_SFLOAT_BLOCK, FORMAT_ASTC_5x5_SFLOAT_BLOCK, FORMAT_ASTC_6x5_SFLOAT_BLOCK, FORMAT_ASTC_6x6_SFLOAT_BLOCK, FORMAT_ASTC_8x5_SFLOAT_BLOCK, FORMAT_ASTC_8x6_SFLOAT_BLOCK, FORMAT_ASTC_8x8_SFLOAT_BLOCK, FORMAT_ASTC_10x5_SFLOAT_BLOCK, FORMAT_ASTC_10x6_SFLOAT_BLOCK, FORMAT_ASTC_10x8_SFLOAT_BLOCK, FORMAT_ASTC_10x10_SFLOAT_BLOCK, FORMAT_ASTC_12x10_SFLOAT_BLOCK, FORMAT_ASTC_12x12_SFLOAT_BLOCK, FORMAT_PVRTC1_2BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG, FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG, FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG, FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG, FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG, FORMAT_ASTC_3x3x3_UNORM_BLOCK_EXT, FORMAT_ASTC_3x3x3_SRGB_BLOCK_EXT, FORMAT_ASTC_3x3x3_SFLOAT_BLOCK_EXT, FORMAT_ASTC_4x3x3_UNORM_BLOCK_EXT, FORMAT_ASTC_4x3x3_SRGB_BLOCK_EXT, FORMAT_ASTC_4x3x3_SFLOAT_BLOCK_EXT, FORMAT_ASTC_4x4x3_UNORM_BLOCK_EXT, FORMAT_ASTC_4x4x3_SRGB_BLOCK_EXT, FORMAT_ASTC_4x4x3_SFLOAT_BLOCK_EXT, FORMAT_ASTC_4x4x4_UNORM_BLOCK_EXT, FORMAT_ASTC_4x4x4_SRGB_BLOCK_EXT, FORMAT_ASTC_4x4x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x4x4_UNORM_BLOCK_EXT, FORMAT_ASTC_5x4x4_SRGB_BLOCK_EXT, FORMAT_ASTC_5x4x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x5x4_UNORM_BLOCK_EXT, FORMAT_ASTC_5x5x4_SRGB_BLOCK_EXT, FORMAT_ASTC_5x5x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x5x5_UNORM_BLOCK_EXT, FORMAT_ASTC_5x5x5_SRGB_BLOCK_EXT, FORMAT_ASTC_5x5x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x5x5_UNORM_BLOCK_EXT, FORMAT_ASTC_6x5x5_SRGB_BLOCK_EXT, FORMAT_ASTC_6x5x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x6x5_UNORM_BLOCK_EXT, FORMAT_ASTC_6x6x5_SRGB_BLOCK_EXT, FORMAT_ASTC_6x6x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x6x6_UNORM_BLOCK_EXT, FORMAT_ASTC_6x6x6_SRGB_BLOCK_EXT, FORMAT_ASTC_6x6x6_SFLOAT_BLOCK_EXT, StructureType, STRUCTURE_TYPE_APPLICATION_INFO, STRUCTURE_TYPE_INSTANCE_CREATE_INFO, STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO, STRUCTURE_TYPE_DEVICE_CREATE_INFO, STRUCTURE_TYPE_SUBMIT_INFO, STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO, STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, STRUCTURE_TYPE_BIND_SPARSE_INFO, STRUCTURE_TYPE_FENCE_CREATE_INFO, STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO, STRUCTURE_TYPE_EVENT_CREATE_INFO, STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO, STRUCTURE_TYPE_BUFFER_CREATE_INFO, STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO, STRUCTURE_TYPE_IMAGE_CREATE_INFO, STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO, STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO, STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO, STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO, STRUCTURE_TYPE_SAMPLER_CREATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET, STRUCTURE_TYPE_COPY_DESCRIPTOR_SET, STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO, STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO, STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO, STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER, STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER, STRUCTURE_TYPE_MEMORY_BARRIER, STRUCTURE_TYPE_LOADER_INSTANCE_CREATE_INFO, STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_PROPERTIES, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES, STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS, STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO, STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO, STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO, STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO, STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO, STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES, STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO, STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2, STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2, STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2, STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2, STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2, STRUCTURE_TYPE_FORMAT_PROPERTIES_2, STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2, STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2, STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES, STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO, STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO, STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO, STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES, STRUCTURE_TYPE_PROTECTED_SUBMIT_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES, STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO, STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO, STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO, STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO, STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES, STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO, STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO, STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO, STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES, STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO, STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO, STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES, STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2, STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2, STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2, STRUCTURE_TYPE_SUBPASS_BEGIN_INFO, STRUCTURE_TYPE_SUBPASS_END_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE, STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES, STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES, STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO, STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT, STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES, STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO, STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO, STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO, STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO, STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO, STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO, STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES, STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES, STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO, STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES, STRUCTURE_TYPE_MEMORY_BARRIER_2, STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2, STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2, STRUCTURE_TYPE_DEPENDENCY_INFO, STRUCTURE_TYPE_SUBMIT_INFO_2, STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO, STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES, STRUCTURE_TYPE_COPY_BUFFER_INFO_2, STRUCTURE_TYPE_COPY_IMAGE_INFO_2, STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2, STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2, STRUCTURE_TYPE_BLIT_IMAGE_INFO_2, STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2, STRUCTURE_TYPE_BUFFER_COPY_2, STRUCTURE_TYPE_IMAGE_COPY_2, STRUCTURE_TYPE_IMAGE_BLIT_2, STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2, STRUCTURE_TYPE_IMAGE_RESOLVE_2, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES, STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK, STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES, STRUCTURE_TYPE_RENDERING_INFO, STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO, STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES, STRUCTURE_TYPE_FORMAT_PROPERTIES_3, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES, STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS, STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS, STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR, STRUCTURE_TYPE_PRESENT_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR, STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR, STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR, STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR, STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR, STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_NATIVE_BUFFER_ANDROID, STRUCTURE_TYPE_SWAPCHAIN_IMAGE_CREATE_INFO_ANDROID, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENTATION_PROPERTIES_ANDROID, STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD, STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT, STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT, STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT, STRUCTURE_TYPE_VIDEO_PROFILE_KHR, STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR, STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_KHR, STRUCTURE_TYPE_VIDEO_GET_MEMORY_PROPERTIES_KHR, STRUCTURE_TYPE_VIDEO_BIND_MEMORY_KHR, STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR, STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR, STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR, STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR, STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR, STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR, STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_KHR, STRUCTURE_TYPE_VIDEO_QUEUE_FAMILY_PROPERTIES_2_KHR, STRUCTURE_TYPE_VIDEO_PROFILES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR, STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR, STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR, STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR, STRUCTURE_TYPE_VIDEO_DECODE_CAPABILITIES_KHR, STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV, STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV, STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT, STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX, STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX, STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX, STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX, STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX, STRUCTURE_TYPE_VIDEO_ENCODE_H264_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_VCL_FRAME_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_NALU_SLICE_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_EMIT_PICTURE_PARAMETERS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H264_REFERENCE_LISTS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_VCL_FRAME_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_EMIT_PICTURE_PARAMETERS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_REFERENCE_LISTS_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_INFO_EXT, STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_PICTURE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_MVC_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H264_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD, STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR, STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT, STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD, STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX, STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP, STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV, STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV, STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV, STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV, STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV, STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV, STRUCTURE_TYPE_VALIDATION_FLAGS_EXT, STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN, STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT, STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR, STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR, STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR, STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR, STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR, STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT, STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT, STRUCTURE_TYPE_PRESENT_REGIONS_KHR, STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT, STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT, STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT, STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT, STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT, STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX, STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_HDR_METADATA_EXT, STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR, STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR, STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR, STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR, STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR, STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR, STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR, STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR, STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR, STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR, STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR, STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR, STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR, STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR, STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR, STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR, STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK, STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK, STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT, STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT, STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT, STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT, STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID, STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID, STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID, STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID, STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID, STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT, STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT, STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT, STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR, STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR, STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR, STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR, STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR, STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR, STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR, STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV, STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT, STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT, STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT, STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT, STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT, STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT, STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR, STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV, STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV, STRUCTURE_TYPE_GEOMETRY_NV, STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV, STRUCTURE_TYPE_GEOMETRY_AABB_NV, STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV, STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT, STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT, STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT, STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR, STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD, STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD, STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_EXT, STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT, STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR, STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR, STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD, STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT, STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT, STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP, STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV, STRUCTURE_TYPE_CHECKPOINT_DATA_NV, STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL, STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL, STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL, STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL, STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT, STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD, STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD, STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT, STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT, STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR, STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD, STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT, STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT, STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT, STRUCTURE_TYPE_VALIDATION_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV, STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT, STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT, STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT, STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT, STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR, STRUCTURE_TYPE_PIPELINE_INFO_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR, STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV, STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV, STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV, STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV, STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV, STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV, STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM, STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT, STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT, STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT, STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR, STRUCTURE_TYPE_PRESENT_ID_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR, STRUCTURE_TYPE_VIDEO_ENCODE_CAPABILITIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV, STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV, STRUCTURE_TYPE_RESERVED_QCOM, STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV, STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV, STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV, STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MOTION_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT, STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM, STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT, STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE, STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE, STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT, STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT, STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT, STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA, STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA, STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA, STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA, STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA, STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI, STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI, STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT, STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX, STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT, STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT, STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT, STRUCTURE_TYPE_SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE, STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM, STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM, STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV, SubpassContents, SUBPASS_CONTENTS_INLINE, SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS, Result, SUCCESS, NOT_READY, TIMEOUT, EVENT_SET, EVENT_RESET, INCOMPLETE, ERROR_OUT_OF_HOST_MEMORY, ERROR_OUT_OF_DEVICE_MEMORY, ERROR_INITIALIZATION_FAILED, ERROR_DEVICE_LOST, ERROR_MEMORY_MAP_FAILED, ERROR_LAYER_NOT_PRESENT, ERROR_EXTENSION_NOT_PRESENT, ERROR_FEATURE_NOT_PRESENT, ERROR_INCOMPATIBLE_DRIVER, ERROR_TOO_MANY_OBJECTS, ERROR_FORMAT_NOT_SUPPORTED, ERROR_FRAGMENTED_POOL, ERROR_UNKNOWN, ERROR_OUT_OF_POOL_MEMORY, ERROR_INVALID_EXTERNAL_HANDLE, ERROR_FRAGMENTATION, ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS, PIPELINE_COMPILE_REQUIRED, ERROR_SURFACE_LOST_KHR, ERROR_NATIVE_WINDOW_IN_USE_KHR, SUBOPTIMAL_KHR, ERROR_OUT_OF_DATE_KHR, ERROR_INCOMPATIBLE_DISPLAY_KHR, ERROR_VALIDATION_FAILED_EXT, ERROR_INVALID_SHADER_NV, ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT, ERROR_NOT_PERMITTED_KHR, ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT, THREAD_IDLE_KHR, THREAD_DONE_KHR, OPERATION_DEFERRED_KHR, OPERATION_NOT_DEFERRED_KHR, DynamicState, DYNAMIC_STATE_VIEWPORT, DYNAMIC_STATE_SCISSOR, DYNAMIC_STATE_LINE_WIDTH, DYNAMIC_STATE_DEPTH_BIAS, DYNAMIC_STATE_BLEND_CONSTANTS, DYNAMIC_STATE_DEPTH_BOUNDS, DYNAMIC_STATE_STENCIL_COMPARE_MASK, DYNAMIC_STATE_STENCIL_WRITE_MASK, DYNAMIC_STATE_STENCIL_REFERENCE, DYNAMIC_STATE_CULL_MODE, DYNAMIC_STATE_FRONT_FACE, DYNAMIC_STATE_PRIMITIVE_TOPOLOGY, DYNAMIC_STATE_VIEWPORT_WITH_COUNT, DYNAMIC_STATE_SCISSOR_WITH_COUNT, DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE, DYNAMIC_STATE_DEPTH_TEST_ENABLE, DYNAMIC_STATE_DEPTH_WRITE_ENABLE, DYNAMIC_STATE_DEPTH_COMPARE_OP, DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE, DYNAMIC_STATE_STENCIL_TEST_ENABLE, DYNAMIC_STATE_STENCIL_OP, DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE, DYNAMIC_STATE_DEPTH_BIAS_ENABLE, DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE, DYNAMIC_STATE_VIEWPORT_W_SCALING_NV, DYNAMIC_STATE_DISCARD_RECTANGLE_EXT, DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT, DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR, DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV, DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV, DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV, DYNAMIC_STATE_FRAGMENT_SHADING_RATE_KHR, DYNAMIC_STATE_LINE_STIPPLE_EXT, DYNAMIC_STATE_VERTEX_INPUT_EXT, DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT, DYNAMIC_STATE_LOGIC_OP_EXT, DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT, DescriptorUpdateTemplateType, DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET, DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR, ObjectType, OBJECT_TYPE_UNKNOWN, OBJECT_TYPE_INSTANCE, OBJECT_TYPE_PHYSICAL_DEVICE, OBJECT_TYPE_DEVICE, OBJECT_TYPE_QUEUE, OBJECT_TYPE_SEMAPHORE, OBJECT_TYPE_COMMAND_BUFFER, OBJECT_TYPE_FENCE, OBJECT_TYPE_DEVICE_MEMORY, OBJECT_TYPE_BUFFER, OBJECT_TYPE_IMAGE, OBJECT_TYPE_EVENT, OBJECT_TYPE_QUERY_POOL, OBJECT_TYPE_BUFFER_VIEW, OBJECT_TYPE_IMAGE_VIEW, OBJECT_TYPE_SHADER_MODULE, OBJECT_TYPE_PIPELINE_CACHE, OBJECT_TYPE_PIPELINE_LAYOUT, OBJECT_TYPE_RENDER_PASS, OBJECT_TYPE_PIPELINE, OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, OBJECT_TYPE_SAMPLER, OBJECT_TYPE_DESCRIPTOR_POOL, OBJECT_TYPE_DESCRIPTOR_SET, OBJECT_TYPE_FRAMEBUFFER, OBJECT_TYPE_COMMAND_POOL, OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION, OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE, OBJECT_TYPE_PRIVATE_DATA_SLOT, OBJECT_TYPE_SURFACE_KHR, OBJECT_TYPE_SWAPCHAIN_KHR, OBJECT_TYPE_DISPLAY_KHR, OBJECT_TYPE_DISPLAY_MODE_KHR, OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT, OBJECT_TYPE_VIDEO_SESSION_KHR, OBJECT_TYPE_VIDEO_SESSION_PARAMETERS_KHR, OBJECT_TYPE_CU_MODULE_NVX, OBJECT_TYPE_CU_FUNCTION_NVX, OBJECT_TYPE_DEBUG_UTILS_MESSENGER_EXT, OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR, OBJECT_TYPE_VALIDATION_CACHE_EXT, OBJECT_TYPE_ACCELERATION_STRUCTURE_NV, OBJECT_TYPE_PERFORMANCE_CONFIGURATION_INTEL, OBJECT_TYPE_DEFERRED_OPERATION_KHR, OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NV, OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA, SemaphoreType, SEMAPHORE_TYPE_BINARY, SEMAPHORE_TYPE_TIMELINE, PresentModeKHR, PRESENT_MODE_IMMEDIATE_KHR, PRESENT_MODE_MAILBOX_KHR, PRESENT_MODE_FIFO_KHR, PRESENT_MODE_FIFO_RELAXED_KHR, PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR, PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR, ColorSpaceKHR, COLOR_SPACE_SRGB_NONLINEAR_KHR, COLOR_SPACE_DISPLAY_P3_NONLINEAR_EXT, COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT, COLOR_SPACE_DISPLAY_P3_LINEAR_EXT, COLOR_SPACE_DCI_P3_NONLINEAR_EXT, COLOR_SPACE_BT709_LINEAR_EXT, COLOR_SPACE_BT709_NONLINEAR_EXT, COLOR_SPACE_BT2020_LINEAR_EXT, COLOR_SPACE_HDR10_ST2084_EXT, COLOR_SPACE_DOLBYVISION_EXT, COLOR_SPACE_HDR10_HLG_EXT, COLOR_SPACE_ADOBERGB_LINEAR_EXT, COLOR_SPACE_ADOBERGB_NONLINEAR_EXT, COLOR_SPACE_PASS_THROUGH_EXT, COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT, COLOR_SPACE_DISPLAY_NATIVE_AMD, TimeDomainEXT, TIME_DOMAIN_DEVICE_EXT, TIME_DOMAIN_CLOCK_MONOTONIC_EXT, TIME_DOMAIN_CLOCK_MONOTONIC_RAW_EXT, TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT, DebugReportObjectTypeEXT, DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT, DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT, DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT, DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT, DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT, DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT, DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT, DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT, DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT, DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT, DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT, DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT, DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT, DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT, DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT, DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT, DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT, DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT, DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT, DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT, DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT, DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT, DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT, DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT, DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT, DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT, DEBUG_REPORT_OBJECT_TYPE_CU_MODULE_NVX_EXT, DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX_EXT, DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV_EXT, DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT, DeviceMemoryReportEventTypeEXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_FREE_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_UNIMPORT_EXT, DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT, RasterizationOrderAMD, RASTERIZATION_ORDER_STRICT_AMD, RASTERIZATION_ORDER_RELAXED_AMD, ValidationCheckEXT, VALIDATION_CHECK_ALL_EXT, VALIDATION_CHECK_SHADERS_EXT, ValidationFeatureEnableEXT, VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT, VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT, VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT, VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT, VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT, ValidationFeatureDisableEXT, VALIDATION_FEATURE_DISABLE_ALL_EXT, VALIDATION_FEATURE_DISABLE_SHADERS_EXT, VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT, VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT, VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT, VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT, VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT, VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT, IndirectCommandsTokenTypeNV, INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV, INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV, INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV, INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV, INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV, INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV, INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV, INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV, DisplayPowerStateEXT, DISPLAY_POWER_STATE_OFF_EXT, DISPLAY_POWER_STATE_SUSPEND_EXT, DISPLAY_POWER_STATE_ON_EXT, DeviceEventTypeEXT, DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT, DisplayEventTypeEXT, DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT, ViewportCoordinateSwizzleNV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_X_NV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Y_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Y_NV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Z_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Z_NV, VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_W_NV, VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV, DiscardRectangleModeEXT, DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT, DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT, PointClippingBehavior, POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES, POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY, SamplerReductionMode, SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE, SAMPLER_REDUCTION_MODE_MIN, SAMPLER_REDUCTION_MODE_MAX, TessellationDomainOrigin, TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT, TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT, SamplerYcbcrModelConversion, SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020, SamplerYcbcrRange, SAMPLER_YCBCR_RANGE_ITU_FULL, SAMPLER_YCBCR_RANGE_ITU_NARROW, ChromaLocation, CHROMA_LOCATION_COSITED_EVEN, CHROMA_LOCATION_MIDPOINT, BlendOverlapEXT, BLEND_OVERLAP_UNCORRELATED_EXT, BLEND_OVERLAP_DISJOINT_EXT, BLEND_OVERLAP_CONJOINT_EXT, CoverageModulationModeNV, COVERAGE_MODULATION_MODE_NONE_NV, COVERAGE_MODULATION_MODE_RGB_NV, COVERAGE_MODULATION_MODE_ALPHA_NV, COVERAGE_MODULATION_MODE_RGBA_NV, CoverageReductionModeNV, COVERAGE_REDUCTION_MODE_MERGE_NV, COVERAGE_REDUCTION_MODE_TRUNCATE_NV, ValidationCacheHeaderVersionEXT, VALIDATION_CACHE_HEADER_VERSION_ONE_EXT, ShaderInfoTypeAMD, SHADER_INFO_TYPE_STATISTICS_AMD, SHADER_INFO_TYPE_BINARY_AMD, SHADER_INFO_TYPE_DISASSEMBLY_AMD, QueueGlobalPriorityKHR, QUEUE_GLOBAL_PRIORITY_LOW_KHR, QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR, QUEUE_GLOBAL_PRIORITY_HIGH_KHR, QUEUE_GLOBAL_PRIORITY_REALTIME_KHR, ConservativeRasterizationModeEXT, CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT, CONSERVATIVE_RASTERIZATION_MODE_OVERESTIMATE_EXT, CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT, VendorId, VENDOR_ID_VIV, VENDOR_ID_VSI, VENDOR_ID_KAZAN, VENDOR_ID_CODEPLAY, VENDOR_ID_MESA, VENDOR_ID_POCL, DriverId, DRIVER_ID_AMD_PROPRIETARY, DRIVER_ID_AMD_OPEN_SOURCE, DRIVER_ID_MESA_RADV, DRIVER_ID_NVIDIA_PROPRIETARY, DRIVER_ID_INTEL_PROPRIETARY_WINDOWS, DRIVER_ID_INTEL_OPEN_SOURCE_MESA, DRIVER_ID_IMAGINATION_PROPRIETARY, DRIVER_ID_QUALCOMM_PROPRIETARY, DRIVER_ID_ARM_PROPRIETARY, DRIVER_ID_GOOGLE_SWIFTSHADER, DRIVER_ID_GGP_PROPRIETARY, DRIVER_ID_BROADCOM_PROPRIETARY, DRIVER_ID_MESA_LLVMPIPE, DRIVER_ID_MOLTENVK, DRIVER_ID_COREAVI_PROPRIETARY, DRIVER_ID_JUICE_PROPRIETARY, DRIVER_ID_VERISILICON_PROPRIETARY, DRIVER_ID_MESA_TURNIP, DRIVER_ID_MESA_V3DV, DRIVER_ID_MESA_PANVK, DRIVER_ID_SAMSUNG_PROPRIETARY, DRIVER_ID_MESA_VENUS, ShadingRatePaletteEntryNV, SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV, SHADING_RATE_PALETTE_ENTRY_16_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_8_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_4_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_2_INVOCATIONS_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_PIXEL_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X1_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_1X2_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X2_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X2_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X4_PIXELS_NV, SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV, CoarseSampleOrderTypeNV, COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV, COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV, COARSE_SAMPLE_ORDER_TYPE_PIXEL_MAJOR_NV, COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV, CopyAccelerationStructureModeKHR, COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR, COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR, COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR, COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR, BuildAccelerationStructureModeKHR, BUILD_ACCELERATION_STRUCTURE_MODE_BUILD_KHR, BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR, AccelerationStructureTypeKHR, ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR, ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR, ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR, GeometryTypeKHR, GEOMETRY_TYPE_TRIANGLES_KHR, GEOMETRY_TYPE_AABBS_KHR, GEOMETRY_TYPE_INSTANCES_KHR, AccelerationStructureMemoryRequirementsTypeNV, ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV, ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BUILD_SCRATCH_NV, ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV, AccelerationStructureBuildTypeKHR, ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_KHR, ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE_KHR, ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE_KHR, RayTracingShaderGroupTypeKHR, RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR, RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR, RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR, AccelerationStructureCompatibilityKHR, ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE_KHR, ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE_KHR, ShaderGroupShaderKHR, SHADER_GROUP_SHADER_GENERAL_KHR, SHADER_GROUP_SHADER_CLOSEST_HIT_KHR, SHADER_GROUP_SHADER_ANY_HIT_KHR, SHADER_GROUP_SHADER_INTERSECTION_KHR, MemoryOverallocationBehaviorAMD, MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD, MEMORY_OVERALLOCATION_BEHAVIOR_ALLOWED_AMD, MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD, ScopeNV, SCOPE_DEVICE_NV, SCOPE_WORKGROUP_NV, SCOPE_SUBGROUP_NV, SCOPE_QUEUE_FAMILY_NV, ComponentTypeNV, COMPONENT_TYPE_FLOAT16_NV, COMPONENT_TYPE_FLOAT32_NV, COMPONENT_TYPE_FLOAT64_NV, COMPONENT_TYPE_SINT8_NV, COMPONENT_TYPE_SINT16_NV, COMPONENT_TYPE_SINT32_NV, COMPONENT_TYPE_SINT64_NV, COMPONENT_TYPE_UINT8_NV, COMPONENT_TYPE_UINT16_NV, COMPONENT_TYPE_UINT32_NV, COMPONENT_TYPE_UINT64_NV, FullScreenExclusiveEXT, FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT, FULL_SCREEN_EXCLUSIVE_ALLOWED_EXT, FULL_SCREEN_EXCLUSIVE_DISALLOWED_EXT, FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT, PerformanceCounterScopeKHR, PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR, PERFORMANCE_COUNTER_SCOPE_RENDER_PASS_KHR, PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR, PerformanceCounterUnitKHR, PERFORMANCE_COUNTER_UNIT_GENERIC_KHR, PERFORMANCE_COUNTER_UNIT_PERCENTAGE_KHR, PERFORMANCE_COUNTER_UNIT_NANOSECONDS_KHR, PERFORMANCE_COUNTER_UNIT_BYTES_KHR, PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND_KHR, PERFORMANCE_COUNTER_UNIT_KELVIN_KHR, PERFORMANCE_COUNTER_UNIT_WATTS_KHR, PERFORMANCE_COUNTER_UNIT_VOLTS_KHR, PERFORMANCE_COUNTER_UNIT_AMPS_KHR, PERFORMANCE_COUNTER_UNIT_HERTZ_KHR, PERFORMANCE_COUNTER_UNIT_CYCLES_KHR, PerformanceCounterStorageKHR, PERFORMANCE_COUNTER_STORAGE_INT32_KHR, PERFORMANCE_COUNTER_STORAGE_INT64_KHR, PERFORMANCE_COUNTER_STORAGE_UINT32_KHR, PERFORMANCE_COUNTER_STORAGE_UINT64_KHR, PERFORMANCE_COUNTER_STORAGE_FLOAT32_KHR, PERFORMANCE_COUNTER_STORAGE_FLOAT64_KHR, PerformanceConfigurationTypeINTEL, PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL, QueryPoolSamplingModeINTEL, QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL, PerformanceOverrideTypeINTEL, PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE_INTEL, PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES_INTEL, PerformanceParameterTypeINTEL, PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED_INTEL, PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL, PerformanceValueTypeINTEL, PERFORMANCE_VALUE_TYPE_UINT32_INTEL, PERFORMANCE_VALUE_TYPE_UINT64_INTEL, PERFORMANCE_VALUE_TYPE_FLOAT_INTEL, PERFORMANCE_VALUE_TYPE_BOOL_INTEL, PERFORMANCE_VALUE_TYPE_STRING_INTEL, ShaderFloatControlsIndependence, SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY, SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL, SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE, PipelineExecutableStatisticFormatKHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_INT64_KHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_UINT64_KHR, PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR, LineRasterizationModeEXT, LINE_RASTERIZATION_MODE_DEFAULT_EXT, LINE_RASTERIZATION_MODE_RECTANGULAR_EXT, LINE_RASTERIZATION_MODE_BRESENHAM_EXT, LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT, FragmentShadingRateCombinerOpKHR, FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_MIN_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_MAX_KHR, FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR, FragmentShadingRateNV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_1X2_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X1_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X2_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X4_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X2_PIXELS_NV, FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X4_PIXELS_NV, FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV, FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV, FragmentShadingRateTypeNV, FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV, FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV, ProvokingVertexModeEXT, PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT, PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT, AccelerationStructureMotionInstanceTypeNV, ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV, ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV, ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV, PipelineCacheCreateFlag, PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT, PIPELINE_CACHE_CREATE_RESERVED_1_BIT_EXT, PIPELINE_CACHE_CREATE_RESERVED_2_BIT_KHR, QueueFlag, QUEUE_GRAPHICS_BIT, QUEUE_COMPUTE_BIT, QUEUE_TRANSFER_BIT, QUEUE_SPARSE_BINDING_BIT, QUEUE_PROTECTED_BIT, QUEUE_VIDEO_DECODE_BIT_KHR, QUEUE_VIDEO_ENCODE_BIT_KHR, QUEUE_RESERVED_7_BIT_QCOM, CullModeFlag, CULL_MODE_FRONT_BIT, CULL_MODE_BACK_BIT, CULL_MODE_NONE, CULL_MODE_FRONT_AND_BACK, RenderPassCreateFlag, RENDER_PASS_CREATE_RESERVED_0_BIT_KHR, RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM, DeviceQueueCreateFlag, DEVICE_QUEUE_CREATE_PROTECTED_BIT, DEVICE_QUEUE_CREATE_RESERVED_1_BIT_QCOM, MemoryPropertyFlag, MEMORY_PROPERTY_DEVICE_LOCAL_BIT, MEMORY_PROPERTY_HOST_VISIBLE_BIT, MEMORY_PROPERTY_HOST_COHERENT_BIT, MEMORY_PROPERTY_HOST_CACHED_BIT, MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT, MEMORY_PROPERTY_PROTECTED_BIT, MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD, MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD, MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV, MemoryHeapFlag, MEMORY_HEAP_DEVICE_LOCAL_BIT, MEMORY_HEAP_MULTI_INSTANCE_BIT, MEMORY_HEAP_RESERVED_2_BIT_KHR, AccessFlag, ACCESS_INDIRECT_COMMAND_READ_BIT, ACCESS_INDEX_READ_BIT, ACCESS_VERTEX_ATTRIBUTE_READ_BIT, ACCESS_UNIFORM_READ_BIT, ACCESS_INPUT_ATTACHMENT_READ_BIT, ACCESS_SHADER_READ_BIT, ACCESS_SHADER_WRITE_BIT, ACCESS_COLOR_ATTACHMENT_READ_BIT, ACCESS_COLOR_ATTACHMENT_WRITE_BIT, ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT, ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT, ACCESS_TRANSFER_READ_BIT, ACCESS_TRANSFER_WRITE_BIT, ACCESS_HOST_READ_BIT, ACCESS_HOST_WRITE_BIT, ACCESS_MEMORY_READ_BIT, ACCESS_MEMORY_WRITE_BIT, ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR, ACCESS_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_NONE, BufferUsageFlag, BUFFER_USAGE_TRANSFER_SRC_BIT, BUFFER_USAGE_TRANSFER_DST_BIT, BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT, BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, BUFFER_USAGE_UNIFORM_BUFFER_BIT, BUFFER_USAGE_STORAGE_BUFFER_BIT, BUFFER_USAGE_INDEX_BUFFER_BIT, BUFFER_USAGE_VERTEX_BUFFER_BIT, BUFFER_USAGE_INDIRECT_BUFFER_BIT, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT, BUFFER_USAGE_VIDEO_DECODE_SRC_BIT_KHR, BUFFER_USAGE_VIDEO_DECODE_DST_BIT_KHR, BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT, BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT, BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT, BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR, BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR, BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR, BUFFER_USAGE_RESERVED_18_BIT_QCOM, BUFFER_USAGE_VIDEO_ENCODE_DST_BIT_KHR, BUFFER_USAGE_VIDEO_ENCODE_SRC_BIT_KHR, BUFFER_USAGE_RESERVED_21_BIT_AMD, BUFFER_USAGE_RESERVED_22_BIT_AMD, BufferCreateFlag, BUFFER_CREATE_SPARSE_BINDING_BIT, BUFFER_CREATE_SPARSE_RESIDENCY_BIT, BUFFER_CREATE_SPARSE_ALIASED_BIT, BUFFER_CREATE_PROTECTED_BIT, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, BUFFER_CREATE_RESERVED_5_BIT_AMD, ShaderStageFlag, SHADER_STAGE_VERTEX_BIT, SHADER_STAGE_TESSELLATION_CONTROL_BIT, SHADER_STAGE_TESSELLATION_EVALUATION_BIT, SHADER_STAGE_GEOMETRY_BIT, SHADER_STAGE_FRAGMENT_BIT, SHADER_STAGE_COMPUTE_BIT, SHADER_STAGE_RAYGEN_BIT_KHR, SHADER_STAGE_ANY_HIT_BIT_KHR, SHADER_STAGE_CLOSEST_HIT_BIT_KHR, SHADER_STAGE_MISS_BIT_KHR, SHADER_STAGE_INTERSECTION_BIT_KHR, SHADER_STAGE_CALLABLE_BIT_KHR, SHADER_STAGE_TASK_BIT_NV, SHADER_STAGE_MESH_BIT_NV, SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI, SHADER_STAGE_ALL_GRAPHICS, SHADER_STAGE_ALL, ImageUsageFlag, IMAGE_USAGE_TRANSFER_SRC_BIT, IMAGE_USAGE_TRANSFER_DST_BIT, IMAGE_USAGE_SAMPLED_BIT, IMAGE_USAGE_STORAGE_BIT, IMAGE_USAGE_COLOR_ATTACHMENT_BIT, IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT, IMAGE_USAGE_INPUT_ATTACHMENT_BIT, IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR, IMAGE_USAGE_VIDEO_DECODE_SRC_BIT_KHR, IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR, IMAGE_USAGE_RESERVED_16_BIT_QCOM, IMAGE_USAGE_RESERVED_17_BIT_QCOM, IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT, IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, IMAGE_USAGE_RESERVED_22_BIT_EXT, IMAGE_USAGE_VIDEO_ENCODE_DST_BIT_KHR, IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR, IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR, IMAGE_USAGE_RESERVED_19_BIT_EXT, IMAGE_USAGE_INVOCATION_MASK_BIT_HUAWEI, IMAGE_USAGE_RESERVED_20_BIT_QCOM, IMAGE_USAGE_RESERVED_21_BIT_QCOM, ImageCreateFlag, IMAGE_CREATE_SPARSE_BINDING_BIT, IMAGE_CREATE_SPARSE_RESIDENCY_BIT, IMAGE_CREATE_SPARSE_ALIASED_BIT, IMAGE_CREATE_MUTABLE_FORMAT_BIT, IMAGE_CREATE_CUBE_COMPATIBLE_BIT, IMAGE_CREATE_ALIAS_BIT, IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT, IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT, IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT, IMAGE_CREATE_EXTENDED_USAGE_BIT, IMAGE_CREATE_PROTECTED_BIT, IMAGE_CREATE_DISJOINT_BIT, IMAGE_CREATE_CORNER_SAMPLED_BIT_NV, IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT, IMAGE_CREATE_SUBSAMPLED_BIT_EXT, IMAGE_CREATE_RESERVED_16_BIT_AMD, IMAGE_CREATE_RESERVED_18_BIT_EXT, IMAGE_CREATE_RESERVED_394_BIT_EXT, IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM, ImageViewCreateFlag, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT, IMAGE_VIEW_CREATE_RESERVED_2_BIT_AMD, IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT, SamplerCreateFlag, SAMPLER_CREATE_SUBSAMPLED_BIT_EXT, SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT, SAMPLER_CREATE_RESERVED_3_BIT_AMD, SAMPLER_CREATE_RESERVED_2_BIT_EXT, SAMPLER_CREATE_IMAGE_PROCESSING_BIT_QCOM, PipelineCreateFlag, PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT, PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT, PIPELINE_CREATE_DERIVATIVE_BIT, PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT, PIPELINE_CREATE_DISPATCH_BASE_BIT, PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT, PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT, PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT, PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR, PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR, PIPELINE_CREATE_DEFER_COMPILE_BIT_NV, PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR, PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR, PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV, PIPELINE_CREATE_LIBRARY_BIT_KHR, PIPELINE_CREATE_RESERVED_23_BIT_AMD, PIPELINE_CREATE_RESERVED_10_BIT_AMD, PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV, PipelineShaderStageCreateFlag, PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT, PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT, PIPELINE_SHADER_STAGE_CREATE_RESERVED_2_BIT_NV, PIPELINE_SHADER_STAGE_CREATE_RESERVED_3_BIT_KHR, ColorComponentFlag, COLOR_COMPONENT_R_BIT, COLOR_COMPONENT_G_BIT, COLOR_COMPONENT_B_BIT, COLOR_COMPONENT_A_BIT, FenceCreateFlag, FENCE_CREATE_SIGNALED_BIT, SemaphoreCreateFlag, FormatFeatureFlag, FORMAT_FEATURE_SAMPLED_IMAGE_BIT, FORMAT_FEATURE_STORAGE_IMAGE_BIT, FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT, FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT, FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT, FORMAT_FEATURE_VERTEX_BUFFER_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BIT, FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT, FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT, FORMAT_FEATURE_BLIT_SRC_BIT, FORMAT_FEATURE_BLIT_DST_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT, FORMAT_FEATURE_TRANSFER_SRC_BIT, FORMAT_FEATURE_TRANSFER_DST_BIT, FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT, FORMAT_FEATURE_DISJOINT_BIT, FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG, FORMAT_FEATURE_VIDEO_DECODE_OUTPUT_BIT_KHR, FORMAT_FEATURE_VIDEO_DECODE_DPB_BIT_KHR, FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT, FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_VIDEO_ENCODE_INPUT_BIT_KHR, FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR, QueryControlFlag, QUERY_CONTROL_PRECISE_BIT, QueryResultFlag, QUERY_RESULT_64_BIT, QUERY_RESULT_WAIT_BIT, QUERY_RESULT_WITH_AVAILABILITY_BIT, QUERY_RESULT_PARTIAL_BIT, QUERY_RESULT_WITH_STATUS_BIT_KHR, CommandBufferUsageFlag, COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT, COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT, QueryPipelineStatisticFlag, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT, QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT, QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT, QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT, QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT, ImageAspectFlag, IMAGE_ASPECT_COLOR_BIT, IMAGE_ASPECT_DEPTH_BIT, IMAGE_ASPECT_STENCIL_BIT, IMAGE_ASPECT_METADATA_BIT, IMAGE_ASPECT_PLANE_0_BIT, IMAGE_ASPECT_PLANE_1_BIT, IMAGE_ASPECT_PLANE_2_BIT, IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT, IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT, IMAGE_ASPECT_NONE, SparseImageFormatFlag, SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT, SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT, SparseMemoryBindFlag, SPARSE_MEMORY_BIND_METADATA_BIT, PipelineStageFlag, PIPELINE_STAGE_TOP_OF_PIPE_BIT, PIPELINE_STAGE_DRAW_INDIRECT_BIT, PIPELINE_STAGE_VERTEX_INPUT_BIT, PIPELINE_STAGE_VERTEX_SHADER_BIT, PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT, PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT, PIPELINE_STAGE_GEOMETRY_SHADER_BIT, PIPELINE_STAGE_FRAGMENT_SHADER_BIT, PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_COMPUTE_SHADER_BIT, PIPELINE_STAGE_TRANSFER_BIT, PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, PIPELINE_STAGE_HOST_BIT, PIPELINE_STAGE_ALL_GRAPHICS_BIT, PIPELINE_STAGE_ALL_COMMANDS_BIT, PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_TASK_SHADER_BIT_NV, PIPELINE_STAGE_MESH_SHADER_BIT_NV, PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_NONE, CommandPoolCreateFlag, COMMAND_POOL_CREATE_TRANSIENT_BIT, COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT, COMMAND_POOL_CREATE_PROTECTED_BIT, CommandPoolResetFlag, COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT, COMMAND_POOL_RESET_RESERVED_1_BIT_COREAVI, CommandBufferResetFlag, COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT, SampleCountFlag, SAMPLE_COUNT_1_BIT, SAMPLE_COUNT_2_BIT, SAMPLE_COUNT_4_BIT, SAMPLE_COUNT_8_BIT, SAMPLE_COUNT_16_BIT, SAMPLE_COUNT_32_BIT, SAMPLE_COUNT_64_BIT, AttachmentDescriptionFlag, ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, StencilFaceFlag, STENCIL_FACE_FRONT_BIT, STENCIL_FACE_BACK_BIT, STENCIL_FACE_FRONT_AND_BACK, DescriptorPoolCreateFlag, DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT, DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE, DependencyFlag, DEPENDENCY_BY_REGION_BIT, DEPENDENCY_DEVICE_GROUP_BIT, DEPENDENCY_VIEW_LOCAL_BIT, SemaphoreWaitFlag, SEMAPHORE_WAIT_ANY_BIT, DisplayPlaneAlphaFlagKHR, DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR, DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR, DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR, CompositeAlphaFlagKHR, COMPOSITE_ALPHA_OPAQUE_BIT_KHR, COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR, COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR, COMPOSITE_ALPHA_INHERIT_BIT_KHR, SurfaceTransformFlagKHR, SURFACE_TRANSFORM_IDENTITY_BIT_KHR, SURFACE_TRANSFORM_ROTATE_90_BIT_KHR, SURFACE_TRANSFORM_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR, SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR, SURFACE_TRANSFORM_INHERIT_BIT_KHR, DebugReportFlagEXT, DEBUG_REPORT_INFORMATION_BIT_EXT, DEBUG_REPORT_WARNING_BIT_EXT, DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT, DEBUG_REPORT_ERROR_BIT_EXT, DEBUG_REPORT_DEBUG_BIT_EXT, ExternalMemoryHandleTypeFlagNV, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV, ExternalMemoryFeatureFlagNV, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV, SubgroupFeatureFlag, SUBGROUP_FEATURE_BASIC_BIT, SUBGROUP_FEATURE_VOTE_BIT, SUBGROUP_FEATURE_ARITHMETIC_BIT, SUBGROUP_FEATURE_BALLOT_BIT, SUBGROUP_FEATURE_SHUFFLE_BIT, SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT, SUBGROUP_FEATURE_CLUSTERED_BIT, SUBGROUP_FEATURE_QUAD_BIT, SUBGROUP_FEATURE_PARTITIONED_BIT_NV, IndirectCommandsLayoutUsageFlagNV, INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV, INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV, IndirectStateFlagNV, INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV, PrivateDataSlotCreateFlag, DescriptorSetLayoutCreateFlag, DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT, DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR, DESCRIPTOR_SET_LAYOUT_CREATE_RESERVED_4_BIT_AMD, DESCRIPTOR_SET_LAYOUT_CREATE_RESERVED_3_BIT_AMD, DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE, ExternalMemoryHandleTypeFlag, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT, EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT, EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA, EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV, EXTERNAL_MEMORY_HANDLE_TYPE_RESERVED_13_BIT_NV, ExternalMemoryFeatureFlag, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT, ExternalSemaphoreHandleTypeFlag, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA, EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_5_BIT_NV, EXTERNAL_SEMAPHORE_HANDLE_TYPE_RESERVED_6_BIT_NV, ExternalSemaphoreFeatureFlag, EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT, EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT, SemaphoreImportFlag, SEMAPHORE_IMPORT_TEMPORARY_BIT, ExternalFenceHandleTypeFlag, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT, EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT, EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_4_BIT_NV, EXTERNAL_FENCE_HANDLE_TYPE_RESERVED_5_BIT_NV, ExternalFenceFeatureFlag, EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT, EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT, FenceImportFlag, FENCE_IMPORT_TEMPORARY_BIT, SurfaceCounterFlagEXT, SURFACE_COUNTER_VBLANK_BIT_EXT, PeerMemoryFeatureFlag, PEER_MEMORY_FEATURE_COPY_SRC_BIT, PEER_MEMORY_FEATURE_COPY_DST_BIT, PEER_MEMORY_FEATURE_GENERIC_SRC_BIT, PEER_MEMORY_FEATURE_GENERIC_DST_BIT, MemoryAllocateFlag, MEMORY_ALLOCATE_DEVICE_MASK_BIT, MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT, MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT, DeviceGroupPresentModeFlagKHR, DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR, DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR, SwapchainCreateFlagKHR, SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR, SWAPCHAIN_CREATE_PROTECTED_BIT_KHR, SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR, SubpassDescriptionFlag, SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX, SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX, SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM, SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM, SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_BIT_ARM, SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM, SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM, DebugUtilsMessageSeverityFlagEXT, DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT, DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT, DebugUtilsMessageTypeFlagEXT, DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT, DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT, DescriptorBindingFlag, DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT, DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT, DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT, DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT, DESCRIPTOR_BINDING_RESERVED_4_BIT_QCOM, ConditionalRenderingFlagEXT, CONDITIONAL_RENDERING_INVERTED_BIT_EXT, ResolveModeFlag, RESOLVE_MODE_SAMPLE_ZERO_BIT, RESOLVE_MODE_AVERAGE_BIT, RESOLVE_MODE_MIN_BIT, RESOLVE_MODE_MAX_BIT, RESOLVE_MODE_NONE, GeometryInstanceFlagKHR, GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR, GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR, GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR, GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR, GeometryFlagKHR, GEOMETRY_OPAQUE_BIT_KHR, GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR, BuildAccelerationStructureFlagKHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV, AccelerationStructureCreateFlagKHR, ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR, ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV, FramebufferCreateFlag, FRAMEBUFFER_CREATE_IMAGELESS_BIT, DeviceDiagnosticsConfigFlagNV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV, DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV, PipelineCreationFeedbackFlag, PIPELINE_CREATION_FEEDBACK_VALID_BIT, PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT, PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT, PerformanceCounterDescriptionFlagKHR, PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR, PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR, AcquireProfilingLockFlagKHR, ShaderCorePropertiesFlagAMD, ShaderModuleCreateFlag, SHADER_MODULE_CREATE_RESERVED_0_BIT_NV, PipelineCompilerControlFlagAMD, ToolPurposeFlag, TOOL_PURPOSE_VALIDATION_BIT, TOOL_PURPOSE_PROFILING_BIT, TOOL_PURPOSE_TRACING_BIT, TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT, TOOL_PURPOSE_MODIFYING_FEATURES_BIT, TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT, TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT, AccessFlag2, ACCESS_2_INDIRECT_COMMAND_READ_BIT, ACCESS_2_INDEX_READ_BIT, ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT, ACCESS_2_UNIFORM_READ_BIT, ACCESS_2_INPUT_ATTACHMENT_READ_BIT, ACCESS_2_SHADER_READ_BIT, ACCESS_2_SHADER_WRITE_BIT, ACCESS_2_COLOR_ATTACHMENT_READ_BIT, ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT, ACCESS_2_TRANSFER_READ_BIT, ACCESS_2_TRANSFER_WRITE_BIT, ACCESS_2_HOST_READ_BIT, ACCESS_2_HOST_WRITE_BIT, ACCESS_2_MEMORY_READ_BIT, ACCESS_2_MEMORY_WRITE_BIT, ACCESS_2_SHADER_SAMPLED_READ_BIT, ACCESS_2_SHADER_STORAGE_READ_BIT, ACCESS_2_SHADER_STORAGE_WRITE_BIT, ACCESS_2_VIDEO_DECODE_READ_BIT_KHR, ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR, ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR, ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR, ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT, ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT, ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT, ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT, ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV, ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV, ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR, ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR, ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR, ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT, ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT, ACCESS_2_RESERVED_41_BIT_AMD, ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI, ACCESS_2_RESERVED_387_BIT_KHR, ACCESS_2_NONE, PipelineStageFlag2, PIPELINE_STAGE_2_TOP_OF_PIPE_BIT, PIPELINE_STAGE_2_DRAW_INDIRECT_BIT, PIPELINE_STAGE_2_VERTEX_INPUT_BIT, PIPELINE_STAGE_2_VERTEX_SHADER_BIT, PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT, PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT, PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT, PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT, PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT, PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT, PIPELINE_STAGE_2_COMPUTE_SHADER_BIT, PIPELINE_STAGE_2_ALL_TRANSFER_BIT, PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT, PIPELINE_STAGE_2_HOST_BIT, PIPELINE_STAGE_2_ALL_GRAPHICS_BIT, PIPELINE_STAGE_2_ALL_COMMANDS_BIT, PIPELINE_STAGE_2_COPY_BIT, PIPELINE_STAGE_2_RESOLVE_BIT, PIPELINE_STAGE_2_BLIT_BIT, PIPELINE_STAGE_2_CLEAR_BIT, PIPELINE_STAGE_2_INDEX_INPUT_BIT, PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT, PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT, PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR, PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR, PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT, PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT, PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV, PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR, PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR, PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT, PIPELINE_STAGE_2_TASK_SHADER_BIT_NV, PIPELINE_STAGE_2_MESH_SHADER_BIT_NV, PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI, PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI, PIPELINE_STAGE_2_RESERVED_387_BIT_KHR, PIPELINE_STAGE_2_NONE, SubmitFlag, SUBMIT_PROTECTED_BIT, EventCreateFlag, EVENT_CREATE_DEVICE_ONLY_BIT, PipelineLayoutCreateFlag, PIPELINE_LAYOUT_CREATE_RESERVED_0_BIT_AMD, PIPELINE_LAYOUT_CREATE_RESERVED_1_BIT_AMD, PipelineColorBlendStateCreateFlag, PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_ARM, PipelineDepthStencilStateCreateFlag, PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM, PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM, ImageFormatConstraintsFlagFUCHSIA, FormatFeatureFlag2, FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT, FORMAT_FEATURE_2_STORAGE_IMAGE_BIT, FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT, FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT, FORMAT_FEATURE_2_VERTEX_BUFFER_BIT, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT, FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT, FORMAT_FEATURE_2_BLIT_SRC_BIT, FORMAT_FEATURE_2_BLIT_DST_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT, FORMAT_FEATURE_2_TRANSFER_SRC_BIT, FORMAT_FEATURE_2_TRANSFER_DST_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT, FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT, FORMAT_FEATURE_2_DISJOINT_BIT, FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT, FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT, FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT, FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT, FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_BIT_KHR, FORMAT_FEATURE_2_VIDEO_DECODE_DPB_BIT_KHR, FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT, FORMAT_FEATURE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR, FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR, FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV, FORMAT_FEATURE_2_RESERVED_34_BIT_QCOM, FORMAT_FEATURE_2_RESERVED_35_BIT_QCOM, FORMAT_FEATURE_2_RESERVED_36_BIT_QCOM, FORMAT_FEATURE_2_RESERVED_37_BIT_QCOM, RenderingFlag, RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT, RENDERING_SUSPENDING_BIT, RENDERING_RESUMING_BIT, Instance, PhysicalDevice, Device, Queue, CommandBuffer, DeviceMemory, CommandPool, Buffer, BufferView, Image, ImageView, ShaderModule, Pipeline, PipelineLayout, Sampler, DescriptorSet, DescriptorSetLayout, DescriptorPool, Fence, Semaphore, Event, QueryPool, Framebuffer, RenderPass, PipelineCache, IndirectCommandsLayoutNV, DescriptorUpdateTemplate, SamplerYcbcrConversion, ValidationCacheEXT, AccelerationStructureKHR, AccelerationStructureNV, PerformanceConfigurationINTEL, DeferredOperationKHR, PrivateDataSlot, CuModuleNVX, CuFunctionNVX, DisplayKHR, DisplayModeKHR, SurfaceKHR, SwapchainKHR, DebugReportCallbackEXT, DebugUtilsMessengerEXT, _BaseOutStructure, _BaseInStructure, _Offset2D, _Offset3D, _Extent2D, _Extent3D, _Viewport, _Rect2D, _ClearRect, _ComponentMapping, _PhysicalDeviceProperties, _ExtensionProperties, _LayerProperties, _ApplicationInfo, _AllocationCallbacks, _DeviceQueueCreateInfo, _DeviceCreateInfo, _InstanceCreateInfo, _QueueFamilyProperties, _PhysicalDeviceMemoryProperties, _MemoryAllocateInfo, _MemoryRequirements, _SparseImageFormatProperties, _SparseImageMemoryRequirements, _MemoryType, _MemoryHeap, _MappedMemoryRange, _FormatProperties, _ImageFormatProperties, _DescriptorBufferInfo, _DescriptorImageInfo, _WriteDescriptorSet, _CopyDescriptorSet, _BufferCreateInfo, _BufferViewCreateInfo, _ImageSubresource, _ImageSubresourceLayers, _ImageSubresourceRange, _MemoryBarrier, _BufferMemoryBarrier, _ImageMemoryBarrier, _ImageCreateInfo, _SubresourceLayout, _ImageViewCreateInfo, _BufferCopy, _SparseMemoryBind, _SparseImageMemoryBind, _SparseBufferMemoryBindInfo, _SparseImageOpaqueMemoryBindInfo, _SparseImageMemoryBindInfo, _BindSparseInfo, _ImageCopy, _ImageBlit, _BufferImageCopy, _ImageResolve, _ShaderModuleCreateInfo, _DescriptorSetLayoutBinding, _DescriptorSetLayoutCreateInfo, _DescriptorPoolSize, _DescriptorPoolCreateInfo, _DescriptorSetAllocateInfo, _SpecializationMapEntry, _SpecializationInfo, _PipelineShaderStageCreateInfo, _ComputePipelineCreateInfo, _VertexInputBindingDescription, _VertexInputAttributeDescription, _PipelineVertexInputStateCreateInfo, _PipelineInputAssemblyStateCreateInfo, _PipelineTessellationStateCreateInfo, _PipelineViewportStateCreateInfo, _PipelineRasterizationStateCreateInfo, _PipelineMultisampleStateCreateInfo, _PipelineColorBlendAttachmentState, _PipelineColorBlendStateCreateInfo, _PipelineDynamicStateCreateInfo, _StencilOpState, _PipelineDepthStencilStateCreateInfo, _GraphicsPipelineCreateInfo, _PipelineCacheCreateInfo, _PipelineCacheHeaderVersionOne, _PushConstantRange, _PipelineLayoutCreateInfo, _SamplerCreateInfo, _CommandPoolCreateInfo, _CommandBufferAllocateInfo, _CommandBufferInheritanceInfo, _CommandBufferBeginInfo, _RenderPassBeginInfo, _ClearDepthStencilValue, _ClearAttachment, _AttachmentDescription, _AttachmentReference, _SubpassDescription, _SubpassDependency, _RenderPassCreateInfo, _EventCreateInfo, _FenceCreateInfo, _PhysicalDeviceFeatures, _PhysicalDeviceSparseProperties, _PhysicalDeviceLimits, _SemaphoreCreateInfo, _QueryPoolCreateInfo, _FramebufferCreateInfo, _DrawIndirectCommand, _DrawIndexedIndirectCommand, _DispatchIndirectCommand, _MultiDrawInfoEXT, _MultiDrawIndexedInfoEXT, _SubmitInfo, _DisplayPropertiesKHR, _DisplayPlanePropertiesKHR, _DisplayModeParametersKHR, _DisplayModePropertiesKHR, _DisplayModeCreateInfoKHR, _DisplayPlaneCapabilitiesKHR, _DisplaySurfaceCreateInfoKHR, _DisplayPresentInfoKHR, _SurfaceCapabilitiesKHR, _Win32SurfaceCreateInfoKHR, _SurfaceFormatKHR, _SwapchainCreateInfoKHR, _PresentInfoKHR, _DebugReportCallbackCreateInfoEXT, _ValidationFlagsEXT, _ValidationFeaturesEXT, _PipelineRasterizationStateRasterizationOrderAMD, _DebugMarkerObjectNameInfoEXT, _DebugMarkerObjectTagInfoEXT, _DebugMarkerMarkerInfoEXT, _DedicatedAllocationImageCreateInfoNV, _DedicatedAllocationBufferCreateInfoNV, _DedicatedAllocationMemoryAllocateInfoNV, _ExternalImageFormatPropertiesNV, _ExternalMemoryImageCreateInfoNV, _ExportMemoryAllocateInfoNV, _ImportMemoryWin32HandleInfoNV, _ExportMemoryWin32HandleInfoNV, _Win32KeyedMutexAcquireReleaseInfoNV, _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, _DevicePrivateDataCreateInfo, _PrivateDataSlotCreateInfo, _PhysicalDevicePrivateDataFeatures, _PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, _PhysicalDeviceMultiDrawPropertiesEXT, _GraphicsShaderGroupCreateInfoNV, _GraphicsPipelineShaderGroupsCreateInfoNV, _BindShaderGroupIndirectCommandNV, _BindIndexBufferIndirectCommandNV, _BindVertexBufferIndirectCommandNV, _SetStateFlagsIndirectCommandNV, _IndirectCommandsStreamNV, _IndirectCommandsLayoutTokenNV, _IndirectCommandsLayoutCreateInfoNV, _GeneratedCommandsInfoNV, _GeneratedCommandsMemoryRequirementsInfoNV, _PhysicalDeviceFeatures2, _PhysicalDeviceProperties2, _FormatProperties2, _ImageFormatProperties2, _PhysicalDeviceImageFormatInfo2, _QueueFamilyProperties2, _PhysicalDeviceMemoryProperties2, _SparseImageFormatProperties2, _PhysicalDeviceSparseImageFormatInfo2, _PhysicalDevicePushDescriptorPropertiesKHR, _ConformanceVersion, _PhysicalDeviceDriverProperties, _PresentRegionsKHR, _PresentRegionKHR, _RectLayerKHR, _PhysicalDeviceVariablePointersFeatures, _ExternalMemoryProperties, _PhysicalDeviceExternalImageFormatInfo, _ExternalImageFormatProperties, _PhysicalDeviceExternalBufferInfo, _ExternalBufferProperties, _PhysicalDeviceIDProperties, _ExternalMemoryImageCreateInfo, _ExternalMemoryBufferCreateInfo, _ExportMemoryAllocateInfo, _ImportMemoryWin32HandleInfoKHR, _ExportMemoryWin32HandleInfoKHR, _MemoryWin32HandlePropertiesKHR, _MemoryGetWin32HandleInfoKHR, _ImportMemoryFdInfoKHR, _MemoryFdPropertiesKHR, _MemoryGetFdInfoKHR, _Win32KeyedMutexAcquireReleaseInfoKHR, _PhysicalDeviceExternalSemaphoreInfo, _ExternalSemaphoreProperties, _ExportSemaphoreCreateInfo, _ImportSemaphoreWin32HandleInfoKHR, _ExportSemaphoreWin32HandleInfoKHR, _D3D12FenceSubmitInfoKHR, _SemaphoreGetWin32HandleInfoKHR, _ImportSemaphoreFdInfoKHR, _SemaphoreGetFdInfoKHR, _PhysicalDeviceExternalFenceInfo, _ExternalFenceProperties, _ExportFenceCreateInfo, _ImportFenceWin32HandleInfoKHR, _ExportFenceWin32HandleInfoKHR, _FenceGetWin32HandleInfoKHR, _ImportFenceFdInfoKHR, _FenceGetFdInfoKHR, _PhysicalDeviceMultiviewFeatures, _PhysicalDeviceMultiviewProperties, _RenderPassMultiviewCreateInfo, _SurfaceCapabilities2EXT, _DisplayPowerInfoEXT, _DeviceEventInfoEXT, _DisplayEventInfoEXT, _SwapchainCounterCreateInfoEXT, _PhysicalDeviceGroupProperties, _MemoryAllocateFlagsInfo, _BindBufferMemoryInfo, _BindBufferMemoryDeviceGroupInfo, _BindImageMemoryInfo, _BindImageMemoryDeviceGroupInfo, _DeviceGroupRenderPassBeginInfo, _DeviceGroupCommandBufferBeginInfo, _DeviceGroupSubmitInfo, _DeviceGroupBindSparseInfo, _DeviceGroupPresentCapabilitiesKHR, _ImageSwapchainCreateInfoKHR, _BindImageMemorySwapchainInfoKHR, _AcquireNextImageInfoKHR, _DeviceGroupPresentInfoKHR, _DeviceGroupDeviceCreateInfo, _DeviceGroupSwapchainCreateInfoKHR, _DescriptorUpdateTemplateEntry, _DescriptorUpdateTemplateCreateInfo, _XYColorEXT, _PhysicalDevicePresentIdFeaturesKHR, _PresentIdKHR, _PhysicalDevicePresentWaitFeaturesKHR, _HdrMetadataEXT, _DisplayNativeHdrSurfaceCapabilitiesAMD, _SwapchainDisplayNativeHdrCreateInfoAMD, _RefreshCycleDurationGOOGLE, _PastPresentationTimingGOOGLE, _PresentTimesInfoGOOGLE, _PresentTimeGOOGLE, _ViewportWScalingNV, _PipelineViewportWScalingStateCreateInfoNV, _ViewportSwizzleNV, _PipelineViewportSwizzleStateCreateInfoNV, _PhysicalDeviceDiscardRectanglePropertiesEXT, _PipelineDiscardRectangleStateCreateInfoEXT, _PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, _InputAttachmentAspectReference, _RenderPassInputAttachmentAspectCreateInfo, _PhysicalDeviceSurfaceInfo2KHR, _SurfaceCapabilities2KHR, _SurfaceFormat2KHR, _DisplayProperties2KHR, _DisplayPlaneProperties2KHR, _DisplayModeProperties2KHR, _DisplayPlaneInfo2KHR, _DisplayPlaneCapabilities2KHR, _SharedPresentSurfaceCapabilitiesKHR, _PhysicalDevice16BitStorageFeatures, _PhysicalDeviceSubgroupProperties, _PhysicalDeviceShaderSubgroupExtendedTypesFeatures, _BufferMemoryRequirementsInfo2, _DeviceBufferMemoryRequirements, _ImageMemoryRequirementsInfo2, _ImageSparseMemoryRequirementsInfo2, _DeviceImageMemoryRequirements, _MemoryRequirements2, _SparseImageMemoryRequirements2, _PhysicalDevicePointClippingProperties, _MemoryDedicatedRequirements, _MemoryDedicatedAllocateInfo, _ImageViewUsageCreateInfo, _PipelineTessellationDomainOriginStateCreateInfo, _SamplerYcbcrConversionInfo, _SamplerYcbcrConversionCreateInfo, _BindImagePlaneMemoryInfo, _ImagePlaneMemoryRequirementsInfo, _PhysicalDeviceSamplerYcbcrConversionFeatures, _SamplerYcbcrConversionImageFormatProperties, _TextureLODGatherFormatPropertiesAMD, _ConditionalRenderingBeginInfoEXT, _ProtectedSubmitInfo, _PhysicalDeviceProtectedMemoryFeatures, _PhysicalDeviceProtectedMemoryProperties, _DeviceQueueInfo2, _PipelineCoverageToColorStateCreateInfoNV, _PhysicalDeviceSamplerFilterMinmaxProperties, _SampleLocationEXT, _SampleLocationsInfoEXT, _AttachmentSampleLocationsEXT, _SubpassSampleLocationsEXT, _RenderPassSampleLocationsBeginInfoEXT, _PipelineSampleLocationsStateCreateInfoEXT, _PhysicalDeviceSampleLocationsPropertiesEXT, _MultisamplePropertiesEXT, _SamplerReductionModeCreateInfo, _PhysicalDeviceBlendOperationAdvancedFeaturesEXT, _PhysicalDeviceMultiDrawFeaturesEXT, _PhysicalDeviceBlendOperationAdvancedPropertiesEXT, _PipelineColorBlendAdvancedStateCreateInfoEXT, _PhysicalDeviceInlineUniformBlockFeatures, _PhysicalDeviceInlineUniformBlockProperties, _WriteDescriptorSetInlineUniformBlock, _DescriptorPoolInlineUniformBlockCreateInfo, _PipelineCoverageModulationStateCreateInfoNV, _ImageFormatListCreateInfo, _ValidationCacheCreateInfoEXT, _ShaderModuleValidationCacheCreateInfoEXT, _PhysicalDeviceMaintenance3Properties, _PhysicalDeviceMaintenance4Features, _PhysicalDeviceMaintenance4Properties, _DescriptorSetLayoutSupport, _PhysicalDeviceShaderDrawParametersFeatures, _PhysicalDeviceShaderFloat16Int8Features, _PhysicalDeviceFloatControlsProperties, _PhysicalDeviceHostQueryResetFeatures, _ShaderResourceUsageAMD, _ShaderStatisticsInfoAMD, _DeviceQueueGlobalPriorityCreateInfoKHR, _PhysicalDeviceGlobalPriorityQueryFeaturesKHR, _QueueFamilyGlobalPriorityPropertiesKHR, _DebugUtilsObjectNameInfoEXT, _DebugUtilsObjectTagInfoEXT, _DebugUtilsLabelEXT, _DebugUtilsMessengerCreateInfoEXT, _DebugUtilsMessengerCallbackDataEXT, _PhysicalDeviceDeviceMemoryReportFeaturesEXT, _DeviceDeviceMemoryReportCreateInfoEXT, _DeviceMemoryReportCallbackDataEXT, _ImportMemoryHostPointerInfoEXT, _MemoryHostPointerPropertiesEXT, _PhysicalDeviceExternalMemoryHostPropertiesEXT, _PhysicalDeviceConservativeRasterizationPropertiesEXT, _CalibratedTimestampInfoEXT, _PhysicalDeviceShaderCorePropertiesAMD, _PhysicalDeviceShaderCoreProperties2AMD, _PipelineRasterizationConservativeStateCreateInfoEXT, _PhysicalDeviceDescriptorIndexingFeatures, _PhysicalDeviceDescriptorIndexingProperties, _DescriptorSetLayoutBindingFlagsCreateInfo, _DescriptorSetVariableDescriptorCountAllocateInfo, _DescriptorSetVariableDescriptorCountLayoutSupport, _AttachmentDescription2, _AttachmentReference2, _SubpassDescription2, _SubpassDependency2, _RenderPassCreateInfo2, _SubpassBeginInfo, _SubpassEndInfo, _PhysicalDeviceTimelineSemaphoreFeatures, _PhysicalDeviceTimelineSemaphoreProperties, _SemaphoreTypeCreateInfo, _TimelineSemaphoreSubmitInfo, _SemaphoreWaitInfo, _SemaphoreSignalInfo, _VertexInputBindingDivisorDescriptionEXT, _PipelineVertexInputDivisorStateCreateInfoEXT, _PhysicalDeviceVertexAttributeDivisorPropertiesEXT, _PhysicalDevicePCIBusInfoPropertiesEXT, _CommandBufferInheritanceConditionalRenderingInfoEXT, _PhysicalDevice8BitStorageFeatures, _PhysicalDeviceConditionalRenderingFeaturesEXT, _PhysicalDeviceVulkanMemoryModelFeatures, _PhysicalDeviceShaderAtomicInt64Features, _PhysicalDeviceShaderAtomicFloatFeaturesEXT, _PhysicalDeviceShaderAtomicFloat2FeaturesEXT, _PhysicalDeviceVertexAttributeDivisorFeaturesEXT, _QueueFamilyCheckpointPropertiesNV, _CheckpointDataNV, _PhysicalDeviceDepthStencilResolveProperties, _SubpassDescriptionDepthStencilResolve, _ImageViewASTCDecodeModeEXT, _PhysicalDeviceASTCDecodeFeaturesEXT, _PhysicalDeviceTransformFeedbackFeaturesEXT, _PhysicalDeviceTransformFeedbackPropertiesEXT, _PipelineRasterizationStateStreamCreateInfoEXT, _PhysicalDeviceRepresentativeFragmentTestFeaturesNV, _PipelineRepresentativeFragmentTestStateCreateInfoNV, _PhysicalDeviceExclusiveScissorFeaturesNV, _PipelineViewportExclusiveScissorStateCreateInfoNV, _PhysicalDeviceCornerSampledImageFeaturesNV, _PhysicalDeviceComputeShaderDerivativesFeaturesNV, _PhysicalDeviceFragmentShaderBarycentricFeaturesNV, _PhysicalDeviceShaderImageFootprintFeaturesNV, _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, _ShadingRatePaletteNV, _PipelineViewportShadingRateImageStateCreateInfoNV, _PhysicalDeviceShadingRateImageFeaturesNV, _PhysicalDeviceShadingRateImagePropertiesNV, _PhysicalDeviceInvocationMaskFeaturesHUAWEI, _CoarseSampleLocationNV, _CoarseSampleOrderCustomNV, _PipelineViewportCoarseSampleOrderStateCreateInfoNV, _PhysicalDeviceMeshShaderFeaturesNV, _PhysicalDeviceMeshShaderPropertiesNV, _DrawMeshTasksIndirectCommandNV, _RayTracingShaderGroupCreateInfoNV, _RayTracingShaderGroupCreateInfoKHR, _RayTracingPipelineCreateInfoNV, _RayTracingPipelineCreateInfoKHR, _GeometryTrianglesNV, _GeometryAABBNV, _GeometryDataNV, _GeometryNV, _AccelerationStructureInfoNV, _AccelerationStructureCreateInfoNV, _BindAccelerationStructureMemoryInfoNV, _WriteDescriptorSetAccelerationStructureKHR, _WriteDescriptorSetAccelerationStructureNV, _AccelerationStructureMemoryRequirementsInfoNV, _PhysicalDeviceAccelerationStructureFeaturesKHR, _PhysicalDeviceRayTracingPipelineFeaturesKHR, _PhysicalDeviceRayQueryFeaturesKHR, _PhysicalDeviceAccelerationStructurePropertiesKHR, _PhysicalDeviceRayTracingPipelinePropertiesKHR, _PhysicalDeviceRayTracingPropertiesNV, _StridedDeviceAddressRegionKHR, _TraceRaysIndirectCommandKHR, _DrmFormatModifierPropertiesListEXT, _DrmFormatModifierPropertiesEXT, _PhysicalDeviceImageDrmFormatModifierInfoEXT, _ImageDrmFormatModifierListCreateInfoEXT, _ImageDrmFormatModifierExplicitCreateInfoEXT, _ImageDrmFormatModifierPropertiesEXT, _ImageStencilUsageCreateInfo, _DeviceMemoryOverallocationCreateInfoAMD, _PhysicalDeviceFragmentDensityMapFeaturesEXT, _PhysicalDeviceFragmentDensityMap2FeaturesEXT, _PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM, _PhysicalDeviceFragmentDensityMapPropertiesEXT, _PhysicalDeviceFragmentDensityMap2PropertiesEXT, _PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM, _RenderPassFragmentDensityMapCreateInfoEXT, _SubpassFragmentDensityMapOffsetEndInfoQCOM, _PhysicalDeviceScalarBlockLayoutFeatures, _SurfaceProtectedCapabilitiesKHR, _PhysicalDeviceUniformBufferStandardLayoutFeatures, _PhysicalDeviceDepthClipEnableFeaturesEXT, _PipelineRasterizationDepthClipStateCreateInfoEXT, _PhysicalDeviceMemoryBudgetPropertiesEXT, _PhysicalDeviceMemoryPriorityFeaturesEXT, _MemoryPriorityAllocateInfoEXT, _PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT, _PhysicalDeviceBufferDeviceAddressFeatures, _PhysicalDeviceBufferDeviceAddressFeaturesEXT, _BufferDeviceAddressInfo, _BufferOpaqueCaptureAddressCreateInfo, _BufferDeviceAddressCreateInfoEXT, _PhysicalDeviceImageViewImageFormatInfoEXT, _FilterCubicImageViewImageFormatPropertiesEXT, _PhysicalDeviceImagelessFramebufferFeatures, _FramebufferAttachmentsCreateInfo, _FramebufferAttachmentImageInfo, _RenderPassAttachmentBeginInfo, _PhysicalDeviceTextureCompressionASTCHDRFeatures, _PhysicalDeviceCooperativeMatrixFeaturesNV, _PhysicalDeviceCooperativeMatrixPropertiesNV, _CooperativeMatrixPropertiesNV, _PhysicalDeviceYcbcrImageArraysFeaturesEXT, _ImageViewHandleInfoNVX, _ImageViewAddressPropertiesNVX, _PipelineCreationFeedback, _PipelineCreationFeedbackCreateInfo, _SurfaceFullScreenExclusiveInfoEXT, _SurfaceFullScreenExclusiveWin32InfoEXT, _SurfaceCapabilitiesFullScreenExclusiveEXT, _PhysicalDevicePerformanceQueryFeaturesKHR, _PhysicalDevicePerformanceQueryPropertiesKHR, _PerformanceCounterKHR, _PerformanceCounterDescriptionKHR, _QueryPoolPerformanceCreateInfoKHR, _AcquireProfilingLockInfoKHR, _PerformanceQuerySubmitInfoKHR, _HeadlessSurfaceCreateInfoEXT, _PhysicalDeviceCoverageReductionModeFeaturesNV, _PipelineCoverageReductionStateCreateInfoNV, _FramebufferMixedSamplesCombinationNV, _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, _PerformanceValueINTEL, _InitializePerformanceApiInfoINTEL, _QueryPoolPerformanceQueryCreateInfoINTEL, _PerformanceMarkerInfoINTEL, _PerformanceStreamMarkerInfoINTEL, _PerformanceOverrideInfoINTEL, _PerformanceConfigurationAcquireInfoINTEL, _PhysicalDeviceShaderClockFeaturesKHR, _PhysicalDeviceIndexTypeUint8FeaturesEXT, _PhysicalDeviceShaderSMBuiltinsPropertiesNV, _PhysicalDeviceShaderSMBuiltinsFeaturesNV, _PhysicalDeviceFragmentShaderInterlockFeaturesEXT, _PhysicalDeviceSeparateDepthStencilLayoutsFeatures, _AttachmentReferenceStencilLayout, _PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT, _AttachmentDescriptionStencilLayout, _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, _PipelineInfoKHR, _PipelineExecutablePropertiesKHR, _PipelineExecutableInfoKHR, _PipelineExecutableStatisticKHR, _PipelineExecutableInternalRepresentationKHR, _PhysicalDeviceShaderDemoteToHelperInvocationFeatures, _PhysicalDeviceTexelBufferAlignmentFeaturesEXT, _PhysicalDeviceTexelBufferAlignmentProperties, _PhysicalDeviceSubgroupSizeControlFeatures, _PhysicalDeviceSubgroupSizeControlProperties, _PipelineShaderStageRequiredSubgroupSizeCreateInfo, _SubpassShadingPipelineCreateInfoHUAWEI, _PhysicalDeviceSubpassShadingPropertiesHUAWEI, _MemoryOpaqueCaptureAddressAllocateInfo, _DeviceMemoryOpaqueCaptureAddressInfo, _PhysicalDeviceLineRasterizationFeaturesEXT, _PhysicalDeviceLineRasterizationPropertiesEXT, _PipelineRasterizationLineStateCreateInfoEXT, _PhysicalDevicePipelineCreationCacheControlFeatures, _PhysicalDeviceVulkan11Features, _PhysicalDeviceVulkan11Properties, _PhysicalDeviceVulkan12Features, _PhysicalDeviceVulkan12Properties, _PhysicalDeviceVulkan13Features, _PhysicalDeviceVulkan13Properties, _PipelineCompilerControlCreateInfoAMD, _PhysicalDeviceCoherentMemoryFeaturesAMD, _PhysicalDeviceToolProperties, _SamplerCustomBorderColorCreateInfoEXT, _PhysicalDeviceCustomBorderColorPropertiesEXT, _PhysicalDeviceCustomBorderColorFeaturesEXT, _SamplerBorderColorComponentMappingCreateInfoEXT, _PhysicalDeviceBorderColorSwizzleFeaturesEXT, _AccelerationStructureGeometryTrianglesDataKHR, _AccelerationStructureGeometryAabbsDataKHR, _AccelerationStructureGeometryInstancesDataKHR, _AccelerationStructureGeometryKHR, _AccelerationStructureBuildGeometryInfoKHR, _AccelerationStructureBuildRangeInfoKHR, _AccelerationStructureCreateInfoKHR, _AabbPositionsKHR, _TransformMatrixKHR, _AccelerationStructureInstanceKHR, _AccelerationStructureDeviceAddressInfoKHR, _AccelerationStructureVersionInfoKHR, _CopyAccelerationStructureInfoKHR, _CopyAccelerationStructureToMemoryInfoKHR, _CopyMemoryToAccelerationStructureInfoKHR, _RayTracingPipelineInterfaceCreateInfoKHR, _PipelineLibraryCreateInfoKHR, _PhysicalDeviceExtendedDynamicStateFeaturesEXT, _PhysicalDeviceExtendedDynamicState2FeaturesEXT, _RenderPassTransformBeginInfoQCOM, _CopyCommandTransformInfoQCOM, _CommandBufferInheritanceRenderPassTransformInfoQCOM, _PhysicalDeviceDiagnosticsConfigFeaturesNV, _DeviceDiagnosticsConfigCreateInfoNV, _PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures, _PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR, _PhysicalDeviceRobustness2FeaturesEXT, _PhysicalDeviceRobustness2PropertiesEXT, _PhysicalDeviceImageRobustnessFeatures, _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, _PhysicalDevice4444FormatsFeaturesEXT, _PhysicalDeviceSubpassShadingFeaturesHUAWEI, _BufferCopy2, _ImageCopy2, _ImageBlit2, _BufferImageCopy2, _ImageResolve2, _CopyBufferInfo2, _CopyImageInfo2, _BlitImageInfo2, _CopyBufferToImageInfo2, _CopyImageToBufferInfo2, _ResolveImageInfo2, _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, _FragmentShadingRateAttachmentInfoKHR, _PipelineFragmentShadingRateStateCreateInfoKHR, _PhysicalDeviceFragmentShadingRateFeaturesKHR, _PhysicalDeviceFragmentShadingRatePropertiesKHR, _PhysicalDeviceFragmentShadingRateKHR, _PhysicalDeviceShaderTerminateInvocationFeatures, _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV, _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV, _PipelineFragmentShadingRateEnumStateCreateInfoNV, _AccelerationStructureBuildSizesInfoKHR, _PhysicalDeviceMutableDescriptorTypeFeaturesVALVE, _MutableDescriptorTypeListVALVE, _MutableDescriptorTypeCreateInfoVALVE, _PhysicalDeviceDepthClipControlFeaturesEXT, _PipelineViewportDepthClipControlCreateInfoEXT, _PhysicalDeviceVertexInputDynamicStateFeaturesEXT, _PhysicalDeviceExternalMemoryRDMAFeaturesNV, _VertexInputBindingDescription2EXT, _VertexInputAttributeDescription2EXT, _PhysicalDeviceColorWriteEnableFeaturesEXT, _PipelineColorWriteCreateInfoEXT, _MemoryBarrier2, _ImageMemoryBarrier2, _BufferMemoryBarrier2, _DependencyInfo, _SemaphoreSubmitInfo, _CommandBufferSubmitInfo, _SubmitInfo2, _QueueFamilyCheckpointProperties2NV, _CheckpointData2NV, _PhysicalDeviceSynchronization2Features, _PhysicalDeviceInheritedViewportScissorFeaturesNV, _CommandBufferInheritanceViewportScissorInfoNV, _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, _PhysicalDeviceProvokingVertexFeaturesEXT, _PhysicalDeviceProvokingVertexPropertiesEXT, _PipelineRasterizationProvokingVertexStateCreateInfoEXT, _CuModuleCreateInfoNVX, _CuFunctionCreateInfoNVX, _CuLaunchInfoNVX, _PhysicalDeviceShaderIntegerDotProductFeatures, _PhysicalDeviceShaderIntegerDotProductProperties, _PhysicalDeviceDrmPropertiesEXT, _PhysicalDeviceRayTracingMotionBlurFeaturesNV, _AccelerationStructureGeometryMotionTrianglesDataNV, _AccelerationStructureMotionInfoNV, _SRTDataNV, _AccelerationStructureSRTMotionInstanceNV, _AccelerationStructureMatrixMotionInstanceNV, _AccelerationStructureMotionInstanceNV, _MemoryGetRemoteAddressInfoNV, _PhysicalDeviceRGBA10X6FormatsFeaturesEXT, _FormatProperties3, _DrmFormatModifierPropertiesList2EXT, _DrmFormatModifierProperties2EXT, _PipelineRenderingCreateInfo, _RenderingInfo, _RenderingAttachmentInfo, _RenderingFragmentShadingRateAttachmentInfoKHR, _RenderingFragmentDensityMapAttachmentInfoEXT, _PhysicalDeviceDynamicRenderingFeatures, _CommandBufferInheritanceRenderingInfo, _AttachmentSampleCountInfoAMD, _MultiviewPerViewAttributesInfoNVX, _PhysicalDeviceImageViewMinLodFeaturesEXT, _ImageViewMinLodCreateInfoEXT, _PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM, _PhysicalDeviceLinearColorAttachmentFeaturesNV, _PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE, _DescriptorSetBindingReferenceVALVE, _DescriptorSetLayoutHostMappingInfoVALVE, _ClearColorValue, _ClearValue, _PerformanceCounterResultKHR, _PerformanceValueDataINTEL, _PipelineExecutableStatisticValueKHR, _DeviceOrHostAddressKHR, _DeviceOrHostAddressConstKHR, _AccelerationStructureGeometryDataKHR, _AccelerationStructureMotionInstanceDataNV, BaseOutStructure, BaseInStructure, Offset2D, Offset3D, Extent2D, Extent3D, Viewport, Rect2D, ClearRect, ComponentMapping, PhysicalDeviceProperties, ExtensionProperties, LayerProperties, ApplicationInfo, AllocationCallbacks, DeviceQueueCreateInfo, DeviceCreateInfo, InstanceCreateInfo, QueueFamilyProperties, PhysicalDeviceMemoryProperties, MemoryAllocateInfo, MemoryRequirements, SparseImageFormatProperties, SparseImageMemoryRequirements, MemoryType, MemoryHeap, MappedMemoryRange, FormatProperties, ImageFormatProperties, DescriptorBufferInfo, DescriptorImageInfo, WriteDescriptorSet, CopyDescriptorSet, BufferCreateInfo, BufferViewCreateInfo, ImageSubresource, ImageSubresourceLayers, ImageSubresourceRange, MemoryBarrier, BufferMemoryBarrier, ImageMemoryBarrier, ImageCreateInfo, SubresourceLayout, ImageViewCreateInfo, BufferCopy, SparseMemoryBind, SparseImageMemoryBind, SparseBufferMemoryBindInfo, SparseImageOpaqueMemoryBindInfo, SparseImageMemoryBindInfo, BindSparseInfo, ImageCopy, ImageBlit, BufferImageCopy, ImageResolve, ShaderModuleCreateInfo, DescriptorSetLayoutBinding, DescriptorSetLayoutCreateInfo, DescriptorPoolSize, DescriptorPoolCreateInfo, DescriptorSetAllocateInfo, SpecializationMapEntry, SpecializationInfo, PipelineShaderStageCreateInfo, ComputePipelineCreateInfo, VertexInputBindingDescription, VertexInputAttributeDescription, PipelineVertexInputStateCreateInfo, PipelineInputAssemblyStateCreateInfo, PipelineTessellationStateCreateInfo, PipelineViewportStateCreateInfo, PipelineRasterizationStateCreateInfo, PipelineMultisampleStateCreateInfo, PipelineColorBlendAttachmentState, PipelineColorBlendStateCreateInfo, PipelineDynamicStateCreateInfo, StencilOpState, PipelineDepthStencilStateCreateInfo, GraphicsPipelineCreateInfo, PipelineCacheCreateInfo, PipelineCacheHeaderVersionOne, PushConstantRange, PipelineLayoutCreateInfo, SamplerCreateInfo, CommandPoolCreateInfo, CommandBufferAllocateInfo, CommandBufferInheritanceInfo, CommandBufferBeginInfo, RenderPassBeginInfo, ClearDepthStencilValue, ClearAttachment, AttachmentDescription, AttachmentReference, SubpassDescription, SubpassDependency, RenderPassCreateInfo, EventCreateInfo, FenceCreateInfo, PhysicalDeviceFeatures, PhysicalDeviceSparseProperties, PhysicalDeviceLimits, SemaphoreCreateInfo, QueryPoolCreateInfo, FramebufferCreateInfo, DrawIndirectCommand, DrawIndexedIndirectCommand, DispatchIndirectCommand, MultiDrawInfoEXT, MultiDrawIndexedInfoEXT, SubmitInfo, DisplayPropertiesKHR, DisplayPlanePropertiesKHR, DisplayModeParametersKHR, DisplayModePropertiesKHR, DisplayModeCreateInfoKHR, DisplayPlaneCapabilitiesKHR, DisplaySurfaceCreateInfoKHR, DisplayPresentInfoKHR, SurfaceCapabilitiesKHR, Win32SurfaceCreateInfoKHR, SurfaceFormatKHR, SwapchainCreateInfoKHR, PresentInfoKHR, DebugReportCallbackCreateInfoEXT, ValidationFlagsEXT, ValidationFeaturesEXT, PipelineRasterizationStateRasterizationOrderAMD, DebugMarkerObjectNameInfoEXT, DebugMarkerObjectTagInfoEXT, DebugMarkerMarkerInfoEXT, DedicatedAllocationImageCreateInfoNV, DedicatedAllocationBufferCreateInfoNV, DedicatedAllocationMemoryAllocateInfoNV, ExternalImageFormatPropertiesNV, ExternalMemoryImageCreateInfoNV, ExportMemoryAllocateInfoNV, ImportMemoryWin32HandleInfoNV, ExportMemoryWin32HandleInfoNV, Win32KeyedMutexAcquireReleaseInfoNV, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, DevicePrivateDataCreateInfo, PrivateDataSlotCreateInfo, PhysicalDevicePrivateDataFeatures, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV, PhysicalDeviceMultiDrawPropertiesEXT, GraphicsShaderGroupCreateInfoNV, GraphicsPipelineShaderGroupsCreateInfoNV, BindShaderGroupIndirectCommandNV, BindIndexBufferIndirectCommandNV, BindVertexBufferIndirectCommandNV, SetStateFlagsIndirectCommandNV, IndirectCommandsStreamNV, IndirectCommandsLayoutTokenNV, IndirectCommandsLayoutCreateInfoNV, GeneratedCommandsInfoNV, GeneratedCommandsMemoryRequirementsInfoNV, PhysicalDeviceFeatures2, PhysicalDeviceProperties2, FormatProperties2, ImageFormatProperties2, PhysicalDeviceImageFormatInfo2, QueueFamilyProperties2, PhysicalDeviceMemoryProperties2, SparseImageFormatProperties2, PhysicalDeviceSparseImageFormatInfo2, PhysicalDevicePushDescriptorPropertiesKHR, ConformanceVersion, PhysicalDeviceDriverProperties, PresentRegionsKHR, PresentRegionKHR, RectLayerKHR, PhysicalDeviceVariablePointersFeatures, ExternalMemoryProperties, PhysicalDeviceExternalImageFormatInfo, ExternalImageFormatProperties, PhysicalDeviceExternalBufferInfo, ExternalBufferProperties, PhysicalDeviceIDProperties, ExternalMemoryImageCreateInfo, ExternalMemoryBufferCreateInfo, ExportMemoryAllocateInfo, ImportMemoryWin32HandleInfoKHR, ExportMemoryWin32HandleInfoKHR, MemoryWin32HandlePropertiesKHR, MemoryGetWin32HandleInfoKHR, ImportMemoryFdInfoKHR, MemoryFdPropertiesKHR, MemoryGetFdInfoKHR, Win32KeyedMutexAcquireReleaseInfoKHR, PhysicalDeviceExternalSemaphoreInfo, ExternalSemaphoreProperties, ExportSemaphoreCreateInfo, ImportSemaphoreWin32HandleInfoKHR, ExportSemaphoreWin32HandleInfoKHR, D3D12FenceSubmitInfoKHR, SemaphoreGetWin32HandleInfoKHR, ImportSemaphoreFdInfoKHR, SemaphoreGetFdInfoKHR, PhysicalDeviceExternalFenceInfo, ExternalFenceProperties, ExportFenceCreateInfo, ImportFenceWin32HandleInfoKHR, ExportFenceWin32HandleInfoKHR, FenceGetWin32HandleInfoKHR, ImportFenceFdInfoKHR, FenceGetFdInfoKHR, PhysicalDeviceMultiviewFeatures, PhysicalDeviceMultiviewProperties, RenderPassMultiviewCreateInfo, SurfaceCapabilities2EXT, DisplayPowerInfoEXT, DeviceEventInfoEXT, DisplayEventInfoEXT, SwapchainCounterCreateInfoEXT, PhysicalDeviceGroupProperties, MemoryAllocateFlagsInfo, BindBufferMemoryInfo, BindBufferMemoryDeviceGroupInfo, BindImageMemoryInfo, BindImageMemoryDeviceGroupInfo, DeviceGroupRenderPassBeginInfo, DeviceGroupCommandBufferBeginInfo, DeviceGroupSubmitInfo, DeviceGroupBindSparseInfo, DeviceGroupPresentCapabilitiesKHR, ImageSwapchainCreateInfoKHR, BindImageMemorySwapchainInfoKHR, AcquireNextImageInfoKHR, DeviceGroupPresentInfoKHR, DeviceGroupDeviceCreateInfo, DeviceGroupSwapchainCreateInfoKHR, DescriptorUpdateTemplateEntry, DescriptorUpdateTemplateCreateInfo, XYColorEXT, PhysicalDevicePresentIdFeaturesKHR, PresentIdKHR, PhysicalDevicePresentWaitFeaturesKHR, HdrMetadataEXT, DisplayNativeHdrSurfaceCapabilitiesAMD, SwapchainDisplayNativeHdrCreateInfoAMD, RefreshCycleDurationGOOGLE, PastPresentationTimingGOOGLE, PresentTimesInfoGOOGLE, PresentTimeGOOGLE, ViewportWScalingNV, PipelineViewportWScalingStateCreateInfoNV, ViewportSwizzleNV, PipelineViewportSwizzleStateCreateInfoNV, PhysicalDeviceDiscardRectanglePropertiesEXT, PipelineDiscardRectangleStateCreateInfoEXT, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, InputAttachmentAspectReference, RenderPassInputAttachmentAspectCreateInfo, PhysicalDeviceSurfaceInfo2KHR, SurfaceCapabilities2KHR, SurfaceFormat2KHR, DisplayProperties2KHR, DisplayPlaneProperties2KHR, DisplayModeProperties2KHR, DisplayPlaneInfo2KHR, DisplayPlaneCapabilities2KHR, SharedPresentSurfaceCapabilitiesKHR, PhysicalDevice16BitStorageFeatures, PhysicalDeviceSubgroupProperties, PhysicalDeviceShaderSubgroupExtendedTypesFeatures, BufferMemoryRequirementsInfo2, DeviceBufferMemoryRequirements, ImageMemoryRequirementsInfo2, ImageSparseMemoryRequirementsInfo2, DeviceImageMemoryRequirements, MemoryRequirements2, SparseImageMemoryRequirements2, PhysicalDevicePointClippingProperties, MemoryDedicatedRequirements, MemoryDedicatedAllocateInfo, ImageViewUsageCreateInfo, PipelineTessellationDomainOriginStateCreateInfo, SamplerYcbcrConversionInfo, SamplerYcbcrConversionCreateInfo, BindImagePlaneMemoryInfo, ImagePlaneMemoryRequirementsInfo, PhysicalDeviceSamplerYcbcrConversionFeatures, SamplerYcbcrConversionImageFormatProperties, TextureLODGatherFormatPropertiesAMD, ConditionalRenderingBeginInfoEXT, ProtectedSubmitInfo, PhysicalDeviceProtectedMemoryFeatures, PhysicalDeviceProtectedMemoryProperties, DeviceQueueInfo2, PipelineCoverageToColorStateCreateInfoNV, PhysicalDeviceSamplerFilterMinmaxProperties, SampleLocationEXT, SampleLocationsInfoEXT, AttachmentSampleLocationsEXT, SubpassSampleLocationsEXT, RenderPassSampleLocationsBeginInfoEXT, PipelineSampleLocationsStateCreateInfoEXT, PhysicalDeviceSampleLocationsPropertiesEXT, MultisamplePropertiesEXT, SamplerReductionModeCreateInfo, PhysicalDeviceBlendOperationAdvancedFeaturesEXT, PhysicalDeviceMultiDrawFeaturesEXT, PhysicalDeviceBlendOperationAdvancedPropertiesEXT, PipelineColorBlendAdvancedStateCreateInfoEXT, PhysicalDeviceInlineUniformBlockFeatures, PhysicalDeviceInlineUniformBlockProperties, WriteDescriptorSetInlineUniformBlock, DescriptorPoolInlineUniformBlockCreateInfo, PipelineCoverageModulationStateCreateInfoNV, ImageFormatListCreateInfo, ValidationCacheCreateInfoEXT, ShaderModuleValidationCacheCreateInfoEXT, PhysicalDeviceMaintenance3Properties, PhysicalDeviceMaintenance4Features, PhysicalDeviceMaintenance4Properties, DescriptorSetLayoutSupport, PhysicalDeviceShaderDrawParametersFeatures, PhysicalDeviceShaderFloat16Int8Features, PhysicalDeviceFloatControlsProperties, PhysicalDeviceHostQueryResetFeatures, ShaderResourceUsageAMD, ShaderStatisticsInfoAMD, DeviceQueueGlobalPriorityCreateInfoKHR, PhysicalDeviceGlobalPriorityQueryFeaturesKHR, QueueFamilyGlobalPriorityPropertiesKHR, DebugUtilsObjectNameInfoEXT, DebugUtilsObjectTagInfoEXT, DebugUtilsLabelEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerCallbackDataEXT, PhysicalDeviceDeviceMemoryReportFeaturesEXT, DeviceDeviceMemoryReportCreateInfoEXT, DeviceMemoryReportCallbackDataEXT, ImportMemoryHostPointerInfoEXT, MemoryHostPointerPropertiesEXT, PhysicalDeviceExternalMemoryHostPropertiesEXT, PhysicalDeviceConservativeRasterizationPropertiesEXT, CalibratedTimestampInfoEXT, PhysicalDeviceShaderCorePropertiesAMD, PhysicalDeviceShaderCoreProperties2AMD, PipelineRasterizationConservativeStateCreateInfoEXT, PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties, DescriptorSetLayoutBindingFlagsCreateInfo, DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport, AttachmentDescription2, AttachmentReference2, SubpassDescription2, SubpassDependency2, RenderPassCreateInfo2, SubpassBeginInfo, SubpassEndInfo, PhysicalDeviceTimelineSemaphoreFeatures, PhysicalDeviceTimelineSemaphoreProperties, SemaphoreTypeCreateInfo, TimelineSemaphoreSubmitInfo, SemaphoreWaitInfo, SemaphoreSignalInfo, VertexInputBindingDivisorDescriptionEXT, PipelineVertexInputDivisorStateCreateInfoEXT, PhysicalDeviceVertexAttributeDivisorPropertiesEXT, PhysicalDevicePCIBusInfoPropertiesEXT, CommandBufferInheritanceConditionalRenderingInfoEXT, PhysicalDevice8BitStorageFeatures, PhysicalDeviceConditionalRenderingFeaturesEXT, PhysicalDeviceVulkanMemoryModelFeatures, PhysicalDeviceShaderAtomicInt64Features, PhysicalDeviceShaderAtomicFloatFeaturesEXT, PhysicalDeviceShaderAtomicFloat2FeaturesEXT, PhysicalDeviceVertexAttributeDivisorFeaturesEXT, QueueFamilyCheckpointPropertiesNV, CheckpointDataNV, PhysicalDeviceDepthStencilResolveProperties, SubpassDescriptionDepthStencilResolve, ImageViewASTCDecodeModeEXT, PhysicalDeviceASTCDecodeFeaturesEXT, PhysicalDeviceTransformFeedbackFeaturesEXT, PhysicalDeviceTransformFeedbackPropertiesEXT, PipelineRasterizationStateStreamCreateInfoEXT, PhysicalDeviceRepresentativeFragmentTestFeaturesNV, PipelineRepresentativeFragmentTestStateCreateInfoNV, PhysicalDeviceExclusiveScissorFeaturesNV, PipelineViewportExclusiveScissorStateCreateInfoNV, PhysicalDeviceCornerSampledImageFeaturesNV, PhysicalDeviceComputeShaderDerivativesFeaturesNV, PhysicalDeviceFragmentShaderBarycentricFeaturesNV, PhysicalDeviceShaderImageFootprintFeaturesNV, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV, ShadingRatePaletteNV, PipelineViewportShadingRateImageStateCreateInfoNV, PhysicalDeviceShadingRateImageFeaturesNV, PhysicalDeviceShadingRateImagePropertiesNV, PhysicalDeviceInvocationMaskFeaturesHUAWEI, CoarseSampleLocationNV, CoarseSampleOrderCustomNV, PipelineViewportCoarseSampleOrderStateCreateInfoNV, PhysicalDeviceMeshShaderFeaturesNV, PhysicalDeviceMeshShaderPropertiesNV, DrawMeshTasksIndirectCommandNV, RayTracingShaderGroupCreateInfoNV, RayTracingShaderGroupCreateInfoKHR, RayTracingPipelineCreateInfoNV, RayTracingPipelineCreateInfoKHR, GeometryTrianglesNV, GeometryAABBNV, GeometryDataNV, GeometryNV, AccelerationStructureInfoNV, AccelerationStructureCreateInfoNV, BindAccelerationStructureMemoryInfoNV, WriteDescriptorSetAccelerationStructureKHR, WriteDescriptorSetAccelerationStructureNV, AccelerationStructureMemoryRequirementsInfoNV, PhysicalDeviceAccelerationStructureFeaturesKHR, PhysicalDeviceRayTracingPipelineFeaturesKHR, PhysicalDeviceRayQueryFeaturesKHR, PhysicalDeviceAccelerationStructurePropertiesKHR, PhysicalDeviceRayTracingPipelinePropertiesKHR, PhysicalDeviceRayTracingPropertiesNV, StridedDeviceAddressRegionKHR, TraceRaysIndirectCommandKHR, DrmFormatModifierPropertiesListEXT, DrmFormatModifierPropertiesEXT, PhysicalDeviceImageDrmFormatModifierInfoEXT, ImageDrmFormatModifierListCreateInfoEXT, ImageDrmFormatModifierExplicitCreateInfoEXT, ImageDrmFormatModifierPropertiesEXT, ImageStencilUsageCreateInfo, DeviceMemoryOverallocationCreateInfoAMD, PhysicalDeviceFragmentDensityMapFeaturesEXT, PhysicalDeviceFragmentDensityMap2FeaturesEXT, PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM, PhysicalDeviceFragmentDensityMapPropertiesEXT, PhysicalDeviceFragmentDensityMap2PropertiesEXT, PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM, RenderPassFragmentDensityMapCreateInfoEXT, SubpassFragmentDensityMapOffsetEndInfoQCOM, PhysicalDeviceScalarBlockLayoutFeatures, SurfaceProtectedCapabilitiesKHR, PhysicalDeviceUniformBufferStandardLayoutFeatures, PhysicalDeviceDepthClipEnableFeaturesEXT, PipelineRasterizationDepthClipStateCreateInfoEXT, PhysicalDeviceMemoryBudgetPropertiesEXT, PhysicalDeviceMemoryPriorityFeaturesEXT, MemoryPriorityAllocateInfoEXT, PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT, PhysicalDeviceBufferDeviceAddressFeatures, PhysicalDeviceBufferDeviceAddressFeaturesEXT, BufferDeviceAddressInfo, BufferOpaqueCaptureAddressCreateInfo, BufferDeviceAddressCreateInfoEXT, PhysicalDeviceImageViewImageFormatInfoEXT, FilterCubicImageViewImageFormatPropertiesEXT, PhysicalDeviceImagelessFramebufferFeatures, FramebufferAttachmentsCreateInfo, FramebufferAttachmentImageInfo, RenderPassAttachmentBeginInfo, PhysicalDeviceTextureCompressionASTCHDRFeatures, PhysicalDeviceCooperativeMatrixFeaturesNV, PhysicalDeviceCooperativeMatrixPropertiesNV, CooperativeMatrixPropertiesNV, PhysicalDeviceYcbcrImageArraysFeaturesEXT, ImageViewHandleInfoNVX, ImageViewAddressPropertiesNVX, PipelineCreationFeedback, PipelineCreationFeedbackCreateInfo, SurfaceFullScreenExclusiveInfoEXT, SurfaceFullScreenExclusiveWin32InfoEXT, SurfaceCapabilitiesFullScreenExclusiveEXT, PhysicalDevicePerformanceQueryFeaturesKHR, PhysicalDevicePerformanceQueryPropertiesKHR, PerformanceCounterKHR, PerformanceCounterDescriptionKHR, QueryPoolPerformanceCreateInfoKHR, AcquireProfilingLockInfoKHR, PerformanceQuerySubmitInfoKHR, HeadlessSurfaceCreateInfoEXT, PhysicalDeviceCoverageReductionModeFeaturesNV, PipelineCoverageReductionStateCreateInfoNV, FramebufferMixedSamplesCombinationNV, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL, PerformanceValueINTEL, InitializePerformanceApiInfoINTEL, QueryPoolPerformanceQueryCreateInfoINTEL, PerformanceMarkerInfoINTEL, PerformanceStreamMarkerInfoINTEL, PerformanceOverrideInfoINTEL, PerformanceConfigurationAcquireInfoINTEL, PhysicalDeviceShaderClockFeaturesKHR, PhysicalDeviceIndexTypeUint8FeaturesEXT, PhysicalDeviceShaderSMBuiltinsPropertiesNV, PhysicalDeviceShaderSMBuiltinsFeaturesNV, PhysicalDeviceFragmentShaderInterlockFeaturesEXT, PhysicalDeviceSeparateDepthStencilLayoutsFeatures, AttachmentReferenceStencilLayout, PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT, AttachmentDescriptionStencilLayout, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR, PipelineInfoKHR, PipelineExecutablePropertiesKHR, PipelineExecutableInfoKHR, PipelineExecutableStatisticKHR, PipelineExecutableInternalRepresentationKHR, PhysicalDeviceShaderDemoteToHelperInvocationFeatures, PhysicalDeviceTexelBufferAlignmentFeaturesEXT, PhysicalDeviceTexelBufferAlignmentProperties, PhysicalDeviceSubgroupSizeControlFeatures, PhysicalDeviceSubgroupSizeControlProperties, PipelineShaderStageRequiredSubgroupSizeCreateInfo, SubpassShadingPipelineCreateInfoHUAWEI, PhysicalDeviceSubpassShadingPropertiesHUAWEI, MemoryOpaqueCaptureAddressAllocateInfo, DeviceMemoryOpaqueCaptureAddressInfo, PhysicalDeviceLineRasterizationFeaturesEXT, PhysicalDeviceLineRasterizationPropertiesEXT, PipelineRasterizationLineStateCreateInfoEXT, PhysicalDevicePipelineCreationCacheControlFeatures, PhysicalDeviceVulkan11Features, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Features, PhysicalDeviceVulkan12Properties, PhysicalDeviceVulkan13Features, PhysicalDeviceVulkan13Properties, PipelineCompilerControlCreateInfoAMD, PhysicalDeviceCoherentMemoryFeaturesAMD, PhysicalDeviceToolProperties, SamplerCustomBorderColorCreateInfoEXT, PhysicalDeviceCustomBorderColorPropertiesEXT, PhysicalDeviceCustomBorderColorFeaturesEXT, SamplerBorderColorComponentMappingCreateInfoEXT, PhysicalDeviceBorderColorSwizzleFeaturesEXT, AccelerationStructureGeometryTrianglesDataKHR, AccelerationStructureGeometryAabbsDataKHR, AccelerationStructureGeometryInstancesDataKHR, AccelerationStructureGeometryKHR, AccelerationStructureBuildGeometryInfoKHR, AccelerationStructureBuildRangeInfoKHR, AccelerationStructureCreateInfoKHR, AabbPositionsKHR, TransformMatrixKHR, AccelerationStructureInstanceKHR, AccelerationStructureDeviceAddressInfoKHR, AccelerationStructureVersionInfoKHR, CopyAccelerationStructureInfoKHR, CopyAccelerationStructureToMemoryInfoKHR, CopyMemoryToAccelerationStructureInfoKHR, RayTracingPipelineInterfaceCreateInfoKHR, PipelineLibraryCreateInfoKHR, PhysicalDeviceExtendedDynamicStateFeaturesEXT, PhysicalDeviceExtendedDynamicState2FeaturesEXT, RenderPassTransformBeginInfoQCOM, CopyCommandTransformInfoQCOM, CommandBufferInheritanceRenderPassTransformInfoQCOM, PhysicalDeviceDiagnosticsConfigFeaturesNV, DeviceDiagnosticsConfigCreateInfoNV, PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures, PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR, PhysicalDeviceRobustness2FeaturesEXT, PhysicalDeviceRobustness2PropertiesEXT, PhysicalDeviceImageRobustnessFeatures, PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR, PhysicalDevice4444FormatsFeaturesEXT, PhysicalDeviceSubpassShadingFeaturesHUAWEI, BufferCopy2, ImageCopy2, ImageBlit2, BufferImageCopy2, ImageResolve2, CopyBufferInfo2, CopyImageInfo2, BlitImageInfo2, CopyBufferToImageInfo2, CopyImageToBufferInfo2, ResolveImageInfo2, PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, FragmentShadingRateAttachmentInfoKHR, PipelineFragmentShadingRateStateCreateInfoKHR, PhysicalDeviceFragmentShadingRateFeaturesKHR, PhysicalDeviceFragmentShadingRatePropertiesKHR, PhysicalDeviceFragmentShadingRateKHR, PhysicalDeviceShaderTerminateInvocationFeatures, PhysicalDeviceFragmentShadingRateEnumsFeaturesNV, PhysicalDeviceFragmentShadingRateEnumsPropertiesNV, PipelineFragmentShadingRateEnumStateCreateInfoNV, AccelerationStructureBuildSizesInfoKHR, PhysicalDeviceMutableDescriptorTypeFeaturesVALVE, MutableDescriptorTypeListVALVE, MutableDescriptorTypeCreateInfoVALVE, PhysicalDeviceDepthClipControlFeaturesEXT, PipelineViewportDepthClipControlCreateInfoEXT, PhysicalDeviceVertexInputDynamicStateFeaturesEXT, PhysicalDeviceExternalMemoryRDMAFeaturesNV, VertexInputBindingDescription2EXT, VertexInputAttributeDescription2EXT, PhysicalDeviceColorWriteEnableFeaturesEXT, PipelineColorWriteCreateInfoEXT, MemoryBarrier2, ImageMemoryBarrier2, BufferMemoryBarrier2, DependencyInfo, SemaphoreSubmitInfo, CommandBufferSubmitInfo, SubmitInfo2, QueueFamilyCheckpointProperties2NV, CheckpointData2NV, PhysicalDeviceSynchronization2Features, PhysicalDeviceInheritedViewportScissorFeaturesNV, CommandBufferInheritanceViewportScissorInfoNV, PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, PhysicalDeviceProvokingVertexFeaturesEXT, PhysicalDeviceProvokingVertexPropertiesEXT, PipelineRasterizationProvokingVertexStateCreateInfoEXT, CuModuleCreateInfoNVX, CuFunctionCreateInfoNVX, CuLaunchInfoNVX, PhysicalDeviceShaderIntegerDotProductFeatures, PhysicalDeviceShaderIntegerDotProductProperties, PhysicalDeviceDrmPropertiesEXT, PhysicalDeviceRayTracingMotionBlurFeaturesNV, AccelerationStructureGeometryMotionTrianglesDataNV, AccelerationStructureMotionInfoNV, SRTDataNV, AccelerationStructureSRTMotionInstanceNV, AccelerationStructureMatrixMotionInstanceNV, AccelerationStructureMotionInstanceNV, MemoryGetRemoteAddressInfoNV, PhysicalDeviceRGBA10X6FormatsFeaturesEXT, FormatProperties3, DrmFormatModifierPropertiesList2EXT, DrmFormatModifierProperties2EXT, PipelineRenderingCreateInfo, RenderingInfo, RenderingAttachmentInfo, RenderingFragmentShadingRateAttachmentInfoKHR, RenderingFragmentDensityMapAttachmentInfoEXT, PhysicalDeviceDynamicRenderingFeatures, CommandBufferInheritanceRenderingInfo, AttachmentSampleCountInfoAMD, MultiviewPerViewAttributesInfoNVX, PhysicalDeviceImageViewMinLodFeaturesEXT, ImageViewMinLodCreateInfoEXT, PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM, PhysicalDeviceLinearColorAttachmentFeaturesNV, PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE, DescriptorSetBindingReferenceVALVE, DescriptorSetLayoutHostMappingInfoVALVE, ClearColorValue, ClearValue, PerformanceCounterResultKHR, PerformanceValueDataINTEL, PipelineExecutableStatisticValueKHR, DeviceOrHostAddressKHR, DeviceOrHostAddressConstKHR, AccelerationStructureGeometryDataKHR, AccelerationStructureMotionInstanceDataNV, _create_instance, _destroy_instance, _enumerate_physical_devices, _get_device_proc_addr, _get_instance_proc_addr, _get_physical_device_properties, _get_physical_device_queue_family_properties, _get_physical_device_memory_properties, _get_physical_device_features, _get_physical_device_format_properties, _get_physical_device_image_format_properties, _create_device, _destroy_device, _enumerate_instance_version, _enumerate_instance_layer_properties, _enumerate_instance_extension_properties, _enumerate_device_layer_properties, _enumerate_device_extension_properties, _get_device_queue, _queue_submit, _queue_wait_idle, _device_wait_idle, _allocate_memory, _free_memory, _map_memory, _unmap_memory, _flush_mapped_memory_ranges, _invalidate_mapped_memory_ranges, _get_device_memory_commitment, _get_buffer_memory_requirements, _bind_buffer_memory, _get_image_memory_requirements, _bind_image_memory, _get_image_sparse_memory_requirements, _get_physical_device_sparse_image_format_properties, _queue_bind_sparse, _create_fence, _destroy_fence, _reset_fences, _get_fence_status, _wait_for_fences, _create_semaphore, _destroy_semaphore, _create_event, _destroy_event, _get_event_status, _set_event, _reset_event, _create_query_pool, _destroy_query_pool, _get_query_pool_results, _reset_query_pool, _create_buffer, _destroy_buffer, _create_buffer_view, _destroy_buffer_view, _create_image, _destroy_image, _get_image_subresource_layout, _create_image_view, _destroy_image_view, _create_shader_module, _destroy_shader_module, _create_pipeline_cache, _destroy_pipeline_cache, _get_pipeline_cache_data, _merge_pipeline_caches, _create_graphics_pipelines, _create_compute_pipelines, _get_device_subpass_shading_max_workgroup_size_huawei, _destroy_pipeline, _create_pipeline_layout, _destroy_pipeline_layout, _create_sampler, _destroy_sampler, _create_descriptor_set_layout, _destroy_descriptor_set_layout, _create_descriptor_pool, _destroy_descriptor_pool, _reset_descriptor_pool, _allocate_descriptor_sets, _free_descriptor_sets, _update_descriptor_sets, _create_framebuffer, _destroy_framebuffer, _create_render_pass, _destroy_render_pass, _get_render_area_granularity, _create_command_pool, _destroy_command_pool, _reset_command_pool, _allocate_command_buffers, _free_command_buffers, _begin_command_buffer, _end_command_buffer, _reset_command_buffer, _cmd_bind_pipeline, _cmd_set_viewport, _cmd_set_scissor, _cmd_set_line_width, _cmd_set_depth_bias, _cmd_set_blend_constants, _cmd_set_depth_bounds, _cmd_set_stencil_compare_mask, _cmd_set_stencil_write_mask, _cmd_set_stencil_reference, _cmd_bind_descriptor_sets, _cmd_bind_index_buffer, _cmd_bind_vertex_buffers, _cmd_draw, _cmd_draw_indexed, _cmd_draw_multi_ext, _cmd_draw_multi_indexed_ext, _cmd_draw_indirect, _cmd_draw_indexed_indirect, _cmd_dispatch, _cmd_dispatch_indirect, _cmd_subpass_shading_huawei, _cmd_copy_buffer, _cmd_copy_image, _cmd_blit_image, _cmd_copy_buffer_to_image, _cmd_copy_image_to_buffer, _cmd_update_buffer, _cmd_fill_buffer, _cmd_clear_color_image, _cmd_clear_depth_stencil_image, _cmd_clear_attachments, _cmd_resolve_image, _cmd_set_event, _cmd_reset_event, _cmd_wait_events, _cmd_pipeline_barrier, _cmd_begin_query, _cmd_end_query, _cmd_begin_conditional_rendering_ext, _cmd_end_conditional_rendering_ext, _cmd_reset_query_pool, _cmd_write_timestamp, _cmd_copy_query_pool_results, _cmd_push_constants, _cmd_begin_render_pass, _cmd_next_subpass, _cmd_end_render_pass, _cmd_execute_commands, _get_physical_device_display_properties_khr, _get_physical_device_display_plane_properties_khr, _get_display_plane_supported_displays_khr, _get_display_mode_properties_khr, _create_display_mode_khr, _get_display_plane_capabilities_khr, _create_display_plane_surface_khr, _create_shared_swapchains_khr, _destroy_surface_khr, _get_physical_device_surface_support_khr, _get_physical_device_surface_capabilities_khr, _get_physical_device_surface_formats_khr, _get_physical_device_surface_present_modes_khr, _create_swapchain_khr, _destroy_swapchain_khr, _get_swapchain_images_khr, _acquire_next_image_khr, _queue_present_khr, _create_win_32_surface_khr, _get_physical_device_win_32_presentation_support_khr, _create_debug_report_callback_ext, _destroy_debug_report_callback_ext, _debug_report_message_ext, _debug_marker_set_object_name_ext, _debug_marker_set_object_tag_ext, _cmd_debug_marker_begin_ext, _cmd_debug_marker_end_ext, _cmd_debug_marker_insert_ext, _get_physical_device_external_image_format_properties_nv, _get_memory_win_32_handle_nv, _cmd_execute_generated_commands_nv, _cmd_preprocess_generated_commands_nv, _cmd_bind_pipeline_shader_group_nv, _get_generated_commands_memory_requirements_nv, _create_indirect_commands_layout_nv, _destroy_indirect_commands_layout_nv, _get_physical_device_features_2, _get_physical_device_properties_2, _get_physical_device_format_properties_2, _get_physical_device_image_format_properties_2, _get_physical_device_queue_family_properties_2, _get_physical_device_memory_properties_2, _get_physical_device_sparse_image_format_properties_2, _cmd_push_descriptor_set_khr, _trim_command_pool, _get_physical_device_external_buffer_properties, _get_memory_win_32_handle_khr, _get_memory_win_32_handle_properties_khr, _get_memory_fd_khr, _get_memory_fd_properties_khr, _get_memory_remote_address_nv, _get_physical_device_external_semaphore_properties, _get_semaphore_win_32_handle_khr, _import_semaphore_win_32_handle_khr, _get_semaphore_fd_khr, _import_semaphore_fd_khr, _get_physical_device_external_fence_properties, _get_fence_win_32_handle_khr, _import_fence_win_32_handle_khr, _get_fence_fd_khr, _import_fence_fd_khr, _release_display_ext, _acquire_winrt_display_nv, _get_winrt_display_nv, _display_power_control_ext, _register_device_event_ext, _register_display_event_ext, _get_swapchain_counter_ext, _get_physical_device_surface_capabilities_2_ext, _enumerate_physical_device_groups, _get_device_group_peer_memory_features, _bind_buffer_memory_2, _bind_image_memory_2, _cmd_set_device_mask, _get_device_group_present_capabilities_khr, _get_device_group_surface_present_modes_khr, _acquire_next_image_2_khr, _cmd_dispatch_base, _get_physical_device_present_rectangles_khr, _create_descriptor_update_template, _destroy_descriptor_update_template, _update_descriptor_set_with_template, _cmd_push_descriptor_set_with_template_khr, _set_hdr_metadata_ext, _get_swapchain_status_khr, _get_refresh_cycle_duration_google, _get_past_presentation_timing_google, _cmd_set_viewport_w_scaling_nv, _cmd_set_discard_rectangle_ext, _cmd_set_sample_locations_ext, _get_physical_device_multisample_properties_ext, _get_physical_device_surface_capabilities_2_khr, _get_physical_device_surface_formats_2_khr, _get_physical_device_display_properties_2_khr, _get_physical_device_display_plane_properties_2_khr, _get_display_mode_properties_2_khr, _get_display_plane_capabilities_2_khr, _get_buffer_memory_requirements_2, _get_image_memory_requirements_2, _get_image_sparse_memory_requirements_2, _get_device_buffer_memory_requirements, _get_device_image_memory_requirements, _get_device_image_sparse_memory_requirements, _create_sampler_ycbcr_conversion, _destroy_sampler_ycbcr_conversion, _get_device_queue_2, _create_validation_cache_ext, _destroy_validation_cache_ext, _get_validation_cache_data_ext, _merge_validation_caches_ext, _get_descriptor_set_layout_support, _get_shader_info_amd, _set_local_dimming_amd, _get_physical_device_calibrateable_time_domains_ext, _get_calibrated_timestamps_ext, _set_debug_utils_object_name_ext, _set_debug_utils_object_tag_ext, _queue_begin_debug_utils_label_ext, _queue_end_debug_utils_label_ext, _queue_insert_debug_utils_label_ext, _cmd_begin_debug_utils_label_ext, _cmd_end_debug_utils_label_ext, _cmd_insert_debug_utils_label_ext, _create_debug_utils_messenger_ext, _destroy_debug_utils_messenger_ext, _submit_debug_utils_message_ext, _get_memory_host_pointer_properties_ext, _cmd_write_buffer_marker_amd, _create_render_pass_2, _cmd_begin_render_pass_2, _cmd_next_subpass_2, _cmd_end_render_pass_2, _get_semaphore_counter_value, _wait_semaphores, _signal_semaphore, _cmd_draw_indirect_count, _cmd_draw_indexed_indirect_count, _cmd_set_checkpoint_nv, _get_queue_checkpoint_data_nv, _cmd_bind_transform_feedback_buffers_ext, _cmd_begin_transform_feedback_ext, _cmd_end_transform_feedback_ext, _cmd_begin_query_indexed_ext, _cmd_end_query_indexed_ext, _cmd_draw_indirect_byte_count_ext, _cmd_set_exclusive_scissor_nv, _cmd_bind_shading_rate_image_nv, _cmd_set_viewport_shading_rate_palette_nv, _cmd_set_coarse_sample_order_nv, _cmd_draw_mesh_tasks_nv, _cmd_draw_mesh_tasks_indirect_nv, _cmd_draw_mesh_tasks_indirect_count_nv, _compile_deferred_nv, _create_acceleration_structure_nv, _cmd_bind_invocation_mask_huawei, _destroy_acceleration_structure_khr, _destroy_acceleration_structure_nv, _get_acceleration_structure_memory_requirements_nv, _bind_acceleration_structure_memory_nv, _cmd_copy_acceleration_structure_nv, _cmd_copy_acceleration_structure_khr, _copy_acceleration_structure_khr, _cmd_copy_acceleration_structure_to_memory_khr, _copy_acceleration_structure_to_memory_khr, _cmd_copy_memory_to_acceleration_structure_khr, _copy_memory_to_acceleration_structure_khr, _cmd_write_acceleration_structures_properties_khr, _cmd_write_acceleration_structures_properties_nv, _cmd_build_acceleration_structure_nv, _write_acceleration_structures_properties_khr, _cmd_trace_rays_khr, _cmd_trace_rays_nv, _get_ray_tracing_shader_group_handles_khr, _get_ray_tracing_capture_replay_shader_group_handles_khr, _get_acceleration_structure_handle_nv, _create_ray_tracing_pipelines_nv, _create_ray_tracing_pipelines_khr, _get_physical_device_cooperative_matrix_properties_nv, _cmd_trace_rays_indirect_khr, _get_device_acceleration_structure_compatibility_khr, _get_ray_tracing_shader_group_stack_size_khr, _cmd_set_ray_tracing_pipeline_stack_size_khr, _get_image_view_handle_nvx, _get_image_view_address_nvx, _get_physical_device_surface_present_modes_2_ext, _get_device_group_surface_present_modes_2_ext, _acquire_full_screen_exclusive_mode_ext, _release_full_screen_exclusive_mode_ext, _enumerate_physical_device_queue_family_performance_query_counters_khr, _get_physical_device_queue_family_performance_query_passes_khr, _acquire_profiling_lock_khr, _release_profiling_lock_khr, _get_image_drm_format_modifier_properties_ext, _get_buffer_opaque_capture_address, _get_buffer_device_address, _create_headless_surface_ext, _get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, _initialize_performance_api_intel, _uninitialize_performance_api_intel, _cmd_set_performance_marker_intel, _cmd_set_performance_stream_marker_intel, _cmd_set_performance_override_intel, _acquire_performance_configuration_intel, _release_performance_configuration_intel, _queue_set_performance_configuration_intel, _get_performance_parameter_intel, _get_device_memory_opaque_capture_address, _get_pipeline_executable_properties_khr, _get_pipeline_executable_statistics_khr, _get_pipeline_executable_internal_representations_khr, _cmd_set_line_stipple_ext, _get_physical_device_tool_properties, _create_acceleration_structure_khr, _cmd_build_acceleration_structures_khr, _cmd_build_acceleration_structures_indirect_khr, _build_acceleration_structures_khr, _get_acceleration_structure_device_address_khr, _create_deferred_operation_khr, _destroy_deferred_operation_khr, _get_deferred_operation_max_concurrency_khr, _get_deferred_operation_result_khr, _deferred_operation_join_khr, _cmd_set_cull_mode, _cmd_set_front_face, _cmd_set_primitive_topology, _cmd_set_viewport_with_count, _cmd_set_scissor_with_count, _cmd_bind_vertex_buffers_2, _cmd_set_depth_test_enable, _cmd_set_depth_write_enable, _cmd_set_depth_compare_op, _cmd_set_depth_bounds_test_enable, _cmd_set_stencil_test_enable, _cmd_set_stencil_op, _cmd_set_patch_control_points_ext, _cmd_set_rasterizer_discard_enable, _cmd_set_depth_bias_enable, _cmd_set_logic_op_ext, _cmd_set_primitive_restart_enable, _create_private_data_slot, _destroy_private_data_slot, _set_private_data, _get_private_data, _cmd_copy_buffer_2, _cmd_copy_image_2, _cmd_blit_image_2, _cmd_copy_buffer_to_image_2, _cmd_copy_image_to_buffer_2, _cmd_resolve_image_2, _cmd_set_fragment_shading_rate_khr, _get_physical_device_fragment_shading_rates_khr, _cmd_set_fragment_shading_rate_enum_nv, _get_acceleration_structure_build_sizes_khr, _cmd_set_vertex_input_ext, _cmd_set_color_write_enable_ext, _cmd_set_event_2, _cmd_reset_event_2, _cmd_wait_events_2, _cmd_pipeline_barrier_2, _queue_submit_2, _cmd_write_timestamp_2, _cmd_write_buffer_marker_2_amd, _get_queue_checkpoint_data_2_nv, _create_cu_module_nvx, _create_cu_function_nvx, _destroy_cu_module_nvx, _destroy_cu_function_nvx, _cmd_cu_launch_kernel_nvx, _set_device_memory_priority_ext, _acquire_drm_display_ext, _get_drm_display_ext, _wait_for_present_khr, _cmd_begin_rendering, _cmd_end_rendering, _get_descriptor_set_layout_host_mapping_info_valve, _get_descriptor_set_host_mapping_valve, create_instance, destroy_instance, enumerate_physical_devices, get_device_proc_addr, get_instance_proc_addr, get_physical_device_properties, get_physical_device_queue_family_properties, get_physical_device_memory_properties, get_physical_device_features, get_physical_device_format_properties, get_physical_device_image_format_properties, create_device, destroy_device, enumerate_instance_version, enumerate_instance_layer_properties, enumerate_instance_extension_properties, enumerate_device_layer_properties, enumerate_device_extension_properties, get_device_queue, queue_submit, queue_wait_idle, device_wait_idle, allocate_memory, free_memory, map_memory, unmap_memory, flush_mapped_memory_ranges, invalidate_mapped_memory_ranges, get_device_memory_commitment, get_buffer_memory_requirements, bind_buffer_memory, get_image_memory_requirements, bind_image_memory, get_image_sparse_memory_requirements, get_physical_device_sparse_image_format_properties, queue_bind_sparse, create_fence, destroy_fence, reset_fences, get_fence_status, wait_for_fences, create_semaphore, destroy_semaphore, create_event, destroy_event, get_event_status, set_event, reset_event, create_query_pool, destroy_query_pool, get_query_pool_results, reset_query_pool, create_buffer, destroy_buffer, create_buffer_view, destroy_buffer_view, create_image, destroy_image, get_image_subresource_layout, create_image_view, destroy_image_view, create_shader_module, destroy_shader_module, create_pipeline_cache, destroy_pipeline_cache, get_pipeline_cache_data, merge_pipeline_caches, create_graphics_pipelines, create_compute_pipelines, get_device_subpass_shading_max_workgroup_size_huawei, destroy_pipeline, create_pipeline_layout, destroy_pipeline_layout, create_sampler, destroy_sampler, create_descriptor_set_layout, destroy_descriptor_set_layout, create_descriptor_pool, destroy_descriptor_pool, reset_descriptor_pool, allocate_descriptor_sets, free_descriptor_sets, update_descriptor_sets, create_framebuffer, destroy_framebuffer, create_render_pass, destroy_render_pass, get_render_area_granularity, create_command_pool, destroy_command_pool, reset_command_pool, allocate_command_buffers, free_command_buffers, begin_command_buffer, end_command_buffer, reset_command_buffer, cmd_bind_pipeline, cmd_set_viewport, cmd_set_scissor, cmd_set_line_width, cmd_set_depth_bias, cmd_set_blend_constants, cmd_set_depth_bounds, cmd_set_stencil_compare_mask, cmd_set_stencil_write_mask, cmd_set_stencil_reference, cmd_bind_descriptor_sets, cmd_bind_index_buffer, cmd_bind_vertex_buffers, cmd_draw, cmd_draw_indexed, cmd_draw_multi_ext, cmd_draw_multi_indexed_ext, cmd_draw_indirect, cmd_draw_indexed_indirect, cmd_dispatch, cmd_dispatch_indirect, cmd_subpass_shading_huawei, cmd_copy_buffer, cmd_copy_image, cmd_blit_image, cmd_copy_buffer_to_image, cmd_copy_image_to_buffer, cmd_update_buffer, cmd_fill_buffer, cmd_clear_color_image, cmd_clear_depth_stencil_image, cmd_clear_attachments, cmd_resolve_image, cmd_set_event, cmd_reset_event, cmd_wait_events, cmd_pipeline_barrier, cmd_begin_query, cmd_end_query, cmd_begin_conditional_rendering_ext, cmd_end_conditional_rendering_ext, cmd_reset_query_pool, cmd_write_timestamp, cmd_copy_query_pool_results, cmd_push_constants, cmd_begin_render_pass, cmd_next_subpass, cmd_end_render_pass, cmd_execute_commands, get_physical_device_display_properties_khr, get_physical_device_display_plane_properties_khr, get_display_plane_supported_displays_khr, get_display_mode_properties_khr, create_display_mode_khr, get_display_plane_capabilities_khr, create_display_plane_surface_khr, create_shared_swapchains_khr, destroy_surface_khr, get_physical_device_surface_support_khr, get_physical_device_surface_capabilities_khr, get_physical_device_surface_formats_khr, get_physical_device_surface_present_modes_khr, create_swapchain_khr, destroy_swapchain_khr, get_swapchain_images_khr, acquire_next_image_khr, queue_present_khr, create_win_32_surface_khr, get_physical_device_win_32_presentation_support_khr, create_debug_report_callback_ext, destroy_debug_report_callback_ext, debug_report_message_ext, debug_marker_set_object_name_ext, debug_marker_set_object_tag_ext, cmd_debug_marker_begin_ext, cmd_debug_marker_end_ext, cmd_debug_marker_insert_ext, get_physical_device_external_image_format_properties_nv, get_memory_win_32_handle_nv, cmd_execute_generated_commands_nv, cmd_preprocess_generated_commands_nv, cmd_bind_pipeline_shader_group_nv, get_generated_commands_memory_requirements_nv, create_indirect_commands_layout_nv, destroy_indirect_commands_layout_nv, get_physical_device_features_2, get_physical_device_properties_2, get_physical_device_format_properties_2, get_physical_device_image_format_properties_2, get_physical_device_queue_family_properties_2, get_physical_device_memory_properties_2, get_physical_device_sparse_image_format_properties_2, cmd_push_descriptor_set_khr, trim_command_pool, get_physical_device_external_buffer_properties, get_memory_win_32_handle_khr, get_memory_win_32_handle_properties_khr, get_memory_fd_khr, get_memory_fd_properties_khr, get_memory_remote_address_nv, get_physical_device_external_semaphore_properties, get_semaphore_win_32_handle_khr, import_semaphore_win_32_handle_khr, get_semaphore_fd_khr, import_semaphore_fd_khr, get_physical_device_external_fence_properties, get_fence_win_32_handle_khr, import_fence_win_32_handle_khr, get_fence_fd_khr, import_fence_fd_khr, release_display_ext, acquire_winrt_display_nv, get_winrt_display_nv, display_power_control_ext, register_device_event_ext, register_display_event_ext, get_swapchain_counter_ext, get_physical_device_surface_capabilities_2_ext, enumerate_physical_device_groups, get_device_group_peer_memory_features, bind_buffer_memory_2, bind_image_memory_2, cmd_set_device_mask, get_device_group_present_capabilities_khr, get_device_group_surface_present_modes_khr, acquire_next_image_2_khr, cmd_dispatch_base, get_physical_device_present_rectangles_khr, create_descriptor_update_template, destroy_descriptor_update_template, update_descriptor_set_with_template, cmd_push_descriptor_set_with_template_khr, set_hdr_metadata_ext, get_swapchain_status_khr, get_refresh_cycle_duration_google, get_past_presentation_timing_google, cmd_set_viewport_w_scaling_nv, cmd_set_discard_rectangle_ext, cmd_set_sample_locations_ext, get_physical_device_multisample_properties_ext, get_physical_device_surface_capabilities_2_khr, get_physical_device_surface_formats_2_khr, get_physical_device_display_properties_2_khr, get_physical_device_display_plane_properties_2_khr, get_display_mode_properties_2_khr, get_display_plane_capabilities_2_khr, get_buffer_memory_requirements_2, get_image_memory_requirements_2, get_image_sparse_memory_requirements_2, get_device_buffer_memory_requirements, get_device_image_memory_requirements, get_device_image_sparse_memory_requirements, create_sampler_ycbcr_conversion, destroy_sampler_ycbcr_conversion, get_device_queue_2, create_validation_cache_ext, destroy_validation_cache_ext, get_validation_cache_data_ext, merge_validation_caches_ext, get_descriptor_set_layout_support, get_shader_info_amd, set_local_dimming_amd, get_physical_device_calibrateable_time_domains_ext, get_calibrated_timestamps_ext, set_debug_utils_object_name_ext, set_debug_utils_object_tag_ext, queue_begin_debug_utils_label_ext, queue_end_debug_utils_label_ext, queue_insert_debug_utils_label_ext, cmd_begin_debug_utils_label_ext, cmd_end_debug_utils_label_ext, cmd_insert_debug_utils_label_ext, create_debug_utils_messenger_ext, destroy_debug_utils_messenger_ext, submit_debug_utils_message_ext, get_memory_host_pointer_properties_ext, cmd_write_buffer_marker_amd, create_render_pass_2, cmd_begin_render_pass_2, cmd_next_subpass_2, cmd_end_render_pass_2, get_semaphore_counter_value, wait_semaphores, signal_semaphore, cmd_draw_indirect_count, cmd_draw_indexed_indirect_count, cmd_set_checkpoint_nv, get_queue_checkpoint_data_nv, cmd_bind_transform_feedback_buffers_ext, cmd_begin_transform_feedback_ext, cmd_end_transform_feedback_ext, cmd_begin_query_indexed_ext, cmd_end_query_indexed_ext, cmd_draw_indirect_byte_count_ext, cmd_set_exclusive_scissor_nv, cmd_bind_shading_rate_image_nv, cmd_set_viewport_shading_rate_palette_nv, cmd_set_coarse_sample_order_nv, cmd_draw_mesh_tasks_nv, cmd_draw_mesh_tasks_indirect_nv, cmd_draw_mesh_tasks_indirect_count_nv, compile_deferred_nv, create_acceleration_structure_nv, cmd_bind_invocation_mask_huawei, destroy_acceleration_structure_khr, destroy_acceleration_structure_nv, get_acceleration_structure_memory_requirements_nv, bind_acceleration_structure_memory_nv, cmd_copy_acceleration_structure_nv, cmd_copy_acceleration_structure_khr, copy_acceleration_structure_khr, cmd_copy_acceleration_structure_to_memory_khr, copy_acceleration_structure_to_memory_khr, cmd_copy_memory_to_acceleration_structure_khr, copy_memory_to_acceleration_structure_khr, cmd_write_acceleration_structures_properties_khr, cmd_write_acceleration_structures_properties_nv, cmd_build_acceleration_structure_nv, write_acceleration_structures_properties_khr, cmd_trace_rays_khr, cmd_trace_rays_nv, get_ray_tracing_shader_group_handles_khr, get_ray_tracing_capture_replay_shader_group_handles_khr, get_acceleration_structure_handle_nv, create_ray_tracing_pipelines_nv, create_ray_tracing_pipelines_khr, get_physical_device_cooperative_matrix_properties_nv, cmd_trace_rays_indirect_khr, get_device_acceleration_structure_compatibility_khr, get_ray_tracing_shader_group_stack_size_khr, cmd_set_ray_tracing_pipeline_stack_size_khr, get_image_view_handle_nvx, get_image_view_address_nvx, get_physical_device_surface_present_modes_2_ext, get_device_group_surface_present_modes_2_ext, acquire_full_screen_exclusive_mode_ext, release_full_screen_exclusive_mode_ext, enumerate_physical_device_queue_family_performance_query_counters_khr, get_physical_device_queue_family_performance_query_passes_khr, acquire_profiling_lock_khr, release_profiling_lock_khr, get_image_drm_format_modifier_properties_ext, get_buffer_opaque_capture_address, get_buffer_device_address, create_headless_surface_ext, get_physical_device_supported_framebuffer_mixed_samples_combinations_nv, initialize_performance_api_intel, uninitialize_performance_api_intel, cmd_set_performance_marker_intel, cmd_set_performance_stream_marker_intel, cmd_set_performance_override_intel, acquire_performance_configuration_intel, release_performance_configuration_intel, queue_set_performance_configuration_intel, get_performance_parameter_intel, get_device_memory_opaque_capture_address, get_pipeline_executable_properties_khr, get_pipeline_executable_statistics_khr, get_pipeline_executable_internal_representations_khr, cmd_set_line_stipple_ext, get_physical_device_tool_properties, create_acceleration_structure_khr, cmd_build_acceleration_structures_khr, cmd_build_acceleration_structures_indirect_khr, build_acceleration_structures_khr, get_acceleration_structure_device_address_khr, create_deferred_operation_khr, destroy_deferred_operation_khr, get_deferred_operation_max_concurrency_khr, get_deferred_operation_result_khr, deferred_operation_join_khr, cmd_set_cull_mode, cmd_set_front_face, cmd_set_primitive_topology, cmd_set_viewport_with_count, cmd_set_scissor_with_count, cmd_bind_vertex_buffers_2, cmd_set_depth_test_enable, cmd_set_depth_write_enable, cmd_set_depth_compare_op, cmd_set_depth_bounds_test_enable, cmd_set_stencil_test_enable, cmd_set_stencil_op, cmd_set_patch_control_points_ext, cmd_set_rasterizer_discard_enable, cmd_set_depth_bias_enable, cmd_set_logic_op_ext, cmd_set_primitive_restart_enable, create_private_data_slot, destroy_private_data_slot, set_private_data, get_private_data, cmd_copy_buffer_2, cmd_copy_image_2, cmd_blit_image_2, cmd_copy_buffer_to_image_2, cmd_copy_image_to_buffer_2, cmd_resolve_image_2, cmd_set_fragment_shading_rate_khr, get_physical_device_fragment_shading_rates_khr, cmd_set_fragment_shading_rate_enum_nv, get_acceleration_structure_build_sizes_khr, cmd_set_vertex_input_ext, cmd_set_color_write_enable_ext, cmd_set_event_2, cmd_reset_event_2, cmd_wait_events_2, cmd_pipeline_barrier_2, queue_submit_2, cmd_write_timestamp_2, cmd_write_buffer_marker_2_amd, get_queue_checkpoint_data_2_nv, create_cu_module_nvx, create_cu_function_nvx, destroy_cu_module_nvx, destroy_cu_function_nvx, cmd_cu_launch_kernel_nvx, set_device_memory_priority_ext, acquire_drm_display_ext, get_drm_display_ext, wait_for_present_khr, cmd_begin_rendering, cmd_end_rendering, get_descriptor_set_layout_host_mapping_info_valve, get_descriptor_set_host_mapping_valve, SPIRV_EXTENSIONS, SPIRV_CAPABILITIES, CORE_FUNCTIONS, INSTANCE_FUNCTIONS, DEVICE_FUNCTIONS, bind_buffer_memory_2_khr, bind_image_memory_2_khr, cmd_begin_render_pass_2_khr, cmd_begin_rendering_khr, cmd_bind_vertex_buffers_2_ext, cmd_blit_image_2_khr, cmd_copy_buffer_2_khr, cmd_copy_buffer_to_image_2_khr, cmd_copy_image_2_khr, cmd_copy_image_to_buffer_2_khr, cmd_dispatch_base_khr, cmd_draw_indexed_indirect_count_amd, cmd_draw_indexed_indirect_count_khr, cmd_draw_indirect_count_amd, cmd_draw_indirect_count_khr, cmd_end_render_pass_2_khr, cmd_end_rendering_khr, cmd_next_subpass_2_khr, cmd_pipeline_barrier_2_khr, cmd_reset_event_2_khr, cmd_resolve_image_2_khr, cmd_set_cull_mode_ext, cmd_set_depth_bias_enable_ext, cmd_set_depth_bounds_test_enable_ext, cmd_set_depth_compare_op_ext, cmd_set_depth_test_enable_ext, cmd_set_depth_write_enable_ext, cmd_set_device_mask_khr, cmd_set_event_2_khr, cmd_set_front_face_ext, cmd_set_primitive_restart_enable_ext, cmd_set_primitive_topology_ext, cmd_set_rasterizer_discard_enable_ext, cmd_set_scissor_with_count_ext, cmd_set_stencil_op_ext, cmd_set_stencil_test_enable_ext, cmd_set_viewport_with_count_ext, cmd_wait_events_2_khr, cmd_write_timestamp_2_khr, create_descriptor_update_template_khr, create_private_data_slot_ext, create_render_pass_2_khr, create_sampler_ycbcr_conversion_khr, destroy_descriptor_update_template_khr, destroy_private_data_slot_ext, destroy_sampler_ycbcr_conversion_khr, enumerate_physical_device_groups_khr, get_buffer_device_address_ext, get_buffer_device_address_khr, get_buffer_memory_requirements_2_khr, get_buffer_opaque_capture_address_khr, get_descriptor_set_layout_support_khr, get_device_buffer_memory_requirements_khr, get_device_group_peer_memory_features_khr, get_device_image_memory_requirements_khr, get_device_image_sparse_memory_requirements_khr, get_device_memory_opaque_capture_address_khr, get_image_memory_requirements_2_khr, get_image_sparse_memory_requirements_2_khr, get_physical_device_external_buffer_properties_khr, get_physical_device_external_fence_properties_khr, get_physical_device_external_semaphore_properties_khr, get_physical_device_features_2_khr, get_physical_device_format_properties_2_khr, get_physical_device_image_format_properties_2_khr, get_physical_device_memory_properties_2_khr, get_physical_device_properties_2_khr, get_physical_device_queue_family_properties_2_khr, get_physical_device_sparse_image_format_properties_2_khr, get_physical_device_tool_properties_ext, get_private_data_ext, get_ray_tracing_shader_group_handles_nv, get_semaphore_counter_value_khr, queue_submit_2_khr, reset_query_pool_ext, set_private_data_ext, signal_semaphore_khr, trim_command_pool_khr, update_descriptor_set_with_template_khr, wait_semaphores_khr, ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV, ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV, ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_NV, ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_NV, ACCESS_2_COLOR_ATTACHMENT_READ_BIT_KHR, ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT_KHR, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT_KHR, ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_KHR, ACCESS_2_HOST_READ_BIT_KHR, ACCESS_2_HOST_WRITE_BIT_KHR, ACCESS_2_INDEX_READ_BIT_KHR, ACCESS_2_INDIRECT_COMMAND_READ_BIT_KHR, ACCESS_2_INPUT_ATTACHMENT_READ_BIT_KHR, ACCESS_2_MEMORY_READ_BIT_KHR, ACCESS_2_MEMORY_WRITE_BIT_KHR, ACCESS_2_NONE_KHR, ACCESS_2_SHADER_READ_BIT_KHR, ACCESS_2_SHADER_SAMPLED_READ_BIT_KHR, ACCESS_2_SHADER_STORAGE_READ_BIT_KHR, ACCESS_2_SHADER_STORAGE_WRITE_BIT_KHR, ACCESS_2_SHADER_WRITE_BIT_KHR, ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV, ACCESS_2_TRANSFER_READ_BIT_KHR, ACCESS_2_TRANSFER_WRITE_BIT_KHR, ACCESS_2_UNIFORM_READ_BIT_KHR, ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT_KHR, ACCESS_ACCELERATION_STRUCTURE_READ_BIT_NV, ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_NV, ACCESS_NONE_KHR, ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV, ATTACHMENT_STORE_OP_NONE_EXT, ATTACHMENT_STORE_OP_NONE_KHR, ATTACHMENT_STORE_OP_NONE_QCOM, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT, BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR, BUFFER_USAGE_RAY_TRACING_BIT_NV, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT, BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_KHR, BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_NV, BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV, BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_NV, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV, BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV, CHROMA_LOCATION_COSITED_EVEN_KHR, CHROMA_LOCATION_MIDPOINT_KHR, COLORSPACE_SRGB_NONLINEAR_KHR, COLOR_SPACE_DCI_P3_LINEAR_EXT, COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV, COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV, DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT, DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR_EXT, DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT, DEPENDENCY_DEVICE_GROUP_BIT_KHR, DEPENDENCY_VIEW_LOCAL_BIT_KHR, DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT, DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT, DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT, DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT, DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT_EXT, DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT_EXT, DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT, DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR, DRIVER_ID_AMD_OPEN_SOURCE_KHR, DRIVER_ID_AMD_PROPRIETARY_KHR, DRIVER_ID_ARM_PROPRIETARY_KHR, DRIVER_ID_BROADCOM_PROPRIETARY_KHR, DRIVER_ID_GGP_PROPRIETARY_KHR, DRIVER_ID_GOOGLE_SWIFTSHADER_KHR, DRIVER_ID_IMAGINATION_PROPRIETARY_KHR, DRIVER_ID_INTEL_OPEN_SOURCE_MESA_KHR, DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR, DRIVER_ID_MESA_RADV_KHR, DRIVER_ID_NVIDIA_PROPRIETARY_KHR, DRIVER_ID_QUALCOMM_PROPRIETARY_KHR, DYNAMIC_STATE_CULL_MODE_EXT, DYNAMIC_STATE_DEPTH_BIAS_ENABLE_EXT, DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE_EXT, DYNAMIC_STATE_DEPTH_COMPARE_OP_EXT, DYNAMIC_STATE_DEPTH_TEST_ENABLE_EXT, DYNAMIC_STATE_DEPTH_WRITE_ENABLE_EXT, DYNAMIC_STATE_FRONT_FACE_EXT, DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT, DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT, DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE_EXT, DYNAMIC_STATE_SCISSOR_WITH_COUNT_EXT, DYNAMIC_STATE_STENCIL_OP_EXT, DYNAMIC_STATE_STENCIL_TEST_ENABLE_EXT, DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT, DYNAMIC_STATE_VIEWPORT_WITH_COUNT_EXT, ERROR_FRAGMENTATION_EXT, ERROR_INVALID_DEVICE_ADDRESS_EXT, ERROR_INVALID_EXTERNAL_HANDLE_KHR, ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR, ERROR_NOT_PERMITTED_EXT, ERROR_OUT_OF_POOL_MEMORY_KHR, ERROR_PIPELINE_COMPILE_REQUIRED_EXT, EVENT_CREATE_DEVICE_ONLY_BIT_KHR, EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR, EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR, EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR, EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR, EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR, EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR, EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR, EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR, EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR, EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D11_FENCE_BIT, EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR, EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR, FENCE_IMPORT_TEMPORARY_BIT_KHR, FILTER_CUBIC_EXT, FORMAT_A4B4G4R4_UNORM_PACK16_EXT, FORMAT_A4R4G4B4_UNORM_PACK16_EXT, FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT, FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT, FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT, FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT, FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT, FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT, FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT, FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT, FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT, FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT, FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16_KHR, FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16_KHR, FORMAT_B16G16R16G16_422_UNORM_KHR, FORMAT_B8G8R8G8_422_UNORM_KHR, FORMAT_FEATURE_2_BLIT_DST_BIT_KHR, FORMAT_FEATURE_2_BLIT_SRC_BIT_KHR, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT_KHR, FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT_KHR, FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT_KHR, FORMAT_FEATURE_2_DISJOINT_BIT_KHR, FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR, FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR, FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT_KHR, FORMAT_FEATURE_2_STORAGE_IMAGE_BIT_KHR, FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT_KHR, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT_KHR, FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT_KHR, FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT_KHR, FORMAT_FEATURE_2_TRANSFER_DST_BIT_KHR, FORMAT_FEATURE_2_TRANSFER_SRC_BIT_KHR, FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT_KHR, FORMAT_FEATURE_2_VERTEX_BUFFER_BIT_KHR, FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT_KHR, FORMAT_FEATURE_DISJOINT_BIT_KHR, FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT, FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT_EXT, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR, FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR, FORMAT_FEATURE_TRANSFER_DST_BIT_KHR, FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR, FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16_KHR, FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16_KHR, FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16_KHR, FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT, FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16_KHR, FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16_KHR, FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16_KHR, FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16_KHR, FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16_KHR, FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16_KHR, FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT, FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16_KHR, FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16_KHR, FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16_KHR, FORMAT_G16B16G16R16_422_UNORM_KHR, FORMAT_G16_B16R16_2PLANE_420_UNORM_KHR, FORMAT_G16_B16R16_2PLANE_422_UNORM_KHR, FORMAT_G16_B16R16_2PLANE_444_UNORM_EXT, FORMAT_G16_B16_R16_3PLANE_420_UNORM_KHR, FORMAT_G16_B16_R16_3PLANE_422_UNORM_KHR, FORMAT_G16_B16_R16_3PLANE_444_UNORM_KHR, FORMAT_G8B8G8R8_422_UNORM_KHR, FORMAT_G8_B8R8_2PLANE_420_UNORM_KHR, FORMAT_G8_B8R8_2PLANE_422_UNORM_KHR, FORMAT_G8_B8R8_2PLANE_444_UNORM_EXT, FORMAT_G8_B8_R8_3PLANE_420_UNORM_KHR, FORMAT_G8_B8_R8_3PLANE_422_UNORM_KHR, FORMAT_G8_B8_R8_3PLANE_444_UNORM_KHR, FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16_KHR, FORMAT_R10X6G10X6_UNORM_2PACK16_KHR, FORMAT_R10X6_UNORM_PACK16_KHR, FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16_KHR, FORMAT_R12X4G12X4_UNORM_2PACK16_KHR, FORMAT_R12X4_UNORM_PACK16_KHR, FRAMEBUFFER_CREATE_IMAGELESS_BIT_KHR, GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_NV, GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_NV, GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV, GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR, GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_NV, GEOMETRY_OPAQUE_BIT_NV, GEOMETRY_TYPE_AABBS_NV, GEOMETRY_TYPE_TRIANGLES_NV, IMAGE_ASPECT_NONE_KHR, IMAGE_ASPECT_PLANE_0_BIT_KHR, IMAGE_ASPECT_PLANE_1_BIT_KHR, IMAGE_ASPECT_PLANE_2_BIT_KHR, IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR, IMAGE_CREATE_ALIAS_BIT_KHR, IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT_KHR, IMAGE_CREATE_DISJOINT_BIT_KHR, IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR, IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR, IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR, IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR, IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR, IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR, IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR, IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR, IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV, IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR, IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR, IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV, INDEX_TYPE_NONE_NV, LUID_SIZE_KHR, MAX_DEVICE_GROUP_SIZE_KHR, MAX_DRIVER_INFO_SIZE_KHR, MAX_DRIVER_NAME_SIZE_KHR, MAX_GLOBAL_PRIORITY_SIZE_EXT, MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR, MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR, MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR, MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR, OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR, OBJECT_TYPE_PRIVATE_DATA_SLOT_EXT, OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR, PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR, PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR, PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR, PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR, PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR, PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR, PIPELINE_BIND_POINT_RAY_TRACING_NV, PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT, PIPELINE_CACHE_CREATE_RESERVED_1_BIT_KHR, PIPELINE_COMPILE_REQUIRED_EXT, PIPELINE_CREATE_DISPATCH_BASE, PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT, PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT, PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR, PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT_EXT, PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT_EXT, PIPELINE_CREATION_FEEDBACK_VALID_BIT_EXT, PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT, PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR, PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT_EXT, PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT_EXT, PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_NV, PIPELINE_STAGE_2_ALL_COMMANDS_BIT_KHR, PIPELINE_STAGE_2_ALL_GRAPHICS_BIT_KHR, PIPELINE_STAGE_2_ALL_TRANSFER_BIT_KHR, PIPELINE_STAGE_2_BLIT_BIT_KHR, PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT_KHR, PIPELINE_STAGE_2_CLEAR_BIT_KHR, PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT_KHR, PIPELINE_STAGE_2_COMPUTE_SHADER_BIT_KHR, PIPELINE_STAGE_2_COPY_BIT_KHR, PIPELINE_STAGE_2_DRAW_INDIRECT_BIT_KHR, PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT_KHR, PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT_KHR, PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT_KHR, PIPELINE_STAGE_2_HOST_BIT_KHR, PIPELINE_STAGE_2_INDEX_INPUT_BIT_KHR, PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT_KHR, PIPELINE_STAGE_2_NONE_KHR, PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT_KHR, PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_NV, PIPELINE_STAGE_2_RESOLVE_BIT_KHR, PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV, PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT_KHR, PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT_KHR, PIPELINE_STAGE_2_TOP_OF_PIPE_BIT_KHR, PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT_KHR, PIPELINE_STAGE_2_VERTEX_INPUT_BIT_KHR, PIPELINE_STAGE_2_VERTEX_SHADER_BIT_KHR, PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV, PIPELINE_STAGE_NONE_KHR, PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV, PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV, POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR, POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR, QUERY_SCOPE_COMMAND_BUFFER_KHR, QUERY_SCOPE_COMMAND_KHR, QUERY_SCOPE_RENDER_PASS_KHR, QUEUE_FAMILY_EXTERNAL_KHR, QUEUE_GLOBAL_PRIORITY_HIGH_EXT, QUEUE_GLOBAL_PRIORITY_LOW_EXT, QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT, QUEUE_GLOBAL_PRIORITY_REALTIME_EXT, RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV, RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV, RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV, RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT_KHR, RENDERING_RESUMING_BIT_KHR, RENDERING_SUSPENDING_BIT_KHR, RESOLVE_MODE_AVERAGE_BIT_KHR, RESOLVE_MODE_MAX_BIT_KHR, RESOLVE_MODE_MIN_BIT_KHR, RESOLVE_MODE_NONE_KHR, RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR, SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE_KHR, SAMPLER_REDUCTION_MODE_MAX_EXT, SAMPLER_REDUCTION_MODE_MIN_EXT, SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT, SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY_KHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020_KHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601_KHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709_KHR, SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY_KHR, SAMPLER_YCBCR_RANGE_ITU_FULL_KHR, SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR, SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR, SEMAPHORE_TYPE_BINARY_KHR, SEMAPHORE_TYPE_TIMELINE_KHR, SEMAPHORE_WAIT_ANY_BIT_KHR, SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY_KHR, SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR, SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR, SHADER_STAGE_ANY_HIT_BIT_NV, SHADER_STAGE_CALLABLE_BIT_NV, SHADER_STAGE_CLOSEST_HIT_BIT_NV, SHADER_STAGE_INTERSECTION_BIT_NV, SHADER_STAGE_MISS_BIT_NV, SHADER_STAGE_RAYGEN_BIT_NV, SHADER_UNUSED_NV, STENCIL_FRONT_AND_BACK, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2_KHR, STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2_KHR, STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR, STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR, STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO_KHR, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR, STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO_KHR, STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO_KHR, STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR, STRUCTURE_TYPE_BUFFER_COPY_2_KHR, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT, STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_KHR, STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR, STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2_KHR, STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR, STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO_KHR, STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR, STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR, STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR, STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR, STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR, STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR, STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT, STRUCTURE_TYPE_DEPENDENCY_INFO_KHR, STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT, STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO_EXT, STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT, STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR, STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR, STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR, STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR, STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR, STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO_KHR, STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT, STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT, STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR, STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_KHR, STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO_KHR, STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES_KHR, STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES_KHR, STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR, STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR, STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR, STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR, STRUCTURE_TYPE_FORMAT_PROPERTIES_2_KHR, STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR, STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR, STRUCTURE_TYPE_IMAGE_BLIT_2_KHR, STRUCTURE_TYPE_IMAGE_COPY_2_KHR, STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR, STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2_KHR, STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2_KHR, STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR, STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO_KHR, STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR, STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR, STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO_EXT, STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO_KHR, STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR, STRUCTURE_TYPE_MEMORY_BARRIER_2_KHR, STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR, STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR, STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO_KHR, STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT16_INT8_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT, STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES, STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR, STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR, STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT, STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR, STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT, STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR, STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT, STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL, STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT, STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2_KHR, STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR, STRUCTURE_TYPE_RENDERING_INFO_KHR, STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR, STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2_KHR, STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR, STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR, STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR, STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR, STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO_KHR, STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO_KHR, STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2_KHR, STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR, STRUCTURE_TYPE_SUBMIT_INFO_2_KHR, STRUCTURE_TYPE_SUBPASS_BEGIN_INFO_KHR, STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2_KHR, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2_KHR, STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR, STRUCTURE_TYPE_SUBPASS_END_INFO_KHR, STRUCTURE_TYPE_SURFACE_CAPABILITIES2_EXT, STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR, STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT, SUBMIT_PROTECTED_BIT_KHR, SURFACE_COUNTER_VBLANK_EXT, TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR, TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR, TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT_EXT, TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT, TOOL_PURPOSE_PROFILING_BIT_EXT, TOOL_PURPOSE_TRACING_BIT_EXT, TOOL_PURPOSE_VALIDATION_BIT_EXT, AabbPositionsNV, AccelerationStructureInstanceNV, AccelerationStructureTypeNV, AttachmentDescription2KHR, AttachmentDescriptionStencilLayoutKHR, AttachmentReference2KHR, AttachmentReferenceStencilLayoutKHR, AttachmentSampleCountInfoNV, BindBufferMemoryDeviceGroupInfoKHR, BindBufferMemoryInfoKHR, BindImageMemoryDeviceGroupInfoKHR, BindImageMemoryInfoKHR, BindImagePlaneMemoryInfoKHR, BlitImageInfo2KHR, BufferCopy2KHR, BufferDeviceAddressInfoEXT, BufferDeviceAddressInfoKHR, BufferImageCopy2KHR, BufferMemoryBarrier2KHR, BufferMemoryRequirementsInfo2KHR, BufferOpaqueCaptureAddressCreateInfoKHR, ChromaLocationKHR, CommandBufferInheritanceRenderingInfoKHR, CommandBufferSubmitInfoKHR, ConformanceVersionKHR, CopyAccelerationStructureModeNV, CopyBufferInfo2KHR, CopyBufferToImageInfo2KHR, CopyImageInfo2KHR, CopyImageToBufferInfo2KHR, DependencyInfoKHR, DescriptorPoolInlineUniformBlockCreateInfoEXT, DescriptorSetLayoutBindingFlagsCreateInfoEXT, DescriptorSetLayoutSupportKHR, DescriptorSetVariableDescriptorCountAllocateInfoEXT, DescriptorSetVariableDescriptorCountLayoutSupportEXT, DescriptorUpdateTemplateCreateInfoKHR, DescriptorUpdateTemplateEntryKHR, DescriptorUpdateTemplateKHR, DescriptorUpdateTemplateTypeKHR, DeviceBufferMemoryRequirementsKHR, DeviceGroupBindSparseInfoKHR, DeviceGroupCommandBufferBeginInfoKHR, DeviceGroupDeviceCreateInfoKHR, DeviceGroupRenderPassBeginInfoKHR, DeviceGroupSubmitInfoKHR, DeviceImageMemoryRequirementsKHR, DeviceMemoryOpaqueCaptureAddressInfoKHR, DevicePrivateDataCreateInfoEXT, DeviceQueueGlobalPriorityCreateInfoEXT, DriverIdKHR, ExportFenceCreateInfoKHR, ExportMemoryAllocateInfoKHR, ExportSemaphoreCreateInfoKHR, ExternalBufferPropertiesKHR, ExternalFencePropertiesKHR, ExternalImageFormatPropertiesKHR, ExternalMemoryBufferCreateInfoKHR, ExternalMemoryImageCreateInfoKHR, ExternalMemoryPropertiesKHR, ExternalSemaphorePropertiesKHR, FormatProperties2KHR, FormatProperties3KHR, FramebufferAttachmentImageInfoKHR, FramebufferAttachmentsCreateInfoKHR, GeometryTypeNV, ImageBlit2KHR, ImageCopy2KHR, ImageFormatListCreateInfoKHR, ImageFormatProperties2KHR, ImageMemoryBarrier2KHR, ImageMemoryRequirementsInfo2KHR, ImagePlaneMemoryRequirementsInfoKHR, ImageResolve2KHR, ImageSparseMemoryRequirementsInfo2KHR, ImageStencilUsageCreateInfoEXT, ImageViewUsageCreateInfoKHR, InputAttachmentAspectReferenceKHR, MemoryAllocateFlagsInfoKHR, MemoryBarrier2KHR, MemoryDedicatedAllocateInfoKHR, MemoryDedicatedRequirementsKHR, MemoryOpaqueCaptureAddressAllocateInfoKHR, MemoryRequirements2KHR, PhysicalDevice16BitStorageFeaturesKHR, PhysicalDevice8BitStorageFeaturesKHR, PhysicalDeviceBufferAddressFeaturesEXT, PhysicalDeviceBufferDeviceAddressFeaturesKHR, PhysicalDeviceDepthStencilResolvePropertiesKHR, PhysicalDeviceDescriptorIndexingFeaturesEXT, PhysicalDeviceDescriptorIndexingPropertiesEXT, PhysicalDeviceDriverPropertiesKHR, PhysicalDeviceDynamicRenderingFeaturesKHR, PhysicalDeviceExternalBufferInfoKHR, PhysicalDeviceExternalFenceInfoKHR, PhysicalDeviceExternalImageFormatInfoKHR, PhysicalDeviceExternalSemaphoreInfoKHR, PhysicalDeviceFeatures2KHR, PhysicalDeviceFloat16Int8FeaturesKHR, PhysicalDeviceFloatControlsPropertiesKHR, PhysicalDeviceGlobalPriorityQueryFeaturesEXT, PhysicalDeviceGroupPropertiesKHR, PhysicalDeviceHostQueryResetFeaturesEXT, PhysicalDeviceIDPropertiesKHR, PhysicalDeviceImageFormatInfo2KHR, PhysicalDeviceImageRobustnessFeaturesEXT, PhysicalDeviceImagelessFramebufferFeaturesKHR, PhysicalDeviceInlineUniformBlockFeaturesEXT, PhysicalDeviceInlineUniformBlockPropertiesEXT, PhysicalDeviceMaintenance3PropertiesKHR, PhysicalDeviceMaintenance4FeaturesKHR, PhysicalDeviceMaintenance4PropertiesKHR, PhysicalDeviceMemoryProperties2KHR, PhysicalDeviceMultiviewFeaturesKHR, PhysicalDeviceMultiviewPropertiesKHR, PhysicalDevicePipelineCreationCacheControlFeaturesEXT, PhysicalDevicePointClippingPropertiesKHR, PhysicalDevicePrivateDataFeaturesEXT, PhysicalDeviceProperties2KHR, PhysicalDeviceSamplerFilterMinmaxPropertiesEXT, PhysicalDeviceSamplerYcbcrConversionFeaturesKHR, PhysicalDeviceScalarBlockLayoutFeaturesEXT, PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR, PhysicalDeviceShaderAtomicInt64FeaturesKHR, PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT, PhysicalDeviceShaderDrawParameterFeatures, PhysicalDeviceShaderFloat16Int8FeaturesKHR, PhysicalDeviceShaderIntegerDotProductFeaturesKHR, PhysicalDeviceShaderIntegerDotProductPropertiesKHR, PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR, PhysicalDeviceShaderTerminateInvocationFeaturesKHR, PhysicalDeviceSparseImageFormatInfo2KHR, PhysicalDeviceSubgroupSizeControlFeaturesEXT, PhysicalDeviceSubgroupSizeControlPropertiesEXT, PhysicalDeviceSynchronization2FeaturesKHR, PhysicalDeviceTexelBufferAlignmentPropertiesEXT, PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT, PhysicalDeviceTimelineSemaphoreFeaturesKHR, PhysicalDeviceTimelineSemaphorePropertiesKHR, PhysicalDeviceToolPropertiesEXT, PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR, PhysicalDeviceVariablePointerFeatures, PhysicalDeviceVariablePointerFeaturesKHR, PhysicalDeviceVariablePointersFeaturesKHR, PhysicalDeviceVulkanMemoryModelFeaturesKHR, PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR, PipelineCreationFeedbackCreateInfoEXT, PipelineCreationFeedbackEXT, PipelineRenderingCreateInfoKHR, PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT, PipelineTessellationDomainOriginStateCreateInfoKHR, PointClippingBehaviorKHR, PrivateDataSlotCreateInfoEXT, PrivateDataSlotEXT, QueryPoolCreateInfoINTEL, QueueFamilyGlobalPriorityPropertiesEXT, QueueFamilyProperties2KHR, QueueGlobalPriorityEXT, RayTracingShaderGroupTypeNV, RenderPassAttachmentBeginInfoKHR, RenderPassCreateInfo2KHR, RenderPassInputAttachmentAspectCreateInfoKHR, RenderPassMultiviewCreateInfoKHR, RenderingAttachmentInfoKHR, RenderingInfoKHR, ResolveImageInfo2KHR, SamplerReductionModeCreateInfoEXT, SamplerReductionModeEXT, SamplerYcbcrConversionCreateInfoKHR, SamplerYcbcrConversionImageFormatPropertiesKHR, SamplerYcbcrConversionInfoKHR, SamplerYcbcrConversionKHR, SamplerYcbcrModelConversionKHR, SamplerYcbcrRangeKHR, SemaphoreSignalInfoKHR, SemaphoreSubmitInfoKHR, SemaphoreTypeCreateInfoKHR, SemaphoreTypeKHR, SemaphoreWaitInfoKHR, ShaderFloatControlsIndependenceKHR, SparseImageFormatProperties2KHR, SparseImageMemoryRequirements2KHR, SubmitInfo2KHR, SubpassBeginInfoKHR, SubpassDependency2KHR, SubpassDescription2KHR, SubpassDescriptionDepthStencilResolveKHR, SubpassEndInfoKHR, TessellationDomainOriginKHR, TimelineSemaphoreSubmitInfoKHR, TransformMatrixNV, WriteDescriptorSetInlineUniformBlockEXT
