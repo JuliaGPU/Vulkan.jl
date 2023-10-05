@@ -16,3 +16,5 @@ for config in configs
     @time write(vw, config)
     @info "Vulkan successfully wrapped at $(config.destfile)"
 end
+
+write_state(generate_state(read_state()))

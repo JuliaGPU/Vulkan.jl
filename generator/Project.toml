@@ -14,6 +14,7 @@ MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 StructArrays = "09ab397b-f2b6-538f-b94a-2f83cf4a842a"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 VulkanSpec = "99a7788f-8f0f-454f-8f6c-c6cf389551ae"
 Vulkan_Headers_jll = "8d446b21-f3ad-5576-a034-752265b9b6f9"
 
