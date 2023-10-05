@@ -182,8 +182,8 @@ function compute_workload(device, queue, command_pool)
     unwrap(queue_wait_idle(queue))
   end
 
-  unwrap(free_command_buffers(device, command_pool, [command_buffer]))
-  unwrap(free_descriptor_sets(device, descriptor_pool, [dset]))
+  free_command_buffers(device, command_pool, [command_buffer])
+  free_descriptor_sets(device, descriptor_pool, [dset])
 
   unwrap(invalidate_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0 #= offset =#, data_size)]))
 end
