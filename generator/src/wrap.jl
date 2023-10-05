@@ -269,8 +269,14 @@ function VulkanWrapper(config::WrapperConfig)
     aliases = AliasDeclaration[]
     for (source, target) in pairs(api.aliases.dict)
         startswith(string(target), "vk") && continue
-        al = AliasDeclaration(source => target)
-        al.target in exported_symbols && push!(aliases, al)
+        in(source, api.disabled_symbols) && continue
+        spec = api[source]
+        source, target = @match spec begin
+            ::SpecBitmask => bitmask_flag_type.((source, target))
+            ::SpecEnum => enum_type.((source, target))
+            _ => remove_vk_prefix.((source, target))
+        end
+        target in exported_symbols && push!(aliases, AliasDeclaration(source => target))
     end
     function_aliases = Expr[]
     functions = f(api.functions)

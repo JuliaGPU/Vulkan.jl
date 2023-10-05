@@ -10893,28 +10893,10 @@ exposed_as_parameter = true
 [structs.VkMutableDescriptorTypeCreateInfoEXT.sType]
 exposed_as_parameter = false
 
-[structs.VkMutableDescriptorTypeCreateInfoVALVE.mutableDescriptorTypeListCount]
-exposed_as_parameter = true
-
-[structs.VkMutableDescriptorTypeCreateInfoVALVE.pMutableDescriptorTypeLists]
-exposed_as_parameter = false
-
-[structs.VkMutableDescriptorTypeCreateInfoVALVE.pNext]
-exposed_as_parameter = true
-
-[structs.VkMutableDescriptorTypeCreateInfoVALVE.sType]
-exposed_as_parameter = false
-
 [structs.VkMutableDescriptorTypeListEXT.descriptorTypeCount]
 exposed_as_parameter = true
 
 [structs.VkMutableDescriptorTypeListEXT.pDescriptorTypes]
-exposed_as_parameter = false
-
-[structs.VkMutableDescriptorTypeListVALVE.descriptorTypeCount]
-exposed_as_parameter = true
-
-[structs.VkMutableDescriptorTypeListVALVE.pDescriptorTypes]
 exposed_as_parameter = false
 
 [structs.VkOffset2D.x]
@@ -12501,15 +12483,6 @@ exposed_as_parameter = true
 [structs.VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR.sType]
 exposed_as_parameter = false
 
-[structs.VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.fragmentShaderBarycentric]
-exposed_as_parameter = false
-
-[structs.VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.pNext]
-exposed_as_parameter = true
-
-[structs.VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV.sType]
-exposed_as_parameter = false
-
 [structs.VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR.pNext]
 exposed_as_parameter = true
 
@@ -13626,15 +13599,6 @@ exposed_as_parameter = true
 [structs.VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT.sType]
 exposed_as_parameter = false
 
-[structs.VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.mutableDescriptorType]
-exposed_as_parameter = false
-
-[structs.VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.pNext]
-exposed_as_parameter = true
-
-[structs.VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.sType]
-exposed_as_parameter = false
-
 [structs.VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT.nonSeamlessCubeMap]
 exposed_as_parameter = false
 
@@ -14065,21 +14029,6 @@ exposed_as_parameter = false
 exposed_as_parameter = true
 
 [structs.VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT.sType]
-exposed_as_parameter = false
-
-[structs.VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.pNext]
-exposed_as_parameter = true
-
-[structs.VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.rasterizationOrderColorAttachmentAccess]
-exposed_as_parameter = false
-
-[structs.VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.rasterizationOrderDepthAttachmentAccess]
-exposed_as_parameter = false
-
-[structs.VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.rasterizationOrderStencilAttachmentAccess]
-exposed_as_parameter = false
-
-[structs.VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.sType]
 exposed_as_parameter = false
 
 [structs.VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT.pNext]
