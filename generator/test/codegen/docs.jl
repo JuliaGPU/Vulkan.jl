@@ -259,7 +259,7 @@ test_doc(obj, doc) = @test Documented(obj).p[:docstring] == doc
             - `enabled_extension_names::Vector{String}`
             - `allocator::AllocationCallbacks`: defaults to `C_NULL`
             - `next::Any`: defaults to `C_NULL`
-            - `flags::UInt32`: defaults to `0`
+            - `flags::InstanceCreateFlag`: defaults to `0`
             - `application_info::ApplicationInfo`: defaults to `C_NULL`
 
             [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html)

@@ -42,9 +42,6 @@
             SHADER_STAGE_MESH_BIT_EXT = 128
             SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI = 16384
             SHADER_STAGE_CLUSTER_CULLING_BIT_HUAWEI = 524288
-            SHADER_STAGE_EXT_483_RESERVE_15 = 32768
-            SHADER_STAGE_EXT_483_RESERVE_16 = 65536
-            SHADER_STAGE_EXT_483_RESERVE_17 = 131072
             SHADER_STAGE_ALL_GRAPHICS = $(Int(0x0000001f))
             SHADER_STAGE_ALL = $(Int(0x7fffffff))
         end
@@ -56,6 +53,12 @@
             CULL_MODE_BACK_BIT = 2
             CULL_MODE_NONE = 0
             CULL_MODE_FRONT_AND_BACK = 3
+        end
+    ))
+
+    test_ex(BitmaskDefinition(api.bitmasks[:VkInstanceCreateFlagBits]), :(
+        @bitmask InstanceCreateFlag::UInt32 begin
+            INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR = 1
         end
     ))
 end;
