@@ -93,7 +93,7 @@ function Constructor(T::StructDefinition{false}, x::StructDefinition{true})
             _ => nothing
         end
         ex = isnothing(_Tsym) ? id_deref : :(convert_nonnull($_Tsym, $id_deref))
-        if is_optional(member)
+        if expose_as_kwarg(member)
             push!(kwargs, ex == id_deref ? ex : Expr(:kw, id, ex))
         else
             push!(args, ex)
@@ -159,7 +159,7 @@ function Constructor(def::StructDefinition{true})
     args = []
     for member in filter(!drop_field, children(spec))
         id = wrap_identifier(member)
-        if is_optional(member)
+        if expose_as_kwarg(member)
             push!(p[:kwargs], Expr(:kw, id, hl_default(member)))
         else
             push!(p[:args], :($id::$(signature_type(hl_type(member)))))

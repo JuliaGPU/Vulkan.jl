@@ -1,6 +1,9 @@
 is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL] || is_inferable_length(member)
 is_optional(param::SpecFuncParam) = param.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
 
+expose_as_kwarg(x::SpecFuncParam) = state[:functions][x.parent.name][x.name][:exposed_as_parameter]
+expose_as_kwarg(x::SpecStructMember) = state[:structs][x.parent.name][x.name][:exposed_as_parameter]
+
 """
 Represent an integer that gives the start of a C pointer.
 """

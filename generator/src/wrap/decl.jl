@@ -45,9 +45,9 @@ function add_func_args!(p::Dict, spec, params; with_func_ptr = false)
     params = filter(!drop_arg, params)
     arg_filter = if spec.type ∈ [FTYPE_DESTROY, FTYPE_FREE]
         destroyed_type = api.destructors[spec].handle.name
-        x -> !is_optional(x) || x.type == destroyed_type
+        x -> !expose_as_kwarg(x) || x.type == destroyed_type
     else
-        !is_optional
+        !expose_as_kwarg
     end
 
     p[:args] = convert(Vector{ExprLike}, map(arg_decl, filter(arg_filter, params)))

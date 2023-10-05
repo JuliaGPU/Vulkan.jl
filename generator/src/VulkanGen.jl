@@ -7,6 +7,7 @@ using MLStyle
 using DocStringExtensions
 using Reexport
 using Dictionaries
+using TOML
 using .Meta: isexpr
 using Pkg: project
 @reexport using VulkanSpec
@@ -25,6 +26,10 @@ using Pkg: project
                   """
 
 const api = VulkanAPI(project().version, include_video_api = false)
+
+include("state.jl")
+
+const state = read_state()
 
 include("types.jl")
 include("exprs.jl")
@@ -103,6 +108,8 @@ export
   APIFunction,
   Parent,
   exports,
+
+  generate_state, read_state, write_state,
 
   api
 
