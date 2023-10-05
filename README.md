@@ -12,11 +12,11 @@ If you have questions, want to brainstorm ideas or simply want to share cool thi
 
 ## Status
 
-This package is a work in progress and has not reached its 1.0 version yet. As such, documentation may not be complete and functionality may change without warning. If it happens, make sure to check out the [changelog](https://github.com/JuliaGPU/Vulkan.jl/blob/master/CHANGELOG.md). At this stage, you should not use this library in production; however, you are encouraged to push its boundaries through non-critical projects. If you find limitations, bugs or want to suggest potential improvements, do not hesitate to submit issues or pull requests. The goal is definitely to be production-ready as soon as possible.
+This package is a work in progress and has not reached its 1.0 version yet. As such, documentation may not be complete and functionality may change without warning. If it happens, make sure to check out the [changelog](https://github.com/JuliaGPU/Vulkan.jl/blob/main/CHANGELOG.md). At this stage, you should not use this library in production; however, you are encouraged to push its boundaries through non-critical projects. If you find limitations, bugs or want to suggest potential improvements, do not hesitate to submit issues or pull requests. The goal is definitely to be production-ready as soon as possible.
 
 In particular, because the library relies on automatic code generation, there may be portions of the Vulkan API that are not wrapped correctly. While you should not have trouble in most cases, there are always edge cases which were not accounted for during generation. Please open an issue whenever you encounter such a case, so that we can reliably fix those wrapping issues for future use.
 
 ## Testing
 
-Currently, continuous integration runs only on Ubuntu 32/64 bits with Julia 1.6, for lack of a functional CI setup with Vulkan for MacOS and Windows. Because public CI services lack proper driver support, the CPU Vulkan implementation [SwiftShader](https://github.com/google/swiftshader) is used.
-If you are not on Linux, we cannot guarantee that this library will work for you, although so far nothing is platform-dependent. Therefore, it is recommended that you test this package with your own setup.
+Currently, continuous integration runs only on Ubuntu 32/64 bits, for lack of a functional CI setup with Vulkan for MacOS and Windows. Because public CI services lack proper driver support, the CPU Vulkan implementation [SwiftShader](https://github.com/google/swiftshader) is used.
+If you are not on Linux, we cannot guarantee that this library will work for you, although so far nothing is platform-dependent. If that is the case, we recommend that you test this package with your own setup.
