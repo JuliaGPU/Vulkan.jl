@@ -1,5 +1,7 @@
 using VulkanGen
 
+write_state(generate_state(read_state()))
+
 const destdir = joinpath(dirname(dirname(@__DIR__)), "generated")
 
 wrapper_config(platform, destfile) = WrapperConfig(platform, joinpath(destdir, destfile))
@@ -16,5 +18,3 @@ for config in configs
     @time write(vw, config)
     @info "Vulkan successfully wrapped at $(config.destfile)"
 end
-
-write_state(generate_state(read_state()))
