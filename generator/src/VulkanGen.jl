@@ -9,7 +9,7 @@ using Reexport
 using Dictionaries
 using TOML
 using .Meta: isexpr
-using Pkg: project
+using Pkg.API: read_project
 @reexport using VulkanSpec
 
 @template (FUNCTIONS, METHODS, MACROS) = """
@@ -25,7 +25,7 @@ using Pkg: project
                   $(SIGNATURES)
                   """
 
-const api = VulkanAPI(project().version, include_video_api = false)
+const api = VulkanAPI(read_project(joinpath(pkgdir(@__MODULE__, "Project.toml"))).version, include_video_api = false)
 
 include("state.jl")
 

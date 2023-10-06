@@ -34,7 +34,11 @@ generate_markdowns()
 
 makedocs(;
     modules=[Vulkan, VulkanGen],
-    format=Documenter.HTML(prettyurls = true),
+    format=Documenter.HTML(
+        prettyurls = true,
+        size_threshold_warn = 10_000_000, # 10 MB,
+        size_threshold = 100_000_000, # 100 MB,
+    ),
     pages=[
         "Home" => "index.md",
         "Introduction" => "intro.md",
@@ -75,7 +79,6 @@ makedocs(;
     repo="https://github.com/JuliaGPU/Vulkan.jl/blob/{commit}{path}#L{line}",
     sitename="Vulkan.jl",
     authors="serenity4 <cedric.bel@hotmail.fr>",
-    strict=true,
     doctest=false,
     checkdocs=:exports,
     linkcheck=:false,
