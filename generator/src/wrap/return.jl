@@ -1,5 +1,5 @@
 wrap_return(ex, type, jtype, next_types = nothing) = @match t = type begin
-    :VkResult => :(@check($ex))
+    :VkResult && if jtype !== :Nothing end => :(@check($ex))
     :Cstring => :(unsafe_string($ex))
     GuardBy(is_opaque_pointer) => ex
 
@@ -98,7 +98,7 @@ function wrap_return_type(spec::SpecFunc, ret_type)
     end
 
     @match spec.return_type begin
-        :VkResult => :(ResultTypes.Result{$ret_type,VulkanError})
+        :VkResult && if must_return_status_code(spec) end => :(ResultTypes.Result{$ret_type,VulkanError})
         _ => ret_type
     end
 end

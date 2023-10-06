@@ -12,9 +12,8 @@ test_ex(x::WrapperNode, y) = @test prettify(to_expr(x)) == prettify(y)
     include("utilities/naming_conventions.jl")
   end
 
-  @testset "Wrapper generation" begin
-    include("config.jl")
-  end
+  include("config.jl")
+  include("state.jl")
 
   @testset "Code generation" begin
     @testset "Structs" begin

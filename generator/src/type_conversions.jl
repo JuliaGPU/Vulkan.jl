@@ -75,6 +75,7 @@ function idiomatic_julia_type(spec::Spec)
         _ => idiomatic_julia_type(s.type)
     end
 end
+idiomatic_julia_type(spec::SpecFunc) = spec.return_type == :VkResult && !must_return_status_code(spec) ? :Nothing : idiomatic_julia_type(spec.return_type)
 
 function signature_type(type)
     @match type begin

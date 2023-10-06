@@ -113,6 +113,13 @@
         end
     ))
 
+    test_ex(APIFunction(api.functions[:vkFreeDescriptorSets], false), :(
+        function _free_descriptor_sets(device, descriptor_pool, descriptor_sets::AbstractArray)::Nothing
+            @dispatch(device, vkFreeDescriptorSets(device, descriptor_pool, pointer_length(descriptor_sets), descriptor_sets))
+            nothing
+        end
+    ))
+
     test_ex(APIFunction(api.functions[:vkMergePipelineCaches], false), :(
         _merge_pipeline_caches(device, dst_cache, src_caches::AbstractArray)::ResultTypes.Result{Result,VulkanError} = @check(@dispatch(device, vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches)))
     ))

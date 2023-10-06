@@ -36,14 +36,12 @@ backquoted(arg) = string('`', arg, '`')
 
 function document_return_codes(spec::SpecFunc)
     res = ""
-    if !isempty(spec.success_codes) || !isempty(spec.error_codes)
+    if must_return_status_code(spec)
         res *= "Return codes:"
-    end
-    if !isempty(spec.success_codes) && must_return_success_code(spec)
-        res *= string("\n- ", join(backquoted.(remove_vk_prefix.(spec.success_codes)), "\n- "))
+        res *= string("\n- ", join(backquoted.(remove_vk_prefix.(success_codes(spec))), "\n- "))
     end
     if !isempty(spec.error_codes)
-        res *= string("\n- ", join(backquoted.(remove_vk_prefix.(spec.error_codes)), "\n- "))
+        res *= string("\n- ", join(backquoted.(remove_vk_prefix.(error_codes(spec))), "\n- "))
     end
 
     isempty(res) && return ""

@@ -34,6 +34,15 @@ function constructors(def::StructDefinition{HL,SpecUnion}) where {HL}
         end
     end
 
+    if spec.name == :VkDescriptorDataEXT
+        # VkDescriptorDataEXT has several union members with the same type.
+        # In this case, generate a single constructor.
+        args = [:(x::Union{Sampler, Ptr{VkDescriptorImageInfo}, Ptr{VkDescriptorAddressInfoEXT}, UInt64})]
+        body = HL ? :(DescriptorDataEXT(VkDescriptorDataEXT(x))) : :(_DescriptorDataEXT(VkDescriptorDataEXT(x)))
+        p = Dict(:category => :function, :name => name, :args => args, :body => body, :short => true)
+        return [Constructor(p, def, spec)]
+    end
+
     map(zip(spec.types, sig_types, spec.fields)) do (type, sig_type, field)
         var = wrap_identifier(field)
         call = if type in api.unions.name

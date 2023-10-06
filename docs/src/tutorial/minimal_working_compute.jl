@@ -304,8 +304,8 @@ end
 
 # Free the command buffers and the descriptor sets. These are the only handles that are not cleaned up automatically (see [Automatic finalization](@ref)).
 
-unwrap(free_command_buffers(device, cmdpool, cbufs))
-unwrap(free_descriptor_sets(device, dpool, dsets))
+free_command_buffers(device, cmdpool, cbufs)
+free_descriptor_sets(device, dpool, dsets)
 
 # Just as with flushing, the invalidation is only required for memory that is
 # not host-coherent. You may skip this step if you check that the memory has

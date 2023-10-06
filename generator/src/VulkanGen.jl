@@ -29,7 +29,7 @@ const api = VulkanAPI(project().version, include_video_api = false)
 
 include("state.jl")
 
-const state = read_state()
+const state = Ref(read_state())
 
 include("types.jl")
 include("exprs.jl")

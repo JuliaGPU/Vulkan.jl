@@ -8,7 +8,7 @@ function wrap_api_call(spec::SpecFunc, args; with_func_ptr = false)
     wrap_return(
         ex,
         spec.return_type,
-        idiomatic_julia_type(spec.return_type),
+        idiomatic_julia_type(spec),
     )
 end
 
@@ -144,12 +144,20 @@ function APIFunction(spec::SpecFunc, with_func_ptr)
             )
         end
     else
-        p[:short] = true
-        p[:body] = :($(wrap_api_call(spec, map(vk_call, children(spec)); with_func_ptr)))
+        ret_type = idiomatic_julia_type(spec)
+        body = :($(wrap_api_call(spec, map(vk_call, children(spec)); with_func_ptr)))
+        if ret_type === :Nothing
+            p[:short] = false
+            p[:body] = quote
+                $body
+                nothing
+            end
+        else
+            p[:short] = true
+            p[:body] = body
+        end
 
         args = children(spec)
-
-        ret_type = idiomatic_julia_type(spec.return_type)
     end
 
     add_func_args!(p, spec, args; with_func_ptr)

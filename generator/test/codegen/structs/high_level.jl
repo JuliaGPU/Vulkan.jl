@@ -46,7 +46,7 @@
         test_ex(StructDefinition{true}(api.structs[:VkInstanceCreateInfo]), :(
             @struct_hash_equal struct InstanceCreateInfo <: HighLevelStruct
                 next::Any
-                flags::UInt32
+                flags::InstanceCreateFlag
                 application_info::OptionalPtr{ApplicationInfo}
                 enabled_layer_names::Vector{String}
                 enabled_extension_names::Vector{String}

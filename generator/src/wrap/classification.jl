@@ -1,8 +1,8 @@
 is_optional(member::SpecStructMember) = member.name == :pNext || member.requirement ∈ [OPTIONAL, POINTER_OPTIONAL] || is_inferable_length(member)
 is_optional(param::SpecFuncParam) = param.requirement ∈ [OPTIONAL, POINTER_OPTIONAL]
 
-expose_as_kwarg(x::SpecFuncParam) = state[:functions][x.parent.name][x.name][:exposed_as_parameter]
-expose_as_kwarg(x::SpecStructMember) = state[:structs][x.parent.name][x.name][:exposed_as_parameter]
+expose_as_kwarg(x::SpecFuncParam) = state[][:functions][follow_alias(x.parent.name, api.aliases)][x.name][:exposed_as_parameter]
+expose_as_kwarg(x::SpecStructMember) = state[][:structs][follow_alias(x.parent.name, api.aliases)][x.name][:exposed_as_parameter]
 
 """
 Represent an integer that gives the start of a C pointer.
@@ -17,7 +17,12 @@ end
 
 is_semantic_ptr(type) = is_ptr(type) || type == :Cstring
 needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type)
-must_return_success_code(spec::SpecFunc) = length(spec.success_codes) > 1 && :VK_INCOMPLETE ∉ spec.success_codes
+"Whether it makes sense to return a success code (i.e. when there are possible errors or non-`SUCCESS` success codes)."
+must_return_status_code(spec::SpecFunc) = must_return_success_code(spec) || !isempty(error_codes(spec))
+"Whether the success code must be returned because it is informative (e.g. notifying of timeouts)."
+must_return_success_code(spec::SpecFunc) = length(spec.success_codes) - in(:VK_INCOMPLETE, spec.success_codes) > 1
+success_codes(spec::SpecFunc) = !must_return_status_code(spec) ? Symbol[] : filter(≠(:VK_INCOMPLETE), spec.success_codes)
+error_codes(spec::SpecFunc) = spec.error_codes
 must_repeat_while_incomplete(spec::SpecFunc) = !must_return_success_code(spec) && :VK_INCOMPLETE ∈ spec.success_codes
 is_data_with_retrievable_size(spec::SpecFuncParam) = is_data(spec) && len(spec).requirement == POINTER_REQUIRED
 is_opaque_data(spec) = is_data(spec) && len(spec).requirement ≠ POINTER_REQUIRED
