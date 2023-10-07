@@ -1,7 +1,17 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.6.9`
+- ![Feature][badge-feature] The Vulkan specification used for the wrapping process has been updated from 1.3.207 to 1.3.240, along with [VulkanCore.jl](https://github.com/JuliaGPU/VulkanCore.jl). New types, functions and extensions are now available!
+- ![Enhancement][badge-enhancement] The analysis of the Vulkan specification has been split into a separate package, [VulkanSpec.jl](https://github.com/serenity4/VulkanSpec.jl) to allow for reuse in other contexts. This code has also seen a major refactor that enabled its split and allowed more advanced functionality.
+- ![Enhancement][badge-enhancement] Part of the advanced functionality provided in the refactor just mentioned allowed for improvements to the wrapper process that make sure no breaking change is introduced. The potential breakages that required attention were notably:
+    - The promotion of positional arguments into keyword arguments, reflecting a change from required to optional in the Vulkan specification; exposing optional arguments as keyword arguments was disabled in such cases, such that only arguments that are originally (or manually annotated as) optional are exposed as keyword arguments.
+    - More aliases had to be defined for enumeration values which were later promoted (and thus had their name changed).
+    - The generation of a diff with proper tests in VulkanSpec.jl to ensure that only symbols belonging to provisional extensions are dropped between versions (keeping backward compatibility for others).
+- ![Enhancement][badge-enhancement] Functions that could only return a success code (such as `vkFreeDescriptorSets`) return `nothing` instead. Although breaking in theory, this should not be breaking in practice, as it is most likely that such results would be ignored or `unwrap`ed (and `unwrap` works on any value, including `nothing`, defined as a no-op).
+
 ## Version `v0.6.8`
 - ![Enhancement][badge-enhancement] The default hash and equality methods defined for structures is now provided by StructEquals.jl instead of AutoHashEquals.jl.
+
 ## Version `v0.6`
 
 - ![BREAKING][badge-breaking] The version of the Vulkan API has been updated to 1.3.207. This is breaking because certain function arguments can be annotated as optional in the specification, turning them into keyword arguments in generated code.
