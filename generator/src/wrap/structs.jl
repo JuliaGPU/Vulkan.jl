@@ -24,7 +24,9 @@ function Constructor(def::StructDefinition{false})
         :relax_signature => true,
     )
     if needs_deps(spec)
+        length_computations = [compute_pointer_length(member) for member in spec.members if is_inferable_length(member) && !is_length_exception(member)]
         p[:body] = quote
+            $(length_computations...)
             $(
                 (
                     :($id = cconvert($(m.type), $id)) for

@@ -57,6 +57,8 @@
 
         test_ex(Constructor(StructDefinition{false}(api.structs[:VkInstanceCreateInfo])), :(
             function _InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extension_names::AbstractArray; next=C_NULL, flags=0, application_info=C_NULL)
+                enabled_layer_count = pointer_length(enabled_layer_names)
+                enabled_extension_count = pointer_length(enabled_extension_names)
                 next = cconvert(Ptr{Cvoid}, next)
                 application_info = cconvert(Ptr{VkApplicationInfo}, application_info)
                 enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
@@ -71,9 +73,9 @@
                                         unsafe_convert(Ptr{Cvoid}, next),
                                         flags,
                                         unsafe_convert(Ptr{VkApplicationInfo}, application_info),
-                                        pointer_length(enabled_layer_names),
+                                        enabled_layer_count,
                                         unsafe_convert(Ptr{Cstring}, enabled_layer_names),
-                                        pointer_length(enabled_extension_names),
+                                        enabled_extension_count,
                                         unsafe_convert(Ptr{Cstring}, enabled_extension_names),
                                         )
                 _InstanceCreateInfo(vks, deps)
@@ -98,10 +100,11 @@
 
         test_ex(Constructor(StructDefinition{false}(api.structs[:VkDescriptorSetAllocateInfo])), :(
             function _DescriptorSetAllocateInfo(descriptor_pool, set_layouts::AbstractArray; next = C_NULL)
+                descriptor_set_count = pointer_length(set_layouts)
                 next = cconvert(Ptr{Cvoid}, next)
                 set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
                 deps = Any[next, set_layouts]
-                vks = VkDescriptorSetAllocateInfo(structure_type(VkDescriptorSetAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, pointer_length(set_layouts), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
+                vks = VkDescriptorSetAllocateInfo(structure_type(VkDescriptorSetAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, descriptor_set_count, unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
                 _DescriptorSetAllocateInfo(vks, deps, descriptor_pool)
             end
         ))

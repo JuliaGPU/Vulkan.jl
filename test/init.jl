@@ -25,7 +25,7 @@ const device = let pdevices = unwrap(enumerate_physical_devices(instance))
 
     Device(
         pdevice,
-        [DeviceQueueCreateInfo(find_queue_family(pdevice, QUEUE_GRAPHICS_BIT & QUEUE_COMPUTE_BIT), [1.0])],
+        [DeviceQueueCreateInfo(find_queue_family(pdevice, QUEUE_GRAPHICS_BIT | QUEUE_COMPUTE_BIT), [1.0])],
         [], DEVICE_EXTENSIONS; enabled_features = ENABLED_FEATURES
     )
 end

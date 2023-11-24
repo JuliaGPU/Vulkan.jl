@@ -18,14 +18,12 @@ unsafe_convert(T::Type, x::Tuple{<:AbstractVector{<:VulkanStruct{true}}, <:Any})
 
 Return the length `val` considering it as an array.
 
-Differ from `Base.length` in that `pointer_length(C_NULL) == 0` and that a `RefArray`s return the length of their roots.
+Differ from `Base.length` in that `pointer_length(C_NULL) == 0`.
 """
 function pointer_length end
 
 pointer_length(arr::Ptr{Nothing}) = 0
 pointer_length(arr::AbstractArray) = length(arr)
-pointer_length(arr::RefArray) = length(arr.roots)
-pointer_length(arr::Tuple{<:Any,<:Any}) = length(first(arr))
 
 convert_nonnull(T, val) = convert(T, val)
 convert_nonnull(T, val::Ptr{Cvoid}) = val == C_NULL ? val : convert(T, val)

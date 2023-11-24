@@ -55,7 +55,12 @@ function vk_call(x::Spec)
             !x.autovalidity && @debug "Automatic validation was disabled for length parameter $x."
             @match x begin
                 GuardBy(is_length_exception) || GuardBy(!is_inferable_length) => var
-                _ => :(pointer_length($(wrap_identifier(first(arglen(x)))))) # Julia works with arrays, not pointers, so the length information can directly be retrieved from them
+                # Julia works with arrays, not pointers, so the length information can directly be retrieved from them.
+                # For struct members, the wrapped identifier refers to the `cconvert`ed value, which doesn't
+                # reliably return something that we can infer the length of the original array from.
+                # Instead, we reference a count that was computed from the argument before `cconvert`.
+                ::SpecStructMember => wrap_identifier(x)
+                ::SpecFuncParam => pointer_length_expression(x)
             end
         end
         GuardBy(is_pointer_start) => 0 # always set first* variables to 0, and the user should provide a (sub)array of the desired length
@@ -88,4 +93,15 @@ function vk_call(x::Spec)
             _ => :(to_vk($(x.type), $var)) # fall back to the to_vk function for conversion
         end
     end
+end
+
+function compute_pointer_length(x::Union{SpecFuncParam,SpecStructMember})
+    id = wrap_identifier(x)
+    value = pointer_length_expression(x)
+    :($id = $value)
+end
+
+function pointer_length_expression(x::Union{SpecFuncParam,SpecStructMember})
+    array = wrap_identifier(first(arglen(x)))
+    :(pointer_length($array))
 end
