@@ -1,4 +1,4 @@
-module VulkanXCB
+module VulkanXCBExt
 
 using Vulkan
 using XCB: XCBWindow

@@ -23,7 +23,7 @@ XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [extensions]
 VulkanColorTypesExt = "ColorTypes"
-VulkanXCB = "XCB"
+VulkanXCBExt = "XCB"
 
 [compat]
 Accessors = "0.1"
