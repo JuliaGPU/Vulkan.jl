@@ -1,11 +1,14 @@
-cconvert(T::Type, x::VulkanStruct) = x
-cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = getproperty.(x, :vks)
-cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = (x, getproperty.(x, :vks))
-cconvert(T::Type{<:Ptr}, x::VulkanStruct{false}) = Ref(x.vks)
-cconvert(T::Type{<:Ptr}, x::VulkanStruct{true}) = (x, Ref(x.vks))
-cconvert(T::Type{Ptr{_T}}, x::Vector{<:HighLevelStruct}) where {_T} = cconvert(T, convert(Vector{getproperty(@__MODULE__, Symbol(:_, nameof(eltype(x))))}, x))
-cconvert(T::Type{Ptr{_T}}, x::HighLevelStruct) where {_T} = cconvert(T, convert(getproperty(@__MODULE__, Symbol(:_, nameof(typeof(x)))), x))
-cconvert(T::Type{Ptr{Cvoid}}, x::Handle) = x
+# Make sure our dispatches for vectors are hit before any other method.
+cconvert(T, x) = Base.cconvert(T, x)
+
+Base.cconvert(T::Type{Ptr{Cvoid}}, x::Handle) = x
+Base.cconvert(T::Type{<:Ptr}, x::VulkanStruct{false}) = Ref(x.vks)
+Base.cconvert(T::Type{<:Ptr}, x::VulkanStruct{true}) = (x, Ref(x.vks))
+Base.cconvert(T::Type{<:Ptr}, x::HighLevelStruct) = Base.cconvert(T, convert(getproperty(@__MODULE__, Symbol(:_, nameof(typeof(x)))), x))
+
+cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = Base.cconvert(T, getproperty.(x, :vks))
+cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = (x, Base.cconvert(T, getproperty.(x, :vks)))
+cconvert(T::Type{<:Ptr}, x::AbstractVector{<:HighLevelStruct}) = Base.cconvert(T, convert.(getproperty(@__MODULE__, Symbol(:_, nameof(eltype(x)))), x))
 
 convert(T::Type{Ptr{Cvoid}}, x::Handle) = x.vks
 

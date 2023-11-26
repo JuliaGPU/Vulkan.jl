@@ -20,7 +20,7 @@ const VkCore = vk
 export VkCore, Vk
 
 using Base: RefArray
-import Base: convert, cconvert, unsafe_convert, &, |, xor, isless, ==, typemax, in, parent
+import Base: convert, unsafe_convert, &, |, xor, isless, ==, typemax, in, parent
 using MLStyle
 
 const Optional{T} = Union{T, Nothing}
