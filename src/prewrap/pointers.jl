@@ -1,4 +1,6 @@
 # Make sure our dispatches for vectors are hit before any other method.
+# Unfortunately, we'll still need to add dispatches from `Base.cconvert` to this `cconvert`
+# because `Base.cconvert` is what will be called during `ccall`s, not this function.
 cconvert(T, x) = Base.cconvert(T, x)
 
 Base.cconvert(T::Type{Ptr{Cvoid}}, x::Handle) = x
@@ -9,6 +11,16 @@ Base.cconvert(T::Type{<:Ptr}, x::HighLevelStruct) = Base.cconvert(T, convert(get
 cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = Base.cconvert(T, getproperty.(x, :vks))
 cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = (x, Base.cconvert(T, getproperty.(x, :vks)))
 cconvert(T::Type{<:Ptr}, x::AbstractVector{<:HighLevelStruct}) = Base.cconvert(T, convert.(getproperty(@__MODULE__, Symbol(:_, nameof(eltype(x)))), x))
+
+Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = cconvert(T, x)
+Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = cconvert(T, x)
+Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:HighLevelStruct}) = cconvert(T, x)
+
+# Shadow the otherwise more specific Base
+# method `cconvert(::Type{Ptr{P<:Union{Cstring,Cwstring,Ptr}}}, ::Array)`.
+Base.cconvert(T::Type{Ptr{P}}, x::Vector{<:VulkanStruct{false}}) where {P<:Ptr} = cconvert(T, x)
+Base.cconvert(T::Type{Ptr{P}}, x::Vector{<:VulkanStruct{true}}) where {P<:Ptr} = cconvert(T, x)
+Base.cconvert(T::Type{Ptr{P}}, x::Vector{<:HighLevelStruct}) where {P<:Ptr} = cconvert(T, x)
 
 convert(T::Type{Ptr{Cvoid}}, x::Handle) = x.vks
 
