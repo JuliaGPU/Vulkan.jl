@@ -16,8 +16,14 @@ Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = cconve
 Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = cconvert(T, x)
 Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:HighLevelStruct}) = cconvert(T, x)
 
-# Shadow the otherwise more specific Base
-# method `cconvert(::Type{Ptr{P<:Union{Cstring,Cwstring,Ptr}}}, ::Array)`.
+# Shadow the otherwise more specific Base method
+# `cconvert(::Type{<:Ptr}, ::Array)`.
+Base.cconvert(T::Type{<:Ptr}, x::Vector{<:VulkanStruct{false}}) = cconvert(T, x)
+Base.cconvert(T::Type{<:Ptr}, x::Vector{<:VulkanStruct{true}}) = cconvert(T, x)
+Base.cconvert(T::Type{<:Ptr}, x::Vector{<:HighLevelStruct}) = cconvert(T, x)
+
+# Shadow the otherwise more specific Base method
+# `cconvert(::Type{Ptr{P<:Union{Cstring,Cwstring,Ptr}}}, ::Array)`.
 Base.cconvert(T::Type{Ptr{P}}, x::Vector{<:VulkanStruct{false}}) where {P<:Ptr} = cconvert(T, x)
 Base.cconvert(T::Type{Ptr{P}}, x::Vector{<:VulkanStruct{true}}) where {P<:Ptr} = cconvert(T, x)
 Base.cconvert(T::Type{Ptr{P}}, x::Vector{<:HighLevelStruct}) where {P<:Ptr} = cconvert(T, x)
