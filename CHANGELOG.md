@@ -1,5 +1,8 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.6.14`
+- ![Feature][badge-feature] New mappings between Julia types and Vulkan formats are available, via `Vk.Format` constructors and `Vk.format_type` functions.
+
 ## Version `v0.6.9`
 - ![Feature][badge-feature] The Vulkan specification used for the wrapping process has been updated from 1.3.207 to 1.3.240, along with [VulkanCore.jl](https://github.com/JuliaGPU/VulkanCore.jl). New types, functions and extensions are now available!
 - ![Enhancement][badge-enhancement] The analysis of the Vulkan specification has been split into a separate package, [VulkanSpec.jl](https://github.com/serenity4/VulkanSpec.jl) to allow for reuse in other contexts. This code has also seen a major refactor that enabled its split and allowed more advanced functionality.
