@@ -13,7 +13,6 @@
 
     if in(@load_preference("PRECOMPILE_DEVICE_FUNCTIONS", "auto"), ("true", "auto"))
         @debug "Running device-dependent precompilation workload"
-        include("../test/precompile_workload.jl")
         try
             precompile_workload()
         catch e

@@ -12,6 +12,7 @@ using Accessors: @set, setproperties
 using PrecompileTools
 using Libdl: Libdl
 using BitMasks
+using FixedPointNumbers # for formats.jl
 
 using VulkanCore: VulkanCore, vk
 using .vk
@@ -71,10 +72,12 @@ include("validation.jl")
 include("instance.jl")
 include("device.jl")
 include("dispatch.jl")
+include("formats.jl")
 include("print.jl")
 
 const global_dispatcher = Ref{APIDispatcher}()
 
+include("precompile_workload.jl")
 include("precompile.jl")
 
 function __init__()

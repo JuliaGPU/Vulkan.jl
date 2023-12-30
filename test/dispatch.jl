@@ -13,4 +13,4 @@ using Preferences: load_preference
     else
         @test !haskey(disp.instance_tables, instance)
     end
-end
+end;

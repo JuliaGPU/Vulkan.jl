@@ -94,7 +94,7 @@ function compute_workload(device, queue, command_pool)
 
   unwrap(flush_mapped_memory_ranges(device, [MappedMemoryRange(mem, 0 #= offset =#, data_size)]))
 
-  shader_bcode = reinterpret(UInt32, read(joinpath(@__DIR__, "precompile_compute.spv")))
+  shader_bcode = reinterpret(UInt32, read(joinpath(pkgdir(Vulkan, "assets", "precompile_compute.spv"))))
   shader = ShaderModule(device, sizeof(UInt32) * length(shader_bcode), shader_bcode)
 
   descriptor_set_layout = DescriptorSetLayout(

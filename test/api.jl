@@ -143,6 +143,6 @@ end
         fence_4 = unwrap(_create_fence(device))
         @test fence_4 isa Fence
     end
-end
+end;
 
 GC.gc()

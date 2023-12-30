@@ -13,6 +13,7 @@ set_driver(:SwiftShader)
 @testset "Vulkan.jl" begin
     include("api.jl")
     include("dispatch.jl")
+    include("formats.jl")
     @test Vulkan.precompile_workload()
     isdefined(Base, :get_extension) && include("extensions.jl")
     include("doctests.jl")
