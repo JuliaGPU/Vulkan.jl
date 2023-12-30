@@ -113,10 +113,10 @@ end
         feats2 = get_physical_device_features_2(device.physical_device, PhysicalDeviceVulkan12Features)
         @test feats2 == @set(feats2.next.next = C_NULL)
 
-        props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceProtectedMemoryProperties, PhysicalDeviceProvokingVertexPropertiesEXT)
+        props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceProtectedMemoryProperties, PhysicalDeviceShaderIntegerDotProductProperties)
         @test props isa PhysicalDeviceProperties2
         @test props.next isa PhysicalDeviceProtectedMemoryProperties
-        @test props.next.next isa PhysicalDeviceProvokingVertexPropertiesEXT
+        @test props.next.next isa PhysicalDeviceShaderIntegerDotProductProperties
         props = get_physical_device_properties_2(device.physical_device, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Properties)
         @test props.properties.api_version ≥ v"1.1"
     end

@@ -73,7 +73,7 @@ include("instance.jl")
 include("device.jl")
 include("dispatch.jl")
 include("formats.jl")
-include("print.jl")
+include("show.jl")
 
 const global_dispatcher = Ref{APIDispatcher}()
 
