@@ -16,7 +16,7 @@ jobs:
       - uses: julia-actions/setup-julia@latest
         with:
           version: "1.9.3"
-      - uses: julia-actions/cache@v1
+      - uses: julia-actions/cache@v2
       - uses: julia-actions/julia-buildpkg@latest
       - name: Instantiate generator
         run: "julia --project=generator -e 'using Pkg; Pkg.instantiate()'"
