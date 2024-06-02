@@ -31,10 +31,10 @@ Return a `PhysicalDeviceVulkan11Features` object with the provided `features` se
 
 ```jldoctest
 julia> PhysicalDeviceVulkan11Features(; next = C_NULL)
-PhysicalDeviceVulkan11Features(next=Ptr{Nothing} @0x0000000000000000)
+PhysicalDeviceVulkan11Features(next=Ptr{Nothing}(0x0000000000000000))
 
 julia> PhysicalDeviceVulkan11Features(:multiview, :variable_pointers, next = C_NULL)
-PhysicalDeviceVulkan11Features(next=Ptr{Nothing} @0x0000000000000000, multiview, variable_pointers)
+PhysicalDeviceVulkan11Features(next=Ptr{Nothing}(0x0000000000000000), multiview, variable_pointers)
 ```
 """
 PhysicalDeviceVulkan11Features(features::Symbol...; next = C_NULL) = PhysicalDeviceVulkan11Features(collect(features); next)
@@ -44,10 +44,10 @@ Return a `PhysicalDeviceVulkan12Features` object with the provided `features` se
 
 ```jldoctest
 julia> PhysicalDeviceVulkan12Features(; next = C_NULL)
-PhysicalDeviceVulkan12Features(next=Ptr{Nothing} @0x0000000000000000)
+PhysicalDeviceVulkan12Features(next=Ptr{Nothing}(0x0000000000000000))
 
 julia> PhysicalDeviceVulkan12Features(:draw_indirect_count, :descriptor_binding_variable_descriptor_count)
-PhysicalDeviceVulkan12Features(next=Ptr{Nothing} @0x0000000000000000, draw_indirect_count, descriptor_binding_variable_descriptor_count)
+PhysicalDeviceVulkan12Features(next=Ptr{Nothing}(0x0000000000000000), draw_indirect_count, descriptor_binding_variable_descriptor_count)
 ```
 """
 PhysicalDeviceVulkan12Features(features::Symbol...; next = C_NULL) = PhysicalDeviceVulkan12Features(collect(features); next)
@@ -57,10 +57,10 @@ Return a `PhysicalDeviceVulkan13Features` object with the provided `features` se
 
 ```jldoctest
 julia> PhysicalDeviceVulkan13Features(; next = C_NULL)
-PhysicalDeviceVulkan13Features(next=Ptr{Nothing} @0x0000000000000000)
+PhysicalDeviceVulkan13Features(next=Ptr{Nothing}(0x0000000000000000))
 
 julia> PhysicalDeviceVulkan13Features(:dynamic_rendering)
-PhysicalDeviceVulkan13Features(next=Ptr{Nothing} @0x0000000000000000, dynamic_rendering)
+PhysicalDeviceVulkan13Features(next=Ptr{Nothing}(0x0000000000000000), dynamic_rendering)
 ```
 """
 PhysicalDeviceVulkan13Features(features::Symbol...; next = C_NULL) = PhysicalDeviceVulkan13Features(collect(features); next)
