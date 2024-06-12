@@ -58,7 +58,7 @@ function debug_callback(severity, type, p_data, p_user_data)
     p_data ≠ C_NULL || return UInt32(0) # don't print if there's no message
     data = unsafe_load(p_data)
     msg = unsafe_string(data.pMessage)
-    ccall(:jl_safe_printf, Cstring, (Cstring,), string(msg, '\n'))
+    ccall(:jl_safe_printf, Cvoid, (Cstring,), string(msg, '\n'))
     return UInt32(0)
 end
 ```

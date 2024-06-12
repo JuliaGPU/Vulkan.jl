@@ -213,7 +213,8 @@ p = first(ps)
 
 # Now make a descriptor pool to allocate the buffer descriptors from (not a big
 # one, just 1 descriptor set with 1 descriptor in total), ...
-dpool = DescriptorPool(device, 1, [DescriptorPoolSize(DESCRIPTOR_TYPE_STORAGE_BUFFER, 1)])
+dpool = DescriptorPool(device, 1, [DescriptorPoolSize(DESCRIPTOR_TYPE_STORAGE_BUFFER, 1)],
+                       flags=DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT)
 
 # ... allocate the descriptors for our layout, ...
 dsets = unwrap(allocate_descriptor_sets(device, DescriptorSetAllocateInfo(dpool, [dsl])))
