@@ -67,7 +67,7 @@ Because we are passing a callback to Vulkan as a function pointer, we need to co
 
 ```julia
 const debug_callback_c = @cfunction(
-    default_debug_callback,
+    debug_callback,
     UInt32,
     (
         DebugUtilsMessageSeverityFlagEXT,
