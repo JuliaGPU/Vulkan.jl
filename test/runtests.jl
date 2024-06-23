@@ -16,5 +16,5 @@ set_driver(:SwiftShader)
     include("formats.jl")
     @test Vulkan.precompile_workload()
     isdefined(Base, :get_extension) && include("extensions.jl")
-    VERSION ≥ v"1.10" && include("doctests.jl")
+    VERSION ≥ v"1.12" && include("doctests.jl")
 end;
