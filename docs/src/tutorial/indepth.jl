@@ -113,4 +113,6 @@ const debug_messenger = DebugUtilsMessengerEXT(
 
 We can now enumerate and pick a physical device that we will use for this tutorial.
 
+*Work in progress.*
+
 =#
