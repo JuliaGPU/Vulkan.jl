@@ -1,6 +1,6 @@
 # Glossary
 
-*Core handle*: Opaque pointer (`void*`) extensively used by the Vulkan API. See the [Object model](https://www.khronos.org/registry/vulkan/specs/1.3/html/vkspec.html#fundamentals-objectmodel-overview) section of the Vulkan documentation for more details.
+*Core handle*: Opaque pointer (`void*`) extensively used by the Vulkan API. See the [Object model](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/chap3.html#fundamentals-objectmodel-overview) section of the Vulkan documentation for more details.
 
 *Handle*: Mutable type which wraps a core handle, allowing the use of finalizers to call API destructors with a reference counting mechanism to ensure no handle is destroyed before its children. Read more about them [here](@ref Handles).
 
