@@ -30,9 +30,9 @@ If using VSCode, you can set it for the integrated terminal (e.g. `terminal.inte
 
 ## Internal API errors
 
-If you encounter the error `INITIALIZATION_FAILED` or similar errors with Julia, which you do not encounter with other languages (e.g. C/C++) or with your system Vulkan utilities, then it may be due to `libstdc++` version requirements (see [this tip](@ref libstdc)).
+If you encounter the error `INITIALIZATION_FAILED` or similar errors with Julia, which you do not encounter with other languages (e.g. C/C++) or with your system Vulkan utilities, then it may be due to `libstdc++` version requirements (see [this tip](@ref libstdc)) or [incompatibilities in library loading](@ref Library-loading).
 
-If the bug is encountered in a function from the loader (e.g. via a function that operates on an `Instance`, and not a `Device`), and you use the official [Vulkan-Loader](https://github.com/KhronosGroup/Vulkan-Loader) you can turn on logging via setting the environment variable `VK_LOADER_DEBUG=all`. This should help you understand the cause (see [Debug environment variables](https://github.com/KhronosGroup/Vulkan-Loader/blob/master/docs/LoaderInterfaceArchitecture.md#table-of-debug-environment-variables=) for more options).
+If the bug is encountered in a function from the loader (e.g. via a function that operates on an `Instance`, and not a `Device`), and if you are using [Vulkan-Loader](https://github.com/KhronosGroup/Vulkan-Loader) (which is most likely the case), it is recommended to enable additional logging by setting the environment variable `VK_LOADER_DEBUG=all`. See [the loader's debug environment variables](https://github.com/KhronosGroup/Vulkan-Loader/blob/master/docs/LoaderInterfaceArchitecture.md#table-of-debug-environment-variables) for more options.
 
 ## 0-based vs 1-based indexing
 

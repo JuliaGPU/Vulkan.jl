@@ -65,6 +65,7 @@ makedocs(;
         "Explanations" => [
             "Motivations" => "about/motivations.md",
             "Extension mechanism" => "about/extension_mechanism.md",
+            "Library loading" => "about/library_loading.md",
         ],
         "API" => "api.md",
         "Utility" => "utility.md",
