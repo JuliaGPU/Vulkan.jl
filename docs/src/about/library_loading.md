@@ -10,7 +10,7 @@ In particular, this may occur after updating Vulkan drivers, or upgrading the OS
 Other than that, libraries are generally backward compatible, and compatibility issues are fairly rare.
 
 In Julia, there are two notable systems that may provide them:
-- Your operating system, using whatever is available, as matched first by the linker depending on configuration. Version suffixes (e.g. `libvulkan.so.1`) may be be used to provide weak compatibility guarantees.
+- Your operating system, using whatever is available, as matched first by the linker depending on configuration. Version suffixes (e.g. `libvulkan.so.1`) may be used to provide weak compatibility guarantees.
 - Pkg's [artifact system](https://pkgdocs.julialang.org/v1/artifacts/), providing libraries and binaries with set versions and stronger compatibility guarantees with semantic versioning. The artifact system explicitly uses libraries from other artifacts, *and not from the system*. Keep that in mind especially if you rely on artifacts for application-level functionality (e.g. GLFW).
 
 When a library is required by a Vulkan feature, extension or layer, it will most likely use the first one already loaded.
