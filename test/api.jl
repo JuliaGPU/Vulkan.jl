@@ -38,7 +38,7 @@ const WITH_DEBUG = let available_extensions = unwrap(enumerate_instance_extensio
     end
 end
 
-@testset "Vulkan tests" begin
+@testset "Vulkan API usage" begin
     include("init.jl")
 
     @testset "Utilities" begin

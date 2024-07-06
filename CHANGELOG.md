@@ -1,5 +1,8 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.6.16`
+- ![Feature][badge-feature] Dependencies between handles may be specified via `Vk.depends_on(x, handle)`, to ensure that a given handle is not destroyed before anything that depends on it. This leverages the reference counting system already implemented, which itself encodes such dependencies from a given parent handle and its children. See the docstring of `Vk.depends_on` for more details.
+
 ## Version `v0.6.14`
 - ![Feature][badge-feature] New mappings between Julia types and Vulkan formats are available, via `Vk.Format` constructors and `Vk.format_type` functions.
 

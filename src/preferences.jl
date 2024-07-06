@@ -1,5 +1,6 @@
 using Preferences: Preferences, @load_preference
 set_preferences!(args...; kwargs...) = Preferences.set_preferences!(@__MODULE__, args...; kwargs...)
+load_preference(args...; kwargs...) = Preferences.load_preference(@__MODULE__, args...; kwargs...)
 
 macro pref_log_destruction(handle, ex)
     if @load_preference("LOG_DESTRUCTION", "false") == "true"

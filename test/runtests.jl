@@ -11,6 +11,7 @@ using Accessors: @set
 set_driver(:SwiftShader)
 
 @testset "Vulkan.jl" begin
+    include("handles.jl")
     include("api.jl")
     include("dispatch.jl")
     include("formats.jl")
