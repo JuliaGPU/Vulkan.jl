@@ -19,18 +19,10 @@ jobs:
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/lavapipe
       - uses: julia-actions/setup-julia@latest
         with:
           version: ${{ matrix.julia-version }}
       - uses: julia-actions/cache@v2
       - uses: julia-actions/julia-buildpkg@latest
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        name: Install Lavapipe
-        with:
-          packages: mesa-vulkan-drivers libvulkan1 vulkan-tools vulkan-validationlayers
-          version: 1.0
-      - run: '
-          #echo "VK_LOADER_DEBUG=all" >> $GITHUB_ENV
-          echo "DEVICE_NOSELECT=1" >> $GITHUB_ENV'
-        name: "Set environment variables"
       - uses: julia-actions/julia-runtest@latest

@@ -1,0 +1,22 @@
+name: 'lavapipe'
+description: 'Install the Mesa Lavapipe Vulkan driver'
+inputs:
+  debug:
+    description: "Enable verbose logging intended for debugging purposes"
+    required: false
+    default: "false"
+runs:
+  using: "composite"
+  steps:
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      name: Install Lavapipe
+      with:
+        packages: mesa-vulkan-drivers libvulkan1 vulkan-tools vulkan-validationlayers
+        version: 1.0
+    - name: "Set debug environment variables (optional)"
+      shell: bash
+      run: |
+        if [ "${{ inputs.debug }}" == "true" ]; then
+          echo "VK_LOADER_DEBUG=all" >> $GITHUB_ENV
+        fi;
+        echo "DEVICE_NOSELECT=1" >> $GITHUB_ENV
