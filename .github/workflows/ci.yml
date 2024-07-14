@@ -19,7 +19,7 @@ jobs:
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/lavapipe
+      - uses: serenity4/julia-lavapipe@v1
       - uses: julia-actions/setup-julia@latest
         with:
           version: ${{ matrix.julia-version }}
