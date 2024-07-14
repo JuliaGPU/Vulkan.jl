@@ -29,6 +29,8 @@ jobs:
         with:
           packages: mesa-vulkan-drivers libvulkan1 vulkan-tools vulkan-validationlayers
           version: 1.0
-      - run: echo "VK_LOADER_DEBUG=all" >> $GITHUB_ENV
-        name: "Set debug environment variables"
+      - run: '
+          #echo "VK_LOADER_DEBUG=all" >> $GITHUB_ENV
+          echo "DEVICE_NOSELECT=1" >> $GITHUB_ENV'
+        name: "Set environment variables"
       - uses: julia-actions/julia-runtest@latest
