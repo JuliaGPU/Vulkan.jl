@@ -18,5 +18,5 @@ In particular, because the library relies on automatic code generation, there ma
 
 ## Testing
 
-Currently, continuous integration runs only on Ubuntu 32/64 bits, for lack of a functional CI setup with Vulkan for MacOS and Windows. Because public CI services lack proper driver support, the CPU Vulkan implementation [SwiftShader](https://github.com/google/swiftshader) is used.
+Currently, continuous integration runs only on Ubuntu 32/64 bits, for lack of a functional CI setup with Vulkan for MacOS and Windows. Because public CI services lack proper driver support, the CPU Vulkan implementation [Lavapipe](https://docs.mesa3d.org/drivers/llvmpipe.html) is used.
 If you are not on Linux, we cannot guarantee that this library will work for you, although so far nothing is platform-dependent. If that is the case, we recommend that you test this package with your own setup.
