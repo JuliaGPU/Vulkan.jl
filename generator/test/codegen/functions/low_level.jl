@@ -77,7 +77,10 @@
         function _register_device_event_ext(device, device_event_info::_DeviceEventInfoEXT; allocator = C_NULL)::ResultTypes.Result{Fence,VulkanError}
             pFence = Ref{VkFence}()
             @check @dispatch device vkRegisterDeviceEventEXT(device, device_event_info, allocator, pFence)
-            Fence(pFence[], (x -> _destroy_fence(device, x; allocator)), device)
+            Fence(pFence[], (begin
+                parent = Vk.handle(device)
+                x -> _destroy_fence(parent, x; allocator)
+            end), device)
         end
     ))
 
@@ -93,7 +96,10 @@
         function _create_debug_report_callback_ext(instance, create_info::_DebugReportCallbackCreateInfoEXT, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{DebugReportCallbackEXT,VulkanError}
             pCallback = Ref{VkDebugReportCallbackEXT}()
             @check vkCreateDebugReportCallbackEXT(instance, create_info, allocator, pCallback, fptr_create)
-            DebugReportCallbackEXT(pCallback[], (x -> _destroy_debug_report_callback_ext(instance, x, fptr_destroy; allocator)), instance)
+            DebugReportCallbackEXT(pCallback[], (begin
+                parent = Vk.handle(instance)
+                x -> _destroy_debug_report_callback_ext(parent, x, fptr_destroy; allocator)
+            end), instance)
         end
     ))
 
@@ -101,7 +107,10 @@
         function _create_graphics_pipelines(device, create_infos::AbstractArray; pipeline_cache = C_NULL, allocator = C_NULL)::ResultTypes.Result{Tuple{Vector{Pipeline},Result},VulkanError}
             pPipelines = Vector{VkPipeline}(undef, pointer_length(create_infos))
             @check @dispatch device vkCreateGraphicsPipelines(device, pipeline_cache, pointer_length(create_infos), create_infos, allocator, pPipelines)
-            (Pipeline.(pPipelines, x -> _destroy_pipeline(device, x; allocator), device), _return_code)
+            (Pipeline.(pPipelines, begin
+                    parent = Vk.handle(device)
+                    x -> _destroy_pipeline(parent, x; allocator)
+                end, device), _return_code)
         end
     ))
 

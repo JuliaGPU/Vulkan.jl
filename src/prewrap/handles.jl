@@ -9,6 +9,16 @@ Base.hash(handle::Handle, h::UInt) = hash(handle.vks, h)
 
 Base.show(io::IO, h::Handle) = print(io, typeof(h), '(', h.vks, ')')
 
+"""
+    handle(x)::Handle
+
+Return a [`Handle`](@ref) for use with Vulkan API functions.
+
+This function should be implemented for types that wrap handles,
+if these handles are to be passed on to API functions directly.
+"""
+function handle end
+
 handle(h::Handle) = h
 
 const RefCounter = Threads.Atomic{UInt}
@@ -33,7 +43,7 @@ function try_destroy(f, handle::Handle, parent)
     handle.refcount[]
 end
 
-function init_handle!(handle::Handle, destructor, parent=nothing)
+function init_handle!(handle::Handle, destructor, parent = nothing)
     handle.destructor = () -> try_destroy(destructor, handle, parent)
     finalizer(x -> handle.destructor(), handle)
 end

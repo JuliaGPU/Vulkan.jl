@@ -44,7 +44,17 @@ function destructor(handle::SpecHandle, with_func_ptr = false)
             p_call = Dict(:name => p[:name], :args => Any[name.(p[:args])...], :kwargs => name.(p[:kwargs]))
             with_func_ptr && push!(p_call[:args], :fptr_destroy)
             p_call[:args][findfirst(==(wrap_identifier(handle, df.func)), name.(p[:args]))] = :x
-            :(x -> $(reconstruct_call(p_call)))
+            parent = isnothing(handle.parent) ? nothing : wrap_identifier(api.handles[handle.parent], df.func)
+            if isnothing(parent)
+                :(x -> $(reconstruct_call(p_call)))
+            else
+                i = findfirst(==(parent), name.(p[:args]))::Int
+                p_call[:args][i] = :parent
+                quote
+                    parent = Vk.handle($parent)
+                    x -> $(reconstruct_call(p_call))
+                end
+            end
         else
             :identity
         end
