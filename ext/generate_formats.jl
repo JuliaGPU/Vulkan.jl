@@ -8,6 +8,7 @@ end
 using Vulkan: Vk
 using ColorTypes
 using FixedPointNumbers
+using StaticArrays
 
 NUMERIC_FORMATS = [:SNORM, :UNORM, :UFLOAT, :SFLOAT] #, :UINT, :SINT, :USCALED, :SSCALED]
 
@@ -60,22 +61,44 @@ function generate_packed_formats()
   vk_formats, packed_types
 end
 
-function generate_other_formats()
+function generate_vector_formats()
+  vk_formats = Pair{Vk.Format,Type}[]
+  vector_types = Pair{Type,Vk.Format}[]
+  ispermuted(pattern) = pattern[1] ≠ :R
+  for color_width in (8, 16, 32, 64)
+    for numeric_format in NUMERIC_FORMATS
+      rgb_orders = [[:R, :G], [:R, :G, :B], [:G, :B, :G, :R], [:B, :G, :R, :G]]
+      rgb_orders_with_alpha = filter(order -> length(order) == 3, rgb_orders)
+      color_patterns = [rgb_orders; [[:A; order] for order in rgb_orders_with_alpha]; [[order; :A] for order in rgb_orders_with_alpha]]
+      T = component_type(color_width, numeric_format)
+      for color_pattern in color_patterns
+        component_format = join(join.(zip(color_pattern, fill(color_width, 4))))
+        format = Symbol(:FORMAT_, component_format, !allunique(color_pattern) ? "_422" : "", '_', numeric_format)
+        if isdefined(Vk, format)
+          val = getproperty(Vk, format)
+          N = length(color_pattern)
+          concrete_type = SVector{N,T}
+          allunique(color_pattern) && push!(vk_formats, val => concrete_type)
+          # These color patterns are already mapped to ColorTypes types.
+          !in(color_pattern, ([:R, :G, :B], [:R, :G, :B, :A])) && push!(vector_types, concrete_type => val)
+        end
+      end
+    end
+  end
+  vk_formats, vector_types
+end
+
+function generate_single_component_formats()
   vk_formats = Vk.Format[]
   julia_types = Type[]
   for color_width in (8, 16, 32, 64)
     for numeric_format in NUMERIC_FORMATS
       T = component_type(color_width, numeric_format)
-      patterns = [[:R], [:R, :G], [:G, :B, :G, :R], [:B, :G, :R, :G]]
-      for pattern in patterns
-        component_format = join(join.(zip(pattern, fill(color_width, length(pattern)))))
-        format = Symbol(:FORMAT_, component_format, length(pattern) == 4 ? "_422" : "", '_', numeric_format)
-        if isdefined(Vk, format)
-          val = getproperty(Vk, format)
-          julia_type = length(pattern) == 1 ? T : NTuple{length(pattern), T}
-          push!(vk_formats, val)
-          push!(julia_types, julia_type)
-        end
+      format = Symbol(:FORMAT_R, color_width, '_', numeric_format)
+      if isdefined(Vk, format)
+        val = getproperty(Vk, format)
+        push!(vk_formats, val)
+        push!(julia_types, T)
       end
     end
   end
@@ -83,12 +106,19 @@ function generate_other_formats()
 end
 
 function print_mapping(vk_formats, julia_types)
-  mapping = sort(collect(Dict(vk_formats .=> julia_types)); by = first)
-  for (format, T) in mapping
+  if !isa(vk_formats, Vector{Pair{Vk.Format, Type}}) && !isa(julia_types, Vector{Pair{Type, Vk.Format}})
+    mapping = sort(collect(Dict(vk_formats .=> julia_types)); by = first)
+    mapping_formats = mapping
+    mapping_types = reverse.(mapping)
+  else
+    mapping_formats = vk_formats
+    mapping_types = julia_types
+  end
+  for (format, T) in mapping_formats
     println("Vk.Format(::Type{", T, "}) = ", replace(repr(format), "Vulkan" => "Vk"))
   end
   println()
-  for (format, T) in mapping
+  for (T, format) in mapping_types
     println("Vk.format_type(::Val{", replace(repr(format), "Vulkan" => "Vk"), "}) = ", T)
   end
 end
@@ -102,8 +132,12 @@ function main()
   vk_formats, packed_types = generate_packed_formats()
   print_mapping(vk_formats, packed_types)
 
-  printstyled("\nOther formats:\n"; color = :yellow)
-  vk_formats, julia_types = generate_other_formats()
+  printstyled("\nVector formats:\n"; color = :yellow)
+  vk_formats, packed_types = generate_vector_formats()
+  print_mapping(vk_formats, packed_types)
+
+  printstyled("\nSingle-component formats:\n"; color = :yellow)
+  vk_formats, julia_types = generate_single_component_formats()
   print_mapping(vk_formats, julia_types)
 end
 

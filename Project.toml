@@ -1,13 +1,12 @@
 name = "Vulkan"
 uuid = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
-authors = ["Cédric Belmant"]
 version = "0.6.17"
+authors = ["Cédric Belmant"]
 
 [deps]
 Accessors = "7d9f7c33-5ae7-4f3b-8dc6-eff91059b697"
 BitMasks = "a3e06817-fd65-4797-8291-16f435bc2529"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
@@ -20,10 +19,16 @@ VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
 [weakdeps]
 ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
+FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
+StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
 XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [extensions]
 VulkanColorTypesExt = "ColorTypes"
+VulkanFixedPointNumbersExt = "FixedPointNumbers"
+VulkanFixedPointNumbersColorTypesExt = ["ColorTypes", "FixedPointNumbers"]
+VulkanFixedPointNumbersStaticArraysCoreExt = ["FixedPointNumbers", "StaticArraysCore"]
+VulkanStaticArraysCoreExt = "StaticArraysCore"
 VulkanXCBExt = "XCB"
 
 [compat]
@@ -37,6 +42,7 @@ PrecompileTools = "1"
 Preferences = "1.2"
 Reexport = "1"
 ResultTypes = "3"
+StaticArraysCore = "1"
 StructEquality = "2"
 VulkanCore = "1.3.1"
 XCB = "0.5, 0.6, 0.7"
@@ -51,4 +57,4 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [targets]
-test = ["Test", "Documenter", "Pkg", "SwiftShader_jll", "ColorTypes", "XCB"]
+test = ["Test", "Documenter", "Pkg", "SwiftShader_jll", "ColorTypes", "XCB", "FixedPointNumbers", "StaticArraysCore"]

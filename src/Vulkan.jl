@@ -12,7 +12,6 @@ using Accessors: @set, setproperties
 using PrecompileTools
 using Libdl: Libdl
 using BitMasks
-using FixedPointNumbers # for formats.jl
 
 using VulkanCore: VulkanCore, vk
 using .vk
