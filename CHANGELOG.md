@@ -1,5 +1,10 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.6.18`
+
+- ![Feature][badge-feature] Extensions were added related to StaticArraysCore, FixedPointNumbers and ColorTypes to define additional `Vk.Format`/`Vk.format_type` mappings.
+- ![Enhancement][badge-enhancement] Vulkan.jl no longer depends on FixedPointNumbers.jl.
+
 ## Version `v0.6.16`
 - ![Feature][badge-feature] Dependencies between handles may be specified via `Vk.depends_on(x, handle)`, to ensure that a given handle is not destroyed before anything that depends on it. This leverages the reference counting system already implemented, which itself encodes such dependencies from a given parent handle and its children. See the docstring of `Vk.depends_on` for more details.
 
