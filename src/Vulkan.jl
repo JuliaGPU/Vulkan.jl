@@ -84,6 +84,15 @@ function __init__()
     fill_dispatch_table()
 end
 
+# Extensions.
+# Turn these into extensions when precompilation issues raised in
+# in https://github.com/JuliaLang/julia/issues/52511 are addressed.
+include("../ext/VulkanFixedPointNumbersExt.jl")
+include("../ext/VulkanColorTypesExt.jl")
+include("../ext/VulkanFixedPointNumbersColorTypesExt.jl")
+include("../ext/VulkanStaticArraysCoreExt.jl")
+include("../ext/VulkanFixedPointNumbersStaticArraysCoreExt.jl")
+
 export
         # Wrapper
         VulkanStruct,
