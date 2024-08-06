@@ -7,7 +7,7 @@ for level in [:debug, :info, :warn, :error]
         macrocall = Expr(:macrocall, Symbol($"@$level"), __source__, ex...)
         quote
             # Log to `Base.stderr`
-            with_logger(Logging.ConsoleLogger(stderr, global_logger().min_level)) do
+            with_logger(Logging.ConsoleLogger(stderr, Logging.min_enabled_level(global_logger()))) do
                 $(esc(macrocall))
             end
         end
