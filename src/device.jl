@@ -82,5 +82,12 @@ function find_queue_family(physical_device::PhysicalDevice, queue_capabilities::
     index - 1
 end
 
-device(device::Device)::Device = device
-device(handle::Handle)::Device = device(parent(handle))
+device(device::Device) = device
+function device(handle::Handle)
+    next = parent(handle)
+    isnothing(next) && error("No parent device found")
+    device(next)::Device
+end
+device_or_nothing(device::Device) = device
+device_or_nothing(handle::Handle) = device_or_nothing(parent(handle))
+device_or_nothing(::Nothing) = nothing

@@ -66,6 +66,7 @@ elseif Sys.iswindows()
 end
 
 include("utils.jl")
+include("debug.jl")
 include("driver.jl")
 include("validation.jl")
 include("instance.jl")
@@ -119,6 +120,7 @@ export
 
         # Debugging
         default_debug_callback,
+        set_debug_name,
 
         # Pointer utilities
         function_pointer,

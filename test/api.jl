@@ -54,6 +54,16 @@ end
                 @test CALLBACK_DEBUG_SIGNAL[]
             end
         end
+
+        @testset "Setting object names" begin
+            if WITH_DEBUG
+                buffer = Buffer(device, 30, BUFFER_USAGE_TRANSFER_DST_BIT, SHARING_MODE_EXCLUSIVE, UInt32[0])
+                ret = set_debug_name(buffer, "Test buffer")
+                @test unwrap(ret) == SUCCESS
+                ret = set_debug_name(buffer, :buffer_1)
+                @test unwrap(ret) == SUCCESS
+            end
+        end
     end
 
     @testset "Bitmask flags" begin
