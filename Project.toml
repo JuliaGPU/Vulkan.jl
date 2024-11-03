@@ -39,7 +39,7 @@ VulkanXCBExt = "XCB"
 [compat]
 Accessors = "0.1"
 BitMasks = "0.1"
-ColorTypes = "0.11"
+ColorTypes = "0.11, 0.12"
 DocStringExtensions = "0.8, 0.9"
 FixedPointNumbers = "0.8"
 MLStyle = "0.4"
