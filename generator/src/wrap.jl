@@ -151,10 +151,10 @@ include("wrap/docs.jl")
 function VulkanWrapper(config::WrapperConfig)
     f = filter_specs(config)
 
-    constants = ConstantDefinition.(filter(include_constant, f(api.constants)))
-    enums = EnumDefinition.(f(api.enums))
-    bitmasks = BitmaskDefinition.(f(api.bitmasks))
-    handles = HandleDefinition.(f(api.handles))
+    constants = collect(ConstantDefinition.(filter(include_constant, f(api.constants))))
+    enums = collect(EnumDefinition.(f(api.enums)))
+    bitmasks = collect(BitmaskDefinition.(f(api.bitmasks)))
+    handles = collect(HandleDefinition.(f(api.handles)))
 
     # Structures.
     structs = StructDefinition{false}.(f(api.structs))
