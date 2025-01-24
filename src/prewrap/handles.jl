@@ -91,6 +91,7 @@ function depends_on(x::Vk.Handle, handle::Vk.Handle)
 end
 
 function depends_on(x, handle::Vk.Handle)
+    Vk.increment_refcount!(handle)
     T = typeof(x)
     ismutabletype(T) || error("`x` must be a mutable object or a `Vk.Handle`")
     finalizer(_ -> handle.destructor(), x)

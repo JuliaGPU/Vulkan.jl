@@ -8,6 +8,7 @@ set_driver(:SwiftShader) # hide
 
 Vulkan.set_preferences!("LOG_DESTRUCTION" => "true")
 
+# You will need to restart your session and import Vulkan again, for changes to take effect.
 # Now let's create a bunch of handles and see what happens when the GC runs:
 
 function do_something()
