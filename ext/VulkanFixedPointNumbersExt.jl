@@ -15,5 +15,7 @@ Vk.format_type(::Val{FORMAT_R8_UNORM}) = N0f8
 Vk.format_type(::Val{FORMAT_R8_SNORM}) = Q0f7
 Vk.format_type(::Val{FORMAT_R16_UNORM}) = N0f16
 Vk.format_type(::Val{FORMAT_R16_SNORM}) = Q0f15
+Vk.format_type(::Val{FORMAT_D16_UNORM}) = N0f16
+Vk.format_type(::Val{FORMAT_D16_UNORM_S8_UINT}) = Tuple{N0f16, UInt8}
 
 end
