@@ -19,17 +19,21 @@ Vk.Format(::Type{RGB{Q0f15}}) = Vk.FORMAT_R16G16B16_SNORM
 Vk.Format(::Type{RGBA{N0f16}}) = Vk.FORMAT_R16G16B16A16_UNORM
 Vk.Format(::Type{RGBA{Q0f15}}) = Vk.FORMAT_R16G16B16A16_SNORM
 
-Vk.format_type(::Val{Vk.FORMAT_R8G8B8_UNORM}) = RGB{N0f8}
-Vk.format_type(::Val{Vk.FORMAT_R8G8B8_SNORM}) = RGB{Q0f7}
-Vk.format_type(::Val{Vk.FORMAT_B8G8R8_UNORM}) = BGR{N0f8}
-Vk.format_type(::Val{Vk.FORMAT_B8G8R8_SNORM}) = BGR{Q0f7}
-Vk.format_type(::Val{Vk.FORMAT_R8G8B8A8_UNORM}) = RGBA{N0f8}
-Vk.format_type(::Val{Vk.FORMAT_R8G8B8A8_SNORM}) = RGBA{Q0f7}
-Vk.format_type(::Val{Vk.FORMAT_B8G8R8A8_UNORM}) = BGRA{N0f8}
-Vk.format_type(::Val{Vk.FORMAT_B8G8R8A8_SNORM}) = BGRA{Q0f7}
-Vk.format_type(::Val{Vk.FORMAT_R16G16B16_UNORM}) = RGB{N0f16}
-Vk.format_type(::Val{Vk.FORMAT_R16G16B16_SNORM}) = RGB{Q0f15}
-Vk.format_type(::Val{Vk.FORMAT_R16G16B16A16_UNORM}) = RGBA{N0f16}
-Vk.format_type(::Val{Vk.FORMAT_R16G16B16A16_SNORM}) = RGBA{Q0f15}
+Vk.format_type(::Val{FORMAT_R8G8B8_SRGB}) = RGB{N0f8}
+Vk.format_type(::Val{FORMAT_R8G8B8_UNORM}) = RGB{N0f8}
+Vk.format_type(::Val{FORMAT_R8G8B8_SNORM}) = RGB{Q0f7}
+Vk.format_type(::Val{FORMAT_B8G8R8_SRGB}) = BGR{N0f8}
+Vk.format_type(::Val{FORMAT_B8G8R8_UNORM}) = BGR{N0f8}
+Vk.format_type(::Val{FORMAT_B8G8R8_SNORM}) = BGR{Q0f7}
+Vk.format_type(::Val{FORMAT_R8G8B8A8_SRGB}) = RGBA{N0f8}
+Vk.format_type(::Val{FORMAT_R8G8B8A8_UNORM}) = RGBA{N0f8}
+Vk.format_type(::Val{FORMAT_R8G8B8A8_SNORM}) = RGBA{Q0f7}
+Vk.format_type(::Val{FORMAT_B8G8R8A8_SRGB}) = BGRA{N0f8}
+Vk.format_type(::Val{FORMAT_B8G8R8A8_UNORM}) = BGRA{N0f8}
+Vk.format_type(::Val{FORMAT_B8G8R8A8_SNORM}) = BGRA{Q0f7}
+Vk.format_type(::Val{FORMAT_R16G16B16_UNORM}) = RGB{N0f16}
+Vk.format_type(::Val{FORMAT_R16G16B16_SNORM}) = RGB{Q0f15}
+Vk.format_type(::Val{FORMAT_R16G16B16A16_UNORM}) = RGBA{N0f16}
+Vk.format_type(::Val{FORMAT_R16G16B16A16_SNORM}) = RGBA{Q0f15}
 
 end

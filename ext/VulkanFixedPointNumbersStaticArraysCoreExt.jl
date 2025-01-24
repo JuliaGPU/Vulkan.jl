@@ -19,6 +19,7 @@ Vk.Format(::Type{SVector{2, N0f16}}) = FORMAT_R16G16_UNORM
 Vk.Format(::Type{SVector{3, N0f16}}) = FORMAT_R16G16B16_UNORM
 Vk.Format(::Type{SVector{4, N0f16}}) = FORMAT_R16G16B16A16_UNORM
 
+Vk.format_type(::Val{FORMAT_R8G8_SRGB}) = SVector{2, N0f8}
 Vk.format_type(::Val{FORMAT_R8G8_SNORM}) = SVector{2, Q0f7}
 Vk.format_type(::Val{FORMAT_R8G8_UNORM}) = SVector{2, N0f8}
 Vk.format_type(::Val{FORMAT_G8B8G8R8_422_UNORM}) = SVector{4, N0f8}
