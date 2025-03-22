@@ -1,6 +1,6 @@
 name = "Vulkan"
 uuid = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
-version = "0.6.27"
+version = "0.6.28"
 authors = ["Cédric Belmant"]
 
 [deps]

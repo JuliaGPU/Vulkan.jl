@@ -1,5 +1,8 @@
 # Changelog for Vulkan.jl
 
+## Version `v0.6.28`
+- ![Enhancement][badge-enhancement] Performance has been improved by reducing dynamic dispatch due to missing function specializations.
+
 ## Version `v0.6.19`
 
 - ![Feature][badge-feature] Extensions were added related to StaticArraysCore, FixedPointNumbers and ColorTypes to define additional `Vk.Format`/`Vk.format_type` mappings. However, due to https://github.com/JuliaLang/julia/issues/52511, these are not yet defined as package extensions, and the core packages were made direct dependencies instead of weak dependencies.
