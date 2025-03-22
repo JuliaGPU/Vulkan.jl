@@ -48,11 +48,11 @@ function init_handle!(handle::Handle, destructor, parent = nothing)
     finalizer(x -> handle.destructor(), handle)
 end
 
-function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor)
+function (@specialize(T::Type{<:Handle}))(ptr::Ptr{Cvoid}, destructor)
     init_handle!(T(ptr, RefCounter(UInt(1))), destructor)
 end
 
-function (T::Type{<:Handle})(ptr::Ptr{Cvoid}, destructor, parent)
+function (@specialize(T::Type{<:Handle}))(ptr::Ptr{Cvoid}, destructor, parent)
     parent = handle(parent)
     increment_refcount!(parent)
     init_handle!(T(ptr, parent, RefCounter(UInt(1))), destructor, parent)

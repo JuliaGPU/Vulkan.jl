@@ -1,26 +1,26 @@
 # Make sure our dispatches for vectors are hit before any other method.
 # Unfortunately, we'll still need to add dispatches from `Base.cconvert` to this `cconvert`
 # because `Base.cconvert` is what will be called during `ccall`s, not this function.
-cconvert(T, x) = Base.cconvert(T, x)
+cconvert(@specialize(T), x) = Base.cconvert(T, x)
 
 Base.cconvert(T::Type{Ptr{Cvoid}}, x::Handle) = x
-Base.cconvert(T::Type{<:Ptr}, x::VulkanStruct{false}) = Ref(x.vks)
-Base.cconvert(T::Type{<:Ptr}, x::VulkanStruct{true}) = (x, Ref(x.vks))
-Base.cconvert(T::Type{<:Ptr}, x::HighLevelStruct) = Base.cconvert(T, convert(getproperty(@__MODULE__, Symbol(:_, nameof(typeof(x)))), x))
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::VulkanStruct{false}) = Ref(x.vks)
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::VulkanStruct{true}) = (x, Ref(x.vks))
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::HighLevelStruct) = Base.cconvert(T, convert(getproperty(@__MODULE__, Symbol(:_, nameof(typeof(x)))), x))
 
-cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = Base.cconvert(T, getproperty.(x, :vks))
-cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = (x, Base.cconvert(T, getproperty.(x, :vks)))
-cconvert(T::Type{<:Ptr}, x::AbstractVector{<:HighLevelStruct}) = Base.cconvert(T, convert.(getproperty(@__MODULE__, Symbol(:_, nameof(eltype(x)))), x))
+cconvert(@specialize(T::Type{<:Ptr}), x::AbstractVector{<:VulkanStruct{false}}) = Base.cconvert(T, getproperty.(x, :vks))
+cconvert(@specialize(T::Type{<:Ptr}), x::AbstractVector{<:VulkanStruct{true}}) = (x, Base.cconvert(T, getproperty.(x, :vks)))
+cconvert(@specialize(T::Type{<:Ptr}), x::AbstractVector{<:HighLevelStruct}) = Base.cconvert(T, convert.(getproperty(@__MODULE__, Symbol(:_, nameof(eltype(x)))), x))
 
-Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{false}}) = cconvert(T, x)
-Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:VulkanStruct{true}}) = cconvert(T, x)
-Base.cconvert(T::Type{<:Ptr}, x::AbstractVector{<:HighLevelStruct}) = cconvert(T, x)
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::AbstractVector{<:VulkanStruct{false}}) = cconvert(T, x)
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::AbstractVector{<:VulkanStruct{true}}) = cconvert(T, x)
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::AbstractVector{<:HighLevelStruct}) = cconvert(T, x)
 
 # Shadow the otherwise more specific Base method
 # `cconvert(::Type{<:Ptr}, ::Array)`.
-Base.cconvert(T::Type{<:Ptr}, x::Vector{<:VulkanStruct{false}}) = cconvert(T, x)
-Base.cconvert(T::Type{<:Ptr}, x::Vector{<:VulkanStruct{true}}) = cconvert(T, x)
-Base.cconvert(T::Type{<:Ptr}, x::Vector{<:HighLevelStruct}) = cconvert(T, x)
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::Vector{<:VulkanStruct{false}}) = cconvert(T, x)
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::Vector{<:VulkanStruct{true}}) = cconvert(T, x)
+Base.cconvert(@specialize(T::Type{<:Ptr}), x::Vector{<:HighLevelStruct}) = cconvert(T, x)
 
 # Shadow the otherwise more specific Base method
 # `cconvert(::Type{Ptr{P<:Union{Cstring,Cwstring,Ptr}}}, ::Array)`.
@@ -30,9 +30,9 @@ Base.cconvert(T::Type{Ptr{P}}, x::Vector{<:HighLevelStruct}) where {P<:Ptr} = cc
 
 convert(T::Type{Ptr{Cvoid}}, x::Handle) = x.vks
 
-unsafe_convert(T::Type, x::VulkanStruct) = x.vks
-unsafe_convert(T::Type, x::Tuple{<:VulkanStruct{true}, <:Ref}) = unsafe_convert(T, last(x))
-unsafe_convert(T::Type, x::Tuple{<:AbstractVector{<:VulkanStruct{true}}, <:Any}) = unsafe_convert(T, last(x))
+unsafe_convert(@specialize(T), x::VulkanStruct) = x.vks
+unsafe_convert(@specialize(T), x::Tuple{<:VulkanStruct{true}, <:Ref}) = unsafe_convert(T, last(x))
+unsafe_convert(@specialize(T), x::Tuple{<:AbstractVector{<:VulkanStruct{true}}, <:Any}) = unsafe_convert(T, last(x))
 
 """
     `pointer_length(val)`
@@ -46,8 +46,8 @@ function pointer_length end
 pointer_length(arr::Ptr{Nothing}) = 0
 pointer_length(arr::AbstractArray) = length(arr)
 
-convert_nonnull(T, val) = convert(T, val)
-convert_nonnull(T, val::Ptr{Cvoid}) = val == C_NULL ? val : convert(T, val)
+convert_nonnull(@specialize(T), val) = convert(T, val)
+convert_nonnull(@specialize(T), val::Ptr{Cvoid}) = val == C_NULL ? val : convert(T, val)
 
 # # Initialization.
 
