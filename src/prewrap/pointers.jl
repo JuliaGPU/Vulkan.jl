@@ -59,13 +59,15 @@ initialize(::Type{NTuple{N,T}}) where {N,T} = ntuple(Returns(zero(T)), N)
 initialize(::Type{T}) where {T<:AbstractArray} = T()
 initialize(::Type{<:Ptr}) = C_NULL
 
-function init_empty(T)
-    @assert isbitstype(T)
-    ptr = Libc.calloc(1, sizeof(T))
-    res = unsafe_load(Ptr{T}(ptr))
-    Libc.free(ptr)
-    res
+function alloc(::Type{T}) where T
+    data = Ref{T}()
+    GC.@preserve data begin
+        Libc.memset(pointer_from_objref(data), 0x00, sizeof(T))
+    end
+    data[]
 end
+
+init_empty(T) = alloc(T)
 
 function _initialize_core(T, refs)
     res = init_empty(T)
