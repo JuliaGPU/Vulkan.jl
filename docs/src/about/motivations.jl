@@ -28,9 +28,9 @@ function create_instance(app_name, engine_name)
         1, # application version
         pointer(engine_name), # engine name
         0, # engine version
-        VK_VERSION_1_2, # requested API version
+        VK_API_VERSION_1_3, # requested API version
     )
-    create_info = InstanceCreateInfo(
+    create_info = VkInstanceCreateInfo(
         VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO, # sType
         C_NULL, # pNext
         0, # flags
