@@ -1,14 +1,12 @@
 name = "Vulkan"
 uuid = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
-version = "0.6.28"
+version = "0.6.29"
 authors = ["Cédric Belmant"]
 
 [deps]
 Accessors = "7d9f7c33-5ae7-4f3b-8dc6-eff91059b697"
 BitMasks = "a3e06817-fd65-4797-8291-16f435bc2529"
-ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
@@ -16,24 +14,21 @@ PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
 Preferences = "21216c6a-2e73-6563-6e65-726566657250"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 ResultTypes = "08a2b407-ddc3-586a-afd6-c784ad1fffe2"
-StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
 StructEquality = "6ec83bb0-ed9f-11e9-3b4c-2b04cb4e219c"
 VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 
 [weakdeps]
-# ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
-# FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
-# StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
+ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
+FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
+StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
 XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [extensions]
-# Don't make these extensions until precompilation issues raised
-# in https://github.com/JuliaLang/julia/issues/52511 are addressed.
-# VulkanColorTypesExt = "ColorTypes"
-# VulkanFixedPointNumbersExt = "FixedPointNumbers"
-# VulkanFixedPointNumbersColorTypesExt = ["ColorTypes", "FixedPointNumbers"]
-# VulkanFixedPointNumbersStaticArraysCoreExt = ["FixedPointNumbers", "StaticArraysCore"]
-# VulkanStaticArraysCoreExt = "StaticArraysCore"
+VulkanColorTypesExt = "ColorTypes"
+VulkanFixedPointNumbersExt = "FixedPointNumbers"
+VulkanFixedPointNumbersColorTypesExt = ["ColorTypes", "FixedPointNumbers"]
+VulkanFixedPointNumbersStaticArraysCoreExt = ["FixedPointNumbers", "StaticArraysCore"]
+VulkanStaticArraysCoreExt = "StaticArraysCore"
 VulkanXCBExt = "XCB"
 
 [compat]
@@ -53,15 +48,13 @@ StructEquality = "2"
 SwiftShader_jll = "0.1"
 VulkanCore = "1.3.1"
 XCB = "0.5, 0.6, 0.7"
-julia = "1.9"
+julia = "1.10"
 
 [extras]
-ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 SwiftShader_jll = "c404ff5a-e271-5628-8eaa-423d39d64c15"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [targets]
-test = ["Test", "Documenter", "Pkg", "SwiftShader_jll", "XCB"]
+test = ["Test", "ColorTypes", "FixedPointNumbers", "StaticArraysCore", "Documenter", "Pkg", "SwiftShader_jll", "XCB"]
