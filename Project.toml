@@ -1,7 +1,7 @@
 name = "Vulkan"
 uuid = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
-version = "0.6.29"
 authors = ["Cédric Belmant"]
+version = "0.6.29"
 
 [deps]
 Accessors = "7d9f7c33-5ae7-4f3b-8dc6-eff91059b697"
@@ -25,8 +25,8 @@ XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [extensions]
 VulkanColorTypesExt = "ColorTypes"
-VulkanFixedPointNumbersExt = "FixedPointNumbers"
 VulkanFixedPointNumbersColorTypesExt = ["ColorTypes", "FixedPointNumbers"]
+VulkanFixedPointNumbersExt = "FixedPointNumbers"
 VulkanFixedPointNumbersStaticArraysCoreExt = ["FixedPointNumbers", "StaticArraysCore"]
 VulkanStaticArraysCoreExt = "StaticArraysCore"
 VulkanXCBExt = "XCB"
@@ -47,7 +47,7 @@ StaticArraysCore = "1"
 StructEquality = "2"
 SwiftShader_jll = "0.1"
 VulkanCore = "1.3.1"
-XCB = "0.5, 0.6, 0.7"
+XCB = "0.5, 0.6, 0.7, 0.8"
 julia = "1.10"
 
 [extras]
