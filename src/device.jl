@@ -76,9 +76,7 @@ julia> find_queue_family(physical_device, QUEUE_COMPUTE_BIT & QUEUE_GRAPHICS_BIT
 function find_queue_family(physical_device::PhysicalDevice, queue_capabilities::QueueFlag)
     qf_props = get_physical_device_queue_family_properties(physical_device)
     index = findfirst(x -> queue_capabilities in x.queue_flags, qf_props)
-    if isnothing(index)
-        error("No queue with the desired capabilities could be found.")
-    end
+    isnothing(index) && error("No queue with the desired capabilities could be found.")
     index - 1
 end
 

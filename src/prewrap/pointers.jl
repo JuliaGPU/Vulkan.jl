@@ -45,6 +45,9 @@ function pointer_length end
 
 pointer_length(arr::Ptr{Nothing}) = 0
 pointer_length(arr::AbstractArray) = length(arr)
+@static if VERSION ≥ v"1.11.6"
+    pointer_length(arr::MemoryRef) = length(arr)
+end
 
 convert_nonnull(@specialize(T), val) = convert(T, val)
 convert_nonnull(@specialize(T), val::Ptr{Cvoid}) = val == C_NULL ? val : convert(T, val)
