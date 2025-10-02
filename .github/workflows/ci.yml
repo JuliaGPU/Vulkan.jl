@@ -18,7 +18,7 @@ jobs:
         julia-arch: [x64, x86]
         os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: serenity4/julia-lavapipe@v1
       - uses: julia-actions/setup-julia@latest
         with:
