@@ -89,3 +89,37 @@ end
 device_or_nothing(device::Device) = device
 device_or_nothing(handle::Handle) = device_or_nothing(parent(handle))
 device_or_nothing(::Nothing) = nothing
+
+
+#====================================================================================================
+NOTE: the below is special handling of Device for the sake of removing a deprecation warning which
+    otherwise is always triggered by the wrapper constructors.
+
+    The Device method provided here is more specific and thus usually takes precedence,
+    users should use this method.
+====================================================================================================#
+function _device_create_info(queue_create_infos::AbstractArray, enabled_extension_names::AbstractArray;
+    next = C_NULL, flags = 0, enabled_features = C_NULL,
+)
+    queue_create_info_count = pointer_length(queue_create_infos)
+    enabled_layer_count = 0
+    enabled_extension_count = pointer_length(enabled_extension_names)
+    next = cconvert(Ptr{Cvoid}, next)
+    queue_create_infos = cconvert(Ptr{VkDeviceQueueCreateInfo}, queue_create_infos)
+    enabled_layer_names = C_NULL
+    enabled_extension_names = cconvert(Ptr{Cstring}, enabled_extension_names)
+    enabled_features = cconvert(Ptr{VkPhysicalDeviceFeatures}, enabled_features)
+    deps = Any[next, queue_create_infos, enabled_layer_names, enabled_extension_names, enabled_features]
+    vks = VkDeviceCreateInfo(structure_type(VkDeviceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, queue_create_info_count, unsafe_convert(Ptr{VkDeviceQueueCreateInfo}, queue_create_infos), enabled_layer_count, unsafe_convert(Ptr{Cstring}, enabled_layer_names), enabled_extension_count, unsafe_convert(Ptr{Cstring}, enabled_extension_names), unsafe_convert(Ptr{VkPhysicalDeviceFeatures}, enabled_features))
+    _DeviceCreateInfo(vks, deps)
+end
+
+function Device(physical_device::PhysicalDevice,
+    queue_create_infos::AbstractArray,
+    enabled_layers::AbstractArray, enabled_extension_names::AbstractArray;
+    next=C_NULL, flags=0, enabled_features=C_NULL,
+)
+    isempty(enabled_layers) || @warn("Device: enabled_layers is long deprecated, will be ignored")
+    info = _device_create_info(queue_create_infos, enabled_extension_names; next, flags, enabled_features)
+    unwrap(_create_device(physical_device, info))
+end
