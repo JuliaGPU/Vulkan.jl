@@ -90629,7 +90629,7 @@ Arguments:
 function _get_physical_device_queue_family_properties_2(physical_device)::Vector{_QueueFamilyProperties2}
     pQueueFamilyPropertyCount = Ref{UInt32}()
     @dispatch instance(physical_device) vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, C_NULL)
-    pQueueFamilyProperties = Vector{VkQueueFamilyProperties2}(undef, pQueueFamilyPropertyCount[])
+    pQueueFamilyProperties = fill(initialize_core(VkQueueFamilyProperties2, []), pQueueFamilyPropertyCount[])
     @dispatch instance(physical_device) vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, pQueueFamilyProperties)
     from_vk.(_QueueFamilyProperties2, pQueueFamilyProperties)
 end
@@ -90662,7 +90662,7 @@ Arguments:
 function _get_physical_device_sparse_image_format_properties_2(physical_device, format_info::_PhysicalDeviceSparseImageFormatInfo2)::Vector{_SparseImageFormatProperties2}
     pPropertyCount = Ref{UInt32}()
     @dispatch instance(physical_device) vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, C_NULL)
-    pProperties = Vector{VkSparseImageFormatProperties2}(undef, pPropertyCount[])
+    pProperties = fill(initialize_core(VkSparseImageFormatProperties2, []), pPropertyCount[])
     @dispatch instance(physical_device) vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, pProperties)
     from_vk.(_SparseImageFormatProperties2, pProperties)
 end
@@ -91054,7 +91054,7 @@ function _enumerate_physical_device_groups(instance)::ResultTypes.Result{Vector{
     pPhysicalDeviceGroupCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance, vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, C_NULL))
-            pPhysicalDeviceGroupProperties = Vector{VkPhysicalDeviceGroupProperties}(undef, pPhysicalDeviceGroupCount[])
+            pPhysicalDeviceGroupProperties = fill(initialize_core(VkPhysicalDeviceGroupProperties, []), pPhysicalDeviceGroupCount[])
             @check @dispatch(instance, vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties))
         end
     from_vk.(_PhysicalDeviceGroupProperties, pPhysicalDeviceGroupProperties)
@@ -91493,7 +91493,7 @@ function _get_physical_device_surface_formats_2_khr(physical_device, surface_inf
     pSurfaceFormatCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, C_NULL))
-            pSurfaceFormats = Vector{VkSurfaceFormat2KHR}(undef, pSurfaceFormatCount[])
+            pSurfaceFormats = fill(initialize_core(VkSurfaceFormat2KHR, []), pSurfaceFormatCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, pSurfaceFormats))
         end
     from_vk.(_SurfaceFormat2KHR, pSurfaceFormats)
@@ -91517,7 +91517,7 @@ function _get_physical_device_display_properties_2_khr(physical_device)::ResultT
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, C_NULL))
-            pProperties = Vector{VkDisplayProperties2KHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkDisplayProperties2KHR, []), pPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, pProperties))
         end
     from_vk.(_DisplayProperties2KHR, pProperties)
@@ -91541,7 +91541,7 @@ function _get_physical_device_display_plane_properties_2_khr(physical_device)::R
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, C_NULL))
-            pProperties = Vector{VkDisplayPlaneProperties2KHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkDisplayPlaneProperties2KHR, []), pPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, pProperties))
         end
     from_vk.(_DisplayPlaneProperties2KHR, pProperties)
@@ -91566,7 +91566,7 @@ function _get_display_mode_properties_2_khr(physical_device, display)::ResultTyp
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, C_NULL))
-            pProperties = Vector{VkDisplayModeProperties2KHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkDisplayModeProperties2KHR, []), pPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, pProperties))
         end
     from_vk.(_DisplayModeProperties2KHR, pProperties)
@@ -91640,7 +91640,7 @@ Arguments:
 function _get_image_sparse_memory_requirements_2(device, info::_ImageSparseMemoryRequirementsInfo2)::Vector{_SparseImageMemoryRequirements2}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     @dispatch device vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, C_NULL)
-    pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
+    pSparseMemoryRequirements = fill(initialize_core(VkSparseImageMemoryRequirements2, []), pSparseMemoryRequirementCount[])
     @dispatch device vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, pSparseMemoryRequirements)
     from_vk.(_SparseImageMemoryRequirements2, pSparseMemoryRequirements)
 end
@@ -91692,7 +91692,7 @@ Arguments:
 function _get_device_image_sparse_memory_requirements(device, info::_DeviceImageMemoryRequirements)::Vector{_SparseImageMemoryRequirements2}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     @dispatch device vkGetDeviceImageSparseMemoryRequirements(device, info, pSparseMemoryRequirementCount, C_NULL)
-    pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
+    pSparseMemoryRequirements = fill(initialize_core(VkSparseImageMemoryRequirements2, []), pSparseMemoryRequirementCount[])
     @dispatch device vkGetDeviceImageSparseMemoryRequirements(device, info, pSparseMemoryRequirementCount, pSparseMemoryRequirements)
     from_vk.(_SparseImageMemoryRequirements2, pSparseMemoryRequirements)
 end
@@ -92295,7 +92295,7 @@ Arguments:
 function _get_queue_checkpoint_data_nv(queue)::Vector{_CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
     @dispatch device(queue) vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, C_NULL)
-    pCheckpointData = Vector{VkCheckpointDataNV}(undef, pCheckpointDataCount[])
+    pCheckpointData = fill(initialize_core(VkCheckpointDataNV, []), pCheckpointDataCount[])
     @dispatch device(queue) vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, pCheckpointData)
     from_vk.(_CheckpointDataNV, pCheckpointData)
 end
@@ -93014,7 +93014,7 @@ function _get_physical_device_cooperative_matrix_properties_nv(physical_device):
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, C_NULL))
-            pProperties = Vector{VkCooperativeMatrixPropertiesNV}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeMatrixPropertiesNV, []), pPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, pProperties))
         end
     from_vk.(_CooperativeMatrixPropertiesNV, pProperties)
@@ -93182,8 +93182,8 @@ function _enumerate_physical_device_queue_family_performance_query_counters_khr(
     pCounterCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL))
-            pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
-            pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
+            pCounters = fill(initialize_core(VkPerformanceCounterKHR, []), pCounterCount[])
+            pCounterDescriptions = fill(initialize_core(VkPerformanceCounterDescriptionKHR, []), pCounterCount[])
             @check @dispatch(instance(physical_device), vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions))
         end
     (from_vk.(_PerformanceCounterKHR, pCounters), from_vk.(_PerformanceCounterDescriptionKHR, pCounterDescriptions))
@@ -93316,7 +93316,7 @@ function _get_physical_device_supported_framebuffer_mixed_samples_combinations_n
     pCombinationCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, C_NULL))
-            pCombinations = Vector{VkFramebufferMixedSamplesCombinationNV}(undef, pCombinationCount[])
+            pCombinations = fill(initialize_core(VkFramebufferMixedSamplesCombinationNV, []), pCombinationCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, pCombinations))
         end
     from_vk.(_FramebufferMixedSamplesCombinationNV, pCombinations)
@@ -93506,7 +93506,7 @@ function _get_pipeline_executable_properties_khr(device, pipeline_info::_Pipelin
     pExecutableCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(device, vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, C_NULL))
-            pProperties = Vector{VkPipelineExecutablePropertiesKHR}(undef, pExecutableCount[])
+            pProperties = fill(initialize_core(VkPipelineExecutablePropertiesKHR, []), pExecutableCount[])
             @check @dispatch(device, vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, pProperties))
         end
     from_vk.(_PipelineExecutablePropertiesKHR, pProperties)
@@ -93531,7 +93531,7 @@ function _get_pipeline_executable_statistics_khr(device, executable_info::_Pipel
     pStatisticCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(device, vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, C_NULL))
-            pStatistics = Vector{VkPipelineExecutableStatisticKHR}(undef, pStatisticCount[])
+            pStatistics = fill(initialize_core(VkPipelineExecutableStatisticKHR, []), pStatisticCount[])
             @check @dispatch(device, vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, pStatistics))
         end
     from_vk.(_PipelineExecutableStatisticKHR, pStatistics)
@@ -93556,7 +93556,7 @@ function _get_pipeline_executable_internal_representations_khr(device, executabl
     pInternalRepresentationCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(device, vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, C_NULL))
-            pInternalRepresentations = Vector{VkPipelineExecutableInternalRepresentationKHR}(undef, pInternalRepresentationCount[])
+            pInternalRepresentations = fill(initialize_core(VkPipelineExecutableInternalRepresentationKHR, []), pInternalRepresentationCount[])
             @check @dispatch(device, vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, pInternalRepresentations))
         end
     from_vk.(_PipelineExecutableInternalRepresentationKHR, pInternalRepresentations)
@@ -93588,7 +93588,7 @@ function _get_physical_device_tool_properties(physical_device)::ResultTypes.Resu
     pToolCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceToolProperties(physical_device, pToolCount, C_NULL))
-            pToolProperties = Vector{VkPhysicalDeviceToolProperties}(undef, pToolCount[])
+            pToolProperties = fill(initialize_core(VkPhysicalDeviceToolProperties, []), pToolCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceToolProperties(physical_device, pToolCount, pToolProperties))
         end
     from_vk.(_PhysicalDeviceToolProperties, pToolProperties)
@@ -94530,7 +94530,7 @@ function _get_physical_device_fragment_shading_rates_khr(physical_device)::Resul
     pFragmentShadingRateCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, C_NULL))
-            pFragmentShadingRates = Vector{VkPhysicalDeviceFragmentShadingRateKHR}(undef, pFragmentShadingRateCount[])
+            pFragmentShadingRates = fill(initialize_core(VkPhysicalDeviceFragmentShadingRateKHR, []), pFragmentShadingRateCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, pFragmentShadingRates))
         end
     from_vk.(_PhysicalDeviceFragmentShadingRateKHR, pFragmentShadingRates)
@@ -94691,7 +94691,7 @@ Arguments:
 function _get_queue_checkpoint_data_2_nv(queue)::Vector{_CheckpointData2NV}
     pCheckpointDataCount = Ref{UInt32}()
     @dispatch device(queue) vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, C_NULL)
-    pCheckpointData = Vector{VkCheckpointData2NV}(undef, pCheckpointDataCount[])
+    pCheckpointData = fill(initialize_core(VkCheckpointData2NV, []), pCheckpointDataCount[])
     @dispatch device(queue) vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, pCheckpointData)
     from_vk.(_CheckpointData2NV, pCheckpointData)
 end
@@ -94817,7 +94817,7 @@ function _get_physical_device_video_format_properties_khr(physical_device, video
     pVideoFormatPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceVideoFormatPropertiesKHR(physical_device, video_format_info, pVideoFormatPropertyCount, C_NULL))
-            pVideoFormatProperties = Vector{VkVideoFormatPropertiesKHR}(undef, pVideoFormatPropertyCount[])
+            pVideoFormatProperties = fill(initialize_core(VkVideoFormatPropertiesKHR, []), pVideoFormatPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceVideoFormatPropertiesKHR(physical_device, video_format_info, pVideoFormatPropertyCount, pVideoFormatProperties))
         end
     from_vk.(_VideoFormatPropertiesKHR, pVideoFormatProperties)
@@ -94995,7 +94995,7 @@ function _get_video_session_memory_requirements_khr(device, video_session)::Vect
     pMemoryRequirementsCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @dispatch device vkGetVideoSessionMemoryRequirementsKHR(device, video_session, pMemoryRequirementsCount, C_NULL)
-            pMemoryRequirements = Vector{VkVideoSessionMemoryRequirementsKHR}(undef, pMemoryRequirementsCount[])
+            pMemoryRequirements = fill(initialize_core(VkVideoSessionMemoryRequirementsKHR, []), pMemoryRequirementsCount[])
             @dispatch device vkGetVideoSessionMemoryRequirementsKHR(device, video_session, pMemoryRequirementsCount, pMemoryRequirements)
         end
     from_vk.(_VideoSessionMemoryRequirementsKHR, pMemoryRequirements)
@@ -95910,7 +95910,7 @@ function _get_framebuffer_tile_properties_qcom(device, framebuffer)::Vector{_Til
     pPropertiesCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @dispatch device vkGetFramebufferTilePropertiesQCOM(device, framebuffer, pPropertiesCount, C_NULL)
-            pProperties = Vector{VkTilePropertiesQCOM}(undef, pPropertiesCount[])
+            pProperties = fill(initialize_core(VkTilePropertiesQCOM, []), pPropertiesCount[])
             @dispatch device vkGetFramebufferTilePropertiesQCOM(device, framebuffer, pPropertiesCount, pProperties)
         end
     from_vk.(_TilePropertiesQCOM, pProperties)
@@ -95952,7 +95952,7 @@ function _get_physical_device_optical_flow_image_formats_nv(physical_device, opt
     pFormatCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceOpticalFlowImageFormatsNV(physical_device, optical_flow_image_format_info, pFormatCount, C_NULL))
-            pImageFormatProperties = Vector{VkOpticalFlowImageFormatPropertiesNV}(undef, pFormatCount[])
+            pImageFormatProperties = fill(initialize_core(VkOpticalFlowImageFormatPropertiesNV, []), pFormatCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceOpticalFlowImageFormatsNV(physical_device, optical_flow_image_format_info, pFormatCount, pImageFormatProperties))
         end
     from_vk.(_OpticalFlowImageFormatPropertiesNV, pImageFormatProperties)
@@ -96231,7 +96231,7 @@ function _get_physical_device_cooperative_matrix_properties_khr(physical_device)
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR(physical_device, pPropertyCount, C_NULL))
-            pProperties = Vector{VkCooperativeMatrixPropertiesKHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeMatrixPropertiesKHR, []), pPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR(physical_device, pPropertyCount, pProperties))
         end
     from_vk.(_CooperativeMatrixPropertiesKHR, pProperties)
@@ -96426,7 +96426,7 @@ function _get_physical_device_cooperative_matrix_flexible_dimensions_properties_
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV(physical_device, pPropertyCount, C_NULL))
-            pProperties = Vector{VkCooperativeMatrixFlexibleDimensionsPropertiesNV}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeMatrixFlexibleDimensionsPropertiesNV, []), pPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV(physical_device, pPropertyCount, pProperties))
         end
     from_vk.(_CooperativeMatrixFlexibleDimensionsPropertiesNV, pProperties)
@@ -96450,7 +96450,7 @@ function _get_physical_device_cooperative_vector_properties_nv(physical_device):
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeVectorPropertiesNV(physical_device, pPropertyCount, C_NULL))
-            pProperties = Vector{VkCooperativeVectorPropertiesNV}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeVectorPropertiesNV, []), pPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceCooperativeVectorPropertiesNV(physical_device, pPropertyCount, pProperties))
         end
     from_vk.(_CooperativeVectorPropertiesNV, pProperties)
@@ -96849,7 +96849,7 @@ function _get_data_graph_pipeline_session_bind_point_requirements_arm(device, in
     pBindPointRequirementCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(device, vkGetDataGraphPipelineSessionBindPointRequirementsARM(device, info, pBindPointRequirementCount, C_NULL))
-            pBindPointRequirements = Vector{VkDataGraphPipelineSessionBindPointRequirementARM}(undef, pBindPointRequirementCount[])
+            pBindPointRequirements = fill(initialize_core(VkDataGraphPipelineSessionBindPointRequirementARM, []), pBindPointRequirementCount[])
             @check @dispatch(device, vkGetDataGraphPipelineSessionBindPointRequirementsARM(device, info, pBindPointRequirementCount, pBindPointRequirements))
         end
     from_vk.(_DataGraphPipelineSessionBindPointRequirementARM, pBindPointRequirements)
@@ -96983,7 +96983,7 @@ function _get_physical_device_queue_family_data_graph_properties_arm(physical_de
     pQueueFamilyDataGraphPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(physical_device, queue_family_index, pQueueFamilyDataGraphPropertyCount, C_NULL))
-            pQueueFamilyDataGraphProperties = Vector{VkQueueFamilyDataGraphPropertiesARM}(undef, pQueueFamilyDataGraphPropertyCount[])
+            pQueueFamilyDataGraphProperties = fill(initialize_core(VkQueueFamilyDataGraphPropertiesARM, []), pQueueFamilyDataGraphPropertyCount[])
             @check @dispatch(instance(physical_device), vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(physical_device, queue_family_index, pQueueFamilyDataGraphPropertyCount, pQueueFamilyDataGraphProperties))
         end
     from_vk.(_QueueFamilyDataGraphPropertiesARM, pQueueFamilyDataGraphProperties)
@@ -97930,7 +97930,7 @@ end
 function _get_physical_device_queue_family_properties_2(physical_device, fptr::FunctionPtr)::Vector{_QueueFamilyProperties2}
     pQueueFamilyPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, C_NULL, fptr)
-    pQueueFamilyProperties = Vector{VkQueueFamilyProperties2}(undef, pQueueFamilyPropertyCount[])
+    pQueueFamilyProperties = fill(initialize_core(VkQueueFamilyProperties2, []), pQueueFamilyPropertyCount[])
     vkGetPhysicalDeviceQueueFamilyProperties2(physical_device, pQueueFamilyPropertyCount, pQueueFamilyProperties, fptr)
     from_vk.(_QueueFamilyProperties2, pQueueFamilyProperties)
 end
@@ -97947,7 +97947,7 @@ end
 function _get_physical_device_sparse_image_format_properties_2(physical_device, format_info::_PhysicalDeviceSparseImageFormatInfo2, fptr::FunctionPtr)::Vector{_SparseImageFormatProperties2}
     pPropertyCount = Ref{UInt32}()
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, C_NULL, fptr)
-    pProperties = Vector{VkSparseImageFormatProperties2}(undef, pPropertyCount[])
+    pProperties = fill(initialize_core(VkSparseImageFormatProperties2, []), pPropertyCount[])
     vkGetPhysicalDeviceSparseImageFormatProperties2(physical_device, format_info, pPropertyCount, pProperties, fptr)
     from_vk.(_SparseImageFormatProperties2, pProperties)
 end
@@ -98057,7 +98057,7 @@ function _enumerate_physical_device_groups(instance, fptr::FunctionPtr)::ResultT
     pPhysicalDeviceGroupCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, C_NULL, fptr)
-            pPhysicalDeviceGroupProperties = Vector{VkPhysicalDeviceGroupProperties}(undef, pPhysicalDeviceGroupCount[])
+            pPhysicalDeviceGroupProperties = fill(initialize_core(VkPhysicalDeviceGroupProperties, []), pPhysicalDeviceGroupCount[])
             @check vkEnumeratePhysicalDeviceGroups(instance, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties, fptr)
         end
     from_vk.(_PhysicalDeviceGroupProperties, pPhysicalDeviceGroupProperties)
@@ -98169,7 +98169,7 @@ function _get_physical_device_surface_formats_2_khr(physical_device, surface_inf
     pSurfaceFormatCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, C_NULL, fptr)
-            pSurfaceFormats = Vector{VkSurfaceFormat2KHR}(undef, pSurfaceFormatCount[])
+            pSurfaceFormats = fill(initialize_core(VkSurfaceFormat2KHR, []), pSurfaceFormatCount[])
             @check vkGetPhysicalDeviceSurfaceFormats2KHR(physical_device, surface_info, pSurfaceFormatCount, pSurfaceFormats, fptr)
         end
     from_vk.(_SurfaceFormat2KHR, pSurfaceFormats)
@@ -98179,7 +98179,7 @@ function _get_physical_device_display_properties_2_khr(physical_device, fptr::Fu
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, C_NULL, fptr)
-            pProperties = Vector{VkDisplayProperties2KHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkDisplayProperties2KHR, []), pPropertyCount[])
             @check vkGetPhysicalDeviceDisplayProperties2KHR(physical_device, pPropertyCount, pProperties, fptr)
         end
     from_vk.(_DisplayProperties2KHR, pProperties)
@@ -98189,7 +98189,7 @@ function _get_physical_device_display_plane_properties_2_khr(physical_device, fp
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, C_NULL, fptr)
-            pProperties = Vector{VkDisplayPlaneProperties2KHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkDisplayPlaneProperties2KHR, []), pPropertyCount[])
             @check vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physical_device, pPropertyCount, pProperties, fptr)
         end
     from_vk.(_DisplayPlaneProperties2KHR, pProperties)
@@ -98199,7 +98199,7 @@ function _get_display_mode_properties_2_khr(physical_device, display, fptr::Func
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, C_NULL, fptr)
-            pProperties = Vector{VkDisplayModeProperties2KHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkDisplayModeProperties2KHR, []), pPropertyCount[])
             @check vkGetDisplayModeProperties2KHR(physical_device, display, pPropertyCount, pProperties, fptr)
         end
     from_vk.(_DisplayModeProperties2KHR, pProperties)
@@ -98232,7 +98232,7 @@ end
 function _get_image_sparse_memory_requirements_2(device, info::_ImageSparseMemoryRequirementsInfo2, fptr::FunctionPtr)::Vector{_SparseImageMemoryRequirements2}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, C_NULL, fptr)
-    pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
+    pSparseMemoryRequirements = fill(initialize_core(VkSparseImageMemoryRequirements2, []), pSparseMemoryRequirementCount[])
     vkGetImageSparseMemoryRequirements2(device, info, pSparseMemoryRequirementCount, pSparseMemoryRequirements, fptr)
     from_vk.(_SparseImageMemoryRequirements2, pSparseMemoryRequirements)
 end
@@ -98258,7 +98258,7 @@ end
 function _get_device_image_sparse_memory_requirements(device, info::_DeviceImageMemoryRequirements, fptr::FunctionPtr)::Vector{_SparseImageMemoryRequirements2}
     pSparseMemoryRequirementCount = Ref{UInt32}()
     vkGetDeviceImageSparseMemoryRequirements(device, info, pSparseMemoryRequirementCount, C_NULL, fptr)
-    pSparseMemoryRequirements = Vector{VkSparseImageMemoryRequirements2}(undef, pSparseMemoryRequirementCount[])
+    pSparseMemoryRequirements = fill(initialize_core(VkSparseImageMemoryRequirements2, []), pSparseMemoryRequirementCount[])
     vkGetDeviceImageSparseMemoryRequirements(device, info, pSparseMemoryRequirementCount, pSparseMemoryRequirements, fptr)
     from_vk.(_SparseImageMemoryRequirements2, pSparseMemoryRequirements)
 end
@@ -98418,7 +98418,7 @@ _cmd_set_checkpoint_nv(command_buffer, checkpoint_marker::Ptr{Cvoid}, fptr::Func
 function _get_queue_checkpoint_data_nv(queue, fptr::FunctionPtr)::Vector{_CheckpointDataNV}
     pCheckpointDataCount = Ref{UInt32}()
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, C_NULL, fptr)
-    pCheckpointData = Vector{VkCheckpointDataNV}(undef, pCheckpointDataCount[])
+    pCheckpointData = fill(initialize_core(VkCheckpointDataNV, []), pCheckpointDataCount[])
     vkGetQueueCheckpointDataNV(queue, pCheckpointDataCount, pCheckpointData, fptr)
     from_vk.(_CheckpointDataNV, pCheckpointData)
 end
@@ -98536,7 +98536,7 @@ function _get_physical_device_cooperative_matrix_properties_nv(physical_device, 
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, C_NULL, fptr)
-            pProperties = Vector{VkCooperativeMatrixPropertiesNV}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeMatrixPropertiesNV, []), pPropertyCount[])
             @check vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physical_device, pPropertyCount, pProperties, fptr)
         end
     from_vk.(_CooperativeMatrixPropertiesNV, pProperties)
@@ -98578,8 +98578,8 @@ function _enumerate_physical_device_queue_family_performance_query_counters_khr(
     pCounterCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL, fptr)
-            pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
-            pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
+            pCounters = fill(initialize_core(VkPerformanceCounterKHR, []), pCounterCount[])
+            pCounterDescriptions = fill(initialize_core(VkPerformanceCounterDescriptionKHR, []), pCounterCount[])
             @check vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions, fptr)
         end
     (from_vk.(_PerformanceCounterKHR, pCounters), from_vk.(_PerformanceCounterDescriptionKHR, pCounterDescriptions))
@@ -98618,7 +98618,7 @@ function _get_physical_device_supported_framebuffer_mixed_samples_combinations_n
     pCombinationCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, C_NULL, fptr)
-            pCombinations = Vector{VkFramebufferMixedSamplesCombinationNV}(undef, pCombinationCount[])
+            pCombinations = fill(initialize_core(VkFramebufferMixedSamplesCombinationNV, []), pCombinationCount[])
             @check vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physical_device, pCombinationCount, pCombinations, fptr)
         end
     from_vk.(_FramebufferMixedSamplesCombinationNV, pCombinations)
@@ -98656,7 +98656,7 @@ function _get_pipeline_executable_properties_khr(device, pipeline_info::_Pipelin
     pExecutableCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, C_NULL, fptr)
-            pProperties = Vector{VkPipelineExecutablePropertiesKHR}(undef, pExecutableCount[])
+            pProperties = fill(initialize_core(VkPipelineExecutablePropertiesKHR, []), pExecutableCount[])
             @check vkGetPipelineExecutablePropertiesKHR(device, pipeline_info, pExecutableCount, pProperties, fptr)
         end
     from_vk.(_PipelineExecutablePropertiesKHR, pProperties)
@@ -98666,7 +98666,7 @@ function _get_pipeline_executable_statistics_khr(device, executable_info::_Pipel
     pStatisticCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, C_NULL, fptr)
-            pStatistics = Vector{VkPipelineExecutableStatisticKHR}(undef, pStatisticCount[])
+            pStatistics = fill(initialize_core(VkPipelineExecutableStatisticKHR, []), pStatisticCount[])
             @check vkGetPipelineExecutableStatisticsKHR(device, executable_info, pStatisticCount, pStatistics, fptr)
         end
     from_vk.(_PipelineExecutableStatisticKHR, pStatistics)
@@ -98676,7 +98676,7 @@ function _get_pipeline_executable_internal_representations_khr(device, executabl
     pInternalRepresentationCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, C_NULL, fptr)
-            pInternalRepresentations = Vector{VkPipelineExecutableInternalRepresentationKHR}(undef, pInternalRepresentationCount[])
+            pInternalRepresentations = fill(initialize_core(VkPipelineExecutableInternalRepresentationKHR, []), pInternalRepresentationCount[])
             @check vkGetPipelineExecutableInternalRepresentationsKHR(device, executable_info, pInternalRepresentationCount, pInternalRepresentations, fptr)
         end
     from_vk.(_PipelineExecutableInternalRepresentationKHR, pInternalRepresentations)
@@ -98688,7 +98688,7 @@ function _get_physical_device_tool_properties(physical_device, fptr::FunctionPtr
     pToolCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceToolProperties(physical_device, pToolCount, C_NULL, fptr)
-            pToolProperties = Vector{VkPhysicalDeviceToolProperties}(undef, pToolCount[])
+            pToolProperties = fill(initialize_core(VkPhysicalDeviceToolProperties, []), pToolCount[])
             @check vkGetPhysicalDeviceToolProperties(physical_device, pToolCount, pToolProperties, fptr)
         end
     from_vk.(_PhysicalDeviceToolProperties, pToolProperties)
@@ -98876,7 +98876,7 @@ function _get_physical_device_fragment_shading_rates_khr(physical_device, fptr::
     pFragmentShadingRateCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, C_NULL, fptr)
-            pFragmentShadingRates = Vector{VkPhysicalDeviceFragmentShadingRateKHR}(undef, pFragmentShadingRateCount[])
+            pFragmentShadingRates = fill(initialize_core(VkPhysicalDeviceFragmentShadingRateKHR, []), pFragmentShadingRateCount[])
             @check vkGetPhysicalDeviceFragmentShadingRatesKHR(physical_device, pFragmentShadingRateCount, pFragmentShadingRates, fptr)
         end
     from_vk.(_PhysicalDeviceFragmentShadingRateKHR, pFragmentShadingRates)
@@ -98911,7 +98911,7 @@ _cmd_write_buffer_marker_2_amd(command_buffer, dst_buffer, dst_offset::Integer, 
 function _get_queue_checkpoint_data_2_nv(queue, fptr::FunctionPtr)::Vector{_CheckpointData2NV}
     pCheckpointDataCount = Ref{UInt32}()
     vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, C_NULL, fptr)
-    pCheckpointData = Vector{VkCheckpointData2NV}(undef, pCheckpointDataCount[])
+    pCheckpointData = fill(initialize_core(VkCheckpointData2NV, []), pCheckpointDataCount[])
     vkGetQueueCheckpointData2NV(queue, pCheckpointDataCount, pCheckpointData, fptr)
     from_vk.(_CheckpointData2NV, pCheckpointData)
 end
@@ -98937,7 +98937,7 @@ function _get_physical_device_video_format_properties_khr(physical_device, video
     pVideoFormatPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceVideoFormatPropertiesKHR(physical_device, video_format_info, pVideoFormatPropertyCount, C_NULL, fptr)
-            pVideoFormatProperties = Vector{VkVideoFormatPropertiesKHR}(undef, pVideoFormatPropertyCount[])
+            pVideoFormatProperties = fill(initialize_core(VkVideoFormatPropertiesKHR, []), pVideoFormatPropertyCount[])
             @check vkGetPhysicalDeviceVideoFormatPropertiesKHR(physical_device, video_format_info, pVideoFormatPropertyCount, pVideoFormatProperties, fptr)
         end
     from_vk.(_VideoFormatPropertiesKHR, pVideoFormatProperties)
@@ -98990,7 +98990,7 @@ function _get_video_session_memory_requirements_khr(device, video_session, fptr:
     pMemoryRequirementsCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             vkGetVideoSessionMemoryRequirementsKHR(device, video_session, pMemoryRequirementsCount, C_NULL, fptr)
-            pMemoryRequirements = Vector{VkVideoSessionMemoryRequirementsKHR}(undef, pMemoryRequirementsCount[])
+            pMemoryRequirements = fill(initialize_core(VkVideoSessionMemoryRequirementsKHR, []), pMemoryRequirementsCount[])
             vkGetVideoSessionMemoryRequirementsKHR(device, video_session, pMemoryRequirementsCount, pMemoryRequirements, fptr)
         end
     from_vk.(_VideoSessionMemoryRequirementsKHR, pMemoryRequirements)
@@ -99202,7 +99202,7 @@ function _get_framebuffer_tile_properties_qcom(device, framebuffer, fptr::Functi
     pPropertiesCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             vkGetFramebufferTilePropertiesQCOM(device, framebuffer, pPropertiesCount, C_NULL, fptr)
-            pProperties = Vector{VkTilePropertiesQCOM}(undef, pPropertiesCount[])
+            pProperties = fill(initialize_core(VkTilePropertiesQCOM, []), pPropertiesCount[])
             vkGetFramebufferTilePropertiesQCOM(device, framebuffer, pPropertiesCount, pProperties, fptr)
         end
     from_vk.(_TilePropertiesQCOM, pProperties)
@@ -99218,7 +99218,7 @@ function _get_physical_device_optical_flow_image_formats_nv(physical_device, opt
     pFormatCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceOpticalFlowImageFormatsNV(physical_device, optical_flow_image_format_info, pFormatCount, C_NULL, fptr)
-            pImageFormatProperties = Vector{VkOpticalFlowImageFormatPropertiesNV}(undef, pFormatCount[])
+            pImageFormatProperties = fill(initialize_core(VkOpticalFlowImageFormatPropertiesNV, []), pFormatCount[])
             @check vkGetPhysicalDeviceOpticalFlowImageFormatsNV(physical_device, optical_flow_image_format_info, pFormatCount, pImageFormatProperties, fptr)
         end
     from_vk.(_OpticalFlowImageFormatPropertiesNV, pImageFormatProperties)
@@ -99297,7 +99297,7 @@ function _get_physical_device_cooperative_matrix_properties_khr(physical_device,
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR(physical_device, pPropertyCount, C_NULL, fptr)
-            pProperties = Vector{VkCooperativeMatrixPropertiesKHR}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeMatrixPropertiesKHR, []), pPropertyCount[])
             @check vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR(physical_device, pPropertyCount, pProperties, fptr)
         end
     from_vk.(_CooperativeMatrixPropertiesKHR, pProperties)
@@ -99342,7 +99342,7 @@ function _get_physical_device_cooperative_matrix_flexible_dimensions_properties_
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV(physical_device, pPropertyCount, C_NULL, fptr)
-            pProperties = Vector{VkCooperativeMatrixFlexibleDimensionsPropertiesNV}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeMatrixFlexibleDimensionsPropertiesNV, []), pPropertyCount[])
             @check vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV(physical_device, pPropertyCount, pProperties, fptr)
         end
     from_vk.(_CooperativeMatrixFlexibleDimensionsPropertiesNV, pProperties)
@@ -99352,7 +99352,7 @@ function _get_physical_device_cooperative_vector_properties_nv(physical_device, 
     pPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceCooperativeVectorPropertiesNV(physical_device, pPropertyCount, C_NULL, fptr)
-            pProperties = Vector{VkCooperativeVectorPropertiesNV}(undef, pPropertyCount[])
+            pProperties = fill(initialize_core(VkCooperativeVectorPropertiesNV, []), pPropertyCount[])
             @check vkGetPhysicalDeviceCooperativeVectorPropertiesNV(physical_device, pPropertyCount, pProperties, fptr)
         end
     from_vk.(_CooperativeVectorPropertiesNV, pProperties)
@@ -99470,7 +99470,7 @@ function _get_data_graph_pipeline_session_bind_point_requirements_arm(device, in
     pBindPointRequirementCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetDataGraphPipelineSessionBindPointRequirementsARM(device, info, pBindPointRequirementCount, C_NULL, fptr)
-            pBindPointRequirements = Vector{VkDataGraphPipelineSessionBindPointRequirementARM}(undef, pBindPointRequirementCount[])
+            pBindPointRequirements = fill(initialize_core(VkDataGraphPipelineSessionBindPointRequirementARM, []), pBindPointRequirementCount[])
             @check vkGetDataGraphPipelineSessionBindPointRequirementsARM(device, info, pBindPointRequirementCount, pBindPointRequirements, fptr)
         end
     from_vk.(_DataGraphPipelineSessionBindPointRequirementARM, pBindPointRequirements)
@@ -99511,7 +99511,7 @@ function _get_physical_device_queue_family_data_graph_properties_arm(physical_de
     pQueueFamilyDataGraphPropertyCount = Ref{UInt32}()
     @repeat_while_incomplete begin
             @check vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(physical_device, queue_family_index, pQueueFamilyDataGraphPropertyCount, C_NULL, fptr)
-            pQueueFamilyDataGraphProperties = Vector{VkQueueFamilyDataGraphPropertiesARM}(undef, pQueueFamilyDataGraphPropertyCount[])
+            pQueueFamilyDataGraphProperties = fill(initialize_core(VkQueueFamilyDataGraphPropertiesARM, []), pQueueFamilyDataGraphPropertyCount[])
             @check vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(physical_device, queue_family_index, pQueueFamilyDataGraphPropertyCount, pQueueFamilyDataGraphProperties, fptr)
         end
     from_vk.(_QueueFamilyDataGraphPropertiesARM, pQueueFamilyDataGraphProperties)
