@@ -65,6 +65,9 @@ elseif Sys.iswindows()
     include("../generated/windows.jl")
 end
 
+# After the generated code: needs the high-level types to exist so the
+# conversions it delegates to are resolvable.
+include("opaque_struct_ctors.jl")
 include("utils.jl")
 include("debug.jl")
 include("driver.jl")
