@@ -56,3 +56,33 @@ function VulkanCore.LibVulkan.VkRenderingAttachmentInfo(
         convert(VulkanCore.LibVulkan.VkClearValue, clearValue),
     )
 end
+
+# ── setproperties on an opaque struct ────────────────────────────────────────
+#
+# The same union-blob shape breaks the *other* direction too. `_initialize_core`
+# builds an empty struct and patches `sType`/`pNext` into it with
+# `ConstructionBase.setproperties`, which refuses outright:
+#
+#     The `VkPipelineExecutableStatisticKHR` type defines custom properties:
+#     it has `propertynames` overloaded.
+#
+# It is right to refuse — its only field is `data::NTuple{544,UInt8}`, so a
+# field-wise rebuild would write the patch into the wrong bytes. But the struct
+# does know where its fields live: Clang.jl emits `setproperty!` on a
+# `Ptr{T}` with the correct offsets. Writing through a `Ref` uses exactly those.
+#
+# Without this, every `get_pipeline_executable_statistics_khr` call fails before
+# it returns anything — which is how a driver's register and spill counts became
+# unreachable, and with them any check on whether a requested workgroup size can
+# actually run (see `Lava.checked_workgroup`).
+function ConstructionBase.setproperties(
+        x::VulkanCore.LibVulkan.VkPipelineExecutableStatisticKHR, patch::NamedTuple)
+    ref = Ref(x)
+    GC.@preserve ref begin
+        ptr = Base.unsafe_convert(Ptr{typeof(x)}, ref)
+        for (k, v) in pairs(patch)
+            setproperty!(ptr, k, v)
+        end
+    end
+    return ref[]
+end

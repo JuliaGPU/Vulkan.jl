@@ -9,6 +9,10 @@ using Reexport
 using DocStringExtensions
 using StructEquality: @struct_hash_equal
 using Accessors: @set, setproperties
+# For the `setproperties` method on opaque union structs in
+# `opaque_struct_ctors.jl` — extending needs the defining module, and
+# `Accessors` only re-exports the function.
+using ConstructionBase
 using PrecompileTools
 using Libdl: Libdl
 using BitMasks
