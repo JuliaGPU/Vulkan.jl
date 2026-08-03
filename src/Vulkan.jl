@@ -8,7 +8,12 @@ module Vulkan
 using Reexport
 using DocStringExtensions
 using StructEquality: @struct_hash_equal
-using Accessors: @set, setproperties
+using Accessors: Accessors, @set, setproperties
+# `setproperties` is ConstructionBase's, re-exported by Accessors. Reached
+# through Accessors rather than added as a direct dependency: the blob-struct
+# methods in prewrap/pointers.jl must extend it on its OWNING module, and
+# Accessors already depends on it, so this needs no manifest change.
+const ConstructionBase = Accessors.ConstructionBase
 using PrecompileTools
 using Libdl: Libdl
 using BitMasks

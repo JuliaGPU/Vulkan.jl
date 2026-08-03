@@ -56,3 +56,66 @@ function VulkanCore.LibVulkan.VkRenderingAttachmentInfo(
         convert(VulkanCore.LibVulkan.VkClearValue, clearValue),
     )
 end
+
+
+# ── Setting properties on an opaque struct ───────────────────────────────────
+#
+# The same shape breaks in a second, quieter way. `propertynames` for a blob
+# struct lists the LOGICAL fields (`sType`, `pNext`, `name`, `value`, …) while
+# `fieldnames` is the single `data`. `ConstructionBase.setproperties` refuses any
+# type whose `propertynames` is overloaded — deliberately, since it cannot know
+# the mapping — and throws
+#
+#     The `VkPipelineExecutableStatisticKHR` type defines custom properties …
+#     Please define `ConstructionBase.setproperties(…)` to set its properties.
+#
+# `prewrap/pointers.jl`'s `_initialize_core` sets `sType`/`pNext` through exactly
+# that call, so EVERY api returning one of these was unreachable: the wrapper
+# threw before it ever reached the driver.
+#
+# Found through `get_pipeline_executable_statistics_khr`, where it presented as
+# "AMD reports no pipeline statistics". RADV in fact returns twenty statistics
+# per pipeline — VGPRs, spills, LDS, scratch, subgroups per SIMD — and the
+# failure was entirely on this side, on every vendor.
+#
+# Unlike the constructors above this needs no per-struct knowledge, so it is
+# generated for every blob-shaped struct rather than for the ones that happen to
+# be used today: a struct that grows a union in a later Vulkan header would
+# otherwise reintroduce the same silent unreachability.
+
+"""
+    _blob_setproperties(obj, patch) -> obj
+
+`setproperties` for a struct with no Julia fields to set: copy the blob, store
+each patched property at the byte offset its generated accessor computes, and
+read the value back.
+"""
+function _blob_setproperties(obj::T, patch::NamedTuple) where {T}
+    ref = Ref(obj)
+    GC.@preserve ref begin
+        p = Base.unsafe_convert(Ptr{T}, ref)
+        for (k, v) in pairs(patch)
+            fp = getproperty(p, k)
+            unsafe_store!(fp, convert(eltype(fp), v))
+        end
+    end
+    return ref[]
+end
+
+# Deduplicated by TYPE, not by name: `names(...; all = true)` reaches several of
+# these under an alias as well as their own name, and defining the same method
+# twice is a hard error during precompilation ("Method overwriting is not
+# permitted"), not a warning.
+let seen = Set{DataType}()
+    for name in names(VulkanCore.LibVulkan; all = true)
+        isdefined(VulkanCore.LibVulkan, name) || continue
+        T = getfield(VulkanCore.LibVulkan, name)
+        T isa DataType && isstructtype(T) || continue
+        fieldnames(T) == (:data,) || continue
+        fieldtype(T, :data) <: NTuple{N,UInt8} where {N} || continue
+        T in seen && continue
+        push!(seen, T)
+        @eval ConstructionBase.setproperties(obj::$T, patch::NamedTuple) =
+            _blob_setproperties(obj, patch)
+    end
+end
