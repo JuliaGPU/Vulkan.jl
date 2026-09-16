@@ -90,6 +90,16 @@ include("precompile.jl")
 
 function __init__()
     global_dispatcher[] = APIDispatcher()
+    # Only when there IS a loader. `fill_dispatch_table` asks
+    # `vkGetInstanceProcAddr` for every core entry point, which dlopens
+    # `libvulkan` — so on a machine without one this threw from `__init__`, and a
+    # package that merely DEPENDS on Vulkan could not be precompiled, let alone
+    # loaded. VulkanCore already answers the question rather than failing on it;
+    # this is the same answer one level up.
+    #
+    # The table is then empty, and `function_pointer` says so by name. Nothing
+    # else changes: with a loader present this is the call it always was.
+    VkCore.loaded() || return nothing
     fill_dispatch_table()
 end
 

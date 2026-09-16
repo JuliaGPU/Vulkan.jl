@@ -39,6 +39,16 @@ function function_pointer end
 
 function function_pointer(disp::APIDispatcher, handle, key::Symbol; allow_null::Bool = false)::Ptr{Cvoid}
     t = table(disp, handle)
+    # A missing key on a machine with no loader is not a missing extension, it is
+    # no Vulkan at all — `__init__` left the table empty on purpose so that
+    # depending on this package stays cheap. Say which of the two it is; the
+    # check costs nothing on the path that finds its pointer.
+    if !haskey(t.pointers, key) && !VkCore.loaded()
+        error("no Vulkan loader: `$(VkCore.libvulkan)` was not found when Vulkan.jl " *
+              "loaded, so no function pointers were resolved and '$key' cannot be " *
+              "called. Depending on this package is fine without a driver; using " *
+              "the API is not.")
+    end
     fptr = t.pointers[key]
     if fptr == C_NULL && !allow_null
         error(
