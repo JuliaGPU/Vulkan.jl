@@ -54,6 +54,27 @@ using ResultTypes: ResultTypes
 
 include("preferences.jl")
 
+"""Whether this package compiled its bindings — see `VulkanCore.HAS_LOADER`.
+
+OUTSIDE the gate below, so a dependent can ask without first checking whether
+there is anything to ask.
+"""
+const HAS_LOADER = VulkanCore.HAS_LOADER
+
+# ── Everything below is gated on a Vulkan loader existing ────────────────────
+#
+# 127,000 generated lines of wrappers, a dispatch table and an 8,573-name export
+# list, none of which can do anything without a driver. Compiling them anyway
+# cost 13 s of precompile on every Mac in this tree, for a package Mantle
+# declares and — on Apple — never imports.
+#
+# The inner text is UNCHANGED and unindented on purpose: with a loader present
+# this module is byte-for-byte the one it was, so the only thing this can break
+# is the empty case.
+#
+# See `VulkanCore.HAS_LOADER` for why the answer is fixed at precompile time.
+@static if VulkanCore.HAS_LOADER
+
 # generated wrapper
 include("prewrap.jl")
 
@@ -147,5 +168,7 @@ export
 
         # Formats
         format_type
+
+end # @static if VulkanCore.HAS_LOADER
 
 end # module Vulkan
