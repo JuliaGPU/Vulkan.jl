@@ -61,7 +61,26 @@ end
 function_pointer(name::AbstractString) = get_instance_proc_addr(name)
 function_pointer(::Nothing, name::AbstractString) = function_pointer(name)
 function_pointer(instance::Instance, name::AbstractString) = get_instance_proc_addr(name; instance)
-function_pointer(device::Device, name::AbstractString) = get_device_proc_addr(device, name)
+# `vkGetDeviceProcAddr` asked of the INSTANCE, not of the library by name.
+#
+# It is the one entry point the dispatch table has to bootstrap, and a driver on
+# its own does not export it: SwiftShader, lavapipe and MoltenVK export
+# `vkGetInstanceProcAddr` and `vk_icdGetInstanceProcAddr` and nothing else,
+# because supplying the rest is the Khronos loader's job. Calling it by name
+# therefore fails with `could not load symbol "vkGetDeviceProcAddr"` against any
+# driver used WITHOUT a loader in between -- which is how MoltenVK is meant to be
+# used on macOS, and how `JULIA_VULKAN_LIBNAME` pointed straight at an ICD
+# behaves everywhere.
+#
+# `vkGetInstanceProcAddr` is the one function a Vulkan implementation must
+# export, and the specification has it answer for device-level commands too. So
+# ask it, once per instance, and call the pointer. With a loader present this is
+# the same pointer by a different route, so nothing changes there.
+function function_pointer(device::Device, name::AbstractString)
+    instance = device.physical_device.instance
+    fptr = function_pointer(global_dispatcher[], instance, :vkGetDeviceProcAddr)
+    ccall(fptr, Ptr{Cvoid}, (VkCore.VkDevice, Cstring), device, name)
+end
 function_pointer(x, name::AbstractString) = function_pointer(handle(x), name)
 
 dispatchable_functions(::Nothing) = CORE_FUNCTIONS
@@ -74,4 +93,10 @@ function fill_dispatch_table(handle = nothing)
     for f in dispatchable_functions(handle)
         add_fptr!(t, handle, f)
     end
+    # `vkGetDeviceProcAddr` is a DEVICE-level command, so it cannot come out of
+    # the device table it is needed to fill. It is kept on the instance, which is
+    # both what `vkGetInstanceProcAddr` needs to answer for it and a lifetime
+    # that already ends with the instance. See `function_pointer(::Device, ...)`.
+    handle isa Instance && add_fptr!(t, handle, :vkGetDeviceProcAddr)
+    nothing
 end

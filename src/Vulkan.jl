@@ -61,6 +61,9 @@ there is anything to ask.
 """
 const HAS_LOADER = VulkanCore.HAS_LOADER
 
+using Preferences: Preferences
+include("driver.jl")
+
 # ── Everything below is gated on a Vulkan loader existing ────────────────────
 #
 # 127,000 generated lines of wrappers, a dispatch table and an 8,573-name export
@@ -96,7 +99,6 @@ end
 include("opaque_struct_ctors.jl")
 include("utils.jl")
 include("debug.jl")
-include("driver.jl")
 include("validation.jl")
 include("instance.jl")
 include("device.jl")
