@@ -31902,6 +31902,7 @@ High-level wrapper for VkPhysicalDeviceGroupProperties.
 """
 @struct_hash_equal struct PhysicalDeviceGroupProperties <: HighLevelStruct
         next::Any
+        physical_device_count::UInt32
         physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}
         subset_allocation::Bool
     end
@@ -35168,7 +35169,9 @@ High-level wrapper for VkPhysicalDeviceMemoryProperties.
 
 """
 @struct_hash_equal struct PhysicalDeviceMemoryProperties <: HighLevelStruct
+        memory_type_count::UInt32
         memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), MemoryType}
+        memory_heap_count::UInt32
         memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), MemoryHeap}
     end
 
@@ -36504,6 +36507,7 @@ High-level wrapper for VkQueueFamilyGlobalPriorityProperties.
 """
 @struct_hash_equal struct QueueFamilyGlobalPriorityProperties <: HighLevelStruct
         next::Any
+        priority_count::UInt32
         priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}
     end
 
@@ -39827,13 +39831,15 @@ end
 
 """
 Arguments:
+- `memory_type_count::UInt32`
 - `memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}`
+- `memory_heap_count::UInt32`
 - `memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap}`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryProperties.html)
 
 """
-function _PhysicalDeviceMemoryProperties(memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap})
+function _PhysicalDeviceMemoryProperties(memory_type_count::Integer, memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, memory_heap_count::Integer, memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap})
     _PhysicalDeviceMemoryProperties(VkPhysicalDeviceMemoryProperties(convert(UInt32, memory_type_count), convert(NTuple{Int(VK_MAX_MEMORY_TYPES), VkMemoryType}, memory_types), convert(UInt32, memory_heap_count), convert(NTuple{Int(VK_MAX_MEMORY_HEAPS), VkMemoryHeap}, memory_heaps)))
 end
 
@@ -43865,6 +43871,7 @@ end
 
 """
 Arguments:
+- `physical_device_count::UInt32`
 - `physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}`
 - `subset_allocation::Bool`
 - `next::Ptr{Cvoid}`: defaults to `C_NULL`
@@ -43872,7 +43879,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGroupProperties.html)
 
 """
-function _PhysicalDeviceGroupProperties(physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL)
+function _PhysicalDeviceGroupProperties(physical_device_count::Integer, physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL)
     physical_device_count = pointer_length(physical_devices)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
@@ -46165,13 +46172,14 @@ end
 
 """
 Arguments:
+- `priority_count::UInt32`
 - `priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}`
 - `next::Ptr{Cvoid}`: defaults to `C_NULL`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyGlobalPriorityProperties.html)
 
 """
-function _QueueFamilyGlobalPriorityProperties(priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL)
+function _QueueFamilyGlobalPriorityProperties(priority_count::Integer, priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL)
     priority_count = pointer_length(priorities)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
@@ -63813,6 +63821,7 @@ SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0) = Swapchain
 
 """
 Arguments:
+- `physical_device_count::UInt32`
 - `physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}`
 - `subset_allocation::Bool`
 - `next::Any`: defaults to `C_NULL`
@@ -63820,7 +63829,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGroupProperties.html)
 
 """
-PhysicalDeviceGroupProperties(physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL) = PhysicalDeviceGroupProperties(next, physical_devices, subset_allocation)
+PhysicalDeviceGroupProperties(physical_device_count::Integer, physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL) = PhysicalDeviceGroupProperties(next, physical_device_count, physical_devices, subset_allocation)
 
 """
 Arguments:
@@ -65262,13 +65271,14 @@ PhysicalDeviceGlobalPriorityQueryFeatures(global_priority_query::Bool; next = C_
 
 """
 Arguments:
+- `priority_count::UInt32`
 - `priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}`
 - `next::Any`: defaults to `C_NULL`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyGlobalPriorityProperties.html)
 
 """
-QueueFamilyGlobalPriorityProperties(priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL) = QueueFamilyGlobalPriorityProperties(next, priorities)
+QueueFamilyGlobalPriorityProperties(priority_count::Integer, priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL) = QueueFamilyGlobalPriorityProperties(next, priority_count, priorities)
 
 """
 Extension: VK\\_EXT\\_debug\\_utils
@@ -75729,7 +75739,7 @@ _InstanceCreateInfo(x::InstanceCreateInfo) = _InstanceCreateInfo(x.enabled_layer
 
 _QueueFamilyProperties(x::QueueFamilyProperties) = _QueueFamilyProperties(x.queue_count, x.timestamp_valid_bits, convert_nonnull(_Extent3D, x.min_image_transfer_granularity); x.queue_flags)
 
-_PhysicalDeviceMemoryProperties(x::PhysicalDeviceMemoryProperties) = _PhysicalDeviceMemoryProperties(convert_nonnull(NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, x.memory_types), convert_nonnull(NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap}, x.memory_heaps))
+_PhysicalDeviceMemoryProperties(x::PhysicalDeviceMemoryProperties) = _PhysicalDeviceMemoryProperties(x.memory_type_count, convert_nonnull(NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, x.memory_types), x.memory_heap_count, convert_nonnull(NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap}, x.memory_heaps))
 
 _MemoryAllocateInfo(x::MemoryAllocateInfo) = _MemoryAllocateInfo(x.allocation_size, x.memory_type_index; x.next)
 
@@ -76165,7 +76175,7 @@ _DisplayEventInfoEXT(x::DisplayEventInfoEXT) = _DisplayEventInfoEXT(x.display_ev
 
 _SwapchainCounterCreateInfoEXT(x::SwapchainCounterCreateInfoEXT) = _SwapchainCounterCreateInfoEXT(; x.next, x.surface_counters)
 
-_PhysicalDeviceGroupProperties(x::PhysicalDeviceGroupProperties) = _PhysicalDeviceGroupProperties(x.physical_devices, x.subset_allocation; x.next)
+_PhysicalDeviceGroupProperties(x::PhysicalDeviceGroupProperties) = _PhysicalDeviceGroupProperties(x.physical_device_count, x.physical_devices, x.subset_allocation; x.next)
 
 _MemoryAllocateFlagsInfo(x::MemoryAllocateFlagsInfo) = _MemoryAllocateFlagsInfo(x.device_mask; x.next, x.flags)
 
@@ -76431,7 +76441,7 @@ _DeviceQueueGlobalPriorityCreateInfo(x::DeviceQueueGlobalPriorityCreateInfo) = _
 
 _PhysicalDeviceGlobalPriorityQueryFeatures(x::PhysicalDeviceGlobalPriorityQueryFeatures) = _PhysicalDeviceGlobalPriorityQueryFeatures(x.global_priority_query; x.next)
 
-_QueueFamilyGlobalPriorityProperties(x::QueueFamilyGlobalPriorityProperties) = _QueueFamilyGlobalPriorityProperties(x.priorities; x.next)
+_QueueFamilyGlobalPriorityProperties(x::QueueFamilyGlobalPriorityProperties) = _QueueFamilyGlobalPriorityProperties(x.priority_count, x.priorities; x.next)
 
 _DebugUtilsObjectNameInfoEXT(x::DebugUtilsObjectNameInfoEXT) = _DebugUtilsObjectNameInfoEXT(x.object_type, x.object_handle; x.next, x.object_name)
 
@@ -83504,7 +83514,7 @@ InstanceCreateInfo(x::VkInstanceCreateInfo, next_types::Type...) = InstanceCreat
 
 QueueFamilyProperties(x::VkQueueFamilyProperties) = QueueFamilyProperties(x.queueFlags, x.queueCount, x.timestampValidBits, Extent3D(x.minImageTransferGranularity))
 
-PhysicalDeviceMemoryProperties(x::VkPhysicalDeviceMemoryProperties) = PhysicalDeviceMemoryProperties(MemoryType.(x.memoryTypes), MemoryHeap.(x.memoryHeaps))
+PhysicalDeviceMemoryProperties(x::VkPhysicalDeviceMemoryProperties) = PhysicalDeviceMemoryProperties(x.memoryTypeCount, MemoryType.(x.memoryTypes), x.memoryHeapCount, MemoryHeap.(x.memoryHeaps))
 
 MemoryAllocateInfo(x::VkMemoryAllocateInfo, next_types::Type...) = MemoryAllocateInfo(load_next_chain(x.pNext, next_types...), x.allocationSize, x.memoryTypeIndex)
 
@@ -83940,7 +83950,7 @@ DisplayEventInfoEXT(x::VkDisplayEventInfoEXT, next_types::Type...) = DisplayEven
 
 SwapchainCounterCreateInfoEXT(x::VkSwapchainCounterCreateInfoEXT, next_types::Type...) = SwapchainCounterCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.surfaceCounters)
 
-PhysicalDeviceGroupProperties(x::VkPhysicalDeviceGroupProperties, next_types::Type...) = PhysicalDeviceGroupProperties(load_next_chain(x.pNext, next_types...), PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
+PhysicalDeviceGroupProperties(x::VkPhysicalDeviceGroupProperties, next_types::Type...) = PhysicalDeviceGroupProperties(load_next_chain(x.pNext, next_types...), x.physicalDeviceCount, PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
 
 MemoryAllocateFlagsInfo(x::VkMemoryAllocateFlagsInfo, next_types::Type...) = MemoryAllocateFlagsInfo(load_next_chain(x.pNext, next_types...), x.flags, x.deviceMask)
 
@@ -84206,7 +84216,7 @@ DeviceQueueGlobalPriorityCreateInfo(x::VkDeviceQueueGlobalPriorityCreateInfo, ne
 
 PhysicalDeviceGlobalPriorityQueryFeatures(x::VkPhysicalDeviceGlobalPriorityQueryFeatures, next_types::Type...) = PhysicalDeviceGlobalPriorityQueryFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.globalPriorityQuery))
 
-QueueFamilyGlobalPriorityProperties(x::VkQueueFamilyGlobalPriorityProperties, next_types::Type...) = QueueFamilyGlobalPriorityProperties(load_next_chain(x.pNext, next_types...), x.priorities)
+QueueFamilyGlobalPriorityProperties(x::VkQueueFamilyGlobalPriorityProperties, next_types::Type...) = QueueFamilyGlobalPriorityProperties(load_next_chain(x.pNext, next_types...), x.priorityCount, x.priorities)
 
 DebugUtilsObjectNameInfoEXT(x::VkDebugUtilsObjectNameInfoEXT, next_types::Type...) = DebugUtilsObjectNameInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.objectHandle, unsafe_string(x.pObjectName))
 

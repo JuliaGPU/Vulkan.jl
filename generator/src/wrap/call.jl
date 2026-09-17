@@ -9,7 +9,8 @@ function from_vk_call(x::Spec, identifier = :x)
             :(Vector{$_}) => :(unsafe_wrap($jtype, $prop, $(len_expr(x, identifier)); own = true))
         end
 
-        GuardBy(is_length) => nothing
+        # Kept when the array it counts is fixed-size: see `counts_a_fixed_array`.
+        GuardBy(is_length) => counts_a_fixed_array(x) ? prop : nothing
         _ => from_vk_call(prop, x.type, jtype)
     end
 end
