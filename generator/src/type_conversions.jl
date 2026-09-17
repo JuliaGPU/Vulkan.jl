@@ -50,6 +50,20 @@ those are `Cuint`s -- `NTuple{VK_UUID_SIZE, UInt8}` is a `TypeError`, not a type
 reason. This changes nothing else, so what comes back is still the raw type a
 raw constructor accepts.
 """
+# What `LibVulkan` exports, and so what `using .vk` puts within reach of the
+# wrapper: its export loop takes every name carrying one of these prefixes and
+# nothing else. A type it defines but does not export has to be named THROUGH the
+# module or it is an `UndefVarError` raised when the constructor runs, not when
+# the package precompiles. `PFN_vkDebugUtilsMessengerCallbackEXT` is one such
+# name; so are the Metal object types `MTLDevice_id`, `MTLBuffer_id`,
+# `MTLTexture_id`, `MTLSharedEvent_id`, `MTLCommandQueue_id` and `IOSurfaceRef`,
+# which only `macos.jl` ever mentions.
+const VULKANCORE_EXPORT_PREFIXES = ("VK_", "Vk", "vk", "StdVideo", "STD_VIDEO")
+
+nameable_unqualified(t::Symbol) =
+    isdefined(Base, t) || isdefined(Core, t) ||
+    any(p -> startswith(String(t), p), VULKANCORE_EXPORT_PREFIXES)
+
 function raw_julia_type(type)
     @match t = type begin
         :(NTuple{$N,$T}) => begin
@@ -59,6 +73,7 @@ function raw_julia_type(type)
             end
             :(NTuple{$_N,$(raw_julia_type(T))})
         end
+        ::Symbol => nameable_unqualified(t) ? t : :(vk.$t)
         _ => t
     end
 end

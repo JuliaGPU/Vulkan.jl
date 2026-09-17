@@ -57402,7 +57402,7 @@ Arguments:
 function _ExportMetalDeviceInfoEXT(mtl_device::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalDeviceInfoEXT(structure_type(VkExportMetalDeviceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(MTLDevice_id, mtl_device))
+    vks = VkExportMetalDeviceInfoEXT(structure_type(VkExportMetalDeviceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.MTLDevice_id, mtl_device))
     _ExportMetalDeviceInfoEXT(vks, deps)
 end
 
@@ -57420,7 +57420,7 @@ Arguments:
 function _ExportMetalCommandQueueInfoEXT(queue, mtl_command_queue::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalCommandQueueInfoEXT(structure_type(VkExportMetalCommandQueueInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueue, queue), convert(MTLCommandQueue_id, mtl_command_queue))
+    vks = VkExportMetalCommandQueueInfoEXT(structure_type(VkExportMetalCommandQueueInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueue, queue), convert(vk.MTLCommandQueue_id, mtl_command_queue))
     _ExportMetalCommandQueueInfoEXT(vks, deps, queue)
 end
 
@@ -57438,7 +57438,7 @@ Arguments:
 function _ExportMetalBufferInfoEXT(memory, mtl_buffer::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalBufferInfoEXT(structure_type(VkExportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory), convert(MTLBuffer_id, mtl_buffer))
+    vks = VkExportMetalBufferInfoEXT(structure_type(VkExportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory), convert(vk.MTLBuffer_id, mtl_buffer))
     _ExportMetalBufferInfoEXT(vks, deps, memory)
 end
 
@@ -57455,7 +57455,7 @@ Arguments:
 function _ImportMetalBufferInfoEXT(mtl_buffer::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalBufferInfoEXT(structure_type(VkImportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(MTLBuffer_id, mtl_buffer))
+    vks = VkImportMetalBufferInfoEXT(structure_type(VkImportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.MTLBuffer_id, mtl_buffer))
     _ImportMetalBufferInfoEXT(vks, deps)
 end
 
@@ -57476,7 +57476,7 @@ Arguments:
 function _ExportMetalTextureInfoEXT(plane::ImageAspectFlag, mtl_texture::Cvoid; next = C_NULL, image = C_NULL, image_view = C_NULL, buffer_view = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalTextureInfoEXT(structure_type(VkExportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(VkImageView, image_view), convert(VkBufferView, buffer_view), VkImageAspectFlagBits(plane.val), convert(MTLTexture_id, mtl_texture))
+    vks = VkExportMetalTextureInfoEXT(structure_type(VkExportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(VkImageView, image_view), convert(VkBufferView, buffer_view), VkImageAspectFlagBits(plane.val), convert(vk.MTLTexture_id, mtl_texture))
     _ExportMetalTextureInfoEXT(vks, deps, image, image_view, buffer_view)
 end
 
@@ -57494,7 +57494,7 @@ Arguments:
 function _ImportMetalTextureInfoEXT(plane::ImageAspectFlag, mtl_texture::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalTextureInfoEXT(structure_type(VkImportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(plane.val), convert(MTLTexture_id, mtl_texture))
+    vks = VkImportMetalTextureInfoEXT(structure_type(VkImportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(plane.val), convert(vk.MTLTexture_id, mtl_texture))
     _ImportMetalTextureInfoEXT(vks, deps)
 end
 
@@ -57512,7 +57512,7 @@ Arguments:
 function _ExportMetalIOSurfaceInfoEXT(image, io_surface::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalIOSurfaceInfoEXT(structure_type(VkExportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(IOSurfaceRef, io_surface))
+    vks = VkExportMetalIOSurfaceInfoEXT(structure_type(VkExportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(vk.IOSurfaceRef, io_surface))
     _ExportMetalIOSurfaceInfoEXT(vks, deps, image)
 end
 
@@ -57529,7 +57529,7 @@ Arguments:
 function _ImportMetalIOSurfaceInfoEXT(; next = C_NULL, io_surface = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalIOSurfaceInfoEXT(structure_type(VkImportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(IOSurfaceRef, io_surface))
+    vks = VkImportMetalIOSurfaceInfoEXT(structure_type(VkImportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.IOSurfaceRef, io_surface))
     _ImportMetalIOSurfaceInfoEXT(vks, deps)
 end
 
@@ -57548,7 +57548,7 @@ Arguments:
 function _ExportMetalSharedEventInfoEXT(mtl_shared_event::Cvoid; next = C_NULL, semaphore = C_NULL, event = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalSharedEventInfoEXT(structure_type(VkExportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, semaphore), convert(VkEvent, event), convert(MTLSharedEvent_id, mtl_shared_event))
+    vks = VkExportMetalSharedEventInfoEXT(structure_type(VkExportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, semaphore), convert(VkEvent, event), convert(vk.MTLSharedEvent_id, mtl_shared_event))
     _ExportMetalSharedEventInfoEXT(vks, deps, semaphore, event)
 end
 
@@ -57565,7 +57565,7 @@ Arguments:
 function _ImportMetalSharedEventInfoEXT(mtl_shared_event::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalSharedEventInfoEXT(structure_type(VkImportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(MTLSharedEvent_id, mtl_shared_event))
+    vks = VkImportMetalSharedEventInfoEXT(structure_type(VkImportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.MTLSharedEvent_id, mtl_shared_event))
     _ImportMetalSharedEventInfoEXT(vks, deps)
 end
 
