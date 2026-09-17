@@ -58,9 +58,45 @@ function function_pointer(disp::APIDispatcher, handle, key::Symbol; allow_null::
     fptr
 end
 
-function_pointer(name::AbstractString) = get_instance_proc_addr(name)
+"""
+`vkGetInstanceProcAddr`, found by `dlsym` rather than called by name.
+
+Which symbol a Vulkan implementation exports is not the same everywhere. A
+Khronos loader and MoltenVK export `vkGetInstanceProcAddr`. A bare Mesa ICD
+exports only the three `vk_icd*` entry points -- lavapipe's version script
+exports exactly `vk_icdGetInstanceProcAddr`, `vk_icdGetPhysicalDeviceProcAddr`
+and `vk_icdNegotiateLoaderICDInterfaceVersion`, and nothing else, so a named
+`ccall` to `vkGetInstanceProcAddr` cannot load its symbol at all. That is every
+Mesa driver -- lavapipe, RADV, ANV -- used without a loader in between.
+
+`vk_icdGetInstanceProcAddr` answers the same question, so take whichever the
+library has. An ICD that is never told otherwise assumes loader interface
+version 0, where the two behave identically, so there is nothing to negotiate.
+"""
+function instance_proc_addr()
+    ptr = INSTANCE_PROC_ADDR[]
+    ptr === C_NULL || return ptr
+    handle = VkCore.LibVulkan.libvulkan_handle[]
+    handle === C_NULL &&
+        error("no Vulkan loader: `$(VkCore.libvulkan)` was not found when Vulkan.jl " *
+              "loaded, so no function pointers can be resolved.")
+    for name in (:vkGetInstanceProcAddr, :vk_icdGetInstanceProcAddr)
+        ptr = Libdl.dlsym_e(handle, name)
+        ptr === C_NULL || return INSTANCE_PROC_ADDR[] = ptr
+    end
+    error("`$(VkCore.libvulkan)` exports neither `vkGetInstanceProcAddr` nor " *
+          "`vk_icdGetInstanceProcAddr`, so it is not a Vulkan implementation this " *
+          "package can call.")
+end
+
+const INSTANCE_PROC_ADDR = Ref(C_NULL)
+
+instance_proc_addr(instance, name::AbstractString) =
+    ccall(instance_proc_addr(), Ptr{Cvoid}, (VkCore.VkInstance, Cstring), instance, name)
+
+function_pointer(name::AbstractString) = instance_proc_addr(C_NULL, name)
 function_pointer(::Nothing, name::AbstractString) = function_pointer(name)
-function_pointer(instance::Instance, name::AbstractString) = get_instance_proc_addr(name; instance)
+function_pointer(instance::Instance, name::AbstractString) = instance_proc_addr(instance, name)
 # `vkGetDeviceProcAddr` asked of the INSTANCE, not of the library by name.
 #
 # It is the one entry point the dispatch table has to bootstrap, and a driver on
