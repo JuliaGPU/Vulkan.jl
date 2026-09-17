@@ -81,8 +81,10 @@ function vk_call(x::Spec)
         end
         if x.type ∈ [api.flags.name; api.enums.name]
         end => var
+        # `flag_value`, not `.val`: an optional flag member defaults to the
+        # integer 0, which has no such field. See its docstring.
         if x.type ∈ getproperty.(filter(!isnothing, api.flags.bitmask), :name)
-        end => :($(x.type)($var.val))
+        end => :($(x.type)(flag_value($var)))
         if x.type ∈ extension_types
         end => var
         _ => @match jtype begin
