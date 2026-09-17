@@ -114,6 +114,18 @@ function supertype_union(type, is_high_level)
         :UInt8 || :UInt16 || :UInt32 || :UInt64 => :Unsigned
         :Int8 || :Int16 || :Int32 || :Int64 => :Signed
         :Float8 || :Float16 || :Float32 || :Float64 => :AbstractFloat
+        # A pointer alternative stays a pointer. `idiomatic_julia_type` would
+        # dereference it to the wrapper struct, which promises a value the body
+        # then hands to a constructor storing a pointer -- a MethodError for all
+        # 18 constructors of the three unions whose alternatives are pointers
+        # (`VkIndirectCommandsTokenDataEXT`, `VkIndirectExecutionSetInfoEXT`,
+        # `VkClusterAccelerationStructureOpInputNV`, all new in 1.4).
+        #
+        # Taking the pointer is also the only honest signature: a union wrapper
+        # has one field and no `deps`, so there is nowhere to anchor a pointee
+        # and the caller has to own that lifetime. `VkDescriptorDataEXT` says the
+        # same thing by hand a few lines above.
+        GuardBy(is_ptr) => type
         _ => is_high_level ? hl_type(type) : idiomatic_julia_type(type)
     end
 end

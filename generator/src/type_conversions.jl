@@ -38,6 +38,31 @@ function hl_type(type)
     end
 end
 
+"""
+    raw_julia_type(type)
+
+`type` as the C headers write it, with `NTuple` lengths made usable as type
+parameters.
+
+The specification gives an array length as the C constant that names it, and
+those are `Cuint`s -- `NTuple{VK_UUID_SIZE, UInt8}` is a `TypeError`, not a type.
+`hl_type` and `idiomatic_julia_type` wrap the same lengths in `Int` for the same
+reason. This changes nothing else, so what comes back is still the raw type a
+raw constructor accepts.
+"""
+function raw_julia_type(type)
+    @match t = type begin
+        :(NTuple{$N,$T}) => begin
+            _N = @match N begin
+                ::Symbol => :(Int($N))
+                _ => N
+            end
+            :(NTuple{$_N,$(raw_julia_type(T))})
+        end
+        _ => t
+    end
+end
+
 function idiomatic_julia_type(type)
     @match t = type begin
         GuardBy(is_fn_ptr) => :FunctionPtr
