@@ -23,20 +23,19 @@ Available:
 
 - `:SwiftShader` -- a CPU implementation, from `SwiftShader_jll`. Reports Vulkan
   1.3 and is slow, but runs wherever the JLL does, macOS included.
-- `:Lavapipe` -- Mesa's CPU implementation, from `Lavapipe_jll`, and more current
-  than SwiftShader.
 - `:Loader` -- the Khronos loader, from `Vulkan_Loader_jll`. Finds system drivers
   itself, and is the only one of these that can offer validation layers.
 - `:System` -- undo, and go back to whatever the platform provides.
 
 The named package has to be installed already; this will not add it for you.
 
-`:SwiftShader` and `:Lavapipe` are reached DIRECTLY, with no loader in between --
-which is also how MoltenVK is meant to be used. Two things the loader would have
-provided are then absent: validation layers, and driver discovery. For those, use
-`:Loader` and point `VK_ADD_DRIVER_FILES` at the ICD manifest you want it to
-find. `VK_ADD_DRIVER_FILES` adds to what the loader discovers; `VK_DRIVER_FILES`
-REPLACES it, which would hide a real GPU behind a CPU one.
+`:SwiftShader` is reached DIRECTLY, with no loader in between. Two things the
+loader would have provided are then absent: validation layers and driver
+discovery.
+
+Driver JLLs that ship an ICD manifest do not need this function. In particular,
+`using Lavapipe_jll, Vulkan` registers Lavapipe additively with the loader, so a
+hardware driver and Lavapipe remain available in the same process.
 """
 function set_driver(name::Symbol)
     lib = driver_library(Val(name))
@@ -48,7 +47,6 @@ end
 
 const DRIVERS = (System = nothing,
                  SwiftShader = ("SwiftShader_jll", (:libvulkan, :libvk_swiftshader)),
-                 Lavapipe    = ("Lavapipe_jll", (:libvulkan_lvp, :libvulkan)),
                  Loader      = ("Vulkan_Loader_jll", (:libvulkan,)))
 
 driver_library(::Val{:System}) = nothing
@@ -59,10 +57,7 @@ driver_library(::Val{name}) where {name} =
 """
 The Vulkan library a driver package provides.
 
-Resolved through the active environment by NAME rather than by a hard-coded UUID,
-because these are not all registered packages -- `Lavapipe_jll` in particular may
-be a local build, and inventing a UUID for it would find the wrong package or
-none at all.
+Resolved through the active environment by NAME rather than by a hard-coded UUID.
 """
 function jll_library(pkgname::AbstractString, fields::Tuple)
     id = Base.identify_package(pkgname)
